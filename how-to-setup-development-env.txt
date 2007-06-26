@@ -1,0 +1,48 @@
+How to setup a FoxyProxy development environment in Firefox on Windows/Unix/Linux:
+
+For build instructions, see how-to-build.txt
+
+1. Modify the way Firefox is started so it includes these command-line arguments:
+     -console -profileManager
+     e.g.: "C:\Program Files\Mozilla Firefox\firefox.exe" -console -profileManager
+     or
+     /usr/local/bin/firefox -console -profileManager
+
+   Now whenever you start Firefox, you can see stdout and stderr in the console.
+   This is important because all dump() statements in FoxyProxy
+   write to stdout. The -profileManager argument allows you to create/delete
+   profiles which you'll need for step 2.
+
+2. Start FF and create a new profile.
+
+3. Install the latest version of Ted's Extension Developer's Extension from
+   http://ted.mielczarek.org/code/mozilla/extensiondev/
+
+4. Restart FF so the extension is installed.
+
+5. Go to Tools->Extension Developer->Toggle debugging prefs. This will
+   do things like turn off XUL caching, enable dump() statement output preferences,
+   etc.
+
+6. Close FF.
+
+7. Find the new profile on your hard drive. Go to its extensions\ directory;
+   e.g., C:\Documents and Settings\EricJu\Application Data\Mozilla\Firefox\
+            Profiles\g1jro8hx.dev\extensions
+   and create a file named {foxyproxy@eric.h.jung}
+   It should contain a single line that is the path to the src directory you checked
+   out from FoxyProxy's subversion repository. e.g.:
+     <drive>:\dev\foxyproxy\trunk\src
+     or
+     ~/foxyproxy/trunk/src
+   
+8. Start FF. You should be able to access FoxyProxy. Any change you
+   make to non-overlay code in the src/ directory takes effect immediately.
+   However, you must close and re-open dialogs for dialog-included JS and XUL
+   changes to be visible (e.g., options.xul). If you make changes to overlay code,
+   you must restart FF for the changes to take effect.
+
+9. Use dump() statements to output stuff to stdout; alert() statements to
+   alert.
+
+See http://forums.mozillazine.org/viewtopic.php?t=360892 (page 2) for more info

@@ -1,0 +1,55 @@
+<!-- switched from xhtml to html because of BabelZilla WTS adds extraneous html tags on locale download -->
+<html>
+  <head>
+  <style type="text/css">
+    table {
+    	border-width: 0px;
+    	border-spacing: 2px;
+    	border-style: none;
+    	border-color: white;
+    	border-collapse: separate;
+    	background-color: rgb(250, 240, 230);
+    	font-size: x-small;
+    	font-family: verdana, sans-serif;
+    }
+    table td,table th {
+    	border-width: 1px;
+    	padding: 1px;
+    	border-style: groove;
+    	border-color: green;
+    	background-color: rgb(250, 240, 230);
+      vertical-align: top;    	
+		  font-size: x-small; 
+		  font-family: verdana, sans-serif;
+    }    
+    p {background-color: white; font-size: x-small; font-family: verdana, sans-serif;}
+    body {font-family: verdana, sans-serif;}
+    h3 {font-size: small;}
+    h4 {font-size: x-small;}
+  </style>
+  </head>
+<body>
+  <h3>URL-Muster</h3>
+  <p>Bevor Firefox eine URL lädt, fragt er FoxyProxy, ob ein Proxy benutzt werden soll.
+     FoxyProxy beantwortet diese Frage, indem es versucht, die aktuelle URL mit allen definierten URL-Mustern abzugleichen.
+     Der einfachste Weg zur Definition von URL-Mustern sind Wildcards.</p>        
+   <h4><a name="wildcards">Wildcards</a></h4>
+   <p>Wildcards sind in der Computerwelt allgegenwärtig; vermutlich sind Sie ihnen schon einmal begegnet.
+   Der Stern (*) steht als Platzhalter für null oder mehrere beliebige andere Zeichen,
+   und das Fragezeichen (?) steht als Platzhalter für ein beliebiges anderes Zeichen.
+   </p>
+   <p>Komplexere Suchbedingungen können mit regulären Ausdrücken realisiert werden. Für Details klicken Sie bitte die  "Hilfe" Schaltfläche.</p>
+   
+   <h4>Wildcard Beispiele</h4>
+   <table>
+     <thead><tr><th>URL-Muster</th><th>einige Übereinstimmungen</th><th>einige Nicht-Übereinstimmungen</th></tr></thead>
+     <tr><td>*://*.yahoo.com/*</td><td>Alles in der Domäne von Yahoo</td><td>http://mail.google.com/</td></tr>      
+     <tr><td>*://mail.yahoo.com/*</td><td>http://mail.yahoo.com/<br/>http://mail.yahoo.com/clownshoes/<br/>http://mail.yahoo.com/inbox/123.html<br/>ftp://mail.yahoo.com</td><td>http://maps.yahoo.com</td></tr>
+     <tr><td>http://??.wikipedia.org/wiki/Clown</td><td>http://en.wikipedia.org/wiki/Clown<br/>http://de.wikipedia.org/wiki/Clown<br/>http://cs.wikipedia.org/wiki/Clown</td><td>https://en.wikipedia.org/wiki/Clown<br/>http://de.wikipedia.org/wiki/Clown/<br/>ftp://en.wikipedia.org/wiki/Clown</td></tr>
+     <tr><td>http://digg.com/</td><td>http://digg.com/</td><td>http://digg.com<br/>http://www.digg.com/</td></tr>
+     <tr><td>*://*.asimov.???/*</td><td>ftp://ftp.asimov.net/<br/>ftp://ftp.asimov.com/theory.html<br/>http://bear.asimov.net/mom/<br/>https://isaac.asimov.org/hercules<br/>gopher://asimov.net/</td>
+       <td>ftp://ftp.asimov.co.uk<br/>http://isaac.home.com/tin.php</td></tr>     
+     <tr><td>*</td><td><i>Alle URLs</i></td><td>&nbsp;</td></tr>            
+   </table>
+</body>
+</html>

@@ -1,0 +1,27 @@
+How to build foxyproxy-x.x.xpi on Windows/Unix/Linux:
+
+For instruction on setting up a development environment, see
+how-to-setup-development-env.txt
+
+This project uses ant (http://ant.apache.org) to build its targets.
+Ant is a free, open-source, cross-platform java tool. No IDE is
+necessary, but if you want to use Eclipse (http://www.eclipse.org),
+an Eclipse .project file is included.
+
+You can either download ant
+from http://ant.apache.org/bindownload.cgi or download and install
+Eclipse. If you choose ant instead of Eclipse, ensure you also download
+a Java Development Environment (JDK) and set appropriate ant environment
+variables. Specifically, you might consider adding the ant script to your
+PATH variable and exporting the ANT_HOME environment variable. If you use
+Eclipse IDE, you neither have to download the JDK nor setup ant environment
+variables.
+
+The ant build script is src/build.xml. The default target, named "build",
+builds the XPI in the directory /dev/foxyproxy/standard/fx+flock/trunk/src.
+If you want to change this directory, change the value of the src-base
+property. You might also want to change the value of the temporary directory
+which is /tmp/fp-temp and is stored in the variable temp-path. Note that
+forward slashes are platform-independent in ant scripts; they work on both
+windows and *nix -- providing the directories exist and you have appropriate
+permissions on them.

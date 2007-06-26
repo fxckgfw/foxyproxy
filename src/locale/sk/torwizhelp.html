@@ -1,0 +1,59 @@
+<!-- switched from xhtml to html because of BabelZilla WTS adds extraneous html tags on locale download -->
+<html>
+  <head>
+  <style type="text/css">
+    table {
+    	border-width: 0px;
+    	border-spacing: 2px;
+    	border-style: none;
+    	border-color: white;
+    	border-collapse: separate;
+    	background-color: rgb(250, 240, 230);
+    	font-size: x-small;
+    	font-family: verdana, sans-serif;
+    }
+    table td,table th {
+    	border-width: 1px;
+    	padding: 1px;
+    	border-style: groove;
+    	border-color: green;
+    	background-color: rgb(250, 240, 230);
+      vertical-align: top;    	
+		  font-size: x-small; 
+		  font-family: verdana, sans-serif;
+    }    
+    p {background-color: white; font-size: x-small; font-family: verdana, sans-serif;}
+    body {font-family: verdana, sans-serif;}
+    h3 {font-size: small;}
+    h4 {font-size: x-small;}
+  </style>
+  </head>
+<body>
+		<h3>Vzory URL</h3>
+		<p>Skôr ako Firefox načíta URL, opýta sa FoxyProxy, či má použiť proxy server. FoxyProxy odpovie na túto otázku s pokusom o pridelenie proxy servera k aktuálnej URL podľa všetkých nastavených vzorov URL. Tento proces je extrémne rýchly. Na pridelenie proxy servera k URL sú s FoxyProxy dva spôsoby: <a href="#wildcards">zástupné znaky</a> alebo <a href="#regex">regulárny výraz (RegEx)</a>.</p>
+		<h4><a name="wildcards">Zástupné znaky</a></h4>
+		<p><a href="http://en.wikipedia.org/wiki/Wildcard_character">Zástupné znaky</a> nás vo svete počítačov obklopujú všade; väčšina z vás sa už s nimi stretla. <a href="http://en.wikipedia.org/wiki/Asterisk">Hviezdička</a> (*) slúži ako zástupný znak za nula a viac znakov a otáznik (?) nahrádza ako zástupný znak jeden ľubovoľný znak.</p>
+		<p>Ďalšie pokročilé pravidlá sú možné vďaka regulárnym výrazom. Podrobnosti nájdete po kliknutí na tlačidlo &bdquo;Obsah Pomocníka&rdquo;.</p>
+		<h4>Príklady použitia zástupných znakov</h4>
+		<table>
+			<thead>
+				<tr>
+					<th>Vzor URL</th>
+					<th>Vyhovujúce URL</th>
+					<th>Nevyhovujúce URL</th>
+				</tr>
+			</thead>
+			<tr>
+				<td>*//:*.yahoo.com/*</td>
+				<td>Vyhovujú všetky URL v doméne Yahoo</td>
+				<td>http://mail.google.com/</td>
+</tr>      
+     <tr><td>*//:mail.yahoo.com/*</td><td>http://mail.yahoo.com/<br/>http://mail.yahoo.com/clownshoes/<br/>http://mail.yahoo.com/inbox/123.html<br/>ftp://mail.yahoo.com</td><td>http://maps.yahoo.com</td></tr>
+     <tr><td>http://??.wikipedia.org/wiki/Clown</td><td>http://en.wikipedia.org/wiki/Clown<br/>http://de.wikipedia.org/wiki/Clown<br/>http://cs.wikipedia.org/wiki/Clown</td><td>https://en.wikipedia.org/wiki/Clown<br/>http://de.wikipedia.org/wiki/Clown/<br/>ftp://en.wikipedia.org/wiki/Clown</td></tr>
+     <tr><td>http://digg.com/</td><td>http://digg.com/</td><td>http://digg.com<br/>http://www.digg.com/</td></tr>      
+     <tr><td>*://*.asimov.???/*</td><td>ftp://ftp.asimov.net/<br/>ftp://ftp.asimov.com/theory.html<br/>http://bear.asimov.net/mom/<br/>https://isaac.asimov.org/hercules<br/>gopher://asimov.net/</td>
+       <td>ftp://ftp.asimov.co.uk<br/>http://isaac.home.com/tin.php</td></tr>     
+     <tr><td>*</td><td><i>Matches everything</i></td><td>&nbsp;</td></tr>            
+   </table>
+</body>
+</html>

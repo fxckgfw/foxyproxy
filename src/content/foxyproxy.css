@@ -1,0 +1,115 @@
+/**
+  FoxyProxy
+  Copyright (C) 2006, 2007 Eric H. Jung and LeahScape, Inc.
+  http://foxyproxy.mozdev.org/
+  eric.jung@yahoo.com
+
+  This source code is released under the GPL license,
+  available in the LICENSE file at the root of this installation
+  and also online at http://www.gnu.org/licenses/gpl.txt
+All Rights Reserved. U.S. PATENT PENDING.
+**/
+
+@import url(chrome://global/skin/);
+	
+tree {min-height: 50px;}
+/*treechildren::-moz-tree-row(grey) {
+  background-color: rgb(80%, 80%, 80%);
+}*/
+
+#foxyproxy-button-1[mode="patterns"],
+#foxyproxy-context-menu-1[mode="patterns"],
+#foxyproxy-tools-menu-1[mode="patterns"],
+#foxyproxy-status-icon[mode="patterns"]                      
+  {list-style-image: url("chrome://foxyproxy/content/images/patterns.gif");}
+
+#foxyproxy-button-1[mode="static"],
+#foxyproxy-context-menu-1[mode="static"],
+#foxyproxy-tools-menu-1[mode="static"],
+#foxyproxy-status-icon[mode="static"]
+	{list-style-image: url("chrome://foxyproxy/content/images/static.gif");}
+
+#foxyproxy-button-1[mode="disabled"],
+#foxyproxy-context-menu-1[mode="disabled"],
+#foxyproxy-tools-menu-1[mode="disabled"],
+#foxyproxy-status-icon[mode="disabled"]	                      
+  {list-style-image: url("chrome://foxyproxy/content/images/disabled.gif");}
+
+#foxyproxy-button-1[mode="random"],
+#foxyproxy-context-menu-1[mode="random"],
+#foxyproxy-tools-menu-1[mode="random"],
+#foxyproxy-status-icon[mode="random"]	                                              
+  {list-style-image: url("chrome://foxyproxy/content/images/random.gif");}
+
+#foxyproxy-button-1[mode="patterns"][animated="true"],
+#foxyproxy-context-menu-1[mode="patterns"][animated="true"],
+#foxyproxy-tools-menu-1[mode="patterns"][animated="true"],
+#foxyproxy-status-icon[mode="patterns"][animated="true"]	                      
+  {list-style-image: url("chrome://foxyproxy/content/images/patterns-ani.gif");}
+
+#foxyproxy-button-1[mode="static"][animated="true"],
+#foxyproxy-context-menu-1[mode="static"][animated="true"],
+#foxyproxy-tools-menu-1[mode="static"][animated="true"],
+#foxyproxy-status-icon[mode="static"][animated="true"]	                                              
+  {list-style-image: url("chrome://foxyproxy/content/images/static-ani.gif");}
+
+#foxyproxy-button-1[mode="random"][animated="true"],
+#foxyproxy-context-menu-1[mode="random"][animated="true"],
+#foxyproxy-tools-menu-1[mode="random"][animated="true"],
+#foxyproxy-status-icon[mode="random"][animated="true"]	                                              
+  {list-style-image: url("chrome://foxyproxy/content/images/random-ani.gif");}
+
+.foxyproxybutton                  
+  {-moz-image-region: rect(0px 24px 24px 0px);}
+
+.foxyproxybutton:hover     
+  {-moz-image-region: rect(24px 24px 48px 0px);}
+
+[iconsize="small"] .foxyproxybutton
+  {-moz-image-region: rect(0px 40px 16px 24px);}
+
+[iconsize="small"] .foxyproxybutton:hover
+  {-moz-image-region: rect(16px 40px 32px 24px);}
+
+.foxyproxybutton-small
+  {-moz-image-region: rect(0px 40px 16px 24px);}
+
+.foxyproxybutton-small:hover     
+  {-moz-image-region: rect(16px 40px 32px 24px);}
+  
+treechildren::-moz-tree-checkbox(checked) {
+  /* css for checked cells */
+  list-style-image: url("chrome://global/skin/checkbox/cbox-check.gif");
+}
+
+#up-button {
+  list-style-image: url("chrome://foxyproxy/content/images/up.gif");
+}
+#down-button {
+  list-style-image: url("chrome://foxyproxy/content/images/down.gif");
+}
+
+#foxyproxy-image {
+  cursor: pointer;
+  list-style-image: url("chrome://foxyproxy/content/images/foxyproxy-with-copy.gif");
+}
+
+.heading {text-decoration: underline; font-weight:bold;}
+
+.foxyproxy-ref {
+	list-style-image: url("chrome://foxyproxy/content/images/info.png");
+	max-width: 32px;
+	padding-left: 6px;
+}
+.red { color: red; }
+.purple { color: purple; }
+.blue { color: blue; }
+.orange { color: #E78500; }
+
+.foxyproxy-tooltip {
+	text-align: justify;
+	margin: 1em;
+}
+.foxyproxy-border {
+	border: thin black solid;
+}

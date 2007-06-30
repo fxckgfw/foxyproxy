@@ -1,17 +1,5 @@
-/**
-  FoxyProxy
-  Copyright (C) 2006, 2007 Eric H. Jung and LeahScape, Inc.
-  http://foxyproxy.mozdev.org/
-  eric.jung@yahoo.com
-
-  This source code is released under the GPL license,
-  available in the LICENSE file at the root of this installation
-  and also online at http://www.gnu.org/licenses/gpl.txt
-All Rights Reserved. U.S. PATENT PENDING.
-**/
-
 // See http://forums.mozillazine.org/viewtopic.php?t=308369
-
+dump("here3\n");
 // Don't const the next line anymore because of the generic reg code
 var CI = Components.interfaces, CC = Components.classes, CR = Components.results;
 var fp = null;
@@ -35,6 +23,7 @@ function Proxy() {
   this.enabled = true;
   this.selectedTabIndex = 0;
   this.lastresort = false;
+  this.ignoreBlackList = false;
   this.id = fp.proxies.uniqueRandom();
 }
 
@@ -68,6 +57,7 @@ Proxy.prototype = {
 	  this.lastresort = node.hasAttribute("lastresort") ? node.getAttribute("lastresort") == "true" : false; // new for 2.0	     
     this.animatedIcons = node.hasAttribute("animatedIcons") ? node.getAttribute("animatedIcons") == "true" : !this.lastresort; // new for 2.4	  
     this.includeInCycle = node.hasAttribute("includeInCycle") ? node.getAttribute("includeInCycle") == "true" : !this.lastresort; // new for 2.5
+    this.ignoreBlackList = node.hasAttribute("ignoreBlackList") ? node.getAttribute("ignoreBlackList") == "true" : false; // new for 2.6    
     for (var i=0,temp=node.getElementsByTagName("match"); i<temp.length; i++) {
       var j = this.matches.length;
       this.matches[j] = new Match();
@@ -87,6 +77,7 @@ Proxy.prototype = {
     e.setAttribute("lastresort", this.lastresort);     
     e.setAttribute("animatedIcons", this.animatedIcons);   
     e.setAttribute("includeInCycle", this.includeInCycle);       
+    e.setAttribute("ignoreBlackList", this.ignoreBlackList);       
     
     var matchesElem = doc.createElement("matches");
     e.appendChild(matchesElem);
@@ -153,6 +144,16 @@ Proxy.prototype = {
       }
     }
     return white == -1 ? false : this.matches[white];
+  },
+  
+  isBlackListed : function(uriStr) {
+    for (var i=0; i<this.matches.length; i++) {
+      if (this.matches[i].enabled && this.matches[i].regex.test(uriStr)) {
+	      if (this.matches[i].isBlackList) {
+	      	return this.matches[i];
+	      }
+			}
+		}
   },
 	
 	resolve : function(spec, host, mp) {
@@ -349,7 +350,7 @@ ManualConf.prototype = {
     	node.getAttribute("gopherport")? node.getAttribute("gopherport"):"";  // "port" is new for 2.5
     	
     this._socksversion = node.getAttribute("socksversion");
-
+    	    
 	  this._isSocks = node.hasAttribute("isSocks") ? node.getAttribute("isSocks") == "true" :
     	node.getAttribute("http") ? false: 
     	node.getAttribute("ssl") ? false:
@@ -533,7 +534,8 @@ MatchingProxy.prototype = {
   pacResult : "", // Default value for MPs which don't have PAC results (i.e., they probably don't use PACs or the PAC returned null
   _init : function() {
     this.randomMsg = fp.getMessage("proxy.random");
-    this.allMsg = fp.getMessage("proxy.all.urls");
+    this.allMsg = fp.getMessage("proxy.all.urls2");
+    this.allMsgBL = fp.getMessage("proxy.all.urls.bl");
     this.regExMsg = fp.getMessage("foxyproxy.regex.label");
     this.wcMsg = fp.getMessage("foxyproxy.wildcard.label");
     this.blackMsg = fp.getMessage("foxyproxy.blacklist.label");
@@ -555,7 +557,10 @@ MatchingProxy.prototype = {
 		}
 		else if (type == "ded") {
 		  this.whiteBlack = this.matchName = this.matchPattern = this.matchType = this.allMsg;
-		}		
+		}	
+		else if (type == "ded-with-bl") {
+			this.whiteBlack = this.matchName = this.matchPattern = this.matchType = this.allMsgBL;
+		}			
 		else if (type == "rand") {
       this.matchName = this.matchPattern = this.matchType = this.whiteBlack = this.randomMsg;
     }

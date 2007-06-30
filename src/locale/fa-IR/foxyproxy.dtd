@@ -68,7 +68,7 @@
 <!ENTITY foxyproxy.regex.label "عبارت منظم">
 <!ENTITY foxyproxy.regex.accesskey "R">
 <!ENTITY foxyproxy.regex.tooltip "عبارت منظم">
-<!ENTITY foxyproxy.regex.example.label "http?://.*\.mail\.yahoo\.com/.*:مثال">
+<!ENTITY foxyproxy.regex.example.label "https?://.*\.mail\.yahoo\.com/.*:مثال">
 <!ENTITY foxyproxy.version "نسخه">
 <!ENTITY foxyproxy.createdBy "نویسنده">
 <!ENTITY foxyproxy.copyright "Copyright">

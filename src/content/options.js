@@ -1,18 +1,28 @@
-/**
+/*
   FoxyProxy
   Copyright (C) 2006, 2007 Eric H. Jung and LeahScape, Inc.
   http://foxyproxy.mozdev.org/
   eric.jung@yahoo.com
 
-  This source code is released under the GPL license,
-  available in the LICENSE file at the root of this installation
-  and also online at http://www.gnu.org/licenses/gpl.txt
-All Rights Reserved. U.S. PATENT PENDING.
-**/
+  This library is free software; you can redistribute it and/or modify it
+  under the terms of the GNU Lesser General Public License as published by
+  the Free Software Foundation; either version 2.1 of the License, or (at
+  your option) any later version.
 
-var foxyproxy, proxyTree, logTree, monthslong, dayslong, overlay,
+  This library is distributed in the hope that it will be useful, but WITHOUT
+  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+  FITNESSFOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License
+  for more details.
+
+  You should have received a copy of the GNU Lesser General Public License
+  along with this library; if not, write to the Free Software Foundation,
+  Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+
+  ALL RIGHTS RESERVED. U.S. PATENT PENDING.
+*/
+var foxyproxy, proxySettingsTree, logTree, monthslong, dayslong, overlay,
 	quickAddTemplateExample, autoAddTemplateExample, timeformat, saveLogCmd, noURLsCmd,
-	common; 
+	common, prevMode;
 const CI = Components.interfaces, CC = Components.classes;
 
 function onLoad() {
@@ -31,7 +41,7 @@ function onLoad() {
   dayslong = [foxyproxy.getMessage("days.long.1"), foxyproxy.getMessage("days.long.2"),
     foxyproxy.getMessage("days.long.3"), foxyproxy.getMessage("days.long.4"), foxyproxy.getMessage("days.long.5"),
     foxyproxy.getMessage("days.long.6"), foxyproxy.getMessage("days.long.7")];
-  proxyTree = document.getElementById("proxyTree");
+  proxySettingsTree = document.getElementById("proxySettingsTree");
   logTree = document.getElementById("logTree");
   autoAddTemplateExample = document.getElementById("autoAddTemplateExample");
   quickAddTemplateExample = document.getElementById("quickAddTemplateExample");
@@ -53,6 +63,7 @@ function _initSettings() {
   document.getElementById("quickAddMatchType").value = foxyproxy.quickadd.match.isRegEx ? "r" : "w"; 
   updateTemplateExample("autoAddUrlTemplate", "autoAddTemplateExample", foxyproxy.autoadd);  
   updateTemplateExample("quickAddUrlTemplate", "quickAddTemplateExample", foxyproxy.quickadd);  
+  prevMode = document.getElementById("modeMenu").value;
 }
 
 function onUsingPFF(usingPFF) {
@@ -146,8 +157,15 @@ function _updateModeMenu() {
     //popup.appendChild(common.createMenuItem({idVal["random", labelId:"mode.random.label"}));
   popup.appendChild(common.createMenuItem({idVal:"disabled", labelId:"mode.disabled.label"}));
   menu.value = foxyproxy.mode;
+	var igble = document.getElementById("ignoreBlackListEnabled");
+	igble.hidden = true;
   if (foxyproxy.mode != "patterns" && foxyproxy.mode != "disabled" &&
   	foxyproxy.mode != "random") {
+  	// Mode: Use proxy "ABC" for all URLs or default proxy settings
+  	if (!foxyproxy._selectedProxy.lastresort) {
+  		igble.hidden = false;
+  		igble.checked = foxyproxy._selectedProxy.ignoreBlackList;
+  	}
 	  if (!foxyproxy.proxies.item(menu.selectedIndex-1).enabled) { // subtract 1 because first element, patterns, is not in the proxies array
   	  // User disabled or deleted the proxy; select default setting.
     	foxyproxy.setMode("disabled", true);
@@ -222,7 +240,7 @@ function _updateView(writeSettings, updateLogView) {
  		onQuickAddEnabled(false);
  	}
     
-  proxyTree.view  = {
+  proxySettingsTree.view  = {
     rowCount : foxyproxy.proxies.length,
     getCellText : function(row, column) {
       var i = foxyproxy.proxies.item(row);    
@@ -260,54 +278,84 @@ function _updateView(writeSettings, updateLogView) {
 }
 
 function onEnableTypeChanged(menu) {
-  foxyproxy.setMode(menu.selectedItem.id, true);
-  _updateView();
+	var mode = menu.value, res, propFcn;
+	if (mode == prevMode)
+		return;
+  switch (mode) {
+    case "random":  
+     	res = "mode.random";
+     	propFcn = function() {foxyproxy.warning.modeRandom=true;};
+     	break; 
+    case "patterns":
+     	res = "mode.patterns";
+     	propFcn = function() {foxyproxy.warning.modePatterns=true;};    
+      break;
+		case "roundrobin":    
+     	res = "mode.roundrobin";
+     	propFcn = function() {foxyproxy.warning.modeRoundRobin=true;};		     
+			break;
+		case "disabled":
+     	res = "mode.disabled";
+     	propFcn = function() {foxyproxy.warning.modeDisabled=true;};		
+			break;
+    default:  
+     	res = foxyproxy._selectedProxy && !foxyproxy._selectedProxy.ignoreBlackList ? "no.ignore.blacklists": "mode.dedicated";     	
+     	propFcn = function() {foxyproxy.warning.modeDedicated=true;};    
+     	break;
+  }
+  var result = promptWithCB(res);
+  result.cb && propFcn();
+	if (result.okClicked) {
+		prevMode = mode;
+	  foxyproxy.setMode(mode, true);
+    _updateView();
+	}
+	else menu.value = prevMode;
 }
 
-function onDeleteSelection() {
-
+function onDeleteProxySettings() {
   if (_isDefaultProxySelected())
     overlay.alert(this, foxyproxy.getMessage("delete.proxy.default"));
   else if (overlay.ask(this, foxyproxy.getMessage("delete.proxy.confirm"))) {
 	  // Store cur selection
-	  var sel = proxyTree.currentIndex;  
-    foxyproxy.proxies.remove(proxyTree.currentIndex);
+	  var sel = proxySettingsTree.currentIndex;  
+    foxyproxy.proxies.remove(proxySettingsTree.currentIndex);
     _updateView(true);
 	  // Reselect what was previously selected
-		proxyTree.view.selection.select(sel+1>proxyTree.view.rowCount ? 0:sel);    
+		proxySettingsTree.view.selection.select(sel+1>proxySettingsTree.view.rowCount ? 0:sel);    
   }  
 }
 
-function onCopySelection() {
+function onCopyProxySettings() {
   if (_isDefaultProxySelected())
     overlay.alert(this, foxyproxy.getMessage("copy.proxy.default"));
   else {  
 	  // Store cur selection
-	  var sel = proxyTree.currentIndex;    
-	  var dom = foxyproxy.proxies.item(proxyTree.currentIndex).toDOM(document);
+	  var sel = proxySettingsTree.currentIndex;    
+	  var dom = foxyproxy.proxies.item(proxySettingsTree.currentIndex).toDOM(document);
 	  var p = CC["@leahscape.org/foxyproxy/proxy;1"].createInstance(CI.nsISupports).wrappedJSObject;
 	  p.fromDOM(dom);
 	  p.id = foxyproxy.proxies.uniqueRandom(); // give it its own id
 	  foxyproxy.proxies.push(p);
 	  _updateView(true);
 	  // Reselect what was previously selected
-		proxyTree.view.selection.select(sel);    	  
+		proxySettingsTree.view.selection.select(sel);    	  
 	}
 }
 
-function move(direction) {
+function onMoveProxySettings(direction) {
   // Store cur selection
-  var sel = proxyTree.currentIndex;
-  foxyproxy.proxies.move(proxyTree.currentIndex, direction) && _updateView(true);  
+  var sel = proxySettingsTree.currentIndex;
+  foxyproxy.proxies.move(proxySettingsTree.currentIndex, direction) && _updateView(true);  
   // Reselect what was previously selected
-	proxyTree.view.selection.select(sel + (direction=="up"?-1:1));
+	proxySettingsTree.view.selection.select(sel + (direction=="up"?-1:1));
 }
 
-function onSettings(isNew) {
-  var sel = proxyTree.currentIndex;
+function onProxySettings(isNew) {
+  var sel = proxySettingsTree.currentIndex;
     params = {inn:{proxy:isNew ?
       CC["@leahscape.org/foxyproxy/proxy;1"].createInstance(CI.nsISupports).wrappedJSObject : 
-      foxyproxy.proxies.item(proxyTree.currentIndex)}, out:null};
+      foxyproxy.proxies.item(proxySettingsTree.currentIndex)}, out:null};
         
   window.openDialog("chrome://foxyproxy/chrome/addeditproxy.xul", "",
     "chrome, dialog, modal, resizable=yes", params).focus();
@@ -316,17 +364,17 @@ function onSettings(isNew) {
     _updateView(true);
     foxyproxy.writeSettings();
 	  // Reselect what was previously selected or the new item
-		proxyTree.view.selection.select(isNew?proxyTree.view.rowCount-2:sel);    
+		proxySettingsTree.view.selection.select(isNew?proxySettingsTree.view.rowCount-2:sel);    
   }
 }
 
 function setButtons() {
-  document.getElementById("tree-row-selected").setAttribute("disabled", proxyTree.currentIndex == -1);
-  document.getElementById("moveUpCmd").setAttribute("disabled", 
-  	proxyTree.currentIndex == -1 || proxyTree.currentIndex == 0 || _isDefaultProxySelected());
-  document.getElementById("moveDownCmd").setAttribute("disabled", 
-  	proxyTree.currentIndex == -1 || proxyTree.currentIndex == foxyproxy.proxies.length-1 ||
-  	(proxyTree.currentIndex+1 < foxyproxy.proxies.length && foxyproxy.proxies.item(proxyTree.currentIndex+1).lastresort));
+  document.getElementById("tree-row-selected").setAttribute("disabled", proxySettingsTree.currentIndex == -1);
+  document.getElementById("moveProxySettingsUpCmd").setAttribute("disabled", 
+  	proxySettingsTree.currentIndex == -1 || proxySettingsTree.currentIndex == 0 || _isDefaultProxySelected());
+  document.getElementById("moveProxySettingsDownCmd").setAttribute("disabled", 
+  	proxySettingsTree.currentIndex == -1 || proxySettingsTree.currentIndex == foxyproxy.proxies.length-1 ||
+  	(proxySettingsTree.currentIndex+1 < foxyproxy.proxies.length && foxyproxy.proxies.item(proxySettingsTree.currentIndex+1).lastresort));
 }
 
 function onMaxSize() {
@@ -430,33 +478,27 @@ function saveLog() {
   }
 }
 
-function importSettings() {
-}
-
 function exportSettings() {
 }
 
-function importProxyList() {
-}
-
-function onProxyTreeSelected() {	
+function onProxySettingsTreeSelected() {	
 	setButtons();
 }
 
-function onProxyTreeMenuPopupShowing() {
-	var e = document.getElementById("enabledPopUpMenuItem"), f = document.getElementById("menuSeperator");
+function onProxySettingsTreeMenuPopupShowing() {
+	var e = document.getElementById("proxySettingsTreeMenuEnabledPopUpMenuItem"), f = document.getElementById("proxySettingsTreeMenuSeparator");
   e.hidden = f.hidden = _isDefaultProxySelected();
-	e.setAttribute("checked", foxyproxy.proxies.item(proxyTree.currentIndex).enabled); 
+	e.setAttribute("checked", foxyproxy.proxies.item(proxySettingsTree.currentIndex).enabled); 
 }
 
 function toggleEnabled() {
-	var p = foxyproxy.proxies.item(proxyTree.currentIndex);
+	var p = foxyproxy.proxies.item(proxySettingsTree.currentIndex);
 	p.enabled = !p.enabled;
 	_updateView(true, false);
 }
 
 function _isDefaultProxySelected() {
-	return foxyproxy.proxies.item(proxyTree.currentIndex).lastresort;
+	return foxyproxy.proxies.item(proxySettingsTree.currentIndex).lastresort;
 }
 
 function onOK() {
@@ -465,4 +507,26 @@ function onOK() {
     r2 = document.getElementById("quickAddRegEx").selected,
     p2 = overlay.common.validatePattern(window, r2, document.getElementById("quickAddTemplateExample2").value, foxyproxy.getMessage("foxyproxy.quickadd.label"));
   p1 && p2 && window.close();
+}
+
+function onIgnoreBlackList(checked) {
+  if (foxyproxy._selectedProxy && !foxyproxy._selectedProxy.lastresort) {
+		if (checked && !foxyproxy.warnings.ignoreBlackList) {
+			var result = promptWithCB("no.ignore.blacklists");
+			result.value && (foxyproxy.warnings.ignoreBlackList = result.value);
+			if (!result.okClicked) {
+			  document.getElementById("ignoreBlackListEnabled").checked = false;
+				return;
+		  }	  
+		}
+    foxyproxy._selectedProxy.ignoreBlackList = checked;  
+    foxyproxy.writeSettings();    
+  }
+}
+
+function promptWithCB(msg) {
+	var cb = {};
+	var ret = (CC["@mozilla.org/embedcomp/prompt-service;1"].getService(CI.nsIPromptService)
+	  .confirmCheck(window, foxyproxy.getMessage("foxyproxy"), foxyproxy.getMessage(msg), foxyproxy.getMessage("message.stop"), cb));
+	return {cb:cb.value, okClicked:ret};
 }

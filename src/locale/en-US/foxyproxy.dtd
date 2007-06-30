@@ -91,7 +91,7 @@
 <!ENTITY foxyproxy.regex.label "Regular Expression">
 <!ENTITY foxyproxy.regex.accesskey "R">
 <!ENTITY foxyproxy.regex.tooltip "Specifies that the URL pattern is a regular expression">
-<!ENTITY foxyproxy.regex.example.label "Example: http?://.*\.mail\.yahoo\.com/.*">
+<!ENTITY foxyproxy.regex.example.label "Example: https?://.*\.mail\.yahoo\.com/.*">
 
 <!ENTITY foxyproxy.version "Version">
 <!ENTITY foxyproxy.createdBy "Created By">
@@ -205,6 +205,10 @@
 <!ENTITY foxyproxy.blacklist.accesskey "B">
 <!ENTITY foxyproxy.blacklist.tooltip "URLs matching this pattern are NOT loaded through this proxy">
 <!ENTITY foxyproxy.blacklist.description.label "URLs matching this pattern are NOT loaded through this proxy">
+
+<!ENTITY foxyproxy.blacklist.ignore.label "Ignore blacklists">
+<!ENTITY foxyproxy.blacklist.ignore.accesskey "I">
+<!ENTITY foxyproxy.blacklist.ignore.tooltip "Whether or not blacklists for this proxy should be ignored">
 
 <!ENTITY foxyproxy.whiteblack.description.label "Blacklist (exclusion) patterns have precedence over whitelist (inclusion) patterns: if a URL matches both a whitelisted pattern and a blacklisted pattern for the same proxy, the URL is excluded from being loaded by that proxy.">
 
@@ -407,6 +411,10 @@
 <!ENTITY foxyproxy.importlist.accesskey "I">
 <!ENTITY foxyproxy.importlist.tooltip "Import a text file list of proxies">
 
+<!ENTITY foxyproxy.importlist.label2 "Import Proxy Lists">
+<!ENTITY foxyproxy.importlist.accesskey2 "I">
+<!ENTITY foxyproxy.importlist.tooltip2 "Import text file lists of proxies">
+
 <!ENTITY foxyproxy.wildcard.reference.label "Wildcard Reference">
 <!ENTITY foxyproxy.wildcard.reference.accesskey "W">
 <!ENTITY foxyproxy.wildcard.reference.tooltip "Wildcard Reference">
@@ -530,3 +538,31 @@
 <!ENTITY foxyproxy.torwiz.height "375">
 <!ENTITY foxyproxy.addeditproxy.width "660">
 <!ENTITY foxyproxy.addeditproxy.height "470">
+
+<!ENTITY foxyproxy.listname.label "List Name">
+<!ENTITY foxyproxy.listname.tooltip "Name of List">
+<!ENTITY foxyproxy.listname.accesskey "N">
+
+<!ENTITY foxyproxy.listnotes.label "List Notes">
+<!ENTITY foxyproxy.listnotes.tooltip "List notes">
+<!ENTITY foxyproxy.listnotes.accesskey "N">
+
+<!ENTITY foxyproxy.listurl.label "URL">
+<!ENTITY foxyproxy.listurl.tooltip "URL of proxy list">
+<!ENTITY foxyproxy.listurl.accesskey "U">
+
+<!ENTITY foxyproxy.nodups.label "Prevent duplicates">
+<!ENTITY foxyproxy.nodups.tooltip "Don't import proxies already known to FoxyProxy">
+<!ENTITY foxyproxy.nodups.accesskey "P">
+
+<!ENTITY foxyproxy.list.freqency.label "Polling frequency">
+<!ENTITY foxyproxy.list.frequency.tooltip "How often to retrieve the remote proxy list">
+<!ENTITY foxyproxy.list.frequency.accesskey "F">
+
+<!ENTITY foxyproxy.notify.list.imported.label "Notify me when one or more proxies are imported from a list">
+<!ENTITY foxyproxy.notify.list.imported.tooltip "Display a popup after proxies are imported">
+<!ENTITY foxyproxy.notify.list.imported.accesskey "D">
+
+<!ENTITY foxyproxy.notify.list.imported.error.label "Notify me about list import errors">
+<!ENTITY foxyproxy.notify.list.imported.error.tooltip "Display a popup if error during import">
+<!ENTITY foxyproxy.notify.list.imported.error.accesskey "D">

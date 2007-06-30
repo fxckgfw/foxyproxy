@@ -68,7 +68,7 @@
 <!ENTITY foxyproxy.regex.label "規則的表示方式(R)">
 <!ENTITY foxyproxy.regex.accesskey "R">
 <!ENTITY foxyproxy.regex.tooltip "Specifies that the URL or URL pattern is a regular expression">
-<!ENTITY foxyproxy.regex.example.label "例：http?://.*\.mail\.yahoo\.com/.*">
+<!ENTITY foxyproxy.regex.example.label "例：https?://.*\.mail\.yahoo\.com/.*">
 <!ENTITY foxyproxy.version "版本">
 <!ENTITY foxyproxy.createdBy "套件作者為">
 <!ENTITY foxyproxy.copyright "版權">

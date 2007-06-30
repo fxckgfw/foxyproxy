@@ -68,7 +68,7 @@
 <!ENTITY foxyproxy.regex.label "Regulært udtryk">
 <!ENTITY foxyproxy.regex.accesskey "R">
 <!ENTITY foxyproxy.regex.tooltip "Specificerer at URLen eller URL-mønsteret er et regulært udtryk">
-<!ENTITY foxyproxy.regex.example.label "Eksempel: http?://.*\.mail\.yahoo\.com/.*">
+<!ENTITY foxyproxy.regex.example.label "Eksempel: https?://.*\.mail\.yahoo\.com/.*">
 <!ENTITY foxyproxy.version "Version">
 <!ENTITY foxyproxy.createdBy "Skabt af:">
 <!ENTITY foxyproxy.copyright "Ophavsret">
@@ -147,7 +147,7 @@
 <!ENTITY foxyproxy.addnewproxy.label "Tilføj ny proxy">
 <!ENTITY foxyproxy.addnewproxy.accesskey "T">
 <!ENTITY foxyproxy.addnewproxy.tooltip "Tilføj ny proxy">
-<!ENTITY foxyproxy.whitelist.label "Hvid liste">
+<!ENTITY foxyproxy.whitelist.label "Whitelist">
 <!ENTITY foxyproxy.whitelist.accesskey "W">
 <!ENTITY foxyproxy.whitelist.tooltip "URLer der matcher dette mønster vil blive indlæst gennem denne proxy">
 <!ENTITY foxyproxy.whitelist.description.label "URLer der matcher dette mønster vil blive indlæst gennem denne proxy">

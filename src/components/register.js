@@ -1,7 +1,35 @@
-/*** Generic JS XPCOM registration code                      ***/ 
-/*** Eric H. Jung (eric.jung @ yahoo.com), inspired by Mook. ***/
+/*** Generic JS XPCOM registration code.
+/*** Eric H. Jung (eric.jung @ yahoo.com), inspired by Mook's about:kitchensink.
+/*** Copyright (C) 2006 LeahScape, Inc. and Eric H. Jung (eric.jung@yahoo.com) */
 
-// Enter filenames that contain XPCOM components here
+/* Enter filenames that contain XPCOM components in the |modules| array.
+Enter names of all components/classes in all files listed in the modules array
+in the array named |components| at the end of this file.
+
+Each file named in the modules array must define a function called __registration() which
+returns an object with the following properties:
+
+-topics (an array of topics to observe)
+-observerName
+-contractId
+-classId
+-constructor (name of the ctor function)
+-className
+
+Example:
+__registration: function() {
+  return ({topics: ["app-startup", "xpcom-shutdown"],
+    observerName: "foxyproxy_catobserver",
+	contractId: "@leahscape.org/foxyproxy/service;1",
+	classId: Components.ID("{46466e13-16ab-4565-9924-20aac4d98c82}"),
+	constructor: foxyproxy,
+	className: "FoxyProxy Core"});
+}		
+
+The files need not define *any* other XPCOM/mozilla-related code in order to be
+used as an XPCOM service or component.
+
+*/
 var modules = [ "superadd.js", "foxyproxy.js", "proxy.js"];
 
 function DumpException(e) {
@@ -20,6 +48,7 @@ function DumpException(e) {
   dump("Complete exception is " + e + "\n\n");
 }
 
+// This anonymous function executes when this file is read
 (function(){
 	const CI = Components.interfaces, CC = Components.classes, CR = Components.results;
   var self;
@@ -34,6 +63,7 @@ function DumpException(e) {
   var dir = self.parent; // the directory this file is in
   var loader = CC["@mozilla.org/moz/jssubscript-loader;1"].createInstance(CI["mozIJSSubScriptLoader"]);
   
+  // Load each file in the modules array
   for (var i in modules) {
     try {
       var filePath = dir.clone();
@@ -43,7 +73,6 @@ function DumpException(e) {
       loader.loadSubScript(f);
     }
     catch (e) {
-      dump("Error loading " + modules[i] + "\n");
       DumpException(e);
       throw(e);
     }
@@ -70,6 +99,7 @@ function ComponentInfo(o) {
   this.factory.constructor = r.constructor;    
 }
  
+// Debug fcn
 ComponentInfo.prototype.printMe = function() {
 	dump("this.classId = " + this.classId + "\n");
 	dump("this.contractId = " + this.contractId + "\n");
@@ -88,7 +118,7 @@ function NSGetModule(compMgr, filespec) {
 		
 	  registerSelf: function (aCompMgr, aFileSpec, aLocation, aType) {
 	  	try {
-				var catman = CC["@mozilla.org/categorymanager;1"].getService(CI.nsICategoryManager);  
+			var catman = CC["@mozilla.org/categorymanager;1"].getService(CI.nsICategoryManager);  
 		    aCompMgr.QueryInterface(CI.nsIComponentRegistrar);
 		    for (var i in this._objects) {
 		      var obj = this._objects[i];
@@ -101,7 +131,7 @@ function NSGetModule(compMgr, filespec) {
 			       	  // Weird hack needed for app-startup.
 			       	  // See my user comment at http://www.xulplanet.com/tutorials/mozsdk/observerserv.php
 			       	  contractId = "service," + contractId;
-			     		}    		
+			     	}    		
 			       	catman.addCategoryEntry(obj.topics[j], obj.observerName, contractId, true, true);
 			      }
 			    }
@@ -140,8 +170,8 @@ function NSGetModule(compMgr, filespec) {
 	  _objects: {} //ComponentInfo instances go here
 	};
 
-	// Enter names of components here
-	var components = [foxyproxy, MatchingProxy, Proxy, Match, ManualConf, AutoConf];
+  // Enter names of all components in all files in this array
+  var components = [foxyproxy, MatchingProxy, Proxy, Match, ManualConf, AutoConf];
   for (var i in components) {
     gModule._objects[i] = new ComponentInfo(components[i]);
   }

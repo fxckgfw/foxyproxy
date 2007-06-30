@@ -68,7 +68,7 @@
 <!ENTITY foxyproxy.regex.label "Reguláris kifejezés">
 <!ENTITY foxyproxy.regex.accesskey "R">
 <!ENTITY foxyproxy.regex.tooltip "Specifies that the URL pattern is a regular expression">
-<!ENTITY foxyproxy.regex.example.label "Példa: http?://.*\.mail\.yahoo\.com/.*">
+<!ENTITY foxyproxy.regex.example.label "Példa: https?://.*\.mail\.yahoo\.com/.*">
 <!ENTITY foxyproxy.version "Verzió">
 <!ENTITY foxyproxy.createdBy "Készítette">
 <!ENTITY foxyproxy.copyright "Copyright">

@@ -1,18 +1,7 @@
-/**
-  FoxyProxy
-  Copyright (C) 2006, 2007 Eric H. Jung and LeahScape, Inc.
-  http://foxyproxy.mozdev.org/
-  eric.jung@yahoo.com
-
-  This source code is released under the GPL license,
-  available in the LICENSE file at the root of this installation
-  and also online at http://www.gnu.org/licenses/gpl.txt
-All Rights Reserved. U.S. PATENT PENDING.
-**/
-
 // See http://forums.mozillazine.org/viewtopic.php?t=308369
 
-// Don't const the next line anymore because of the generic reg code
+dump("here2\n");
+// Don't const the next line anymore because of the generic reg code in register.js
 var CI = Components.interfaces, CC = Components.classes, CR = Components.results, gFP;
     
 const gGetSafeAttr = function(n, name, def) {
@@ -71,11 +60,15 @@ foxyproxy.prototype = {
 			classId: Components.ID("{46466e13-16ab-4565-9924-20aac4d98c82}"),
 			constructor: foxyproxy,
 			className: "FoxyProxy Core"});
+			dump("1\n");
 	},		
 
 	observe: function(subj, topic, data) {
 		switch(topic) {
 			case "app-startup":
+						dump("2\n");
+				this.toggleFilter(true);
+			dump("3\n");				
 				gObsSvc.addObserver(this, "quit-application", false);				
 				gObsSvc.addObserver(this, "domwindowclosed", false);
 				//gObsSvc.addObserver(this, "http-on-modify-request", false);
@@ -97,15 +90,13 @@ foxyproxy.prototype = {
 			  gObsSvc.removeObserver(this, "domwindowclosed");
 			  break;
 			/*case "quit-application-granted":*/ // Not called if FoxyProxy options dialog is open when app is closing
-			//case "http-on-modify-request":
+			case "http-on-modify-request":
 				//dump("subj: " + aSubject + "\n");
 				//dump("topic: " + aTopic + "\n");
 				//dump(" data: " + aData + "\n");				
 				//var hChannel = subj.QueryInterface(Components.interfaces.nsIHttpChannel);
-				//var tab = this.moo(hChannel);
-//				if (!tab) dump("tab not found for " + hChannel.name + "\n");
-				//dump("tab " + (tab?"found":"not found") + "\n");
-				//break;							
+			  //dump(this.getTab(hChannel) + "\n");
+				break;							
 /*
 biesi>	what you could actually do is this:
 	<biesi>	observe http-on-modify-request
@@ -121,6 +112,35 @@ biesi>	passing it the appropriate proxyinfo
 		}
 	},
 
+	/*getTab : function(httpChannel) {
+	   // Test code for proxy-per-tab
+   if ( httpChannel.notificationCallbacks )
+   {
+      var interfaceRequestor = httpChannel.notificationCallbacks.QueryInterface(Components.interfaces.nsIInterfaceRequestor);
+
+			try {
+	      var targetDoc = interfaceRequestor.getInterface(Components.interfaces.nsIDOMWindow).document;
+	    }
+	    catch(e) {return "*** branch0 " + httpChannel.name;}
+
+      var tab = null;
+		    var wm = CC["@mozilla.org/appshell/window-mediator;1"].getService(CI.nsIWindowMediator);
+		    var win = wm.getMostRecentWindow("navigator:browser");
+			var gBrowser = win.gBrowser;      
+      var targetBrowserIndex = gBrowser.getBrowserIndexForDocument(targetDoc);
+
+      // handle the case where there was no tab associated with the request (rss, etc)
+      if (targetBrowserIndex != -1)
+         return gBrowser.tabContainer.childNodes[targetBrowserIndex];
+      else
+         return "branch1 " + httpChannel.name;
+
+      //return(tab.linkedPanel);
+   }
+   else
+      return "branch2 " + httpChannel.name;
+	},*/
+	
 	_loadStrings: function() {
 	  var req = CC["@mozilla.org/xmlextras/xmlhttprequest;1"].
 	    createInstance(CI.nsIXMLHttpRequest);
@@ -245,6 +265,7 @@ biesi>	passing it the appropriate proxyinfo
   },  
 
   applyFilter : function(ps, uri, proxy) {
+  	dump("FP: request for " + uri.spec + "\n");
   
   	function _err(fp, info, extInfo) {
 	  	var def = fp.proxies.item(fp.proxies.length-1);
@@ -462,7 +483,16 @@ biesi>	passing it the appropriate proxyinfo
 			case "roundrobin":         
 				break;
       default:   
-	      matchingProxy = gMatchingProxyFactory(this._selectedProxy, null, spec, "ded");      
+      	// Dedicated mode
+      	if (this._selectedProxy.ignoreBlackList)
+		      matchingProxy = gMatchingProxyFactory(this._selectedProxy, null, spec, "ded");
+		    else {
+		    	// Check this proxy's blacklists
+			    var match = this._selectedProxy.isBlackListed(spec);
+			    matchingProxy = match ?
+			    	gMatchingProxyFactory(this.proxies.lastresort, null, spec, "ded-with-bl")
+			    	: gMatchingProxyFactory(this._selectedProxy, null, spec, "ded-with-bl");
+		    }
         break;
     }
     return matchingProxy;
@@ -1153,21 +1183,42 @@ biesi>	passing it the appropriate proxyinfo
 
   warnings : {
 	  _noWildcards : false,
+	  _ignoreBlackList : false,
+	  _modeDedicated : false,
+	  _modeDisabled : false,
+	  _modePatterns : false,
+	  _modeRoundRobin : false,
+	  _modeRandom : false,
     get noWildcards() { return this._noWildcards; },
     set noWildcards(e) {
       this._noWildcards = e;
       gFP.writeSettings();          
     },
-    
+    get ignoreBlackList() { return this._ignoreBlackList; },
+    set ignoreBlackList(e) {
+      this._ignoreBlackList = e;
+      gFP.writeSettings();          
+    },
+    get modeDedicated() { return this._modeDedicated; },
+    set modeDedicated(e) {
+      this._modeDedicated = e;
+      gFP.writeSettings();          
+    },    
     toDOM : function(doc) {
       var e = doc.createElement("warnings"); // new for 2.3
       e.setAttribute("no-wildcards", this._noWildcards); 
+      e.setAttribute("ignore-blacklist", this._ignoreBlackList);  // new for 2.6      
+      e.setAttribute("mode-dedicated", this._modeDedicated);  // new for 2.6            
       return e;
     },
     
     fromDOM : function(doc) {
       var node = doc.getElementsByTagName("warnings")[0];
-      node && (this._noWildcards = node.getAttribute("no-wildcards") == "true");
+      if (node) {
+      	this._noWildcards = node.getAttribute("no-wildcards") == "true";
+      	this._ignoreBlackList = node.getAttribute("ignore-blacklist") == "true";
+      	this._modeDedicated = node.getAttribute("mode-dedicated") == "true";      	
+      }
     },  
   }
 };

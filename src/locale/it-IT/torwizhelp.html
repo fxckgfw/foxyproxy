@@ -29,23 +29,27 @@
   </style>
   </head>
 <body>
-  <h3>URL Patterns</h3>
-  <p>Before Firefox loads a URL, Firefox asks FoxyProxy if a proxy should be used.
-     FoxyProxy answers this question by attempting to match the current URL with all of the URL patterns you define below.
-     The simplest way to specify patterns is with wildcards.</p>        
-   <h4><a name="wildcards">Wildcards</a></h4>
-   and the question mark (?) substitutes as a wildcard character for any one character.
+  <h3>Modelli URL</h3>
+  <p>Prima che Firefox carichi un indirizzo web, viene richiesto a FoxyProxy quale proxy usare.
+     FoxyProxy risponde tentando di abbinare l'indirizzo web attuale con tutti i modelli definiti qui sotto.
+     Il metodo pi&ugrave; semplice di specificare i modelli &egrave; usando caratteri jolly</p>        
+   <h4><a name="wildcards">Caratteri jolly</a></h4>
+   <p>I caratteri jolly sono pervasivi in tutto l'ambito dell'uso o del funzionamento dei 
+   computer. L'asterisco (*) sostituisce come carattere jolly lo zero o più caratteri insieme,
+   ed il punto interrogativo (?) sostituisce come carattere jolly qualsiasi carattere
    </p>
-   <p>More advanced matching rules are possible using regular expressions. For details, click the "Help Contents" button.</p>
+   <p>Si possono ottenere regole di corrispondenza più avanzate usando le espressioni regolari. Per ulteriori dettagli, fare clic sul pulsante "Contenuti guida" </p>
    
-   <h4>Wildcard Examples</h4>
+   <h4>Esempi di caratteri jolly</h4>
    <table>
-     <thead><tr><th>URL Pattern</th><th>Some Matches</th><th>Some Non-Matches</th></tr></thead>
+     <thead><tr><th>Modelli URL</th><th>Alcuni abbinamenti</th><th>Alcuni non abbinamenti</th></tr></thead>
+     <tr><td>*//:*.yahoo.com/*</td><td>Ogni cosa nel dominio di Yahoo</td><td>http://mail.google.com/</td></tr>      
      <tr><td>*//:mail.yahoo.com/*</td><td>http://mail.yahoo.com/<br/>http://mail.yahoo.com/clownshoes/<br/>http://mail.yahoo.com/inbox/123.html<br/>ftp://mail.yahoo.com</td><td>http://maps.yahoo.com</td></tr>
+     <tr><td>http://??.wikipedia.org/wiki/Clown</td><td>http://en.wikipedia.org/wiki/Clown<br/>http://de.wikipedia.org/wiki/Clown<br/>http://cs.wikipedia.org/wiki/Clown</td><td>https://en.wikipedia.org/wiki/Clown<br/>http://de.wikipedia.org/wiki/Clown/<br/>ftp://en.wikipedia.org/wiki/Clown</td></tr>
      <tr><td>http://digg.com/</td><td>http://digg.com/</td><td>http://digg.com<br/>http://www.digg.com/</td></tr>      
      <tr><td>*://*.asimov.???/*</td><td>ftp://ftp.asimov.net/<br/>ftp://ftp.asimov.com/theory.html<br/>http://bear.asimov.net/mom/<br/>https://isaac.asimov.org/hercules<br/>gopher://asimov.net/</td>
        <td>ftp://ftp.asimov.co.uk<br/>http://isaac.home.com/tin.php</td></tr>     
-     <tr><td>*</td><td><i>Matches everything</i></td><td>&nbsp;</td></tr>            
+     <tr><td>*</td><td><i>Corrisponde tutto</i></td><td>&nbsp;</td></tr>            
    </table>
 </body>
 </html>

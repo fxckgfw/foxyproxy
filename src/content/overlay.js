@@ -1,15 +1,25 @@
-/**
+/*
   FoxyProxy
   Copyright (C) 2006, 2007 Eric H. Jung and LeahScape, Inc.
   http://foxyproxy.mozdev.org/
   eric.jung@yahoo.com
 
-  This source code is released under the GPL license,
-  available in the LICENSE file at the root of this installation
-  and also online at http://www.gnu.org/licenses/gpl.txt
-All Rights Reserved. U.S. PATENT PENDING.
-**/
+  This library is free software; you can redistribute it and/or modify it
+  under the terms of the GNU Lesser General Public License as published by
+  the Free Software Foundation; either version 2.1 of the License, or (at
+  your option) any later version.
 
+  This library is distributed in the hope that it will be useful, but WITHOUT
+  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+  FITNESSFOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License
+  for more details.
+
+  You should have received a copy of the GNU Lesser General Public License
+  along with this library; if not, write to the Free Software Foundation,
+  Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+
+  ALL RIGHTS RESERVED. U.S. PATENT PENDING.
+*/
 var foxyproxy = {
   checkboxType : Components.interfaces.nsITreeColumn.TYPE_CHECKBOX,
   fp : Components.classes["@leahscape.org/foxyproxy/service;1"]
@@ -60,8 +70,45 @@ var foxyproxy = {
 				break;							
 		}
   },
+
+  myListener : {
+	  QueryInterface: function(aIID) {
+	   if (aIID.equals(Components.interfaces.nsIWebProgressListener) ||
+	       aIID.equals(Components.interfaces.nsISupportsWeakReference) ||
+	       aIID.equals(Components.interfaces.nsISupports))
+	     return this;
+	   throw Components.results.NS_NOINTERFACE;
+	  },
+	
+	  onStateChange: function(aProgress, aRequest, aFlag, aStatus) {
+	   if(aFlag & Components.interfaces.nsIWebProgressListener.STATE_START)
+	   {
+	     // This fires when the load event is initiated
+	   }
+	   if(aFlag & Components.interfaces.nsIWebProgressListener.STATE_STOP)
+	   {
+	     // This fires when the load finishes
+	     //listenToDoc(aProgress.DOMWindow.document);
+	   }
+	   return 0;
+	  },
+	
+	  onLocationChange: function(aProgress, aRequest, aURI) {
+	   // This fires when the location bar changes i.e load event is confirmed
+	   // or when the user switches tabs
+	   //listenToDoc(aProgress.DOMWindow.document);
+	   return 0;
+	  },
+	
+	  onProgressChange: function() {return 0;},
+	  onStatusChange: function() {return 0;},
+	  onSecurityChange: function() {return 0;},
+	  onLinkIconAvailable: function() {return 0;}
+	},
     
   onLoad : function() {
+     gBrowser.addProgressListener(this.myListener, Components.interfaces.nsIWebProgress.NOTIFY_STATE_DOCUMENT);  
+  	
     this.fp.init();  
   	this.statusIcon = document.getElementById("foxyproxy-status-icon");
   	this.contextMenuIcon = document.getElementById("foxyproxy-context-menu-1");  	
@@ -880,7 +927,7 @@ var foxyproxy = {
 
 ///////////////////////////////////////////////////////
 
-window.addEventListener("load", function(e) { foxyproxy.onLoad(e); }, false);
+window.addEventListener("load", function(e) { dump("4\n");foxyproxy.onLoad(e);dump("4\n"); }, false);
 window.addEventListener("unload", function(e) {
 	document.getElementById("appcontent") && document.getElementById("appcontent").removeEventListener("load", this.onPageLoad, true);
 	var obSvc = Components.classes["@mozilla.org/observer-service;1"].getService(Components.interfaces.nsIObserverService);

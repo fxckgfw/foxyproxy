@@ -1,3 +1,4 @@
+dump("here4\n");
 var CI = Components.interfaces, CC = Components.classes, gFP;
 const DEF_PATTERN = "*://${3}${6}/*";
 

@@ -68,7 +68,7 @@
 <!ENTITY foxyproxy.regex.label "Регулярное выражение">
 <!ENTITY foxyproxy.regex.accesskey "Р">
 <!ENTITY foxyproxy.regex.tooltip "Для определения шаблона URL использовать регулярное выражение">
-<!ENTITY foxyproxy.regex.example.label "Например: http?://.*\.mail\.yahoo\.com/.*">
+<!ENTITY foxyproxy.regex.example.label "Например: https?://.*\.mail\.yahoo\.com/.*">
 <!ENTITY foxyproxy.version "Версия:">
 <!ENTITY foxyproxy.createdBy "Автор:">
 <!ENTITY foxyproxy.copyright "Copyright">

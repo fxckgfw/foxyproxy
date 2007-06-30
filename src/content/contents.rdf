@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!--
+  FoxyProxy
+  Copyright (C) 2006, 2007 Eric H. Jung and LeahScape, Inc.
+  http://foxyproxy.mozdev.org/
+  eric.jung@yahoo.com
+
+  This library is free software; you can redistribute it and/or modify it
+  under the terms of the GNU Lesser General Public License as published by
+  the Free Software Foundation; either version 2.1 of the License, or (at
+  your option) any later version.
+
+  This library is distributed in the hope that it will be useful, but WITHOUT
+  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+  FITNESSFOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License
+  for more details.
+
+  You should have received a copy of the GNU Lesser General Public License
+  along with this library; if not, write to the Free Software Foundation,
+  Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+
+  ALL RIGHTS RESERVED. U.S. PATENT PENDING.
+-->
+
+<!-- For Seamonkey/Mozilla Suite compatibility -->
+
+<RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:chrome="http://www.mozilla.org/rdf/chrome#">
+
+    <Seq about="urn:mozilla:package:root">
+        <li resource="urn:mozilla:package:foxyproxy"/>
+    </Seq>
+
+    <Description about="urn:mozilla:package:foxyproxy"
+        chrome:name="foxyproxy"
+        chrome:displayName="FoxyProxy"
+        chrome:author="Eric H. Jung"
+        chrome:authorURL="http://foxyproxy.mozdev.org/"
+        chrome:description="Proxy your life."
+        chrome:xpcNativeWrappers="no"
+        chrome:extension="true"
+        chrome:settingsURL="chrome://foxyproxy/content/options.xul"
+        chrome:iconURL="chrome://foxyproxy/content/images/foxyproxy-nocopy.gif">
+    </Description>
+
+    <Seq about="urn:mozilla:overlays">
+        <li resource="chrome://navigator/content/navigator.xul"/>
+    </Seq>
+ 
+    <Seq about="chrome://navigator/content/navigator.xul">
+        <li>chrome://foxyproxy/content/firefoxOverlay.xul</li>
+    </Seq>
+ 
+</RDF>

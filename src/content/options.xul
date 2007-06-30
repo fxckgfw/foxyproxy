@@ -1,17 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="foxyproxy.css" type="text/css"?>
 <!--
-	FoxyProxy
-	Copyright (C) 2006, 2007 Eric H. Jung and LeahScape, Inc.
-	http://foxyproxy.mozdev.org/
-	eric.jung@yahoo.com
-	
-	This source code is released under the GPL license,
-	available in the LICENSE file at the root of this installation
-	and also online at http://www.gnu.org/licenses/gpl.txt
-All Rights Reserved. U.S. PATENT PENDING.
+  FoxyProxy
+  Copyright (C) 2006, 2007 Eric H. Jung and LeahScape, Inc.
+  http://foxyproxy.mozdev.org/
+  eric.jung@yahoo.com
+
+  This library is free software; you can redistribute it and/or modify it
+  under the terms of the GNU Lesser General Public License as published by
+  the Free Software Foundation; either version 2.1 of the License, or (at
+  your option) any later version.
+
+  This library is distributed in the hope that it will be useful, but WITHOUT
+  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+  FITNESSFOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License
+  for more details.
+
+  You should have received a copy of the GNU Lesser General Public License
+  along with this library; if not, write to the Free Software Foundation,
+  Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+
+  ALL RIGHTS RESERVED. U.S. PATENT PENDING.
 -->
 
-<?xml-stylesheet href="foxyproxy.css" type="text/css"?>
 <!DOCTYPE overlay SYSTEM "chrome://foxyproxy/locale/foxyproxy.dtd">
 <window id="foxyproxyoptions" windowtype="foxyproxy-options"
 	title="&foxyproxy.optionsdialog.label;"
@@ -30,7 +41,7 @@ All Rights Reserved. U.S. PATENT PENDING.
 					accesskey="&foxyproxy.menubar.file.accesskey;"
 					tooltiptext="&foxyproxy.menubar.file.tooltip;">
 					<menupopup id="file-popup">
-						<menuitem command="createProxyCmd"
+						<menuitem command="addProxySettingsCmd"
 							tooltiptext="&foxyproxy.addnewproxy.tooltip;" />
 						<!-- tooltiptext is necessary for tooltip, dunno why -->
 						<menuseparator />
@@ -38,11 +49,7 @@ All Rights Reserved. U.S. PATENT PENDING.
 							tooltiptext="&foxyproxy.tor.tooltip;" />
 						<!-- tooltiptext is necessary for tooltip, dunno why -->
 						<menuseparator />
-						<!-- <menuitem command="importSettingsCmd" tooltiptext="&foxyproxy.importsettings.tooltip;"/>-->
-						<!-- tooltiptext is necessary for tooltip, dunno why -->
 						<!-- <menuitem command="exportSettingsCmd" tooltiptext="&foxyproxy.exportsettings.tooltip;"/>-->
-						<!-- tooltiptext is necessary for tooltip, dunno why -->
-						<!-- <menuitem command="importListCmd" tooltiptext="&foxyproxy.importlist.tooltip;"/> -->
 						<!-- tooltiptext is necessary for tooltip, dunno why -->
 						<!-- <menuseparator/> -->
 						<menuitem command="closeCmd"
@@ -80,6 +87,11 @@ All Rights Reserved. U.S. PATENT PENDING.
 			style="margin: 0em 1em 0em 1em; min-height: 1.8em;">
 			<menupopup id="modeMenuPopup" />
 		</menulist>
+		<checkbox id="ignoreBlackListEnabled"
+			label="&foxyproxy.blacklist.ignore.label;"
+			accesskey="&foxyproxy.blacklist.ignore.accesskey;"
+			tooltiptext="&foxyproxy.blacklist.ignore.tooltip;"
+			oncommand="onIgnoreBlackList(this.checked);"/>
 	</hbox>
 
 	<separator class="thin" />
@@ -99,6 +111,9 @@ All Rights Reserved. U.S. PATENT PENDING.
 			<tab label="&foxyproxy.tab.autoadd.label;"
 				accesskey="&foxyproxy.tab.autoadd.accesskey;"
 				tooltiptext="&foxyproxy.tab.autoadd.tooltip;" />
+			<tab label="&foxyproxy.importlist.label2;"
+				accesskey="&foxyproxy.importlist.accesskey2;"
+				tooltiptext="&foxyproxy.importlist.tooltip2;" />				
 			<tab label="&foxyproxy.tab.logging.label;"
 				accesskey="&foxyproxy.tab.logging.accesskey;"
 				tooltiptext="&foxyproxy.tab.logging.tooltip;" />
@@ -106,14 +121,14 @@ All Rights Reserved. U.S. PATENT PENDING.
 
 		<tabpanels style="-moz-appearance: none;" flex="1">
 
-			<!--  proxy tree -->
+			<!--  proxies -->
 			<tabpanel flex="1" orient="vertical">
 				<separator class="thin" />
 
 				<hbox flex="1">
-					<tree id="proxyTree" align="stretch"
+					<tree id="proxySettingsTree" align="stretch"
 						enableColumnDrag="true" flex="1" style="width: 5em; height: 2em;"
-						seltype="single" onselect="onProxyTreeSelected();"
+						seltype="single" onselect="onProxySettingsTreeSelected();"
 						onclick="overlay.onTreeClick(event, this);">
 						<treecols
 							pickertooltiptext="&foxyproxy.tree.pickertooltiptext.label;">
@@ -162,22 +177,21 @@ All Rights Reserved. U.S. PATENT PENDING.
 								persist="width ordinal hidden" />
 							<splitter class="tree-splitter" />							
 						</treecols>
-						<treechildren id="proxyTreeChildren" flex="1"
-							ondblclick="onSettings(false);" context="proxyTreeMenu" />
+						<treechildren flex="1" ondblclick="onProxySettings(false);" context="proxySettingsTreeMenu" />
 					</tree>
 					<vbox>
 						<button id="up-button" pack="start"
-							command="moveUpCmd" label=" &foxyproxy.moveup.label;" />
+							command="moveProxySettingsUpCmd" label=" &foxyproxy.moveup.label;" />
 						<button id="down-button" pack="start"
-							command="moveDownCmd" label=" &foxyproxy.movedown.label;" />
+							command="moveProxySettingsDownCmd" label=" &foxyproxy.movedown.label;" />
 					</vbox>
 				</hbox>
 				<separator />
 				<hbox>
-					<button command="createProxyCmd" />
-					<button command="settingsCmd" />
-					<button command="copySelectionCmd" />
-					<button command="deleteSelectionCmd" />
+					<button command="addProxySettingsCmd" />
+					<button command="editProxySettingsCmd" />
+					<button command="copyProxySettingsCmd" />
+					<button command="deleteProxySettingsCmd" />
 				</hbox>
 			</tabpanel>
 
@@ -725,6 +739,52 @@ All Rights Reserved. U.S. PATENT PENDING.
 				</grid>
 			</tabpanel>
 
+			<!-- importing -->
+			<tabpanel flex="1" orient="vertical">
+				<separator class="thin" />
+
+				<hbox flex="1">
+					<tree id="proxyListTree" align="stretch"
+						enableColumnDrag="true" flex="1" style="width: 5em; height: 2em;"
+						seltype="single" onselect="onProxyListTreeSelected();"
+						onclick="overlay.onTreeClick(event, this);">
+						<treecols
+							pickertooltiptext="&foxyproxy.tree.pickertooltiptext.label;">
+							<treecol id="enabledCol2"
+								label="&foxyproxy.enabled.label;" flex="1"
+								persist="width ordinal hidden" type="checkbox" />
+							<splitter class="tree-splitter" />
+							<treecol id="nameCol2"
+								label="&foxyproxy.listname.label;" primary="true" flex="1"
+								persist="width ordinal hidden" />
+							<splitter class="tree-splitter" />
+							<treecol id="descriptionCol2"
+								label="&foxyproxy.listnotes.label;" flex="1"
+								persist="width ordinal hidden" />
+							<splitter class="tree-splitter" />
+							<treecol id="urlCol"
+								label="&foxyproxy.listurl.label;" flex="1"
+								persist="width ordinal hidden" />								
+							<splitter class="tree-splitter" />
+						</treecols>
+						<treechildren flex="1" ondblclick="onProxyList(false);" context="proxyListTreeMenu" />
+					</tree>
+					<vbox>
+						<button id="up-button" pack="start"
+							command="moveProxyListUpCmd" label=" &foxyproxy.moveup.label;" />
+						<button id="down-button" pack="start"
+							command="moveProxyListDownCmd" label=" &foxyproxy.movedown.label;" />
+					</vbox>
+				</hbox>
+				<separator />
+				<hbox>
+					<button command="addProxyListCmd" />
+					<button command="editProxyListCmd" />
+					<button command="copyProxyListCmd" />
+					<button command="deleteProxyListCmd" />
+				</hbox>			
+			</tabpanel>
+			
 			<!-- logging -->
 			<tabpanel flex="1" orient="vertical">
 				<separator class="thin" />
@@ -809,24 +869,22 @@ All Rights Reserved. U.S. PATENT PENDING.
 	<separator class="thin" />
 
 	<popupset>
-		<popup id="proxyTreeMenu"
-			onpopupshowing="onProxyTreeMenuPopupShowing();">
-			<menuitem id="enabledPopUpMenuItem"
-				command="toggleEnabledCmd" type="checkbox" />
-			<menuseparator id="menuSeperator" />
+		<popup id="proxySettingsTreeMenu"
+			onpopupshowing="onProxySettingsTreeMenuPopupShowing();">
+			<menuitem id="proxySettingsTreeMenuEnabledPopUpMenuItem"
+				command="toggleProxySettingsEnabledCmd" type="checkbox" />
+			<menuseparator id="proxySettingsTreeMenuSeparator" />
 			<menuitem class="menuitem-non-iconic"
-				command="createProxyCmd" />
+				command="addProxySettingsCmd" />
 			<menuseparator />
+			<menuitem class="menuitem-non-iconic" command="editProxySettingsCmd" />
 			<menuitem class="menuitem-non-iconic"
-				command="toggleSelectionCmd" />
-			<menuitem class="menuitem-non-iconic" command="settingsCmd" />
+				command="copyProxySettingsCmd" />
 			<menuitem class="menuitem-non-iconic"
-				command="copySelectionCmd" />
-			<menuitem class="menuitem-non-iconic"
-				command="deleteSelectionCmd" />
-			<menuitem class="menuitem-non-iconic" command="moveUpCmd"
+				command="deleteProxySettingsCmd" />
+			<menuitem class="menuitem-non-iconic" command="moveProxySettingsUpCmd"
 				label="&foxyproxy.moveup.label;" />
-			<menuitem class="menuitem-non-iconic" command="moveDownCmd"
+			<menuitem class="menuitem-non-iconic" command="moveProxySettingsDownCmd"
 				label="&foxyproxy.movedown.label;" />
 			<menuseparator />
 			<menuitem class="menuitem-non-iconic"
@@ -834,23 +892,42 @@ All Rights Reserved. U.S. PATENT PENDING.
 			<menuseparator />
 			<!-- <menuitem class="menuitem-non-iconic" command="importSettingsCmd"/>                      
 				<menuitem class="menuitem-non-iconic" command="exportSettingsCmd"/>                                       
-				<menuitem class="menuitem-non-iconic" command="importListCmd"/>                   
 				<menuseparator/>         -->
 			<menuitem class="menuitem-non-iconic" command="helpCmd" />
 			<menuitem class="menuitem-non-iconic" command="closeCmd" />
 		</popup>
+		
+		<popup id="proxyListTreeMenu" onpopupshowing="onProxyListTreeMenuPopupShowing();">
+			<menuitem id="proxyListTreeMenuEnabledPopUpMenuItem"
+				command="toggleProxyListEnabledCmd" type="checkbox" />
+			<menuseparator id="proxyListTreeMenuSeparator" />
+			<menuitem class="menuitem-non-iconic"
+				command="addProxyListCmd" />
+			<menuseparator />
+			<menuitem class="menuitem-non-iconic" command="editProxyListCmd" />
+			<menuitem class="menuitem-non-iconic"
+				command="copyProxyListCmd" />
+			<menuitem class="menuitem-non-iconic"
+				command="deleteProxyListCmd" />
+			<menuitem class="menuitem-non-iconic" command="moveProxyListUpCmd"
+				label="&foxyproxy.moveup.label;" />
+			<menuitem class="menuitem-non-iconic" command="moveProxyListDownCmd"
+				label="&foxyproxy.movedown.label;" />	
+			<menuseparator />
+			<menuitem class="menuitem-non-iconic" command="helpCmd" />
+			<menuitem class="menuitem-non-iconic" command="closeCmd" />					
+		</popup>
 
 		<popup id="mainPopup">
 			<menuitem class="menuitem-non-iconic"
-				command="createProxyCmd" />
+				command="addProxySettingsCmd" />
 			<menuseparator />
 			<menuitem class="menuitem-non-iconic"
 				command="torWizardCmd" />
 			<menuseparator />
 			<!-- 
 				<menuitem class="menuitem-non-iconic" command="importSettingsCmd"/>                         
-				<menuitem class="menuitem-non-iconic" command="exportSettingsCmd"/>                                      
-				<menuitem class="menuitem-non-iconic" command="importListCmd"/>                                             
+				<menuitem class="menuitem-non-iconic" command="exportSettingsCmd"/>                                         
 				<menuseparator/>   -->
 			<menuitem class="menuitem-non-iconic" command="helpCmd" />
 			<menuitem class="menuitem-non-iconic" command="closeCmd" />
@@ -890,42 +967,42 @@ All Rights Reserved. U.S. PATENT PENDING.
 		tooltiptext="&foxyproxy.logging.noURLs.tooltip;"
 		oncommand="overlay.onToggleNoURLs(window);" />
 
-	<command id="toggleEnabledCmd" label="&foxyproxy.enabled.label;"
+	<command id="toggleProxySettingsEnabledCmd" label="&foxyproxy.enabled.label;" 
 		tooltiptext="&foxyproxy.enabled.tooltip;"
 		accesskey="&foxyproxy.enabled.accesskey;"
-		oncommand="toggleEnabled();" />
+		oncommand="toggleProxySettingsEnabled();" />
 
-	<command id="createProxyCmd" label="&foxyproxy.addnewproxy.label;"
+	<command id="addProxySettingsCmd" label="&foxyproxy.addnewproxy.label;"
 		tooltiptext="&foxyproxy.addnewproxy.tooltip;"
 		accesskey="&foxyproxy.addnewproxy.accesskey;"
-		oncommand="onSettings(true);" />
+		oncommand="onProxySettings(true);" />
 
-	<command id="moveUpCmd" tooltiptext="&foxyproxy.moveup.tooltip;"
-		accesskey="&foxyproxy.moveup.accesskey;" oncommand="move('up');"
+	<command id="moveProxySettingsUpCmd" tooltiptext="&foxyproxy.moveup.tooltip;"
+		accesskey="&foxyproxy.moveup.accesskey;" oncommand="onMoveProxySettings('up');"
 		disabled="true" />
 
-	<command id="moveDownCmd" tooltiptext="&foxyproxy.movedown.tooltip;"
-		accesskey="&foxyproxy.movedown.accesskey;" oncommand="move('down');"
+	<command id="moveProxySettingsDownCmd" tooltiptext="&foxyproxy.movedown.tooltip;"
+		accesskey="&foxyproxy.movedown.accesskey;" oncommand="onMoveProxySettings('down');"
 		disabled="true" />
 
-	<command id="copySelectionCmd"
+	<command id="copyProxySettingsCmd"
 		label="&foxyproxy.copy.selection.label;"
 		accesskey="&foxyproxy.copy.selection.accesskey;"
 		tooltiptext="&foxyproxy.copy.selection.tooltip;"
-		oncommand="onCopySelection(document);" observes="tree-row-selected"
+		oncommand="onCopyProxySettings(document);" observes="tree-row-selected"
 		disabled="true" />
 
-	<command id="deleteSelectionCmd"
+	<command id="deleteProxySettingsCmd"
 		label="&foxyproxy.delete.selection.label;"
 		accesskey="&foxyproxy.delete.selection.accesskey;"
 		tooltiptext="&foxyproxy.delete.selection.tooltip;"
-		oncommand="onDeleteSelection();" observes="tree-row-selected"
+		oncommand="onDeleteProxySettings();" observes="tree-row-selected"
 		disabled="true" />
 
-	<command id="settingsCmd" label="&foxyproxy.edit.selection.label;"
+	<command id="editProxySettingsCmd" label="&foxyproxy.edit.selection.label;"
 		accesskey="&foxyproxy.edit.selection.accesskey;"
 		tooltiptext="&foxyproxy.edit.selection.tooltip;"
-		oncommand="onSettings(false);" observes="tree-row-selected"
+		oncommand="onProxySettings(false);" observes="tree-row-selected"
 		disabled="true" />
 
 	<command id="closeCmd" label="&foxyproxy.close.label;"
@@ -948,11 +1025,26 @@ All Rights Reserved. U.S. PATENT PENDING.
 		tooltiptext="&foxyproxy.exportsettings.tooltip;"
 		oncommand="exportSettings();" />
 
-	<command id="importListCmd" label="&foxyproxy.importlist.label;"
+	<command id="addProxyListCmd" label="&foxyproxy.importlist.label;"
 		accesskey="&foxyproxy.importlist.accesskey;"
 		tooltiptext="&foxyproxy.importlist.tooltip;"
-		oncommand="importProxyList();" />
+		oncommand="onProxyList(true);" />
 
+	<command id="editProxyListCmd" label="&foxyproxy.importlist.label;"
+		accesskey="&foxyproxy.importlist.accesskey;"
+		tooltiptext="&foxyproxy.importlist.tooltip;"
+		oncommand="onProxyList(false);" />
+
+	<command id="copyProxyListCmd" label="&foxyproxy.importlist.label;"
+		accesskey="&foxyproxy.importlist.accesskey;"
+		tooltiptext="&foxyproxy.importlist.tooltip;"
+		oncommand="onCopyProxyList();" />
+
+	<command id="deleteProxyListCmd" label="&foxyproxy.importlist.label;"
+		accesskey="&foxyproxy.importlist.accesskey;"
+		tooltiptext="&foxyproxy.importlist.tooltip;"
+		oncommand="onDeleteProxyList();" />
+						
 	<command id="aboutCmd" label="&foxyproxy.about.label;"
 		accesskey="&foxyproxy.about.accesskey;"
 		tooltiptext="&foxyproxy.about.tooltip;"

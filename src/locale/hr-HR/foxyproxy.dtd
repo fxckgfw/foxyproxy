@@ -68,7 +68,7 @@
 <!ENTITY foxyproxy.regex.label "Regularni izraz">
 <!ENTITY foxyproxy.regex.accesskey "U">
 <!ENTITY foxyproxy.regex.tooltip "Određuje da je primjer web adrese regularni izraz">
-<!ENTITY foxyproxy.regex.example.label "Primjer: http?://.*\.mail\.yahoo\.com/.*">
+<!ENTITY foxyproxy.regex.example.label "Primjer: https?://.*\.mail\.yahoo\.com/.*">
 <!ENTITY foxyproxy.version "Inačica">
 <!ENTITY foxyproxy.createdBy "Kreirao:">
 <!ENTITY foxyproxy.copyright "Zaštita autorskih prava">

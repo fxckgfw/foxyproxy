@@ -68,7 +68,7 @@
 <!ENTITY foxyproxy.regex.label "Регулярний Вираз">
 <!ENTITY foxyproxy.regex.accesskey "Р">
 <!ENTITY foxyproxy.regex.tooltip "Вказує URL-адреси або зразки URL-адрес, як регулярні вирази">
-<!ENTITY foxyproxy.regex.example.label "Приклад: http?://.*\.mail\.yahoo\.com/.*">
+<!ENTITY foxyproxy.regex.example.label "Приклад: https?://.*\.mail\.yahoo\.com/.*">
 <!ENTITY foxyproxy.version "Версія">
 <!ENTITY foxyproxy.createdBy "Створено">
 <!ENTITY foxyproxy.copyright "Авторське право">

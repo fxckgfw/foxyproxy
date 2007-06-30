@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<?xml-stylesheet href="foxyproxy.css" type="text/css"?>
+<?xml version="1.0"?>
 <!--
   FoxyProxy
   Copyright (C) 2006, 2007 Eric H. Jung and LeahScape, Inc.
@@ -23,16 +22,21 @@
   ALL RIGHTS RESERVED. U.S. PATENT PENDING.
 -->
 
-<!DOCTYPE overlay SYSTEM "chrome://foxyproxy/locale/foxyproxy.dtd">
+<!-- For Seamonkey/Mozilla Suite compatibility -->
 
-<overlay id="foxyproxy-overlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"> 
-<window id="alertNotification"
-        windowtype="alert:alert"
-        xmlns:xhtml2="http://www.w3.org/TR/xhtml2"
-        xmlns:wairole="http://www.w3.org/2005/01/wai-rdf/GUIRoleTaxonomy#"
-        xhtml2:role="wairole:alert"
-        align="start"
-        onload="onAlertLoad()"
-        onclick="window.close();"/>
-            
-</overlay>
+<RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:chrome="http://www.mozilla.org/rdf/chrome#">
+
+    <Seq about="urn:mozilla:locale:root">
+        <li resource="urn:mozilla:locale:en-US"/>
+    </Seq>
+
+    <Description about="urn:mozilla:locale:en-US" chrome:name="en-US">
+        <chrome:packages>
+            <Seq about="urn:mozilla:locale:en-US:packages">
+                <li resource="urn:mozilla:locale:en-US:foxyproxy"/>
+            </Seq>
+        </chrome:packages>
+    </Description>
+</RDF>
+

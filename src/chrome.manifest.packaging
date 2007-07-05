@@ -1,5 +1,5 @@
 content	foxyproxy jar:chrome/foxyproxy.jar!/content/
-overlay	chrome://browser/content/browser.xul chrome://foxyproxy/content/firefoxOverlay.xulx
+overlay	chrome://browser/content/browser.xul chrome://foxyproxy/content/firefoxOverlay.xul
 overlay	chrome://browser/content/preferences/preferences.xul chrome://foxyproxy/content/firefoxOptionsOverlay.xul
 overlay chrome://global/content/alerts/alert.xul chrome://foxyproxy/content/alertOverlay.xul
 

@@ -38,7 +38,7 @@ var jarName             = name + ".jar";
 var jarFolder           = "content" + packageDir
 var error               = null;
 
-var folder              = getFolder("Profile", "chrome");
+var folder              = getFolder("chrome");
 var prefFolder          = getFolder(getFolder("Program", "defaults"), "pref");
 var compFolder          = getFolder("Components");
 var specialCompFolder   = getFolder(compFolder, name);
@@ -47,24 +47,9 @@ var searchFolder        = getFolder("Plugins");
 var existsInApplication = File.exists(getFolder(getFolder("chrome"), jarName));
 var existsInProfile     = File.exists(getFolder(folder, jarName));
 
-var contentFlag         = CONTENT | PROFILE_CHROME;
-var localeFlag          = LOCALE | PROFILE_CHROME;
-var skinFlag            = SKIN | PROFILE_CHROME;
-
-// If the extension exists in the application folder or it doesn't exist
-// in the profile folder and the user doesn't want it installed to the
-// profile folder
-if(existsInApplication ||
-    (!existsInProfile &&
-      !confirm( "Do you want to install the " + displayName +
-                " extension into your profile folder?\n" +
-                "(Cancel will install into the application folder)")))
-{
-    contentFlag = CONTENT | DELAYED_CHROME;
-    folder      = getFolder("chrome");
-    localeFlag  = LOCALE | DELAYED_CHROME;
-    skinFlag    = SKIN | DELAYED_CHROME;
-}
+var contentFlag         = CONTENT | DELAYED_CHROME;
+var localeFlag          = LOCALE | DELAYED_CHROME;
+var skinFlag            = SKIN | DELAYED_CHROME;
 
 initInstall(displayName, name, version);
 setPackageFolder(folder);

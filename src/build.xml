@@ -27,7 +27,7 @@
   <!-- version property is appended to XPI filename; e.g., foxyproxy-1.0.xpi -->
   <property name="version" value="2.5.3" />
   <property name="temp-path" value="/temp/fp-temp" />
-  <property name="src-base" value="/dev/foxyproxy/standard/fx+flock/trunk/src"/>
+  <property name="src-base" value="/dev/foxyproxy-new"/>
   
 
   <!-- guid -->
@@ -53,7 +53,7 @@
   <target name="build-unsigned">
     <move file="chrome.manifest.packaging" tofile="chrome.manifest" />
     <zip destfile="${src-base}/foxyproxy-${version}-unsigned.xpi">
-      <fileset dir="${temp-path}" includes="chrome.manifest install.rdf LICENSE chrome/" />
+      <fileset dir="${temp-path}" includes="chrome.manifest install.rdf install.js LICENSE chrome/" />
       <zipfileset dir="${temp-path}/components" prefix="components" includes="**/**" />
       <zipfileset dir="${temp-path}/defaults" prefix="defaults" includes="**/**" />
     </zip>

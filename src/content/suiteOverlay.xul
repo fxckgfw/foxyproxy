@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="foxyproxy.css" type="text/css"?>
+<!--
+  FoxyProxy
+  Copyright (C) 2006, 2007 Eric H. Jung and LeahScape, Inc.
+  http://foxyproxy.mozdev.org/
+  eric.jung@yahoo.com
+
+  This library is free software; you can redistribute it and/or modify it
+  under the terms of the GNU Lesser General Public License as published by
+  the Free Software Foundation; either version 2.1 of the License, or (at
+  your option) any later version.
+
+  This library is distributed in the hope that it will be useful, but WITHOUT
+  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+  FITNESSFOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License
+  for more details.
+
+  You should have received a copy of the GNU Lesser General Public License
+  along with this library; if not, write to the Free Software Foundation,
+  Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+
+  ALL RIGHTS RESERVED. U.S. PATENT PENDING.
+-->
+
+<!DOCTYPE overlay SYSTEM "chrome://foxyproxy/locale/foxyproxy.dtd">
+
+<overlay id="foxyproxy-overlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+  <script src="chrome://foxyproxy/content/overlay.js"/>
+
+  <stringbundleset id="foxyproxy-strings">
+    <stringbundle src="chrome://foxyproxy/locale/foxyproxy.properties"/>   
+  </stringbundleset>
+
+  <!-- menu -->
+  <menupopup id="taskPopup">
+   	<menu id="foxyproxy-tools-menu-1" label="&foxyproxy.label;" insertbefore="devToolsSeparator" position="9"
+      accesskey="&foxyproxy.accesskey;" class="menu-iconic foxyproxybutton-small"
+      mode="patterns" persist="mode">
+      <menupopup id="foxyproxy-toolsmenu-popup"
+          onpopupshowing="foxyproxy.onPopupShowing(this, event);"
+          onpopuphiding="foxyproxy.onPopupHiding();"/>
+    </menu>
+  </menupopup>
+
+  <keyset id="navKeys">
+		<!-- accel is ctrl on windows, cmd on mac -->  
+    <key id="key_foxyproxyfocus" keycode="VK_F2" modifiers="accel" oncommand="foxyproxy.onOptionsDialog();"/>
+		<key id="key_foxyproxyfocus" keycode="VK_F2" modifiers="alt" oncommand="foxyproxy.onQuickAddDialog(event);"/>
+  </keyset>
+  
+  <popup id="contentAreaContextMenu">
+  	<menu id="foxyproxy-context-menu-1" label="&foxyproxy.label;" 
+      accesskey="&foxyproxy.accesskey;" class="menu-iconic foxyproxybutton-small"
+      mode="patterns" persist="mode hidden" hidden="false"> 
+      <menupopup id="foxyproxy-contextmenu-popup"
+          onpopupshowing="foxyproxy.onPopupShowing(this, event);"
+          onpopuphiding="foxyproxy.onPopupHiding();"/>
+    </menu>
+  </popup>
+  
+  <statusbar id="status-bar">
+    <hbox>
+      <popupset style="overflow: auto;">
+        <tooltip id="foxyproxy-popup" style="max-height: none; max-width: none;" onclick="this.hidePopup();"/>
+      </popupset>
+    </hbox>
+    <menupopup id="foxyproxy-statusbar-popup"
+      onpopupshowing="foxyproxy.onPopupShowing(this, event);"
+      onpopuphiding="foxyproxy.onPopupHiding();"/>
+    <statusbarpanel 
+      id="foxyproxy-status-text"
+      onclick="foxyproxy.onSBTBClick(event, foxyproxy.fp.statusbar);"
+      mode="patterns" persist="mode hidden" hidden="true"/>
+    <statusbarpanel 
+      id="foxyproxy-status-icon"
+      onclick="foxyproxy.onSBTBClick(event, foxyproxy.fp.statusbar);"
+      class="statusbarpanel-menu-iconic foxyproxybutton-small"
+      mode="patterns" persist="mode hidden" hidden="true"/>      
+  </statusbar>
+
+  <toolbarpalette id="BrowserToolbarPalette">
+	  <toolbarbutton id="foxyproxy-button-1" type="menu" mode="patterns" persist="mode" label="&foxyproxy.label;"
+	    class="toolbarbutton-1 chromeclass-toolbar-additional foxyproxybutton"
+	    onclick="foxyproxy.onSBTBClick(event, foxyproxy.fp.toolbar);event.stopPropagation();event.preventDefault();return false;">
+	      <menupopup id="foxyproxy-toolbarbutton-popup"
+	      onpopuphiding="foxyproxy.onPopupHiding();"
+	      onpopupshowing="event.stopPropagation();event.preventDefault();return false;"/>  <!--  todo: do i really need all 3 of these? -->
+	  </toolbarbutton>    
+  </toolbarpalette>
+  
+</overlay>

@@ -45,10 +45,18 @@
 
     <Seq about="urn:mozilla:overlays">
         <li resource="chrome://navigator/content/navigator.xul"/>
+        <li resource="chrome://communicator/content/alerts/alert.xul"/>
+        <li resource="chrome://messenger/content/messenger.xul"/>
     </Seq>
  
     <Seq about="chrome://navigator/content/navigator.xul">
-        <li>chrome://foxyproxy/content/firefoxOverlay.xul</li>
+        <li>chrome://foxyproxy/content/suiteOverlay.xul</li>
+    </Seq>
+    <Seq about="chrome://communicator/content/alerts/alert.xul">
+        <li>chrome://foxyproxy/content/alertOverlay.xul</li>
+    </Seq>
+    <Seq about="chrome://messenger/content/messenger.xul">
+        <li>chrome://foxyproxy/content/tbirdOverlay.xul</li>
     </Seq>
  
 </RDF>

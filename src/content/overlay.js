@@ -397,7 +397,10 @@ var foxyproxy = {
     var w = wm.getMostRecentWindow("navigator:browser");
     if (w) {
       // Use an existing browser window
-      w.delayedOpenTab(aURL, null, null, null, null);
+      if ("delayedOpenTab" in w && "function" == typeof w.delayedOpenTab)
+        w.delayedOpenTab(aURL, null, null, null, null);
+      else if ("getBrowser" in w && "addTab" in w.getBrowser())
+      	w.getBrowser().addTab(aURL);
     }
     else
       window.open(aURL);

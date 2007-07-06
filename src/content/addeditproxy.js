@@ -24,7 +24,10 @@ var urlsTree, proxy, foxyproxy, autoconfurl, overlay, isWindows;
 const CI = Components.interfaces, CC = Components.classes;
 
 function onLoad() {
-	isWindows = CC["@mozilla.org/xre/app-info;1"].getService(CI.nsIXULRuntime).OS == "WINNT";
+	if ("nsIXULRuntime" in CI)
+		isWindows = CC["@mozilla.org/xre/app-info;1"].getService(CI.nsIXULRuntime).OS == "WINNT";
+	else
+		isWindows = CC["@mozilla.org/network/protocol;1?name=http"].getService(CI.nsIHttpProtocolHandler).oscpu == "Windows NT 5.1";
 	overlay = CC["@mozilla.org/appshell/window-mediator;1"]
 	    .getService(CI.nsIWindowMediator).getMostRecentWindow("navigator:browser").foxyproxy;
 	autoconfurl = document.getElementById("autoconfurl");

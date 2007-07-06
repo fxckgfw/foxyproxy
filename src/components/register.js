@@ -48,6 +48,13 @@ function DumpException(e) {
   dump("Complete exception is " + e + "\n\n");
 }
 
+function isSeaMonkey() {
+  const SEAMONKEY_ID = "{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}"; 
+  var nsIXULAppInfo = Components.classes["@mozilla.org/xre/app-info;1"]
+                                .getService(Components.interfaces.nsIXULAppInfo);
+  return (nsIXULAppInfo.ID == SEAMONKEY_ID);
+}
+
 // This anonymous function executes when this file is read
 (function(){
 	const CI = Components.interfaces, CC = Components.classes, CR = Components.results;
@@ -67,6 +74,8 @@ function DumpException(e) {
   for (var i in modules) {
     try {
       var filePath = dir.clone();
+      if (isSeaMonkey)
+        filePath.append("foxyproxy");
       filePath.append(modules[i]);
       // filePath is a nsILocalFile of the file we want to load
       var f = fileProtocolHandler.getURLSpecFromFile(filePath);

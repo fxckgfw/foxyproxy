@@ -1,5 +1,4 @@
 // See http://forums.mozillazine.org/viewtopic.php?t=308369
-dump("here3\n");
 // Don't const the next line anymore because of the generic reg code
 var CI = Components.interfaces, CC = Components.classes, CR = Components.results;
 var fp = null;

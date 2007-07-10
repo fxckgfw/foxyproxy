@@ -48,13 +48,6 @@ function DumpException(e) {
   dump("Complete exception is " + e + "\n\n");
 }
 
-function isSeaMonkey() {
-  const SEAMONKEY_ID = "{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}"; 
-  var nsIXULAppInfo = Components.classes["@mozilla.org/xre/app-info;1"]
-                                .getService(Components.interfaces.nsIXULAppInfo);
-  return (nsIXULAppInfo.ID == SEAMONKEY_ID);
-}
-
 // This anonymous function executes when this file is read
 (function(){
 	const CI = Components.interfaces, CC = Components.classes, CR = Components.results;
@@ -69,6 +62,9 @@ function isSeaMonkey() {
   }
   var dir = self.parent; // the directory this file is in
   var loader = CC["@mozilla.org/moz/jssubscript-loader;1"].createInstance(CI["mozIJSSubScriptLoader"]);
+
+  var nsIXULAppInfo = CC["@mozilla.org/xre/app-info;1"].getService(CI.nsIXULAppInfo);
+  var isSeaMonkey = nsIXULAppInfo.ID == "{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}"; // SeaMonkey ID
   
   // Load each file in the modules array
   for (var i in modules) {

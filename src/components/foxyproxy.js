@@ -1,6 +1,5 @@
 // See http://forums.mozillazine.org/viewtopic.php?t=308369
 
-dump("here2\n");
 // Don't const the next line anymore because of the generic reg code in register.js
 var CI = Components.interfaces, CC = Components.classes, CR = Components.results, gFP;
     
@@ -60,15 +59,12 @@ foxyproxy.prototype = {
 			classId: Components.ID("{46466e13-16ab-4565-9924-20aac4d98c82}"),
 			constructor: foxyproxy,
 			className: "FoxyProxy Core"});
-			dump("1\n");
 	},		
 
 	observe: function(subj, topic, data) {
 		switch(topic) {
 			case "app-startup":
-						dump("2\n");
 				this.toggleFilter(true);
-			dump("3\n");				
 				gObsSvc.addObserver(this, "quit-application", false);				
 				gObsSvc.addObserver(this, "domwindowclosed", false);
 				//gObsSvc.addObserver(this, "http-on-modify-request", false);
@@ -1164,7 +1160,7 @@ biesi>	passing it the appropriate proxyinfo
       return this.strings.getMessage(msg, ar);
     }
     catch (e) {
-      dump(e);
+      dump(e+"\n");
       this.alert(null, "Error reading string resource: " + msg); // Do not localize!
     }
   },  

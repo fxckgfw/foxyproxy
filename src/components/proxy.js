@@ -76,7 +76,11 @@ Proxy.prototype = {
     this._enabled = node.getAttribute("enabled") == "true";
     this.autoconf.fromDOM(node.getElementsByTagName("autoconf")[0]);
     this.manualconf.fromDOM(node.getElementsByTagName("manualconf")[0]);
-    this._mode = node.getAttribute("mode") || "manual";
+    // 1.1 used "manual" instead of "mode" and was true/false only (for manual or auto)
+    this._mode = node.hasAttribute("manual") ?
+  	  (node.getAttribute("manual") == "true" ? "manual" : "auto") :
+    	node.getAttribute("mode");
+	this._mode = this._mode || "manual";
     this.selectedTabIndex = node.getAttribute("selectedTabIndex") || "0";
 	  this.lastresort = node.hasAttribute("lastresort") ? node.getAttribute("lastresort") == "true" : false; // new for 2.0	     
     this.animatedIcons = node.hasAttribute("animatedIcons") ? node.getAttribute("animatedIcons") == "true" : !this.lastresort; // new for 2.4	  

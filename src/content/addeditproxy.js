@@ -96,7 +96,7 @@ function onOK() {
   }
 
 	if (!hasWhite() &&
-		!overlay.ask(this, foxyproxy.getMessage((window.arguments[0].inn.torwiz ? "torwiz.nopatterns" : "no.white.patterns")))) return false;
+		!overlay.ask(this, foxyproxy.getMessage((window.arguments[0].inn.torwiz ? "torwiz.nopatterns.2" : "no.white.patterns.2")))) return false;
 
   proxy.name = name;
   proxy.notes = document.getElementById("proxynotes").value;
@@ -122,7 +122,7 @@ function onOK() {
 }
 
 function hasWhite() {
-  return matches.some(function(m){return !m.isBlackList;});
+  return matches.some(function(m){return m.enabled && !m.isBlackList;});
 }
 
 function _checkUri() {

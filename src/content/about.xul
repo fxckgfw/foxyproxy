@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  FoxyProxy - Take back your privacy!
+  Copyright (C) 2006 Eric H. Jung and LeahScape, Inc.
+  http://foxyproxy.mozdev.org/
+  eric.jung@yahoo.com
+
+  This source code is released under the GPL license,
+  available in the LICENSE file at the root of this installation
+  and also online at http://www.gnu.org/licenses/gpl.txt
+-->
+
+<?xml-stylesheet href="foxyproxy.css" type="text/css"?>
+<!DOCTYPE overlay SYSTEM "chrome://foxyproxy/locale/foxyproxy.dtd">
+
+<dialog
+  id="foxyproxyaboutdlg"
+  title="&foxyproxy.about.label; &foxyproxy.label;"
+  orient="vertical"
+  autostretch="always"
+  onload="onLoad();"
+  buttons="accept"
+  xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+  windowtype="foxyproxy"
+  persist="screenX screenY width height">
+
+<script src="about.js"/>
+
+<groupbox align="center" orient="horizontal">
+<vbox align="center">
+  <hbox align="center">
+  	<image id="foxyproxy-image"
+      onclick="overlay.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/');"
+  		tooltiptext="http://foxyproxy.mozdev.org/"/>
+
+	  <grid style="margin-left: 1em;">
+	    <columns>
+	      <column/>
+	      <column/>
+	    </columns>
+	  	<groupbox style="margin-left: 1em;">	  		
+	    
+	    <rows>    
+	    	<row>
+	    		<label id="ver" value="&foxyproxy.version;" style="font-weight: bold; font-size: large;"/>
+	    		<spacer/>		    	
+	    	</row>
+	    	<row>
+	    		<label value="&foxyproxy.createdBy;"/>
+			  	<label value="Eric H. Jung" class="text-link"
+			    	onclick="overlay.openAndReuseOneTabPerURL('mailto:eric.jung@yahoo.com');" tooltiptext="mailto:eric.jung@yahoo.com"/>		    		    		
+	    	</row>
+	    	<row>
+	    		<label value="&foxyproxy.website;"/>
+			  	<label value="Zenia Zenin"/>		    		    		
+	    	</row>		    	
+	    	<row>
+	    		<label value="&foxyproxy.graphics;"/>
+			  	<label value="Kseniya Galper, Michael Bermudez"/>		    		    		
+	    	</row>
+		   <label value="&foxyproxy.copyright; 2006 LeahScape, Inc."/>
+		   <label value="&foxyproxy.rights;"/>		
+		   <label value="&foxyproxy.released;"/>		
+			 <label value="http://foxyproxy.mozdev.org"
+			       class="text-link"
+			       onclick="overlay.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/');" tooltiptext="http://foxyproxy.mozdev.org/"/>
+			 <label value="http://passwordmaker.org"
+			       class="text-link"
+			       onclick="overlay.openAndReuseOneTabPerURL('http://passwordmaker.org/');" tooltiptext="http://passwordmaker.org/"/>        	    		  
+	   </rows>
+	 </groupbox>	 
+	   
+	 </grid>
+  </hbox>
+	<separator/>  
+  <groupbox style="margin: 1em; padding-left: 1em; padding-right: 1em;">
+	  <caption label="&foxyproxy.translations;"/>
+ 		<separator/>
+	  <grid>
+	    <columns>
+	      <column style="margin-right: 2em;"/>
+	      <column/>
+	    </columns>
+	    <rows>
+	      <row>
+		      <grid>
+				    <columns>
+				      <column style="margin-right: 1em;"/>
+				      <column/>
+				    </columns>        
+					<rows>
+			      <row><label value="&foxyproxy.chinese.simplified;"/><label value="rickcart" style="font-weight: bold;"/></row>
+			      <row><label value="&foxyproxy.chinese.traditional;"/><label value="sfyang" style="font-weight: bold;"/></row>
+						<row><label value="&foxyproxy.croatian;"/><label value="krcko" style="font-weight: bold;"/></row>      
+						<row><label value="&foxyproxy.czech;"/><label value="klokan" style="font-weight: bold;"/></row>			
+						<row><label value="&foxyproxy.danish;"/><label value="AlleyKat" style="font-weight: bold;"/></row>			
+						<row><label value="&foxyproxy.dutch;"/><label value="markh" style="font-weight: bold;"/></row>			
+						<row><label value="&foxyproxy.english;"/><label value="Eric H. Jung" class="text-link" style="font-weight: bold;"
+				    	onclick="overlay.openAndReuseOneTabPerURL('mailto:eric.jung@yahoo.com');" tooltiptext="mail"/></row>											
+						<row><label value="&foxyproxy.french;"/><label value="Goofy, jojaba, arno" style="font-weight: bold;"/></row>			
+						<row><label value="&foxyproxy.german;"/><label value="Jörn Hartroth," style="font-weight: bold;"/></row>						
+						<row><spacer/><label value="Marten Seeman" style="font-weight: bold;"/></row>												
+						<row><label value="&foxyproxy.greek;"/><label value="Sonickydon" style="font-weight: bold;"/></row>			
+						<row><label value="&foxyproxy.hungarian;"/><label value="kami" style="font-weight: bold;"/></row>									
+						<row><label value="&foxyproxy.italian;"/><label value="MatrixIsAllOver," style="font-weight: bold;"/></row>
+						<row><spacer/><label value="l0stintranslation" style="font-weight: bold;"/></row>																	
+					</rows>
+					</grid>
+		      <grid>
+				    <columns>
+				      <column style="margin-right: 1em;"/>
+				      <column/>
+				    </columns>        
+					<rows>			
+						<row><label value="&foxyproxy.persian;"/><label value="Pedram Veisi" style="font-weight: bold;"/></row>																		
+						<row><label value="&foxyproxy.polish;"/><label value="teo" style="font-weight: bold;"/></row>															
+						<row><label value="&foxyproxy.portugese.brazilian;"/><label value="pedsann" style="font-weight: bold;"/></row>
+						<row><label value="&foxyproxy.portugese.portugal;"/><label value="Nuno F." style="font-weight: bold;"/></row>
+						<row><label value="&foxyproxy.russian;"/><label value="Igor N. Avtaev" style="font-weight: bold;"/></row>									
+						<row><label value="&foxyproxy.slovak;"/><label value="Rastislav Hubocan" style="font-weight: bold;"/></row>
+						<row><label value="&foxyproxy.spanish.argentina;"/><label value="acushnir" style="font-weight: bold;"/></row>				        						
+						<row><label value="&foxyproxy.spanish.spain;"/><label value="Proyecto Nave"
+							onclick="overlay.openAndReuseOneTabPerURL('http://www.proyectonave.es/');"
+			        class="text-link" stlye="font-weight: bold;" tooltiptext="http://www.proyectonave.es/"/></row>						
+						<row><label value="&foxyproxy.thai.thailand;"/><label value="Qen" style="font-weight: bold;"/></row>			
+						<row><label value="&foxyproxy.turkish;"/><label value="consyst" style="font-weight: bold;"/></row>			
+						<row><label value="&foxyproxy.swedish;"/><label value="StiffeL" style="font-weight: bold;"/></row>									
+						<row><label value="&foxyproxy.ukrainian;"/><label value="MozUA" style="font-weight: bold;"/></row>			
+			      <row><label value="&foxyproxy.your.language;"/>
+			        <label value="&foxyproxy.your.name.here;" onclick="overlay.openAndReuseOneTabPerURL('http://www.babelzilla.org/');"
+			          class="text-link" style="font-weight: bold;" tooltiptext="http://www.babelzilla.org/"/></row>            
+			    </rows>
+			    </grid>
+			  </row>
+		  </rows>
+	  </grid>      
+	  <separator class="thin"/>
+	</groupbox>
+</vbox>
+</groupbox>
+</dialog>

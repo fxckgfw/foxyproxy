@@ -349,11 +349,17 @@
 <!ENTITY foxyproxy.toolsmenu.tooltip "Show icon in the Firefox tools menu">
 
 <!ENTITY foxyproxy.tip.label "Tip">
-<!ENTITY foxyproxy.pactips.popup.height "165px">
+<!ENTITY foxyproxy.pactips.popup.height "250px">
 <!ENTITY foxyproxy.pactips.popup.width "400px">
 <!ENTITY foxyproxy.pactip1.label "For PAC files stored on a local hard drive, use the file:// scheme. For example, file://c:/path/proxy.pac on Windows or file:///home/users/joe/proxy.pac on Unix/Linux/Mac.">
 <!ENTITY foxyproxy.pactip2.label "For PAC files on an ftp server, use the ftp:// scheme. For example, ftp://leahscape.com/path/proxy.pac">
 <!ENTITY foxyproxy.pactip3.label "You can also use http://, https://, and any other supported scheme.">
+<!ENTITY foxyproxy.pactip4.label "Finally, if you need to refer to a PAC file on the local file system using a relative path, you can use the special FoxyProxy relative:// scheme. This is useful if your PAC file resides on a thumb drive. Supported relative paths are documented">
+<!ENTITY foxyproxy.pactip5.label "here">
+<!ENTITY foxyproxy.pactip6.label ". Special strings in the relative:// URL you specify are replaced with their corresponding values. For example, relative://ProfD/pacs/proxy3.pac points to the file proxy3.pac in the subdirectory of the">
+<!ENTITY foxyproxy.pactip7.label "Firefox profile directory">
+<!ENTITY foxyproxy.pactip8.label "named pacs/. With Portable Firefox on Windows, the Firefox profile directory is always a relative path because the drive letter can change across computers. Please note that special strings (Profd, Home, TempD, etc.) are case-sensitive!">
+
 
 <!ENTITY foxyproxy.contextmenu.label "Show icon in the context-menu">
 <!ENTITY foxyproxy.contextmenu.accesskey "C">

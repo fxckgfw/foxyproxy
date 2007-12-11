@@ -23,27 +23,27 @@ function gQueryInterface(aIID) {
 ///////////////////////////// AutoConf class ///////////////////////
 function AutoConf(owner, node) {
   this.wrappedJSObject = this;
-  !fp && 
-  	(fp = CC["@leahscape.org/foxyproxy/service;1"].getService(CI.nsISupports).wrappedJSObject);   
-  this.timer = CC["@mozilla.org/timer;1"].createInstance(CI.nsITimer);  
+  !fp &&
+  	(fp = CC["@leahscape.org/foxyproxy/service;1"].getService(CI.nsISupports).wrappedJSObject);
+  this.timer = CC["@mozilla.org/timer;1"].createInstance(CI.nsITimer);
   this.owner = owner;
   this.fromDOM(node);
 	this._resolver = CC["@mozilla.org/network/proxy-auto-config;1"]
-	  .createInstance(CI.nsIProxyAutoConfig);    
+	  .createInstance(CI.nsIProxyAutoConfig);
 }
 
 AutoConf.prototype = {
-  QueryInterface: gQueryInterface,  
+  QueryInterface: gQueryInterface,
   parser : /\s*(\S+)\s*(?:([^:]+):?(\d*)\s*[;]?\s*)?/,
   status : 0,
   error : null,
  	loadNotification: true,
-  errorNotification: true, 
+  errorNotification: true,
   url: "",
   _pac: "",
   _autoReload: false,
   _reloadFreqMins: 60,
-	
+
   set autoReload(e) {
     this._autoReload = e;
     if (!e && this.timer) {
@@ -58,28 +58,28 @@ AutoConf.prototype = {
   		e = 60;
   	}
   	else {
-	    this._reloadFreqMins = e;    
+	    this._reloadFreqMins = e;
 	  }
    },
   get reloadFreqMins() {return this._reloadFreqMins;},
-    	    
+
   fromDOM : function(node) {
     if (node) {
 	    this.url = node.getAttribute("url");
 	    this.loadNotification = node.hasAttribute("loadNotification") ? node.getAttribute("loadNotification") == "true" : true;	// new for 2.5
-	    this.errorNotification = node.hasAttribute("errorNotification") ? node.getAttribute("errorNotification") == "true" : true; // new for 2.5   
-	    this._autoReload = node.hasAttribute("autoReload") ? node.getAttribute("autoReload") == "true" : true; // new for 2.5	    	    
-	    this._reloadFreqMins = node.hasAttribute("reloadFreqMins") ? node.getAttribute("reloadFreqMins") : 60; // new for 2.5		    
+	    this.errorNotification = node.hasAttribute("errorNotification") ? node.getAttribute("errorNotification") == "true" : true; // new for 2.5
+	    this._autoReload = node.hasAttribute("autoReload") ? node.getAttribute("autoReload") == "true" : true; // new for 2.5
+	    this._reloadFreqMins = node.hasAttribute("reloadFreqMins") ? node.getAttribute("reloadFreqMins") : 60; // new for 2.5
 	  }
   },
-  
-  toDOM : function(doc) {  
+
+  toDOM : function(doc) {
     var e = doc.createElement("autoconf");
     e.setAttribute("url", this.url);
-    e.setAttribute("loadNotification", this.loadNotification);    
-    e.setAttribute("errorNotification", this.errorNotification); 
-	  e.setAttribute("autoReload", this._autoReload);             
-	  e.setAttribute("reloadFreqMins", this._reloadFreqMins);       	  
+    e.setAttribute("loadNotification", this.loadNotification);
+    e.setAttribute("errorNotification", this.errorNotification);
+	  e.setAttribute("autoReload", this._autoReload);
+	  e.setAttribute("reloadFreqMins", this._reloadFreqMins);
     return e;
   },
 
@@ -87,11 +87,12 @@ AutoConf.prototype = {
     this._pac = "";
     try {
       var req = CC["@mozilla.org/xmlextras/xmlhttprequest;1"]
-        .createInstance(CI.nsIXMLHttpRequest);
-      req.open("GET", this.url, false); // false means synchronous
+        .createInstance(CI.nsIXMLHttpRequest),
+        url = fp.newURI(this.url).spec; // translate relative:// URIs if necessary
+      req.open("GET", url, false); // false means synchronous
       req.send(null);
       this.status = req.status;
-      if (this.status == 200 || (this.status == 0 && (this.url.indexOf("file://") == 0 || this.url.indexOf("ftp://") == 0))) {
+      if (this.status == 200 || (this.status == 0 && (url.indexOf("file://") == 0 || url.indexOf("ftp://") == 0 || url.indexOf("relative://") == 0))) {
         try {
           this._pac = req.responseText;
           this._resolver.init(this.url, this._pac);
@@ -102,7 +103,7 @@ AutoConf.prototype = {
         catch(e) {
           this._pac = "";
           this.badPAC("pac.status.error", e);
-        }     
+        }
       }
       else {
         this.badPAC("pac.status.loadfailure");
@@ -110,14 +111,14 @@ AutoConf.prototype = {
     }
     catch(e) {
       this.badPAC("pac.status.loadfailure", e);
-    } 
+    }
   },
-	
+
 	notify : function(timer) {
 		// nsITimer callback
 		this.loadPAC();
 	},
-	
+
   badPAC : function(res, e) {
 		if (e) {
       dump(e) + "\n";
@@ -131,7 +132,7 @@ AutoConf.prototype = {
   },
 	classID: Components.ID("{54382370-f194-11da-8ad9-0800200c9a66}"),
 	contractID: "@leahscape.org/foxyproxy/autoconf;1",
-	classDescription: "FoxyProxy AutoConfiguration Component"  
+	classDescription: "FoxyProxy AutoConfiguration Component"
 };
 
 
@@ -142,10 +143,10 @@ var gCatContractId = AutoConf.prototype.contractID;
 function NSGetModule(compMgr, fileSpec) {
 	gModule._catObserverName = gCatObserverName;
 	gModule._catContractId = gCatContractId;
-	
+
 	for (var i in gXpComObjects)
 		gModule._xpComObjects[i] = new gFactoryHolder(gXpComObjects[i]);
-		
+
 	return gModule;
 }
 
@@ -159,11 +160,11 @@ function gFactoryHolder(aObj) {
 		{
 			if (aOuter)
 				throw CR.NS_ERROR_NO_AGGREGATION;
-				
+
 			return (new this.constructor).QueryInterface(aIID);
 		}
 	};
-	
+
 	this.factory.constructor = aObj;
 }
 var gModule = {
@@ -178,7 +179,7 @@ var gModule = {
 	},
 
 	unregisterSelf: function(aCompMgr, aFileSpec, aLocation) {
-		
+
 		aComponentManager.QueryInterface(CI.nsIComponentRegistrar);
 		for (var key in this._xpComObjects)
 		{
@@ -190,18 +191,18 @@ var gModule = {
 	getClassObject: function(aComponentManager, aCID, aIID)	{
 		if (!aIID.equals(CI.nsIFactory))
 			throw CR.NS_ERROR_NOT_IMPLEMENTED;
-		
+
 		for (var key in this._xpComObjects)
 		{
 			if (aCID.equals(this._xpComObjects[key].CID))
 				return this._xpComObjects[key].factory;
 		}
-	
+
 		throw CR.NS_ERROR_NO_INTERFACE;
 	},
 
 	canUnload: function(aComponentManager) { return true; },
-	
+
 	_xpComObjects: {},
 	_catObserverName: null,
 	_catContractId: null

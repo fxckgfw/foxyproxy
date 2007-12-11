@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  FoxyProxy - Take back your privacy!
-  Copyright (C) 2006 Eric H. Jung and LeahScape, Inc.
+  FoxyProxy
+  Copyright (C) 2006,2007 Eric H. Jung and LeahScape, Inc.
   http://foxyproxy.mozdev.org/
   eric.jung@yahoo.com
 
@@ -58,7 +58,7 @@
 	    		<label value="&foxyproxy.graphics;"/>
 			  	<label value="Kseniya Galper, Michael Bermudez"/>		    		    		
 	    	</row>
-		   <label value="&foxyproxy.copyright; 2006 LeahScape, Inc."/>
+		   <label value="&foxyproxy.copyright; 2006,2007 LeahScape, Inc."/>
 		   <label value="&foxyproxy.rights;"/>		
 		   <label value="&foxyproxy.released;"/>		
 			 <label value="http://foxyproxy.mozdev.org"

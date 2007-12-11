@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  FoxyProxy - Take back your privacy!
+  Copyright (C) 2006 Eric H. Jung and LeahScape, Inc.
+  http://foxyproxy.mozdev.org/
+  eric.jung@yahoo.com
+
+  This source code is released under the GPL license,
+  available in the LICENSE file at the root of this installation
+  and also online at http://www.gnu.org/licenses/gpl.txt
+  
+http://lxr.mozilla.org/mozilla1.8.0/source/toolkit/components/alerts/resources/content/alert.xul?raw=1
+http://lxr.mozilla.org/mozilla1.8.0/source/themes/modern/communicator/alerts/alert.css?raw=1
+-->
+<?xml-stylesheet href="foxyproxy.css" type="text/css"?>
+<!DOCTYPE overlay SYSTEM "chrome://foxyproxy/locale/foxyproxy.dtd">
+
+<overlay id="foxyproxy-overlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"> 
+<window id="alertNotification"
+        windowtype="alert:alert"
+        xmlns:xhtml2="http://www.w3.org/TR/xhtml2"
+        xmlns:wairole="http://www.w3.org/2005/01/wai-rdf/GUIRoleTaxonomy#"
+        xhtml2:role="wairole:alert"
+        align="start"
+        onload="onAlertLoad()"
+        onclick="window.close();"/>
+            
+</overlay>

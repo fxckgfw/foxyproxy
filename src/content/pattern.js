@@ -1,6 +1,6 @@
 /**
-  FoxyProxy - Take back your privacy!
-  Copyright (C) 2006 Eric H. Jung and LeahScape, Inc.
+  FoxyProxy
+  Copyright (C) 2006,2007 Eric H. Jung and LeahScape, Inc.
   http://foxyproxy.mozdev.org/
   eric.jung@yahoo.com
 

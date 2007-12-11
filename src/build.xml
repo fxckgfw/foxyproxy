@@ -3,11 +3,11 @@
   <taskdef name="jsmin" classname="com.leahscape.ant.JSMinTask" classpath="C:/dev/foxyproxy/jsmin-ant-task/trunk/classes" />
 
   <!-- version property is appended to XPI filename; e.g., foxyproxy-1.0.xpi -->
-  <property name="version" value="2.5.5" />
+  <property name="version" value="2.5.6" />
   <property name="temp-path" value="c:/temp/fp-temp" />
   <property name="src-base" value="c:/dev/foxyproxy/standard/fx+flock/trunk/src"/>
   <property name="target-path" value="c:/dev/foxyproxy/standard/fx+flock/targets"/>
-  
+
 
   <!-- guid of your extension -->
   <property name="guid" value="{foxyproxy@eric.h.jung}" />
@@ -23,9 +23,9 @@
     <apply executable="cscript.exe">
       <arg value="//NoLogo"/>
       <arg value="l:/dev/packer/wsf/pack.wsf"/>
-      <srcfile/>      
+      <srcfile/>
       <fileset dir="${temp-path}" includes="**/*.js/**" excludes="**/register.js/**,**/prefs.js/**"/>
-    </apply>        
+    </apply>
   </target>-->
 
   <target name="min-xml-files">
@@ -81,13 +81,13 @@
       <zipfileset dir="${temp-path}/defaults" prefix="defaults" includes="**/**" />
     </zip>
   </target>
-  
+
 
   <target name="clean">
     <delete dir="${temp-path}" failonerror="false" />
     <mkdir dir="${temp-path}" />
   </target>
-  
+
   <target name="build-with-obfuscation" depends="copy,min-xml-files,min-js-files,jar,build,clean" />
   <target name="build-without-obfuscation" depends="copy,jar,build,clean" />
 </project>

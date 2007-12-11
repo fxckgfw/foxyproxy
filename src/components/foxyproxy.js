@@ -38,6 +38,7 @@ const gMatchingProxyFactory = function(proxy, aMatch, uri, type, errMsg) {
 	  }
 	  gObsSvc.notifyObservers(bool, topic, d);
 };
+const exceptionSchemes = ['feed'];
 
 var self;
 var fileProtocolHandler = CC["@mozilla.org/network/protocol;1?name=file"].createInstance(CI["nsIFileProtocolHandler"]);
@@ -268,6 +269,7 @@ biesi>	passing it the appropriate proxyinfo
   	}
 
     try {
+      if (exceptionSchemes[uri.scheme]) return;
     	var spec = uri.spec;
       var mp = this.applyMode(spec);
       var ret = mp.proxy.getProxy(spec, uri.host, mp);

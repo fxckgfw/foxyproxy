@@ -203,8 +203,8 @@ Proxy.prototype = {
       });
   },
 
-  removeMatch : function(m) {
-    this.matches = this.matches.filter(function() {return this.matches != m;});
+  removeMatch : function(removeMe) {
+    this.matches = this.matches.filter(function(e) {return e != removeMe;});
   },
 
 	resolve : function(spec, host, mp) {

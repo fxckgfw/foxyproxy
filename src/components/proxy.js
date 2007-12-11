@@ -11,8 +11,8 @@
 
 // See http://forums.mozillazine.org/viewtopic.php?t=308369
 
-// Don't const the next line anymore because of the generic reg code
-var CI = Components.interfaces, CC = Components.classes, CR = Components.results;
+var CI = Components.interfaces, CC = Components.classes, CR = Components.results,
+  FEED_URL = "feed://";
 var fp = null;
 var proxyService = CC["@mozilla.org/network/protocol-proxy-service;1"].getService(CI.nsIProtocolProxyService);
 function gQueryInterface(aIID) {
@@ -38,10 +38,10 @@ try {
   loader.loadSubScript(fileProtocolHandler.getURLSpecFromFile(filePath));
 	filePath = dir.clone();
   filePath.append("manualconf.js");
-  loader.loadSubScript(fileProtocolHandler.getURLSpecFromFile(filePath));  
+  loader.loadSubScript(fileProtocolHandler.getURLSpecFromFile(filePath));
 	filePath = dir.clone();
   filePath.append("match.js");
-  loader.loadSubScript(fileProtocolHandler.getURLSpecFromFile(filePath));    
+  loader.loadSubScript(fileProtocolHandler.getURLSpecFromFile(filePath));
 }
 catch (e) {
   dump("Error loading autoconf.js, manualconf.js, or match.js\n");
@@ -50,8 +50,8 @@ catch (e) {
 ///////////////////////////// Proxy class ///////////////////////
 function Proxy() {
   this.wrappedJSObject = this;
-  !fp && 
-  	(fp = CC["@leahscape.org/foxyproxy/service;1"].getService(CI.nsISupports).wrappedJSObject);  
+  !fp &&
+  	(fp = CC["@leahscape.org/foxyproxy/service;1"].getService(CI.nsISupports).wrappedJSObject);
   this.matches = new Array();
   this.name = this.notes = "";
   this.manualconf = new ManualConf();
@@ -61,6 +61,7 @@ function Proxy() {
   this.selectedTabIndex = 0;
   this.lastresort = false;
   this.id = fp.proxies.uniqueRandom();
+  this.blackListFeeds();
 }
 
 Proxy.prototype = {
@@ -68,10 +69,10 @@ Proxy.prototype = {
   direct: proxyService.newProxyInfo("direct", "", -1, 0, 0, null),
   animatedIcons: true,
   includeInCycle: true,
-	  
+
   fromDOM : function(node, fpMode) {
     this.name = node.getAttribute("name");
-    this.id = node.getAttribute("id") || fp.proxies.uniqueRandom();    
+    this.id = node.getAttribute("id") || fp.proxies.uniqueRandom();
     this.notes = node.getAttribute("notes");
     this._enabled = node.getAttribute("enabled") == "true";
     this.autoconf.fromDOM(node.getElementsByTagName("autoconf")[0]);
@@ -80,10 +81,10 @@ Proxy.prototype = {
     this._mode = node.hasAttribute("manual") ?
   	  (node.getAttribute("manual") == "true" ? "manual" : "auto") :
     	node.getAttribute("mode");
-	this._mode = this._mode || "manual";
+	  this._mode = this._mode || "manual";
     this.selectedTabIndex = node.getAttribute("selectedTabIndex") || "0";
-	  this.lastresort = node.hasAttribute("lastresort") ? node.getAttribute("lastresort") == "true" : false; // new for 2.0	     
-    this.animatedIcons = node.hasAttribute("animatedIcons") ? node.getAttribute("animatedIcons") == "true" : !this.lastresort; // new for 2.4	  
+	  this.lastresort = node.hasAttribute("lastresort") ? node.getAttribute("lastresort") == "true" : false; // new for 2.0
+    this.animatedIcons = node.hasAttribute("animatedIcons") ? node.getAttribute("animatedIcons") == "true" : !this.lastresort; // new for 2.4
     this.includeInCycle = node.hasAttribute("includeInCycle") ? node.getAttribute("includeInCycle") == "true" : !this.lastresort; // new for 2.5
     for (var i=0,temp=node.getElementsByTagName("match"); i<temp.length; i++) {
       var j = this.matches.length;
@@ -96,49 +97,50 @@ Proxy.prototype = {
   toDOM : function(doc) {
     var e = doc.createElement("proxy");
     e.setAttribute("name", this.name);
-    e.setAttribute("id", this.id);  
+    e.setAttribute("id", this.id);
     e.setAttribute("notes", this.notes);
     e.setAttribute("enabled", this.enabled);
-    e.setAttribute("mode", this.mode);  
-    e.setAttribute("selectedTabIndex", this.selectedTabIndex);   
-    e.setAttribute("lastresort", this.lastresort);     
-    e.setAttribute("animatedIcons", this.animatedIcons);   
-    e.setAttribute("includeInCycle", this.includeInCycle);       
-    
+    e.setAttribute("mode", this.mode);
+    e.setAttribute("selectedTabIndex", this.selectedTabIndex);
+    e.setAttribute("lastresort", this.lastresort);
+    e.setAttribute("animatedIcons", this.animatedIcons);
+    e.setAttribute("includeInCycle", this.includeInCycle);
+
     var matchesElem = doc.createElement("matches");
     e.appendChild(matchesElem);
     for (var j=0; j<this.matches.length; j++) {
       matchesElem.appendChild(this.matches[j].toDOM(doc));
-    } 
-    e.appendChild(this.autoconf.toDOM(doc));    
-    e.appendChild(this.manualconf.toDOM(doc));  
-    return e;   
+    }
+    e.appendChild(this.autoconf.toDOM(doc));
+    e.appendChild(this.manualconf.toDOM(doc));
+    return e;
   },
-	
+
   set enabled(e) {
     if (this.lastresort && !e) return; // can't ever disable this guy
-    this._enabled = e;    
-		this.shouldLoadPAC() && this.autoconf.loadPAC();    
+    this._enabled = e;
+		this.shouldLoadPAC() && this.autoconf.loadPAC();
     this.handleTimer();
   },
 
   get enabled() {return this._enabled;},
-	
+
 	shouldLoadPAC:function() {
     return this._mode == "auto" &&
 	  	(fp.mode == this.id || fp.mode == "patterns" || fp.mode == "random" || fp.mode == "roundrobin") && this._enabled;
 	},
-	
+
   set mode(m) {
     this._mode = m;
-    this.shouldLoadPAC() && this.autoconf.loadPAC();    
-    this.handleTimer();    
+    this.shouldLoadPAC() && this.autoconf.loadPAC();
+    this.handleTimer();
   },
 
 	afterPropertiesSet : function(fpMode) {
-	  // Load PAC if required. Note that loadPAC() is synchronous and if it fails, it changes our mode to "direct" or disables us.	  
-    this.shouldLoadPAC() && this.autoconf.loadPAC();	  	
-	  	
+    this.ensureFeedsAreBlacklisted();
+	  // Load PAC if required. Note that loadPAC() is synchronous and if it fails, it changes our mode to "direct" or disables us.
+    this.shouldLoadPAC() && this.autoconf.loadPAC();
+
    	// Some integrity maintenance: if this is a manual proxy and this.manualconf.proxy wasn't created during deserialization, disable us.
     if (this._enabled && this._mode == "manual" && !this.manualconf.proxy) {
       if (this.lastresort) {
@@ -149,22 +151,40 @@ Proxy.prototype = {
      	  this._enabled = false;
     }
 	  !this._enabled &&
-	 	  fp.proxies.maintainIntegrity(this, false, true, false); // (proxy, isBeingDeleted, isBeingDisabled, isBecomingDIRECT)    
+	 	  fp.proxies.maintainIntegrity(this, false, true, false); // (proxy, isBeingDeleted, isBeingDisabled, isBecomingDIRECT)
 	},
 
+  // Ensure feed:// URLs are always handled internally by FF
+  ensureFeedsAreBlacklisted : function() {
+    function blacklistsFeeds(matchObj) {
+      return matchObj.enabled && matchObj.isBlackList && matchObj.regex.test(FEED_URL);
+    }
+    !this.matches.some(blacklistsFeeds) && this.blackListFeeds();
+  },
+
+  blackListFeeds : function() {
+    var m = CC["@leahscape.org/foxyproxy/match;1"].createInstance().wrappedJSObject;
+    m.name = "Hidden blacklist of feed:// URLs - feeds must be handled internally by firefox";
+    m.pattern = "feed://.*";
+    m.isRegEx = true;
+    m.isBlackList = true;
+    m.isHidden = true;
+    this.matches.push(m);
+  },
+
 	handleTimer : function() {
-		var ac = this.autoconf;	
-		ac.timer.cancel(); // always always always cancel first before doing anything	
+		var ac = this.autoconf;
+		ac.timer.cancel(); // always always always cancel first before doing anything
 		if (this.shouldLoadPAC() && ac._autoReload) {
-			ac.timer.initWithCallback(ac, ac._reloadFreqMins*60000, CI.nsITimer.TYPE_REPEATING_SLACK);			
+			ac.timer.initWithCallback(ac, ac._reloadFreqMins*60000, CI.nsITimer.TYPE_REPEATING_SLACK);
 		}
-	},	
-	
+	},
+
   get mode() {return this._mode;},
 
   isMatch : function(uriStr) {
     var white = -1;
-    for (var i=0; i<this.matches.length; i++) {
+    for (var i=0,sz=this.matches.length; i<sz; i++) {
       if (this.matches[i].enabled && this.matches[i].regex.test(uriStr)) {
         if (this.matches[i].isBlackList) {
           return false;
@@ -176,13 +196,23 @@ Proxy.prototype = {
     }
     return white == -1 ? false : this.matches[white];
   },
-	
+
+  visibleMatches : function() {
+    return this.matches.filter(function(matchObj) {
+        return !matchObj.isHidden;
+      });
+  },
+
+  removeMatch : function(m) {
+    this.matches = this.matches.filter(function() {return this.matches != m;});
+  },
+
 	resolve : function(spec, host, mp) {
-	
+
 	  function _notifyUserOfError(spec) {
 			this.pacErrorNotification && fp.notifier.alert(fp.getMessage("foxyproxy"), fp.getMessage("proxy.error.for.url") + spec);
 			return null;
-		}	
+		}
 	  // See http://wp.netscape.com/eng/mozilla/2.0/relnotes/demo/proxy-live.html
 	  var str = mp.pacResult = this.autoconf._resolver.getProxyForURI(spec, host);
 	  if (str && str != "") {
@@ -190,9 +220,9 @@ Proxy.prototype = {
 	    var tokens = str.split(/\s*;\s*/), // Trim and split
       	proxies = [];
 	    if (tokens[tokens.length-1] == "") // In case final token ends with semi-colon
-	      tokens.length--;      
+	      tokens.length--;
 	    for (var i=0; i<tokens.length; i++) {
-	      var components = this.autoconf.parser.exec(tokens[i]); 
+	      var components = this.autoconf.parser.exec(tokens[i]);
 	      if (!components) continue;
 	      switch (components[1]) {
 	        case "proxy":
@@ -205,10 +235,10 @@ Proxy.prototype = {
 	          break;
 	        case "socks4":
 	          proxies.push(proxyService.newProxyInfo("socks4", components[2], components[3],
-	            fp._proxyDNS ? CI.nsIProxyInfo.TRANSPARENT_PROXY_RESOLVES_HOST : 0, 0, null));          
+	            fp._proxyDNS ? CI.nsIProxyInfo.TRANSPARENT_PROXY_RESOLVES_HOST : 0, 0, null));
 	          break;
 	        case "direct":
-	          proxies.push(this.direct);                    
+	          proxies.push(this.direct);
 	          break;
 	        default:
 	          return this._notifyUserOfError(spec);
@@ -231,9 +261,9 @@ Proxy.prototype = {
 	  else {
 	    // Resolver did not find a proxy, but this isn't an error condition
 	    return null;
-	  }	
+	  }
 	},
-	
+
   getProxy : function(spec, host, mp) {
     switch (this._mode) {
       case "manual":return this.manualconf.proxy;
@@ -243,7 +273,7 @@ Proxy.prototype = {
   },
 	classID: Components.ID("{51b469a0-edc1-11da-8ad9-0800200c9a66}"),
 	contractID: "@leahscape.org/foxyproxy/proxy;1",
-	classDescription: "FoxyProxy Proxy Component"  
+	classDescription: "FoxyProxy Proxy Component"
 };
 
 var gXpComObjects = [Proxy];
@@ -253,10 +283,10 @@ var gCatContractId = Proxy.prototype.contractID;
 function NSGetModule(compMgr, fileSpec) {
 	gModule._catObserverName = gCatObserverName;
 	gModule._catContractId = gCatContractId;
-	
+
 	for (var i in gXpComObjects)
 		gModule._xpComObjects[i] = new gFactoryHolder(gXpComObjects[i]);
-		
+
 	return gModule;
 }
 
@@ -270,11 +300,11 @@ function gFactoryHolder(aObj) {
 		{
 			if (aOuter)
 				throw CR.NS_ERROR_NO_AGGREGATION;
-				
+
 			return (new this.constructor).QueryInterface(aIID);
 		}
 	};
-	
+
 	this.factory.constructor = aObj;
 }
 var gModule = {
@@ -289,7 +319,7 @@ var gModule = {
 	},
 
 	unregisterSelf: function(aCompMgr, aFileSpec, aLocation) {
-		
+
 		aComponentManager.QueryInterface(CI.nsIComponentRegistrar);
 		for (var key in this._xpComObjects)
 		{
@@ -301,18 +331,18 @@ var gModule = {
 	getClassObject: function(aComponentManager, aCID, aIID)	{
 		if (!aIID.equals(CI.nsIFactory))
 			throw CR.NS_ERROR_NOT_IMPLEMENTED;
-		
+
 		for (var key in this._xpComObjects)
 		{
 			if (aCID.equals(this._xpComObjects[key].CID))
 				return this._xpComObjects[key].factory;
 		}
-	
+
 		throw CR.NS_ERROR_NO_INTERFACE;
 	},
 
 	canUnload: function(aComponentManager) { return true; },
-	
+
 	_xpComObjects: {},
 	_catObserverName: null,
 	_catContractId: null

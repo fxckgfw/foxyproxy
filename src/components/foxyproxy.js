@@ -499,7 +499,9 @@ biesi>	passing it the appropriate proxyinfo
 		this._advancedMenus = node.hasAttribute("advancedMenus") ?
 			node.getAttribute("advancedMenus") == "true" : false; // new for 2.3--default to false if it doesn't exist						
 		this._selectedTabIndex = node.getAttribute("selectedTabIndex") || "0";
-		var mode = node.getAttribute("mode");
+		var mode = node.hasAttribute("enabledState") ?
+			(node.getAttribute("enabledState") == "" ? "disabled" : node.getAttribute("enabledState")) :
+			node.getAttribute("mode"); // renamed to mode in 2.0
 		this.proxies.fromDOM(mode, doc, this);      
 		this.setMode(mode, false, true);
 		this.random.fromDOM(doc, this);

@@ -11,7 +11,7 @@
 
 // Thanks for the template, doron (http://www.nexgenmedia.net/docs/protocol/)
 const kSCHEME = "relative";
-const kPROTOCOL_NAME = "Relative Protocol";
+const kPROTOCOL_NAME = "FoxyProxy Relative Protocol";
 const kPROTOCOL_CONTRACTID = "@mozilla.org/network/protocol;1?name=" + kSCHEME;
 const kPROTOCOL_CID = Components.ID("22ed2962-a8ec-11dc-8314-0800200c9a66");
 var CI = Components.interfaces, CC = Components.classes, CR = Components.results;
@@ -67,10 +67,10 @@ Protocol.prototype = {
     // Note: start loop at 1, not 0
     for (var i=1,sz=parts.length; i<sz; i++)
       file.appendRelativePath(parts[i]);
-    var ios = CC[kIOSERVICE_CONTRACTID].
+    var pHandler = CC[kIOSERVICE_CONTRACTID].
         getService(nsIIOService).getProtocolHandler("file").
         QueryInterface(CI.nsIFileProtocolHandler);
-    return ios.newChannel(ios.newURI(file, null, null));
+    return pHandler.newChannel(pHandler.newFileURI(file, null, null));
   },
 }
 

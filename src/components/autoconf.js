@@ -86,19 +86,15 @@ AutoConf.prototype = {
   loadPAC : function() {
     this._pac = "";
     try {
-      // We could just pass this.url to req.open(), but that won't work for relative:// URIs.
-      var uri = CC["@mozilla.org/network/io-service;1"]
-        .getService(CI.nsIIOService).newURI(this.url, null, null);
-      uri=uri.spec?uri.spec:uri.path;
-      dump(uri+"\n");
       var req = CC["@mozilla.org/xmlextras/xmlhttprequest;1"]
         .createInstance(CI.nsIXMLHttpRequest);
-      req.open("GET", uri, false); // false means synchronous
+      req.open("GET", this.url, false); // false means synchronous
       req.send(null);
       this.status = req.status;
       if (this.status == 200 || (this.status == 0 && (this.url.indexOf("file://") == 0 || this.url.indexOf("ftp://") == 0 || this.url.indexOf("relative://") == 0))) {
         try {
           this._pac = req.responseText;
+          dump("pac = " + this._pac + "\n");
           this._resolver.init(this.url, this._pac);
           this.loadNotification && fp.notifier.alert(fp.getMessage("pac.status"), fp.getMessage("pac.status.success", [this.owner.name]));
           this.owner._enabled = true; // Use _enabled so we don't loop infinitely

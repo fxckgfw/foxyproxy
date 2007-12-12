@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="foxyproxy" default="build-with-obfuscation"  basedir="c:/temp/fp-temp">
-  <taskdef name="jsmin" classname="com.leahscape.ant.JSMinTask" classpath="C:/dev/foxyproxy/jsmin-ant-task/trunk/classes" />
+<project name="foxyproxy" default="build-xpi">
 
   <!-- version property is appended to XPI filename; e.g., foxyproxy-1.0.xpi -->
   <property name="version" value="2.5.6" />
-  <property name="temp-path" value="c:/temp/fp-temp" />
-  <property name="src-base" value="c:/dev/foxyproxy/standard/fx+flock/trunk/src"/>
-  <property name="target-path" value="c:/dev/foxyproxy/standard/fx+flock/targets"/>
+  <property name="temp-path" value="../temp" />
+  <property name="src-base" value="."/>
+  <property name="target-path" value="../targets"/>
 
 
   <!-- guid of your extension -->
@@ -19,52 +18,9 @@
     </copy>
   </target>
 
-  <!--<target name="obfuscate">   THIS WORKS BUT HOSES SOME OF THE JS FILES!
-    <apply executable="cscript.exe">
-      <arg value="//NoLogo"/>
-      <arg value="l:/dev/packer/wsf/pack.wsf"/>
-      <srcfile/>
-      <fileset dir="${temp-path}" includes="**/*.js/**" excludes="**/register.js/**,**/prefs.js/**"/>
-    </apply>
-  </target>-->
-
-  <target name="min-xml-files">
-    <!-- remove comments   -->
-    <replaceregexp match="&lt;\!\-\-.*\-\-&gt;" replace="" flags="gm" byline="false">
-      <fileset dir="${temp-path}" includes="**/*.xml/**,**/*.xul/**,**/*.rdf/**" />
-    </replaceregexp>
-
-    <!-- remove newlines -->
-    <replace dir="${temp-path}" value="" includes="**/*.xml/**,**/*.xul/**,**/*.rdf/**">
-      <replacetoken>
-        <![CDATA[
-]]>
-      </replacetoken>
-    </replace>
-
-    <!-- remove extraneous whitespace -->
-    <replaceregexp match="\s+" replace=" " flags="g">
-      <fileset dir="${temp-path}" includes="**/*.xml/**,**/*.xul/**,**/*.rdf/**" />
-    </replaceregexp>
-
-    <!-- remove whitespace between elements -->
-    <replaceregexp match="&gt;\s+&lt;" replace="&gt;&lt;" flags="g">
-      <fileset dir="${temp-path}" includes="**/*.xml/**,**/*.xul/**,**/*.rdf/**" />
-    </replaceregexp>
-  </target>
-
-  <target name="min-js-files">
-  	<mkdir dir="c:/temp/eraseme2112"/>
-    <jsmin destdir="c:/temp/eraseme2112">
-      <fileset dir="${temp-path}" includes="**/*.js/**" />
-    </jsmin>
-    <copydir dest="${temp-path}" src="c:/temp/eraseme2112" forceoverwrite="true"/>
-    <delete dir="c:/temp/eraseme2112"/>
-  </target>
-
   <!-- create the jar -->
   <target name="jar">
-    <zip destfile="chrome/foxyproxy.jar">
+    <zip destfile="${temp-path}/chrome/foxyproxy.jar">
       <zipfileset dir="${temp-path}/content" prefix="content" includes="**/**" />
       <zipfileset dir="${temp-path}/skin" prefix="skin" includes="**/**" />
       <zipfileset dir="${temp-path}/locale" prefix="locale" includes="**/**" />
@@ -73,8 +29,7 @@
 
   <!-- create foxyproxy-x.y.z.xpi in the current dir using install.rdf in the current dir -->
   <target name="build">
-  	<mkdir dir="${target-path}"/>
-    <move file="chrome.manifest.packaging" tofile="chrome.manifest" />
+    <copy file="chrome.manifest.packaging" tofile="${temp-path}/chrome.manifest" />
     <zip destfile="${target-path}/foxyproxy-${version}.xpi">
       <fileset dir="${temp-path}" includes="chrome.manifest install.rdf install.js LICENSE chrome/" />
       <zipfileset dir="${temp-path}/components" prefix="components" includes="**/**" />
@@ -85,9 +40,12 @@
 
   <target name="clean">
     <delete dir="${temp-path}" failonerror="false" />
-    <mkdir dir="${temp-path}" />
   </target>
 
-  <target name="build-with-obfuscation" depends="copy,min-xml-files,min-js-files,jar,build,clean" />
-  <target name="build-without-obfuscation" depends="copy,jar,build,clean" />
+  <target name="init">
+    <mkdir dir="${temp-path}" />
+    <mkdir dir="${target-path}" />
+  </target>
+
+  <target name="build-xpi" depends="init,copy,jar,build,clean" />
 </project>

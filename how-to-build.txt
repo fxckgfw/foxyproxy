@@ -18,10 +18,8 @@ Eclipse IDE, you neither have to download the JDK nor setup ant environment
 variables.
 
 The ant build script is src/build.xml. The default target, named "build",
-builds the XPI in the directory /dev/foxyproxy/standard/fx+flock/trunk/src.
-If you want to change this directory, change the value of the src-base
-property. You might also want to change the value of the temporary directory
-which is /tmp/fp-temp and is stored in the variable temp-path. Note that
-forward slashes are platform-independent in ant scripts; they work on both
-windows and *nix -- providing the directories exist and you have appropriate
+builds the XPI in the directory ../targets.
+If you want to change this directory, change the value of the target-path
+property.Note that forward slashes are platform-independent in ant scripts;
+they work on both windows and *nix -- providing you have appropriate
 permissions on them.

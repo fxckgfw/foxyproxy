@@ -24,7 +24,7 @@ function Match() {
   !fp &&
   	(fp = CC["@leahscape.org/foxyproxy/service;1"].getService(CI.nsISupports).wrappedJSObject);
 	this.name = this.pattern = "";
-	this.isMultiLine = this._isRegEx = this.isBlackList = this.isHidden = false;
+	this.isMultiLine = this._isRegEx = this.isBlackList = false;
 	this.enabled = true;
 }
 
@@ -58,14 +58,6 @@ Match.prototype = {
     return this._isMultiLine;
   },
 
-  set isHidden(m) {
-    this._isHidden = m;
-  },
-
-  get isHidden() {
-    return this._isHidden;
-  },
-
   buildRegEx : function() {
     var pat = this._pattern;
     if (!this._isRegEx) {
@@ -96,7 +88,6 @@ Match.prototype = {
 	  this.isBlackList = node.hasAttribute("isBlackList") ? node.getAttribute("isBlackList") == "true" : false; // new for 2.0
 	  this.enabled = node.hasAttribute("enabled") ? node.getAttribute("enabled") == "true" : true; // new for 2.0
 	  this.isMultiLine = node.hasAttribute("isMultiLine") ? node.getAttribute("isMultiLine") == "true" : false; // new for 2.0. Don't set _isMultiLine because isMultiLine sets the regex
-	  this._isHidden = node.hasAttribute("isHidden") ? node.getAttribute("isHidden") == "true" : false; // new for 2.5.6.
   },
 
   toDOM : function(doc) {
@@ -107,7 +98,6 @@ Match.prototype = {
     matchElem.setAttribute("isRegEx", this.isRegEx);
     matchElem.setAttribute("isBlackList", this.isBlackList);
     matchElem.setAttribute("isMultiLine", this._isMultiLine);
-    matchElem.setAttribute("isHidden", this._isHidden);
     return matchElem;
   },
 	classID: Components.ID("{2b49ed90-f194-11da-8ad9-0800200c9a66}"),

@@ -224,10 +224,10 @@ function _updateView() {
 function onRemove() {
   // Store cur selection
   var sel = urlsTree.currentIndex;
-  proxy.removeMatch(matches[sel]);
+  proxy.removeMatch(proxy.matches[sel]);
   _updateView();
-  // Reselect what was previously selected
-	urlsTree.view.selection.select(sel+1>urlsTree.view.rowCount ? 0:sel);
+  // Reselect the next appropriate item
+	urlsTree.view.selection.select(sel+1>urlsTree.view.rowCount ? urlsTree.view.rowCount-1:sel);
 }
 
 function toggleMode(mode) {

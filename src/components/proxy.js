@@ -61,7 +61,6 @@ function Proxy() {
   this.selectedTabIndex = 0;
   this.lastresort = false;
   this.id = fp.proxies.uniqueRandom();
-  this.blackListFeeds();
 }
 
 Proxy.prototype = {
@@ -137,7 +136,6 @@ Proxy.prototype = {
   },
 
 	afterPropertiesSet : function(fpMode) {
-    this.ensureFeedsAreBlacklisted();
 	  // Load PAC if required. Note that loadPAC() is synchronous and if it fails, it changes our mode to "direct" or disables us.
     this.shouldLoadPAC() && this.autoconf.loadPAC();
 
@@ -153,24 +151,6 @@ Proxy.prototype = {
 	  !this._enabled &&
 	 	  fp.proxies.maintainIntegrity(this, false, true, false); // (proxy, isBeingDeleted, isBeingDisabled, isBecomingDIRECT)
 	},
-
-  // Ensure feed:// URLs are always handled internally by FF
-  ensureFeedsAreBlacklisted : function() {
-    function blacklistsFeeds(matchObj) {
-      return matchObj.enabled && matchObj.isBlackList && matchObj.regex.test(FEED_URL);
-    }
-    !this.matches.some(blacklistsFeeds) && this.blackListFeeds();
-  },
-
-  blackListFeeds : function() {
-    var m = CC["@leahscape.org/foxyproxy/match;1"].createInstance().wrappedJSObject;
-    m.name = "Hidden blacklist of feed:// URLs - feeds must be handled internally by firefox";
-    m.pattern = "feed://.*";
-    m.isRegEx = true;
-    m.isBlackList = true;
-    m.isHidden = true;
-    this.matches.push(m);
-  },
 
 	handleTimer : function() {
 		var ac = this.autoconf;
@@ -195,12 +175,6 @@ Proxy.prototype = {
       }
     }
     return white == -1 ? false : this.matches[white];
-  },
-
-  visibleMatches : function() {
-    return this.matches.filter(function(matchObj) {
-        return !matchObj.isHidden;
-      });
   },
 
   removeMatch : function(removeMe) {

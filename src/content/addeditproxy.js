@@ -9,7 +9,7 @@
   and also online at http://www.gnu.org/licenses/gpl.txt
 **/
 
-var urlsTree, proxy, foxyproxy, autoconfurl, overlay, isWindows, matches;
+var urlsTree, proxy, foxyproxy, autoconfurl, overlay, isWindows;
 const CI = Components.interfaces, CC = Components.classes;
 
 function onLoad() {
@@ -122,7 +122,7 @@ function onOK() {
 }
 
 function hasWhite() {
-  return matches.some(function(m){return m.enabled && !m.isBlackList;});
+  return proxy.matches.some(function(m){return m.enabled && !m.isBlackList;});
 }
 
 function _checkUri() {
@@ -150,10 +150,10 @@ function onAddEdit(isNew) {
   var params = isNew ?
     {inn:{overlay:overlay, name:"", pattern:"", regex:false, black:false, enabled:true}, out:null} :
 
-		{inn:{overlay:overlay, name:matches[idx].name,
-			    pattern:matches[idx].pattern, regex:matches[idx].isRegEx,
-			    black:matches[idx].isBlackList,
-			    enabled:matches[idx].enabled}, out:null};
+		{inn:{overlay:overlay, name:proxy.matches[idx].name,
+			    pattern:proxy.matches[idx].pattern, regex:proxy.matches[idx].isRegEx,
+			    black:proxy.matches[idx].isBlackList,
+			    enabled:proxy.matches[idx].enabled}, out:null};
 
   window.openDialog("chrome://foxyproxy/content/pattern.xul", "",
     "chrome, dialog, modal, resizable=yes", params).focus();
@@ -172,11 +172,11 @@ function onAddEdit(isNew) {
 	  else {
 		  // Store cur selection
 		  var sel = urlsTree.currentIndex;
-	    matches[idx].name = params.name;
-	    matches[idx].pattern = params.pattern;
-	    matches[idx].isRegEx = params.isRegEx;
-	    matches[idx].isBlackList = params.isBlackList;
-	    matches[idx].enabled = params.isEnabled;
+	    proxy.matches[idx].name = params.name;
+	    proxy.matches[idx].pattern = params.pattern;
+	    proxy.matches[idx].isRegEx = params.isRegEx;
+	    proxy.matches[idx].isBlackList = params.isBlackList;
+	    proxy.matches[idx].enabled = params.isEnabled;
 	  }
     _updateView();
   	// Select item
@@ -191,20 +191,19 @@ function setButtons() {
 
 function _updateView() {
   // Redraw the tree
-  matches = proxy.visibleMatches();
   urlsTree.view = {
-    rowCount : matches.length,
+    rowCount : proxy.matches.length,
     getCellText : function(row, column) {
       var s = column.id ? column.id : column;
       switch(s) {
-        case "nameCol":return matches[row].name;
-        case "patternCol":return matches[row].pattern;
-        case "patternTypeCol":return foxyproxy.getMessage(matches[row].isRegEx ? "foxyproxy.regex.label" : "foxyproxy.wildcard.label");
-        case "blackCol":return foxyproxy.getMessage(matches[row].isBlackList ? "foxyproxy.blacklist.label" : "foxyproxy.whitelist.label");
+        case "nameCol":return proxy.matches[row].name;
+        case "patternCol":return proxy.matches[row].pattern;
+        case "patternTypeCol":return foxyproxy.getMessage(proxy.matches[row].isRegEx ? "foxyproxy.regex.label" : "foxyproxy.wildcard.label");
+        case "blackCol":return foxyproxy.getMessage(proxy.matches[row].isBlackList ? "foxyproxy.blacklist.label" : "foxyproxy.whitelist.label");
       }
     },
-    setCellValue: function(row, col, val) {matches[row].enabled = val;},
-    getCellValue: function(row, col) {return matches[row].enabled;},
+    setCellValue: function(row, col, val) {proxy.matches[row].enabled = val;},
+    getCellValue: function(row, col) {return proxy.matches[row].enabled;},
     isSeparator: function(aIndex) { return false; },
     isSorted: function() { return false; },
     isEditable: function(row, col) { return false; },
@@ -301,11 +300,11 @@ function onSelectAutoConf() {
 }
 
 function onUrlsTreeMenuPopupShowing() {
-	document.getElementById("enabledPopUpMenuItem").setAttribute("checked", matches[urlsTree.currentIndex].enabled);
+	document.getElementById("enabledPopUpMenuItem").setAttribute("checked", proxy.matches[urlsTree.currentIndex].enabled);
 }
 
 function toggleEnabled() {
-	matches[urlsTree.currentIndex].enabled = !matches[urlsTree.currentIndex].enabled;
+	proxy.matches[urlsTree.currentIndex].enabled = !proxy.matches[urlsTree.currentIndex].enabled;
   _updateView();
 }
 

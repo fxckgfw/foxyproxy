@@ -86,13 +86,17 @@ AutoConf.prototype = {
   loadPAC : function() {
     this._pac = "";
     try {
+      // We could just pass this.url to req.open(), but that won't work for relative:// URIs.
+      var uri = CC["@mozilla.org/network/io-service;1"]
+        .getService(CI.nsIIOService).newURI(this.url, null, null);
+      uri=uri.spec?uri.spec:uri.path;
+      dump(uri+"\n");
       var req = CC["@mozilla.org/xmlextras/xmlhttprequest;1"]
-        .createInstance(CI.nsIXMLHttpRequest),
-        url = fp.newURI(this.url).spec; // translate relative:// URIs if necessary
-      req.open("GET", url, false); // false means synchronous
+        .createInstance(CI.nsIXMLHttpRequest);
+      req.open("GET", uri, false); // false means synchronous
       req.send(null);
       this.status = req.status;
-      if (this.status == 200 || (this.status == 0 && (url.indexOf("file://") == 0 || url.indexOf("ftp://") == 0 || url.indexOf("relative://") == 0))) {
+      if (this.status == 200 || (this.status == 0 && (this.url.indexOf("file://") == 0 || this.url.indexOf("ftp://") == 0 || this.url.indexOf("relative://") == 0))) {
         try {
           this._pac = req.responseText;
           this._resolver.init(this.url, this._pac);

@@ -67,7 +67,10 @@ Protocol.prototype = {
     // Note: start loop at 1, not 0
     for (var i=1,sz=parts.length; i<sz; i++)
       file.appendRelativePath(parts[i]);
-    return IOS.newChannel(ios.newURI(file, null, null));
+    var ios = CC[kIOSERVICE_CONTRACTID].
+        getService(nsIIOService).getProtocolHandler("file").
+        QueryInterface(CI.nsIFileProtocolHandler);
+    return ios.newChannel(ios.newURI(file, null, null));
   },
 }
 

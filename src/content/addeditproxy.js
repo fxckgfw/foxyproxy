@@ -135,7 +135,9 @@ function _checkUri() {
 		autoconfurl.value = url; // copy back to the UI
 	}
 	try {
-    return foxyproxy.newURI(url);
+    //return foxyproxy.newURI(url);
+    return CC["@mozilla.org/network/io-service;1"]
+      .getService(CI.nsIIOService).newURI(url, "UTF-8", null);
   }
   catch(e) {
     foxyproxy.alert(this, foxyproxy.getMessage("invalid.url"));

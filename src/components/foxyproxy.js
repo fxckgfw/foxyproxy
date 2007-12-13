@@ -14,9 +14,12 @@
 // Don't const the next line anymore because of the generic reg code
 var CI = Components.interfaces, CC = Components.classes, CR = Components.results, gFP;
 
+// Get attribute from node if it exists, otherwise return |def|.
+// No exceptions, no errors, no null returns.
 const gGetSafeAttr = function(n, name, def) {
 	return n ? (n.hasAttribute(name) ? n.getAttribute(name) : def) : def;
 };
+// Boolean version of GetSafe
 const gGetSafeAttrB = function(n, name, def) {
 	return n ? (n.hasAttribute(name) ? n.getAttribute(name)=="true" : def) : def;
 };
@@ -76,6 +79,7 @@ foxyproxy.prototype = {
   _toolsMenuNode : null,
   _contextMenuNode : null,
   _advancedMenus : false,
+  _previousMode : "patterns",
   autoadd : null,
   quickadd : null,
 
@@ -207,7 +211,15 @@ biesi>	passing it the appropriate proxyinfo
 
   get mode() { return this._mode; },
   setMode : function(mode, writeSettings, init) {
-	  // Possible modes are: patterns, _proxy_id_ (for "Use proxy xyz for all URLs), random, roundrobin, disabled
+	  // Possible modes are: patterns, _proxy_id_ (for "Use proxy xyz for all URLs), random, roundrobin, disabled, previous.
+    // Note that "previous" isn't used anywhere but this method: it is translated into the previous mode then broadcasted.
+    if (mode == "previous") {
+      if (this.mode == "disabled")
+        mode = this.previousMode;
+      else
+        mode = "disabled";
+    }
+    this.previousMode = this.mode;
     this._mode = mode;
 	  this._selectedProxy = null; // todo: really shouldn't do this in case something tries to load right after this instruction
     for (var i=0,len=this.proxies.length; i<len; i++) {
@@ -284,7 +296,6 @@ biesi>	passing it the appropriate proxyinfo
   },
 
   applyFilter : function(ps, uri, proxy) {
-    dump(uri + "\n");
   	function _err(fp, info, extInfo) {
 	  	var def = fp.proxies.item(fp.proxies.length-1);
       mp = gMatchingProxyFactory(def, null, spec, "err", extInfo?extInfo:info);
@@ -488,6 +499,12 @@ biesi>	passing it the appropriate proxyinfo
     this.writeSettings();
   },
 
+  get previousMode() { return this._previousMode; },
+  set previousMode(p) {
+    this._previousMode = p;
+    this.writeSettings();
+  },
+
   /**
    * Return a MatchingProxy instance.
    */
@@ -518,17 +535,15 @@ biesi>	passing it the appropriate proxyinfo
 		this.statusbar.fromDOM(doc);
 		this.toolbar.fromDOM(doc);
 		this.logg.fromDOM(doc);
-		this._proxyDNS = node.getAttribute("proxyDNS") == "true";
-		this._toolsMenu = node.hasAttribute("toolsMenu") ?
-			node.getAttribute("toolsMenu") == "true" : true; // new for 2.0
-		this._contextMenu = node.hasAttribute("contextMenu") ?
-			node.getAttribute("contextMenu") == "true" : true; // new for 2.0
-		this._advancedMenus = node.hasAttribute("advancedMenus") ?
-			node.getAttribute("advancedMenus") == "true" : false; // new for 2.3--default to false if it doesn't exist
-		this._selectedTabIndex = node.getAttribute("selectedTabIndex") || "0";
+		this._proxyDNS = gGetSafeAttrB(node, "proxyDNS", false);
+		this._toolsMenu = gGetSafeAttrB(node, "toolsMenu", true); // new for 2.0
+		this._contextMenu = gGetSafeAttrB(node, "contextMenu", true); // new for 2.0
+		this._advancedMenus = gGetSafeAttrB(node, "advancedMenus", false); // new for 2.3--default to false if it doesn't exist
+		this._selectedTabIndex = gGetSafeAttr(node, "selectedTabIndex", "0");
 		var mode = node.hasAttribute("enabledState") ?
 			(node.getAttribute("enabledState") == "" ? "disabled" : node.getAttribute("enabledState")) :
 			node.getAttribute("mode"); // renamed to mode in 2.0
+   	this._previousMode = gGetSafeAttr(node, "previousMode", "patterns");
 		this.proxies.fromDOM(mode, doc, this);
 		this.setMode(mode, false, true);
 		this.random.fromDOM(doc, this);
@@ -546,6 +561,7 @@ biesi>	passing it the appropriate proxyinfo
     e.setAttribute("toolsMenu", this._toolsMenu);
     e.setAttribute("contextMenu", this._contextMenu);
     e.setAttribute("advancedMenus", this._advancedMenus);
+    e.setAttribute("previousMode", this._previousMode);
     e.appendChild(this.random.toDOM(doc));
     e.appendChild(this.statusbar.toDOM(doc));
     e.appendChild(this.toolbar.toDOM(doc));
@@ -747,6 +763,12 @@ biesi>	passing it the appropriate proxyinfo
 	        updateViews = true;
 	      }
 	    }
+      if (isBeingDeleted) {
+        // If the proxy set for "previousMode" is being deleted, change "previousMode"
+        if (gFP.previousMode == proxy.id)
+          gFP.previousMode = "patterns";
+      }
+
 	    // Handle AutoAdd & QuickAdd (superadd)
 	    if (gFP.autoadd.maintainIntegrity(proxy.id, isBeingDeleted) && !updateViews) {
 	    	updateViews = true;

@@ -4,7 +4,7 @@
 	Copyright (C) 2006,2007 Eric H. Jung and LeahScape, Inc.
 	http://foxyproxy.mozdev.org/
 	eric.jung@yahoo.com
-	
+
 	This source code is released under the GPL license,
 	available in the LICENSE file at the root of this installation
 	and also online at http://www.gnu.org/licenses/gpl.txt
@@ -159,7 +159,7 @@
 							<treecol id="cycleCol"
 								label="&foxyproxy.includeincycle.label;" hidden="true" flex="1"
 								persist="width ordinal hidden" />
-							<splitter class="tree-splitter" />							
+							<splitter class="tree-splitter" />
 						</treecols>
 						<treechildren id="proxyTreeChildren" flex="1"
 							ondblclick="onSettings(false);" context="proxyTreeMenu" />
@@ -233,7 +233,7 @@
 									<columns>
 										<column flex="1"/><column />
 									</columns>
-									<rows>									
+									<rows>
 									<row align="center">
 										<label value="&foxyproxy.leftclicktb.label;" accesskey="&foxyproxy.leftclicktb.accesskey;"
 											tooltiptext="&foxyproxy.leftclicktb.tooltip;"
@@ -242,14 +242,15 @@
 											tooltiptext="&foxyproxy.leftclicktb.tooltip;" style="width: 15em;" sizetopopup="none">
 											<menupopup>
 												<menuitem label="&foxyproxy.click.options;" value="options"/>
-												<menuitem label="&foxyproxy.click.cycle;" value="cycle"/>																						
-												<menuitem label="&foxyproxy.click.contextmenu;" value="contextmenu"/>	
-												<menuitem label="&foxyproxy.click.removeallcookies;" value="removeallcookies"/>													
+												<menuitem label="&foxyproxy.click.cycle;" value="cycle"/>
+												<menuitem label="&foxyproxy.click.contextmenu;" value="contextmenu"/>
+												<menuitem label="&foxyproxy.click.removeallcookies;" value="removeallcookies"/>
 												<menuitem label="&foxyproxy.click.reloadcurtab;" value="reloadcurtab"/>
 												<menuitem label="&foxyproxy.click.reloadtabsinbrowser;" value="reloadtabsinbrowser"/>
-												<menuitem label="&foxyproxy.click.reloadtabsinallbrowsers;" value="reloadtabsinallbrowsers"/>										
+												<menuitem label="&foxyproxy.click.reloadtabsinallbrowsers;" value="reloadtabsinallbrowsers"/>
+												<menuitem label="&foxyproxy.click.toggle;" value="toggle"/>
 											</menupopup>
-										</menulist>									
+										</menulist>
 									</row>
 									<row align="center">
 										<label value="&foxyproxy.middleclicktb.label;" accesskey="&foxyproxy.middleclicktb.accesskey;"
@@ -259,14 +260,15 @@
 											tooltiptext="&foxyproxy.middleclicktb.tooltip;" style="width: 15em;" sizetopopup="none">
 											<menupopup>
 												<menuitem label="&foxyproxy.click.options;" value="options"/>
-												<menuitem label="&foxyproxy.click.cycle;" value="cycle"/>																						
-												<menuitem label="&foxyproxy.click.contextmenu;" value="contextmenu"/>	
-												<menuitem label="&foxyproxy.click.removeallcookies;" value="removeallcookies"/>													
+												<menuitem label="&foxyproxy.click.cycle;" value="cycle"/>
+												<menuitem label="&foxyproxy.click.contextmenu;" value="contextmenu"/>
+												<menuitem label="&foxyproxy.click.removeallcookies;" value="removeallcookies"/>
 												<menuitem label="&foxyproxy.click.reloadcurtab;" value="reloadcurtab"/>
 												<menuitem label="&foxyproxy.click.reloadtabsinbrowser;" value="reloadtabsinbrowser"/>
-												<menuitem label="&foxyproxy.click.reloadtabsinallbrowsers;" value="reloadtabsinallbrowsers"/>											
+												<menuitem label="&foxyproxy.click.reloadtabsinallbrowsers;" value="reloadtabsinallbrowsers"/>
+												<menuitem label="&foxyproxy.click.toggle;" value="toggle"/>
 											</menupopup>
-										</menulist>										
+										</menulist>
 									</row>
 									<row align="center">
 										<label value="&foxyproxy.rightclicktb.label;" accesskey="&foxyproxy.rightclicktb.accesskey;"
@@ -276,18 +278,19 @@
 											tooltiptext="&foxyproxy.rightclicktb.tooltip;" style="width: 15em;" sizetopopup="none">
 											<menupopup>
 												<menuitem label="&foxyproxy.click.options;" value="options"/>
-												<menuitem label="&foxyproxy.click.cycle;" value="cycle"/>																						
-												<menuitem label="&foxyproxy.click.contextmenu;" value="contextmenu"/>	
-												<menuitem label="&foxyproxy.click.removeallcookies;" value="removeallcookies"/>													
+												<menuitem label="&foxyproxy.click.cycle;" value="cycle"/>
+												<menuitem label="&foxyproxy.click.contextmenu;" value="contextmenu"/>
+												<menuitem label="&foxyproxy.click.removeallcookies;" value="removeallcookies"/>
 												<menuitem label="&foxyproxy.click.reloadcurtab;" value="reloadcurtab"/>
 												<menuitem label="&foxyproxy.click.reloadtabsinbrowser;" value="reloadtabsinbrowser"/>
 												<menuitem label="&foxyproxy.click.reloadtabsinallbrowsers;" value="reloadtabsinallbrowsers"/>
+												<menuitem label="&foxyproxy.click.toggle;" value="toggle"/>
 											</menupopup>
-										</menulist>										
-									</row>		
-									</rows>			
-								</grid>			
-							</groupbox>							
+										</menulist>
+									</row>
+									</rows>
+								</grid>
+							</groupbox>
 						</row>
 						<row>
 							<groupbox>
@@ -342,7 +345,7 @@
 									<columns>
 										<column flex="1"/><column />
 									</columns>
-									<rows>									
+									<rows>
 									<row align="center">
 										<label value="&foxyproxy.leftclicksb.label;" accesskey="&foxyproxy.leftclicksb.accesskey;"
 											tooltiptext="&foxyproxy.leftclicksb.tooltip;"
@@ -351,14 +354,15 @@
 											tooltiptext="&foxyproxy.leftclicksb.tooltip;" style="width: 15em;" sizetopopup="none">
 											<menupopup>
 												<menuitem label="&foxyproxy.click.options;" value="options"/>
-												<menuitem label="&foxyproxy.click.cycle;" value="cycle"/>																						
-												<menuitem label="&foxyproxy.click.contextmenu;" value="contextmenu"/>	
-												<menuitem label="&foxyproxy.click.removeallcookies;" value="removeallcookies"/>													
+												<menuitem label="&foxyproxy.click.cycle;" value="cycle"/>
+												<menuitem label="&foxyproxy.click.contextmenu;" value="contextmenu"/>
+												<menuitem label="&foxyproxy.click.removeallcookies;" value="removeallcookies"/>
 												<menuitem label="&foxyproxy.click.reloadcurtab;" value="reloadcurtab"/>
 												<menuitem label="&foxyproxy.click.reloadtabsinbrowser;" value="reloadtabsinbrowser"/>
 												<menuitem label="&foxyproxy.click.reloadtabsinallbrowsers;" value="reloadtabsinallbrowsers"/>
+												<menuitem label="&foxyproxy.click.toggle;" value="toggle"/>
 											</menupopup>
-										</menulist>									
+										</menulist>
 									</row>
 									<row align="center">
 										<label value="&foxyproxy.middleclicksb.label;" accesskey="&foxyproxy.middleclicksb.accesskey;"
@@ -369,14 +373,15 @@
 											<menupopup>
 											<menuitem label="&foxyproxy.click.options;" value="options"/>
 												<menuitem label="&foxyproxy.click.options;" value="options"/>
-												<menuitem label="&foxyproxy.click.cycle;" value="cycle"/>																						
-												<menuitem label="&foxyproxy.click.contextmenu;" value="contextmenu"/>	
-												<menuitem label="&foxyproxy.click.removeallcookies;" value="removeallcookies"/>													
+												<menuitem label="&foxyproxy.click.cycle;" value="cycle"/>
+												<menuitem label="&foxyproxy.click.contextmenu;" value="contextmenu"/>
+												<menuitem label="&foxyproxy.click.removeallcookies;" value="removeallcookies"/>
 												<menuitem label="&foxyproxy.click.reloadcurtab;" value="reloadcurtab"/>
 												<menuitem label="&foxyproxy.click.reloadtabsinbrowser;" value="reloadtabsinbrowser"/>
-												<menuitem label="&foxyproxy.click.reloadtabsinallbrowsers;" value="reloadtabsinallbrowsers"/>									
+												<menuitem label="&foxyproxy.click.reloadtabsinallbrowsers;" value="reloadtabsinallbrowsers"/>
+												<menuitem label="&foxyproxy.click.toggle;" value="toggle"/>
 											</menupopup>
-										</menulist>										
+										</menulist>
 									</row>
 									<row align="center">
 										<label value="&foxyproxy.rightclicksb.label;" accesskey="&foxyproxy.rightclicksb.accesskey;"
@@ -387,18 +392,19 @@
 											<menupopup>
 											<menuitem label="&foxyproxy.click.options;" value="options"/>
 												<menuitem label="&foxyproxy.click.options;" value="options"/>
-												<menuitem label="&foxyproxy.click.cycle;" value="cycle"/>																						
-												<menuitem label="&foxyproxy.click.contextmenu;" value="contextmenu"/>	
-												<menuitem label="&foxyproxy.click.removeallcookies;" value="removeallcookies"/>													
+												<menuitem label="&foxyproxy.click.cycle;" value="cycle"/>
+												<menuitem label="&foxyproxy.click.contextmenu;" value="contextmenu"/>
+												<menuitem label="&foxyproxy.click.removeallcookies;" value="removeallcookies"/>
 												<menuitem label="&foxyproxy.click.reloadcurtab;" value="reloadcurtab"/>
 												<menuitem label="&foxyproxy.click.reloadtabsinbrowser;" value="reloadtabsinbrowser"/>
-												<menuitem label="&foxyproxy.click.reloadtabsinallbrowsers;" value="reloadtabsinallbrowsers"/>								
+												<menuitem label="&foxyproxy.click.reloadtabsinallbrowsers;" value="reloadtabsinallbrowsers"/>
+												<menuitem label="&foxyproxy.click.toggle;" value="toggle"/>
 											</menupopup>
-										</menulist>										
-									</row>		
-									</rows>			
-								</grid>			
-							</groupbox>														
+										</menulist>
+									</row>
+									</rows>
+								</grid>
+							</groupbox>
 						</row>
 					</rows>
 				</grid>
@@ -407,14 +413,14 @@
 			<!--<groupbox>
 				<caption label="&foxyproxy.random.settings.label;"
 				accesskey="&foxyproxy.random.settings.accesskey;"
-				tooltiptext="&foxyproxy.random.settings.tooltip;"/>           
+				tooltiptext="&foxyproxy.random.settings.tooltip;"/>
 				<row align="center">
 				<checkbox id="randomIncludeDirect"
 				label="&foxyproxy.random.includedirect.label;"
 				accesskey="&foxyproxy.random.includedirect.accesskey;"
 				tooltiptext="&foxyproxy.random.includedirect.tooltip;"
 				oncommand="onIncludeDirectInRandom();"/>
-				</row> 
+				</row>
 				<row align="center">
 				<checkbox id="randomIncludeDisabled"
 				label="&foxyproxy.random.includedisabled.label;"
@@ -474,23 +480,23 @@
 								tooltiptext="&foxyproxy.quickadd.prompt.tooltip;"
 								observes="quickAddBroadcaster"
 								oncommand="foxyproxy.quickadd.prompt = this.checked;" />
-						</row>	
+						</row>
 						<row align="center">
 							<checkbox id="quickAddNotifyWhenCanceled"
 								label="&foxyproxy.quickadd.notify.whencanceled.label;"
 								accesskey="&foxyproxy.quickadd.notify.whencanceled.accesskey;"
 								tooltiptext="&foxyproxy.quickadd.notify.whencanceled.tooltip;"
 								observes="quickAddBroadcaster"
-								oncommand="foxyproxy.quickadd.notifyWhenCanceled = this.checked;"/>	
+								oncommand="foxyproxy.quickadd.notifyWhenCanceled = this.checked;"/>
 								<toolbarbutton class="foxyproxy-ref"
 									popup="notifyWhenCanceledPopup"
 									tooltiptext="&foxyproxy.whatsthis;"
 									observes="quickAddBroadcaster"/>
 								<spacer/>
-						</row>											
+						</row>
 					</rows>
 				</grid>
-				
+
 				<groupbox observes="quickAddBroadcaster">
 					<grid>
 						<columns>
@@ -505,7 +511,7 @@
 									accesskey="&foxyproxy.quickadd.proxy.accesskey;"/>
 								<menulist id="quickAddProxyMenu"
 									tooltiptext="&foxyproxy.quickadd.proxy.tooltip;"
-									oncommand="overlay.common.onQuickAddProxyChanged(this.value);"									
+									oncommand="overlay.common.onQuickAddProxyChanged(this.value);"
 									style="min-height: 1.8em;" flex="1">
 									<menupopup/>
 								</menulist>
@@ -531,10 +537,10 @@
 						<label
 							value="&foxyproxy.pattern.template.example.label1;" />
 						<textbox id="quickAddTemplateExample1" type="timed" timeout="500" flex="1"
-							value="&foxyproxy.pattern.template.example.label2;"							
+							value="&foxyproxy.pattern.template.example.label2;"
 							oncommand="updateTemplateExample(null, 'quickAddTemplateExample', foxyproxy.quickadd);"/>
 						<textbox id="quickAddTemplateExample2" readonly="true" style="font-weight: bold;"/>
-					</hbox>								
+					</hbox>
 				</groupbox>
 				<radiogroup id="quickAddMatchType" orient="horizontal"
 					observes="quickAddBroadcaster" oncommand="foxyproxy.quickadd.setMatchIsRegEx(this.value=='r');">
@@ -788,11 +794,11 @@
 						<treecol id="pacResult"
 							label="&foxyproxy.pac.result.label;" flex="1"
 							persist="width ordinal hidden" />
-						<splitter class="tree-splitter" />						
+						<splitter class="tree-splitter" />
 						<treecol id="errCol"
 							label="&foxyproxy.error.msg.label;" flex="1"
 							persist="width ordinal hidden" />
-						<splitter class="tree-splitter" />						
+						<splitter class="tree-splitter" />
 					</treecols>
 					<treechildren id="logTreeChildren" flex="1"
 						context="logTreeMenu" />
@@ -831,9 +837,9 @@
 			<menuitem class="menuitem-non-iconic"
 				command="torWizardCmd" />
 			<menuseparator />
-			<!-- <menuitem class="menuitem-non-iconic" command="importSettingsCmd"/>                      
-				<menuitem class="menuitem-non-iconic" command="exportSettingsCmd"/>                                       
-				<menuitem class="menuitem-non-iconic" command="importListCmd"/>                   
+			<!-- <menuitem class="menuitem-non-iconic" command="importSettingsCmd"/>
+				<menuitem class="menuitem-non-iconic" command="exportSettingsCmd"/>
+				<menuitem class="menuitem-non-iconic" command="importListCmd"/>
 				<menuseparator/>         -->
 			<menuitem class="menuitem-non-iconic" command="helpCmd" />
 			<menuitem class="menuitem-non-iconic" command="closeCmd" />
@@ -846,10 +852,10 @@
 			<menuitem class="menuitem-non-iconic"
 				command="torWizardCmd" />
 			<menuseparator />
-			<!-- 
-				<menuitem class="menuitem-non-iconic" command="importSettingsCmd"/>                         
-				<menuitem class="menuitem-non-iconic" command="exportSettingsCmd"/>                                      
-				<menuitem class="menuitem-non-iconic" command="importListCmd"/>                                             
+			<!--
+				<menuitem class="menuitem-non-iconic" command="importSettingsCmd"/>
+				<menuitem class="menuitem-non-iconic" command="exportSettingsCmd"/>
+				<menuitem class="menuitem-non-iconic" command="importListCmd"/>
 				<menuseparator/>   -->
 			<menuitem class="menuitem-non-iconic" command="helpCmd" />
 			<menuitem class="menuitem-non-iconic" command="closeCmd" />
@@ -990,7 +996,7 @@
 				&foxyproxy.quickadd.notify.whencanceled.label2;</description>
 			</vbox>
 		</popup>
-		
+
 		<!-- Thanks, DownThemAll -->
 		<popup id="patternTemplatePopup" position="before_end"
 			style="height: &foxyproxy.pattern.template.reference.popup.height;; width: &foxyproxy.pattern.template.reference.popup.width;;">
@@ -998,7 +1004,7 @@
 				style="font-weight: bold; text-align: center; margin: 1em 0 0 0;">
 				&foxyproxy.pattern.template.reference.label;
 			</description>
-			<!-- 
+			<!--
 				<description style="text-align: justify; margin: 0 0 1.5em 0;">&foxyproxy.pattern.template.reference.subtitle.label;</description>
 			-->
 			<grid class="foxyproxy-border"

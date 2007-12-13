@@ -406,30 +406,6 @@ biesi>	passing it the appropriate proxyinfo
 
   },
 
-  // Same as nsIIOService.newURI() but handles foxyproxy's custom
-  // relative:// URLS, too.
-  newURI : function(url) {
-    var idx = url.indexOf("relative://");
-    if (idx == -1) {
-      return CC["@mozilla.org/network/io-service;1"]
-        .getService(CI.nsIIOService).newURI(url, "UTF-8", null);
-    }
-    else {
-      url = url.replace(/\\/g,"/"); // replace backslashes with forward slashes
-      url = url.substring(idx+11);
-      var parts = url.split("/");
-      var file = CC["@mozilla.org/file/local;1"].createInstance(CI.nsILocalFile);
-      var dir = CC["@mozilla.org/file/directory_service;1"].getService(CI.nsIProperties).get(parts[0], CI.nsILocalFile);
-      file.initWithPath(dir.path);
-      for (var i=1,sz=parts.length; i<sz; i++)
-        file.appendRelativePath(parts[i]);
-      var handler = CC["@mozilla.org/network/io-service;1"].
-            getService(CI.nsIIOService).getProtocolHandler("file").
-            QueryInterface(CI.nsIFileProtocolHandler);
-      return handler.newFileURI(file);
-    }
-  },
-
   // Create nsIFile from a string
   createFile : function(str) {
     var f = CC["@mozilla.org/file/local;1"].createInstance(CI.nsILocalFile);

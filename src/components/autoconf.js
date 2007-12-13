@@ -94,7 +94,6 @@ AutoConf.prototype = {
       if (this.status == 200 || (this.status == 0 && (this.url.indexOf("file://") == 0 || this.url.indexOf("ftp://") == 0 || this.url.indexOf("relative://") == 0))) {
         try {
           this._pac = req.responseText;
-          dump("pac = " + this._pac + "\n");
           this._resolver.init(this.url, this._pac);
           this.loadNotification && fp.notifier.alert(fp.getMessage("pac.status"), fp.getMessage("pac.status.success", [this.owner.name]));
           this.owner._enabled = true; // Use _enabled so we don't loop infinitely

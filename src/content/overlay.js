@@ -13,18 +13,18 @@ var foxyproxy = {
   checkboxType : Components.interfaces.nsITreeColumn.TYPE_CHECKBOX,
   fp : Components.classes["@leahscape.org/foxyproxy/service;1"]
          .getService(Components.interfaces.nsISupports).wrappedJSObject,
-  statusIcon : null,         
+  statusIcon : null,
   contextMenuIcon : null,
   toolbarIcon : null,
   toolsMenuIcon : null,
 	notes: ["foxyproxy-statusbar-icon","foxyproxy-statusbar-text","foxyproxy-toolsmenu",
 		"foxyproxy-contextmenu","foxyproxy-mode-change","foxyproxy-throb","foxyproxy-updateviews","foxyproxy-autoadd-toggle"],
- 
+
   alert : function(wnd, str) {
     Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
       .getService(Components.interfaces.nsIPromptService)
       .alert(null, this.fp.getMessage("foxyproxy"), str);
-  }, 
+  },
 
 	observe: function(subj, topic, str) {
 		try {
@@ -39,7 +39,7 @@ var foxyproxy = {
 			  this.toggleStatusBarIcon(e);
 			  break;
 			case "foxyproxy-statusbar-text":
-				this.toggleStatusBarText(e);		  
+				this.toggleStatusBarText(e);
 			  break;
 			case "foxyproxy-autoadd-toggle":
 				this.checkPageLoad();
@@ -53,32 +53,32 @@ var foxyproxy = {
 				break;
 			case "foxyproxy-contextmenu":
 				this.toggleContextMenu(e);
-				break;	
+				break;
 			case "foxyproxy-updateviews":
 				this.updateViews(false, false);
-				break;							
+				break;
 		}
   },
-    
+
   onLoad : function() {
-    this.fp.init();  
+    this.fp.init();
   	this.statusIcon = document.getElementById("foxyproxy-status-icon");
-  	this.contextMenuIcon = document.getElementById("foxyproxy-context-menu-1");  	
+  	this.contextMenuIcon = document.getElementById("foxyproxy-context-menu-1");
   	this.toolbarIcon = document.getElementById("foxyproxy-button-1");
   	this.toolsMenuIcon = document.getElementById("foxyproxy-tools-menu-1");
 		var obSvc = Components.classes["@mozilla.org/observer-service;1"].getService(Components.interfaces.nsIObserverService);
 		for (var i in this.notes) {
 			obSvc.addObserver(this, this.notes[i], false);
-		}			
+		}
     this.toggleToolsMenu(this.fp.toolsMenu);
     this.toggleContextMenu(this.fp.contextMenu);
     this.checkPageLoad();
     this.toggleStatusBarIcon(this.fp.statusbar.iconEnabled);
-		this.toggleStatusBarText(this.fp.statusbar.textEnabled);    
-		this.setMode(this.fp.mode);	
+		this.toggleStatusBarText(this.fp.statusbar.textEnabled);
+		this.setMode(this.fp.mode);
     this._firstRunCheck();
   },
-  
+
   toggleToolsMenu : function(e) {
  	 	this.toolsMenuIcon.hidden = !e;
   },
@@ -86,12 +86,12 @@ var foxyproxy = {
   toggleContextMenu : function(e) {
  	 	this.contextMenuIcon.hidden = !e;
   },
-  
+
   onPageLoad : function(evt) {
 	  var doc = evt.originalTarget; // doc is document that triggered "onload" event
 	  (doc && doc.location && foxyproxy.fp.autoadd.perform(doc.location, doc.documentElement.innerHTML) && foxyproxy.fp.writeSettings());
   },
-  
+
   _firstRunCheck : function() {
     var notFirstRun = false;
     try {
@@ -101,9 +101,9 @@ var foxyproxy = {
     if (!notFirstRun) {
       this.torWizard(true);
       this.fp.getPrefsService("extensions.foxyproxy.").setBoolPref("firstrun", true);
-    } 
+    }
   },
-  
+
   torWizard : function(firstTime) {
     var owner = foxyproxy._getOptionsDlg();
     if (this.ask(owner, (firstTime ? (this.fp.getMessage("welcome") + " ") : "") +
@@ -143,27 +143,27 @@ var foxyproxy = {
         p.matches.push(match);
         p.selectedTabIndex = 2;
         p.mode = "manual";
-        if (withoutPrivoxy) {        
+        if (withoutPrivoxy) {
           p.manualconf.host="127.0.0.1";
           p.manualconf.port=9050;
           p.manualconf.isSocks=true;
         }
         else {
-          p.manualconf.host="127.0.0.1";     
+          p.manualconf.host="127.0.0.1";
           p.manualconf.port=8118;
           p.manualconf.isSocks=false;
         }
         p.manualconf.socksversion=5;
         p.autoconf.url = "";
         var params = {inn:{proxy:p, torwiz:true}, out:null};
-        
-        var win = owner?owner:window;            
+
+        var win = owner?owner:window;
         win.openDialog("chrome://foxyproxy/content/addeditproxy.xul", "",
           "chrome,dialog,modal,resizable=yes,center", params).focus();
         if (params.out) {
           this.fp.proxies.push(params.out.proxy);
           this.fp.proxyDNS = proxyDNS;
-          foxyproxy.updateViews(true);          
+          foxyproxy.updateViews(true);
           foxyproxy.alert(owner, this.fp.getMessage("torwiz.congratulations"));
 	       	proxyDNS &&	this.ask(owner, this.fp.getMessage("foxyproxy.proxydns.notice")) && this.fp.restart();
         }
@@ -180,7 +180,7 @@ var foxyproxy = {
   onOptionsDialog : function() {
     this.onDialog("foxyproxy-options", "chrome://foxyproxy/content/options.xul", "foxyproxy-quickadd");
   },
-     
+
   onDialog : function(id, xulFile, args, parms, idToClose) {
     // If there's a window/dialog already open, just focus it and return.
     var wnd = foxyproxy.findWindow(id);
@@ -196,23 +196,23 @@ var foxyproxy = {
     else {
     	if (idToClose) {
 				var wnd = foxyproxy.findWindow(idToClose); // close competing dialog to minimize synchronization issues between the two
-				wnd && wnd.close();			
+				wnd && wnd.close();
 			}
       window.openDialog(xulFile, "", "minimizable,dialog,chrome,resizable=yes" + (args?(","+args):""), parms).focus();
     }
   },
-  
+
   onQuickAddDialog : function(evt) {
   	var fp=this.fp;
-		if (fp.mode != "disabled" && fp.quickadd.enabled) {	
+		if (fp.mode != "disabled" && fp.quickadd.enabled) {
 		  if (!evt.view || !evt.view.content || !evt.view.content.document || !evt.view.content.document.location) {
-		  	fp.notifier.alert(fp.getMessage("foxyproxy"), fp.getMessage("quickadd.nourl")); 
-		  	return; 
-		  }	
+		  	fp.notifier.alert(fp.getMessage("foxyproxy"), fp.getMessage("quickadd.nourl"));
+		  	return;
+		  }
 			if (fp.quickadd._prompt) {
 				// Close Options dialog if it's open to prevent sync problems between the two dialogs
 			  var p = {out:null};
-				this.onDialog("foxyproxy-quickadd", "chrome://foxyproxy/content/quickadd.xul", "modal", p, "foxyproxy-options");  
+				this.onDialog("foxyproxy-quickadd", "chrome://foxyproxy/content/quickadd.xul", "modal", p, "foxyproxy-options");
 				if (p.out) {
  					fp.quickadd.reload = p.out.reload;
  					fp.quickadd.notify = p.out.notify;
@@ -220,7 +220,7 @@ var foxyproxy = {
  					fp.quickadd.notifyWhenCanceled = p.out.notifyWhenCanceled;
  					this.common.onQuickAddProxyChanged(p.out.proxy);
  					fp.quickadd.urlTemplate = p.out.urlTemplate;
- 					fp.quickadd.setMatchIsRegEx(p.out.matchType=="r"); 					 					
+ 					fp.quickadd.setMatchIsRegEx(p.out.matchType=="r");
 					_qAdd();
 				}
 				// if !p.out then the user canceled QuickAdd
@@ -234,12 +234,12 @@ var foxyproxy = {
 			var m = fp.quickadd._proxy.isMatch(loc.href);
 			if (m) {
 		    fp.quickadd._notify &&
-		    	fp.notifier.alert(fp.getMessage("foxyproxy.quickadd.label"), fp.getMessage("quickadd.quickadd.canceled", [m.name, fp.quickadd._proxy.name]));        					
+		    	fp.notifier.alert(fp.getMessage("foxyproxy.quickadd.label"), fp.getMessage("quickadd.quickadd.canceled", [m.name, fp.quickadd._proxy.name]));
 			}
-			else {		
+			else {
 				fp.quickadd.addPattern(loc);
-				fp.writeSettings();			
-			}		
+				fp.writeSettings();
+			}
 		}
   },
 
@@ -249,12 +249,12 @@ var foxyproxy = {
     optionsDlg && optionsDlg._updateView(false, updateLogView); // don't write settings here because optionsDlg mayn't be open
     writeSettings && this.fp.writeSettings();
   },
-  
+
   _getOptionsDlg : function() {
     return Components.classes["@mozilla.org/appshell/window-mediator;1"]
-      .getService(Components.interfaces.nsIWindowMediator).getMostRecentWindow("foxyproxy-options"); 
+      .getService(Components.interfaces.nsIWindowMediator).getMostRecentWindow("foxyproxy-options");
   },
-  
+
   /**
    * Find and return the dialog/window if it's open (or null if it's not)
    */
@@ -263,8 +263,8 @@ var foxyproxy = {
     var windowManager =
       Components.classes['@mozilla.org/appshell/window-mediator;1'].getService(Components.interfaces.nsIWindowMediator);
     var win0 =
-      windowManager.getMostRecentWindow(id);  
-        
+      windowManager.getMostRecentWindow(id);
+
     if (win0) {
       var enumerator = windowManager.getEnumerator(null);
       while (enumerator.hasMoreElements()) {
@@ -277,14 +277,14 @@ var foxyproxy = {
     }
     return null;
   },
-  
+
   /**
    * Function for displaying dialog box with yes/no buttons (not OK/Cancel buttons),
    * or any arbitrary button labels.
    */
   ask : function(parent, text, btn1Text, btn2Text) {
     var prompts = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
-      .getService(Components.interfaces.nsIPromptService);  
+      .getService(Components.interfaces.nsIPromptService);
     !btn1Text && (btn1Text = this.fp.getMessage("yes"));
     !btn2Text && (btn2Text = this.fp.getMessage("no"));
     return prompts.confirmEx(parent, this.fp.getMessage("foxyproxy"), text,
@@ -292,46 +292,46 @@ var foxyproxy = {
       prompts.BUTTON_TITLE_IS_STRING * prompts.BUTTON_POS_1,
       btn1Text, btn2Text, null, null, {}) == 0; // 0 means first button ("yes") was pressed
   },
-  
+
   checkPageLoad : function() {
   	var e = this.fp.mode != "disabled" && this.fp.autoadd.enabled;
     var appcontent = document.getElementById("appcontent");
     if (appcontent) {
-			appcontent.removeEventListener("load", this.onPageLoad, true); // safety                 
+			appcontent.removeEventListener("load", this.onPageLoad, true); // safety
 	    if (e) {
 	 	    appcontent.addEventListener("load", this.onPageLoad, true);
 		 	}
-			else {   				
-	  	  appcontent.removeEventListener("load", this.onPageLoad, true);    	      				
+			else {
+	  	  appcontent.removeEventListener("load", this.onPageLoad, true);
 	  	}
 	  }
   },
 
 	throb : function(mp) {
 		if (mp.wrappedJSObject.animatedIcons) {
-			this.statusIcon.setAttribute("animated", "true");	  
-			// this.toolbarIcon is null if user hasn't placed it in the toolbar, so we check its existance before calling setAttribute() 	  
-	    this.toolbarIcon && this.toolbarIcon.setAttribute("animated", "true");		
+			this.statusIcon.setAttribute("animated", "true");
+			// this.toolbarIcon is null if user hasn't placed it in the toolbar, so we check its existance before calling setAttribute()
+	    this.toolbarIcon && this.toolbarIcon.setAttribute("animated", "true");
 	  	this.contextMenuIcon.setAttribute("animated", "true");
 	  	this.toolsMenuIcon.setAttribute("animated", "true");
 	  }
   	this.setStatusText(mp.wrappedJSObject.name, true);
 		setTimeout("foxyproxy.unthrob()",	800);
 	},
-	
+
 	unthrob : function() {
 		this.statusIcon.removeAttribute("animated");
   	this.contextMenuIcon.removeAttribute("animated");
-		// this.toolbarIcon is null if user hasn't placed it in the toolbar, so we check its existance before calling setAttribute() 	  
+		// this.toolbarIcon is null if user hasn't placed it in the toolbar, so we check its existance before calling setAttribute()
     this.toolbarIcon &&	this.toolbarIcon.removeAttribute("animated");
-  	this.toolsMenuIcon.removeAttribute("animated");	
-  	this.setStatusText(this.getModeAsText(this.fp.mode), false);		
+  	this.toolsMenuIcon.removeAttribute("animated");
+  	this.setStatusText(this.getModeAsText(this.fp.mode), false);
 	},
-	
+
   openAndReuseOneTabPerURL : function(aURL) {
     var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
              .getService(Components.interfaces.nsIWindowMediator);
-  
+
     var winEnum = wm.getEnumerator("navigator:browser");
     while (winEnum.hasMoreElements()) {
       var win = winEnum.getNext();
@@ -344,7 +344,7 @@ var foxyproxy = {
         }
       }
     }
-  
+
     // Our URL isn't open. Open it now.
     var w = wm.getMostRecentWindow("navigator:browser");
     if (w) {
@@ -355,32 +355,33 @@ var foxyproxy = {
       window.open(aURL);
   },
 
-  ///////////////// statusbar \\\\\\\\\\\\\\\\\\\\\  
+  ///////////////// statusbar \\\\\\\\\\\\\\\\\\\\\
   toggleStatusBarIcon : function(e) {
-      this.statusIcon.hidden = !e;                
+      this.statusIcon.hidden = !e;
   },
 
   toggleStatusBarText : function(e) {
   	var s=document.getElementById("foxyproxy-status-text");
   	// Statusbars don't exist on all windows (e.g,. View Source) so check for existence first,
   	// otherwise we get a JS error.
-    s && (s.hidden = !e);                
+    s && (s.hidden = !e);
   },
 
+  // Set toolbar, statusbar, and context menu text and icon colors
   setMode : function(mode) {
 	  var m = this.getModeAsText(mode);
     this.toolsMenuIcon.setAttribute("mode", m);
  	  this.contextMenuIcon.setAttribute("mode", m);
-		// this.toolbarIcon is null if user hasn't placed it in the toolbar, so we check its existance before calling setAttribute() 	  
+		// this.toolbarIcon is null if user hasn't placed it in the toolbar, so we check its existance before calling setAttribute()
     this.toolbarIcon && this.toolbarIcon.setAttribute("mode", m);
     this.statusIcon.setAttribute("mode", m);
     this.setStatusText(m, null);
   },
-  
+
   getModeAsText : function(mode) {
-		return mode != "patterns" && mode != "disabled" && mode != "random" && mode != "roundrobin" ? "static" : mode;    
+		return mode != "patterns" && mode != "disabled" && mode != "random" && mode != "roundrobin" ? "static" : mode;
   },
-	
+
 	setStatusText : function(m, literal) {
 		if (literal) {
 			this._adorn(m, null);
@@ -395,10 +396,10 @@ var foxyproxy = {
         break;
       case "random":
       	this._adorn(this.fp.getMessage("random"), "purple");
-        break;     
+        break;
       default:
       	this._adorn(this.fp._selectedProxy.name, "blue");
-    };		
+    };
 	},
 
 	_adorn : function(m, c) {
@@ -407,21 +408,21 @@ var foxyproxy = {
   	// Statusbars don't exist on all windows (e.g,. View Source) so check for existence first,
   	// otherwise we get a JS error.
 	  e && e.setAttribute("label", txt);
-	  c && e.setAttribute("class", c);			
-		foxyproxy.toolsMenuIcon.setAttribute("tooltiptext", txt);		  
-		foxyproxy.contextMenuIcon.setAttribute("tooltiptext", txt);		  
-		// this.toolbarIcon is null if user hasn't placed it in the toolbar, so we check its existance before calling setAttribute() 	  
-	  foxyproxy.toolbarIcon && foxyproxy.toolbarIcon.setAttribute("tooltiptext", txt);		  
-		foxyproxy.statusIcon.setAttribute("tooltiptext", txt);		  		  
-	},	
-  
+	  c && e.setAttribute("class", c);
+		foxyproxy.toolsMenuIcon.setAttribute("tooltiptext", txt);
+		foxyproxy.contextMenuIcon.setAttribute("tooltiptext", txt);
+		// this.toolbarIcon is null if user hasn't placed it in the toolbar, so we check its existance before calling setAttribute()
+	  foxyproxy.toolbarIcon && foxyproxy.toolbarIcon.setAttribute("tooltiptext", txt);
+		foxyproxy.statusIcon.setAttribute("tooltiptext", txt);
+	},
+
   ///////////////// utilities \\\\\\\\\\\\\\\
   onTreeClick : function(e, tree) {
 	  var row = {}, col = {};
 	  tree.treeBoxObject.getCellAt(e.clientX, e.clientY, row, col, {});
 	  row.value > -1 && col.value && col.value.type == this.checkboxType && tree.view.selection.select(row.value);
 	},
-  
+
   ///////////////// menu \\\\\\\\\\\\\\\\\\\\\
   _cmd : "foxyproxy.fp.setMode(event.target.id, true);foxyproxy.updateViews(true);",
   _popupShowing : 0,
@@ -447,45 +448,49 @@ var foxyproxy = {
 					break;
 				case "contextmenu":
 					this._popupShowing = 0;
-					document.getElementById("foxyproxy-statusbar-popup").showPopup(e.target, -1, -1, "popup", "bottomleft", "topleft"); 				
+					document.getElementById("foxyproxy-statusbar-popup").showPopup(e.target, -1, -1, "popup", "bottomleft", "topleft");
 					break;
 				case "reloadcurtab":
 					gBrowser.reloadTab(gBrowser.mCurrentTab);
 					break;
 				case "reloadtabsinbrowser":
 					gBrowser.reloadAllTabs();
-					break;				
+					break;
 				case "reloadtabsinallbrowsers":
 				  for (var b,
 				  		  e = Components.classes["@mozilla.org/appshell/window-mediator;1"]
 				          .getService(Components.interfaces.nsIWindowMediator).getEnumerator("navigator:browser");
 						   	e.hasMoreElements();
 						   	(b = e.getNext().getBrowser()) && b.reloadAllTabs());
-					break;			
+					break;
 				case "removeallcookies":
 					Components.classes["@mozilla.org/cookiemanager;1"].
-						getService(Components.interfaces.nsICookieManager).removeAll();		
+						getService(Components.interfaces.nsICookieManager).removeAll();
   		  	fp.notifier.alert(fp.getMessage("foxyproxy"), fp.getMessage("cookies.allremoved"));
-					break;									
+					break;
+        case "toggle":
+          // Toggle between current mode and disabled
+          fp.setMode(fp.mode == "disabled" ? "previous" : "disabled");
+          break;
 			}
 		}
 	},
-	  
+
   onPopupHiding : function() {
-    this._popupShowing > 0 && this._popupShowing--;   
+    this._popupShowing > 0 && this._popupShowing--;
   },
-    
+
   onPopupShowing : function(menupopup, evt) {
-    this._popupShowing++;    
-    if (this._popupShowing == 1) {      
+    this._popupShowing++;
+    if (this._popupShowing == 1) {
 		  while (menupopup.hasChildNodes()) {
 		    menupopup.removeChild(menupopup.firstChild);
-		  }		    
+		  }
       /*var asb = document.createElement("arrowscrollbox");
       asb.setAttribute("style", "max-height: 400px;");
       asb.setAttribute("flex", "1");
       asb.setAttribute("orient", "vertical");*/
-  
+
       var checkOne = new Array();
       var itm = _createRadioMenuItem(menupopup,
         "patterns",
@@ -495,32 +500,32 @@ var foxyproxy = {
         this.fp.getMessage("mode.patterns.tooltip"));
       itm.setAttribute("class", "orange");
       checkOne.push(itm);
-      
+
       for (var i=0; i<this.fp.proxies.length; i++) {
         var p = this.fp.proxies.item(i);
         var pName = p.name;
         // Set the submenu based on advancedMenus enabled/disabled
         var sbm = this.fp.advancedMenus ? _createMenu(menupopup, pName, pName.substring(0, 1), pName) : menupopup;
         var curProxy = "foxyproxy.fp.proxies.item(" + i + ").";
-        
+
         if (this.fp.advancedMenus) {
 	        // Enable/disable checkbox for each proxy.
 	        // Don't provide enable/disable to lastresort proxy.
 	    		!p.lastresort && _createCheckMenuItem(sbm,
-	          curProxy + "enabled=!" + curProxy + "enabled;", 
+	          curProxy + "enabled=!" + curProxy + "enabled;",
 	          p.enabled,
 	          this.fp.getMessage("foxyproxy.enabled.accesskey"),
 	          this.fp.getMessage("foxyproxy.enabled.label"),
-	          this.fp.getMessage("foxyproxy.enabled.tooltip"));  
-	          
+	          this.fp.getMessage("foxyproxy.enabled.tooltip"));
+
 		      _createCheckMenuItem(sbm,
 		        curProxy + "animatedIcons=!" + curProxy + "animatedIcons;",
 		        p.animatedIcons,
 		        this.fp.getMessage("foxyproxy.animatedicons.accesskey"),
 		        this.fp.getMessage("foxyproxy.animatedicons.label"),
-		        this.fp.getMessage("foxyproxy.animatedicons.tooltip"));	          
+		        this.fp.getMessage("foxyproxy.animatedicons.tooltip"));
 				}
-				         
+
         itm = _createRadioMenuItem(sbm,
           p.id,
           this._cmd,
@@ -528,125 +533,125 @@ var foxyproxy = {
           this.fp.getMessage("mode.custom.label", [pName]),
           this.fp.getMessage("mode.custom.tooltip", [pName]));
         itm.setAttribute("style", "color: blue;");
-        checkOne.push(itm);  
+        checkOne.push(itm);
 
-	      if (this.fp.advancedMenus) {				
+	      if (this.fp.advancedMenus) {
 					var numMatches = this.fp.proxies.item(i).matches.length;
 					if (!p.lastresort && numMatches > 0) {
-		        // Don't provide patterns list to lastresort proxy 
-		        // and proxies with no patterns       
+		        // Don't provide patterns list to lastresort proxy
+		        // and proxies with no patterns
 		        var pmp = _createMenu(sbm,
 		          this.fp.getMessage("foxyproxy.tab.patterns.label"),
 		          this.fp.getMessage("foxyproxy.tab.patterns.accesskey"),
-		          this.fp.getMessage("foxyproxy.tab.patterns.tooltip"));	        
-		        
+		          this.fp.getMessage("foxyproxy.tab.patterns.tooltip"));
+
 		        for (var j=0; j<numMatches; j++) {
 		          var m = this.fp.proxies.item(i).matches[j];
 		          var curMatch = curProxy + "matches[" + j + "].";
 		          _createCheckMenuItem(pmp,
 		            curMatch + "enabled=!" + curMatch + "enabled;foxyproxy.fp.writeSettings();",
 		            m.enabled,
-		            m.pattern.substring(0, 1),          
-		            m.pattern,          
-		            m.name);            
-		        } 
+		            m.pattern.substring(0, 1),
+		            m.pattern,
+		            m.name);
+		        }
 		      }
-		    }      
+		    }
       }
 
       /*itm = _createRadioMenuItem(menupopup,
         "random",
-        this._cmd, 
+        this._cmd,
         this.fp.getMessage("mode.random.accesskey"),
-        this.fp.getMessage("mode.random.label"), 
+        this.fp.getMessage("mode.random.label"),
         this.fp.getMessage("mode.random.tooltip"));
       itm.setAttribute("style", "color: purple;");
       checkOne.push(itm); */
-             
+
       itm = _createRadioMenuItem(menupopup,
         "disabled",
-        this._cmd, 
+        this._cmd,
         this.fp.getMessage("mode.disabled.accesskey"),
-        this.fp.getMessage("mode.disabled.label"), 
+        this.fp.getMessage("mode.disabled.label"),
         this.fp.getMessage("mode.disabled.tooltip"));
       itm.setAttribute("style", "color: red;");
-      checkOne.push(itm);          
-			        
+      checkOne.push(itm);
+
       // Check the appropriate one
       for (var i=0; i<checkOne.length; i++) {
         if (checkOne[i].getAttribute("value") == this.fp.mode) {
           checkOne[i].setAttribute("checked", "true");
           //checkOne[i].parentNode.setAttribute("style", "font-weight: bold;");
           break;
-        }        
-      }   
+        }
+      }
       menupopup.appendChild(document.createElement("menuseparator"));
-      
+
       // Advanced menuing
       if (this.fp.advancedMenus) {
 	      var submenu = document.createElement("menu");
 	      submenu.setAttribute("label", this.fp.getMessage("more.label"));
 	      submenu.setAttribute("accesskey", this.fp.getMessage("more.accesskey"));
-	      submenu.setAttribute("tooltiptext", this.fp.getMessage("more.tooltip"));        
-	              
+	      submenu.setAttribute("tooltiptext", this.fp.getMessage("more.tooltip"));
+
 	      var submenupopup = document.createElement("menupopup");
-	      submenu.appendChild(submenupopup);              
-	  
+	      submenu.appendChild(submenupopup);
+
 	      var gssubmenupopup =
 	        _createMenu(submenupopup,
 	          this.fp.getMessage("foxyproxy.tab.global.label"),
 	          this.fp.getMessage("foxyproxy.tab.global.accesskey"),
-	          this.fp.getMessage("foxyproxy.tab.global.tooltip"));              
-	  
+	          this.fp.getMessage("foxyproxy.tab.global.tooltip"));
+
 	      _createCheckMenuItem(gssubmenupopup,
 	        "foxyproxy.fp.proxyDNS=!foxyproxy.fp.proxyDNS;foxyproxy.updateViews(false);foxyproxy.ask(null, foxyproxy.fp.getMessage('foxyproxy.proxydns.notice')) && foxyproxy.fp.restart();",
 	        this.fp.proxyDNS,
-	        this.fp.getMessage("foxyproxy.proxydns.accesskey"),          
-	        this.fp.getMessage("foxyproxy.proxydns.label"),          
+	        this.fp.getMessage("foxyproxy.proxydns.accesskey"),
+	        this.fp.getMessage("foxyproxy.proxydns.label"),
 	        this.fp.getMessage("foxyproxy.proxydns.tooltip"));
-	  
+
 	      _createCheckMenuItem(gssubmenupopup,
 	        "foxyproxy.fp.statusbar.iconEnabled=!foxyproxy.fp.statusbar.iconEnabled;foxyproxy.updateViews(false);",
 	        this.fp.statusbar.iconEnabled,
 	        this.fp.getMessage("foxyproxy.showstatusbaricon.accesskey"),
 	        this.fp.getMessage("foxyproxy.showstatusbaricon.label"),
 	        this.fp.getMessage("foxyproxy.showstatusbaricon.tooltip"));
-	
+
 	      _createCheckMenuItem(gssubmenupopup,
 	        "foxyproxy.fp.statusbar.textEnabled=!foxyproxy.fp.statusbar.textEnabled;foxyproxy.updateViews(false);",
 	        this.fp.statusbar.textEnabled,
 	        this.fp.getMessage("foxyproxy.showstatusbarmode.accesskey"),
 	        this.fp.getMessage("foxyproxy.showstatusbarmode.label"),
 	        this.fp.getMessage("foxyproxy.showstatusbarmode.tooltip"));
-	        
+
 	      _createCheckMenuItem(gssubmenupopup,
 	        "foxyproxy.fp.toolsMenu=!foxyproxy.fp.toolsMenu;foxyproxy.updateViews(false);",
 	        this.fp.toolsMenu,
 	        this.fp.getMessage("foxyproxy.toolsmenu.accesskey"),
 	        this.fp.getMessage("foxyproxy.toolsmenu.label"),
 	        this.fp.getMessage("foxyproxy.toolsmenu.tooltip"));
-	
+
 	      _createCheckMenuItem(gssubmenupopup,
 	        "foxyproxy.fp.contextMenu=!foxyproxy.fp.contextMenu;foxyproxy.updateViews(false);",
 	        this.fp.contextMenu,
 	        this.fp.getMessage("foxyproxy.contextmenu.accesskey"),
 	        this.fp.getMessage("foxyproxy.contextmenu.label"),
 	        this.fp.getMessage("foxyproxy.contextmenu.tooltip"));
-	
+
 	      _createCheckMenuItem(gssubmenupopup,
-					// no need to write settings because changing the attribute makes the fp service re-write the settings	      
+					// no need to write settings because changing the attribute makes the fp service re-write the settings
 	        "foxyproxy.fp.advancedMenus=!foxyproxy.fp.advancedMenus;foxyproxy.updateViews(false);",
 	        this.fp.advancedMenus,
 	        this.fp.getMessage("foxyproxy.advancedmenus.accesskey"),
 	        this.fp.getMessage("foxyproxy.advancedmenus.label"),
 	        this.fp.getMessage("foxyproxy.advancedmenus.tooltip"));
-	            
+
 	      var logsubmenupopup =
 	        _createMenu(submenupopup,
 	        this.fp.getMessage("foxyproxy.tab.logging.label"),
 	        this.fp.getMessage("foxyproxy.tab.logging.accesskey"),
 	        this.fp.getMessage("foxyproxy.tab.logging.tooltip"));
-	  
+
 	      _createCheckMenuItem(logsubmenupopup,
 	      	// no need to write settings because changing the attribute makes the fp service re-write the settings
 	        "foxyproxy.fp.logging=!foxyproxy.fp.logging;foxyproxy.updateViews(false);",
@@ -654,43 +659,43 @@ var foxyproxy = {
 	        this.fp.getMessage("foxyproxy.enabled.accesskey"),
 	        this.fp.getMessage("foxyproxy.enabled.label"),
 	        this.fp.getMessage("foxyproxy.enabled.tooltip"));
-	  
+
 	      _createMenuItem(logsubmenupopup,
 	        this.fp.getMessage("foxyproxy.clear.label"),
 	        "foxyproxy.fp.logg.clear();foxyproxy.updateViews(false, true);",
 	        this.fp.getMessage("foxyproxy.clear.accesskey"),
 	        this.fp.getMessage("foxyproxy.clear.tooltip"));
-	  
+
 	      _createMenuItem(logsubmenupopup,
 	        this.fp.getMessage("foxyproxy.refresh.label"),
 					// Need to refresh the log view so the refresh button is enabled/disabled appropriately
-	        "foxyproxy.updateViews(false, true);", 
+	        "foxyproxy.updateViews(false, true);",
 	        this.fp.getMessage("foxyproxy.refresh.accesskey"),
 	        this.fp.getMessage("foxyproxy.refresh.tooltip"));
 
 	      _createCheckMenuItem(logsubmenupopup,
-					// no need to write settings because changing the attribute makes the fp service re-writes the settings	 	        	      
-	        "foxyproxy.onToggleNoURLs();",	
-	        foxyproxy.fp.logg.noURLs,				
-	        this.fp.getMessage("foxyproxy.logging.noURLs.accesskey"),	        
+					// no need to write settings because changing the attribute makes the fp service re-writes the settings
+	        "foxyproxy.onToggleNoURLs();",
+	        foxyproxy.fp.logg.noURLs,
+	        this.fp.getMessage("foxyproxy.logging.noURLs.accesskey"),
 	        this.fp.getMessage("foxyproxy.logging.noURLs.label"),
 	        this.fp.getMessage("foxyproxy.logging.noURLs.tooltip"));
 
 	      submenupopup.appendChild(document.createElement("menuseparator"));
-	      
+
 	      itm =_createMenuItem(submenupopup,
 	        this.fp.getMessage("foxyproxy.options.label"),
 	        "foxyproxy.onOptionsDialog();",
 	        this.fp.getMessage("foxyproxy.options.accesskey"),
-	        this.fp.getMessage("foxyproxy.options.tooltip"));                
+	        this.fp.getMessage("foxyproxy.options.tooltip"));
 	      itm.setAttribute("key", "key_foxyproxyfocus");
-	      
+
 	      _createMenuItem(submenupopup,
 	        this.fp.getMessage("foxyproxy.help.label"),
 	        "foxyproxy.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/quickstart.html');",
 	        this.fp.getMessage("foxyproxy.help.accesskey"),
 	        this.fp.getMessage("foxyproxy.help.tooltip"));
-	        
+
 	      //menupopup.appendChild(asb);
 	      try {
 	        menupopup.appendChild(submenu);
@@ -700,27 +705,27 @@ var foxyproxy = {
 	      }
 	    }
 	    else {
-	    	// advanced menus are disabled	    
+	    	// advanced menus are disabled
 	      itm = _createMenuItem(menupopup,
 	        this.fp.getMessage("foxyproxy.options.label"),
 	        "foxyproxy.onOptionsDialog();",
 	        this.fp.getMessage("foxyproxy.options.accesskey"),
-	        this.fp.getMessage("foxyproxy.options.tooltip"));                
+	        this.fp.getMessage("foxyproxy.options.tooltip"));
 	      itm.setAttribute("key", "key_foxyproxyfocus");
-	      	    
+
       	_createCheckMenuItem(menupopup,
       	  "foxyproxy.fp.advancedMenus = true;foxyproxy.updateViews(false);",
        	  this.fp.advancedMenus,
         	this.fp.getMessage("foxyproxy.advancedmenus.accesskey"),
         	this.fp.getMessage("foxyproxy.advancedmenus.label"),
-        	this.fp.getMessage("foxyproxy.advancedmenus.tooltip"));   	    
+        	this.fp.getMessage("foxyproxy.advancedmenus.tooltip"));
 	    }
     }
-    
+
     // Open link with proxy...
     /*var target = gContextMenu.target;
     // target can be null when opening something like chrome://passwdmaker/chrome/uris.xul directly in the browser.
-    if (target && target.tagName == "A") {      
+    if (target && target.tagName == "A") {
       menupopup.appendChild(document.createElement("menuseparator"));
       for (var i=0; i<this.fp.proxies.length; i++) {
         var p = this.fp.proxies.item(i);
@@ -730,15 +735,15 @@ var foxyproxy = {
         var curProxy = "foxyproxy.fp.proxies.item(" + i + ").";
 	      _createMenuItem(menupopup,
 	        this.fp.getMessage("openwithproxy.label", [pName]),
-	        "alert('yo baby yo');", 
+	        "alert('yo baby yo');",
 	        this.fp.getMessage("openwithproxy.accesskey"),
-	        this.fp.getMessage("openwithproxy.tooltip"));        
-			}      
-      
+	        this.fp.getMessage("openwithproxy.tooltip"));
+			}
+
       // Save a reference to the object being clicked
       foxyproxy.clickedElement = target;
-    }*/    
-        
+    }*/
+
     function _createMenu(menupopup, label, accesskey, tooltip) {
       var submenu = document.createElement("menu");
       submenu.setAttribute("label", label);
@@ -746,45 +751,45 @@ var foxyproxy = {
       submenu.setAttribute("tooltiptext", tooltip);
       var submenupopup = document.createElement("menupopup");
       submenu.appendChild(submenupopup);
-      menupopup.appendChild(submenu);        
+      menupopup.appendChild(submenu);
       return submenupopup;
     }
-          
+
     function _createMenuItem(menupopup, label, cmd, accesskey, tooltip) {
-      var e = document.createElement("menuitem");  
+      var e = document.createElement("menuitem");
       e.setAttribute("label", label);
-      e.setAttribute("oncommand", cmd);    
+      e.setAttribute("oncommand", cmd);
       e.setAttribute("accesskey", accesskey);
-      e.setAttribute("tooltiptext", tooltip);        
+      e.setAttribute("tooltiptext", tooltip);
       menupopup.appendChild(e);
-      return e;  
+      return e;
     }
-    
-    function _createRadioMenuItem(menupopup, id, cmd, accesskey, label, tooltip) {        
-      var e = document.createElement("menuitem");  
-      e.setAttribute("label", label);    
-      e.setAttribute("id", id);       
+
+    function _createRadioMenuItem(menupopup, id, cmd, accesskey, label, tooltip) {
+      var e = document.createElement("menuitem");
+      e.setAttribute("label", label);
+      e.setAttribute("id", id);
       e.setAttribute("value", id);
       e.setAttribute("type", "radio");
-      e.setAttribute("name", "foxyproxy-enabled-type");      
+      e.setAttribute("name", "foxyproxy-enabled-type");
       e.setAttribute("tooltiptext", tooltip);
-      e.setAttribute("oncommand", cmd);    
-      e.setAttribute("accesskey", accesskey);  
+      e.setAttribute("oncommand", cmd);
+      e.setAttribute("accesskey", accesskey);
       menupopup.appendChild(e);
-      return e;        
+      return e;
     }
-    
+
     function _createCheckMenuItem(menupopup, cmd, checked, accesskey, label, tooltip) {
-      var e = document.createElement("menuitem");  
-      e.setAttribute("label", label);    
-      e.setAttribute("type", "checkbox");      
-      e.setAttribute("checked", checked);                  
+      var e = document.createElement("menuitem");
+      e.setAttribute("label", label);
+      e.setAttribute("type", "checkbox");
+      e.setAttribute("checked", checked);
       e.setAttribute("tooltiptext", tooltip);
-      e.setAttribute("oncommand", cmd);  
-      e.setAttribute("accesskey", accesskey);                    
+      e.setAttribute("oncommand", cmd);
+      e.setAttribute("accesskey", accesskey);
       menupopup.appendChild(e);
-      return e;      
-    }    
+      return e;
+    }
   },
 
 	// common fcns used in overlay.js and options.js
@@ -812,11 +817,11 @@ var foxyproxy = {
 		    return false;
 		  }
 	  	if (isRegEx) {
-		    try {  
+		    try {
 			    new RegExp((p[0]=="^"?"":"^") + p + (p[p.length-1]=="$"?"":"$"));
 		    }
 		    catch(e) {
-			    foxyproxy.alert(win, (msgPrefix?msgPrefix+": ":"") + this.fp.getMessage("pattern.invalid.regex", [origPat]));    
+			    foxyproxy.alert(win, (msgPrefix?msgPrefix+": ":"") + this.fp.getMessage("pattern.invalid.regex", [origPat]));
 		    	return false;
 		    }
 		  }
@@ -827,10 +832,10 @@ var foxyproxy = {
 					.confirmCheck(win, this.fp.getMessage("foxyproxy"), (msgPrefix?msgPrefix+": ":"") + this.fp.getMessage("no.wildcard.characters", [p]), this.fp.getMessage("message.stop"), cb));
 			  this.fp.warnings.noWildcards = cb.value;
 			  if (!ret) return false;
-		  }	
-		  return p;	
+		  }
+		  return p;
 		},
-		
+
 		onQuickAddProxyChanged : function(proxyId) {
 			var fp = Components.classes["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;
 			fp.quickadd.proxy = fp.proxies.getProxyById(proxyId);
@@ -838,20 +843,20 @@ var foxyproxy = {
 
 		removeChildren : function(node) {
 		  while (node.hasChildNodes())
-		    node.removeChild(node.firstChild);    	
-		},		
-	
-		createMenuItem : function(args) {		
+		    node.removeChild(node.firstChild);
+		},
+
+		createMenuItem : function(args) {
 		  var doc = args.document || document;
 		  var e = doc.createElement("menuitem");
-		  e.setAttribute("id", args["idVal"]);  
-		  e.setAttribute("label", args["labelId"]?this.fp.getMessage(args["labelId"], args["labelArgs"]) : args["labelVal"]);    
+		  e.setAttribute("id", args["idVal"]);
+		  e.setAttribute("label", args["labelId"]?this.fp.getMessage(args["labelId"], args["labelArgs"]) : args["labelVal"]);
 		  e.setAttribute("value", args["idVal"]);
 		  args["type"] && e.setAttribute("type", args["type"]);
 		  args["name"] && e.setAttribute("name", args["name"]);
 		  return e;
 		},
-		
+
 		updateSuperAddProxyMenu : function(superadd, menu, fcn, doc) {
 			if (!superadd.enabled) return;
 		  var popup=menu.firstChild;
@@ -869,7 +874,7 @@ var foxyproxy = {
 		    var temp = popup.firstChild && popup.firstChild.id;
 		    temp && fcn((menu.value = temp));
 		  }
-		    
+
 		  if (superadd.proxy) {
 		  	menu.value = superadd.proxy.id;
 		  }

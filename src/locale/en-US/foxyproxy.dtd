@@ -516,6 +516,7 @@
 <!ENTITY foxyproxy.click.reloadtabsinbrowser "Reload all tabs in current browser">
 <!ENTITY foxyproxy.click.reloadtabsinallbrowsers "Reload all tabs in all browsers">
 <!ENTITY foxyproxy.click.removeallcookies "Remove all cookies">
+<!ENTITY foxyproxy.click.toggle "Toggle between current mode and disabled">
 
 <!ENTITY foxyproxy.includeincycle.label "Include this proxy when cycling proxies by clicking on statusbar or toolbar (Global Settings->Statusbar/Toolbar Activation->Cycle through modes must be selected)">
 <!ENTITY foxyproxy.includeincycle.accesskey "I">

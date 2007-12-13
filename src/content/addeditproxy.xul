@@ -260,7 +260,7 @@
 			<description>&foxyproxy.pactip4.label;
       <html:a
         style="color: blue; text-decoration: underline; cursor: pointer;"
-        onclick="overlay.openAndReuseOneTabPerURL('http://developer.mozilla.org/en/docs/Code_snippets:File_I/O#Getting_special_files');">&foxyproxy.pactip5.label;</html:a>
+        onclick="overlay.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/relativescheme.html');">&foxyproxy.pactip5.label;</html:a>
       &foxyproxy.pactip6.label;
       <html:a
         style="color: blue; text-decoration: underline; cursor: pointer;"

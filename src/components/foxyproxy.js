@@ -220,9 +220,33 @@ biesi>	passing it the appropriate proxyinfo
 	  	proxy.shouldLoadPAC() && proxy.autoconf.loadPAC();
     }
     this.toggleFilter(mode != "disabled");
+    mode=="disabled" && this.loadDefaultPAC();
     if (init) return;
     writeSettings && this.writeSettings();
 	  gBroadcast(this.autoadd._enabled, "foxyproxy-mode-change", this._mode);
+  },
+
+  loadDefaultPAC : function() {
+    // User has disabled FoxyProxy, so Firefox network.proxy.* preferences will be used.
+    // If Firefox is configured to use a PAC file, we need to force that PAC file to load.
+    // Firefox won't load it automatically except on startup, and since startup has already
+    // occured, we load the PAC file here instead.
+    var networkPrefs = this.getPrefsService("network.proxy.");
+    var usingPAC = networkPrefs.getIntPref("type") == 2; // isn't there a const for this?
+    if (usingPAC) {
+      // Don't use nsPIProtocolProxyService. From its comments: "[nsPIProtocolProxyService] exists purely as a
+      // hack to support the configureFromPAC method used by the preference panels in the various apps. Those
+      // apps need to be taught to just use the preferences API to "reload" the PAC file. Then, at that point,
+      // we can eliminate this interface completely."
+      // var pacURL = networkPrefs.getCharPref("autoconfig_url");
+      // var pps = Components.classes["@mozilla.org/network/protocol-proxy-service;1"]
+        //.getService(Components.interfaces.nsPIProtocolProxyService);
+      // pps.configureFromPAC(pacURL);
+
+      // Instead, change the prefs--the proxy service is observing and will reload the PAC
+      networkPrefs.setIntPref("type", 1);
+      networkPrefs.setIntPref("type", 2);
+    }
   },
 
   /**
@@ -260,7 +284,7 @@ biesi>	passing it the appropriate proxyinfo
   },
 
   applyFilter : function(ps, uri, proxy) {
-
+    dump(uri + "\n");
   	function _err(fp, info, extInfo) {
 	  	var def = fp.proxies.item(fp.proxies.length-1);
       mp = gMatchingProxyFactory(def, null, spec, "err", extInfo?extInfo:info);

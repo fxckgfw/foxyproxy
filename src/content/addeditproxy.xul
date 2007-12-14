@@ -115,13 +115,16 @@
             </groupbox>
           <separator class="thin"/>
           <groupbox>
-          <radio id="auto"
-            value="auto"
-            label="&foxyproxy.auto.url.label;"
-            oncommand="toggleMode('auto');"
-            accesskey="&foxyproxy.auto.url.accesskey;"
-            tooltiptext="&foxyproxy.auto.url.tooltip;"
-            control="autoconfurl"/>
+            <hbox align="center">
+            <radio id="auto"
+              value="auto"
+              label="&foxyproxy.auto.url.label;"
+              oncommand="toggleMode('auto');"
+              accesskey="&foxyproxy.auto.url.accesskey;"
+              tooltiptext="&foxyproxy.auto.url.tooltip;"
+              control="autoconfurl"/>
+            <label value="&foxyproxy.auto.url.note.label;" tooltiptext="&foxyproxy.auto.url.note.tooltip;" style="font-size: x-small;"/>
+            </hbox>
           <grid class="indent" flex="1">
             <columns>
               <column flex="1"/>

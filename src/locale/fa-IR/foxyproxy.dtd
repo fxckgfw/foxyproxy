@@ -1,174 +1,174 @@
 <!ENTITY foxyproxy.label "FoxyProxy">
 <!ENTITY foxyproxy.accesskey "F">
 <!ENTITY foxyproxy.tooltip "FoxyProxy">
-<!ENTITY foxyproxy.optionsdialog.label "FoxyProxy تنظیمات">
+<!ENTITY foxyproxy.optionsdialog.label "تنظیمات FoxyProxy">
 <!ENTITY foxyproxy.options.label "تنظیمات">
-<!ENTITY foxyproxy.options.accesskey "O">
+<!ENTITY foxyproxy.options.accesskey "ا">
 <!ENTITY foxyproxy.options.tooltip "باز کردن پنجره تنظیمات">
 <!ENTITY foxyproxy.tree.pickertooltiptext.label ".برای انتخاب ستون های مورد نظر برای نمایش کلیک کنید">
 <!ENTITY foxyproxy.proxy.name.label "نام پروکسی">
-<!ENTITY foxyproxy.proxy.name.accesskey "N">
+<!ENTITY foxyproxy.proxy.name.accesskey "ا">
 <!ENTITY foxyproxy.proxy.name.tooltip "نام پروکسی">
 <!ENTITY foxyproxy.proxy.notes.label "یادداشت های پروکسی">
-<!ENTITY foxyproxy.proxy.notes.accesskey "N">
+<!ENTITY foxyproxy.proxy.notes.accesskey "ا">
 <!ENTITY foxyproxy.proxy.notes.tooltip "یادداشت های پروکسی">
 <!ENTITY foxyproxy.pattern.label "الگوها">
 <!ENTITY foxyproxy.pattern.type.label "نوع الگو">
 <!ENTITY foxyproxy.whitelist.blacklist.label "لیست سیاه یا لیست سفید">
 <!ENTITY foxyproxy.pattern.name.label "نام الگو">
-<!ENTITY foxyproxy.pattern.name.accesskey "P">
+<!ENTITY foxyproxy.pattern.name.accesskey "ا">
 <!ENTITY foxyproxy.pattern.name.tooltip "نام الگو">
 <!ENTITY foxyproxy.url.pattern.label "آدرس یا الگوی آدرس">
-<!ENTITY foxyproxy.url.pattern.accesskey "U">
+<!ENTITY foxyproxy.url.pattern.accesskey "ا">
 <!ENTITY foxyproxy.url.pattern.tooltip "آدرس یا الگوی آدرس">
 <!ENTITY foxyproxy.enabled.label "فعال">
-<!ENTITY foxyproxy.enabled.accesskey "E">
+<!ENTITY foxyproxy.enabled.accesskey "ل">
 <!ENTITY foxyproxy.enabled.tooltip "فعال/غیر فعال">
 <!ENTITY foxyproxy.delete.selection.label "پاک کردن انتخاب شده ها">
-<!ENTITY foxyproxy.delete.selection.accesskey "D">
+<!ENTITY foxyproxy.delete.selection.accesskey "ا">
 <!ENTITY foxyproxy.delete.selection.tooltip "پاک کردن موارد انتخاب شده">
 <!ENTITY foxyproxy.edit.selection.label "ویرایش انتخاب شده ها">
-<!ENTITY foxyproxy.edit.selection.accesskey "E">
+<!ENTITY foxyproxy.edit.selection.accesskey "ا">
 <!ENTITY foxyproxy.edit.selection.tooltip "ویرایش موارد انتخاب شده">
 <!ENTITY foxyproxy.help.label "راهنما">
-<!ENTITY foxyproxy.help.accesskey "H">
+<!ENTITY foxyproxy.help.accesskey "ا">
 <!ENTITY foxyproxy.help.tooltip "نمایش راهنما">
 <!ENTITY foxyproxy.close.label "بستن">
-<!ENTITY foxyproxy.close.accesskey "C">
+<!ENTITY foxyproxy.close.accesskey "ب">
 <!ENTITY foxyproxy.close.tooltip "بستن پنجره">
 <!ENTITY foxyproxy.about.label "درباره برنامه">
-<!ENTITY foxyproxy.about.accesskey "A">
+<!ENTITY foxyproxy.about.accesskey "ر">
 <!ENTITY foxyproxy.about.tooltip "درباره برنامه">
-<!ENTITY foxyproxy.online.label "FoxyProxy سایت">
-<!ENTITY foxyproxy.online.accesskey "O">
-<!ENTITY foxyproxy.online.tooltip ".از سایت برنامه بازدید کنید">
+<!ENTITY foxyproxy.online.label "سایت FoxyProxy">
+<!ENTITY foxyproxy.online.accesskey "ا">
+<!ENTITY foxyproxy.online.tooltip "از سایت برنامه بازدید کنید.">
 <!ENTITY foxyproxy.tor.label "Tor Wizard">
 <!ENTITY foxyproxy.tor.accesskey "W">
 <!ENTITY foxyproxy.tor.tooltip "Tor Wizard">
 <!ENTITY foxyproxy.copy.selection.label "کپی کردن انتخاب شده ها">
-<!ENTITY foxyproxy.copy.selection.accesskey "C">
+<!ENTITY foxyproxy.copy.selection.accesskey "ا">
 <!ENTITY foxyproxy.copy.selection.tooltip "کپی کردن انتخاب شده ها">
 <!ENTITY foxyproxy.mode.label "انتخاب مود">
 <!ENTITY foxyproxy.auto.url.label "آدرس تنظیمات خودکار پروکسی">
-<!ENTITY foxyproxy.auto.url.accesskey "A">
+<!ENTITY foxyproxy.auto.url.accesskey "س">
 <!ENTITY foxyproxy.auto.url.tooltip "PAC آدرس فایل">
 <!ENTITY foxyproxy.auto.url.note.label "http(s)://   ftp://   file://   relative://">
-<!ENTITY foxyproxy.auto.url.note.tooltip "Click the info icon for information on relative://">
+<!ENTITY foxyproxy.auto.url.note.tooltip "برای بیشتر خواندن درباره relative:// روی آیکون اطلاعات کلیک کنید">
 <!ENTITY foxyproxy.port.label "پورت">
-<!ENTITY foxyproxy.port.accesskey "P">
+<!ENTITY foxyproxy.port.accesskey "ر">
 <!ENTITY foxyproxy.port.tooltip "پورت">
-<!ENTITY foxyproxy.socks.proxy.label "SOCKS پروکسی">
+<!ENTITY foxyproxy.socks.proxy.label "پروکسی SOCKS">
 <!ENTITY foxyproxy.socks.proxy.accesskey "C">
-<!ENTITY foxyproxy.socks.proxy.tooltip "SOCKS آدرس پروکسی">
+<!ENTITY foxyproxy.socks.proxy.tooltip "آدرس پروکسی SOCKS">
 <!ENTITY foxyproxy.socks.v4 "SOCKS v4/4a">
 <!ENTITY foxyproxy.socks.v5 "SOCKS v5">
 <!ENTITY foxyproxy.addeditpattern.title "افزودن/ویرایش یک الگو">
-<!ENTITY foxyproxy.wildcard.label "ها Wildcard">
+<!ENTITY foxyproxy.wildcard.label "Wildcard ها">
 <!ENTITY foxyproxy.wildcard.accesskey "W">
-<!ENTITY foxyproxy.wildcard.tooltip ".استفاده می کند wildcard مشخص کردن اینکه یک آدرس از">
-<!ENTITY foxyproxy.wildcard.example.label "*mail.yahoo.com/*:مثال">
+<!ENTITY foxyproxy.wildcard.tooltip "مشخص کردن این که یک آدرس از wildcard استفاده می کند.">
+<!ENTITY foxyproxy.wildcard.example.label "نمونه:*mail.yahoo.com/*">
 <!ENTITY foxyproxy.regex.label "عبارت منظم">
-<!ENTITY foxyproxy.regex.accesskey "R">
+<!ENTITY foxyproxy.regex.accesskey "ر">
 <!ENTITY foxyproxy.regex.tooltip "عبارت منظم">
-<!ENTITY foxyproxy.regex.example.label "http?://.*\.mail\.yahoo\.com/.*:مثال">
+<!ENTITY foxyproxy.regex.example.label "نمونه : http?://.*\.mail\.yahoo\.com/.*">
 <!ENTITY foxyproxy.version "نسخه">
 <!ENTITY foxyproxy.createdBy "نویسنده">
 <!ENTITY foxyproxy.copyright "Copyright">
-<!ENTITY foxyproxy.rights ".تمام حقوق محفوظ است">
-<!ENTITY foxyproxy.released "GPL انشار تحت مجوز">
-<!ENTITY foxyproxy.thanks "با تشکر از:">
+<!ENTITY foxyproxy.rights "تمام حقوق محفوظ است.">
+<!ENTITY foxyproxy.released "انشار با مجوز GPL">
+<!ENTITY foxyproxy.thanks "با سپاس از :">
 <!ENTITY foxyproxy.translations "ترجمه ها">
 <!ENTITY foxyproxy.tab.general.label "عمومی">
-<!ENTITY foxyproxy.tab.general.accesskey "G">
+<!ENTITY foxyproxy.tab.general.accesskey "و">
 <!ENTITY foxyproxy.tab.general.tooltip "تنظیمات عمومی پروکسی">
 <!ENTITY foxyproxy.tab.proxy.label "جزئیات پروکسی">
-<!ENTITY foxyproxy.tab.proxy.accesskey "R">
+<!ENTITY foxyproxy.tab.proxy.accesskey "و">
 <!ENTITY foxyproxy.tab.proxy.tooltip "مدیریت جزئیات پروکسی">
 <!ENTITY foxyproxy.tab.patterns.label "الگوها">
-<!ENTITY foxyproxy.tab.patterns.accesskey "P">
+<!ENTITY foxyproxy.tab.patterns.accesskey "ا">
 <!ENTITY foxyproxy.tab.patterns.tooltip "مدیریت الگوهای آدرس">
 <!ENTITY foxyproxy.add.title "تنظیمات پروکسی">
 <!ENTITY foxyproxy.pattern.description "مشخص کردن زمان استفاده شدن یا نشدن پروکسی">
 <!ENTITY foxyproxy.pattern.matchtype.label "محتویات الگو">
-<!ENTITY foxyproxy.pattern.matchtype2.label "Pattern To Identify Blocked Websites Contains">
-<!ENTITY foxyproxy.pattern.template.matchtype.label "Pattern Template Contains">
+<!ENTITY foxyproxy.pattern.matchtype2.label "الگوی شناسایی محتویات سایت های بسته شده">
+<!ENTITY foxyproxy.pattern.template.matchtype.label "الگوی پوسته">
 <!ENTITY foxyproxy.pattern.whiteblack.label "آدرس موجود در لیست سیاه/سفید">
 <!ENTITY foxyproxy.add.option.direct.label "ارتباط مستقیم">
-<!ENTITY foxyproxy.add.option.direct.accesskey "D">
+<!ENTITY foxyproxy.add.option.direct.accesskey "ا">
 <!ENTITY foxyproxy.add.option.direct.tooltip "استفاده نکردن از پروکسی-استفاده از ارتباط مستقیم">
 <!ENTITY foxyproxy.add.option.manual.label "تنظیمات دستی پروکسی">
-<!ENTITY foxyproxy.add.option.manual.accesskey "M">
+<!ENTITY foxyproxy.add.option.manual.accesskey "و">
 <!ENTITY foxyproxy.add.option.manual.tooltip "تنظیم دستی تنظیمات یک پروکسی">
 <!ENTITY foxyproxy.add.new.pattern.label "افزودن یک الگوی جدید">
-<!ENTITY foxyproxy.add.new.pattern.accesskey "A">
+<!ENTITY foxyproxy.add.new.pattern.accesskey "ا">
 <!ENTITY foxyproxy.add.new.pattern.tooltip "افزودن یک الگوی جدید">
 <!ENTITY foxyproxy.menubar.file.label "فایل">
-<!ENTITY foxyproxy.menubar.file.accesskey "F">
+<!ENTITY foxyproxy.menubar.file.accesskey "ا">
 <!ENTITY foxyproxy.menubar.file.tooltip "منوی فایل">
 <!ENTITY foxyproxy.menubar.help.label "راهنما">
-<!ENTITY foxyproxy.menubar.help.accesskey "H">
+<!ENTITY foxyproxy.menubar.help.accesskey "ا">
 <!ENTITY foxyproxy.menubar.help.tooltip "باز کردن منوی راهنما">
-<!ENTITY foxyproxy.mode.accesskey "M">
-<!ENTITY foxyproxy.mode.tooltip "FoxyProxy نحوه کار">
+<!ENTITY foxyproxy.mode.accesskey "ا">
+<!ENTITY foxyproxy.mode.tooltip "شیوه کار FoxyProxy">
 <!ENTITY foxyproxy.tab.proxies.label "پروکسی ها">
-<!ENTITY foxyproxy.tab.proxies.accesskey "P">
+<!ENTITY foxyproxy.tab.proxies.accesskey "و">
 <!ENTITY foxyproxy.tab.proxies.tooltip "مدیریت پروکسی ها">
 <!ENTITY foxyproxy.tab.global.label "تنظیمات عمومی">
-<!ENTITY foxyproxy.tab.global.accesskey "G">
+<!ENTITY foxyproxy.tab.global.accesskey "ت">
 <!ENTITY foxyproxy.tab.global.tooltip "تنظیمات عمومی">
 <!ENTITY foxyproxy.tab.logging.label "گزارش گیری">
-<!ENTITY foxyproxy.tab.logging.accesskey "L">
+<!ENTITY foxyproxy.tab.logging.accesskey "ا">
 <!ENTITY foxyproxy.tab.logging.tooltip "مدیریت تنظیمات گزارش گیری">
-<!ENTITY foxyproxy.proxydns.label "DNS برای جستجوی SOCKS استفاده از پروکسی">
-<!ENTITY foxyproxy.proxydns.accesskey "U">
-<!ENTITY foxyproxy.proxydns.tooltip ".صورت می گیرد SOCKS از طریق یک پروکسی DNS در صورت انتخاب جستجوی">
-<!ENTITY foxyproxy.proxydns.notice "برای اعمال تنظیمات فایرفاکس باید دوباره راه اندازی شود.راه اندازی مجدد؟">
+<!ENTITY foxyproxy.proxydns.label "استفاده از پروکسی SOCKS برای جستجوی DNS">
+<!ENTITY foxyproxy.proxydns.accesskey "ا">
+<!ENTITY foxyproxy.proxydns.tooltip "در صورت انتخاب٬جستجوی DNS از طریق یک پروکسی SOCKS صورت می گیرد.">
+<!ENTITY foxyproxy.proxydns.notice "برای اعمال تنظیمات فایرفاکس باید دوباره راه اندازی شود.راه اندازی دوباره؟">
 <!ENTITY foxyproxy.showstatusbaricon.label "نمایش آیکون در نوار وضعیت">
-<!ENTITY foxyproxy.showstatusbaricon.accesskey "S">
-<!ENTITY foxyproxy.showstatusbaricon.tooltip ".در صورت انتخاب آیکون برنامه در نوار وضعیت نمایش داده خواهد شد">
+<!ENTITY foxyproxy.showstatusbaricon.accesskey "ا">
+<!ENTITY foxyproxy.showstatusbaricon.tooltip "در صورت انتخاب آیکون برنامه در نوار وضعیت نمایش داده خواهد شد.">
 <!ENTITY foxyproxy.showstatusbarmode.label "نمایش مود متنی در نوار وضعیت">
-<!ENTITY foxyproxy.showstatusbarmode.accesskey "S">
-<!ENTITY foxyproxy.showstatusbarmode.tooltip ".در صورت انتخاب مود متنی برنامه در نوار وضعیت نمایش داده خواهد شد">
+<!ENTITY foxyproxy.showstatusbarmode.accesskey "ا">
+<!ENTITY foxyproxy.showstatusbarmode.tooltip "در صورت انتخاب مود متنی برنامه در نوار وضعیت نمایش داده خواهد شد.">
 <!ENTITY foxyproxy.storagelocation.label "مکان ذخیره تنظیمات">
-<!ENTITY foxyproxy.storagelocation.accesskey "S">
-<!ENTITY foxyproxy.storagelocation.tooltip "FoxyProxy مکان ذخیره تنظیمات">
+<!ENTITY foxyproxy.storagelocation.accesskey "ن">
+<!ENTITY foxyproxy.storagelocation.tooltip "مکان ذخیره تنظیمات FoxyProxy">
 <!ENTITY foxyproxy.tab.logging.timestamp.label "زمان">
-<!ENTITY foxyproxy.tab.logging.url.label "آدرس">
-<!ENTITY foxyproxy.host.label "Host Name">
-<!ENTITY foxyproxy.host.accesskey "H">
-<!ENTITY foxyproxy.host.tooltip "Host Name">
+<!ENTITY foxyproxy.tab.logging.url.label "نشانی">
+<!ENTITY foxyproxy.host.label "نام میزبان">
+<!ENTITY foxyproxy.host.accesskey "م">
+<!ENTITY foxyproxy.host.tooltip "نام میزبان">
 <!ENTITY foxyproxy.clear.label "پاک کردن">
-<!ENTITY foxyproxy.clear.accesskey "C">
+<!ENTITY foxyproxy.clear.accesskey "ک">
 <!ENTITY foxyproxy.clear.tooltip "پاک کردن">
-<!ENTITY foxyproxy.refresh.label "بارگذاری مجدد">
-<!ENTITY foxyproxy.refresh.accesskey "R">
-<!ENTITY foxyproxy.refresh.tooltip "بارگذاری مجدد">
+<!ENTITY foxyproxy.refresh.label "بارگذاری دوباره">
+<!ENTITY foxyproxy.refresh.accesskey "ا">
+<!ENTITY foxyproxy.refresh.tooltip "بارگذاری دوباره">
 <!ENTITY foxyproxy.save.label "ذخیره کردن">
-<!ENTITY foxyproxy.save.accesskey "S">
+<!ENTITY foxyproxy.save.accesskey "د">
 <!ENTITY foxyproxy.save.tooltip "ذخیره کردن">
-<!ENTITY foxyproxy.addnewproxy.label "افزودن پروکسی جدید">
-<!ENTITY foxyproxy.addnewproxy.accesskey "A">
-<!ENTITY foxyproxy.addnewproxy.tooltip "افزودن پروکسی جدید">
+<!ENTITY foxyproxy.addnewproxy.label "افزودن پروکسی تازه">
+<!ENTITY foxyproxy.addnewproxy.accesskey "ا">
+<!ENTITY foxyproxy.addnewproxy.tooltip "افزودن پروکسی تازه">
 <!ENTITY foxyproxy.whitelist.label "لیست سفید">
-<!ENTITY foxyproxy.whitelist.accesskey "W">
-<!ENTITY foxyproxy.whitelist.tooltip ".آدرس هایی که با این الگو همخوانی دارند از این پروکسی بارگذاری شده اند">
-<!ENTITY foxyproxy.whitelist.description.label ".آدرس هایی که با این الگو همخوانی دارند از این پروکسی بارگذاری شده اند">
+<!ENTITY foxyproxy.whitelist.accesskey "د">
+<!ENTITY foxyproxy.whitelist.tooltip "آدرس هایی که با این الگو همخوانی دارند از این پروکسی بارگذاری شده اند.">
+<!ENTITY foxyproxy.whitelist.description.label "آدرس هایی که با این الگو همخوانی دارند از این پروکسی بارگذاری شده اند.">
 <!ENTITY foxyproxy.blacklist.label "لیست سیاه">
-<!ENTITY foxyproxy.blacklist.accesskey "B">
-<!ENTITY foxyproxy.blacklist.tooltip ".آدرس هایی که با این الگو همخوانی دارند از این پروکسی بارگذاری نشده اند">
-<!ENTITY foxyproxy.blacklist.description.label ".آدرس هایی که با این الگو همخوانی دارند از این پروکسی بارگذاری نشده اند">
+<!ENTITY foxyproxy.blacklist.accesskey "ه">
+<!ENTITY foxyproxy.blacklist.tooltip "آدرس هایی که با این الگو همخوانی دارند از این پروکسی بارگذاری نشده اند.">
+<!ENTITY foxyproxy.blacklist.description.label "آدرس هایی که با این الگو همخوانی دارند از این پروکسی بارگذاری نشده اند.">
 <!ENTITY foxyproxy.whiteblack.description.label "لیست سیاه بر لیست سفید برتری دارد.به عنوان مثال اگر سایتی در هر دو لیست موجود باشد قرار داشتن آن در لیست سیاه مد نظر قرار می گیرد">
-<!ENTITY foxyproxy.usingPFF.label1 "فایرفاکس قابل حمل استفاده می کنم">
-<!ENTITY foxyproxy.usingPFF.label2 "من از">
-<!ENTITY foxyproxy.usingPFF.accesskey "P">
-<!ENTITY foxyproxy.usingPFF.tooltip ".اگر از فایرفاکس قابل حمل استفاده می کنید اینجا را انتخاب کنید">
-<!ENTITY foxyproxy.socks.version.label "SOCKS نسخه">
+<!ENTITY foxyproxy.usingPFF.label1 "از">
+<!ENTITY foxyproxy.usingPFF.label2 "فایرفاکس قابل حمل استفاده می کنم">
+<!ENTITY foxyproxy.usingPFF.accesskey "ا">
+<!ENTITY foxyproxy.usingPFF.tooltip "اگر از فایرفاکس قابل حمل استفاده می کنید اینجا را انتخاب کنید.">
+<!ENTITY foxyproxy.socks.version.label "نسخه SOCKS">
 <!ENTITY foxyproxy.autopacurl.label "Auto PAC URL">
-<!ENTITY foxyproxy.issocks.label "SOCKS proxy?">
+<!ENTITY foxyproxy.issocks.label "پروکسی SOCKS؟">
 <!ENTITY foxyproxy.issocks.accesskey "S">
-<!ENTITY foxyproxy.issocks.tooltip "Is this a web proxy or SOCKS proxy?">
+<!ENTITY foxyproxy.issocks.tooltip "آیا این یک پروکسی وب یا SOCKS است؟">
 <!ENTITY foxyproxy.chinese.simplified "چینی ساده شده">
-<!ENTITY foxyproxy.chinese.traditional "(چینی (سنتی">
+<!ENTITY foxyproxy.chinese.traditional "چینی (سنتی)">
 <!ENTITY foxyproxy.croatian "کروات">
 <!ENTITY foxyproxy.czech "چکی">
 <!ENTITY foxyproxy.danish "دانمارکی">
@@ -178,17 +178,17 @@
 <!ENTITY foxyproxy.french "فرانسوی">
 <!ENTITY foxyproxy.german "آلمانی">
 <!ENTITY foxyproxy.greek "یونانی">
-<!ENTITY foxyproxy.hungarian "Hungarian">
+<!ENTITY foxyproxy.hungarian "مجارستانی">
 <!ENTITY foxyproxy.italian "ایتالیایی">
 <!ENTITY foxyproxy.persian "پارسی">
 <!ENTITY foxyproxy.polish "لهستانی">
-<!ENTITY foxyproxy.portugese.brazilian "(پرتغالی (برزیل">
-<!ENTITY foxyproxy.portugese.portugal "(پرتغالی (پرتغال">
+<!ENTITY foxyproxy.portugese.brazilian "پرتغالی (برزیل)">
+<!ENTITY foxyproxy.portugese.portugal "پرتغالی (پرتغال)">
 <!ENTITY foxyproxy.romanian "رومانیایی">
 <!ENTITY foxyproxy.russian "روسی">
 <!ENTITY foxyproxy.slovak "اسلواکی">
-<!ENTITY foxyproxy.spanish.spain "(اسپانیایی (اسپانیا">
-<!ENTITY foxyproxy.spanish.argentina "(اسپانیایی (آرژانتین">
+<!ENTITY foxyproxy.spanish.spain "اسپانیایی (اسپانیا)">
+<!ENTITY foxyproxy.spanish.argentina "اسپانیایی (آرژانتین)">
 <!ENTITY foxyproxy.swedish "سوئدی">
 <!ENTITY foxyproxy.thai.thailand "تایلندی">
 <!ENTITY foxyproxy.turkish "ترکی">
@@ -197,81 +197,81 @@
 <!ENTITY foxyproxy.your.name.here "نام شما">
 <!ENTITY foxyproxy.moveup.label "حرکت به بالا">
 <!ENTITY foxyproxy.moveup.tooltip "افزایش برتری انتخاب فعلی">
-<!ENTITY foxyproxy.moveup.accesskey "U">
+<!ENTITY foxyproxy.moveup.accesskey "ا">
 <!ENTITY foxyproxy.movedown.label "حرکت به پایین">
 <!ENTITY foxyproxy.movedown.tooltip "کاهش برتری انتخاب فعلی">
-<!ENTITY foxyproxy.movedown.accesskey "D">
+<!ENTITY foxyproxy.movedown.accesskey "ا">
 <!ENTITY foxyproxy.autoconfurl.view.label "نمایش">
-<!ENTITY foxyproxy.autoconfurl.view.accesskey "V">
+<!ENTITY foxyproxy.autoconfurl.view.accesskey "ا">
 <!ENTITY foxyproxy.autoconfurl.view.tooltip "نمایش فایل تنظیمات خودکار">
 <!ENTITY foxyproxy.autoconfurl.test.label "آزمایش">
-<!ENTITY foxyproxy.autoconfurl.test.accesskey "T">
+<!ENTITY foxyproxy.autoconfurl.test.accesskey "ز">
 <!ENTITY foxyproxy.autoconfurl.test.tooltip "آزمایش فایل تنظیمات خودکار">
-<!ENTITY foxyproxy.autoconfurl.reload.label "Reload the PAC every">
-<!ENTITY foxyproxy.autoconfurl.reload.accesskey "R">
-<!ENTITY foxyproxy.autoconfurl.reload.tooltip "Auto-reload the PAC file every specified period">
-<!ENTITY foxyproxy.minutes.label "minutes">
-<!ENTITY foxyproxy.minutes.tooltip "minutes">
+<!ENTITY foxyproxy.autoconfurl.reload.label "بارگذاری دوباره PAC هر">
+<!ENTITY foxyproxy.autoconfurl.reload.accesskey "ا">
+<!ENTITY foxyproxy.autoconfurl.reload.tooltip "بارگذاری دوباره PAC در بازه زمانی مشخص">
+<!ENTITY foxyproxy.minutes.label "دقیقه">
+<!ENTITY foxyproxy.minutes.tooltip "دقیقه">
 <!ENTITY foxyproxy.logging.maxsize.label "بیشترین اندازه">
-<!ENTITY foxyproxy.logging.maxsize.accesskey "M">
+<!ENTITY foxyproxy.logging.maxsize.accesskey "ا">
 <!ENTITY foxyproxy.logging.maxsize.tooltip "بیشترین تعداد گزارش ها قبل از پاکسازی">
 <!ENTITY foxyproxy.logging.maxsize.button.label "قرار دادن">
-<!ENTITY foxyproxy.logging.maxsize.button.accesskey "S">
-<!ENTITY foxyproxy.logging.maxsize.button.tooltip "(بارگذاری آدرس با پروکسی تصادفی (بدون توجه به الگوها و تنظیمات">
-<!ENTITY foxyproxy.random.label "(بارگذاری آدرس با پروکسی تصادفی (بدون توجه به الگوها و تنظیمات">
-<!ENTITY foxyproxy.random.accesskey "R">
-<!ENTITY foxyproxy.random.tooltip "(بارگذاری آدرس با پروکسی تصادفی (بدون توجه به الگوها و تنظیمات">
-<!ENTITY foxyproxy.random.includedirect.label ".شامل پروکسی هایی که ارتباط مستقیم دارند">
-<!ENTITY foxyproxy.random.includedirect.accesskey "I">
-<!ENTITY foxyproxy.random.includedirect.tooltip ".پروکسی هایی که ارتباط مستقیم دارند هم به عنوان پروکسی تصادفی انتخاب می شوند">
+<!ENTITY foxyproxy.logging.maxsize.button.accesskey "ا">
+<!ENTITY foxyproxy.logging.maxsize.button.tooltip "تنظیم تعداد ورودی های گزارش پیش از بازگشت به ابتدا">
+<!ENTITY foxyproxy.random.label "بارگذاری آدرس با پروکسی تصادفی (بدون توجه به الگوها و تنظیمات)">
+<!ENTITY foxyproxy.random.accesskey "ا">
+<!ENTITY foxyproxy.random.tooltip "بارگذاری آدرس با پروکسی تصادفی (بدون توجه به الگوها و تنظیمات)">
+<!ENTITY foxyproxy.random.includedirect.label "شامل پروکسی هایی که ارتباط مستقیم دارند.">
+<!ENTITY foxyproxy.random.includedirect.accesskey "ا">
+<!ENTITY foxyproxy.random.includedirect.tooltip "پروکسی هایی که ارتباط مستقیم دارند هم به عنوان پروکسی تصادفی انتخاب می شوند.">
 <!ENTITY foxyproxy.random.includedisabled.label "شامل پروکسی های غیرفعال">
-<!ENTITY foxyproxy.random.includedisabled.accesskey "D">
-<!ENTITY foxyproxy.random.includedisabled.tooltip ".پروکسی های غیرفعال هم به عنوان پروکسی تصادفی انتخاب می شوند">
+<!ENTITY foxyproxy.random.includedisabled.accesskey "ی">
+<!ENTITY foxyproxy.random.includedisabled.tooltip "پروکسی های غیرفعال هم به عنوان پروکسی تصادفی انتخاب می شوند.">
 <!ENTITY foxyproxy.random.settings.label "انتخاب تصادفی پروکسی">
-<!ENTITY foxyproxy.random.settings.accesskey "R">
-<!ENTITY foxyproxy.random.settings.tooltip ".تنظیماتی که روی انتخاب تصادفی پروکسی تاًثیر می گذارد">
+<!ENTITY foxyproxy.random.settings.accesskey "ا">
+<!ENTITY foxyproxy.random.settings.tooltip "تنظیماتی که روی انتخاب تصادفی پروکسی تاًثیر می گذارد.">
 <!ENTITY foxyproxy.tab.autoadd.label "افزودن خودکار">
-<!ENTITY foxyproxy.tab.autoadd.accesskey "A">
+<!ENTITY foxyproxy.tab.autoadd.accesskey "ا">
 <!ENTITY foxyproxy.tab.autoadd.tooltip "مدیریت تنظیمات افزودن خودکار">
 <!ENTITY foxyproxy.autoadd.description "الگویی را برای متوقف کردن سایت به کار می برد.اگر الگو در سایتی پیدا شد آدرس سایت به صورت خودکار به یک پروکسی افزوده می شود و صفحه دوباره بارگذاری می شود">
 <!ENTITY foxyproxy.autoadd.pattern.label "الگوی شناخت سایت های مسدود شده">
-<!ENTITY foxyproxy.autoadd.pattern.accesskey "P">
+<!ENTITY foxyproxy.autoadd.pattern.accesskey "ا">
 <!ENTITY foxyproxy.autoadd.pattern.tooltip "الگوی مشخص کردن سایت های متوقف شده">
-<!ENTITY foxyproxy.autoadd.wildcard.example.label "*You are not authorized to view this page*:مثال">
-<!ENTITY foxyproxy.autoadd.regex.example.label ".*Site.*has been blocked.*:مثال">
+<!ENTITY foxyproxy.autoadd.wildcard.example.label "نمونه : *You are not authorized to view this page*">
+<!ENTITY foxyproxy.autoadd.regex.example.label "نمونه : .*Site.*has been blocked.*">
 <!ENTITY foxyproxy.autoadd.proxy.label "پروکسی سایت هایی که به صورت خودکار اضافه می شوند">
-<!ENTITY foxyproxy.autoadd.proxy.accesskey "P">
-<!ENTITY foxyproxy.autoadd.proxy.tooltip ".برای پروکسی مشخص می کند که کدام آدرس ها به صورت خودکار اضافه شوند">
+<!ENTITY foxyproxy.autoadd.proxy.accesskey "ا">
+<!ENTITY foxyproxy.autoadd.proxy.tooltip "برای پروکسی مشخص می کند که کدام آدرس ها به صورت خودکار اضافه شوند.">
 <!ENTITY foxyproxy.pattern.template.label "قالب الگوی آدرس">
-<!ENTITY foxyproxy.pattern.template.accesskey "U">
+<!ENTITY foxyproxy.pattern.template.accesskey "ا">
 <!ENTITY foxyproxy.pattern.template.tooltip "قالب الگوی آدرس">
-<!ENTITY foxyproxy.pattern.template.example.label1 "مثال">
+<!ENTITY foxyproxy.pattern.template.example.label1 "نمونه">
 <!ENTITY foxyproxy.pattern.template.example.label2 "http://fred:secret@mail.foo.com:8080/inbox/msg102.htm#subject?style=elegant">
-<!ENTITY foxyproxy.pattern.template.currenturl.label "Current URL">
-<!ENTITY foxyproxy.pattern.template.currenturl.accesskey "C">
-<!ENTITY foxyproxy.pattern.template.currenturl.tooltip "URL in the address bar">
-<!ENTITY foxyproxy.pattern.template.generatedpattern.label "Generated Pattern">
-<!ENTITY foxyproxy.pattern.template.generatedpattern.accesskey "G">
-<!ENTITY foxyproxy.pattern.template.generatedpattern.tooltip "Dynamically generated pattern">
-<!ENTITY foxyproxy.autoadd.reload.label ".وقتی صفحه به یک پروکسی اضافه می شود،دوباره بارگذای می شود">
-<!ENTITY foxyproxy.autoadd.reload.accesskey "R">
-<!ENTITY foxyproxy.autoadd.reload.tooltip "بارگذاری مجدد صفحه وقتی به یک پروکسی اضافه می شود">
+<!ENTITY foxyproxy.pattern.template.currenturl.label "نشانی فعلی">
+<!ENTITY foxyproxy.pattern.template.currenturl.accesskey "ا">
+<!ENTITY foxyproxy.pattern.template.currenturl.tooltip "نشانی موجود در نوار نشانی">
+<!ENTITY foxyproxy.pattern.template.generatedpattern.label "الگوی ایجاد شده">
+<!ENTITY foxyproxy.pattern.template.generatedpattern.accesskey "ا">
+<!ENTITY foxyproxy.pattern.template.generatedpattern.tooltip "الگوی ایجاد شده به صورت دینامیکی">
+<!ENTITY foxyproxy.autoadd.reload.label "وقتی صفحه به یک پروکسی اضافه می شود،دوباره بارگذای می شود.">
+<!ENTITY foxyproxy.autoadd.reload.accesskey "ا">
+<!ENTITY foxyproxy.autoadd.reload.tooltip "بارگذاری دوباره صفحه وقتی به یک پروکسی اضافه می شود">
 <!ENTITY foxyproxy.autoadd.notify.label "هنگام راه اندازی افزودن خودکار به من اطلاع بده">
-<!ENTITY foxyproxy.autoadd.notify.accesskey "N">
-<!ENTITY foxyproxy.autoadd.notify.tooltip ".وقتی صفحه ای متوقف می شود به شما اطلاع می دهد">
-<!ENTITY foxyproxy.graphics "طراحی گرافیک و عکس ها:">
-<!ENTITY foxyproxy.website "ساخت وب سایت:">
-<!ENTITY foxyproxy.contributions "همکار:">
+<!ENTITY foxyproxy.autoadd.notify.accesskey "ا">
+<!ENTITY foxyproxy.autoadd.notify.tooltip "وقتی صفحه ای متوقف می شود به شما اطلاع می دهد.">
+<!ENTITY foxyproxy.graphics "طراحی گرافیک و عکس ها :">
+<!ENTITY foxyproxy.website "ساخت وب سایت :">
+<!ENTITY foxyproxy.contributions "همکاران :">
 <!ENTITY foxyproxy.pacloadnotification.label "هنگام بارگذاری فایل های تنظیمات خودکار پروکسی به من خبر بده">
-<!ENTITY foxyproxy.pacloadnotification.accesskey "L">
-<!ENTITY foxyproxy.pacloadnotification.tooltip "PAC هنگام بارگذاری فایل popup نمایش پنجره">
+<!ENTITY foxyproxy.pacloadnotification.accesskey "ا">
+<!ENTITY foxyproxy.pacloadnotification.tooltip "نمایش پنجره popup هنگام بارگذاری فایل PAC">
 <!ENTITY foxyproxy.pacerrornotification.label "هنگام خطای فایل تنظیمات خودکار به من اطلاع بده">
-<!ENTITY foxyproxy.pacerrornotification.accesskey "E">
-<!ENTITY foxyproxy.pacerrornotification.tooltip "PAC هنگام برخورد با خطای فایل های popup نمایش پنجره">
-<!ENTITY foxyproxy.toolsmenu.label "در منوی ابزارها FoxyProxy نمایش">
-<!ENTITY foxyproxy.toolsmenu.accesskey "T">
-<!ENTITY foxyproxy.toolsmenu.tooltip "در منوی ابزارها FoxyProxy نمایش">
-<!ENTITY foxyproxy.tip.label "Tip">
+<!ENTITY foxyproxy.pacerrornotification.accesskey "ا">
+<!ENTITY foxyproxy.pacerrornotification.tooltip "نمایش پنجره popup هنگام هنگام برخورد با خطای فایل های PAC">
+<!ENTITY foxyproxy.toolsmenu.label "نمایش FoxyProxy در منوی ابزارها">
+<!ENTITY foxyproxy.toolsmenu.accesskey "ا">
+<!ENTITY foxyproxy.toolsmenu.tooltip "نمایش FoxyProxy در منوی ابزارها">
+<!ENTITY foxyproxy.tip.label "نکته">
 <!ENTITY foxyproxy.pactips.popup.height "165px">
 <!ENTITY foxyproxy.pactips.popup.width "400px">
 <!ENTITY foxyproxy.pactip1.label "For PAC files stored on a local hard drive, use the file:// scheme. For example, file://c:/path/proxy.pac on Windows or file:///home/users/joe/proxy.pac on Unix/Linux/Mac.">

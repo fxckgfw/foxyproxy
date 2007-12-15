@@ -52,6 +52,8 @@
 <!ENTITY foxyproxy.auto.url.label "Configurazione automatica dei proxy (URL):">
 <!ENTITY foxyproxy.auto.url.accesskey "u">
 <!ENTITY foxyproxy.auto.url.tooltip "Specificare l&apos;URL del file PAC">
+<!ENTITY foxyproxy.auto.url.note.label "http(s)://   ftp://   file://   relative://">
+<!ENTITY foxyproxy.auto.url.note.tooltip "Click the info icon for information on relative://">
 <!ENTITY foxyproxy.port.label "Porta">
 <!ENTITY foxyproxy.port.accesskey "P">
 <!ENTITY foxyproxy.port.tooltip "Porta da utilizzare">
@@ -275,6 +277,11 @@
 <!ENTITY foxyproxy.pactip1.label "Per un file PAC memorizzato su un disco locale utilizzare lo schema file://. Esempio: file://c:/path/proxy.pac con Windows o file:///home/users/joe/proxy.pac con Unix/Linux/Mac">
 <!ENTITY foxyproxy.pactip2.label "Per un file PAC presente su un server ftp utilizzare lo schema ftp://. Esempio: ftp://leahscape.com/path/proxy.pac">
 <!ENTITY foxyproxy.pactip3.label "È possibile utilizzare anche http://, https://, ed ogni altro schema supportato">
+<!ENTITY foxyproxy.pactip4.label "Finally, if you need to refer to a PAC file on the local file system using a relative path, you can use the special FoxyProxy relative:// scheme. This is useful if your PAC file resides on a thumb drive. Supported relative paths are documented">
+<!ENTITY foxyproxy.pactip5.label "here">
+<!ENTITY foxyproxy.pactip6.label ". Special strings in the relative:// URL you specify are replaced with their corresponding values. For example, relative://ProfD/pacs/proxy3.pac points to the file proxy3.pac in the subdirectory of the">
+<!ENTITY foxyproxy.pactip7.label "Firefox profile directory">
+<!ENTITY foxyproxy.pactip8.label "named pacs/. With Portable Firefox on Windows, the Firefox profile directory is always a relative path because the drive letter can change across computers. Please note that special strings (ProfD, Home, TempD, etc.) are case-sensitive!">
 <!ENTITY foxyproxy.contextmenu.label "Mostra FoxyProxy nel menu contestuale">
 <!ENTITY foxyproxy.contextmenu.accesskey "u">
 <!ENTITY foxyproxy.contextmenu.tooltip "L&apos;elemento di menu &apos;FoxyProxy&apos; verrà mostrato nel menu contestuale">
@@ -408,6 +415,7 @@
 <!ENTITY foxyproxy.click.reloadtabsinbrowser "ricarica tutte le schede in questa finestra">
 <!ENTITY foxyproxy.click.reloadtabsinallbrowsers "ricarica tutte le schede in tutte le finestre">
 <!ENTITY foxyproxy.click.removeallcookies "elimina tutti i cookie">
+<!ENTITY foxyproxy.click.toggle "Toggle between current mode and disabled">
 <!ENTITY foxyproxy.includeincycle.label "Includi proxy alternandoli quando si fa clic nella barra di stato/degli strumenti">
 <!ENTITY foxyproxy.includeincycle.accesskey "I">
 <!ENTITY foxyproxy.includeincycle.tooltip "I proxy verranno inclusi quando alternati tramite clic nella barra di stato/degli strumenti (l&apos;opzione &apos;alterna i proxy&apos; deve essere selezionata)">

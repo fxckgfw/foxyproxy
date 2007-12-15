@@ -11,12 +11,14 @@ locale	foxyproxy	fr-FR	locale/fr-FR/
 locale	foxyproxy	hr-HR	locale/hr-HR/
 locale	foxyproxy	hr-HU	locale/hr-HU/
 locale	foxyproxy	it-IT	locale/it-IT/
+locale	foxyproxy	ja-JP	locale/ja-JP/
 locale	foxyproxy	nl-NL	locale/nl-NL/
 locale	foxyproxy	pl-PL	locale/pl-PL/
 locale	foxyproxy	pt-BR	locale/pt-BR/
 locale	foxyproxy	pt-PT	locale/pt-PT/
 locale	foxyproxy	ru-RU	locale/ru-RU/
 locale	foxyproxy	sk	locale/sk/
+locale	foxyproxy	sr-YU	locale/sr-YU/
 locale	foxyproxy	sv-SE	locale/sv-SE/
 locale	foxyproxy	th-TH	locale/th-TH/
 locale	foxyproxy	tr-TR	locale/tr-TR/

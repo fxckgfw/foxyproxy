@@ -32,7 +32,7 @@
 <!ENTITY foxyproxy.edit.selection.tooltip "Edytuje zaznaczone elementy">
 <!ENTITY foxyproxy.help.label "Pomoc">
 <!ENTITY foxyproxy.help.accesskey "C">
-<!ENTITY foxyproxy.help.tooltip "Wyświetla menu Pomoc">
+<!ENTITY foxyproxy.help.tooltip "Wyświetla witrynę pomocy">
 <!ENTITY foxyproxy.close.label "Zamknij">
 <!ENTITY foxyproxy.close.accesskey "Z">
 <!ENTITY foxyproxy.close.tooltip "Zamyka okno">
@@ -52,6 +52,8 @@
 <!ENTITY foxyproxy.auto.url.label "Adres pliku automatycznej konfiguracji proxy">
 <!ENTITY foxyproxy.auto.url.accesskey "A">
 <!ENTITY foxyproxy.auto.url.tooltip "Wprowadź adres URL pliku *.pac">
+<!ENTITY foxyproxy.auto.url.note.label "http(s)://   ftp://   file://   relative://">
+<!ENTITY foxyproxy.auto.url.note.tooltip "Click the info icon for information on relative://">
 <!ENTITY foxyproxy.port.label "Port">
 <!ENTITY foxyproxy.port.accesskey "P">
 <!ENTITY foxyproxy.port.tooltip "Podaj numer portu">
@@ -275,6 +277,11 @@
 <!ENTITY foxyproxy.pactip1.label "Dla plików *.pac zapisanych na dysku lokalnym proszę używać następującego schematu: file://schemat. Np. file://c:/path/proxy.pac dla systemu Windows lubfile:///home/users/joe/proxy.pac dla systemów Unix/Linux/Mac.">
 <!ENTITY foxyproxy.pactip2.label "Dla plików *.pac zapisanych na serwerze FTP proszę używać następującego schematu: file://schemat. Np. ftp://leahscape.com/path/proxy.pac">
 <!ENTITY foxyproxy.pactip3.label "Można także używać http://, https:// i inne obsługiwane schematy.">
+<!ENTITY foxyproxy.pactip4.label "Finally, if you need to refer to a PAC file on the local file system using a relative path, you can use the special FoxyProxy relative:// scheme. This is useful if your PAC file resides on a thumb drive. Supported relative paths are documented">
+<!ENTITY foxyproxy.pactip5.label "here">
+<!ENTITY foxyproxy.pactip6.label ". Special strings in the relative:// URL you specify are replaced with their corresponding values. For example, relative://ProfD/pacs/proxy3.pac points to the file proxy3.pac in the subdirectory of the">
+<!ENTITY foxyproxy.pactip7.label "Firefox profile directory">
+<!ENTITY foxyproxy.pactip8.label "named pacs/. With Portable Firefox on Windows, the Firefox profile directory is always a relative path because the drive letter can change across computers. Please note that special strings (ProfD, Home, TempD, etc.) are case-sensitive!">
 <!ENTITY foxyproxy.contextmenu.label "Wyświetl element &quot;FoxyProxy&quot; w menu kontekstowym">
 <!ENTITY foxyproxy.contextmenu.accesskey "T">
 <!ENTITY foxyproxy.contextmenu.tooltip "Wyświetla element &quot;FoxyProxy&quot; w menu kontekstowym">
@@ -408,6 +415,7 @@
 <!ENTITY foxyproxy.click.reloadtabsinbrowser "odświeża wszystkie karty w aktywnym oknie">
 <!ENTITY foxyproxy.click.reloadtabsinallbrowsers "odświeża wszystkie karty we wszystkich oknach">
 <!ENTITY foxyproxy.click.removeallcookies "usuwa wszystkie ciasteczka">
+<!ENTITY foxyproxy.click.toggle "Toggle between current mode and disabled">
 <!ENTITY foxyproxy.includeincycle.label "Dołącz to proxy gdy klikasz na pasku stanu lub pasku narzędziowym">
 <!ENTITY foxyproxy.includeincycle.accesskey "D">
 <!ENTITY foxyproxy.includeincycle.tooltip "Dołącz to proxy gdy zmieniasz proxy klikając na pasku stanu/pasku narzędziowym (opcja &quot;zmiany na tryby&quot; musi być aktywna)">

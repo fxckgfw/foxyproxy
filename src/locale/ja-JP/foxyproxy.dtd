@@ -52,6 +52,8 @@
 <!ENTITY foxyproxy.auto.url.label "自動プロキシ設定 URL">
 <!ENTITY foxyproxy.auto.url.accesskey "A">
 <!ENTITY foxyproxy.auto.url.tooltip "PAC ファイルの URL を入力">
+<!ENTITY foxyproxy.auto.url.note.label "http(s)://   ftp://   file://   relative://">
+<!ENTITY foxyproxy.auto.url.note.tooltip "Click the info icon for information on relative://">
 <!ENTITY foxyproxy.port.label "ポート">
 <!ENTITY foxyproxy.port.accesskey "P">
 <!ENTITY foxyproxy.port.tooltip "ポート">
@@ -275,6 +277,11 @@
 <!ENTITY foxyproxy.pactip1.label "ローカルハードドライブの PAC ファイルには file// スキームを使います。例えば Windows では file://C:/path/proxy.pac または Unix/Linux/Mac では file:///home/users/joe/proxy.pac">
 <!ENTITY foxyproxy.pactip2.label "FTP サーバ上の PAC ファイルには ftp:// スキームを使います。例えば ftp://example.com/path/proxy.pac">
 <!ENTITY foxyproxy.pactip3.label "http:// や https:// などのサポート済みスキームも利用できます。">
+<!ENTITY foxyproxy.pactip4.label "Finally, if you need to refer to a PAC file on the local file system using a relative path, you can use the special FoxyProxy relative:// scheme. This is useful if your PAC file resides on a thumb drive. Supported relative paths are documented">
+<!ENTITY foxyproxy.pactip5.label "here">
+<!ENTITY foxyproxy.pactip6.label ". Special strings in the relative:// URL you specify are replaced with their corresponding values. For example, relative://ProfD/pacs/proxy3.pac points to the file proxy3.pac in the subdirectory of the">
+<!ENTITY foxyproxy.pactip7.label "Firefox profile directory">
+<!ENTITY foxyproxy.pactip8.label "named pacs/. With Portable Firefox on Windows, the Firefox profile directory is always a relative path because the drive letter can change across computers. Please note that special strings (ProfD, Home, TempD, etc.) are case-sensitive!">
 <!ENTITY foxyproxy.contextmenu.label "コンテキストメニューにアイコンを表示">
 <!ENTITY foxyproxy.contextmenu.accesskey "C">
 <!ENTITY foxyproxy.contextmenu.tooltip "コンテキストメニューにアイコンを表示します">
@@ -408,6 +415,7 @@
 <!ENTITY foxyproxy.click.reloadtabsinbrowser "現在のブラウザのすべてのタブを再読み込み">
 <!ENTITY foxyproxy.click.reloadtabsinallbrowsers "すべてのブラウザのあらゆるタブを再読み込み">
 <!ENTITY foxyproxy.click.removeallcookies "すべての Cookie を削除">
+<!ENTITY foxyproxy.click.toggle "Toggle between current mode and disabled">
 <!ENTITY foxyproxy.includeincycle.label "Include this proxy when cycling proxies by clicking on statusbar or toolbar (Global Settings-&gt;Statusbar/Toolbar Activation-&gt;Cycle through modes must be selected)">
 <!ENTITY foxyproxy.includeincycle.accesskey "I">
 <!ENTITY foxyproxy.includeincycle.tooltip "ステータスバーかツールバーでクリック時にこのプロキシを含めます">

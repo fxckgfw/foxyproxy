@@ -44,6 +44,9 @@
 
   <target name="init">
     <mkdir dir="${temp-path}" />
+    <delete>
+      <fileset dir="${target-path}" includes="**/*.*/**"/>
+    </delete>
     <mkdir dir="${target-path}" />
   </target>
 

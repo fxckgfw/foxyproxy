@@ -180,6 +180,7 @@
 <!ENTITY foxyproxy.greek "ギリシャ語">
 <!ENTITY foxyproxy.hungarian "ハンガリー語">
 <!ENTITY foxyproxy.italian "イタリア語">
+<!ENTITY foxyproxy.japanese "Japanese">
 <!ENTITY foxyproxy.persian "ペルシャ語">
 <!ENTITY foxyproxy.polish "ポーランド語">
 <!ENTITY foxyproxy.portugese.brazilian "ポルトガル語 ( ブラジル )">
@@ -189,12 +190,14 @@
 <!ENTITY foxyproxy.slovak "スロバキア語">
 <!ENTITY foxyproxy.spanish.spain "スペイン語 ( スペイン )">
 <!ENTITY foxyproxy.spanish.argentina "スペイン語 ( アルゼンチン )">
+<!ENTITY foxyproxy.serbian "Serbian">
 <!ENTITY foxyproxy.swedish "スウェーデン語">
 <!ENTITY foxyproxy.thai.thailand "タイ語 ( タイ )">
 <!ENTITY foxyproxy.turkish "トルコ語">
 <!ENTITY foxyproxy.ukrainian "ウクライナ語">
 <!ENTITY foxyproxy.your.language "あなたの言語">
 <!ENTITY foxyproxy.your.name.here "あなたの名前をここに！">
+<!ENTITY foxyproxy.anonymous "Anonymous">
 <!ENTITY foxyproxy.moveup.label "上へ移動">
 <!ENTITY foxyproxy.moveup.tooltip "現在選択中の優先度を上げます">
 <!ENTITY foxyproxy.moveup.accesskey "U">

@@ -180,6 +180,7 @@
 <!ENTITY foxyproxy.greek "Grieks">
 <!ENTITY foxyproxy.hungarian "Hongaars">
 <!ENTITY foxyproxy.italian "Italiaans">
+<!ENTITY foxyproxy.japanese "Japanese">
 <!ENTITY foxyproxy.persian "Perzisch">
 <!ENTITY foxyproxy.polish "Pools">
 <!ENTITY foxyproxy.portugese.brazilian "Portugees (Braziliaans)">
@@ -189,12 +190,14 @@
 <!ENTITY foxyproxy.slovak "Slowaaks">
 <!ENTITY foxyproxy.spanish.spain "Spaans (Spanje)">
 <!ENTITY foxyproxy.spanish.argentina "Spaans (Argentinië)">
+<!ENTITY foxyproxy.serbian "Serbian">
 <!ENTITY foxyproxy.swedish "Zweeds">
 <!ENTITY foxyproxy.thai.thailand "Thais (Thailand)">
 <!ENTITY foxyproxy.turkish "Turks">
 <!ENTITY foxyproxy.ukrainian "Oekraïens">
 <!ENTITY foxyproxy.your.language "Uw taal">
 <!ENTITY foxyproxy.your.name.here "Hier kan uw naam staan!">
+<!ENTITY foxyproxy.anonymous "Anonymous">
 <!ENTITY foxyproxy.moveup.label "Omhoog">
 <!ENTITY foxyproxy.moveup.tooltip "De voorkeurspositie van de huidige selectie verhogen">
 <!ENTITY foxyproxy.moveup.accesskey "O">

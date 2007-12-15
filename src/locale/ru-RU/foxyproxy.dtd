@@ -180,6 +180,7 @@
 <!ENTITY foxyproxy.greek "Греческий">
 <!ENTITY foxyproxy.hungarian "Венгерский">
 <!ENTITY foxyproxy.italian "Итальянский">
+<!ENTITY foxyproxy.japanese "Japanese">
 <!ENTITY foxyproxy.persian "Персидский">
 <!ENTITY foxyproxy.polish "Польский">
 <!ENTITY foxyproxy.portugese.brazilian "Португальский (Бразилия)">
@@ -189,12 +190,14 @@
 <!ENTITY foxyproxy.slovak "Словацкий">
 <!ENTITY foxyproxy.spanish.spain "Испанский (Испания)">
 <!ENTITY foxyproxy.spanish.argentina "Испанский (Аргентина)">
+<!ENTITY foxyproxy.serbian "Serbian">
 <!ENTITY foxyproxy.swedish "Шведский">
 <!ENTITY foxyproxy.thai.thailand "Тайский (Таиланд)">
 <!ENTITY foxyproxy.turkish "Турецкий">
 <!ENTITY foxyproxy.ukrainian "Украинский">
 <!ENTITY foxyproxy.your.language "Ваш язык">
 <!ENTITY foxyproxy.your.name.here "Ваше имя здесь!">
+<!ENTITY foxyproxy.anonymous "Anonymous">
 <!ENTITY foxyproxy.moveup.label "Вверх">
 <!ENTITY foxyproxy.moveup.tooltip "Повысить приоритет отмеченного прокси">
 <!ENTITY foxyproxy.moveup.accesskey "В">

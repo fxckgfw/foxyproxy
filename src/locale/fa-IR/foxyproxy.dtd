@@ -180,6 +180,7 @@
 <!ENTITY foxyproxy.greek "یونانی">
 <!ENTITY foxyproxy.hungarian "مجارستانی">
 <!ENTITY foxyproxy.italian "ایتالیایی">
+<!ENTITY foxyproxy.japanese "Japanese">
 <!ENTITY foxyproxy.persian "پارسی">
 <!ENTITY foxyproxy.polish "لهستانی">
 <!ENTITY foxyproxy.portugese.brazilian "پرتغالی (برزیل)">
@@ -189,12 +190,14 @@
 <!ENTITY foxyproxy.slovak "اسلواکی">
 <!ENTITY foxyproxy.spanish.spain "اسپانیایی (اسپانیا)">
 <!ENTITY foxyproxy.spanish.argentina "اسپانیایی (آرژانتین)">
+<!ENTITY foxyproxy.serbian "Serbian">
 <!ENTITY foxyproxy.swedish "سوئدی">
 <!ENTITY foxyproxy.thai.thailand "تایلندی">
 <!ENTITY foxyproxy.turkish "ترکی">
 <!ENTITY foxyproxy.ukrainian "اوکراینی">
 <!ENTITY foxyproxy.your.language "زبان شما">
 <!ENTITY foxyproxy.your.name.here "نام شما">
+<!ENTITY foxyproxy.anonymous "Anonymous">
 <!ENTITY foxyproxy.moveup.label "حرکت به بالا">
 <!ENTITY foxyproxy.moveup.tooltip "افزایش برتری انتخاب فعلی">
 <!ENTITY foxyproxy.moveup.accesskey "ا">

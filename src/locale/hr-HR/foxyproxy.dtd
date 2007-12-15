@@ -180,6 +180,7 @@
 <!ENTITY foxyproxy.greek "Grčki">
 <!ENTITY foxyproxy.hungarian "Mađarski">
 <!ENTITY foxyproxy.italian "Talijanski">
+<!ENTITY foxyproxy.japanese "Japanese">
 <!ENTITY foxyproxy.persian "Perzijski">
 <!ENTITY foxyproxy.polish "Poljski">
 <!ENTITY foxyproxy.portugese.brazilian "Portugalski (Brazilski)">
@@ -189,12 +190,14 @@
 <!ENTITY foxyproxy.slovak "Slovački">
 <!ENTITY foxyproxy.spanish.spain "Španjolski (Španjolska)">
 <!ENTITY foxyproxy.spanish.argentina "Španjolski (Argentina)">
+<!ENTITY foxyproxy.serbian "Serbian">
 <!ENTITY foxyproxy.swedish "Švedski">
 <!ENTITY foxyproxy.thai.thailand "Tajlandski (Tajland)">
 <!ENTITY foxyproxy.turkish "Turski">
 <!ENTITY foxyproxy.ukrainian "Ukrainski">
 <!ENTITY foxyproxy.your.language "Vaš jezik">
 <!ENTITY foxyproxy.your.name.here "Vaše ime ovdje!">
+<!ENTITY foxyproxy.anonymous "Anonymous">
 <!ENTITY foxyproxy.moveup.label "Pomakni gore">
 <!ENTITY foxyproxy.moveup.tooltip "Povećaj prioritet trenutačno označenog">
 <!ENTITY foxyproxy.moveup.accesskey "r">

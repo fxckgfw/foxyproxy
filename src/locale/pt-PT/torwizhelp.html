@@ -29,27 +29,21 @@
   </style>
   </head>
 <body>
-  <h3>Padrões de URL</h3>
-  <p>Antes do Firefox carregar um URL, pergunta ao FoxyProxy qual o proxy que deverá ser usado.
-     O FoxyProxy responde a essa questão através da tentativa de corresponder o URL actual com todos os padrões de URL definidos am baixo.
-     A forma mais simples de especificar padrões de URL é através da utilização de meta-caracteres.</p>        
-   <h4><a name="wildcards">Meta-caracteres</a></h4>
-   <p>Os meta-caracteres são largamente utilizados em computação; Provavelmente já os utilizou ou viu antes.
-   O asterisco (*) é substituído por um conjunto de zero ou mais caracteres e o ponto de interrogação (?) é substituído
-   por qualquer um caracter.
+  <h3>Padrões de Endereço</h3>
+  <p>Antes do Firefox carregar uma página, o Firefox pergunta ao FoxyProxy se um proxy deve ser usado.
+  O FoxyProxy responde esta questão procurando por algum padrão de endereço.
+  A maneira mais fácil de se definir padrões de endereço é usando caracteres curingas.</p>        
+   <h4><a name="wildcards">Os asteriscos (*)</a></h4>
    </p>
-   <p>É possível definir regras de correspondência mais avançadas através da utilização de expressões regulares. Para mais informação carregue no botão de "Conteúdo da Ajuda".</p>
+   <p> Regras mais avançadas para padrões são possíveis usando expressões regulares. Para detalhes, clique no botão "Conteúdo de Ajuda".</p>
    
-   <h4>Exemplos de Meta-caracteres</h4>
+   <h4>Exemplos de Curingas</h4>
    <table>
-     <thead><tr><th>Padrão de URL</th><th>Algumas correspondências</th><th>Algumas não-correspondências</th></tr></thead>
-     <tr><td>*://*.yahoo.com/*</td><td>Tudo no domínio do Yahoo</td><td>http://mail.google.com/</td></tr>      
-     <tr><td>*://mail.yahoo.com/*</td><td>http://mail.yahoo.com/<br/>http://mail.yahoo.com/clownshoes/<br/>http://mail.yahoo.com/inbox/123.html<br/>ftp://mail.yahoo.com</td><td>http://maps.yahoo.com</td></tr>
-     <tr><td>http://??.wikipedia.org/wiki/Clown</td><td>http://en.wikipedia.org/wiki/Clown<br/>http://de.wikipedia.org/wiki/Clown<br/>http://cs.wikipedia.org/wiki/Clown</td><td>https://en.wikipedia.org/wiki/Clown<br/>http://de.wikipedia.org/wiki/Clown/<br/>ftp://en.wikipedia.org/wiki/Clown</td></tr>
+     <thead><tr><th>Padrão de Endereço</th><th>Endereço no Padrão</th><th>Fora do Padrão</th></tr></thead>
+     <tr><td>*//:mail.yahoo.com/*</td><td>http://mail.yahoo.com/<br/>http://mail.yahoo.com/clownshoes/<br/>http://mail.yahoo.com/inbox/123.html<br/>ftp://mail.yahoo.com</td><td>http://maps.yahoo.com</td></tr>
      <tr><td>http://digg.com/</td><td>http://digg.com/</td><td>http://digg.com<br/>http://www.digg.com/</td></tr>      
-     <tr><td>*://*.asimov.???/*</td><td>ftp://ftp.asimov.net/<br/>ftp://ftp.asimov.com/theory.html<br/>http://bear.asimov.net/mom/<br/>https://isaac.asimov.org/hercules<br/>gopher://asimov.net/</td>
        <td>ftp://ftp.asimov.co.uk<br/>http://isaac.home.com/tin.php</td></tr>     
-     <tr><td>*</td><td><i>Corresponde com tudo</i></td><td>&nbsp;</td></tr>            
+     <tr><td>*</td><td><i>Qualquer endereço</i></td><td>&nbsp;</td></tr>            
    </table>
 </body>
 </html>

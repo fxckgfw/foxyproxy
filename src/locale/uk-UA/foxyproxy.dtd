@@ -180,6 +180,7 @@
 <!ENTITY foxyproxy.greek "Грецька">
 <!ENTITY foxyproxy.hungarian "Hungarian">
 <!ENTITY foxyproxy.italian "Італійська">
+<!ENTITY foxyproxy.japanese "Japanese">
 <!ENTITY foxyproxy.persian "Persian">
 <!ENTITY foxyproxy.polish "Польська">
 <!ENTITY foxyproxy.portugese.brazilian "Португальська (Бразилія)">
@@ -189,12 +190,14 @@
 <!ENTITY foxyproxy.slovak "Словацька">
 <!ENTITY foxyproxy.spanish.spain "Іспанська (Іспанія)">
 <!ENTITY foxyproxy.spanish.argentina "Spanish (Argentina)">
+<!ENTITY foxyproxy.serbian "Serbian">
 <!ENTITY foxyproxy.swedish "Swedish">
 <!ENTITY foxyproxy.thai.thailand "Таї (Таїланд)">
 <!ENTITY foxyproxy.turkish "Турецька">
 <!ENTITY foxyproxy.ukrainian "Ukrainian">
 <!ENTITY foxyproxy.your.language "Ваша Мова">
 <!ENTITY foxyproxy.your.name.here "Ваше ім&apos;я тут!">
+<!ENTITY foxyproxy.anonymous "Anonymous">
 <!ENTITY foxyproxy.moveup.label "Вгору">
 <!ENTITY foxyproxy.moveup.tooltip "Пріоритет збільшення поточного вибору">
 <!ENTITY foxyproxy.moveup.accesskey "г">

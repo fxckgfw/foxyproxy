@@ -180,6 +180,7 @@
 <!ENTITY foxyproxy.greek "Ελληνικά">
 <!ENTITY foxyproxy.hungarian "Ουγγαρέζικα">
 <!ENTITY foxyproxy.italian "Ιταλικά">
+<!ENTITY foxyproxy.japanese "Japanese">
 <!ENTITY foxyproxy.persian "Περσικά">
 <!ENTITY foxyproxy.polish "Πολωνικά">
 <!ENTITY foxyproxy.portugese.brazilian "Πορτογαλικά (Βραζιλίας)">
@@ -189,12 +190,14 @@
 <!ENTITY foxyproxy.slovak "Σλοβάκικα">
 <!ENTITY foxyproxy.spanish.spain "Ισπανικά">
 <!ENTITY foxyproxy.spanish.argentina "Ισπανικά (Αργεντινής)">
+<!ENTITY foxyproxy.serbian "Serbian">
 <!ENTITY foxyproxy.swedish "Σουηδικά">
 <!ENTITY foxyproxy.thai.thailand "Τάι (Ταϊλάνδης">
 <!ENTITY foxyproxy.turkish "Τουρκικά">
 <!ENTITY foxyproxy.ukrainian "Ουκρανικά">
 <!ENTITY foxyproxy.your.language "Η γλώσσα σας">
 <!ENTITY foxyproxy.your.name.here "Το όνομα σας!">
+<!ENTITY foxyproxy.anonymous "Anonymous">
 <!ENTITY foxyproxy.moveup.label "Μετακίνηση πάνω">
 <!ENTITY foxyproxy.moveup.tooltip "Ενισχύει την προτεραιότητα της τρέχουσας επιλογής">
 <!ENTITY foxyproxy.moveup.accesskey "Μ">

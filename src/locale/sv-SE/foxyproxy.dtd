@@ -180,6 +180,7 @@
 <!ENTITY foxyproxy.greek "Grekiska">
 <!ENTITY foxyproxy.hungarian "Ungerska">
 <!ENTITY foxyproxy.italian "Italienska">
+<!ENTITY foxyproxy.japanese "Japanese">
 <!ENTITY foxyproxy.persian "Persiska">
 <!ENTITY foxyproxy.polish "Polska">
 <!ENTITY foxyproxy.portugese.brazilian "Portugisiska (Brasilien)">
@@ -189,12 +190,14 @@
 <!ENTITY foxyproxy.slovak "Slovakiska">
 <!ENTITY foxyproxy.spanish.spain "Spanska (Spanien)">
 <!ENTITY foxyproxy.spanish.argentina "Spanska (Argentina)">
+<!ENTITY foxyproxy.serbian "Serbian">
 <!ENTITY foxyproxy.swedish "Svenska">
 <!ENTITY foxyproxy.thai.thailand "Thailändska (Thailand)">
 <!ENTITY foxyproxy.turkish "Turkiska">
 <!ENTITY foxyproxy.ukrainian "Ukrainska">
 <!ENTITY foxyproxy.your.language "Ditt språk">
 <!ENTITY foxyproxy.your.name.here "Ditt namn">
+<!ENTITY foxyproxy.anonymous "Anonymous">
 <!ENTITY foxyproxy.moveup.label "Flytta upp">
 <!ENTITY foxyproxy.moveup.tooltip "Öka prioritet för detta val">
 <!ENTITY foxyproxy.moveup.accesskey "u">

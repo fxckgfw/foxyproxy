@@ -180,6 +180,7 @@
 <!ENTITY foxyproxy.greek "希臘語">
 <!ENTITY foxyproxy.hungarian "匈牙利語">
 <!ENTITY foxyproxy.italian "義大利語">
+<!ENTITY foxyproxy.japanese "Japanese">
 <!ENTITY foxyproxy.persian "波斯語">
 <!ENTITY foxyproxy.polish "波蘭語">
 <!ENTITY foxyproxy.portugese.brazilian "葡萄牙語（巴西）">
@@ -189,12 +190,14 @@
 <!ENTITY foxyproxy.slovak "斯洛伐克語">
 <!ENTITY foxyproxy.spanish.spain "西班牙語（西班牙）">
 <!ENTITY foxyproxy.spanish.argentina "西班牙語（阿根廷）">
+<!ENTITY foxyproxy.serbian "Serbian">
 <!ENTITY foxyproxy.swedish "瑞典語">
 <!ENTITY foxyproxy.thai.thailand "泰語（泰國）">
 <!ENTITY foxyproxy.turkish "土耳其語">
 <!ENTITY foxyproxy.ukrainian "烏克蘭語">
 <!ENTITY foxyproxy.your.language "沒有你的語系？">
 <!ENTITY foxyproxy.your.name.here "點擊這裏加入翻譯行列！">
+<!ENTITY foxyproxy.anonymous "Anonymous">
 <!ENTITY foxyproxy.moveup.label "向上移動(U)">
 <!ENTITY foxyproxy.moveup.tooltip "提高選擇項目的優先權">
 <!ENTITY foxyproxy.moveup.accesskey "U">

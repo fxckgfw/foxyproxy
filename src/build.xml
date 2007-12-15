@@ -2,7 +2,7 @@
 <project name="foxyproxy" default="build-xpi">
 
   <!-- version property is appended to XPI filename; e.g., foxyproxy-1.0.xpi -->
-  <property name="version" value="2.6" />
+  <property name="version" value="2.6.1" />
   <property name="temp-path" value="../temp" />
   <property name="src-base" value="."/>
   <property name="target-path" value="../targets"/>

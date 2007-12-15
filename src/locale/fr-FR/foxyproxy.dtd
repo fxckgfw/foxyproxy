@@ -52,6 +52,8 @@
 <!ENTITY foxyproxy.auto.url.label "Adresse de configuration automatique du proxy">
 <!ENTITY foxyproxy.auto.url.accesskey "d">
 <!ENTITY foxyproxy.auto.url.tooltip "Entrer l&apos;URL du fichier PAC">
+<!ENTITY foxyproxy.auto.url.note.label "http(s)://   ftp://   file://   relative://">
+<!ENTITY foxyproxy.auto.url.note.tooltip "Click the info icon for information on relative://">
 <!ENTITY foxyproxy.port.label "Port">
 <!ENTITY foxyproxy.port.accesskey "P">
 <!ENTITY foxyproxy.port.tooltip "Port">
@@ -275,6 +277,11 @@
 <!ENTITY foxyproxy.pactip1.label "Pour des fichiers PAC stockés sur le disque dur, veuillez les faire débuter par file://. Par exemple, file://c:/chemin/proxy.pac sur Windows ou file:///home/users/joe/proxy.pac sur Unix/Linux/Mac">
 <!ENTITY foxyproxy.pactip2.label "Pour des fichiers PAC sur un serveur FTP, veuillez les faire débuter par ftp://. Par exemple, ftp://leahscape.com/path/proxy.pac">
 <!ENTITY foxyproxy.pactip3.label "Vous pouvez également utiliser http://, https:// et tout autre protocole pris en charge.">
+<!ENTITY foxyproxy.pactip4.label "Finally, if you need to refer to a PAC file on the local file system using a relative path, you can use the special FoxyProxy relative:// scheme. This is useful if your PAC file resides on a thumb drive. Supported relative paths are documented">
+<!ENTITY foxyproxy.pactip5.label "here">
+<!ENTITY foxyproxy.pactip6.label ". Special strings in the relative:// URL you specify are replaced with their corresponding values. For example, relative://ProfD/pacs/proxy3.pac points to the file proxy3.pac in the subdirectory of the">
+<!ENTITY foxyproxy.pactip7.label "Firefox profile directory">
+<!ENTITY foxyproxy.pactip8.label "named pacs/. With Portable Firefox on Windows, the Firefox profile directory is always a relative path because the drive letter can change across computers. Please note that special strings (ProfD, Home, TempD, etc.) are case-sensitive!">
 <!ENTITY foxyproxy.contextmenu.label "Afficher l&apos;icône dans le menu contextuel">
 <!ENTITY foxyproxy.contextmenu.accesskey "c">
 <!ENTITY foxyproxy.contextmenu.tooltip "Affiche l&apos;icône dans le menu contextuel">
@@ -408,6 +415,7 @@
 <!ENTITY foxyproxy.click.reloadtabsinbrowser "Recharge tous les onglets dans le navigateur courant">
 <!ENTITY foxyproxy.click.reloadtabsinallbrowsers "Recharge tous les onglets dans tous les navigateurs">
 <!ENTITY foxyproxy.click.removeallcookies "Supprime tous les cookies">
+<!ENTITY foxyproxy.click.toggle "Toggle between current mode and disabled">
 <!ENTITY foxyproxy.includeincycle.label "Inclure ce proxy lorsque l&apos;on passe de proxy en proxy en cliquant sur la barre d&apos;état ou la barre d&apos;outils (&quot;Paramètres généraux&quot; -&gt; &quot;Activation de la barre d&apos;état/d&apos;outils&quot; -&gt; &quot;Basculer de modes en modes&quot; doit être sélectionné)">
 <!ENTITY foxyproxy.includeincycle.accesskey "I">
 <!ENTITY foxyproxy.includeincycle.tooltip "Inclure ce proxy en cliquant sur la barre d&apos;état/d&apos;outils">

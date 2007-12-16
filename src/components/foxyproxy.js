@@ -219,7 +219,7 @@ biesi>	passing it the appropriate proxyinfo
       else
         mode = "disabled";
     }
-    this.previousMode = this.mode;
+    this._previousMode = this.mode;
     this._mode = mode;
 	  this._selectedProxy = null; // todo: really shouldn't do this in case something tries to load right after this instruction
     for (var i=0,len=this.proxies.length; i<len; i++) {
@@ -451,6 +451,11 @@ biesi>	passing it the appropriate proxyinfo
   },
 
   writeSettings : function(o) {
+    /*try {
+      throw new Error("e");
+    }
+    catch (e) {dump (e.stack + "\n");}*/
+
     !o && (o = gFP.getPrefsService("extensions.foxyproxy.").getCharPref("settings"));
     o = gFP.transformer(o, CI.nsIFile);
     var foStream = CC["@mozilla.org/network/file-output-stream;1"].

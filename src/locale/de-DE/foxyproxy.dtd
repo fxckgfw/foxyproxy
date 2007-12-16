@@ -53,7 +53,7 @@
 <!ENTITY foxyproxy.auto.url.accesskey "U">
 <!ENTITY foxyproxy.auto.url.tooltip "URL der PAC-Datei eingeben">
 <!ENTITY foxyproxy.auto.url.note.label "http(s)://   ftp://   file://   relative://">
-<!ENTITY foxyproxy.auto.url.note.tooltip "Click the info icon for information on relative://">
+<!ENTITY foxyproxy.auto.url.note.tooltip "Klicken Sie das Info-Icon für Informationen über relative://">
 <!ENTITY foxyproxy.port.label "Port">
 <!ENTITY foxyproxy.port.accesskey "P">
 <!ENTITY foxyproxy.port.tooltip "Port">
@@ -157,7 +157,7 @@
 <!ENTITY foxyproxy.blacklist.accesskey "B">
 <!ENTITY foxyproxy.blacklist.tooltip "URLs, die dieses Muster akzeptiert, werden NICHT über diesen Proxy geladen">
 <!ENTITY foxyproxy.blacklist.description.label "URLs, die dieses Muster akzeptiert, werden NICHT über diesen Proxy geladen">
-<!ENTITY foxyproxy.whiteblack.description.label "Muster der Blacklist (exklusiv) haben Vorrang vor Mustern der Whitelist(inklusiv): Falls eine URL sowohl von einem Muster der Whitelist als auch von einem Muster der Blacklist für denselben Proxy akzeptiert wird, wird die URL nicht über dieses Proxy geladen.">
+<!ENTITY foxyproxy.whiteblack.description.label "Muster der Blacklist (exklusiv) haben Vorrang vor Mustern der Whitelist (inklusiv): Falls eine URL sowohl von einem Muster der Whitelist als auch von einem Muster der Blacklist für denselben Proxy akzeptiert wird, wird die URL nicht über dieses Proxy geladen.">
 <!ENTITY foxyproxy.usingPFF.label1 "Ich benutze">
 <!ENTITY foxyproxy.usingPFF.label2 "Portable Firefox">
 <!ENTITY foxyproxy.usingPFF.accesskey "P">
@@ -180,7 +180,7 @@
 <!ENTITY foxyproxy.greek "Griechisch">
 <!ENTITY foxyproxy.hungarian "Ungarisch">
 <!ENTITY foxyproxy.italian "Italienisch">
-<!ENTITY foxyproxy.japanese "Japanese">
+<!ENTITY foxyproxy.japanese "Japanisch">
 <!ENTITY foxyproxy.persian "Persisch">
 <!ENTITY foxyproxy.polish "Polnisch">
 <!ENTITY foxyproxy.portugese.brazilian "Portugiesisch (Brasilianisch)">
@@ -190,14 +190,14 @@
 <!ENTITY foxyproxy.slovak "Slowakisch">
 <!ENTITY foxyproxy.spanish.spain "Spanisch (Spanien)">
 <!ENTITY foxyproxy.spanish.argentina "Spanisch (Argentinien)">
-<!ENTITY foxyproxy.serbian "Serbian">
+<!ENTITY foxyproxy.serbian "Serbisch">
 <!ENTITY foxyproxy.swedish "Schwedisch">
 <!ENTITY foxyproxy.thai.thailand "Thailändisch (Thailand)">
 <!ENTITY foxyproxy.turkish "Türkisch">
 <!ENTITY foxyproxy.ukrainian "Ukrainisch">
 <!ENTITY foxyproxy.your.language "Deine Sprache">
 <!ENTITY foxyproxy.your.name.here "Dein Name hier!">
-<!ENTITY foxyproxy.anonymous "Anonymous">
+<!ENTITY foxyproxy.anonymous "Anonym">
 <!ENTITY foxyproxy.moveup.label "Aufwärts">
 <!ENTITY foxyproxy.moveup.tooltip "Priorität der aktuellen Auswahl erhöhen">
 <!ENTITY foxyproxy.moveup.accesskey "U">
@@ -282,9 +282,9 @@
 <!ENTITY foxyproxy.pactip3.label "Sie können auch http://, https:// oder ein beliebiges anderes unterstütztes Schema verwenden.">
 <!ENTITY foxyproxy.pactip4.label "Finally, if you need to refer to a PAC file on the local file system using a relative path, you can use the special FoxyProxy relative:// scheme. This is useful if your PAC file resides on a thumb drive. Supported relative paths are documented">
 <!ENTITY foxyproxy.pactip5.label "here">
-<!ENTITY foxyproxy.pactip6.label ". Special strings in the relative:// URL you specify are replaced with their corresponding values. For example, relative://ProfD/pacs/proxy3.pac points to the file proxy3.pac in the subdirectory of the">
-<!ENTITY foxyproxy.pactip7.label "Firefox profile directory">
-<!ENTITY foxyproxy.pactip8.label "named pacs/. With Portable Firefox on Windows, the Firefox profile directory is always a relative path because the drive letter can change across computers. Please note that special strings (ProfD, Home, TempD, etc.) are case-sensitive!">
+<!ENTITY foxyproxy.pactip6.label ". Reservierte Ausdrücke in der angegebenen relative://-URL werden durch ihre zugeordneten Werte ersetzt. Beispielsweise referenziert &quot;relative://ProfD/pacs/proxy3.pac&quot; die Datei &quot;proxy3.pac&quot; im Unterverzeichnis &quot;pacs/&quot; des">
+<!ENTITY foxyproxy.pactip7.label "Firefox-Profilverzeichnisses">
+<!ENTITY foxyproxy.pactip8.label ". Mit Portable Firefox auf Windows wird für das Firefox-Profilverzeichnis grundsätzlich ein relativer Pfad verwendet, da der Laufwerksbuchstabe sich für jeden Computer unterscheiden kann. Bitte beachten Sie die Groß-/Kleinschreibung bei reservierten Ausdrücken (ProfD, Home, TempD, etc.).">
 <!ENTITY foxyproxy.contextmenu.label "FoxyProxy im Kontextmenü anzeigen">
 <!ENTITY foxyproxy.contextmenu.accesskey "K">
 <!ENTITY foxyproxy.contextmenu.tooltip "Zeige FoxyProxy im Kontextmenü">
@@ -354,7 +354,7 @@
 <!ENTITY foxyproxy.pattern.template.reference.accesskey "S">
 <!ENTITY foxyproxy.pattern.template.reference.tooltip "Referenz zu Musterschablonen">
 <!ENTITY foxyproxy.pattern.template.reference.subtitle.label "URL-Musterschablonen definieren das Format, in dem URLs per QuickAdd oder AutoAdd zu Proxies hinzugefügt werden. In einer Schablone werden die folgenden reservierten Strings bei der Ausführung von QuickAdd oder AutoAdd durch die korrespondierenden URL-Komponenten aus der Adresszeile ersetzt.">
-<!ENTITY foxyproxy.pattern.template.reference.specialstring.label "Reservierter String">
+<!ENTITY foxyproxy.pattern.template.reference.specialstring.label "Reservierter Ausdruck">
 <!ENTITY foxyproxy.pattern.template.reference.subststring.label "Ersetzung durch">
 <!ENTITY foxyproxy.pattern.template.reference.example.label "Beispiel">
 <!ENTITY foxyproxy.pattern.template.reference.scheme.label "Protokoll">

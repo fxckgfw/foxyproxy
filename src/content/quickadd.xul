@@ -23,6 +23,7 @@
   windowtype="foxyproxy-quickadd">
 
 <script src="quickadd.js"/>
+<script src="common.js"/>
 
 <separator class="thin" />
 <groupbox>

@@ -102,7 +102,7 @@ foxyproxy.prototype = {
 			  // Did the last browser window close? It could be that the DOM inspector, JS console,
 			  // or the non-last browser window just closed. In that case, don't close FoxyProxy.
 		    var wm = CC["@mozilla.org/appshell/window-mediator;1"].getService(CI.nsIWindowMediator);
-		    var win = wm.getMostRecentWindow("navigator:browser");
+		    var win = wm.getMostRecentWindow("navigator:browser") || wm.getMostRecentWindow("Songbird:Main");
 		    if (!win) {
 				  this.closeAppWindows("foxyproxy", wm);
 				  this.closeAppWindows("foxyproxy-quickadd", wm);
@@ -1044,7 +1044,7 @@ biesi>	passing it the appropriate proxyinfo
       	(!this.timer && (this.timer = CC["@mozilla.org/timer;1"].createInstance(CI.nsITimer)));
       	this.timer.cancel();
 		    var wm = CC["@mozilla.org/appshell/window-mediator;1"].getService(CI.nsIWindowMediator);
-		    var win = wm.getMostRecentWindow("navigator:browser");
+		    var win = wm.getMostRecentWindow("navigator:browser") || wm.getMostRecentWindow("Songbird:Main");
 		    try {
 			    var doc = win.parent.document;
 	        this.tooltip = doc.getElementById("foxyproxy-popup");

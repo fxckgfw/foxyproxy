@@ -13,7 +13,7 @@ var overlay;
 
 function onOK() {
   var r = document.getElementById("regex").selected;
-  var p = overlay.common.validatePattern(window, r, document.getElementById("pattern").value);
+  var p = foxyproxy_common.validatePattern(window, r, document.getElementById("pattern").value);
   if (p) {
 	  window.arguments[0].out = {name:document.getElementById("name").value,
 	    pattern:p, isRegEx:r,

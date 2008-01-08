@@ -218,7 +218,7 @@ var foxyproxy = {
  					fp.quickadd.notify = p.out.notify;
  					fp.quickadd.prompt = p.out.prompt;
  					fp.quickadd.notifyWhenCanceled = p.out.notifyWhenCanceled;
- 					this.common.onQuickAddProxyChanged(p.out.proxy);
+ 					foxyproxy_common.onQuickAddProxyChanged(p.out.proxy);
  					fp.quickadd.urlTemplate = p.out.urlTemplate;
  					fp.quickadd.setMatchIsRegEx(p.out.matchType=="r");
 					_qAdd();
@@ -332,7 +332,7 @@ var foxyproxy = {
     var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
              .getService(Components.interfaces.nsIWindowMediator);
 
-    var winEnum = wm.getEnumerator("navigator:browser");
+    var winEnum = wm.getEnumerator("navigator:browser") || wm.getMostRecentWindow("Songbird:Main");
     while (winEnum.hasMoreElements()) {
       var win = winEnum.getNext();
       var browser = win.getBrowser();
@@ -346,7 +346,7 @@ var foxyproxy = {
     }
 
     // Our URL isn't open. Open it now.
-    var w = wm.getMostRecentWindow("navigator:browser");
+    var w = wm.getMostRecentWindow("navigator:browser") || wm.getMostRecentWindow("Songbird:Main");
     if (w) {
       // Use an existing browser window
       w.delayedOpenTab(aURL, null, null, null, null);
@@ -802,86 +802,6 @@ var foxyproxy = {
 	  		this.updateViews(false, true);
 	  	}
 	  }
-	},
-
-  // common fcns used in options.js and quickadd.js	and elsewhere
-	common : {
-		fp : Components.classes["@leahscape.org/foxyproxy/service;1"]
-         .getService(Components.interfaces.nsISupports).wrappedJSObject,
-
-		validatePattern : function(win, isRegEx, p, msgPrefix) {
-		  var origPat = p;
-		  p = p.replace(/^\s*|\s*$/g,"");
-		  if (p == "") {
-		    foxyproxy.alert(window, (msgPrefix?msgPrefix+": ":"") + this.fp.getMessage("pattern.required"));
-		    return false;
-		  }
-	  	if (isRegEx) {
-		    try {
-			    new RegExp((p[0]=="^"?"":"^") + p + (p[p.length-1]=="$"?"":"$"));
-		    }
-		    catch(e) {
-			    foxyproxy.alert(win, (msgPrefix?msgPrefix+": ":"") + this.fp.getMessage("pattern.invalid.regex", [origPat]));
-		    	return false;
-		    }
-		  }
-		  else if (p.indexOf("*") == -1 && p.indexOf("?") == -1 && !this.fp.warnings.noWildcards) {
-		    // No wildcards present; warn user
-		    var cb = {};
-				var ret = (Components.classes["@mozilla.org/embedcomp/prompt-service;1"].getService(Components.interfaces.nsIPromptService)
-					.confirmCheck(win, this.fp.getMessage("foxyproxy"), (msgPrefix?msgPrefix+": ":"") + this.fp.getMessage("no.wildcard.characters", [p]), this.fp.getMessage("message.stop"), cb));
-			  this.fp.warnings.noWildcards = cb.value;
-			  if (!ret) return false;
-		  }
-		  return p;
-		},
-
-		onQuickAddProxyChanged : function(proxyId) {
-			var fp = Components.classes["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;
-			fp.quickadd.proxy = fp.proxies.getProxyById(proxyId);
-		},
-
-		removeChildren : function(node) {
-		  while (node.hasChildNodes())
-		    node.removeChild(node.firstChild);
-		},
-
-		createMenuItem : function(args) {
-		  var doc = args.document || document;
-		  var e = doc.createElement("menuitem");
-		  e.setAttribute("id", args["idVal"]);
-		  e.setAttribute("label", args["labelId"]?this.fp.getMessage(args["labelId"], args["labelArgs"]) : args["labelVal"]);
-		  e.setAttribute("value", args["idVal"]);
-		  args["type"] && e.setAttribute("type", args["type"]);
-		  args["name"] && e.setAttribute("name", args["name"]);
-		  return e;
-		},
-
-		updateSuperAddProxyMenu : function(superadd, menu, fcn, doc) {
-			if (!superadd.enabled) return;
-		  var popup=menu.firstChild;
-			this.removeChildren(popup);
-		  for (var i=0,c=0,p; i<this.fp.proxies.length && ((p=this.fp.proxies.item(i)) || 1); i++) {
-		    if (!p.lastresort && p.enabled) {
-		    	popup.appendChild(this.createMenuItem({idVal:p.id, labelVal:p.name, type:"radio", name:"foxyproxy-enabled-type",
-		    		document:doc}));
- 			    //popup.appendChild(this.createMenuItem({idVal:"disabled", labelId:"mode.disabled.label"}));
-		    	c++;
-		    }
-		  }
-			function selFirst() {
-		    // select the first one
-		    var temp = popup.firstChild && popup.firstChild.id;
-		    temp && fcn((menu.value = temp));
-		  }
-
-		  if (superadd.proxy) {
-		  	menu.value = superadd.proxy.id;
-		  }
-		  else
-			  selFirst();
-			menu.selectedIndex == -1 && selFirst();
-		}
 	}
 };
 

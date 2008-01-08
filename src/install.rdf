@@ -10,10 +10,14 @@
                    em:id="{a463f10c-3994-11da-9945-000d60ca027b}"
                    em:maxVersion="1.0+"
                    em:minVersion="1.0+" />
+  <RDF:Description RDF:about="rdf:#$3Op5C"
+                   em:id="songbird@songbirdnest.com"                   
+                   em:minVersion="0.4"
+                   em:maxVersion="0.4"/>
   <RDF:Description RDF:about="urn:mozilla:install-manifest"
                    em:id="foxyproxy@eric.h.jung"
                    em:name="FoxyProxy"
-                   em:version="2.6.2"
+                   em:version="2.6.3"
                    em:creator="LeahScape, Inc."
                    em:description="Premier proxy management for Firefox"
                    em:homepageURL="http://foxyproxy.mozdev.org"
@@ -22,5 +26,6 @@
                    em:iconURL="chrome://foxyproxy/content/images/foxyproxy-nocopy.gif">
     <em:targetApplication RDF:resource="rdf:#$.Np5B"/>
     <em:targetApplication RDF:resource="rdf:#$3Op5B"/>
+    <em:targetApplication RDF:resource="rdf:#$3Op5C"/>
   </RDF:Description>
 </RDF:RDF>

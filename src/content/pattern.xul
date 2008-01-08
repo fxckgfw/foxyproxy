@@ -21,6 +21,7 @@
   windowtype="foxyproxy">
 
 <script src="pattern.js"/>
+<script src="common.js"/>
 
 <grid flex="1">
   <columns>

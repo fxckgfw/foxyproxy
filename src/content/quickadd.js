@@ -17,7 +17,7 @@ var observer = {
 };
 function onOK() {	  
   var r = document.getElementById("regex").selected;
-  var p = overlay.common.validatePattern(window, r, document.getElementById("quickAddTemplateExample2").value);
+  var p = foxyproxy_common.validatePattern(window, r, document.getElementById("quickAddTemplateExample2").value);
   if (p) {
 	  cleanup();
 		window.arguments[0].out	= {reload:document.getElementById("quickAddReload").checked,
@@ -51,7 +51,7 @@ function updateView() {
   document.getElementById("quickAddNotify").checked = fp.quickadd.notify; 
   document.getElementById("quickAddNotifyWhenCanceled").checked = fp.quickadd.notifyWhenCanceled;   
   document.getElementById("quickAddPrompt").checked = fp.quickadd.prompt;   
-  common.updateSuperAddProxyMenu(fp.quickadd, document.getElementById("quickAddProxyMenu"), common.onQuickAddProxyChanged, document);
+  foxyproxy_common.updateSuperAddProxyMenu(fp.quickadd, document.getElementById("quickAddProxyMenu"), foxyproxy_common.onQuickAddProxyChanged, document);
 }
 
 function onLoad() {

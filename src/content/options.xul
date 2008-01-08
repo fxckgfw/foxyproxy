@@ -19,7 +19,8 @@
 	width="&foxyproxy.options.width;" height="&foxyproxy.options.height;"
 	persist="screenX screenY width height" onload="onLoad();" context="mainPopup">
 
-	<script src="options.js" />
+	<script src="options.js"/>
+  <script src="common.js"/>
 	<vbox>
 		<!-- menu -->
 		<toolbox>
@@ -511,7 +512,7 @@
 									accesskey="&foxyproxy.quickadd.proxy.accesskey;"/>
 								<menulist id="quickAddProxyMenu"
 									tooltiptext="&foxyproxy.quickadd.proxy.tooltip;"
-									oncommand="overlay.common.onQuickAddProxyChanged(this.value);"
+									oncommand="foxyproxy_common.onQuickAddProxyChanged(this.value);"
 									style="min-height: 1.8em;" flex="1">
 									<menupopup/>
 								</menulist>

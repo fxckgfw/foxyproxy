@@ -18,8 +18,12 @@ function onLoad() {
   foxyproxy = CC["@leahscape.org/foxyproxy/service;1"]
     .getService(CI.nsISupports).wrappedJSObject;
   document.getElementById("maxSize").value = foxyproxy.logg.maxSize;    
-  overlay = CC["@mozilla.org/appshell/window-mediator;1"]
-    .getService(CI.nsIWindowMediator).getMostRecentWindow("navigator:browser").foxyproxy;    
+
+  var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
+      .getService(Components.interfaces.nsIWindowMediator);
+  wm = wm.getMostRecentWindow("navigator:browser") || wm.getMostRecentWindow("Songbird:Main");
+  overlay = wm.foxyproxy;
+
 	common=overlay.common;
   monthslong = [foxyproxy.getMessage("months.long.1"), foxyproxy.getMessage("months.long.2"),
     foxyproxy.getMessage("months.long.3"), foxyproxy.getMessage("months.long.4"), foxyproxy.getMessage("months.long.5"),
@@ -137,13 +141,13 @@ function zf(c, n) { c=""+c; return c.length == 1 ? (n==2?'0'+c:'00'+c) : (c.leng
 function _updateModeMenu() {
 	var menu = document.getElementById("modeMenu");	
 	var popup=menu.firstChild;
-	common.removeChildren(popup);
+	foxyproxy_common.removeChildren(popup);
 	
-  popup.appendChild(common.createMenuItem({idVal:"patterns", labelId:"mode.patterns.label", document:document}));
+  popup.appendChild(foxyproxy_common.createMenuItem({idVal:"patterns", labelId:"mode.patterns.label", document:document}));
   for (var i=0,p; i<foxyproxy.proxies.length && ((p=foxyproxy.proxies.item(i)) || 1); i++)
-    popup.appendChild(common.createMenuItem({idVal:p.id, labelId:"mode.custom.label", labelArgs:[p.name], type:"radio", name:"foxyproxy-enabled-type", document:document}));
-    //popup.appendChild(common.createMenuItem({idVal["random", labelId:"mode.random.label", document:document}));
-  popup.appendChild(common.createMenuItem({idVal:"disabled", labelId:"mode.disabled.label", document:document}));
+    popup.appendChild(foxyproxy_common.createMenuItem({idVal:p.id, labelId:"mode.custom.label", labelArgs:[p.name], type:"radio", name:"foxyproxy-enabled-type", document:document}));
+    //popup.appendChild(foxyproxy_common.createMenuItem({idVal["random", labelId:"mode.random.label", document:document}));
+  popup.appendChild(foxyproxy_common.createMenuItem({idVal:"disabled", labelId:"mode.disabled.label", document:document}));
   menu.value = foxyproxy.mode;
   if (foxyproxy.mode != "patterns" && foxyproxy.mode != "disabled" &&
   	foxyproxy.mode != "random") {
@@ -208,14 +212,14 @@ function _updateView(writeSettings, updateLogView) {
 	_updateModeMenu();
   
   var menu = document.getElementById("autoAddProxyMenu");
-  common.updateSuperAddProxyMenu(foxyproxy.autoadd, menu, onAutoAddProxyChanged, document);
+  foxyproxy_common.updateSuperAddProxyMenu(foxyproxy.autoadd, menu, onAutoAddProxyChanged, document);
   if (!menu.firstChild.firstChild) {
  		document.getElementById("autoAddEnabled").checked = false;
  		onAutoAddEnabled(false);
  	}
 
   menu = document.getElementById("quickAddProxyMenu");
-  common.updateSuperAddProxyMenu(foxyproxy.quickadd, menu, common.onQuickAddProxyChanged, document);
+  foxyproxy_common.updateSuperAddProxyMenu(foxyproxy.quickadd, menu, foxyproxy_common.onQuickAddProxyChanged, document);
   if (!menu.firstChild.firstChild) {
  		document.getElementById("quickAddEnabled").checked = false;
  		onQuickAddEnabled(false);
@@ -375,7 +379,7 @@ function onAutoAddEnabled(cb) {
 		if (foxyproxy.autoadd.allowed()) {
 	  	foxyproxy.autoadd.enabled = true;
 		 	document.getElementById("autoAddBroadcaster").hidden = false;	  	
-			common.updateSuperAddProxyMenu(foxyproxy.autoadd, document.getElementById("autoAddProxyMenu"), onAutoAddProxyChanged, document);
+			foxyproxy_common.updateSuperAddProxyMenu(foxyproxy.autoadd, document.getElementById("autoAddProxyMenu"), onAutoAddProxyChanged, document);
 		  overlay.alert(this, foxyproxy.getMessage("autoadd.notice"));
 		}
 		else {
@@ -394,7 +398,7 @@ function onQuickAddEnabled(cb) {
 		if (foxyproxy.quickadd.allowed()) {
 	  	foxyproxy.quickadd.enabled = true;
 		 	document.getElementById("quickAddBroadcaster").hidden = false;	  	
-			common.updateSuperAddProxyMenu(foxyproxy.quickadd, document.getElementById("quickAddProxyMenu"), common.onQuickAddProxyChanged, document);
+			foxyproxy_common.updateSuperAddProxyMenu(foxyproxy.quickadd, document.getElementById("quickAddProxyMenu"), foxyproxy_common.onQuickAddProxyChanged, document);
 		  //overlay.alert(this, foxyproxy.getMessage("autoadd.notice"));
 		}
 		else {
@@ -460,8 +464,8 @@ function _isDefaultProxySelected() {
 
 function onOK() {
   var r1 = document.getElementById("autoAddRegEx").selected,
-    p1 = overlay.common.validatePattern(window, r1, document.getElementById("autoAddTemplateExample2").value, foxyproxy.getMessage("foxyproxy.tab.autoadd.label")),
+    p1 = foxyproxy_common.validatePattern(window, r1, document.getElementById("autoAddTemplateExample2").value, foxyproxy.getMessage("foxyproxy.tab.autoadd.label")),
     r2 = document.getElementById("quickAddRegEx").selected,
-    p2 = overlay.common.validatePattern(window, r2, document.getElementById("quickAddTemplateExample2").value, foxyproxy.getMessage("foxyproxy.quickadd.label"));
+    p2 = foxyproxy_common.validatePattern(window, r2, document.getElementById("quickAddTemplateExample2").value, foxyproxy.getMessage("foxyproxy.quickadd.label"));
   p1 && p2 && window.close();
 }

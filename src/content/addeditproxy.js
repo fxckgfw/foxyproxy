@@ -14,8 +14,11 @@ const CI = Components.interfaces, CC = Components.classes;
 
 function onLoad() {
 	isWindows = CC["@mozilla.org/xre/app-info;1"].getService(CI.nsIXULRuntime).OS == "WINNT";
-	overlay = CC["@mozilla.org/appshell/window-mediator;1"]
-	    .getService(CI.nsIWindowMediator).getMostRecentWindow("navigator:browser").foxyproxy;
+  var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
+      .getService(Components.interfaces.nsIWindowMediator);
+  wm = wm.getMostRecentWindow("navigator:browser") || wm.getMostRecentWindow("Songbird:Main");
+  overlay = wm.foxyproxy;
+
 	autoconfurl = document.getElementById("autoconfurl");
   foxyproxy = CC["@leahscape.org/foxyproxy/service;1"]
     .getService(CI.nsISupports).wrappedJSObject;
@@ -252,9 +255,7 @@ function toggleMode(mode) {
 }
 
 function onHelp() {
-  CC["@mozilla.org/appshell/window-mediator;1"]
-    .getService(CI.nsIWindowMediator).getMostRecentWindow("navigator:browser").foxyproxy
-    .openAndReuseOneTabPerURL("http://foxyproxy.mozdev.org/quickstart.html");
+  overlay.openAndReuseOneTabPerURL("http://foxyproxy.mozdev.org/quickstart.html");
 }
 
 function onViewAutoConf() {

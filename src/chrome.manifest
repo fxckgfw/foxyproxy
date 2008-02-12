@@ -1,4 +1,5 @@
 content	foxyproxy	content/
+
 locale	foxyproxy	cs-CZ	locale/cs-CZ/
 locale	foxyproxy	da-DK	locale/da-DK/
 locale	foxyproxy	de-DE	locale/de-DE/
@@ -25,15 +26,22 @@ locale	foxyproxy	tr-TR	locale/tr-TR/
 locale	foxyproxy	uk-UA	locale/uk-UA/
 locale	foxyproxy	zh-CN	locale/zh-CN/
 locale	foxyproxy	zh-TW	locale/zh-TW/
-skin	  foxyproxy	classic/1.0	skin/
 
+#Firefox
+skin	  foxyproxy	classic/1.0	skin/	application={ec8030f7-c20a-464f-9b0e-13a3a9e97384}
 overlay	chrome://browser/content/browser.xul	chrome://foxyproxy/content/firefoxOverlay.xul	application={ec8030f7-c20a-464f-9b0e-13a3a9e97384}
 overlay	chrome://browser/content/preferences/preferences.xul	chrome://foxyproxy/content/firefoxOptionsOverlay.xul	application={ec8030f7-c20a-464f-9b0e-13a3a9e97384}
 overlay	chrome://global/content/alerts/alert.xul	chrome://foxyproxy/content/alertOverlay.xul	application={ec8030f7-c20a-464f-9b0e-13a3a9e97384}
 style	chrome://global/content/customizeToolbar.xul	chrome://foxyproxy/content/foxyproxy.css	application={ec8030f7-c20a-464f-9b0e-13a3a9e97384}
 
+#Tbird (incomplete)
 overlay	chrome://messenger/content/messenger.xul	chrome://foxyproxy/content/tbirdOverlay.xul	application={3550f703-e582-4d05-9a08-453d09bdfdc6}
 style	chrome://messenger/content/messenger.xul	chrome://foxyproxy/content/foxyproxy.css	application={3550f703-e582-4d05-9a08-453d09bdfdc6}
 style	chrome://global/content/customizeToolbar.xul	chrome://foxyproxy/content/foxyproxy.css	application={3550f703-e582-4d05-9a08-453d09bdfdc6}
 
-overlay chrome://songbird/content/xul/mainScriptsOverlay.xul chrome://foxyproxy/content/firefoxOverlay.xul
+# Songbird
+overlay	chrome://songbird/content/xul/mainScriptsOverlay.xul	chrome://foxyproxy/content/firefoxOverlay.xul
+# Songbird-specific styles for the Tools->FoxyProxy menu
+style	chrome://songbird/content/xul/mainScriptsOverlay.xul	chrome://foxyproxy/content/foxyproxySongbird.css	application=songbird@songbirdnest.com
+# Songbird-specific styles for the options dialog
+style	chrome://foxyproxy/content/options.xul chrome://foxyproxy/content/foxyproxySongbird.css	application=songbird@songbirdnest.com

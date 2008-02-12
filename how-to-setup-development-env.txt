@@ -27,9 +27,9 @@ For build instructions, see how-to-build.txt
 6. Close FF.
 
 7. Find the new profile on your hard drive. Go to its extensions\ directory;
-   e.g., C:\Documents and Settings\EricJu\Application Data\Mozilla\Firefox\
+   e.g., C:\Documents and Settings\EricJung\Application Data\Mozilla\Firefox\
             Profiles\g1jro8hx.dev\extensions
-   and create a file named {foxyproxy@eric.h.jung}
+   and create a file named foxyproxy@eric.h.jung
    It should contain a single line that is the path to the src directory you checked
    out from FoxyProxy's subversion repository. e.g.:
      <drive>:\dev\foxyproxy\trunk\src

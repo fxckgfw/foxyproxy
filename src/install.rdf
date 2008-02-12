@@ -13,7 +13,7 @@
   <RDF:Description RDF:about="rdf:#$3Op5C"
                    em:id="songbird@songbirdnest.com"                   
                    em:minVersion="0.4"
-                   em:maxVersion="0.4"/>
+                   em:maxVersion="0.5"/>
   <RDF:Description RDF:about="urn:mozilla:install-manifest"
                    em:id="foxyproxy@eric.h.jung"
                    em:name="FoxyProxy"

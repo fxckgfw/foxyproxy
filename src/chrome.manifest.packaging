@@ -41,6 +41,8 @@ style	chrome://global/content/customizeToolbar.xul	chrome://foxyproxy/content/fo
 
 # Songbird
 overlay	chrome://songbird/content/xul/mainScriptsOverlay.xul	chrome://foxyproxy/content/firefoxOverlay.xul	application=songbird@songbirdnest.com
+overlay chrome://browser/content/preferences/preferences.xul    chrome://foxyproxy/content/firefoxOptionsOverlay.xul    application=songbird@songbirdnest.com
+overlay chrome://browser/content/alerts/alert.xul   chrome://foxyproxy/content/alertOverlay.xul application=songbird@songbirdnest.com
 # Songbird-specific styles for the Tools->FoxyProxy menu
 style	chrome://songbird/content/xul/mainScriptsOverlay.xul	chrome://foxyproxy/content/foxyproxySongbird.css	application=songbird@songbirdnest.com
 # Songbird-specific styles for the options dialog

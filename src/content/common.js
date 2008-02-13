@@ -23,6 +23,38 @@ var foxyproxy_common = {
     return tmp.getMostRecentWindow("navigator:browser") || tmp.getMostRecentWindow("Songbird:Main");
   },
 
+  openAndReuseOneTabPerURL : function(aURL) {
+    var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
+             .getService(Components.interfaces.nsIWindowMediator);
+
+    var winEnum = wm.getEnumerator("navigator:browser") || wm.getMostRecentWindow("Songbird:Main");
+    while (winEnum.hasMoreElements()) {
+      var win = winEnum.getNext();
+      var browser = win.getBrowser();
+      for (var i = 0; i < browser.mTabs.length; i++) {
+        if (aURL == browser.getBrowserForTab(browser.mTabs[i]).currentURI.spec) {
+          win.focus(); // bring wnd to the foreground
+          browser.selectedTab = browser.mTabs[i];
+          return;
+        }
+      }
+    }
+
+    // Our URL isn't open. Open it now.
+    var w = wm.getMostRecentWindow("navigator:browser") || wm.getMostRecentWindow("Songbird:Main");
+    if (w) {
+      // Use an existing browser window
+      if (!w.delayedOpenTab) { // SongBird 0.4
+        dump("!\n");
+        setTimeout(function(aTabElt) { w.gBrowser.selectedTab = aTabElt; }, 0, w.gBrowser.addTab(aURL, null, null, null));
+      }
+      else // FF
+        w.delayedOpenTab(aURL, null, null, null, null);
+    }
+    else
+      window.open(aURL);
+  },
+  
   validatePattern : function(win, isRegEx, p, msgPrefix) {
     var origPat = p;
     p = p.replace(/^\s*|\s*$/g,"");
@@ -51,7 +83,6 @@ var foxyproxy_common = {
   },
 
   onQuickAddProxyChanged : function(proxyId) {
-    var fp = Components.classes["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;
     fp.quickadd.proxy = fp.proxies.getProxyById(proxyId);
   },
 

@@ -31,7 +31,7 @@
 <vbox align="center">
   <hbox align="center">
   	<image id="foxyproxy-image"
-      onclick="overlay.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/');"
+      onclick="foxyproxy_common.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/');"
   		tooltiptext="http://foxyproxy.mozdev.org/"/>
 
 	  <grid style="margin-left: 1em;">
@@ -49,7 +49,7 @@
 	    	<row>
 	    		<label value="&foxyproxy.createdBy;"/>
 			  	<label value="Eric H. Jung" class="text-link"
-			    	onclick="overlay.openAndReuseOneTabPerURL('mailto:eric.jung@yahoo.com');" tooltiptext="mailto:eric.jung@yahoo.com"/>
+			    	onclick="foxyproxy_common.openAndReuseOneTabPerURL('mailto:eric.jung@yahoo.com');" tooltiptext="mailto:eric.jung@yahoo.com"/>
 	    	</row>
 	    	<row>
 	    		<label value="&foxyproxy.website;"/>
@@ -64,10 +64,10 @@
 		   <label value="&foxyproxy.released;"/>
 			 <label value="http://foxyproxy.mozdev.org"
 			       class="text-link"
-			       onclick="overlay.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/');" tooltiptext="http://foxyproxy.mozdev.org/"/>
+			       onclick="foxyproxy_common.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/');" tooltiptext="http://foxyproxy.mozdev.org/"/>
 			 <label value="http://passwordmaker.org"
 			       class="text-link"
-			       onclick="overlay.openAndReuseOneTabPerURL('http://passwordmaker.org/');" tooltiptext="http://passwordmaker.org/"/>
+			       onclick="foxyproxy_common.openAndReuseOneTabPerURL('http://passwordmaker.org/');" tooltiptext="http://passwordmaker.org/"/>
 	   </rows>
 	 </groupbox>
 
@@ -97,7 +97,7 @@
 						<row><label value="&foxyproxy.danish;"/><label value="AlleyKat" style="font-weight: bold;"/></row>
 						<row><label value="&foxyproxy.dutch;"/><label value="markh" style="font-weight: bold;"/></row>
 						<row><label value="&foxyproxy.english;"/><label value="Eric H. Jung" class="text-link" style="font-weight: bold;"
-				    	onclick="overlay.openAndReuseOneTabPerURL('mailto:eric.jung@yahoo.com');" tooltiptext="mail"/></row>
+				    	onclick="foxyproxy_common.openAndReuseOneTabPerURL('mailto:eric.jung@yahoo.com');" tooltiptext="mail"/></row>
 						<row><label value="&foxyproxy.french;"/><label value="Goofy, jojaba, arno" style="font-weight: bold;"/></row>
 						<row><label value="&foxyproxy.german;"/><label value="Jörn Hartroth," style="font-weight: bold;"/></row>
 						<row><spacer/><label value="Marten Seeman" style="font-weight: bold;"/></row>
@@ -122,7 +122,7 @@
 						<row><label value="&foxyproxy.slovak;"/><label value="Rastislav Hubocan" style="font-weight: bold;"/></row>
 						<row><label value="&foxyproxy.spanish.argentina;"/><label value="acushnir" style="font-weight: bold;"/></row>
 						<row><label value="&foxyproxy.spanish.spain;"/><label value="Proyecto Nave"
-							onclick="overlay.openAndReuseOneTabPerURL('http://www.proyectonave.es/');"
+							onclick="foxyproxy_common.openAndReuseOneTabPerURL('http://www.proyectonave.es/');"
 			        class="text-link" stlye="font-weight: bold;" tooltiptext="http://www.proyectonave.es/"/></row>
 						<row><label value="&foxyproxy.thai.thailand;"/><label value="Qen" style="font-weight: bold;"/></row>
 						<row><label value="&foxyproxy.turkish;"/><label value="consyst" style="font-weight: bold;"/></row>
@@ -130,7 +130,7 @@
 						<row><label value="&foxyproxy.swedish;"/><label value="StiffeL" style="font-weight: bold;"/></row>
 						<row><label value="&foxyproxy.ukrainian;"/><label value="MozUA" style="font-weight: bold;"/></row>
 			      <row><label value="&foxyproxy.your.language;"/>
-			        <label value="&foxyproxy.your.name.here;" onclick="overlay.openAndReuseOneTabPerURL('http://www.babelzilla.org/');"
+			        <label value="&foxyproxy.your.name.here;" onclick="foxyproxy_common.openAndReuseOneTabPerURL('http://www.babelzilla.org/');"
 			          class="text-link" style="font-weight: bold;" tooltiptext="http://www.babelzilla.org/"/></row>
 			    </rows>
 			    </grid>

@@ -127,7 +127,7 @@
 					<label
 						value="&foxyproxy.wildcard.label;"
 						style="margin-left: -0.5em;" class="text-link"
-						onclick="overlay.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/quickstart.html#wildcards');"
+						onclick="foxyproxy_common.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/quickstart.html#wildcards');"
 						tooltiptext="&foxyproxy.wildcard.tooltip;" />
 					<label
 						value="&foxyproxy.wildcard.example.label;" />
@@ -140,7 +140,7 @@
 					<label
 						value="&foxyproxy.regex.label;" style="margin-left: -0.5em;"
 						class="text-link"
-						onclick="overlay.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/quickstart.html#regex');"
+						onclick="foxyproxy_common.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/quickstart.html#regex');"
 						tooltiptext="&foxyproxy.regex.tooltip;" />
 					<label
 						value="&foxyproxy.regex.example.label;" />

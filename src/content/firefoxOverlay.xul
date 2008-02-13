@@ -14,8 +14,8 @@
 
 <overlay id="foxyproxy-overlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
-  <script src="chrome://foxyproxy/content/overlay.js"/>
-  <script src="chrome://foxyproxy/content/common.js"/>
+  <script src="overlay.js"/>
+  <script src="common.js"/>
 
   <stringbundleset id="foxyproxy-strings">
     <stringbundle src="chrome://foxyproxy/locale/foxyproxy.properties"/>   
@@ -58,7 +58,7 @@
       onpopupshowing="foxyproxy.onPopupShowing(this, event);"
       onpopuphiding="foxyproxy.onPopupHiding();"/>
     <statusbarpanel 
-      id="foxyproxy-status-text"
+      id="foxyproxy-status-text" style="min-height: 1.5em; vertical-align: top;"
       onclick="foxyproxy.onSBTBClick(event, foxyproxy.fp.statusbar);"
       mode="patterns" persist="mode hidden" hidden="true" mousethrough="never"/> <!--  mousethrough is for SB. See http://www.songbirdnest.com/node/2547 -->
     <statusbarpanel 

@@ -328,33 +328,6 @@ var foxyproxy = {
   	this.setStatusText(this.getModeAsText(this.fp.mode), false);
 	},
 
-  openAndReuseOneTabPerURL : function(aURL) {
-    var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
-             .getService(Components.interfaces.nsIWindowMediator);
-
-    var winEnum = wm.getEnumerator("navigator:browser") || wm.getMostRecentWindow("Songbird:Main");
-    while (winEnum.hasMoreElements()) {
-      var win = winEnum.getNext();
-      var browser = win.getBrowser();
-      for (var i = 0; i < browser.mTabs.length; i++) {
-        if (aURL == browser.getBrowserForTab(browser.mTabs[i]).currentURI.spec) {
-          win.focus(); // bring wnd to the foreground
-          browser.selectedTab = browser.mTabs[i];
-          return;
-        }
-      }
-    }
-
-    // Our URL isn't open. Open it now.
-    var w = wm.getMostRecentWindow("navigator:browser") || wm.getMostRecentWindow("Songbird:Main");
-    if (w) {
-      // Use an existing browser window
-      w.delayedOpenTab(aURL, null, null, null, null);
-    }
-    else
-      window.open(aURL);
-  },
-
   ///////////////// statusbar \\\\\\\\\\\\\\\\\\\\\
   toggleStatusBarIcon : function(e) {
       this.statusIcon.hidden = !e;
@@ -692,7 +665,7 @@ var foxyproxy = {
 
 	      _createMenuItem(submenupopup,
 	        this.fp.getMessage("foxyproxy.help.label"),
-	        "foxyproxy.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/quickstart.html');",
+	        "foxyproxy_common.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/quickstart.html');",
 	        this.fp.getMessage("foxyproxy.help.accesskey"),
 	        this.fp.getMessage("foxyproxy.help.tooltip"));
 

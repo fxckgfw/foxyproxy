@@ -25,6 +25,7 @@
   height="&foxyproxy.addeditproxy.height;">
 
 <script src="addeditproxy.js"/>
+<script src="common.js"/>
 
 <vbox observes="torwiz-broadcaster" flex="1">
   <tabbox flex="1">
@@ -251,7 +252,7 @@
 			<description class="foxyproxy-tooltip">
 				&foxyproxy.newGUI1.label;</description>
 			<description class="foxyproxy-tooltip">&foxyproxy.newGUI2.label;</description>
-			<description class="text-link" onclick="overlay.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/settings-gui.html');">
+			<description class="text-link" onclick="foxyproxy_common.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/settings-gui.html');">
 				&foxyproxy.newGUI4.label;</description>
 		</vbox>
 	</popup>
@@ -263,11 +264,11 @@
 			<description>&foxyproxy.pactip4.label;
       <html:a
         style="color: blue; text-decoration: underline; cursor: pointer;"
-        onclick="overlay.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/relativescheme.html');">&foxyproxy.pactip5.label;</html:a>
+        onclick="foxyproxy_common.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/relativescheme.html');">&foxyproxy.pactip5.label;</html:a>
       &foxyproxy.pactip6.label;
       <html:a
         style="color: blue; text-decoration: underline; cursor: pointer;"
-        onclick="overlay.openAndReuseOneTabPerURL('http://www.mozilla.org/support/firefox/profile#locate');">&foxyproxy.pactip7.label;</html:a>
+        onclick="foxyproxy_common.openAndReuseOneTabPerURL('http://www.mozilla.org/support/firefox/profile#locate');">&foxyproxy.pactip7.label;</html:a>
       &foxyproxy.pactip8.label;</description>
 		</vbox>
 	</popup>

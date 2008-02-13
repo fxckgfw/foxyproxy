@@ -60,7 +60,7 @@
                 style="color: blue; cursor: pointer; margin-left: -0.5em;"
                 tooltiptext="&foxyproxy.whitelist.tooltip;"
                 class="text-link"
-                onclick="overlay.openAndReuseOneTabPerURL('http://en.wikipedia.org/wiki/Whitelist');"/>
+                onclick="foxyproxy_common.openAndReuseOneTabPerURL('http://en.wikipedia.org/wiki/Whitelist');"/>
               <label value="&foxyproxy.whitelist.description.label;"/>
             </row>
           <row align="center">
@@ -71,7 +71,7 @@
               style="margin-left: -0.5em;"
               tooltiptext="&foxyproxy.blacklist.tooltip;"
               class="text-link"
-              onclick="overlay.openAndReuseOneTabPerURL('http://en.wikipedia.org/wiki/Blacklist');"/>
+              onclick="foxyproxy_common.openAndReuseOneTabPerURL('http://en.wikipedia.org/wiki/Blacklist');"/>
             <label value="&foxyproxy.blacklist.description.label;"/>        
           </row>
         </rows>
@@ -91,7 +91,7 @@
               <label value="&foxyproxy.wildcard.label;"
                 style="margin-left: -0.5em;"
                 class="text-link"
-                onclick="overlay.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/quickstart.html#wildcards');"
+                onclick="foxyproxy_common.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/quickstart.html#wildcards');"
                 tooltiptext="&foxyproxy.wildcard.tooltip;"/>
               <label value="&foxyproxy.wildcard.example.label;"/>
             </row>
@@ -102,7 +102,7 @@
               <label value="&foxyproxy.regex.label;"
                 style="margin-left: -0.5em;"
                 class="text-link"
-                onclick="overlay.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/quickstart.html#regex');"
+                onclick="foxyproxy_common.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/quickstart.html#regex');"
                 tooltiptext="&foxyproxy.regex.tooltip;"/> 
               <label value="&foxyproxy.regex.example.label;"/>             
             </row>

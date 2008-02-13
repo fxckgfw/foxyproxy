@@ -60,12 +60,12 @@
     <statusbarpanel 
       id="foxyproxy-status-text"
       onclick="foxyproxy.onSBTBClick(event, foxyproxy.fp.statusbar);"
-      mode="patterns" persist="mode hidden" hidden="true"/>
+      mode="patterns" persist="mode hidden" hidden="true" mousethrough="never"/> <!--  mousethrough is for SB. See http://www.songbirdnest.com/node/2547 -->
     <statusbarpanel 
       id="foxyproxy-status-icon"
       onclick="foxyproxy.onSBTBClick(event, foxyproxy.fp.statusbar);"
       class="statusbarpanel-menu-iconic foxyproxybutton-small"
-      mode="patterns" persist="mode hidden" hidden="true"/>      
+      mode="patterns" persist="mode hidden" hidden="true" mousethrough="never"/>  <!--  mousethrough is for SB. See http://www.songbirdnest.com/node/2547 -->      
   </statusbar>
 
   <toolbarpalette id="BrowserToolbarPalette">

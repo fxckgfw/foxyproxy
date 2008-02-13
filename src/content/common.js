@@ -20,8 +20,7 @@ var foxyproxy_common = {
     // window.arguments is null if user opened about.xul from EM's Options button
     var tmp = Components.classes["@mozilla.org/appshell/window-mediator;1"]
       .getService(Components.interfaces.nsIWindowMediator);
-    tmp = tmp.getMostRecentWindow("navigator:browser") || tmp.getMostRecentWindow("Songbird:Main");
-    overlay = tmp.foxyproxy;
+    return tmp.getMostRecentWindow("navigator:browser") || tmp.getMostRecentWindow("Songbird:Main");
   },
 
   validatePattern : function(win, isRegEx, p, msgPrefix) {

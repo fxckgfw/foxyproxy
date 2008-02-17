@@ -19,7 +19,7 @@
 	width="&foxyproxy.options.width;" height="&foxyproxy.options.height;"
 	persist="screenX screenY width height" onload="onLoad();" context="mainPopup">
 
-	<script src="options.js"/>
+  <script src="options.js"/>
   <script src="common.js"/>
 	<vbox>
 		<!-- menu -->

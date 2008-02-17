@@ -55,18 +55,15 @@ function updateView() {
 }
 
 function onLoad() {
-  overlay = CC["@mozilla.org/appshell/window-mediator;1"]
-    .getService(CI.nsIWindowMediator).getMostRecentWindow("navigator:browser").foxyproxy;
-	common=overlay.common;     
-	fp = CC["@leahscape.org/foxyproxy/service;1"].getService(CI.nsISupports).wrappedJSObject;	
+  var mrw = foxyproxy_common.getMostRecentWindow();
+  overlay = mrw.foxyproxy;
+  fp = CC["@leahscape.org/foxyproxy/service;1"].getService(CI.nsISupports).wrappedJSObject;	
 
-	var obSvc = CC["@mozilla.org/observer-service;1"].getService(CI.nsIObserverService);
-	obSvc.addObserver(observer, "foxyproxy-mode-change", false);
-	obSvc.addObserver(observer, "foxyproxy-updateviews", false);
-	
-  var w = CC["@mozilla.org/appshell/window-mediator;1"]
-      .getService(CI.nsIWindowMediator).getMostRecentWindow("navigator:browser");  
-	document.getElementById("quickAddTemplateExample1").value = w ? w.content.document.location.href : "";
+  var obSvc = CC["@mozilla.org/observer-service;1"].getService(CI.nsIObserverService);
+  obSvc.addObserver(observer, "foxyproxy-mode-change", false);
+  obSvc.addObserver(observer, "foxyproxy-updateviews", false);
+ 
+  document.getElementById("quickAddTemplateExample1").value = mrw ? mrw.content.document.location.href : "";
   updateTemplateExample("quickAddUrlTemplate", "quickAddTemplateExample", fp.quickadd);  
   updateView();  
   sizeToContent();  

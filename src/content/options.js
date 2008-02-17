@@ -10,21 +10,14 @@
 **/
 
 var foxyproxy, proxyTree, logTree, monthslong, dayslong, overlay,
-	quickAddTemplateExample, autoAddTemplateExample, timeformat, saveLogCmd, noURLsCmd,
-	common; 
+	quickAddTemplateExample, autoAddTemplateExample, timeformat, saveLogCmd, noURLsCmd;
 const CI = Components.interfaces, CC = Components.classes;
 
 function onLoad() {
   foxyproxy = CC["@leahscape.org/foxyproxy/service;1"]
     .getService(CI.nsISupports).wrappedJSObject;
-  document.getElementById("maxSize").value = foxyproxy.logg.maxSize;    
-
-  var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
-      .getService(Components.interfaces.nsIWindowMediator);
-  wm = wm.getMostRecentWindow("navigator:browser") || wm.getMostRecentWindow("Songbird:Main");
-  overlay = wm.foxyproxy;
-
-	common=overlay.common;
+  document.getElementById("maxSize").value = foxyproxy.logg.maxSize;
+  overlay = foxyproxy_common.getMostRecentWindow().foxyproxy;
   monthslong = [foxyproxy.getMessage("months.long.1"), foxyproxy.getMessage("months.long.2"),
     foxyproxy.getMessage("months.long.3"), foxyproxy.getMessage("months.long.4"), foxyproxy.getMessage("months.long.5"),
     foxyproxy.getMessage("months.long.6"), foxyproxy.getMessage("months.long.7"), foxyproxy.getMessage("months.long.8"),
@@ -428,7 +421,7 @@ function saveLog() {
 	os.writeString(foxyproxy.logg.toHTML());
 	os.close();
 	if (overlay.ask(this, foxyproxy.getMessage("log.saved2", [fp.file.path]))) {
-		var win = CC["@mozilla.org/appshell/window-mediator;1"].getService(CI.nsIWindowMediator).getMostRecentWindow("navigator:browser");
+		var win = foxyproxy_common.getMostRecentWindow();
 		win.gBrowser.selectedTab = win.gBrowser.addTab(fp.file.path);
   }
 }

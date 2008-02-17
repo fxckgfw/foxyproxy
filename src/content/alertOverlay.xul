@@ -23,6 +23,5 @@ http://lxr.mozilla.org/mozilla1.8.0/source/themes/modern/communicator/alerts/ale
         xhtml2:role="wairole:alert"
         align="start"
         onload="onAlertLoad()"
-        onclick="window.close();"/>
-            
+        onclick="window.close();"/>            
 </overlay>

@@ -9,7 +9,9 @@
   and also online at http://www.gnu.org/licenses/gpl.txt
 **/
 
-// common fcns used throughout foxyproxy
+// common fcns used throughout foxyproxy.
+// functions within this object don't use |this|. instead, they use |foxyproxy_common| in case
+// the function is called from a callback or closure in which |this| refers to something else.
 var foxyproxy_common = {
 
   fp : Components.classes["@leahscape.org/foxyproxy/service;1"].getService(Components.interfaces.nsISupports).wrappedJSObject,
@@ -46,7 +48,7 @@ var foxyproxy_common = {
     }
 
     // Our URL isn't open. Open it now.
-    var w = this.getMostRecentWindow(wm);
+    var w = foxyproxy_common.getMostRecentWindow(wm);
     if (w) {
       // Use an existing browser window
       if (!w.delayedOpenTab) // SongBird
@@ -59,10 +61,10 @@ var foxyproxy_common = {
   },
   
   validatePattern : function(win, isRegEx, p, msgPrefix) {
-    var origPat = p;
+    var origPat = p, fpp = foxyproxy_common.fp; /* in case this is used in a callback, don't use |this| */
     p = p.replace(/^\s*|\s*$/g,"");
     if (p == "") {
-      foxyproxy.alert(window, (msgPrefix?msgPrefix+": ":"") + this.fp.getMessage("pattern.required"));
+      fpp.alert(window, (msgPrefix?msgPrefix+": ":"") + fpp.getMessage("pattern.required"));
       return false;
     }
     if (isRegEx) {
@@ -70,23 +72,24 @@ var foxyproxy_common = {
         new RegExp((p[0]=="^"?"":"^") + p + (p[p.length-1]=="$"?"":"$"));
       }
       catch(e) {
-        foxyproxy.alert(win, (msgPrefix?msgPrefix+": ":"") + this.fp.getMessage("pattern.invalid.regex", [origPat]));
+        fpp.alert(win, (msgPrefix?msgPrefix+": ":"") + fpp.getMessage("pattern.invalid.regex", [origPat]));
         return false;
       }
     }
-    else if (p.indexOf("*") == -1 && p.indexOf("?") == -1 && !this.fp.warnings.noWildcards) {
+    else if (p.indexOf("*") == -1 && p.indexOf("?") == -1 && !fpp.warnings.noWildcards) {
       // No wildcards present; warn user
       var cb = {};
       var ret = (Components.classes["@mozilla.org/embedcomp/prompt-service;1"].getService(Components.interfaces.nsIPromptService)
-        .confirmCheck(win, this.fp.getMessage("foxyproxy"), (msgPrefix?msgPrefix+": ":"") + this.fp.getMessage("no.wildcard.characters", [p]), this.fp.getMessage("message.stop"), cb));
-      this.fp.warnings.noWildcards = cb.value;
+        .confirmCheck(win, fpp.getMessage("foxyproxy"), (msgPrefix?msgPrefix+": ":"") + fpp.getMessage("no.wildcard.characters", [p]), fpp.getMessage("message.stop"), cb));
+      fpp.warnings.noWildcards = cb.value;
       if (!ret) return false;
     }
     return p;
   },
 
   onQuickAddProxyChanged : function(proxyId) {
-    foxyproxy_common.fp.quickadd.proxy = foxyproxy_common.fp.proxies.getProxyById(proxyId);
+    var fpp = foxyproxy_common.fp; /* in case this is used in a callback, don't use |this| */
+    fpp.quickadd.proxy = fpp.proxies.getProxyById(proxyId);
   },
 
   removeChildren : function(node) {
@@ -98,7 +101,7 @@ var foxyproxy_common = {
     var doc = args.document || document;
     var e = doc.createElement("menuitem");
     e.setAttribute("id", args["idVal"]);
-    e.setAttribute("label", args["labelId"]?this.fp.getMessage(args["labelId"], args["labelArgs"]) : args["labelVal"]);
+    e.setAttribute("label", args["labelId"]?foxyproxy_common.fp.getMessage(args["labelId"], args["labelArgs"]) : args["labelVal"]);
     e.setAttribute("value", args["idVal"]);
     args["type"] && e.setAttribute("type", args["type"]);
     args["name"] && e.setAttribute("name", args["name"]);
@@ -108,12 +111,12 @@ var foxyproxy_common = {
   updateSuperAddProxyMenu : function(superadd, menu, fcn, doc) {
     if (!superadd.enabled) return;
     var popup=menu.firstChild;
-    this.removeChildren(popup);
-    for (var i=0,c=0,p; i<this.fp.proxies.length && ((p=this.fp.proxies.item(i)) || 1); i++) {
+    foxyproxy_common.removeChildren(popup);
+    for (var i=0,c=0,p; i<foxyproxy_common.fp.proxies.length && ((p=foxyproxy_common.fp.proxies.item(i)) || 1); i++) {
       if (!p.lastresort && p.enabled) {
-        popup.appendChild(this.createMenuItem({idVal:p.id, labelVal:p.name, type:"radio", name:"foxyproxy-enabled-type",
+        popup.appendChild(foxyproxy_common.createMenuItem({idVal:p.id, labelVal:p.name, type:"radio", name:"foxyproxy-enabled-type",
           document:doc}));
-        //popup.appendChild(this.createMenuItem({idVal:"disabled", labelId:"mode.disabled.label"}));
+        //popup.appendChild(foxyproxy_common.createMenuItem({idVal:"disabled", labelId:"mode.disabled.label"}));
         c++;
       }
     }

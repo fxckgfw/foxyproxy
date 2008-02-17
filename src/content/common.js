@@ -16,9 +16,9 @@ var foxyproxy_common = {
        .getService(Components.interfaces.nsISupports).wrappedJSObject,
 
   // Application-independent version of getMostRecentWindow()
-  getMostRecentWindow : function() {
+  getMostRecentWindow : function(wm) {
     // window.arguments is null if user opened about.xul from EM's Options button
-    var tmp = Components.classes["@mozilla.org/appshell/window-mediator;1"]
+    var tmp = wm || Components.classes["@mozilla.org/appshell/window-mediator;1"]
       .getService(Components.interfaces.nsIWindowMediator);
     return tmp.getMostRecentWindow("navigator:browser") || tmp.getMostRecentWindow("Songbird:Main");
   },
@@ -27,7 +27,7 @@ var foxyproxy_common = {
     var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
              .getService(Components.interfaces.nsIWindowMediator);
 
-    var winEnum = wm.getEnumerator("navigator:browser") || wm.getMostRecentWindow("Songbird:Main");
+    var winEnum = wm.getEnumerator("navigator:browser") || wm.getEnumerator("Songbird:Main");
     while (winEnum.hasMoreElements()) {
       var win = winEnum.getNext();
       var browser = win.getBrowser();
@@ -41,13 +41,11 @@ var foxyproxy_common = {
     }
 
     // Our URL isn't open. Open it now.
-    var w = wm.getMostRecentWindow("navigator:browser") || wm.getMostRecentWindow("Songbird:Main");
+    var w = this.getMostRecentWindow(wm);
     if (w) {
       // Use an existing browser window
-      if (!w.delayedOpenTab) { // SongBird 0.4
-        dump("!\n");
+      if (!w.delayedOpenTab) // SongBird
         setTimeout(function(aTabElt) { w.gBrowser.selectedTab = aTabElt; }, 0, w.gBrowser.addTab(aURL, null, null, null));
-      }
       else // FF
         w.delayedOpenTab(aURL, null, null, null, null);
     }
@@ -83,7 +81,7 @@ var foxyproxy_common = {
   },
 
   onQuickAddProxyChanged : function(proxyId) {
-    fp.quickadd.proxy = fp.proxies.getProxyById(proxyId);
+    this.fp.quickadd.proxy = this.fp.proxies.getProxyById(proxyId);
   },
 
   removeChildren : function(node) {
@@ -105,12 +103,12 @@ var foxyproxy_common = {
   updateSuperAddProxyMenu : function(superadd, menu, fcn, doc) {
     if (!superadd.enabled) return;
     var popup=menu.firstChild;
-    foxyproxy_common.removeChildren(popup);
+    this.removeChildren(popup);
     for (var i=0,c=0,p; i<this.fp.proxies.length && ((p=this.fp.proxies.item(i)) || 1); i++) {
       if (!p.lastresort && p.enabled) {
-        popup.appendChild(foxyproxy_common.createMenuItem({idVal:p.id, labelVal:p.name, type:"radio", name:"foxyproxy-enabled-type",
+        popup.appendChild(this.createMenuItem({idVal:p.id, labelVal:p.name, type:"radio", name:"foxyproxy-enabled-type",
           document:doc}));
-        //popup.appendChild(foxyproxy_common.createMenuItem({idVal:"disabled", labelId:"mode.disabled.label"}));
+        //popup.appendChild(this.createMenuItem({idVal:"disabled", labelId:"mode.disabled.label"}));
         c++;
       }
     }

@@ -12,15 +12,20 @@
 // common fcns used throughout foxyproxy
 var foxyproxy_common = {
 
-  fp : Components.classes["@leahscape.org/foxyproxy/service;1"]
-       .getService(Components.interfaces.nsISupports).wrappedJSObject,
+  fp : Components.classes["@leahscape.org/foxyproxy/service;1"].getService(Components.interfaces.nsISupports).wrappedJSObject,
 
   // Application-independent version of getMostRecentWindow()
   getMostRecentWindow : function(wm) {
-    // window.arguments is null if user opened about.xul from EM's Options button
-    var tmp = wm || Components.classes["@mozilla.org/appshell/window-mediator;1"]
-      .getService(Components.interfaces.nsIWindowMediator);
+    var tmp = wm || Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
     return tmp.getMostRecentWindow("navigator:browser") || tmp.getMostRecentWindow("Songbird:Main");
+  },
+  
+  // Application-independent version of getEnumerator()
+  getEnumerator : function() {
+    var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
+    // The next line always returns an object, even if the enum has no elements, so we can't use it to determine between applications
+    //var e = wm.getEnumerator("navigator:browser") || wm.getEnumerator("Songbird:Main")
+    return wm.getMostRecentWindow("navigator:browser") ? wm.getEnumerator("navigator:browser") : wm.getEnumerator("Songbird:Main");
   },
 
   openAndReuseOneTabPerURL : function(aURL) {
@@ -81,7 +86,7 @@ var foxyproxy_common = {
   },
 
   onQuickAddProxyChanged : function(proxyId) {
-    this.fp.quickadd.proxy = this.fp.proxies.getProxyById(proxyId);
+    foxyproxy_common.fp.quickadd.proxy = foxyproxy_common.fp.proxies.getProxyById(proxyId);
   },
 
   removeChildren : function(node) {

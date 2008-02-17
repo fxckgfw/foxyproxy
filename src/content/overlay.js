@@ -430,11 +430,9 @@ var foxyproxy = {
 					gBrowser.reloadAllTabs();
 					break;
 				case "reloadtabsinallbrowsers":
-				  for (var b,
-				  		  e = Components.classes["@mozilla.org/appshell/window-mediator;1"]
-				          .getService(Components.interfaces.nsIWindowMediator).getEnumerator("navigator:browser");
-						   	e.hasMoreElements();
-						   	(b = e.getNext().getBrowser()) && b.reloadAllTabs());
+				  for (var b, e = foxyproxy_common.getEnumerator();
+						   	  e.hasMoreElements();
+						   	  (b = e.getNext().getBrowser()) && b.reloadAllTabs());
 					break;
 				case "removeallcookies":
 					Components.classes["@mozilla.org/cookiemanager;1"].

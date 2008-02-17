@@ -13,13 +13,9 @@ var urlsTree, proxy, foxyproxy, autoconfurl, overlay, isWindows;
 const CI = Components.interfaces, CC = Components.classes;
 
 function onLoad() {
-	isWindows = CC["@mozilla.org/xre/app-info;1"].getService(CI.nsIXULRuntime).OS == "WINNT";
-  var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
-      .getService(Components.interfaces.nsIWindowMediator);
-  wm = wm.getMostRecentWindow("navigator:browser") || wm.getMostRecentWindow("Songbird:Main");
-  overlay = wm.foxyproxy;
-
-	autoconfurl = document.getElementById("autoconfurl");
+  isWindows = CC["@mozilla.org/xre/app-info;1"].getService(CI.nsIXULRuntime).OS == "WINNT";
+  overlay = foxyproxy_common.getMostRecentWindow().foxyproxy;
+  autoconfurl = document.getElementById("autoconfurl");
   foxyproxy = CC["@leahscape.org/foxyproxy/service;1"]
     .getService(CI.nsISupports).wrappedJSObject;
   if (window.arguments[0].inn.torwiz) {

@@ -146,7 +146,7 @@ function _checkUri() {
 
 function onAddEdit(isNew) {
   var idx = urlsTree.currentIndex;
-	if (!isNew && idx == -1) return; // safety; may not be necessary anymore
+  if (!isNew && idx == -1) return; // safety; may not be necessary anymore
 
   var params = isNew ?
     {inn:{overlay:overlay, name:"", pattern:"", regex:false, black:false, enabled:true}, out:null} :
@@ -154,34 +154,29 @@ function onAddEdit(isNew) {
 		{inn:{overlay:overlay, name:proxy.matches[idx].name,
 			    pattern:proxy.matches[idx].pattern, regex:proxy.matches[idx].isRegEx,
 			    black:proxy.matches[idx].isBlackList,
-			    enabled:proxy.matches[idx].enabled}, out:null};
+			    enabled:proxy.matches[idx].enabled,
+                caseSensitive:proxy.matches[idx].isCaseSensitive}, out:null};
 
   window.openDialog("chrome://foxyproxy/content/pattern.xul", "",
     "chrome, dialog, modal, resizable=yes", params).focus();
 
   if (params.out) {
     params = params.out;
-    if (isNew) {
-	    var match = CC["@leahscape.org/foxyproxy/match;1"].createInstance(CI.nsISupports).wrappedJSObject;
-	    match.name = params.name;
-	    match.pattern = params.pattern;
-	    match.isRegEx = params.isRegEx;
-	    match.isBlackList = params.isBlackList;
-	    match.enabled = params.isEnabled;
-	    proxy.matches.push(match);
-	  }
-	  else {
-		  // Store cur selection
-		  var sel = urlsTree.currentIndex;
-	    proxy.matches[idx].name = params.name;
-	    proxy.matches[idx].pattern = params.pattern;
-	    proxy.matches[idx].isRegEx = params.isRegEx;
-	    proxy.matches[idx].isBlackList = params.isBlackList;
-	    proxy.matches[idx].enabled = params.isEnabled;
-	  }
-    _updateView();
+    var match = isNew ? CC["@leahscape.org/foxyproxy/match;1"].createInstance(CI.nsISupports).wrappedJSObject : proxy.matches[idx];
+    
+    match.name = params.name;
+    match.pattern = params.pattern;
+    match.isRegEx = params.isRegEx;
+    match.isBlackList = params.isBlackList;
+    match.enabled = params.isEnabled;
+    match.isCaseSensitive = params.isCaseSensitive;
+    
+   if (isNew)
+     proxy.matches.push(match);
+	    
+   _updateView();
   	// Select item
-		urlsTree.view.selection.select(isNew?urlsTree.view.rowCount-1:sel);
+	urlsTree.view.selection.select(isNew?urlsTree.view.rowCount-1 : urlsTree.currentIndex);
   }
 }
 
@@ -201,6 +196,7 @@ function _updateView() {
         case "patternCol":return proxy.matches[row].pattern;
         case "patternTypeCol":return foxyproxy.getMessage(proxy.matches[row].isRegEx ? "foxyproxy.regex.label" : "foxyproxy.wildcard.label");
         case "blackCol":return foxyproxy.getMessage(proxy.matches[row].isBlackList ? "foxyproxy.blacklist.label" : "foxyproxy.whitelist.label");
+        case "caseSensitiveCol":return foxyproxy.getMessage(proxy.matches[row].isCaseSensitive ? "yes" : "no");
       }
     },
     setCellValue: function(row, col, val) {proxy.matches[row].enabled = val;},

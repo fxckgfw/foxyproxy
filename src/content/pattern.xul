@@ -26,7 +26,7 @@
 <grid flex="1">
   <columns>
     <column/>
-    <column flex="1"/>
+    <column flex="1"/>    
   </columns>   
   <rows>
     <row align="center">
@@ -34,16 +34,20 @@
         tooltiptext="&foxyproxy.enabled.tooltip;"/>
       <spacer/>
     </row>  
-    <row align="center">
-      <label value="&foxyproxy.pattern.name.label;" control="name"
-      tooltiptext="&foxyproxy.pattern.name.tooltip;" accesskey="&foxyproxy.pattern.name.accesskey;"/>
-      <textbox id="name" tooltiptext="&foxyproxy.pattern.name.tooltip;" accesskey="&foxyproxy.pattern.name.accesskey;"/>
-    </row>
+    <hbox align="center">
+        <label value="&foxyproxy.pattern.name.label;" control="name"
+            tooltiptext="&foxyproxy.pattern.name.tooltip;" accesskey="&foxyproxy.pattern.name.accesskey;"/>  
+        <textbox id="name" tooltiptext="&foxyproxy.pattern.name.tooltip;" accesskey="&foxyproxy.pattern.name.accesskey;"
+            style="margin-left: -0.03em; min-width: 35em;"/>
+    </hbox>    
     <row align="center">
       <label value="&foxyproxy.url.pattern.label;" tooltiptext="&foxyproxy.url.pattern.tooltip;" accesskey="&foxyproxy.url.pattern.accesskey;" control="pattern"/>
-      <textbox id="pattern" tooltiptext="&foxyproxy.url.pattern.tooltip;" accesskey="&foxyproxy.url.pattern.accesskey;"/>
-			<toolbarbutton class="foxyproxy-ref" popup="wildcardReferencePopup" tooltiptext="&foxyproxy.wildcard.reference.tooltip;"/>           
+      <textbox id="pattern" tooltiptext="&foxyproxy.url.pattern.tooltip;" accesskey="&foxyproxy.url.pattern.accesskey;"/>           
+      <checkbox id="casesensitive" label="&foxyproxy.casesensitive.label;" accesskey="&foxyproxy.casesensitive.accesskey;"
+        tooltiptext="&foxyproxy.casesensitive.tooltip;"/>
+      <toolbarbutton class="foxyproxy-ref" popup="wildcardReferencePopup" tooltiptext="&foxyproxy.wildcard.reference.tooltip;"/>
     </row>
+    
       <radiogroup id="whiteblacktype" orient="vertical">
         <groupbox>
         <caption label="&foxyproxy.pattern.whiteblack.label;"/>

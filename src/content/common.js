@@ -108,6 +108,9 @@ var foxyproxy_common = {
     return e;
   },
 
+  /**
+   * Update the list of menuitems in |menu|
+   */
   updateSuperAddProxyMenu : function(superadd, menu, fcn, doc) {
     if (!superadd.enabled) return;
     var popup=menu.firstChild;

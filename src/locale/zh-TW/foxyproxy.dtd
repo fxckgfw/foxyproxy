@@ -53,7 +53,7 @@
 <!ENTITY foxyproxy.auto.url.accesskey "A">
 <!ENTITY foxyproxy.auto.url.tooltip "輸入自動組態指命碼（PAC）的檔案網址">
 <!ENTITY foxyproxy.auto.url.note.label "http(s)://   ftp://   file://   relative://">
-<!ENTITY foxyproxy.auto.url.note.tooltip "Click the info icon for information on relative://">
+<!ENTITY foxyproxy.auto.url.note.tooltip "點擊資訊圖示取得更多有關 relative:// 的資訊">
 <!ENTITY foxyproxy.port.label "連接埠(P)">
 <!ENTITY foxyproxy.port.accesskey "P">
 <!ENTITY foxyproxy.port.tooltip "連接埠">
@@ -180,7 +180,7 @@
 <!ENTITY foxyproxy.greek "希臘語">
 <!ENTITY foxyproxy.hungarian "匈牙利語">
 <!ENTITY foxyproxy.italian "義大利語">
-<!ENTITY foxyproxy.japanese "Japanese">
+<!ENTITY foxyproxy.japanese "日語">
 <!ENTITY foxyproxy.persian "波斯語">
 <!ENTITY foxyproxy.polish "波蘭語">
 <!ENTITY foxyproxy.portugese.brazilian "葡萄牙語（巴西）">
@@ -190,14 +190,14 @@
 <!ENTITY foxyproxy.slovak "斯洛伐克語">
 <!ENTITY foxyproxy.spanish.spain "西班牙語（西班牙）">
 <!ENTITY foxyproxy.spanish.argentina "西班牙語（阿根廷）">
-<!ENTITY foxyproxy.serbian "Serbian">
+<!ENTITY foxyproxy.serbian "賽爾維亞語">
 <!ENTITY foxyproxy.swedish "瑞典語">
 <!ENTITY foxyproxy.thai.thailand "泰語（泰國）">
 <!ENTITY foxyproxy.turkish "土耳其語">
 <!ENTITY foxyproxy.ukrainian "烏克蘭語">
 <!ENTITY foxyproxy.your.language "沒有你的語系？">
 <!ENTITY foxyproxy.your.name.here "點擊這裏加入翻譯行列！">
-<!ENTITY foxyproxy.anonymous "Anonymous">
+<!ENTITY foxyproxy.anonymous "匿名">
 <!ENTITY foxyproxy.moveup.label "向上移動(U)">
 <!ENTITY foxyproxy.moveup.tooltip "提高選擇項目的優先權">
 <!ENTITY foxyproxy.moveup.accesskey "U">
@@ -275,16 +275,16 @@
 <!ENTITY foxyproxy.toolsmenu.accesskey "T">
 <!ENTITY foxyproxy.toolsmenu.tooltip "在 Firefox 工具選單上顯示圖示">
 <!ENTITY foxyproxy.tip.label "Tip">
-<!ENTITY foxyproxy.pactips.popup.height "165px">
+<!ENTITY foxyproxy.pactips.popup.height "250px">
 <!ENTITY foxyproxy.pactips.popup.width "400px">
 <!ENTITY foxyproxy.pactip1.label "自動組態指命碼（PAC）檔案在本機上，請使用 file:// 格式。範例：file://c:/path/proxy.pac（Windows）或 file:///home/users/joe/proxy.pac（Unix/Linux/Mac）。">
 <!ENTITY foxyproxy.pactip2.label "自動組態指命碼（PAC）檔案在 FTP 伺服器上，請使用 ftp:// 格式。範例：ftp://leahscape.com/path/proxy.pac">
 <!ENTITY foxyproxy.pactip3.label "你也可以使用 http://、https://、及其它支援的格式。">
-<!ENTITY foxyproxy.pactip4.label "Finally, if you need to refer to a PAC file on the local file system using a relative path, you can use the special FoxyProxy relative:// scheme. This is useful if your PAC file resides on a thumb drive. Supported relative paths are documented">
-<!ENTITY foxyproxy.pactip5.label "here">
-<!ENTITY foxyproxy.pactip6.label ". Special strings in the relative:// URL you specify are replaced with their corresponding values. For example, relative://ProfD/pacs/proxy3.pac points to the file proxy3.pac in the subdirectory of the">
-<!ENTITY foxyproxy.pactip7.label "Firefox profile directory">
-<!ENTITY foxyproxy.pactip8.label "named pacs/. With Portable Firefox on Windows, the Firefox profile directory is always a relative path because the drive letter can change across computers. Please note that special strings (ProfD, Home, TempD, etc.) are case-sensitive!">
+<!ENTITY foxyproxy.pactip4.label "最後，如果你需要在本機上使用相對路徑去指定自動組態指命碼（PAC）檔案，你可以使用 FoxyProxy 的特殊 relative:// 格式，這在自動組態指命碼（PAC）檔案位於行動碟上時非常有用。目前支援的相對路徑文件在">
+<!ENTITY foxyproxy.pactip5.label "這裏">
+<!ENTITY foxyproxy.pactip6.label "。你在 relative:// 裏所指定的特殊字串，會被取代為對應的值。例如 relative://ProfD/pacs/proxy3.pac 指到位於">
+<!ENTITY foxyproxy.pactip7.label "Firefox 設定檔目錄">
+<!ENTITY foxyproxy.pactip8.label "底下的 pacs 子目錄裏的 proxy3.pac 檔案。Windows 版的 Portable Firefox 裏，Firefox 設定檔目錄一定是相對路徑，因為磁碟機代號在不同電腦上可能是不同的。請注意：「ProfD、Home、TempD…」等特殊字串是有分大小寫的！">
 <!ENTITY foxyproxy.contextmenu.label "在右鍵選單上顯示圖示(C)">
 <!ENTITY foxyproxy.contextmenu.accesskey "C">
 <!ENTITY foxyproxy.contextmenu.tooltip "在右鍵選單上顯示圖示">
@@ -418,7 +418,7 @@
 <!ENTITY foxyproxy.click.reloadtabsinbrowser "重新載入目前視窗的所有頁面">
 <!ENTITY foxyproxy.click.reloadtabsinallbrowsers "重新載入所有視窗的所有頁面">
 <!ENTITY foxyproxy.click.removeallcookies "刪除所有 cookies">
-<!ENTITY foxyproxy.click.toggle "Toggle between current mode and disabled">
+<!ENTITY foxyproxy.click.toggle "在目前模式及停用間切換">
 <!ENTITY foxyproxy.includeincycle.label "點擊狀態列或工具列切換不同模式時，包含此代理伺服器（需啟動「一般設定」→「狀態列功能」/「工具列功能」→「切換不同模式」(I)">
 <!ENTITY foxyproxy.includeincycle.accesskey "I">
 <!ENTITY foxyproxy.includeincycle.tooltip "點擊狀態列或工具列切換不同模式時，包含此代理伺服器">

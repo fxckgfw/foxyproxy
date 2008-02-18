@@ -543,3 +543,7 @@
 <!ENTITY foxyproxy.torwiz.height "375">
 <!ENTITY foxyproxy.addeditproxy.width "660">
 <!ENTITY foxyproxy.addeditproxy.height "470">
+
+<!ENTITY foxyproxy.casesensitive.label "Case sensitive">
+<!ENTITY foxyproxy.casesensitive.accesskey "C">
+<!ENTITY foxyproxy.casesensitive.tooltip "Enables/disables case-sensitivity for URL matching">

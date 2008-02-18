@@ -29,27 +29,27 @@
   </style>
   </head>
 <body>
-  <h3>Plantillas de direcciones</h3>
-  <p>Antes de cargar una dirección, Firefox pregunta a FoxyProxy si se debe usar un proxy.
-     FoxyProxy responde a esta pregunta viendo la correspondencia entre la dirección y todas las plantillas que se hayan definido.
-     La manera más simple de definir plantillas es usando comodines.</p>        
+  <h3>Patrones URL</h3>
+  <p>Antes de que Firefox abra una URL, le pregunta a FoxyProxy si debe utilizar un proxy. 
+     FoxyProxy contesta esta pregunta procurando emparejar la URL actual con todos los patrones de URL que usted haya definido.
+     La manera más sencilla de especificar patrones es utilizar comodines.</p>        
    <h4><a name="wildcards">Comodines</a></h4>
-   <p>Los comodines son muy comunes en muchos programas; es muy probable que ya haya trabajado
-   con ellos anteriormente. El asterisco (*) corresponde a un comodín para ningún caracter o para varios,
-   mientras que la interrogación (?) se sustituye por un único caracter.
+   <p>Los comodines son profusamente utilizados en computación; usted muy 
+   probablemente los haya visto antes. El (*) asterisco sustituye como caracter comodín a cero o más caracteres,
+   y el (?) signo de interrogación sustituye como carácter comodín a cualquier caracter.
    </p>
-   <p>Es posible usar reglas más avanzadas de correspondencia mediante las expresiones regulares. Para más detalles pulse el botón "Contenidos de la ayuda".</p>
+   <p>Es posible definir reglas de coincidencia más avanzadas utilizando expresiones regulares. Para más detalles, haga click en el botón "Contenido de la Ayuda".</p>
    
-   <h4>Ejemplos de comodines</h4>
+   <h4>Ejemplos de Comodines</h4>
    <table>
-     <thead><tr><th>Plantilla de la dirección</th><th>Coincide con</th><th>No coincide con</th></tr></thead>
-     <tr><td>*//:*.yahoo.com/*</td><td>Cualquier dirección del dominio yahoo</td><td>http://mail.google.com/</td></tr>      
-     <tr><td>*//:mail.yahoo.com/*</td><td>http://mail.yahoo.com/<br/>http://mail.yahoo.com/clownshoes/<br/>http://mail.yahoo.com/inbox/123.html<br/>ftp://mail.yahoo.com</td><td>http://maps.yahoo.com</td></tr>
+     <thead><tr><th>Patrones URL</th><th>Algunos Coinciden</th><th>Algunos No Coinciden</th></tr></thead>
+     <tr><td>*://*.yahoo.com/*</td><td>Todo en el dominio de Yahoo</td><td>http://mail.google.com/</td></tr>      
+     <tr><td>*://mail.yahoo.com/*</td><td>http://mail.yahoo.com/<br/>http://mail.yahoo.com/clownshoes/<br/>http://mail.yahoo.com/inbox/123.html<br/>ftp://mail.yahoo.com</td><td>http://maps.yahoo.com</td></tr>
      <tr><td>http://??.wikipedia.org/wiki/Clown</td><td>http://en.wikipedia.org/wiki/Clown<br/>http://de.wikipedia.org/wiki/Clown<br/>http://cs.wikipedia.org/wiki/Clown</td><td>https://en.wikipedia.org/wiki/Clown<br/>http://de.wikipedia.org/wiki/Clown/<br/>ftp://en.wikipedia.org/wiki/Clown</td></tr>
      <tr><td>http://digg.com/</td><td>http://digg.com/</td><td>http://digg.com<br/>http://www.digg.com/</td></tr>      
      <tr><td>*://*.asimov.???/*</td><td>ftp://ftp.asimov.net/<br/>ftp://ftp.asimov.com/theory.html<br/>http://bear.asimov.net/mom/<br/>https://isaac.asimov.org/hercules<br/>gopher://asimov.net/</td>
        <td>ftp://ftp.asimov.co.uk<br/>http://isaac.home.com/tin.php</td></tr>     
-     <tr><td>*</td><td><i>Cualquier dirección</i></td><td>&nbsp;</td></tr>            
+     <tr><td>*</td><td><i>Todos Coinciden</i></td><td>&nbsp;</td></tr>            
    </table>
 </body>
 </html>

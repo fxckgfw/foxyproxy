@@ -167,7 +167,7 @@
 <!ENTITY foxyproxy.issocks.label "SOCKS-Proxy?">
 <!ENTITY foxyproxy.issocks.accesskey "S">
 <!ENTITY foxyproxy.issocks.tooltip "Ist dies ein Web-Proxy oder ein SOCKS-Proxy?">
-<!ENTITY foxyproxy.chinese.simplified "Chinesisch (Simplified)">
+<!ENTITY foxyproxy.chinese.simplified "Chinesisch (Vereinfacht)">
 <!ENTITY foxyproxy.chinese.traditional "Chinesisch (Traditionell)">
 <!ENTITY foxyproxy.croatian "Kroatisch">
 <!ENTITY foxyproxy.czech "Tschechisch">
@@ -220,7 +220,7 @@
 <!ENTITY foxyproxy.logging.maxsize.tooltip "Maximale Anzahl von Log-Einträgen bis zum Überlauf an den Anfang">
 <!ENTITY foxyproxy.logging.maxsize.button.label "Setzen">
 <!ENTITY foxyproxy.logging.maxsize.button.accesskey "S">
-<!ENTITY foxyproxy.logging.maxsize.button.tooltip "Maximale Anzahl von Logeinträgen">
+<!ENTITY foxyproxy.logging.maxsize.button.tooltip "Maximale Anzahl von Log-Einträgen">
 <!ENTITY foxyproxy.random.label "Lade URLs durch zufällige Proxies (alle Muster und Prioritäten werden ignoriert)">
 <!ENTITY foxyproxy.random.accesskey "Z">
 <!ENTITY foxyproxy.random.tooltip "Lade URLs durch zufällige Proxies (alle Muster und Prioritäten werden ignoriert)">
@@ -236,7 +236,7 @@
 <!ENTITY foxyproxy.tab.autoadd.label "AutoAdd">
 <!ENTITY foxyproxy.tab.autoadd.accesskey "A">
 <!ENTITY foxyproxy.tab.autoadd.tooltip "Einstellungen für AutoAdd verwalten">
-<!ENTITY foxyproxy.autoadd.description "Einige Proxies sperren den Zugriff auf einige Internetseiten. Um dies zu umgehen, gib ein Suchmuster an, das blockierte Websites akzeptiert. Wenn das Suchmuster auf einer Webseite gefunden wird, wird ein URL-Muster für die URL dieser Webseite automatisch einem Proxy zugeordnet und die Seite optional neu geladen. Dies erspart es, blockierte Webseiten explizit vorgeben zu müssen.">
+<!ENTITY foxyproxy.autoadd.description "Einige Proxies sperren den Zugriff auf einige Internetseiten. Um dies zu umgehen, geben Sie ein Suchmuster an, das blockierte Websites akzeptiert. Wenn das Suchmuster auf einer Webseite gefunden wird, wird ein URL-Muster für die URL dieser Webseite automatisch einem Proxy zugeordnet und die Seite optional neu geladen. Dies erspart es, blockierte Webseiten explizit vorgeben zu müssen.">
 <!ENTITY foxyproxy.autoadd.pattern.label "URL-Muster zur Identifizierung blockierter Websites">
 <!ENTITY foxyproxy.autoadd.pattern.accesskey "M">
 <!ENTITY foxyproxy.autoadd.pattern.tooltip "Muster für die Identifikation blockierter Webseiten">
@@ -280,9 +280,9 @@
 <!ENTITY foxyproxy.pactip1.label "Verwenden Sie das file://-Schema für PAC-Dateien, die auf der lokalen Festplatte gespeichert sind. Beispiele: file://c:/path/proxy.pac unter Windows oder file://home/users/joe/proxy.pac unter Unix/Linux/Mac.">
 <!ENTITY foxyproxy.pactip2.label "Verwenden Sie das ftp://-Schema für PAC-Dateien auf einem FTP-Server. Beispiel: ftp://leahscape.com/path/proxy.pac">
 <!ENTITY foxyproxy.pactip3.label "Sie können auch http://, https:// oder ein beliebiges anderes unterstütztes Schema verwenden.">
-<!ENTITY foxyproxy.pactip4.label "Finally, if you need to refer to a PAC file on the local file system using a relative path, you can use the special FoxyProxy relative:// scheme. This is useful if your PAC file resides on a thumb drive. Supported relative paths are documented">
-<!ENTITY foxyproxy.pactip5.label "here">
-<!ENTITY foxyproxy.pactip6.label ". Reservierte Ausdrücke in der angegebenen relative://-URL werden durch ihre zugeordneten Werte ersetzt. Beispielsweise referenziert &quot;relative://ProfD/pacs/proxy3.pac&quot; die Datei &quot;proxy3.pac&quot; im Unterverzeichnis &quot;pacs/&quot; des">
+<!ENTITY foxyproxy.pactip4.label "Um eine PAC-Datei stattdessen im lokalen Dateisystem mittels eines relativen Pfads zu referenzieren, können Sie das FoxyProxy-eigene relative://-Schema verwenden. Ein typischer Anwendungsfall sind PAC-Dateien auf einem USB-Stick. Die Unterstützung für relative Pfade ist">
+<!ENTITY foxyproxy.pactip5.label "hier">
+<!ENTITY foxyproxy.pactip6.label "dokumentiert. Bestimmte reservierte Ausdrücke in der angegebenen relative://-URL werden durch ihre zugeordneten Werte ersetzt. Beispielsweise referenziert &quot;relative://ProfD/pacs/proxy3.pac&quot; die Datei &quot;proxy3.pac&quot; im Unterverzeichnis &quot;pacs/&quot; des">
 <!ENTITY foxyproxy.pactip7.label "Firefox-Profilverzeichnisses">
 <!ENTITY foxyproxy.pactip8.label ". Mit Portable Firefox auf Windows wird für das Firefox-Profilverzeichnis grundsätzlich ein relativer Pfad verwendet, da der Laufwerksbuchstabe sich für jeden Computer unterscheiden kann. Bitte beachten Sie die Groß-/Kleinschreibung bei reservierten Ausdrücken (ProfD, Home, TempD, etc.).">
 <!ENTITY foxyproxy.contextmenu.label "FoxyProxy im Kontextmenü anzeigen">
@@ -418,12 +418,12 @@
 <!ENTITY foxyproxy.click.reloadtabsinbrowser "Alle Tabs im aktuellen Fenster neu laden">
 <!ENTITY foxyproxy.click.reloadtabsinallbrowsers "Alle Tabs in allen Fenstern neu laden">
 <!ENTITY foxyproxy.click.removeallcookies "Entferne alle Cookies">
-<!ENTITY foxyproxy.click.toggle "Toggle between current mode and disabled">
-<!ENTITY foxyproxy.includeincycle.label "Schließe diesen Proxy beim zyklischen Wechsel per Klick auf Statuszeile oder Toolbar ein (Globale Einstellungen-&gt;Aktivierung über Statuszeile/Toolbar-&gt;Zyklischer Wechsel durch Modi muß ausgewählt sein)">
+<!ENTITY foxyproxy.click.toggle "Schalte zwischen aktuellem Modus und deaktiviert um">
+<!ENTITY foxyproxy.includeincycle.label "Schließe diesen Proxy beim zyklischen Wechsel per Klick auf Statuszeile oder Toolbar ein (Globale Einstellungen-&gt;Aktivierung über Statuszeile/Toolbar-&gt;Zyklischer Wechsel durch Modi muss ausgewählt sein)">
 <!ENTITY foxyproxy.includeincycle.accesskey "W">
 <!ENTITY foxyproxy.includeincycle.tooltip "Schließe diesen Proxy beim Klick auf Statuszeile/Toolbar ein">
 <!ENTITY foxyproxy.changes.msg1 "Hilfe! Wo sind die Einstellungen für HTTP, SSL, FTP, Gopher und SOCKS?">
-<!ENTITY foxyproxy.newGUI.popup.height "270px">
+<!ENTITY foxyproxy.newGUI.popup.height "280px">
 <!ENTITY foxyproxy.newGUI.popup.width "400px">
 <!ENTITY foxyproxy.newGUI1.label "Der alte FoxyProxy Einstellungsdialog war stark an den Firefox-Dialog für Verbindungseinstellungen angelehnt, der wiederum nahezu identisch den Proxy-Einstellungsdialog des uralten Browsers Mosaic 2.1.1 von 1996 abbildete. Ein Problem mit dieser Art von Dialogen ist ihre begrenzte Fähigkeit zur Unterscheidung verschiedener Protokolle beim Routing. Browser des 21. Jahrhunderts - wie Firefox - unterstützen viel mehr Protokolle als nur HTTP, SSL, FTP und Gopher. Die alten Dialoge wären ganz klar zu unhandlich, um jedes mögliche Protokoll einschließen zu können.">
 <!ENTITY foxyproxy.newGUI2.label "Da FoxyProxy über Muster mit Wildcards und regulären Ausdrücken bereits das Routing per Protokoll unterstützt, ist das Auflisten der Protokolle auf diesem Dialog überflüssig. Ab Version 2.5 wurde die Liste der Protokolle aus dem Proxy-Einstellungsdialog entfernt. Diese Entscheidung reduziert die Funktionalität nicht, sondern ermöglicht eine einfachere Oberfläche. Falls Sie Routing per Protokoll benötigen, sollten Sie Whitelist- und Blacklist-Muster mit gezielter Unterscheidung des Schema-/Protokoll-Anteils des Musters definieren (z.B. ftp://*.yahoo.com/*, *://leahscape.com/*, etc.)">

@@ -210,6 +210,7 @@
             <treecol id="patternCol" label="&foxyproxy.url.pattern.label;" flex="1" persist="width ordinal hidden"/><splitter class="tree-splitter"/>
             <treecol id="patternTypeCol" label="&foxyproxy.pattern.type.label;" flex="1" persist="width ordinal hidden"/><splitter class="tree-splitter"/>
             <treecol id="blackCol" label="&foxyproxy.whitelist.blacklist.label;" flex="1" persist="width ordinal hidden"/><splitter class="tree-splitter"/>
+            <treecol id="caseSensitiveCol" label="&foxyproxy.casesensitive.label;" flex="1" persist="width ordinal hidden"/><splitter class="tree-splitter"/>            
           </treecols>
           <treechildren context="urlsTreeContext" ondblclick="onAddEdit(false);"/>
          </tree>

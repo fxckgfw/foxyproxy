@@ -407,22 +407,22 @@
 <!ENTITY foxyproxy.leftclicktb.tooltip "Action to take when left-clicking on FoxyProxy in toolbar">
 <!ENTITY foxyproxy.middleclicktb.label "คลิกกลาง">
 <!ENTITY foxyproxy.middleclicktb.accesskey "M">
-<!ENTITY foxyproxy.middleclicktb.tooltip "Action to take when middle-clicking on FoxyProxy in toolbar">
+<!ENTITY foxyproxy.middleclicktb.tooltip "สิ่งที่จะเกิดขึ้นเมื่อกดเมาส์ปุ่มกลางกับ FoxyProxy ในแถบเครื่องมือ">
 <!ENTITY foxyproxy.rightclicktb.label "คลิกขวา">
 <!ENTITY foxyproxy.rightclicktb.accesskey "R">
-<!ENTITY foxyproxy.rightclicktb.tooltip "Action to take when right-clicking on FoxyProxy in toolbar">
+<!ENTITY foxyproxy.rightclicktb.tooltip "สิ่งที่จะเกิดขึ้นเมื่อกดเมาส์ปุ่มขวากับ FoxyProxy ในแถบเครื่องมือ">
 <!ENTITY foxyproxy.click.options "แสดงตัวเลือก">
 <!ENTITY foxyproxy.click.cycle "เวียนผ่านโหมด">
 <!ENTITY foxyproxy.click.contextmenu "แสดงเมนูโดยรอบ">
 <!ENTITY foxyproxy.click.reloadcurtab "โหลดใหม่แท็บ">
-<!ENTITY foxyproxy.click.reloadtabsinbrowser "Reload all tabs in current browser">
-<!ENTITY foxyproxy.click.reloadtabsinallbrowsers "Reload all tabs in all browsers">
+<!ENTITY foxyproxy.click.reloadtabsinbrowser "โหลดใหม่แท็บทั้งหมดในเบราว์เซอร์ปัจจุบัน">
+<!ENTITY foxyproxy.click.reloadtabsinallbrowsers "โหลดใหม่แท็บทั้งหมดในเบราว์เซอร์ทั้งหมด">
 <!ENTITY foxyproxy.click.removeallcookies "ลบคุกกี้ทั้งหมด">
-<!ENTITY foxyproxy.click.toggle "Toggle between current mode and disabled">
-<!ENTITY foxyproxy.includeincycle.label "Include this proxy when cycling proxies by clicking on statusbar or toolbar (Global Settings-&gt;Statusbar/Toolbar Activation-&gt;Cycle through modes must be selected)">
+<!ENTITY foxyproxy.click.toggle "สลับระหว่างโหมดปัจจุบันและปิดการใช้งาน">
+<!ENTITY foxyproxy.includeincycle.label "เพิ่มพร็อกซีนี้เมื่อเวียนพร็อกซีโดยการคลิกบนแถบสถานะหรือแถบเครื่องมือ (การตั้งค่าโดยรวม-&gt;การใช้งานแถบสถานะ/แถบเครื่องมือ-&gt;เวียนผ่านโหมด จะต้องถูกเลือก)">
 <!ENTITY foxyproxy.includeincycle.accesskey "I">
-<!ENTITY foxyproxy.includeincycle.tooltip "Include this proxy when clicking on the statusbar/toolbar">
-<!ENTITY foxyproxy.changes.msg1 "Help! Where are settings for HTTP, SSL, FTP, Gopher, and SOCKS?">
+<!ENTITY foxyproxy.includeincycle.tooltip "เพิ่มพร็อกซีนี้เมื่อคลิกบนแถบสถานะหรือแถบเครื่องมือ">
+<!ENTITY foxyproxy.changes.msg1 "ช่วยด้วย! การตั้งค่าของ HTTP, SSL, FTP, Gopher, และ SOCKS อยู่ที่ไหน?">
 <!ENTITY foxyproxy.newGUI.popup.height "270px">
 <!ENTITY foxyproxy.newGUI.popup.width "400px">
 <!ENTITY foxyproxy.newGUI1.label "The old FoxyProxy Proxy Settings screen was based on and nearly identical to Firefox&apos;s Connection Settings dialog, which in turn was nearly identical to the Proxy Settings in the ancient Mosaic 2.1.1 browser from 1996. The problem with all of these screens is their limited ability to route traffic by protocol. 21st century browsers like Firefox handle many more protocols than HTTP, SSL, FTP, and GOPHER. Clearly, these old screens would be unwieldy if they attempted to include every possible protocol.">
@@ -436,3 +436,6 @@
 <!ENTITY foxyproxy.torwiz.height "375">
 <!ENTITY foxyproxy.addeditproxy.width "660">
 <!ENTITY foxyproxy.addeditproxy.height "470">
+<!ENTITY foxyproxy.casesensitive.label "ดูตัวอักษรใหญ่เล็ก">
+<!ENTITY foxyproxy.casesensitive.accesskey "C">
+<!ENTITY foxyproxy.casesensitive.tooltip "เปิด/ปิดการดูตัวอักษรใหญ่เล็กสำหรับการจับคู่ยูอาร์แอล">

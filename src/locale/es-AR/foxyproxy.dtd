@@ -357,13 +357,13 @@
 <!ENTITY foxyproxy.pattern.template.reference.specialstring.label "La Cadena Especial">
 <!ENTITY foxyproxy.pattern.template.reference.subststring.label "Se Substituye Con">
 <!ENTITY foxyproxy.pattern.template.reference.example.label "Ejemplo">
-<!ENTITY foxyproxy.pattern.template.reference.scheme.label "protocol">
-<!ENTITY foxyproxy.pattern.template.reference.username.label "username">
-<!ENTITY foxyproxy.pattern.template.reference.password.label "password">
-<!ENTITY foxyproxy.pattern.template.reference.userpass.label "username &amp; password with &quot;:&quot; &amp; &quot;@&quot;">
+<!ENTITY foxyproxy.pattern.template.reference.scheme.label "protocolo">
+<!ENTITY foxyproxy.pattern.template.reference.username.label "usuario">
+<!ENTITY foxyproxy.pattern.template.reference.password.label "clave">
+<!ENTITY foxyproxy.pattern.template.reference.userpass.label "usuario y clave con &quot;:&quot; y &quot;@&quot;">
 <!ENTITY foxyproxy.pattern.template.reference.host.label "host">
-<!ENTITY foxyproxy.pattern.template.reference.port.label "port">
-<!ENTITY foxyproxy.pattern.template.reference.hostport.label "host &amp; port with &quot;:&quot;">
+<!ENTITY foxyproxy.pattern.template.reference.port.label "puerto">
+<!ENTITY foxyproxy.pattern.template.reference.hostport.label "host y puerto con &quot;:&quot;">
 <!ENTITY foxyproxy.pattern.template.reference.prepath.label "cadena antes del &quot;path&quot;">
 <!ENTITY foxyproxy.pattern.template.reference.path.label "path (incluye el nombre del archivo)">
 <!ENTITY foxyproxy.pattern.template.reference.directory.label "directorio">
@@ -418,7 +418,7 @@
 <!ENTITY foxyproxy.click.reloadtabsinbrowser "Recarga todas las pestañas actuales en el navegador">
 <!ENTITY foxyproxy.click.reloadtabsinallbrowsers "Recarga todas las pestañas actuales en todos los navegadores">
 <!ENTITY foxyproxy.click.removeallcookies "Elimina todas las cookies">
-<!ENTITY foxyproxy.click.toggle "Toggle between current mode and disabled">
+<!ENTITY foxyproxy.click.toggle "Intercambiar entre el modo actual o deshabilitado">
 <!ENTITY foxyproxy.includeincycle.label "Incluir éste proxy cuando se ciclan los proxies al hacer click en la barra de estado o en la barra de herramientas (Debe estar seleccionado Configuración Global-&gt;Barra de Estado/Barra de Herramientas-&gt;Ciclar entre los modos)">
 <!ENTITY foxyproxy.includeincycle.accesskey "I">
 <!ENTITY foxyproxy.includeincycle.tooltip "Incluir éste proxy cuando se hace click sobre la barra de estado/barra de herramientas">
@@ -436,3 +436,6 @@
 <!ENTITY foxyproxy.torwiz.height "375">
 <!ENTITY foxyproxy.addeditproxy.width "660">
 <!ENTITY foxyproxy.addeditproxy.height "470">
+<!ENTITY foxyproxy.casesensitive.label "Sensible a mayúsculas">
+<!ENTITY foxyproxy.casesensitive.accesskey "C">
+<!ENTITY foxyproxy.casesensitive.tooltip "Habilitar/Deshabilitar sensible a mayúsculas para la comparación de URL">

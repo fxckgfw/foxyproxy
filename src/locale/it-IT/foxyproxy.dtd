@@ -436,3 +436,6 @@
 <!ENTITY foxyproxy.torwiz.height "375">
 <!ENTITY foxyproxy.addeditproxy.width "660">
 <!ENTITY foxyproxy.addeditproxy.height "470">
+<!ENTITY foxyproxy.casesensitive.label "Maiuscole/minuscole">
+<!ENTITY foxyproxy.casesensitive.accesskey "M">
+<!ENTITY foxyproxy.casesensitive.tooltip "Presta/non presta attenzione a maiuscole/minuscole per la corrispondenza degli URL">

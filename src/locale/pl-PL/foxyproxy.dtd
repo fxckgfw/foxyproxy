@@ -18,9 +18,9 @@
 <!ENTITY foxyproxy.pattern.name.label "Nazwa wzorca">
 <!ENTITY foxyproxy.pattern.name.accesskey "W">
 <!ENTITY foxyproxy.pattern.name.tooltip "Nazwa wzorca">
-<!ENTITY foxyproxy.url.pattern.label "Adres lub wzorzec URL">
+<!ENTITY foxyproxy.url.pattern.label "Wzorzec URL">
 <!ENTITY foxyproxy.url.pattern.accesskey "U">
-<!ENTITY foxyproxy.url.pattern.tooltip "Adres lub wzorzec URL">
+<!ENTITY foxyproxy.url.pattern.tooltip "Wzorzec URL">
 <!ENTITY foxyproxy.enabled.label "Włączone">
 <!ENTITY foxyproxy.enabled.accesskey "E">
 <!ENTITY foxyproxy.enabled.tooltip "Włącza/wyłącza opcję">
@@ -65,7 +65,7 @@
 <!ENTITY foxyproxy.addeditpattern.title "Dodawanie/edycja wzorca">
 <!ENTITY foxyproxy.wildcard.label "Wieloznacznik">
 <!ENTITY foxyproxy.wildcard.accesskey "W">
-<!ENTITY foxyproxy.wildcard.tooltip "Określa, że adres lub wzorzec URL używa wieloznacznika i nie jest wyrażeniem regularnym">
+<!ENTITY foxyproxy.wildcard.tooltip "Określa, że wzorzec URL używa wieloznacznika i nie jest wyrażeniem regularnym">
 <!ENTITY foxyproxy.wildcard.example.label "Na przykład: *mail.yahoo.com/*">
 <!ENTITY foxyproxy.regex.label "RegExp">
 <!ENTITY foxyproxy.regex.accesskey "R">
@@ -289,7 +289,7 @@
 <!ENTITY foxyproxy.contextmenu.accesskey "T">
 <!ENTITY foxyproxy.contextmenu.tooltip "Wyświetla element &quot;FoxyProxy&quot; w menu kontekstowym">
 <!ENTITY foxyproxy.quickadd.desc1 "Szybkie dodawanie po naciśnięciu skrótu Alt+F2 dodaje do proxy dynamiczny wzorzec URL. Jest to praktyczną alternatywą dodawania automatycznego. Skrót Alt+F2 można zmienić za pomocą rozszerzenia">
-<!ENTITY foxyproxy.keyconfig.label " KeyConfig">
+<!ENTITY foxyproxy.keyconfig.label "KeyConfig">
 <!ENTITY foxyproxy.quickadd.desc2 ".">
 <!ENTITY foxyproxy.quickadd.label "Szybkie dodawanie">
 <!ENTITY foxyproxy.quickadd.accesskey "S">
@@ -419,7 +419,7 @@
 <!ENTITY foxyproxy.click.reloadtabsinallbrowsers "odświeża wszystkie karty we wszystkich oknach">
 <!ENTITY foxyproxy.click.removeallcookies "usuwa wszystkie ciasteczka">
 <!ENTITY foxyproxy.click.toggle "przełącza pomiędzy trybem aktywnym i wyłączeniem">
-<!ENTITY foxyproxy.includeincycle.label "Dołącz to proxy gdy klikasz na pasku stanu lub pasku narzędziowym">
+<!ENTITY foxyproxy.includeincycle.label "Dołącz to proxy, gdy klikasz na pasku stanu lub pasku narzędziowym">
 <!ENTITY foxyproxy.includeincycle.accesskey "D">
 <!ENTITY foxyproxy.includeincycle.tooltip "Dołącz to proxy gdy zmieniasz proxy klikając na pasku stanu/pasku narzędziowym (opcja &quot;zmiany na tryby&quot; musi być aktywna)">
 <!ENTITY foxyproxy.changes.msg1 "Pomocy! Gdzie są ustawienia dla HTTP, SSL, FTP, Gopher, i SOCKS?">
@@ -436,3 +436,6 @@
 <!ENTITY foxyproxy.torwiz.height "375px">
 <!ENTITY foxyproxy.addeditproxy.width "690px">
 <!ENTITY foxyproxy.addeditproxy.height "465px">
+<!ENTITY foxyproxy.casesensitive.label "Rozróżniaj wielkość znaków">
+<!ENTITY foxyproxy.casesensitive.accesskey "E">
+<!ENTITY foxyproxy.casesensitive.tooltip "Włącza/wyłącza rozróżnianie wielkości znaków przy porównywaniu URL">

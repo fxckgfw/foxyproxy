@@ -436,3 +436,6 @@
 <!ENTITY foxyproxy.torwiz.height "420">
 <!ENTITY foxyproxy.addeditproxy.width "720">
 <!ENTITY foxyproxy.addeditproxy.height "520">
+<!ENTITY foxyproxy.casesensitive.label "Respect de la casse">
+<!ENTITY foxyproxy.casesensitive.accesskey "C">
+<!ENTITY foxyproxy.casesensitive.tooltip "Active/désactive le respect de la casse pour la concordance d&apos;URL">

@@ -190,14 +190,14 @@
 <!ENTITY foxyproxy.slovak "Eslovaco">
 <!ENTITY foxyproxy.spanish.spain "Español (España)">
 <!ENTITY foxyproxy.spanish.argentina "Español (Argentina)">
-<!ENTITY foxyproxy.serbian "Serbian">
+<!ENTITY foxyproxy.serbian "Serbio">
 <!ENTITY foxyproxy.swedish "Sueco">
 <!ENTITY foxyproxy.thai.thailand "Thailandés (Thailandia)">
 <!ENTITY foxyproxy.turkish "Turco">
 <!ENTITY foxyproxy.ukrainian "Ucraniano">
 <!ENTITY foxyproxy.your.language "Su idioma">
 <!ENTITY foxyproxy.your.name.here "Su nombre aquí">
-<!ENTITY foxyproxy.anonymous "Anonymous">
+<!ENTITY foxyproxy.anonymous "Anónimo">
 <!ENTITY foxyproxy.moveup.label "Mover arriba">
 <!ENTITY foxyproxy.moveup.tooltip "Sube la prioridad de la selección actual">
 <!ENTITY foxyproxy.moveup.accesskey "a">
@@ -403,13 +403,13 @@
 <!ENTITY foxyproxy.rightclicksb.accesskey "d">
 <!ENTITY foxyproxy.rightclicksb.tooltip "Acción al pulsar con el botón derecho sobre el icono de FoxyProxy de la barra de estado">
 <!ENTITY foxyproxy.leftclicktb.label "Botón izquierdo">
-<!ENTITY foxyproxy.leftclicktb.accesskey "L">
+<!ENTITY foxyproxy.leftclicktb.accesskey "i">
 <!ENTITY foxyproxy.leftclicktb.tooltip "Acción al pulsar con el botón derecho sobre el icono de FoxyProxy de la barra de herramientas">
 <!ENTITY foxyproxy.middleclicktb.label "Botón central">
-<!ENTITY foxyproxy.middleclicktb.accesskey "M">
+<!ENTITY foxyproxy.middleclicktb.accesskey "c">
 <!ENTITY foxyproxy.middleclicktb.tooltip "Acción al pulsar con el botón central sobre el icono de FoxyProxy de la barra de herramientas">
 <!ENTITY foxyproxy.rightclicktb.label "Botón derecho">
-<!ENTITY foxyproxy.rightclicktb.accesskey "R">
+<!ENTITY foxyproxy.rightclicktb.accesskey "d">
 <!ENTITY foxyproxy.rightclicktb.tooltip "Acción al pulsar con el botón derecho sobre el icono de FoxyProxy de la barra de herramientas">
 <!ENTITY foxyproxy.click.options "Mostrar la ventana de opciones">
 <!ENTITY foxyproxy.click.cycle "Iterar en los modos">
@@ -431,8 +431,11 @@
 <!ENTITY foxyproxy.error.msg.label "Mensaje de error">
 <!ENTITY foxyproxy.pac.result.label "PAC resultante">
 <!ENTITY foxyproxy.options.width "875">
-<!ENTITY foxyproxy.options.height "500">
+<!ENTITY foxyproxy.options.height "515">
 <!ENTITY foxyproxy.torwiz.width "700">
 <!ENTITY foxyproxy.torwiz.height "375">
-<!ENTITY foxyproxy.addeditproxy.width "700">
-<!ENTITY foxyproxy.addeditproxy.height "500">
+<!ENTITY foxyproxy.addeditproxy.width "825">
+<!ENTITY foxyproxy.addeditproxy.height "525">
+<!ENTITY foxyproxy.casesensitive.label "Sensible a mayúsculas">
+<!ENTITY foxyproxy.casesensitive.accesskey "C">
+<!ENTITY foxyproxy.casesensitive.tooltip "Habilita/Deshabilita el uso de las mayúsculas en la comparación de las URL">

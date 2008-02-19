@@ -264,7 +264,7 @@
 <!ENTITY foxyproxy.autoadd.notify.tooltip "當網頁被阻擋且樣式被加入代理伺服器時通知你">
 <!ENTITY foxyproxy.graphics "介面及圖示設計：">
 <!ENTITY foxyproxy.website "網頁設計：">
-<!ENTITY foxyproxy.contributions "捐助：">
+<!ENTITY foxyproxy.contributions "貢獻：">
 <!ENTITY foxyproxy.pacloadnotification.label "當自動組態指命碼（PAC）檔案載入時通知我(L)">
 <!ENTITY foxyproxy.pacloadnotification.accesskey "L">
 <!ENTITY foxyproxy.pacloadnotification.tooltip "當自動組態指命碼（PAC）檔案載入時顯示通知視窗">
@@ -274,7 +274,7 @@
 <!ENTITY foxyproxy.toolsmenu.label "在 Firefox 工具選單上顯示圖示(T)">
 <!ENTITY foxyproxy.toolsmenu.accesskey "T">
 <!ENTITY foxyproxy.toolsmenu.tooltip "在 Firefox 工具選單上顯示圖示">
-<!ENTITY foxyproxy.tip.label "Tip">
+<!ENTITY foxyproxy.tip.label "小技巧">
 <!ENTITY foxyproxy.pactips.popup.height "250px">
 <!ENTITY foxyproxy.pactips.popup.width "400px">
 <!ENTITY foxyproxy.pactip1.label "自動組態指命碼（PAC）檔案在本機上，請使用 file:// 格式。範例：file://c:/path/proxy.pac（Windows）或 file:///home/users/joe/proxy.pac（Unix/Linux/Mac）。">
@@ -393,24 +393,24 @@
 <!ENTITY foxyproxy.toolbaractivation.label "工具列功能(T)">
 <!ENTITY foxyproxy.toolbaractivation.accesskey "T">
 <!ENTITY foxyproxy.toolbaractivation.tooltip "工具列功能設定">
-<!ENTITY foxyproxy.leftclicksb.label "點擊狀態列圖示滑鼠左鍵(L)">
+<!ENTITY foxyproxy.leftclicksb.label "狀態列圖示點擊滑鼠左鍵(L)">
 <!ENTITY foxyproxy.leftclicksb.accesskey "L">
-<!ENTITY foxyproxy.leftclicksb.tooltip "點擊狀態列 FoxyProxy 圖示滑鼠左鍵">
-<!ENTITY foxyproxy.middleclicksb.label "點擊狀態列圖示滑鼠中鍵(M)">
+<!ENTITY foxyproxy.leftclicksb.tooltip "狀態列 FoxyProxy 圖示點擊滑鼠左鍵">
+<!ENTITY foxyproxy.middleclicksb.label "狀態列圖示點擊滑鼠中鍵(M)">
 <!ENTITY foxyproxy.middleclicksb.accesskey "M">
-<!ENTITY foxyproxy.middleclicksb.tooltip "點擊狀態列 FoxyProxy 圖示滑鼠中鍵">
-<!ENTITY foxyproxy.rightclicksb.label "點擊狀態列圖示滑鼠右鍵(R)">
+<!ENTITY foxyproxy.middleclicksb.tooltip "狀態列 FoxyProxy 圖示點擊滑鼠中鍵">
+<!ENTITY foxyproxy.rightclicksb.label "狀態列圖示點擊滑鼠右鍵(R)">
 <!ENTITY foxyproxy.rightclicksb.accesskey "R">
-<!ENTITY foxyproxy.rightclicksb.tooltip "點擊狀態列 FoxyProxy 圖示滑鼠右鍵">
-<!ENTITY foxyproxy.leftclicktb.label "點擊工具列圖示滑鼠左鍵(L)">
+<!ENTITY foxyproxy.rightclicksb.tooltip "狀態列 FoxyProxy 圖示點擊滑鼠右鍵">
+<!ENTITY foxyproxy.leftclicktb.label "工具列圖示點擊滑鼠左鍵(L)">
 <!ENTITY foxyproxy.leftclicktb.accesskey "L">
-<!ENTITY foxyproxy.leftclicktb.tooltip "點擊工具列 FoxyProxy 圖示滑鼠左鍵">
-<!ENTITY foxyproxy.middleclicktb.label "點擊工具列圖示滑鼠中鍵(M)">
+<!ENTITY foxyproxy.leftclicktb.tooltip "工具列 FoxyProxy 圖示點擊滑鼠左鍵">
+<!ENTITY foxyproxy.middleclicktb.label "工具列圖示點擊滑鼠中鍵(M)">
 <!ENTITY foxyproxy.middleclicktb.accesskey "M">
-<!ENTITY foxyproxy.middleclicktb.tooltip "點擊工具列 FoxyProxy 圖示滑鼠中鍵">
-<!ENTITY foxyproxy.rightclicktb.label "點擊工具列圖示滑鼠右鍵(R)">
+<!ENTITY foxyproxy.middleclicktb.tooltip "工具列 FoxyProxy 圖示點擊滑鼠中鍵">
+<!ENTITY foxyproxy.rightclicktb.label "工具列圖示點擊滑鼠右鍵(R)">
 <!ENTITY foxyproxy.rightclicktb.accesskey "R">
-<!ENTITY foxyproxy.rightclicktb.tooltip "點擊工具列 FoxyProxy 圖示滑鼠右鍵">
+<!ENTITY foxyproxy.rightclicktb.tooltip "工具列 FoxyProxy 圖示點擊滑鼠右鍵">
 <!ENTITY foxyproxy.click.options "顯示選項視窗">
 <!ENTITY foxyproxy.click.cycle "切換不同模式">
 <!ENTITY foxyproxy.click.contextmenu "顯示右鍵選單">
@@ -436,3 +436,6 @@
 <!ENTITY foxyproxy.torwiz.height "375">
 <!ENTITY foxyproxy.addeditproxy.width "660">
 <!ENTITY foxyproxy.addeditproxy.height "470">
+<!ENTITY foxyproxy.casesensitive.label "符合大小寫(C)">
+<!ENTITY foxyproxy.casesensitive.accesskey "C">
+<!ENTITY foxyproxy.casesensitive.tooltip "啟用/停用「網址需符合大小寫」功能">

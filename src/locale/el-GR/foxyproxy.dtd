@@ -436,3 +436,6 @@
 <!ENTITY foxyproxy.torwiz.height "54em">
 <!ENTITY foxyproxy.addeditproxy.width "89em">
 <!ENTITY foxyproxy.addeditproxy.height "58em">
+<!ENTITY foxyproxy.casesensitive.label "Ταίριασμα χαρακτήρα">
+<!ENTITY foxyproxy.casesensitive.accesskey "Τ">
+<!ENTITY foxyproxy.casesensitive.tooltip "Ενεργοποιεί/απενεργοποιεί το ταίριασμα χαρακτήρα για τον έλεγχο ταιριάσματος URL">

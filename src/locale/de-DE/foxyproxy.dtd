@@ -436,3 +436,6 @@
 <!ENTITY foxyproxy.torwiz.height "375">
 <!ENTITY foxyproxy.addeditproxy.width "660">
 <!ENTITY foxyproxy.addeditproxy.height "470">
+<!ENTITY foxyproxy.casesensitive.label "Groß-/Kleinschreibung">
+<!ENTITY foxyproxy.casesensitive.accesskey "G">
+<!ENTITY foxyproxy.casesensitive.tooltip "Beachtet/ignoriert Groß- und Kleinschreibung bei URLs">

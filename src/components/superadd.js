@@ -1,8 +1,20 @@
 var CI = Components.interfaces, CC = Components.classes, gFP;
+
+// Get attribute from node if it exists, otherwise return |def|.
+// No exceptions, no errors, no null returns.
+const gGetSafeAttr = function(n, name, def) {
+    return n ? (n.hasAttribute(name) ? n.getAttribute(name) : def) : def;
+};
+// Boolean version of GetSafe
+const gGetSafeAttrB = function(n, name, def) {
+    return n ? (n.hasAttribute(name) ? n.getAttribute(name)=="true" : def) : def;
+};
 const DEF_PATTERN = "*://${3}${6}/*";
 
 function SuperAdd(e) { this.elemName = e; this.elemNameCamelCase = e=="autoadd"?"AutoAdd":"QuickAdd";}
 function QuickAdd() { SuperAdd.apply(this, arguments); }
+
+// The super class definition. QuickAdd is a subclass of SuperAdd.
 SuperAdd.prototype = {
   owner : null,
   _reload : true,
@@ -10,6 +22,7 @@ SuperAdd.prototype = {
   _proxy : null,
   _notify : true,
   _prompt : false,
+  _caseSensitive : false,
   match : null,
   matchName : null,
   elemName : null,
@@ -62,6 +75,12 @@ SuperAdd.prototype = {
     this._prompt = n;
     gFP.writeSettings();
   },  
+  
+  get caseSensitive() { return this._caseSensitive; },
+  set caseSensitive(c) {
+    this._caseSensitive = c;
+    gFP.writeSettings();
+  },
               
   setMatchPattern : function(p) {
     this.match.pattern = p.replace(/^\s*|\s*$/g,"");
@@ -149,7 +168,8 @@ SuperAdd.prototype = {
     e.setAttribute("urlTemplate", this._urlTemplate);
     e.setAttribute("reload", this._reload);			
     e.setAttribute("notify", this._notify);
-    e.setAttribute("prompt", this._prompt);    
+    e.setAttribute("prompt", this._prompt);
+    e.setAttribute("caseSensitive", this._caseSensitive); // new for 2.6.3
     this._proxy && e.setAttribute("proxy-id", this._proxy.id);
     e.appendChild(this.match.toDOM(doc));
     return e;
@@ -159,12 +179,13 @@ SuperAdd.prototype = {
     var n = doc.getElementsByTagName(this.elemName)[0];
     var proxyId;
     if (n) {
-      this._enabled = n.getAttribute("enabled") == "true";
+      this._enabled = gGetSafeAttrB(n, "enabled", false);
       this._urlTemplate = n.getAttribute("urlTemplate");
       ((!this._urlTemplate || this._urlTemplate == "") && (this._urlTemplate = DEF_PATTERN));      
-      this._reload = n.getAttribute("reload") == "true";      
-      this._notify = n.getAttribute("notify") == "true";      	      	      
-      this._prompt = n.getAttribute("prompt") == "true";          
+      this._reload = gGetSafeAttrB(n, "reload", true);    
+      this._notify = gGetSafeAttrB(n, "notify", true);
+      this._prompt = gGetSafeAttrB(n, "prompt", false);
+      this._caseSensitive = gGetSafeAttrB(n, "caseSensitive", false);
       proxyId = n.getAttribute("proxy-id");
       this.match.fromDOM(n.getElementsByTagName("match")[0]);   
       (!this.match.name || this.match.name == "") && (this.match.name = gFP.getMessage("foxyproxy.autoadd.pattern.label"));
@@ -186,6 +207,7 @@ SuperAdd.prototype = {
 };
 // Next line must come *after* SuperAdd.prototype definition
 QuickAdd.prototype = new SuperAdd();
+// These are subclass-specific
 QuickAdd.prototype._notifyWhenCanceled = true;
 QuickAdd.prototype.__defineGetter__("notifyWhenCanceled", function() { return this._notifyWhenCanceled; })
 QuickAdd.prototype.__defineSetter__("notifyWhenCanceled", function(n) {

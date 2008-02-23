@@ -528,6 +528,8 @@
 									tooltiptext="&foxyproxy.pattern.template.tooltip;"
 									oncommand="foxyproxy.quickadd.urlTemplate = this.value;updateTemplateExample(null, 'quickAddTemplateExample', foxyproxy.quickadd);"
 									accesskey="&foxyproxy.pattern.template.accesskey;" />
+                                <checkbox id="quickAddCaseSensitive" label="&foxyproxy.casesensitive.label;" accesskey="&foxyproxy.casesensitive.accesskey;"
+                                  tooltiptext="&foxyproxy.casesensitive.tooltip;" oncommand="foxyproxy.quickadd.caseSensitive=this.checked;"/>                  
 								<toolbarbutton class="foxyproxy-ref"
 									popup="patternTemplatePopup"
 									tooltiptext="&foxyproxy.pattern.template.reference.tooltip;" />
@@ -653,6 +655,8 @@
 									type="timed" timeout="500"
 									accesskey="&foxyproxy.pattern.template.accesskey;"
 									tooltiptext="&foxyproxy.pattern.template.tooltip;" />
+                                <checkbox id="autoAddCaseSensitive" label="&foxyproxy.casesensitive.label;" accesskey="&foxyproxy.casesensitive.accesskey;"
+                                    tooltiptext="&foxyproxy.casesensitive.tooltip;" oncommand="foxyproxy.autoadd.caseSensitive=this.checked;"/>                                
 								<toolbarbutton class="foxyproxy-ref"
 									popup="patternTemplatePopup"
 									tooltiptext="&foxyproxy.pattern.template.reference.tooltip;" />

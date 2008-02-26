@@ -1,14 +1,4 @@
 var CI = Components.interfaces, CC = Components.classes, gFP;
-
-// Get attribute from node if it exists, otherwise return |def|.
-// No exceptions, no errors, no null returns.
-const gGetSafeAttr = function(n, name, def) {
-    return n ? (n.hasAttribute(name) ? n.getAttribute(name) : def) : def;
-};
-// Boolean version of GetSafe
-const gGetSafeAttrB = function(n, name, def) {
-    return n ? (n.hasAttribute(name) ? n.getAttribute(name)=="true" : def) : def;
-};
 const DEF_PATTERN = "*://${3}${6}/*";
 
 function SuperAdd(e) { this.elemName = e; this.elemNameCamelCase = e=="autoadd"?"AutoAdd":"QuickAdd";}
@@ -107,24 +97,25 @@ SuperAdd.prototype = {
   }, 
   
   applyTemplate : function(url) { 
+    var flags = this.caseSensitive ? "gi" : "g";  
   	try {
 	    var parsedUrl = this._ios.newURI(url, "UTF-8", null).QueryInterface(CI.nsIURL);	
-	    var ret = this._urlTemplate.replace("${0}", parsedUrl.scheme?parsedUrl.scheme:"", "g");    
-			ret = ret.replace("${1}", parsedUrl.username?parsedUrl.username:"", "g");    
-			ret = ret.replace("${2}", parsedUrl.password?parsedUrl.password:"", "g"); 
-			ret = ret.replace("${3}", parsedUrl.userPass?(parsedUrl.userPass+"@"):"", "g");	
-			ret = ret.replace("${4}", parsedUrl.host?parsedUrl.host:"", "g"); 
-			ret = ret.replace("${5}", parsedUrl.port == -1?"":parsedUrl.port, "g"); 
-			ret = ret.replace("${6}", parsedUrl.hostPort?parsedUrl.hostPort:"", "g"); 
-			ret = ret.replace("${7}", parsedUrl.prePath?parsedUrl.prePath:"", "g"); 								
-			ret = ret.replace("${8}", parsedUrl.directory?parsedUrl.directory:"", "g"); 
-			ret = ret.replace("${9}", parsedUrl.fileBaseName?parsedUrl.fileBaseName:"", "g"); 
-			ret = ret.replace("${10}", parsedUrl.fileExtension?parsedUrl.fileExtension:"", "g"); 
-			ret = ret.replace("${11}", parsedUrl.fileName?parsedUrl.fileName:"", "g"); 
-			ret = ret.replace("${12}", parsedUrl.path?parsedUrl.path:"", "g"); 
-			ret = ret.replace("${13}", parsedUrl.ref?parsedUrl.ref:"", "g"); 								
-			ret = ret.replace("${14}", parsedUrl.query?parsedUrl.query:"", "g"); 
-			return ret.replace("${15}", parsedUrl.spec?parsedUrl.spec:"", "g"); 
+	    var ret = this._urlTemplate.replace("${0}", parsedUrl.scheme?parsedUrl.scheme:"", flags);    
+			ret = ret.replace("${1}", parsedUrl.username?parsedUrl.username:"", flags);    
+			ret = ret.replace("${2}", parsedUrl.password?parsedUrl.password:"", flags); 
+			ret = ret.replace("${3}", parsedUrl.userPass?(parsedUrl.userPass+"@"):"", flags);	
+			ret = ret.replace("${4}", parsedUrl.host?parsedUrl.host:"", flags); 
+			ret = ret.replace("${5}", parsedUrl.port == -1?"":parsedUrl.port, flags); 
+			ret = ret.replace("${6}", parsedUrl.hostPort?parsedUrl.hostPort:"", flags); 
+			ret = ret.replace("${7}", parsedUrl.prePath?parsedUrl.prePath:"", flags); 								
+			ret = ret.replace("${8}", parsedUrl.directory?parsedUrl.directory:"", flags); 
+			ret = ret.replace("${9}", parsedUrl.fileBaseName?parsedUrl.fileBaseName:"", flags); 
+			ret = ret.replace("${10}", parsedUrl.fileExtension?parsedUrl.fileExtension:"", flags); 
+			ret = ret.replace("${11}", parsedUrl.fileName?parsedUrl.fileName:"", flags); 
+			ret = ret.replace("${12}", parsedUrl.path?parsedUrl.path:"", flags); 
+			ret = ret.replace("${13}", parsedUrl.ref?parsedUrl.ref:"", flags); 								
+			ret = ret.replace("${14}", parsedUrl.query?parsedUrl.query:"", flags); 
+			return ret.replace("${15}", parsedUrl.spec?parsedUrl.spec:"", flags); 
 		}
 		catch(e) { /*happens for about:blank, about:config, etc.*/}
 		return url;

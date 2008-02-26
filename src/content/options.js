@@ -174,15 +174,16 @@ function _updateView(writeSettings, updateLogView) {
   document.getElementById("usingPFF").checked =
     document.getElementById("settingsURLBtn").disabled = foxyproxy.isUsingPFF();
     
-  _updateSuperAdd(foxyproxy.autoadd, "auto");
-  _updateSuperAdd(foxyproxy.quickadd, "quick");  
+  _updateSuperAdd(foxyproxy.autoadd, "autoAdd");
+  _updateSuperAdd(foxyproxy.quickadd, "quickAdd");  
   
   function _updateSuperAdd(saObj, str) {
 	  var temp = saObj.enabled;
-	  document.getElementById(str + "AddEnabled").checked = temp;
-	  document.getElementById(str + "AddBroadcaster").hidden = !temp;
-	  document.getElementById(str + "AddReload").checked = saObj.reload;
-	  document.getElementById(str + "AddNotify").checked = saObj.notify;  
+	  document.getElementById(str + "Enabled").checked = temp;
+	  document.getElementById(str + "Broadcaster").hidden = !temp;
+	  document.getElementById(str + "Reload").checked = saObj.reload;
+	  document.getElementById(str + "Notify").checked = saObj.notify;
+      document.getElementById(str + "CaseSensitive").checked = saObj.caseSensitive;  
   }  
   // quick-add-specific stuff
   document.getElementById("quickAddPrompt").checked = foxyproxy.quickadd.prompt;  
@@ -389,7 +390,7 @@ function onAutoAddEnabled(cb) {
 function onQuickAddEnabled(cb) {
 	if (cb.checked) {
 		if (foxyproxy.quickadd.allowed()) {
-	  	foxyproxy.quickadd.enabled = true;
+	  	  foxyproxy.quickadd.enabled = true;
 		 	document.getElementById("quickAddBroadcaster").hidden = false;	  	
 			foxyproxy_common.updateSuperAddProxyMenu(foxyproxy.quickadd, document.getElementById("quickAddProxyMenu"), foxyproxy_common.onQuickAddProxyChanged, document);
 		  //overlay.alert(this, foxyproxy.getMessage("autoadd.notice"));

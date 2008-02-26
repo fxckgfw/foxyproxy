@@ -43,7 +43,7 @@
     <row align="center">
       <label value="&foxyproxy.url.pattern.label;" tooltiptext="&foxyproxy.url.pattern.tooltip;" accesskey="&foxyproxy.url.pattern.accesskey;" control="pattern"/>
       <textbox id="pattern" tooltiptext="&foxyproxy.url.pattern.tooltip;" accesskey="&foxyproxy.url.pattern.accesskey;"/>           
-      <checkbox id="casesensitive" label="&foxyproxy.casesensitive.label;" accesskey="&foxyproxy.casesensitive.accesskey;"
+      <checkbox id="caseSensitive" label="&foxyproxy.casesensitive.label;" accesskey="&foxyproxy.casesensitive.accesskey;"
         tooltiptext="&foxyproxy.casesensitive.tooltip;"/>
       <toolbarbutton class="foxyproxy-ref" popup="wildcardReferencePopup" tooltiptext="&foxyproxy.wildcard.reference.tooltip;"/>
     </row>

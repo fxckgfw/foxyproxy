@@ -788,6 +788,10 @@
 							label="&foxyproxy.pattern.label;" flex="1"
 							persist="width ordinal hidden" />
 						<splitter class="tree-splitter" />
+                        <treecol id="mpCaseCol"
+                            label="&foxyproxy.casesensitive.label;" flex="1"
+                            persist="width ordinal hidden" />
+                        <splitter class="tree-splitter" />            
 						<treecol id="mpTypeCol"
 							label="&foxyproxy.pattern.type.label;" flex="1"
 							persist="width ordinal hidden" />

@@ -72,7 +72,8 @@ function _updateLogView() {
         case "nameCol":return mp.proxyName;
         case "notesCol":return mp.proxyNotes;
         case "mpNameCol":return mp.matchName;
-        case "mpCol":return mp.matchPattern;        
+        case "mpCol":return mp.matchPattern; 
+        case "mpCaseCol":return mp.caseSensitive;       
         case "mpTypeCol":return mp.matchType;
         case "mpBlackCol":return mp.whiteBlack;       
         case "pacResult":return mp.pacResult;

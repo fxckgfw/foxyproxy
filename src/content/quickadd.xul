@@ -131,6 +131,8 @@
 						tooltiptext="&foxyproxy.wildcard.tooltip;" />
 					<label
 						value="&foxyproxy.wildcard.example.label;" />
+                    <checkbox id="quickAddCaseSensitive" label="&foxyproxy.casesensitive.label;" accesskey="&foxyproxy.casesensitive.accesskey;"
+                      tooltiptext="&foxyproxy.casesensitive.tooltip;"/>                
 				</row>
 				<row align="center">
 					<radio id="regex"

@@ -90,9 +90,6 @@ ProtocolFactory.createInstance = function (outer, iid) {
 
 /**
  * JS XPCOM boilerplate component registration code.
- *
- * We set ourselves up to observe the xpcom-startup category.  This provides
- * us with a starting point.
  */
 
 var TestModule = new Object();

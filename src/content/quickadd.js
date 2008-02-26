@@ -25,7 +25,8 @@ function onOK() {
 			proxy:document.getElementById("quickAddProxyMenu").value,
 			notifyWhenCanceled:document.getElementById("quickAddNotifyWhenCanceled").checked,
 			urlTemplate:document.getElementById("quickAddUrlTemplate").value,
-			matchType:document.getElementById("quickAddMatchType").value};	
+			matchType:document.getElementById("quickAddMatchType").value,
+            caseSensitive:document.getElementById("quickAddCaseSensitive").checked};	
     return true;
 	}
   return false;
@@ -46,11 +47,12 @@ function cleanup() {
 	so we don't include these in onLoad() */
 function updateView() {
   document.getElementById("quickAddUrlTemplate").value = fp.quickadd.urlTemplate;  
-  document.getElementById("quickAddMatchType").value = fp.quickadd.match.isRegEx ? "r" : "w"; 
+  document.getElementById("quickAddMatchType").value = fp.quickadd.match.isRegEx ? "r" : "w";
+  document.getElementById("quickAddCaseSensitive").checked = fp.quickadd.match.caseSensitive;
   document.getElementById("quickAddReload").checked = fp.quickadd.reload;
   document.getElementById("quickAddNotify").checked = fp.quickadd.notify; 
   document.getElementById("quickAddNotifyWhenCanceled").checked = fp.quickadd.notifyWhenCanceled;   
-  document.getElementById("quickAddPrompt").checked = fp.quickadd.prompt;   
+  document.getElementById("quickAddPrompt").checked = fp.quickadd.prompt;  
   foxyproxy_common.updateSuperAddProxyMenu(fp.quickadd, document.getElementById("quickAddProxyMenu"), foxyproxy_common.onQuickAddProxyChanged, document);
 }
 

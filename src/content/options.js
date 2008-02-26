@@ -459,7 +459,7 @@ function _isDefaultProxySelected() {
 
 function onOK() {
   var r1 = document.getElementById("autoAddRegEx").selected,
-    p1 = foxyproxy_common.validatePattern(window, r1, document.getElementById("autoAddTemplateExample2").value, foxyproxy.getMessage("foxyproxy.tab.autoadd.label")),
+    p1 = foxyproxy_common.validatePattern(window, r1, document.getElementById("autoAddPattern").value, foxyproxy.getMessage("foxyproxy.tab.autoadd.label")),
     r2 = document.getElementById("quickAddRegEx").selected,
     p2 = foxyproxy_common.validatePattern(window, r2, document.getElementById("quickAddTemplateExample2").value, foxyproxy.getMessage("foxyproxy.quickadd.label"));
   p1 && p2 && window.close();

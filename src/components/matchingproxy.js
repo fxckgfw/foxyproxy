@@ -32,13 +32,15 @@ MatchingProxy.prototype = {
   
   errMsg : "", // Default value for MPs which don't have errors
   pacResult : "", // Default value for MPs which don't have PAC results (i.e., they probably don't use PACs or the PAC returned null
-  _init : function() {
+  _init : function() { /* one-time init to get localized msgs */
     this.randomMsg = fp.getMessage("proxy.random");
     this.allMsg = fp.getMessage("proxy.all.urls");
     this.regExMsg = fp.getMessage("foxyproxy.regex.label");
     this.wcMsg = fp.getMessage("foxyproxy.wildcard.label");
     this.blackMsg = fp.getMessage("foxyproxy.blacklist.label");
-    this.whiteMsg = fp.getMessage("foxyproxy.whitelist.label");   
+    this.whiteMsg = fp.getMessage("foxyproxy.whitelist.label");
+    this.yes = fp.getMessage("yes");  
+    this.no = fp.getMessage("no");    
   },
   
   init : function(proxy, aMatch, uriStr, type, errMsg) {
@@ -48,24 +50,25 @@ MatchingProxy.prototype = {
     this.proxy = proxy;
     this.proxyName = proxy.name; // Make local copy so logg history doesn't change if user changes proxy    
     this.proxyNotes = proxy.notes;  // ""
+    this.caseSensitive = aMatch.caseSensitive ? this.yes : this.no; // ""
     if (type == "pat") {
       this.matchName = aMatch.name;  // Make local copy so logg history doesn't change if user changes proxy
       this.matchPattern = aMatch.pattern; // ""
       this.matchType = aMatch.isRegEx ? this.regExMsg : this.wcMsg;  
       this.whiteBlack = aMatch.isBlackList ? this.blackMsg : this.whiteMsg; // ""  
-		}
-		else if (type == "ded") {
-		  this.whiteBlack = this.matchName = this.matchPattern = this.matchType = this.allMsg;
-		}		
-		else if (type == "rand") {
+	}
+	else if (type == "ded") {
+	  this.whiteBlack = this.matchName = this.matchPattern = this.matchType = this.allMsg;
+	}		
+	else if (type == "rand") {
       this.matchName = this.matchPattern = this.matchType = this.whiteBlack = this.randomMsg;
     }
-		else if (type == "round") {
-		}
-		else if (type == "err") {
-			this.errMsg = errMsg;
-		}
-		return this;
+	else if (type == "round") {
+	}
+	else if (type == "err") {
+		this.errMsg = errMsg;
+	}
+	return this;
   },
 	classID: Components.ID("{c5338500-f195-11da-8ad9-0800200c9a66}"),
 	contractID: "@leahscape.org/foxyproxy/matchingproxy;1",

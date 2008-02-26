@@ -19,7 +19,7 @@ function onOK() {
 	    pattern:p, isRegEx:r,
 	    isBlackList:document.getElementById("black").selected,
 	    isEnabled:document.getElementById("enabled").checked,
-        isCaseSensitive:document.getElementById("casesensitive").checked};
+        caseSensitive:document.getElementById("caseSensitive").checked};
 	  return true;
 	}
   return false;
@@ -32,6 +32,6 @@ function onLoad() {
   document.getElementById("matchtype").selectedIndex = window.arguments[0].inn.regex ? 1 : 0;
   document.getElementById("whiteblacktype").selectedIndex = window.arguments[0].inn.black ? 1 : 0;
   document.getElementById("enabled").checked = window.arguments[0].inn.enabled;
-  document.getElementById("casesensitive").checked = window.arguments[0].inn.caseSensitive;
+  document.getElementById("caseSensitive").checked = window.arguments[0].inn.caseSensitive;
   sizeToContent();
 }

@@ -9,6 +9,8 @@
   and also online at http://www.gnu.org/licenses/gpl.txt
 **/
 
+/* A better name for this class would have been Pattern */
+
 // See http://forums.mozillazine.org/viewtopic.php?t=308369
 var CI = Components.interfaces, CC = Components.classes, CR = Components.results;
 var fp = null;
@@ -24,9 +26,9 @@ function Match() {
   !fp &&
   	(fp = CC["@leahscape.org/foxyproxy/service;1"].getService(CI.nsISupports).wrappedJSObject);
 	this.name = this.pattern = "";
-    // Assignment order is right-to-left. this.isCaseSensitive is used instead of this._isCaseSensitive so that
+    // Assignment order is right-to-left. this.caseSensitive is used instead of this._caseSensitive so that
     // the final assignment forces the regex to be built.
-	this.isCaseSensitive = this._isMultiLine = this._isRegEx = this.isBlackList = false;
+	this.caseSensitive = this._isMultiLine = this._isRegEx = this.isBlackList = false;
 	this.enabled = true;
 }
 
@@ -60,13 +62,13 @@ Match.prototype = {
     return this._isMultiLine;
   },
 
-  set isCaseSensitive(m) {
-    this._isCaseSensitive = m;
+  set caseSensitive(m) {
+    this._caseSensitive = m;
     this.buildRegEx();
   },
 
-  get isCaseSensitive() {
-    return this._isCaseSensitive;
+  get caseSensitive() {
+    return this._caseSensitive;
   },  
 
   buildRegEx : function() {
@@ -82,7 +84,7 @@ Match.prototype = {
   	  pat[pat.length-1] != "$" && (pat = pat + "$");
   	}
   	try {
-	 	  this.regex = this.isCaseSensitive ? new RegExp(pat) : new RegExp(pat, "i");
+	 	  this.regex = this.caseSensitive ? new RegExp(pat) : new RegExp(pat, "i");
 	 	}
 	 	catch(e){
 	 		// ignore--we might be in a state where the regexp is invalid because
@@ -99,8 +101,8 @@ Match.prototype = {
 	  this.isBlackList = node.hasAttribute("isBlackList") ? node.getAttribute("isBlackList") == "true" : false; // new for 2.0
 	  this.enabled = node.hasAttribute("enabled") ? node.getAttribute("enabled") == "true" : true; // new for 2.0
 	  this._isMultiLine = node.hasAttribute("isMultiLine") ? node.getAttribute("isMultiLine") == "true" : false; // new for 2.0
-      // Set this.isCaseSensitive instead of this._isCaseSensitive because the latter creates the regexp.
-      this.isCaseSensitive = node.hasAttribute("isCaseSensitive") ? node.getAttribute("isCaseSensitive") == "true" : false; // new for 2.6.3
+      // Set this.caseSensitive instead of this._caseSensitive because the latter creates the regexp.
+      this.caseSensitive = node.hasAttribute("caseSensitive") ? node.getAttribute("caseSensitive") == "true" : false; // new for 2.6.3
   },
 
   toDOM : function(doc) {
@@ -111,7 +113,7 @@ Match.prototype = {
     matchElem.setAttribute("isRegEx", this.isRegEx);
     matchElem.setAttribute("isBlackList", this.isBlackList);
     matchElem.setAttribute("isMultiLine", this._isMultiLine);
-    matchElem.setAttribute("isCaseSensitive", this._isCaseSensitive);    
+    matchElem.setAttribute("caseSensitive", this._caseSensitive);    
     return matchElem;
   },
 	classID: Components.ID("{2b49ed90-f194-11da-8ad9-0800200c9a66}"),

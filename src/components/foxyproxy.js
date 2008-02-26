@@ -798,9 +798,9 @@ biesi>	passing it the appropriate proxyinfo
     _start : 0,
     _full : false,
     enabled : false,
-    _templateHeader : "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\n<html xmlns=\"http://www.w3.org/1999/xhtml\"><head><title></title><link rel=\"icon\" href=\"http://foxyproxy.mozdev.org/favicon.ico\"/><link rel=\"shortcut icon\" href=\"http://foxyproxy.mozdev.org/favicon.ico\"/><link rel=\"stylesheet\" href=\"http://foxyproxy.mozdev.org/styles/log.css\" type=\"text/css\"/></head><body><table class=\"log-table\"><thead><tr><td class=\"heading\">${timestamp-heading}</td><td class=\"heading\">${url-heading}</td><td class=\"heading\">${proxy-name-heading}</td><td class=\"heading\">${proxy-notes-heading}</td><td class=\"heading\">${pattern-name-heading}</td><td class=\"heading\">${pattern-heading}</td><td class=\"heading\">${pattern-type-heading}</td><td class=\"heading\">${pattern-color-heading}</td><td class=\"heading\">${pac-result-heading}</td><td class=\"heading\">${error-msg-heading}</td></tr></thead><tfoot><tr><td/></tr></tfoot><tbody>",
+    _templateHeader : "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\n<html xmlns=\"http://www.w3.org/1999/xhtml\"><head><title></title><link rel=\"icon\" href=\"http://foxyproxy.mozdev.org/favicon.ico\"/><link rel=\"shortcut icon\" href=\"http://foxyproxy.mozdev.org/favicon.ico\"/><link rel=\"stylesheet\" href=\"http://foxyproxy.mozdev.org/styles/log.css\" type=\"text/css\"/></head><body><table class=\"log-table\"><thead><tr><td class=\"heading\">${timestamp-heading}</td><td class=\"heading\">${url-heading}</td><td class=\"heading\">${proxy-name-heading}</td><td class=\"heading\">${proxy-notes-heading}</td><td class=\"heading\">${pattern-name-heading}</td><td class=\"heading\">${pattern-heading}</td><td class=\"heading\">${pattern-case-heading}</td><td class=\"heading\">${pattern-type-heading}</td><td class=\"heading\">${pattern-color-heading}</td><td class=\"heading\">${pac-result-heading}</td><td class=\"heading\">${error-msg-heading}</td></tr></thead><tfoot><tr><td/></tr></tfoot><tbody>",
     _templateFooter : "</tbody></table></body></html>",
-    _templateRow : "<tr><td class=\"timestamp\">${timestamp}</td><td class=\"url\"><a href=\"${url}\">${url}</a></td><td class=\"proxy-name\">${proxy-name}</td><td class=\"proxy-notes\">${proxy-notes}</td><td class=\"pattern-name\">${pattern-name}</td><td class=\"pattern\">${pattern}</td><td class=\"pattern-type\">${pattern-type}</td><td class=\"pattern-color\">${pattern-color}</td><td class=\"pac-result\">${pac-result}</td><td class=\"error-msg\">${error-msg}</td></tr>",
+    _templateRow : "<tr><td class=\"timestamp\">${timestamp}</td><td class=\"url\"><a href=\"${url}\">${url}</a></td><td class=\"proxy-name\">${proxy-name}</td><td class=\"proxy-notes\">${proxy-notes}</td><td class=\"pattern-name\">${pattern-name}</td><td class=\"pattern\">${pattern}</td><td class=\"pattern-case\">${pattern-case}</td><td class=\"pattern-type\">${pattern-type}</td><td class=\"pattern-color\">${pattern-color}</td><td class=\"pac-result\">${pac-result}</td><td class=\"error-msg\">${error-msg}</td></tr>",
     _timeformat : null,
 	  _months : null,
 	  _days : null,
@@ -852,7 +852,7 @@ biesi>	passing it the appropriate proxyinfo
     toHTML : function() {
 	    // Doing the heading substitution here (over and over again instead of once in fromDOM()) permits users to switch locales w/o having to restart FF and
 	    // the changes take effect immediately in FoxyProxy.
-	    var self = this, sz = this.length, ret = this._templateHeader.replace(/\${timestamp-heading}|\${url-heading}|\${proxy-name-heading}|\${proxy-notes-heading}|\${pattern-name-heading}|\${pattern-heading}|\${pattern-type-heading}|\${pattern-color-heading}|\${pac-result-heading}|\${error-msg-heading}/gi,
+	    var self = this, sz = this.length, ret = this._templateHeader.replace(/\${timestamp-heading}|\${url-heading}|\${proxy-name-heading}|\${proxy-notes-heading}|\${pattern-name-heading}|\${pattern-heading}|\${pattern-case-heading}|\${pattern-type-heading}|\${pattern-color-heading}|\${pac-result-heading}|\${error-msg-heading}/gi,
 	    	function($0) {
 					switch($0) {
 						case "${timestamp-heading}": return gFP.getMessage("foxyproxy.tab.logging.timestamp.label");
@@ -861,6 +861,7 @@ biesi>	passing it the appropriate proxyinfo
 						case "${proxy-notes-heading}": return gFP.getMessage("foxyproxy.proxy.notes.label");
 						case "${pattern-name-heading}": return gFP.getMessage("foxyproxy.pattern.name.label");
 						case "${pattern-heading}": return gFP.getMessage("foxyproxy.pattern.label");
+                        case "${pattern-case-heading}": return gFP.getMessage("foxyproxy.casesensitive.label");
 						case "${pattern-type-heading}": return gFP.getMessage("foxyproxy.pattern.type.label");
 						case "${pattern-color-heading}": return gFP.getMessage("foxyproxy.whitelist.blacklist.label");
 						case "${pac-result-heading}": return gFP.getMessage("foxyproxy.pac.result.label");
@@ -882,7 +883,7 @@ biesi>	passing it the appropriate proxyinfo
 	      );
 	    };
 			for (var i=0; i<sz; i++) {
-				ret += self._templateRow.replace(/\${timestamp}|\${url}|\${proxy-name}|\${proxy-notes}|\${pattern-name}|\${pattern}|\${pattern-type}|\${pattern-color}|\${pac-result}|\${error-msg}/gi,
+				ret += self._templateRow.replace(/\${timestamp}|\${url}|\${proxy-name}|\${proxy-notes}|\${pattern-name}|\${pattern}|\${pattern-case}|\${pattern-type}|\${pattern-color}|\${pac-result}|\${error-msg}/gi,
 					function($0) {
 						switch($0) {
 							case "${timestamp}": return _xmlEncode(self.format(self.item(i).timestamp));
@@ -891,6 +892,7 @@ biesi>	passing it the appropriate proxyinfo
 							case "${proxy-notes}": return _xmlEncode(self.item(i).proxyNotes);
 							case "${pattern-name}": return _xmlEncode(self.item(i).matchName);
 							case "${pattern}": return _xmlEncode(self.item(i).matchPattern);
+                            case "${pattern-case}": return _xmlEncode(self.item(i).caseSensitive);
 							case "${pattern-type}": return _xmlEncode(self.item(i).matchType);
 							case "${pattern-color}": return _xmlEncode(self.item(i).whiteBlack);
 							case "${pac-result}": return _xmlEncode(self.item(i).pacResult);

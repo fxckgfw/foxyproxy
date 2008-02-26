@@ -171,13 +171,13 @@ SuperAdd.prototype = {
     var proxyId;
     if (n) {
       this._enabled = gGetSafeAttrB(n, "enabled", false);
-      this._urlTemplate = n.getAttribute("urlTemplate");
-      ((!this._urlTemplate || this._urlTemplate == "") && (this._urlTemplate = DEF_PATTERN));      
+      this._urlTemplate = gGetSafeAttr(n, "urlTemplate", DEF_PATTERN);
+      if (this._urlTemplate == "") this._urlTemplate = DEF_PATTERN;      
       this._reload = gGetSafeAttrB(n, "reload", true);    
       this._notify = gGetSafeAttrB(n, "notify", true);
       this._prompt = gGetSafeAttrB(n, "prompt", false);
       this._caseSensitive = gGetSafeAttrB(n, "caseSensitive", false);
-      proxyId = n.getAttribute("proxy-id");
+      proxyId = gGetSafeAttr(n, "proxy-id", null);
       this.match.fromDOM(n.getElementsByTagName("match")[0]);   
       (!this.match.name || this.match.name == "") && (this.match.name = gFP.getMessage("foxyproxy.autoadd.pattern.label"));
       this.match.isMultiLine = true;        

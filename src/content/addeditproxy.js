@@ -155,7 +155,7 @@ function onAddEdit(isNew) {
 			    pattern:proxy.matches[idx].pattern, regex:proxy.matches[idx].isRegEx,
 			    black:proxy.matches[idx].isBlackList,
 			    enabled:proxy.matches[idx].enabled,
-                caseSensitive:proxy.matches[idx].isCaseSensitive}, out:null};
+                caseSensitive:proxy.matches[idx].caseSensitive}, out:null};
 
   window.openDialog("chrome://foxyproxy/content/pattern.xul", "",
     "chrome, dialog, modal, resizable=yes", params).focus();
@@ -169,7 +169,7 @@ function onAddEdit(isNew) {
     match.isRegEx = params.isRegEx;
     match.isBlackList = params.isBlackList;
     match.enabled = params.isEnabled;
-    match.isCaseSensitive = params.isCaseSensitive;
+    match.caseSensitive = params.caseSensitive;
     
    if (isNew)
      proxy.matches.push(match);
@@ -196,7 +196,7 @@ function _updateView() {
         case "patternCol":return proxy.matches[row].pattern;
         case "patternTypeCol":return foxyproxy.getMessage(proxy.matches[row].isRegEx ? "foxyproxy.regex.label" : "foxyproxy.wildcard.label");
         case "blackCol":return foxyproxy.getMessage(proxy.matches[row].isBlackList ? "foxyproxy.blacklist.label" : "foxyproxy.whitelist.label");
-        case "caseSensitiveCol":return foxyproxy.getMessage(proxy.matches[row].isCaseSensitive ? "yes" : "no");
+        case "caseSensitiveCol":return foxyproxy.getMessage(proxy.matches[row].caseSensitive ? "yes" : "no");
       }
     },
     setCellValue: function(row, col, val) {proxy.matches[row].enabled = val;},

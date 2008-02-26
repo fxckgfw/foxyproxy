@@ -12,7 +12,6 @@ SuperAdd.prototype = {
   _proxy : null,
   _notify : true,
   _prompt : false,
-  _caseSensitive : false,
   match : null,
   matchName : null,
   elemName : null,
@@ -66,9 +65,9 @@ SuperAdd.prototype = {
     gFP.writeSettings();
   },  
   
-  get caseSensitive() { return this._caseSensitive; },
+  get caseSensitive() { return this.match.caseSensitive; },
   set caseSensitive(c) {
-    this._caseSensitive = c;
+    this.match.caseSensitive = c;
     gFP.writeSettings();
   },
               
@@ -97,7 +96,7 @@ SuperAdd.prototype = {
   }, 
   
   applyTemplate : function(url) { 
-    var flags = this.caseSensitive ? "gi" : "g";  
+    var flags = this.match.caseSensitive ? "gi" : "g";  
   	try {
 	    var parsedUrl = this._ios.newURI(url, "UTF-8", null).QueryInterface(CI.nsIURL);	
 	    var ret = this._urlTemplate.replace("${0}", parsedUrl.scheme?parsedUrl.scheme:"", flags);    
@@ -127,6 +126,7 @@ SuperAdd.prototype = {
 	  match.name = this.matchName;			      
 	  match.pattern = pat;
 	  match.isRegEx = this.match.isRegEx; // todo: make this dynamic
+      match.caseSensitive = this.match.caseSensitive;
 	  this._proxy.matches.push(match);      
     this._notify && gFP.notifier.alert(gFP.getMessage("foxyproxy.quickadd.label"), gFP.getMessage("superadd.url.added", [pat, this._proxy.name]));        
     this._reload && location.reload();
@@ -160,7 +160,6 @@ SuperAdd.prototype = {
     e.setAttribute("reload", this._reload);			
     e.setAttribute("notify", this._notify);
     e.setAttribute("prompt", this._prompt);
-    e.setAttribute("caseSensitive", this._caseSensitive); // new for 2.6.3
     this._proxy && e.setAttribute("proxy-id", this._proxy.id);
     e.appendChild(this.match.toDOM(doc));
     return e;
@@ -176,7 +175,6 @@ SuperAdd.prototype = {
       this._reload = gGetSafeAttrB(n, "reload", true);    
       this._notify = gGetSafeAttrB(n, "notify", true);
       this._prompt = gGetSafeAttrB(n, "prompt", false);
-      this._caseSensitive = gGetSafeAttrB(n, "caseSensitive", false);
       proxyId = gGetSafeAttr(n, "proxy-id", null);
       this.match.fromDOM(n.getElementsByTagName("match")[0]);   
       (!this.match.name || this.match.name == "") && (this.match.name = gFP.getMessage("foxyproxy.autoadd.pattern.label"));

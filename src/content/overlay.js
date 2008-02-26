@@ -221,6 +221,7 @@ var foxyproxy = {
  					foxyproxy_common.onQuickAddProxyChanged(p.out.proxy);
  					fp.quickadd.urlTemplate = p.out.urlTemplate;
  					fp.quickadd.setMatchIsRegEx(p.out.matchType=="r");
+                    fp.quickadd.caseSensitive = p.out.caseSensitive;
 					_qAdd();
 				}
 				// if !p.out then the user canceled QuickAdd

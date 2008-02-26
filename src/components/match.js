@@ -84,7 +84,7 @@ Match.prototype = {
   	  pat[pat.length-1] != "$" && (pat = pat + "$");
   	}
   	try {
-	 	  this.regex = this.caseSensitive ? new RegExp(pat) : new RegExp(pat, "i");
+	 	  this.regex = this._caseSensitive ? new RegExp(pat) : new RegExp(pat, "i");
 	 	}
 	 	catch(e){
 	 		// ignore--we might be in a state where the regexp is invalid because

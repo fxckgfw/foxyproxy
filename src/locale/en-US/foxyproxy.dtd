@@ -547,3 +547,9 @@
 <!ENTITY foxyproxy.casesensitive.label "Case sensitive">
 <!ENTITY foxyproxy.casesensitive.accesskey "C">
 <!ENTITY foxyproxy.casesensitive.tooltip "Enables/disables case-sensitivity for URL matching">
+
+<!ENTITY foxyproxy.statusbarwidth.label "Fixed width">
+<!ENTITY foxyproxy.statusbarwidth.accesskey "W">
+<!ENTITY foxyproxy.statusbarwidth.tooltip "Prevents statusbar resizing">
+<!ENTITY foxyproxy.pixels "pixels">
+<!ENTITY foxyproxy.unlimited.label "[0: unlimited] ">

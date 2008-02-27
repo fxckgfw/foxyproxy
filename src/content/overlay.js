@@ -338,7 +338,21 @@ var foxyproxy = {
   	var s=document.getElementById("foxyproxy-status-text");
   	// Statusbars don't exist on all windows (e.g,. View Source) so check for existence first,
   	// otherwise we get a JS error.
-    s && (s.hidden = !e);
+    if (s) {
+      s.hidden = !e;
+      var w = this.fp.statusbar.width;
+      dump(this.fp.statusbar.width + "\n");
+      if (w > 0) {
+        //s.setAttribute("style", "min-width: 3em; max-width: 3em;");
+        w = w + "px;";
+        s.style.minWidth = w;
+        s.style.maxWidth = w;
+      }
+      else {
+        s.style.minWidth = "";
+        s.style.maxWidth = "";      
+      }
+    }
   },
 
   // Set toolbar, statusbar, and context menu text and icon colors

@@ -1,7 +1,7 @@
 var CI = Components.interfaces, CC = Components.classes, gFP;
 const DEF_PATTERN = "*://${3}${6}/*";
 
-function SuperAdd(e) { this.elemName = e; this.elemNameCamelCase = e=="autoadd"?"AutoAdd":"QuickAdd";}
+function SuperAdd() {}
 function QuickAdd() { SuperAdd.apply(this, arguments); }
 
 // The super class definition. QuickAdd is a subclass of SuperAdd.
@@ -14,8 +14,9 @@ SuperAdd.prototype = {
   _prompt : false,
   match : null,
   matchName : null,
-  elemName : null,
-  elemNameCamelCase : null,
+  elemName : "autoadd",
+  elemNameCamelCase : "AutoAdd",
+  notificationTitle : "foxyproxy.tab.autoadd.label",
   
   _urlTemplate : DEF_PATTERN,
   _ios : CC["@mozilla.org/network/io-service;1"].getService(CI.nsIIOService),
@@ -128,7 +129,7 @@ SuperAdd.prototype = {
 	  match.isRegEx = this.match.isRegEx; // todo: make this dynamic
       match.caseSensitive = this.match.caseSensitive;
 	  this._proxy.matches.push(match);      
-    this._notify && gFP.notifier.alert(gFP.getMessage("foxyproxy.quickadd.label"), gFP.getMessage("superadd.url.added", [pat, this._proxy.name]));        
+    this._notify && gFP.notifier.alert(gFP.getMessage(this.notificationTitle), gFP.getMessage("superadd.url.added", [pat, this._proxy.name]));        
     this._reload && location.reload();
   },
   
@@ -196,7 +197,10 @@ SuperAdd.prototype = {
 };
 // Next line must come *after* SuperAdd.prototype definition
 QuickAdd.prototype = new SuperAdd();
-// These are subclass-specific
+// These are subclass-specific additions and overrides
+QuickAdd.prototype.notificationTitle = "foxyproxy.quickadd.label";
+QuickAdd.prototype.elemName = "quickadd";
+QuickAdd.prototype.elemNameCamelCase = "QuickAdd";
 QuickAdd.prototype._notifyWhenCanceled = true;
 QuickAdd.prototype.__defineGetter__("notifyWhenCanceled", function() { return this._notifyWhenCanceled; })
 QuickAdd.prototype.__defineSetter__("notifyWhenCanceled", function(n) {

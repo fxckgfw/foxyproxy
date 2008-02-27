@@ -9,3 +9,8 @@ treechildren::-moz-tree-checkbox(checked) {
 #foxyproxy-toolsmenu-popup menuitem:not([checked="true"]), #foxyproxy-contextmenu-popup menuitem:not([checked="true"]) {
 	list-style-image: none;
 }
+
+#foxyproxy-status-text {
+  min-height: 1.5em;
+  vertical-align: top;
+}

@@ -58,7 +58,7 @@
       onpopupshowing="foxyproxy.onPopupShowing(this, event);"
       onpopuphiding="foxyproxy.onPopupHiding();"/>
     <statusbarpanel 
-      id="foxyproxy-status-text" style="min-height: 1.5em; vertical-align: top;"
+      id="foxyproxy-status-text"
       onclick="foxyproxy.onSBTBClick(event, foxyproxy.fp.statusbar);"
       mode="patterns" persist="mode hidden" hidden="true" mousethrough="never"/> <!--  mousethrough is for SB. See http://www.songbirdnest.com/node/2547 -->
     <statusbarpanel 

@@ -47,6 +47,7 @@ function _initSettings() {
   document.getElementById("quickAddUrlTemplate").value = foxyproxy.quickadd.urlTemplate;  
   document.getElementById("autoAddMatchType").value = foxyproxy.autoadd.match.isRegEx ? "r" : "w"; 
   document.getElementById("quickAddMatchType").value = foxyproxy.quickadd.match.isRegEx ? "r" : "w"; 
+  document.getElementById("statusbarWidth").value = foxyproxy.statusbar.width;
   updateTemplateExample("autoAddUrlTemplate", "autoAddTemplateExample", foxyproxy.autoadd);  
   updateTemplateExample("quickAddUrlTemplate", "quickAddTemplateExample", foxyproxy.quickadd);  
 }

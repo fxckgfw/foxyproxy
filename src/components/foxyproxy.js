@@ -163,8 +163,8 @@ biesi>	passing it the appropriate proxyinfo
 	    this._initialized = true; // because @mozilla.org/file/directory_service;1 isn't available in init()
 	    gFP = this;
 
-  		this.autoadd = new SuperAdd("autoadd");
-		  this.quickadd = new QuickAdd("quickadd");
+  		this.autoadd = new SuperAdd();
+		  this.quickadd = new QuickAdd();
   		this.autoadd.init(this.getMessage("autoadd.pattern.label"), this);
 		  this.quickadd.init(this.getMessage("quickadd.pattern.label"), this);
 
@@ -1105,24 +1105,27 @@ biesi>	passing it the appropriate proxyinfo
     _leftClick : "options",
     _middleClick : "cycle",
     _rightClick : "contextmenu",
+    _width : 0,
 
     toDOM : function(doc) {
       var e = doc.createElement("statusbar");
       e.setAttribute("icon", this._iconEnabled); // new for 2.3 (used to be just "enabled")
       e.setAttribute("text", this._textEnabled); // new for 2.3 (used to be just "enabled")
-			e.setAttribute("left", this._leftClick); // new for 2.5
-			e.setAttribute("middle", this._middleClick); // new for 2.5
-			e.setAttribute("right", this._rightClick); // new for 2.5
+      e.setAttribute("left", this._leftClick); // new for 2.5
+	    e.setAttribute("middle", this._middleClick); // new for 2.5
+      e.setAttribute("right", this._rightClick); // new for 2.5
+      e.setAttribute("width", this._width); // new for 2.6.3
       return e;
     },
 
     fromDOM : function(doc) {
       var n = doc.getElementsByTagName("statusbar")[0];
-			this._iconEnabled = gGetSafeAttrB(n, "icon", true);
+      this._iconEnabled = gGetSafeAttrB(n, "icon", true);
 	    this._textEnabled = gGetSafeAttrB(n, "text", true);
 	  	this._leftClick = gGetSafeAttr(n, "left", "options");
 	  	this._middleClick = gGetSafeAttr(n, "middle", "cycle");
 	  	this._rightClick = gGetSafeAttr(n, "right", "contextmenu");
+      this._width = gGetSafeAttr(n, "width", 0);      
     },
 
     get iconEnabled() { return this._iconEnabled; },
@@ -1157,6 +1160,15 @@ biesi>	passing it the appropriate proxyinfo
     set rightClick(e) {
       this._rightClick = e;
       gFP.writeSettings();
+    },
+    
+    get width() { return this._width; },
+    set width(e) {
+      e = parseInt(e);
+      if (isNaN(e)) e = 0;
+      this._width = e;
+      gFP.writeSettings();
+      gBroadcast(e, "foxyproxy-statusbar-text");
     }
   },
 

@@ -210,6 +210,13 @@
 										tooltiptext="&foxyproxy.showstatusbarmode.tooltip;"
 										oncommand="foxyproxy.statusbar.textEnabled = this.checked;" />
 								</hbox>
+                <hbox align="center" class="indent">
+                  <label value="&foxyproxy.statusbarwidth.label;"/>
+                  <textbox id="statusbarWidth" size="1" type="timed" timeout="500" oncommand="foxyproxy.statusbar.width = this.value;"
+                    tooltiptext="&foxyproxy.statusbarwidth.tooltip;" accesskey="&foxyproxy.statusbarwidth.accesskey;"/>
+                  <label value="&foxyproxy.pixels;"/>
+                  <label value="&foxyproxy.unlimited.label;"/>                  
+                </hbox>                
 								<hbox align="center">
 									<checkbox id="toolsMenuEnabled"
 										label="&foxyproxy.toolsmenu.label;"

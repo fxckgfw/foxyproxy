@@ -341,16 +341,20 @@ var foxyproxy = {
     if (s) {
       s.hidden = !e;
       var w = this.fp.statusbar.width;
-      dump(this.fp.statusbar.width + "\n");
+      dump("initial width is '" + s.style.width + "'\n");      
       if (w > 0) {
         //s.setAttribute("style", "min-width: 3em; max-width: 3em;");
         w = w + "px;";
-        s.style.minWidth = w;
-        s.style.maxWidth = w;
+        //s.style.maxWidth = w;
+        s.style.width = w;
       }
       else {
-        s.style.minWidth = "";
-        s.style.maxWidth = "";      
+        dump("reseting\n");
+        //s.style.width = "";
+        s.style.removeProperty("width");
+        s.width = 200;
+        //s.style.width = "none";
+        //s.style.removeProperty("width");
       }
     }
   },

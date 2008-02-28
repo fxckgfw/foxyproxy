@@ -48,6 +48,7 @@ function _initSettings() {
   document.getElementById("autoAddMatchType").value = foxyproxy.autoadd.match.isRegEx ? "r" : "w"; 
   document.getElementById("quickAddMatchType").value = foxyproxy.quickadd.match.isRegEx ? "r" : "w"; 
   document.getElementById("statusbarWidth").value = foxyproxy.statusbar.width;
+  document.getElementById("statusBarWidthBroadcaster").setAttribute("disabled", !foxyproxy.statusbar.textEnabled);
   updateTemplateExample("autoAddUrlTemplate", "autoAddTemplateExample", foxyproxy.autoadd);  
   updateTemplateExample("quickAddUrlTemplate", "quickAddTemplateExample", foxyproxy.quickadd);  
 }
@@ -456,6 +457,11 @@ function toggleEnabled() {
 
 function _isDefaultProxySelected() {
 	return foxyproxy.proxies.item(proxyTree.currentIndex).lastresort;
+}
+
+function onToggleStatusBarText(checked) {
+  foxyproxy.statusbar.textEnabled = checked;
+  document.getElementById("statusBarWidthBroadcaster").setAttribute("disabled", !checked);
 }
 
 function onOK() {

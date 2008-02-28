@@ -208,14 +208,15 @@
 										label="&foxyproxy.showstatusbarmode.label;"
 										accesskey="&foxyproxy.showstatusbarmode.accesskey;"
 										tooltiptext="&foxyproxy.showstatusbarmode.tooltip;"
-										oncommand="foxyproxy.statusbar.textEnabled = this.checked;" />
+										oncommand="onToggleStatusBarText(this.checked);"/>
 								</hbox>
                 <hbox align="center" class="indent">
-                  <label value="&foxyproxy.statusbarwidth.label;"/>
+                  <label value="&foxyproxy.statusbarwidth.label;" observes="statusBarWidthBroadcaster"/>
                   <textbox id="statusbarWidth" size="1" type="timed" timeout="500" oncommand="foxyproxy.statusbar.width = this.value;"
-                    tooltiptext="&foxyproxy.statusbarwidth.tooltip;" accesskey="&foxyproxy.statusbarwidth.accesskey;"/>
-                  <label value="&foxyproxy.pixels;"/>
-                  <label value="&foxyproxy.unlimited.label;"/>                  
+                    tooltiptext="&foxyproxy.statusbarwidth.tooltip;" accesskey="&foxyproxy.statusbarwidth.accesskey;"
+                    observes="statusBarWidthBroadcaster"/>
+                  <label value="&foxyproxy.pixels;" observes="statusBarWidthBroadcaster"/>
+                  <label value="&foxyproxy.unlimited.label;" observes="statusBarWidthBroadcaster"/>                  
                 </hbox>                
 								<hbox align="center">
 									<checkbox id="toolsMenuEnabled"
@@ -1000,6 +1001,7 @@
 		<broadcaster id="tree-row-selected" disabled="true" />
 		<broadcaster id="autoAddBroadcaster" hidden="true" />
 		<broadcaster id="quickAddBroadcaster" hidden="true" />
+    <broadcaster id="statusBarWidthBroadcaster" disabled="true" />
 	</broadcasterset>
 
 	<keyset>

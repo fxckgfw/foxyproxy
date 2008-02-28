@@ -70,7 +70,7 @@
 <!ENTITY foxyproxy.regex.label "Normal İfade">
 <!ENTITY foxyproxy.regex.accesskey "R">
 <!ENTITY foxyproxy.regex.tooltip "URL ya da URL şablonunun normal ifade olduğunu belirtir.">
-<!ENTITY foxyproxy.regex.example.label "Example: http?://.*\.mail\.yahoo\.com/.*">
+<!ENTITY foxyproxy.regex.example.label "Example: https?://.*\.mail\.yahoo\.com/.*">
 <!ENTITY foxyproxy.version "Sürüm">
 <!ENTITY foxyproxy.createdBy "Oluşturan:">
 <!ENTITY foxyproxy.copyright "Telif Hakkı">

@@ -70,7 +70,7 @@
 <!ENTITY foxyproxy.regex.label "عبارت منظم">
 <!ENTITY foxyproxy.regex.accesskey "ر">
 <!ENTITY foxyproxy.regex.tooltip "عبارت منظم">
-<!ENTITY foxyproxy.regex.example.label "نمونه : http?://.*\.mail\.yahoo\.com/.*">
+<!ENTITY foxyproxy.regex.example.label "نمونه : https?://.*\.mail\.yahoo\.com/.*">
 <!ENTITY foxyproxy.version "نسخه">
 <!ENTITY foxyproxy.createdBy "نویسنده">
 <!ENTITY foxyproxy.copyright "Copyright">

@@ -70,7 +70,7 @@
 <!ENTITY foxyproxy.regex.label "正则表达式">
 <!ENTITY foxyproxy.regex.accesskey "R">
 <!ENTITY foxyproxy.regex.tooltip "使用正则表达式来确定 URL 或 URL 模板。">
-<!ENTITY foxyproxy.regex.example.label "例如: http?://.*\.mail\.yahoo\.com/.*">
+<!ENTITY foxyproxy.regex.example.label "例如: https?://.*\.mail\.yahoo\.com/.*">
 <!ENTITY foxyproxy.version "版本">
 <!ENTITY foxyproxy.createdBy "创建者">
 <!ENTITY foxyproxy.copyright "版权">

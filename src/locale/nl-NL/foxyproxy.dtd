@@ -70,7 +70,7 @@
 <!ENTITY foxyproxy.regex.label "Reguliere uitdrukking">
 <!ENTITY foxyproxy.regex.accesskey "R">
 <!ENTITY foxyproxy.regex.tooltip "Specificeert dat de het URL-patroon een reguliere uitdrukking is">
-<!ENTITY foxyproxy.regex.example.label "Voorbeeld: http?://.*\.mail\.yahoo\.com/.*">
+<!ENTITY foxyproxy.regex.example.label "Voorbeeld: https?://.*\.mail\.yahoo\.com/.*">
 <!ENTITY foxyproxy.version "Versie">
 <!ENTITY foxyproxy.createdBy "Gemaakt door:">
 <!ENTITY foxyproxy.copyright "Copyright">

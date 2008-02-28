@@ -70,7 +70,7 @@
 <!ENTITY foxyproxy.regex.label "การแสดงออกทั่วไป">
 <!ENTITY foxyproxy.regex.accesskey "R">
 <!ENTITY foxyproxy.regex.tooltip "กำหนดว่ารูปแบบยูอาร์แอลเป็นการแสดงออกทั่วไป">
-<!ENTITY foxyproxy.regex.example.label "ตัวอย่าง: http?://.*\.mail\.yahoo\.com/.*">
+<!ENTITY foxyproxy.regex.example.label "ตัวอย่าง: https?://.*\.mail\.yahoo\.com/.*">
 <!ENTITY foxyproxy.version "รุ่น">
 <!ENTITY foxyproxy.createdBy "สร้างโดย:">
 <!ENTITY foxyproxy.copyright "ลิขสิทธิ์">

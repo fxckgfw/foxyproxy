@@ -70,7 +70,7 @@
 <!ENTITY foxyproxy.regex.label "Reguljärt uttryck">
 <!ENTITY foxyproxy.regex.accesskey "R">
 <!ENTITY foxyproxy.regex.tooltip "Anger att URL eller URL-mönster är ett reguljärt uttryck">
-<!ENTITY foxyproxy.regex.example.label "Exempel: http?://.*\.mail\.yahoo\.com/.*">
+<!ENTITY foxyproxy.regex.example.label "Exempel: https?://.*\.mail\.yahoo\.com/.*">
 <!ENTITY foxyproxy.version "Version">
 <!ENTITY foxyproxy.createdBy "Skapad av">
 <!ENTITY foxyproxy.copyright "Copyright">

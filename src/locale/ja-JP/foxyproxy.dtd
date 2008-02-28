@@ -70,7 +70,7 @@
 <!ENTITY foxyproxy.regex.label "正規表現">
 <!ENTITY foxyproxy.regex.accesskey "R">
 <!ENTITY foxyproxy.regex.tooltip "正規表現で URL パターンを指定します">
-<!ENTITY foxyproxy.regex.example.label "例: http?://.+\.mail\.example\.com/.*">
+<!ENTITY foxyproxy.regex.example.label "例: https?://.+\.mail\.example\.com/.*">
 <!ENTITY foxyproxy.version "バージョン">
 <!ENTITY foxyproxy.createdBy "作成者">
 <!ENTITY foxyproxy.copyright "Copyright">

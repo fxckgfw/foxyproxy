@@ -70,7 +70,7 @@
 <!ENTITY foxyproxy.regex.label "Regulární výraz">
 <!ENTITY foxyproxy.regex.accesskey "R">
 <!ENTITY foxyproxy.regex.tooltip "Udává, že URL anebo vzor URL je regulární výraz">
-<!ENTITY foxyproxy.regex.example.label "Příklad: http?://.*\.mail\.yahoo\.com/.*">
+<!ENTITY foxyproxy.regex.example.label "Příklad: https?://.*\.mail\.yahoo\.com/.*">
 <!ENTITY foxyproxy.version "Verze">
 <!ENTITY foxyproxy.createdBy "Vytvořil:">
 <!ENTITY foxyproxy.copyright "Autorská práva">

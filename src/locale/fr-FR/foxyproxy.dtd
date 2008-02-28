@@ -70,7 +70,7 @@
 <!ENTITY foxyproxy.regex.label "Expression régulière">
 <!ENTITY foxyproxy.regex.accesskey "r">
 <!ENTITY foxyproxy.regex.tooltip "Spécifie que le motif de correspondance d&apos;URL est une expression régulière">
-<!ENTITY foxyproxy.regex.example.label "Exemple : http?://.*\.mail\.yahoo\.com/.*">
+<!ENTITY foxyproxy.regex.example.label "Exemple : https?://.*\.mail\.yahoo\.com/.*">
 <!ENTITY foxyproxy.version "Version">
 <!ENTITY foxyproxy.createdBy "Créée par :">
 <!ENTITY foxyproxy.copyright "Copyright">

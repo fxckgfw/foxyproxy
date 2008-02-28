@@ -70,7 +70,7 @@
 <!ENTITY foxyproxy.regex.label "Expressão Regular">
 <!ENTITY foxyproxy.regex.accesskey "R">
 <!ENTITY foxyproxy.regex.tooltip "Especifíca que o endereço ou padrão de endereço é uma expressão regular">
-<!ENTITY foxyproxy.regex.example.label "Example: http?://.*\.mail\.yahoo\.com/.*">
+<!ENTITY foxyproxy.regex.example.label "Example: https?://.*\.mail\.yahoo\.com/.*">
 <!ENTITY foxyproxy.version "Versão">
 <!ENTITY foxyproxy.createdBy "Criado por:">
 <!ENTITY foxyproxy.copyright "Copyright">

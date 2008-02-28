@@ -214,7 +214,7 @@
                   <label value="&foxyproxy.statusbarwidth.label;" observes="statusBarWidthBroadcaster"/>
                   <textbox id="statusbarWidth" size="1" type="timed" timeout="500" oncommand="foxyproxy.statusbar.width = this.value;"
                     tooltiptext="&foxyproxy.statusbarwidth.tooltip;" accesskey="&foxyproxy.statusbarwidth.accesskey;"
-                    observes="statusBarWidthBroadcaster"/>
+                    />
                   <label value="&foxyproxy.pixels;" observes="statusBarWidthBroadcaster"/>
                   <label value="&foxyproxy.unlimited.label;" observes="statusBarWidthBroadcaster"/>                  
                 </hbox>                

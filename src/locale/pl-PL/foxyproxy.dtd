@@ -70,7 +70,7 @@
 <!ENTITY foxyproxy.regex.label "RegExp">
 <!ENTITY foxyproxy.regex.accesskey "R">
 <!ENTITY foxyproxy.regex.tooltip "Określa, że adres lub wzorzec URL jest wyrażeniem regularnym">
-<!ENTITY foxyproxy.regex.example.label "Na przykład: http?://.*\.mail\.yahoo\.com/.*">
+<!ENTITY foxyproxy.regex.example.label "Na przykład: https?://.*\.mail\.yahoo\.com/.*">
 <!ENTITY foxyproxy.version "Wersja">
 <!ENTITY foxyproxy.createdBy "Autor:">
 <!ENTITY foxyproxy.copyright "Prawa autorskie: Copyright">

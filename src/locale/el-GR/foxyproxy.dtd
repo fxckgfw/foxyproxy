@@ -70,7 +70,7 @@
 <!ENTITY foxyproxy.regex.label "Κανονική έκφραση">
 <!ENTITY foxyproxy.regex.accesskey "Κ">
 <!ENTITY foxyproxy.regex.tooltip "Διευκρινήζει ότι το πρότυπο URL είναι κανονική έκφραση">
-<!ENTITY foxyproxy.regex.example.label "Παράδειγμα : http?://.*\.mail\.yahoo\.com/.*">
+<!ENTITY foxyproxy.regex.example.label "Παράδειγμα : https?://.*\.mail\.yahoo\.com/.*">
 <!ENTITY foxyproxy.version "Έκδοση">
 <!ENTITY foxyproxy.createdBy "Δημιουργήθηκε από">
 <!ENTITY foxyproxy.copyright "Πνευματικά δικαιώματα">

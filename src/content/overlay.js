@@ -341,20 +341,14 @@ var foxyproxy = {
     if (s) {
       s.hidden = !e;
       var w = this.fp.statusbar.width;
-      dump("initial width is '" + s.style.width + "'\n");      
-      if (w > 0) {
-        //s.setAttribute("style", "min-width: 3em; max-width: 3em;");
-        w = w + "px;";
-        //s.style.maxWidth = w;
-        s.style.width = w;
-      }
+      if (w > 0)
+        s.width = w;
       else {
-        dump("reseting\n");
-        //s.style.width = "";
-        s.style.removeProperty("width");
-        s.width = 200;
-        //s.style.width = "none";
-        //s.style.removeProperty("width");
+        s.width = "";
+        // Work-around weird FF 2.0.x bug whereby statusbarpanel doesn't fit-to-size
+        // when width is the empty string; hide then show the statusbarpanel.
+        s.hidden = true;
+        s.hidden = false;     
       }
     }
   },

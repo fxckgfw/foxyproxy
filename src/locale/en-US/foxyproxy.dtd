@@ -552,4 +552,4 @@
 <!ENTITY foxyproxy.statusbarwidth.accesskey "W">
 <!ENTITY foxyproxy.statusbarwidth.tooltip "Prevents statusbar resizing">
 <!ENTITY foxyproxy.pixels "pixels">
-<!ENTITY foxyproxy.unlimited.label "[0: unlimited] ">
+<!ENTITY foxyproxy.unlimited.label "[0: shrink to fit] ">

@@ -164,7 +164,6 @@
 							<groupbox>
 								<caption
 									label="&foxyproxy.notifications.label;"
-									accesskey="&foxyproxy.notifications.accesskey;"
 									tooltiptext="&foxyproxy.notifications.tooltip;"/>
 								<row align="center">
 									<checkbox

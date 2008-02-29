@@ -194,7 +194,6 @@
 							<groupbox>
 								<caption
 									label="&foxyproxy.indicators.label;"
-									accesskey="&foxyproxy.indicators.accesskey;"
 									tooltiptext="&foxyproxy.indicators.tooltip;" />
 								<hbox align="center">
 									<checkbox id="statusbarIconEnabled"
@@ -236,7 +235,6 @@
 							<groupbox>
 								<caption
 									label="&foxyproxy.toolbaractivation.label;"
-									accesskey="&foxyproxy.toolbaractivation.accesskey;"
 									tooltiptext="&foxyproxy.toolbaractivation.tooltip;" />
 								<grid>
 									<columns>
@@ -304,7 +302,6 @@
 						<row>
 							<groupbox>
 								<caption label="&foxyproxy.misc.label;"
-									accesskey="&foxyproxy.misc.accesskey;"
 									tooltiptext="&foxyproxy.misc.tooltip;" />
 								<row align="center">
 									<label
@@ -350,7 +347,6 @@
 							<groupbox>
 								<caption
 									label="&foxyproxy.statusbaractivation.label;"
-									accesskey="&foxyproxy.statusbaractivation.accesskey;"
 									tooltiptext="&foxyproxy.statusbaractivation.tooltip;" />
 								<grid>
 									<columns>

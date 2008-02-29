@@ -1168,7 +1168,7 @@ biesi>	passing it the appropriate proxyinfo
       if (isNaN(e)) e = 0;
       this._width = e;
       gFP.writeSettings();
-      gBroadcast(e, "foxyproxy-statusbar-text");
+      gBroadcast(e, "foxyproxy-statusbar-width");
     }
   },
 

@@ -48,8 +48,7 @@ function _initSettings() {
   document.getElementById("autoAddMatchType").value = foxyproxy.autoadd.match.isRegEx ? "r" : "w"; 
   document.getElementById("quickAddMatchType").value = foxyproxy.quickadd.match.isRegEx ? "r" : "w"; 
   document.getElementById("statusbarWidth").value = foxyproxy.statusbar.width;
-  document.getElementById("statusBarWidthBroadcaster").setAttribute("disabled", !foxyproxy.statusbar.textEnabled);
-  document.getElementById("statusbarWidth").setAttribute("disabled", !foxyproxy.statusbar.textEnabled);
+  toggleStatusBarText(foxyproxy.statusbar.textEnabled);
   updateTemplateExample("autoAddUrlTemplate", "autoAddTemplateExample", foxyproxy.autoadd);  
   updateTemplateExample("quickAddUrlTemplate", "quickAddTemplateExample", foxyproxy.quickadd);  
 }
@@ -462,8 +461,17 @@ function _isDefaultProxySelected() {
 
 function onToggleStatusBarText(checked) {
   foxyproxy.statusbar.textEnabled = checked;
-  document.getElementById("statusBarWidthBroadcaster").setAttribute("disabled", !checked);
-  document.getElementById("statusbarWidth").setAttribute("disabled", !checked);  
+  toggleStatusBarText(checked);
+}
+
+function toggleStatusBarText(checked) {
+  // Next line--buggy in FF 1.5.x, 2.0.x--makes fields enabled but readonly
+  // document.getElementById("statusBarWidthBroadcaster").setAttribute("disabled", true);
+  // Call removeAttribute() instead of setAttribute("disabled", "false") or setAttribute("disabled", false);
+  if (checked)
+    document.getElementById("statusBarWidthBroadcaster").removeAttribute("disabled"); // enables!    
+  else
+    document.getElementById("statusBarWidthBroadcaster").setAttribute("disabled", "true");     
 }
 
 function onOK() {

@@ -17,7 +17,7 @@ var foxyproxy = {
   contextMenuIcon : null,
   toolbarIcon : null,
   toolsMenuIcon : null,
-	notes: ["foxyproxy-statusbar-icon","foxyproxy-statusbar-text","foxyproxy-toolsmenu",
+	notes: ["foxyproxy-statusbar-icon","foxyproxy-statusbar-text","foxyproxy-statusbar-width","foxyproxy-toolsmenu",
 		"foxyproxy-contextmenu","foxyproxy-mode-change","foxyproxy-throb","foxyproxy-updateviews","foxyproxy-autoadd-toggle"],
 
   alert : function(wnd, str) {
@@ -41,6 +41,9 @@ var foxyproxy = {
 			case "foxyproxy-statusbar-text":
 				this.toggleStatusBarText(e);
 			  break;
+      case "foxyproxy-statusbar-width":
+        this.toggleStatusBarWidth(e);
+        break;
 			case "foxyproxy-autoadd-toggle":
 				this.checkPageLoad();
 				break;
@@ -75,6 +78,7 @@ var foxyproxy = {
     this.checkPageLoad();
     this.toggleStatusBarIcon(this.fp.statusbar.iconEnabled);
 		this.toggleStatusBarText(this.fp.statusbar.textEnabled);
+    this.toggleStatusBarWidth(this.fp.statusbar.width);
 		this.setMode(this.fp.mode);
     this._firstRunCheck();
   },
@@ -338,19 +342,24 @@ var foxyproxy = {
   	var s=document.getElementById("foxyproxy-status-text");
   	// Statusbars don't exist on all windows (e.g,. View Source) so check for existence first,
   	// otherwise we get a JS error.
-    if (s) {
-      s.hidden = !e;
-      var w = this.fp.statusbar.width;
-      if (w > 0)
-        s.width = w;
-      else {
-        s.width = "";
-        // Work-around weird FF 2.0.x bug whereby statusbarpanel doesn't fit-to-size
-        // when width is the empty string; hide then show the statusbarpanel.
-        s.hidden = true;
-        s.hidden = false;     
-      }
-    }
+    s && (s.hidden = !e);
+  },
+  
+  toggleStatusBarWidth : function(w) {
+    var s=document.getElementById("foxyproxy-status-text");
+    // Statusbars don't exist on all windows (e.g,. View Source) so check for existence first,
+    // otherwise we get a JS error.
+    if (!s) return;
+    var w = this.fp.statusbar.width; 
+    if (w > 0)
+      s.width = w;
+    else {
+      s.width = "";
+      // Work-around weird FF 2.0.x bug whereby statusbarpanel doesn't fit-to-size
+      // when width is the empty string; hide then show the statusbarpanel.
+      s.hidden = true;
+      s.hidden = false;     
+    }    
   },
 
   // Set toolbar, statusbar, and context menu text and icon colors

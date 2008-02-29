@@ -322,12 +322,14 @@
 									<checkbox id="usingPFF"
 										label="&foxyproxy.usingPFF.label1;"
 										tooltiptext="&foxyproxy.usingPFF.tooltip;"
-										oncommand="onUsingPFF(this.checked);" />
+										oncommand="onUsingPFF(this.checked);"
+                    accesskey="&foxyproxy.usingPFF.accesskey;"/>
 									<label
 										value="&foxyproxy.usingPFF.label2;"
 										style="margin-left: -0.3em;"
+                    control="usingPFF"
 										tooltiptext="&foxyproxy.usingPFF.tooltip;"
-										accesskey="&foxyproxy.usingPFF.accesskey;" class="text-link"
+										class="text-link"
 										onclick="foxyproxy_common.openAndReuseOneTabPerURL('http://portableapps.com/apps/internet/browsers/portable_firefox');" />
 								</row>
 								<row align="center">

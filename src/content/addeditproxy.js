@@ -230,6 +230,7 @@ function onRemove() {
 function toggleMode(mode) {
   // Next line--buggy in FF 1.5.0.1--makes fields enabled but readonly
   // document.getElementById("disabled-broadcaster").setAttribute("disabled", mode == "auto" ? "true" : "false");
+  // Call removeAttribute() instead of setAttribute("disabled", "false") or setAttribute("disabled", false);
   // Thanks, Andy McDonald.
   if (mode == "auto") {
     document.getElementById("autoconf-broadcaster1").removeAttribute("disabled");

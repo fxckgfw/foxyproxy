@@ -213,7 +213,7 @@
 
 <!ENTITY foxyproxy.usingPFF.label1 "I am using">
 <!ENTITY foxyproxy.usingPFF.label2 "Portable Firefox">
-<!ENTITY foxyproxy.usingPFF.accesskey "P">
+<!ENTITY foxyproxy.usingPFF.accesskey "I">
 <!ENTITY foxyproxy.usingPFF.tooltip "Check here if you are using Portable Firefox">
 
 <!ENTITY foxyproxy.socks.version.label "SOCKS Version">

@@ -50,19 +50,19 @@ MatchingProxy.prototype = {
     this.proxy = proxy;
     this.proxyName = proxy.name; // Make local copy so logg history doesn't change if user changes proxy    
     this.proxyNotes = proxy.notes;  // ""
-    this.caseSensitive = aMatch.caseSensitive ? this.yes : this.no; // ""
     if (type == "pat") {
       this.matchName = aMatch.name;  // Make local copy so logg history doesn't change if user changes proxy
       this.matchPattern = aMatch.pattern; // ""
       this.matchType = aMatch.isRegEx ? this.regExMsg : this.wcMsg;  
-      this.whiteBlack = aMatch.isBlackList ? this.blackMsg : this.whiteMsg; // ""  
+      this.whiteBlack = aMatch.isBlackList ? this.blackMsg : this.whiteMsg; // ""
+      this.caseSensitive = aMatch.caseSensitive ? this.yes : this.no; // ""
 	}
 	else if (type == "ded") {
-	  this.whiteBlack = this.matchName = this.matchPattern = this.matchType = this.allMsg;
+	  this.caseSensitive = this.whiteBlack = this.matchName = this.matchPattern = this.matchType = this.allMsg;
 	}		
 	else if (type == "rand") {
-      this.matchName = this.matchPattern = this.matchType = this.whiteBlack = this.randomMsg;
-    }
+    this.matchName = this.matchPattern = this.matchType = this.whiteBlack = this.randomMsg;
+  }
 	else if (type == "round") {
 	}
 	else if (type == "err") {

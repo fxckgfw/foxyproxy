@@ -77,7 +77,7 @@ var foxyproxy = {
     this.toggleContextMenu(this.fp.contextMenu);
     this.checkPageLoad();
     this.toggleStatusBarIcon(this.fp.statusbar.iconEnabled);
-		this.toggleStatusBarText(this.fp.statusbar.textEnabled);
+    this.toggleStatusBarText(this.fp.statusbar.textEnabled);    
     this.toggleStatusBarWidth(this.fp.statusbar.width);
 		this.setMode(this.fp.mode);
     this._firstRunCheck();
@@ -335,7 +335,7 @@ var foxyproxy = {
 
   ///////////////// statusbar \\\\\\\\\\\\\\\\\\\\\
   toggleStatusBarIcon : function(e) {
-      this.statusIcon.hidden = !e;
+    this.statusIcon.hidden = !e;
   },
 
   toggleStatusBarText : function(e) {
@@ -357,8 +357,10 @@ var foxyproxy = {
       s.width = "";
       // Work-around weird FF 2.0.x bug whereby statusbarpanel doesn't fit-to-size
       // when width is the empty string; hide then show the statusbarpanel.
-      s.hidden = true;
-      s.hidden = false;     
+      if (!s.hidden) {
+        s.hidden = true;
+        s.hidden = false;
+      }     
     }    
   },
 

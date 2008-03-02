@@ -10,7 +10,6 @@ locale	foxyproxy	es-ES	jar:chrome/foxyproxy.jar!/locale/es-ES/
 locale	foxyproxy	fa-IR	jar:chrome/foxyproxy.jar!/locale/fa-IR/
 locale	foxyproxy	fr-FR	jar:chrome/foxyproxy.jar!/locale/fr-FR/
 locale	foxyproxy	hr-HR	jar:chrome/foxyproxy.jar!/locale/hr-HR/
-locale	foxyproxy	hr-HU	jar:chrome/foxyproxy.jar!/locale/hr-HU/
 locale	foxyproxy	it-IT	jar:chrome/foxyproxy.jar!/locale/it-IT/
 locale	foxyproxy	ja-JP	jar:chrome/foxyproxy.jar!/locale/ja-JP/
 locale	foxyproxy	nl-NL	jar:chrome/foxyproxy.jar!/locale/nl-NL/

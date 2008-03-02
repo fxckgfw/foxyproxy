@@ -439,3 +439,8 @@
 <!ENTITY foxyproxy.casesensitive.label "Case sensitive">
 <!ENTITY foxyproxy.casesensitive.accesskey "C">
 <!ENTITY foxyproxy.casesensitive.tooltip "Enables/disables case-sensitivity for URL matching">
+<!ENTITY foxyproxy.statusbarwidth.label "Fast bredd">
+<!ENTITY foxyproxy.statusbarwidth.accesskey "b">
+<!ENTITY foxyproxy.statusbarwidth.tooltip "Förhindra storleksändring av statusfältet">
+<!ENTITY foxyproxy.pixels "pixlar">
+<!ENTITY foxyproxy.unlimited.label "[0: anpassad förminskning]">

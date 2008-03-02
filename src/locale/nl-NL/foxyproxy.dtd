@@ -91,7 +91,7 @@
 <!ENTITY foxyproxy.pattern.description "Hier kunt u specificeren wanneer deze proxy wel of niet wordt gebruikt.">
 <!ENTITY foxyproxy.pattern.matchtype.label "Patroon bevat">
 <!ENTITY foxyproxy.pattern.matchtype2.label "Patroon om geblokkeerde websites te identificeren bevat">
-<!ENTITY foxyproxy.pattern.template.matchtype.label "Patroon-template bevat">
+<!ENTITY foxyproxy.pattern.template.matchtype.label "Patroontemplate bevat">
 <!ENTITY foxyproxy.pattern.whiteblack.label "URL opname/uitsluiting">
 <!ENTITY foxyproxy.add.option.direct.label "Directe verbinding met Internet (geen proxy)">
 <!ENTITY foxyproxy.add.option.direct.accesskey "D">
@@ -245,9 +245,9 @@
 <!ENTITY foxyproxy.autoadd.proxy.label "Proxy waaraan patronen automatisch worden toegevoegd">
 <!ENTITY foxyproxy.autoadd.proxy.accesskey "P">
 <!ENTITY foxyproxy.autoadd.proxy.tooltip "Specificeer de proxy waaraan URL&apos;s automatisch worden toegevoegd">
-<!ENTITY foxyproxy.pattern.template.label "URL-patroon template">
+<!ENTITY foxyproxy.pattern.template.label "URL-patroontemplate">
 <!ENTITY foxyproxy.pattern.template.accesskey "U">
-<!ENTITY foxyproxy.pattern.template.tooltip "URL-patroon template">
+<!ENTITY foxyproxy.pattern.template.tooltip "URL-patroontemplate">
 <!ENTITY foxyproxy.pattern.template.example.label1 "Voorbeeld voor">
 <!ENTITY foxyproxy.pattern.template.example.label2 "http://fred:secret@mail.foo.com:8080/inbox/msg102.htm#subject?style=elegant">
 <!ENTITY foxyproxy.pattern.template.currenturl.label "Huidige URL">
@@ -352,7 +352,7 @@
 <!ENTITY foxyproxy.ok.tooltip "Venster sluiten">
 <!ENTITY foxyproxy.pattern.template.reference.label "Patroon-template referentie">
 <!ENTITY foxyproxy.pattern.template.reference.accesskey "T">
-<!ENTITY foxyproxy.pattern.template.reference.tooltip "Patroon-template referentie">
+<!ENTITY foxyproxy.pattern.template.reference.tooltip "Patroontemplate referentie">
 <!ENTITY foxyproxy.pattern.template.reference.subtitle.label "URL-patroon templates bepalen de opmaak waarin URL&apos;s Snel of Automatisch worden toegevoegd aan proxy&apos;s. Templates ondersteunen de volgende speciale zinsdelen die, wanneer Snel toevoegen of Automatisch toevoegen geactiveerd worden, vervangen worden door de overeenkomstige URL component in de adresbalk.">
 <!ENTITY foxyproxy.pattern.template.reference.specialstring.label "Speciaal zinsdeel">
 <!ENTITY foxyproxy.pattern.template.reference.subststring.label "Vervangen door">
@@ -378,7 +378,7 @@
 <!ENTITY foxyproxy.notifications.label "Notificaties">
 <!ENTITY foxyproxy.notifications.accesskey "N">
 <!ENTITY foxyproxy.notifications.tooltip "Notificatie-instellingen">
-<!ENTITY foxyproxy.indicators.label "Indicators">
+<!ENTITY foxyproxy.indicators.label "Indicatoren">
 <!ENTITY foxyproxy.indicators.accesskey "I">
 <!ENTITY foxyproxy.indicators.tooltip "Indicatorinstellingen">
 <!ENTITY foxyproxy.misc.label "Diversen">
@@ -439,3 +439,8 @@
 <!ENTITY foxyproxy.casesensitive.label "Hoofdlettergevoelig">
 <!ENTITY foxyproxy.casesensitive.accesskey "H">
 <!ENTITY foxyproxy.casesensitive.tooltip "Schakelt hoofdlettergevoeligheid voor URL vergelijking in/uit">
+<!ENTITY foxyproxy.statusbarwidth.label "Vaste breedte">
+<!ENTITY foxyproxy.statusbarwidth.accesskey "B">
+<!ENTITY foxyproxy.statusbarwidth.tooltip "Voorkomt wijzigen van grootte van de statusbalk">
+<!ENTITY foxyproxy.pixels "pixels">
+<!ENTITY foxyproxy.unlimited.label "[0: op maat aanpassen]">

@@ -439,3 +439,8 @@
 <!ENTITY foxyproxy.casesensitive.label "Maiuscole/minuscole">
 <!ENTITY foxyproxy.casesensitive.accesskey "M">
 <!ENTITY foxyproxy.casesensitive.tooltip "Presta/non presta attenzione a maiuscole/minuscole per la corrispondenza degli URL">
+<!ENTITY foxyproxy.statusbarwidth.label "Fixed width">
+<!ENTITY foxyproxy.statusbarwidth.accesskey "W">
+<!ENTITY foxyproxy.statusbarwidth.tooltip "Prevents statusbar resizing">
+<!ENTITY foxyproxy.pixels "pixels">
+<!ENTITY foxyproxy.unlimited.label "[0: shrink to fit] ">

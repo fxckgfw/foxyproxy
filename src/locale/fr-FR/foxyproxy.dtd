@@ -439,3 +439,8 @@
 <!ENTITY foxyproxy.casesensitive.label "Respect de la casse">
 <!ENTITY foxyproxy.casesensitive.accesskey "C">
 <!ENTITY foxyproxy.casesensitive.tooltip "Active/désactive le respect de la casse pour la concordance d&apos;URL">
+<!ENTITY foxyproxy.statusbarwidth.label "Largeur fixe">
+<!ENTITY foxyproxy.statusbarwidth.accesskey "L">
+<!ENTITY foxyproxy.statusbarwidth.tooltip "Évite le redimensionnement de la barre d&apos;état">
+<!ENTITY foxyproxy.pixels "pixels">
+<!ENTITY foxyproxy.unlimited.label "[0: réduire pour ajuster]">

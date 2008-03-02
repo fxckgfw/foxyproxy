@@ -124,7 +124,7 @@
 <!ENTITY foxyproxy.proxydns.tooltip "Jeżeli opcja jest zaznaczona, DNS lookups będą przechodziły przez serwer proxy SOCKS">
 <!ENTITY foxyproxy.proxydns.notice "Aby zmiany zostały zastosowane należy ponownie uruchomić przeglądarkę.">
 <!ENTITY foxyproxy.showstatusbaricon.label "Wyświetl ikonę na pasku stanu">
-<!ENTITY foxyproxy.showstatusbaricon.accesskey "K">
+<!ENTITY foxyproxy.showstatusbaricon.accesskey "Y">
 <!ENTITY foxyproxy.showstatusbaricon.tooltip "Po zaznaczeniu tej opcji ikona FoxyProxy będzie wyświetlana na pasku stanu">
 <!ENTITY foxyproxy.showstatusbarmode.label "Wyświetl tryb FoxyProxy (tekst) na pasku stanu">
 <!ENTITY foxyproxy.showstatusbarmode.accesskey "B">
@@ -160,7 +160,7 @@
 <!ENTITY foxyproxy.whiteblack.description.label "Precedensy wzorców dozwolonych i niedozwolonych. Jeśli adres URL pasuje do wzorca dozwolonego i niedozwolonego dla tego samego proxy, zostanie wykluczony lub nie (w zależności od wyboru) z pobierania przez to proxy.">
 <!ENTITY foxyproxy.usingPFF.label1 "Używam">
 <!ENTITY foxyproxy.usingPFF.label2 "Portable Firefox">
-<!ENTITY foxyproxy.usingPFF.accesskey "P">
+<!ENTITY foxyproxy.usingPFF.accesskey "A">
 <!ENTITY foxyproxy.usingPFF.tooltip "Zaznacz tę opcję jeśli używasz Portable Firefox">
 <!ENTITY foxyproxy.socks.version.label "Wersja SOCKS">
 <!ENTITY foxyproxy.autopacurl.label "Adres URL pliku *.pac">
@@ -275,7 +275,7 @@
 <!ENTITY foxyproxy.toolsmenu.accesskey "E">
 <!ENTITY foxyproxy.toolsmenu.tooltip "Wyświetla element &quot;FoxyProxy&quot; w menu &quot;Narzędzia&quot;">
 <!ENTITY foxyproxy.tip.label "Podpowiedź">
-<!ENTITY foxyproxy.pactips.popup.height "190px">
+<!ENTITY foxyproxy.pactips.popup.height "290px">
 <!ENTITY foxyproxy.pactips.popup.width "400px">
 <!ENTITY foxyproxy.pactip1.label "Dla plików *.pac zapisanych na dysku lokalnym proszę używać następującego schematu: file://schemat. Np. file://c:/path/proxy.pac dla systemu Windows lubfile:///home/users/joe/proxy.pac dla systemów Unix/Linux/Mac.">
 <!ENTITY foxyproxy.pactip2.label "Dla plików *.pac zapisanych na serwerze FTP proszę używać następującego schematu: file://schemat. Np. ftp://leahscape.com/path/proxy.pac">
@@ -343,7 +343,7 @@
 <!ENTITY foxyproxy.wildcard.reference.incorrect.reason2.label "FoxyProxy nie rozpoznaje tego rodzaju składni">
 <!ENTITY foxyproxy.wildcard.reference.incorrect.reason3.label "Nie ma wieloznaczników">
 <!ENTITY foxyproxy.wildcard.reference.incorrect.reason4.label "Nie ma wieloznaczników">
-<!ENTITY foxyproxy.wildcard.reference.popup.height "350px">
+<!ENTITY foxyproxy.wildcard.reference.popup.height "360px">
 <!ENTITY foxyproxy.logging.noURLs.label "Nie zapisuj i nie wyświetlaj adresów URL">
 <!ENTITY foxyproxy.logging.noURLs.accesskey "N">
 <!ENTITY foxyproxy.logging.noURLs.tooltip "Adresy URL nie są zapisywane w pamięci RAM ani na dysku">
@@ -388,7 +388,7 @@
 <!ENTITY foxyproxy.animatedicons.accesskey "A">
 <!ENTITY foxyproxy.animatedicons.tooltip "Gdy proxy jest używane ikona FoxyProxy na pasku stanu będzie animowana">
 <!ENTITY foxyproxy.statusbaractivation.label "Działanie ikony FoxyProxy na pasku stanu">
-<!ENTITY foxyproxy.statusbaractivation.accesskey "T">
+<!ENTITY foxyproxy.statusbaractivation.accesskey "Z">
 <!ENTITY foxyproxy.statusbaractivation.tooltip "Ustawienia działania przycisków myszy na pasku stanu">
 <!ENTITY foxyproxy.toolbaractivation.label "Działanie ikony FoxyProxy na pasku narzędziowym">
 <!ENTITY foxyproxy.toolbaractivation.accesskey "d">
@@ -403,13 +403,13 @@
 <!ENTITY foxyproxy.rightclicksb.accesskey "P">
 <!ENTITY foxyproxy.rightclicksb.tooltip "Działanie jakie zostanie wykonane po kliknięciu ppm na ikonie FoxyProxy na pasku stanu">
 <!ENTITY foxyproxy.leftclicktb.label "Kliknięcie lpm">
-<!ENTITY foxyproxy.leftclicktb.accesskey "L">
+<!ENTITY foxyproxy.leftclicktb.accesskey "C">
 <!ENTITY foxyproxy.leftclicktb.tooltip "Działanie jakie zostanie wykonane po kliknięciu lpm na ikonie FoxyProxy na pasku narzędziowym">
 <!ENTITY foxyproxy.middleclicktb.label "Kliknięcie śpm">
-<!ENTITY foxyproxy.middleclicktb.accesskey "M">
+<!ENTITY foxyproxy.middleclicktb.accesskey "N">
 <!ENTITY foxyproxy.middleclicktb.tooltip "Działanie jakie zostanie wykonane po kliknięciu śpm na ikonie FoxyProxy na pasku narzędziowym">
 <!ENTITY foxyproxy.rightclicktb.label "Kliknięcie ppm">
-<!ENTITY foxyproxy.rightclicktb.accesskey "P">
+<!ENTITY foxyproxy.rightclicktb.accesskey "K">
 <!ENTITY foxyproxy.rightclicktb.tooltip "Działanie jakie zostanie wykonane po kliknięciu ppm na ikonie FoxyProxy na pasku narzędziowym">
 <!ENTITY foxyproxy.click.options "wyświetla okno dialogowe opcji">
 <!ENTITY foxyproxy.click.cycle "zmienia na tryby">
@@ -430,7 +430,7 @@
 <!ENTITY foxyproxy.newGUI4.label "Kliknij tutaj, aby uzyskać więcej informacji.">
 <!ENTITY foxyproxy.error.msg.label "Informacja o błędzie">
 <!ENTITY foxyproxy.pac.result.label "Wynik PAC">
-<!ENTITY foxyproxy.options.width "700px">
+<!ENTITY foxyproxy.options.width "740px">
 <!ENTITY foxyproxy.options.height "480px">
 <!ENTITY foxyproxy.torwiz.width "690px">
 <!ENTITY foxyproxy.torwiz.height "375px">
@@ -439,3 +439,8 @@
 <!ENTITY foxyproxy.casesensitive.label "Rozróżniaj wielkość znaków">
 <!ENTITY foxyproxy.casesensitive.accesskey "E">
 <!ENTITY foxyproxy.casesensitive.tooltip "Włącza/wyłącza rozróżnianie wielkości znaków przy porównywaniu URL">
+<!ENTITY foxyproxy.statusbarwidth.label "Ogranicz szerokość do">
+<!ENTITY foxyproxy.statusbarwidth.accesskey "O">
+<!ENTITY foxyproxy.statusbarwidth.tooltip "Ogranicza szerokość opisu trybu FoxyProxy na pasku stanu">
+<!ENTITY foxyproxy.pixels "px">
+<!ENTITY foxyproxy.unlimited.label "[0: dopasowuje się do zawartości] ">

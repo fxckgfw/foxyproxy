@@ -110,6 +110,6 @@
 	<i18n id="foxyproxy.error.msg.label" value="&foxyproxy.error.msg.label;"/>			
 	<i18n id="foxyproxy.pac.result.label" value="&foxyproxy.pac.result.label;"/>			
 
-    <i18n id="foxyproxy.casesensitive.label" value="&foxyproxy.casesensitive.label;"/> 
+  <i18n id="foxyproxy.casesensitive.label" value="&foxyproxy.casesensitive.label;"/> 
 	
 </root>

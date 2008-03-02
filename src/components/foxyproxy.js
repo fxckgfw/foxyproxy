@@ -716,7 +716,6 @@ biesi>	passing it the appropriate proxyinfo
 
     getMatches : function(uriStr) {
 			for (var i=0, aMatch; i<this.list.length; i++) {
-        dump("this.list[i] = " + this.list[i] + "\n");
 				if (this.list[i]._enabled && (aMatch = this.list[i].isMatch(uriStr))) {
 					return gMatchingProxyFactory(this.list[i], aMatch, uriStr, "pat");
 				}
@@ -1134,7 +1133,7 @@ biesi>	passing it the appropriate proxyinfo
       this._iconEnabled = e;
       gFP.writeSettings();
 			gBroadcast(e, "foxyproxy-statusbar-icon");
-      e && gFP.setMode(gFP.mode, false, false);
+      e && gFP.setMode(gFP.mode, false, false); // todo: why is this here? can it be removed? it forces PAC to reload
     },
 
     get textEnabled() { return this._textEnabled; },
@@ -1142,7 +1141,7 @@ biesi>	passing it the appropriate proxyinfo
       this._textEnabled = e;
       gFP.writeSettings();
 			gBroadcast(e, "foxyproxy-statusbar-text");
-      e && gFP.setMode(gFP.mode, false, false);
+      e && gFP.setMode(gFP.mode, false, false);  // todo: why is this here? can it be removed? it forces PAC to reload
     },
 
     get leftClick() { return this._leftClick; },

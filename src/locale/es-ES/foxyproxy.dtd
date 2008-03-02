@@ -439,3 +439,8 @@
 <!ENTITY foxyproxy.casesensitive.label "Sensible a mayúsculas">
 <!ENTITY foxyproxy.casesensitive.accesskey "C">
 <!ENTITY foxyproxy.casesensitive.tooltip "Habilita/Deshabilita el uso de las mayúsculas en la comparación de las URL">
+<!ENTITY foxyproxy.statusbarwidth.label "Ancho fijo">
+<!ENTITY foxyproxy.statusbarwidth.accesskey "F">
+<!ENTITY foxyproxy.statusbarwidth.tooltip "Previene el redimensionado de la barra de estados">
+<!ENTITY foxyproxy.pixels "pixels">
+<!ENTITY foxyproxy.unlimited.label "[0: Ajustar al ancho]">

@@ -135,5 +135,11 @@ var foxyproxy_common = {
     else
       selFirst();
     menu.selectedIndex == -1 && selFirst();
+  },
+  
+  getVersion : function() {
+    return Components.classes["@mozilla.org/extensions/manager;1"]
+              .getService(Components.interfaces.nsIExtensionManager)
+              .getItemForID("foxyproxy@eric.h.jung").version || "0.0";   
   }
 };

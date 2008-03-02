@@ -21,6 +21,7 @@
   onload="onLoad();"
   buttons="accept"
   xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+  xmlns:svg="http://www.w3.org/2000/svg" 
   windowtype="foxyproxy"
   persist="screenX screenY width height">
 
@@ -102,7 +103,6 @@
 						<row><label value="&foxyproxy.german;"/><label value="Jörn Hartroth," style="font-weight: bold;"/></row>
 						<row><spacer/><label value="Marten Seeman" style="font-weight: bold;"/></row>
 						<row><label value="&foxyproxy.greek;"/><label value="Sonickydon" style="font-weight: bold;"/></row>
-						<row><label value="&foxyproxy.hungarian;"/><label value="kami" style="font-weight: bold;"/></row>
 						<row><label value="&foxyproxy.italian;"/><label value="MatrixIsAllOver," style="font-weight: bold;"/></row>
 						<row><spacer/><label value="l0stintranslation" style="font-weight: bold;"/></row>
 						<row><label value="&foxyproxy.japanese;"/><label value="drry" style="font-weight: bold;"/></row>

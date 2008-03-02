@@ -107,19 +107,11 @@ var foxyproxy = {
     }
     catch(e) {}
     if (!f) {
-      if (!this.songbirdNotice())
-        this.torWizard(true); // no automatic tor wizard for songbird users
+      this.torWizard(true);
       this.fp.getPrefsService("extensions.foxyproxy.").setBoolPref("firstrun", true);
     }
   },
   
-  songbirdNotice : function() {
-      if ("songbird@songbirdnest.com" == Components.classes["@mozilla.org/xre/app-info;1"].getService(Components.interfaces.nsIXULAppInfo).ID) {
-        this.alert(window, this.fp.getMessage("songbird.notice.1"));
-        return true;
-      }
-  },
-
   torWizard : function(firstTime) {
     var owner = foxyproxy._getOptionsDlg();
     if (this.ask(owner, (firstTime ? (this.fp.getMessage("welcome") + " ") : "") +

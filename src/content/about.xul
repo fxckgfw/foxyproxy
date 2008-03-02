@@ -126,7 +126,6 @@
 			        class="text-link" stlye="font-weight: bold;" tooltiptext="http://www.proyectonave.es/"/></row>
 						<row><label value="&foxyproxy.thai.thailand;"/><label value="Qen" style="font-weight: bold;"/></row>
 						<row><label value="&foxyproxy.turkish;"/><label value="consyst" style="font-weight: bold;"/></row>
-						<row><label value="&foxyproxy.serbian;"/><label value="&foxyproxy.anonymous;" style="font-weight: bold;"/></row>
 						<row><label value="&foxyproxy.swedish;"/><label value="StiffeL" style="font-weight: bold;"/></row>
 						<row><label value="&foxyproxy.ukrainian;"/><label value="MozUA" style="font-weight: bold;"/></row>
 			      <row><label value="&foxyproxy.your.language;"/>

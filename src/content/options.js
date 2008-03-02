@@ -10,7 +10,7 @@
 **/
 
 var foxyproxy, proxyTree, logTree, monthslong, dayslong, overlay,
-	quickAddTemplateExample, autoAddTemplateExample, timeformat, saveLogCmd, noURLsCmd;
+	quickAddTemplateExample, autoAddTemplateExample, timeformat, saveLogCmd, clearLogCmd, noURLsCmd;
 const CI = Components.interfaces, CC = Components.classes;
 
 function onLoad() {
@@ -304,7 +304,7 @@ function move(direction) {
 }
 
 function onSettings(isNew) {
-  var sel = proxyTree.currentIndex;
+  var sel = proxyTree.currentIndex,
     params = {inn:{proxy:isNew ?
       CC["@leahscape.org/foxyproxy/proxy;1"].createInstance(CI.nsISupports).wrappedJSObject : 
       foxyproxy.proxies.item(proxyTree.currentIndex)}, out:null};

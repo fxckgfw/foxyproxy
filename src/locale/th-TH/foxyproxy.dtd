@@ -439,3 +439,8 @@
 <!ENTITY foxyproxy.casesensitive.label "ดูตัวอักษรใหญ่เล็ก">
 <!ENTITY foxyproxy.casesensitive.accesskey "C">
 <!ENTITY foxyproxy.casesensitive.tooltip "เปิด/ปิดการดูตัวอักษรใหญ่เล็กสำหรับการจับคู่ยูอาร์แอล">
+<!ENTITY foxyproxy.statusbarwidth.label "Fixed width">
+<!ENTITY foxyproxy.statusbarwidth.accesskey "W">
+<!ENTITY foxyproxy.statusbarwidth.tooltip "Prevents statusbar resizing">
+<!ENTITY foxyproxy.pixels "pixels">
+<!ENTITY foxyproxy.unlimited.label "[0: shrink to fit] ">

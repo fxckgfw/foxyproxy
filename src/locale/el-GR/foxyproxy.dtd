@@ -439,3 +439,8 @@
 <!ENTITY foxyproxy.casesensitive.label "Ταίριασμα χαρακτήρα">
 <!ENTITY foxyproxy.casesensitive.accesskey "Τ">
 <!ENTITY foxyproxy.casesensitive.tooltip "Ενεργοποιεί/απενεργοποιεί το ταίριασμα χαρακτήρα για τον έλεγχο ταιριάσματος URL">
+<!ENTITY foxyproxy.statusbarwidth.label "Σταθερό πλάτος">
+<!ENTITY foxyproxy.statusbarwidth.accesskey "θ">
+<!ENTITY foxyproxy.statusbarwidth.tooltip "Δεν επιτρέπει την μεταβολή μεγέθους της γραμμής κατάστασης">
+<!ENTITY foxyproxy.pixels "πίξελ">
+<!ENTITY foxyproxy.unlimited.label "(0: σμίκρυνση ώστε να χωράει)">

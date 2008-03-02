@@ -27,8 +27,9 @@ var foxyproxy = {
   },
 
 	observe: function(subj, topic, str) {
+    var e;
 		try {
-			var e = subj.QueryInterface(Components.interfaces.nsISupportsPRBool).data;
+			e = subj.QueryInterface(Components.interfaces.nsISupportsPRBool).data;
 		}
 		catch(e) {}
 		switch (topic) {
@@ -96,16 +97,27 @@ var foxyproxy = {
 	  (doc && doc.location && foxyproxy.fp.autoadd.perform(doc.location, doc.documentElement.innerHTML) && foxyproxy.fp.writeSettings());
   },
 
+
+  // The first time FP runs, "firstrun" does not exist (i.e., null || false). Subsequent times, "firstrun" == true.
+  // In other words, this pref is improperly named for its purpose. Better name is "notfirstrun".
   _firstRunCheck : function() {
-    var notFirstRun = false;
+    var f = false;
     try {
-      notFirstRun = this.fp.getPrefsService("extensions.foxyproxy.").getBoolPref("firstrun");
+      f = this.fp.getPrefsService("extensions.foxyproxy.").getBoolPref("firstrun");
     }
     catch(e) {}
-    if (!notFirstRun) {
-      this.torWizard(true);
+    if (!f) {
+      if (!this.songbirdNotice())
+        this.torWizard(true); // no automatic tor wizard for songbird users
       this.fp.getPrefsService("extensions.foxyproxy.").setBoolPref("firstrun", true);
     }
+  },
+  
+  songbirdNotice : function() {
+      if ("songbird@songbirdnest.com" == Components.classes["@mozilla.org/xre/app-info;1"].getService(Components.interfaces.nsIXULAppInfo).ID) {
+        this.alert(window, this.fp.getMessage("songbird.notice.1"));
+        return true;
+      }
   },
 
   torWizard : function(firstTime) {

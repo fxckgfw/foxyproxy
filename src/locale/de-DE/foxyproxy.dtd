@@ -439,3 +439,8 @@
 <!ENTITY foxyproxy.casesensitive.label "Groß-/Kleinschreibung">
 <!ENTITY foxyproxy.casesensitive.accesskey "G">
 <!ENTITY foxyproxy.casesensitive.tooltip "Beachtet/ignoriert Groß- und Kleinschreibung bei URLs">
+<!ENTITY foxyproxy.statusbarwidth.label "Feste Breite">
+<!ENTITY foxyproxy.statusbarwidth.accesskey "B">
+<!ENTITY foxyproxy.statusbarwidth.tooltip "Fixiert die Breite in der Statuszeile">
+<!ENTITY foxyproxy.pixels "Pixel">
+<!ENTITY foxyproxy.unlimited.label "[0: automatisch anpassen]">

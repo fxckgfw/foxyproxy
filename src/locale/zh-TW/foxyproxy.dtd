@@ -439,3 +439,8 @@
 <!ENTITY foxyproxy.casesensitive.label "符合大小寫(C)">
 <!ENTITY foxyproxy.casesensitive.accesskey "C">
 <!ENTITY foxyproxy.casesensitive.tooltip "啟用/停用「網址需符合大小寫」功能">
+<!ENTITY foxyproxy.statusbarwidth.label "固定寬度(W)">
+<!ENTITY foxyproxy.statusbarwidth.accesskey "W">
+<!ENTITY foxyproxy.statusbarwidth.tooltip "避免改變狀態列大小">
+<!ENTITY foxyproxy.pixels "點">
+<!ENTITY foxyproxy.unlimited.label "[0：縮小以適合大小] ">

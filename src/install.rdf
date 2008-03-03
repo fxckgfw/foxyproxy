@@ -5,7 +5,7 @@
   <RDF:Description RDF:about="rdf:#$.Np5B"
                    em:id="{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
                    em:minVersion="1.5"
-                   em:maxVersion="3.0b4" />
+                   em:maxVersion="3.0b4pre" />
   <RDF:Description RDF:about="rdf:#$3Op5B"
                    em:id="{a463f10c-3994-11da-9945-000d60ca027b}"
                    em:maxVersion="1.0+"
@@ -18,7 +18,7 @@
                    em:id="foxyproxy@eric.h.jung"
                    em:name="FoxyProxy"
                    em:version="2.7"
-                   em:creator="LeahScape, Inc."
+                   em:creator="LeahScape, Inc. and Eric H. Jung"
                    em:description="Premier proxy management for Firefox"
                    em:homepageURL="http://foxyproxy.mozdev.org"
                    em:aboutURL="chrome://foxyproxy/content/about.xul"

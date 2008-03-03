@@ -339,7 +339,7 @@ biesi>	passing it the appropriate proxyinfo
       o = this.getPrefsService("extensions.foxyproxy.").getCharPref("settings");
     }
     catch(e) {
-      this.alert(null, this.getMessage("preferences.read.error.warning", ["extensions.foxyproxy.settings", "getSettingsURI()"]) + "\n");
+      dump("FoxyProxy: Unable to read preference extensions.foxyproxy.settings in getSettingsURI(). Probably new installation.\n");
     }
     if (o) {
       o == this.PFF && (o = this.getDefaultPath());

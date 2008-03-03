@@ -126,9 +126,9 @@
 <!ENTITY foxyproxy.showstatusbaricon.label "Mostra icona nella barra di stato">
 <!ENTITY foxyproxy.showstatusbaricon.accesskey "o">
 <!ENTITY foxyproxy.showstatusbaricon.tooltip "L&apos;icona di FoxyProxy verrà visualizzata nella barra di stato">
-<!ENTITY foxyproxy.showstatusbarmode.label "Mostra modalità (testo) nella barra di stato">
+<!ENTITY foxyproxy.showstatusbarmode.label "Mostra modalità testo nella barra di stato">
 <!ENTITY foxyproxy.showstatusbarmode.accesskey "S">
-<!ENTITY foxyproxy.showstatusbarmode.tooltip "Verrà mostrata la modalità (testo) di FoxyProxy nella barra di stato">
+<!ENTITY foxyproxy.showstatusbarmode.tooltip "Verrà mostrata la modalità testo di FoxyProxy nella barra di stato">
 <!ENTITY foxyproxy.storagelocation.label "File .xml delle impostazioni">
 <!ENTITY foxyproxy.storagelocation.accesskey "x">
 <!ENTITY foxyproxy.storagelocation.tooltip "File .xml dove verranno salvate le impostazioni di FoxyProxy">
@@ -382,7 +382,7 @@
 <!ENTITY foxyproxy.indicators.accesskey "I">
 <!ENTITY foxyproxy.indicators.tooltip "Gestione delle opzioni degli indicatori">
 <!ENTITY foxyproxy.misc.label "Varie">
-<!ENTITY foxyproxy.misc.accesskey "V">
+<!ENTITY foxyproxy.misc.accesskey "a">
 <!ENTITY foxyproxy.misc.tooltip "Gestione di opzioni varie">
 <!ENTITY foxyproxy.animatedicons.label "Anima l&apos;icona nella barra di stato quando si utilizzano i proxy">
 <!ENTITY foxyproxy.animatedicons.accesskey "A">
@@ -411,14 +411,14 @@
 <!ENTITY foxyproxy.rightclicktb.label "Con clic con tasto destro:">
 <!ENTITY foxyproxy.rightclicktb.accesskey "e">
 <!ENTITY foxyproxy.rightclicktb.tooltip "Azione da effettuare quando si fa clic con tasto destro del mouse">
-<!ENTITY foxyproxy.click.options "mostra la finestra di dialogo delle opzioni">
+<!ENTITY foxyproxy.click.options "apre la finestra delle opzioni">
 <!ENTITY foxyproxy.click.cycle "alterna i proxy">
 <!ENTITY foxyproxy.click.contextmenu "mostra il menu contestuale">
 <!ENTITY foxyproxy.click.reloadcurtab "ricarica la scheda attuale">
 <!ENTITY foxyproxy.click.reloadtabsinbrowser "ricarica tutte le schede in questa finestra">
 <!ENTITY foxyproxy.click.reloadtabsinallbrowsers "ricarica tutte le schede in tutte le finestre">
 <!ENTITY foxyproxy.click.removeallcookies "elimina tutti i cookie">
-<!ENTITY foxyproxy.click.toggle "Attiva/disattiva la modalità attuale">
+<!ENTITY foxyproxy.click.toggle "attiva/disattiva la modalità attuale">
 <!ENTITY foxyproxy.includeincycle.label "Includi proxy alternandoli quando si fa clic nella barra di stato/degli strumenti">
 <!ENTITY foxyproxy.includeincycle.accesskey "I">
 <!ENTITY foxyproxy.includeincycle.tooltip "I proxy verranno inclusi quando alternati tramite clic nella barra di stato/degli strumenti (l&apos;opzione &apos;alterna i proxy&apos; deve essere selezionata)">
@@ -439,8 +439,8 @@
 <!ENTITY foxyproxy.casesensitive.label "Maiuscole/minuscole">
 <!ENTITY foxyproxy.casesensitive.accesskey "M">
 <!ENTITY foxyproxy.casesensitive.tooltip "Presta/non presta attenzione a maiuscole/minuscole per la corrispondenza degli URL">
-<!ENTITY foxyproxy.statusbarwidth.label "Fixed width">
-<!ENTITY foxyproxy.statusbarwidth.accesskey "W">
-<!ENTITY foxyproxy.statusbarwidth.tooltip "Prevents statusbar resizing">
-<!ENTITY foxyproxy.pixels "pixels">
-<!ENTITY foxyproxy.unlimited.label "[0: shrink to fit] ">
+<!ENTITY foxyproxy.statusbarwidth.label "Larghezza in pixel:">
+<!ENTITY foxyproxy.statusbarwidth.accesskey "L">
+<!ENTITY foxyproxy.statusbarwidth.tooltip "Larghezza del testo nella barra di stato">
+<!ENTITY foxyproxy.pixels "">
+<!ENTITY foxyproxy.unlimited.label "(0: adatta alla barra di stato) ">

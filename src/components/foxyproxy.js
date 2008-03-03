@@ -1,6 +1,6 @@
 /**
   FoxyProxy
-  Copyright (C) 2006,2007 Eric H. Jung and LeahScape, Inc.
+  Copyright (C) 2006-2008 Eric H. Jung and LeahScape, Inc.
   http://foxyproxy.mozdev.org/
   eric.jung@yahoo.com
 
@@ -244,8 +244,13 @@ biesi>	passing it the appropriate proxyinfo
     // Firefox won't load it automatically except on startup and after
     // network.proxy.autoconfig_retry_* seconds. Rather than make the user wait for that,
     //  we load the PAC file now.
-    var networkPrefs = this.getPrefsService("network.proxy.");
-    var usingPAC = networkPrefs.getIntPref("type") == 2; // isn't there a const for this?
+    var networkPrefs = this.getPrefsService("network.proxy."), usingPAC;
+    try {
+      usingPAC = networkPrefs.getIntPref("type") == 2; // isn't there a const for this?
+    }
+    catch(e) {
+      dump("FoxyProxy: network.proxy.type doesn't exist or can't be read\n");
+    }
     if (usingPAC) {
       // Don't use nsPIProtocolProxyService. From its comments: "[nsPIProtocolProxyService] exists purely as a
       // hack to support the configureFromPAC method used by the preference panels in the various apps. Those
@@ -333,7 +338,9 @@ biesi>	passing it the appropriate proxyinfo
     try {
       o = this.getPrefsService("extensions.foxyproxy.").getCharPref("settings");
     }
-    catch(e) {}
+    catch(e) {
+      this.alert(null, this.getMessage("preferences.read.error.warning", ["extensions.foxyproxy.settings", "getSettingsURI()"]) + "\n");
+    }
     if (o) {
       o == this.PFF && (o = this.getDefaultPath());
       var file = this.transformer(o, CI.nsIFile);
@@ -361,11 +368,6 @@ biesi>	passing it the appropriate proxyinfo
     }
     return o==this.PFF ? this.PFF : o2;
   },
-
-  isUsingPFF : function() {
-    return this.getPrefsService("extensions.foxyproxy.").getCharPref("settings") == this.PFF;
-  },
-
 
   alert : function(wnd, str) {
     CC["@mozilla.org/embedcomp/prompt-service;1"].getService(CI.nsIPromptService)
@@ -455,8 +457,15 @@ biesi>	passing it the appropriate proxyinfo
       throw new Error("e");
     }
     catch (e) {dump (e.stack + "\n");}*/
-
-    !o && (o = gFP.getPrefsService("extensions.foxyproxy.").getCharPref("settings"));
+    if (!o) {
+      try {
+        o = gFP.getPrefsService("extensions.foxyproxy.").getCharPref("settings");
+      }
+      catch(e) {
+        this.alert(null, this.getMessage("preferences.read.error.warning", ["extensions.foxyproxy.settings", "writeSettings()"]));
+        o = this.getDefaultPath();
+      }
+    }
     o = gFP.transformer(o, CI.nsIFile);
     var foStream = CC["@mozilla.org/network/file-output-stream;1"].
       createInstance(CI.nsIFileOutputStream);

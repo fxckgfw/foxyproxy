@@ -1,6 +1,6 @@
 /**
   FoxyProxy
-  Copyright (C) 2006,2007 Eric H. Jung and LeahScape, Inc.
+  Copyright (C) 2006-2008 Eric H. Jung and LeahScape, Inc.
   http://foxyproxy.mozdev.org/
   eric.jung@yahoo.com
 
@@ -167,6 +167,16 @@ function onSettingsURLBtn() {
   }
 }
 
+function isUsingPortableFirefox() {
+  try {
+    return foxyproxy.getPrefsService("extensions.foxyproxy.").getCharPref("settings") == foxyproxy.PFF;
+  }
+  catch(e) {
+    overlay.alert(this, foxyproxy.getMessage("preferences.read.error.warning", ["extensions.foxyproxy.settings", "isUsingPortableFirefox()"]) + " " +      
+      foxyproxy.getMessage("preferences.read.error.fatal"));
+  }
+}
+
 /* Contains items which can be updated via toolbar/statusbar/menubar/context-menu as well as the options dialog,
 	 so we don't include these in onLoad() or init() */
 function _updateView(writeSettings, updateLogView) {
@@ -175,7 +185,7 @@ function _updateView(writeSettings, updateLogView) {
   //document.getElementById("randomIncludeDirect").checked = foxyproxy.random.includeDirect;
   //document.getElementById("randomIncludeDisabled").checked = foxyproxy.random.includeDisabled;
   document.getElementById("usingPFF").checked =
-    document.getElementById("settingsURLBtn").disabled = foxyproxy.isUsingPFF();
+  document.getElementById("settingsURLBtn").disabled = isUsingPortableFirefox();
     
   _updateSuperAdd(foxyproxy.autoadd, "autoAdd");
   _updateSuperAdd(foxyproxy.quickadd, "quickAdd");  
@@ -476,8 +486,8 @@ function toggleStatusBarText(checked) {
 
 function onOK() {
   var r1 = document.getElementById("autoAddRegEx").selected,
-    p1 = foxyproxy_common.validatePattern(window, r1, document.getElementById("autoAddPattern").value, foxyproxy.getMessage("foxyproxy.tab.autoadd.label")),
+    p1 = (!foxyproxy.autoadd.enabled || foxyproxy_common.validatePattern(window, r1, document.getElementById("autoAddPattern").value, foxyproxy.getMessage("foxyproxy.tab.autoadd.label"))),
     r2 = document.getElementById("quickAddRegEx").selected,
-    p2 = foxyproxy_common.validatePattern(window, r2, document.getElementById("quickAddTemplateExample2").value, foxyproxy.getMessage("foxyproxy.quickadd.label"));
+    p2 = (!foxyproxy.quickadd.enabled || foxyproxy_common.validatePattern(window, r2, document.getElementById("quickAddTemplateExample2").value, foxyproxy.getMessage("foxyproxy.quickadd.label")));
   p1 && p2 && window.close();
 }

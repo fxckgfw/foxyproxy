@@ -1,6 +1,6 @@
 /**
   FoxyProxy
-  Copyright (C) 2006,2007 Eric H. Jung and LeahScape, Inc.
+  Copyright (C) 2006-2008 Eric H. Jung and LeahScape, Inc.
   http://foxyproxy.mozdev.org/
   eric.jung@yahoo.com
 
@@ -84,25 +84,6 @@ AutoConf.prototype = {
   },
 
   loadPAC : function() {
-    dump("***\n");
-    var caller = arguments.callee.caller;
-  
-    var stackText = "";
-    stackText = "Stack Trace: \n";
-    var count = 0;
-    while (caller) {
-      stackText += count++ + ":" + caller.name + "(";
-      for (var i = 0; i < caller.arguments.length; ++i) {
-        var arg = caller.arguments[i];
-        stackText += arg;
-        if (i < caller.arguments.length - 1)
-          stackText += ",";
-      }
-      stackText += ")\n";
-      caller = caller.arguments.callee.caller;
-    }
-    dump(stackText);
-    dump("***\n");
     this._pac = "";
     try {
       var req = CC["@mozilla.org/xmlextras/xmlhttprequest;1"]

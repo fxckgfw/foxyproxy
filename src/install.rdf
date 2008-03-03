@@ -1,31 +1,38 @@
 <?xml version="1.0"?>
-<RDF:RDF xmlns:em="http://www.mozilla.org/2004/em-rdf#"
-         xmlns:NC="http://home.netscape.com/NC-rdf#"
-         xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-  <RDF:Description RDF:about="rdf:#$.Np5B"
-                   em:id="{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
-                   em:minVersion="1.5"
-                   em:maxVersion="3.0b4pre" />
-  <RDF:Description RDF:about="rdf:#$3Op5B"
-                   em:id="{a463f10c-3994-11da-9945-000d60ca027b}"
-                   em:maxVersion="1.0+"
-                   em:minVersion="1.0+" />
-  <RDF:Description RDF:about="rdf:#$3Op5C"
-                   em:id="songbird@songbirdnest.com"                   
-                   em:minVersion="0.4"
-                   em:maxVersion="0.5"/>
-  <RDF:Description RDF:about="urn:mozilla:install-manifest"
-                   em:id="foxyproxy@eric.h.jung"
-                   em:name="FoxyProxy"
-                   em:version="2.7"
-                   em:creator="LeahScape, Inc. and Eric H. Jung"
-                   em:description="Premier proxy management for Firefox"
-                   em:homepageURL="http://foxyproxy.mozdev.org"
-                   em:aboutURL="chrome://foxyproxy/content/about.xul"
-                   em:optionsURL="chrome://foxyproxy/content/options.xul"
-                   em:iconURL="chrome://foxyproxy/content/images/foxyproxy-nocopy.gif">
-    <em:targetApplication RDF:resource="rdf:#$.Np5B"/>
-    <em:targetApplication RDF:resource="rdf:#$3Op5B"/>
-    <em:targetApplication RDF:resource="rdf:#$3Op5C"/>
-  </RDF:Description>
-</RDF:RDF>
+<RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:em="http://www.mozilla.org/2004/em-rdf#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+
+    <Description rdf:about="urn:mozilla:install-manifest">
+        <em:id>foxyproxy@eric.h.jung</em:id>
+        <em:name>FoxyProxy</em:name>
+        <em:version>2.7.1</em:version>
+        <em:creator>LeahScape, Inc.</em:creator>
+        <em:description>Premier proxy management for Firefox</em:description>
+        <em:homepageURL>http://foxyproxy.mozdev.org</em:homepageURL>
+        <em:aboutURL>chrome://foxyproxy/content/about.xul</em:aboutURL>
+        <em:optionsURL>chrome://foxyproxy/content/options.xul</em:optionsURL>
+        <em:iconURL>chrome://foxyproxy/content/images/foxyproxy-nocopy.gif</em:iconURL>
+        <em:targetApplication>
+            <Description>
+                <em:id>songbird@songbirdnest.com</em:id>
+                <em:minVersion>0.4</em:minVersion>
+                <em:maxVersion>0.5</em:maxVersion>
+            </Description>
+        </em:targetApplication>
+        <em:targetApplication>
+            <Description>
+                <em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
+                <em:minVersion>1.5</em:minVersion>
+                <em:maxVersion>3.0b4pre</em:maxVersion>
+            </Description>
+        </em:targetApplication>
+        <em:targetApplication>
+            <Description>
+                <em:id>{a463f10c-3994-11da-9945-000d60ca027b}</em:id>
+                <em:minVersion>1.0+</em:minVersion>
+                <em:maxVersion>1.0+</em:maxVersion>
+            </Description>
+        </em:targetApplication>
+    </Description>
+</RDF>

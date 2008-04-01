@@ -1,13 +1,13 @@
-<!ENTITY help.title.foxyproxy.help "FoxyProxy Help">
-<!ENTITY help.patterns "URL Patterns">
-<!ENTITY help.ff.asks "Before Firefox loads a URL, Firefox asks FoxyProxy if a proxy should be used. ">
-<!ENTITY help.fp.answers "FoxyProxy answers this question by attempting to match the current URL with all of the URL patterns you define below. The simplest way to specify patterns is with wildcards.">
-<!ENTITY help.a.wildcards "Wildcards">
-<!ENTITY help.p.wildcards.are "Wildcards are pervasive throughout computing; you&apos;ve most likely seen them before. The asterisk (*) substitutes as a wildcard character for zero or more characters, and the question mark (?) substitutes as a wildcard character for any one character. ">
-<!ENTITY help.p.regexp "More advanced matching rules are possible using regular expressions. For details, click the &apos;Help Contents&apos; button.">
-<!ENTITY help.h4.wildcard.examples "Wildcard Examples">
-<!ENTITY help.th.url.pattern "URL Pattern">
-<!ENTITY help.th.some.matches "Some Matches">
-<!ENTITY help.th.some.non.matches "Some Non-Matches">
-<!ENTITY help.td.everything.in.y "Everything in Yahoo&apos;s domain">
-<!ENTITY help.i.matches.everything "Matches everything">
+<!ENTITY help.title.foxyproxy.help "FoxyProxy ヘルプ">
+<!ENTITY help.patterns "URL パターン">
+<!ENTITY help.ff.asks "Firefox は URL を読み込む前に、プロキシを利用すべきか FoxyProxy に問い合わせます。">
+<!ENTITY help.fp.answers "FoxyProxy はこの問いに、現在の URL とあなたが以下に定義したすべての URL パターンを一致させることで答えます。もっとも単純なパターン指定の方法はワイルドカードです。">
+<!ENTITY help.a.wildcards "ワイルドカード">
+<!ENTITY help.p.wildcards.are "ワイルドカードは計算に普及しています。おそらく以前に目にしたことがあるでしょう。アスタリスク (*) はゼロ文字以上に代わるワイルドカード文字、クエスチョンマーク (?) あらゆる一文字に代わるワイルドカード文字となります。">
+<!ENTITY help.p.regexp "より詳細な一致の規則は正規表現を利用できます。詳細は「ヘルプコンテンツ」ボタンをクリックしてください。">
+<!ENTITY help.h4.wildcard.examples "ワイルドカードの例">
+<!ENTITY help.th.url.pattern "URL パターン">
+<!ENTITY help.th.some.matches "一致するもの">
+<!ENTITY help.th.some.non.matches "一致しないもの">
+<!ENTITY help.td.everything.in.y "Yahoo! のドメインにあるすべて">
+<!ENTITY help.i.matches.everything "すべてに一致">

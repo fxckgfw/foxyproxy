@@ -128,7 +128,7 @@
 <!ENTITY foxyproxy.showstatusbaricon.tooltip "L&apos;icona di FoxyProxy verrà visualizzata nella barra di stato">
 <!ENTITY foxyproxy.showstatusbarmode.label "Mostra modalità testo nella barra di stato">
 <!ENTITY foxyproxy.showstatusbarmode.accesskey "S">
-<!ENTITY foxyproxy.showstatusbarmode.tooltip "Verrà mostrata la modalità testo di FoxyProxy nella barra di stato">
+<!ENTITY foxyproxy.showstatusbarmode.tooltip "La modalità testo di FoxyProxy verrà mostrata nella barra di stato">
 <!ENTITY foxyproxy.storagelocation.label "File .xml delle impostazioni">
 <!ENTITY foxyproxy.storagelocation.accesskey "x">
 <!ENTITY foxyproxy.storagelocation.tooltip "File .xml dove verranno salvate le impostazioni di FoxyProxy">
@@ -160,7 +160,7 @@
 <!ENTITY foxyproxy.whiteblack.description.label "I modelli non permessi hanno la precedenza su quelli permessi: se un indirizzo web corrisponde sia ad un modello permesso che non permesso per lo stesso proxy, verrà escluso dal caricamento attraverso quel proxy">
 <!ENTITY foxyproxy.usingPFF.label1 "Si sta utilizzando">
 <!ENTITY foxyproxy.usingPFF.label2 "Portable Firefox">
-<!ENTITY foxyproxy.usingPFF.accesskey "P">
+<!ENTITY foxyproxy.usingPFF.accesskey "i">
 <!ENTITY foxyproxy.usingPFF.tooltip "Fare clic qui se si sta utilizzando Portable Firefox">
 <!ENTITY foxyproxy.socks.version.label "Versione SOCKS">
 <!ENTITY foxyproxy.autopacurl.label "Indirizzo web auto PAC">
@@ -441,6 +441,6 @@
 <!ENTITY foxyproxy.casesensitive.tooltip "Presta/non presta attenzione a maiuscole/minuscole per la corrispondenza degli URL">
 <!ENTITY foxyproxy.statusbarwidth.label "Larghezza in pixel:">
 <!ENTITY foxyproxy.statusbarwidth.accesskey "L">
-<!ENTITY foxyproxy.statusbarwidth.tooltip "Larghezza del testo nella barra di stato">
+<!ENTITY foxyproxy.statusbarwidth.tooltip "Larghezza dell&apos;area nella barra di stato dove verrà mostrato il testo">
 <!ENTITY foxyproxy.pixels "">
-<!ENTITY foxyproxy.unlimited.label "(0: adatta alla barra di stato) ">
+<!ENTITY foxyproxy.unlimited.label "(0: il testo verrà mostrato per intero) ">

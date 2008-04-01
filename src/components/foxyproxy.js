@@ -172,14 +172,13 @@ biesi>	passing it the appropriate proxyinfo
       var settingsURI = this.getSettingsURI("uri-string");
       req.open("GET", settingsURI, false);
       req.send(null);
-      var doc = req.responseXML, docElem = doc.documentElement;
-      if (docElem.nodeName == "parsererror") {
-        this.alert(null, this.getMessage("settings.error"));
-        // TODO: prompt user to overwrite?
+      var doc = req.responseXML;
+      if (!doc || doc.documentElement.nodeName == "parsererror") {
+        this.alert(null, this.getMessage("settings.error.2", [settingsURI, settingsURI]));
         this.writeSettings(settingsURI);
       }
       else
-      	this.fromDOM(doc, docElem);
+      	this.fromDOM(doc, doc.documentElement);
 
 	    /*
 		  	<menu id="foxyproxy-context-menu-1" label="&foxyproxy.label;"
@@ -339,7 +338,17 @@ biesi>	passing it the appropriate proxyinfo
       o = this.getPrefsService("extensions.foxyproxy.").getCharPref("settings");
     }
     catch(e) {
-      dump("FoxyProxy: Unable to read preference extensions.foxyproxy.settings in getSettingsURI(). Probably new installation.\n");
+      dump("FoxyProxy: Unable to read preference extensions.foxyproxy.settings in getSettingsURI(). Checking for new installation.\n");
+      try {
+	    // The first time FP runs, "firstrun" does not exist (i.e., null || false). Subsequent times, "firstrun" == true.
+	    // In other words, this pref is improperly named for its purpose. Better name is "notfirstrun".      
+        var f = this.getPrefsService("extensions.foxyproxy.").getBoolPref("firstrun");
+        if (f != null) {
+          this.alert(null, this.getMessage("preferences.read.error.warning", ["extensions.foxyproxy.settings", "getSettingsURI()"]) + " " + 
+            this.getMessage("preferences.read.error.fatal"));
+        }
+      }
+      catch(ex) {}      
     }
     if (o) {
       o == this.PFF && (o = this.getDefaultPath());
@@ -466,15 +475,20 @@ biesi>	passing it the appropriate proxyinfo
         o = this.getDefaultPath();
       }
     }
-    o = gFP.transformer(o, CI.nsIFile);
-    var foStream = CC["@mozilla.org/network/file-output-stream;1"].
-      createInstance(CI.nsIFileOutputStream);
-    foStream.init(o, 0x02 | 0x08 | 0x20, 0664, 0); // write, create, truncate
-    foStream.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n", 39);
-    CC["@mozilla.org/xmlextras/xmlserializer;1"].createInstance(CI.nsIDOMSerializer)
-      .serializeToStream(gFP.toDOM(), foStream, "UTF-8");
-    //foStream.write(str, str.length);
-    foStream.close();
+    try {
+      var o2 = gFP.transformer(o, CI.nsIFile);
+      var foStream = CC["@mozilla.org/network/file-output-stream;1"].
+        createInstance(CI.nsIFileOutputStream);
+      foStream.init(o2, 0x02 | 0x08 | 0x20, 0664, 0); // write, create, truncate
+      foStream.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n", 39);
+      CC["@mozilla.org/xmlextras/xmlserializer;1"].createInstance(CI.nsIDOMSerializer)
+        .serializeToStream(gFP.toDOM(), foStream, "UTF-8");
+      //foStream.write(str, str.length);
+      foStream.close();
+    }
+    catch(ex) {
+      this.alert(null, this.getMessage("settings.error.3", [o]));    
+    }
   },
 
   get proxyDNS() { return this._proxyDNS; },

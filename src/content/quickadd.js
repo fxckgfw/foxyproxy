@@ -26,7 +26,8 @@ function onOK() {
 			notifyWhenCanceled:document.getElementById("quickAddNotifyWhenCanceled").checked,
 			urlTemplate:document.getElementById("quickAddUrlTemplate").value,
 			matchType:document.getElementById("quickAddMatchType").value,
-            caseSensitive:document.getElementById("quickAddCaseSensitive").checked};	
+            caseSensitive:document.getElementById("quickAddCaseSensitive").checked,
+            url:document.getElementById("quickAddTemplateExample2").value};	
     return true;
 	}
   return false;

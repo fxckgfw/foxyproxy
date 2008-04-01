@@ -131,8 +131,8 @@ SuperAdd.prototype = {
 		return url;
   },  
   
-  addPattern : function(location) {
-	  var pat = this.applyTemplate(location.href);                  
+  addPattern : function(location, url) {
+	  var pat = this.applyTemplate(url || location.href); // 2nd arg takes precedence                  
 	  var match = CC["@leahscape.org/foxyproxy/match;1"].createInstance(CI.nsISupports).wrappedJSObject;
 	  match.name = this.matchName;			      
 	  match.pattern = pat;

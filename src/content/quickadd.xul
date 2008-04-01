@@ -102,8 +102,7 @@
 			<row align="center">
 				<label value="&foxyproxy.pattern.template.generatedpattern.label;"
 					control="quickAddTemplateExample2" tooltiptext="&foxyproxy.pattern.template.generatedpattern.tooltip;" accesskey="&foxyproxy.pattern.template.generatedpattern.accesskey;"/>
-				<textbox id="quickAddTemplateExample2" tooltiptext="&foxyproxy.pattern.template.generatedpattern.tooltip;"
-					readonly="true" style="font-weight: bold;"/>
+				<textbox id="quickAddTemplateExample2" tooltiptext="&foxyproxy.pattern.template.generatedpattern.tooltip;" style="font-weight: bold;"/>
 			</row>			
 		</rows>
 	</grid>

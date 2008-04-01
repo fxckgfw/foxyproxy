@@ -230,7 +230,7 @@ var foxyproxy = {
  					fp.quickadd.urlTemplate = p.out.urlTemplate;
  					fp.quickadd.setMatchIsRegEx(p.out.matchType=="r");
                     fp.quickadd.caseSensitive = p.out.caseSensitive;
-					_qAdd();
+					_qAdd(p.out.url);
 				}
 				// if !p.out then the user canceled QuickAdd
 			}
@@ -238,15 +238,15 @@ var foxyproxy = {
 				_qAdd();
 			}
 		}
-		function _qAdd() {
-			var loc = evt.view.content.document.location;
-			var m = fp.quickadd._proxy.isMatch(loc.href);
+		function _qAdd(h) {
+			h = h || evt.view.content.document.location.href;
+			var m = fp.quickadd._proxy.isMatch(h);
 			if (m) {
 		    fp.quickadd._notify &&
 		    	fp.notifier.alert(fp.getMessage("foxyproxy.quickadd.label"), fp.getMessage("quickadd.quickadd.canceled", [m.name, fp.quickadd._proxy.name]));
 			}
 			else {
-				fp.quickadd.addPattern(loc);
+				fp.quickadd.addPattern(evt.view.content.document.location, h);
 				fp.writeSettings();
 			}
 		}

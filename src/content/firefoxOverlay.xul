@@ -35,7 +35,7 @@
   <keyset id="mainKeyset">
 		<!-- accel is ctrl on windows, cmd on mac -->  
     <key id="key_foxyproxyfocus" keycode="VK_F2" modifiers="accel" oncommand="foxyproxy.onOptionsDialog();"/>
-		<key id="key_foxyproxyfocus" keycode="VK_F2" modifiers="alt" oncommand="foxyproxy.onQuickAddDialog(event);"/>
+		<key id="key_foxyproxyquickadd" keycode="VK_F2" modifiers="alt" oncommand="foxyproxy.onQuickAddDialog(event);"/>
   </keyset>
   
   <popup id="contentAreaContextMenu">

@@ -162,7 +162,7 @@ Proxy.prototype = {
 
   get mode() {return this._mode;},
 
-  isMatch : function(uriStr) {
+  isWhiteMatch : function(uriStr) {
     var white = -1;
     for (var i=0,sz=this.matches.length; i<sz; i++) {
       if (this.matches[i].enabled && this.matches[i].regex.test(uriStr)) {
@@ -175,6 +175,14 @@ Proxy.prototype = {
       }
     }
     return white == -1 ? false : this.matches[white];
+  },
+
+  isBlackMatch : function(uriStr) {
+    for (var i=0,sz=this.matches.length; i<sz; i++) {
+      var m = this.matches[i];
+      if (m.enabled && m.isBlackList && m.regex.test(uriStr))
+        return m;
+    }
   },
 
   removeMatch : function(removeMe) {

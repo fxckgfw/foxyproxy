@@ -77,7 +77,6 @@ foxyproxy.prototype = {
   _toolsMenu : true,
   _contextMenu : true,
   _toolsMenuNode : null,
-  _contextMenuNode : null,
   _advancedMenus : false,
   _previousMode : "patterns",
   autoadd : null,
@@ -162,7 +161,6 @@ biesi>	passing it the appropriate proxyinfo
 	  if (!this._initialized) {
 	    this._initialized = true; // because @mozilla.org/file/directory_service;1 isn't available in init()
 	    gFP = this;
-
   		this.autoadd = new SuperAdd();
 		  this.quickadd = new QuickAdd();
   		this.autoadd.init(this.getMessage("autoadd.pattern.label"), this);
@@ -179,33 +177,7 @@ biesi>	passing it the appropriate proxyinfo
       }
       else
       	this.fromDOM(doc, doc.documentElement);
-
-	    /*
-		  	<menu id="foxyproxy-context-menu-1" label="&foxyproxy.label;"
-		      tooltiptext="&foxyproxy.tooltip;" accesskey="&foxyproxy.accesskey;" class="menu-iconic foxyproxybutton-small">
-		      <menupopup id="foxyproxy-contextmenu-popup"
-		          onpopupshowing="foxyproxy.onPopupShowing(this, event);"
-		          onpopuphiding="foxyproxy.onPopupHiding();"/>
-		    </menu>
-	    */
-
-			var doc = CC["@mozilla.org/xml/xml-document;1"].createInstance(CI.nsIDOMDocument);
-	    this._contextMenuNode = doc.createElement("menu");
-	    this._contextMenuNode.setAttribute("id", "foxyproxy-context-menu-1");
-	    this._contextMenuNode.setAttribute("label", "&foxyproxy.label;");
-	    this._contextMenuNode.setAttribute("tooltiptext", "&foxyproxy.tooltip;");
-	    this._contextMenuNode.setAttribute("accesskey", "&foxyproxy.accesskey;");
-	    this._contextMenuNode.setAttribute("class", "menu-iconic foxyproxybutton-small");
-	    var menupopup2 = doc.createElement("menupopup");
-	    menupopup2.setAttribute("id", "foxyproxy-contextmenu-popup");
-	    menupopup2.setAttribute("onpopupshowing", "foxyproxy.onPopupShowing(this, event);");
-	    menupopup2.setAttribute("onpopuphiding", "foxyproxy.onPopupHiding();");
-	    this._contextMenuNode.appendChild(menupopup2);
     }
-	},
-
-	get contextMenuNode() {
-		return this._contextMenuNode.cloneNode(true);
 	},
 
   get mode() { return this._mode; },
@@ -346,6 +318,7 @@ biesi>	passing it the appropriate proxyinfo
         if (f != null) {
           this.alert(null, this.getMessage("preferences.read.error.warning", ["extensions.foxyproxy.settings", "getSettingsURI()"]) + " " + 
             this.getMessage("preferences.read.error.fatal"));
+          // TODO: prompt user for path to old file or create new
         }
       }
       catch(ex) {}      

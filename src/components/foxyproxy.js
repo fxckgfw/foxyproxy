@@ -712,7 +712,7 @@ biesi>	passing it the appropriate proxyinfo
 
     getMatches : function(uriStr) {
 			for (var i=0, aMatch; i<this.list.length; i++) {
-				if (this.list[i]._enabled && (aMatch = this.list[i].isMatch(uriStr))) {
+				if (this.list[i]._enabled && (aMatch = this.list[i].isWhiteMatch(uriStr))) {
 					return gMatchingProxyFactory(this.list[i], aMatch, uriStr, "pat");
 				}
       }

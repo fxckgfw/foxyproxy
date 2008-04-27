@@ -857,7 +857,7 @@ biesi>	passing it the appropriate proxyinfo
 						case "${proxy-notes-heading}": return gFP.getMessage("foxyproxy.proxy.notes.label");
 						case "${pattern-name-heading}": return gFP.getMessage("foxyproxy.pattern.name.label");
 						case "${pattern-heading}": return gFP.getMessage("foxyproxy.pattern.label");
-                        case "${pattern-case-heading}": return gFP.getMessage("foxyproxy.casesensitive.label");
+            case "${pattern-case-heading}": return gFP.getMessage("foxyproxy.casesensitive.label");
 						case "${pattern-type-heading}": return gFP.getMessage("foxyproxy.pattern.type.label");
 						case "${pattern-color-heading}": return gFP.getMessage("foxyproxy.whitelist.blacklist.label");
 						case "${pac-result-heading}": return gFP.getMessage("foxyproxy.pac.result.label");

@@ -19,7 +19,7 @@ function onLoad() {
   document.getElementById("url").value = inn.url;
   document.getElementById("matchtype").value = inn.match.isRegEx ? "r" : "w";
   document.getElementById("whiteblacktype").value = inn.match.isBlackList ? "b" : "w"
-  document.getElementById("casesensitive").checked = inn.match.caseSensitive;
+  document.getElementById("caseSensitive").checked = inn.match.caseSensitive;
   updateGeneratedPattern();
   document.getElementById("setupMode").setAttribute("hidden", inn.setupMode);
   document.getElementById("notSetupMode").setAttribute("hidden", !inn.setupMode);    
@@ -39,7 +39,7 @@ function onOK() {
       name:document.getElementById("name").value,       
       urlTemplate:document.getElementById("urlTemplate").value,
       pattern:document.getElementById("generatedPattern").value,
-      caseSensitive:document.getElementById("casesensitive").checked,      
+      caseSensitive:document.getElementById("caseSensitive").checked,      
       matchType:matchtype,
       isBlackList:document.getElementById("whiteblacktype").value == "b"}; 
     return true;
@@ -51,5 +51,5 @@ function updateGeneratedPattern() {
 	document.getElementById("generatedPattern").value =
     fpc.applyTemplate(document.getElementById("url").value,
       document.getElementById("urlTemplate").value,
-      document.getElementById("casesensitive").checked);
+      document.getElementById("caseSensitive").checked);
 }

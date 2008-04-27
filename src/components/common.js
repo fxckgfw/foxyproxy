@@ -66,8 +66,6 @@ Common.prototype = {
       else // FF
         w.delayedOpenTab(aURL, null, null, null, null);
     }
-    else
-      window.open(aURL);
   },
   
   validatePattern : function(win, isRegEx, p, msgPrefix) {
@@ -147,7 +145,7 @@ Common.prototype = {
     return url;
   },    
 
-  onQuickAdd : function(setupMode, url) {  
+  onQuickAdd : function(wnd, setupMode, url) {  
     var fp = CC["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;  
     var q = fp.quickadd;
     var p = {inn:{url:url || this.getMostRecentWindow().content.location.href, urlTemplate:q.urlTemplate, enabled:q.enabled,
@@ -156,7 +154,7 @@ Common.prototype = {
      // q.proxy is null when user hasn't yet used QuickAdd
     if (q.proxy != null)
       p.inn.proxyId =  q.proxy.id;     
-    window.openDialog("chrome://foxyproxy/content/quickadd.xul", "",
+    wnd.openDialog("chrome://foxyproxy/content/quickadd.xul", "",
       "minimizable,dialog,chrome,resizable=yes,modal", p).focus();
     if (p.out) {
       p = p.out;

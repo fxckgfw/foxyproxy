@@ -323,9 +323,7 @@
           class="text-link"
           onclick="fpc.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/patterns.html#wildcards');"
           tooltiptext="&foxyproxy.wildcard.tooltip;"/>
-        <label value="&foxyproxy.wildcard.example.label;"/>
-        <checkbox id="casesensitive" label="&foxyproxy.casesensitive.label;" accesskey="&foxyproxy.casesensitive.accesskey;"
-          tooltiptext="&foxyproxy.casesensitive.tooltip;"/>                                              
+        <label value="&foxyproxy.wildcard.example.label;"/>                                            
       </row>
       <row align="center">
         <radio value="r"

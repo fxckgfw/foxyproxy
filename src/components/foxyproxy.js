@@ -63,22 +63,9 @@ catch (e) {
   dump("Error loading superadd.js\n");
   throw(e);
 }
-try {
-  dir = dir.parent;
-  var filePath = dir.clone();
-  filePath.append("content");
-  filePath.append("common.js");
-  loader.loadSubScript(fileProtocolHandler.getURLSpecFromFile(filePath));
-}
-catch (e) {
-  dump("Error loading common.js\n");
-  throw(e);
-}
+
 // l is for lulu...
-function foxyproxy() {
-  this.wrappedJSObject = this;
-  foxyproxy_common.fp = this;  
-}
+function foxyproxy() {this.wrappedJSObject = this;}
 
 foxyproxy.prototype = {
 	PFF : " ",

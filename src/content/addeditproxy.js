@@ -16,7 +16,7 @@ function onLoad() {
   fpc = CC["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject;
   overlay = fpc.getMostRecentWindow().foxyproxy;
   autoconfurl = document.getElementById("autoconfurl");
-  foxyproxy = CC["@leahscape.org/foxyproxy/service;1"].getService(C).wrappedJSObject;
+  foxyproxy = CC["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;
   if (window.arguments[0].inn.torwiz) {
     document.getElementById("torwiz-broadcaster").hidden = true;
     document.getElementById("not-torwiz-broadcaster").hidden = false;

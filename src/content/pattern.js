@@ -12,12 +12,12 @@
 var overlay;
 
 function onOK() {
-  var r = document.getElementById("regex").selected;
+  var r = document.getElementById("matchtype").value == "r";
   var p = Components.classes["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject.validatePattern(window, r, document.getElementById("pattern").value);
   if (p) {
 	  window.arguments[0].out = {name:document.getElementById("name").value,
 	    pattern:p, isRegEx:r,
-	    isBlackList:document.getElementById("black").selected,
+	    isBlackList:document.getElementById("whiteblacktype").value == "b",
 	    isEnabled:document.getElementById("enabled").checked,
       caseSensitive:document.getElementById("caseSensitive").checked};
 	  return true;

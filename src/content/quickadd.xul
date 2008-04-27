@@ -82,6 +82,7 @@
 		  <column/>
 			<column flex="1"/>
 			<column/>
+      <column/>
 		</columns>
 		<rows>
 			<row align="center">
@@ -93,13 +94,15 @@
           style="min-height: 1.8em;">
 					<menupopup id="proxyMenuPopup"/>
 				</menulist>
-        <spacer/>        
+        <spacer/>
+        <spacer/>         
 			</row>
 			<row align="center">
     		<label value="&foxyproxy.pattern.name.label;" control="name"
         		tooltiptext="&foxyproxy.pattern.name.tooltip;" accesskey="&foxyproxy.pattern.name.accesskey;"/>  
     		<textbox id="name" tooltiptext="&foxyproxy.pattern.name.tooltip;" accesskey="&foxyproxy.pattern.name.accesskey;"/>
-        <spacer/>        
+        <spacer/>
+        <spacer/>         
     	</row>
 			<row align="center">        			
 				<label
@@ -112,6 +115,8 @@
 					tooltiptext="&foxyproxy.pattern.template.tooltip;"
 					oncommand="updateGeneratedPattern()"
 					accesskey="&foxyproxy.pattern.template.accesskey;" />
+        <checkbox id="caseSensitive" label="&foxyproxy.casesensitive.label;" accesskey="&foxyproxy.casesensitive.accesskey;"
+          tooltiptext="&foxyproxy.casesensitive.tooltip;"/>          
 				<toolbarbutton class="foxyproxy-ref"
 					popup="patternTemplatePopup"
 					tooltiptext="&foxyproxy.pattern.template.reference.tooltip;" />

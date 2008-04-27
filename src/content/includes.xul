@@ -339,7 +339,7 @@
  </groupbox>
   <popupset>
     <popup id="wbdesc">
-      <description class="foxyproxy-border" style="max-width: 30em; height: 8em; text-align: justified; margin: .1em; padding: .5em;">&foxyproxy.whiteblack.description.label;</description>
+      <description class="foxyproxy-border" style="max-width: 30em; height: 8em; text-align: justify; margin: .1em; padding: .5em;">&foxyproxy.whiteblack.description.label;</description>
     </popup>
   </popupset> 
 </radiogroup>

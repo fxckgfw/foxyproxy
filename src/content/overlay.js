@@ -11,8 +11,8 @@
 
 var foxyproxy = {
   checkboxType : Components.interfaces.nsITreeColumn.TYPE_CHECKBOX,
-  fp : Components.classes["@leahscape.org/foxyproxy/service;1"]
-         .getService(Components.interfaces.nsISupports).wrappedJSObject,
+  fp : Components.classes["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject,
+  fpc : Components.classes["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject;
   statusIcon : null,
   contextMenuIcon : null,
   toolbarIcon : null,
@@ -220,7 +220,7 @@ var foxyproxy = {
 		  	return;
 		  }
 			if (q._prompt) {
-          var pattern = foxyproxy_common.onQuickAdd(false, url); 
+          var pattern = this.fpc.onQuickAdd(false, url); 
           if (pattern) {                         
             // Add the pattern
 					  _qAdd(q.match, url, evt.view.content.document.location);
@@ -450,7 +450,7 @@ var foxyproxy = {
 					gBrowser.reloadAllTabs();
 					break;
 				case "reloadtabsinallbrowsers":
-				  for (var b, e = foxyproxy_common.getEnumerator();
+				  for (var b, e = this.fpc.getEnumerator();
 						   	  e.hasMoreElements();
 						   	  (b = e.getNext().getBrowser()) && b.reloadAllTabs());
 					break;
@@ -683,7 +683,7 @@ var foxyproxy = {
 
 	      _createMenuItem(submenupopup,
 	        this.fp.getMessage("foxyproxy.help.label"),
-	        "foxyproxy_common.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/quickstart.html');",
+	        "foxyproxy.fpc.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/quickstart.html');",
 	        this.fp.getMessage("foxyproxy.help.accesskey"),
 	        this.fp.getMessage("foxyproxy.help.tooltip"));
 

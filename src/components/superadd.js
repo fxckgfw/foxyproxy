@@ -87,7 +87,8 @@ SuperAdd.prototype = {
   }, 
   
   addPattern : function(match, url) {
-	  match.pattern = foxyproxy_common.applyTemplate(url, this._urlTemplate, this.match.caseSensitive);
+    var fpc = CC["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject;
+	  match.pattern = fpc.applyTemplate(url, this._urlTemplate, this.match.caseSensitive);
 	  this._proxy.matches.push(match);      
     this._notify && gFP.notifier.alert(gFP.getMessage(this.notificationTitle), gFP.getMessage("superadd.url.added", [match.pattern, this._proxy.name]));
     return match.pattern;

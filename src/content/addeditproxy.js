@@ -8,16 +8,15 @@
   available in the LICENSE file at the root of this installation
   and also online at http://www.gnu.org/licenses/gpl.txt
 **/
-
-var urlsTree, proxy, foxyproxy, autoconfurl, overlay, isWindows;
 const CI = Components.interfaces, CC = Components.classes;
+var urlsTree, proxy, foxyproxy, autoconfurl, overlay, isWindows, fpc;
 
 function onLoad() {
   isWindows = CC["@mozilla.org/xre/app-info;1"].getService(CI.nsIXULRuntime).OS == "WINNT";
-  overlay = foxyproxy_common.getMostRecentWindow().foxyproxy;
+  fpc = CC["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject;
+  overlay = fpc.getMostRecentWindow().foxyproxy;
   autoconfurl = document.getElementById("autoconfurl");
-  foxyproxy = CC["@leahscape.org/foxyproxy/service;1"]
-    .getService(CI.nsISupports).wrappedJSObject;
+  foxyproxy = CC["@leahscape.org/foxyproxy/service;1"].getService(C).wrappedJSObject;
   if (window.arguments[0].inn.torwiz) {
     document.getElementById("torwiz-broadcaster").hidden = true;
     document.getElementById("not-torwiz-broadcaster").hidden = false;
@@ -248,7 +247,7 @@ function toggleMode(mode) {
 }
 
 function onHelp() {
-  foxyproxy_common.openAndReuseOneTabPerURL("http://foxyproxy.mozdev.org/patterns.html");
+  fpc.openAndReuseOneTabPerURL("http://foxyproxy.mozdev.org/patterns.html");
 }
 
 function onViewAutoConf() {

@@ -14,7 +14,7 @@
   <target name="copy">
     <copy todir="${temp-path}" overwrite="true">
       <!-- ignore timestamps -->
-      <fileset dir="${src-base}" excludes="**/*.xpi/**,**/*.jar/**,**/build.xml/**,**/chrome.manifest/**,**/*.project/**,**/tbird*.*/**" />
+      <fileset dir="${src-base}" excludes="**/amo.properties,**/*.xpi/**,**/*.jar/**,**/build.xml/**,**/chrome.manifest/**,**/*.project/**,**/tbird*.*/**" />
     </copy>
   </target>
 

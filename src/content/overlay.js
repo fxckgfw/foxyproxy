@@ -211,49 +211,35 @@ var foxyproxy = {
   },
 
   onQuickAddDialog : function(evt) {
-  	var fp=this.fp, q=this.fp.quickadd; 
-		if (fp.mode != "disabled" && fp.quickadd.enabled) {
-		  if (!evt.view || !evt.view.content || !evt.view.content.document || !evt.view.content.document.location) {
+  	var fp=this.fp, q=this.fp.quickadd, url; 
+		if (fp.mode != "disabled" && q.enabled) {
+		  if (evt.view && evt.view.content && evt.view.content.document && evt.view.content.document.location)
+        url = evt.view.content.document.location.href;
+      else {
 		  	fp.notifier.alert(fp.getMessage("foxyproxy"), fp.getMessage("quickadd.nourl"));
 		  	return;
 		  }
-			if (fp.quickadd._prompt) {
-				// Close Options dialog if it's open to prevent sync problems between the two dialogs
-			  var p = {out:null};
-				this.onDialog("foxyproxy-quickadd", "chrome://foxyproxy/content/quickadd.xul", "modal", p, "foxyproxy-options");
-				if (p.out) {
-					// Update QuickAdd settings in case user changed them
-          p = p.out;
- 					q.reload = p.reload;
- 					q.notify = p.notify;
- 					q.prompt = p.prompt;
- 					q.notifyWhenCanceled = p.notifyWhenCanceled;
- 					foxyproxy_common.onQuickAddProxyChanged(p.proxy);
-          q.match.name = p.name;
- 					q.match.urlTemplate = p.urlTemplate;
-          q.match.pattern = p.pattern;
-          q.match.caseSensitive = p.caseSensitive;          
- 					q.match.isRegEx = p.matchType=="r";
-          q.match.isBlackList = p.isBlackList;          
-                          
-          // Add the pattern.
-					_qAdd(q.match, p.url, evt.view.content.document.location);
-          fp.writeSettings();          
-				}
-				// if !p.out then the user canceled QuickAdd
+			if (q._prompt) {
+          var pattern = foxyproxy_common.onQuickAdd(false, url); 
+          if (pattern) {                         
+            // Add the pattern
+					  _qAdd(q.match, url, evt.view.content.document.location);
+            fp.writeSettings();          
+				  }
+				  // if !pattern then the user canceled QuickAdd
 			}
 			else
-				_qAdd(q.match, evt.view.content.document.location.href, evt.view.content.document.location);
+				_qAdd(q.match, url, evt.view.content.document.location);
 		}
 		function _qAdd(pat, url, loc) {
-      var m = pat.isBlackList ? q._proxy.isBlackMatch(url) : q._proxy.isWhiteMatch(url);
+      var m = pat.isBlackList ? q.proxy.isBlackMatch(url) : q.proxy.isWhiteMatch(url);
 			if (m) {
 		    q._notify &&
 		    	fp.notifier.alert(fp.getMessage("foxyproxy.quickadd.label"), fp.getMessage("quickadd.quickadd.canceled", [m.name, q._proxy.name]));
 			}
 			else {
 				q.match.pattern = q.addPattern(pat, url); // update the pattern stored by quickadd
-        fp.quickadd.reload && loc.reload(); // reload page if necessary
+        q.reload && loc.reload(); // reload page if necessary
 			}
 		}
   },
@@ -727,28 +713,6 @@ var foxyproxy = {
 	    }
     }
 
-    // Open link with proxy...
-    /*var target = gContextMenu.target;
-    // target can be null when opening something like chrome://passwdmaker/chrome/uris.xul directly in the browser.
-    if (target && target.tagName == "A") {
-      menupopup.appendChild(document.createElement("menuseparator"));
-      for (var i=0; i<this.fp.proxies.length; i++) {
-        var p = this.fp.proxies.item(i);
-        var pName = p.name;
-        // Set the submenu based on advancedMenus enabled/disabled
-        //var sbm = this.fp.advancedMenus ? _createMenu(menupopup, pName, pName.substring(0, 1), pName) : menupopup;
-        var curProxy = "foxyproxy.fp.proxies.item(" + i + ").";
-	      _createMenuItem(menupopup,
-	        this.fp.getMessage("openwithproxy.label", [pName]),
-	        "alert('yo baby yo');",
-	        this.fp.getMessage("openwithproxy.accesskey"),
-	        this.fp.getMessage("openwithproxy.tooltip"));
-			}
-
-      // Save a reference to the object being clicked
-      foxyproxy.clickedElement = target;
-    }*/
-
     function _createMenu(menupopup, label, accesskey, tooltip) {
       var submenu = document.createElement("menu");
       submenu.setAttribute("label", label);
@@ -797,7 +761,6 @@ var foxyproxy = {
     }
   },
 
-	// common fcns used in overlay.js and options.js
 	onToggleNoURLs : function(owner) {
 		this.fp.logg.noURLs=!this.fp.logg.noURLs;
 		if (this.fp.logg.noURLs && this.fp.logg.length > 0) {

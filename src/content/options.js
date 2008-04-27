@@ -14,12 +14,9 @@ var foxyproxy, proxyTree, logTree, monthslong, dayslong, overlay,
 const CI = Components.interfaces, CC = Components.classes;
 
 function onLoad() {
-  //var ddd=document.getElementById;
-  //ddd("asdasd").value ="asdas";
   foxyproxy = CC["@leahscape.org/foxyproxy/service;1"]
     .getService(CI.nsISupports).wrappedJSObject;
-  //document.getElementById("casesensitive").addEventListener("command", onQuickAddCaseSensitive, false);
-  //document.getElementById("maxSize").value = foxyproxy.logg.maxSize;
+  document.getElementById("maxSize").value = foxyproxy.logg.maxSize;
   overlay = foxyproxy_common.getMostRecentWindow().foxyproxy;
   monthslong = [foxyproxy.getMessage("months.long.1"), foxyproxy.getMessage("months.long.2"),
     foxyproxy.getMessage("months.long.3"), foxyproxy.getMessage("months.long.4"), foxyproxy.getMessage("months.long.5"),
@@ -45,15 +42,8 @@ function _initSettings() {
   _updateView(false, true);
   document.getElementById("settingsURL").value = foxyproxy.getSettingsURI("uri-string"); 
   document.getElementById("tabs").selectedIndex = foxyproxy.selectedTabIndex;
-  //document.getElementById("autoAddUrlTemplate").value = foxyproxy.autoadd.urlTemplate; 
-  //document.getElementById("autoAddPattern").value = foxyproxy.autoadd.match.pattern;   
-  //document.getElementById("quickAddUrlTemplate").value = foxyproxy.quickadd.urlTemplate;  
-  //document.getElementById("autoAddMatchType").value = foxyproxy.autoadd.match.isRegEx ? "r" : "w"; 
-  //document.getElementById("matchtype").value = foxyproxy.quickadd.match.isRegEx ? "r" : "w"; 
   document.getElementById("statusbarWidth").value = foxyproxy.statusbar.width;
-  toggleStatusBarText(foxyproxy.statusbar.textEnabled);
-  //updateTemplateExample("autoAddUrlTemplate", "autoAddTemplateExample", foxyproxy.autoadd);  
-  //updateTemplateExample("quickAddUrlTemplate", "quickAddTemplateExample", foxyproxy.quickadd);  
+  toggleStatusBarText(foxyproxy.statusbar.textEnabled);  
 }
 
 function onUsingPFF(usingPFF) {
@@ -189,21 +179,6 @@ function _updateView(writeSettings, updateLogView) {
   //document.getElementById("randomIncludeDisabled").checked = foxyproxy.random.includeDisabled;
   document.getElementById("usingPFF").checked =
   document.getElementById("settingsURLBtn").disabled = isUsingPortableFirefox();
-
-  //document.getElementById("autoAddEnabled").checked = foxyproxy.autoadd.enabled;
-  //document.getElementById("autoAddBroadcaster").hidden = !foxyproxy.autoadd.enabled
-  //document.getElementById("autoAddReload").checked = foxyproxy.autoadd.reload;
-  //document.getElementById("autoAddNotify").checked = foxyproxy.autoadd.notify;
-  //document.getElementById("autoAddCaseSensitive").checked = foxyproxy.autoadd.caseSensitive;  
-
-  // quick-add-specific stuff
-  /*document.getElementById("quickAddPrompt").checked = foxyproxy.quickadd.prompt;  
-  document.getElementById("quickAddNotifyWhenCanceled").checked = foxyproxy.quickadd.notifyWhenCanceled;   
-  document.getElementById("quickAddEnabled").checked = foxyproxy.quickadd.enabled;
-  document.getElementById("quickAddBroadcaster").hidden = !foxyproxy.quickadd.enabled
-  document.getElementById("quickAddReload").checked = foxyproxy.quickadd.reload;
-  document.getElementById("quickAddNotify").checked = foxyproxy.quickadd.notify;
-  document.getElementById("casesensitive").checked = foxyproxy.quickadd.caseSensitive;*/    
   
   document.getElementById("toolsMenuEnabled").checked = foxyproxy.toolsMenu;
   document.getElementById("contextMenuEnabled").checked = foxyproxy.contextMenu;
@@ -220,21 +195,7 @@ function _updateView(writeSettings, updateLogView) {
   document.getElementById("tbRightClickMenu").value = foxyproxy.toolbar.rightClick;            
     
 	_updateModeMenu();
-  
-  //var menu = document.getElementById("autoAddProxyMenu");
-  //foxyproxy_common.updateSuperAddProxyMenu(foxyproxy.autoadd, menu, onAutoAddProxyChanged, document);
-  //if (!menu.firstChild.firstChild) {
- 		//document.getElementById("autoAddEnabled").checked = false;
- 		//onAutoAddEnabled(false);
- 	//}
 
-  //menu = document.getElementById("quickAddProxyMenu");
-  //foxyproxy_common.updateSuperAddProxyMenu(foxyproxy.quickadd, menu, foxyproxy_common.onQuickAddProxyChanged, document);
-  //if (!menu.firstChild.firstChild) {
- 		//document.getElementById("quickAddEnabled").checked = false;
- 		//onQuickAddEnabled(false);
- 	//}
-    
   proxyTree.view  = {
     rowCount : foxyproxy.proxies.length,
     getCellText : function(row, column) {
@@ -278,7 +239,6 @@ function onEnableTypeChanged(menu) {
 }
 
 function onDeleteSelection() {
-
   if (_isDefaultProxySelected())
     overlay.alert(this, foxyproxy.getMessage("delete.proxy.default"));
   else if (overlay.ask(this, foxyproxy.getMessage("delete.proxy.confirm"))) {
@@ -375,52 +335,6 @@ function onIncludeDisabledInRandom() {
 	overlay.alert(this, foxyproxy.getMessage('random.applicable'));
 	foxyproxy.random.includeDisabled = this.checked;
 }*/
-function updateTemplateExample(controlName, exampleControlName, saObj) {
-  controlName && (document.getElementById(controlName).value = saObj.urlTemplate);    
-	document.getElementById(exampleControlName+"2").value = saObj.applyTemplate(document.getElementById(exampleControlName+"1").value);
-}
-
-function onAutoAddProxyChanged(proxyId) {
-	foxyproxy.autoadd.proxy = foxyproxy.proxies.getProxyById(proxyId);
-}
-
-function onAutoAddEnabled(cb) {
-	if (cb.checked) {
-		if (foxyproxy.autoadd.allowed()) {
-	  	foxyproxy.autoadd.enabled = true;
-		 	document.getElementById("autoAddBroadcaster").hidden = false;	  	
-			foxyproxy_common.updateSuperAddProxyMenu(foxyproxy.autoadd, document.getElementById("autoAddProxyMenu"), onAutoAddProxyChanged, document);
-		  overlay.alert(this, foxyproxy.getMessage("autoadd.notice"));
-		}
-		else {
-		  overlay.alert(this, foxyproxy.getMessage("superadd.verboten2", [foxyproxy.getMessage("foxyproxy.tab.autoadd.label")]));
-		  cb.checked = false;
-		}
-	}
-	else {
-	 	document.getElementById("autoAddBroadcaster").hidden = true;
-  	foxyproxy.autoadd.enabled = false;
-  }
-}
-
-function onQuickAddEnabled(cb) {
-	if (cb.checked) {
-		if (foxyproxy.quickadd.allowed()) {
-	  	  foxyproxy.quickadd.enabled = true;
-		 	document.getElementById("quickAddBroadcaster").hidden = false;	  	
-			foxyproxy_common.updateSuperAddProxyMenu(foxyproxy.quickadd, document.getElementById("quickAddProxyMenu"), foxyproxy_common.onQuickAddProxyChanged, document);
-		  //overlay.alert(this, foxyproxy.getMessage("autoadd.notice"));
-		}
-		else {
-		  overlay.alert(this, foxyproxy.getMessage("superadd.verboten2", [foxyproxy.getMessage("foxyproxy.quickadd.label")]));
-		  cb.checked = false;
-		}
-	}
-	else {
-	 	document.getElementById("quickAddBroadcaster").hidden = true;
-  	foxyproxy.quickadd.enabled = false;
-  }
-}
 
 function saveLog() {
 	const nsIFilePicker = CI.nsIFilePicker;
@@ -496,10 +410,16 @@ function toggleStatusBarText(checked) {
 //}
 
 function onQuickAdd() {
-  var p = {out:null};
-  window.openDialog("chrome://foxyproxy/content/quickadd.xul", "",
-    "minimizable,dialog,chrome,resizable=yes,modal", p).focus();
-}
+  if (!foxyproxy.quickadd.allowed()) {        
+    overlay.alert(this, foxyproxy.getMessage("superadd.verboten2", [foxyproxy.getMessage("foxyproxy.quickadd.label")]));
+    return;
+  }
+  foxyproxy_common.onQuickAdd(true, null);
+}   
 
 function onAutoAdd() {
+  if (!foxyproxy.autoadd.allowed()) {
+    overlay.alert(this, foxyproxy.getMessage("superadd.verboten2", [foxyproxy.getMessage("foxyproxy.tab.autoadd.label")]));
+    return;
+  }
 }

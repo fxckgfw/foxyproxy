@@ -14,10 +14,10 @@
 <!DOCTYPE overlay SYSTEM "chrome://foxyproxy/locale/foxyproxy.dtd">
 <dialog
   xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+  xmlns:html="http://www.w3.org/1999/xhtml"
 	id="foxyproxyquickadddlg"
   title="&foxyproxy.quickadd.label;"
   ondialogaccept="return onOK();"
-  ondialogcancel="return onCancel();"
   onload="onLoad();"
   persist="screenX screenY width height"
   windowtype="foxyproxy-quickadd">
@@ -27,11 +27,20 @@
 
 <separator class="thin" />
 
-<checkbox id="quickAddEnabled"
+<description observes="notSetupMode">
+  &foxyproxy.quickadd.desc1;
+  <html:a
+    style="color: blue; text-decoration: underline; cursor: pointer;"
+    onclick="foxyproxy_common.openAndReuseOneTabPerURL('http://mozilla.dorando.at/readme.html');">
+    &foxyproxy.keyconfig.label;
+  </html:a>
+  &foxyproxy.quickadd.desc2;
+</description>
+
+<checkbox id="enabled" observes="notSetupMode"
   label="&foxyproxy.enabled.label;"
   accesskey="&foxyproxy.enabled.accesskey;"
-  tooltiptext="&foxyproxy.enabled.tooltip;"
-  oncommand="onQuickAddEnabled(this);" />
+  tooltiptext="&foxyproxy.enabled.tooltip;"/>
 <groupbox>
   
 <grid>
@@ -40,23 +49,22 @@
 	</columns>
 	<rows>  
 		<row align="center">              
-			<checkbox id="quickAddReload"
+			<checkbox id="reload"
 				label="&foxyproxy.autoadd.reload.label;"
 				accesskey="&foxyproxy.autoadd.reload.accesskey;"
 				tooltiptext="&foxyproxy.autoadd.reload.tooltip;"/>
-      <checkbox id="quickAddNotify"
+      <checkbox id="notify"
         label="&foxyproxy.quickadd.notify.label;"
         accesskey="&foxyproxy.quickadd.notify.accesskey;"
         tooltiptext="&foxyproxy.quickadd.notify.tooltip;"/>
       <spacer/>  
     </row>
     <row align="center">						
-			<checkbox id="quickAddPrompt"
+			<checkbox id="prompt"
 				label="&foxyproxy.quickadd.prompt.label;"
 				accesskey="&foxyproxy.quickadd.prompt.accesskey;"
-				tooltiptext="&foxyproxy.quickadd.prompt.tooltip;"
-				checked="true"/>
-      <checkbox id="quickAddNotifyWhenCanceled"
+				tooltiptext="&foxyproxy.quickadd.prompt.tooltip;"/>
+      <checkbox id="notifyWhenCanceled"
         label="&foxyproxy.quickadd.notify.whencanceled.label;"
         accesskey="&foxyproxy.quickadd.notify.whencanceled.accesskey;"
         tooltiptext="&foxyproxy.quickadd.notify.whencanceled.tooltip;"/>
@@ -81,10 +89,9 @@
 					value="&foxyproxy.quickadd.proxy.label;"
 					tooltiptext="&foxyproxy.quickadd.proxy.tooltip;"
 					accesskey="&foxyproxy.quickadd.proxy.accesskey;"/>
-				<menulist id="quickAddProxyMenu"
-					tooltiptext="&foxyproxy.quickadd.proxy.tooltip;"									
-					style="min-height: 1.8em;">
-					<menupopup/>
+				<menulist id="proxyMenu" tooltiptext="&foxyproxy.quickadd.proxy.tooltip;"                 
+          style="min-height: 1.8em;">
+					<menupopup id="proxyMenuPopup"/>
 				</menulist>
         <spacer/>        
 			</row>
@@ -99,27 +106,27 @@
 					value="&foxyproxy.pattern.template.label;"
 					tooltiptext="&foxyproxy.pattern.template.tooltip;"
 					accesskey="&foxyproxy.pattern.template.accesskey;"
-					control="quickAddUrlTemplate" />
-				<textbox id="quickAddUrlTemplate"
+					control="urlTemplate" />
+				<textbox id="urlTemplate"
 					type="timed" timeout="500"
 					tooltiptext="&foxyproxy.pattern.template.tooltip;"
-					oncommand="fp.quickadd.urlTemplate = this.value;updateTemplateExample(null, 'quickAddTemplateExample', fp.quickadd);"
+					oncommand="updateGeneratedPattern()"
 					accesskey="&foxyproxy.pattern.template.accesskey;" />
 				<toolbarbutton class="foxyproxy-ref"
 					popup="patternTemplatePopup"
 					tooltiptext="&foxyproxy.pattern.template.reference.tooltip;" />
 			</row>
-			<row align="center">
+			<row align="center" observes="setupMode">
 				<label value="&foxyproxy.pattern.template.currenturl.label;"
-					control="quickAddTemplateExample1" tooltiptext="&foxyproxy.pattern.template.currenturl.tooltip;" accesskey="&foxyproxy.pattern.template.currenturl.accesskey;"/>
-				<textbox id="quickAddTemplateExample1" tooltiptext="&foxyproxy.pattern.template.currenturl.tooltip;"
-					readonly="true"/>
+					control="url" tooltiptext="&foxyproxy.pattern.template.currenturl.tooltip;" accesskey="&foxyproxy.pattern.template.currenturl.accesskey;"/>
+				<textbox id="url" tooltiptext="&foxyproxy.pattern.template.currenturl.tooltip;" type="timed" timeout="500"
+          oncommand="updateGeneratedPattern()"/>
         <spacer/>
 			</row>
-			<row align="center">
+			<row align="center" observes="setupMode">
 				<label value="&foxyproxy.pattern.template.generatedpattern.label;"
-					control="quickAddTemplateExample2" tooltiptext="&foxyproxy.pattern.template.generatedpattern.tooltip;" accesskey="&foxyproxy.pattern.template.generatedpattern.accesskey;"/>
-				<textbox id="quickAddTemplateExample2" tooltiptext="&foxyproxy.pattern.template.generatedpattern.tooltip;" style="font-weight: bold;"/>
+					control="generatedPattern" tooltiptext="&foxyproxy.pattern.template.generatedpattern.tooltip;" accesskey="&foxyproxy.pattern.template.generatedpattern.accesskey;"/>
+				<textbox id="generatedPattern" tooltiptext="&foxyproxy.pattern.template.generatedpattern.tooltip;" style="font-weight: bold;"/>
         <toolbarbutton class="foxyproxy-ref" popup="wildcardReferencePopup" tooltiptext="&foxyproxy.wildcard.reference.tooltip;"/>
 			</row>			
 		</rows>
@@ -139,4 +146,10 @@
     </vbox>
   </popup>  
 </popupset>
+
+<broadcasterset>
+  <broadcaster id="setupMode"/>
+  <broadcaster id="notSetupMode"/>  
+</broadcasterset>
+
 </dialog>

@@ -61,7 +61,7 @@ var foxyproxy_common = {
   },
   
   validatePattern : function(win, isRegEx, p, msgPrefix) {
-    var origPat = p, fpp = foxyproxy_common.fp; /* in case this is used in a callback, don't use |this| */
+    var origPat = p, fpp = foxyproxy_common.fp;
     p = p.replace(/^\s*|\s*$/g,"");
     if (p == "") {
       fpp.alert(window, (msgPrefix?msgPrefix+": ":"") + fpp.getMessage("pattern.required"));
@@ -85,11 +85,6 @@ var foxyproxy_common = {
       if (!ret) return false;
     }
     return p;
-  },
-
-  onQuickAddProxyChanged : function(proxyId) {
-    var fpp = foxyproxy_common.fp; /* in case this is used in a callback, don't use |this| */
-    fpp.quickadd.proxy = fpp.proxies.getProxyById(proxyId);
   },
 
   removeChildren : function(node) {
@@ -141,5 +136,61 @@ var foxyproxy_common = {
     return Components.classes["@mozilla.org/extensions/manager;1"]
               .getService(Components.interfaces.nsIExtensionManager)
               .getItemForID("foxyproxy@eric.h.jung").version || "0.0";   
+  },
+
+  applyTemplate : function(url, urlTemplate, caseSensitive) { 
+    var flags = caseSensitive ? "gi" : "g";
+    try {
+      // TODO: if match is a regex, escape reg chars that appear in the url
+      var parsedUrl = this._ios.newURI(url, "UTF-8", null).QueryInterface(CI.nsIURL);
+      var ret = urlTemplate.replace("${0}", parsedUrl.scheme?parsedUrl.scheme:"", flags);    
+      ret = ret.replace("${1}", parsedUrl.username?parsedUrl.username:"", flags);    
+      ret = ret.replace("${2}", parsedUrl.password?parsedUrl.password:"", flags); 
+      ret = ret.replace("${3}", parsedUrl.userPass?(parsedUrl.userPass+"@"):"", flags); 
+      ret = ret.replace("${4}", parsedUrl.host?parsedUrl.host:"", flags); 
+      ret = ret.replace("${5}", parsedUrl.port == -1?"":parsedUrl.port, flags); 
+      ret = ret.replace("${6}", parsedUrl.hostPort?parsedUrl.hostPort:"", flags); 
+      ret = ret.replace("${7}", parsedUrl.prePath?parsedUrl.prePath:"", flags);                 
+      ret = ret.replace("${8}", parsedUrl.directory?parsedUrl.directory:"", flags); 
+      ret = ret.replace("${9}", parsedUrl.fileBaseName?parsedUrl.fileBaseName:"", flags); 
+      ret = ret.replace("${10}", parsedUrl.fileExtension?parsedUrl.fileExtension:"", flags); 
+      ret = ret.replace("${11}", parsedUrl.fileName?parsedUrl.fileName:"", flags); 
+      ret = ret.replace("${12}", parsedUrl.path?parsedUrl.path:"", flags); 
+      ret = ret.replace("${13}", parsedUrl.ref?parsedUrl.ref:"", flags);                
+      ret = ret.replace("${14}", parsedUrl.query?parsedUrl.query:"", flags);
+      ret = ret.replace("${14}", parsedUrl.query?parsedUrl.query:"", flags);       
+      return ret.replace("${15}", parsedUrl.spec?parsedUrl.spec:"", flags); 
+    }
+    catch(e) { /*happens for about:blank, about:config, etc.*/}
+    return url;
+  },    
+
+  onQuickAdd : function(setupMode, url) {  
+    var q = foxyproxy_common.fp.quickadd;
+    var p = {inn:{url:url || foxyproxy_common.getMostRecentWindow().content.location, urlTemplate:q.urlTemplate, enabled:q.enabled,
+      reload:q.reload, prompt:q.prompt, notify:q.notify, notifyWhenCanceled:q.notifyWhenCanceled,
+      proxies:foxyproxy.proxies, match:q.match, setupMode:setupMode}, out:null};
+     // q.proxy is null when user hasn't yet used QuickAdd
+    if (q.proxy != null)
+      p.inn.proxyId =  q.proxy.id;     
+    window.openDialog("chrome://foxyproxy/content/quickadd.xul", "",
+      "minimizable,dialog,chrome,resizable=yes,modal", p).focus();
+    if (p.out) {
+      p = p.out;
+      q.enabled = p.enabled;
+      q.reload = p.reload;
+      q.notify = p.notify;
+      q.prompt = p.prompt;
+      q.proxy = foxyproxy_common.fp.proxies.getProxyById(p.proxyId);
+      q.notifyWhenCanceled = p.notifyWhenCanceled;
+      q.urlTemplate = p.urlTemplate;    
+      q.match.name = p.name;
+      //q.match.pattern = p.pattern;
+      q.match.caseSensitive = p.caseSensitive;          
+      q.match.isRegEx = p.matchType=="r";
+      q.match.isBlackList = p.isBlackList;
+      foxyproxy_common.fp.writeSettings();
+      return p.pattern;          
+    }
   }
 };

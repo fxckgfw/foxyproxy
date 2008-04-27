@@ -401,14 +401,6 @@ function toggleStatusBarText(checked) {
     document.getElementById("statusBarWidthBroadcaster").setAttribute("disabled", "true");     
 }
 
-//function onOK() {
-  //var r1 = document.getElementById("autoAddMatchType").value == 'r',
-    //p1 = (!foxyproxy.autoadd.enabled || foxyproxy_common.validatePattern(window, r1, document.getElementById("autoAddPattern").value, foxyproxy.getMessage("foxyproxy.tab.autoadd.label"))),
-    //r2 = document.getElementById("matchtype").value == 'r',
-    //p2 = (!foxyproxy.quickadd.enabled || foxyproxy_common.validatePattern(window, r2, document.getElementById("quickAddTemplateExample2").value, foxyproxy.getMessage("foxyproxy.quickadd.label")));
-  //p1 && p2 && window.close();
-//}
-
 function onQuickAdd() {
   if (!foxyproxy.quickadd.allowed()) {        
     overlay.alert(this, foxyproxy.getMessage("superadd.verboten2", [foxyproxy.getMessage("foxyproxy.quickadd.label")]));

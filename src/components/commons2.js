@@ -9,31 +9,41 @@
   and also online at http://www.gnu.org/licenses/gpl.txt
 **/
 
-// common fcns used throughout foxyproxy.
-// functions within this object don't use |this|. instead, they use |foxyproxy_common| in case
-// the function is called from a callback or closure in which |this| refers to something else.
-var foxyproxy_common = {
+// common fcns used throughout foxyproxy, exposed a an xpcom service
 
-  fp : Components.classes["@leahscape.org/foxyproxy/service;1"].getService(Components.interfaces.nsISupports).wrappedJSObject,
+const CLASS_ID = Components.ID("ecbe324b-9ad7-401a-a272-5cc1efba9be6");
+const CLASS_NAME = "FoxyProxy Common";
+const CONTRACT_ID = "@leahscape.org/foxyproxy/common;1";
+const CI = Components.interfaces;
+const CC = Components.classes;
 
+function Common() {
+  this.wrappedJSObject = this;
+}
+
+Common.prototype = {
+  QueryInterface: function(aIID) {
+    if (!aIID.equals(CI.nsISupports))
+        throw Components.results.NS_ERROR_NO_INTERFACE;
+    return this;
+  },
+  
   // Application-independent version of getMostRecentWindow()
   getMostRecentWindow : function(wm) {
-    var tmp = wm || Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
+    var tmp = wm || CC["@mozilla.org/appshell/window-mediator;1"].getService(CI.nsIWindowMediator);
     return tmp.getMostRecentWindow("navigator:browser") || tmp.getMostRecentWindow("Songbird:Main");
   },
   
   // Application-independent version of getEnumerator()
   getEnumerator : function() {
-    var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"].getService(Components.interfaces.nsIWindowMediator);
+    var wm = CC["@mozilla.org/appshell/window-mediator;1"].getService(CI.nsIWindowMediator);
     // The next line always returns an object, even if the enum has no elements, so we can't use it to determine between applications
     //var e = wm.getEnumerator("navigator:browser") || wm.getEnumerator("Songbird:Main")
     return wm.getMostRecentWindow("navigator:browser") ? wm.getEnumerator("navigator:browser") : wm.getEnumerator("Songbird:Main");
   },
 
   openAndReuseOneTabPerURL : function(aURL) {
-    var wm = Components.classes["@mozilla.org/appshell/window-mediator;1"]
-             .getService(Components.interfaces.nsIWindowMediator);
-
+    var wm = CC["@mozilla.org/appshell/window-mediator;1"].getService(CI.nsIWindowMediator);
     var winEnum = wm.getEnumerator("navigator:browser") || wm.getEnumerator("Songbird:Main");
     while (winEnum.hasMoreElements()) {
       var win = winEnum.getNext();
@@ -61,10 +71,10 @@ var foxyproxy_common = {
   },
   
   validatePattern : function(win, isRegEx, p, msgPrefix) {
-    var origPat = p, fpp = foxyproxy_common.fp;
+    var origPat = p, fp = CC["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;
     p = p.replace(/^\s*|\s*$/g,"");
     if (p == "") {
-      fpp.alert(window, (msgPrefix?msgPrefix+": ":"") + fpp.getMessage("pattern.required"));
+      fp.alert(win, (msgPrefix?msgPrefix+": ":"") + fp.getMessage("pattern.required"));
       return false;
     }
     if (isRegEx) {
@@ -72,16 +82,16 @@ var foxyproxy_common = {
         new RegExp((p[0]=="^"?"":"^") + p + (p[p.length-1]=="$"?"":"$"));
       }
       catch(e) {
-        fpp.alert(win, (msgPrefix?msgPrefix+": ":"") + fpp.getMessage("pattern.invalid.regex", [origPat]));
+        fp.alert(win, (msgPrefix?msgPrefix+": ":"") + fp.getMessage("pattern.invalid.regex", [origPat]));
         return false;
       }
     }
-    else if (p.indexOf("*") == -1 && p.indexOf("?") == -1 && !fpp.warnings.noWildcards) {
+    else if (p.indexOf("*") == -1 && p.indexOf("?") == -1 && !fp.warnings.noWildcards) {
       // No wildcards present; warn user
       var cb = {};
-      var ret = (Components.classes["@mozilla.org/embedcomp/prompt-service;1"].getService(Components.interfaces.nsIPromptService)
-        .confirmCheck(win, fpp.getMessage("foxyproxy"), (msgPrefix?msgPrefix+": ":"") + fpp.getMessage("no.wildcard.characters", [p]), fpp.getMessage("message.stop"), cb));
-      fpp.warnings.noWildcards = cb.value;
+      var ret = (CC["@mozilla.org/embedcomp/prompt-service;1"].getService(CI.nsIPromptService)
+        .confirmCheck(win, fp.getMessage("foxyproxy"), (msgPrefix?msgPrefix+": ":"") + fp.getMessage("no.wildcard.characters", [p]), fp.getMessage("message.stop"), cb));
+      fp.warnings.noWildcards = cb.value;
       if (!ret) return false;
     }
     return p;
@@ -96,45 +106,17 @@ var foxyproxy_common = {
     var doc = args.document || document;
     var e = doc.createElement("menuitem");
     e.setAttribute("id", args["idVal"]);
-    e.setAttribute("label", args["labelId"]?foxyproxy_common.fp.getMessage(args["labelId"], args["labelArgs"]) : args["labelVal"]);
+    var fp = CC["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;
+    e.setAttribute("label", args["labelId"]?fp.getMessage(args["labelId"], args["labelArgs"]) : args["labelVal"]);
     e.setAttribute("value", args["idVal"]);
     args["type"] && e.setAttribute("type", args["type"]);
     args["name"] && e.setAttribute("name", args["name"]);
     return e;
   },
-
-  /**
-   * Update the list of menuitems in |menu|
-   */
-  updateSuperAddProxyMenu : function(superadd, menu, fcn, doc) {
-    if (!superadd.enabled) return;
-    var popup=menu.firstChild;
-    foxyproxy_common.removeChildren(popup);
-    for (var i=0,c=0,p; i<foxyproxy_common.fp.proxies.length && ((p=foxyproxy_common.fp.proxies.item(i)) || 1); i++) {
-      if (!p.lastresort && p.enabled) {
-        popup.appendChild(foxyproxy_common.createMenuItem({idVal:p.id, labelVal:p.name, type:"radio", name:"foxyproxy-enabled-type",
-          document:doc}));
-        //popup.appendChild(foxyproxy_common.createMenuItem({idVal:"disabled", labelId:"mode.disabled.label"}));
-        c++;
-      }
-    }
-    function selFirst() {
-      // select the first one
-      var temp = popup.firstChild && popup.firstChild.id;
-      temp && fcn((menu.value = temp));
-    }
-
-    if (superadd.proxy) {
-      menu.value = superadd.proxy.id;
-    }
-    else
-      selFirst();
-    menu.selectedIndex == -1 && selFirst();
-  },
   
   getVersion : function() {
-    return Components.classes["@mozilla.org/extensions/manager;1"]
-              .getService(Components.interfaces.nsIExtensionManager)
+    return CC["@mozilla.org/extensions/manager;1"]
+              .getService(CI.nsIExtensionManager)
               .getItemForID("foxyproxy@eric.h.jung").version || "0.0";   
   },
 
@@ -166,10 +148,11 @@ var foxyproxy_common = {
   },    
 
   onQuickAdd : function(setupMode, url) {  
-    var q = foxyproxy_common.fp.quickadd;
+    var fp = CC["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;  
+    var q = fp.quickadd;
     var p = {inn:{url:url || foxyproxy_common.getMostRecentWindow().content.location, urlTemplate:q.urlTemplate, enabled:q.enabled,
       reload:q.reload, prompt:q.prompt, notify:q.notify, notifyWhenCanceled:q.notifyWhenCanceled,
-      proxies:foxyproxy.proxies, match:q.match, setupMode:setupMode}, out:null};
+      proxies:fp.proxies, match:q.match, setupMode:setupMode}, out:null};
      // q.proxy is null when user hasn't yet used QuickAdd
     if (q.proxy != null)
       p.inn.proxyId =  q.proxy.id;     
@@ -181,7 +164,7 @@ var foxyproxy_common = {
       q.reload = p.reload;
       q.notify = p.notify;
       q.prompt = p.prompt;
-      q.proxy = foxyproxy_common.fp.proxies.getProxyById(p.proxyId);
+      q.proxy = fp.proxies.getProxyById(p.proxyId);
       q.notifyWhenCanceled = p.notifyWhenCanceled;
       q.urlTemplate = p.urlTemplate;    
       q.match.name = p.name;
@@ -189,8 +172,51 @@ var foxyproxy_common = {
       q.match.caseSensitive = p.caseSensitive;          
       q.match.isRegEx = p.matchType=="r";
       q.match.isBlackList = p.isBlackList;
-      foxyproxy_common.fp.writeSettings();
+      fp.writeSettings();
       return p.pattern;          
     }
+  }  
+}
+// Factory
+var CommonFactory = {
+  singleton: null,
+  createInstance: function (aOuter, aIID)
+  {
+    if (aOuter != null)
+      throw Components.results.NS_ERROR_NO_AGGREGATION;
+    if (this.singleton == null)
+      this.singleton = new Common();
+    return this.singleton.QueryInterface(aIID);
   }
 };
+
+// Module
+var CommonModule = {
+  registerSelf: function(aCompMgr, aFileSpec, aLocation, aType)
+  {
+    aCompMgr = aCompMgr.QueryInterface(CI.nsIComponentRegistrar);
+    aCompMgr.registerFactoryLocation(CLASS_ID, CLASS_NAME, CONTRACT_ID, aFileSpec, aLocation, aType);
+  },
+
+  unregisterSelf: function(aCompMgr, aLocation, aType)
+  {
+    aCompMgr = aCompMgr.QueryInterface(CI.nsIComponentRegistrar);
+    aCompMgr.unregisterFactoryLocation(CLASS_ID, aLocation);        
+  },
+  
+  getClassObject: function(aCompMgr, aCID, aIID)
+  {
+    if (!aIID.equals(CI.nsIFactory))
+      throw Components.results.NS_ERROR_NOT_IMPLEMENTED;
+
+    if (aCID.equals(CLASS_ID))
+      return CommonFactory;
+
+    throw Components.results.NS_ERROR_NO_INTERFACE;
+  },
+
+  canUnload: function(aCompMgr) { return true; }
+};
+
+//module initialization
+function NSGetModule(aCompMgr, aFileSpec) { return CommonModule; }

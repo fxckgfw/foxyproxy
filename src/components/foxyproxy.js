@@ -63,9 +63,22 @@ catch (e) {
   dump("Error loading superadd.js\n");
   throw(e);
 }
-
+try {
+  dir = dir.parent;
+  var filePath = dir.clone();
+  filePath.append("content");
+  filePath.append("common.js");
+  loader.loadSubScript(fileProtocolHandler.getURLSpecFromFile(filePath));
+}
+catch (e) {
+  dump("Error loading common.js\n");
+  throw(e);
+}
 // l is for lulu...
-function foxyproxy() {this.wrappedJSObject = this;}
+function foxyproxy() {
+  this.wrappedJSObject = this;
+  foxyproxy_common.fp = this;  
+}
 
 foxyproxy.prototype = {
 	PFF : " ",
@@ -1271,6 +1284,7 @@ function NSGetModule(compMgr, fileSpec) {
 }
 
 function gFactoryHolder(aObj) {
+  this.singleton = null;
 	this.CID        = aObj.prototype.classID;
 	this.contractID = aObj.prototype.contractID;
 	this.className  = aObj.prototype.classDescription;
@@ -1280,8 +1294,9 @@ function gFactoryHolder(aObj) {
 		{
 			if (aOuter)
 				throw CR.NS_ERROR_NO_AGGREGATION;
-
-			return (new this.constructor).QueryInterface(aIID);
+      if (!this.singleton)
+        this.singleton = new this.constructor; 
+			return this.singleton.QueryInterface(aIID);
 		}
 	};
 

@@ -248,7 +248,7 @@ function toggleMode(mode) {
 }
 
 function onHelp() {
-  foxyproxy_common.openAndReuseOneTabPerURL("http://foxyproxy.mozdev.org/quickstart.html");
+  foxyproxy_common.openAndReuseOneTabPerURL("http://foxyproxy.mozdev.org/patterns.html");
 }
 
 function onViewAutoConf() {

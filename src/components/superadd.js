@@ -23,7 +23,6 @@ SuperAdd.prototype = {
   _notify : true,
   _prompt : false,
   match : null,
-  matchName : null,
   elemName : "autoadd",
   elemNameCamelCase : "AutoAdd",
   notificationTitle : "foxyproxy.tab.autoadd.label",
@@ -32,11 +31,10 @@ SuperAdd.prototype = {
   _ios : CC["@mozilla.org/network/io-service;1"].getService(CI.nsIIOService),
 
   init : function(matchName, fp) {
-  	gFP = fp;
-		this.matchName = matchName;	    
+  	gFP = fp;	    
 		this.match = CC["@leahscape.org/foxyproxy/match;1"].createInstance(CI.nsISupports).wrappedJSObject;
 		this.match.isMultiLine = true;
-		this.match.name = this.matchName;  
+		this.match.name = matchName;  
   },
     
   get enabled() { return this._enabled; },
@@ -81,35 +79,47 @@ SuperAdd.prototype = {
     this.match.caseSensitive = c;
     gFP.writeSettings();
   },
-              
-  setMatchPattern : function(p) {
-    this.match.pattern = p.replace(/^\s*|\s*$/g,"");
+  
+  get isBlackList() { return this.match.isBlackList; },
+  set isBlackList(c) {
+    this.match.isBlackList = c;
+    gFP.writeSettings();
+  },  
+
+  get name() { return this.match.name; },
+  set name(n) {
+    this.match.name = n;
+    gFP.writeSettings();
+  },
+                
+  set pattern(p) {
+    this.match.pattern = p;
     gFP.writeSettings();
   },
   
-  setMatchIsRegEx : function(e) {
+  get isRegEx() { return this.match.isRegEx; },
+  set isRegEx(e) {
     this.match.isRegEx = e;
     gFP.writeSettings();      
   },
   
-  perform : function(location, content) {
-    var url = location.href;
-    if (this.match.pattern != "") { // is this necessary anymore now that we have better user input validation?
+  // As of 2.7.3, this fcn is stateless
+  perform : function(url, content) {
+    if (this.match.pattern != "") {
     	// Does this URL already match an existing pattern for a proxy?
     	var p = gFP.proxies.getMatches(url).proxy;
       if (p.lastresort) { // no current proxies match (except the lastresort, which matches everything anyway)
-        if (this.match.regex.test(content)) {
-        	this.addPattern(location);
-        	return true;
-        }
+        if (this.match.pattern.regex.test(content))
+        	return this.addPattern(this.match, url);
       }
     }
   }, 
   
   applyTemplate : function(url) { 
-    var flags = this.match.caseSensitive ? "gi" : "g";  
+    var flags = this.match.caseSensitive ? "gi" : "g";
   	try {
-	    var parsedUrl = this._ios.newURI(url, "UTF-8", null).QueryInterface(CI.nsIURL);	
+      // TODO: if match is a regex, escape reg chars that appear in the url
+	    var parsedUrl = this._ios.newURI(url, "UTF-8", null).QueryInterface(CI.nsIURL);
 	    var ret = this._urlTemplate.replace("${0}", parsedUrl.scheme?parsedUrl.scheme:"", flags);    
 			ret = ret.replace("${1}", parsedUrl.username?parsedUrl.username:"", flags);    
 			ret = ret.replace("${2}", parsedUrl.password?parsedUrl.password:"", flags); 
@@ -124,23 +134,20 @@ SuperAdd.prototype = {
 			ret = ret.replace("${11}", parsedUrl.fileName?parsedUrl.fileName:"", flags); 
 			ret = ret.replace("${12}", parsedUrl.path?parsedUrl.path:"", flags); 
 			ret = ret.replace("${13}", parsedUrl.ref?parsedUrl.ref:"", flags); 								
-			ret = ret.replace("${14}", parsedUrl.query?parsedUrl.query:"", flags); 
+			ret = ret.replace("${14}", parsedUrl.query?parsedUrl.query:"", flags);
+      ret = ret.replace("${14}", parsedUrl.query?parsedUrl.query:"", flags);       
 			return ret.replace("${15}", parsedUrl.spec?parsedUrl.spec:"", flags); 
 		}
 		catch(e) { /*happens for about:blank, about:config, etc.*/}
 		return url;
   },  
   
-  addPattern : function(location, url) {
-	  var pat = this.applyTemplate(url || location.href); // 2nd arg takes precedence                  
-	  var match = CC["@leahscape.org/foxyproxy/match;1"].createInstance(CI.nsISupports).wrappedJSObject;
-	  match.name = this.matchName;			      
-	  match.pattern = pat;
-	  match.isRegEx = this.match.isRegEx; // todo: make this dynamic
-      match.caseSensitive = this.match.caseSensitive;
+  // As of 2.7.3, this fcn is stateless
+  addPattern : function(match, url) {
+	  match.pattern = this.applyTemplate(url);
 	  this._proxy.matches.push(match);      
-    this._notify && gFP.notifier.alert(gFP.getMessage(this.notificationTitle), gFP.getMessage("superadd.url.added", [pat, this._proxy.name]));        
-    this._reload && location.reload();
+    this._notify && gFP.notifier.alert(gFP.getMessage(this.notificationTitle), gFP.getMessage("superadd.url.added", [match.pattern, this._proxy.name]));
+    return match.pattern;
   },
   
   allowed : function() {
@@ -170,7 +177,7 @@ SuperAdd.prototype = {
     e.setAttribute("urlTemplate", this._urlTemplate);
     e.setAttribute("reload", this._reload);			
     e.setAttribute("notify", this._notify);
-    e.setAttribute("prompt", this._prompt);
+    e.setAttribute("prompt", this._prompt);    
     this._proxy && e.setAttribute("proxy-id", this._proxy.id);
     e.appendChild(this.match.toDOM(doc));
     return e;

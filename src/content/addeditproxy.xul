@@ -10,6 +10,7 @@
   and also online at http://www.gnu.org/licenses/gpl.txt
 -->
 <?xml-stylesheet href="foxyproxy.css" type="text/css"?>
+<?xul-overlay href="includes.xul"?>
 <!DOCTYPE overlay SYSTEM "chrome://foxyproxy/locale/foxyproxy.dtd">
 
 <dialog buttons="accept,cancel"
@@ -247,6 +248,7 @@
 </vbox>
 
 <popupset>
+  <popup id="wildcardReferencePopup"/>
 	<popup id="newGUIPopup" style="height: &foxyproxy.newGUI.popup.height;; width: &foxyproxy.newGUI.popup.width;;">
 		<vbox class="foxyproxy-border" style="margin: .5em;">
 			<description class="foxyproxy-tooltip">
@@ -282,54 +284,6 @@
     <menuitem class="menuitem-non-iconic" command="helpCmd"/>
     <menuitem class="menuitem-non-iconic" command="closeCmd"/>
   </popup>
-  <!-- Thanks, DownThemAll -->
-	<popup id="wildcardReferencePopup" position="before_end" style="height: &foxyproxy.wildcard.reference.popup.height;;">
-		<label id="wildcardref" value="&foxyproxy.wildcard.reference.label;" style="font-weight: bold; text-align: center; margin: 1em 0 0 0;" />
-		<label id="wildcardrefSub" value="&foxyproxy.wildcard.reference.subtitle.label;" style="text-align: center; margin: 0 0 1.5em 0;" />
-			<grid class="border" style="margin: 0 .5em 0 .5em;">
-				<columns><column style="width: 10em; margin-right: 1em;"/><column style="width: 10em; margin-right: 1em;"/><column style="width: 10em; margin-right: 1em;"/><column style="width: 10em;"/></columns>
-				<rows>
-					<row>
-						<description class="heading">
-						 &foxyproxy.wildcard.reference.goal.label;</description>
-						<description class="heading">
-						&foxyproxy.wildcard.reference.correct.label;</description>
-						<description class="heading red">
-						&foxyproxy.wildcard.reference.incorrect.label;</description>
-						<description class="heading">
-						&foxyproxy.wildcard.reference.incorrect.reason.label;</description>
-				  </row>
-					<row style="margin-bottom: 1em;">
-						<description>&foxyproxy.wildcard.reference.goal1.label;</description>
-						<description>http://www.myspace.com/*</description>
-						<description class="red">http://www.myspace.com</description>
-						<description>&foxyproxy.wildcard.reference.incorrect.reason1.label;</description>
-					</row>
-					<row style="margin-bottom: 1em;">
-						<description>&foxyproxy.wildcard.reference.goal2.label;</description>
-						<vbox>
-							<description>&foxyproxy.wildcard.reference.correct2.label;:</description>
-							<description>*://localhost/*</description>
-							<description>*://127.0.0.1/*</description>
-						</vbox>
-						<description class="red">localhost, 127.0.0.1</description>
-						<description>&foxyproxy.wildcard.reference.incorrect.reason2.label;</description>
-					</row>
-					<row style="margin-bottom: 1em;">
-						<description>&foxyproxy.wildcard.reference.goal3.label;</description>
-						<description>*.abc.com/*</description>
-						<description class="red">.abc.com</description>
-						<description>&foxyproxy.wildcard.reference.incorrect.reason3.label;</description>
-					</row>
-					<row>
-						<description>&foxyproxy.wildcard.reference.goal4.label;</description>
-						<description>*.a.foo.com/*</description>
-						<description class="red">a.foo.com</description>
-						<description>&foxyproxy.wildcard.reference.incorrect.reason4.label;</description>
-					</row>
-				</rows>
-			</grid>
-	</popup>
 </popupset>
 
 <command id="toggleEnabledCmd"

@@ -11,6 +11,7 @@
 -->
 
 <?xml-stylesheet href="foxyproxy.css" type="text/css"?>
+<?xul-overlay href="includes.xul"?>
 <!DOCTYPE overlay SYSTEM "chrome://foxyproxy/locale/foxyproxy.dtd">
 <window id="foxyproxyoptions" windowtype="foxyproxy-options"
 	title="&foxyproxy.optionsdialog.label;"
@@ -34,8 +35,13 @@
 							tooltiptext="&foxyproxy.addnewproxy.tooltip;" />
 						<!-- tooltiptext is necessary for tooltip, dunno why -->
 						<menuseparator />
-						<menuitem command="torWizardCmd"
-							tooltiptext="&foxyproxy.tor.tooltip;" />
+            <menuitem command="quickAddCmd"
+              tooltiptext="&foxyproxy.quickadd.tooltip;" />
+            <menuitem command="autoAddCmd"
+              tooltiptext="&foxyproxy.tab.autoadd.tooltip;"/>
+            <menuseparator />          
+            <menuitem command="torWizardCmd"
+              tooltiptext="&foxyproxy.tor.tooltip;" />    
 						<!-- tooltiptext is necessary for tooltip, dunno why -->
 						<menuseparator />
 						<!-- <menuitem command="importSettingsCmd" tooltiptext="&foxyproxy.importsettings.tooltip;"/>-->
@@ -70,21 +76,18 @@
 		</toolbox>
 	</vbox>
 
-	<separator />
+	<separator style="height: .5em;"/>
 	<hbox style="margin-left: 1em;" align="center">
 		<label value="&foxyproxy.mode.label;:"
 			tooltiptext="&foxyproxy.mode.tooltip;"
 			accesskey="&foxyproxy.mode.accesskey;" command="modeMenuPopup" />
 		<menulist id="modeMenu" oncommand="onEnableTypeChanged(this);"
-			tooltiptext="&foxyproxy.mode.tooltip;"
-			style="margin: 0em 1em 0em 1em; min-height: 1.8em;">
+			tooltiptext="&foxyproxy.mode.tooltip;">
 			<menupopup id="modeMenuPopup" />
 		</menulist>
 	</hbox>
 
-	<separator class="thin" />
-
-	<tabbox flex="1" style="margin: 1em;">
+	<tabbox flex="1" style="margin: .5em;">
 		<tabs id="tabs"
 			onselect="foxyproxy.selectedTabIndex=this.selectedIndex;">
 			<tab label="&foxyproxy.tab.proxies.label;"
@@ -93,17 +96,11 @@
 			<tab label="&foxyproxy.tab.global.label;"
 				accesskey="&foxyproxy.tab.global.accesskey;"
 				tooltiptext="&foxyproxy.tab.global.tooltip;" />
-			<tab label="&foxyproxy.quickadd.label;"
-				accesskey="&foxyproxy.quickadd.accesskey;"
-				tooltiptext="&foxyproxy.quickadd.tooltip;" />
-			<tab label="&foxyproxy.tab.autoadd.label;"
-				accesskey="&foxyproxy.tab.autoadd.accesskey;"
-				tooltiptext="&foxyproxy.tab.autoadd.tooltip;" />
 			<tab label="&foxyproxy.tab.logging.label;"
 				accesskey="&foxyproxy.tab.logging.accesskey;"
-				tooltiptext="&foxyproxy.tab.logging.tooltip;" />
+				tooltiptext="&foxyproxy.tab.logging.tooltip;" />      
 		</tabs>
-
+    
 		<tabpanels style="-moz-appearance: none;" flex="1">
 
 			<!--  proxy tree -->
@@ -170,14 +167,12 @@
 							command="moveUpCmd" label=" &foxyproxy.moveup.label;" />
 						<button id="down-button" pack="start"
 							command="moveDownCmd" label=" &foxyproxy.movedown.label;" />
+            <separator/>
+            <button command="createProxyCmd" />
+            <button command="settingsCmd" />
+            <button command="copySelectionCmd" />
+            <button command="deleteSelectionCmd" />              
 					</vbox>
-				</hbox>
-				<separator />
-				<hbox>
-					<button command="createProxyCmd" />
-					<button command="settingsCmd" />
-					<button command="copySelectionCmd" />
-					<button command="deleteSelectionCmd" />
 				</hbox>
 			</tabpanel>
 
@@ -438,311 +433,6 @@
 				</groupbox>
 				<row><separator class="thin"/></row>-->
 
-			<!--  quickadd tab -->
-			<tabpanel flex="1" orient="vertical">
-				<separator class="thin" />
-				<description>
-					&foxyproxy.quickadd.desc1;
-					<html:a
-						style="color: blue; text-decoration: underline; cursor: pointer;"
-						onclick="foxyproxy_common.openAndReuseOneTabPerURL('http://mozilla.dorando.at/readme.html');">
-						&foxyproxy.keyconfig.label;
-					</html:a>
-					&foxyproxy.quickadd.desc2;
-				</description>
-
-				<separator class="thin" />
-				<grid>
-					<columns>
-						<column />
-						<column />
-					</columns>
-					<rows>
-						<row align="center">
-							<checkbox id="quickAddEnabled"
-								label="&foxyproxy.enabled.label;"
-								accesskey="&foxyproxy.enabled.accesskey;"
-								tooltiptext="&foxyproxy.enabled.tooltip;"
-								oncommand="onQuickAddEnabled(this);" />
-
-							<checkbox id="quickAddReload"
-								label="&foxyproxy.autoadd.reload.label;"
-								accesskey="&foxyproxy.autoadd.reload.accesskey;"
-								tooltiptext="&foxyproxy.autoadd.reload.tooltip;"
-								observes="quickAddBroadcaster"
-								oncommand="foxyproxy.quickadd.reload = this.checked;" />
-						</row>
-
-						<row align="center">
-							<checkbox id="quickAddNotify"
-								label="&foxyproxy.quickadd.notify.label;"
-								accesskey="&foxyproxy.quickadd.notify.accesskey;"
-								tooltiptext="&foxyproxy.quickadd.notify.tooltip;"
-								observes="quickAddBroadcaster"
-								oncommand="foxyproxy.quickadd.notify = this.checked;" />
-
-							<checkbox id="quickAddPrompt"
-								label="&foxyproxy.quickadd.prompt.label;"
-								accesskey="&foxyproxy.quickadd.prompt.accesskey;"
-								tooltiptext="&foxyproxy.quickadd.prompt.tooltip;"
-								observes="quickAddBroadcaster"
-								oncommand="foxyproxy.quickadd.prompt = this.checked;" />
-						</row>
-						<row align="center">
-							<checkbox id="quickAddNotifyWhenCanceled"
-								label="&foxyproxy.quickadd.notify.whencanceled.label;"
-								accesskey="&foxyproxy.quickadd.notify.whencanceled.accesskey;"
-								tooltiptext="&foxyproxy.quickadd.notify.whencanceled.tooltip;"
-								observes="quickAddBroadcaster"
-								oncommand="foxyproxy.quickadd.notifyWhenCanceled = this.checked;"/>
-								<toolbarbutton class="foxyproxy-ref"
-									popup="notifyWhenCanceledPopup"
-									tooltiptext="&foxyproxy.whatsthis;"
-									observes="quickAddBroadcaster"/>
-								<spacer/>
-						</row>
-					</rows>
-				</grid>
-
-				<groupbox observes="quickAddBroadcaster">
-					<grid>
-						<columns>
-							<column />
-							<column flex="1" />
-						</columns>
-						<rows>
-							<row align="center">
-								<label
-									value="&foxyproxy.quickadd.proxy.label;"
-									tooltiptext="&foxyproxy.quickadd.proxy.tooltip;"
-									accesskey="&foxyproxy.quickadd.proxy.accesskey;"/>
-								<menulist id="quickAddProxyMenu"
-									tooltiptext="&foxyproxy.quickadd.proxy.tooltip;"
-									oncommand="foxyproxy_common.onQuickAddProxyChanged(this.value);"
-									style="min-height: 1.8em;" flex="1">
-									<menupopup/>
-								</menulist>
-							</row>
-							<row align="center">
-								<label
-									value="&foxyproxy.pattern.template.label;"
-									tooltiptext="&foxyproxy.pattern.template.tooltip;"
-									accesskey="&foxyproxy.pattern.template.accesskey;"
-									control="quickAddUrlTemplate" />
-								<textbox id="quickAddUrlTemplate"
-									type="timed" timeout="500"
-									tooltiptext="&foxyproxy.pattern.template.tooltip;"
-									oncommand="foxyproxy.quickadd.urlTemplate = this.value;updateTemplateExample(null, 'quickAddTemplateExample', foxyproxy.quickadd);"
-									accesskey="&foxyproxy.pattern.template.accesskey;" />
-								<toolbarbutton class="foxyproxy-ref"
-									popup="patternTemplatePopup"
-									tooltiptext="&foxyproxy.pattern.template.reference.tooltip;" />
-							</row>
-						</rows>
-					</grid>
-					<hbox align="center">
-						<label
-							value="&foxyproxy.pattern.template.example.label1;" />
-						<textbox id="quickAddTemplateExample1" type="timed" timeout="500" flex="1"
-							value="&foxyproxy.pattern.template.example.label2;"
-							oncommand="updateTemplateExample(null, 'quickAddTemplateExample', foxyproxy.quickadd);"/>
-						<textbox id="quickAddTemplateExample2" readonly="true" style="font-weight: bold;"/>
-					</hbox>
-				</groupbox>
-				<radiogroup id="quickAddMatchType" orient="horizontal"
-					observes="quickAddBroadcaster" oncommand="foxyproxy.quickadd.setMatchIsRegEx(this.value=='r');">
-					<groupbox flex="1">
-						<caption
-							label="&foxyproxy.pattern.template.matchtype.label;" />
-						<grid>
-							<columns>
-								<column />
-								<column />
-								<column />
-                                <column/>
-							</columns>
-							<rows>
-								<row align="center">
-									<radio id="quickAddWildcard" selected="true"
-										accesskey="&foxyproxy.wildcard.accesskey;"
-										tooltiptext="&foxyproxy.wildcard.tooltip;" value="w"/>
-									<label
-										value="&foxyproxy.wildcard.label;"
-										style="margin-left: -0.5em;" class="text-link"
-										onclick="foxyproxy_common.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/quickstart.html#wildcards');"
-										tooltiptext="&foxyproxy.wildcard.tooltip;" />
-									<label
-										value="&foxyproxy.wildcard.example.label;" />
-                                    <checkbox id="quickAddCaseSensitive" label="&foxyproxy.casesensitive.label;" accesskey="&foxyproxy.casesensitive.accesskey;"
-                                      tooltiptext="&foxyproxy.casesensitive.tooltip;" oncommand="foxyproxy.quickadd.caseSensitive=this.checked;"/>                                      
-								</row>
-								<row align="center">
-									<radio id="quickAddRegEx"
-										accesskey="&foxyproxy.regex.accesskey;"
-										tooltiptext="&foxyproxy.regex.tooltip;" value="r"/>
-									<label
-										value="&foxyproxy.regex.label;" style="margin-left: -0.5em;"
-										class="text-link"
-										onclick="foxyproxy_common.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/quickstart.html#regex');"
-										tooltiptext="&foxyproxy.regex.tooltip;" />
-									<label
-										value="&foxyproxy.regex.example.label;" />
-                                    <spacer/>
-								</row>
-							</rows>
-						</grid>
-					</groupbox>
-				</radiogroup>
-			</tabpanel>
-
-			<!--  autoadd -->
-			<tabpanel flex="1" orient="vertical">
-				<separator class="thin" />
-				<description>
-					&foxyproxy.autoadd.description;
-				</description>
-				<separator class="thin" />
-				<hbox align="center">
-					<checkbox id="autoAddEnabled"
-						label="&foxyproxy.enabled.label;"
-						accesskey="&foxyproxy.enabled.accesskey;"
-						tooltiptext="&foxyproxy.enabled.tooltip;"
-						oncommand="onAutoAddEnabled(this);" />
-					<checkbox id="autoAddReload"
-						label="&foxyproxy.autoadd.reload.label;"
-						accesskey="&foxyproxy.autoadd.reload.accesskey;"
-						tooltiptext="&foxyproxy.autoadd.reload.tooltip;"
-						oncommand="foxyproxy.autoadd.reload = this.checked;"
-						observes="autoAddBroadcaster" />
-					<checkbox id="autoAddNotify"
-						label="&foxyproxy.autoadd.notify.label;"
-						accesskey="&foxyproxy.autoadd.notify.accesskey;"
-						tooltiptext="&foxyproxy.autoadd.notify.tooltip;"
-						oncommand="foxyproxy.autoadd.notify = this.checked;"
-						observes="autoAddBroadcaster" />
-				</hbox>
-				<hbox align="center" observes="autoAddBroadcaster">
-					<label value="&foxyproxy.autoadd.pattern.label;"
-						control="autoAddPattern"
-						tooltiptext="&foxyproxy.autoadd.pattern.tooltip;"
-						accesskey="&foxyproxy.autoadd.pattern.accesskey;" />
-					<textbox id="autoAddPattern" type="timed"
-						timeout="500"
-						oncommand="foxyproxy.autoadd.setMatchPattern(this.value);"
-						flex="1" tooltiptext="&foxyproxy.autoadd.pattern.tooltip;"
-						accesskey="&foxyproxy.autoadd.pattern.accesskey;" />
-                    <checkbox id="autoAddCaseSensitive" label="&foxyproxy.casesensitive.label;" accesskey="&foxyproxy.casesensitive.accesskey;"
-                        tooltiptext="&foxyproxy.casesensitive.tooltip;" oncommand="foxyproxy.autoadd.caseSensitive=this.checked;"/>            
-				</hbox>
-                <grid observes="autoAddBroadcaster">
-                    <columns>
-                        <column flex="1"/>
-                    </columns>
-                    <rows>
-                        <row>
-                            <radiogroup id="autoAddMatchType"
-                                orient="horizontal"
-                                oncommand="foxyproxy.autoadd.setMatchIsRegEx(this.value=='r');">
-                                <groupbox flex="1">
-                                    <caption
-                                        label="&foxyproxy.pattern.matchtype2.label;" />
-                                    <grid>
-                                        <columns>
-                                            <column />
-                                            <column />
-                                            <column />
-                                        </columns>
-                                        <rows>
-                                            <row align="center">
-                                                <radio id="autoAddWildcard"
-                                                    selected="true" accesskey="&foxyproxy.wildcard.accesskey;"
-                                                    tooltiptext="&foxyproxy.wildcard.tooltip;" value="w" />
-                                                <label
-                                                    value="&foxyproxy.wildcard.label;"
-                                                    style="margin-left: -0.5em;" class="text-link"
-                                                    onclick="foxyproxy_common.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/quickstart.html#wildcards');"
-                                                    tooltiptext="&foxyproxy.wildcard.tooltip;" />
-                                                <label
-                                                    value="&foxyproxy.autoadd.wildcard.example.label;" />
-                                            </row>
-                                            <row align="center">
-                                                <radio id="autoAddRegEx"
-                                                    accesskey="&foxyproxy.regex.accesskey;"
-                                                    tooltiptext="&foxyproxy.regex.tooltip;" value="r" />
-                                                <label
-                                                    value="&foxyproxy.regex.label;"
-                                                    style="margin-left: -0.5em;" class="text-link"
-                                                    onclick="foxyproxy_common.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/quickstart.html#regex');"
-                                                    tooltiptext="&foxyproxy.regex.tooltip;" />
-                                                <label
-                                                    value="&foxyproxy.autoadd.regex.example.label;" />
-                                            </row>
-                                        </rows>
-                                    </grid>
-                                </groupbox>
-                            </radiogroup>
-                        </row>
-                    </rows>
-                </grid>        
-				<groupbox observes="autoAddBroadcaster">
-					<grid>
-						<columns>
-							<column />
-							<column flex="1" />
-						</columns>
-						<rows>
-							<row align="center">
-								<label
-									value="&foxyproxy.autoadd.proxy.label;"
-									control="autoAddProxyMenu"
-									accesskey="&foxyproxy.autoadd.proxy.accesskey;"
-									tooltiptext="&foxyproxy.autoadd.proxy.tooltip;" />
-								<menulist id="autoAddProxyMenu"
-									oncommand="onAutoAddProxyChanged(this.value);"
-									tooltiptext="&foxyproxy.autoadd.proxy.tooltip;" flex="1"
-									style="min-height: 1.8em;">
-									<menupopup />
-								</menulist>
-							</row>
-							<row align="center">
-								<label
-									value="&foxyproxy.pattern.template.label;"
-									control="autoAddUrlTemplate"
-									accesskey="&foxyproxy.pattern.template.accesskey;"
-									tooltiptext="&foxyproxy.pattern.template.tooltip;" />
-								<textbox id="autoAddUrlTemplate"
-									oncommand="foxyproxy.autoadd.urlTemplate = this.value;updateTemplateExample(null, 'autoAddTemplateExample', foxyproxy.autoadd);"
-									type="timed" timeout="500"
-									accesskey="&foxyproxy.pattern.template.accesskey;"
-									tooltiptext="&foxyproxy.pattern.template.tooltip;" />                                
-								<toolbarbutton class="foxyproxy-ref"
-									popup="patternTemplatePopup"
-									tooltiptext="&foxyproxy.pattern.template.reference.tooltip;" />
-							</row>
-						</rows>
-					</grid>
-					<grid>
-						<columns>
-							<column />
-							<column flex="2"/>
-							<column flex="1"/>
-						</columns>
-						<rows>
-							<row align="center">
-								<label
-									value="&foxyproxy.pattern.template.example.label1;" />
-								<textbox id="autoAddTemplateExample1" type="timed" timeout="500"
-									value="&foxyproxy.pattern.template.example.label2;"
-									oncommand="updateTemplateExample(null, 'autoAddTemplateExample', foxyproxy.autoadd);"/>
-								<textbox id="autoAddTemplateExample2"
-									readonly="true"
-									style="font-weight: bold;"/>
-							</row>
-						</rows>
-					</grid>
-				</groupbox>
-			</tabpanel>
-
 			<!-- logging -->
 			<tabpanel flex="1" orient="vertical">
 				<separator class="thin" />
@@ -825,10 +515,12 @@
 	</tabbox>
 
 	<hbox>
-		<spacer flex="1" />
-		<button command="okCmd" />
+    <button command="quickAddCmd" />
+    <button command="autoAddCmd" />
+    <spacer flex="1" />    
+		<button command="closeCmd" />
 	</hbox>
-	<separator class="thin" />
+  <separator class="thin"/>
 
 	<popupset>
 		<popup id="proxyTreeMenu"
@@ -869,11 +561,10 @@
 			<menuitem class="menuitem-non-iconic"
 				command="torWizardCmd" />
 			<menuseparator />
-			<!--
-				<menuitem class="menuitem-non-iconic" command="importSettingsCmd"/>
-				<menuitem class="menuitem-non-iconic" command="exportSettingsCmd"/>
-				<menuitem class="menuitem-non-iconic" command="importListCmd"/>
-				<menuseparator/>   -->
+      <menuitem class="menuitem-non-iconic"
+        command="quickAddCmd" />
+      <menuitem class="menuitem-non-iconic"
+        command="autoAddCmd" />
 			<menuitem class="menuitem-non-iconic" command="helpCmd" />
 			<menuitem class="menuitem-non-iconic" command="closeCmd" />
 		</popup>
@@ -952,11 +643,15 @@
 
 	<command id="closeCmd" label="&foxyproxy.close.label;"
 		accesskey="&foxyproxy.close.accesskey;"
-		tooltiptext="&foxyproxy.close.tooltip;" oncommand="window.close();" />
+		tooltiptext="&foxyproxy.close.tooltip;" oncommand="window.close()" />
 
-	<command id="okCmd" label="&foxyproxy.ok.label;"
-		accesskey="&foxyproxy.ok.accesskey;"
-		tooltiptext="&foxyproxy.ok.tooltip;" oncommand="onOK();" />
+  <command id="quickAddCmd" label="&foxyproxy.quickadd.label;"
+    accesskey="&foxyproxy.quickadd.accesskey;"
+    tooltiptext="&foxyproxy.quickadd.tooltip;" oncommand="onQuickAdd();" />
+
+  <command id="autoAddCmd" label="&foxyproxy.tab.autoadd.label;"
+    accesskey="&foxyproxy.tab.autoadd.accesskey;"
+    tooltiptext="&foxyproxy.tab.autoadd.tooltip;" oncommand="onAutoAdd();" />
 
 	<command id="importSettingsCmd"
 		label="&foxyproxy.importsettings.label;"
@@ -997,8 +692,6 @@
 
 	<broadcasterset>
 		<broadcaster id="tree-row-selected" disabled="true" />
-		<broadcaster id="autoAddBroadcaster" hidden="true" />
-		<broadcaster id="quickAddBroadcaster" hidden="true" />
     <broadcaster id="statusBarWidthBroadcaster" disabled="true" />
 	</broadcasterset>
 
@@ -1006,224 +699,6 @@
 		<key id="esc-key" keycode="VK_ESCAPE" command="closeCmd" />
 	</keyset>
 	<popupset>
-
-		<popup id="notifyWhenCanceledPopup" position="before_end"
-			style="height: &foxyproxy.quickadd.notify.whencanceled.popup.height;; width: &foxyproxy.quickadd.notify.whencanceled.popup.width;;">
-			<vbox class="foxyproxy-tooltip foxyproxy-border">
-			<description class="foxyproxy-tooltip">
-				&foxyproxy.quickadd.notify.whencanceled.label2;</description>
-			</vbox>
-		</popup>
-
-		<!-- Thanks, DownThemAll -->
-		<popup id="patternTemplatePopup" position="before_end"
-			style="height: &foxyproxy.pattern.template.reference.popup.height;; width: &foxyproxy.pattern.template.reference.popup.width;;">
-			<description
-				style="font-weight: bold; text-align: center; margin: 1em 0 0 0;">
-				&foxyproxy.pattern.template.reference.label;
-			</description>
-			<!--
-				<description style="text-align: justify; margin: 0 0 1.5em 0;">&foxyproxy.pattern.template.reference.subtitle.label;</description>
-			-->
-			<grid class="foxyproxy-border"
-				style="margin: 0 .5em 0 .5em;">
-				<columns>
-					<column style="width: 10em; margin-right: 1em;" />
-					<column style="width: 10em; margin-right: 1em;" />
-				</columns>
-				<rows>
-					<row>
-						<description class="heading">
-							&foxyproxy.pattern.template.reference.specialstring.label;
-						</description>
-						<description class="heading">
-							&foxyproxy.pattern.template.reference.subststring.label;
-						</description>
-						<description class="heading">
-							&foxyproxy.pattern.template.reference.example.label;
-						</description>
-					</row>
-					<row>
-						<description>${0}</description>
-						<description>
-							&foxyproxy.pattern.template.reference.scheme.label;
-						</description>
-						<description>
-							<html:span class="red">http</html:span>
-							://user:pass@foo.com:8080/news/bar.htm#anchor?query=abc
-						</description>
-					</row>
-					<row>
-						<description>${1}</description>
-						<description>
-							&foxyproxy.pattern.template.reference.username.label;
-						</description>
-						<description>
-							http://
-							<html:span class="red">user</html:span>
-							:pass@foo.com:8080/news/bar.htm#anchor?query=abc
-						</description>
-					</row>
-					<row>
-						<description>${2}</description>
-						<description>
-							&foxyproxy.pattern.template.reference.password.label;
-						</description>
-						<description>
-							http://user:
-							<html:span class="red">pass</html:span>
-							@foo.com:8080/news/bar.htm#anchor?query=abc
-						</description>
-					</row>
-					<row>
-						<description>${3}</description>
-						<description>
-							&foxyproxy.pattern.template.reference.userpass.label;
-						</description>
-						<description>
-							http://
-							<html:span class="red">user:pass</html:span>
-							@foo.com:8080/news/bar.htm#anchor?query=abc
-						</description>
-					</row>
-					<row>
-						<description>${4}</description>
-						<description>
-							&foxyproxy.pattern.template.reference.host.label;
-						</description>
-						<description>
-							http://user:pass@
-							<html:span class="red">foo.com</html:span>
-							:8080/news/bar.htm#anchor?query=abc
-						</description>
-					</row>
-					<row>
-						<description>${5}</description>
-						<description>
-							&foxyproxy.pattern.template.reference.port.label;
-						</description>
-						<description>
-							http://user:pass@foo.com:
-							<html:span class="red">8080</html:span>
-							/news/bar.htm#anchor?query=abc
-						</description>
-					</row>
-					<row>
-						<description>${6}</description>
-						<description>
-							&foxyproxy.pattern.template.reference.hostport.label;
-						</description>
-						<description>
-							http://user:pass@
-							<html:span class="red">
-								foo.com:8080
-							</html:span>
-							/news/bar.htm#anchor?query=abc
-						</description>
-					</row>
-					<row>
-						<description>${7}</description>
-						<description>
-							&foxyproxy.pattern.template.reference.prepath.label;
-						</description>
-						<description>
-							<html:span class="red">
-								http://user:pass@foo.com:8080
-							</html:span>
-							/news/bar.htm#anchor?query=abc
-						</description>
-					</row>
-					<row>
-						<description>${8}</description>
-						<description>
-							&foxyproxy.pattern.template.reference.directory.label;
-						</description>
-						<description>
-							http://user:pass@foo.com:8080
-							<html:span class="red">/news/</html:span>
-							bar.htm#anchor?query=abc
-						</description>
-					</row>
-					<row>
-						<description>${9}</description>
-						<description>
-							&foxyproxy.pattern.template.reference.filebasename.label;
-						</description>
-						<description>
-							http://user:pass@foo.com:8080/news/
-							<html:span class="red">bar</html:span>
-							.htm#anchor?query=abc
-						</description>
-					</row>
-					<row>
-						<description>${10}</description>
-						<description>
-							&foxyproxy.pattern.template.reference.fileextension.label;
-						</description>
-						<description>
-							http://user:pass@foo.com:8080/news/bar.
-							<html:span class="red">htm</html:span>
-							#anchor?query=abc
-						</description>
-					</row>
-					<row>
-						<description>${11}</description>
-						<description>
-							&foxyproxy.pattern.template.reference.filename.label;
-						</description>
-						<description>
-							http://user:pass@foo.com:8080/news/
-							<html:span class="red">bar.htm</html:span>
-							#anchor?query=abc
-						</description>
-					</row>
-					<row>
-						<description>${12}</description>
-						<description>
-							&foxyproxy.pattern.template.reference.path.label;
-						</description>
-						<description>
-							http://user:pass@foo.com:8080
-							<html:span class="red">
-								/news/bar.htm
-							</html:span>
-							#anchor?query=abc
-						</description>
-					</row>
-					<row>
-						<description>${13}</description>
-						<description>
-							&foxyproxy.pattern.template.reference.ref.label;
-						</description>
-						<description>
-							http://user:pass@foo.com:8080/news/bar.htm#
-							<html:span class="red">anchor</html:span>
-							?query=abc
-						</description>
-					</row>
-					<row>
-						<description>${14}</description>
-						<description>
-							&foxyproxy.pattern.template.reference.query.label;
-						</description>
-						<description>
-							http://user:pass@foo.com:8080/news/bar.htm#anchor?
-							<html:span class="red">query=abc</html:span>
-						</description>
-					</row>
-					<row>
-						<description>${15}</description>
-						<description>
-							&foxyproxy.pattern.template.reference.spec.label;
-						</description>
-						<description>
-							<html:span class="red">
-								http://user:pass@foo.com:8080/news/bar.htm#anchor?query=abc
-							</html:span>
-						</description>
-					</row>
-				</rows>
-			</grid>
-		</popup>
+		<popup id="patternTemplatePopup"/>
 	</popupset>
 </window>

@@ -74,35 +74,6 @@ SuperAdd.prototype = {
     gFP.writeSettings();
   },  
   
-  get caseSensitive() { return this.match.caseSensitive; },
-  set caseSensitive(c) {
-    this.match.caseSensitive = c;
-    gFP.writeSettings();
-  },
-  
-  get isBlackList() { return this.match.isBlackList; },
-  set isBlackList(c) {
-    this.match.isBlackList = c;
-    gFP.writeSettings();
-  },  
-
-  get name() { return this.match.name; },
-  set name(n) {
-    this.match.name = n;
-    gFP.writeSettings();
-  },
-                
-  set pattern(p) {
-    this.match.pattern = p;
-    gFP.writeSettings();
-  },
-  
-  get isRegEx() { return this.match.isRegEx; },
-  set isRegEx(e) {
-    this.match.isRegEx = e;
-    gFP.writeSettings();      
-  },
-  
   // As of 2.7.3, this fcn is stateless
   perform : function(url, content) {
     if (this.match.pattern != "") {
@@ -115,36 +86,8 @@ SuperAdd.prototype = {
     }
   }, 
   
-  applyTemplate : function(url) { 
-    var flags = this.match.caseSensitive ? "gi" : "g";
-  	try {
-      // TODO: if match is a regex, escape reg chars that appear in the url
-	    var parsedUrl = this._ios.newURI(url, "UTF-8", null).QueryInterface(CI.nsIURL);
-	    var ret = this._urlTemplate.replace("${0}", parsedUrl.scheme?parsedUrl.scheme:"", flags);    
-			ret = ret.replace("${1}", parsedUrl.username?parsedUrl.username:"", flags);    
-			ret = ret.replace("${2}", parsedUrl.password?parsedUrl.password:"", flags); 
-			ret = ret.replace("${3}", parsedUrl.userPass?(parsedUrl.userPass+"@"):"", flags);	
-			ret = ret.replace("${4}", parsedUrl.host?parsedUrl.host:"", flags); 
-			ret = ret.replace("${5}", parsedUrl.port == -1?"":parsedUrl.port, flags); 
-			ret = ret.replace("${6}", parsedUrl.hostPort?parsedUrl.hostPort:"", flags); 
-			ret = ret.replace("${7}", parsedUrl.prePath?parsedUrl.prePath:"", flags); 								
-			ret = ret.replace("${8}", parsedUrl.directory?parsedUrl.directory:"", flags); 
-			ret = ret.replace("${9}", parsedUrl.fileBaseName?parsedUrl.fileBaseName:"", flags); 
-			ret = ret.replace("${10}", parsedUrl.fileExtension?parsedUrl.fileExtension:"", flags); 
-			ret = ret.replace("${11}", parsedUrl.fileName?parsedUrl.fileName:"", flags); 
-			ret = ret.replace("${12}", parsedUrl.path?parsedUrl.path:"", flags); 
-			ret = ret.replace("${13}", parsedUrl.ref?parsedUrl.ref:"", flags); 								
-			ret = ret.replace("${14}", parsedUrl.query?parsedUrl.query:"", flags);
-      ret = ret.replace("${14}", parsedUrl.query?parsedUrl.query:"", flags);       
-			return ret.replace("${15}", parsedUrl.spec?parsedUrl.spec:"", flags); 
-		}
-		catch(e) { /*happens for about:blank, about:config, etc.*/}
-		return url;
-  },  
-  
-  // As of 2.7.3, this fcn is stateless
   addPattern : function(match, url) {
-	  match.pattern = this.applyTemplate(url);
+	  match.pattern = foxyproxy_common.applyTemplate(url, this._urlTemplate, this.match.caseSensitive);
 	  this._proxy.matches.push(match);      
     this._notify && gFP.notifier.alert(gFP.getMessage(this.notificationTitle), gFP.getMessage("superadd.url.added", [match.pattern, this._proxy.name]));
     return match.pattern;

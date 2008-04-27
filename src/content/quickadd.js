@@ -1,5 +1,7 @@
+var fpc;
 function onLoad() {
   var inn = window.arguments[0].inn;
+  fpc = Components.classes["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject;
   document.getElementById("enabled").checked = inn.enabled;
   document.getElementById("reload").checked = inn.reload;
   document.getElementById("prompt").checked = inn.prompt;
@@ -8,7 +10,7 @@ function onLoad() {
   var proxyMenuPopup = document.getElementById("proxyMenuPopup");
   for (var i=0,p; i<inn.proxies.length && ((p=inn.proxies.item(i)) || 1); i++) {
     if (!p.lastresort && p.enabled) {
-      proxyMenuPopup.appendChild(foxyproxy_common.createMenuItem({idVal:p.id, labelVal:p.name, document:document}));
+      proxyMenuPopup.appendChild(fpc.createMenuItem({idVal:p.id, labelVal:p.name, document:document}));
     }
   }
   document.getElementById("proxyMenu").value = inn.proxyId || proxyMenuPopup.firstChild.id;
@@ -26,7 +28,7 @@ function onLoad() {
 
 function onOK() {   
   var matchtype = document.getElementById("matchtype").value;
-  var p = window.arguments[0].inn.setupMode || foxyproxy_common.validatePattern(window, matchtype=="r", document.getElementById("generatedPattern").value);
+  var p = window.arguments[0].inn.setupMode || fpc.validatePattern(window, matchtype=="r", document.getElementById("generatedPattern").value);
   if (p) {
     window.arguments[0].out = {enabled:document.getElementById("enabled").checked,
       reload:document.getElementById("reload").checked,
@@ -47,7 +49,7 @@ function onOK() {
 
 function updateGeneratedPattern() {
 	document.getElementById("generatedPattern").value =
-    foxyproxy_common.applyTemplate(document.getElementById("url").value,
+    fpc.applyTemplate(document.getElementById("url").value,
       document.getElementById("urlTemplate").value,
       document.getElementById("casesensitive").checked);
 }

@@ -322,7 +322,7 @@
                     control="usingPFF"
 										tooltiptext="&foxyproxy.usingPFF.tooltip;"
 										class="text-link"
-										onclick="foxyproxy_common.openAndReuseOneTabPerURL('http://portableapps.com/apps/internet/browsers/portable_firefox');" />
+										onclick="ffpc.openAndReuseOneTabPerURL('http://portableapps.com/apps/internet/browsers/portable_firefox');" />
 								</row>
 								<row align="center">
 									<checkbox id="dnsEnabled"
@@ -678,12 +678,12 @@
 	<command id="onlineCmd" label="&foxyproxy.online.label;"
 		accesskey="&foxyproxy.online.accesskey;"
 		tooltiptext="&foxyproxy.online.tooltip;"
-		oncommand="foxyproxy_common.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/');" />
+		oncommand="fpc.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/');" />
 
 	<command id="helpCmd" label="&foxyproxy.help.label;"
 		accesskey="&foxyproxy.help.accesskey;"
 		tooltiptext="&foxyproxy.help.tooltip;"
-		oncommand="foxyproxy_common.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/quickstart.html');" />
+		oncommand="fpc.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/quickstart.html');" />
 
 	<command id="torWizardCmd" label="&foxyproxy.tor.label;"
 		accesskey="&foxyproxy.tor.accesskey;"

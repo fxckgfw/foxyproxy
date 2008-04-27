@@ -26,7 +26,8 @@ function onConnectionSettings() {
   if (fp.mode == "disabled")
 	  document.documentElement.openSubDialog("chrome://browser/content/preferences/connection.xul", "", null);
 	else {
-		var win = foxyproxy_common.getMostRecentWindow();
+    var fpc = Components.classes["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject;
+		var win = fpc.getMostRecentWindow();
 		if (win && win.foxyproxy)
 		  win.foxyproxy.onOptionsDialog();
 		else {

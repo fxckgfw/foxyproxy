@@ -58,7 +58,7 @@ Common.prototype = {
     }
 
     // Our URL isn't open. Open it now.
-    var w = foxyproxy_common.getMostRecentWindow(wm);
+    var w = this.getMostRecentWindow(wm);
     if (w) {
       // Use an existing browser window
       if (!w.delayedOpenTab) // SongBird
@@ -150,7 +150,7 @@ Common.prototype = {
   onQuickAdd : function(setupMode, url) {  
     var fp = CC["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;  
     var q = fp.quickadd;
-    var p = {inn:{url:url || foxyproxy_common.getMostRecentWindow().content.location, urlTemplate:q.urlTemplate, enabled:q.enabled,
+    var p = {inn:{url:url || this.getMostRecentWindow().content.location.href, urlTemplate:q.urlTemplate, enabled:q.enabled,
       reload:q.reload, prompt:q.prompt, notify:q.notify, notifyWhenCanceled:q.notifyWhenCanceled,
       proxies:fp.proxies, match:q.match, setupMode:setupMode}, out:null};
      // q.proxy is null when user hasn't yet used QuickAdd

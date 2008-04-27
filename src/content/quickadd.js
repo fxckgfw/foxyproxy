@@ -28,6 +28,7 @@ function onLoad() {
 
 function onOK() {   
   var matchtype = document.getElementById("matchtype").value;
+  alert(document.getElementById("generatedPattern").value);
   var p = window.arguments[0].inn.setupMode || fpc.validatePattern(window, matchtype=="r", document.getElementById("generatedPattern").value);
   if (p) {
     window.arguments[0].out = {enabled:document.getElementById("enabled").checked,

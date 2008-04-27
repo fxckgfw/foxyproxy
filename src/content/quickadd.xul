@@ -90,8 +90,7 @@
 					value="&foxyproxy.quickadd.proxy.label;"
 					tooltiptext="&foxyproxy.quickadd.proxy.tooltip;"
 					accesskey="&foxyproxy.quickadd.proxy.accesskey;"/>
-				<menulist id="proxyMenu" tooltiptext="&foxyproxy.quickadd.proxy.tooltip;"                 
-          style="min-height: 1.8em;">
+				<menulist id="proxyMenu" tooltiptext="&foxyproxy.quickadd.proxy.tooltip;">
 					<menupopup id="proxyMenuPopup"/>
 				</menulist>
         <spacer/>

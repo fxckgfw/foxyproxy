@@ -94,7 +94,7 @@ var foxyproxy = {
 
   onPageLoad : function(evt) {
 	  var doc = evt.originalTarget; // doc is document that triggered "onload" event
-	  (doc && doc.location && foxyproxy.fp.autoadd.perform(doc.location, doc.documentElement.innerHTML) && foxyproxy.fp.writeSettings());
+	  (doc && doc.location && foxyproxy.fp.autoadd.perform(doc.location.href, doc.documentElement.innerHTML) && foxyproxy.fp.writeSettings());
   },
 
 
@@ -211,7 +211,7 @@ var foxyproxy = {
   },
 
   onQuickAddDialog : function(evt) {
-  	var fp=this.fp;
+  	var fp=this.fp, q=this.fp.quickadd; 
 		if (fp.mode != "disabled" && fp.quickadd.enabled) {
 		  if (!evt.view || !evt.view.content || !evt.view.content.document || !evt.view.content.document.location) {
 		  	fp.notifier.alert(fp.getMessage("foxyproxy"), fp.getMessage("quickadd.nourl"));
@@ -222,32 +222,38 @@ var foxyproxy = {
 			  var p = {out:null};
 				this.onDialog("foxyproxy-quickadd", "chrome://foxyproxy/content/quickadd.xul", "modal", p, "foxyproxy-options");
 				if (p.out) {
- 					fp.quickadd.reload = p.out.reload;
- 					fp.quickadd.notify = p.out.notify;
- 					fp.quickadd.prompt = p.out.prompt;
- 					fp.quickadd.notifyWhenCanceled = p.out.notifyWhenCanceled;
- 					foxyproxy_common.onQuickAddProxyChanged(p.out.proxy);
- 					fp.quickadd.urlTemplate = p.out.urlTemplate;
- 					fp.quickadd.setMatchIsRegEx(p.out.matchType=="r");
-                    fp.quickadd.caseSensitive = p.out.caseSensitive;
-					_qAdd(p.out.url);
+					// Update QuickAdd settings in case user changed them
+          p = p.out;
+ 					q.reload = p.reload;
+ 					q.notify = p.notify;
+ 					q.prompt = p.prompt;
+ 					q.notifyWhenCanceled = p.notifyWhenCanceled;
+ 					foxyproxy_common.onQuickAddProxyChanged(p.proxy);
+          q.match.name = p.name;
+ 					q.match.urlTemplate = p.urlTemplate;
+          q.match.pattern = p.pattern;
+          q.match.caseSensitive = p.caseSensitive;          
+ 					q.match.isRegEx = p.matchType=="r";
+          q.match.isBlackList = p.isBlackList;          
+                          
+          // Add the pattern.
+					_qAdd(q.match, p.url, evt.view.content.document.location);
+          fp.writeSettings();          
 				}
 				// if !p.out then the user canceled QuickAdd
 			}
-			else {
-				_qAdd();
-			}
+			else
+				_qAdd(q.match, evt.view.content.document.location.href, evt.view.content.document.location);
 		}
-		function _qAdd(h) {
-			h = h || evt.view.content.document.location.href;
-			var m = fp.quickadd._proxy.isMatch(h);
+		function _qAdd(pat, url, loc) {
+      var m = pat.isBlackList ? q._proxy.isBlackMatch(url) : q._proxy.isWhiteMatch(url);
 			if (m) {
-		    fp.quickadd._notify &&
-		    	fp.notifier.alert(fp.getMessage("foxyproxy.quickadd.label"), fp.getMessage("quickadd.quickadd.canceled", [m.name, fp.quickadd._proxy.name]));
+		    q._notify &&
+		    	fp.notifier.alert(fp.getMessage("foxyproxy.quickadd.label"), fp.getMessage("quickadd.quickadd.canceled", [m.name, q._proxy.name]));
 			}
 			else {
-				fp.quickadd.addPattern(evt.view.content.document.location, h);
-				fp.writeSettings();
+				q.match.pattern = q.addPattern(pat, url); // update the pattern stored by quickadd
+        fp.quickadd.reload && loc.reload(); // reload page if necessary
 			}
 		}
   },

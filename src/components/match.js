@@ -36,7 +36,8 @@ Match.prototype = {
   QueryInterface: gQueryInterface,
 
   set pattern(p) {
-    this._pattern = p == null ? "" : p; // prevent null patterns
+    if (p==null) p = ""; // prevent null patterns
+    this._pattern = p.replace(/^\s*|\s*$/g,""); // trim
     this.buildRegEx();
   },
 

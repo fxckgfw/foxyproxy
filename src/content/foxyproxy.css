@@ -5,6 +5,8 @@ tree {min-height: 50px;}
   background-color: rgb(80%, 80%, 80%);
 }*/
 
+small-btn {font-size: 80%;}
+
 #foxyproxy-button-1[mode="patterns"],
 #foxyproxy-context-menu-1[mode="patterns"],
 #foxyproxy-tools-menu-1[mode="patterns"],
@@ -89,6 +91,10 @@ treechildren::-moz-tree-checkbox(checked) {
 	max-width: 32px;
 	padding-left: 6px;
 }
+.foxyproxy-ref-border {
+  border: thin black solid;
+  margin: .1em;
+}
 .red { color: red; }
 .purple { color: purple; }
 .blue { color: blue; }
@@ -96,8 +102,14 @@ treechildren::-moz-tree-checkbox(checked) {
 
 .foxyproxy-tooltip {
 	text-align: justify;
-	margin: 1em;
+	margin: .1em;
 }
 .foxyproxy-border {
 	border: thin black solid;
+	margin: .1em;
+}
+
+.popcolumn {
+  width: 10em;
+  margin-right: 1em;
 }

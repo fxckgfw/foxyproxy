@@ -10,61 +10,70 @@
   and also online at http://www.gnu.org/licenses/gpl.txt
 -->
 <?xml-stylesheet href="foxyproxy.css" type="text/css"?>
+<?xul-overlay href="includes.xul"?>
 <!DOCTYPE overlay SYSTEM "chrome://foxyproxy/locale/foxyproxy.dtd">
 <dialog
   xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
 	id="foxyproxyquickadddlg"
   title="&foxyproxy.quickadd.label;"
-  xmlns:html="http://www.w3.org/1999/xhtml"
   ondialogaccept="return onOK();"
   ondialogcancel="return onCancel();"
   onload="onLoad();"
-  persist="screenX screenY"
+  persist="screenX screenY width height"
   windowtype="foxyproxy-quickadd">
 
 <script src="quickadd.js"/>
 <script src="common.js"/>
 
 <separator class="thin" />
+
+<checkbox id="quickAddEnabled"
+  label="&foxyproxy.enabled.label;"
+  accesskey="&foxyproxy.enabled.accesskey;"
+  tooltiptext="&foxyproxy.enabled.tooltip;"
+  oncommand="onQuickAddEnabled(this);" />
 <groupbox>
+  
 <grid>
 	<columns>
-		<column />
-		<column />
+		<column/><column/><column/>
 	</columns>
-	<rows>
-		<row align="center">
+	<rows>  
+		<row align="center">              
 			<checkbox id="quickAddReload"
 				label="&foxyproxy.autoadd.reload.label;"
 				accesskey="&foxyproxy.autoadd.reload.accesskey;"
 				tooltiptext="&foxyproxy.autoadd.reload.tooltip;"/>
-						
-			<checkbox id="quickAddNotify"
-				label="&foxyproxy.quickadd.notify.label;"
-				accesskey="&foxyproxy.quickadd.notify.accesskey;"
-				tooltiptext="&foxyproxy.quickadd.notify.tooltip;"/>
-		</row>
-
-		<row align="center">
+      <checkbox id="quickAddNotify"
+        label="&foxyproxy.quickadd.notify.label;"
+        accesskey="&foxyproxy.quickadd.notify.accesskey;"
+        tooltiptext="&foxyproxy.quickadd.notify.tooltip;"/>
+      <spacer/>  
+    </row>
+    <row align="center">						
 			<checkbox id="quickAddPrompt"
 				label="&foxyproxy.quickadd.prompt.label;"
 				accesskey="&foxyproxy.quickadd.prompt.accesskey;"
 				tooltiptext="&foxyproxy.quickadd.prompt.tooltip;"
 				checked="true"/>
-
-			<checkbox id="quickAddNotifyWhenCanceled"
-				label="&foxyproxy.quickadd.notify.whencanceled.label;"
-				accesskey="&foxyproxy.quickadd.notify.whencanceled.accesskey;"
-				tooltiptext="&foxyproxy.quickadd.notify.whencanceled.tooltip;"/>
-		</row>
+      <checkbox id="quickAddNotifyWhenCanceled"
+        label="&foxyproxy.quickadd.notify.whencanceled.label;"
+        accesskey="&foxyproxy.quickadd.notify.whencanceled.accesskey;"
+        tooltiptext="&foxyproxy.quickadd.notify.whencanceled.tooltip;"/>
+      <toolbarbutton class="foxyproxy-ref"
+        popup="notifyWhenCanceledPopup"
+        tooltiptext="&foxyproxy.whatsthis;"/>
+      <spacer/>        
+    </row>
 	</rows>
 </grid>
 </groupbox>
 <groupbox>
 	<grid>
 		<columns>
-			<column />
-			<column flex="1" />
+		  <column/>
+			<column flex="1"/>
+			<column/>
 		</columns>
 		<rows>
 			<row align="center">
@@ -74,11 +83,18 @@
 					accesskey="&foxyproxy.quickadd.proxy.accesskey;"/>
 				<menulist id="quickAddProxyMenu"
 					tooltiptext="&foxyproxy.quickadd.proxy.tooltip;"									
-					style="min-height: 1.8em;" flex="1">
+					style="min-height: 1.8em;">
 					<menupopup/>
 				</menulist>
+        <spacer/>        
 			</row>
 			<row align="center">
+    		<label value="&foxyproxy.pattern.name.label;" control="name"
+        		tooltiptext="&foxyproxy.pattern.name.tooltip;" accesskey="&foxyproxy.pattern.name.accesskey;"/>  
+    		<textbox id="name" tooltiptext="&foxyproxy.pattern.name.tooltip;" accesskey="&foxyproxy.pattern.name.accesskey;"/>
+        <spacer/>        
+    	</row>
+			<row align="center">        			
 				<label
 					value="&foxyproxy.pattern.template.label;"
 					tooltiptext="&foxyproxy.pattern.template.tooltip;"
@@ -98,268 +114,29 @@
 					control="quickAddTemplateExample1" tooltiptext="&foxyproxy.pattern.template.currenturl.tooltip;" accesskey="&foxyproxy.pattern.template.currenturl.accesskey;"/>
 				<textbox id="quickAddTemplateExample1" tooltiptext="&foxyproxy.pattern.template.currenturl.tooltip;"
 					readonly="true"/>
+        <spacer/>
 			</row>
 			<row align="center">
 				<label value="&foxyproxy.pattern.template.generatedpattern.label;"
 					control="quickAddTemplateExample2" tooltiptext="&foxyproxy.pattern.template.generatedpattern.tooltip;" accesskey="&foxyproxy.pattern.template.generatedpattern.accesskey;"/>
 				<textbox id="quickAddTemplateExample2" tooltiptext="&foxyproxy.pattern.template.generatedpattern.tooltip;" style="font-weight: bold;"/>
+        <toolbarbutton class="foxyproxy-ref" popup="wildcardReferencePopup" tooltiptext="&foxyproxy.wildcard.reference.tooltip;"/>
 			</row>			
 		</rows>
 	</grid>
 </groupbox>
-<radiogroup id="quickAddMatchType" orient="horizontal">
-	<groupbox flex="1">
-		<caption 
-			label="&foxyproxy.pattern.template.matchtype.label;" />
-		<grid>
-			<columns>
-				<column />
-				<column />
-				<column />
-			</columns>
-			<rows>
-				<row align="center">
-					<radio id="wildcard" selected="true"
-						accesskey="&foxyproxy.wildcard.accesskey;"
-						tooltiptext="&foxyproxy.wildcard.tooltip;"
-						value="w"/>
-					<label
-						value="&foxyproxy.wildcard.label;"
-						style="margin-left: -0.5em;" class="text-link"
-						onclick="foxyproxy_common.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/quickstart.html#wildcards');"
-						tooltiptext="&foxyproxy.wildcard.tooltip;" />
-					<label
-						value="&foxyproxy.wildcard.example.label;" />
-                    <checkbox id="quickAddCaseSensitive" label="&foxyproxy.casesensitive.label;" accesskey="&foxyproxy.casesensitive.accesskey;"
-                      tooltiptext="&foxyproxy.casesensitive.tooltip;"/>                
-				</row>
-				<row align="center">
-					<radio id="regex"
-						accesskey="&foxyproxy.regex.accesskey;"
-						tooltiptext="&foxyproxy.regex.tooltip;"
-						value="r"/>
-					<label
-						value="&foxyproxy.regex.label;" style="margin-left: -0.5em;"
-						class="text-link"
-						onclick="foxyproxy_common.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/quickstart.html#regex');"
-						tooltiptext="&foxyproxy.regex.tooltip;" />
-					<label
-						value="&foxyproxy.regex.example.label;" />
-				</row>
-			</rows>
-		</grid>
-	</groupbox>
-</radiogroup>
+<radiogroup id="whiteblacktype"/>
+<radiogroup id="matchtype"/>
 
 <popupset>
-	<popup id="patternTemplatePopup" position="before_end"
-		style="height: &foxyproxy.pattern.template.reference.popup.height;; width: &foxyproxy.pattern.template.reference.popup.width;;">
-		<description
-			style="font-weight: bold; text-align: center; margin: 1em 0 0 0;">
-			&foxyproxy.pattern.template.reference.label;
-		</description>
-		<!-- 
-			<description style="text-align: center; margin: 0 0 1.5em 0;">&foxyproxy.pattern.template.reference.subtitle.label;</description>
-		-->
-		<grid class="foxyproxy-border"
-			style="margin: 0 .5em 0 .5em;">
-			<columns>
-				<column style="width: 10em; margin-right: 1em;" />
-				<column style="width: 10em; margin-right: 1em;" />
-			</columns>
-			<rows>
-				<row>
-					<description class="heading">
-						&foxyproxy.pattern.template.reference.specialstring.label;
-					</description>
-					<description class="heading">
-						&foxyproxy.pattern.template.reference.subststring.label;
-					</description>
-					<description class="heading">
-						&foxyproxy.pattern.template.reference.example.label;
-					</description>
-				</row>
-				<row>
-					<description>${0}</description>
-					<description>
-						&foxyproxy.pattern.template.reference.scheme.label;
-					</description>
-					<description>
-						<html:span class="red">http</html:span>
-						://user:pass@foo.com:8080/news/bar.htm#anchor?query=abc
-					</description>
-				</row>
-				<row>
-					<description>${1}</description>
-					<description>
-						&foxyproxy.pattern.template.reference.username.label;
-					</description>
-					<description>
-						http://
-						<html:span class="red">user</html:span>
-						:pass@foo.com:8080/news/bar.htm#anchor?query=abc
-					</description>
-				</row>
-				<row>
-					<description>${2}</description>
-					<description>
-						&foxyproxy.pattern.template.reference.password.label;
-					</description>
-					<description>
-						http://user:
-						<html:span class="red">pass</html:span>
-						@foo.com:8080/news/bar.htm#anchor?query=abc
-					</description>
-				</row>
-				<row>
-					<description>${3}</description>
-					<description>
-						&foxyproxy.pattern.template.reference.userpass.label;
-					</description>
-					<description>
-						http://
-						<html:span class="red">user:pass</html:span>
-						@foo.com:8080/news/bar.htm#anchor?query=abc
-					</description>
-				</row>
-				<row>
-					<description>${4}</description>
-					<description>
-						&foxyproxy.pattern.template.reference.host.label;
-					</description>
-					<description>
-						http://user:pass@
-						<html:span class="red">foo.com</html:span>
-						:8080/news/bar.htm#anchor?query=abc
-					</description>
-				</row>
-				<row>
-					<description>${5}</description>
-					<description>
-						&foxyproxy.pattern.template.reference.port.label;
-					</description>
-					<description>
-						http://user:pass@foo.com:
-						<html:span class="red">8080</html:span>
-						/news/bar.htm#anchor?query=abc
-					</description>
-				</row>
-				<row>
-					<description>${6}</description>
-					<description>
-						&foxyproxy.pattern.template.reference.hostport.label;
-					</description>
-					<description>
-						http://user:pass@
-						<html:span class="red">
-							foo.com:8080
-						</html:span>
-						/news/bar.htm#anchor?query=abc
-					</description>
-				</row>
-				<row>
-					<description>${7}</description>
-					<description>
-						&foxyproxy.pattern.template.reference.prepath.label;
-					</description>
-					<description>
-						<html:span class="red">
-							http://user:pass@foo.com:8080
-						</html:span>
-						/news/bar.htm#anchor?query=abc
-					</description>
-				</row>
-				<row>
-					<description>${8}</description>
-					<description>
-						&foxyproxy.pattern.template.reference.directory.label;
-					</description>
-					<description>
-						http://user:pass@foo.com:8080
-						<html:span class="red">/news/</html:span>
-						bar.htm#anchor?query=abc
-					</description>
-				</row>
-				<row>
-					<description>${9}</description>
-					<description>
-						&foxyproxy.pattern.template.reference.filebasename.label;
-					</description>
-					<description>
-						http://user:pass@foo.com:8080/news/
-						<html:span class="red">bar</html:span>
-						.htm#anchor?query=abc
-					</description>
-				</row>
-				<row>
-					<description>${10}</description>
-					<description>
-						&foxyproxy.pattern.template.reference.fileextension.label;
-					</description>
-					<description>
-						http://user:pass@foo.com:8080/news/bar.
-						<html:span class="red">htm</html:span>
-						#anchor?query=abc
-					</description>
-				</row>
-				<row>
-					<description>${11}</description>
-					<description>
-						&foxyproxy.pattern.template.reference.filename.label;
-					</description>
-					<description>
-						http://user:pass@foo.com:8080/news/
-						<html:span class="red">bar.htm</html:span>
-						#anchor?query=abc
-					</description>
-				</row>
-				<row>
-					<description>${12}</description>
-					<description>
-						&foxyproxy.pattern.template.reference.path.label;
-					</description>
-					<description>
-						http://user:pass@foo.com:8080
-						<html:span class="red">
-							/news/bar.htm
-						</html:span>
-						#anchor?query=abc
-					</description>
-				</row>
-				<row>
-					<description>${13}</description>
-					<description>
-						&foxyproxy.pattern.template.reference.ref.label;
-					</description>
-					<description>
-						http://user:pass@foo.com:8080/news/bar.htm#
-						<html:span class="red">anchor</html:span>
-						?query=abc
-					</description>
-				</row>
-				<row>
-					<description>${14}</description>
-					<description>
-						&foxyproxy.pattern.template.reference.query.label;
-					</description>
-					<description>
-						http://user:pass@foo.com:8080/news/bar.htm#anchor?
-						<html:span class="red">query=abc</html:span>
-					</description>
-				</row>
-				<row>
-					<description>${15}</description>
-					<description>
-						&foxyproxy.pattern.template.reference.spec.label;
-					</description>
-					<description>
-						<html:span class="red">
-							http://user:pass@foo.com:8080/news/bar.htm#anchor?query=abc
-						</html:span>
-					</description>
-				</row>
-			</rows>
-		</grid>
-	</popup>
+  <popup id="wildcardReferencePopup"/>
+  <popup id="patternTemplatePopup"/>
+  <popup id="notifyWhenCanceledPopup" position="before_end"
+    style="height: &foxyproxy.quickadd.notify.whencanceled.popup.height;; width: &foxyproxy.quickadd.notify.whencanceled.popup.width;;">
+    <vbox class="foxyproxy-border">
+    <description class="foxyproxy-tooltip">
+      &foxyproxy.quickadd.notify.whencanceled.label2;</description>
+    </vbox>
+  </popup>  
 </popupset>
 </dialog>

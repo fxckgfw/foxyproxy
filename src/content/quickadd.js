@@ -21,13 +21,16 @@ function onOK() {
   if (p) {
 	  cleanup();
 		window.arguments[0].out	= {reload:document.getElementById("quickAddReload").checked,
-			notify:document.getElementById("quickAddNotify").checked, prompt:document.getElementById("quickAddPrompt").checked,
-			proxy:document.getElementById("quickAddProxyMenu").value,
+			notify:document.getElementById("quickAddNotify").checked,
+      prompt:document.getElementById("quickAddPrompt").checked,
 			notifyWhenCanceled:document.getElementById("quickAddNotifyWhenCanceled").checked,
+      proxy:document.getElementById("quickAddProxyMenu").value,     
+      name:document.getElementById("name").value,       
 			urlTemplate:document.getElementById("quickAddUrlTemplate").value,
-			matchType:document.getElementById("quickAddMatchType").value,
-            caseSensitive:document.getElementById("quickAddCaseSensitive").checked,
-            url:document.getElementById("quickAddTemplateExample2").value};	
+      pattern:document.getElementById("quickAddTemplateExample2").value, // generated pattern
+      caseSensitive:document.getElementById("casesensitive").checked,      
+			matchType:document.getElementById("matchtype").value,
+      isBlackList:document.getElementById("black").selected};	
     return true;
 	}
   return false;
@@ -48,8 +51,9 @@ function cleanup() {
 	so we don't include these in onLoad() */
 function updateView() {
   document.getElementById("quickAddUrlTemplate").value = fp.quickadd.urlTemplate;  
-  document.getElementById("quickAddMatchType").value = fp.quickadd.match.isRegEx ? "r" : "w";
-  document.getElementById("quickAddCaseSensitive").checked = fp.quickadd.match.caseSensitive;
+  document.getElementById("matchtype").value = fp.quickadd.match.isRegEx ? "r" : "w";
+  document.getElementById("whiteblacktype").value = fp.quickadd.match.isBlackList ? "b" : "w"
+  document.getElementById("casesensitive").checked = fp.quickadd.match.caseSensitive;
   document.getElementById("quickAddReload").checked = fp.quickadd.reload;
   document.getElementById("quickAddNotify").checked = fp.quickadd.notify; 
   document.getElementById("quickAddNotifyWhenCanceled").checked = fp.quickadd.notifyWhenCanceled;   
@@ -67,6 +71,7 @@ function onLoad() {
   obSvc.addObserver(observer, "foxyproxy-updateviews", false);
  
   document.getElementById("quickAddTemplateExample1").value = mrw ? mrw.content.document.location.href : "";
+  document.getElementById("name").value = fp.quickadd.match.name;
   updateTemplateExample("quickAddUrlTemplate", "quickAddTemplateExample", fp.quickadd);  
   updateView();  
   sizeToContent();  

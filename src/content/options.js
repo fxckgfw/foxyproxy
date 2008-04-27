@@ -14,9 +14,12 @@ var foxyproxy, proxyTree, logTree, monthslong, dayslong, overlay,
 const CI = Components.interfaces, CC = Components.classes;
 
 function onLoad() {
+  //var ddd=document.getElementById;
+  //ddd("asdasd").value ="asdas";
   foxyproxy = CC["@leahscape.org/foxyproxy/service;1"]
     .getService(CI.nsISupports).wrappedJSObject;
-  document.getElementById("maxSize").value = foxyproxy.logg.maxSize;
+  //document.getElementById("casesensitive").addEventListener("command", onQuickAddCaseSensitive, false);
+  //document.getElementById("maxSize").value = foxyproxy.logg.maxSize;
   overlay = foxyproxy_common.getMostRecentWindow().foxyproxy;
   monthslong = [foxyproxy.getMessage("months.long.1"), foxyproxy.getMessage("months.long.2"),
     foxyproxy.getMessage("months.long.3"), foxyproxy.getMessage("months.long.4"), foxyproxy.getMessage("months.long.5"),
@@ -29,8 +32,8 @@ function onLoad() {
     foxyproxy.getMessage("days.long.6"), foxyproxy.getMessage("days.long.7")];
   proxyTree = document.getElementById("proxyTree");
   logTree = document.getElementById("logTree");
-  autoAddTemplateExample = document.getElementById("autoAddTemplateExample");
-  quickAddTemplateExample = document.getElementById("quickAddTemplateExample");
+  //autoAddTemplateExample = document.getElementById("autoAddTemplateExample");
+  //quickAddTemplateExample = document.getElementById("quickAddTemplateExample");
   saveLogCmd = document.getElementById("saveLogCmd");
   clearLogCmd = document.getElementById("clearLogCmd");  
   noURLsCmd = document.getElementById("noURLsCmd");  
@@ -42,15 +45,15 @@ function _initSettings() {
   _updateView(false, true);
   document.getElementById("settingsURL").value = foxyproxy.getSettingsURI("uri-string"); 
   document.getElementById("tabs").selectedIndex = foxyproxy.selectedTabIndex;
-  document.getElementById("autoAddUrlTemplate").value = foxyproxy.autoadd.urlTemplate; 
-  document.getElementById("autoAddPattern").value = foxyproxy.autoadd.match.pattern;   
-  document.getElementById("quickAddUrlTemplate").value = foxyproxy.quickadd.urlTemplate;  
-  document.getElementById("autoAddMatchType").value = foxyproxy.autoadd.match.isRegEx ? "r" : "w"; 
-  document.getElementById("quickAddMatchType").value = foxyproxy.quickadd.match.isRegEx ? "r" : "w"; 
+  //document.getElementById("autoAddUrlTemplate").value = foxyproxy.autoadd.urlTemplate; 
+  //document.getElementById("autoAddPattern").value = foxyproxy.autoadd.match.pattern;   
+  //document.getElementById("quickAddUrlTemplate").value = foxyproxy.quickadd.urlTemplate;  
+  //document.getElementById("autoAddMatchType").value = foxyproxy.autoadd.match.isRegEx ? "r" : "w"; 
+  //document.getElementById("matchtype").value = foxyproxy.quickadd.match.isRegEx ? "r" : "w"; 
   document.getElementById("statusbarWidth").value = foxyproxy.statusbar.width;
   toggleStatusBarText(foxyproxy.statusbar.textEnabled);
-  updateTemplateExample("autoAddUrlTemplate", "autoAddTemplateExample", foxyproxy.autoadd);  
-  updateTemplateExample("quickAddUrlTemplate", "quickAddTemplateExample", foxyproxy.quickadd);  
+  //updateTemplateExample("autoAddUrlTemplate", "autoAddTemplateExample", foxyproxy.autoadd);  
+  //updateTemplateExample("quickAddUrlTemplate", "quickAddTemplateExample", foxyproxy.quickadd);  
 }
 
 function onUsingPFF(usingPFF) {
@@ -186,21 +189,21 @@ function _updateView(writeSettings, updateLogView) {
   //document.getElementById("randomIncludeDisabled").checked = foxyproxy.random.includeDisabled;
   document.getElementById("usingPFF").checked =
   document.getElementById("settingsURLBtn").disabled = isUsingPortableFirefox();
-    
-  _updateSuperAdd(foxyproxy.autoadd, "autoAdd");
-  _updateSuperAdd(foxyproxy.quickadd, "quickAdd");  
-  
-  function _updateSuperAdd(saObj, str) {
-	  var temp = saObj.enabled;
-	  document.getElementById(str + "Enabled").checked = temp;
-	  document.getElementById(str + "Broadcaster").hidden = !temp;
-	  document.getElementById(str + "Reload").checked = saObj.reload;
-	  document.getElementById(str + "Notify").checked = saObj.notify;
-      document.getElementById(str + "CaseSensitive").checked = saObj.caseSensitive;  
-  }  
+
+  //document.getElementById("autoAddEnabled").checked = foxyproxy.autoadd.enabled;
+  //document.getElementById("autoAddBroadcaster").hidden = !foxyproxy.autoadd.enabled
+  //document.getElementById("autoAddReload").checked = foxyproxy.autoadd.reload;
+  //document.getElementById("autoAddNotify").checked = foxyproxy.autoadd.notify;
+  //document.getElementById("autoAddCaseSensitive").checked = foxyproxy.autoadd.caseSensitive;  
+
   // quick-add-specific stuff
-  document.getElementById("quickAddPrompt").checked = foxyproxy.quickadd.prompt;  
+  /*document.getElementById("quickAddPrompt").checked = foxyproxy.quickadd.prompt;  
   document.getElementById("quickAddNotifyWhenCanceled").checked = foxyproxy.quickadd.notifyWhenCanceled;   
+  document.getElementById("quickAddEnabled").checked = foxyproxy.quickadd.enabled;
+  document.getElementById("quickAddBroadcaster").hidden = !foxyproxy.quickadd.enabled
+  document.getElementById("quickAddReload").checked = foxyproxy.quickadd.reload;
+  document.getElementById("quickAddNotify").checked = foxyproxy.quickadd.notify;
+  document.getElementById("casesensitive").checked = foxyproxy.quickadd.caseSensitive;*/    
   
   document.getElementById("toolsMenuEnabled").checked = foxyproxy.toolsMenu;
   document.getElementById("contextMenuEnabled").checked = foxyproxy.contextMenu;
@@ -218,19 +221,19 @@ function _updateView(writeSettings, updateLogView) {
     
 	_updateModeMenu();
   
-  var menu = document.getElementById("autoAddProxyMenu");
-  foxyproxy_common.updateSuperAddProxyMenu(foxyproxy.autoadd, menu, onAutoAddProxyChanged, document);
-  if (!menu.firstChild.firstChild) {
- 		document.getElementById("autoAddEnabled").checked = false;
- 		onAutoAddEnabled(false);
- 	}
+  //var menu = document.getElementById("autoAddProxyMenu");
+  //foxyproxy_common.updateSuperAddProxyMenu(foxyproxy.autoadd, menu, onAutoAddProxyChanged, document);
+  //if (!menu.firstChild.firstChild) {
+ 		//document.getElementById("autoAddEnabled").checked = false;
+ 		//onAutoAddEnabled(false);
+ 	//}
 
-  menu = document.getElementById("quickAddProxyMenu");
-  foxyproxy_common.updateSuperAddProxyMenu(foxyproxy.quickadd, menu, foxyproxy_common.onQuickAddProxyChanged, document);
-  if (!menu.firstChild.firstChild) {
- 		document.getElementById("quickAddEnabled").checked = false;
- 		onQuickAddEnabled(false);
- 	}
+  //menu = document.getElementById("quickAddProxyMenu");
+  //foxyproxy_common.updateSuperAddProxyMenu(foxyproxy.quickadd, menu, foxyproxy_common.onQuickAddProxyChanged, document);
+  //if (!menu.firstChild.firstChild) {
+ 		//document.getElementById("quickAddEnabled").checked = false;
+ 		//onQuickAddEnabled(false);
+ 	//}
     
   proxyTree.view  = {
     rowCount : foxyproxy.proxies.length,
@@ -484,10 +487,19 @@ function toggleStatusBarText(checked) {
     document.getElementById("statusBarWidthBroadcaster").setAttribute("disabled", "true");     
 }
 
-function onOK() {
-  var r1 = document.getElementById("autoAddRegEx").selected,
-    p1 = (!foxyproxy.autoadd.enabled || foxyproxy_common.validatePattern(window, r1, document.getElementById("autoAddPattern").value, foxyproxy.getMessage("foxyproxy.tab.autoadd.label"))),
-    r2 = document.getElementById("quickAddRegEx").selected,
-    p2 = (!foxyproxy.quickadd.enabled || foxyproxy_common.validatePattern(window, r2, document.getElementById("quickAddTemplateExample2").value, foxyproxy.getMessage("foxyproxy.quickadd.label")));
-  p1 && p2 && window.close();
+//function onOK() {
+  //var r1 = document.getElementById("autoAddMatchType").value == 'r',
+    //p1 = (!foxyproxy.autoadd.enabled || foxyproxy_common.validatePattern(window, r1, document.getElementById("autoAddPattern").value, foxyproxy.getMessage("foxyproxy.tab.autoadd.label"))),
+    //r2 = document.getElementById("matchtype").value == 'r',
+    //p2 = (!foxyproxy.quickadd.enabled || foxyproxy_common.validatePattern(window, r2, document.getElementById("quickAddTemplateExample2").value, foxyproxy.getMessage("foxyproxy.quickadd.label")));
+  //p1 && p2 && window.close();
+//}
+
+function onQuickAdd() {
+  var p = {out:null};
+  window.openDialog("chrome://foxyproxy/content/quickadd.xul", "",
+    "minimizable,dialog,chrome,resizable=yes,modal", p).focus();
+}
+
+function onAutoAdd() {
 }

@@ -21,9 +21,9 @@
 <!ENTITY foxyproxy.url.pattern.label "URL パターン">
 <!ENTITY foxyproxy.url.pattern.accesskey "U">
 <!ENTITY foxyproxy.url.pattern.tooltip "URL のパターン">
-<!ENTITY foxyproxy.enabled.label "有効化">
+<!ENTITY foxyproxy.enabled.label "有効">
 <!ENTITY foxyproxy.enabled.accesskey "E">
-<!ENTITY foxyproxy.enabled.tooltip "有効・無効を切り替えます">
+<!ENTITY foxyproxy.enabled.tooltip "有効・無効の切り替え">
 <!ENTITY foxyproxy.delete.selection.label "選択を削除">
 <!ENTITY foxyproxy.delete.selection.accesskey "D">
 <!ENTITY foxyproxy.delete.selection.tooltip "現在選択済みのアイテムを削除します">
@@ -65,7 +65,7 @@
 <!ENTITY foxyproxy.addeditpattern.title "パターンの追加・編集">
 <!ENTITY foxyproxy.wildcard.label "ワイルドカード">
 <!ENTITY foxyproxy.wildcard.accesskey "W">
-<!ENTITY foxyproxy.wildcard.tooltip "正規表現ではなくワイルドカードを使った URL パターンを指定します">
+<!ENTITY foxyproxy.wildcard.tooltip "正規表現ではないワイルドカードを使った URL パターンを指定します">
 <!ENTITY foxyproxy.wildcard.example.label "例: *mail.yahoo.com/*">
 <!ENTITY foxyproxy.regex.label "正規表現">
 <!ENTITY foxyproxy.regex.accesskey "R">
@@ -122,7 +122,7 @@
 <!ENTITY foxyproxy.proxydns.label "DNS 解決に SOCKS を利用する">
 <!ENTITY foxyproxy.proxydns.accesskey "U">
 <!ENTITY foxyproxy.proxydns.tooltip "チェックすると SOCKS プロキシ経由で DNS 解決をします">
-<!ENTITY foxyproxy.proxydns.notice "設定を有効にするため Firefox を再始動する必要があります。今すぐ再起動しますか？">
+<!ENTITY foxyproxy.proxydns.notice "設定を有効にするため Firefox を再起動する必要があります。今すぐ再起動しますか？">
 <!ENTITY foxyproxy.showstatusbaricon.label "ステータスバーにアイコンを表示する">
 <!ENTITY foxyproxy.showstatusbaricon.accesskey "S">
 <!ENTITY foxyproxy.showstatusbaricon.tooltip "チェックするとステータスバーに FoxyProxy のアイコンが表示されます">
@@ -218,7 +218,7 @@
 <!ENTITY foxyproxy.logging.maxsize.label "ログの丸め込みまでの最大サイズ">
 <!ENTITY foxyproxy.logging.maxsize.accesskey "M">
 <!ENTITY foxyproxy.logging.maxsize.tooltip "ログを丸め込むまでのログ項目の最大数">
-<!ENTITY foxyproxy.logging.maxsize.button.label "設定する">
+<!ENTITY foxyproxy.logging.maxsize.button.label "設定">
 <!ENTITY foxyproxy.logging.maxsize.button.accesskey "S">
 <!ENTITY foxyproxy.logging.maxsize.button.tooltip "ログを丸め込むまでのログ項目の最大数を設定します">
 <!ENTITY foxyproxy.random.label "任意のプロキシから URL を読み込む (すべてのパターンと優先度を無視)">
@@ -303,7 +303,7 @@
 <!ENTITY foxyproxy.quickadd.notify.whencanceled.tooltip "QuickAdd が作動したがキャンセルされた場合にポップアップ表示します">
 <!ENTITY foxyproxy.quickadd.notify.whencanceled.popup.width "auto">
 <!ENTITY foxyproxy.quickadd.notify.whencanceled.popup.height "auto">
-<!ENTITY foxyproxy.whatsthis "なにこれ？">
+<!ENTITY foxyproxy.whatsthis "これはなに？">
 <!ENTITY foxyproxy.quickadd.prompt.label "プロキシにパターンを追加する前に編集と確認を促す">
 <!ENTITY foxyproxy.quickadd.prompt.accesskey "P">
 <!ENTITY foxyproxy.quickadd.prompt.tooltip "プロキシにパターンを追加する前に編集と確認を促します">
@@ -325,10 +325,10 @@
 <!ENTITY foxyproxy.importlist.label "プロキシのリストを取り込む">
 <!ENTITY foxyproxy.importlist.accesskey "I">
 <!ENTITY foxyproxy.importlist.tooltip "テキストファイルのプロキシリストを取り込む">
-<!ENTITY foxyproxy.wildcard.reference.label "ワイルドカード参考">
+<!ENTITY foxyproxy.wildcard.reference.label "ワイルドカード参照">
 <!ENTITY foxyproxy.wildcard.reference.accesskey "W">
 <!ENTITY foxyproxy.wildcard.reference.tooltip "ワイルドカードの参考">
-<!ENTITY foxyproxy.wildcard.reference.subtitle.label "アスタリスク (*) はゼロ文字以上に一致し、疑問符 (?) はあらゆる一文字に一致します">
+<!ENTITY foxyproxy.wildcard.reference.subtitle.label "アスタリスク (*) はゼロかそれ以上の文字に適合し、疑問符 (?) はあらゆる単一の文字に適合します。">
 <!ENTITY foxyproxy.wildcard.reference.mistakes "ワイルドカードパターンを書く時の典型的な誤り">
 <!ENTITY foxyproxy.wildcard.reference.goal.label "目的">
 <!ENTITY foxyproxy.wildcard.reference.goal1.label "MySpace の www サブドメインにあるすべてのページに一致">
@@ -350,7 +350,7 @@
 <!ENTITY foxyproxy.ok.label "承認">
 <!ENTITY foxyproxy.ok.accesskey "O">
 <!ENTITY foxyproxy.ok.tooltip "ウィンドウを閉じる">
-<!ENTITY foxyproxy.pattern.template.reference.label "パターンテンプレート参考">
+<!ENTITY foxyproxy.pattern.template.reference.label "パターンテンプレート参照">
 <!ENTITY foxyproxy.pattern.template.reference.accesskey "T">
 <!ENTITY foxyproxy.pattern.template.reference.tooltip "パターンテンプレートの参考">
 <!ENTITY foxyproxy.pattern.template.reference.subtitle.label "URL pattern templates define the format with which URLs are QuickAdded or AutoAdded to proxies. Templates support the following special strings which, when QuickAdd or AutoAdd are activated, are substituted with the corresponding URL component in the address bar.">
@@ -384,7 +384,7 @@
 <!ENTITY foxyproxy.misc.label "その他">
 <!ENTITY foxyproxy.misc.accesskey "M">
 <!ENTITY foxyproxy.misc.tooltip "その他の設定">
-<!ENTITY foxyproxy.animatedicons.label "このプロキシの利用中はアイコンをアニメーションする">
+<!ENTITY foxyproxy.animatedicons.label "このプロキシの利用中はアイコンを活性化">
 <!ENTITY foxyproxy.animatedicons.accesskey "A">
 <!ENTITY foxyproxy.animatedicons.tooltip "このプロキシの動作中はアイコンをアニメーションさせます (全体設定→アニメーション のチェックも必要です)">
 <!ENTITY foxyproxy.statusbaractivation.label "ステータスバー有効化">
@@ -438,7 +438,7 @@
 <!ENTITY foxyproxy.addeditproxy.height "auto">
 <!ENTITY foxyproxy.casesensitive.label "大文字小文字を区別する">
 <!ENTITY foxyproxy.casesensitive.accesskey "C">
-<!ENTITY foxyproxy.casesensitive.tooltip "URL の一致に関して大文字と小文字の区別を有効・無効にします">
+<!ENTITY foxyproxy.casesensitive.tooltip "URL の一致に関する大文字と小文字の区別を有効・無効にします">
 <!ENTITY foxyproxy.statusbarwidth.label "固定幅">
 <!ENTITY foxyproxy.statusbarwidth.accesskey "W">
 <!ENTITY foxyproxy.statusbarwidth.tooltip "ステータスバーのサイズ変更を回避します">

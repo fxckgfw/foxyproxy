@@ -443,4 +443,4 @@
 <!ENTITY foxyproxy.statusbarwidth.accesskey "O">
 <!ENTITY foxyproxy.statusbarwidth.tooltip "Ogranicza szerokość opisu trybu FoxyProxy na pasku stanu">
 <!ENTITY foxyproxy.pixels "px">
-<!ENTITY foxyproxy.unlimited.label "[0: dopasowuje się do zawartości]">
+<!ENTITY foxyproxy.unlimited.label "[0: dopasowuje się do zawartości] ">

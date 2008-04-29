@@ -220,7 +220,7 @@ var foxyproxy = {
 		  	return;
 		  }
 			if (q._prompt) {
-          var pattern = this.fpc.onQuickAdd(window, false, url); 
+          var pattern = this.fpc.onQuickOrAutoAdd(window, false, url, true); 
           if (pattern) {                         
             // Add the pattern
 					  _qAdd(q.match, url, evt.view.content.document.location);

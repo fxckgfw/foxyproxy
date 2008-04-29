@@ -406,7 +406,7 @@ function onQuickAdd() {
     overlay.alert(this, foxyproxy.getMessage("superadd.verboten2", [foxyproxy.getMessage("foxyproxy.quickadd.label")]));
     return;
   }
-  fpc.onQuickAdd(window, true, null);
+  fpc.onQuickOrAutoAdd(window, true, null, true);
 }   
 
 function onAutoAdd() {
@@ -414,4 +414,5 @@ function onAutoAdd() {
     overlay.alert(this, foxyproxy.getMessage("superadd.verboten2", [foxyproxy.getMessage("foxyproxy.tab.autoadd.label")]));
     return;
   }
+  fpc.onQuickOrAutoAdd(window, true, null, false);
 }

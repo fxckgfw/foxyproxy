@@ -27,7 +27,15 @@
 
 <separator class="thin" />
 
-<description observes="notSetupMode">
+<description>
+  <observes element="notSetupMode" attribute="hidden"/>
+  <observes element="autoAddMode" attribute="hidden"/>
+&foxyproxy.autoadd.description;
+</description>
+
+<description>
+  <observes element="notSetupMode" attribute="hidden"/>
+  <observes element="quickAddMode" attribute="hidden"/>
   &foxyproxy.quickadd.desc1;
   <html:a
     style="color: blue; text-decoration: underline; cursor: pointer;"
@@ -68,9 +76,12 @@
         label="&foxyproxy.quickadd.notify.whencanceled.label;"
         accesskey="&foxyproxy.quickadd.notify.whencanceled.accesskey;"
         tooltiptext="&foxyproxy.quickadd.notify.whencanceled.tooltip;"/>
-      <toolbarbutton class="foxyproxy-ref"
-        popup="notifyWhenCanceledPopup"
+      <toolbarbutton id="tbqa" class="foxyproxy-ref"
+        popup="notifyWhenCanceledPopupQuickAdd" observes="quickAddMode"
         tooltiptext="&foxyproxy.whatsthis;"/>
+      <toolbarbutton id="tbaa" class="foxyproxy-ref"
+        popup="notifyWhenCanceledPopupAutoAdd" observes="autoAddMode"
+        tooltiptext="&foxyproxy.whatsthis;"/>        
       <spacer/>        
     </row>
 	</rows>
@@ -142,18 +153,27 @@
 <popupset>
   <popup id="wildcardReferencePopup"/>
   <popup id="patternTemplatePopup"/>
-  <popup id="notifyWhenCanceledPopup" position="before_end"
+  <popup id="notifyWhenCanceledPopupQuickAdd"
     style="height: &foxyproxy.quickadd.notify.whencanceled.popup.height;; width: &foxyproxy.quickadd.notify.whencanceled.popup.width;;">
     <vbox class="foxyproxy-border">
     <description class="foxyproxy-tooltip">
       &foxyproxy.quickadd.notify.whencanceled.label2;</description>
     </vbox>
   </popup>  
+  <popup id="notifyWhenCanceledPopupAutoAdd"
+    style="height: &foxyproxy.quickadd.notify.whencanceled.popup.height;; width: &foxyproxy.quickadd.notify.whencanceled.popup.width;;">
+    <vbox class="foxyproxy-border">
+    <description class="foxyproxy-tooltip">
+      &foxyproxy.autoadd.notify.whencanceled.label2;</description>
+    </vbox>
+  </popup>    
 </popupset>
 
 <broadcasterset>
   <broadcaster id="setupMode"/>
-  <broadcaster id="notSetupMode"/>  
+  <broadcaster id="notSetupMode"/>
+  <broadcaster id="quickAddMode"/>
+  <broadcaster id="autoAddMode"/> 
 </broadcasterset>
 
 </dialog>

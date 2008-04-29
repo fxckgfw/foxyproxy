@@ -442,5 +442,5 @@
 <!ENTITY foxyproxy.statusbarwidth.label "Fixed width">
 <!ENTITY foxyproxy.statusbarwidth.accesskey "W">
 <!ENTITY foxyproxy.statusbarwidth.tooltip "Prevents statusbar resizing">
-<!ENTITY foxyproxy.pixels "punkter">
+<!ENTITY foxyproxy.pixels "pixels">
 <!ENTITY foxyproxy.unlimited.label "[0: shrink to fit] ">

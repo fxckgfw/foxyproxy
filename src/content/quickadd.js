@@ -1,6 +1,6 @@
 var fpc;
 function onLoad() {
-  var inn = window.arguments[0].inn;
+  var inn = window.arguments[0].inn;  
   fpc = Components.classes["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject;
   document.getElementById("enabled").checked = inn.enabled;
   document.getElementById("reload").checked = inn.reload;
@@ -22,14 +22,31 @@ function onLoad() {
   document.getElementById("caseSensitive").checked = inn.match.caseSensitive;
   updateGeneratedPattern();
   document.getElementById("setupMode").setAttribute("hidden", inn.setupMode);
-  document.getElementById("notSetupMode").setAttribute("hidden", !inn.setupMode);    
+  document.getElementById("notSetupMode").setAttribute("hidden", !inn.setupMode);
+  if (inn.isQuickAdd) {
+    document.getElementById("autoAddMode").setAttribute("hidden", true);
+  } 
+  else {
+    // Hide QuickAdd specifics from AutoAdd
+    var fp = Components.classes["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;
+    window.document.title = fp.getMessage("foxyproxy.tab.autoadd.label");
+    document.getElementById("quickAddMode").setAttribute("hidden", true);
+    // Show AutoAdd specifies
+    var e = document.getElementById("notify");
+    e.label = fp.getMessage("foxyproxy.autoadd.notify.label");
+    e.setAttribute("tooltiptext", fp.getMessage("foxyproxy.autoadd.notify.tooltip2"));
+    e = document.getElementById("notifyWhenCanceled");
+    e.label = fp.getMessage("foxyproxy.autoadd.notify.whencanceled.label");
+    e.setAttribute("tooltiptext", fp.getMessage("foxyproxy.autoadd.notify.whencanceled.tooltip")); 
+    e = document.getElementById("notifyWhenCanceledPopup");
+  }   
   sizeToContent();  
 }
 
 function onOK() {   
-  var matchtype = document.getElementById("matchtype").value;
+  var isRegEx = document.getElementById("matchtype").value=="r";
   alert(document.getElementById("generatedPattern").value);
-  var p = window.arguments[0].inn.setupMode || fpc.validatePattern(window, matchtype=="r", document.getElementById("generatedPattern").value);
+  var p = window.arguments[0].inn.setupMode || fpc.validatePattern(window, isRegEx, document.getElementById("generatedPattern").value);
   if (p) {
     window.arguments[0].out = {enabled:document.getElementById("enabled").checked,
       reload:document.getElementById("reload").checked,
@@ -41,7 +58,7 @@ function onOK() {
       urlTemplate:document.getElementById("urlTemplate").value,
       pattern:document.getElementById("generatedPattern").value,
       caseSensitive:document.getElementById("caseSensitive").checked,      
-      matchType:matchtype,
+      isRegEx:isRegEx,
       isBlackList:document.getElementById("whiteblacktype").value == "b"}; 
     return true;
   }

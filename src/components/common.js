@@ -144,13 +144,13 @@ Common.prototype = {
     catch(e) { /*happens for about:blank, about:config, etc.*/}
     return url;
   },    
-
-  onQuickAdd : function(wnd, setupMode, url) {  
+  
+  onQuickOrAutoAdd : function(wnd, setupMode, url, isQuickAdd) {  
     var fp = CC["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;  
-    var q = fp.quickadd;
+    var q = isQuickAdd ? fp.quickadd : fp.autoadd;
     var p = {inn:{url:url || this.getMostRecentWindow().content.location.href, urlTemplate:q.urlTemplate, enabled:q.enabled,
       reload:q.reload, prompt:q.prompt, notify:q.notify, notifyWhenCanceled:q.notifyWhenCanceled,
-      proxies:fp.proxies, match:q.match, setupMode:setupMode}, out:null};
+      proxies:fp.proxies, match:q.match, setupMode:setupMode, isQuickAdd:isQuickAdd}, out:null};
      // q.proxy is null when user hasn't yet used QuickAdd
     if (q.proxy != null)
       p.inn.proxyId =  q.proxy.id;     
@@ -168,7 +168,7 @@ Common.prototype = {
       q.match.name = p.name;
       //q.match.pattern = p.pattern;
       q.match.caseSensitive = p.caseSensitive;          
-      q.match.isRegEx = p.matchType=="r";
+      q.match.isRegEx = p.isRegEx;
       q.match.isBlackList = p.isBlackList;
       fp.writeSettings();
       return p.pattern;          

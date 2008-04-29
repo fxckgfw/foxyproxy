@@ -280,11 +280,11 @@
 <!ENTITY foxyproxy.pactip1.label "Para archivos PAC almacenados en el disco local, utilizar el esquema file://. Por ejemplo, para Windows: file://c:/ubicación/proxy.pac   , o para Unix/Linux/Mac: file:///home/users/proxy.pac">
 <!ENTITY foxyproxy.pactip2.label "Para archivos PAC en un servidor ftp, utilizar el esquema ftp://. Por ejemplo, ftp://leahscape.com/path/proxy.pac">
 <!ENTITY foxyproxy.pactip3.label "También puede utilizar http://, https://, y cualquier otro esquema soportado.">
-<!ENTITY foxyproxy.pactip4.label "Finally, if you need to refer to a PAC file on the local file system using a relative path, you can use the special FoxyProxy relative:// scheme. This is useful if your PAC file resides on a thumb drive. Supported relative paths are documented">
-<!ENTITY foxyproxy.pactip5.label "here">
-<!ENTITY foxyproxy.pactip6.label ". Special strings in the relative:// URL you specify are replaced with their corresponding values. For example, relative://ProfD/pacs/proxy3.pac points to the file proxy3.pac in the subdirectory of the">
-<!ENTITY foxyproxy.pactip7.label "Firefox profile directory">
-<!ENTITY foxyproxy.pactip8.label "named pacs/. With Portable Firefox on Windows, the Firefox profile directory is always a relative path because the drive letter can change across computers. Please note that special strings (ProfD, Home, TempD, etc.) are case-sensitive!">
+<!ENTITY foxyproxy.pactip4.label "Finalmente, si usted necesita referirse a un archivo PAC en el sistema de archivos local utilizando una ruta relativa, usted puede utilizar el esquema especial de FoxyProxy relative://. Esto es útil si su archivo PAC reside en una unidad removible (por ejemplo USB). Las rutas relativas soportadas están documentadas">
+<!ENTITY foxyproxy.pactip5.label "aquí">
+<!ENTITY foxyproxy.pactip6.label ". Las cadenas especiales que usted especificó para la URL en relative:// se reemplazarán por sus valores correspondientes. Por ejemplo, relative://ProfD/pacs/proxy3.pac apunta al archivo proxy3.pac en el subdirectorio de">
+<!ENTITY foxyproxy.pactip7.label "Directorio del perfil de Firefox">
+<!ENTITY foxyproxy.pactip8.label "denominado pacs/. Con Firefox Portátil en Windows, el directorio del perfil de Firefox es siempre una ruta relativa la letra de la unidad puede cambiar de una computadora a otra. Note por favor que las cadenas especiales (ProfD, Home, TempD, etc.) son sensibles a las mayúsculas!">
 <!ENTITY foxyproxy.contextmenu.label "Mostrar a FoxyProxy en el menú contextual">
 <!ENTITY foxyproxy.contextmenu.accesskey "C">
 <!ENTITY foxyproxy.contextmenu.tooltip "Mostrar a FoxyProxy en el menú contextual">

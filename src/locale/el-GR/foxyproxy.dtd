@@ -40,7 +40,7 @@
 <!ENTITY foxyproxy.about.accesskey "Π">
 <!ENTITY foxyproxy.about.tooltip "Ανοίγει τον διάλογο «περί»">
 <!ENTITY foxyproxy.online.label "Το FoxyProxy στο διαδίκτυο">
-<!ENTITY foxyproxy.online.accesskey "ί">
+<!ENTITY foxyproxy.online.accesskey "ι">
 <!ENTITY foxyproxy.online.tooltip "Επισκεφθείτε τον ιστότοπο του FoxyProxy">
 <!ENTITY foxyproxy.tor.label "Βοηθός Tor">
 <!ENTITY foxyproxy.tor.accesskey "θ">
@@ -65,11 +65,11 @@
 <!ENTITY foxyproxy.addeditpattern.title "Προσθήκη/Επεξεργασία προτύπου">
 <!ENTITY foxyproxy.wildcard.label "Χαρακτήρες μπαλαντέρ">
 <!ENTITY foxyproxy.wildcard.accesskey "Χ">
-<!ENTITY foxyproxy.wildcard.tooltip "Διευκρινήζει ότι το πρότυπο URL περιέχει χαρακτήρες μπαλαντέρ και δεν είναι κανονική έκφραση">
+<!ENTITY foxyproxy.wildcard.tooltip "Διευκρινίζει ότι το πρότυπο URL περιέχει χαρακτήρες μπαλαντέρ και δεν είναι κανονική έκφραση">
 <!ENTITY foxyproxy.wildcard.example.label "Παράδειγμα : *mail.yahoo.com/*">
 <!ENTITY foxyproxy.regex.label "Κανονική έκφραση">
 <!ENTITY foxyproxy.regex.accesskey "Κ">
-<!ENTITY foxyproxy.regex.tooltip "Διευκρινήζει ότι το πρότυπο URL είναι κανονική έκφραση">
+<!ENTITY foxyproxy.regex.tooltip "Διευκρινίζει ότι το πρότυπο URL είναι κανονική έκφραση">
 <!ENTITY foxyproxy.regex.example.label "Παράδειγμα : https?://.*\.mail\.yahoo\.com/.*">
 <!ENTITY foxyproxy.version "Έκδοση">
 <!ENTITY foxyproxy.createdBy "Δημιουργήθηκε από">
@@ -83,7 +83,7 @@
 <!ENTITY foxyproxy.tab.general.tooltip "Διαχείριση γενικών ρυθμίσεων διαμεσολαβητή">
 <!ENTITY foxyproxy.tab.proxy.label "Λεπτομέρειες διαμεσολαβητή">
 <!ENTITY foxyproxy.tab.proxy.accesskey "Λ">
-<!ENTITY foxyproxy.tab.proxy.tooltip "Διαχείριση λεπτομερείων διαμεσολαβητή">
+<!ENTITY foxyproxy.tab.proxy.tooltip "Διαχείριση λεπτομερειών διαμεσολαβητή">
 <!ENTITY foxyproxy.tab.patterns.label "Πρότυπα">
 <!ENTITY foxyproxy.tab.patterns.accesskey "Π">
 <!ENTITY foxyproxy.tab.patterns.tooltip "Διαχείριση προτύπων URL">
@@ -95,10 +95,10 @@
 <!ENTITY foxyproxy.pattern.whiteblack.label "Συμπερίληψη/Απόρριψη URL">
 <!ENTITY foxyproxy.add.option.direct.label "Άμεση σύνδεση με το διαδύκτιο (χωρίς διαμεσολαβητή)">
 <!ENTITY foxyproxy.add.option.direct.accesskey "Α">
-<!ENTITY foxyproxy.add.option.direct.tooltip "Να μη γίνεται χρήση διαμεσολαβητή - χρήση υπάρχουσας άμεσης σύνδεσης με το διαδύκτιο">
+<!ENTITY foxyproxy.add.option.direct.tooltip "Να μη γίνεται χρήση διαμεσολαβητή - χρήση υπάρχουσας άμεσης σύνδεσης με το διαδίκτυο">
 <!ENTITY foxyproxy.add.option.manual.label "Χειρονακτικές ρυθμίσεις διαμεσολαβητή">
 <!ENTITY foxyproxy.add.option.manual.accesskey "Χ">
-<!ENTITY foxyproxy.add.option.manual.tooltip "Ορίστε τις ρυθμίσεις του διαμεσολαβητή χειρονακτικά">
+<!ENTITY foxyproxy.add.option.manual.tooltip "Ορίστε τις ρυθμίσεις του διαμεσολαβητή χειρωνακτικά">
 <!ENTITY foxyproxy.add.new.pattern.label "Προσθήκη νέου πρότυπου">
 <!ENTITY foxyproxy.add.new.pattern.accesskey "Π">
 <!ENTITY foxyproxy.add.new.pattern.tooltip "Προσθήκη νέου πρότυπου">
@@ -109,7 +109,7 @@
 <!ENTITY foxyproxy.menubar.help.accesskey "Β">
 <!ENTITY foxyproxy.menubar.help.tooltip "Άνοιγμα του μενού «Βοήθεια»">
 <!ENTITY foxyproxy.mode.accesskey "τ">
-<!ENTITY foxyproxy.mode.tooltip "Επιλέξτε πως θα ενεργοποιήται το FoxyProxy">
+<!ENTITY foxyproxy.mode.tooltip "Επιλέξτε πως θα ενεργοποιείται το FoxyProxy">
 <!ENTITY foxyproxy.tab.proxies.label "Διαμεσολαβητές">
 <!ENTITY foxyproxy.tab.proxies.accesskey "Δ">
 <!ENTITY foxyproxy.tab.proxies.tooltip "Διαχείριση διαμεσολαβητών">
@@ -159,8 +159,8 @@
 <!ENTITY foxyproxy.blacklist.description.label "Τα URL που συμφωνούν με αυτό το πρότυπο δεν θα φορτώνοντε μέσω αυτού του διαμεσολαβητή">
 <!ENTITY foxyproxy.whiteblack.description.label "Τα πρότυπα της λίστας απαγορευμένων(απόριψης) έχουν προτεραιότητα σε σχέση με αυτά της λίστας επιτρεπόμενων(συμπεριληπτικά): Αν ένα URL συμφωνεί και με τα δυο για τον ίδιο διαμεσολαβητή, το URL δεν θα επιτραπεί να φορτωθεί από αυτόν.">
 <!ENTITY foxyproxy.usingPFF.label1 "Χρησιμοποιώ τον">
-<!ENTITY foxyproxy.usingPFF.label2 "Portable Firefox">
-<!ENTITY foxyproxy.usingPFF.accesskey "o">
+<!ENTITY foxyproxy.usingPFF.label2 "Pοrtable Firefox">
+<!ENTITY foxyproxy.usingPFF.accesskey "ο">
 <!ENTITY foxyproxy.usingPFF.tooltip "Επιλέξτε το αν χρησιμοποιήτε τον Portable Firefox">
 <!ENTITY foxyproxy.socks.version.label "Έκδοση SOCKS">
 <!ENTITY foxyproxy.autopacurl.label "Αυτόματο PAC URL">
@@ -180,7 +180,7 @@
 <!ENTITY foxyproxy.greek "Ελληνικά">
 <!ENTITY foxyproxy.hungarian "Ουγγαρέζικα">
 <!ENTITY foxyproxy.italian "Ιταλικά">
-<!ENTITY foxyproxy.japanese "Japanese">
+<!ENTITY foxyproxy.japanese "Ιαπωνικά">
 <!ENTITY foxyproxy.persian "Περσικά">
 <!ENTITY foxyproxy.polish "Πολωνικά">
 <!ENTITY foxyproxy.portugese.brazilian "Πορτογαλικά (Βραζιλίας)">
@@ -197,7 +197,7 @@
 <!ENTITY foxyproxy.ukrainian "Ουκρανικά">
 <!ENTITY foxyproxy.your.language "Η γλώσσα σας">
 <!ENTITY foxyproxy.your.name.here "Το όνομα σας!">
-<!ENTITY foxyproxy.anonymous "Anonymous">
+<!ENTITY foxyproxy.anonymous "Ανώνυμο">
 <!ENTITY foxyproxy.moveup.label "Μετακίνηση πάνω">
 <!ENTITY foxyproxy.moveup.tooltip "Ενισχύει την προτεραιότητα της τρέχουσας επιλογής">
 <!ENTITY foxyproxy.moveup.accesskey "Μ">
@@ -418,7 +418,7 @@
 <!ENTITY foxyproxy.click.reloadtabsinbrowser "Ανανέωση όλων των καρτελών του παραθύρου">
 <!ENTITY foxyproxy.click.reloadtabsinallbrowsers "Ανανέωση όλων των καρτελών σε όλα τα παράθυρα">
 <!ENTITY foxyproxy.click.removeallcookies "Αφαίρεση όλων των cookies">
-<!ENTITY foxyproxy.click.toggle "Toggle between current mode and disabled">
+<!ENTITY foxyproxy.click.toggle "Εναλλαγή μεταξύ της τρέχουσας κατάστασης και απενεργοποίησης">
 <!ENTITY foxyproxy.includeincycle.label "Συμπερίληψη στην εναλλαγή διαμεσολαβητών - με επιλογή της ρύθμισης «εναλλαγή τρόπου λειτουργίας» (γενικές ρυθμίσεις-&gt;ενεργοποίηση γραμμής κατάστασης/εργαλειοθήκης)">
 <!ENTITY foxyproxy.includeincycle.accesskey "Σ">
 <!ENTITY foxyproxy.includeincycle.tooltip "Συμπερίληψη αυτού του διαμεσολαβητή όταν γίνεται κλικ στο εικονίδο γραμμής κατάστασης/εργαλειοθήκης">

@@ -260,8 +260,11 @@
 <!ENTITY foxyproxy.autoadd.reload.accesskey "L">
 <!ENTITY foxyproxy.autoadd.reload.tooltip "Automatiskt ladda om sidan efter att har lagts till i proxyn">
 <!ENTITY foxyproxy.autoadd.notify.label "Meddela mig när AutoAdd använts">
-<!ENTITY foxyproxy.autoadd.notify.accesskey "M">
 <!ENTITY foxyproxy.autoadd.notify.tooltip "Informerar dig när en sida är blockerad &amp; URL-mönstret är tillagd till proxyn">
+<!ENTITY foxyproxy.autoadd.notify.tooltip2 "Display a popup when AutoAdd is activated">
+<!ENTITY foxyproxy.autoadd.notify.whencanceled.label "Notify me when AutoAdd is canceled">
+<!ENTITY foxyproxy.autoadd.notify.whencanceled.label2 "AutoAdd is automatically canceled when the URL in the address bar already matches a whitelist pattern in the AutoAdd proxy. In this way duplicate patterns, which can clutter your configuration, are prevented. This setting does not enable/disable cancelation; rather, it toggles notification when cancelation occurs.">
+<!ENTITY foxyproxy.autoadd.notify.whencanceled.tooltip "Display a popup when AutoAdd is activated but canceled">
 <!ENTITY foxyproxy.graphics "Grafisk design och bilder av">
 <!ENTITY foxyproxy.website "Webbplats genom">
 <!ENTITY foxyproxy.contributions "Bidrag från">

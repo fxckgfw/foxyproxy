@@ -260,8 +260,11 @@
 <!ENTITY foxyproxy.autoadd.reload.accesskey "R">
 <!ENTITY foxyproxy.autoadd.reload.tooltip "プロキシにパターンを追加したら自動的にページを再読み込みします">
 <!ENTITY foxyproxy.autoadd.notify.label "AutoAdd が作動した時は通知する">
-<!ENTITY foxyproxy.autoadd.notify.accesskey "N">
 <!ENTITY foxyproxy.autoadd.notify.tooltip "ページが遮断されて URL パターンがプロキシに追加されたら報告します">
+<!ENTITY foxyproxy.autoadd.notify.tooltip2 "Display a popup when AutoAdd is activated">
+<!ENTITY foxyproxy.autoadd.notify.whencanceled.label "Notify me when AutoAdd is canceled">
+<!ENTITY foxyproxy.autoadd.notify.whencanceled.label2 "AutoAdd is automatically canceled when the URL in the address bar already matches a whitelist pattern in the AutoAdd proxy. In this way duplicate patterns, which can clutter your configuration, are prevented. This setting does not enable/disable cancelation; rather, it toggles notification when cancelation occurs.">
+<!ENTITY foxyproxy.autoadd.notify.whencanceled.tooltip "Display a popup when AutoAdd is activated but canceled">
 <!ENTITY foxyproxy.graphics "グラフィックデザインと画像の作成者">
 <!ENTITY foxyproxy.website "ウェブサイト作成者">
 <!ENTITY foxyproxy.contributions "貢献者">

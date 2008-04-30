@@ -343,7 +343,6 @@
 <!ENTITY foxyproxy.autoadd.notify.whencanceled.label2 "AutoAdd is automatically canceled when the URL in the address bar already matches a whitelist pattern in the AutoAdd proxy. In this way duplicate patterns, which can clutter your configuration, are prevented. This setting does not enable/disable cancelation; rather, it toggles notification when cancelation occurs.">
 <!ENTITY foxyproxy.autoadd.notify.whencanceled.tooltip "Display a popup when AutoAdd is activated but canceled">
 
-
 <!ENTITY foxyproxy.graphics "Graphic design and images by">
 <!ENTITY foxyproxy.website "Website by">
 <!ENTITY foxyproxy.contributions "Contributions by">
@@ -558,3 +557,10 @@
 <!ENTITY foxyproxy.statusbarwidth.tooltip "Prevents statusbar resizing">
 <!ENTITY foxyproxy.pixels "pixels">
 <!ENTITY foxyproxy.unlimited.label "[0: shrink to fit] ">
+
+<!ENTITY foxyproxy.temp.popup.label "Temporary patterns allow you to create patterns for URLs that you don't visit often without cluttering the pattern list for a proxy. Temporary patterns are not saved to disk. They are kept in-memory and used for this Firefox session only.">
+<!ENTITY foxyproxy.temp.popup.height "120">
+<!ENTITY foxyproxy.temp.popup.width "400">
+<!ENTITY foxyproxy.temp.label "Temporary">
+<!ENTITY foxyproxy.temp.accesskey "T">
+<!ENTITY foxyproxy.temp.tooltip "Pattern is used only for this Firefox session">

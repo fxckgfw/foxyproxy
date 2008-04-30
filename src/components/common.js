@@ -149,7 +149,7 @@ Common.prototype = {
     var fp = CC["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;  
     var q = isQuickAdd ? fp.quickadd : fp.autoadd;
     var p = {inn:{url:url || this.getMostRecentWindow().content.location.href, urlTemplate:q.urlTemplate, enabled:q.enabled,
-      reload:q.reload, prompt:q.prompt, notify:q.notify, notifyWhenCanceled:q.notifyWhenCanceled,
+      temp:q.temp, reload:q.reload, prompt:q.prompt, notify:q.notify, notifyWhenCanceled:q.notifyWhenCanceled,
       proxies:fp.proxies, match:q.match, setupMode:setupMode, isQuickAdd:isQuickAdd}, out:null};
      // q.proxy is null when user hasn't yet used QuickAdd
     if (q.proxy != null)
@@ -159,6 +159,7 @@ Common.prototype = {
     if (p.out) {
       p = p.out;
       q.enabled = p.enabled;
+      q.temp = p.temp;
       q.reload = p.reload;
       q.notify = p.notify;
       q.prompt = p.prompt;

@@ -19,8 +19,10 @@ SuperAdd.prototype = {
   owner : null,
   _reload : true,
   _enabled : false,
+  _temp : false, // new for 2.8
   _proxy : null,
   _notify : true,
+  _notifyWhenCanceled : true,
   _prompt : false,
   match : null,
   elemName : "autoadd",
@@ -44,6 +46,12 @@ SuperAdd.prototype = {
     this.elemName == "autoadd" && gBroadcast(e, "foxyproxy-autoadd-toggle");
   },
 
+  get temp() { return this._temp; },
+  set enabled(t) {
+    this._temp = t;
+    gFP.writeSettings();
+  },
+  
   get urlTemplate() { return this._urlTemplate; },
   set urlTemplate(u) {
     this._urlTemplate = u.replace(/^\s*|\s*$/g,"");
@@ -74,7 +82,6 @@ SuperAdd.prototype = {
     gFP.writeSettings();
   },  
   
-  // As of 2.7.3, this fcn is stateless
   perform : function(url, content) {
     if (this.match.pattern != "") {
     	// Does this URL already match an existing pattern for a proxy?
@@ -117,10 +124,12 @@ SuperAdd.prototype = {
 	  
   toDOM : function(doc) {
     var e = doc.createElement(this.elemName);
-    e.setAttribute("enabled", this.enabled);
+    e.setAttribute("enabled", this._enabled);
+    e.setAttribute("temp", this._temp);    
     e.setAttribute("urlTemplate", this._urlTemplate);
     e.setAttribute("reload", this._reload);			
     e.setAttribute("notify", this._notify);
+    e.setAttribute("notifyWhenCanceled", this._notifyWhenCanceled);
     e.setAttribute("prompt", this._prompt);    
     this._proxy && e.setAttribute("proxy-id", this._proxy.id);
     e.appendChild(this.match.toDOM(doc));
@@ -129,19 +138,18 @@ SuperAdd.prototype = {
   
   fromDOM : function(doc) {
     var n = doc.getElementsByTagName(this.elemName)[0];
-    var proxyId;
-    if (n) {
-      this._enabled = gGetSafeAttrB(n, "enabled", false);
-      this._urlTemplate = gGetSafeAttr(n, "urlTemplate", DEF_PATTERN);
-      if (this._urlTemplate == "") this._urlTemplate = DEF_PATTERN;      
-      this._reload = gGetSafeAttrB(n, "reload", true);    
-      this._notify = gGetSafeAttrB(n, "notify", true);
-      this._prompt = gGetSafeAttrB(n, "prompt", false);
-      proxyId = gGetSafeAttr(n, "proxy-id", null);
-      this.match.fromDOM(n.getElementsByTagName("match")[0]);   
-      (!this.match.name || this.match.name == "") && (this.match.name = gFP.getMessage("foxyproxy.autoadd.pattern.label"));
-      this.match.isMultiLine = true;        
-    }
+    this._enabled = gGetSafeAttrB(n, "enabled", false);
+    this._temp = gGetSafeAttrB(n, "temp", false);
+    this._urlTemplate = gGetSafeAttr(n, "urlTemplate", DEF_PATTERN);
+    if (this._urlTemplate == "") this._urlTemplate = DEF_PATTERN;      
+    this._reload = gGetSafeAttrB(n, "reload", true);    
+    this._notify = gGetSafeAttrB(n, "notify", true);
+    this._notifyWhenCanceled = gGetSafeAttrB(n, "notifyWhenCanceled", true);
+    this._prompt = gGetSafeAttrB(n, "prompt", false);
+    var proxyId = gGetSafeAttr(n, "proxy-id", null);
+    this.match.fromDOM(n.getElementsByTagName("match")[0]);   
+    (!this.match.name || this.match.name == "") && (this.match.name = gFP.getMessage("foxyproxy.autoadd.pattern.label"));
+    this.match.isMultiLine = true; 
     var error;
     if (proxyId) {
       // Ensure it exists and is enabled and isn't "direct"
@@ -162,22 +170,3 @@ QuickAdd.prototype = new SuperAdd();
 QuickAdd.prototype.notificationTitle = "foxyproxy.quickadd.label";
 QuickAdd.prototype.elemName = "quickadd";
 QuickAdd.prototype.elemNameCamelCase = "QuickAdd";
-QuickAdd.prototype._notifyWhenCanceled = true;
-QuickAdd.prototype.__defineGetter__("notifyWhenCanceled", function() { return this._notifyWhenCanceled; })
-QuickAdd.prototype.__defineSetter__("notifyWhenCanceled", function(n) {
-	this._notifyWhenCanceled = n;
-	gFP.writeSettings();
-});
-QuickAdd.prototype.toDOM = function(doc) {
-	var e = SuperAdd.prototype.toDOM.apply(this, arguments);
-	e.setAttribute("notifyWhenCanceled", this._notifyWhenCanceled);
-	return e;
-}
-QuickAdd.prototype.fromDOM = function(doc) {
-	var e = SuperAdd.prototype.fromDOM.apply(this, arguments);
-  var n = doc.getElementsByTagName(this.elemName)[0];	
-  if (n) {
-   this._notifyWhenCanceled = n.hasAttribute("notifyWhenCanceled") ?
-		n.getAttribute("notifyWhenCanceled") == "true" : true;
-	}
-}

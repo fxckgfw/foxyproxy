@@ -2,7 +2,7 @@
 <project name="foxyproxy" default="build-xpi">
 
   <!-- version property is appended to XPI filename; e.g., foxyproxy-1.0.xpi -->
-  <property name="version" value="2.8" />
+  <property name="version" value="2.8b1" />
   <property name="temp-path" value="../temp" />
   <property name="src-base" value="."/>
   <property name="target-path" value="../targets"/>
@@ -14,7 +14,7 @@
   <target name="copy">
     <copy todir="${temp-path}" overwrite="true">
       <!-- ignore timestamps -->
-      <fileset dir="${src-base}" excludes="**/amo.properties,**/*.xpi/**,**/*.jar/**,**/build.xml/**,**/chrome.manifest/**,**/*.project/**,**/tbird*.*/**" />
+      <fileset dir="${src-base}" excludes="**/*.xpi/**,**/*.jar/**,**/build.xml/**,**/chrome.manifest/**,**/*.project/**,**/tbird*.*/**" />
     </copy>
   </target>
 

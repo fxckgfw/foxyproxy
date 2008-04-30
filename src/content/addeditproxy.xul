@@ -203,7 +203,7 @@
       <separator class="thin"/>
       <hbox flex="1">
         <tree id="urlsTree" flex="1" align="stretch" enableColumnDrag="true" seltype="single" onselect="setButtons();"
-	        	onclick="overlay.onTreeClick(event, this);">
+            onclick="overlay.onTreeClick(event, this);">
           <treecols id="treeCols" pickertooltiptext="&foxyproxy.tree.pickertooltiptext.label;">
             <treecol id="enabledCol" label="&foxyproxy.enabled.label;" type="checkbox" flex="1" persist="width ordinal hidden"/><splitter class="tree-splitter"/>
             <treecol id="nameCol" label="&foxyproxy.pattern.name.label;" flex="1" persist="width ordinal hidden"/><splitter class="tree-splitter"/>
@@ -211,6 +211,7 @@
             <treecol id="patternTypeCol" label="&foxyproxy.pattern.type.label;" flex="1" persist="width ordinal hidden"/><splitter class="tree-splitter"/>
             <treecol id="blackCol" label="&foxyproxy.whitelist.blacklist.label;" flex="1" persist="width ordinal hidden"/><splitter class="tree-splitter"/>
             <treecol id="caseSensitiveCol" label="&foxyproxy.casesensitive.label;" flex="1" persist="width ordinal hidden"/><splitter class="tree-splitter"/>            
+            <treecol id="tempCol" label="&foxyproxy.temp.label;" flex="1" persist="width ordinal hidden"/><splitter class="tree-splitter"/>            
           </treecols>
           <treechildren context="urlsTreeContext" ondblclick="onAddEdit(false);"/>
          </tree>
@@ -241,6 +242,8 @@
         <treecol id="patternCol" label="&foxyproxy.url.pattern.label;" flex="1" persist="width ordinal hidden"/><splitter class="tree-splitter"/>
         <treecol id="patternTypeCol" label="&foxyproxy.pattern.type.label;" flex="1" persist="width ordinal hidden"/><splitter class="tree-splitter"/>
         <treecol id="blackCol" label="&foxyproxy.whitelist.blacklist.label;" flex="1" persist="width ordinal hidden"/><splitter class="tree-splitter"/>
+        <treecol id="caseSensitiveCol" label="&foxyproxy.casesensitive.label;" flex="1" persist="width ordinal hidden"/><splitter class="tree-splitter"/>            
+        <treecol id="tempCol" label="&foxyproxy.temp.label;" flex="1" persist="width ordinal hidden"/><splitter class="tree-splitter"/>        
       </treecols>
       <treechildren context="urlsTreeContext" ondblclick="onAddEdit(false);"/>
      </tree>

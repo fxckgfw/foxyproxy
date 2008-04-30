@@ -197,6 +197,7 @@ function _updateView() {
         case "patternTypeCol":return foxyproxy.getMessage(proxy.matches[row].isRegEx ? "foxyproxy.regex.label" : "foxyproxy.wildcard.label");
         case "blackCol":return foxyproxy.getMessage(proxy.matches[row].isBlackList ? "foxyproxy.blacklist.label" : "foxyproxy.whitelist.label");
         case "caseSensitiveCol":return foxyproxy.getMessage(proxy.matches[row].caseSensitive ? "yes" : "no");
+        case "tempCol":return foxyproxy.getMessage(proxy.matches[row].temp ? "yes" : "no");
       }
     },
     setCellValue: function(row, col, val) {proxy.matches[row].enabled = val;},

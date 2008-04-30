@@ -45,10 +45,22 @@
   &foxyproxy.quickadd.desc2;
 </description>
 
+<hbox>
 <checkbox id="enabled" observes="notSetupMode"
   label="&foxyproxy.enabled.label;"
   accesskey="&foxyproxy.enabled.accesskey;"
   tooltiptext="&foxyproxy.enabled.tooltip;"/>
+
+<checkbox id="temp" observes="notSetupMode"
+  label="&foxyproxy.temp.label;"
+  accesskey="&foxyproxy.temp.accesskey;"
+  tooltiptext="&foxyproxy.temp.tooltip;"/> 
+   
+<toolbarbutton class="foxyproxy-ref"
+  popup="tempPopup"
+  tooltiptext="&foxyproxy.whatsthis;"/> 
+</hbox>
+  
 <groupbox>
   
 <grid>
@@ -65,7 +77,6 @@
         label="&foxyproxy.quickadd.notify.label;"
         accesskey="&foxyproxy.quickadd.notify.accesskey;"
         tooltiptext="&foxyproxy.quickadd.notify.tooltip;"/>
-      <spacer/>  
     </row>
     <row align="center">						
 			<checkbox id="prompt"
@@ -81,8 +92,7 @@
         tooltiptext="&foxyproxy.whatsthis;"/>
       <toolbarbutton id="tbaa" class="foxyproxy-ref"
         popup="notifyWhenCanceledPopupAutoAdd" observes="autoAddMode"
-        tooltiptext="&foxyproxy.whatsthis;"/>        
-      <spacer/>        
+        tooltiptext="&foxyproxy.whatsthis;"/>    
     </row>
 	</rows>
 </grid>
@@ -167,6 +177,7 @@
       &foxyproxy.autoadd.notify.whencanceled.label2;</description>
     </vbox>
   </popup>    
+  <popup id="tempPopup"/>
 </popupset>
 
 <broadcasterset>

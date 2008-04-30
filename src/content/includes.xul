@@ -289,7 +289,7 @@
           style="color: blue; cursor: pointer; margin-left: -0.5em;"
           tooltiptext="&foxyproxy.whitelist.tooltip;"
           class="text-link"
-          onclick="fpc.openAndReuseOneTabPerURL('http://en.wikipedia.org/wiki/Whitelist');"/>
+          onclick="fpclocal.openAndReuseOneTabPerURL('http://en.wikipedia.org/wiki/Whitelist');"/>
         <label value="&foxyproxy.whitelist.description.label;"/>
         <toolbarbutton class="foxyproxy-ref" popup="wbdesc" tooltiptext="&foxyproxy.wildcard.reference.tooltip;"/>       
       </row>
@@ -301,7 +301,7 @@
         style="margin-left: -0.5em;"
         tooltiptext="&foxyproxy.blacklist.tooltip;"
         class="text-link"
-        onclick="fpc.openAndReuseOneTabPerURL('http://en.wikipedia.org/wiki/Blacklist');"/>
+        onclick="fpclocal.openAndReuseOneTabPerURL('http://en.wikipedia.org/wiki/Blacklist');"/>
       <label value="&foxyproxy.blacklist.description.label;"/>        
       <spacer/>
     </row>
@@ -321,7 +321,7 @@
         <label value="&foxyproxy.wildcard.label;"
           style="margin-left: -0.5em;"
           class="text-link"
-          onclick="fpc.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/patterns.html#wildcards');"
+          onclick="fpclocal.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/patterns.html#wildcards');"
           tooltiptext="&foxyproxy.wildcard.tooltip;"/>
         <label value="&foxyproxy.wildcard.example.label;"/>                                            
       </row>
@@ -332,18 +332,25 @@
         <label value="&foxyproxy.regex.label;"
           style="margin-left: -0.5em;"
           class="text-link"
-          onclick="fpc.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/patterns.html#regex');"
+          onclick="fpclocal.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/patterns.html#regex');"
           tooltiptext="&foxyproxy.regex.tooltip;"/> 
         <label value="&foxyproxy.regex.example.label;"/>       
         <spacer/>      
       </row>
     </rows>
     </grid>
- </groupbox>
-  <popupset>
-    <popup id="wbdesc">
-      <description class="foxyproxy-border" style="max-width: 30em; height: 8em; text-align: justify; margin: .1em; padding: .5em;">&foxyproxy.whiteblack.description.label;</description>
-    </popup>
-  </popupset> 
+</groupbox>
+<popupset>
+  <popup id="wbdesc">
+    <description class="foxyproxy-border" style="max-width: 30em; height: 8em; text-align: justify; margin: .1em; padding: .5em;">&foxyproxy.whiteblack.description.label;</description>
+  </popup>
+  <popup id="tempPopup"
+    style="height: &foxyproxy.temp.popup.height;; width: &foxyproxy.temp.popup.width;;">
+    <vbox class="foxyproxy-border">
+    <description class="foxyproxy-tooltip">
+      &foxyproxy.temp.popup.label;</description>
+    </vbox>
+  </popup>     
+</popupset> 
 </radiogroup>
 </overlay>

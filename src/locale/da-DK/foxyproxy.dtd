@@ -260,8 +260,11 @@
 <!ENTITY foxyproxy.autoadd.reload.accesskey "G">
 <!ENTITY foxyproxy.autoadd.reload.tooltip "Genindlæs automatisk siden efter sitet er blevet tilføjet til proxien">
 <!ENTITY foxyproxy.autoadd.notify.label "Gør mig opmærksom på når AutoTilføj er blevet udløst">
-<!ENTITY foxyproxy.autoadd.notify.accesskey "N">
 <!ENTITY foxyproxy.autoadd.notify.tooltip "Informerer dig om når en side er blokeret og URL-mønsteret er blevet tilføjet til en proxy">
+<!ENTITY foxyproxy.autoadd.notify.tooltip2 "Display a popup when AutoAdd is activated">
+<!ENTITY foxyproxy.autoadd.notify.whencanceled.label "Notify me when AutoAdd is canceled">
+<!ENTITY foxyproxy.autoadd.notify.whencanceled.label2 "AutoAdd is automatically canceled when the URL in the address bar already matches a whitelist pattern in the AutoAdd proxy. In this way duplicate patterns, which can clutter your configuration, are prevented. This setting does not enable/disable cancelation; rather, it toggles notification when cancelation occurs.">
+<!ENTITY foxyproxy.autoadd.notify.whencanceled.tooltip "Display a popup when AutoAdd is activated but canceled">
 <!ENTITY foxyproxy.graphics "Grafisk design og biller lavet af">
 <!ENTITY foxyproxy.website "Hjemmeside lavet af">
 <!ENTITY foxyproxy.contributions "Bidrag til systemet af">

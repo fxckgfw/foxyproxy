@@ -260,8 +260,11 @@
 <!ENTITY foxyproxy.autoadd.reload.accesskey "O">
 <!ENTITY foxyproxy.autoadd.reload.tooltip "Automaticky obnoví stránku po přidání do proxy">
 <!ENTITY foxyproxy.autoadd.notify.label "Informovat mě pokud se provede automatické přidání">
-<!ENTITY foxyproxy.autoadd.notify.accesskey "I">
 <!ENTITY foxyproxy.autoadd.notify.tooltip "Informuje uživatele pokud je stránka zablokována a URL vzor je přidaný do proxy">
+<!ENTITY foxyproxy.autoadd.notify.tooltip2 "Display a popup when AutoAdd is activated">
+<!ENTITY foxyproxy.autoadd.notify.whencanceled.label "Notify me when AutoAdd is canceled">
+<!ENTITY foxyproxy.autoadd.notify.whencanceled.label2 "AutoAdd is automatically canceled when the URL in the address bar already matches a whitelist pattern in the AutoAdd proxy. In this way duplicate patterns, which can clutter your configuration, are prevented. This setting does not enable/disable cancelation; rather, it toggles notification when cancelation occurs.">
+<!ENTITY foxyproxy.autoadd.notify.whencanceled.tooltip "Display a popup when AutoAdd is activated but canceled">
 <!ENTITY foxyproxy.graphics "Grafický design a obrázky">
 <!ENTITY foxyproxy.website "Webová stránka">
 <!ENTITY foxyproxy.contributions "Příspěvky">

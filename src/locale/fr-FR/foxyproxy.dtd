@@ -260,8 +260,11 @@
 <!ENTITY foxyproxy.autoadd.reload.accesskey "R">
 <!ENTITY foxyproxy.autoadd.reload.tooltip "Recharger automatiquement la page après l&apos;ajout du motif au proxy">
 <!ENTITY foxyproxy.autoadd.notify.label "M&apos;avertir lorsque l&apos;AutoAjout est activé">
-<!ENTITY foxyproxy.autoadd.notify.accesskey "v">
 <!ENTITY foxyproxy.autoadd.notify.tooltip "Vous informe lorsqu&apos;une page est bloquée et que le motif de correspondance est ajouté à un proxy">
+<!ENTITY foxyproxy.autoadd.notify.tooltip2 "Afficher une fenêtre popup lorsque l&apos;AutoAjout est activé">
+<!ENTITY foxyproxy.autoadd.notify.whencanceled.label "M&apos;avertir lorsque l&apos;AutoAjout est annulé">
+<!ENTITY foxyproxy.autoadd.notify.whencanceled.label2 "L&apos;AutoAjout est automatiquement annulé lorsque l&apos;URL dans la barre d&apos;adresse correspond déjà à un modèle de la liste blanche dans le proxy d&apos;AutoAjout. Ainsi, les modèles dupliqués, qui peuvent désorganiser votre configuration, sont évités. Ce paramètre n&apos;active, ni ne désactive l&apos;annulation mais active / désactive la notification lorsqu&apos;il y a annulation.">
+<!ENTITY foxyproxy.autoadd.notify.whencanceled.tooltip "Afficher une fenêtre popup lorsque l&apos;AutoAjout est activé mais annulé">
 <!ENTITY foxyproxy.graphics "Graphisme et images par">
 <!ENTITY foxyproxy.website "Site Web par">
 <!ENTITY foxyproxy.contributions "Contributions par">

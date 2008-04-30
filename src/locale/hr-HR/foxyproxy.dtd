@@ -260,8 +260,11 @@
 <!ENTITY foxyproxy.autoadd.reload.accesskey "č">
 <!ENTITY foxyproxy.autoadd.reload.tooltip "Ponovno učitava stranicu nakon što je dodana u proxy">
 <!ENTITY foxyproxy.autoadd.notify.label "Obavijesti me ako je pokrenuto Automatsko dodavanje">
-<!ENTITY foxyproxy.autoadd.notify.accesskey "m">
 <!ENTITY foxyproxy.autoadd.notify.tooltip "Obaviještava Vas kada je stranica blokirana i primjer web stranice dodan u proxy">
+<!ENTITY foxyproxy.autoadd.notify.tooltip2 "Display a popup when AutoAdd is activated">
+<!ENTITY foxyproxy.autoadd.notify.whencanceled.label "Notify me when AutoAdd is canceled">
+<!ENTITY foxyproxy.autoadd.notify.whencanceled.label2 "AutoAdd is automatically canceled when the URL in the address bar already matches a whitelist pattern in the AutoAdd proxy. In this way duplicate patterns, which can clutter your configuration, are prevented. This setting does not enable/disable cancelation; rather, it toggles notification when cancelation occurs.">
+<!ENTITY foxyproxy.autoadd.notify.whencanceled.tooltip "Display a popup when AutoAdd is activated but canceled">
 <!ENTITY foxyproxy.graphics "Grafički dizajn i slike">
 <!ENTITY foxyproxy.website "Web stranica">
 <!ENTITY foxyproxy.contributions "Doprinosi">

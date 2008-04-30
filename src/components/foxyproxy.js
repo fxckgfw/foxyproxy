@@ -528,6 +528,16 @@ biesi>	passing it the appropriate proxyinfo
     }
     return matchingProxy;
   },
+  
+  getIPAddresses : function() {
+    // Thanks, PasteIP extension
+    var DNSService = CC['@mozilla.org/network/dns-service;1'].getService(CI.nsIDNSService);
+    var DNSRecord = DNSService.resolve(DNSService.myHostName, true);
+    var allIPs = [];
+    for (var i=0; DNSRecord.hasMore(); i++)
+      allIPs[i] = DNSRecord.getNextAddrAsString();
+    return allIPs;
+  },  
 
   restart : function() {
 		CC["@mozilla.org/toolkit/app-startup;1"].getService(CI.nsIAppStartup)

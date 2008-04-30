@@ -236,7 +236,7 @@
 <!ENTITY foxyproxy.tab.autoadd.label "Autododawanie">
 <!ENTITY foxyproxy.tab.autoadd.accesskey "A">
 <!ENTITY foxyproxy.tab.autoadd.tooltip "Zarządzanie ustawieniami automatycznego dodawania">
-<!ENTITY foxyproxy.autoadd.description "Określa wzorzec, który identyfikuje zablokowane witryny. Gdy wzorzec zostanie znaleziony na stronie i pasuje do określonego adresu URL zostanie automatycznie dodany do proxy i opcjonalnie odświeżony. Zabezpiecza to przed prewencyjnym identyfikowaniem wszystkich zablokowanych witryn.">
+<!ENTITY foxyproxy.autoadd.description "Określa wzorzec, który identyfikuje zablokowane witryny. Gdy wzorzec zostanie znaleziony na stronie i pasuje do określonego adresu URL zostanie automatycznie dodany do proxy i opcjonalnie odświeżony. Zabezpiecza to przed identyfikowaniem wszystkich zablokowanych witryn.">
 <!ENTITY foxyproxy.autoadd.pattern.label "Wzorzec do identyfikacji zablokowanych witryn">
 <!ENTITY foxyproxy.autoadd.pattern.accesskey "W">
 <!ENTITY foxyproxy.autoadd.pattern.tooltip "Wzorzec, który identyfikuje zablokowane witryny">
@@ -260,8 +260,11 @@
 <!ENTITY foxyproxy.autoadd.reload.accesskey "D">
 <!ENTITY foxyproxy.autoadd.reload.tooltip "Automatycznie odświeża stronę po dodaniu jej do proxy">
 <!ENTITY foxyproxy.autoadd.notify.label "Informuj o uaktywnieniu autododawania">
-<!ENTITY foxyproxy.autoadd.notify.accesskey "I">
 <!ENTITY foxyproxy.autoadd.notify.tooltip "Informuje, gdy strona jest zablokowana i wzorzec adresu URL jest dodany do proxy">
+<!ENTITY foxyproxy.autoadd.notify.tooltip2 "Wyświetla powiadomienie, gdy autododawanie jest aktywne">
+<!ENTITY foxyproxy.autoadd.notify.whencanceled.label "Powiadamiaj, gdy autododawanie zostanie wyłączone">
+<!ENTITY foxyproxy.autoadd.notify.whencanceled.label2 "Autododawanie jest automatycznie anulowane, gdy URL wprowadzony do paska adresu odpowiada wzorcowi znajdującemu się na liście dozwolonych, automatycznie dodanych proxy. Dzięki temu unika się powielania wzorców i zaśmiecania listy. Ta opcja nie wyłącza/włącza anulowania, raczej przełącza w tryb powiadamiania, gdy anulowanie wystąpi.">
+<!ENTITY foxyproxy.autoadd.notify.whencanceled.tooltip "Wyświetlaj powiadomienie, gdy autododawanie jest aktywne, ale anulowane">
 <!ENTITY foxyproxy.graphics "Grafika wykonana przez:">
 <!ENTITY foxyproxy.website "Strona wykonana przez:">
 <!ENTITY foxyproxy.contributions "Współtwórcy:">
@@ -284,7 +287,7 @@
 <!ENTITY foxyproxy.pactip5.label "tutaj">
 <!ENTITY foxyproxy.pactip6.label ". Specjalne ciągi znaków w adresie URL relative:// są zamieniane odpowiadającymi im wartościami. Na przykład: relative://ProfD/pacs/proxy3.pac wskazuje na plik proxy3.pac umieszczony w podkatalogu">
 <!ENTITY foxyproxy.pactip7.label "profilu Firefoksa">
-<!ENTITY foxyproxy.pactip8.label "o nazwie pacs/. W Portable Firefox dla Windows katalog profilu Firefoksa jest zawsze ścieżką względną ponieważ litera napędu może zmieniać się w zależności od komputera. Proszę zwrócić uwagę, że specjalne ciągi znaków (ProfD, Home, TempD, itd.) uwzględniają wielkość liter!">
+<!ENTITY foxyproxy.pactip8.label "o nazwie pacs/. W Portable Firefox dla Windows katalog profilu Firefoksa jest zawsze ścieżką względną, ponieważ litera napędu może zmieniać się w zależności od komputera. Proszę zwrócić uwagę, że specjalne ciągi znaków (ProfD, Home, TempD, itd.) uwzględniają wielkość liter!">
 <!ENTITY foxyproxy.contextmenu.label "Wyświetl element &quot;FoxyProxy&quot; w menu kontekstowym">
 <!ENTITY foxyproxy.contextmenu.accesskey "T">
 <!ENTITY foxyproxy.contextmenu.tooltip "Wyświetla element &quot;FoxyProxy&quot; w menu kontekstowym">
@@ -426,7 +429,7 @@
 <!ENTITY foxyproxy.newGUI.popup.height "280px">
 <!ENTITY foxyproxy.newGUI.popup.width "450px">
 <!ENTITY foxyproxy.newGUI1.label "Stare okno ustawień proxy FoxyProxy bazowało na oknie ustawień połączenia z internetem Firefoksa, które było bardzo podobne do okna ustawień proxy w archaicznej już przeglądarce Mosaic 2.1.1 z 1996 roku. Limitowana zdolność kierowania ruchem przez protokoły stanowiła poważny problem tych okien. Nowoczesne przeglądarki takie jak Firefox obsługują dużo więcej protokołów niż tylko HTTP, SSL, FTP, i GOPHER. Te okna dialogowe stały się niepraktyczne, bo uniemożliwiały umieszczenie w nich wszystkich dostępnych protokołów.">
-<!ENTITY foxyproxy.newGUI2.label "Ponieważ FoxyProxy potrafi kierować ruchem za pomocą protokołów zawierających wzorce oparte na wieloznacznikach i wyrażeniach regularnych, wyszczególnianie w tych oknach protokołów jest zbyteczne. W wersji FoxyProxy 2.5 lista tych protokołów została usunięta z interfejsu ustawień proxy. Nie ogranicza to w żaden sposób funkcjonalności, a czyni interfejs prostszym. Jeśli potrzebujesz kierować ruchem za pomocą protokołów zdefiniuj dozwolone i niedozwolone wzorce zwracając szczególną uwagę na część wzorca zawierającą schemat/protokół (np. ftp://*.yahoo.com/*, *://leahscape.com/*, itd.)">
+<!ENTITY foxyproxy.newGUI2.label "Ponieważ FoxyProxy potrafi kierować ruchem za pomocą protokołów zawierających wzorce oparte na wieloznacznikach i wyrażeniach regularnych, wyszczególnianie w tych oknach protokołów jest zbyteczne. W wersji FoxyProxy 2.5 lista tych protokołów została usunięta z interfejsu ustawień proxy. Nie ogranicza to w żaden sposób funkcjonalności, a czyni interfejs prostszym. Jeśli potrzebujesz kierować ruchem za pomocą protokołów, zdefiniuj dozwolone i niedozwolone wzorce zwracając szczególną uwagę na część wzorca zawierającą schemat/protokół (np. ftp://*.yahoo.com/*, *://leahscape.com/*, itd.)">
 <!ENTITY foxyproxy.newGUI4.label "Kliknij tutaj, aby uzyskać więcej informacji.">
 <!ENTITY foxyproxy.error.msg.label "Informacja o błędzie">
 <!ENTITY foxyproxy.pac.result.label "Wynik PAC">
@@ -443,4 +446,4 @@
 <!ENTITY foxyproxy.statusbarwidth.accesskey "O">
 <!ENTITY foxyproxy.statusbarwidth.tooltip "Ogranicza szerokość opisu trybu FoxyProxy na pasku stanu">
 <!ENTITY foxyproxy.pixels "px">
-<!ENTITY foxyproxy.unlimited.label "[0: dopasowuje się do zawartości] ">
+<!ENTITY foxyproxy.unlimited.label "[0: dopasowuje się do zawartości]">

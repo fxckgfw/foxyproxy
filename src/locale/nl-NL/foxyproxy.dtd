@@ -260,8 +260,11 @@
 <!ENTITY foxyproxy.autoadd.reload.accesskey "R">
 <!ENTITY foxyproxy.autoadd.reload.tooltip "De pagina automatisch herladen nadat het patroon is toegevoegd aan een proxy">
 <!ENTITY foxyproxy.autoadd.notify.label "Bericht geven wanneer Automatisch toevoegen wordt geactiveerd">
-<!ENTITY foxyproxy.autoadd.notify.accesskey "B">
 <!ENTITY foxyproxy.autoadd.notify.tooltip "Informeert u wanneer een pagina wordt geblokkeerd en het URL patroon wordt toegevoegd aan een proxy">
+<!ENTITY foxyproxy.autoadd.notify.tooltip2 "Pop-upvenster weergeven wanneer Automatisch toevoegen wordt geactiveerd">
+<!ENTITY foxyproxy.autoadd.notify.whencanceled.label "Mij bericht geven wanneer Automatisch toevoegen wordt geannuleerd">
+<!ENTITY foxyproxy.autoadd.notify.whencanceled.label2 "Automatisch toevoegen wordt automatisch geannuleerd wanneer de URL in de locatiebalk al overeenkomt met een patroon op de witte lijst in de Automatisch toevoegen-proxy. Op deze manier worden dubbele patronen, die uw instellingen door de war kunnen gooien, voorkomen. Deze instelling schakelt annuleren niet in of uit; in plaats daarvan wisselt het notificatie wanneer annulering gebeurt.">
+<!ENTITY foxyproxy.autoadd.notify.whencanceled.tooltip "Pop-upvenster weergeven wanneer Automatisch toevoegen wordt geactiveerd maar geannuleerd">
 <!ENTITY foxyproxy.graphics "Grafisch ontwerp en afbeeldingen door">
 <!ENTITY foxyproxy.website "Website door">
 <!ENTITY foxyproxy.contributions "Bijdragen van">

@@ -260,8 +260,11 @@
 <!ENTITY foxyproxy.autoadd.reload.accesskey "R">
 <!ENTITY foxyproxy.autoadd.reload.tooltip "Recarga la página automáticamente una vez que el patrón se haya añadido al proxy">
 <!ENTITY foxyproxy.autoadd.notify.label "Notificarme cuando se active AutoAdd">
-<!ENTITY foxyproxy.autoadd.notify.accesskey "N">
 <!ENTITY foxyproxy.autoadd.notify.tooltip "Informa cuando una página es bloqueada &amp; y el patrón de la dirección se añade al proxy">
+<!ENTITY foxyproxy.autoadd.notify.tooltip2 "Display a popup when AutoAdd is activated">
+<!ENTITY foxyproxy.autoadd.notify.whencanceled.label "Notify me when AutoAdd is canceled">
+<!ENTITY foxyproxy.autoadd.notify.whencanceled.label2 "AutoAdd is automatically canceled when the URL in the address bar already matches a whitelist pattern in the AutoAdd proxy. In this way duplicate patterns, which can clutter your configuration, are prevented. This setting does not enable/disable cancelation; rather, it toggles notification when cancelation occurs.">
+<!ENTITY foxyproxy.autoadd.notify.whencanceled.tooltip "Display a popup when AutoAdd is activated but canceled">
 <!ENTITY foxyproxy.graphics "Diseño gráfico e imágenes de">
 <!ENTITY foxyproxy.website "Página web por">
 <!ENTITY foxyproxy.contributions "Colaboración de">

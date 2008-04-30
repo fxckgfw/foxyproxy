@@ -28,7 +28,7 @@ function Match() {
 	this.name = this.pattern = "";
     // Assignment order is right-to-left. this.caseSensitive is used instead of this._caseSensitive so that
     // the final assignment forces the regex to be built.
-	this.caseSensitive = this._isMultiLine = this._isRegEx = this.isBlackList = false;
+	this.temporary = this.caseSensitive = this._isMultiLine = this._isRegEx = this.isBlackList = false;
 	this.enabled = true;
 }
 
@@ -70,8 +70,8 @@ Match.prototype = {
 
   get caseSensitive() {
     return this._caseSensitive;
-  },  
-
+  },
+  
   buildRegEx : function() {
     var pat = this._pattern;
     if (!this._isRegEx) {
@@ -102,20 +102,23 @@ Match.prototype = {
 	  this.isBlackList = node.hasAttribute("isBlackList") ? node.getAttribute("isBlackList") == "true" : false; // new for 2.0
 	  this.enabled = node.hasAttribute("enabled") ? node.getAttribute("enabled") == "true" : true; // new for 2.0
 	  this._isMultiLine = node.hasAttribute("isMultiLine") ? node.getAttribute("isMultiLine") == "true" : false; // new for 2.0
-      // Set this.caseSensitive instead of this._caseSensitive because the latter creates the regexp.
-      this.caseSensitive = node.hasAttribute("caseSensitive") ? node.getAttribute("caseSensitive") == "true" : false; // new for 2.6.3
+    // Set this.caseSensitive instead of this._caseSensitive because the latter creates the regexp.
+    this.caseSensitive = node.hasAttribute("caseSensitive") ? node.getAttribute("caseSensitive") == "true" : false; // new for 2.6.3
+    // We don't deserialize this.temporary because it's not serialized
   },
 
   toDOM : function(doc) {
-    var matchElem = doc.createElement("match");
-    matchElem.setAttribute("enabled", this.enabled);
-    matchElem.setAttribute("name", this.name);
-    matchElem.setAttribute("pattern", this._pattern);
-    matchElem.setAttribute("isRegEx", this.isRegEx);
-    matchElem.setAttribute("isBlackList", this.isBlackList);
-    matchElem.setAttribute("isMultiLine", this._isMultiLine);
-    matchElem.setAttribute("caseSensitive", this._caseSensitive);    
-    return matchElem;
+    if (!this._temporary) { // new for 2.8
+      var matchElem = doc.createElement("match");
+      matchElem.setAttribute("enabled", this.enabled);
+      matchElem.setAttribute("name", this.name);
+      matchElem.setAttribute("pattern", this._pattern);
+      matchElem.setAttribute("isRegEx", this.isRegEx);
+      matchElem.setAttribute("isBlackList", this.isBlackList);
+      matchElem.setAttribute("isMultiLine", this._isMultiLine);
+      matchElem.setAttribute("caseSensitive", this._caseSensitive);    
+      return matchElem;
+    }
   },
 	classID: Components.ID("{2b49ed90-f194-11da-8ad9-0800200c9a66}"),
 	contractID: "@leahscape.org/foxyproxy/match;1",

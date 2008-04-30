@@ -3,6 +3,7 @@ function onLoad() {
   var inn = window.arguments[0].inn;  
   fpc = Components.classes["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject;
   document.getElementById("enabled").checked = inn.enabled;
+  document.getElementById("temp").checked = inn.temp;
   document.getElementById("reload").checked = inn.reload;
   document.getElementById("prompt").checked = inn.prompt;
   document.getElementById("notify").checked = inn.notify;
@@ -31,7 +32,7 @@ function onLoad() {
     var fp = Components.classes["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;
     window.document.title = fp.getMessage("foxyproxy.tab.autoadd.label");
     document.getElementById("quickAddMode").setAttribute("hidden", true);
-    // Show AutoAdd specifies
+    // Show AutoAdd specifics
     var e = document.getElementById("notify");
     e.label = fp.getMessage("foxyproxy.autoadd.notify.label");
     e.setAttribute("tooltiptext", fp.getMessage("foxyproxy.autoadd.notify.tooltip2"));
@@ -49,6 +50,7 @@ function onOK() {
   var p = window.arguments[0].inn.setupMode || fpc.validatePattern(window, isRegEx, document.getElementById("generatedPattern").value);
   if (p) {
     window.arguments[0].out = {enabled:document.getElementById("enabled").checked,
+      temp:document.getElementById("temp").checked,
       reload:document.getElementById("reload").checked,
       notify:document.getElementById("notify").checked,
       prompt:document.getElementById("prompt").checked,

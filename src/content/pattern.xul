@@ -27,20 +27,33 @@
 <grid flex="1">
   <columns>
     <column/>
-    <column flex="1"/>    
+    <column flex="1"/>
+    <column/>
+    <column/>    
   </columns>   
   <rows>
     <row align="center">
       <checkbox id="enabled" label="&foxyproxy.enabled.label;" accesskey="&foxyproxy.enabled.accesskey;"
         tooltiptext="&foxyproxy.enabled.tooltip;"/>
+      <hbox align="center">
+        <checkbox id="temp"
+          label="&foxyproxy.temp.label;"
+          accesskey="&foxyproxy.temp.accesskey;"
+          tooltiptext="&foxyproxy.temp.tooltip;"/> 
+        <toolbarbutton class="foxyproxy-ref"
+          popup="tempPopup"
+          tooltiptext="&foxyproxy.whatsthis;"/> 
+      </hbox>
       <spacer/>
+      <spacer/>        
     </row>  
-    <hbox align="center">
+    <row align="center">
         <label value="&foxyproxy.pattern.name.label;" control="name"
             tooltiptext="&foxyproxy.pattern.name.tooltip;" accesskey="&foxyproxy.pattern.name.accesskey;"/>  
-        <textbox id="name" tooltiptext="&foxyproxy.pattern.name.tooltip;" accesskey="&foxyproxy.pattern.name.accesskey;"
-            style="margin-left: -0.03em; min-width: 35em;"/>
-    </hbox>    
+        <textbox id="name" tooltiptext="&foxyproxy.pattern.name.tooltip;" accesskey="&foxyproxy.pattern.name.accesskey;"/>
+        <spacer/>
+        <spacer/>        
+    </row>    
     <row align="center">
       <label value="&foxyproxy.url.pattern.label;" tooltiptext="&foxyproxy.url.pattern.tooltip;" accesskey="&foxyproxy.url.pattern.accesskey;" control="pattern"/>
       <textbox id="pattern" tooltiptext="&foxyproxy.url.pattern.tooltip;" accesskey="&foxyproxy.url.pattern.accesskey;"/>           
@@ -54,5 +67,6 @@
 </grid>
 <popupset>
   <popup id="wildcardReferencePopup"/>
+  <popup id="tempPopup"/>
 </popupset>
 </dialog>

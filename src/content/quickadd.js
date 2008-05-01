@@ -46,7 +46,6 @@ function onLoad() {
 
 function onOK() {   
   var isRegEx = document.getElementById("matchtype").value=="r";
-  alert(document.getElementById("generatedPattern").value);
   var p = window.arguments[0].inn.setupMode || fpc.validatePattern(window, isRegEx, document.getElementById("generatedPattern").value);
   if (p) {
     window.arguments[0].out = {enabled:document.getElementById("enabled").checked,

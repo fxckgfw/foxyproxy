@@ -59,6 +59,7 @@
 <toolbarbutton class="foxyproxy-ref"
   popup="tempPopup"
   tooltiptext="&foxyproxy.whatsthis;"/> 
+  
 </hbox>
   
 <groupbox>

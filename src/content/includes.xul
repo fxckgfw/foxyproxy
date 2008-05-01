@@ -18,7 +18,7 @@
 <script>
   // ensure fpc is defined for use within this file
   var fpclocal = Components.classes["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject;
-</script>
+</script>   
 
 <!-- begin: thanks to DownThemAll -->
 <popup id="wildcardReferencePopup" position="before_end" style="height: &foxyproxy.wildcard.reference.popup.height;;">
@@ -344,13 +344,12 @@
   <popup id="wbdesc">
     <description class="foxyproxy-border" style="max-width: 30em; height: 8em; text-align: justify; margin: .1em; padding: .5em;">&foxyproxy.whiteblack.description.label;</description>
   </popup>
-  <popup id="tempPopup"
-    style="height: &foxyproxy.temp.popup.height;; width: &foxyproxy.temp.popup.width;;">
-    <vbox class="foxyproxy-border">
-    <description class="foxyproxy-tooltip">
-      &foxyproxy.temp.popup.label;</description>
-    </vbox>
-  </popup>     
 </popupset> 
 </radiogroup>
+
+<popup id="tempPopup">
+  <description class="foxyproxy-border" style="max-width: 30em; height: 8em; text-align: justify; margin: .1em; padding: .5em;">
+    &foxyproxy.temp.popup.label;</description>
+</popup>
+
 </overlay>

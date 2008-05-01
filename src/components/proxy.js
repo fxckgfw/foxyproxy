@@ -107,7 +107,7 @@ Proxy.prototype = {
 
     var matchesElem = doc.createElement("matches");
     e.appendChild(matchesElem);
-    for (var j=0, m; j<this.matches.length && m=this.matches[j]; j++)
+    for (var j=0, m; j<this.matches.length && (m=this.matches[j]); j++)
       if (!m.temp) matchesElem.appendChild(m.toDOM(doc));
     e.appendChild(this.autoconf.toDOM(doc));
     e.appendChild(this.manualconf.toDOM(doc));

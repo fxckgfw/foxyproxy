@@ -94,7 +94,11 @@ var foxyproxy = {
 
   onPageLoad : function(evt) {
 	  var doc = evt.originalTarget; // doc is document that triggered "onload" event
-	  (doc && doc.location && foxyproxy.fp.autoadd.perform(doc.location.href, doc.documentElement.innerHTML) && foxyproxy.fp.writeSettings());
+	  if (doc && doc.location) {
+      foxyproxy.fp.autoadd.perform(doc.location.href, doc.documentElement.innerHTML);
+      foxyproxy.fp.autoadd.reload && doc.location.reload(); // reload page if necessary
+      foxyproxy.fp.writeSettings();
+    }
   },
 
 
@@ -295,11 +299,11 @@ var foxyproxy = {
   },
 
   checkPageLoad : function() {
-  	var e = this.fp.mode != "disabled" && this.fp.autoadd.enabled;
+  	var listen = this.fp.mode != "disabled" && this.fp.autoadd.enabled;
     var appcontent = document.getElementById("appcontent");
     if (appcontent) {
 			appcontent.removeEventListener("load", this.onPageLoad, true); // safety
-	    if (e) {
+	    if (listen) {
 	 	    appcontent.addEventListener("load", this.onPageLoad, true);
 		 	}
 			else {

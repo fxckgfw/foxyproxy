@@ -34,5 +34,5 @@ function onLoad() {
   document.getElementById("enabled").checked = inn.enabled;
   document.getElementById("caseSensitive").checked = inn.caseSensitive;
   document.getElementById("temp").checked = inn.temp;  
-  sizeToContent();
+  setTimeout(function(){sizeToContent();}, 0);
 }

@@ -39,7 +39,7 @@
   &foxyproxy.quickadd.desc1;
   <html:a
     style="color: blue; text-decoration: underline; cursor: pointer;"
-    onclick="fpc.openAndReuseOneTabPerURL('http://mozilla.dorando.at/readme.html');">
+    onclick="fpc.openAndReuseOneTabPerURL('http://forums.mozillazine.org/viewtopic.php?t=72994');">
     &foxyproxy.keyconfig.label;
   </html:a>
   &foxyproxy.quickadd.desc2;

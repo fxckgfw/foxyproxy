@@ -41,7 +41,7 @@ function onLoad() {
     e.setAttribute("tooltiptext", fp.getMessage("foxyproxy.autoadd.notify.whencanceled.tooltip")); 
     e = document.getElementById("notifyWhenCanceledPopup");
   }   
-  sizeToContent();  
+  setTimeout(function(){sizeToContent();}, 0);  
 }
 
 function onOK() {   

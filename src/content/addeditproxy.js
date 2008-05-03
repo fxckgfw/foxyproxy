@@ -53,7 +53,7 @@ function onLoad() {
   document.getElementById("autoConfReloadFreq").value = proxy.autoconf.reloadFreqMins;
 
   _updateView();
-  sizeToContent();
+  setTimeout(function(){sizeToContent();}, 0);
 }
 
 function trim(s) {

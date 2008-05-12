@@ -12,8 +12,7 @@
 // See http://forums.mozillazine.org/viewtopic.php?t=308369
 
 // Don't const the next line anymore because of the generic reg code
-var CI = Components.interfaces, CC = Components.classes, CR = Components.results;
-var fp = null;
+var CI = Components.interfaces, CC = Components.classes, CR = Components.results, fp;
 function gQueryInterface(aIID) {
   if(!aIID.equals(CI.nsISupports) && !aIID.equals(CI.nsISupportsWeakReference))
     throw CR.NS_ERROR_NO_INTERFACE;
@@ -21,10 +20,9 @@ function gQueryInterface(aIID) {
 }
 
 ///////////////////////////// AutoConf class ///////////////////////
-function AutoConf(owner, node) {
+function AutoConf(owner, node, fpp) {
   this.wrappedJSObject = this;
-  !fp &&
-  	(fp = CC["@leahscape.org/foxyproxy/service;1"].getService(CI.nsISupports).wrappedJSObject);
+  if (!fpp) fp = fpp;    
   this.timer = CC["@mozilla.org/timer;1"].createInstance(CI.nsITimer);
   this.owner = owner;
   this.fromDOM(node);

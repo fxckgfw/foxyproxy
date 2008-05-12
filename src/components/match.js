@@ -13,7 +13,6 @@
 
 // See http://forums.mozillazine.org/viewtopic.php?t=308369
 var CI = Components.interfaces, CC = Components.classes, CR = Components.results;
-var fp = null;
 function gQueryInterface(aIID) {
   if(!aIID.equals(CI.nsISupports) && !aIID.equals(CI.nsISupportsWeakReference))
     throw CR.NS_ERROR_NO_INTERFACE;
@@ -23,11 +22,9 @@ function gQueryInterface(aIID) {
 ///////////////////////////// Match class///////////////////////
 function Match() {
   this.wrappedJSObject = this;
-  !fp &&
-  	(fp = CC["@leahscape.org/foxyproxy/service;1"].getService(CI.nsISupports).wrappedJSObject);
 	this.name = this.pattern = "";
-    // Assignment order is right-to-left. this.caseSensitive is used instead of this._caseSensitive so that
-    // the final assignment forces the regex to be built.
+  // Assignment order is right-to-left. this.caseSensitive is used instead of this._caseSensitive so that
+  // the final assignment forces the regex to be built.
 	this.temp = this.caseSensitive = this._isMultiLine = this._isRegEx = this.isBlackList = false;
 	this.enabled = true;
 }

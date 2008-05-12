@@ -8,15 +8,42 @@
   available in the LICENSE file at the root of this installation
   and also online at http://www.gnu.org/licenses/gpl.txt
 **/
-var CI = Components.interfaces, CC = Components.classes, gFP;
+var CI = Components.interfaces, CC = Components.classes;
+var formatConverter = CC["@mozilla.org/widget/htmlformatconverter;1"].
+                      createInstance(CI.nsIFormatConverter);
 const DEF_PATTERN = "*://${3}${6}/*";
 
-function SuperAdd() {}
+// load match.js
+var self;
+var fileProtocolHandler = CC["@mozilla.org/network/protocol;1?name=file"].createInstance(CI["nsIFileProtocolHandler"]);
+if ("undefined" != typeof(__LOCATION__)) {
+  // preferred way
+  self = __LOCATION__;
+}
+else {
+  self = fileProtocolHandler.getFileFromURLSpec(Components.Exception().filename);
+}
+var componentDir = self.parent; // the directory this file is in
+var loader = CC["@mozilla.org/moz/jssubscript-loader;1"].createInstance(CI["mozIJSSubScriptLoader"]);
+try {
+  var filePath = componentDir.clone();
+  filePath.append("match.js");
+  loader.loadSubScript(fileProtocolHandler.getURLSpecFromFile(filePath));
+}
+catch (e) {
+  dump("Error loading match.js\n");
+  throw(e);
+}
+
+function SuperAdd() {
+  this.match = new Match();
+  this.match.isMultiLine = true;
+}
 function QuickAdd() { SuperAdd.apply(this, arguments); }
 
 // The super class definition. QuickAdd is a subclass of SuperAdd.
 SuperAdd.prototype = {
-  owner : null,
+  fp : null,
   _reload : true,
   _enabled : false,
   _temp : false, // new for 2.8
@@ -32,77 +59,87 @@ SuperAdd.prototype = {
   _urlTemplate : DEF_PATTERN,
   _ios : CC["@mozilla.org/network/io-service;1"].getService(CI.nsIIOService),
 
-  init : function(matchName, fp) {
-  	gFP = fp;	    
-		this.match = CC["@leahscape.org/foxyproxy/match;1"].createInstance(CI.nsISupports).wrappedJSObject;
-		this.match.isMultiLine = true;
+  setName : function(matchName) {
 		this.match.name = matchName;  
   },
     
   get enabled() { return this._enabled; },
   set enabled(e) {
     this._enabled = e;
-    gFP.writeSettings();
+    this.fp.writeSettings();
     this.elemName == "autoadd" && gBroadcast(e, "foxyproxy-autoadd-toggle");
   },
 
   get temp() { return this._temp; },
   set enabled(t) {
     this._temp = t;
-    gFP.writeSettings();
+    this.fp.writeSettings();
   },
   
   get urlTemplate() { return this._urlTemplate; },
   set urlTemplate(u) {
     this._urlTemplate = u.replace(/^\s*|\s*$/g,"");
-    gFP.writeSettings();
+    this.fp.writeSettings();
   },    
 
   get reload() { return this._reload; },
   set reload(e) {
     this._reload = e;
-    gFP.writeSettings();
+    this.fp.writeSettings();
   },    
 
   get proxy() { return this._proxy; },
   set proxy(p) {
     this._proxy = p;
-    gFP.writeSettings();
+    this.fp.writeSettings();
   },    
 
   get notify() { return this._notify; },
   set notify(n) {
     this._notify = n;
-    gFP.writeSettings();
+    this.fp.writeSettings();
   },
 
   get prompt() { return this._prompt; },
   set prompt(n) {
     this._prompt = n;
-    gFP.writeSettings();
+    this.fp.writeSettings();
   },  
   
   perform : function(url, content) {
     if (this.match.pattern != "") {
     	// Does this URL already match an existing pattern for a proxy?
-    	var p = gFP.proxies.getMatches(url).proxy;
+    	var p = this.fp.proxies.getMatches(url).proxy;
       if (p.lastresort) { // no current proxies match (except the lastresort, which matches everything anyway)
-        if (this.match.pattern.regex.test(content))
+        if (this.match.pattern.regex.test(stripTags(content)))
         	return this.addPattern(this.match, url);
       }
     }
+    function stripTags(txt) {
+      var oldStr = CC["@mozilla.org/supports-string;1"].createInstance(CI.nsISupportsString);
+      oldStr.data = txt;
+      var newStr = {value: null};
+      try {
+          formatConverter.convert("text/html", oldStr, oldStr.toString().length,
+            "text/unicode", newStr, {});
+          return newStr.value.QueryInterface(CI.nsISupportsString).toString();
+      }
+      catch (e) {
+          return oldStr.toString();
+      }
+    }
   }, 
-  
+    
   addPattern : function(match, url) {
     var fpc = CC["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject;
 	  match.pattern = fpc.applyTemplate(url, this._urlTemplate, this.match.caseSensitive);
 	  this._proxy.matches.push(match);      
-    this._notify && gFP.notifier.alert(gFP.getMessage(this.notificationTitle), gFP.getMessage("superadd.url.added", [match.pattern, this._proxy.name]));
+    this._notify && this.fp.notifier.alert(this.fp.getMessage(this.notificationTitle), this.fp.getMessage("superadd.url.added", [match.pattern, this._proxy.name]));
     return match.pattern;
   },
   
   allowed : function() {
-    for (var i=0,p; i<gFP.proxies.length && (p=gFP.proxies.item(i)); i++)
+    for (var i=0,p; i<this.fp.proxies.length && (p=this.fp.proxies.item(i)); i++)
       if (p.enabled && !p.lastresort)
         return true;
     return false;
@@ -147,20 +184,20 @@ SuperAdd.prototype = {
     this._notifyWhenCanceled = gGetSafeAttrB(n, "notifyWhenCanceled", true);
     this._prompt = gGetSafeAttrB(n, "prompt", false);
     var proxyId = gGetSafeAttr(n, "proxy-id", null);
-    this.match.fromDOM(n.getElementsByTagName("match")[0]);   
-    (!this.match.name || this.match.name == "") && (this.match.name = gFP.getMessage("foxyproxy.autoadd.pattern.label"));
+    if (n) this.match.fromDOM(n.getElementsByTagName("match")[0]);
+    if (!this.match.name || this.match.name == "") this.match.name = this.fp.getMessage("foxyproxy.autoadd.pattern.label");
     this.match.isMultiLine = true; 
     var error;
     if (proxyId) {
       // Ensure it exists and is enabled and isn't "direct"
-      this._proxy = gFP.proxies.getProxyById(proxyId);
+      this._proxy = this.fp.proxies.getProxyById(proxyId);
       this._enabled && (!this._proxy || !this._proxy.enabled) && (error = true);
     }
     else if (this._enabled)
       error = true;
     if (error) {
       this._enabled = false;
-      gFP.alert(null, gFP.getMessage("superadd.error", [this.elemName]));
+      this.fp.alert(null, this.fp.getMessage("superadd.error", [this.elemName]));
     }    
   }    
 };

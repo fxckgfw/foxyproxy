@@ -14,7 +14,6 @@
 <!DOCTYPE overlay SYSTEM "chrome://foxyproxy/locale/foxyproxy.dtd">
 <dialog
   xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-  xmlns:html="http://www.w3.org/1999/xhtml"
 	id="foxyproxyquickadddlg"
   title="&foxyproxy.quickadd.label;"
   ondialogaccept="return onOK();"
@@ -33,16 +32,12 @@
 &foxyproxy.autoadd.description;
 </description>
 
-<description>
-  <observes element="notSetupMode" attribute="hidden"/>
-  <observes element="quickAddMode" attribute="hidden"/>
-  &foxyproxy.quickadd.desc1;
-  <html:a
-    style="color: blue; text-decoration: underline; cursor: pointer;"
-    onclick="fpc.openAndReuseOneTabPerURL('http://forums.mozillazine.org/viewtopic.php?t=72994');">
-    &foxyproxy.keyconfig.label;
-  </html:a>
-  &foxyproxy.quickadd.desc2;
+<description>&foxyproxy.quickadd.desc1;
+	<observes element="notSetupMode" attribute="hidden"/>
+	<observes element="quickAddMode" attribute="hidden"/>
+	<text value="&foxyproxy.keyconfig.label;" class="text-link"
+				onclick="fpc.openAndReuseOneTabPerURL('http://mozilla.dorando.at/readme.html');"/>
+				&foxyproxy.quickadd.desc2;
 </description>
 
 <hbox>
@@ -59,7 +54,6 @@
 <toolbarbutton class="foxyproxy-ref"
   popup="tempPopup"
   tooltiptext="&foxyproxy.whatsthis;"/> 
-  
 </hbox>
   
 <groupbox>
@@ -164,21 +158,18 @@
 <popupset>
   <popup id="wildcardReferencePopup"/>
   <popup id="patternTemplatePopup"/>
-  <popup id="notifyWhenCanceledPopupQuickAdd"
-    style="height: &foxyproxy.quickadd.notify.whencanceled.popup.height;; width: &foxyproxy.quickadd.notify.whencanceled.popup.width;;">
-    <vbox class="foxyproxy-border">
-    <description class="foxyproxy-tooltip">
+  <popup id="notifyWhenCanceledPopupQuickAdd">
+		<description class="foxyproxy-tooltip foxyproxy-border" width="400" height="80px">
       &foxyproxy.quickadd.notify.whencanceled.label2;</description>
-    </vbox>
   </popup>  
-  <popup id="notifyWhenCanceledPopupAutoAdd"
-    style="height: &foxyproxy.quickadd.notify.whencanceled.popup.height;; width: &foxyproxy.quickadd.notify.whencanceled.popup.width;;">
-    <vbox class="foxyproxy-border">
-    <description class="foxyproxy-tooltip">
+  <popup id="notifyWhenCanceledPopupAutoAdd">
+		<description class="foxyproxy-tooltip foxyproxy-border" width="400" height="80px">
       &foxyproxy.autoadd.notify.whencanceled.label2;</description>
-    </vbox>
   </popup>    
-  <popup id="tempPopup"/>
+  <popup id="tempPopup">
+		<description class="foxyproxy-tooltip foxyproxy-border" width="400" height="60px">
+      &foxyproxy.temp.popup.label;</description>
+  </popup>   
 </popupset>
 
 <broadcasterset>

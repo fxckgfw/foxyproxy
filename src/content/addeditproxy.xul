@@ -203,7 +203,7 @@
       <separator class="thin"/>
       <hbox flex="1">
         <tree id="urlsTree" flex="1" align="stretch" enableColumnDrag="true" seltype="single" onselect="setButtons();"
-            onclick="overlay.onTreeClick(event, this);">
+	        	onclick="overlay.onTreeClick(event, this);">
           <treecols id="treeCols" pickertooltiptext="&foxyproxy.tree.pickertooltiptext.label;">
             <treecol id="enabledCol" label="&foxyproxy.enabled.label;" type="checkbox" flex="1" persist="width ordinal hidden"/><splitter class="tree-splitter"/>
             <treecol id="nameCol" label="&foxyproxy.pattern.name.label;" flex="1" persist="width ordinal hidden"/><splitter class="tree-splitter"/>
@@ -261,7 +261,7 @@
 				&foxyproxy.newGUI4.label;</description>
 		</vbox>
 	</popup>
-	<popup id="pacTipsPopup" style="height: &foxyproxy.pactips.popup.height;; width: &foxyproxy.pactips.popup.width;;">
+	<popup id="pacTipsPopup" width="400" height="300px">
 		<vbox class="foxyproxy-border" style="margin: .5em; text-align: justify;">
 			<description>&foxyproxy.pactip1.label;</description>
 			<description>&foxyproxy.pactip2.label;</description>

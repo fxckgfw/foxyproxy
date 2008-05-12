@@ -21,9 +21,9 @@
   onload="onLoad();"
   buttons="accept"
   xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-  xmlns:svg="http://www.w3.org/2000/svg" 
+  xmlns:svg="http://www.w3.org/2000/svg"
   windowtype="foxyproxy"
-  persist="screenX screenY width height">
+  persist="screenX screenY">
 
 <script src="about.js"/>
 <script src="common.js"/>

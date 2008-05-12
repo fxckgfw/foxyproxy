@@ -12,8 +12,7 @@
 // See http://forums.mozillazine.org/viewtopic.php?t=308369
 
 // Don't const the next line anymore because of the generic reg code
-var CI = Components.interfaces, CC = Components.classes, CR = Components.results;
-var fp = null;
+var CI = Components.interfaces, CC = Components.classes, CR = Components.results, fp;
 var proxyService = CC["@mozilla.org/network/protocol-proxy-service;1"].getService(CI.nsIProtocolProxyService);
 function gQueryInterface(aIID) {
   if(!aIID.equals(CI.nsISupports) && !aIID.equals(CI.nsISupportsWeakReference))
@@ -22,10 +21,9 @@ function gQueryInterface(aIID) {
 }
 
 ///////////////////////////// ManualConf class ///////////////////////
-function ManualConf() {
+function ManualConf(fpp) {
   this.wrappedJSObject = this;
-  !fp && 
-  	(fp = CC["@leahscape.org/foxyproxy/service;1"].getService(CI.nsISupports).wrappedJSObject);   
+  if (!fpp) fp = fpp;
 }
 
 ManualConf.prototype = {

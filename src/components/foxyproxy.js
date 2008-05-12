@@ -43,6 +43,7 @@ const gMatchingProxyFactory = function(proxy, aMatch, uri, type, errMsg) {
 };
 const exceptionSchemes = ['feed'];
 
+// load js files
 var self;
 var fileProtocolHandler = CC["@mozilla.org/network/protocol;1?name=file"].createInstance(CI["nsIFileProtocolHandler"]);
 if ("undefined" != typeof(__LOCATION__)) {
@@ -52,21 +53,41 @@ if ("undefined" != typeof(__LOCATION__)) {
 else {
   self = fileProtocolHandler.getFileFromURLSpec(Components.Exception().filename);
 }
-var dir = self.parent; // the directory this file is in
+var componentDir = self.parent; // the directory this file is in
+var profileDir = componentDir.clone();
+profileDir = profileDir.parent.parent.parent;
+dump("profileDir = " + profileDir.path + "\n");
 var loader = CC["@mozilla.org/moz/jssubscript-loader;1"].createInstance(CI["mozIJSSubScriptLoader"]);
 try {
-  var filePath = dir.clone();
+  var filePath = componentDir.clone();
   filePath.append("superadd.js");
   loader.loadSubScript(fileProtocolHandler.getURLSpecFromFile(filePath));
+  filePath = componentDir.clone();
+  filePath.append("proxy.js");
+  loader.loadSubScript(fileProtocolHandler.getURLSpecFromFile(filePath));
+  filePath = componentDir.clone();
+  filePath.append("match.js");
+  loader.loadSubScript(fileProtocolHandler.getURLSpecFromFile(filePath));  
 }
 catch (e) {
-  dump("Error loading superadd.js\n");
+  dump("Error loading superadd.js, proxy.js, or match.js\n");
+  dump(e);
   throw(e);
 }
-
+dump("9090\n");
 // l is for lulu...
-function foxyproxy() {this.wrappedJSObject = this;}
-
+function foxyproxy() {
+  dump("1234\n");
+  SuperAdd.prototype.fp = Proxy.prototype.fp = gFP = this.wrappedJSObject = this;  
+  this._loadStrings();
+  this.autoadd = new SuperAdd();
+  this.quickadd = new QuickAdd();
+  this.autoadd.setName(this.getMessage("autoadd.pattern.label"));
+  this.quickadd.setName(this.getMessage("quickadd.pattern.label"));  
+  this.loadSettings();
+  
+    dump("23\n");
+}
 foxyproxy.prototype = {
 	PFF : " ",
   _mode : "disabled",
@@ -95,7 +116,7 @@ foxyproxy.prototype = {
 				gObsSvc.addObserver(this, "quit-application", false);
 				gObsSvc.addObserver(this, "domwindowclosed", false);
 				//gObsSvc.addObserver(this, "http-on-modify-request", false);
-				this._loadStrings();
+				//this._loadStrings();
 				break;
 			case "domwindowclosed":
 			  // Did the last browser window close? It could be that the DOM inspector, JS console,
@@ -157,15 +178,9 @@ biesi>	passing it the appropriate proxyinfo
     }
 	},
 
-	init : function() {
-	  if (!this._initialized) {
-	    this._initialized = true; // because @mozilla.org/file/directory_service;1 isn't available in init()
-	    gFP = this;
-  		this.autoadd = new SuperAdd();
-		  this.quickadd = new QuickAdd();
-  		this.autoadd.init(this.getMessage("autoadd.pattern.label"), this);
-		  this.quickadd.init(this.getMessage("quickadd.pattern.label"), this);
 
+ loadSettings :function() {
+    try {
       var req = CC["@mozilla.org/xmlextras/xmlhttprequest;1"].createInstance(CI.nsIXMLHttpRequest);
       var settingsURI = this.getSettingsURI("uri-string");
       req.open("GET", settingsURI, false);
@@ -175,8 +190,59 @@ biesi>	passing it the appropriate proxyinfo
         this.alert(null, this.getMessage("settings.error.2", [settingsURI, settingsURI]));
         this.writeSettings(settingsURI);
       }
+      else {
+        dump("fromDOM()\n");        
+        this.fromDOM(doc, doc.documentElement);
+      }
+//   var req = CC["@mozilla.org/xmlextras/xmlhttprequest;1"].createInstance(CI.nsIXMLHttpRequest);
+//   var fileProtocolHandler = CC["@mozilla.org/network/protocol;1?name=file"].createInstance(CI["nsIFileProtocolHandler"]);
+   /*var settingsFile = profileDir.clone();
+   settingsFile.append("foxyproxy.xml");
+   dump("settingsFile" + settingsFile.path + "\n");
+   var req = CC["@mozilla.org/xmlextras/xmlhttprequest;1"].createInstance(CI.nsIXMLHttpRequest);
+
+  var charset = "UTF-8";
+  const replacementChar = Components.interfaces.nsIConverterInputStream.DEFAULT_REPLACEMENT_CHARACTER;
+  var is = CC["@mozilla.org/intl/converter-input-stream;1"]
+                     .createInstance(Components.interfaces.nsIConverterInputStream);                  
+  var fis = CC["@mozilla.org/network/file-input-stream;1"].createInstance(Components.interfaces.nsIFileInputStream);  
+  fis.init(settingsFile, -1, 0, 0);                                         
+  is.init(fis, charset, 1024, replacementChar);
+  var str = {}, c;
+  //is.readString(4096, str)
+  while (c != 0) {
+    dump("asasd\n");
+    c = is.readString(4096, str);
+    dump("str = " + str.value);
+  }
+  is.close();  
+    
+
+    dump("\n\n\n");
+    dump("str = " + str.value);
+    dump("\n");*/
+    }
+    catch (e) {
+      dump (e.stack + "\n");
+    }  
+    //this.fromDOM(doc, doc.documentElement);
+  },
+
+	init : function() {
+	  if (!this._initialized) {
+	    this._initialized = true; // because @mozilla.org/file/directory_service;1 isn't available in init()
+
+      /*var req = CC["@mozilla.org/xmlextras/xmlhttprequest;1"].createInstance(CI.nsIXMLHttpRequest);
+      var settingsURI = this.getSettingsURI("uri-string");
+      req.open("GET", settingsURI, false);
+      req.send(null);
+      var doc = req.responseXML;
+      if (!doc || doc.documentElement.nodeName == "parsererror") {
+        this.alert(null, this.getMessage("settings.error.2", [settingsURI, settingsURI]));
+        this.writeSettings(settingsURI);
+      }
       else
-      	this.fromDOM(doc, doc.documentElement);
+      	this.fromDOM(doc, doc.documentElement);*/
     }
 	},
 
@@ -229,7 +295,7 @@ biesi>	passing it the appropriate proxyinfo
       // we can eliminate this interface completely."
 
       // var pacURL = networkPrefs.getCharPref("autoconfig_url");
-      // var pps = Components.classes["@mozilla.org/network/protocol-proxy-service;1"]
+      // var pps = CC["@mozilla.org/network/protocol-proxy-service;1"]
         //.getService(Components.interfaces.nsPIProtocolProxyService);
       // pps.configureFromPAC(pacURL);
 
@@ -357,11 +423,15 @@ biesi>	passing it the appropriate proxyinfo
   },
 
   getDefaultPath : function() {
-    var file = CC["@mozilla.org/file/local;1"].createInstance(CI.nsILocalFile);
-    var dir = CC["@mozilla.org/file/directory_service;1"].getService(CI.nsIProperties).get("ProfD", CI.nsILocalFile);
-    file.initWithPath(dir.path);
-    file.appendRelativePath("foxyproxy.xml");
-    return file;
+    //var file = CC["@mozilla.org/file/local;1"].createInstance(CI.nsILocalFile);
+    //var dir = CC["@mozilla.org/file/directory_service;1"].getService(CI.nsIProperties).get("ProfD", CI.nsILocalFile);
+    var f = profileDir.clone();
+    f.append("foxyproxy.xml");
+    dump("settingsFile" + f.path + "\n");
+    return f;
+    //file.initWithPath(dir.path);
+    //file.appendRelativePath("foxyproxy.xml");
+    //return file;
   },
 
   // Convert |o| from:
@@ -460,7 +530,7 @@ biesi>	passing it the appropriate proxyinfo
       foStream.close();
     }
     catch(ex) {
-      this.alert(null, this.getMessage("settings.error.3", [o]));    
+      this.alert(null, this.getMessage("settings.error.3", o instanceof CI.nsIFile ? [o.path] : [o]));
     }
   },
 
@@ -557,9 +627,9 @@ biesi>	passing it the appropriate proxyinfo
 			(node.getAttribute("enabledState") == "" ? "disabled" : node.getAttribute("enabledState")) :
 			node.getAttribute("mode"); // renamed to mode in 2.0
    	this._previousMode = gGetSafeAttr(node, "previousMode", "patterns");
-		this.proxies.fromDOM(mode, doc, this);
+		this.proxies.fromDOM(mode, doc);
 		this.setMode(mode, false, true);
-		this.random.fromDOM(doc, this);
+		this.random.fromDOM(doc);
     this.autoadd.fromDOM(doc);
     this.quickadd.fromDOM(doc);
     this.warnings.fromDOM(doc);
@@ -656,10 +726,10 @@ biesi>	passing it the appropriate proxyinfo
     	return -1;
     },
 
-    fromDOM : function(mode, doc, fp) {
+    fromDOM : function(mode, doc) {
       var last = null;
       for (var i=0,proxyElems=doc.getElementsByTagName("proxy"); i<proxyElems.length; i++) {
-        var p = CC["@leahscape.org/foxyproxy/proxy;1"].createInstance(CI.nsISupports).wrappedJSObject;
+        var p = new Proxy();
         p.fromDOM(proxyElems[i], mode);
         if (!last && proxyElems[i].getAttribute("lastresort") == "true")
           last = p;
@@ -671,19 +741,19 @@ biesi>	passing it the appropriate proxyinfo
         !last.enabled && (last.enabled = true);    // ensure it is enabled
       }
       else {
-	      last = CC["@leahscape.org/foxyproxy/proxy;1"].createInstance(CI.nsISupports).wrappedJSObject;
-        last.name = fp.getMessage("proxy.default");
-        last.notes = fp.getMessage("proxy.default.notes");
+	      last = new Proxy();
+        last.name = gFP.getMessage("proxy.default");
+        last.notes = gFP.getMessage("proxy.default.notes");
         last.mode = "direct";
         last.lastresort = true;
-        var match = CC["@leahscape.org/foxyproxy/match;1"].createInstance(CI.nsISupports).wrappedJSObject;
-        match.name = fp.getMessage("proxy.default.match.name");
+        var match = new Match();
+        match.name = gFP.getMessage("proxy.default.match.name");
         match.pattern = "*";
         last.matches.push(match);
         last.selectedTabIndex = 0;
         last.animatedIcons = false;
         this.list.push(last); // ensures it really IS last
-        fp.writeSettings();
+        gFP.writeSettings();
   		}
   		this.lastresort = last;
     },
@@ -826,21 +896,14 @@ biesi>	passing it the appropriate proxyinfo
 		    gFP.getMessage("days.long.3"), gFP.getMessage("days.long.4"), gFP.getMessage("days.long.5"),
 		    gFP.getMessage("days.long.6"), gFP.getMessage("days.long.7")];
 
-		  // Now deserialize...
-      var node = doc.getElementsByTagName("logg")[0];
-      this.enabled = node.getAttribute("enabled") == "true";
-      this._maxSize = node.hasAttribute("maxSize") ?
-	      node.getAttribute("maxSize") : 500; // new for 2.0
-			if (node.hasAttribute("header-v2")) {
-				this._templateHeader = node.getAttribute("header-v2");
-			}
-			if (node.hasAttribute("footer-v2")) {
-				this._templateFooter = node.getAttribute("footer-v2");
-			}
-			if (node.hasAttribute("row-v2")) {
-				this._templateRow = node.getAttribute("row-v2");
-			}
-		  this._noURLs = node.hasAttribute("noURLs") ? node.getAttribute("noURLs") == "true" : false; // new for 2.3
+		  // Now deserialize
+      var n = doc.getElementsByTagName("logg")[0];
+      this.enabled = gGetSafeAttrB(n, "enabled", false);
+      this._maxSize = gGetSafeAttr(n, "maxSize", 500); 
+      this._templateHeader = gGetSafeAttr(n, "header-v2", this._templateHeader);
+      this._templateFooter = gGetSafeAttr(n, "footer-v2", this._templateFooter);
+      this._templateRow = gGetSafeAttr(n, "row-v2", this._templateRow);
+      this._noURLs = gGetSafeAttrB(n, "noURLs", false);
 	    this.clear();
     },
 
@@ -1258,11 +1321,11 @@ biesi>	passing it the appropriate proxyinfo
     fromDOM : function(doc) {
       var node = doc.getElementsByTagName("warnings")[0];
       node && (this._noWildcards = node.getAttribute("no-wildcards") == "true");
-    },
+    }
   },
-	classID: Components.ID("{46466e13-16ab-4565-9924-20aac4d98c82}"),
-	contractID: "@leahscape.org/foxyproxy/service;1",
-	classDescription: "FoxyProxy Core"
+  classID: Components.ID("{46466e13-16ab-4565-9924-20aac4d98c82}"),
+  contractID: "@leahscape.org/foxyproxy/service;1",
+  classDescription: "FoxyProxy Core"
 };
 
 var gXpComObjects = [foxyproxy];
@@ -1271,78 +1334,78 @@ var gCatContractId = foxyproxy.prototype.contractID;
 
 
 function NSGetModule(compMgr, fileSpec) {
-	gModule._catObserverName = gCatObserverName;
-	gModule._catContractId = gCatContractId;
+  gModule._catObserverName = gCatObserverName;
+  gModule._catContractId = gCatContractId;
 
-	for (var i in gXpComObjects)
-		gModule._xpComObjects[i] = new gFactoryHolder(gXpComObjects[i]);
+  for (var i in gXpComObjects)
+    gModule._xpComObjects[i] = new gFactoryHolder(gXpComObjects[i]);
 
-	return gModule;
+  return gModule;
 }
 
 function gFactoryHolder(aObj) {
   this.singleton = null;
-	this.CID        = aObj.prototype.classID;
-	this.contractID = aObj.prototype.contractID;
-	this.className  = aObj.prototype.classDescription;
-	this.factory =
-	{
-		createInstance: function(aOuter, aIID)
-		{
-			if (aOuter)
-				throw CR.NS_ERROR_NO_AGGREGATION;
+  this.CID        = aObj.prototype.classID;
+  this.contractID = aObj.prototype.contractID;
+  this.className  = aObj.prototype.classDescription;
+  this.factory =
+  {
+    createInstance: function(aOuter, aIID)
+    {
+      if (aOuter)
+        throw CR.NS_ERROR_NO_AGGREGATION;
       if (!this.singleton)
         this.singleton = new this.constructor; 
-			return this.singleton.QueryInterface(aIID);
-		}
-	};
+      return this.singleton.QueryInterface(aIID);
+    }
+  };
 
-	this.factory.constructor = aObj;
+  this.factory.constructor = aObj;
 }
 var gModule = {
-	registerSelf: function (aComponentManager, aFileSpec, aLocation, aType) {
-		aComponentManager.QueryInterface(CI.nsIComponentRegistrar);
-		for (var key in this._xpComObjects)
-		{
-			var obj = this._xpComObjects[key];
-			aComponentManager.registerFactoryLocation(obj.CID, obj.className,
-			obj.contractID, aFileSpec, aLocation, aType);
-		}
+  registerSelf: function (aComponentManager, aFileSpec, aLocation, aType) {
+    aComponentManager.QueryInterface(CI.nsIComponentRegistrar);
+    for (var key in this._xpComObjects)
+    {
+      var obj = this._xpComObjects[key];
+      aComponentManager.registerFactoryLocation(obj.CID, obj.className,
+      obj.contractID, aFileSpec, aLocation, aType);
+    }
 
-		var catman = CC["@mozilla.org/categorymanager;1"].getService(CI.nsICategoryManager);
-		catman.addCategoryEntry("app-startup", this._catObserverName, this._catContractId, true, true);
-		catman.addCategoryEntry("xpcom-shutdown", this._catObserverName, this._catContractId, true, true);
-	},
+    var catman = CC["@mozilla.org/categorymanager;1"].getService(CI.nsICategoryManager);
+    catman.addCategoryEntry("app-startup", this._catObserverName, this._catContractId, true, true);
+    catman.addCategoryEntry("xpcom-shutdown", this._catObserverName, this._catContractId, true, true);
+  },
 
-	unregisterSelf: function(aCompMgr, aFileSpec, aLocation) {
-		var catman = CC["@mozilla.org/categorymanager;1"].getService(CI.nsICategoryManager);
-		catman.deleteCategoryEntry("app-startup", this._catObserverName, true);
-		catman.deleteCategoryEntry("xpcom-shutdown", this._catObserverName, true);
+  unregisterSelf: function(aCompMgr, aFileSpec, aLocation) {
+    var catman = CC["@mozilla.org/categorymanager;1"].getService(CI.nsICategoryManager);
+    catman.deleteCategoryEntry("app-startup", this._catObserverName, true);
+    catman.deleteCategoryEntry("xpcom-shutdown", this._catObserverName, true);
 
-		aComponentManager.QueryInterface(CI.nsIComponentRegistrar);
-		for (var key in this._xpComObjects)
-		{
-			var obj = this._xpComObjects[key];
-			aComponentManager.unregisterFactoryLocation(obj.CID, aFileSpec);
-		}
-	},
+    aComponentManager.QueryInterface(CI.nsIComponentRegistrar);
+    for (var key in this._xpComObjects)
+    {
+      var obj = this._xpComObjects[key];
+      aComponentManager.unregisterFactoryLocation(obj.CID, aFileSpec);
+    }
+  },
 
-	getClassObject: function(aComponentManager, aCID, aIID)	{
-		if (!aIID.equals(CI.nsIFactory))
-			throw CR.NS_ERROR_NOT_IMPLEMENTED;
+  getClassObject: function(aComponentManager, aCID, aIID) {
+    if (!aIID.equals(CI.nsIFactory))
+      throw CR.NS_ERROR_NOT_IMPLEMENTED;
 
-		for (var key in this._xpComObjects)
-		{
-			if (aCID.equals(this._xpComObjects[key].CID))
-				return this._xpComObjects[key].factory;
-		}
+    for (var key in this._xpComObjects)
+    {
+      if (aCID.equals(this._xpComObjects[key].CID))
+        return this._xpComObjects[key].factory;
+    }
 
-		throw CR.NS_ERROR_NO_INTERFACE;
-	},
+    throw CR.NS_ERROR_NO_INTERFACE;
+  },
 
-	canUnload: function(aComponentManager) { return true; },
+  canUnload: function(aComponentManager) { return true; },
 
-	_xpComObjects: {},
-	_catObserverName: null,
-	_catContractId: null
+  _xpComObjects: {},
+  _catObserverName: null,
+  _catContractId: null
 };

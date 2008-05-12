@@ -12,9 +12,8 @@
 // See http://forums.mozillazine.org/viewtopic.php?t=308369
 
 var CI = Components.interfaces, CC = Components.classes, CR = Components.results,
-  FEED_URL = "feed://";
-var fp = null;
-var proxyService = CC["@mozilla.org/network/protocol-proxy-service;1"].getService(CI.nsIProtocolProxyService);
+  FEED_URL = "feed://",
+  proxyService = CC["@mozilla.org/network/protocol-proxy-service;1"].getService(CI.nsIProtocolProxyService);
 function gQueryInterface(aIID) {
   if(!aIID.equals(CI.nsISupports) && !aIID.equals(CI.nsISupportsWeakReference))
     throw CR.NS_ERROR_NO_INTERFACE;
@@ -50,8 +49,6 @@ catch (e) {
 ///////////////////////////// Proxy class ///////////////////////
 function Proxy() {
   this.wrappedJSObject = this;
-  !fp &&
-  	(fp = CC["@leahscape.org/foxyproxy/service;1"].getService(CI.nsISupports).wrappedJSObject);
   this.matches = new Array();
   this.name = this.notes = "";
   this.manualconf = new ManualConf();
@@ -60,7 +57,7 @@ function Proxy() {
   this._enabled = true;
   this.selectedTabIndex = 0;
   this.lastresort = false;
-  this.id = fp.proxies.uniqueRandom();
+  this.id = this.fp.proxies.uniqueRandom();
 }
 
 Proxy.prototype = {
@@ -68,10 +65,11 @@ Proxy.prototype = {
   direct: proxyService.newProxyInfo("direct", "", -1, 0, 0, null),
   animatedIcons: true,
   includeInCycle: true,
+  fp: null,
 
   fromDOM : function(node, fpMode) {
     this.name = node.getAttribute("name");
-    this.id = node.getAttribute("id") || fp.proxies.uniqueRandom();
+    this.id = node.getAttribute("id") || this.fp.proxies.uniqueRandom();
     this.notes = node.getAttribute("notes");
     this._enabled = node.getAttribute("enabled") == "true";
     this.autoconf.fromDOM(node.getElementsByTagName("autoconf")[0]);
@@ -125,7 +123,7 @@ Proxy.prototype = {
 
 	shouldLoadPAC:function() {
     return this._mode == "auto" &&
-	  	(fp.mode == this.id || fp.mode == "patterns" || fp.mode == "random" || fp.mode == "roundrobin") && this._enabled;
+      (this.fp.mode == this.id || this.fp.mode == "patterns" || this.fp.mode == "random" || this.fp.mode == "roundrobin") && this._enabled;
 	},
 
   set mode(m) {
@@ -148,7 +146,7 @@ Proxy.prototype = {
      	  this._enabled = false;
     }
 	  !this._enabled &&
-	 	  fp.proxies.maintainIntegrity(this, false, true, false); // (proxy, isBeingDeleted, isBeingDisabled, isBecomingDIRECT)
+	 	  this.fp.proxies.maintainIntegrity(this, false, true, false); // (proxy, isBeingDeleted, isBeingDisabled, isBecomingDIRECT)
 	},
 
 	handleTimer : function() {
@@ -191,7 +189,7 @@ Proxy.prototype = {
 	resolve : function(spec, host, mp) {
 
 	  function _notifyUserOfError(spec) {
-			this.pacErrorNotification && fp.notifier.alert(fp.getMessage("foxyproxy"), fp.getMessage("proxy.error.for.url") + spec);
+			this.pacErrorNotification && this.fp.notifier.alert(this.fp.getMessage("foxyproxy"), this.fp.getMessage("proxy.error.for.url") + spec);
 			return null;
 		}
 	  // See http://wp.netscape.com/eng/mozilla/2.0/relnotes/demo/proxy-live.html
@@ -212,11 +210,11 @@ Proxy.prototype = {
 	        case "socks":
 	        case "socks5":
 	          proxies.push(proxyService.newProxyInfo("socks", components[2], components[3],
-	            fp._proxyDNS ? CI.nsIProxyInfo.TRANSPARENT_PROXY_RESOLVES_HOST : 0, 0, null));
+	            this.fp._proxyDNS ? CI.nsIProxyInfo.TRANSPARENT_PROXY_RESOLVES_HOST : 0, 0, null));
 	          break;
 	        case "socks4":
 	          proxies.push(proxyService.newProxyInfo("socks4", components[2], components[3],
-	            fp._proxyDNS ? CI.nsIProxyInfo.TRANSPARENT_PROXY_RESOLVES_HOST : 0, 0, null));
+	            this.fp._proxyDNS ? CI.nsIProxyInfo.TRANSPARENT_PROXY_RESOLVES_HOST : 0, 0, null));
 	          break;
 	        case "direct":
 	          proxies.push(this.direct);

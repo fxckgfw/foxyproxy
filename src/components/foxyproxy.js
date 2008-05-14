@@ -17,10 +17,12 @@ var CI = Components.interfaces, CC = Components.classes, CR = Components.results
 // Get attribute from node if it exists, otherwise return |def|.
 // No exceptions, no errors, no null returns.
 const gGetSafeAttr = function(n, name, def) {
+  n.QueryInterface(CI.nsIDOMElement);
 	return n ? (n.hasAttribute(name) ? n.getAttribute(name) : def) : def;
 };
 // Boolean version of GetSafe
 const gGetSafeAttrB = function(n, name, def) {
+  n.QueryInterface(CI.nsIDOMElement);
 	return n ? (n.hasAttribute(name) ? n.getAttribute(name)=="true" : def) : def;
 };
 const gMatchingProxyFactory = function(proxy, aMatch, uri, type, errMsg) {
@@ -70,23 +72,19 @@ try {
   loader.loadSubScript(fileProtocolHandler.getURLSpecFromFile(filePath));  
 }
 catch (e) {
-  dump("Error loading superadd.js, proxy.js, or match.js\n");
-  dump(e);
+  dump("Error loading superadd.js, proxy.js, or match.js\n" + e + "\n");
   throw(e);
 }
-dump("9090\n");
 // l is for lulu...
 function foxyproxy() {
-  dump("1234\n");
+  dump("begin foxyproxy() ctor\n");
   SuperAdd.prototype.fp = Proxy.prototype.fp = gFP = this.wrappedJSObject = this;  
   this._loadStrings();
   this.autoadd = new SuperAdd();
   this.quickadd = new QuickAdd();
   this.autoadd.setName(this.getMessage("autoadd.pattern.label"));
-  this.quickadd.setName(this.getMessage("quickadd.pattern.label"));  
-  this.loadSettings();
-  
-    dump("23\n");
+  this.quickadd.setName(this.getMessage("quickadd.pattern.label"));   
+  dump("end foxyproxy() ctor\n");
 }
 foxyproxy.prototype = {
 	PFF : " ",
@@ -112,11 +110,14 @@ foxyproxy.prototype = {
 
 	observe: function(subj, topic, data) {
 		switch(topic) {
+      case "profile-after-change":
+        this.loadSettings(); 
+        break;
 			case "app-startup":
 				gObsSvc.addObserver(this, "quit-application", false);
 				gObsSvc.addObserver(this, "domwindowclosed", false);
+        gObsSvc.addObserver(this, "profile-after-change", false);
 				//gObsSvc.addObserver(this, "http-on-modify-request", false);
-				//this._loadStrings();
 				break;
 			case "domwindowclosed":
 			  // Did the last browser window close? It could be that the DOM inspector, JS console,
@@ -132,6 +133,7 @@ foxyproxy.prototype = {
 			case "quit-application": // Called whether or not FoxyProxy options dialog is open when app is closing
 			  gObsSvc.removeObserver(this, "quit-application");
 			  gObsSvc.removeObserver(this, "domwindowclosed");
+        gObsSvc.removeObserver(this, "profile-after-change");
 			  break;
 			/*case "quit-application-granted":*/ // Not called if FoxyProxy options dialog is open when app is closing
 			//case "http-on-modify-request":
@@ -179,7 +181,8 @@ biesi>	passing it the appropriate proxyinfo
 	},
 
 
- loadSettings :function() {
+ loadSettings : function() {
+    dump("loadSettings() begin\n");
     try {
       var req = CC["@mozilla.org/xmlextras/xmlhttprequest;1"].createInstance(CI.nsIXMLHttpRequest);
       var settingsURI = this.getSettingsURI("uri-string");
@@ -194,38 +197,11 @@ biesi>	passing it the appropriate proxyinfo
         dump("fromDOM()\n");        
         this.fromDOM(doc, doc.documentElement);
       }
-//   var req = CC["@mozilla.org/xmlextras/xmlhttprequest;1"].createInstance(CI.nsIXMLHttpRequest);
-//   var fileProtocolHandler = CC["@mozilla.org/network/protocol;1?name=file"].createInstance(CI["nsIFileProtocolHandler"]);
-   /*var settingsFile = profileDir.clone();
-   settingsFile.append("foxyproxy.xml");
-   dump("settingsFile" + settingsFile.path + "\n");
-   var req = CC["@mozilla.org/xmlextras/xmlhttprequest;1"].createInstance(CI.nsIXMLHttpRequest);
-
-  var charset = "UTF-8";
-  const replacementChar = Components.interfaces.nsIConverterInputStream.DEFAULT_REPLACEMENT_CHARACTER;
-  var is = CC["@mozilla.org/intl/converter-input-stream;1"]
-                     .createInstance(Components.interfaces.nsIConverterInputStream);                  
-  var fis = CC["@mozilla.org/network/file-input-stream;1"].createInstance(Components.interfaces.nsIFileInputStream);  
-  fis.init(settingsFile, -1, 0, 0);                                         
-  is.init(fis, charset, 1024, replacementChar);
-  var str = {}, c;
-  //is.readString(4096, str)
-  while (c != 0) {
-    dump("asasd\n");
-    c = is.readString(4096, str);
-    dump("str = " + str.value);
-  }
-  is.close();  
-    
-
-    dump("\n\n\n");
-    dump("str = " + str.value);
-    dump("\n");*/
     }
     catch (e) {
       dump (e.stack + "\n");
     }  
-    //this.fromDOM(doc, doc.documentElement);
+    dump("loadSettings() end\n");
   },
 
 	init : function() {
@@ -381,7 +357,9 @@ biesi>	passing it the appropriate proxyinfo
 	    // The first time FP runs, "firstrun" does not exist (i.e., null || false). Subsequent times, "firstrun" == true.
 	    // In other words, this pref is improperly named for its purpose. Better name is "notfirstrun".      
         var f = this.getPrefsService("extensions.foxyproxy.").getBoolPref("firstrun");
-        if (f != null) {
+        if (f)
+          dump("First run of FoxyProxy\n");          
+        else {
           this.alert(null, this.getMessage("preferences.read.error.warning", ["extensions.foxyproxy.settings", "getSettingsURI()"]) + " " + 
             this.getMessage("preferences.read.error.fatal"));
           // TODO: prompt user for path to old file or create new
@@ -407,9 +385,12 @@ biesi>	passing it the appropriate proxyinfo
   setSettingsURI : function(o) {
     var o2 = this.transformer(o, "uri-string");
     try {
+      dump("about to write settings\n");
   	  this.writeSettings(o2);
+      dump("wrote settings\n")
   	  // Only update the preference if writeSettings() succeeded
       this.getPrefsService("extensions.foxyproxy.").setCharPref("settings", o==this.PFF ? this.PFF : o2);
+      dump("wrote pref\n")
     }
     catch(e) {
       this.alert(this, this.getMessage("error") + ":\n\n" + e);
@@ -427,7 +408,7 @@ biesi>	passing it the appropriate proxyinfo
     //var dir = CC["@mozilla.org/file/directory_service;1"].getService(CI.nsIProperties).get("ProfD", CI.nsILocalFile);
     var f = profileDir.clone();
     f.append("foxyproxy.xml");
-    dump("settingsFile" + f.path + "\n");
+    dump("settings file: " + f.path + "\n");
     return f;
     //file.initWithPath(dir.path);
     //file.appendRelativePath("foxyproxy.xml");
@@ -505,10 +486,11 @@ biesi>	passing it the appropriate proxyinfo
   },
 
   writeSettings : function(o) {
-    /*try {
-      throw new Error("e");
-    }
-    catch (e) {dump (e.stack + "\n");}*/
+    //try {
+      dump("*** writeSettings\n");
+      //throw new Error("e");
+    //}
+    //catch (e) {dump (e.stack + "\n");}    
     if (!o) {
       try {
         o = gFP.getPrefsService("extensions.foxyproxy.").getCharPref("settings");
@@ -683,11 +665,9 @@ biesi>	passing it the appropriate proxyinfo
 		},
 
 		fromDOM : function(doc) {
-      var node = doc.getElementsByTagName("random")[0];
-      if (node) { // because this is new for 2.0
-      	this._includeDirect = node.getAttribute("includeDirect") == "true";
-      	this._includeDisabled = node.getAttribute("includeDisabled") == "true";
-			}
+      var n = doc.getElementsByTagName("random").item(0);
+      this._includeDirect = gGetSafeAttrB(n, "includeDirect", false);
+      this._includeDisabled = gGetSafeAttrB(n, "includeDisabled", false);
 		}
 	},
 
@@ -729,9 +709,11 @@ biesi>	passing it the appropriate proxyinfo
     fromDOM : function(mode, doc) {
       var last = null;
       for (var i=0,proxyElems=doc.getElementsByTagName("proxy"); i<proxyElems.length; i++) {
+        var n = proxyElems.item(i);
+        n.QueryInterface(CI.nsIDOMElement);
         var p = new Proxy();
-        p.fromDOM(proxyElems[i], mode);
-        if (!last && proxyElems[i].getAttribute("lastresort") == "true")
+        p.fromDOM(n, mode);  
+        if (!last && n.getAttribute("lastresort") == "true")
           last = p;
         else
         	this.list.push(p);
@@ -897,7 +879,7 @@ biesi>	passing it the appropriate proxyinfo
 		    gFP.getMessage("days.long.6"), gFP.getMessage("days.long.7")];
 
 		  // Now deserialize
-      var n = doc.getElementsByTagName("logg")[0];
+      var n = doc.getElementsByTagName("logg").item(0);
       this.enabled = gGetSafeAttrB(n, "enabled", false);
       this._maxSize = gGetSafeAttr(n, "maxSize", 500); 
       this._templateHeader = gGetSafeAttr(n, "header-v2", this._templateHeader);
@@ -1188,7 +1170,7 @@ biesi>	passing it the appropriate proxyinfo
     },
 
     fromDOM : function(doc) {
-      var n = doc.getElementsByTagName("statusbar")[0];
+      var n = doc.getElementsByTagName("statusbar").item(0);
       this._iconEnabled = gGetSafeAttrB(n, "icon", true);
 	    this._textEnabled = gGetSafeAttrB(n, "text", true);
 	  	this._leftClick = gGetSafeAttr(n, "left", "options");
@@ -1256,7 +1238,7 @@ biesi>	passing it the appropriate proxyinfo
     },
 
     fromDOM : function(doc) {
-      var n = doc.getElementsByTagName("toolbar")[0];
+      var n = doc.getElementsByTagName("toolbar").item(0);
 	  	this._leftClick = gGetSafeAttr(n, "left", "options");
 	  	this._middleClick = gGetSafeAttr(n, "middle", "cycle");
 	  	this._rightClick = gGetSafeAttr(n, "right", "contextmenu");
@@ -1319,8 +1301,8 @@ biesi>	passing it the appropriate proxyinfo
     },
 
     fromDOM : function(doc) {
-      var node = doc.getElementsByTagName("warnings")[0];
-      node && (this._noWildcards = node.getAttribute("no-wildcards") == "true");
+      var n = doc.getElementsByTagName("warnings").item(0);
+      this._noWildcards = gGetSafeAttrB(n, "no-wildcards", false);
     }
   },
   classID: Components.ID("{46466e13-16ab-4565-9924-20aac4d98c82}"),
@@ -1374,13 +1356,11 @@ var gModule = {
 
     var catman = CC["@mozilla.org/categorymanager;1"].getService(CI.nsICategoryManager);
     catman.addCategoryEntry("app-startup", this._catObserverName, this._catContractId, true, true);
-    catman.addCategoryEntry("xpcom-shutdown", this._catObserverName, this._catContractId, true, true);
   },
 
   unregisterSelf: function(aCompMgr, aFileSpec, aLocation) {
     var catman = CC["@mozilla.org/categorymanager;1"].getService(CI.nsICategoryManager);
     catman.deleteCategoryEntry("app-startup", this._catObserverName, true);
-    catman.deleteCategoryEntry("xpcom-shutdown", this._catObserverName, true);
 
     aComponentManager.QueryInterface(CI.nsIComponentRegistrar);
     for (var key in this._xpComObjects)

@@ -174,7 +174,7 @@ SuperAdd.prototype = {
   },
   
   fromDOM : function(doc) {
-    var n = doc.getElementsByTagName(this.elemName)[0];
+    var n = doc.getElementsByTagName(this.elemName).item(0);
     this._enabled = gGetSafeAttrB(n, "enabled", false);
     this._temp = gGetSafeAttrB(n, "temp", false);
     this._urlTemplate = gGetSafeAttr(n, "urlTemplate", DEF_PATTERN);
@@ -184,7 +184,7 @@ SuperAdd.prototype = {
     this._notifyWhenCanceled = gGetSafeAttrB(n, "notifyWhenCanceled", true);
     this._prompt = gGetSafeAttrB(n, "prompt", false);
     var proxyId = gGetSafeAttr(n, "proxy-id", null);
-    if (n) this.match.fromDOM(n.getElementsByTagName("match")[0]);
+    if (n) this.match.fromDOM(n.getElementsByTagName("match").item(0));
     if (!this.match.name || this.match.name == "") this.match.name = this.fp.getMessage("foxyproxy.autoadd.pattern.label");
     this.match.isMultiLine = true; 
     var error;

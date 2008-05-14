@@ -57,7 +57,7 @@ function Proxy() {
   this._enabled = true;
   this.selectedTabIndex = 0;
   this.lastresort = false;
-  this.id = this.fp.proxies.uniqueRandom();
+  this.id = Proxy.prototype.fp.proxies.uniqueRandom();
 }
 
 Proxy.prototype = {
@@ -69,11 +69,12 @@ Proxy.prototype = {
 
   fromDOM : function(node, fpMode) {
     this.name = node.getAttribute("name");
-    this.id = node.getAttribute("id") || this.fp.proxies.uniqueRandom();
+    this.id = node.getAttribute("id") || Proxy.prototype.fp.proxies.uniqueRandom();
     this.notes = node.getAttribute("notes");
     this._enabled = node.getAttribute("enabled") == "true";
-    this.autoconf.fromDOM(node.getElementsByTagName("autoconf")[0]);
-    this.manualconf.fromDOM(node.getElementsByTagName("manualconf")[0]);
+    dump("autoconf = " + node.getElementsByTagName("autoconf").item(0) + "\n");
+    this.autoconf.fromDOM(node.getElementsByTagName("autoconf").item(0));
+    this.manualconf.fromDOM(node.getElementsByTagName("manualconf").item(0));
     // 1.1 used "manual" instead of "mode" and was true/false only (for manual or auto)
     this._mode = node.hasAttribute("manual") ?
   	  (node.getAttribute("manual") == "true" ? "manual" : "auto") :
@@ -123,7 +124,7 @@ Proxy.prototype = {
 
 	shouldLoadPAC:function() {
     return this._mode == "auto" &&
-      (this.fp.mode == this.id || this.fp.mode == "patterns" || this.fp.mode == "random" || this.fp.mode == "roundrobin") && this._enabled;
+      (Proxy.prototype.fp.mode == this.id || Proxy.prototype.fp.mode == "patterns" || Proxy.prototype.fp.mode == "random" || Proxy.prototype.fp.mode == "roundrobin") && this._enabled;
 	},
 
   set mode(m) {
@@ -146,7 +147,7 @@ Proxy.prototype = {
      	  this._enabled = false;
     }
 	  !this._enabled &&
-	 	  this.fp.proxies.maintainIntegrity(this, false, true, false); // (proxy, isBeingDeleted, isBeingDisabled, isBecomingDIRECT)
+	 	  Proxy.prototype.fp.proxies.maintainIntegrity(this, false, true, false); // (proxy, isBeingDeleted, isBeingDisabled, isBecomingDIRECT)
 	},
 
 	handleTimer : function() {
@@ -189,7 +190,7 @@ Proxy.prototype = {
 	resolve : function(spec, host, mp) {
 
 	  function _notifyUserOfError(spec) {
-			this.pacErrorNotification && this.fp.notifier.alert(this.fp.getMessage("foxyproxy"), this.fp.getMessage("proxy.error.for.url") + spec);
+			this.pacErrorNotification && Proxy.prototype.fp.notifier.alert(Proxy.prototype.fp.getMessage("foxyproxy"), Proxy.prototype.fp.getMessage("proxy.error.for.url") + spec);
 			return null;
 		}
 	  // See http://wp.netscape.com/eng/mozilla/2.0/relnotes/demo/proxy-live.html
@@ -210,11 +211,11 @@ Proxy.prototype = {
 	        case "socks":
 	        case "socks5":
 	          proxies.push(proxyService.newProxyInfo("socks", components[2], components[3],
-	            this.fp._proxyDNS ? CI.nsIProxyInfo.TRANSPARENT_PROXY_RESOLVES_HOST : 0, 0, null));
+	            Proxy.prototype.fp._proxyDNS ? CI.nsIProxyInfo.TRANSPARENT_PROXY_RESOLVES_HOST : 0, 0, null));
 	          break;
 	        case "socks4":
 	          proxies.push(proxyService.newProxyInfo("socks4", components[2], components[3],
-	            this.fp._proxyDNS ? CI.nsIProxyInfo.TRANSPARENT_PROXY_RESOLVES_HOST : 0, 0, null));
+	            Proxy.prototype.fp._proxyDNS ? CI.nsIProxyInfo.TRANSPARENT_PROXY_RESOLVES_HOST : 0, 0, null));
 	          break;
 	        case "direct":
 	          proxies.push(this.direct);

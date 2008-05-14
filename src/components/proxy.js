@@ -47,17 +47,18 @@ catch (e) {
   throw(e);
 }
 ///////////////////////////// Proxy class ///////////////////////
-function Proxy() {
+function Proxy(fp) {
   this.wrappedJSObject = this;
+  this.fp = fp || CC["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;
   this.matches = new Array();
   this.name = this.notes = "";
-  this.manualconf = new ManualConf();
-  this.autoconf = new AutoConf(this, null);
+  this.manualconf = new ManualConf(this.fp);
+  this.autoconf = new AutoConf(this, this.fp);
   this._mode = "manual"; // manual, auto, direct, random
   this._enabled = true;
   this.selectedTabIndex = 0;
   this.lastresort = false;
-  this.id = Proxy.prototype.fp.proxies.uniqueRandom();
+  this.id = this.fp.proxies.uniqueRandom();
 }
 
 Proxy.prototype = {
@@ -87,7 +88,7 @@ Proxy.prototype = {
     for (var i=0,temp=node.getElementsByTagName("match"); i<temp.length; i++) {
       var j = this.matches.length;
       this.matches[j] = new Match();
-      this.matches[j].fromDOM(temp[i]);
+      this.matches[j].fromDOM(temp.item(i));
     }
 		this.afterPropertiesSet(fpMode);
   },

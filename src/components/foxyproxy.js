@@ -78,7 +78,7 @@ catch (e) {
 // l is for lulu...
 function foxyproxy() {
   dump("begin foxyproxy() ctor\n");
-  SuperAdd.prototype.fp = Proxy.prototype.fp = gFP = this.wrappedJSObject = this;  
+  SuperAdd.prototype.fp = gFP = this.wrappedJSObject = this;  
   this._loadStrings();
   this.autoadd = new SuperAdd();
   this.quickadd = new QuickAdd();
@@ -711,7 +711,7 @@ biesi>	passing it the appropriate proxyinfo
       for (var i=0,proxyElems=doc.getElementsByTagName("proxy"); i<proxyElems.length; i++) {
         var n = proxyElems.item(i);
         n.QueryInterface(CI.nsIDOMElement);
-        var p = new Proxy();
+        var p = new Proxy(gFP);
         p.fromDOM(n, mode);  
         if (!last && n.getAttribute("lastresort") == "true")
           last = p;

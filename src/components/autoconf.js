@@ -20,12 +20,11 @@ function gQueryInterface(aIID) {
 }
 
 ///////////////////////////// AutoConf class ///////////////////////
-function AutoConf(owner, node, fpp) {
+function AutoConf(owner, fpp) {
   this.wrappedJSObject = this;
   if (!fpp) fp = fpp;    
   this.timer = CC["@mozilla.org/timer;1"].createInstance(CI.nsITimer);
   this.owner = owner;
-  this.fromDOM(node);
 	this._resolver = CC["@mozilla.org/network/proxy-auto-config;1"]
 	  .createInstance(CI.nsIProxyAutoConfig);
 }

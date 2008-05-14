@@ -61,14 +61,12 @@ AutoConf.prototype = {
    },
   get reloadFreqMins() {return this._reloadFreqMins;},
 
-  fromDOM : function(node) {
-    if (node) {
-	    this.url = node.getAttribute("url");
-	    this.loadNotification = node.hasAttribute("loadNotification") ? node.getAttribute("loadNotification") == "true" : true;	// new for 2.5
-	    this.errorNotification = node.hasAttribute("errorNotification") ? node.getAttribute("errorNotification") == "true" : true; // new for 2.5
-	    this._autoReload = node.hasAttribute("autoReload") ? node.getAttribute("autoReload") == "true" : true; // new for 2.5
-	    this._reloadFreqMins = node.hasAttribute("reloadFreqMins") ? node.getAttribute("reloadFreqMins") : 60; // new for 2.5
-	  }
+  fromDOM : function(n) {
+	    this.url = gGetSafeAttr(n, "url", "");
+	    this.loadNotification = gGetSafeAttrB(n, "loadNotification", true);
+	    this.errorNotification = gGetSafeAttrB(n, "errorNotification", true);
+	    this._autoReload = gGetSafeAttrB(n, "autoReload", false);
+	    this._reloadFreqMins = gGetSafeAttr(n, "reloadFreqMins", 60);
   },
 
   toDOM : function(doc) {

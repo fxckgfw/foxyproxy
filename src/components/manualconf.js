@@ -42,14 +42,14 @@ ManualConf.prototype = {
       gGetSafeAttr(n, "socksport", null) || gGetSafeAttr(n, "sslport", null) ||
       gGetSafeAttr(n, "ftpport", null) || gGetSafeAttr(n, "gopherport", ""); // "port" is new for 2.5
     	
-    this._socksversion = node.getAttribute("socksversion");
-
-	  this._isSocks = node.hasAttribute("isSocks") ? node.getAttribute("isSocks") == "true" :
-    	node.getAttribute("http") ? false: 
-    	node.getAttribute("ssl") ? false:
-    	node.getAttribute("ftp") ? false:     	 
-    	node.getAttribute("gopher") ? false:
-    	node.getAttribute("socks") ? true : false; // new for 2.5
+    this._socksversion = gGetSafeAttr(n, "socksversion", "5");
+      
+	  this._isSocks = n.hasAttribute("isSocks") ? n.getAttribute("isSocks") == "true" :
+    	n.getAttribute("http") ? false: 
+    	n.getAttribute("ssl") ? false:
+    	n.getAttribute("ftp") ? false:     	 
+    	n.getAttribute("gopher") ? false:
+    	n.getAttribute("socks") ? true : false; // new for 2.5
     	
 	  this._makeProxy();
   },

@@ -92,15 +92,16 @@ Match.prototype = {
 	 	}
   },
 
-  fromDOM : function(node) {
-	  this.name = node.hasAttribute("notes") ? node.getAttribute("notes") : (node.getAttribute("name") || ""); // name was called notes in v1.0
-	  this._isRegEx = node.getAttribute("isRegEx") == "true";
-	  this._pattern = node.hasAttribute("pattern") ? node.getAttribute("pattern") : "";
-	  this.isBlackList = node.hasAttribute("isBlackList") ? node.getAttribute("isBlackList") == "true" : false; // new for 2.0
-	  this.enabled = node.hasAttribute("enabled") ? node.getAttribute("enabled") == "true" : true; // new for 2.0
-	  this._isMultiLine = node.hasAttribute("isMultiLine") ? node.getAttribute("isMultiLine") == "true" : false; // new for 2.0
+  fromDOM : function(n) {
+    var notes = gGetSafeAttr(n, "notes", "");  // name was called notes in v1.0
+	  this.name = gGetSafeAttr(n, "name", notes);
+	  this._isRegEx = gGetSafeAttrB(n, "isRegEx", false);
+	  this._pattern = gGetSafeAttr(n, "pattern", "");
+	  this.isBlackList = gGetSafeAttrB(n, "isBlackList", false);
+	  this.enabled = gGetSafeAttrB(n, "enabled", true);
+	  this._isMultiLine = gGetSafeAttrB(n, "isMultiLine", false);
     // Set this.caseSensitive instead of this._caseSensitive because the latter creates the regexp.
-    this.caseSensitive = node.hasAttribute("caseSensitive") ? node.getAttribute("caseSensitive") == "true" : false; // new for 2.6.3
+    this.caseSensitive = gGetSafeAttrB(n, "caseSensitive", false);
     // We don't deserialize this.temp because it's not serialized
   },
 

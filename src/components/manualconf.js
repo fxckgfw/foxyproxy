@@ -33,20 +33,14 @@ ManualConf.prototype = {
   _socksversion: "5",
   _isSocks: false,
 	        
-  fromDOM : function(node) {
-    this._host = node.hasAttribute("host")? node.getAttribute("host") :
-    	node.getAttribute("http") ? node.getAttribute("http"): 
-    	node.getAttribute("socks") ? node.getAttribute("socks"):     	
-    	node.getAttribute("ssl") ? node.getAttribute("ssl"):
-    	node.getAttribute("ftp") ? node.getAttribute("ftp"):     	 
-    	node.getAttribute("gopher") ? node.getAttribute("gopher"):""; //"host" is new for 2.5
+  fromDOM : function(n) {
+    this._host = gGetSafeAttr(n, "host", null) || gGetSafeAttr(n, "http", null) ||  
+      gGetSafeAttr(n, "socks", null) || gGetSafeAttr(n, "ssl", null) ||
+      gGetSafeAttr(n, "ftp", null) || gGetSafeAttr(n, "gopher", ""); //"host" is new for 2.5
 
-    this._port = node.hasAttribute("port")? node.getAttribute("port") :
-    	node.getAttribute("httpport")? node.getAttribute("httpport"): 
-    	node.getAttribute("socksport")? node.getAttribute("socksport"):     	
-    	node.getAttribute("sslport")? node.getAttribute("sslport"):
-    	node.getAttribute("ftpport")? node.getAttribute("ftpport"):     	 
-    	node.getAttribute("gopherport")? node.getAttribute("gopherport"):"";  // "port" is new for 2.5
+    this._port = gGetSafeAttr(n, "port", null) || gGetSafeAttr(n, "httpport", null) ||
+      gGetSafeAttr(n, "socksport", null) || gGetSafeAttr(n, "sslport", null) ||
+      gGetSafeAttr(n, "ftpport", null) || gGetSafeAttr(n, "gopherport", ""); // "port" is new for 2.5
     	
     this._socksversion = node.getAttribute("socksversion");
 

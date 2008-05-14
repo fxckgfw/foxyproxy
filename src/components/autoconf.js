@@ -22,7 +22,7 @@ function gQueryInterface(aIID) {
 ///////////////////////////// AutoConf class ///////////////////////
 function AutoConf(owner, fpp) {
   this.wrappedJSObject = this;
-  if (!fpp) fp = fpp;    
+  fp = fpp || CC["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;    
   this.timer = CC["@mozilla.org/timer;1"].createInstance(CI.nsITimer);
   this.owner = owner;
 	this._resolver = CC["@mozilla.org/network/proxy-auto-config;1"]

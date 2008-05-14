@@ -14,14 +14,14 @@
 <!DOCTYPE overlay SYSTEM "chrome://foxyproxy/locale/foxyproxy.dtd">
 
 <dialog buttons="accept,cancel"
-  id="foxyproxyaddproxydlg"
+  id="foxyproxyaddproxydlg2"
   ondialogaccept="return onOK();"
   onload="onLoad();"
   title="&foxyproxy.label; - &foxyproxy.add.title;"
   windowtype="foxyproxy"
  	xmlns:html="http://www.w3.org/1999/xhtml"
   xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-  persist="screenX screenY width height"
+  persist="screenX screenY"
   width="&foxyproxy.addeditproxy.width;"
   height="&foxyproxy.addeditproxy.height;">
 

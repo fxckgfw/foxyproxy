@@ -23,7 +23,7 @@ function gQueryInterface(aIID) {
 ///////////////////////////// ManualConf class ///////////////////////
 function ManualConf(fpp) {
   this.wrappedJSObject = this;
-  if (!fpp) fp = fpp;
+  fp = fpp || CC["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;
 }
 
 ManualConf.prototype = {

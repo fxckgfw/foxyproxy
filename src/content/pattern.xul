@@ -14,11 +14,11 @@
 <!DOCTYPE overlay SYSTEM "chrome://foxyproxy/locale/foxyproxy.dtd">
 <dialog
   xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-	id="foxyproxypatterndlg"
+	id="foxyproxypatterndlg2"
   title="&foxyproxy.label; - &foxyproxy.addeditpattern.title;"
   ondialogaccept="return onOK();"
   onload="onLoad();"
-  persist="screenX screenY width height"
+  persist="screenX screenY"
   windowtype="foxyproxy">
 
 <script src="pattern.js"/>

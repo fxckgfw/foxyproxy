@@ -26,8 +26,7 @@ const gGetSafeAttrB = function(n, name, def) {
 	return n ? (n.hasAttribute(name) ? n.getAttribute(name)=="true" : def) : def;
 };
 const gMatchingProxyFactory = function(proxy, aMatch, uri, type, errMsg) {
-		return CC["@leahscape.org/foxyproxy/matchingproxy;1"].createInstance(CI.nsISupports).wrappedJSObject
-			.init(proxy, aMatch, foxyproxy.prototype.logg._noURLs ? foxyproxy.prototype.logg.noURLsMessage : uri, type, errMsg);
+    return new MatchingProxy(proxy, aMatch, foxyproxy.prototype.logg._noURLs ? foxyproxy.prototype.logg.noURLsMessage : uri, type, errMsg);
 	},
   gObsSvc = CC["@mozilla.org/observer-service;1"].getService(CI.nsIObserverService),
 	gBroadcast = function(subj, topic, data) {
@@ -69,10 +68,13 @@ try {
   loader.loadSubScript(fileProtocolHandler.getURLSpecFromFile(filePath));
   filePath = componentDir.clone();
   filePath.append("match.js");
+  loader.loadSubScript(fileProtocolHandler.getURLSpecFromFile(filePath));
+  filePath = componentDir.clone();
+  filePath.append("matchingproxy.js");
   loader.loadSubScript(fileProtocolHandler.getURLSpecFromFile(filePath));  
 }
 catch (e) {
-  dump("Error loading superadd.js, proxy.js, or match.js\n" + e + "\n");
+  dump("Error loading superadd.js, proxy.js, matchingproxy.js, or match.js\n" + e + "\n");
   throw(e);
 }
 // l is for lulu...

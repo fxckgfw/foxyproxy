@@ -14,7 +14,7 @@
 <!DOCTYPE overlay SYSTEM "chrome://foxyproxy/locale/foxyproxy.dtd">
 
 <dialog
-  id="foxyproxyaboutdlg"
+  id="foxyproxyaboutdlg2"
   title="&foxyproxy.about.label; &foxyproxy.label;"
   orient="vertical"
   autostretch="always"

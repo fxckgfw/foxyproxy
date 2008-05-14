@@ -36,8 +36,7 @@ function onLoad() {
   noURLsCmd = document.getElementById("noURLsCmd");  
   timeformat = foxyproxy.getMessage("timeformat");
   _initSettings();
-  sizeToContent()
-  //setTimeout(function(){sizeToContent();}, 0);
+  sizeToContent();
 }
 
 function _initSettings() {

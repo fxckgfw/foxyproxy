@@ -57,7 +57,7 @@ else {
 var componentDir = self.parent; // the directory this file is in
 var profileDir = componentDir.clone();
 profileDir = profileDir.parent.parent.parent;
-dump("profileDir = " + profileDir.path + "\n");
+//dump("profileDir = " + profileDir.path + "\n");
 var loader = CC["@mozilla.org/moz/jssubscript-loader;1"].createInstance(CI["mozIJSSubScriptLoader"]);
 try {
   var filePath = componentDir.clone();
@@ -79,14 +79,13 @@ catch (e) {
 }
 // l is for lulu...
 function foxyproxy() {
-  dump("begin foxyproxy() ctor\n");
   SuperAdd.prototype.fp = gFP = this.wrappedJSObject = this;  
   this._loadStrings();
   this.autoadd = new SuperAdd();
   this.quickadd = new QuickAdd();
   this.autoadd.setName(this.getMessage("autoadd.pattern.label"));
   this.quickadd.setName(this.getMessage("quickadd.pattern.label"));   
-  dump("end foxyproxy() ctor\n");
+  MatchingProxy.prototype.init();
 }
 foxyproxy.prototype = {
 	PFF : " ",
@@ -184,7 +183,6 @@ biesi>	passing it the appropriate proxyinfo
 
 
  loadSettings : function() {
-    dump("loadSettings() begin\n");
     try {
       var req = CC["@mozilla.org/xmlextras/xmlhttprequest;1"].createInstance(CI.nsIXMLHttpRequest);
       var settingsURI = this.getSettingsURI("uri-string");
@@ -196,14 +194,12 @@ biesi>	passing it the appropriate proxyinfo
         this.writeSettings(settingsURI);
       }
       else {
-        dump("fromDOM()\n");        
         this.fromDOM(doc, doc.documentElement);
       }
     }
     catch (e) {
       dump (e.stack + "\n");
     }  
-    dump("loadSettings() end\n");
   },
 
 	init : function() {
@@ -226,6 +222,7 @@ biesi>	passing it the appropriate proxyinfo
 
   get mode() { return this._mode; },
   setMode : function(mode, writeSettings, init) {
+    dump("mode = " + mode + "\n");
 	  // Possible modes are: patterns, _proxy_id_ (for "Use proxy xyz for all URLs), random, roundrobin, disabled, previous.
     // Note that "previous" isn't used anywhere but this method: it is translated into the previous mode then broadcasted.
     if (mode == "previous") {
@@ -234,7 +231,7 @@ biesi>	passing it the appropriate proxyinfo
       else
         mode = "disabled";
     }
-    this._previousMode = this.mode;
+    this._previousMode = this._mode;
     this._mode = mode;
 	  this._selectedProxy = null; // todo: really shouldn't do this in case something tries to load right after this instruction
     for (var i=0,len=this.proxies.length; i<len; i++) {
@@ -387,12 +384,9 @@ biesi>	passing it the appropriate proxyinfo
   setSettingsURI : function(o) {
     var o2 = this.transformer(o, "uri-string");
     try {
-      dump("about to write settings\n");
   	  this.writeSettings(o2);
-      dump("wrote settings\n")
   	  // Only update the preference if writeSettings() succeeded
       this.getPrefsService("extensions.foxyproxy.").setCharPref("settings", o==this.PFF ? this.PFF : o2);
-      dump("wrote pref\n")
     }
     catch(e) {
       this.alert(this, this.getMessage("error") + ":\n\n" + e);
@@ -410,7 +404,7 @@ biesi>	passing it the appropriate proxyinfo
     //var dir = CC["@mozilla.org/file/directory_service;1"].getService(CI.nsIProperties).get("ProfD", CI.nsILocalFile);
     var f = profileDir.clone();
     f.append("foxyproxy.xml");
-    dump("settings file: " + f.path + "\n");
+    //dump("settings file: " + f.path + "\n");
     return f;
     //file.initWithPath(dir.path);
     //file.appendRelativePath("foxyproxy.xml");

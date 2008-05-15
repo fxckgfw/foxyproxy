@@ -8,23 +8,9 @@
   available in the LICENSE file at the root of this installation
   and also online at http://www.gnu.org/licenses/gpl.txt
 **/
-var CI = Components.interfaces, CC = Components.classes;
-var formatConverter = CC["@mozilla.org/widget/htmlformatconverter;1"].
-                      createInstance(CI.nsIFormatConverter);
+var formatConverter = CC["@mozilla.org/widget/htmlformatconverter;1"].createInstance(CI.nsIFormatConverter);
 const DEF_PATTERN = "*://${3}${6}/*";
 
-// load match.js
-var self;
-var fileProtocolHandler = CC["@mozilla.org/network/protocol;1?name=file"].createInstance(CI["nsIFileProtocolHandler"]);
-if ("undefined" != typeof(__LOCATION__)) {
-  // preferred way
-  self = __LOCATION__;
-}
-else {
-  self = fileProtocolHandler.getFileFromURLSpec(Components.Exception().filename);
-}
-var componentDir = self.parent; // the directory this file is in
-var loader = CC["@mozilla.org/moz/jssubscript-loader;1"].createInstance(CI["mozIJSSubScriptLoader"]);
 try {
   var filePath = componentDir.clone();
   filePath.append("match.js");

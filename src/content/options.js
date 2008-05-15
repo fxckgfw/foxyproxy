@@ -14,7 +14,8 @@ var foxyproxy, proxyTree, logTree, monthslong, dayslong, overlay,
 const CI = Components.interfaces, CC = Components.classes;
 
 function onLoad() {
-  foxyproxy = CC["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;
+  foxyproxy = CC["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;  
+  dump("foxyproxy.mode = " + foxyproxy.mode + "\n");
   fpc = CC["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject;
   document.getElementById("maxSize").value = foxyproxy.logg.maxSize;
   overlay = fpc.getMostRecentWindow().foxyproxy;

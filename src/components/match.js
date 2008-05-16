@@ -11,14 +11,28 @@
 
 /* A better name for this class would have been Pattern */
 
+dump("match.js\n");
 // See http://forums.mozillazine.org/viewtopic.php?t=308369
-var CI = Components.interfaces, CC = Components.classes, CR = Components.results;
-function gQueryInterface(aIID) {
-  if(!aIID.equals(CI.nsISupports) && !aIID.equals(CI.nsISupportsWeakReference))
-    throw CR.NS_ERROR_NO_INTERFACE;
-  return this;
-}
+if (!CI) {
+  var CI = Components.interfaces, CC = Components.classes, CR = Components.results;
 
+  // Get attribute from node if it exists, otherwise return |def|.
+  // No exceptions, no errors, no null returns.
+  var gGetSafeAttr = function(n, name, def) {
+    n.QueryInterface(CI.nsIDOMElement);
+    return n ? (n.hasAttribute(name) ? n.getAttribute(name) : def) : def;
+  };
+  // Boolean version of GetSafe
+  var gGetSafeAttrB = function(n, name, def) {
+    n.QueryInterface(CI.nsIDOMElement);
+    return n ? (n.hasAttribute(name) ? n.getAttribute(name)=="true" : def) : def;
+  };
+  var gQueryInterface = function(aIID) {
+    if(!aIID.equals(CI.nsISupports) && !aIID.equals(CI.nsISupportsWeakReference))
+      throw CR.NS_ERROR_NO_INTERFACE;
+    return this;
+  }
+}
 ///////////////////////////// Match class///////////////////////
 function Match() {
   this.wrappedJSObject = this;
@@ -106,6 +120,7 @@ Match.prototype = {
   },
 
   toDOM : function(doc) {
+    if (this.temp) return;
     var matchElem = doc.createElement("match");
     matchElem.setAttribute("enabled", this.enabled);
     matchElem.setAttribute("name", this.name);

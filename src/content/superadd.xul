@@ -19,9 +19,9 @@
   ondialogaccept="return onOK();"
   onload="onLoad();"
   persist="screenX screenY"
-  windowtype="foxyproxy-quickadd">
+  windowtype="foxyproxy-superadd">
 
-<script src="quickadd.js"/>
+<script src="superadd.js"/>
 <script src="common.js"/>
 
 <separator class="thin" />
@@ -46,7 +46,7 @@
   accesskey="&foxyproxy.enabled.accesskey;"
   tooltiptext="&foxyproxy.enabled.tooltip;"/>
 
-<checkbox id="temp" observes="notSetupMode"
+<checkbox id="temp"
   label="&foxyproxy.temp.label;"
   accesskey="&foxyproxy.temp.accesskey;"
   tooltiptext="&foxyproxy.temp.tooltip;"/> 

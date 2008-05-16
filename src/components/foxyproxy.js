@@ -12,20 +12,33 @@
 // See http://forums.mozillazine.org/viewtopic.php?t=308369
 
 // Don't const the next line anymore because of the generic reg code
+dump("foxyproxy.js\n");
 var CI = Components.interfaces, CC = Components.classes, CR = Components.results, gFP;
 
 // Get attribute from node if it exists, otherwise return |def|.
 // No exceptions, no errors, no null returns.
-const gGetSafeAttr = function(n, name, def) {
+var gGetSafeAttr = function(n, name, def) {
   n.QueryInterface(CI.nsIDOMElement);
 	return n ? (n.hasAttribute(name) ? n.getAttribute(name) : def) : def;
 };
 // Boolean version of GetSafe
-const gGetSafeAttrB = function(n, name, def) {
+var gGetSafeAttrB = function(n, name, def) {
   n.QueryInterface(CI.nsIDOMElement);
 	return n ? (n.hasAttribute(name) ? n.getAttribute(name)=="true" : def) : def;
 };
-const gMatchingProxyFactory = function(proxy, aMatch, uri, type, errMsg) {
+var loadSubScript = function(filename) {
+  try {
+    var filePath = componentDir.clone();
+    filePath.append(filename);
+    loader.loadSubScript(fileProtocolHandler.getURLSpecFromFile(filePath));
+  }
+  catch (e) {
+    dump("Error loading " + filename + ": " + e + "\n");
+    dump(e.stack + "\n");
+    throw(e);
+  }  
+};
+var gMatchingProxyFactory = function(proxy, aMatch, uri, type, errMsg) {
     return new MatchingProxy(proxy, aMatch, foxyproxy.prototype.logg._noURLs ? foxyproxy.prototype.logg.noURLsMessage : uri, type, errMsg);
 	},
   gObsSvc = CC["@mozilla.org/observer-service;1"].getService(CI.nsIObserverService),
@@ -58,34 +71,27 @@ var componentDir = self.parent; // the directory this file is in
 var profileDir = componentDir.clone();
 profileDir = profileDir.parent.parent.parent;
 //dump("profileDir = " + profileDir.path + "\n");
+
 var loader = CC["@mozilla.org/moz/jssubscript-loader;1"].createInstance(CI["mozIJSSubScriptLoader"]);
-try {
-  var filePath = componentDir.clone();
-  filePath.append("superadd.js");
-  loader.loadSubScript(fileProtocolHandler.getURLSpecFromFile(filePath));
-  filePath = componentDir.clone();
-  filePath.append("proxy.js");
-  loader.loadSubScript(fileProtocolHandler.getURLSpecFromFile(filePath));
-  filePath = componentDir.clone();
-  filePath.append("match.js");
-  loader.loadSubScript(fileProtocolHandler.getURLSpecFromFile(filePath));
-  filePath = componentDir.clone();
-  filePath.append("matchingproxy.js");
-  loader.loadSubScript(fileProtocolHandler.getURLSpecFromFile(filePath));  
-}
-catch (e) {
-  dump("Error loading superadd.js, proxy.js, matchingproxy.js, or match.js\n" + e + "\n");
-  throw(e);
-}
+loadSubScript("proxy.js");
+loadSubScript("superadd.js"); // match.js is included by superadd.js
+loadSubScript("matchingproxy.js");
+
+
 // l is for lulu...
 function foxyproxy() {
-  SuperAdd.prototype.fp = gFP = this.wrappedJSObject = this;  
-  this._loadStrings();
-  this.autoadd = new SuperAdd();
-  this.quickadd = new QuickAdd();
-  this.autoadd.setName(this.getMessage("autoadd.pattern.label"));
-  this.quickadd.setName(this.getMessage("quickadd.pattern.label"));   
-  MatchingProxy.prototype.init();
+  try {
+    SuperAdd.prototype.fp = gFP = this.wrappedJSObject = this;  
+    this._loadStrings();
+    this.autoadd = new SuperAdd();
+    this.quickadd = new QuickAdd();
+    this.autoadd.setName(this.getMessage("autoadd.pattern.label"));
+    this.quickadd.setName(this.getMessage("quickadd.pattern.label"));   
+    MatchingProxy.prototype.init();
+  }
+  catch (e) {
+    dump(e.stack + "\n");
+  }  
 }
 foxyproxy.prototype = {
 	PFF : " ",
@@ -112,7 +118,12 @@ foxyproxy.prototype = {
 	observe: function(subj, topic, data) {
 		switch(topic) {
       case "profile-after-change":
-        this.loadSettings(); 
+        try {
+          this.loadSettings();
+        }        
+        catch (e) {
+          dump(e.stack + "\n");
+        }   
         break;
 			case "app-startup":
 				gObsSvc.addObserver(this, "quit-application", false);
@@ -127,7 +138,7 @@ foxyproxy.prototype = {
 		    var win = wm.getMostRecentWindow("navigator:browser") || wm.getMostRecentWindow("Songbird:Main");
 		    if (!win) {
 				  this.closeAppWindows("foxyproxy", wm);
-				  this.closeAppWindows("foxyproxy-quickadd", wm);
+				  this.closeAppWindows("foxyproxy-superadd", wm);
 				  this.closeAppWindows("foxyproxy-options", wm);
 				}
 				break;
@@ -181,25 +192,19 @@ biesi>	passing it the appropriate proxyinfo
     }
 	},
 
-
- loadSettings : function() {
-    try {
-      var req = CC["@mozilla.org/xmlextras/xmlhttprequest;1"].createInstance(CI.nsIXMLHttpRequest);
-      var settingsURI = this.getSettingsURI("uri-string");
-      req.open("GET", settingsURI, false);
-      req.send(null);
-      var doc = req.responseXML;
-      if (!doc || doc.documentElement.nodeName == "parsererror") {
-        this.alert(null, this.getMessage("settings.error.2", [settingsURI, settingsURI]));
-        this.writeSettings(settingsURI);
-      }
-      else {
-        this.fromDOM(doc, doc.documentElement);
-      }
+  loadSettings : function() {
+    var req = CC["@mozilla.org/xmlextras/xmlhttprequest;1"].createInstance(CI.nsIXMLHttpRequest);
+    var settingsURI = this.getSettingsURI("uri-string");
+    req.open("GET", settingsURI, false);
+    req.send(null);
+    var doc = req.responseXML;
+    if (!doc || doc.documentElement.nodeName == "parsererror") {
+      this.alert(null, this.getMessage("settings.error.2", [settingsURI, settingsURI]));
+      this.writeSettings(settingsURI);
     }
-    catch (e) {
-      dump (e.stack + "\n");
-    }  
+    else {
+      this.fromDOM(doc, doc.documentElement);
+    }
   },
 
 	init : function() {

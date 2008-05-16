@@ -9,8 +9,7 @@
   and also online at http://www.gnu.org/licenses/gpl.txt
 **/
 
-var foxyproxy, proxyTree, logTree, monthslong, dayslong, overlay,
-	quickAddTemplateExample, autoAddTemplateExample, timeformat, saveLogCmd, clearLogCmd, noURLsCmd, fpc;
+var foxyproxy, proxyTree, logTree, monthslong, dayslong, overlay, timeformat, saveLogCmd, clearLogCmd, noURLsCmd, fpc;
 const CI = Components.interfaces, CC = Components.classes;
 
 function onLoad() {
@@ -30,8 +29,6 @@ function onLoad() {
     foxyproxy.getMessage("days.long.6"), foxyproxy.getMessage("days.long.7")];
   proxyTree = document.getElementById("proxyTree");
   logTree = document.getElementById("logTree");
-  //autoAddTemplateExample = document.getElementById("autoAddTemplateExample");
-  //quickAddTemplateExample = document.getElementById("quickAddTemplateExample");
   saveLogCmd = document.getElementById("saveLogCmd");
   clearLogCmd = document.getElementById("clearLogCmd");  
   noURLsCmd = document.getElementById("noURLsCmd");  
@@ -260,7 +257,7 @@ function onCopySelection() {
 	  // Store cur selection
 	  var sel = proxyTree.currentIndex;    
 	  var dom = foxyproxy.proxies.item(proxyTree.currentIndex).toDOM(document);
-	  var p = CC["@leahscape.org/foxyproxy/proxy;1"].createInstance(CI.nsISupports).wrappedJSObject;
+	  var p = CC["@leahscape.org/foxyproxy/proxy;1"].createInstance().wrappedJSObject;
 	  p.fromDOM(dom);
 	  p.id = foxyproxy.proxies.uniqueRandom(); // give it its own id
 	  foxyproxy.proxies.push(p);
@@ -281,7 +278,7 @@ function move(direction) {
 function onSettings(isNew) {
   var sel = proxyTree.currentIndex,
     params = {inn:{proxy:isNew ?
-      CC["@leahscape.org/foxyproxy/proxy;1"].createInstance(CI.nsISupports).wrappedJSObject : 
+      CC["@leahscape.org/foxyproxy/proxy;1"].createInstance().wrappedJSObject : 
       foxyproxy.proxies.item(proxyTree.currentIndex)}, out:null};
         
   window.openDialog("chrome://foxyproxy/content/addeditproxy.xul", "",
@@ -408,7 +405,7 @@ function onQuickAdd() {
     overlay.alert(this, foxyproxy.getMessage("superadd.verboten2", [foxyproxy.getMessage("foxyproxy.quickadd.label")]));
     return;
   }
-  fpc.onQuickOrAutoAdd(window, true, null, true);
+  fpc.onSuperAdd(window, true, null, true);
 }   
 
 function onAutoAdd() {
@@ -416,5 +413,5 @@ function onAutoAdd() {
     overlay.alert(this, foxyproxy.getMessage("superadd.verboten2", [foxyproxy.getMessage("foxyproxy.tab.autoadd.label")]));
     return;
   }
-  fpc.onQuickOrAutoAdd(window, true, null, false);
+  fpc.onSuperAdd(window, true, null, false);
 }

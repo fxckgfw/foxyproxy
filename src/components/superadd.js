@@ -8,18 +8,12 @@
   available in the LICENSE file at the root of this installation
   and also online at http://www.gnu.org/licenses/gpl.txt
 **/
+dump("superadd.js\n");
 var formatConverter = CC["@mozilla.org/widget/htmlformatconverter;1"].createInstance(CI.nsIFormatConverter);
 const DEF_PATTERN = "*://${3}${6}/*";
 
-try {
-  var filePath = componentDir.clone();
-  filePath.append("match.js");
-  loader.loadSubScript(fileProtocolHandler.getURLSpecFromFile(filePath));
-}
-catch (e) {
-  dump("Error loading match.js\n");
-  throw(e);
-}
+if (!Match.prototype)
+  loadSubScript("match.js");
 
 function SuperAdd() {
   this.match = new Match();
@@ -57,7 +51,7 @@ SuperAdd.prototype = {
   },
 
   get temp() { return this._temp; },
-  set enabled(t) {
+  set temp(t) {
     this._temp = t;
     this.fp.writeSettings();
   },
@@ -155,7 +149,7 @@ SuperAdd.prototype = {
     e.setAttribute("notifyWhenCanceled", this._notifyWhenCanceled);
     e.setAttribute("prompt", this._prompt);    
     this._proxy && e.setAttribute("proxy-id", this._proxy.id);
-    e.appendChild(this.match.toDOM(doc));
+    if (!this.match.temp) e.appendChild(this.match.toDOM(doc));
     return e;
   },
   

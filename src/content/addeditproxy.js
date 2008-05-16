@@ -162,7 +162,7 @@ function onAddEdit(isNew) {
 
   if (params.out) {
     params = params.out;
-    var match = isNew ? CC["@leahscape.org/foxyproxy/match;1"].createInstance(CI.nsISupports).wrappedJSObject : m;    
+    var match = isNew ? CC["@leahscape.org/foxyproxy/match;1"].createInstance().wrappedJSObject : m;    
     match.name = params.name;
     match.pattern = params.pattern;
     match.isRegEx = params.isRegEx;
@@ -261,7 +261,7 @@ function onViewAutoConf() {
 
 function onTestAutoConf() {
 	if (_checkUri()) {
-		var autoConf = CC["@leahscape.org/foxyproxy/autoconf;1"].createInstance(CI.nsISupports).wrappedJSObject;
+		var autoConf = CC["@leahscape.org/foxyproxy/autoconf;1"].createInstance().wrappedJSObject;
 		autoConf.owner = {name: "Test", enabled: true};
 		autoConf.url = autoconfurl.value;
     autoConf._resolver = CC["@mozilla.org/network/proxy-auto-config;1"].createInstance(CI.nsIProxyAutoConfig);

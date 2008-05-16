@@ -145,16 +145,16 @@ Common.prototype = {
     return url;
   },    
   
-  onQuickOrAutoAdd : function(wnd, setupMode, url, isQuickAdd) {  
+  onSuperAdd : function(wnd, setupMode, url, isQuickAdd) {  
     var fp = CC["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;  
     var q = isQuickAdd ? fp.quickadd : fp.autoadd;
     var p = {inn:{url:url || this.getMostRecentWindow().content.location.href, urlTemplate:q.urlTemplate, enabled:q.enabled,
       temp:q.temp, reload:q.reload, prompt:q.prompt, notify:q.notify, notifyWhenCanceled:q.notifyWhenCanceled,
       proxies:fp.proxies, match:q.match, setupMode:setupMode, isQuickAdd:isQuickAdd}, out:null};
-     // q.proxy is null when user hasn't yet used QuickAdd
+    // q.proxy is null when user hasn't yet used QuickAdd
     if (q.proxy != null)
       p.inn.proxyId =  q.proxy.id;     
-    wnd.openDialog("chrome://foxyproxy/content/quickadd.xul", "",
+    wnd.openDialog("chrome://foxyproxy/content/superadd.xul", "",
       "minimizable,dialog,chrome,resizable=yes,modal", p).focus();
     if (p.out) {
       p = p.out;
@@ -167,7 +167,7 @@ Common.prototype = {
       q.notifyWhenCanceled = p.notifyWhenCanceled;
       q.urlTemplate = p.urlTemplate;    
       q.match.name = p.name;
-      //q.match.pattern = p.pattern;
+      q.match.pattern = p.pattern;
       q.match.caseSensitive = p.caseSensitive;          
       q.match.isRegEx = p.isRegEx;
       q.match.isBlackList = p.isBlackList;

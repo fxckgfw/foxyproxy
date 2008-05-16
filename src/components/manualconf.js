@@ -11,14 +11,28 @@
 
 // See http://forums.mozillazine.org/viewtopic.php?t=308369
 
-// Don't const the next line anymore because of the generic reg code
-var CI = Components.interfaces, CC = Components.classes, CR = Components.results, fp;
-var proxyService = CC["@mozilla.org/network/protocol-proxy-service;1"].getService(CI.nsIProtocolProxyService);
-function gQueryInterface(aIID) {
-  if(!aIID.equals(CI.nsISupports) && !aIID.equals(CI.nsISupportsWeakReference))
-    throw CR.NS_ERROR_NO_INTERFACE;
-  return this;
+dump("manualconf.js\n");
+if (!CI) {
+  var CI = Components.interfaces, CC = Components.classes, CR = Components.results, fp;
+
+  // Get attribute from node if it exists, otherwise return |def|.
+  // No exceptions, no errors, no null returns.
+  var gGetSafeAttr = function(n, name, def) {
+    n.QueryInterface(CI.nsIDOMElement);
+    return n ? (n.hasAttribute(name) ? n.getAttribute(name) : def) : def;
+  };
+  // Boolean version of GetSafe
+  var gGetSafeAttrB = function(n, name, def) {
+    n.QueryInterface(CI.nsIDOMElement);
+    return n ? (n.hasAttribute(name) ? n.getAttribute(name)=="true" : def) : def;
+  };
+  var gQueryInterface = function(aIID) {
+    if(!aIID.equals(CI.nsISupports) && !aIID.equals(CI.nsISupportsWeakReference))
+      throw CR.NS_ERROR_NO_INTERFACE;
+    return this;
+  }
 }
+var proxyService = CC["@mozilla.org/network/protocol-proxy-service;1"].getService(CI.nsIProtocolProxyService);
 
 ///////////////////////////// ManualConf class ///////////////////////
 function ManualConf(fpp) {

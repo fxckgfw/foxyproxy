@@ -190,7 +190,7 @@ var foxyproxy = {
    * Open or focus the main window/dialog
    */
   onOptionsDialog : function() {
-    this.onDialog("foxyproxy-options", "chrome://foxyproxy/content/options.xul", "foxyproxy-quickadd");
+    this.onDialog("foxyproxy-options", "chrome://foxyproxy/content/options.xul", null, null, "foxyproxy-superadd");
   },
 
   onDialog : function(id, xulFile, args, parms, idToClose) {
@@ -224,7 +224,7 @@ var foxyproxy = {
 		  	return;
 		  }
 			if (q._prompt) {
-          var pattern = this.fpc.onQuickOrAutoAdd(window, false, url, true); 
+          var pattern = this.fpc.onSuperAdd(window, false, url, true); 
           if (pattern) {                         
             // Add the pattern
 					  _qAdd(q.match, url, evt.view.content.document.location);

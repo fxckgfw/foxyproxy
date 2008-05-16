@@ -11,41 +11,56 @@
 
 // See http://forums.mozillazine.org/viewtopic.php?t=308369
 
-var CI = Components.interfaces, CC = Components.classes, CR = Components.results,
-  FEED_URL = "feed://",
-  proxyService = CC["@mozilla.org/network/protocol-proxy-service;1"].getService(CI.nsIProtocolProxyService);
-function gQueryInterface(aIID) {
-  if(!aIID.equals(CI.nsISupports) && !aIID.equals(CI.nsISupportsWeakReference))
-    throw CR.NS_ERROR_NO_INTERFACE;
-  return this;
+dump("proxy.js\n");
+if (!CI) {
+  var CI = Components.interfaces, CC = Components.classes, CR = Components.results;
+
+  // Get attribute from node if it exists, otherwise return |def|.
+  // No exceptions, no errors, no null returns.
+  var gGetSafeAttr = function(n, name, def) {
+    n.QueryInterface(CI.nsIDOMElement);
+    return n ? (n.hasAttribute(name) ? n.getAttribute(name) : def) : def;
+  }
+  // Boolean version of GetSafe
+  var gGetSafeAttrB = function(n, name, def) {
+    n.QueryInterface(CI.nsIDOMElement);
+    return n ? (n.hasAttribute(name) ? n.getAttribute(name)=="true" : def) : def;
+  }
+  var gQueryInterface = function(aIID) {
+    if(!aIID.equals(CI.nsISupports) && !aIID.equals(CI.nsISupportsWeakReference))
+      throw CR.NS_ERROR_NO_INTERFACE;
+    return this;
+  }
+  var loadSubScript = function(filename) {
+    try {
+      var filePath = componentDir.clone();
+      filePath.append(filename);
+      loader.loadSubScript(fileProtocolHandler.getURLSpecFromFile(filePath));
+    }
+    catch (e) {
+      dump("Error loading " + filename + ": " + e + "\n");
+      dump(e.stack + "\n");
+      throw(e);
+    }  
+  }
+  var self,
+    fileProtocolHandler = CC["@mozilla.org/network/protocol;1?name=file"].createInstance(CI["nsIFileProtocolHandler"]);
+  if ("undefined" != typeof(__LOCATION__)) {
+    // preferred way
+    self = __LOCATION__;
+  }
+  else {
+    self = fileProtocolHandler.getFileFromURLSpec(Components.Exception().filename);
+  }
+  var dir = self.parent, // the directory this file is in
+    loader = CC["@mozilla.org/moz/jssubscript-loader;1"].createInstance(CI["mozIJSSubScriptLoader"]);
 }
 
-var self;
-var fileProtocolHandler = CC["@mozilla.org/network/protocol;1?name=file"].createInstance(CI["nsIFileProtocolHandler"]);
-if ("undefined" != typeof(__LOCATION__)) {
-  // preferred way
-  self = __LOCATION__;
-}
-else {
-  self = fileProtocolHandler.getFileFromURLSpec(Components.Exception().filename);
-}
-var dir = self.parent; // the directory this file is in
-var loader = CC["@mozilla.org/moz/jssubscript-loader;1"].createInstance(CI["mozIJSSubScriptLoader"]);
-try {
-  var filePath = dir.clone();
-  filePath.append("autoconf.js");
-  loader.loadSubScript(fileProtocolHandler.getURLSpecFromFile(filePath));
-	filePath = dir.clone();
-  filePath.append("manualconf.js");
-  loader.loadSubScript(fileProtocolHandler.getURLSpecFromFile(filePath));
-	filePath = dir.clone();
-  filePath.append("match.js");
-  loader.loadSubScript(fileProtocolHandler.getURLSpecFromFile(filePath));
-}
-catch (e) {
-  dump("Error loading autoconf.js, manualconf.js, or match.js\n");
-  throw(e);
-}
+loadSubScript("autoconf.js");
+loadSubScript("manualconf.js");
+loadSubScript("match.js");
+
+var proxyService = CC["@mozilla.org/network/protocol-proxy-service;1"].getService(CI.nsIProtocolProxyService);
 ///////////////////////////// Proxy class ///////////////////////
 function Proxy(fp) {
   this.wrappedJSObject = this;
@@ -73,7 +88,6 @@ Proxy.prototype = {
     this.id = node.getAttribute("id") || Proxy.prototype.fp.proxies.uniqueRandom();
     this.notes = node.getAttribute("notes");
     this._enabled = node.getAttribute("enabled") == "true";
-    dump("autoconf = " + node.getElementsByTagName("autoconf").item(0) + "\n");
     this.autoconf.fromDOM(node.getElementsByTagName("autoconf").item(0));
     this.manualconf.fromDOM(node.getElementsByTagName("manualconf").item(0));
     // 1.1 used "manual" instead of "mode" and was true/false only (for manual or auto)

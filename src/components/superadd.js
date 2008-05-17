@@ -9,7 +9,6 @@
   and also online at http://www.gnu.org/licenses/gpl.txt
 **/
 dump("superadd.js\n");
-var formatConverter = CC["@mozilla.org/widget/htmlformatconverter;1"].createInstance(CI.nsIFormatConverter);
 const DEF_PATTERN = "*://${3}${6}/*";
 
 if (!Match.prototype)
@@ -37,7 +36,8 @@ SuperAdd.prototype = {
   notificationTitle : "foxyproxy.tab.autoadd.label",
   
   _urlTemplate : DEF_PATTERN,
-  _ios : CC["@mozilla.org/network/io-service;1"].getService(CI.nsIIOService),
+  _ios : CC["@mozilla.org/network/io-service;1"].getService(CI.nsIIOService),  
+  _formatConverter : CC["@mozilla.org/widget/htmlformatconverter;1"].createInstance(CI.nsIFormatConverter),
 
   setName : function(matchName) {
 		this.match.name = matchName;  
@@ -100,7 +100,7 @@ SuperAdd.prototype = {
       oldStr.data = txt;
       var newStr = {value: null};
       try {
-          formatConverter.convert("text/html", oldStr, oldStr.toString().length,
+          this._formatConverter.convert("text/html", oldStr, oldStr.toString().length,
             "text/unicode", newStr, {});
           return newStr.value.QueryInterface(CI.nsISupportsString).toString();
       }

@@ -11,7 +11,7 @@
 
 // See http://forums.mozillazine.org/viewtopic.php?t=308369
 
-dump("autoconf\n");
+dump("autoconf.js\n");
 if (!CI) {
   var CI = Components.interfaces, CC = Components.classes, CR = Components.results, fp;
 

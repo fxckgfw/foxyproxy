@@ -156,6 +156,7 @@ SuperAdd.prototype = {
   fromDOM : function(doc) {
     var n = doc.getElementsByTagName(this.elemName).item(0);
     this._enabled = gGetSafeAttrB(n, "enabled", false);
+    dump("enabled = " + this._enabled + "\n");
     this._temp = gGetSafeAttrB(n, "temp", false);
     this._urlTemplate = gGetSafeAttr(n, "urlTemplate", DEF_PATTERN);
     if (this._urlTemplate == "") this._urlTemplate = DEF_PATTERN;      

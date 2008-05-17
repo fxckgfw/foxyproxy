@@ -99,7 +99,6 @@ foxyproxy.prototype = {
   _selectedProxy : null,
   _selectedTabIndex : 0,
   _proxyDNS : false,
-  _initialized : false,
   _toolsMenu : true,
   _contextMenu : true,
   _toolsMenuNode : null,
@@ -206,24 +205,6 @@ biesi>	passing it the appropriate proxyinfo
       this.fromDOM(doc, doc.documentElement);
     }
   },
-
-	init : function() {
-	  if (!this._initialized) {
-	    this._initialized = true; // because @mozilla.org/file/directory_service;1 isn't available in init()
-
-      /*var req = CC["@mozilla.org/xmlextras/xmlhttprequest;1"].createInstance(CI.nsIXMLHttpRequest);
-      var settingsURI = this.getSettingsURI("uri-string");
-      req.open("GET", settingsURI, false);
-      req.send(null);
-      var doc = req.responseXML;
-      if (!doc || doc.documentElement.nodeName == "parsererror") {
-        this.alert(null, this.getMessage("settings.error.2", [settingsURI, settingsURI]));
-        this.writeSettings(settingsURI);
-      }
-      else
-      	this.fromDOM(doc, doc.documentElement);*/
-    }
-	},
 
   get mode() { return this._mode; },
   setMode : function(mode, writeSettings, init) {

@@ -11,7 +11,7 @@
 
 var foxyproxy = {
   checkboxType : Components.interfaces.nsITreeColumn.TYPE_CHECKBOX,
-  fp : Components.classes["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject,
+  fp : Components.classes["@leahscape.org/foxyproxy/service;1"].getService(Components.interfaces.nsISupports).wrappedJSObject,
   fpc : Components.classes["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject,
   statusIcon : null,
   contextMenuIcon : null,
@@ -65,7 +65,8 @@ var foxyproxy = {
   },
 
   onLoad : function() {
-    this.fp.init();
+    dump("quickadd enabled = " + this.fp.quickadd.enabled + "\n");
+    dump("autoadd enabled = " + this.fp.quickadd.enabled + "\n");
   	this.statusIcon = document.getElementById("foxyproxy-status-icon");
   	this.contextMenuIcon = document.getElementById("foxyproxy-context-menu-1");
   	this.toolbarIcon = document.getElementById("foxyproxy-button-1");

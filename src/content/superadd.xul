@@ -26,13 +26,13 @@
 
 <separator class="thin" />
 
-<description>
+<description style="width: 1em;">
   <observes element="notSetupMode" attribute="hidden"/>
   <observes element="autoAddMode" attribute="hidden"/>
 &foxyproxy.autoadd.description;
 </description>
 
-<description>&foxyproxy.quickadd.desc1;
+<description style="width: 1em;">&foxyproxy.quickadd.desc1;
 	<observes element="notSetupMode" attribute="hidden"/>
 	<observes element="quickAddMode" attribute="hidden"/>
 	<text value="&foxyproxy.keyconfig.label;" class="text-link"

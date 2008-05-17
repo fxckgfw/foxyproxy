@@ -13,7 +13,16 @@
 
 dump("proxy.js\n");
 if (!CI) {
-  var CI = Components.interfaces, CC = Components.classes, CR = Components.results;
+  var CI = Components.interfaces, CC = Components.classes, CR = Components.results, self,
+    fileProtocolHandler = CC["@mozilla.org/network/protocol;1?name=file"].createInstance(CI["nsIFileProtocolHandler"]);
+  if ("undefined" != typeof(__LOCATION__)) {
+    // preferred way
+    self = __LOCATION__;
+  }
+  else {
+    self = fileProtocolHandler.getFileFromURLSpec(Components.Exception().filename);
+  }
+  var componentDir = self.parent; // the directory this file is in
 
   // Get attribute from node if it exists, otherwise return |def|.
   // No exceptions, no errors, no null returns.

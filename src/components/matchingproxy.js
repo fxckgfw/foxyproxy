@@ -9,8 +9,8 @@
   and also online at http://www.gnu.org/licenses/gpl.txt
 **/
 
-///////////////////////////// MatchingProxy class ///////////////////////
-function MatchingProxy(proxy, aMatch, uriStr, type, errMsg) {
+///////////////////////////// LoggEntry class ///////////////////////
+function LoggEntry(proxy, aMatch, uriStr, type, errMsg) {
     this.timestamp = Date.now();  
     (!this.randomMsg && this.init());
     this.uri = uriStr;
@@ -37,7 +37,7 @@ function MatchingProxy(proxy, aMatch, uriStr, type, errMsg) {
     }
 }
 
-MatchingProxy.prototype = {
+LoggEntry.prototype = {
   errMsg : "", // Default value for MPs which don't have errors
   pacResult : "", // Default value for MPs which don't have PAC results (i.e., they probably don't use PACs or the PAC returned null
   init : function() { /* one-time init to get localized msgs */

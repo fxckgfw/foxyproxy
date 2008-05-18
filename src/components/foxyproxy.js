@@ -101,7 +101,6 @@ foxyproxy.prototype = {
   _proxyDNS : false,
   _toolsMenu : true,
   _contextMenu : true,
-  _toolsMenuNode : null,
   _advancedMenus : false,
   _previousMode : "patterns",
   autoadd : null,

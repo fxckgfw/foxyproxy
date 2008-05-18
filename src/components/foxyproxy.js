@@ -38,8 +38,8 @@ var loadSubScript = function(filename) {
     throw(e);
   }  
 };
-var gMatchingProxyFactory = function(proxy, aMatch, uri, type, errMsg) {
-    return new MatchingProxy(proxy, aMatch, foxyproxy.prototype.logg._noURLs ? foxyproxy.prototype.logg.noURLsMessage : uri, type, errMsg);
+var gLoggEntryFactory = function(proxy, aMatch, uri, type, errMsg) {
+    return new LoggEntry(proxy, aMatch, foxyproxy.prototype.logg._noURLs ? foxyproxy.prototype.logg.noURLsMessage : uri, type, errMsg);
 	},
   gObsSvc = CC["@mozilla.org/observer-service;1"].getService(CI.nsIObserverService),
 	gBroadcast = function(subj, topic, data) {
@@ -75,7 +75,7 @@ profileDir = profileDir.parent.parent.parent;
 var loader = CC["@mozilla.org/moz/jssubscript-loader;1"].createInstance(CI["mozIJSSubScriptLoader"]);
 loadSubScript("proxy.js");
 loadSubScript("superadd.js"); // match.js is included by superadd.js
-loadSubScript("matchingproxy.js");
+loadSubScript("loggentry.js");
 
 
 // l is for lulu...
@@ -87,7 +87,7 @@ function foxyproxy() {
     this.quickadd = new QuickAdd();
     this.autoadd.setName(this.getMessage("autoadd.pattern.label"));
     this.quickadd.setName(this.getMessage("quickadd.pattern.label"));   
-    MatchingProxy.prototype.init();
+    LoggEntry.prototype.init();
   }
   catch (e) {
     dump(e.stack + "\n");
@@ -303,7 +303,7 @@ biesi>	passing it the appropriate proxyinfo
   applyFilter : function(ps, uri, proxy) {
   	function _err(fp, info, extInfo) {
 	  	var def = fp.proxies.item(fp.proxies.length-1);
-      mp = gMatchingProxyFactory(def, null, spec, "err", extInfo?extInfo:info);
+      mp = gLoggEntryFactory(def, null, spec, "err", extInfo?extInfo:info);
 			fp.notifier.alert(info, fp.getMessage("see.log"));
 	    return def; // Failsafe: use lastresort proxy if nothing else was chosen
   	}
@@ -543,24 +543,24 @@ biesi>	passing it the appropriate proxyinfo
   },
 
   /**
-   * Return a MatchingProxy instance.
+   * Return a LoggEntry instance.
    */
   applyMode : function(spec) {
-    var matchingProxy;
+    var loggEntry;
     switch (this.mode) {
       case "random":
-				//matchingProxy = this.proxies.getRandom(spec, this.random._includeDirect, this.random._includeDisabled);
+				//loggEntry = this.proxies.getRandom(spec, this.random._includeDirect, this.random._includeDisabled);
         //break;
       case "patterns":
-	      matchingProxy = this.proxies.getMatches(spec);
+	      loggEntry = this.proxies.getMatches(spec);
         break;
 			case "roundrobin":
 				break;
       default:
-	      matchingProxy = gMatchingProxyFactory(this._selectedProxy, null, spec, "ded");
+	      loggEntry = gLoggEntryFactory(this._selectedProxy, null, spec, "ded");
         break;
     }
-    return matchingProxy;
+    return loggEntry;
   },
   
   getIPAddresses : function() {
@@ -757,11 +757,11 @@ biesi>	passing it the appropriate proxyinfo
     getMatches : function(uriStr) {
 			for (var i=0, aMatch; i<this.list.length; i++) {
 				if (this.list[i]._enabled && (aMatch = this.list[i].isWhiteMatch(uriStr))) {
-					return gMatchingProxyFactory(this.list[i], aMatch, uriStr, "pat");
+					return gLoggEntryFactory(this.list[i], aMatch, uriStr, "pat");
 				}
       }
       // Failsafe: use lastresort proxy if nothing else was chosen
-      return gMatchingProxyFactory(this.lastresort, this.lastresort.matches[0], uriStr, "pat");
+      return gLoggEntryFactory(this.lastresort, this.lastresort.matches[0], uriStr, "pat");
     },
 
     getRandom : function(uriStr, includeDirect, includeDisabled) {
@@ -776,7 +776,7 @@ biesi>	passing it the appropriate proxyinfo
       if (maxTries == 0) {
         return this.lastresort;
       }
-      return gMatchingProxyFactory(this.list[r], null, uriStr, "rand");
+      return gLoggEntryFactory(this.list[r], null, uriStr, "rand");
     },
 
 		getNextById : function(curId) {

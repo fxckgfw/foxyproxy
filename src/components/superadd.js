@@ -11,9 +11,6 @@
 dump("superadd.js\n");
 const DEF_PATTERN = "*://${3}${6}/*";
 
-if (!Match.prototype)
-  loadSubScript("match.js");
-
 function SuperAdd() {
   this.match = new Match();
   this.match.isMultiLine = true;

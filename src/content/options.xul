@@ -17,11 +17,9 @@
 	title="&foxyproxy.optionsdialog.label;"
 	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
 	xmlns:html="http://www.w3.org/1999/xhtml"
-	width="&foxyproxy.options.width;" height="&foxyproxy.options.height;"
 	persist="screenX screenY" onload="onLoad();" context="mainPopup">
 
   <script src="options.js"/>
-  <script src="common.js"/>
 	<vbox>
 		<!-- menu -->
 		<toolbox>
@@ -698,7 +696,4 @@
 	<keyset>
 		<key id="esc-key" keycode="VK_ESCAPE" command="closeCmd" />
 	</keyset>
-	<popupset>
-		<popup id="patternTemplatePopup"/>
-	</popupset>
 </window>

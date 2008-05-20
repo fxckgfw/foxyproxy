@@ -87,14 +87,12 @@ ProtocolFactory.createInstance = function (outer, iid) {
   return new Protocol();
 }
 
-
 /**
  * JS XPCOM boilerplate component registration code.
  */
+var prochandler = new Object();
 
-var TestModule = new Object();
-
-TestModule.registerSelf = function (compMgr, fileSpec, location, type) {
+prochandler.registerSelf = function (compMgr, fileSpec, location, type) {
   compMgr = compMgr.QueryInterface(Components.interfaces.nsIComponentRegistrar);
   compMgr.registerFactoryLocation(kPROTOCOL_CID,
                                   kPROTOCOL_NAME,
@@ -104,7 +102,7 @@ TestModule.registerSelf = function (compMgr, fileSpec, location, type) {
                                   type);
 }
 
-TestModule.getClassObject = function (compMgr, cid, iid) {
+prochandler.getClassObject = function (compMgr, cid, iid) {
   if (!cid.equals(kPROTOCOL_CID))
     throw Components.results.NS_ERROR_NO_INTERFACE;
 
@@ -114,10 +112,10 @@ TestModule.getClassObject = function (compMgr, cid, iid) {
   return ProtocolFactory;
 }
 
-TestModule.canUnload = function (compMgr) {
+prochandler.canUnload = function (compMgr) {
   return true;
 }
 
 function NSGetModule(compMgr, fileSpec){
-  return TestModule;
+  return prochandler;
 }

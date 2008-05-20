@@ -13,6 +13,7 @@
 
 dump("autoconf.js\n");
 if (!CI) {
+  // we're not being included by foxyproxy.js
   var CI = Components.interfaces, CC = Components.classes, CR = Components.results, fp;
 
   // Get attribute from node if it exists, otherwise return |def|.
@@ -26,11 +27,8 @@ if (!CI) {
     n.QueryInterface(CI.nsIDOMElement);
     return n ? (n.hasAttribute(name) ? n.getAttribute(name)=="true" : def) : def;
   };
-  var gQueryInterface = function(aIID) {
-    if(!aIID.equals(CI.nsISupports) && !aIID.equals(CI.nsISupportsWeakReference))
-      throw CR.NS_ERROR_NO_INTERFACE;
-    return this;
-  }
+  // XPCOM module initialization
+  var NSGetModule = function() { return AutoConfModule; }
 }
 
 ///////////////////////////// AutoConf class ///////////////////////
@@ -44,7 +42,6 @@ function AutoConf(owner, fpp) {
 }
 
 AutoConf.prototype = {
-  QueryInterface: gQueryInterface,
   parser : /\s*(\S+)\s*(?:([^:]+):?(\d*)\s*[;]?\s*)?/,
   status : 0,
   error : null,
@@ -55,6 +52,12 @@ AutoConf.prototype = {
   _autoReload: false,
   _reloadFreqMins: 60,
 
+  QueryInterface: function(aIID) {
+    if(!aIID.equals(CI.nsISupports) && !aIID.equals(CI.nsISupportsWeakReference))
+      throw CR.NS_ERROR_NO_INTERFACE;
+    return this;
+  },
+    
   set autoReload(e) {
     this._autoReload = e;
     if (!e && this.timer) {
@@ -137,81 +140,41 @@ AutoConf.prototype = {
       this.owner.mode = "direct"; // don't disable!
     else
       this.owner.enabled = false;
-  },
-	classID: Components.ID("{54382370-f194-11da-8ad9-0800200c9a66}"),
-	contractID: "@leahscape.org/foxyproxy/autoconf;1",
-	classDescription: "FoxyProxy AutoConfiguration Component"
+  }
 };
 
+var AutoConfFactory = {
+  createInstance: function (aOuter, aIID) {
+    if (aOuter != null)
+      throw CR.NS_ERROR_NO_AGGREGATION;
+    return (new AutoConf()).QueryInterface(aIID);
+  }
+};
 
-var gXpComObjects = [AutoConf];
-var gCatObserverName = "foxyproxy_autoconf_catobserver";
-var gCatContractId = AutoConf.prototype.contractID;
+var AutoConfModule = {
+  CLASS_ID : Components.ID("54382370-f194-11da-8ad9-0800200c9a66"),
+  CLASS_NAME : "FoxyProxy AutoConfiguration Component",
+  CONTRACT_ID : "@leahscape.org/foxyproxy/autoconf;1",
+  
+  registerSelf: function(aCompMgr, aFileSpec, aLocation, aType) {
+    aCompMgr = aCompMgr.QueryInterface(CI.nsIComponentRegistrar);
+    aCompMgr.registerFactoryLocation(this.CLASS_ID, this.CLASS_NAME, this.CONTRACT_ID, aFileSpec, aLocation, aType);
+  },
 
-function NSGetModule(compMgr, fileSpec) {
-	gModule._catObserverName = gCatObserverName;
-	gModule._catContractId = gCatContractId;
+  unregisterSelf: function(aCompMgr, aLocation, aType) {
+    aCompMgr = aCompMgr.QueryInterface(CI.nsIComponentRegistrar);
+    aCompMgr.unregisterFactoryLocation(this.CLASS_ID, aLocation);        
+  },
+  
+  getClassObject: function(aCompMgr, aCID, aIID) {
+    if (!aIID.equals(CI.nsIFactory))
+      throw Components.results.NS_ERROR_NOT_IMPLEMENTED;
 
-	for (var i in gXpComObjects)
-		gModule._xpComObjects[i] = new gFactoryHolder(gXpComObjects[i]);
+    if (aCID.equals(this.CLASS_ID))
+      return AutoConfFactory;
 
-	return gModule;
-}
+    throw Components.results.NS_ERROR_NO_INTERFACE;
+  },
 
-function gFactoryHolder(aObj) {
-	this.CID        = aObj.prototype.classID;
-	this.contractID = aObj.prototype.contractID;
-	this.className  = aObj.prototype.classDescription;
-	this.factory =
-	{
-		createInstance: function(aOuter, aIID)
-		{
-			if (aOuter)
-				throw CR.NS_ERROR_NO_AGGREGATION;
-
-			return (new this.constructor).QueryInterface(aIID);
-		}
-	};
-
-	this.factory.constructor = aObj;
-}
-var gModule = {
-	registerSelf: function (aComponentManager, aFileSpec, aLocation, aType) {
-		aComponentManager.QueryInterface(CI.nsIComponentRegistrar);
-		for (var key in this._xpComObjects)
-		{
-			var obj = this._xpComObjects[key];
-			aComponentManager.registerFactoryLocation(obj.CID, obj.className,
-			obj.contractID, aFileSpec, aLocation, aType);
-		}
-	},
-
-	unregisterSelf: function(aCompMgr, aFileSpec, aLocation) {
-
-		aComponentManager.QueryInterface(CI.nsIComponentRegistrar);
-		for (var key in this._xpComObjects)
-		{
-			var obj = this._xpComObjects[key];
-			aComponentManager.unregisterFactoryLocation(obj.CID, aFileSpec);
-		}
-	},
-
-	getClassObject: function(aComponentManager, aCID, aIID)	{
-		if (!aIID.equals(CI.nsIFactory))
-			throw CR.NS_ERROR_NOT_IMPLEMENTED;
-
-		for (var key in this._xpComObjects)
-		{
-			if (aCID.equals(this._xpComObjects[key].CID))
-				return this._xpComObjects[key].factory;
-		}
-
-		throw CR.NS_ERROR_NO_INTERFACE;
-	},
-
-	canUnload: function(aComponentManager) { return true; },
-
-	_xpComObjects: {},
-	_catObserverName: null,
-	_catContractId: null
+  canUnload: function(aCompMgr) { return true; }
 };

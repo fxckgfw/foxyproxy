@@ -15,7 +15,6 @@
 <overlay id="foxyproxy-overlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
   <script src="overlay.js"/>
-  <script src="common.js"/>
 
   <stringbundleset id="foxyproxy-strings">
     <stringbundle src="chrome://foxyproxy/locale/foxyproxy.properties"/>   

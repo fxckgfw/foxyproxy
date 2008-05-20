@@ -13,6 +13,9 @@
 
 dump("proxy.js\n");
 if (!CI) {
+  // XPCOM module initialization
+  var NSGetModule = function() { return ProxyModule; }
+  
   var CI = Components.interfaces, CC = Components.classes, CR = Components.results, self,
     fileProtocolHandler = CC["@mozilla.org/network/protocol;1?name=file"].createInstance(CI["nsIFileProtocolHandler"]);
   if ("undefined" != typeof(__LOCATION__)) {
@@ -35,11 +38,7 @@ if (!CI) {
     n.QueryInterface(CI.nsIDOMElement);
     return n ? (n.hasAttribute(name) ? n.getAttribute(name)=="true" : def) : def;
   }
-  var gQueryInterface = function(aIID) {
-    if(!aIID.equals(CI.nsISupports) && !aIID.equals(CI.nsISupportsWeakReference))
-      throw CR.NS_ERROR_NO_INTERFACE;
-    return this;
-  }
+
   var loadSubScript = function(filename) {
     try {
       var filePath = componentDir.clone();
@@ -66,7 +65,6 @@ if (!CI) {
 }
 
 loadSubScript("autoconf.js");
-loadSubScript("manualconf.js");
 loadSubScript("match.js");
 
 var proxyService = CC["@mozilla.org/network/protocol-proxy-service;1"].getService(CI.nsIProtocolProxyService);
@@ -76,6 +74,7 @@ function Proxy(fp) {
   this.fp = fp || CC["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;
   this.matches = new Array();
   this.name = this.notes = "";
+  ManualConf.prototype.fp = this.fp;
   this.manualconf = new ManualConf(this.fp);
   this.autoconf = new AutoConf(this, this.fp);
   this._mode = "manual"; // manual, auto, direct, random
@@ -86,12 +85,17 @@ function Proxy(fp) {
 }
 
 Proxy.prototype = {
-  QueryInterface: gQueryInterface,
   direct: proxyService.newProxyInfo("direct", "", -1, 0, 0, null),
   animatedIcons: true,
   includeInCycle: true,
   fp: null,
 
+  QueryInterface: function(aIID) {
+    if(!aIID.equals(CI.nsISupports) && !aIID.equals(CI.nsISupportsWeakReference))
+      throw CR.NS_ERROR_NO_INTERFACE;
+    return this;
+  },
+  
   fromDOM : function(node, fpMode) {
     this.name = node.getAttribute("name");
     this.id = node.getAttribute("id") || Proxy.prototype.fp.proxies.uniqueRandom();
@@ -274,80 +278,115 @@ Proxy.prototype = {
       case "auto":return this.resolve(spec, host, mp);
 	    case "direct":return this.direct;
     }
-  },
-	classID: Components.ID("{51b469a0-edc1-11da-8ad9-0800200c9a66}"),
-	contractID: "@leahscape.org/foxyproxy/proxy;1",
-	classDescription: "FoxyProxy Proxy Component"
+  }
 };
 
-var gXpComObjects = [Proxy];
-var gCatObserverName = "foxyproxy_proxy_catobserver";
-var gCatContractId = Proxy.prototype.contractID;
+///////////////////////////// ManualConf class ///////////////////////
+function ManualConf() {}
 
-function NSGetModule(compMgr, fileSpec) {
-	gModule._catObserverName = gCatObserverName;
-	gModule._catContractId = gCatContractId;
+ManualConf.prototype = {
+  _host: "",
+  _port: "",
+  _socksversion: "5",
+  _isSocks: false,
+  fp : null,
+          
+  fromDOM : function(n) {
+    this._host = gGetSafeAttr(n, "host", null) || gGetSafeAttr(n, "http", null) ||  
+      gGetSafeAttr(n, "socks", null) || gGetSafeAttr(n, "ssl", null) ||
+      gGetSafeAttr(n, "ftp", null) || gGetSafeAttr(n, "gopher", ""); //"host" is new for 2.5
 
-	for (var i in gXpComObjects)
-		gModule._xpComObjects[i] = new gFactoryHolder(gXpComObjects[i]);
+    this._port = gGetSafeAttr(n, "port", null) || gGetSafeAttr(n, "httpport", null) ||
+      gGetSafeAttr(n, "socksport", null) || gGetSafeAttr(n, "sslport", null) ||
+      gGetSafeAttr(n, "ftpport", null) || gGetSafeAttr(n, "gopherport", ""); // "port" is new for 2.5
+      
+    this._socksversion = gGetSafeAttr(n, "socksversion", "5");
+      
+    this._isSocks = n.hasAttribute("isSocks") ? n.getAttribute("isSocks") == "true" :
+      n.getAttribute("http") ? false: 
+      n.getAttribute("ssl") ? false:
+      n.getAttribute("ftp") ? false:       
+      n.getAttribute("gopher") ? false:
+      n.getAttribute("socks") ? true : false; // new for 2.5
+      
+    this._makeProxy();
+  },
 
-	return gModule;
-}
+  toDOM : function(doc)  {
+    var e = doc.createElement("manualconf"); 
+    e.setAttribute("host", this._host);      
+    e.setAttribute("port", this._port);
+    e.setAttribute("socksversion", this._socksversion);
+    e.setAttribute("isSocks", this._isSocks);    
+    return e;
+  },  
 
-function gFactoryHolder(aObj) {
-	this.CID        = aObj.prototype.classID;
-	this.contractID = aObj.prototype.contractID;
-	this.className  = aObj.prototype.classDescription;
-	this.factory =
-	{
-		createInstance: function(aOuter, aIID)
-		{
-			if (aOuter)
-				throw CR.NS_ERROR_NO_AGGREGATION;
+  _makeProxy : function() {
+    if (!this._host || !this._port) {
+      return;
+    }
+    this.proxy = this._isSocks ? proxyService.newProxyInfo(this._socksversion == "5"?"socks":"socks4", this._host, this._port,
+          this.fp.proxyDNS ? CI.nsIProxyInfo.TRANSPARENT_PROXY_RESOLVES_HOST : 0, 0, null): // never ignore, never failover
+          proxyService.newProxyInfo("http", this._host, this._port, 0, 0, null);
+  },
 
-			return (new this.constructor).QueryInterface(aIID);
-		}
-	};
+  get host() {return this._host;},
+  set host(e) {
+    this._host = e;
+    this._makeProxy();
+  },  
 
-	this.factory.constructor = aObj;
-}
-var gModule = {
-	registerSelf: function (aComponentManager, aFileSpec, aLocation, aType) {
-		aComponentManager.QueryInterface(CI.nsIComponentRegistrar);
-		for (var key in this._xpComObjects)
-		{
-			var obj = this._xpComObjects[key];
-			aComponentManager.registerFactoryLocation(obj.CID, obj.className,
-			obj.contractID, aFileSpec, aLocation, aType);
-		}
-	},
+  get port() {return this._port;},
+  set port(e) {
+    this._port = e;
+    this._makeProxy();
+  },
+     
+  get isSocks() {return this._isSocks;},
+  set isSocks(e) {
+    this._isSocks = e;
+    this._makeProxy();
+  },
 
-	unregisterSelf: function(aCompMgr, aFileSpec, aLocation) {
+  get socksversion() {return this._socksversion;},
+  set socksversion(e) {
+    this._socksversion = e;
+    this._makeProxy();
+  }
+};
 
-		aComponentManager.QueryInterface(CI.nsIComponentRegistrar);
-		for (var key in this._xpComObjects)
-		{
-			var obj = this._xpComObjects[key];
-			aComponentManager.unregisterFactoryLocation(obj.CID, aFileSpec);
-		}
-	},
+var ProxyFactory = {
+  createInstance: function (aOuter, aIID) {
+    if (aOuter != null)
+      throw CR.NS_ERROR_NO_AGGREGATION;
+    return (new Proxy()).QueryInterface(aIID);
+  }
+};
 
-	getClassObject: function(aComponentManager, aCID, aIID)	{
-		if (!aIID.equals(CI.nsIFactory))
-			throw CR.NS_ERROR_NOT_IMPLEMENTED;
+var ProxyModule = {
+  CLASS_ID : Components.ID("51b469a0-edc1-11da-8ad9-0800200c9a66"),
+  CLASS_NAME : "FoxyProxy Proxy Component",
+  CONTRACT_ID : "@leahscape.org/foxyproxy/proxy;1",
 
-		for (var key in this._xpComObjects)
-		{
-			if (aCID.equals(this._xpComObjects[key].CID))
-				return this._xpComObjects[key].factory;
-		}
+  registerSelf: function(aCompMgr, aFileSpec, aLocation, aType) {
+    aCompMgr = aCompMgr.QueryInterface(CI.nsIComponentRegistrar);
+    aCompMgr.registerFactoryLocation(this.CLASS_ID, this.CLASS_NAME, this.CONTRACT_ID, aFileSpec, aLocation, aType);
+  },
 
-		throw CR.NS_ERROR_NO_INTERFACE;
-	},
+  unregisterSelf: function(aCompMgr, aLocation, aType) {
+    aCompMgr = aCompMgr.QueryInterface(CI.nsIComponentRegistrar);
+    aCompMgr.unregisterFactoryLocation(this.CLASS_ID, aLocation);        
+  },
+  
+  getClassObject: function(aCompMgr, aCID, aIID) {
+    if (!aIID.equals(CI.nsIFactory))
+      throw Components.results.NS_ERROR_NOT_IMPLEMENTED;
 
-	canUnload: function(aComponentManager) { return true; },
+    if (aCID.equals(this.CLASS_ID))
+      return ProxyFactory;
 
-	_xpComObjects: {},
-	_catObserverName: null,
-	_catContractId: null
+    throw CR.NS_ERROR_NO_INTERFACE;
+  },
+
+  canUnload: function(aCompMgr) { return true; }
 };

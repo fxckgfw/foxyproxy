@@ -22,7 +22,6 @@
   windowtype="foxyproxy-superadd">
 
 <script src="superadd.js"/>
-<script src="common.js"/>
 
 <separator class="thin" />
 

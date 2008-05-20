@@ -26,7 +26,6 @@
   persist="screenX screenY">
 
 <script src="about.js"/>
-<script src="common.js"/>
 
 <groupbox align="center" orient="horizontal">
 <vbox align="center">

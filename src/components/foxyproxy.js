@@ -74,8 +74,8 @@ profileDir = profileDir.parent.parent.parent;
 
 var loader = CC["@mozilla.org/moz/jssubscript-loader;1"].createInstance(CI["mozIJSSubScriptLoader"]);
 loadSubScript("proxy.js");
-loadSubScript("superadd.js"); // match.js is included by superadd.js
-loadSubScript("loggentry.js");
+loadSubScript("match.js");
+loadSubScript("superadd.js");
 
 
 // l is for lulu...
@@ -107,9 +107,8 @@ foxyproxy.prototype = {
   quickadd : null,
 
 	QueryInterface: function(aIID) {
-		if(!aIID.equals(CI.nsISupports) && !aIID.equals(CI.nsIObserver) && !aIID.equals(CI.nsISupportsWeakReference)) {
+		if(!aIID.equals(CI.nsISupports) && !aIID.equals(CI.nsIObserver) && !aIID.equals(CI.nsISupportsWeakReference))
 			throw CR.NS_ERROR_NO_INTERFACE;
-	  }
 		return this;
 	},
 
@@ -185,9 +184,8 @@ biesi>	passing it the appropriate proxyinfo
 	closeAppWindows: function(type, wm) {
 		var wm = CC["@mozilla.org/appshell/window-mediator;1"].getService(CI.nsIWindowMediator);
 		var e = wm.getEnumerator(type);
-    while (e.hasMoreElements()) {
+    while (e.hasMoreElements())
     	e.getNext().close();
-    }
 	},
 
   loadSettings : function() {
@@ -200,9 +198,8 @@ biesi>	passing it the appropriate proxyinfo
       this.alert(null, this.getMessage("settings.error.2", [settingsURI, settingsURI]));
       this.writeSettings(settingsURI);
     }
-    else {
+    else
       this.fromDOM(doc, doc.documentElement);
-    }
   },
 
   get mode() { return this._mode; },
@@ -1290,6 +1287,50 @@ biesi>	passing it the appropriate proxyinfo
   contractID: "@leahscape.org/foxyproxy/service;1",
   classDescription: "FoxyProxy Core"
 };
+
+///////////////////////////// LoggEntry class ///////////////////////
+function LoggEntry(proxy, aMatch, uriStr, type, errMsg) {
+    this.timestamp = Date.now();  
+    (!this.randomMsg && this.init());
+    this.uri = uriStr;
+    this.proxy = proxy;
+    this.proxyName = proxy.name; // Make local copy so logg history doesn't change if user changes proxy    
+    this.proxyNotes = proxy.notes;  // ""
+    if (type == "pat") {
+      this.matchName = aMatch.name;  // Make local copy so logg history doesn't change if user changes proxy
+      this.matchPattern = aMatch.pattern; // ""
+      this.matchType = aMatch.isRegEx ? this.regExMsg : this.wcMsg;  
+      this.whiteBlack = aMatch.isBlackList ? this.blackMsg : this.whiteMsg; // ""
+      this.caseSensitive = aMatch.caseSensitive ? this.yes : this.no; // ""
+    }
+    else if (type == "ded") {
+      this.caseSensitive = this.whiteBlack = this.matchName = this.matchPattern = this.matchType = this.allMsg;
+    }   
+    else if (type == "rand") {
+      this.matchName = this.matchPattern = this.matchType = this.whiteBlack = this.randomMsg;
+    }
+    else if (type == "round") {
+    }
+    else if (type == "err") {
+      this.errMsg = errMsg;
+    }
+}
+
+LoggEntry.prototype = {
+  errMsg : "", // Default value for MPs which don't have errors
+  pacResult : "", // Default value for MPs which don't have PAC results (i.e., they probably don't use PACs or the PAC returned null
+  init : function() { /* one-time init to get localized msgs */
+    this.randomMsg = gFP.getMessage("proxy.random");
+    this.allMsg = gFP.getMessage("proxy.all.urls");
+    this.regExMsg = gFP.getMessage("foxyproxy.regex.label");
+    this.wcMsg = gFP.getMessage("foxyproxy.wildcard.label");
+    this.blackMsg = gFP.getMessage("foxyproxy.blacklist.label");
+    this.whiteMsg = gFP.getMessage("foxyproxy.whitelist.label");
+    this.yes = gFP.getMessage("yes");  
+    this.no = gFP.getMessage("no");    
+  }
+};
+
 
 var gXpComObjects = [foxyproxy];
 var gCatObserverName = "foxyproxy_catobserver";

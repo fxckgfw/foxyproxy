@@ -9,6 +9,8 @@
   available in the LICENSE file at the root of this installation
   and also online at http://www.gnu.org/licenses/gpl.txt
 -->
+
+<!-- use https://addons.mozilla.org/en-US/firefox/addon/1693 for a better colorpicker -->
 <?xml-stylesheet href="foxyproxy.css" type="text/css"?>
 <?xul-overlay href="includes.xul"?>
 <!DOCTYPE overlay SYSTEM "chrome://foxyproxy/locale/foxyproxy.dtd">
@@ -21,12 +23,9 @@
   windowtype="foxyproxy"
  	xmlns:html="http://www.w3.org/1999/xhtml"
   xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-  persist="screenX screenY"
-  width="&foxyproxy.addeditproxy.width;"
-  height="&foxyproxy.addeditproxy.height;">
+  persist="screenX screenY">
 
 <script src="addeditproxy.js"/>
-<script src="common.js"/>
 
 <vbox observes="torwiz-broadcaster" flex="1">
   <tabbox flex="1">
@@ -252,27 +251,30 @@
 
 <popupset>
   <popup id="wildcardReferencePopup"/>
-	<popup id="newGUIPopup" style="height: &foxyproxy.newGUI.popup.height;; width: &foxyproxy.newGUI.popup.width;;">
-		<vbox class="foxyproxy-border" style="margin: .5em;">
+	<popup id="newGUIPopup">
+		<vbox class="foxyproxy-border" style="height: &foxyproxy.newGUI.popup.height;; width: &foxyproxy.newGUI.popup.width;; padding: .5em;">
 			<description class="foxyproxy-tooltip">
-				&foxyproxy.newGUI1.label;</description>
+				&foxyproxy.newGUI1.label;</description>        
+      <separator class="thin"/>
 			<description class="foxyproxy-tooltip">&foxyproxy.newGUI2.label;</description>
+      <separator class="thin"/>      
 			<description class="text-link" onclick="fpc.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/settings-gui.html');">
 				&foxyproxy.newGUI4.label;</description>
 		</vbox>
 	</popup>
-	<popup id="pacTipsPopup" width="400" height="300px">
-		<vbox class="foxyproxy-border" style="margin: .5em; text-align: justify;">
-			<description>&foxyproxy.pactip1.label;</description>
-			<description>&foxyproxy.pactip2.label;</description>
-			<description>&foxyproxy.pactip3.label;</description>
-			<description>&foxyproxy.pactip4.label;
-      <html:a
-        style="color: blue; text-decoration: underline; cursor: pointer;"
+	<popup id="pacTipsPopup">
+		<vbox class="foxyproxy-border" style="padding: .5em; text-align: justify;">
+			<label value="&foxyproxy.pactip1.label;"/>
+      <separator class="thin"/>
+      <label value="&foxyproxy.pactip2.label;"/>
+      <separator class="thin"/>
+      <label value="&foxyproxy.pactip3.label;"/>
+      <separator class="thin"/>
+			<description width="400">&foxyproxy.pactip4.label;
+      <html:a class="link"        
         onclick="fpc.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/relativescheme.html');">&foxyproxy.pactip5.label;</html:a>
       &foxyproxy.pactip6.label;
-      <html:a
-        style="color: blue; text-decoration: underline; cursor: pointer;"
+      <html:a class="link"
         onclick="fpc.openAndReuseOneTabPerURL('http://www.mozilla.org/support/firefox/profile#locate');">&foxyproxy.pactip7.label;</html:a>
       &foxyproxy.pactip8.label;</description>
 		</vbox>

@@ -21,7 +21,7 @@ window.onload=function(){
 }
 function onConnectionSettings() {
   var fp = Components.classes["@leahscape.org/foxyproxy/service;1"]
-    .getService(Components.interfaces.nsISupports).wrappedJSObject;
+    .getService().wrappedJSObject;
   
   if (fp.mode == "disabled")
 	  document.documentElement.openSubDialog("chrome://browser/content/preferences/connection.xul", "", null);

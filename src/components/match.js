@@ -27,11 +27,8 @@ if (!CI) {
     n.QueryInterface(CI.nsIDOMElement);
     return n ? (n.hasAttribute(name) ? n.getAttribute(name)=="true" : def) : def;
   };
-  var gQueryInterface = function(aIID) {
-    if(!aIID.equals(CI.nsISupports) && !aIID.equals(CI.nsISupportsWeakReference))
-      throw CR.NS_ERROR_NO_INTERFACE;
-    return this;
-  }
+  // XPCOM module initialization
+  var NSGetModule = function() { return MatchModule; }
 }
 ///////////////////////////// Match class///////////////////////
 function Match() {
@@ -44,7 +41,12 @@ function Match() {
 }
 
 Match.prototype = {
-  QueryInterface: gQueryInterface,
+
+  QueryInterface: function(aIID) {
+    if(!aIID.equals(CI.nsISupports) && !aIID.equals(CI.nsISupportsWeakReference))
+      throw CR.NS_ERROR_NO_INTERFACE;
+    return this;
+  },
 
   set pattern(p) {
     if (p==null) p = ""; // prevent null patterns
@@ -130,80 +132,41 @@ Match.prototype = {
     matchElem.setAttribute("isMultiLine", this._isMultiLine);
     matchElem.setAttribute("caseSensitive", this._caseSensitive);    
     return matchElem;
-  },
-	classID: Components.ID("{2b49ed90-f194-11da-8ad9-0800200c9a66}"),
-	contractID: "@leahscape.org/foxyproxy/match;1",
-	classDescription: "FoxyProxy Match Component"
+  }
 };
 
-var gXpComObjects = [Match];
-var gCatObserverName = "foxyproxy_match_catobserver";
-var gCatContractId = Match.prototype.contractID;
+var MatchFactory = {
+  createInstance: function (aOuter, aIID) {
+    if (aOuter != null)
+      throw CR.NS_ERROR_NO_AGGREGATION;
+    return (new Match()).QueryInterface(aIID);
+  }
+};
 
-function NSGetModule(compMgr, fileSpec) {
-	gModule._catObserverName = gCatObserverName;
-	gModule._catContractId = gCatContractId;
+var MatchModule = {
+  CLASS_ID : Components.ID("2b49ed90-f194-11da-8ad9-0800200c9a66"),
+  CLASS_NAME : "FoxyProxy Match Component",
+  CONTRACT_ID : "@leahscape.org/foxyproxy/match;1",
 
-	for (var i in gXpComObjects)
-		gModule._xpComObjects[i] = new gFactoryHolder(gXpComObjects[i]);
+  registerSelf: function(aCompMgr, aFileSpec, aLocation, aType) {
+    aCompMgr = aCompMgr.QueryInterface(CI.nsIComponentRegistrar);
+    aCompMgr.registerFactoryLocation(this.CLASS_ID, this.CLASS_NAME, this.CONTRACT_ID, aFileSpec, aLocation, aType);
+  },
 
-	return gModule;
-}
+  unregisterSelf: function(aCompMgr, aLocation, aType) {
+    aCompMgr = aCompMgr.QueryInterface(CI.nsIComponentRegistrar);
+    aCompMgr.unregisterFactoryLocation(this.CLASS_ID, aLocation);        
+  },
+  
+  getClassObject: function(aCompMgr, aCID, aIID) {
+    if (!aIID.equals(CI.nsIFactory))
+      throw Components.results.NS_ERROR_NOT_IMPLEMENTED;
 
-function gFactoryHolder(aObj) {
-	this.CID        = aObj.prototype.classID;
-	this.contractID = aObj.prototype.contractID;
-	this.className  = aObj.prototype.classDescription;
-	this.factory =
-	{
-		createInstance: function(aOuter, aIID)
-		{
-			if (aOuter)
-				throw CR.NS_ERROR_NO_AGGREGATION;
+    if (aCID.equals(this.CLASS_ID))
+      return MatchFactory;
 
-			return (new this.constructor).QueryInterface(aIID);
-		}
-	};
+    throw CR.NS_ERROR_NO_INTERFACE;
+  },
 
-	this.factory.constructor = aObj;
-}
-var gModule = {
-	registerSelf: function (aComponentManager, aFileSpec, aLocation, aType) {
-		aComponentManager.QueryInterface(CI.nsIComponentRegistrar);
-		for (var key in this._xpComObjects)
-		{
-			var obj = this._xpComObjects[key];
-			aComponentManager.registerFactoryLocation(obj.CID, obj.className,
-			obj.contractID, aFileSpec, aLocation, aType);
-		}
-	},
-
-	unregisterSelf: function(aCompMgr, aFileSpec, aLocation) {
-
-		aComponentManager.QueryInterface(CI.nsIComponentRegistrar);
-		for (var key in this._xpComObjects)
-		{
-			var obj = this._xpComObjects[key];
-			aComponentManager.unregisterFactoryLocation(obj.CID, aFileSpec);
-		}
-	},
-
-	getClassObject: function(aComponentManager, aCID, aIID)	{
-		if (!aIID.equals(CI.nsIFactory))
-			throw CR.NS_ERROR_NOT_IMPLEMENTED;
-
-		for (var key in this._xpComObjects)
-		{
-			if (aCID.equals(this._xpComObjects[key].CID))
-				return this._xpComObjects[key].factory;
-		}
-
-		throw CR.NS_ERROR_NO_INTERFACE;
-	},
-
-	canUnload: function(aComponentManager) { return true; },
-
-	_xpComObjects: {},
-	_catObserverName: null,
-	_catContractId: null
+  canUnload: function(aCompMgr) { return true; }
 };

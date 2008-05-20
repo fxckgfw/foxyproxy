@@ -11,5 +11,4 @@
 -->
 <overlay id="foxyproxy-overlay2" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
     <script src="optionsOverlay.js"/>
-    <script src="common.js"/>
 </overlay>

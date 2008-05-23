@@ -11,9 +11,6 @@
 
 // common fcns used throughout foxyproxy, exposed a an xpcom service
 
-const CLASS_ID = Components.ID("ecbe324b-9ad7-401a-a272-5cc1efba9be6");
-const CLASS_NAME = "FoxyProxy Common";
-const CONTRACT_ID = "@leahscape.org/foxyproxy/common;1";
 const CI = Components.interfaces;
 const CC = Components.classes;
 
@@ -22,6 +19,8 @@ function Common() {
 }
 
 Common.prototype = {
+  _ios : CC["@mozilla.org/network/io-service;1"].getService(CI.nsIIOService),
+  
   QueryInterface: function(aIID) {
     if (!aIID.equals(CI.nsISupports))
         throw Components.results.NS_ERROR_NO_INTERFACE;
@@ -118,7 +117,7 @@ Common.prototype = {
               .getItemForID("foxyproxy@eric.h.jung").version || "0.0";   
   },
 
-  applyTemplate : function(url, urlTemplate, caseSensitive) { 
+  applyTemplate : function(url, urlTemplate, caseSensitive) {
     var flags = caseSensitive ? "gi" : "g";
     try {
       // TODO: if match is a regex, escape reg chars that appear in the url
@@ -141,7 +140,7 @@ Common.prototype = {
       ret = ret.replace("${14}", parsedUrl.query?parsedUrl.query:"", flags);       
       return ret.replace("${15}", parsedUrl.spec?parsedUrl.spec:"", flags); 
     }
-    catch(e) { /*happens for about:blank, about:config, etc.*/}
+    catch(e) {/*happens for about:blank, about:config, etc.*/}
     return url;
   },    
   
@@ -165,22 +164,24 @@ Common.prototype = {
       q.prompt = p.prompt;
       q.proxy = fp.proxies.getProxyById(p.proxyId);
       q.notifyWhenCanceled = p.notifyWhenCanceled;
-      q.urlTemplate = p.urlTemplate;    
-      q.match.name = p.name;
-      q.match.pattern = p.pattern;
-      q.match.caseSensitive = p.caseSensitive;          
-      q.match.isRegEx = p.isRegEx;
-      q.match.isBlackList = p.isBlackList;
+      q.urlTemplate = p.urlTemplate;
+      var ret =  CC["@leahscape.org/foxyproxy/match;1"].createInstance().wrappedJSObject;
+      ret.name = p.name;
+      ret.pattern = p.pattern;
+      ret.temp = p.temp;
+      ret.caseSensitive = p.caseSensitive;
+      ret.isRegEx = p.isRegEx;
+      ret.isBlackList = p.isBlackList;
+      ret.enabled = p.enabled;
       fp.writeSettings();
-      return p.pattern;          
+      return ret;     
     }
   }  
 }
 // Factory
 var CommonFactory = {
   singleton: null,
-  createInstance: function (aOuter, aIID)
-  {
+  createInstance: function (aOuter, aIID) {
     if (aOuter != null)
       throw Components.results.NS_ERROR_NO_AGGREGATION;
     if (this.singleton == null)
@@ -189,22 +190,22 @@ var CommonFactory = {
   }
 };
 
+
+const CLASS_ID = Components.ID("ecbe324b-9ad7-401a-a272-5cc1efba9be6");
+
 // Module
 var CommonModule = {
-  registerSelf: function(aCompMgr, aFileSpec, aLocation, aType)
-  {
+  registerSelf: function(aCompMgr, aFileSpec, aLocation, aType) {
     aCompMgr = aCompMgr.QueryInterface(CI.nsIComponentRegistrar);
-    aCompMgr.registerFactoryLocation(CLASS_ID, CLASS_NAME, CONTRACT_ID, aFileSpec, aLocation, aType);
+    aCompMgr.registerFactoryLocation(CLASS_ID, "FoxyProxy Common", "@leahscape.org/foxyproxy/common;1", aFileSpec, aLocation, aType);
   },
 
-  unregisterSelf: function(aCompMgr, aLocation, aType)
-  {
+  unregisterSelf: function(aCompMgr, aLocation, aType) {
     aCompMgr = aCompMgr.QueryInterface(CI.nsIComponentRegistrar);
     aCompMgr.unregisterFactoryLocation(CLASS_ID, aLocation);        
   },
   
-  getClassObject: function(aCompMgr, aCID, aIID)
-  {
+  getClassObject: function(aCompMgr, aCID, aIID) {
     if (!aIID.equals(CI.nsIFactory))
       throw Components.results.NS_ERROR_NOT_IMPLEMENTED;
 

@@ -12,7 +12,7 @@
 <?xml-stylesheet href="foxyproxy.css" type="text/css"?>
 <?xul-overlay href="includes.xul"?>
 <!DOCTYPE overlay SYSTEM "chrome://foxyproxy/locale/foxyproxy.dtd">
-<dialog
+<dialog buttons="accept,cancel"
   xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
 	id="foxyproxyquickadddlg2"
   title="&foxyproxy.quickadd.label;"

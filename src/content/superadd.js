@@ -63,7 +63,6 @@ function onOK() {
       isBlackList:document.getElementById("whiteblacktype").value == "b"}; 
     return true;
   }
-  return false;
 }
 
 function updateGeneratedPattern() {

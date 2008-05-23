@@ -37,9 +37,9 @@ function Match(enabled, name, pattern, temp, isRegEx, caseSensitive, isBlackList
 	this.name = name || "";
   this.pattern = pattern || "";
 	this.temp = arguments.length > 3 ? arguments[3] : false; // doesn't calculate the regex
-  this._isRegEx = arguments.length > 4 ? arguments[4] : true;
+  this._isRegEx = arguments.length > 4 ? arguments[4] : false;
   this._caseSensitive = arguments.length > 5 ? arguments[5] : false;
-  this._isBlackList = arguments.length > 6 ? arguments[6] : false;  
+  this.isBlackList = arguments.length > 6 ? arguments[6] : false;  
   // this.isMultiLine is used instead of this._isMultiLine so that
   // this final assignment forces the regex to be built.
   this.isMultiLine = arguments.length > 7 ? arguments[7] : false;
@@ -54,7 +54,7 @@ Match.prototype = {
   },
   
   clone : function() {
-    return new Match(this.enabled, this.name, this.pattern, this.temp, this.caseSensitive,
+    return new Match(this.enabled, this.name, this.pattern, this.temp, this.isRegEx, this.caseSensitive,
       this.isBlackList, this.isMultiLine);
   },
 

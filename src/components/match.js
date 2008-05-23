@@ -31,13 +31,18 @@ if (!CI) {
   var NSGetModule = function() { return MatchModule; }
 }
 ///////////////////////////// Match class///////////////////////
-function Match() {
+function Match(enabled, name, pattern, temp, isRegEx, caseSensitive, isBlackList, isMultiLine) {
   this.wrappedJSObject = this;
-	this.name = this.pattern = "";
-  // Assignment order is right-to-left. this.caseSensitive is used instead of this._caseSensitive so that
-  // the final assignment forces the regex to be built.
-	this.temp = this.caseSensitive = this._isMultiLine = this._isRegEx = this.isBlackList = false;
-	this.enabled = true;
+  this.enabled = arguments.length > 0 ? arguments[0] : true;
+	this.name = name || "";
+  this.pattern = pattern || "";
+	this.temp = arguments.length > 3 ? arguments[3] : false; // doesn't calculate the regex
+  this._isRegEx = arguments.length > 4 ? arguments[4] : true;
+  this._caseSensitive = arguments.length > 5 ? arguments[5] : false;
+  this._isBlackList = arguments.length > 6 ? arguments[6] : false;  
+  // this.isMultiLine is used instead of this._isMultiLine so that
+  // this final assignment forces the regex to be built.
+  this.isMultiLine = arguments.length > 7 ? arguments[7] : false;
 }
 
 Match.prototype = {
@@ -47,9 +52,14 @@ Match.prototype = {
       throw CR.NS_ERROR_NO_INTERFACE;
     return this;
   },
+  
+  clone : function() {
+    return new Match(this.enabled, this.name, this.pattern, this.temp, this.caseSensitive,
+      this.isBlackList, this.isMultiLine);
+  },
 
   set pattern(p) {
-    if (p==null) p = ""; // prevent null patterns
+    if (!p) p = ""; // prevent null patterns
     this._pattern = p.replace(/^\s*|\s*$/g,""); // trim
     this.buildRegEx();
   },

@@ -32,8 +32,7 @@ SuperAdd.prototype = {
   elemNameCamelCase : "AutoAdd",
   notificationTitle : "foxyproxy.tab.autoadd.label",
   
-  _urlTemplate : DEF_PATTERN,
-  _ios : CC["@mozilla.org/network/io-service;1"].getService(CI.nsIIOService),  
+  _urlTemplate : DEF_PATTERN,  
   _formatConverter : CC["@mozilla.org/widget/htmlformatconverter;1"].createInstance(CI.nsIFormatConverter),
 
   setName : function(matchName) {
@@ -77,6 +76,12 @@ SuperAdd.prototype = {
     this.fp.writeSettings();
   },
 
+  get notifyWhenCanceled() { return this._notifyWhenCanceled; },
+  set notifyWhenCanceled(n) {
+    this._notifyWhenCanceled = n;
+    this.fp.writeSettings();
+  },
+  
   get prompt() { return this._prompt; },
   set prompt(n) {
     this._prompt = n;
@@ -88,8 +93,14 @@ SuperAdd.prototype = {
     	// Does this URL already match an existing pattern for a proxy?
     	var p = this.fp.proxies.getMatches(url).proxy;
       if (p.lastresort) { // no current proxies match (except the lastresort, which matches everything anyway)
-        if (this.match.pattern.regex.test(stripTags(content)))
-        	return this.addPattern(this.match, url);
+        if (this.match.pattern.regex.test(stripTags(content))) {
+        	//return this.addPattern(this.match, url);
+          var fpc = CC["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject;
+          this.match.pattern = fpc.applyTemplate(url, this._urlTemplate, this.match.caseSensitive);
+          this._proxy.matches.push(this.match);      
+          this._notify && this.fp.notifier.alert(this.fp.getMessage(this.notificationTitle), this.fp.getMessage("superadd.url.added", [this.match.pattern, this._proxy.name]));
+          return this.match.pattern;          
+        }
       }
     }
     function stripTags(txt) {
@@ -107,12 +118,8 @@ SuperAdd.prototype = {
     }
   }, 
     
-  addPattern : function(match, url) {
-    var fpc = CC["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject;
-	  match.pattern = fpc.applyTemplate(url, this._urlTemplate, this.match.caseSensitive);
-	  this._proxy.matches.push(match);      
-    this._notify && this.fp.notifier.alert(this.fp.getMessage(this.notificationTitle), this.fp.getMessage("superadd.url.added", [match.pattern, this._proxy.name]));
-    return match.pattern;
+  addPattern : function(m) {
+	  this._proxy.matches.push(m);      
   },
   
   allowed : function() {

@@ -15,7 +15,7 @@
 <?xul-overlay href="includes.xul"?>
 <!DOCTYPE overlay SYSTEM "chrome://foxyproxy/locale/foxyproxy.dtd">
 
-<dialog buttons="accept,cancel"
+<dialog buttons="accept"
   id="foxyproxyaddproxydlg2"
   ondialogaccept="return onOK();"
   onload="onLoad();"

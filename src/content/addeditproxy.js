@@ -169,7 +169,7 @@ function onAddEdit(isNew) {
     match.isBlackList = params.isBlackList;
     match.enabled = params.isEnabled;
     match.caseSensitive = params.caseSensitive;
-    match.temp = match.temp;
+    match.temp = params.temp;
     
    if (isNew)
      proxy.matches.push(match);

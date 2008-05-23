@@ -224,17 +224,20 @@ var foxyproxy = {
 		  	fp.notifier.alert(fp.getMessage("foxyproxy"), fp.getMessage("quickadd.nourl"));
 		  	return;
 		  }
+      var match;
 			if (q._prompt) {
-          var match = this.fpc.onSuperAdd(window, false, url, true); 
+          match = this.fpc.onSuperAdd(window, false, url, true); 
           if (match) {                         
             // Add the match
 					  _qAdd(match, url, evt.view.content.document.location);
-            fp.writeSettings();          
 				  }
 				  // if !match then the user canceled the QuickAdd dlg
 			}
-			else
+			else {
+         match = q.match.clone();
+         match.pattern = this.fpc.applyTemplate(url, q.urlTemplate, match.caseSensitive);         
 				_qAdd(match, url, evt.view.content.document.location);
+      }
 		}
 		function _qAdd(pat, url, loc) {
       var m = pat.isBlackList ? q.proxy.isBlackMatch(url) : q.proxy.isWhiteMatch(url);
@@ -246,6 +249,7 @@ var foxyproxy = {
 				q.addPattern(pat);
         q.notify && fp.notifier.alert(fp.getMessage(q.notificationTitle), fp.getMessage("superadd.url.added", [pat.pattern, q._proxy.name]));        
         q.reload && loc.reload(); // reload page if necessary
+        fp.writeSettings();
 			}
 		}
   },

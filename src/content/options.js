@@ -276,7 +276,7 @@ function move(direction) {
 
 function onSettings(isNew) {
   var sel = proxyTree.currentIndex,
-    params = {inn:{proxy:isNew ?
+    params = {inn:{sproxy:isNew ?
       CC["@leahscape.org/foxyproxy/proxy;1"].createInstance().wrappedJSObject : 
       foxyproxy.proxies.item(proxyTree.currentIndex)}, out:null};
         

@@ -173,6 +173,7 @@ Common.prototype = {
       ret.isRegEx = p.isRegEx;
       ret.isBlackList = p.isBlackList;
       ret.enabled = p.enabled;
+      q.match = ret.clone();
       fp.writeSettings();
       return ret;     
     }

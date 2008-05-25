@@ -165,6 +165,14 @@ Common.prototype = {
       q.proxy = fp.proxies.getProxyById(p.proxyId);
       q.notifyWhenCanceled = p.notifyWhenCanceled;
       q.urlTemplate = p.urlTemplate;
+      q.match = ret.clone();
+      // AutoAdd-specific
+      if (!isQuickAdd) {
+        q.caseSensitive=p.autoAddCaseSensitive;
+        q.setMatchPattern(p.autoAddPattern);   
+      }
+      fp.writeSettings();
+      
       var ret =  CC["@leahscape.org/foxyproxy/match;1"].createInstance().wrappedJSObject;
       ret.name = p.name;
       ret.pattern = p.pattern;
@@ -172,9 +180,7 @@ Common.prototype = {
       ret.caseSensitive = p.caseSensitive;
       ret.isRegEx = p.isRegEx;
       ret.isBlackList = p.isBlackList;
-      ret.enabled = p.enabled;
-      q.match = ret.clone();
-      fp.writeSettings();
+      ret.enabled = p.enabled;      
       return ret;     
     }
   }  

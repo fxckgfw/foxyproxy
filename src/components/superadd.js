@@ -15,6 +15,7 @@ function SuperAdd() {
   this.match = new Match();
   this.match.isMultiLine = true;
 }
+// todo: AutoAdd needs caseSensitive
 function QuickAdd() { SuperAdd.apply(this, arguments); }
 
 // The super class definition. QuickAdd is a subclass of SuperAdd.

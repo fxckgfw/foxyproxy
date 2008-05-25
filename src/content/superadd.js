@@ -60,7 +60,9 @@ function onOK() {
       pattern:document.getElementById("generatedPattern").value,
       caseSensitive:document.getElementById("caseSensitive").checked,      
       isRegEx:isRegEx,
-      isBlackList:document.getElementById("whiteblacktype").value == "b"}; 
+      isBlackList:document.getElementById("whiteblacktype").value == "b",
+      autoAddPattern:document.getElementById("autoAddPattern").value,
+      autoAddCaseSensitive:document.getElementById("autoAddCaseSensitive").checked}; 
     return true;
   }
 }

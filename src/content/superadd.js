@@ -40,6 +40,8 @@ function onLoad() {
     e.label = fp.getMessage("foxyproxy.autoadd.notify.whencanceled.label");
     e.setAttribute("tooltiptext", fp.getMessage("foxyproxy.autoadd.notify.whencanceled.tooltip")); 
     e = document.getElementById("notifyWhenCanceledPopup");
+    document.getElementById("autoAddPattern").value = inn.autoAddPattern;
+    document.getElementById("autoAddCaseSensitive").checked = inn.autoAddCaseSensitive;
   }   
   sizeToContent();  
 }

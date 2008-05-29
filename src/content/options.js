@@ -452,3 +452,26 @@ function onAutoAddEnabled(cb) {
     foxyproxy.autoadd.enabled = false;
   }
 }
+
+function onPattern(m) {
+  var params = {inn:{name:m.name,
+          pattern:m.pattern, regex:m.isRegEx,
+          black:m.isBlackList,
+          enabled:m.enabled,
+          caseSensitive:m.caseSensitive,
+          temp:m.temp}, out:null};
+
+  window.openDialog("chrome://foxyproxy/content/pattern.xul", "",
+    "chrome, dialog, modal, resizable=yes", params).focus();
+
+  if (params.out) {
+    params = params.out;
+    m.name = params.name;
+    m.pattern = params.pattern;
+    m.isRegEx = params.isRegEx;
+    m.isBlackList = params.isBlackList;
+    m.enabled = params.isEnabled;
+    m.caseSensitive = params.caseSensitive;
+    m.temp = params.temp;
+  }    
+}

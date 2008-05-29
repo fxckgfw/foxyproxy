@@ -39,21 +39,10 @@
 				&foxyproxy.quickadd.desc2;
 </description>
 
-<hbox>
 <checkbox id="enabled" observes="notSetupMode"
   label="&foxyproxy.enabled.label;"
   accesskey="&foxyproxy.enabled.accesskey;"
   tooltiptext="&foxyproxy.enabled.tooltip;"/>
-
-<checkbox id="temp"
-  label="&foxyproxy.temp.label;"
-  accesskey="&foxyproxy.temp.accesskey;"
-  tooltiptext="&foxyproxy.temp.tooltip;"/> 
-   
-<toolbarbutton class="foxyproxy-ref"
-  popup="tempPopup"
-  tooltiptext="&foxyproxy.whatsthis;"/> 
-</hbox>
   
 <groupbox>
   
@@ -111,30 +100,6 @@
         <spacer/>
         <spacer/>         
 			</row>
-			<row align="center">
-    		<label value="&foxyproxy.pattern.name.label;" control="name"
-        		tooltiptext="&foxyproxy.pattern.name.tooltip;" accesskey="&foxyproxy.pattern.name.accesskey;"/>  
-    		<textbox id="name" tooltiptext="&foxyproxy.pattern.name.tooltip;" accesskey="&foxyproxy.pattern.name.accesskey;"/>
-        <spacer/>
-        <spacer/>         
-    	</row>
-			<row align="center">        			
-				<label
-					value="&foxyproxy.pattern.template.label;"
-					tooltiptext="&foxyproxy.pattern.template.tooltip;"
-					accesskey="&foxyproxy.pattern.template.accesskey;"
-					control="urlTemplate" />
-				<textbox id="urlTemplate"
-					type="timed" timeout="500"
-					tooltiptext="&foxyproxy.pattern.template.tooltip;"
-					oncommand="updateGeneratedPattern()"
-					accesskey="&foxyproxy.pattern.template.accesskey;" />
-        <checkbox id="caseSensitive" label="&foxyproxy.casesensitive.label;" accesskey="&foxyproxy.casesensitive.accesskey;"
-          tooltiptext="&foxyproxy.casesensitive.tooltip;"/>          
-				<toolbarbutton class="foxyproxy-ref"
-					popup="patternTemplatePopup"
-					tooltiptext="&foxyproxy.pattern.template.reference.tooltip;" />
-			</row>
 
       <row align="center" observes="autoAddMode">
         <label value="&foxyproxy.autoadd.pattern.label;"
@@ -159,12 +124,11 @@
 					control="generatedPattern" tooltiptext="&foxyproxy.pattern.template.generatedpattern.tooltip;" accesskey="&foxyproxy.pattern.template.generatedpattern.accesskey;"/>
 				<textbox id="generatedPattern" tooltiptext="&foxyproxy.pattern.template.generatedpattern.tooltip;" style="font-weight: bold;"/>
         <toolbarbutton class="foxyproxy-ref" popup="wildcardReferencePopup" tooltiptext="&foxyproxy.wildcard.reference.tooltip;"/>
-			</row>			
+			</row> 
+      <button command="patternCmd"/>
 		</rows>
 	</grid>
 </groupbox>
-<radiogroup id="whiteblacktype"/>
-<radiogroup id="matchtype"/>
 
 <popupset>
   <popup id="wildcardReferencePopup"/>
@@ -190,4 +154,5 @@
   <broadcaster id="autoAddMode"/> 
 </broadcasterset>
 
+<command id="patternCmd" label="&foxyproxy.pattern.label;" oncommand="onPattern()"/>
 </dialog>

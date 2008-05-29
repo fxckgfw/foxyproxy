@@ -178,6 +178,20 @@ function _updateView(writeSettings, updateLogView) {
   document.getElementById("usingPFF").checked =
   document.getElementById("settingsURLBtn").disabled = isUsingPortableFirefox();
   
+  _updateSuperAdd(foxyproxy.autoadd, "autoAdd");
+  _updateSuperAdd(foxyproxy.quickadd, "quickAdd");  
+  
+  function _updateSuperAdd(saObj, str) {
+    var temp = saObj.enabled;
+    document.getElementById(str + "Enabled").checked = temp;
+    document.getElementById(str + "Broadcaster").hidden = !temp;
+    document.getElementById(str + "Reload").checked = saObj.reload;
+    document.getElementById(str + "Notify").checked = saObj.notify;
+    document.getElementById(str + "NotifyWhenCanceled").checked = saObj.notifyWhenCanceled;   
+    document.getElementById(str + "Prompt").checked = saObj.prompt;  
+  } 
+  document.getElementById("autoAddCaseSensitive").checked = foxyproxy.autoadd.caseSensitive;
+  
   document.getElementById("toolsMenuEnabled").checked = foxyproxy.toolsMenu;
   document.getElementById("contextMenuEnabled").checked = foxyproxy.contextMenu;
   document.getElementById("statusbarIconEnabled").checked = foxyproxy.statusbar.iconEnabled;

@@ -18,6 +18,9 @@
 <!ENTITY foxyproxy.proxy.notes.tooltip "Proxy Notes">
 
 <!ENTITY foxyproxy.pattern.label "Pattern">
+<!ENTITY foxyproxy.pattern.accesskey "P">
+<!ENTITY foxyproxy.pattern.tooltip "URL pattern">
+
 <!ENTITY foxyproxy.pattern.type.label "Pattern Type">
 <!ENTITY foxyproxy.whitelist.blacklist.label "Whitelist (Inclusive) or Blacklist (Exclusive)">
 

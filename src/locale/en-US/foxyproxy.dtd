@@ -336,6 +336,7 @@
 <!ENTITY foxyproxy.autoadd.reload.tooltip "Automatically reload the page after the pattern is added to a proxy">
 
 <!ENTITY foxyproxy.autoadd.notify.label "Notify me when AutoAdd is activated">
+<!ENTITY foxyproxy.autoadd.notify.accesskey "N">
 <!ENTITY foxyproxy.autoadd.notify.tooltip "Informs you when a page is blocked &amp; the URL pattern is added to a proxy">
 <!ENTITY foxyproxy.autoadd.notify.tooltip2 "Display a popup when AutoAdd is activated">
 

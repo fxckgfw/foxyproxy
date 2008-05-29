@@ -45,7 +45,7 @@
       </hbox>
       <spacer/>
       <spacer/>        
-    </row>  
+    </row>    
     <row align="center">
         <label value="&foxyproxy.pattern.name.label;" control="name"
             tooltiptext="&foxyproxy.pattern.name.tooltip;" accesskey="&foxyproxy.pattern.name.accesskey;"/>  
@@ -59,6 +59,15 @@
       <checkbox id="caseSensitive" label="&foxyproxy.casesensitive.label;" accesskey="&foxyproxy.casesensitive.accesskey;"
         tooltiptext="&foxyproxy.casesensitive.tooltip;"/>
       <toolbarbutton class="foxyproxy-ref" popup="wildcardReferencePopup" tooltiptext="&foxyproxy.wildcard.reference.tooltip;"/>
+    </row>
+
+    <row align="center" observes="notSetupMode">
+      <label value="&foxyproxy.pattern.template.example.label1;" />
+      <textbox id="quickAddTemplateExample1" type="timed" timeout="500"
+        flex="1" value="&foxyproxy.pattern.template.example.label2;" />
+      <textbox id="quickAddTemplateExample2" readonly="true"
+        style="font-weight: bold;" />
+      <spacer />
     </row>
     <radiogroup id="whiteblacktype"/>
     <radiogroup id="matchtype"/>

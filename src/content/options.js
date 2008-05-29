@@ -194,6 +194,20 @@ function _updateView(writeSettings, updateLogView) {
     
 	_updateModeMenu();
 
+  var menu = document.getElementById("autoAddProxyMenu");
+  foxyproxy.autoadd.updateProxyMenu(menu, document);
+  if (!menu.firstChild.firstChild) {
+    document.getElementById("autoAddEnabled").checked = false;
+    onAutoAddEnabled(false);
+  }
+
+  menu = document.getElementById("quickAddProxyMenu");
+  foxyproxy.quickadd.updateProxyMenu(menu, document);
+  if (!menu.firstChild.firstChild) {
+    document.getElementById("quickAddEnabled").checked = false;
+    onQuickAddEnabled(false);
+  }
+  
   proxyTree.view  = {
     rowCount : foxyproxy.proxies.length,
     getCellText : function(row, column) {
@@ -399,18 +413,42 @@ function toggleStatusBarText(checked) {
     document.getElementById("statusBarWidthBroadcaster").setAttribute("disabled", "true");     
 }
 
-function onQuickAdd() {
-  if (!foxyproxy.quickadd.allowed()) {        
-    overlay.alert(this, foxyproxy.getMessage("superadd.verboten2", [foxyproxy.getMessage("foxyproxy.quickadd.label")]));
-    return;
+function onQuickAddEnabled(cb) {
+  if (cb.checked) {
+    if (foxyproxy.quickadd.allowed()) {
+        foxyproxy.quickadd.enabled = true;
+      document.getElementById("quickAddBroadcaster").hidden = false;      
+      foxyproxy.quickadd.updateProxyMenu(document.getElementById("quickAddProxyMenu"), document);
+      //overlay.alert(this, foxyproxy.getMessage("autoadd.notice"));
+    }
+    else {
+      overlay.alert(this, foxyproxy.getMessage("superadd.verboten2", [foxyproxy.getMessage("foxyproxy.quickadd.label")]));
+      cb.checked = false;
+    }
   }
-  fpc.onSuperAdd(window, true, null, true);
-}   
+  else {
+    document.getElementById("quickAddBroadcaster").hidden = true;
+    foxyproxy.quickadd.enabled = false;
+  }
+  sizeToContent();
+}
 
-function onAutoAdd() {
-  if (!foxyproxy.autoadd.allowed()) {
-    overlay.alert(this, foxyproxy.getMessage("superadd.verboten2", [foxyproxy.getMessage("foxyproxy.tab.autoadd.label")]));
-    return;
+function onAutoAddEnabled(cb) {
+  if (cb.checked) {
+    if (foxyproxy.autoadd.allowed()) {
+      foxyproxy.autoadd.enabled = true;
+      document.getElementById("autoAddBroadcaster").hidden = false;     
+      foxyproxy.autoadd.updateProxyMenu(document.getElementById("autoAddProxyMenu"), document);
+      sizeToContent(); // call this before the alert() otherwise user can see unsized dialog in background
+      overlay.alert(this, foxyproxy.getMessage("autoadd.notice"));
+    }
+    else {
+      overlay.alert(this, foxyproxy.getMessage("superadd.verboten2", [foxyproxy.getMessage("foxyproxy.tab.autoadd.label")]));
+      cb.checked = false;
+    }
   }
-  fpc.onSuperAdd(window, true, null, false);
+  else {
+    document.getElementById("autoAddBroadcaster").hidden = true;
+    foxyproxy.autoadd.enabled = false;
+  }
 }

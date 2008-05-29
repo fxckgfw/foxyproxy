@@ -69,7 +69,13 @@ SuperAdd.prototype = {
   set proxy(p) {
     this._proxy = p;
     this.fp.writeSettings();
-  },    
+  },
+  
+  set proxyById(id) {
+    // Call |set proxy(p) {}|
+    dump("proxyById\n");
+    this.proxy = this.fp.proxies.getProxyById(id);
+  },
 
   get notify() { return this._notify; },
   set notify(n) {
@@ -87,6 +93,34 @@ SuperAdd.prototype = {
   set prompt(n) {
     this._prompt = n;
     this.fp.writeSettings();
+  },  
+  
+
+  /**
+   * Update the list of menuitems in |menu|
+   */
+  updateProxyMenu : function(menu, doc) {
+    if (!this._enabled) return;
+    var popup=menu.firstChild, fpc = CC["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject;
+    fpc.removeChildren(popup);
+    for (var i=0,p; i<this.fp.proxies.length && ((p=this.fp.proxies.item(i)) || 1); i++) {
+      if (!p.lastresort && p.enabled) {
+        popup.appendChild(fpc.createMenuItem({idVal:p.id, labelVal:p.name, type:"radio", name:"foxyproxy-enabled-type",
+          document:doc}));
+        //popup.appendChild(fpc.createMenuItem({idVal:"disabled", labelId:"mode.disabled.label"}));
+      }
+    }
+    function selFirst() {
+      // select the first one
+      if (popup.firstChild && popup.firstChild.id)
+        this.proxyById = menu.value = popup.firstChild.id;
+    }
+
+    if (this._proxy)
+      menu.value = this.proxy.id;
+    else
+      selFirst();
+    //menu.selectedIndex == -1 && selFirst();
   },  
   
   perform : function(url, content) {

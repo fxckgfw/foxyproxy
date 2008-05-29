@@ -1,9 +1,9 @@
-var fpc;
+var fp, fpc, inn;
 function onLoad() {
-  var inn = window.arguments[0].inn;  
+  inn = window.arguments[0].inn;  
+  fp = Components.classes["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;
   fpc = Components.classes["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject;
   document.getElementById("enabled").checked = inn.enabled;
-  document.getElementById("temp").checked = inn.temp;
   document.getElementById("reload").checked = inn.reload;
   document.getElementById("prompt").checked = inn.prompt;
   document.getElementById("notify").checked = inn.notify;
@@ -15,12 +15,7 @@ function onLoad() {
     }
   }
   document.getElementById("proxyMenu").value = inn.proxyId || proxyMenuPopup.firstChild.id;
-  document.getElementById("name").value = inn.match.name;
-  document.getElementById("urlTemplate").value = inn.urlTemplate;    
   document.getElementById("url").value = inn.url;
-  document.getElementById("matchtype").value = inn.match.isRegEx ? "r" : "w";
-  document.getElementById("whiteblacktype").value = inn.match.isBlackList ? "b" : "w"
-  document.getElementById("caseSensitive").checked = inn.match.caseSensitive;
   updateGeneratedPattern();
   document.getElementById("setupMode").setAttribute("hidden", inn.setupMode);
   document.getElementById("notSetupMode").setAttribute("hidden", !inn.setupMode);
@@ -29,7 +24,6 @@ function onLoad() {
   } 
   else {
     // Hide QuickAdd specifics from AutoAdd
-    var fp = Components.classes["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;
     window.document.title = fp.getMessage("foxyproxy.tab.autoadd.label");
     document.getElementById("quickAddMode").setAttribute("hidden", true);
     // Show AutoAdd specifics
@@ -70,8 +64,31 @@ function onOK() {
 }
 
 function updateGeneratedPattern() {
-	document.getElementById("generatedPattern").value =
-    fpc.applyTemplate(document.getElementById("url").value,
-      document.getElementById("urlTemplate").value,
-      document.getElementById("caseSensitive").checked);
+	//document.getElementById("generatedPattern").value =
+    //fpc.applyTemplate(document.getElementById("url").value,
+      //document.getElementById("urlTemplate").value,
+      //document.getElementById("caseSensitive").checked);
+}
+
+function onPattern() {
+  var params = {inn:{name:inn.match.name,
+          pattern:inn.match.pattern, regex:inn.match.isRegEx,
+          black:inn.match.isBlackList,
+          enabled:inn.match.enabled,
+          caseSensitive:inn.match.caseSensitive,
+          temp:inn.match.temp}, out:null};
+
+  window.openDialog("chrome://foxyproxy/content/pattern.xul", "",
+    "chrome, dialog, modal, resizable=yes", params).focus();
+
+  if (params.out) {
+    params = params.out;    
+    inn.match.name = params.name;
+    inn.match.pattern = params.pattern;
+    inn.match.isRegEx = params.isRegEx;
+    inn.match.isBlackList = params.isBlackList;
+    inn.match.enabled = params.isEnabled;
+    inn.match.caseSensitive = params.caseSensitive;
+    inn.match.temp = params.temp;
+  }
 }

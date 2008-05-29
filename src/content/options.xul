@@ -629,7 +629,7 @@
                   label="&foxyproxy.quickadd.prompt.label;"
                   accesskey="&foxyproxy.quickadd.prompt.accesskey;"
                   tooltiptext="&foxyproxy.quickadd.prompt.tooltip;"
-                  oncommand="foxyproxy.autoadd.notify = this.checked;"/>
+                  oncommand="foxyproxy.autoadd.prompt = this.checked;"/>
                 <checkbox id="autoAddNotifyWhenCanceled"
                   label="&foxyproxy.quickadd.notify.whencanceled.label;"
                   accesskey="&foxyproxy.quickadd.notify.whencanceled.accesskey;"

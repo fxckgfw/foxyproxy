@@ -32,11 +32,6 @@
               tooltiptext="&foxyproxy.addnewproxy.tooltip;" />
             <!-- tooltiptext is necessary for tooltip, dunno why -->
             <menuseparator />
-            <menuitem command="quickAddCmd"
-              tooltiptext="&foxyproxy.quickadd.tooltip;" />
-            <menuitem command="autoAddCmd"
-              tooltiptext="&foxyproxy.tab.autoadd.tooltip;" />
-            <menuseparator />
             <menuitem command="torWizardCmd"
               tooltiptext="&foxyproxy.tor.tooltip;" />
             <!-- tooltiptext is necessary for tooltip, dunno why -->
@@ -72,7 +67,7 @@
     </toolbox>
   </vbox>
 
-  <separator style="height: .5em;" />
+  <separator class="thin"/>
   <hbox style="margin-left: 1em;" align="center">
     <label value="&foxyproxy.mode.label;:"
       tooltiptext="&foxyproxy.mode.tooltip;"
@@ -757,10 +752,7 @@
       </tabpanel>
     </tabpanels>
   </tabbox>
-
-  <hbox>
-    <button command="quickAddCmd" />
-    <button command="autoAddCmd" />
+  <hbox align="center">
     <spacer flex="1" />
     <button command="closeCmd" />
   </hbox>
@@ -800,8 +792,6 @@
       <menuseparator />
       <menuitem class="menuitem-non-iconic" command="torWizardCmd" />
       <menuseparator />
-      <menuitem class="menuitem-non-iconic" command="quickAddCmd" />
-      <menuitem class="menuitem-non-iconic" command="autoAddCmd" />
       <menuitem class="menuitem-non-iconic" command="helpCmd" />
       <menuitem class="menuitem-non-iconic" command="closeCmd" />
     </popup>
@@ -880,16 +870,6 @@
   <command id="closeCmd" label="&foxyproxy.close.label;"
     accesskey="&foxyproxy.close.accesskey;"
     tooltiptext="&foxyproxy.close.tooltip;" oncommand="window.close()" />
-
-  <command id="quickAddCmd" label="&foxyproxy.quickadd.label;"
-    accesskey="&foxyproxy.quickadd.accesskey;"
-    tooltiptext="&foxyproxy.quickadd.tooltip;"
-    oncommand="onQuickAdd();" />
-
-  <command id="autoAddCmd" label="&foxyproxy.tab.autoadd.label;"
-    accesskey="&foxyproxy.tab.autoadd.accesskey;"
-    tooltiptext="&foxyproxy.tab.autoadd.tooltip;"
-    oncommand="onAutoAdd();" />
 
   <command id="importSettingsCmd"
     label="&foxyproxy.importsettings.label;"

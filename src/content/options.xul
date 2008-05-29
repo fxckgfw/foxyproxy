@@ -766,8 +766,6 @@
       <menuseparator id="menuSeperator" />
       <menuitem class="menuitem-non-iconic" command="createProxyCmd" />
       <menuseparator />
-      <menuitem class="menuitem-non-iconic"
-        command="toggleSelectionCmd" />
       <menuitem class="menuitem-non-iconic" command="settingsCmd" />
       <menuitem class="menuitem-non-iconic" command="copySelectionCmd" />
       <menuitem class="menuitem-non-iconic"

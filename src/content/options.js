@@ -473,7 +473,8 @@ function onPattern(m) {
           black:m.isBlackList,
           enabled:m.enabled,
           caseSensitive:m.caseSensitive,
-          temp:m.temp}, out:null};
+          temp:m.temp,
+          superadd:true}, out:null};
 
   window.openDialog("chrome://foxyproxy/content/pattern.xul", "",
     "chrome, dialog, modal, resizable=yes", params).focus();

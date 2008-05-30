@@ -13,7 +13,6 @@ const DEF_PATTERN = "*://${3}${6}/*";
 
 function SuperAdd() {
   this.match = new Match();
-  this.match.enabled = true; /* quick-adding or auto-adding disabled matches doesn't make much sense */
   this.match.isMultiLine = true;
 }
 // todo: AutoAdd needs caseSensitive
@@ -68,13 +67,14 @@ SuperAdd.prototype = {
 
   get proxy() { return this._proxy; },
   set proxy(p) {
+    dump("set proxy " + p + "\n");
     this._proxy = p;
     this.fp.writeSettings();
   },
   
   set proxyById(id) {
     // Call |set proxy(p) {}|
-    dump("proxyById\n");
+    dump("set proxyById\n");
     this.proxy = this.fp.proxies.getProxyById(id);
   },
 
@@ -105,7 +105,7 @@ SuperAdd.prototype = {
     var popup=menu.firstChild, fpc = CC["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject;
     fpc.removeChildren(popup);
     for (var i=0,p; i<this.fp.proxies.length && ((p=this.fp.proxies.item(i)) || 1); i++) {
-      if (!p.lastresort && p.enabled) {
+      if (p.enabled) {
         popup.appendChild(fpc.createMenuItem({idVal:p.id, labelVal:p.name, type:"radio", name:"foxyproxy-enabled-type",
           document:doc}));
         //popup.appendChild(fpc.createMenuItem({idVal:"disabled", labelId:"mode.disabled.label"}));
@@ -158,13 +158,6 @@ SuperAdd.prototype = {
   addPattern : function(m) {
 	  this._proxy.matches.push(m);      
   },
-  
-  allowed : function() {
-    for (var i=0,p; i<this.fp.proxies.length && (p=this.fp.proxies.item(i)); i++)
-      if (p.enabled && !p.lastresort)
-        return true;
-    return false;
-  },
 
 	// Disable superadd if our proxy is being deleted/disabled
 	maintainIntegrity : function(proxyId, isBeingDeleted) {
@@ -210,7 +203,7 @@ SuperAdd.prototype = {
     this.match.isMultiLine = true; 
     var error;
     if (proxyId) {
-      // Ensure it exists and is enabled and isn't "direct"
+      // Ensure it exists
       this._proxy = this.fp.proxies.getProxyById(proxyId);
       this._enabled && (!this._proxy || !this._proxy.enabled) && (error = true);
     }

@@ -8,17 +8,17 @@
   available in the LICENSE file at the root of this installation
   and also online at http://www.gnu.org/licenses/gpl.txt
 **/
+var exampleURL, pattern, generatedPattern, caseSensitive, fpc;
 function onOK() {
-  var r = document.getElementById("matchtype").value == "r",
-    pattern = document.getElementById("pattern").value;
+  var r = document.getElementById("matchtype").value == "r";
   var p = Components.classes["@leahscape.org/foxyproxy/common;1"].getService()
-    .wrappedJSObject.validatePattern(window, r, pattern);
+      .wrappedJSObject.validatePattern(window, r, pattern.value);
   if (p) {
 	  window.arguments[0].out = {name:document.getElementById("name").value,
-	    pattern:p, isRegEx:r,
+	    pattern:pattern.value, isRegEx:r,
 	    isBlackList:document.getElementById("whiteblacktype").value == "b",
 	    isEnabled:document.getElementById("enabled").checked,
-      caseSensitive:document.getElementById("caseSensitive").checked,
+      caseSensitive:caseSensitive.checked,
       temp:document.getElementById("temp").checked};
 	  return true;
 	}
@@ -42,5 +42,15 @@ function onLoad() {
     document.getElementById("superadd").setAttribute("hidden", true);  
     document.getElementById("not-superadd").setAttribute("hidden", false);   
   }
+  exampleURL = document.getElementById("exampleURL");
+  pattern = document.getElementById("pattern");
+  generatedPattern = document.getElementById("generatedPattern");
+  caseSensitive = document.getElementById("caseSensitive");
+  fpc = Components.classes["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject;
+  updateGeneratedPattern();
   sizeToContent();
+}
+
+function updateGeneratedPattern() {
+  generatedPattern.value = fpc.applyTemplate(exampleURL.value, pattern.value, caseSensitive.checked);
 }

@@ -13,6 +13,7 @@ const DEF_PATTERN = "*://${3}${6}/*";
 
 function SuperAdd() {
   this.match = new Match();
+  this.match.enabled = true; /* quick-adding or auto-adding disabled matches doesn't make much sense */
   this.match.isMultiLine = true;
 }
 // todo: AutoAdd needs caseSensitive

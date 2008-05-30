@@ -429,16 +429,9 @@ function toggleStatusBarText(checked) {
 
 function onQuickAddEnabled(cb) {
   if (cb.checked) {
-    if (foxyproxy.quickadd.allowed()) {
-        foxyproxy.quickadd.enabled = true;
+      foxyproxy.quickadd.enabled = true;
       document.getElementById("quickAddBroadcaster").hidden = false;      
       foxyproxy.quickadd.updateProxyMenu(document.getElementById("quickAddProxyMenu"), document);
-      //overlay.alert(this, foxyproxy.getMessage("autoadd.notice"));
-    }
-    else {
-      overlay.alert(this, foxyproxy.getMessage("superadd.verboten2", [foxyproxy.getMessage("foxyproxy.quickadd.label")]));
-      cb.checked = false;
-    }
   }
   else {
     document.getElementById("quickAddBroadcaster").hidden = true;
@@ -449,17 +442,11 @@ function onQuickAddEnabled(cb) {
 
 function onAutoAddEnabled(cb) {
   if (cb.checked) {
-    if (foxyproxy.autoadd.allowed()) {
       foxyproxy.autoadd.enabled = true;
       document.getElementById("autoAddBroadcaster").hidden = false;     
       foxyproxy.autoadd.updateProxyMenu(document.getElementById("autoAddProxyMenu"), document);
       sizeToContent(); // call this before the alert() otherwise user can see unsized dialog in background
       overlay.alert(this, foxyproxy.getMessage("autoadd.notice"));
-    }
-    else {
-      overlay.alert(this, foxyproxy.getMessage("superadd.verboten2", [foxyproxy.getMessage("foxyproxy.tab.autoadd.label")]));
-      cb.checked = false;
-    }
   }
   else {
     document.getElementById("autoAddBroadcaster").hidden = true;

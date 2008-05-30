@@ -46,22 +46,26 @@
       <spacer/>
       <spacer/>        
     </row>    
-    <row align="center">
+    <row align="center">  
         <label value="&foxyproxy.pattern.name.label;" control="name"
-            tooltiptext="&foxyproxy.pattern.name.tooltip;" accesskey="&foxyproxy.pattern.name.accesskey;"/>  
+          tooltiptext="&foxyproxy.pattern.name.tooltip;" accesskey="&foxyproxy.pattern.name.accesskey;"/>            
         <textbox id="name" tooltiptext="&foxyproxy.pattern.name.tooltip;" accesskey="&foxyproxy.pattern.name.accesskey;"/>
-        <spacer/>
         <spacer/>        
+        <spacer/>
     </row>    
     <row align="center">
-      <label value="&foxyproxy.url.pattern.label;" tooltiptext="&foxyproxy.url.pattern.tooltip;" accesskey="&foxyproxy.url.pattern.accesskey;" control="pattern"/>
+      <label value="&foxyproxy.pattern.template.label;" control="name"
+        tooltiptext="&foxyproxy.pattern.template.tooltip;" accesskey="&foxyproxy.pattern.template.accesskey;"
+        observes="superadd"/>    
+      <label value="&foxyproxy.url.pattern.label;" tooltiptext="&foxyproxy.url.pattern.tooltip;" accesskey="&foxyproxy.url.pattern.accesskey;"
+        control="pattern" observes="not-superadd"/>
       <textbox id="pattern" tooltiptext="&foxyproxy.url.pattern.tooltip;" accesskey="&foxyproxy.url.pattern.accesskey;"/>           
       <checkbox id="caseSensitive" label="&foxyproxy.casesensitive.label;" accesskey="&foxyproxy.casesensitive.accesskey;"
         tooltiptext="&foxyproxy.casesensitive.tooltip;"/>
       <toolbarbutton class="foxyproxy-ref" popup="wildcardReferencePopup" tooltiptext="&foxyproxy.wildcard.reference.tooltip;"/>
     </row>
 
-    <row align="center" observes="notSetupMode">
+    <row align="center" observes="superadd">
       <label value="&foxyproxy.pattern.template.example.label1;" />
       <textbox id="quickAddTemplateExample1" type="timed" timeout="500"
         flex="1" value="&foxyproxy.pattern.template.example.label2;" />
@@ -77,4 +81,9 @@
   <popup id="wildcardReferencePopup"/>
   <popup id="tempPopup"/>
 </popupset>
+
+<broadcasterset>
+  <broadcaster id="superadd"/>
+  <broadcaster id="not-superadd"/>
+</broadcasterset>
 </dialog>

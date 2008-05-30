@@ -33,6 +33,14 @@ function onLoad() {
   document.getElementById("whiteblacktype").selectedIndex = inn.black ? 1 : 0;
   document.getElementById("enabled").checked = inn.enabled;
   document.getElementById("caseSensitive").checked = inn.caseSensitive;
-  document.getElementById("temp").checked = inn.temp;  
+  document.getElementById("temp").checked = inn.temp;
+  if (inn.superadd) {
+    document.getElementById("superadd").setAttribute("hidden", false);  
+    document.getElementById("not-superadd").setAttribute("hidden", true);    
+  }
+  else {
+    document.getElementById("superadd").setAttribute("hidden", true);  
+    document.getElementById("not-superadd").setAttribute("hidden", false);   
+  }
   sizeToContent();
 }

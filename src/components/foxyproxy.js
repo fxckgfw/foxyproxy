@@ -15,16 +15,22 @@
 dump("foxyproxy.js\n");
 var CI = Components.interfaces, CC = Components.classes, CR = Components.results, gFP;
 
+var dumpp = function() {
+     try {
+      throw new Error("e");
+    }
+    catch (e) {dump ("\n" + e.stack + "\n");} 
+}
 // Get attribute from node if it exists, otherwise return |def|.
 // No exceptions, no errors, no null returns.
 var gGetSafeAttr = function(n, name, def) {
-  if (!n) {dump("null node\n"); return; }
+  if (!n) {dumpp(); return; }
   n.QueryInterface(CI.nsIDOMElement);
 	return n ? (n.hasAttribute(name) ? n.getAttribute(name) : def) : def;
 };
 // Boolean version of GetSafe
 var gGetSafeAttrB = function(n, name, def) {
-  if (!n) {dump("null node\n"); return; }
+  if (!n) {dumpp(); return; }
   n.QueryInterface(CI.nsIDOMElement);
 	return n ? (n.hasAttribute(name) ? n.getAttribute(name)=="true" : def) : def;
 };

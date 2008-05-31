@@ -454,6 +454,7 @@ function onAutoAddEnabled(cb) {
     document.getElementById("autoAddBroadcaster").hidden = true;
     foxyproxy.autoadd.enabled = false;
   }
+  sizeToContent();
 }
 
 function onPattern(m) {

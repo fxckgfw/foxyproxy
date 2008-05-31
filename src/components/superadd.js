@@ -236,5 +236,10 @@ AutoAdd.prototype.fromDOM = function(doc) {
   var e = SuperAdd.prototype.fromDOM.apply(this, arguments);
   // TODO:
   // /foxyproxy/autoadd/match[1]
+  var xpe = new XPathEvaluator();
+  var nsResolver = xpe.createNSResolver(aNode.ownerDocument == null ?
+    aNode.documentElement : aNode.ownerDocument.documentElement);
+  var result = xpe.evaluate(aExpr, aNode, nsResolver, 0, null);
+  
 }
 

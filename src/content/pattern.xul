@@ -27,7 +27,7 @@
   <columns>
     <column/>
     <column flex="1"/>
-    <column/>
+    <column flex="1"/>
     <column/>    
   </columns>   
   <rows>
@@ -60,18 +60,19 @@
       <label value="&foxyproxy.url.pattern.label;" tooltiptext="&foxyproxy.url.pattern.tooltip;" accesskey="&foxyproxy.url.pattern.accesskey;"
         control="pattern" observes="not-superadd"/>
       <textbox id="pattern" tooltiptext="&foxyproxy.url.pattern.tooltip;" accesskey="&foxyproxy.url.pattern.accesskey;"
-         type="timed" timeout="500" oncommand="updateGeneratedPattern();"/>           
-      <checkbox id="caseSensitive" label="&foxyproxy.casesensitive.label;" accesskey="&foxyproxy.casesensitive.accesskey;"
-        tooltiptext="&foxyproxy.casesensitive.tooltip;"/>
-      <toolbarbutton class="foxyproxy-ref" popup="wildcardReferencePopup" tooltiptext="&foxyproxy.wildcard.reference.tooltip;"/>
+         type="timed" timeout="500" oncommand="updateGeneratedPattern();"/>       
+      <hbox align="center">    
+        <checkbox id="caseSensitive" label="&foxyproxy.casesensitive.label;" accesskey="&foxyproxy.casesensitive.accesskey;"
+          tooltiptext="&foxyproxy.casesensitive.tooltip;"/>
+        <toolbarbutton class="foxyproxy-ref" popup="wildcardReferencePopup" tooltiptext="&foxyproxy.wildcard.reference.tooltip;"/>
+        </hbox>
     </row>
 
     <row align="center" observes="superadd">
       <label value="&foxyproxy.pattern.template.example.label1;" />
       <textbox id="exampleURL" type="timed" timeout="500"
         flex="1" value="&foxyproxy.pattern.template.example.label2;" oncommand="updateGeneratedPattern();"/>
-      <textbox id="generatedPattern" readonly="true"
-        style="font-weight: bold;" />
+      <textbox id="generatedPattern" readonly="true" style="font-weight: bold;"/>
       <spacer />
     </row>
     <radiogroup id="whiteblacktype"/>

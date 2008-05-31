@@ -56,6 +56,8 @@ SuperAdd.prototype = {
   get urlTemplate() { return this._urlTemplate; },
   set urlTemplate(u) {
     this._urlTemplate = u.replace(/^\s*|\s*$/g,"");
+    if (this._urlTemplate == "")
+      this._urlTemplate = DEF_PATTERN;
     this.fp.writeSettings();
   },    
 
@@ -95,7 +97,6 @@ SuperAdd.prototype = {
     this._prompt = n;
     this.fp.writeSettings();
   },  
-  
 
   /**
    * Update the list of menuitems in |menu|
@@ -125,7 +126,6 @@ SuperAdd.prototype = {
   },  
   
   perform : function(url, content) {
-    dump("this.match.pattern=" + this.match.pattern + "\n");
     if (this.match.pattern != "") {
     	// Does this URL already match an existing pattern for a proxy?
     	var p = this.fp.proxies.getMatches(url).proxy;

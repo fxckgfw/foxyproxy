@@ -9,7 +9,7 @@
   and also online at http://www.gnu.org/licenses/gpl.txt
 **/
 
-var foxyproxy, proxyTree, logTree, monthslong, dayslong, overlay, timeformat, saveLogCmd, clearLogCmd, noURLsCmd, fpc;
+var foxyproxy, proxyTree, logTree, monthslong, dayslong, overlay, timeformat, saveLogCmd, clearLogCmd, noURLsCmd, fpc, autoAddPattern;
 const CI = Components.interfaces, CC = Components.classes;
 
 function onLoad() {
@@ -30,8 +30,10 @@ function onLoad() {
   logTree = document.getElementById("logTree");
   saveLogCmd = document.getElementById("saveLogCmd");
   clearLogCmd = document.getElementById("clearLogCmd");  
-  noURLsCmd = document.getElementById("noURLsCmd");  
+  noURLsCmd = document.getElementById("noURLsCmd");
+  autoAddPattern = document.getElementById("autoAddPattern");
   timeformat = foxyproxy.getMessage("timeformat");
+  autoAddPattern.value = foxyproxy.autoadd.urlTemplate;
   _initSettings();
   setTimeout(function(){sizeToContent()}, 0);
 }
@@ -476,4 +478,11 @@ function onPattern(m) {
     m.caseSensitive = params.caseSensitive;
     m.temp = params.temp;
   }    
+}
+
+function onAutoAddPattern(x) {
+  foxyproxy.autoadd.urlTemplate = x;
+  // Setting the urlTemplate trims whitspace and can be reset to its default value
+  // if the user sets it to "", so we update the UI after setting it
+  autoAddPattern.value = foxyproxy.autoadd.urlTemplate;
 }

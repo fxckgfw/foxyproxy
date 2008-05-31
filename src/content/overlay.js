@@ -96,9 +96,11 @@ var foxyproxy = {
   onPageLoad : function(evt) {
 	  var doc = evt.originalTarget; // doc is document that triggered "onload" event
 	  if (doc && doc.location) {
-      foxyproxy.fp.autoadd.perform(doc.location.href, doc.documentElement.innerHTML);
-      foxyproxy.fp.autoadd.reload && doc.location.reload(); // reload page if necessary
-      foxyproxy.fp.writeSettings();
+      var m = foxyproxy.fp.autoadd.perform(doc.location.href, doc.documentElement.innerHTML);
+      if (m && foxyproxy.fp.autoadd.reload) {
+        doc.location.reload(); // reload page
+        foxyproxy.fp.writeSettings();
+      }
     }
   },
 

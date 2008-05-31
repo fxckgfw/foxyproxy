@@ -17,6 +17,9 @@ function SuperAdd() {
 }
 // todo: AutoAdd needs caseSensitive
 function QuickAdd() { SuperAdd.apply(this, arguments); }
+function AutoAdd() {
+  SuperAdd.apply(this, arguments);
+}
 
 // The super class definition. QuickAdd is a subclass of SuperAdd.
 SuperAdd.prototype = {
@@ -29,9 +32,6 @@ SuperAdd.prototype = {
   _notifyWhenCanceled : true,
   _prompt : false,
   match : null,
-  elemName : "autoadd",
-  elemNameCamelCase : "AutoAdd",
-  notificationTitle : "foxyproxy.tab.autoadd.label",
   
   _urlTemplate : DEF_PATTERN,  
   _formatConverter : CC["@mozilla.org/widget/htmlformatconverter;1"].createInstance(CI.nsIFormatConverter),
@@ -69,14 +69,12 @@ SuperAdd.prototype = {
 
   get proxy() { return this._proxy; },
   set proxy(p) {
-    dump("set proxy " + p + "\n");
     this._proxy = p;
     this.fp.writeSettings();
   },
   
   set proxyById(id) {
     // Call |set proxy(p) {}|
-    dump("set proxyById\n");
     this.proxy = this.fp.proxies.getProxyById(id);
   },
 
@@ -190,9 +188,7 @@ SuperAdd.prototype = {
   fromDOM : function(doc) {
     var n = doc.getElementsByTagName(this.elemName).item(0);
     this._enabled = gGetSafeAttrB(n, "enabled", false);
-    this._temp = gGetSafeAttrB(n, "temp", false);
-    this._urlTemplate = gGetSafeAttr(n, "urlTemplate", DEF_PATTERN);
-    if (this._urlTemplate == "") this._urlTemplate = DEF_PATTERN;      
+    this._temp = gGetSafeAttrB(n, "temp", false);     
     this._reload = gGetSafeAttrB(n, "reload", true);    
     this._notify = gGetSafeAttrB(n, "notify", true);
     this._notifyWhenCanceled = gGetSafeAttrB(n, "notifyWhenCanceled", true);
@@ -215,9 +211,30 @@ SuperAdd.prototype = {
     }    
   }    
 };
-// Next line must come *after* SuperAdd.prototype definition
+// Next two lines must come *after* SuperAdd.prototype definition
 QuickAdd.prototype = new SuperAdd();
+AutoAdd.prototype = new SuperAdd();
 // These are subclass-specific additions and overrides
 QuickAdd.prototype.notificationTitle = "foxyproxy.quickadd.label";
+AutoAdd.prototype.notificationTitle = "foxyproxy.tab.autoadd.label";
 QuickAdd.prototype.elemName = "quickadd";
+AutoAdd.prototype.elemName = "autoadd";
 QuickAdd.prototype.elemNameCamelCase = "QuickAdd";
+AutoAdd.prototype.elemNameCamelCase = "AutoAdd";
+AutoAdd.prototype._urlTemplate = new Match(true, "", DEF_PATTERN, false, false, false, false, true);
+AutoAdd.prototype.__defineGetter__("urlTemplate", function() { return this._urlTemplate; })
+AutoAdd.prototype.__defineSetter__("urlTemplate", function(n) {
+  this._urlTemplate = n;
+  gFP.writeSettings();
+});
+AutoAdd.prototype.toDOM = function(doc) {
+  var e = SuperAdd.prototype.toDOM.apply(this, arguments);
+  e.appendChild(this.urlTemplate.toDOM(doc));
+  return e;
+}
+AutoAdd.prototype.fromDOM = function(doc) {
+  var e = SuperAdd.prototype.fromDOM.apply(this, arguments);
+  // TODO:
+  // /foxyproxy/autoadd/match[1]
+}
+

@@ -678,8 +678,9 @@
               </row>
             </rows>
           </grid>
-        </groupbox>
+        <radiogroup id="matchtype"/>
         <button observes="autoAddBroadcaster" command="autoAddPatternCmd" label="&foxyproxy.pattern.label;"/>
+        </groupbox>
       </tabpanel>
 
       <!-- logging -->

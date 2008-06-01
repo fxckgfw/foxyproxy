@@ -19,7 +19,7 @@ var dumpp = function() {
      try {
       throw new Error("e");
     }
-    catch (e) {dump ("\n" + e.stack + "\n");} 
+    catch (e) {dump("*** " + e + " \n\n\n");dump ("\n" + e.stack + "\n");} 
 }
 // Get attribute from node if it exists, otherwise return |def|.
 // No exceptions, no errors, no null returns.
@@ -91,10 +91,8 @@ function foxyproxy() {
   try {
     SuperAdd.prototype.fp = gFP = this.wrappedJSObject = this;  
     this._loadStrings();
-    this.autoadd = new SuperAdd();
-    this.quickadd = new QuickAdd();
-    this.autoadd.setName(this.getMessage("autoadd.pattern.label"));
-    this.quickadd.setName(this.getMessage("quickadd.pattern.label"));   
+    this.autoadd = new AutoAdd(this.getMessage("autoadd.pattern.label"));
+    this.quickadd = new QuickAdd(this.getMessage("quickadd.pattern.label"));
     LoggEntry.prototype.init();
   }
   catch (e) {

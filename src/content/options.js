@@ -9,7 +9,7 @@
   and also online at http://www.gnu.org/licenses/gpl.txt
 **/
 
-var foxyproxy, proxyTree, logTree, monthslong, dayslong, overlay, timeformat, saveLogCmd, clearLogCmd, noURLsCmd, fpc, autoAddPattern;
+var foxyproxy, proxyTree, logTree, monthslong, dayslong, overlay, timeformat, saveLogCmd, clearLogCmd, noURLsCmd, fpc;
 const CI = Components.interfaces, CC = Components.classes;
 
 function onLoad() {
@@ -31,9 +31,7 @@ function onLoad() {
   saveLogCmd = document.getElementById("saveLogCmd");
   clearLogCmd = document.getElementById("clearLogCmd");  
   noURLsCmd = document.getElementById("noURLsCmd");
-  autoAddPattern = document.getElementById("autoAddPattern");
   timeformat = foxyproxy.getMessage("timeformat");
-  autoAddPattern.value = foxyproxy.autoadd.urlTemplate;
   _initSettings();
   setTimeout(function(){sizeToContent()}, 0);
 }
@@ -191,8 +189,7 @@ function _updateView(writeSettings, updateLogView) {
     document.getElementById(str + "Notify").checked = saObj.notify;
     document.getElementById(str + "NotifyWhenCanceled").checked = saObj.notifyWhenCanceled;   
     document.getElementById(str + "Prompt").checked = saObj.prompt;  
-  } 
-  document.getElementById("autoAddCaseSensitive").checked = foxyproxy.autoadd.caseSensitive;
+  }
   
   document.getElementById("toolsMenuEnabled").checked = foxyproxy.toolsMenu;
   document.getElementById("contextMenuEnabled").checked = foxyproxy.contextMenu;
@@ -481,9 +478,18 @@ function onPattern(m) {
   }    
 }
 
-function onAutoAddPattern(x) {
-  foxyproxy.autoadd.urlTemplate = x;
-  // Setting the urlTemplate trims whitspace and can be reset to its default value
-  // if the user sets it to "", so we update the UI after setting it
-  autoAddPattern.value = foxyproxy.autoadd.urlTemplate;
+function onBlockedSitesPattern() {
+  var m = foxyproxy.autoadd.urlTemplate;
+  var params = {inn:{pattern:m.pattern, regex:m.isRegEx, caseSensitive:m.caseSensitive}, out:null};
+
+  window.openDialog("chrome://foxyproxy/content/blockedsitespattern.xul", "",
+    "chrome, dialog, modal, resizable=yes", params).focus();
+
+  if (params.out) {
+    params = params.out;
+    m.pattern = params.pattern;
+    m.isRegEx = params.isRegEx;
+    m.caseSensitive = params.caseSensitive;
+    foxyproxy.writeSettings();
+  }    
 }

@@ -9,22 +9,6 @@
   and also online at http://www.gnu.org/licenses/gpl.txt
 **/
 var exampleURL, pattern, generatedPattern, caseSensitive, fpc;
-function onOK() {
-  var r = document.getElementById("matchtype").value == "r";
-  var p = Components.classes["@leahscape.org/foxyproxy/common;1"].getService()
-      .wrappedJSObject.validatePattern(window, r, pattern.value);
-  if (p) {
-	  window.arguments[0].out = {name:document.getElementById("name").value,
-	    pattern:pattern.value, isRegEx:r,
-	    isBlackList:document.getElementById("whiteblacktype").value == "b",
-	    isEnabled:document.getElementById("enabled").checked,
-      caseSensitive:caseSensitive.checked,
-      temp:document.getElementById("temp").checked};
-	  return true;
-	}
-  return false;
-}
-
 function onLoad() {
   var inn = window.arguments[0].inn;
   document.getElementById("name").value = inn.name;
@@ -49,6 +33,22 @@ function onLoad() {
   fpc = Components.classes["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject;
   updateGeneratedPattern();
   sizeToContent();
+}
+
+function onOK() {
+  var r = document.getElementById("matchtype").value == "r";
+  var p = Components.classes["@leahscape.org/foxyproxy/common;1"].getService()
+      .wrappedJSObject.validatePattern(window, r, pattern.value);
+  if (p) {
+    window.arguments[0].out = {name:document.getElementById("name").value,
+      pattern:pattern.value, isRegEx:r,
+      isBlackList:document.getElementById("whiteblacktype").value == "b",
+      isEnabled:document.getElementById("enabled").checked,
+      caseSensitive:caseSensitive.checked,
+      temp:document.getElementById("temp").checked};
+    return true;
+  }
+  return false;
 }
 
 function updateGeneratedPattern() {

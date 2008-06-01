@@ -568,3 +568,11 @@
 <!ENTITY foxyproxy.temp.label "Temporary">
 <!ENTITY foxyproxy.temp.accesskey "T">
 <!ENTITY foxyproxy.temp.tooltip "Pattern is used only for this Firefox session">
+
+<!ENTITY foxyproxy.define.label "Define">
+<!ENTITY foxyproxy.define.accesskey "D">
+<!ENTITY foxyproxy.define.tooltip "Define">
+
+<!ENTITY foxyproxy.pattern.to.quickadd.label "Pattern to quickly add to proxy">
+<!ENTITY foxyproxy.pattern.to.autoadd.label "Pattern to automatically add to proxy">
+

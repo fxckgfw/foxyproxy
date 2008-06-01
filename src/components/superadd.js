@@ -117,17 +117,11 @@ SuperAdd.prototype = {
         //popup.appendChild(fpc.createMenuItem({idVal:"disabled", labelId:"mode.disabled.label"}));
       }
     }
-    function selFirst() {
-      // select the first one
-      if (popup.firstChild && popup.firstChild.id)
-        this.proxyById = menu.value = popup.firstChild.id;
-    }
-
+    // Select the appropriate one or, if none was previously selected, select the first
     if (this._proxy)
       menu.value = this.proxy.id;
     else
-      selFirst();
-    //menu.selectedIndex == -1 && selFirst();
+      this.proxyById = menu.value = popup.firstChild.id;
   },  
   
   perform : function(url, content) {

@@ -120,7 +120,6 @@ Common.prototype = {
   applyTemplate : function(url, urlTemplate, caseSensitive) {
     var flags = caseSensitive ? "gi" : "g";
     try {
-      // TODO: if match is a regex, escape reg chars that appear in the url
       var parsedUrl = this._ios.newURI(url, "UTF-8", null).QueryInterface(CI.nsIURL);
       var ret = urlTemplate.replace("${0}", parsedUrl.scheme?parsedUrl.scheme:"", flags);    
       ret = ret.replace("${1}", parsedUrl.username?parsedUrl.username:"", flags);    
@@ -138,7 +137,27 @@ Common.prototype = {
       ret = ret.replace("${13}", parsedUrl.ref?parsedUrl.ref:"", flags);                
       ret = ret.replace("${14}", parsedUrl.query?parsedUrl.query:"", flags);
       ret = ret.replace("${14}", parsedUrl.query?parsedUrl.query:"", flags);       
-      return ret.replace("${15}", parsedUrl.spec?parsedUrl.spec:"", flags); 
+      ret = ret.replace("${15}", parsedUrl.spec?parsedUrl.spec:"", flags);
+      ret = ret.replace(/\^|\$|\+|\\|\||\*|\{|\}|\(|\)|\[|\]/g,
+        function(s) {
+          switch(s) {
+            case "^":return "\\^";break;
+            case "$":return "\\$";break;
+            case "+":return "\\+";break;
+            case "\\":return "\\\\";break;
+            case ".":return "\\.";break;
+            case "|":return "\\|";break;
+            case "*":return "\\*";break;
+            case "{":return "\\{";break;
+            case "}":return "\\}";break;
+            case "(":return "\\(";break;
+            case ")":return "\\)";break;
+            case "[":return "\\[";break;
+            case "]":return "\\]";break;
+          }
+        }
+      );
+      return ret;
     }
     catch(e) {/*happens for about:blank, about:config, etc.*/}
     return url;

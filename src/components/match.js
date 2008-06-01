@@ -102,7 +102,6 @@ Match.prototype = {
       pat = pat.replace(/\./g, "\\.");
       pat = pat.replace(/\*/g, ".*");
       pat = pat.replace(/\?/g, ".");
-      pat = pat.replace(/\\/g, "\\\\");
     }
     if (!this._isMultiLine) {
 	    pat[0] != "^" && (pat = "^" + pat);

@@ -322,7 +322,7 @@
           class="text-link"
           onclick="fpclocal.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/patterns.html#wildcards');"
           tooltiptext="&foxyproxy.wildcard.tooltip;"/>
-        <label value="&foxyproxy.wildcard.example.label;"/>                                            
+        <label id="wildcardExample" value="&foxyproxy.wildcard.example.label;"/>                                            
       </row>
       <row align="center">
         <radio value="r"
@@ -333,7 +333,7 @@
           class="text-link"
           onclick="fpclocal.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/patterns.html#regex');"
           tooltiptext="&foxyproxy.regex.tooltip;"/> 
-        <label value="&foxyproxy.regex.example.label;"/>       
+        <label id="regexExample" value="&foxyproxy.regex.example.label;"/>       
         <spacer/>      
       </row>
     </rows>

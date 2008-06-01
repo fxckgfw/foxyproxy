@@ -242,6 +242,7 @@ var foxyproxy = {
       }
 		}
 		function _qAdd(pat, url, loc) {
+      dump("this.fp.quickadd.proxy = " + this.fp.quickadd.proxy + "\n");
       var m = pat.isBlackList ? q.proxy.isBlackMatch(url) : q.proxy.isWhiteMatch(url);
 			if (m) {
 		    q.notifyWhenCanceled &&

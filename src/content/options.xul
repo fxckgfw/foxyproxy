@@ -573,8 +573,8 @@
             </rows>
           </grid>
         </groupbox>
-        <groupbox>
-        <grid observes="quickAddBroadcaster">
+        <groupbox observes="quickAddBroadcaster">
+        <grid>
           <columns>
             <column />
             <column flex="1" />

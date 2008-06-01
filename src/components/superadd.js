@@ -10,18 +10,38 @@
 **/
 dump("superadd.js\n");
 const DEF_PATTERN = "*://${3}${6}/*";
+function SuperAdd() {}
 
-function SuperAdd() {
-  this.match = new Match();
-  this.match.isMultiLine = true;
-}
-// todo: AutoAdd needs caseSensitive
-function QuickAdd() { SuperAdd.apply(this, arguments); }
-function AutoAdd() {
+function QuickAdd(mName) {
   SuperAdd.apply(this, arguments);
+  this.match = new Match(true, mName, DEF_PATTERN);
+  this.notificationTitle = "foxyproxy.quickadd.label";
+  this.elemName = "quickadd";
+  this.elemNameCamelCase = "QuickAdd";
+}
+function AutoAdd(mName) {
+  SuperAdd.apply(this, arguments);
+  this.match = new Match(true, mName, DEF_PATTERN);  
+  this._urlTemplate = new Match(true, "", "", false, false, false, false, true);    
+  this.notificationTitle = "foxyproxy.tab.autoadd.label";
+  this.elemName = "autoadd";
+  this.elemNameCamelCase = "AutoAdd";
+  // Override the setter for this.urlTemplate.pattern to change empty and null
+  // patterns to the default pattern
+  this._urlTemplate.__defineSetter__("pattern", function(p) {
+    dump("in match set pattern override\n");
+    if (!p) p = ""; // prevent null patterns
+    this._pattern = p.replace(/^\s*|\s*$/g,""); // trim
+    if (this._pattern == "")
+      this._pattern = DEF_PATTERN;    
+    this.buildRegEx();
+  });
+  // Strangely, if we override the setter with __defineSetter__, the getter is reset.
+  // So we have to forcefully set it again...
+  this._urlTemplate.__defineGetter__("pattern", function() { return this._pattern; });
 }
 
-// The super class definition. QuickAdd is a subclass of SuperAdd.
+// The super class definition
 SuperAdd.prototype = {
   fp : null,
   _reload : true,
@@ -33,12 +53,7 @@ SuperAdd.prototype = {
   _prompt : false,
   match : null,
   
-  _urlTemplate : DEF_PATTERN,  
   _formatConverter : CC["@mozilla.org/widget/htmlformatconverter;1"].createInstance(CI.nsIFormatConverter),
-
-  setName : function(matchName) {
-		this.match.name = matchName;  
-  },
     
   get enabled() { return this._enabled; },
   set enabled(e) {
@@ -50,14 +65,6 @@ SuperAdd.prototype = {
   get temp() { return this._temp; },
   set temp(t) {
     this._temp = t;
-    this.fp.writeSettings();
-  },
-  
-  get urlTemplate() { return this._urlTemplate; },
-  set urlTemplate(u) {
-    this._urlTemplate = u.replace(/^\s*|\s*$/g,"");
-    if (this._urlTemplate == "")
-      this._urlTemplate = DEF_PATTERN;
     this.fp.writeSettings();
   },    
 
@@ -214,32 +221,26 @@ SuperAdd.prototype = {
 // Next two lines must come *after* SuperAdd.prototype definition
 QuickAdd.prototype = new SuperAdd();
 AutoAdd.prototype = new SuperAdd();
-// These are subclass-specific additions and overrides
-QuickAdd.prototype.notificationTitle = "foxyproxy.quickadd.label";
-AutoAdd.prototype.notificationTitle = "foxyproxy.tab.autoadd.label";
-QuickAdd.prototype.elemName = "quickadd";
-AutoAdd.prototype.elemName = "autoadd";
-QuickAdd.prototype.elemNameCamelCase = "QuickAdd";
-AutoAdd.prototype.elemNameCamelCase = "AutoAdd";
-AutoAdd.prototype._urlTemplate = new Match(true, "", DEF_PATTERN, false, false, false, false, true);
-AutoAdd.prototype.__defineGetter__("urlTemplate", function() { return this._urlTemplate; })
-AutoAdd.prototype.__defineSetter__("urlTemplate", function(n) {
-  this._urlTemplate = n;
-  gFP.writeSettings();
+AutoAdd.prototype.__defineGetter__("urlTemplate", function() { return this._urlTemplate; });
+AutoAdd.prototype.__defineSetter__("urlTemplate", function(m) {
+  this._urlTemplate = m;
+  this.fp.writeSettings();
 });
 AutoAdd.prototype.toDOM = function(doc) {
   var e = SuperAdd.prototype.toDOM.apply(this, arguments);
-  e.appendChild(this.urlTemplate.toDOM(doc));
+  e.appendChild(this._urlTemplate.toDOM(doc));
   return e;
-}
+};
 AutoAdd.prototype.fromDOM = function(doc) {
   var e = SuperAdd.prototype.fromDOM.apply(this, arguments);
-  // TODO:
-  // /foxyproxy/autoadd/match[1]
-  var xpe = new XPathEvaluator();
-  var nsResolver = xpe.createNSResolver(aNode.ownerDocument == null ?
-    aNode.documentElement : aNode.ownerDocument.documentElement);
-  var result = xpe.evaluate(aExpr, aNode, nsResolver, 0, null);
-  
-}
-
+  // new sXPathEvaluator() is not yet available.
+  var xpe = CC["@mozilla.org/dom/xpath-evaluator;1"].getService(CI.nsIDOMXPathEvaluator);
+  var nsResolver = xpe.createNSResolver(doc);  
+  // Note XPath expression array index is 1-based.
+  var n = xpe.evaluate("/foxyproxy/autoadd/match[2]", doc, nsResolver, xpe.FIRST_ORDERED_NODE_TYPE , null);  
+  if (n == null) {
+    // TODO: handle pre-2.8 installations
+  }
+  else 
+    this._urlTemplate.fromDOM(n.singleNodeValue);
+};

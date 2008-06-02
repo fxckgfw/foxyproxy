@@ -216,10 +216,9 @@ var foxyproxy = {
       window.openDialog(xulFile, "", "minimizable,dialog,chrome,resizable=yes" + (args?(","+args):""), parms).focus();
     }
   },
-  moo: null,
+
   onQuickAddDialog : function(evt) {
   	var fp=this.fp, q=this.fp.quickadd, url; 
-    this.moo=q;
 		if (fp.mode != "disabled" && q.enabled) {
 		  if (evt.view && evt.view.content && evt.view.content.document && evt.view.content.document.location)
         url = evt.view.content.document.location.href;
@@ -238,7 +237,8 @@ var foxyproxy = {
 			}
 			else {
          match = q.match.clone();
-         match.pattern = this.fpc.applyTemplate(url, q.urlTemplate, match.caseSensitive);         
+         match.pattern = this.fpc.applyTemplate(url, match.pattern, match.caseSensitive);    
+         match.temp = q.temp; /* the cloned match object doesn't clone temp because it's not deserialized from disk while q.temp is */ 
 				_qAdd(match, url, evt.view.content.document.location);
       }
 		}
@@ -246,7 +246,7 @@ var foxyproxy = {
       var m = pat.isBlackList ? q.proxy.isBlackMatch(url) : q.proxy.isWhiteMatch(url);
 			if (m) {
 		    q.notifyWhenCanceled &&
-		    	fp.notifier.alert(fp.getMessage("foxyproxy.quickadd.label"), fp.getMessage("quickadd.quickadd.canceled", [m.name, q._proxy.name]));
+		    	fp.notifier.alert(fp.getMessage("foxyproxy.quickadd.label"), fp.getMessage("quickadd.quickadd.canceled", [m.name, q.proxy.name]));
 			}
 			else {
 				q.addPattern(pat);

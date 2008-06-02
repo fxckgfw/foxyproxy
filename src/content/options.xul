@@ -913,7 +913,7 @@
   <command id="autoAddPatternCmd" label="&foxyproxy.define.label;"
     accesskey="&foxyproxy.define.accesskey;"
     tooltiptext="&foxyproxy.define.tooltip;"
-    oncommand="onPattern(foxyproxy.autoadd.match)"/>
+    oncommand="onPattern(foxyproxy.autoadd)"/>
 
   <command id="blockedPagePatternCmd" label="&foxyproxy.define.label;"
     accesskey="&foxyproxy.define.accesskey;"
@@ -923,7 +923,7 @@
   <command id="quickAddPatternCmd" label="&foxyproxy.define.label;"
     accesskey="&foxyproxy.define.accesskey;"
     tooltiptext="&foxyproxy.define.tooltip;"
-    oncommand="onPattern(foxyproxy.quickadd.match)"/>
+    oncommand="onPattern(foxyproxy.quickadd)"/>
         
   <broadcasterset>
     <broadcaster id="tree-row-selected" disabled="true" />

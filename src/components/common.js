@@ -117,11 +117,11 @@ Common.prototype = {
               .getItemForID("foxyproxy@eric.h.jung").version || "0.0";   
   },
 
-  applyTemplate : function(url, urlTemplate, caseSensitive) {
+  applyTemplate : function(url, strTemplate, caseSensitive) {
     var flags = caseSensitive ? "gi" : "g";
     try {
       var parsedUrl = this._ios.newURI(url, "UTF-8", null).QueryInterface(CI.nsIURL);
-      var ret = urlTemplate.replace("${0}", parsedUrl.scheme?parsedUrl.scheme:"", flags);    
+      var ret = strTemplate.replace("${0}", parsedUrl.scheme?parsedUrl.scheme:"", flags);    
       ret = ret.replace("${1}", parsedUrl.username?parsedUrl.username:"", flags);    
       ret = ret.replace("${2}", parsedUrl.password?parsedUrl.password:"", flags); 
       ret = ret.replace("${3}", parsedUrl.userPass?(parsedUrl.userPass+"@"):"", flags); 
@@ -166,10 +166,10 @@ Common.prototype = {
   onSuperAdd : function(wnd, setupMode, url, isQuickAdd) {  
     var fp = CC["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;  
     var q = isQuickAdd ? fp.quickadd : fp.autoadd;
-    var p = {inn:{url:url || this.getMostRecentWindow().content.location.href, urlTemplate:q.urlTemplate, enabled:q.enabled,
+    var p = {inn:{url:url || this.getMostRecentWindow().content.location.href, enabled:q.enabled,
       temp:q.temp, reload:q.reload, prompt:q.prompt, notify:q.notify, notifyWhenCanceled:q.notifyWhenCanceled,
-      proxies:fp.proxies, match:q.match, setupMode:setupMode, isQuickAdd:isQuickAdd, autoAddPattern:q.autoAddPattern,
-      autoAddCaseSensitive:q.autoAddCaseSensitive}, out:null};
+      superadd:q, setupMode:setupMode, isQuickAdd:isQuickAdd, match:q.match},
+      out:null};
     // q.proxy is null when user hasn't yet used QuickAdd
     if (q.proxy != null)
       p.inn.proxyId =  q.proxy.id;     
@@ -184,7 +184,6 @@ Common.prototype = {
       q.prompt = p.prompt;
       q.proxy = fp.proxies.getProxyById(p.proxyId);
       q.notifyWhenCanceled = p.notifyWhenCanceled;
-      q.urlTemplate = p.urlTemplate;  
       
       var ret =  CC["@leahscape.org/foxyproxy/match;1"].createInstance().wrappedJSObject;
       ret.name = p.name;
@@ -195,13 +194,7 @@ Common.prototype = {
       ret.isBlackList = p.isBlackList;
       ret.enabled = p.enabled;
       q.match = ret.clone();    
-    
-      // AutoAdd-specific
-      if (!isQuickAdd) {
-        q.caseSensitive=p.autoAddCaseSensitive;
-        q.match.pattern=p.autoAddPattern;   
-        dump("q.match.pattern = " + q.match.pattern + "\n");
-      }   
+ 
       fp.writeSettings();   
       return ret;     
     }

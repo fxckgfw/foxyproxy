@@ -473,7 +473,7 @@ function onPattern(superadd) {
           black:m.isBlackList,
           enabled:m.enabled,
           caseSensitive:m.caseSensitive,
-          temp:m.temp,
+          temp:superadd.temp, /* temp is stored on the superadd object directly, not the match object. see notes in SuperAdd.prototype._temp as to why. */
           superadd:true}, out:null};
 
   window.openDialog("chrome://foxyproxy/content/pattern.xul", "",
@@ -487,7 +487,7 @@ function onPattern(superadd) {
     m.isBlackList = params.isBlackList;
     m.enabled = params.isEnabled;
     m.caseSensitive = params.caseSensitive;
-    //m.temp = params.temp; /* no -- superadd.temp instead; see notes in SuperAdd.prototype._temp as to why */
+    //m.temp = params.temp; /* save to superadd.temp instead; see notes in SuperAdd.prototype._temp as to why */
     superadd.temp = params.temp;
   }    
 }

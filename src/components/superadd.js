@@ -8,6 +8,31 @@
   available in the LICENSE file at the root of this installation
   and also online at http://www.gnu.org/licenses/gpl.txt
 **/
+
+/**
+
+This is the super class for AutoAdd and QuickAdd classes.
+
+AutoAdd and QuickAdd both have their own instance of a Match object in their .match property. It is used for storing a template
+of the Match object to be added to a proxy dynamically:
+  .name - User-supplied name of the pattern. "Dynamic QuickAdd/AutoAdd Pattern" by default
+  .pattern - A string template, applied to the URL at the time of addition of a dynamic Match object to the SuperAdd object.
+    It is *://${3}${6}/* by default.
+  .caseSensitive - whether or not the expanded (post-applyTemplate()) .pattern should be compared to URLs case-sensitively
+  .temp - whether or not the expanded (post-applyTemplate()) .pattern is permanent or temporary
+  .type - whether or not the expanded (post-applyTemplate()) .pattern is black or white list
+  .isRegExp - whether or not the expanded (post-applyTemplate()) .pattern is a regexp or a wildcard pattern
+  .enabled - always true. doesn't make sense to dynamically add a disabled pattern.
+  .isMultiLine - whether or not .pattern should be searched single or multiline. always false in this context.
+
+blockedPageMatch - a Match object specific to AutoAdd only. Only four of the properties are relavent:
+  .pattern - A string wildcard or regexp expression of the pattern that marks a page as blocked.
+    *Corporate policy prevents access* by default.
+  .caseSensitive - whether or not .pattern should be tested against input pages case-sensitively.
+  .isRegExp - whether or not .pattern is a regexp or a wildcard pattern
+  .isMultiLine - whether or not .pattern should be tested against single or multi-line. Always true in this context.
+  .name, .enabled, .temp, .isBlackList - not used in this context
+*/
 dump("superadd.js\n");
 const DEF_PATTERN = "*://${3}${6}/*";
 function SuperAdd() {}
@@ -29,7 +54,6 @@ function AutoAdd(mName) {
   // Override the setter for this.urlTemplate.pattern to change empty and null
   // patterns to the default pattern
   this._urlTemplate.__defineSetter__("pattern", function(p) {
-    dump("in match set pattern override\n");
     if (!p) p = ""; // prevent null patterns
     this._pattern = p.replace(/^\s*|\s*$/g,""); // trim
     if (this._pattern == "")
@@ -111,17 +135,23 @@ SuperAdd.prototype = {
     var popup=menu.firstChild, fpc = CC["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject;
     fpc.removeChildren(popup);
     for (var i=0,p; i<this.fp.proxies.length && ((p=this.fp.proxies.item(i)) || 1); i++) {
-      if (p.enabled) {
+      if (!p.lastresort && p.enabled) {
         popup.appendChild(fpc.createMenuItem({idVal:p.id, labelVal:p.name, type:"radio", name:"foxyproxy-enabled-type",
           document:doc}));
         //popup.appendChild(fpc.createMenuItem({idVal:"disabled", labelId:"mode.disabled.label"}));
       }
     }
     // Select the appropriate one or, if none was previously selected, select the first
-    if (this._proxy)
+    if (this._proxy) {
       menu.value = this.proxy.id;
-    else
+      // Selected proxy no longer exists; select the first one
+      if (menu.selectedIndex == -1)
+        this.proxyById = menu.value = popup.firstChild.id;
+    }
+    else {
+      // Select the first one
       this.proxyById = menu.value = popup.firstChild.id;
+    }
   },  
   
   perform : function(url, content) {
@@ -155,9 +185,18 @@ SuperAdd.prototype = {
   }, 
     
   addPattern : function(m) {
-	  this._proxy.matches.push(m);      
+    this._proxy.matches.push(m);
+    this._notify && this.fp.notifier.alert(this.fp.getMessage(this.notificationTitle),
+      fp.getMessage("superadd.url.added", [m.pattern, this._proxy.name]));
   },
 
+  allowed : function() {
+    for (var i=0,p; i<this.fp.proxies.length && (p = this.fp.proxies.item(i)); i++)
+      if (p.enabled && !p.lastresort)
+        return true;
+    return false;
+  },
+  
 	// Disable superadd if our proxy is being deleted/disabled
 	maintainIntegrity : function(proxyId, isBeingDeleted) {
 		if (this._proxy && this._proxy.id == proxyId) {

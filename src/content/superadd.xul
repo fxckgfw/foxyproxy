@@ -95,7 +95,7 @@
 					tooltiptext="&foxyproxy.quickadd.proxy.tooltip;"
 					accesskey="&foxyproxy.quickadd.proxy.accesskey;"/>
 				<menulist id="proxyMenu" tooltiptext="&foxyproxy.quickadd.proxy.tooltip;">
-					<menupopup id="proxyMenuPopup"/>
+					<menupopup/>
 				</menulist>
         <spacer/>
         <spacer/>         
@@ -125,9 +125,12 @@
 				<textbox id="generatedPattern" tooltiptext="&foxyproxy.pattern.template.generatedpattern.tooltip;" style="font-weight: bold;"/>
         <toolbarbutton class="foxyproxy-ref" popup="wildcardReferencePopup" tooltiptext="&foxyproxy.wildcard.reference.tooltip;"/>
 			</row> 
-      <button command="patternCmd"/>
 		</rows>
 	</grid>
+  <hbox align="center" observes="quickAddBroadcaster" >
+    <label value="&foxyproxy.pattern.to.quickadd.label;" control="qapb"/>
+    <button id="qapb" command="patternCmd" label="&foxyproxy.define.label;"/>
+  </hbox>
 </groupbox>
 
 <popupset>

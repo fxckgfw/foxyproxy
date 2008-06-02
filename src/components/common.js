@@ -138,7 +138,7 @@ Common.prototype = {
       ret = ret.replace("${14}", parsedUrl.query?parsedUrl.query:"", flags);
       ret = ret.replace("${14}", parsedUrl.query?parsedUrl.query:"", flags);       
       ret = ret.replace("${15}", parsedUrl.spec?parsedUrl.spec:"", flags);
-      ret = ret.replace(/\^|\$|\+|\\|\||\*|\{|\}|\(|\)|\[|\]/g,
+      /*ret = ret.replace(/\^|\$|\+|\\|\||\*|\{|\}|\(|\)|\[|\]/g,
         function(s) {
           switch(s) {
             case "^":return "\\^";break;
@@ -156,7 +156,7 @@ Common.prototype = {
             case "]":return "\\]";break;
           }
         }
-      );
+      );*/
       return ret;
     }
     catch(e) {/*happens for about:blank, about:config, etc.*/}

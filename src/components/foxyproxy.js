@@ -496,6 +496,7 @@ biesi>	passing it the appropriate proxyinfo
       foStream.close();
     }
     catch(ex) {
+      dump("*** " + ex + ": " + ex.stack + "\n");
       this.alert(null, this.getMessage("settings.error.3", o instanceof CI.nsIFile ? [o.path] : [o]));
     }
   },
@@ -595,9 +596,9 @@ biesi>	passing it the appropriate proxyinfo
    	this._previousMode = gGetSafeAttr(node, "previousMode", "patterns");
 		this.proxies.fromDOM(mode, doc);
 		this.setMode(mode, false, true);
-		this.random.fromDOM(doc);
-    this.autoadd.fromDOM(doc);
-    this.quickadd.fromDOM(doc);
+		this.random.fromDOM(doc); 
+    this.quickadd.fromDOM(doc); // KEEP THIS BEFORE this.autoadd.fromDOM() else fromDOM() is overwritten!?
+    this.autoadd.fromDOM(doc);    
     this.warnings.fromDOM(doc);
 	},
 
@@ -770,10 +771,10 @@ biesi>	passing it the appropriate proxyinfo
       var isDirect = true, isDisabled = true, r, cont, maxTries = this.list.length*10;
       do {
         r = Math.floor(Math.random()*this.list.length); // Thanks Andrew @ http://www.shawnolson.net/a/789/
-        dump(r+"\n");
+        //dump(r+"\n");
         cont = (!includeDirect && this.list[r].mode == "direct") ||
         	(!includeDisabled && !this.list[r]._enabled);
-         dump("cont="+cont+"\n");
+         //dump("cont="+cont+"\n");
       } while (cont && (--maxTries > 0));
       if (maxTries == 0) {
         return this.lastresort;

@@ -14,12 +14,12 @@
 <!DOCTYPE overlay SYSTEM "chrome://foxyproxy/locale/foxyproxy.dtd">
 <dialog
   xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-  id="foxyproxyblockedsitesdlg"
+  id="foxyproxyblockedpagesdlg"
   title="&foxyproxy.label; - &foxyproxy.addeditpattern.title;"
   ondialogaccept="return onOK();" onload="onLoad();"
   persist="screenX screenY" windowtype="foxyproxy">
 
-  <script src="blockedsitespattern.js" />
+  <script src="blockedpagepattern.js" />
   <hbox align="center">
     <label value="&foxyproxy.autoadd.pattern.label;"
       control="pattern"

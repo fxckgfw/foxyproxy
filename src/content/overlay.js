@@ -216,9 +216,10 @@ var foxyproxy = {
       window.openDialog(xulFile, "", "minimizable,dialog,chrome,resizable=yes" + (args?(","+args):""), parms).focus();
     }
   },
-
+  moo: null,
   onQuickAddDialog : function(evt) {
   	var fp=this.fp, q=this.fp.quickadd, url; 
+    this.moo=q;
 		if (fp.mode != "disabled" && q.enabled) {
 		  if (evt.view && evt.view.content && evt.view.content.document && evt.view.content.document.location)
         url = evt.view.content.document.location.href;
@@ -242,7 +243,6 @@ var foxyproxy = {
       }
 		}
 		function _qAdd(pat, url, loc) {
-      dump("this.fp.quickadd.proxy = " + this.fp.quickadd.proxy + "\n");
       var m = pat.isBlackList ? q.proxy.isBlackMatch(url) : q.proxy.isWhiteMatch(url);
 			if (m) {
 		    q.notifyWhenCanceled &&
@@ -250,7 +250,6 @@ var foxyproxy = {
 			}
 			else {
 				q.addPattern(pat);
-        q.notify && fp.notifier.alert(fp.getMessage(q.notificationTitle), fp.getMessage("superadd.url.added", [pat.pattern, q._proxy.name]));        
         q.reload && loc.reload(); // reload page if necessary
         fp.writeSettings();
 			}

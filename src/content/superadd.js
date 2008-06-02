@@ -8,21 +8,17 @@ function onLoad() {
   document.getElementById("prompt").checked = inn.prompt;
   document.getElementById("notify").checked = inn.notify;
   document.getElementById("notifyWhenCanceled").checked = inn.notifyWhenCanceled;
-  var proxyMenuPopup = document.getElementById("proxyMenuPopup");
-  for (var i=0,p; i<inn.proxies.length && ((p=inn.proxies.item(i)) || 1); i++) {
-    if (!p.lastresort && p.enabled) {
-      proxyMenuPopup.appendChild(fpc.createMenuItem({idVal:p.id, labelVal:p.name, document:document}));
-    }
-  }
-  document.getElementById("proxyMenu").value = inn.proxyId || proxyMenuPopup.firstChild.id;
   document.getElementById("url").value = inn.url;
   updateGeneratedPattern();
   document.getElementById("setupMode").setAttribute("hidden", inn.setupMode);
   document.getElementById("notSetupMode").setAttribute("hidden", !inn.setupMode);
+  var proxyMenu = document.getElementById("proxyMenu");
   if (inn.isQuickAdd) {
     document.getElementById("autoAddMode").setAttribute("hidden", true);
+    fp.quickadd.updateProxyMenu(proxyMenu, document);
   } 
   else {
+    fp.autoadd.updateProxyMenu(proxyMenu, document);
     // Hide QuickAdd specifics from AutoAdd
     window.document.title = fp.getMessage("foxyproxy.tab.autoadd.label");
     document.getElementById("quickAddMode").setAttribute("hidden", true);

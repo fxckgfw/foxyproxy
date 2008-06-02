@@ -672,7 +672,7 @@
             <columns><column/><column/></columns><rows>
             <row align="center" observes="autoAddBroadcaster">
               <label value="&foxyproxy.autoadd.pattern.label;" control="bspb"/>
-              <button id="bspc" command="blockedSitesPatternCmd" label="&foxyproxy.define.label;"/>
+              <button id="bspc" command="blockedPagePatternCmd" label="&foxyproxy.define.label;"/>
             </row>
             <row align="center" observes="autoAddBroadcaster" >
               <label value="&foxyproxy.pattern.to.autoadd.label;" control="aapb"/>
@@ -915,10 +915,10 @@
     tooltiptext="&foxyproxy.define.tooltip;"
     oncommand="onPattern(foxyproxy.autoadd.match)"/>
 
-  <command id="blockedSitesPatternCmd" label="&foxyproxy.define.label;"
+  <command id="blockedPagePatternCmd" label="&foxyproxy.define.label;"
     accesskey="&foxyproxy.define.accesskey;"
     tooltiptext="&foxyproxy.define.tooltip;"
-    oncommand="onBlockedSitesPattern();"/>
+    oncommand="onBlockedPagePattern();"/>
     
   <command id="quickAddPatternCmd" label="&foxyproxy.define.label;"
     accesskey="&foxyproxy.define.accesskey;"

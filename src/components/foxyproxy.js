@@ -474,7 +474,7 @@ biesi>	passing it the appropriate proxyinfo
       dump("*** writeSettings\n");
       //throw new Error("e");
     //}
-    //catch (e) {dump (e.stack + "\n");}    
+    //catch (e) {catch (e) {dump("*** " + e + " \n\n\n");dump ("\n" + e.stack + "\n");} }    
     if (!o) {
       try {
         o = gFP.getPrefsService("extensions.foxyproxy.").getCharPref("settings");

@@ -428,9 +428,15 @@ function toggleStatusBarText(checked) {
 
 function onQuickAddEnabled(cb) {
   if (cb.checked) {
-      foxyproxy.quickadd.enabled = true;
-      document.getElementById("quickAddBroadcaster").hidden = false;      
-      foxyproxy.quickadd.updateProxyMenu(document.getElementById("quickAddProxyMenu"), document);
+    if (foxyproxy.quickadd.allowed()) {
+        foxyproxy.quickadd.enabled = true;
+        document.getElementById("quickAddBroadcaster").hidden = false;      
+        foxyproxy.quickadd.updateProxyMenu(document.getElementById("quickAddProxyMenu"), document);
+    }
+    else {
+      overlay.alert(this, foxyproxy.getMessage("superadd.verboten2", [foxyproxy.getMessage("foxyproxy.quickadd.label")]));
+      cb.checked = false;
+    }
   }
   else {
     document.getElementById("quickAddBroadcaster").hidden = true;
@@ -441,11 +447,17 @@ function onQuickAddEnabled(cb) {
 
 function onAutoAddEnabled(cb) {
   if (cb.checked) {
+    if (foxyproxy.autoadd.allowed()) {
       foxyproxy.autoadd.enabled = true;
       document.getElementById("autoAddBroadcaster").hidden = false;     
       foxyproxy.autoadd.updateProxyMenu(document.getElementById("autoAddProxyMenu"), document);
       sizeToContent(); // call this before the alert() otherwise user can see unsized dialog in background
       overlay.alert(this, foxyproxy.getMessage("autoadd.notice"));
+    }
+    else {
+      overlay.alert(this, foxyproxy.getMessage("superadd.verboten2", [foxyproxy.getMessage("foxyproxy.tab.autoadd.label")]));
+      cb.checked = false;
+    }    
   }
   else {
     document.getElementById("autoAddBroadcaster").hidden = true;
@@ -478,11 +490,11 @@ function onPattern(m) {
   }    
 }
 
-function onBlockedSitesPattern() {
+function onBlockedPagePattern() {
   var m = foxyproxy.autoadd.urlTemplate;
   var params = {inn:{pattern:m.pattern, regex:m.isRegEx, caseSensitive:m.caseSensitive}, out:null};
 
-  window.openDialog("chrome://foxyproxy/content/blockedsitespattern.xul", "",
+  window.openDialog("chrome://foxyproxy/content/blockedpagepattern.xul", "",
     "chrome, dialog, modal, resizable=yes", params).focus();
 
   if (params.out) {

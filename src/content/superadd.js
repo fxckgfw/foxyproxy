@@ -1,6 +1,6 @@
 var fp, fpc, inn;
 function onLoad() {
-  inn = window.arguments[0].inn;  
+  inn = window.arguments[0].inn;
   fp = Components.classes["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;
   fpc = Components.classes["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject;
   document.getElementById("enabled").checked = inn.enabled;
@@ -13,12 +13,10 @@ function onLoad() {
   document.getElementById("setupMode").setAttribute("hidden", inn.setupMode);
   document.getElementById("notSetupMode").setAttribute("hidden", !inn.setupMode);
   var proxyMenu = document.getElementById("proxyMenu");
-  if (inn.isQuickAdd) {
+  inn.superadd.updateProxyMenu(proxyMenu, document);
+  if (inn.isQuickAdd)
     document.getElementById("autoAddMode").setAttribute("hidden", true);
-    fp.quickadd.updateProxyMenu(proxyMenu, document);
-  } 
   else {
-    fp.autoadd.updateProxyMenu(proxyMenu, document);
     // Hide QuickAdd specifics from AutoAdd
     window.document.title = fp.getMessage("foxyproxy.tab.autoadd.label");
     document.getElementById("quickAddMode").setAttribute("hidden", true);
@@ -30,8 +28,6 @@ function onLoad() {
     e.label = fp.getMessage("foxyproxy.autoadd.notify.whencanceled.label");
     e.setAttribute("tooltiptext", fp.getMessage("foxyproxy.autoadd.notify.whencanceled.tooltip")); 
     e = document.getElementById("notifyWhenCanceledPopup");
-    document.getElementById("autoAddPattern").value = inn.autoAddPattern;
-    document.getElementById("autoAddCaseSensitive").checked = inn.autoAddCaseSensitive;
   }   
   sizeToContent();  
 }
@@ -52,9 +48,7 @@ function onOK() {
       pattern:document.getElementById("generatedPattern").value,
       caseSensitive:document.getElementById("caseSensitive").checked,      
       isRegEx:isRegEx,
-      isBlackList:document.getElementById("whiteblacktype").value == "b",
-      autoAddPattern:document.getElementById("autoAddPattern").value,
-      autoAddCaseSensitive:document.getElementById("autoAddCaseSensitive").checked}; 
+      isBlackList:document.getElementById("whiteblacktype").value == "b"}; 
     return true;
   }
 }

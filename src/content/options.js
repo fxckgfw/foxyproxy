@@ -176,7 +176,7 @@ function _updateView(writeSettings, updateLogView) {
   //document.getElementById("randomIncludeDirect").checked = foxyproxy.random.includeDirect;
   //document.getElementById("randomIncludeDisabled").checked = foxyproxy.random.includeDisabled;
   document.getElementById("usingPFF").checked =
-  document.getElementById("settingsURLBtn").disabled = isUsingPortableFirefox();
+    document.getElementById("settingsURLBtn").disabled = isUsingPortableFirefox();
   
   _updateSuperAdd(foxyproxy.autoadd, "autoAdd");
   _updateSuperAdd(foxyproxy.quickadd, "quickAdd");  
@@ -430,8 +430,8 @@ function onQuickAddEnabled(cb) {
   if (cb.checked) {
     if (foxyproxy.quickadd.allowed()) {
         foxyproxy.quickadd.enabled = true;
-        document.getElementById("quickAddBroadcaster").hidden = false;      
         foxyproxy.quickadd.updateProxyMenu(document.getElementById("quickAddProxyMenu"), document);
+        document.getElementById("quickAddBroadcaster").hidden = false;              
     }
     else {
       overlay.alert(this, foxyproxy.getMessage("superadd.verboten2", [foxyproxy.getMessage("foxyproxy.quickadd.label")]));
@@ -466,7 +466,8 @@ function onAutoAddEnabled(cb) {
   sizeToContent();
 }
 
-function onPattern(m) {
+function onPattern(superadd) {
+  var m = superadd.match;
   var params = {inn:{name:m.name,
           pattern:m.pattern, regex:m.isRegEx,
           black:m.isBlackList,
@@ -486,12 +487,13 @@ function onPattern(m) {
     m.isBlackList = params.isBlackList;
     m.enabled = params.isEnabled;
     m.caseSensitive = params.caseSensitive;
-    m.temp = params.temp;
+    //m.temp = params.temp; /* no -- superadd.temp instead; see notes in SuperAdd.prototype._temp as to why */
+    superadd.temp = params.temp;
   }    
 }
 
 function onBlockedPagePattern() {
-  var m = foxyproxy.autoadd.urlTemplate;
+  var m = foxyproxy.autoadd.blockedPageMatch;
   var params = {inn:{pattern:m.pattern, regex:m.isRegEx, caseSensitive:m.caseSensitive}, out:null};
 
   window.openDialog("chrome://foxyproxy/content/blockedpagepattern.xul", "",

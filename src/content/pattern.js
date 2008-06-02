@@ -38,7 +38,7 @@ function onLoad() {
 function onOK() {
   var r = document.getElementById("matchtype").value == "r";
   var p = Components.classes["@leahscape.org/foxyproxy/common;1"].getService()
-      .wrappedJSObject.validatePattern(window, r, pattern.value);
+      .wrappedJSObject.validatePattern(window, r, generatedPattern.value);
   if (p) {
     window.arguments[0].out = {name:document.getElementById("name").value,
       pattern:pattern.value, isRegEx:r,

@@ -163,27 +163,24 @@ Common.prototype = {
     return url;
   },    
   
-  onSuperAdd : function(wnd, setupMode, url, isQuickAdd) {  
+  onSuperAdd : function(wnd, url, superadd) {  
     var fp = CC["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;  
-    var q = isQuickAdd ? fp.quickadd : fp.autoadd;
-    var p = {inn:{url:url || this.getMostRecentWindow().content.location.href, enabled:q.enabled,
-      temp:q.temp, reload:q.reload, prompt:q.prompt, notify:q.notify, notifyWhenCanceled:q.notifyWhenCanceled,
-      superadd:q, setupMode:setupMode, isQuickAdd:isQuickAdd, match:q.match},
-      out:null};
-    // q.proxy is null when user hasn't yet used QuickAdd
-    if (q.proxy != null)
-      p.inn.proxyId =  q.proxy.id;     
+    var p = {inn:{url:url || this.getMostRecentWindow().content.location.href, enabled:superadd.enabled,
+      temp:superadd.temp, reload:superadd.reload, prompt:superadd.prompt, notify:superadd.notify, notifyWhenCanceled:superadd.notifyWhenCanceled,
+      superadd:superadd, isQuickAdd:isQuickAdd, match:superadd.match}, out:null};
+    // superadd.proxy is null when user hasn't yet used QuickAdd
+    if (superadd.proxy != null)
+      p.inn.proxyId = superadd.proxy.id;     
     wnd.openDialog("chrome://foxyproxy/content/superadd.xul", "",
       "minimizable,dialog,chrome,resizable=yes,modal", p).focus();
     if (p.out) {
       p = p.out;
-      q.enabled = p.enabled;
-      q.temp = p.temp;
-      q.reload = p.reload;
-      q.notify = p.notify;
-      q.prompt = p.prompt;
-      q.proxy = fp.proxies.getProxyById(p.proxyId);
-      q.notifyWhenCanceled = p.notifyWhenCanceled;
+      superadd.temp = p.match.temp;
+      superadd.reload = p.reload;
+      superadd.notify = p.notify;
+      superadd.prompt = p.prompt;
+      superadd.notifyWhenCanceled = p.notifyWhenCanceled;
+      superadd.proxy = fp.proxies.getProxyById(p.proxyId);
       
       var ret =  CC["@leahscape.org/foxyproxy/match;1"].createInstance().wrappedJSObject;
       ret.name = p.name;

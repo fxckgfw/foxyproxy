@@ -8,21 +8,23 @@
   available in the LICENSE file at the root of this installation
   and also online at http://www.gnu.org/licenses/gpl.txt
 **/
-var exampleURL, pattern, generatedPattern, caseSensitive, fpc;
+var exampleURL, pattern, generatedPattern, caseSensitive, fpc, isSuperAdd;
 function onLoad() {
-  var inn = window.arguments[0].inn;
-  document.getElementById("name").value = inn.name;
-  document.getElementById("pattern").value = inn.pattern;
-  document.getElementById("matchtype").selectedIndex = inn.regex ? 1 : 0;
-  document.getElementById("whiteblacktype").selectedIndex = inn.black ? 1 : 0;
-  document.getElementById("enabled").checked = inn.enabled;
-  document.getElementById("caseSensitive").checked = inn.caseSensitive;
-  document.getElementById("temp").checked = inn.temp;
-  if (inn.superadd) {
+  var m = window.arguments[0].inn.match;
+  document.getElementById("enabled") = m.enabled;
+  document.getElementById("name").value = m.name;
+  document.getElementById("pattern").value = m.pattern;
+  document.getElementById("matchtype").selectedIndex = m.isRegEx ? 1 : 0;
+  document.getElementById("whiteblacktype").selectedIndex = m.isBlackList ? 1 : 0;
+  document.getElementById("caseSensitive").checked = m.caseSensitive;
+  document.getElementById("temp").checked = m.temp;
+  isSuperAdd = window.arguments[0].inn.superadd;
+  if (isSuperAdd) {
     document.getElementById("superadd").setAttribute("hidden", false);  
     document.getElementById("not-superadd").setAttribute("hidden", true);    
   }
   else {
+    enabled = m.enabled;
     document.getElementById("superadd").setAttribute("hidden", true);  
     document.getElementById("not-superadd").setAttribute("hidden", false);   
   }
@@ -40,15 +42,14 @@ function onOK() {
   var p = Components.classes["@leahscape.org/foxyproxy/common;1"].getService()
       .wrappedJSObject.validatePattern(window, r, generatedPattern.value);
   if (p) {
-    window.arguments[0].out = {name:document.getElementById("name").value,
-      pattern:pattern.value, isRegEx:r,
-      isBlackList:document.getElementById("whiteblacktype").value == "b",
-      isEnabled:document.getElementById("enabled").checked,
-      caseSensitive:caseSensitive.checked,
-      temp:document.getElementById("temp").checked};
-    return true;
+    var ret = CC["@leahscape.org/foxyproxy/match;1"].createInstance().wrappedJSObject;
+    //order is (enabled, name, pattern, temp, isRegEx, caseSensitive, isBlackList, isMultiLine)
+    ret.init(document.getElementById("enabled").checked,
+      document.getElementById("name").value, pattern.value,
+      document.getElementById("temp").checked, r,
+      caseSensitive.checked, document.getElementById("whiteblacktype").value == "b", false);
+    return ret;
   }
-  return false;
 }
 
 function updateGeneratedPattern() {

@@ -167,33 +167,29 @@ Common.prototype = {
     var fp = CC["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;  
     var p = {inn:{url:url || this.getMostRecentWindow().content.location.href, enabled:superadd.enabled,
       temp:superadd.temp, reload:superadd.reload, prompt:superadd.prompt, notify:superadd.notify, notifyWhenCanceled:superadd.notifyWhenCanceled,
-      superadd:superadd, isQuickAdd:isQuickAdd, match:superadd.match}, out:null};
+      superadd:superadd, match:superadd.match}, out:null};
     // superadd.proxy is null when user hasn't yet used QuickAdd
     if (superadd.proxy != null)
       p.inn.proxyId = superadd.proxy.id;     
     wnd.openDialog("chrome://foxyproxy/content/superadd.xul", "",
       "minimizable,dialog,chrome,resizable=yes,modal", p).focus();
     if (p.out) {
+      // Copy any changes
       p = p.out;
-      superadd.temp = p.match.temp;
+      superadd.temp = p.match.temp; /* save to superadd.temp instead; see notes in SuperAdd.prototype._temp as to why */
       superadd.reload = p.reload;
       superadd.notify = p.notify;
       superadd.prompt = p.prompt;
       superadd.notifyWhenCanceled = p.notifyWhenCanceled;
       superadd.proxy = fp.proxies.getProxyById(p.proxyId);
-      
-      var ret =  CC["@leahscape.org/foxyproxy/match;1"].createInstance().wrappedJSObject;
-      ret.name = p.name;
-      ret.pattern = p.pattern;
-      ret.temp = p.temp;
-      ret.caseSensitive = p.caseSensitive;
-      ret.isRegEx = p.isRegEx;
-      ret.isBlackList = p.isBlackList;
-      ret.enabled = p.enabled;
-      q.match = ret.clone();    
+      superadd.match = p.match.clone();
+      // SuperAdd match objects are never temporary; temp value is stored in SuperAdd itself.
+      // Match.temp must be false else it isn't written to disk.
+      superadd.match.temp = false;
+      superadd.match.enabled = true; // SuperAdd match objects are always enabled (doesn't make sense to add a disabled Match)
  
       fp.writeSettings();   
-      return ret;     
+      return p.match;   
     }
   }  
 }

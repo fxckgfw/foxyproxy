@@ -28,9 +28,9 @@ function onLoad() {
   sizeToContent();  
 }
 
-function onOK() {   
-  var isRegEx = document.getElementById("matchtype").value=="r";
-  var p = fpc.validatePattern(window, isRegEx, document.getElementById("generatedPattern").value);
+function onOK() {
+  var pat = document.getElementById("generatedPattern").value;
+  var p = fpc.validatePattern(window, match.isRegEx, pat);
   if (p) {
     window.arguments[0].out = {
       reload:document.getElementById("reload").checked,
@@ -38,7 +38,7 @@ function onOK() {
       prompt:document.getElementById("prompt").checked,
       notifyWhenCanceled:document.getElementById("notifyWhenCanceled").checked,
       proxyId:document.getElementById("proxyMenu").value, 
-      pattern:document.getElementById("generatedPattern").value,
+      pattern:pat,
       match:match}; 
     return true;
   }
@@ -46,9 +46,7 @@ function onOK() {
 
 function updateGeneratedPattern() {
 	document.getElementById("generatedPattern").value =
-    fpc.applyTemplate(document.getElementById("url").value,
-      document.getElementById("urlTemplate").value,
-      document.getElementById("caseSensitive").checked);
+    fpc.applyTemplate(document.getElementById("url").value, match.pattern, match.caseSensitive);
 }
 
 function onPattern() {

@@ -11,7 +11,7 @@
 var exampleURL, pattern, generatedPattern, caseSensitive, fpc, isSuperAdd;
 function onLoad() {
   var m = window.arguments[0].inn.match;
-  document.getElementById("enabled") = m.enabled;
+  document.getElementById("enabled").checked = m.enabled;
   document.getElementById("name").value = m.name;
   document.getElementById("pattern").value = m.pattern;
   document.getElementById("matchtype").selectedIndex = m.isRegEx ? 1 : 0;
@@ -42,7 +42,7 @@ function onOK() {
   var p = Components.classes["@leahscape.org/foxyproxy/common;1"].getService()
       .wrappedJSObject.validatePattern(window, r, generatedPattern.value);
   if (p) {
-    var ret = CC["@leahscape.org/foxyproxy/match;1"].createInstance().wrappedJSObject;
+    var ret = Components.classes["@leahscape.org/foxyproxy/match;1"].createInstance().wrappedJSObject;
     //order is (enabled, name, pattern, temp, isRegEx, caseSensitive, isBlackList, isMultiLine)
     ret.init(document.getElementById("enabled").checked,
       document.getElementById("name").value, pattern.value,

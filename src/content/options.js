@@ -467,28 +467,22 @@ function onAutoAddEnabled(cb) {
 }
 
 function onPattern(superadd) {
-  var m = superadd.match;
-  var params = {inn:{name:m.name,
-          pattern:m.pattern, regex:m.isRegEx,
-          black:m.isBlackList,
-          enabled:m.enabled,
-          caseSensitive:m.caseSensitive,
-          temp:superadd.temp, /* temp is stored on the superadd object directly, not the match object. see notes in SuperAdd.prototype._temp as to why. */
-          superadd:true}, out:null};
+  var m = superadd.match.clone();
+  /* temp is stored on the superadd object directly, not the match object. see notes in SuperAdd.prototype._temp as to why. 
+     this is why we clone() the match--so we can properly set .temp before displaying it in pattern.xul */
+  m.temp = superadd.temp;
+  var params = {inn:{match:m, superadd:true}, out:null};
 
   window.openDialog("chrome://foxyproxy/content/pattern.xul", "",
     "chrome, dialog, modal, resizable=yes", params).focus();
 
   if (params.out) {
-    params = params.out;
-    m.name = params.name;
-    m.pattern = params.pattern;
-    m.isRegEx = params.isRegEx;
-    m.isBlackList = params.isBlackList;
-    m.enabled = params.isEnabled;
-    m.caseSensitive = params.caseSensitive;
-    //m.temp = params.temp; /* save to superadd.temp instead; see notes in SuperAdd.prototype._temp as to why */
-    superadd.temp = params.temp;
+    superadd.match = params.out.match;
+    // SuperAdd match objects are never temporary; temp value is stored in SuperAdd itself.
+    // Match.temp must be false else it isn't written to disk.
+    superadd.match.temp = false;
+    superadd.match.enabled = true; // SuperAdd match objects are always enabled (doesn't make sense to add a disabled Match)
+    superadd.temp = params.temp; /* save to superadd.temp instead; see notes in SuperAdd.prototype._temp as to why */
   }    
 }
 

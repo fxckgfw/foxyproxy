@@ -148,35 +148,21 @@ function onAddEdit(isNew) {
   if (!isNew && idx == -1) return; // safety; may not be necessary anymore
 
   var m = proxy.matches[idx];
-  var params = isNew ?
-    {inn:{name:"", pattern:"", regex:false, black:false, enabled:true, temp:false}, out:null} :
-		{inn:{name:m.name,
-			    pattern:m.pattern, regex:m.isRegEx,
-			    black:m.isBlackList,
-			    enabled:m.enabled,
-          caseSensitive:m.caseSensitive,
-          temp:m.temp}, out:null};
+  var params = {inn:{match: (isNew ? CC["@leahscape.org/foxyproxy/match;1"].createInstance().wrappedJSObject : m),
+    superadd:false}, out:null};
 
   window.openDialog("chrome://foxyproxy/content/pattern.xul", "",
     "chrome, dialog, modal, resizable=yes", params).focus();
 
   if (params.out) {
-    params = params.out;
-    var match = isNew ? CC["@leahscape.org/foxyproxy/match;1"].createInstance().wrappedJSObject : m;    
-    match.name = params.name;
-    match.pattern = params.pattern;
-    match.isRegEx = params.isRegEx;
-    match.isBlackList = params.isBlackList;
-    match.enabled = params.isEnabled;
-    match.caseSensitive = params.caseSensitive;
-    match.temp = params.temp;
-    
-   if (isNew)
-     proxy.matches.push(match);
+    if (isNew)
+      proxy.matches[idx] = params.out.match;
+    else
+      proxy.matches.push(match);
 	    
-   _updateView();
-  	// Select item
-	urlsTree.view.selection.select(isNew?urlsTree.view.rowCount-1 : urlsTree.currentIndex);
+    _updateView();
+    // Select item
+	  urlsTree.view.selection.select(isNew?urlsTree.view.rowCount-1 : urlsTree.currentIndex);
   }
 }
 

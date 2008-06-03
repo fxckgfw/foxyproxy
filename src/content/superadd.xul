@@ -22,26 +22,6 @@
   windowtype="foxyproxy-superadd">
 
 <script src="superadd.js"/>
-
-<separator class="thin" />
-
-<description style="width: 1em;">
-  <observes element="notSetupMode" attribute="hidden"/>
-&foxyproxy.autoadd.description;
-</description>
-
-<description style="width: 1em;">&foxyproxy.quickadd.desc1;
-	<observes element="notSetupMode" attribute="hidden"/>
-	<observes element="quickAddMode" attribute="hidden"/>
-	<text value="&foxyproxy.keyconfig.label;" class="text-link"
-				onclick="fpc.openAndReuseOneTabPerURL('http://mozilla.dorando.at/readme.html');"/>
-				&foxyproxy.quickadd.desc2;
-</description>
-
-<checkbox id="enabled" observes="notSetupMode"
-  label="&foxyproxy.enabled.label;"
-  accesskey="&foxyproxy.enabled.accesskey;"
-  tooltiptext="&foxyproxy.enabled.tooltip;"/>
   
 <groupbox>
   
@@ -70,8 +50,7 @@
         accesskey="&foxyproxy.quickadd.notify.whencanceled.accesskey;"
         tooltiptext="&foxyproxy.quickadd.notify.whencanceled.tooltip;"/>
       <toolbarbutton id="tbqa" class="foxyproxy-ref"
-        popup="notifyWhenCanceledPopupQuickAdd" observes="quickAddMode"
-        tooltiptext="&foxyproxy.whatsthis;"/>   
+        popup="notifyWhenCanceledPopup" tooltiptext="&foxyproxy.whatsthis;"/>   
     </row>
 	</rows>
 </grid>
@@ -96,14 +75,14 @@
         <spacer/>
         <spacer/>         
 			</row>
-			<row align="center" observes="setupMode">
+			<row align="center">
 				<label value="&foxyproxy.pattern.template.currenturl.label;"
 					control="url" tooltiptext="&foxyproxy.pattern.template.currenturl.tooltip;" accesskey="&foxyproxy.pattern.template.currenturl.accesskey;"/>
 				<textbox id="url" tooltiptext="&foxyproxy.pattern.template.currenturl.tooltip;" type="timed" timeout="500"
           oncommand="updateGeneratedPattern()"/>
         <spacer/>
 			</row>
-			<row align="center" observes="setupMode">
+			<row align="center">
 				<label value="&foxyproxy.pattern.template.generatedpattern.label;"
 					control="generatedPattern" tooltiptext="&foxyproxy.pattern.template.generatedpattern.tooltip;" accesskey="&foxyproxy.pattern.template.generatedpattern.accesskey;"/>
 				<textbox id="generatedPattern" tooltiptext="&foxyproxy.pattern.template.generatedpattern.tooltip;" style="font-weight: bold;"/>
@@ -120,12 +99,10 @@
 <popupset>
   <popup id="wildcardReferencePopup"/>
   <popup id="patternTemplatePopup"/>
-  <popup id="notifyWhenCanceledPopupQuickAdd">
-		<description class="foxyproxy-tooltip foxyproxy-border" width="400" height="80px">
+  <popup id="notifyWhenCanceledPopup">
+		<description id="qaDesc" class="foxyproxy-tooltip foxyproxy-border" width="400" height="80px">
       &foxyproxy.quickadd.notify.whencanceled.label2;</description>
-  </popup>  
-  <popup id="notifyWhenCanceledPopupAutoAdd">
-		<description class="foxyproxy-tooltip foxyproxy-border" width="400" height="80px">
+		<description id="aaDesc" class="foxyproxy-tooltip foxyproxy-border" hidden="true" width="400" height="80px">
       &foxyproxy.autoadd.notify.whencanceled.label2;</description>
   </popup>    
   <popup id="tempPopup">
@@ -133,12 +110,6 @@
       &foxyproxy.temp.popup.label;</description>
   </popup>   
 </popupset>
-
-<broadcasterset>
-  <broadcaster id="setupMode"/>
-  <broadcaster id="notSetupMode"/>
-  <broadcaster id="quickAddMode"/>
-</broadcasterset>
 
 <command id="patternCmd" label="&foxyproxy.pattern.label;" oncommand="onPattern()"/>
 </dialog>

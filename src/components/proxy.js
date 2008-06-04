@@ -190,6 +190,7 @@ Proxy.prototype = {
 
   isWhiteMatch : function(uriStr) {
     var white = -1;
+    this.fp.foo = this.matches;
     for (var i=0,sz=this.matches.length; i<sz; i++) {
       if (this.matches[i].enabled && this.matches[i].regex.test(uriStr)) {
         if (this.matches[i].isBlackList) {

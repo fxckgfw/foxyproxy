@@ -164,10 +164,9 @@ SuperAdd.prototype = {
     	var p = this.fp.proxies.getMatches(url).proxy;
       if (p.lastresort) { // no current proxies match (except the lastresort, which matches everything anyway)
         if (this._blockedPageMatch.regex.test(content)) {
-        	//return this.addPattern(this.match, url);
           var fpc = CC["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject;
           this.match.pattern = fpc.applyTemplate(url, this._blockedPageMatch.pattern, this._blockedPageMatch.caseSensitive);
-          this._proxy.matches.push(this.match);      
+          this._proxy.matches.push(this.match.clone());      
           this._notify && this.fp.notifier.alert(this.fp.getMessage(this.notificationTitle), this.fp.getMessage("superadd.url.added", [this.match.pattern, this._proxy.name]));
           return this.match.pattern;          
         }

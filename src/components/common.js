@@ -167,7 +167,8 @@ Common.prototype = {
     var fp = CC["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;  
     var p = {inn:{url:url || this.getMostRecentWindow().content.location.href, enabled:superadd.enabled,
       temp:superadd.temp, reload:superadd.reload, prompt:superadd.prompt, notify:superadd.notify, notifyWhenCanceled:superadd.notifyWhenCanceled,
-      superadd:superadd, match:superadd.match}, out:null};
+      superadd:superadd, match:superadd.match.clone() /* don't pass the original Match object in case user cancels dialog */},
+      out:null};
     // superadd.proxy is null when user hasn't yet used QuickAdd
     if (superadd.proxy != null)
       p.inn.proxyId = superadd.proxy.id;     
@@ -182,7 +183,8 @@ Common.prototype = {
       superadd.prompt = p.prompt;
       superadd.notifyWhenCanceled = p.notifyWhenCanceled;
       superadd.proxy = fp.proxies.getProxyById(p.proxyId);
-      superadd.match = p.match.clone();
+      superadd.match = p.match;
+      dump("*************************** pattern is " + superadd.match.pattern + "\n");
       // SuperAdd match objects are never temporary; temp value is stored in SuperAdd itself.
       // Match.temp must be false else it isn't written to disk.
       superadd.match.temp = false;

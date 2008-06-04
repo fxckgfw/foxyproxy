@@ -96,9 +96,9 @@ var foxyproxy = {
   onPageLoad : function(evt) {
 	  var doc = evt.originalTarget; // doc is document that triggered "onload" event
 	  if (doc && doc.location) {
-      var m = foxyproxy.fp.autoadd.perform(doc.location.href, doc.documentElement.innerHTML);
+      var m = foxyproxy.fp.autoadd.perform(doc.location.href, doc.documentElement.textContent);
       if (m && foxyproxy.fp.autoadd.reload) {
-        doc.location.reload(); // reload page
+        doc.location.reload(); // reload page. TODO: don't call perform() on the reloaded page!
         foxyproxy.fp.writeSettings();
       }
     }

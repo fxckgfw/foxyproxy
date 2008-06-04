@@ -1,7 +1,7 @@
 var fp, fpc, inn, match;
 function onLoad() {
   inn = window.arguments[0].inn;
-  match = inn.match.clone();
+  match = inn.match;
   fp = Components.classes["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;
   fpc = Components.classes["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject;
   document.getElementById("reload").checked = inn.reload;
@@ -32,13 +32,13 @@ function onOK() {
   var pat = document.getElementById("generatedPattern").value;
   var p = fpc.validatePattern(window, match.isRegEx, pat);
   if (p) {
+    match.pattern = pat;
     window.arguments[0].out = {
       reload:document.getElementById("reload").checked,
       notify:document.getElementById("notify").checked,
       prompt:document.getElementById("prompt").checked,
       notifyWhenCanceled:document.getElementById("notifyWhenCanceled").checked,
       proxyId:document.getElementById("proxyMenu").value, 
-      pattern:pat,
       match:match}; 
     return true;
   }

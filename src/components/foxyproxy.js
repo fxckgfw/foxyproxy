@@ -318,7 +318,7 @@ biesi>	passing it the appropriate proxyinfo
       return ret ? ret : _err(this, this.getMessage("route.error"));
     }
     catch (e) {
-      dump("applyFilter: " + e + "\n");
+      dump("applyFilter: " + e + "\n" + e.stack + "\n");
       return _err(this, this.getMessage("route.exception", [""]), this.getMessage("route.exception", [": " + e]));
     }
     finally {
@@ -544,7 +544,7 @@ biesi>	passing it the appropriate proxyinfo
     this._previousMode = p;
     this.writeSettings();
   },
-
+  foo:null,
   /**
    * Return a LoggEntry instance.
    */

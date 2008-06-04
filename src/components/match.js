@@ -37,7 +37,15 @@ function Match(enabled, name, pattern, temp, isRegEx, caseSensitive, isBlackList
 }
 
 Match.prototype = {
-
+  enabled : true,
+  name : "",
+  pattern : "",
+  temp : false,
+  _isRegEx : false,
+  _caseSensitive : false,
+  isBlackList : false,
+  isMultiLine : false,
+  
   QueryInterface: function(aIID) {
     if(!aIID.equals(CI.nsISupports) && !aIID.equals(CI.nsISupportsWeakReference))
       throw CR.NS_ERROR_NO_INTERFACE;

@@ -55,6 +55,8 @@ function onPattern() {
   window.openDialog("chrome://foxyproxy/content/pattern.xul", "",
     "chrome, dialog, modal, resizable=yes", params).focus();
 
-  if (params.out)
+  if (params.out) {
     match = params.out.match;
+    updateGeneratedPattern();
+  }
 }

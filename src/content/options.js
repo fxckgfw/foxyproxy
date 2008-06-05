@@ -467,19 +467,13 @@ function onAutoAddEnabled(cb) {
 }
 
 function onDefinePattern(superadd) {
-  var m = superadd.match.clone();
-  /* temp is stored on the superadd object directly, not the match object. see notes in SuperAdd.prototype._temp as to why. 
-     this is why we clone() the match--so we can properly set .temp before displaying it in pattern.xul */
-  m.temp = superadd.temp;
-  var params = {inn:{match:m, superadd:true}, out:null};
+  var params = {inn:{match:superadd.match.clone(), superadd:true}, out:null};
 
   window.openDialog("chrome://foxyproxy/content/pattern.xul", "",
     "chrome, dialog, modal, resizable=yes", params).focus();
 
-  if (params.out) {
+  if (params.out)
     superadd.match = params.out.match;
-    dump("superadd.temp = " + superadd.temp + "\n");
-  }    
 }
 
 function onBlockedPagePattern() {

@@ -188,12 +188,12 @@ Proxy.prototype = {
 
   get mode() {return this._mode;},
 
-  isWhiteMatch : function(uriStr) {
+  isWhiteMatch : function(patStr, uriStr) {
     var white = -1;
-    this.fp.foo = this.matches;
     for (var i=0,sz=this.matches.length; i<sz; i++) {
-      if (this.matches[i].enabled && this.matches[i].regex.test(uriStr)) {
-        if (this.matches[i].isBlackList) {
+      var m = this.matches[i];
+      if (m.enabled && (m.pattern == patStr || m.regex.test(uriStr))) {
+        if (m.isBlackList) {
           return false;
         }
         else if (white == -1) {
@@ -204,10 +204,10 @@ Proxy.prototype = {
     return white == -1 ? false : this.matches[white];
   },
 
-  isBlackMatch : function(uriStr) {
+  isBlackMatch : function(patStr, uriStr) {
     for (var i=0,sz=this.matches.length; i<sz; i++) {
       var m = this.matches[i];
-      if (m.enabled && m.isBlackList && m.regex.test(uriStr))
+      if (m.enabled && m.isBlackList && (m.pattern == patStr || m.regex.test(uriStr)))
         return m;
     }
   },

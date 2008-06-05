@@ -96,7 +96,7 @@ var foxyproxy = {
   onPageLoad : function(evt) {
 	  var doc = evt.originalTarget; // doc is document that triggered "onload" event
 	  if (doc && doc.location) {
-      var m = foxyproxy.fp.autoadd.perform(doc.location.href, doc.documentElement.textContent);
+      var m = foxyproxy.fp.autoadd.perform(doc);
       if (m && foxyproxy.fp.autoadd.reload) {
         doc.location.reload(); // reload page. TODO: don't call perform() on the reloaded page!
         foxyproxy.fp.writeSettings();
@@ -243,7 +243,7 @@ var foxyproxy = {
       }
 		}
 		function _qAdd(pat, url, loc) {
-      var m = pat.isBlackList ? q.proxy.isBlackMatch(url) : q.proxy.isWhiteMatch(url);
+      var m = pat.isBlackList ? q.proxy.isBlackMatch(pat.pattern, url) : q.proxy.isWhiteMatch(pat.pattern, url);
 			if (m) {
 		    q.notifyWhenCanceled &&
 		    	fp.notifier.alert(fp.getMessage("foxyproxy.quickadd.label"), fp.getMessage("quickadd.quickadd.canceled", [m.name, q.proxy.name]));

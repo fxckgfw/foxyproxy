@@ -544,7 +544,7 @@ biesi>	passing it the appropriate proxyinfo
     this._previousMode = p;
     this.writeSettings();
   },
-  foo:null,
+
   /**
    * Return a LoggEntry instance.
    */

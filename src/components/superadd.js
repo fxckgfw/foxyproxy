@@ -183,17 +183,22 @@ SuperAdd.prototype = {
   /**
    * todo: define this fcn only for autoadd
    */
-  perform : function(url, content) {
+  perform : function(doc) {
+    var url = doc.location.href;
     if (this._match.pattern != "") {
     	// Does this URL already match an existing pattern for a proxy?
     	var p = this.fp.proxies.getMatches(url).proxy;
-      if (p.lastresort) { // no current proxies match (except the lastresort, which matches everything anyway)
-        if (this._blockedPageMatch.regex.test(content)) {
-          var fpc = CC["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject;
-          this._match.pattern = fpc.applyTemplate(url, this._blockedPageMatch.pattern, this._blockedPageMatch.caseSensitive);
-          this._proxy.matches.push(this._match.clone());      
-          this._notify && this.fp.notifier.alert(this.fp.getMessage(this.notificationTitle), this.fp.getMessage("superadd.url.added", [this._match.pattern, this._proxy.name]));
-          return this._match.pattern;          
+      if (p.lastresort) { // no current proxies match (except the lastresort, which matches everything anyway)      
+        var n, treeWalker = document.createTreeWalker(document.documentElement,
+          NodeFilter.SHOW_TEXT, {acceptNode: function() {return NodeFilter.FILTER_ACCEPT;}}, false);
+        while ((n = treeWalker.nextNode())) {          
+          if (this._blockedPageMatch.regex.test(n.nodeValue)) {
+            var fpc = CC["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject;
+            this._match.pattern = fpc.applyTemplate(url, this._blockedPageMatch.pattern, this._blockedPageMatch.caseSensitive);
+            this._proxy.matches.push(this._match.clone());      
+            this._notify && this.fp.notifier.alert(this.fp.getMessage(this.notificationTitle), this.fp.getMessage("superadd.url.added", [this._match.pattern, this._proxy.name]));
+            return this._match.pattern;          
+          }
         }
       }
     }
@@ -293,7 +298,7 @@ AutoAdd.prototype.toDOM = function(doc) {
 };
 AutoAdd.prototype.fromDOM = function(doc) {
   SuperAdd.prototype.fromDOM.apply(this, arguments);
-  // new sXPathEvaluator() is not yet available.
+  // new XPathEvaluator() is not yet available.
   var xpe = CC["@mozilla.org/dom/xpath-evaluator;1"].getService(CI.nsIDOMXPathEvaluator);
   var nsResolver = xpe.createNSResolver(doc);  
   // Note XPath expression array index is 1-based.

@@ -466,7 +466,7 @@ function onAutoAddEnabled(cb) {
   sizeToContent();
 }
 
-function onPattern(superadd) {
+function onDefinePattern(superadd) {
   var m = superadd.match.clone();
   /* temp is stored on the superadd object directly, not the match object. see notes in SuperAdd.prototype._temp as to why. 
      this is why we clone() the match--so we can properly set .temp before displaying it in pattern.xul */
@@ -478,11 +478,7 @@ function onPattern(superadd) {
 
   if (params.out) {
     superadd.match = params.out.match;
-    // SuperAdd match objects are never temporary; temp value is stored in SuperAdd itself.
-    // Match.temp must be false else it isn't written to disk.
-    superadd.match.temp = false;
-    superadd.match.enabled = true; // SuperAdd match objects are always enabled (doesn't make sense to add a disabled Match)
-    superadd.temp = params.temp; /* save to superadd.temp instead; see notes in SuperAdd.prototype._temp as to why */
+    dump("superadd.temp = " + superadd.temp + "\n");
   }    
 }
 

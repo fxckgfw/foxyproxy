@@ -48,7 +48,8 @@ function onOK() {
       document.getElementById("name").value, pattern.value,
       document.getElementById("temp").checked, r,
       caseSensitive.checked, document.getElementById("whiteblacktype").value == "b", false);
-    return ret;
+    window.arguments[0].out = {match:ret};
+    return true;
   }
 }
 

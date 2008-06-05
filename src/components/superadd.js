@@ -13,7 +13,7 @@
 
 This is the super class for AutoAdd and QuickAdd classes.
 
-AutoAdd and QuickAdd both have their own instance of a Match object in their .match property. It is used for storing a template
+AutoAdd and QuickAdd both have their own instance of a Match object in their ._match property. It is used for storing a template
 of the Match object to be added to a proxy dynamically:
   .name - User-supplied name of the pattern. "Dynamic QuickAdd/AutoAdd Pattern" by default
   .pattern - A string template, applied to the URL at the time of addition of a dynamic Match object to the SuperAdd object.
@@ -35,19 +35,24 @@ blockedPageMatch - a Match object specific to AutoAdd only. Only four of the pro
 */
 dump("superadd.js\n");
 const DEF_PATTERN = "*://${3}${6}/*";
-function SuperAdd() {}
+function SuperAdd(mName) {
+  this._match = new Match(true, mName, DEF_PATTERN);
+  this._match.clone = function() {
+    // does a clone of this._match and copies this.temp into the cloned object
+    var ret = Match.prototype.clone.apply(this, arguments); // call super
+    ret.temp = this.temp;
+    return ret;
+  };
+}
 
 function QuickAdd(mName) {
-  dump("quick add ctor\n");
   SuperAdd.apply(this, arguments);
-  this.match = new Match(true, mName, DEF_PATTERN);
   this.notificationTitle = "foxyproxy.quickadd.label";
   this.elemName = "quickadd";
   this.elemNameCamelCase = "QuickAdd";
 }
 function AutoAdd(mName) {
   SuperAdd.apply(this, arguments);
-  this.match = new Match(true, mName, DEF_PATTERN);  
   this._blockedPageMatch = new Match(true, "", this.fp.getMessage("not.authorized"), false, false, false, false, true);    
   this.notificationTitle = "foxyproxy.tab.autoadd.label";
   this.elemName = "autoadd";
@@ -76,7 +81,7 @@ SuperAdd.prototype = {
   _notify : true,
   _notifyWhenCanceled : true,
   _prompt : false,
-  match : null,
+  _match : null,
   
   _formatConverter : CC["@mozilla.org/widget/htmlformatconverter;1"].createInstance(CI.nsIFormatConverter),
     
@@ -127,6 +132,26 @@ SuperAdd.prototype = {
     this._prompt = n;
     this.fp.writeSettings();
   },  
+  
+  get match() {
+    return this._match.clone();
+  },
+  
+  set match(m) {
+    this._match.name = m.name;
+    this._match.pattern = m.pattern;
+    this._match.isRegEx = m.isRegEx;
+    this._match.caseSensitive = m.caseSensitive;
+    this._match.isBlackList = m.isBlackList;
+    this._match.isMultiLine = m.isMultiLine;
+    // Note: we're not copying m.temp and m.enabled.
+    // SuperAdd match objects are never temporary; temp value is stored in SuperAdd.temp instead because
+    // Superadd._match.temp must be false else it isn't written to disk.
+    // SuperAdd match objects are always enabled (doesn't make sense to add a disabled Match).
+    this._temp = m.temp; /* save to this.temp instead; see notes above as to why */    
+    this._match.buildRegEx();
+    this.fp.writeSettings();
+  },
 
   /**
    * Update the list of menuitems in |menu|
@@ -159,16 +184,16 @@ SuperAdd.prototype = {
    * todo: define this fcn only for autoadd
    */
   perform : function(url, content) {
-    if (this.match.pattern != "") {
+    if (this._match.pattern != "") {
     	// Does this URL already match an existing pattern for a proxy?
     	var p = this.fp.proxies.getMatches(url).proxy;
       if (p.lastresort) { // no current proxies match (except the lastresort, which matches everything anyway)
         if (this._blockedPageMatch.regex.test(content)) {
           var fpc = CC["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject;
-          this.match.pattern = fpc.applyTemplate(url, this._blockedPageMatch.pattern, this._blockedPageMatch.caseSensitive);
-          this._proxy.matches.push(this.match.clone());      
-          this._notify && this.fp.notifier.alert(this.fp.getMessage(this.notificationTitle), this.fp.getMessage("superadd.url.added", [this.match.pattern, this._proxy.name]));
-          return this.match.pattern;          
+          this._match.pattern = fpc.applyTemplate(url, this._blockedPageMatch.pattern, this._blockedPageMatch.caseSensitive);
+          this._proxy.matches.push(this._match.clone());      
+          this._notify && this.fp.notifier.alert(this.fp.getMessage(this.notificationTitle), this.fp.getMessage("superadd.url.added", [this._match.pattern, this._proxy.name]));
+          return this._match.pattern;          
         }
       }
     }
@@ -182,7 +207,7 @@ SuperAdd.prototype = {
           return newStr.value.QueryInterface(CI.nsISupportsString).toString();
       }
       catch (e) {
-          return oldStr.toString();
+        return oldStr.toString();
       }
     }
   }, 
@@ -224,23 +249,21 @@ SuperAdd.prototype = {
     e.setAttribute("notifyWhenCanceled", this._notifyWhenCanceled);
     e.setAttribute("prompt", this._prompt);    
     this._proxy && e.setAttribute("proxy-id", this._proxy.id);
-    e.appendChild(this.match.toDOM(doc));
+    e.appendChild(this._match.toDOM(doc));
     return e;
   },
   
   fromDOM : function(doc) {
-    dump("base fromDOM for " + this.elemName + "\n");
     var n = doc.getElementsByTagName(this.elemName).item(0);
     this._enabled = gGetSafeAttrB(n, "enabled", false);
-    dump("this._enabled = " + this._enabled + "\n");
     this._temp = gGetSafeAttrB(n, "temp", false);     
     this._reload = gGetSafeAttrB(n, "reload", true);    
     this._notify = gGetSafeAttrB(n, "notify", true);
     this._notifyWhenCanceled = gGetSafeAttrB(n, "notifyWhenCanceled", true);
     this._prompt = gGetSafeAttrB(n, "prompt", false);
     var proxyId = gGetSafeAttr(n, "proxy-id", null);
-    if (n) this.match.fromDOM(n.getElementsByTagName("match").item(0));
-    this.match.isMultiLine = false; 
+    if (n) this._match.fromDOM(n.getElementsByTagName("match").item(0));
+    this._match.isMultiLine = false; 
     var error;
     if (proxyId) {
       // Ensure the proxy still  exists
@@ -269,7 +292,6 @@ AutoAdd.prototype.toDOM = function(doc) {
   return e;
 };
 AutoAdd.prototype.fromDOM = function(doc) {
-  dump("overriden fromDOM\n");
   SuperAdd.prototype.fromDOM.apply(this, arguments);
   // new sXPathEvaluator() is not yet available.
   var xpe = CC["@mozilla.org/dom/xpath-evaluator;1"].getService(CI.nsIDOMXPathEvaluator);

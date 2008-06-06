@@ -64,6 +64,7 @@ Common.prototype = {
         setTimeout(function(aTabElt) { w.gBrowser.selectedTab = aTabElt; }, 0, w.gBrowser.addTab(aURL, null, null, null));
       else // FF
         w.delayedOpenTab(aURL, null, null, null, null);
+      w.focus();
     }
   },
   

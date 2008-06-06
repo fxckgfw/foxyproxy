@@ -104,8 +104,6 @@
 <!ENTITY foxyproxy.copyright "Copyright">
 <!ENTITY foxyproxy.rights "All Rights Reserved.">
 <!ENTITY foxyproxy.released "Released under the GPL license.">
-<!ENTITY foxyproxy.thanks "Special thanks to">
-<!ENTITY foxyproxy.translations "Translations">
 
 <!ENTITY foxyproxy.tab.general.label "General">
 <!ENTITY foxyproxy.tab.general.accesskey "G">
@@ -226,38 +224,6 @@
 <!ENTITY foxyproxy.issocks.accesskey "S">
 <!ENTITY foxyproxy.issocks.tooltip "Is this a web proxy or SOCKS proxy?">
 
-<!ENTITY foxyproxy.chinese.simplified "Chinese (Simplified)">
-<!ENTITY foxyproxy.chinese.traditional "Chinese (Traditional)"> 
-<!ENTITY foxyproxy.croatian "Croatian">
-<!ENTITY foxyproxy.czech "Czech">
-<!ENTITY foxyproxy.danish "Danish">
-<!ENTITY foxyproxy.dutch "Dutch">
-<!ENTITY foxyproxy.english "English">
-<!ENTITY foxyproxy.english.british "English (British)">
-<!ENTITY foxyproxy.french "French">
-<!ENTITY foxyproxy.german "German">
-<!ENTITY foxyproxy.greek "Greek">
-<!ENTITY foxyproxy.hungarian "Hungarian">
-<!ENTITY foxyproxy.italian "Italian">
-<!ENTITY foxyproxy.japanese "Japanese">
-<!ENTITY foxyproxy.persian "Persian">
-<!ENTITY foxyproxy.polish "Polish">
-<!ENTITY foxyproxy.portugese.brazilian "Portugese (Brazilian)">
-<!ENTITY foxyproxy.portugese.portugal "Portugese (Portugal)">
-<!ENTITY foxyproxy.romanian "Romanian">
-<!ENTITY foxyproxy.russian "Russian">
-<!ENTITY foxyproxy.slovak "Slovak">
-<!ENTITY foxyproxy.spanish.spain "Spanish (Spain)">
-<!ENTITY foxyproxy.spanish.argentina "Spanish (Argentina)">
-<!ENTITY foxyproxy.serbian "Serbian">
-<!ENTITY foxyproxy.swedish "Swedish">
-<!ENTITY foxyproxy.thai.thailand "Thai (Thailand)">
-<!ENTITY foxyproxy.turkish "Turkish">
-<!ENTITY foxyproxy.ukrainian "Ukrainian">
-<!ENTITY foxyproxy.your.language "Your Language">
-<!ENTITY foxyproxy.your.name.here "Your name here!">
-<!ENTITY foxyproxy.anonymous "Anonymous">
-
 <!ENTITY foxyproxy.moveup.label "Move Up">
 <!ENTITY foxyproxy.moveup.tooltip "Increase priority of current selection">
 <!ENTITY foxyproxy.moveup.accesskey "U">
@@ -346,10 +312,6 @@
 <!ENTITY foxyproxy.autoadd.notify.whencanceled.label "Notify me when AutoAdd is canceled">
 <!ENTITY foxyproxy.autoadd.notify.whencanceled.label2 "AutoAdd is automatically canceled when the URL in the address bar already matches a whitelist pattern in the AutoAdd proxy. In this way duplicate patterns, which can clutter your configuration, are prevented. This setting does not enable/disable cancelation; rather, it toggles notification when cancelation occurs.">
 <!ENTITY foxyproxy.autoadd.notify.whencanceled.tooltip "Display a popup when AutoAdd is activated but canceled">
-
-<!ENTITY foxyproxy.graphics "Graphic design and images by">
-<!ENTITY foxyproxy.website "Website by">
-<!ENTITY foxyproxy.contributions "Contributions by">
 
 <!ENTITY foxyproxy.pacloadnotification.label "Notify me about proxy auto-configuration file loads">
 <!ENTITY foxyproxy.pacloadnotification.accesskey "L">
@@ -576,3 +538,6 @@
 <!ENTITY foxyproxy.pattern.to.quickadd.label "Pattern to quickly add to proxy">
 <!ENTITY foxyproxy.pattern.to.autoadd.label "Pattern to automatically add to proxy">
 
+<!ENTITY foxyproxy.home "Home">
+<!ENTITY foxyproxy.support "Support">
+<!ENTITY foxyproxy.credits "Credits">

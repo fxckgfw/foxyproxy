@@ -97,7 +97,7 @@ Proxy.prototype = {
   
   fromDOM : function(node, fpMode) {
     this.name = node.getAttribute("name");
-    this.id = node.getAttribute("id") || Proxy.prototype.fp.proxies.uniqueRandom();
+    this.id = node.getAttribute("id") || this.fp.proxies.uniqueRandom();
     this.notes = node.getAttribute("notes");
     this._enabled = node.getAttribute("enabled") == "true";
     this.autoconf.fromDOM(node.getElementsByTagName("autoconf").item(0));
@@ -176,7 +176,7 @@ Proxy.prototype = {
      	  this._enabled = false;
     }
 	  !this._enabled &&
-	 	  Proxy.prototype.fp.proxies.maintainIntegrity(this, false, true, false); // (proxy, isBeingDeleted, isBeingDisabled, isBecomingDIRECT)
+	 	  this.fp.proxies.maintainIntegrity(this, false, true, false); // (proxy, isBeingDeleted, isBeingDisabled, isBecomingDIRECT)
 	},
 
 	handleTimer : function() {
@@ -220,7 +220,7 @@ Proxy.prototype = {
 	resolve : function(spec, host, mp) {
 
 	  function _notifyUserOfError(spec) {
-			this.pacErrorNotification && Proxy.prototype.fp.notifier.alert(Proxy.prototype.fp.getMessage("foxyproxy"), Proxy.prototype.fp.getMessage("proxy.error.for.url") + spec);
+			this.pacErrorNotification && this.fp.notifier.alert(this.fp.getMessage("foxyproxy"), this.fp.getMessage("proxy.error.for.url") + spec);
 			return null;
 		}
 	  // See http://wp.netscape.com/eng/mozilla/2.0/relnotes/demo/proxy-live.html
@@ -241,11 +241,11 @@ Proxy.prototype = {
 	        case "socks":
 	        case "socks5":
 	          proxies.push(proxyService.newProxyInfo("socks", components[2], components[3],
-	            Proxy.prototype.fp._proxyDNS ? CI.nsIProxyInfo.TRANSPARENT_PROXY_RESOLVES_HOST : 0, 0, null));
+	            this.fp._proxyDNS ? CI.nsIProxyInfo.TRANSPARENT_PROXY_RESOLVES_HOST : 0, 0, null));
 	          break;
 	        case "socks4":
 	          proxies.push(proxyService.newProxyInfo("socks4", components[2], components[3],
-	            Proxy.prototype.fp._proxyDNS ? CI.nsIProxyInfo.TRANSPARENT_PROXY_RESOLVES_HOST : 0, 0, null));
+	            this.fp._proxyDNS ? CI.nsIProxyInfo.TRANSPARENT_PROXY_RESOLVES_HOST : 0, 0, null));
 	          break;
 	        case "direct":
 	          proxies.push(this.direct);

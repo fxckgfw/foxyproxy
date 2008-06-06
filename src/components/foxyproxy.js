@@ -708,7 +708,7 @@ biesi>	passing it the appropriate proxyinfo
         !last.enabled && (last.enabled = true);    // ensure it is enabled
       }
       else {
-	      last = new Proxy();
+	      last = new Proxy(gFP);
         last.name = gFP.getMessage("proxy.default");
         last.notes = gFP.getMessage("proxy.default.notes");
         last.mode = "direct";

@@ -74,9 +74,8 @@ function Proxy(fp) {
   this.fp = fp || CC["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;
   this.matches = new Array();
   this.name = this.notes = "";
-  ManualConf.prototype.fp = this.fp;
-  this.manualconf = new ManualConf(this.fp);
-  this.autoconf = new AutoConf(this, this.fp);
+  this.manualconf = new ManualConf(fp);
+  this.autoconf = new AutoConf(this, fp);
   this._mode = "manual"; // manual, auto, direct, random
   this._enabled = true;
   this.selectedTabIndex = 0;
@@ -150,9 +149,11 @@ Proxy.prototype = {
 
   get enabled() {return this._enabled;},
 
-	shouldLoadPAC:function() {
-    return this._mode == "auto" &&
-      (Proxy.prototype.fp.mode == this.id || Proxy.prototype.fp.mode == "patterns" || Proxy.prototype.fp.mode == "random" || Proxy.prototype.fp.mode == "roundrobin") && this._enabled;
+	shouldLoadPAC : function() {
+    if (this._mode == "auto" && this._enabled) {
+      var m = this.fp.mode;
+      return m == this.id || m == "patterns" || m == "random" || m == "roundrobin";
+    }
 	},
 
   set mode(m) {
@@ -283,7 +284,9 @@ Proxy.prototype = {
 };
 
 ///////////////////////////// ManualConf class ///////////////////////
-function ManualConf() {}
+function ManualConf(fp) {
+  this.fp = fp;
+}
 
 ManualConf.prototype = {
   _host: "",

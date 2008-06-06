@@ -229,7 +229,8 @@ var foxyproxy = {
       var match;
 			if (q._prompt) {
           match = this.fpc.onSuperAdd(window, url, q); 
-          if (match) {                         
+          if (match) {      
+            match.pattern = this.fpc.applyTemplate(url, match.pattern, match.caseSensitive);                     
             // Add the match
 					  _qAdd(match, url, evt.view.content.document.location);
 				  }

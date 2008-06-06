@@ -189,8 +189,8 @@ SuperAdd.prototype = {
     	// Does this URL already match an existing pattern for a proxy?
     	var p = this.fp.proxies.getMatches(url).proxy;
       if (p.lastresort) { // no current proxies match (except the lastresort, which matches everything anyway)      
-        var n, treeWalker = document.createTreeWalker(document.documentElement,
-          NodeFilter.SHOW_TEXT, {acceptNode: function() {return NodeFilter.FILTER_ACCEPT;}}, false);
+        var n, treeWalker = doc.createTreeWalker(doc.documentElement,
+          4, {acceptNode: function() {return 1;}}, false);
         while ((n = treeWalker.nextNode())) {          
           if (this._blockedPageMatch.regex.test(n.nodeValue)) {
             var fpc = CC["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject;

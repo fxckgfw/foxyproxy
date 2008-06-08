@@ -555,7 +555,7 @@ biesi>	passing it the appropriate proxyinfo
 				//loggEntry = this.proxies.getRandom(spec, this.random._includeDirect, this.random._includeDisabled);
         //break;
       case "patterns":
-	      loggEntry = this.proxies.getMatches(spec);
+	      loggEntry = this.proxies.getMatches(null, spec);
         break;
 			case "roundrobin":
 				break;
@@ -757,9 +757,9 @@ biesi>	passing it the appropriate proxyinfo
       return true;
     },
 
-    getMatches : function(uriStr) {
+    getMatches : function(patStr, uriStr) {
 			for (var i=0, aMatch; i<this.list.length; i++) {
-				if (this.list[i]._enabled && (aMatch = this.list[i].isWhiteMatch(uriStr))) {
+				if (this.list[i]._enabled && (aMatch = this.list[i].isWhiteMatch(patStr, uriStr))) {
 					return gLoggEntryFactory(this.list[i], aMatch, uriStr, "pat");
 				}
       }

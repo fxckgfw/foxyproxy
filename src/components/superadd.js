@@ -187,17 +187,18 @@ SuperAdd.prototype = {
     var url = doc.location.href;
     if (this._match.pattern != "") {
     	// Does this URL already match an existing pattern for a proxy?
-    	var p = this.fp.proxies.getMatches(url).proxy;
+    	var p = this.fp.proxies.getMatches(this._match.pattern, url).proxy;
       if (p.lastresort) { // no current proxies match (except the lastresort, which matches everything anyway)      
         var n, treeWalker = doc.createTreeWalker(doc.documentElement,
           4, {acceptNode: function() {return 1;}}, false);
         while ((n = treeWalker.nextNode())) {          
           if (this._blockedPageMatch.regex.test(n.nodeValue)) {
+            var m = this._match.clone();
             var fpc = CC["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject;
-            this._match.pattern = fpc.applyTemplate(url, this._blockedPageMatch.pattern, this._blockedPageMatch.caseSensitive);
-            this._proxy.matches.push(this._match.clone());      
-            this._notify && this.fp.notifier.alert(this.fp.getMessage(this.notificationTitle), this.fp.getMessage("superadd.url.added", [this._match.pattern, this._proxy.name]));
-            return this._match.pattern;          
+            m.pattern = fpc.applyTemplate(url, m.pattern, m.caseSensitive);
+            this._proxy.matches.push(m);      
+            this._notify && this.fp.notifier.alert(this.fp.getMessage(this.notificationTitle), this.fp.getMessage("superadd.url.added", [m.pattern, this._proxy.name]));
+            return m.pattern;          
           }
         }
       }

@@ -189,16 +189,26 @@ Proxy.prototype = {
 
   get mode() {return this._mode;},
 
+  /**
+   * Check if any white patterns already match uriStr. As a shortcut,
+   * we first check if the existing white patterns (as strings) equal |patStr|
+   * before performing regular expression matches.
+   *
+   * Note patStr is sometimes null when this method is called.
+   */
   isWhiteMatch : function(patStr, uriStr) {
     var white = -1;
     for (var i=0,sz=this.matches.length; i<sz; i++) {
       var m = this.matches[i];
-      if (m.enabled && (m.pattern == patStr || m.regex.test(uriStr))) {
-        if (m.isBlackList) {
-          return false;
-        }
-        else if (white == -1) {
-          white = i; // continue checking for blacklist matches!
+      if (m.enabled) {
+        if ((!patStr && m.pattern == patStr) || m.regex.test(uriStr)) {
+          if (m.isBlackList) {
+            // Black takes priority over white
+            return false;
+          }          
+          else if (white == -1) {
+            white = i; // continue checking for blacklist matches!
+          }          
         }
       }
     }

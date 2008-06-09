@@ -194,6 +194,8 @@ Proxy.prototype = {
    * we first check if the existing white patterns (as strings) equal |patStr|
    * before performing regular expression matches.
    *
+   * Black pattern matches take precendence over white pattern matches.
+   * 
    * Note patStr is sometimes null when this method is called.
    */
   isWhiteMatch : function(patStr, uriStr) {

@@ -65,8 +65,6 @@ var foxyproxy = {
   },
 
   onLoad : function() {
-    dump("quickadd enabled = " + this.fp.quickadd.enabled + "\n");
-    dump("autoadd enabled = " + this.fp.quickadd.enabled + "\n");
   	this.statusIcon = document.getElementById("foxyproxy-status-icon");
   	this.contextMenuIcon = document.getElementById("foxyproxy-context-menu-1");
   	this.toolbarIcon = document.getElementById("foxyproxy-button-1");
@@ -92,18 +90,6 @@ var foxyproxy = {
   toggleContextMenu : function(e) {
  	 	this.contextMenuIcon.hidden = !e;
   },
-
-  onPageLoad : function(evt) {
-	  var doc = evt.originalTarget; // doc is document that triggered "onload" event
-	  if (doc && doc.location) {
-      var m = foxyproxy.fp.autoadd.perform(doc);
-      if (m && foxyproxy.fp.autoadd.reload) {
-        doc.location.reload(); // reload page. TODO: don't call perform() on the reloaded page!
-        foxyproxy.fp.writeSettings();
-      }
-    }
-  },
-
 
   // The first time FP runs, "firstrun" does not exist (i.e., null || false). Subsequent times, "firstrun" == true.
   // In other words, this pref is improperly named for its purpose. Better name is "notfirstrun".
@@ -218,45 +204,21 @@ var foxyproxy = {
   },
 
   onQuickAddDialog : function(evt) {
-  	var fp=this.fp, q=this.fp.quickadd, url; 
-		if (fp.mode != "disabled" && q.enabled) {
-		  if (evt.view && evt.view.content && evt.view.content.document && evt.view.content.document.location)
-        url = evt.view.content.document.location.href;
-      else {
+		if (this.fp.mode != "disabled" && this.fp.quickadd.enabled) {
+		  if (!evt.view || !evt.view.content || !evt.view.content.document || !evt.view.content.document.location) {
 		  	fp.notifier.alert(fp.getMessage("foxyproxy"), fp.getMessage("quickadd.nourl"));
 		  	return;
 		  }
-      var match;
-			if (q._prompt) {
-          match = this.fpc.onSuperAdd(window, url, q); 
-          if (match) {      
-            match.pattern = this.fpc.applyTemplate(url, match.pattern, match.caseSensitive);                     
-            // Add the match
-					  _qAdd(match, url, evt.view.content.document.location);
-				  }
-				  // if !match then the user canceled the QuickAdd dlg
-			}
-			else {
-         match = q.match.clone();
-         match.pattern = this.fpc.applyTemplate(url, match.pattern, match.caseSensitive);    
-         match.temp = q.temp; /* the cloned match object doesn't clone temp because it's not deserialized from disk while q.temp is */ 
-				_qAdd(match, url, evt.view.content.document.location);
-      }
-		}
-		function _qAdd(pat, url, loc) {
-      var m = pat.isBlackList ? q.proxy.isBlackMatch(pat.pattern, url) : q.proxy.isWhiteMatch(pat.pattern, url);
-			if (m) {
-		    q.notifyWhenCanceled &&
-		    	fp.notifier.alert(fp.getMessage("foxyproxy.quickadd.label"), fp.getMessage("quickadd.quickadd.canceled", [m.name, q.proxy.name]));
-			}
-			else {
-				q.addPattern(pat);
-        q.reload && loc.reload(); // reload page if necessary
-        fp.writeSettings();
-			}
-		}
+      this.fp.quickadd.onQuickAdd(window, evt.view.content.document);
+    }
   },
 
+  onPageLoad : function(evt) {
+    var doc = evt.originalTarget; // doc is document that triggered "onload" event
+    if (doc && doc.location)
+      this.fp.autoadd.onAutoAdd(window, doc);
+  },
+  
   updateViews : function(writeSettings, updateLogView) {
     // Update view if it's open
     var optionsDlg = foxyproxy._getOptionsDlg();

@@ -209,8 +209,8 @@ SuperAdd.prototype = {
       if (p.lastresort) { // no current proxies match (except the lastresort, which matches everything anyway)      
         var n, treeWalker = doc.createTreeWalker(doc.documentElement,
           4, {acceptNode: function() {return 1;}}, false);
-        while ((n = treeWalker.nextNode())) {          
-          if (this._blockedPageMatch.regex.test(n.nodeValue)) {           
+        while ((n = treeWalker.nextNode())) {
+          if (this._blockedPageMatch.regex.test(n.nodeValue)) {
             var m = this.getPatternFromTemplate(window, url);
             if (m)
               this.addPattern(m, doc.location);

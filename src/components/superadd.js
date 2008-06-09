@@ -43,6 +43,7 @@ function SuperAdd(mName) {
     ret.temp = this.temp;
     return ret;
   };
+  this.fpc = CC["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject;
 }
 
 function QuickAdd(mName) {
@@ -82,6 +83,7 @@ SuperAdd.prototype = {
   _notifyWhenCanceled : true,
   _prompt : false,
   _match : null,
+  fpc : null,
   
   _formatConverter : CC["@mozilla.org/widget/htmlformatconverter;1"].createInstance(CI.nsIFormatConverter),
     
@@ -158,13 +160,13 @@ SuperAdd.prototype = {
    */
   updateProxyMenu : function(menu, doc) {
     if (!this._enabled) return;
-    var popup=menu.firstChild, fpc = CC["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject;
-    fpc.removeChildren(popup);
+    var popup=menu.firstChild;
+    this.fpc.removeChildren(popup);
     for (var i=0,p; i<this.fp.proxies.length && ((p=this.fp.proxies.item(i)) || 1); i++) {
       if (!p.lastresort && p.enabled) {
-        popup.appendChild(fpc.createMenuItem({idVal:p.id, labelVal:p.name, type:"radio", name:"foxyproxy-enabled-type",
+        popup.appendChild(this.fpc.createMenuItem({idVal:p.id, labelVal:p.name, type:"radio", name:"foxyproxy-enabled-type",
           document:doc}));
-        //popup.appendChild(fpc.createMenuItem({idVal:"disabled", labelId:"mode.disabled.label"}));
+        //popup.appendChild(this.fpc.createMenuItem({idVal:"disabled", labelId:"mode.disabled.label"}));
       }
     }
     // Select the appropriate one or, if none was previously selected, select the first
@@ -180,25 +182,39 @@ SuperAdd.prototype = {
     }
   },  
   
-  /**
+  getPatternFromTemplate : function(window, url) {
+    var ret;
+    if (this._prompt) {
+      ret = this.fpc.onSuperAdd(window, url, this); // prompt user for edits first
+      if (ret)
+        ret.pattern = this.fpc.applyTemplate(url, ret.pattern, ret.caseSensitive); 
+      // if !ret then the user canceled the SuperAdd dlg
+    }
+    else {
+      ret = this.match.clone();
+      ret.pattern = this.fpc.applyTemplate(url, ret.pattern, ret.caseSensitive);    
+      ret.temp = this.temp; /* the cloned match object doesn't clone temp because it's not deserialized from disk while this.temp is */     
+    }
+    return ret;
+  },
+
+ /**
    * todo: define this fcn only for autoadd
    */
-  perform : function(doc) {
+  onAutoAdd : function(window, doc) {
     var url = doc.location.href;
     if (this._match.pattern != "") {
-    	// Does this URL already match an existing pattern for a proxy?
-    	var p = this.fp.proxies.getMatches(this._match.pattern, url).proxy;
+      // Does this URL already match an existing pattern for a proxy?
+      var p = this.fp.proxies.getMatches(this._match.pattern, url).proxy;
       if (p.lastresort) { // no current proxies match (except the lastresort, which matches everything anyway)      
         var n, treeWalker = doc.createTreeWalker(doc.documentElement,
           4, {acceptNode: function() {return 1;}}, false);
         while ((n = treeWalker.nextNode())) {          
-          if (this._blockedPageMatch.regex.test(n.nodeValue)) {
-            var m = this._match.clone();
-            var fpc = CC["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject;
-            m.pattern = fpc.applyTemplate(url, m.pattern, m.caseSensitive);
-            this._proxy.matches.push(m);      
-            this._notify && this.fp.notifier.alert(this.fp.getMessage(this.notificationTitle), this.fp.getMessage("superadd.url.added", [m.pattern, this._proxy.name]));
-            return m.pattern;          
+          if (this._blockedPageMatch.regex.test(n.nodeValue)) {           
+            var m = this.getPatternFromTemplate(window, url);
+            if (m)
+              this.addPattern(m, doc.location);
+            break;
           }
         }
       }
@@ -216,13 +232,37 @@ SuperAdd.prototype = {
         return oldStr.toString();
       }
     }
-  }, 
+  },  
+  
+  /**
+   * todo: define this fcn only for quickadd
+   */  
+  onQuickAdd : function(window, doc) {
+    var url = doc.location.href;
+    var match = this.getPatternFromTemplate(window, url);
+    if (match) {
+      // Check for duplicates and exclusions due to black lists
+      var m = match.isBlackList ? this.proxy.isBlackMatch(match.pattern, url) : this.proxy.isWhiteMatch(match.pattern, url);
+      if (m) {
+        this._notifyWhenCanceled &&
+          this.fp.notifier.alert(this.fp.getMessage("foxyproxy.quickadd.label"),
+            this.fp.getMessage("quickadd.quickadd.canceled", [m.name, this._proxy.name]));
+      }
+      else
+        this.addPattern(match, doc.location);
+    }
+  },  
     
-  /** Push a Match object onto our proxy's match list */
-  addPattern : function(m) {
+  /**
+   * Push a Match object onto our proxy's match list.
+   * Reload the location if necessary.
+   */
+  addPattern : function(m, loc) {
     this._proxy.matches.push(m);
+    this.fp.writeSettings(); 
     this._notify && this.fp.notifier.alert(this.fp.getMessage(this.notificationTitle),
       fp.getMessage("superadd.url.added", [m.pattern, this._proxy.name]));
+    this._reload && loc.reload(); // reload page. TODO: don't call onAutoAdd() on the reloaded page!   
   },
 
   allowed : function() {

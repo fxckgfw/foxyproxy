@@ -216,7 +216,7 @@ var foxyproxy = {
   onPageLoad : function(evt) {
     var doc = evt.originalTarget; // doc is document that triggered "onload" event
     if (doc && doc.location)
-      this.fp.autoadd.onAutoAdd(window, doc);
+      foxyproxy.fp.autoadd.onAutoAdd(window, doc); // can't use |this.fp| because this isn't |foxyproxy|
   },
   
   updateViews : function(writeSettings, updateLogView) {

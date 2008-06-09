@@ -210,7 +210,6 @@ biesi>	passing it the appropriate proxyinfo
 
   get mode() { return this._mode; },
   setMode : function(mode, writeSettings, init) {
-    dump("mode = " + mode + "\n");
 	  // Possible modes are: patterns, _proxy_id_ (for "Use proxy xyz for all URLs), random, roundrobin, disabled, previous.
     // Note that "previous" isn't used anywhere but this method: it is translated into the previous mode then broadcasted.
     if (mode == "previous") {
@@ -1103,7 +1102,7 @@ biesi>	passing it the appropriate proxyinfo
 	        this.tooltip.showPopup(doc.getElementById("status-bar"), -1, -1, "tooltip", "topright","bottomright");
 					this.timer.initWithCallback(this, 5000, CI.nsITimer.TYPE_ONE_SHOT);
 	      }
-	      catch (e) { dump(e);/* in case win, win.parent, win.parent.document, tooltip, etc. don't exist */ gFP.alert(null, text);}
+	      catch (e) { dump(e+"\n");/* in case win, win.parent, win.parent.document, tooltip, etc. don't exist */ gFP.alert(null, text);}
       }
     },
 
@@ -1254,7 +1253,7 @@ biesi>	passing it the appropriate proxyinfo
       return this.strings.getMessage(msg, ar);
     }
     catch (e) {
-      dump(e);
+      dump(e + "\n");
       this.alert(null, "Error reading string resource: " + msg); // Do not localize!
     }
   },

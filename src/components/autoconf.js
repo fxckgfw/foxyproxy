@@ -132,7 +132,7 @@ AutoConf.prototype = {
 
   badPAC : function(res, e) {
 		if (e) {
-      dump(e) + "\n";
+      dump(e + "\n");
       this.error = e;
     }
     this.errorNotification && fp.notifier.alert(fp.getMessage("pac.status"), fp.getMessage(res, [this.owner.name, this.status, this.error]));

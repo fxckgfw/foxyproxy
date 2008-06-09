@@ -16,7 +16,7 @@ window.onload=function(){
 	  try {
 	    gAdvancedPane && (gAdvancedPane.showConnections = onConnectionSettings);
 	  }
-	  catch (e) {dump(e);/*wtf*/}
+	  catch (e) {dump(e + "\n");/*wtf*/}
 	}
 }
 function onConnectionSettings() {

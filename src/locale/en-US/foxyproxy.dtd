@@ -312,6 +312,7 @@
 <!ENTITY foxyproxy.autoadd.notify.whencanceled.label "Notify me when AutoAdd is canceled">
 <!ENTITY foxyproxy.autoadd.notify.whencanceled.label2 "AutoAdd is automatically canceled when the URL in the address bar already matches a whitelist pattern in the AutoAdd proxy. In this way duplicate patterns, which can clutter your configuration, are prevented. This setting does not enable/disable cancelation; rather, it toggles notification when cancelation occurs.">
 <!ENTITY foxyproxy.autoadd.notify.whencanceled.tooltip "Display a popup when AutoAdd is activated but canceled">
+<!ENTITY foxyproxy.autoadd.notify.whencanceled.accesskey "C">
 
 <!ENTITY foxyproxy.pacloadnotification.label "Notify me about proxy auto-configuration file loads">
 <!ENTITY foxyproxy.pacloadnotification.accesskey "L">

@@ -54,9 +54,10 @@ var gLoggEntryFactory = function(proxy, aMatch, uri, type, errMsg) {
     var bool = CC["@mozilla.org/supports-PRBool;1"].createInstance(CI.nsISupportsPRBool);
 		bool.data = subj;
 		var d;
-		if (typeof(data) == "string") {
+		if (typeof(data) == "string" || typeof(data) == "number") {
+      /* it's a number when this._mode is 3rd arg, and FoxyProxy is set to a proxy for all URLs */
 	    var	d = CC["@mozilla.org/supports-string;1"].createInstance(CI.nsISupportsString);
-			d.data = data;
+			d.data = "" + data; // force to a string
 	  }
 	  else {
 	  	data && (d = data.QueryInterface(CI.nsISupports));

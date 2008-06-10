@@ -17,7 +17,7 @@
   title="&foxyproxy.optionsdialog.label;"
   xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
   xmlns:html="http://www.w3.org/1999/xhtml" persist="screenX screenY"
-  onload="onLoad();" context="mainPopup">
+  onload="onLoad();" ondialogaccept="return onOK();" context="mainPopup">
 
   <script src="options.js" />
   <vbox>
@@ -432,8 +432,6 @@
                         tooltiptext="&foxyproxy.middleclicksb.tooltip;"
                         style="width: 15em;" sizetopopup="none">
                         <menupopup>
-                          <menuitem label="&foxyproxy.click.options;"
-                            value="options" />
                           <menuitem label="&foxyproxy.click.options;"
                             value="options" />
                           <menuitem label="&foxyproxy.click.cycle;"

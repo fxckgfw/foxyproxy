@@ -34,8 +34,28 @@ function onLoad() {
   timeformat = foxyproxy.getMessage("timeformat");
   _initSettings();
   setTimeout(function(){sizeToContent()}, 0);
+  CC["@mozilla.org/observer-service;1"].getService(CI.nsIObserverService).addObserver(observer,"foxyproxy-mode-change", false);
 }
 
+function onOK() {
+  CC["@mozilla.org/observer-service;1"].getService(CI.nsIObserverService).removeObserver(observer, "foxyproxy-mode-change");
+}
+
+var observer = {
+  observe : function(subj, topic, str) {
+    var e;
+    try {
+      e = subj.QueryInterface(CI.nsISupportsPRBool).data;
+    }
+    catch(e) {}
+    switch (topic) {
+      case "foxyproxy-mode-change":
+        _updateView();
+        break;
+     }
+   }
+}
+ 
 function _initSettings() {
   _updateView(false, true);
   document.getElementById("settingsURL").value = foxyproxy.getSettingsURI("uri-string"); 

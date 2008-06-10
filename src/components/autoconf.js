@@ -11,7 +11,7 @@
 
 // See http://forums.mozillazine.org/viewtopic.php?t=308369
 
-dump("autoconf.js\n");
+//dump("autoconf.js\n");
 if (!CI) {
   // we're not being included by foxyproxy.js
   var CI = Components.interfaces, CC = Components.classes, CR = Components.results, fp;
@@ -129,6 +129,10 @@ AutoConf.prototype = {
 		// nsITimer callback
 		this.loadPAC();
 	},
+  
+  cancelTimer : function() {
+    this.timer.cancel();
+  },
 
   badPAC : function(res, e) {
 		if (e) {

@@ -12,7 +12,7 @@
 // See http://forums.mozillazine.org/viewtopic.php?t=308369
 
 // Don't const the next line anymore because of the generic reg code
-dump("foxyproxy.js\n");
+//dump("foxyproxy.js\n");
 var CI = Components.interfaces, CC = Components.classes, CR = Components.results, gFP;
 
 var dumpp = function() {
@@ -96,7 +96,7 @@ function foxyproxy() {
     LoggEntry.prototype.init();
   }
   catch (e) {
-    dump(e.stack + "\n");
+    dumpp(e);
   }  
 }
 foxyproxy.prototype = {
@@ -739,7 +739,12 @@ biesi>	passing it the appropriate proxyinfo
     remove : function(idx) {
       this.maintainIntegrity(this.list[idx], true, false, false);
       for (var i=0, temp=[]; i<this.list.length; i++) {
-        if (i != idx) temp[temp.length] = this.list[i];
+        if (i == idx) {
+          if (this.list[i].mode == "auto") // cancel any refresh timers
+            this.list[i].autoconf.cancelTimer();
+        }
+        else
+          temp[temp.length] = this.list[i];
       }
       this.list = []; //this.list.splice(0, this.length);
       for (var i=0; i<temp.length; i++) {

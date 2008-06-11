@@ -200,14 +200,14 @@ function _updateView(writeSettings, updateLogView) {
   
   _updateSuperAdd(foxyproxy.autoadd, "autoAdd");
   _updateSuperAdd(foxyproxy.quickadd, "quickAdd");  
-  
+  document.getElementById("quickAddNotifyWhenCanceled").checked = foxyproxy.quickadd.notifyWhenCanceled; // only exists for QuickAdd
+        
   function _updateSuperAdd(saObj, str) {
     var temp = saObj.enabled;
     document.getElementById(str + "Enabled").checked = temp;
     document.getElementById(str + "Broadcaster").hidden = !temp;
     document.getElementById(str + "Reload").checked = saObj.reload;
-    document.getElementById(str + "Notify").checked = saObj.notify;
-    document.getElementById(str + "NotifyWhenCanceled").checked = saObj.notifyWhenCanceled;   
+    document.getElementById(str + "Notify").checked = saObj.notify;   
     document.getElementById(str + "Prompt").checked = saObj.prompt;  
   }
   

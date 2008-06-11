@@ -263,14 +263,14 @@
 		</vbox>
 	</popup>
 	<popup id="pacTipsPopup">
-		<vbox class="foxyproxy-border" style="padding: .5em; text-align: justify;">
+		<vbox class="foxyproxy-border foxyproxy-tooltip" height="175">
 			<label value="&foxyproxy.pactip1.label;"/>
       <separator class="thin"/>
       <label value="&foxyproxy.pactip2.label;"/>
       <separator class="thin"/>
       <label value="&foxyproxy.pactip3.label;"/>
       <separator class="thin"/>
-			<description width="400">&foxyproxy.pactip4.label;
+			<description width="1"><!-- weirdness on ff3 if no width specified -->&foxyproxy.pactip4.label;
       <html:a class="link"        
         onclick="fpc.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/relativescheme.html');">&foxyproxy.pactip5.label;</html:a>
       &foxyproxy.pactip6.label;

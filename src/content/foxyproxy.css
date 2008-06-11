@@ -100,11 +100,10 @@ treechildren::-moz-tree-checkbox(checked) {
 
 .foxyproxy-tooltip {
 	text-align: justify;
-	margin: .1em;
+	padding: .4em;
 }
 .foxyproxy-border {
 	border: thin black solid;
-	margin: .1em;
 }
 
 .popcolumn {

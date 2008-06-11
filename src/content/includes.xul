@@ -339,10 +339,16 @@
     </rows>
     </grid>
  </groupbox>
-  <popupset>
-    <popup id="wbdesc">
-      <description class="foxyproxy-border" style="max-width: 30em; height: 8em; text-align: justify; margin: .1em; padding: .5em;">&foxyproxy.whiteblack.description.label;</description>
-    </popup>
-  </popupset> 
+ <popup id="wbdesc">
+   <description class="foxyproxy-tooltip foxyproxy-border" width="400" height="80">&foxyproxy.whiteblack.description.label;</description>
+ </popup>      
 </radiogroup>
+<popup id="notifyWhenCanceledPopup">
+  <description class="foxyproxy-tooltip foxyproxy-border" width="400" height="80">
+    &foxyproxy.quickadd.notify.whencanceled.label2;</description>
+</popup>  
+<popup id="tempPopup">
+  <description class="foxyproxy-tooltip foxyproxy-border" width="400" height="80">
+    &foxyproxy.temp.popup.label;</description>
+</popup>
 </overlay>

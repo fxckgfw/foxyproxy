@@ -114,9 +114,6 @@
 
   <i18n id="foxyproxy.autoadd.notify.label" value="&foxyproxy.autoadd.notify.label;"/>
   <i18n id="foxyproxy.autoadd.notify.tooltip2" value="&foxyproxy.autoadd.notify.tooltip2;"/>
-  <i18n id="foxyproxy.autoadd.notify.whencanceled.label" value="&foxyproxy.autoadd.notify.whencanceled.label;"/>  
-  <i18n id="foxyproxy.autoadd.notify.whencanceled.label2" value="&foxyproxy.autoadd.notify.whencanceled.label2;"/> 
-  <i18n id="foxyproxy.autoadd.notify.whencanceled.tooltip" value="&foxyproxy.autoadd.notify.whencanceled.tooltip;"/>
 
   <i18n id="foxyproxy.autoadd.wildcard.example.label" value="&foxyproxy.autoadd.wildcard.example.label;"/> 
   <i18n id="foxyproxy.autoadd.regex.example.label" value="&foxyproxy.autoadd.regex.example.label;"/>  

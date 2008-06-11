@@ -41,8 +41,7 @@ var loadSubScript = function(filename) {
     loader.loadSubScript(fileProtocolHandler.getURLSpecFromFile(filePath));
   }
   catch (e) {
-    dump("Error loading " + filename + ": " + e + "\n");
-    dump(e.stack + "\n");
+    dump("Error loading " + filename + ": " + e + "\n" + e.stack + "\n");
     throw(e);
   }  
 };
@@ -126,7 +125,7 @@ foxyproxy.prototype = {
           this.loadSettings();
         }        
         catch (e) {
-          dump(e.stack + "\n");
+          dump("observe: " + e + "\n" + e.stack + "\n");
         }   
         break;
 			case "app-startup":
@@ -161,7 +160,7 @@ foxyproxy.prototype = {
 //				if (!tab) dump("tab not found for " + hChannel.name + "\n");
 				//dump("tab " + (tab?"found":"not found") + "\n");
 				//break;
-/*
+/* proxy-per-tab ideas:
 biesi>	what you could actually do is this:
 	<biesi>	observe http-on-modify-request
 	<biesi>	there, you can get the notificationCallbacks and the window
@@ -471,7 +470,7 @@ biesi>	passing it the appropriate proxyinfo
 
   writeSettings : function(o) {
     //try {
-      dump("*** writeSettings\n");
+      //dump("*** writeSettings\n");
       //throw new Error("e");
     //}
     //catch (e) {catch (e) {dump("*** " + e + " \n\n\n");dump ("\n" + e.stack + "\n");} }    
@@ -1108,7 +1107,7 @@ biesi>	passing it the appropriate proxyinfo
 	        this.tooltip.showPopup(doc.getElementById("status-bar"), -1, -1, "tooltip", "topright","bottomright");
 					this.timer.initWithCallback(this, 5000, CI.nsITimer.TYPE_ONE_SHOT);
 	      }
-	      catch (e) { dump(e+"\n");/* in case win, win.parent, win.parent.document, tooltip, etc. don't exist */ gFP.alert(null, text);}
+	      catch (e) { dump("alert: " + e + "\n");/* in case win, win.parent, win.parent.document, tooltip, etc. don't exist */ gFP.alert(null, text);}
       }
     },
 
@@ -1259,7 +1258,7 @@ biesi>	passing it the appropriate proxyinfo
       return this.strings.getMessage(msg, ar);
     }
     catch (e) {
-      dump(e + "\n");
+      dump("getMessage: " + e + "\n");
       this.alert(null, "Error reading string resource: " + msg); // Do not localize!
     }
   },

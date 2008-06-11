@@ -78,11 +78,11 @@ AutoConf.prototype = {
   get reloadFreqMins() {return this._reloadFreqMins;},
 
   fromDOM : function(n) {
-	    this.url = gGetSafeAttr(n, "url", "");
-	    this.loadNotification = gGetSafeAttrB(n, "loadNotification", true);
-	    this.errorNotification = gGetSafeAttrB(n, "errorNotification", true);
-	    this._autoReload = gGetSafeAttrB(n, "autoReload", false);
-	    this._reloadFreqMins = gGetSafeAttr(n, "reloadFreqMins", 60);
+    this.url = gGetSafeAttr(n, "url", "");
+    this.loadNotification = gGetSafeAttrB(n, "loadNotification", true);
+    this.errorNotification = gGetSafeAttrB(n, "errorNotification", true);
+    this._autoReload = gGetSafeAttrB(n, "autoReload", false);
+    this._reloadFreqMins = gGetSafeAttr(n, "reloadFreqMins", 60);
   },
 
   toDOM : function(doc) {
@@ -136,7 +136,7 @@ AutoConf.prototype = {
 
   badPAC : function(res, e) {
 		if (e) {
-      dump(e + "\n");
+      dump("badPAC: " + e + "\n");
       this.error = e;
     }
     this.errorNotification && fp.notifier.alert(fp.getMessage("pac.status"), fp.getMessage(res, [this.owner.name, this.status, this.error]));

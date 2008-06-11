@@ -17,7 +17,7 @@
   title="&foxyproxy.optionsdialog.label;"
   xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
   xmlns:html="http://www.w3.org/1999/xhtml" persist="screenX screenY"
-  onload="onLoad();" ondialogaccept="return onOK();" context="mainPopup">
+  onload="onLoad();" onunload="onOK();" context="mainPopup">
 
   <script src="options.js" />
   <vbox>
@@ -565,8 +565,7 @@
                   tooltiptext="&foxyproxy.quickadd.notify.whencanceled.tooltip;"
                   oncommand="foxyproxy.quickadd.notifyWhenCanceled = this.checked;"/>
                 <toolbarbutton class="foxyproxy-ref"
-                  popup="notifyWhenCanceledPopupQuickAdd"                  
-                  tooltiptext="&foxyproxy.whatsthis;" />
+                  popup="notifyWhenCanceledPopup" tooltiptext="&foxyproxy.whatsthis;" />
               </row>
             </rows>
           </grid>
@@ -633,14 +632,6 @@
                   accesskey="&foxyproxy.quickadd.prompt.accesskey;"
                   tooltiptext="&foxyproxy.quickadd.prompt.tooltip;"
                   oncommand="foxyproxy.autoadd.prompt = this.checked;"/>
-                <checkbox id="autoAddNotifyWhenCanceled"
-                  label="&foxyproxy.autoadd.notify.whencanceled.label;"                  
-                  accesskey="&foxyproxy.autoadd.notify.whencanceled.accesskey;"
-                  tooltiptext="&foxyproxy.autoadd.notify.whencanceled.tooltip;"
-                  oncommand="foxyproxy.autoadd.notifyWhenCanceled = this.checked;"/>
-                <toolbarbutton class="foxyproxy-ref"
-                  popup="notifyWhenCanceledPopupAutoAdd"
-                  tooltiptext="&foxyproxy.whatsthis;" />
               </row>
             </rows>
           </grid>
@@ -929,6 +920,10 @@
     <broadcaster id="autoAddBroadcaster" hidden="true" />
     <broadcaster id="quickAddBroadcaster" hidden="true" />    
   </broadcasterset>
+
+  <popupset>
+    <popup id="notifyWhenCanceledPopup"/>
+  </popupset> 
 
   <keyset>
     <key id="esc-key" keycode="VK_ESCAPE" command="closeCmd" />

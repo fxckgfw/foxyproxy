@@ -33,7 +33,7 @@ blockedPageMatch - a Match object specific to AutoAdd only. Only four of the pro
   .isMultiLine - whether or not .pattern should be tested against single or multi-line. Always true in this context.
   .name, .enabled, .temp, .isBlackList - not used in this context
 */
-dump("superadd.js\n");
+//dump("superadd.js\n");
 const DEF_PATTERN = "*://${3}${6}/*";
 function SuperAdd(mName) {
   this._match = new Match(true, mName, DEF_PATTERN);
@@ -80,7 +80,7 @@ SuperAdd.prototype = {
   _temp : false, // new for 2.8. Whether or not the expanded (post-applyTemplate()) .pattern is permanent or temporary.
   _proxy : null,
   _notify : true,
-  _notifyWhenCanceled : true,
+  _notifyWhenCanceled : true, // TODO: AutoAdd doesn't use; only QuickAdd, so make don't put it on the super class
   _prompt : false,
   _match : null,
   fpc : null,
@@ -341,13 +341,14 @@ AutoAdd.prototype.fromDOM = function(doc) {
   SuperAdd.prototype.fromDOM.apply(this, arguments);
   // new XPathEvaluator() is not yet available.
   var xpe = CC["@mozilla.org/dom/xpath-evaluator;1"].getService(CI.nsIDOMXPathEvaluator);
-  var nsResolver = xpe.createNSResolver(doc);  
   // Note XPath expression array index is 1-based.
-  var n = xpe.evaluate("/foxyproxy/autoadd/match[2]", doc, nsResolver, xpe.FIRST_ORDERED_NODE_TYPE , null);  
+  var n = xpe.evaluate("/foxyproxy/autoadd/match[2]", doc, xpe.createNSResolver(doc), xpe.FIRST_ORDERED_NODE_TYPE, null);  
   if (n == null) {
     // TODO: handle pre-2.8 installations
-    dump("upgrade to 2.8?\n");
+    dump("upgrade from 2.8?\n");
   }
-  else 
+  else {
+    this.__n = n;
     this._blockedPageMatch.fromDOM(n.singleNodeValue);
+  }
 };

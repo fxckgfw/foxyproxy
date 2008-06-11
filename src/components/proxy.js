@@ -11,7 +11,7 @@
 
 // See http://forums.mozillazine.org/viewtopic.php?t=308369
 
-dump("proxy.js\n");
+//dump("proxy.js\n");
 if (!CI) {
   // XPCOM module initialization
   var NSGetModule = function() { return ProxyModule; }
@@ -46,8 +46,7 @@ if (!CI) {
       loader.loadSubScript(fileProtocolHandler.getURLSpecFromFile(filePath));
     }
     catch (e) {
-      dump("Error loading " + filename + ": " + e + "\n");
-      dump(e.stack + "\n");
+      dump("Error loading " + filename + ": " + e + "\n" + e.stack + "\n");
       throw(e);
     }  
   }

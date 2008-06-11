@@ -45,11 +45,11 @@
 				label="&foxyproxy.quickadd.prompt.label;"
 				accesskey="&foxyproxy.quickadd.prompt.accesskey;"
 				tooltiptext="&foxyproxy.quickadd.prompt.tooltip;"/>
-      <checkbox id="notifyWhenCanceled"
+      <checkbox id="notifyWhenCanceled" observes="autoAddBroadcaster"
         label="&foxyproxy.quickadd.notify.whencanceled.label;"
         accesskey="&foxyproxy.quickadd.notify.whencanceled.accesskey;"
         tooltiptext="&foxyproxy.quickadd.notify.whencanceled.tooltip;"/>
-      <toolbarbutton id="tbqa" class="foxyproxy-ref"
+      <toolbarbutton class="foxyproxy-ref" observes="autoAddBroadcaster"
         popup="notifyWhenCanceledPopup" tooltiptext="&foxyproxy.whatsthis;"/>   
     </row>
 	</rows>
@@ -99,17 +99,11 @@
 <popupset>
   <popup id="wildcardReferencePopup"/>
   <popup id="patternTemplatePopup"/>
-  <popup id="notifyWhenCanceledPopup">
-		<description id="qaDesc" class="foxyproxy-tooltip foxyproxy-border" width="400" height="80px">
-      &foxyproxy.quickadd.notify.whencanceled.label2;</description>
-		<description id="aaDesc" class="foxyproxy-tooltip foxyproxy-border" hidden="true" width="400" height="80px">
-      &foxyproxy.autoadd.notify.whencanceled.label2;</description>
-  </popup>    
-  <popup id="tempPopup">
-		<description class="foxyproxy-tooltip foxyproxy-border" width="400" height="60px">
-      &foxyproxy.temp.popup.label;</description>
-  </popup>   
+  <popup id="notifyWhenCanceledPopup"/>
 </popupset>
 
+<broadcasterset>
+  <broadcaster id="autoAddBroadcaster" hidden="false"/>  
+</broadcasterset>
 <command id="patternCmd" label="&foxyproxy.pattern.label;" oncommand="onPattern()"/>
 </dialog>

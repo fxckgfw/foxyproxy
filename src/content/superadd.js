@@ -19,11 +19,7 @@ function onLoad() {
     var e = document.getElementById("notify");
     e.label = fp.getMessage("foxyproxy.autoadd.notify.label");
     e.setAttribute("tooltiptext", fp.getMessage("foxyproxy.autoadd.notify.tooltip2"));
-    e = document.getElementById("notifyWhenCanceled");
-    e.label = fp.getMessage("foxyproxy.autoadd.notify.whencanceled.label");
-    e.setAttribute("tooltiptext", fp.getMessage("foxyproxy.autoadd.notify.whencanceled.tooltip")); 
-    document.getElementById("qaDesc").setAttribute("hidden", true);
-    document.getElementById("aaDesc").setAttribute("hidden", false);
+    document.getElementById("autoAddBroadcaster").setAttribute("hidden", true);
   }   
   sizeToContent();  
 }

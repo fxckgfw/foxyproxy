@@ -13,6 +13,8 @@
 <!ENTITY foxyproxy.proxy.notes.accesskey "ا">
 <!ENTITY foxyproxy.proxy.notes.tooltip "یادداشت های پروکسی">
 <!ENTITY foxyproxy.pattern.label "الگوها">
+<!ENTITY foxyproxy.pattern.accesskey "P">
+<!ENTITY foxyproxy.pattern.tooltip "URL pattern">
 <!ENTITY foxyproxy.pattern.type.label "نوع الگو">
 <!ENTITY foxyproxy.whitelist.blacklist.label "لیست سیاه یا لیست سفید">
 <!ENTITY foxyproxy.pattern.name.label "نام الگو">
@@ -76,8 +78,6 @@
 <!ENTITY foxyproxy.copyright "Copyright">
 <!ENTITY foxyproxy.rights "تمام حقوق محفوظ است.">
 <!ENTITY foxyproxy.released "انشار با مجوز GPL">
-<!ENTITY foxyproxy.thanks "با سپاس از :">
-<!ENTITY foxyproxy.translations "ترجمه ها">
 <!ENTITY foxyproxy.tab.general.label "عمومی">
 <!ENTITY foxyproxy.tab.general.accesskey "و">
 <!ENTITY foxyproxy.tab.general.tooltip "تنظیمات عمومی پروکسی">
@@ -167,37 +167,6 @@
 <!ENTITY foxyproxy.issocks.label "پروکسی SOCKS؟">
 <!ENTITY foxyproxy.issocks.accesskey "S">
 <!ENTITY foxyproxy.issocks.tooltip "آیا این یک پروکسی وب یا SOCKS است؟">
-<!ENTITY foxyproxy.chinese.simplified "چینی ساده شده">
-<!ENTITY foxyproxy.chinese.traditional "چینی (سنتی)">
-<!ENTITY foxyproxy.croatian "کروات">
-<!ENTITY foxyproxy.czech "چکی">
-<!ENTITY foxyproxy.danish "دانمارکی">
-<!ENTITY foxyproxy.dutch "هلندی">
-<!ENTITY foxyproxy.english "انگلیسی">
-<!ENTITY foxyproxy.english.british "انگلیسی بریتانیایی">
-<!ENTITY foxyproxy.french "فرانسوی">
-<!ENTITY foxyproxy.german "آلمانی">
-<!ENTITY foxyproxy.greek "یونانی">
-<!ENTITY foxyproxy.hungarian "مجارستانی">
-<!ENTITY foxyproxy.italian "ایتالیایی">
-<!ENTITY foxyproxy.japanese "Japanese">
-<!ENTITY foxyproxy.persian "پارسی">
-<!ENTITY foxyproxy.polish "لهستانی">
-<!ENTITY foxyproxy.portugese.brazilian "پرتغالی (برزیل)">
-<!ENTITY foxyproxy.portugese.portugal "پرتغالی (پرتغال)">
-<!ENTITY foxyproxy.romanian "رومانیایی">
-<!ENTITY foxyproxy.russian "روسی">
-<!ENTITY foxyproxy.slovak "اسلواکی">
-<!ENTITY foxyproxy.spanish.spain "اسپانیایی (اسپانیا)">
-<!ENTITY foxyproxy.spanish.argentina "اسپانیایی (آرژانتین)">
-<!ENTITY foxyproxy.serbian "Serbian">
-<!ENTITY foxyproxy.swedish "سوئدی">
-<!ENTITY foxyproxy.thai.thailand "تایلندی">
-<!ENTITY foxyproxy.turkish "ترکی">
-<!ENTITY foxyproxy.ukrainian "اوکراینی">
-<!ENTITY foxyproxy.your.language "زبان شما">
-<!ENTITY foxyproxy.your.name.here "نام شما">
-<!ENTITY foxyproxy.anonymous "Anonymous">
 <!ENTITY foxyproxy.moveup.label "حرکت به بالا">
 <!ENTITY foxyproxy.moveup.tooltip "افزایش برتری انتخاب فعلی">
 <!ENTITY foxyproxy.moveup.accesskey "ا">
@@ -260,14 +229,9 @@
 <!ENTITY foxyproxy.autoadd.reload.accesskey "ا">
 <!ENTITY foxyproxy.autoadd.reload.tooltip "بارگذاری دوباره صفحه وقتی به یک پروکسی اضافه می شود">
 <!ENTITY foxyproxy.autoadd.notify.label "هنگام راه اندازی افزودن خودکار به من اطلاع بده">
+<!ENTITY foxyproxy.autoadd.notify.accesskey "N">
 <!ENTITY foxyproxy.autoadd.notify.tooltip "وقتی صفحه ای متوقف می شود به شما اطلاع می دهد.">
 <!ENTITY foxyproxy.autoadd.notify.tooltip2 "Display a popup when AutoAdd is activated">
-<!ENTITY foxyproxy.autoadd.notify.whencanceled.label "Notify me when AutoAdd is canceled">
-<!ENTITY foxyproxy.autoadd.notify.whencanceled.label2 "AutoAdd is automatically canceled when the URL in the address bar already matches a whitelist pattern in the AutoAdd proxy. In this way duplicate patterns, which can clutter your configuration, are prevented. This setting does not enable/disable cancelation; rather, it toggles notification when cancelation occurs.">
-<!ENTITY foxyproxy.autoadd.notify.whencanceled.tooltip "Display a popup when AutoAdd is activated but canceled">
-<!ENTITY foxyproxy.graphics "طراحی گرافیک و عکس ها :">
-<!ENTITY foxyproxy.website "ساخت وب سایت :">
-<!ENTITY foxyproxy.contributions "همکاران :">
 <!ENTITY foxyproxy.pacloadnotification.label "هنگام بارگذاری فایل های تنظیمات خودکار پروکسی به من خبر بده">
 <!ENTITY foxyproxy.pacloadnotification.accesskey "ا">
 <!ENTITY foxyproxy.pacloadnotification.tooltip "نمایش پنجره popup هنگام بارگذاری فایل PAC">
@@ -447,3 +411,17 @@
 <!ENTITY foxyproxy.statusbarwidth.tooltip "Prevents statusbar resizing">
 <!ENTITY foxyproxy.pixels "pixels">
 <!ENTITY foxyproxy.unlimited.label "[0: shrink to fit] ">
+<!ENTITY foxyproxy.temp.popup.label "Temporary patterns allow you to create patterns for URLs that you don&apos;t visit often without cluttering the pattern list for a proxy. Temporary patterns are not saved to disk. They are kept in-memory and used for this Firefox session only.">
+<!ENTITY foxyproxy.temp.popup.height "120">
+<!ENTITY foxyproxy.temp.popup.width "400">
+<!ENTITY foxyproxy.temp.label "Temporary">
+<!ENTITY foxyproxy.temp.accesskey "T">
+<!ENTITY foxyproxy.temp.tooltip "Pattern is used only for this Firefox session">
+<!ENTITY foxyproxy.define.label "Define">
+<!ENTITY foxyproxy.define.accesskey "D">
+<!ENTITY foxyproxy.define.tooltip "Define">
+<!ENTITY foxyproxy.pattern.to.quickadd.label "Pattern to quickly add to proxy">
+<!ENTITY foxyproxy.pattern.to.autoadd.label "Pattern to automatically add to proxy">
+<!ENTITY foxyproxy.home "Home">
+<!ENTITY foxyproxy.support "Support">
+<!ENTITY foxyproxy.credits "Credits">

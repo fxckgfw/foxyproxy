@@ -1,0 +1,13 @@
+<!ENTITY help.title.foxyproxy.help "FoxyProxy Помош">
+<!ENTITY help.patterns "URL(веб адреса) Модели">
+<!ENTITY help.ff.asks "Пред Firefox да презентира URL(веб адреса), го прашува FoxyProxy дали да користи прокси сервер.">
+<!ENTITY help.fp.answers "FoxyProxy го одговара ова прашајне со обид да ја поврзи актуелната URL(веб адреса) со сите модели од URL(веб адреси) што се одредени овде. Најлесен начин на правејне модели е со употреба на непознати.">
+<!ENTITY help.a.wildcards "Hепознати">
+<!ENTITY help.p.wildcards.are "Употреба на непознати е честа кај компјутерите. Знакот (*) заменува нула или повејче различни знаци (букви/бгојки ...итн). Знакот (?) заменува само еден знак (буквa/бгојкa ...итн)">
+<!ENTITY help.p.regexp "По сложени комбинации се возможни со употреба на официјални изрази. За повејче детаљи видете &apos;Помош Состав&apos;">
+<!ENTITY help.h4.wildcard.examples "Примери за користење непознати">
+<!ENTITY help.th.url.pattern "URL(веб адреса) модели">
+<!ENTITY help.th.some.matches "Неколку еднакви">
+<!ENTITY help.th.some.non.matches "Неколку не-еднакви">
+<!ENTITY help.td.everything.in.y "Everything in Yahoo&apos;s domain">
+<!ENTITY help.i.matches.everything "Matches everything">

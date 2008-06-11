@@ -345,10 +345,13 @@ AutoAdd.prototype.fromDOM = function(doc) {
   var n = xpe.evaluate("/foxyproxy/autoadd/match[2]", doc, xpe.createNSResolver(doc), xpe.FIRST_ORDERED_NODE_TYPE, null);  
   if (n == null) {
     // TODO: handle pre-2.8 installations
-    dump("upgrade from 2.8?\n");
+    dump("upgrade from 2.8\n");
   }
   else {
-    this.__n = n;
-    this._blockedPageMatch.fromDOM(n.singleNodeValue);
+    //this.__n = n;
+    try {
+      this._blockedPageMatch.fromDOM(n.singleNodeValue);
+    }
+    catch (e) {/*above code fails*/}
   }
 };

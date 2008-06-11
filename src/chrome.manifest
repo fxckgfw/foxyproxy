@@ -10,8 +10,10 @@ locale	foxyproxy	es-ES	locale/es-ES/
 locale	foxyproxy	fa-IR	locale/fa-IR/
 locale	foxyproxy	fr-FR	locale/fr-FR/
 locale	foxyproxy	hr-HR	locale/hr-HR/
+locale  foxyproxy hu-HU locale/hu-HU/
 locale	foxyproxy	it-IT	locale/it-IT/
 locale	foxyproxy	ja-JP	locale/ja-JP/
+locale  foxyproxy mk-MK locale/mk-MK/
 locale	foxyproxy	nl-NL	locale/nl-NL/
 locale	foxyproxy	pl-PL	locale/pl-PL/
 locale	foxyproxy	pt-BR	locale/pt-BR/

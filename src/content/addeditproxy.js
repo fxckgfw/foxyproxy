@@ -144,12 +144,14 @@ function _checkUri() {
 }
 
 function onAddEdit(isNew) {
-  var idx = urlsTree.currentIndex;
-  if (!isNew && idx == -1) return; // safety; may not be necessary anymore
+  var idx = urlsTree.currentIndex, m;
+  if (isNew) {
+    m = CC["@leahscape.org/foxyproxy/match;1"].createInstance().wrappedJSObject;
+  }
+  else if (idx == -1) return; // safety; may not be necessary anymore
 
-  var m = proxy.matches[idx];
-  var params = {inn:{match: (isNew ? CC["@leahscape.org/foxyproxy/match;1"].createInstance().wrappedJSObject : m),
-    superadd:false}, out:null};
+
+  var params = {inn:{match: (isNew ? m : proxy.matches[idx]), superadd:false}, out:null};
 
   window.openDialog("chrome://foxyproxy/content/pattern.xul", "",
     "chrome, dialog, modal, resizable=yes", params).focus();

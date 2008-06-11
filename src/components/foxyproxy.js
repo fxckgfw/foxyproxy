@@ -1313,8 +1313,7 @@ biesi>	passing it the appropriate proxyinfo
 
 ///////////////////////////// LoggEntry class ///////////////////////
 function LoggEntry(proxy, aMatch, uriStr, type, errMsg) {
-    this.timestamp = Date.now();  
-    (!this.randomMsg && this.init());
+    this.timestamp = Date.now();
     this.uri = uriStr;
     this.proxy = proxy;
     this.proxyName = proxy.name; // Make local copy so logg history doesn't change if user changes proxy    

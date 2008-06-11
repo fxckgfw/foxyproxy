@@ -13,6 +13,8 @@
 <!ENTITY foxyproxy.proxy.notes.accesskey "N">
 <!ENTITY foxyproxy.proxy.notes.tooltip "代理伺服器註釋">
 <!ENTITY foxyproxy.pattern.label "樣式">
+<!ENTITY foxyproxy.pattern.accesskey "P">
+<!ENTITY foxyproxy.pattern.tooltip "URL pattern">
 <!ENTITY foxyproxy.pattern.type.label "樣式類別">
 <!ENTITY foxyproxy.whitelist.blacklist.label "白名單或黑名單">
 <!ENTITY foxyproxy.pattern.name.label "樣式名稱(P)">
@@ -76,8 +78,6 @@
 <!ENTITY foxyproxy.copyright "版權">
 <!ENTITY foxyproxy.rights "版權所有。">
 <!ENTITY foxyproxy.released "符合 GPL 授權。">
-<!ENTITY foxyproxy.thanks "特別感謝">
-<!ENTITY foxyproxy.translations "翻譯人員">
 <!ENTITY foxyproxy.tab.general.label "一般(G)">
 <!ENTITY foxyproxy.tab.general.accesskey "G">
 <!ENTITY foxyproxy.tab.general.tooltip "代理伺服器一般設定">
@@ -167,37 +167,6 @@
 <!ENTITY foxyproxy.issocks.label "SOCKS 代理伺服器？">
 <!ENTITY foxyproxy.issocks.accesskey "S">
 <!ENTITY foxyproxy.issocks.tooltip "這是 HTTP 還是 SOCKS 代理伺服器？">
-<!ENTITY foxyproxy.chinese.simplified "簡體中文">
-<!ENTITY foxyproxy.chinese.traditional "正體中文">
-<!ENTITY foxyproxy.croatian "克羅埃西亞語">
-<!ENTITY foxyproxy.czech "捷克語">
-<!ENTITY foxyproxy.danish "丹麥語">
-<!ENTITY foxyproxy.dutch "荷蘭語">
-<!ENTITY foxyproxy.english "英語">
-<!ENTITY foxyproxy.english.british "英語（英國）">
-<!ENTITY foxyproxy.french "法語">
-<!ENTITY foxyproxy.german "德語">
-<!ENTITY foxyproxy.greek "希臘語">
-<!ENTITY foxyproxy.hungarian "匈牙利語">
-<!ENTITY foxyproxy.italian "義大利語">
-<!ENTITY foxyproxy.japanese "日語">
-<!ENTITY foxyproxy.persian "波斯語">
-<!ENTITY foxyproxy.polish "波蘭語">
-<!ENTITY foxyproxy.portugese.brazilian "葡萄牙語（巴西）">
-<!ENTITY foxyproxy.portugese.portugal "葡萄牙語（葡萄牙）">
-<!ENTITY foxyproxy.romanian "羅馬尼亞語">
-<!ENTITY foxyproxy.russian "俄語">
-<!ENTITY foxyproxy.slovak "斯洛伐克語">
-<!ENTITY foxyproxy.spanish.spain "西班牙語（西班牙）">
-<!ENTITY foxyproxy.spanish.argentina "西班牙語（阿根廷）">
-<!ENTITY foxyproxy.serbian "賽爾維亞語">
-<!ENTITY foxyproxy.swedish "瑞典語">
-<!ENTITY foxyproxy.thai.thailand "泰語（泰國）">
-<!ENTITY foxyproxy.turkish "土耳其語">
-<!ENTITY foxyproxy.ukrainian "烏克蘭語">
-<!ENTITY foxyproxy.your.language "沒有你的語系？">
-<!ENTITY foxyproxy.your.name.here "點擊這裏加入翻譯行列！">
-<!ENTITY foxyproxy.anonymous "匿名">
 <!ENTITY foxyproxy.moveup.label "向上移動(U)">
 <!ENTITY foxyproxy.moveup.tooltip "提高選擇項目的優先權">
 <!ENTITY foxyproxy.moveup.accesskey "U">
@@ -260,14 +229,9 @@
 <!ENTITY foxyproxy.autoadd.reload.accesskey "R">
 <!ENTITY foxyproxy.autoadd.reload.tooltip "樣式加入代理伺服器設定後自動重新載入目前網頁">
 <!ENTITY foxyproxy.autoadd.notify.label "當「自動新增」啟動時通知我">
+<!ENTITY foxyproxy.autoadd.notify.accesskey "N">
 <!ENTITY foxyproxy.autoadd.notify.tooltip "當網頁被阻擋且樣式被加入代理伺服器時通知你">
 <!ENTITY foxyproxy.autoadd.notify.tooltip2 "當「自動新增」啟動時顯示通知視窗">
-<!ENTITY foxyproxy.autoadd.notify.whencanceled.label "當「自動新增」取消時通知我">
-<!ENTITY foxyproxy.autoadd.notify.whencanceled.label2 "當網址列的網址符合白名單時，自動新增會自動取消這個網址加入代理伺服器，避免在設定檔裏出現多餘且無效的樣式。這個設定並不會啟用/停用自動取消功能，而是開/關自動取消時的通知視窗。">
-<!ENTITY foxyproxy.autoadd.notify.whencanceled.tooltip "當「自動新增」已啟動但取消時顯示通知視窗">
-<!ENTITY foxyproxy.graphics "介面及圖示設計：">
-<!ENTITY foxyproxy.website "網頁設計：">
-<!ENTITY foxyproxy.contributions "貢獻：">
 <!ENTITY foxyproxy.pacloadnotification.label "當自動組態指命碼（PAC）檔案載入時通知我(L)">
 <!ENTITY foxyproxy.pacloadnotification.accesskey "L">
 <!ENTITY foxyproxy.pacloadnotification.tooltip "當自動組態指命碼（PAC）檔案載入時顯示通知視窗">
@@ -447,3 +411,17 @@
 <!ENTITY foxyproxy.statusbarwidth.tooltip "避免改變狀態列大小">
 <!ENTITY foxyproxy.pixels "點">
 <!ENTITY foxyproxy.unlimited.label "[0：縮小以適合大小] ">
+<!ENTITY foxyproxy.temp.popup.label "臨時性樣式讓你建立不常造訪的網址的樣式，這些樣式不會儲存到設定檔中造成樣式清單紊亂，而是保留在記憶體中，只在這次執行 Firefox 有效。">
+<!ENTITY foxyproxy.temp.popup.height "120">
+<!ENTITY foxyproxy.temp.popup.width "400">
+<!ENTITY foxyproxy.temp.label "臨時性樣式(T)">
+<!ENTITY foxyproxy.temp.accesskey "T">
+<!ENTITY foxyproxy.temp.tooltip "樣式只在這次執行 Firefox 有效">
+<!ENTITY foxyproxy.define.label "Define">
+<!ENTITY foxyproxy.define.accesskey "D">
+<!ENTITY foxyproxy.define.tooltip "Define">
+<!ENTITY foxyproxy.pattern.to.quickadd.label "Pattern to quickly add to proxy">
+<!ENTITY foxyproxy.pattern.to.autoadd.label "Pattern to automatically add to proxy">
+<!ENTITY foxyproxy.home "Home">
+<!ENTITY foxyproxy.support "Support">
+<!ENTITY foxyproxy.credits "Credits">

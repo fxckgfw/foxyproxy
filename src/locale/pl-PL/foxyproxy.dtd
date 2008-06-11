@@ -13,6 +13,8 @@
 <!ENTITY foxyproxy.proxy.notes.accesskey "U">
 <!ENTITY foxyproxy.proxy.notes.tooltip "Uwagi o proxy">
 <!ENTITY foxyproxy.pattern.label "Wzorzec">
+<!ENTITY foxyproxy.pattern.accesskey "P">
+<!ENTITY foxyproxy.pattern.tooltip "URL pattern">
 <!ENTITY foxyproxy.pattern.type.label "Typ wzorca">
 <!ENTITY foxyproxy.whitelist.blacklist.label "Zezwolenia">
 <!ENTITY foxyproxy.pattern.name.label "Nazwa wzorca">
@@ -76,8 +78,6 @@
 <!ENTITY foxyproxy.copyright "Prawa autorskie: Copyright">
 <!ENTITY foxyproxy.rights "Wszelkie prawa zastrzeżone.">
 <!ENTITY foxyproxy.released "Wydano na bazie licencji GPL.">
-<!ENTITY foxyproxy.thanks "Specjalne podziękowania dla">
-<!ENTITY foxyproxy.translations "Tłumaczenia">
 <!ENTITY foxyproxy.tab.general.label "Ogólne">
 <!ENTITY foxyproxy.tab.general.accesskey "O">
 <!ENTITY foxyproxy.tab.general.tooltip "Zarządzanie ogólnymi ustawieniami proxy">
@@ -167,37 +167,6 @@
 <!ENTITY foxyproxy.issocks.label "Proxy SOCKS">
 <!ENTITY foxyproxy.issocks.accesskey "S">
 <!ENTITY foxyproxy.issocks.tooltip "Zaznacz to pole jeśli chcesz używać proxy SOCKS">
-<!ENTITY foxyproxy.chinese.simplified "Chiński(uproszczony)">
-<!ENTITY foxyproxy.chinese.traditional "Chiński(tradycyjny)">
-<!ENTITY foxyproxy.croatian "Chorwacki">
-<!ENTITY foxyproxy.czech "Czeski">
-<!ENTITY foxyproxy.danish "Duński">
-<!ENTITY foxyproxy.dutch "Holenderski">
-<!ENTITY foxyproxy.english "Angielski">
-<!ENTITY foxyproxy.english.british "Angielski-brytyjski">
-<!ENTITY foxyproxy.french "Francuski">
-<!ENTITY foxyproxy.german "Niemiecki">
-<!ENTITY foxyproxy.greek "Grecki">
-<!ENTITY foxyproxy.hungarian "Węgierski">
-<!ENTITY foxyproxy.italian "Włoski">
-<!ENTITY foxyproxy.japanese "Japoński">
-<!ENTITY foxyproxy.persian "Perski">
-<!ENTITY foxyproxy.polish "Polski">
-<!ENTITY foxyproxy.portugese.brazilian "Portugalski-brazylijski">
-<!ENTITY foxyproxy.portugese.portugal "Portugalski">
-<!ENTITY foxyproxy.romanian "Rumuński">
-<!ENTITY foxyproxy.russian "Rosyjski">
-<!ENTITY foxyproxy.slovak "Słowacki">
-<!ENTITY foxyproxy.spanish.spain "Hiszpański">
-<!ENTITY foxyproxy.spanish.argentina "Hiszpański (argentyński)">
-<!ENTITY foxyproxy.serbian "Serbski">
-<!ENTITY foxyproxy.swedish "Szwedzki">
-<!ENTITY foxyproxy.thai.thailand "Tajski">
-<!ENTITY foxyproxy.turkish "Turecki">
-<!ENTITY foxyproxy.ukrainian "Ukraiński">
-<!ENTITY foxyproxy.your.language "Polski">
-<!ENTITY foxyproxy.your.name.here "Leszek(teo)Życzkowski">
-<!ENTITY foxyproxy.anonymous "Anonimowy">
 <!ENTITY foxyproxy.moveup.label "Do góry">
 <!ENTITY foxyproxy.moveup.tooltip "Zwiększa priorytet tego elementu">
 <!ENTITY foxyproxy.moveup.accesskey "G">
@@ -260,14 +229,9 @@
 <!ENTITY foxyproxy.autoadd.reload.accesskey "D">
 <!ENTITY foxyproxy.autoadd.reload.tooltip "Automatycznie odświeża stronę po dodaniu jej do proxy">
 <!ENTITY foxyproxy.autoadd.notify.label "Informuj o uaktywnieniu autododawania">
+<!ENTITY foxyproxy.autoadd.notify.accesskey "N">
 <!ENTITY foxyproxy.autoadd.notify.tooltip "Informuje, gdy strona jest zablokowana i wzorzec adresu URL jest dodany do proxy">
 <!ENTITY foxyproxy.autoadd.notify.tooltip2 "Wyświetla powiadomienie, gdy autododawanie jest aktywne">
-<!ENTITY foxyproxy.autoadd.notify.whencanceled.label "Powiadamiaj, gdy autododawanie zostanie wyłączone">
-<!ENTITY foxyproxy.autoadd.notify.whencanceled.label2 "Autododawanie jest automatycznie anulowane, gdy URL wprowadzony do paska adresu odpowiada wzorcowi znajdującemu się na liście dozwolonych, automatycznie dodanych proxy. Dzięki temu unika się powielania wzorców i zaśmiecania listy. Ta opcja nie wyłącza/włącza anulowania, raczej przełącza w tryb powiadamiania, gdy anulowanie wystąpi.">
-<!ENTITY foxyproxy.autoadd.notify.whencanceled.tooltip "Wyświetlaj powiadomienie, gdy autododawanie jest aktywne, ale anulowane">
-<!ENTITY foxyproxy.graphics "Grafika wykonana przez:">
-<!ENTITY foxyproxy.website "Strona wykonana przez:">
-<!ENTITY foxyproxy.contributions "Współtwórcy:">
 <!ENTITY foxyproxy.pacloadnotification.label "Powiadamiaj o wczytywaniu pliku *.pac">
 <!ENTITY foxyproxy.pacloadnotification.accesskey "W">
 <!ENTITY foxyproxy.pacloadnotification.tooltip "Będzie wyświetlane powiadomienie o wczytywaniu pliku automatycznej konfiguracji proxy">
@@ -304,8 +268,8 @@
 <!ENTITY foxyproxy.quickadd.notify.whencanceled.label2 "Szybkie dodawanie jest automatycznie anulowane gdy jest uaktywniane przez skrót [Alt+F2], a obecny w pasku adresu URL jest skojarzony z istniejącym dozwolonym wzorcem. Ten sposób zabezpiecza przed utworzeniem duplikatu, który może spowodować zamęt w twojej konfiguracji. To ustawienie nie włącza/wyłącza anulowania, a włącza powiadomienie, gdy anulowanie następuje.">
 <!ENTITY foxyproxy.quickadd.notify.whencanceled.accesskey "P">
 <!ENTITY foxyproxy.quickadd.notify.whencanceled.tooltip "Wyświetl powiadomienie gdy szybkie dodawanie jest uaktywnione ale anulowane">
-<!ENTITY foxyproxy.quickadd.notify.whencanceled.popup.width "400px">
-<!ENTITY foxyproxy.quickadd.notify.whencanceled.popup.height "130px">
+<!ENTITY foxyproxy.quickadd.notify.whencanceled.popup.width "410px">
+<!ENTITY foxyproxy.quickadd.notify.whencanceled.popup.height "80px">
 <!ENTITY foxyproxy.whatsthis "Co to jest?">
 <!ENTITY foxyproxy.quickadd.prompt.label "Sugeruj edycję i potwierdzanie dodania wzorca">
 <!ENTITY foxyproxy.quickadd.prompt.accesskey "S">
@@ -396,22 +360,22 @@
 <!ENTITY foxyproxy.toolbaractivation.label "Działanie ikony FoxyProxy na pasku narzędziowym">
 <!ENTITY foxyproxy.toolbaractivation.accesskey "d">
 <!ENTITY foxyproxy.toolbaractivation.tooltip "Ustawienia działania przycisków myszy na pasku narzędziowym">
-<!ENTITY foxyproxy.leftclicksb.label "Kliknięcie lpm">
+<!ENTITY foxyproxy.leftclicksb.label "Kliknięcie l.p.m.">
 <!ENTITY foxyproxy.leftclicksb.accesskey "L">
-<!ENTITY foxyproxy.leftclicksb.tooltip "Działanie jakie zostanie wykonane po kliknięciu lpm na ikonie FoxyProxy na pasku stanu">
-<!ENTITY foxyproxy.middleclicksb.label "Kliknięcie śpm">
+<!ENTITY foxyproxy.leftclicksb.tooltip "Działanie jakie zostanie wykonane po kliknięciu l.p.m. na ikonie FoxyProxy na pasku stanu">
+<!ENTITY foxyproxy.middleclicksb.label "Kliknięcie ś.p.m.">
 <!ENTITY foxyproxy.middleclicksb.accesskey "M">
-<!ENTITY foxyproxy.middleclicksb.tooltip "Działanie jakie zostanie wykonane po kliknięciu śpm na ikonie FoxyProxy na pasku stanu">
-<!ENTITY foxyproxy.rightclicksb.label "Kliknięcie ppm">
+<!ENTITY foxyproxy.middleclicksb.tooltip "Działanie jakie zostanie wykonane po kliknięciu ś.p.m. na ikonie FoxyProxy na pasku stanu">
+<!ENTITY foxyproxy.rightclicksb.label "Kliknięcie p.p.m.">
 <!ENTITY foxyproxy.rightclicksb.accesskey "P">
-<!ENTITY foxyproxy.rightclicksb.tooltip "Działanie jakie zostanie wykonane po kliknięciu ppm na ikonie FoxyProxy na pasku stanu">
-<!ENTITY foxyproxy.leftclicktb.label "Kliknięcie lpm">
+<!ENTITY foxyproxy.rightclicksb.tooltip "Działanie jakie zostanie wykonane po kliknięciu p.p.m. na ikonie FoxyProxy na pasku stanu">
+<!ENTITY foxyproxy.leftclicktb.label "Kliknięcie l.p.m.">
 <!ENTITY foxyproxy.leftclicktb.accesskey "C">
-<!ENTITY foxyproxy.leftclicktb.tooltip "Działanie jakie zostanie wykonane po kliknięciu lpm na ikonie FoxyProxy na pasku narzędziowym">
-<!ENTITY foxyproxy.middleclicktb.label "Kliknięcie śpm">
+<!ENTITY foxyproxy.leftclicktb.tooltip "Działanie jakie zostanie wykonane po kliknięciu l.p.m. na ikonie FoxyProxy na pasku narzędziowym">
+<!ENTITY foxyproxy.middleclicktb.label "Kliknięcie ś.p.m.">
 <!ENTITY foxyproxy.middleclicktb.accesskey "N">
-<!ENTITY foxyproxy.middleclicktb.tooltip "Działanie jakie zostanie wykonane po kliknięciu śpm na ikonie FoxyProxy na pasku narzędziowym">
-<!ENTITY foxyproxy.rightclicktb.label "Kliknięcie ppm">
+<!ENTITY foxyproxy.middleclicktb.tooltip "Działanie jakie zostanie wykonane po kliknięciu ś.p.m. na ikonie FoxyProxy na pasku narzędziowym">
+<!ENTITY foxyproxy.rightclicktb.label "Kliknięcie p.p.m.">
 <!ENTITY foxyproxy.rightclicktb.accesskey "K">
 <!ENTITY foxyproxy.rightclicktb.tooltip "Działanie jakie zostanie wykonane po kliknięciu ppm na ikonie FoxyProxy na pasku narzędziowym">
 <!ENTITY foxyproxy.click.options "wyświetla okno dialogowe opcji">
@@ -447,3 +411,17 @@
 <!ENTITY foxyproxy.statusbarwidth.tooltip "Ogranicza szerokość opisu trybu FoxyProxy na pasku stanu">
 <!ENTITY foxyproxy.pixels "px">
 <!ENTITY foxyproxy.unlimited.label "[0: dopasowuje się do zawartości]">
+<!ENTITY foxyproxy.temp.popup.label "Wzorce tymczasowe pozwalają utworzyć wzorce dla rzadko odwiedzanych witryn. Dzięki temu lista wzorców nie jest zaśmiecana. Wzorce tymczasowe nie są zapisywane na dysku, są przetrzymywane w pamięci i używane tylko dla danej sesji Firefoksa.">
+<!ENTITY foxyproxy.temp.popup.height "70">
+<!ENTITY foxyproxy.temp.popup.width "400">
+<!ENTITY foxyproxy.temp.label "Wzorce tymczasowe">
+<!ENTITY foxyproxy.temp.accesskey "T">
+<!ENTITY foxyproxy.temp.tooltip "Wzorzec jest używany tylko dla tej sesji Firefoksa">
+<!ENTITY foxyproxy.define.label "Define">
+<!ENTITY foxyproxy.define.accesskey "D">
+<!ENTITY foxyproxy.define.tooltip "Define">
+<!ENTITY foxyproxy.pattern.to.quickadd.label "Pattern to quickly add to proxy">
+<!ENTITY foxyproxy.pattern.to.autoadd.label "Pattern to automatically add to proxy">
+<!ENTITY foxyproxy.home "Home">
+<!ENTITY foxyproxy.support "Support">
+<!ENTITY foxyproxy.credits "Credits">

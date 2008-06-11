@@ -13,6 +13,8 @@
 <!ENTITY foxyproxy.proxy.notes.accesskey "n">
 <!ENTITY foxyproxy.proxy.notes.tooltip "Proxyanteckningar">
 <!ENTITY foxyproxy.pattern.label "Mönster">
+<!ENTITY foxyproxy.pattern.accesskey "P">
+<!ENTITY foxyproxy.pattern.tooltip "URL pattern">
 <!ENTITY foxyproxy.pattern.type.label "Typ av mönster">
 <!ENTITY foxyproxy.whitelist.blacklist.label "Vitlista (inkluderade) eller Svartlista (exkluderade)">
 <!ENTITY foxyproxy.pattern.name.label "Namn för mönster">
@@ -76,8 +78,6 @@
 <!ENTITY foxyproxy.copyright "Copyright">
 <!ENTITY foxyproxy.rights "Eftertryck förbjudet.">
 <!ENTITY foxyproxy.released "Utgiven under GPL-licensen.">
-<!ENTITY foxyproxy.thanks "Särskilt tack till">
-<!ENTITY foxyproxy.translations "Översättningar">
 <!ENTITY foxyproxy.tab.general.label "Allmänna inställningar">
 <!ENTITY foxyproxy.tab.general.accesskey "i">
 <!ENTITY foxyproxy.tab.general.tooltip "Hantera allmänna proxyinställningar">
@@ -167,37 +167,6 @@
 <!ENTITY foxyproxy.issocks.label "SOCKS proxy?">
 <!ENTITY foxyproxy.issocks.accesskey "S">
 <!ENTITY foxyproxy.issocks.tooltip "Är detta en proxy för webb eller SOCKS?">
-<!ENTITY foxyproxy.chinese.simplified "Kinesiska (enkel)">
-<!ENTITY foxyproxy.chinese.traditional "Kinesiska (traditionell)">
-<!ENTITY foxyproxy.croatian "Kroatiska">
-<!ENTITY foxyproxy.czech "Tjeckiska">
-<!ENTITY foxyproxy.danish "Danska">
-<!ENTITY foxyproxy.dutch "Holländska">
-<!ENTITY foxyproxy.english "Engelska">
-<!ENTITY foxyproxy.english.british "Engelska (Engelsk)">
-<!ENTITY foxyproxy.french "Franska">
-<!ENTITY foxyproxy.german "Tyska">
-<!ENTITY foxyproxy.greek "Grekiska">
-<!ENTITY foxyproxy.hungarian "Ungerska">
-<!ENTITY foxyproxy.italian "Italienska">
-<!ENTITY foxyproxy.japanese "Japanese">
-<!ENTITY foxyproxy.persian "Persiska">
-<!ENTITY foxyproxy.polish "Polska">
-<!ENTITY foxyproxy.portugese.brazilian "Portugisiska (Brasilien)">
-<!ENTITY foxyproxy.portugese.portugal "Portugisiska (Portugal)">
-<!ENTITY foxyproxy.romanian "Rumänska">
-<!ENTITY foxyproxy.russian "Ryska">
-<!ENTITY foxyproxy.slovak "Slovakiska">
-<!ENTITY foxyproxy.spanish.spain "Spanska (Spanien)">
-<!ENTITY foxyproxy.spanish.argentina "Spanska (Argentina)">
-<!ENTITY foxyproxy.serbian "Serbian">
-<!ENTITY foxyproxy.swedish "Svenska">
-<!ENTITY foxyproxy.thai.thailand "Thailändska (Thailand)">
-<!ENTITY foxyproxy.turkish "Turkiska">
-<!ENTITY foxyproxy.ukrainian "Ukrainska">
-<!ENTITY foxyproxy.your.language "Ditt språk">
-<!ENTITY foxyproxy.your.name.here "Ditt namn">
-<!ENTITY foxyproxy.anonymous "Anonymous">
 <!ENTITY foxyproxy.moveup.label "Flytta upp">
 <!ENTITY foxyproxy.moveup.tooltip "Öka prioritet för detta val">
 <!ENTITY foxyproxy.moveup.accesskey "u">
@@ -260,14 +229,9 @@
 <!ENTITY foxyproxy.autoadd.reload.accesskey "L">
 <!ENTITY foxyproxy.autoadd.reload.tooltip "Automatiskt ladda om sidan efter att har lagts till i proxyn">
 <!ENTITY foxyproxy.autoadd.notify.label "Meddela mig när AutoAdd använts">
+<!ENTITY foxyproxy.autoadd.notify.accesskey "N">
 <!ENTITY foxyproxy.autoadd.notify.tooltip "Informerar dig när en sida är blockerad &amp; URL-mönstret är tillagd till proxyn">
 <!ENTITY foxyproxy.autoadd.notify.tooltip2 "Display a popup when AutoAdd is activated">
-<!ENTITY foxyproxy.autoadd.notify.whencanceled.label "Notify me when AutoAdd is canceled">
-<!ENTITY foxyproxy.autoadd.notify.whencanceled.label2 "AutoAdd is automatically canceled when the URL in the address bar already matches a whitelist pattern in the AutoAdd proxy. In this way duplicate patterns, which can clutter your configuration, are prevented. This setting does not enable/disable cancelation; rather, it toggles notification when cancelation occurs.">
-<!ENTITY foxyproxy.autoadd.notify.whencanceled.tooltip "Display a popup when AutoAdd is activated but canceled">
-<!ENTITY foxyproxy.graphics "Grafisk design och bilder av">
-<!ENTITY foxyproxy.website "Webbplats genom">
-<!ENTITY foxyproxy.contributions "Bidrag från">
 <!ENTITY foxyproxy.pacloadnotification.label "Meddela mig när proxyns autokonfigurationsfil laddats">
 <!ENTITY foxyproxy.pacloadnotification.accesskey "l">
 <!ENTITY foxyproxy.pacloadnotification.tooltip "Visa en popupruta när en PAC-fil laddats">
@@ -447,3 +411,17 @@
 <!ENTITY foxyproxy.statusbarwidth.tooltip "Förhindra storleksändring av statusfältet">
 <!ENTITY foxyproxy.pixels "pixlar">
 <!ENTITY foxyproxy.unlimited.label "[0: anpassad förminskning]">
+<!ENTITY foxyproxy.temp.popup.label "Temporära mönster gör att du kan skapa URL-mönster för sidor du inte besöker så ofta. Temporära mönster sparas inte till disk utan spara i datorns minne och används bara för Firefox.">
+<!ENTITY foxyproxy.temp.popup.height "120">
+<!ENTITY foxyproxy.temp.popup.width "400">
+<!ENTITY foxyproxy.temp.label "Temporär">
+<!ENTITY foxyproxy.temp.accesskey "T">
+<!ENTITY foxyproxy.temp.tooltip "Mönster används endast för denna Firefox-session">
+<!ENTITY foxyproxy.define.label "Define">
+<!ENTITY foxyproxy.define.accesskey "D">
+<!ENTITY foxyproxy.define.tooltip "Define">
+<!ENTITY foxyproxy.pattern.to.quickadd.label "Pattern to quickly add to proxy">
+<!ENTITY foxyproxy.pattern.to.autoadd.label "Pattern to automatically add to proxy">
+<!ENTITY foxyproxy.home "Home">
+<!ENTITY foxyproxy.support "Support">
+<!ENTITY foxyproxy.credits "Credits">

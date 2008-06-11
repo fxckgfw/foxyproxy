@@ -13,6 +13,8 @@
 <!ENTITY foxyproxy.proxy.notes.accesskey "П">
 <!ENTITY foxyproxy.proxy.notes.tooltip "Примечания прокси">
 <!ENTITY foxyproxy.pattern.label "Шаблон">
+<!ENTITY foxyproxy.pattern.accesskey "P">
+<!ENTITY foxyproxy.pattern.tooltip "URL pattern">
 <!ENTITY foxyproxy.pattern.type.label "Тип шаблона">
 <!ENTITY foxyproxy.whitelist.blacklist.label "&quot;Белый&quot; список (разрешения) или &quot;чёрный&quot; список (запрещения)">
 <!ENTITY foxyproxy.pattern.name.label "Название шаблона">
@@ -76,8 +78,6 @@
 <!ENTITY foxyproxy.copyright "Copyright">
 <!ENTITY foxyproxy.rights "Все права защищены.">
 <!ENTITY foxyproxy.released "Реализовано под лицензией GPL.">
-<!ENTITY foxyproxy.thanks "Особая благодарность:">
-<!ENTITY foxyproxy.translations "Перевод интерфейса:">
 <!ENTITY foxyproxy.tab.general.label "Общие">
 <!ENTITY foxyproxy.tab.general.accesskey "О">
 <!ENTITY foxyproxy.tab.general.tooltip "Управление основными настройками прокси">
@@ -167,37 +167,6 @@
 <!ENTITY foxyproxy.issocks.label "SOCKS-прокси?">
 <!ENTITY foxyproxy.issocks.accesskey "S">
 <!ENTITY foxyproxy.issocks.tooltip "Это веб- или SOCKS-прокси?">
-<!ENTITY foxyproxy.chinese.simplified "Китайский (упрощенный)">
-<!ENTITY foxyproxy.chinese.traditional "Китайский (традиционный)">
-<!ENTITY foxyproxy.croatian "Хорватский">
-<!ENTITY foxyproxy.czech "Чешский">
-<!ENTITY foxyproxy.danish "Датский">
-<!ENTITY foxyproxy.dutch "Голландский">
-<!ENTITY foxyproxy.english "Английский">
-<!ENTITY foxyproxy.english.british "Английский (Британия)">
-<!ENTITY foxyproxy.french "Французский">
-<!ENTITY foxyproxy.german "Немецкий">
-<!ENTITY foxyproxy.greek "Греческий">
-<!ENTITY foxyproxy.hungarian "Венгерский">
-<!ENTITY foxyproxy.italian "Итальянский">
-<!ENTITY foxyproxy.japanese "Japanese">
-<!ENTITY foxyproxy.persian "Персидский">
-<!ENTITY foxyproxy.polish "Польский">
-<!ENTITY foxyproxy.portugese.brazilian "Португальский (Бразилия)">
-<!ENTITY foxyproxy.portugese.portugal "Португальский (Португалия)">
-<!ENTITY foxyproxy.romanian "Румынский">
-<!ENTITY foxyproxy.russian "Русский">
-<!ENTITY foxyproxy.slovak "Словацкий">
-<!ENTITY foxyproxy.spanish.spain "Испанский (Испания)">
-<!ENTITY foxyproxy.spanish.argentina "Испанский (Аргентина)">
-<!ENTITY foxyproxy.serbian "Serbian">
-<!ENTITY foxyproxy.swedish "Шведский">
-<!ENTITY foxyproxy.thai.thailand "Тайский (Таиланд)">
-<!ENTITY foxyproxy.turkish "Турецкий">
-<!ENTITY foxyproxy.ukrainian "Украинский">
-<!ENTITY foxyproxy.your.language "Ваш язык">
-<!ENTITY foxyproxy.your.name.here "Ваше имя здесь!">
-<!ENTITY foxyproxy.anonymous "Anonymous">
 <!ENTITY foxyproxy.moveup.label "Вверх">
 <!ENTITY foxyproxy.moveup.tooltip "Повысить приоритет отмеченного прокси">
 <!ENTITY foxyproxy.moveup.accesskey "В">
@@ -260,14 +229,9 @@
 <!ENTITY foxyproxy.autoadd.reload.accesskey "П">
 <!ENTITY foxyproxy.autoadd.reload.tooltip "Автоматически повторно загрузить страницу после того как она была довалена к прокси">
 <!ENTITY foxyproxy.autoadd.notify.label "Уведомлять когда используется Автодобавление">
+<!ENTITY foxyproxy.autoadd.notify.accesskey "N">
 <!ENTITY foxyproxy.autoadd.notify.tooltip "Информировать когда страница блокирована и шаблон URL добавлен к прокси">
 <!ENTITY foxyproxy.autoadd.notify.tooltip2 "Display a popup when AutoAdd is activated">
-<!ENTITY foxyproxy.autoadd.notify.whencanceled.label "Notify me when AutoAdd is canceled">
-<!ENTITY foxyproxy.autoadd.notify.whencanceled.label2 "AutoAdd is automatically canceled when the URL in the address bar already matches a whitelist pattern in the AutoAdd proxy. In this way duplicate patterns, which can clutter your configuration, are prevented. This setting does not enable/disable cancelation; rather, it toggles notification when cancelation occurs.">
-<!ENTITY foxyproxy.autoadd.notify.whencanceled.tooltip "Display a popup when AutoAdd is activated but canceled">
-<!ENTITY foxyproxy.graphics "Графический дизайн и картинки">
-<!ENTITY foxyproxy.website "Вебсайт:">
-<!ENTITY foxyproxy.contributions "Участники проекта:">
 <!ENTITY foxyproxy.pacloadnotification.label "Предупреждать когда для прокси используется файл автоконфигурации">
 <!ENTITY foxyproxy.pacloadnotification.accesskey "А">
 <!ENTITY foxyproxy.pacloadnotification.tooltip "При загрузке PAC-файла показать всплывающее окно">
@@ -446,4 +410,18 @@
 <!ENTITY foxyproxy.statusbarwidth.accesskey "W">
 <!ENTITY foxyproxy.statusbarwidth.tooltip "Prevents statusbar resizing">
 <!ENTITY foxyproxy.pixels "pixels">
-<!ENTITY foxyproxy.unlimited.label "[0: shrink to fit] ">
+<!ENTITY foxyproxy.unlimited.label "[0: shrink to fit]">
+<!ENTITY foxyproxy.temp.popup.label "Временные шаблоны позволяют создавать шаблоны адресов URL, которые посещаются редко. Временные шаблоны не сохраняются на диск. Они хранятся в памяти и используются только в текущей сессии Firefox.">
+<!ENTITY foxyproxy.temp.popup.height "120">
+<!ENTITY foxyproxy.temp.popup.width "400">
+<!ENTITY foxyproxy.temp.label "Временный">
+<!ENTITY foxyproxy.temp.accesskey "В">
+<!ENTITY foxyproxy.temp.tooltip "Шаблон будет применён только для данной сессии Firefox">
+<!ENTITY foxyproxy.define.label "Define">
+<!ENTITY foxyproxy.define.accesskey "D">
+<!ENTITY foxyproxy.define.tooltip "Define">
+<!ENTITY foxyproxy.pattern.to.quickadd.label "Pattern to quickly add to proxy">
+<!ENTITY foxyproxy.pattern.to.autoadd.label "Pattern to automatically add to proxy">
+<!ENTITY foxyproxy.home "Home">
+<!ENTITY foxyproxy.support "Support">
+<!ENTITY foxyproxy.credits "Credits">

@@ -34,14 +34,27 @@ var gGetSafeAttrB = function(n, name, def) {
   n.QueryInterface(CI.nsIDOMElement);
 	return n ? (n.hasAttribute(name) ? n.getAttribute(name)=="true" : def) : def;
 };
-var loadSubScript = function(filename) {
+var loadComponentScript = function(filename) {
   try {
     var filePath = componentDir.clone();
     filePath.append(filename);
     loader.loadSubScript(fileProtocolHandler.getURLSpecFromFile(filePath));
   }
   catch (e) {
-    dump("Error loading " + filename + ": " + e + "\n" + e.stack + "\n");
+    dump("Error loading component " + filename + ": " + e + "\n" + e.stack + "\n");
+    throw(e);
+  }  
+};
+var loadModuleScript = function(filename) {
+  try {
+    var filePath = componentDir.clone();
+    filePath = filePath.parent;
+    filePath.append("modules");
+    filePath.append(filename);
+    loader.loadSubScript(fileProtocolHandler.getURLSpecFromFile(filePath));
+  }
+  catch (e) {
+    dump("Error loading module " + filename + ": " + e + "\n" + e.stack + "\n");
     throw(e);
   }  
 };
@@ -76,15 +89,14 @@ else {
   self = fileProtocolHandler.getFileFromURLSpec(Components.Exception().filename);
 }
 var componentDir = self.parent; // the directory this file is in
-var profileDir = componentDir.clone();
-profileDir = profileDir.parent.parent.parent;
-//dump("profileDir = " + profileDir.path + "\n");
+var settingsDir = componentDir.clone();
+settingsDir = settingsDir.parent.parent.parent;
+dump("FoxyProxy settingsDir = " + settingsDir.path + "\n");
 
 var loader = CC["@mozilla.org/moz/jssubscript-loader;1"].createInstance(CI["mozIJSSubScriptLoader"]);
-loadSubScript("proxy.js");
-loadSubScript("match.js");
-loadSubScript("superadd.js");
-
+loadComponentScript("proxy.js");
+loadComponentScript("match.js");
+loadModuleScript("superadd.js");
 
 // l is for lulu...
 function foxyproxy() {
@@ -389,7 +401,7 @@ biesi>	passing it the appropriate proxyinfo
   getDefaultPath : function() {
     //var file = CC["@mozilla.org/file/local;1"].createInstance(CI.nsILocalFile);
     //var dir = CC["@mozilla.org/file/directory_service;1"].getService(CI.nsIProperties).get("ProfD", CI.nsILocalFile);
-    var f = profileDir.clone();
+    var f = settingsDir.clone();
     f.append("foxyproxy.xml");
     //dump("settings file: " + f.path + "\n");
     return f;

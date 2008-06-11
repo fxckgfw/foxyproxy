@@ -13,6 +13,8 @@
 <!ENTITY foxyproxy.proxy.notes.accesskey "z">
 <!ENTITY foxyproxy.proxy.notes.tooltip "Proxy zabilješke">
 <!ENTITY foxyproxy.pattern.label "Primjeri">
+<!ENTITY foxyproxy.pattern.accesskey "P">
+<!ENTITY foxyproxy.pattern.tooltip "URL pattern">
 <!ENTITY foxyproxy.pattern.type.label "Tip primjera">
 <!ENTITY foxyproxy.whitelist.blacklist.label "Dopušteni (Uključujući) ili Nedopušteni (Isključujući)">
 <!ENTITY foxyproxy.pattern.name.label "Naziv primjera">
@@ -76,8 +78,6 @@
 <!ENTITY foxyproxy.copyright "Zaštita autorskih prava">
 <!ENTITY foxyproxy.rights "Sva prava pridržana.">
 <!ENTITY foxyproxy.released "Izdano pod GPL licencom.">
-<!ENTITY foxyproxy.thanks "Posebna zahvala">
-<!ENTITY foxyproxy.translations "Prijevodi">
 <!ENTITY foxyproxy.tab.general.label "Općenito">
 <!ENTITY foxyproxy.tab.general.accesskey "O">
 <!ENTITY foxyproxy.tab.general.tooltip "Upravljajte Općenitim proxy postavkama">
@@ -167,37 +167,6 @@
 <!ENTITY foxyproxy.issocks.label "SOCKS proxy?">
 <!ENTITY foxyproxy.issocks.accesskey "S">
 <!ENTITY foxyproxy.issocks.tooltip "Je li web proxy ili SOCKS proxy?">
-<!ENTITY foxyproxy.chinese.simplified "Kineski (pojednostavljen)">
-<!ENTITY foxyproxy.chinese.traditional "Kineski (tradicionalni)">
-<!ENTITY foxyproxy.croatian "Hrvatski">
-<!ENTITY foxyproxy.czech "Češki">
-<!ENTITY foxyproxy.danish "Danski">
-<!ENTITY foxyproxy.dutch "Nizozemski">
-<!ENTITY foxyproxy.english "Engleski">
-<!ENTITY foxyproxy.english.british "Engleski (Britanski)">
-<!ENTITY foxyproxy.french "Francuski">
-<!ENTITY foxyproxy.german "Njemački">
-<!ENTITY foxyproxy.greek "Grčki">
-<!ENTITY foxyproxy.hungarian "Mađarski">
-<!ENTITY foxyproxy.italian "Talijanski">
-<!ENTITY foxyproxy.japanese "Japanese">
-<!ENTITY foxyproxy.persian "Perzijski">
-<!ENTITY foxyproxy.polish "Poljski">
-<!ENTITY foxyproxy.portugese.brazilian "Portugalski (Brazilski)">
-<!ENTITY foxyproxy.portugese.portugal "Portugalski (Portugal)">
-<!ENTITY foxyproxy.romanian "Rumunjski">
-<!ENTITY foxyproxy.russian "Ruski">
-<!ENTITY foxyproxy.slovak "Slovački">
-<!ENTITY foxyproxy.spanish.spain "Španjolski (Španjolska)">
-<!ENTITY foxyproxy.spanish.argentina "Španjolski (Argentina)">
-<!ENTITY foxyproxy.serbian "Serbian">
-<!ENTITY foxyproxy.swedish "Švedski">
-<!ENTITY foxyproxy.thai.thailand "Tajlandski (Tajland)">
-<!ENTITY foxyproxy.turkish "Turski">
-<!ENTITY foxyproxy.ukrainian "Ukrainski">
-<!ENTITY foxyproxy.your.language "Vaš jezik">
-<!ENTITY foxyproxy.your.name.here "Vaše ime ovdje!">
-<!ENTITY foxyproxy.anonymous "Anonymous">
 <!ENTITY foxyproxy.moveup.label "Pomakni gore">
 <!ENTITY foxyproxy.moveup.tooltip "Povećaj prioritet trenutačno označenog">
 <!ENTITY foxyproxy.moveup.accesskey "r">
@@ -260,14 +229,9 @@
 <!ENTITY foxyproxy.autoadd.reload.accesskey "č">
 <!ENTITY foxyproxy.autoadd.reload.tooltip "Ponovno učitava stranicu nakon što je dodana u proxy">
 <!ENTITY foxyproxy.autoadd.notify.label "Obavijesti me ako je pokrenuto Automatsko dodavanje">
+<!ENTITY foxyproxy.autoadd.notify.accesskey "N">
 <!ENTITY foxyproxy.autoadd.notify.tooltip "Obaviještava Vas kada je stranica blokirana i primjer web stranice dodan u proxy">
 <!ENTITY foxyproxy.autoadd.notify.tooltip2 "Display a popup when AutoAdd is activated">
-<!ENTITY foxyproxy.autoadd.notify.whencanceled.label "Notify me when AutoAdd is canceled">
-<!ENTITY foxyproxy.autoadd.notify.whencanceled.label2 "AutoAdd is automatically canceled when the URL in the address bar already matches a whitelist pattern in the AutoAdd proxy. In this way duplicate patterns, which can clutter your configuration, are prevented. This setting does not enable/disable cancelation; rather, it toggles notification when cancelation occurs.">
-<!ENTITY foxyproxy.autoadd.notify.whencanceled.tooltip "Display a popup when AutoAdd is activated but canceled">
-<!ENTITY foxyproxy.graphics "Grafički dizajn i slike">
-<!ENTITY foxyproxy.website "Web stranica">
-<!ENTITY foxyproxy.contributions "Doprinosi">
 <!ENTITY foxyproxy.pacloadnotification.label "Obavijesti me o učitavanju datoteke automatske konfiguracije proxy-a">
 <!ENTITY foxyproxy.pacloadnotification.accesskey "j">
 <!ENTITY foxyproxy.pacloadnotification.tooltip "Prikaži skočni prozor kada se učita PAC datoteka">
@@ -447,3 +411,17 @@
 <!ENTITY foxyproxy.statusbarwidth.tooltip "Prevents statusbar resizing">
 <!ENTITY foxyproxy.pixels "pixels">
 <!ENTITY foxyproxy.unlimited.label "[0: shrink to fit] ">
+<!ENTITY foxyproxy.temp.popup.label "Temporary patterns allow you to create patterns for URLs that you don&apos;t visit often without cluttering the pattern list for a proxy. Temporary patterns are not saved to disk. They are kept in-memory and used for this Firefox session only.">
+<!ENTITY foxyproxy.temp.popup.height "120">
+<!ENTITY foxyproxy.temp.popup.width "400">
+<!ENTITY foxyproxy.temp.label "Temporary">
+<!ENTITY foxyproxy.temp.accesskey "T">
+<!ENTITY foxyproxy.temp.tooltip "Pattern is used only for this Firefox session">
+<!ENTITY foxyproxy.define.label "Define">
+<!ENTITY foxyproxy.define.accesskey "D">
+<!ENTITY foxyproxy.define.tooltip "Define">
+<!ENTITY foxyproxy.pattern.to.quickadd.label "Pattern to quickly add to proxy">
+<!ENTITY foxyproxy.pattern.to.autoadd.label "Pattern to automatically add to proxy">
+<!ENTITY foxyproxy.home "Home">
+<!ENTITY foxyproxy.support "Support">
+<!ENTITY foxyproxy.credits "Credits">

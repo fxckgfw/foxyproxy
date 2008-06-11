@@ -13,6 +13,8 @@
 <!ENTITY foxyproxy.proxy.notes.accesskey "O">
 <!ENTITY foxyproxy.proxy.notes.tooltip "Opmerkingen bij de proxy">
 <!ENTITY foxyproxy.pattern.label "Vergelijkingspatroon">
+<!ENTITY foxyproxy.pattern.accesskey "P">
+<!ENTITY foxyproxy.pattern.tooltip "URL pattern">
 <!ENTITY foxyproxy.pattern.type.label "Patroontype">
 <!ENTITY foxyproxy.whitelist.blacklist.label "Witte lijst (opnemen) of zwarte lijst (uitsluiten)">
 <!ENTITY foxyproxy.pattern.name.label "Patroonnaam">
@@ -76,8 +78,6 @@
 <!ENTITY foxyproxy.copyright "Copyright">
 <!ENTITY foxyproxy.rights "Alle rechten voorbehouden.">
 <!ENTITY foxyproxy.released "Uitgegeven onder de GPL licentie.">
-<!ENTITY foxyproxy.thanks "Bijzondere dankzegging aan">
-<!ENTITY foxyproxy.translations "Vertalingen">
 <!ENTITY foxyproxy.tab.general.label "Algemeen">
 <!ENTITY foxyproxy.tab.general.accesskey "G">
 <!ENTITY foxyproxy.tab.general.tooltip "Algemene proxy-instellingen beheren">
@@ -167,37 +167,6 @@
 <!ENTITY foxyproxy.issocks.label "SOCKS proxy?">
 <!ENTITY foxyproxy.issocks.accesskey "S">
 <!ENTITY foxyproxy.issocks.tooltip "Is dit een web proxy of een SOCKS proxy?">
-<!ENTITY foxyproxy.chinese.simplified "Chinees (vereenvoudigd)">
-<!ENTITY foxyproxy.chinese.traditional "Chinees (traditioneel)">
-<!ENTITY foxyproxy.croatian "Kroatisch">
-<!ENTITY foxyproxy.czech "Tsjechisch">
-<!ENTITY foxyproxy.danish "Deens">
-<!ENTITY foxyproxy.dutch "Nederlands">
-<!ENTITY foxyproxy.english "Engels">
-<!ENTITY foxyproxy.english.british "Engels (Brits)">
-<!ENTITY foxyproxy.french "Frans">
-<!ENTITY foxyproxy.german "Duits">
-<!ENTITY foxyproxy.greek "Grieks">
-<!ENTITY foxyproxy.hungarian "Hongaars">
-<!ENTITY foxyproxy.italian "Italiaans">
-<!ENTITY foxyproxy.japanese "Japans">
-<!ENTITY foxyproxy.persian "Perzisch">
-<!ENTITY foxyproxy.polish "Pools">
-<!ENTITY foxyproxy.portugese.brazilian "Portugees (Braziliaans)">
-<!ENTITY foxyproxy.portugese.portugal "Portugees (Portugal)">
-<!ENTITY foxyproxy.romanian "Roemeens">
-<!ENTITY foxyproxy.russian "Russisch">
-<!ENTITY foxyproxy.slovak "Slowaaks">
-<!ENTITY foxyproxy.spanish.spain "Spaans (Spanje)">
-<!ENTITY foxyproxy.spanish.argentina "Spaans (Argentinië)">
-<!ENTITY foxyproxy.serbian "Servisch">
-<!ENTITY foxyproxy.swedish "Zweeds">
-<!ENTITY foxyproxy.thai.thailand "Thais (Thailand)">
-<!ENTITY foxyproxy.turkish "Turks">
-<!ENTITY foxyproxy.ukrainian "Oekraïens">
-<!ENTITY foxyproxy.your.language "Uw taal">
-<!ENTITY foxyproxy.your.name.here "Hier kan uw naam staan!">
-<!ENTITY foxyproxy.anonymous "Anoniem">
 <!ENTITY foxyproxy.moveup.label "Omhoog">
 <!ENTITY foxyproxy.moveup.tooltip "De voorkeurspositie van de huidige selectie verhogen">
 <!ENTITY foxyproxy.moveup.accesskey "O">
@@ -260,14 +229,9 @@
 <!ENTITY foxyproxy.autoadd.reload.accesskey "R">
 <!ENTITY foxyproxy.autoadd.reload.tooltip "De pagina automatisch herladen nadat het patroon is toegevoegd aan een proxy">
 <!ENTITY foxyproxy.autoadd.notify.label "Bericht geven wanneer Automatisch toevoegen wordt geactiveerd">
+<!ENTITY foxyproxy.autoadd.notify.accesskey "N">
 <!ENTITY foxyproxy.autoadd.notify.tooltip "Informeert u wanneer een pagina wordt geblokkeerd en het URL patroon wordt toegevoegd aan een proxy">
 <!ENTITY foxyproxy.autoadd.notify.tooltip2 "Pop-upvenster weergeven wanneer Automatisch toevoegen wordt geactiveerd">
-<!ENTITY foxyproxy.autoadd.notify.whencanceled.label "Mij bericht geven wanneer Automatisch toevoegen wordt geannuleerd">
-<!ENTITY foxyproxy.autoadd.notify.whencanceled.label2 "Automatisch toevoegen wordt automatisch geannuleerd wanneer de URL in de locatiebalk al overeenkomt met een patroon op de witte lijst in de Automatisch toevoegen-proxy. Op deze manier worden dubbele patronen, die uw instellingen door de war kunnen gooien, voorkomen. Deze instelling schakelt annuleren niet in of uit; in plaats daarvan wisselt het notificatie wanneer annulering gebeurt.">
-<!ENTITY foxyproxy.autoadd.notify.whencanceled.tooltip "Pop-upvenster weergeven wanneer Automatisch toevoegen wordt geactiveerd maar geannuleerd">
-<!ENTITY foxyproxy.graphics "Grafisch ontwerp en afbeeldingen door">
-<!ENTITY foxyproxy.website "Website door">
-<!ENTITY foxyproxy.contributions "Bijdragen van">
 <!ENTITY foxyproxy.pacloadnotification.label "Bericht geven wanneer het proxy auto-configuratie bestand wordt geladen">
 <!ENTITY foxyproxy.pacloadnotification.accesskey "L">
 <!ENTITY foxyproxy.pacloadnotification.tooltip "Een pop-upvenster weergeven wanneer een PAC bestand wordt geladen">
@@ -447,3 +411,17 @@
 <!ENTITY foxyproxy.statusbarwidth.tooltip "Voorkomt wijzigen van grootte van de statusbalk">
 <!ENTITY foxyproxy.pixels "pixels">
 <!ENTITY foxyproxy.unlimited.label "[0: op maat aanpassen]">
+<!ENTITY foxyproxy.temp.popup.label "Tijdelijke patronen stellen u in staat om patronen te maken voor UR:&apos;s die u niet vaak bezoekt, zonder dat ze de patronenlijst voor een proxy hinderen. Tijdelijke patronen worden niet op schijf opgeslagen. Ze worden in het geheugen opgeslagen en alleen tijdens deze Firefox-sessie gebruikt">
+<!ENTITY foxyproxy.temp.popup.height "120">
+<!ENTITY foxyproxy.temp.popup.width "400">
+<!ENTITY foxyproxy.temp.label "Tijdelijk">
+<!ENTITY foxyproxy.temp.accesskey "T">
+<!ENTITY foxyproxy.temp.tooltip "Patroon wordt alleen tijdens deze Firefox-sessie gebruikt">
+<!ENTITY foxyproxy.define.label "Define">
+<!ENTITY foxyproxy.define.accesskey "D">
+<!ENTITY foxyproxy.define.tooltip "Define">
+<!ENTITY foxyproxy.pattern.to.quickadd.label "Pattern to quickly add to proxy">
+<!ENTITY foxyproxy.pattern.to.autoadd.label "Pattern to automatically add to proxy">
+<!ENTITY foxyproxy.home "Home">
+<!ENTITY foxyproxy.support "Support">
+<!ENTITY foxyproxy.credits "Credits">

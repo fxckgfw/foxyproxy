@@ -13,6 +13,8 @@
 <!ENTITY foxyproxy.proxy.notes.accesskey "N">
 <!ENTITY foxyproxy.proxy.notes.tooltip "プロキシのノート">
 <!ENTITY foxyproxy.pattern.label "パターン">
+<!ENTITY foxyproxy.pattern.accesskey "P">
+<!ENTITY foxyproxy.pattern.tooltip "URL pattern">
 <!ENTITY foxyproxy.pattern.type.label "パターン種別">
 <!ENTITY foxyproxy.whitelist.blacklist.label "ホワイトリスト (包含的) かブラックリスト (排他的)">
 <!ENTITY foxyproxy.pattern.name.label "パターン名">
@@ -76,8 +78,6 @@
 <!ENTITY foxyproxy.copyright "Copyright">
 <!ENTITY foxyproxy.rights "All Rights Reserved.">
 <!ENTITY foxyproxy.released "GPL の下で公開されています。">
-<!ENTITY foxyproxy.thanks "謝辞:">
-<!ENTITY foxyproxy.translations "翻訳者">
 <!ENTITY foxyproxy.tab.general.label "全般">
 <!ENTITY foxyproxy.tab.general.accesskey "G">
 <!ENTITY foxyproxy.tab.general.tooltip "全般的なプロキシの設定を管理します">
@@ -167,37 +167,6 @@
 <!ENTITY foxyproxy.issocks.label "SOCKS プロキシ？">
 <!ENTITY foxyproxy.issocks.accesskey "S">
 <!ENTITY foxyproxy.issocks.tooltip "これはウェブプロキシまたは SOCKS プロキシですか？">
-<!ENTITY foxyproxy.chinese.simplified "中国語 (簡体字)">
-<!ENTITY foxyproxy.chinese.traditional "中国語 (繁体字)">
-<!ENTITY foxyproxy.croatian "クロアチア語">
-<!ENTITY foxyproxy.czech "チェコ語">
-<!ENTITY foxyproxy.danish "デンマーク語">
-<!ENTITY foxyproxy.dutch "オランダ語">
-<!ENTITY foxyproxy.english "英語">
-<!ENTITY foxyproxy.english.british "英語 (英国)">
-<!ENTITY foxyproxy.french "フランス語">
-<!ENTITY foxyproxy.german "ドイツ語">
-<!ENTITY foxyproxy.greek "ギリシャ語">
-<!ENTITY foxyproxy.hungarian "ハンガリー語">
-<!ENTITY foxyproxy.italian "イタリア語">
-<!ENTITY foxyproxy.japanese "日本語">
-<!ENTITY foxyproxy.persian "ペルシャ語">
-<!ENTITY foxyproxy.polish "ポーランド語">
-<!ENTITY foxyproxy.portugese.brazilian "ポルトガル語 (ブラジル)">
-<!ENTITY foxyproxy.portugese.portugal "ポルトガル語 (ポルトガル)">
-<!ENTITY foxyproxy.romanian "ルーマニア語">
-<!ENTITY foxyproxy.russian "ロシア語">
-<!ENTITY foxyproxy.slovak "スロバキア語">
-<!ENTITY foxyproxy.spanish.spain "スペイン語 (スペイン)">
-<!ENTITY foxyproxy.spanish.argentina "スペイン語 (アルゼンチン)">
-<!ENTITY foxyproxy.serbian "セルビア語">
-<!ENTITY foxyproxy.swedish "スウェーデン語">
-<!ENTITY foxyproxy.thai.thailand "タイ語 (タイ)">
-<!ENTITY foxyproxy.turkish "トルコ語">
-<!ENTITY foxyproxy.ukrainian "ウクライナ語">
-<!ENTITY foxyproxy.your.language "あなたの言語">
-<!ENTITY foxyproxy.your.name.here "あなたの名前をここに！">
-<!ENTITY foxyproxy.anonymous "匿名">
 <!ENTITY foxyproxy.moveup.label "上へ移動">
 <!ENTITY foxyproxy.moveup.tooltip "現在の選択の優先度を上げます">
 <!ENTITY foxyproxy.moveup.accesskey "U">
@@ -260,14 +229,9 @@
 <!ENTITY foxyproxy.autoadd.reload.accesskey "R">
 <!ENTITY foxyproxy.autoadd.reload.tooltip "プロキシにパターンを追加したら自動的にページを再読み込みします">
 <!ENTITY foxyproxy.autoadd.notify.label "AutoAdd が作動した時は通知する">
+<!ENTITY foxyproxy.autoadd.notify.accesskey "N">
 <!ENTITY foxyproxy.autoadd.notify.tooltip "ページが遮断されて URL パターンがプロキシに追加されたら報告します">
 <!ENTITY foxyproxy.autoadd.notify.tooltip2 "Display a popup when AutoAdd is activated">
-<!ENTITY foxyproxy.autoadd.notify.whencanceled.label "Notify me when AutoAdd is canceled">
-<!ENTITY foxyproxy.autoadd.notify.whencanceled.label2 "AutoAdd is automatically canceled when the URL in the address bar already matches a whitelist pattern in the AutoAdd proxy. In this way duplicate patterns, which can clutter your configuration, are prevented. This setting does not enable/disable cancelation; rather, it toggles notification when cancelation occurs.">
-<!ENTITY foxyproxy.autoadd.notify.whencanceled.tooltip "Display a popup when AutoAdd is activated but canceled">
-<!ENTITY foxyproxy.graphics "グラフィックデザインと画像の作成者">
-<!ENTITY foxyproxy.website "ウェブサイト作成者">
-<!ENTITY foxyproxy.contributions "貢献者">
 <!ENTITY foxyproxy.pacloadnotification.label "プロキシ自動設定ファイルの読み込みについて通知する">
 <!ENTITY foxyproxy.pacloadnotification.accesskey "L">
 <!ENTITY foxyproxy.pacloadnotification.tooltip "PAC ファイルの読み込み時にポップアップ表示します">
@@ -447,3 +411,17 @@
 <!ENTITY foxyproxy.statusbarwidth.tooltip "ステータスバーのサイズ変更を回避します">
 <!ENTITY foxyproxy.pixels "ピクセル">
 <!ENTITY foxyproxy.unlimited.label "[0: 適当に縮める]">
+<!ENTITY foxyproxy.temp.popup.label "Temporary patterns allow you to create patterns for URLs that you don&apos;t visit often without cluttering the pattern list for a proxy. Temporary patterns are not saved to disk. They are kept in-memory and used for this Firefox session only.">
+<!ENTITY foxyproxy.temp.popup.height "120">
+<!ENTITY foxyproxy.temp.popup.width "400">
+<!ENTITY foxyproxy.temp.label "Temporary">
+<!ENTITY foxyproxy.temp.accesskey "T">
+<!ENTITY foxyproxy.temp.tooltip "Pattern is used only for this Firefox session">
+<!ENTITY foxyproxy.define.label "Define">
+<!ENTITY foxyproxy.define.accesskey "D">
+<!ENTITY foxyproxy.define.tooltip "Define">
+<!ENTITY foxyproxy.pattern.to.quickadd.label "Pattern to quickly add to proxy">
+<!ENTITY foxyproxy.pattern.to.autoadd.label "Pattern to automatically add to proxy">
+<!ENTITY foxyproxy.home "Home">
+<!ENTITY foxyproxy.support "Support">
+<!ENTITY foxyproxy.credits "Credits">

@@ -13,6 +13,8 @@
 <!ENTITY foxyproxy.proxy.notes.accesskey "o">
 <!ENTITY foxyproxy.proxy.notes.tooltip "Inserire una nota">
 <!ENTITY foxyproxy.pattern.label "Modello corrispondente">
+<!ENTITY foxyproxy.pattern.accesskey "P">
+<!ENTITY foxyproxy.pattern.tooltip "URL pattern">
 <!ENTITY foxyproxy.pattern.type.label "Tipo di modello corrispondente">
 <!ENTITY foxyproxy.whitelist.blacklist.label "Modello permesso/non permesso">
 <!ENTITY foxyproxy.pattern.name.label "Nome modello">
@@ -76,8 +78,6 @@
 <!ENTITY foxyproxy.copyright "Copyright">
 <!ENTITY foxyproxy.rights "Tutti i diritti riservati">
 <!ENTITY foxyproxy.released "Estensione rilasciata sotto la licenza GPL">
-<!ENTITY foxyproxy.thanks "Speciali ringraziamenti a:">
-<!ENTITY foxyproxy.translations "Traduzioni:">
 <!ENTITY foxyproxy.tab.general.label "Generali">
 <!ENTITY foxyproxy.tab.general.accesskey "G">
 <!ENTITY foxyproxy.tab.general.tooltip "Gestione delle opzioni generali dei proxy">
@@ -150,7 +150,7 @@
 <!ENTITY foxyproxy.addnewproxy.accesskey "x">
 <!ENTITY foxyproxy.addnewproxy.tooltip "Aggiungi un nuovo proxy">
 <!ENTITY foxyproxy.whitelist.label "Modello permesso">
-<!ENTITY foxyproxy.whitelist.accesskey "B">
+<!ENTITY foxyproxy.whitelist.accesskey "e">
 <!ENTITY foxyproxy.whitelist.tooltip "Gli indirizzi web corrispondenti a questo modello verranno caricati attraverso questo proxy">
 <!ENTITY foxyproxy.whitelist.description.label "Gli indirizzi web corrispondenti a questo modello verranno caricati attraverso questo proxy">
 <!ENTITY foxyproxy.blacklist.label "Modello non permesso">
@@ -167,37 +167,6 @@
 <!ENTITY foxyproxy.issocks.label "Proxy SOCKS">
 <!ENTITY foxyproxy.issocks.accesskey "K">
 <!ENTITY foxyproxy.issocks.tooltip "Selezionare questa opzione in caso si utilizzi un proxy SOCKS">
-<!ENTITY foxyproxy.chinese.simplified "Cinese semplificato">
-<!ENTITY foxyproxy.chinese.traditional "Cinese tradizionale">
-<!ENTITY foxyproxy.croatian "Croato">
-<!ENTITY foxyproxy.czech "Ceco">
-<!ENTITY foxyproxy.danish "Danese">
-<!ENTITY foxyproxy.dutch "Olandese">
-<!ENTITY foxyproxy.english "Inglese">
-<!ENTITY foxyproxy.english.british "Inglese (Inghilterra)">
-<!ENTITY foxyproxy.french "Francese">
-<!ENTITY foxyproxy.german "Tedesco">
-<!ENTITY foxyproxy.greek "Greco">
-<!ENTITY foxyproxy.hungarian "Ungherese">
-<!ENTITY foxyproxy.italian "Italiano">
-<!ENTITY foxyproxy.japanese "Giapponese">
-<!ENTITY foxyproxy.persian "Persiano">
-<!ENTITY foxyproxy.polish "Polacco">
-<!ENTITY foxyproxy.portugese.brazilian "Portoghese (Brasile)">
-<!ENTITY foxyproxy.portugese.portugal "Portoghese (Portogallo)">
-<!ENTITY foxyproxy.romanian "Romeno">
-<!ENTITY foxyproxy.russian "Russo">
-<!ENTITY foxyproxy.slovak "Slovacco">
-<!ENTITY foxyproxy.spanish.spain "Spagnolo (Spagna)">
-<!ENTITY foxyproxy.spanish.argentina "Spagnolo (Argentina)">
-<!ENTITY foxyproxy.serbian "Serbo">
-<!ENTITY foxyproxy.swedish "Svedese">
-<!ENTITY foxyproxy.thai.thailand "Thailandese (Thailandia)">
-<!ENTITY foxyproxy.turkish "Turco">
-<!ENTITY foxyproxy.ukrainian "Ucraino">
-<!ENTITY foxyproxy.your.language "Italiano">
-<!ENTITY foxyproxy.your.name.here "Luana Di Muzio e Luca (aka l0stintranslation)">
-<!ENTITY foxyproxy.anonymous "Anonimo">
 <!ENTITY foxyproxy.moveup.label "Sposta su">
 <!ENTITY foxyproxy.moveup.tooltip "Aumenta la priorità della selezione attuale">
 <!ENTITY foxyproxy.moveup.accesskey "s">
@@ -234,7 +203,7 @@
 <!ENTITY foxyproxy.random.settings.accesskey "R">
 <!ENTITY foxyproxy.random.settings.tooltip "Gestione della selezione casuale dei proxy">
 <!ENTITY foxyproxy.tab.autoadd.label "Aggiunta automatica">
-<!ENTITY foxyproxy.tab.autoadd.accesskey "c">
+<!ENTITY foxyproxy.tab.autoadd.accesskey "u">
 <!ENTITY foxyproxy.tab.autoadd.tooltip "Gestione delle opzioni di aggiunta automatica">
 <!ENTITY foxyproxy.autoadd.description "Specificare un modello per identificare i siti bloccati. Quando tale modello viene trovato in un sito, il modello corrispondente all&apos;indirizzo web di quel sito viene automaticamente aggiunto ai proxy e facoltativamente ricaricato. Questo permette di non dovere identificare anticipatamente tutti i siti bloccati">
 <!ENTITY foxyproxy.autoadd.pattern.label "Modello per identificare siti bloccati">
@@ -246,7 +215,7 @@
 <!ENTITY foxyproxy.autoadd.proxy.accesskey "P">
 <!ENTITY foxyproxy.autoadd.proxy.tooltip "Specifica i proxy ai quali gli indirizzi web vengono aggiunti automaticamente">
 <!ENTITY foxyproxy.pattern.template.label "Modello URL">
-<!ENTITY foxyproxy.pattern.template.accesskey "U">
+<!ENTITY foxyproxy.pattern.template.accesskey "L">
 <!ENTITY foxyproxy.pattern.template.tooltip "Modello URL">
 <!ENTITY foxyproxy.pattern.template.example.label1 "Esempio per">
 <!ENTITY foxyproxy.pattern.template.example.label2 "http://fred:secret@mail.foo.com:8080/inbox/msg102.htm#subject?style=elegant">
@@ -259,15 +228,10 @@
 <!ENTITY foxyproxy.autoadd.reload.label "Ricarica la pagina dopo che il sito viene aggiunto al proxy">
 <!ENTITY foxyproxy.autoadd.reload.accesskey "R">
 <!ENTITY foxyproxy.autoadd.reload.tooltip "Ricarica automaticamente la pagina dopo essere stata aggiunta ad un proxy">
-<!ENTITY foxyproxy.autoadd.notify.label "Notifica quando l&apos;opzione &apos;Aggiunta automatica&apos; è attivata">
+<!ENTITY foxyproxy.autoadd.notify.label "Notifica quando l&apos;aggiunta automatica è attivata">
+<!ENTITY foxyproxy.autoadd.notify.accesskey "N">
 <!ENTITY foxyproxy.autoadd.notify.tooltip "Informa quando una pagina è bloccata ed il modello URL viene aggiunto ad un proxy">
-<!ENTITY foxyproxy.autoadd.notify.tooltip2 "Display a popup when AutoAdd is activated">
-<!ENTITY foxyproxy.autoadd.notify.whencanceled.label "Notify me when AutoAdd is canceled">
-<!ENTITY foxyproxy.autoadd.notify.whencanceled.label2 "AutoAdd is automatically canceled when the URL in the address bar already matches a whitelist pattern in the AutoAdd proxy. In this way duplicate patterns, which can clutter your configuration, are prevented. This setting does not enable/disable cancelation; rather, it toggles notification when cancelation occurs.">
-<!ENTITY foxyproxy.autoadd.notify.whencanceled.tooltip "Display a popup when AutoAdd is activated but canceled">
-<!ENTITY foxyproxy.graphics "Grafica ed immagini di:">
-<!ENTITY foxyproxy.website "Sito web di:">
-<!ENTITY foxyproxy.contributions "Collaboratori:">
+<!ENTITY foxyproxy.autoadd.notify.tooltip2 "Un pop-up verrà visualizzato quando verrà attivata l&apos;aggiunta automatica">
 <!ENTITY foxyproxy.pacloadnotification.label "Notifica quando il file di configurazione automatica del proxy viene caricato">
 <!ENTITY foxyproxy.pacloadnotification.accesskey "C">
 <!ENTITY foxyproxy.pacloadnotification.tooltip "Un pop-up verrà visualizzato quando il file PAC verrà caricato">
@@ -447,3 +411,17 @@
 <!ENTITY foxyproxy.statusbarwidth.tooltip "Larghezza dell&apos;area nella barra di stato dove verrà mostrato il testo">
 <!ENTITY foxyproxy.pixels "">
 <!ENTITY foxyproxy.unlimited.label "(0: il testo verrà mostrato per intero) ">
+<!ENTITY foxyproxy.temp.popup.label "I modelli temporanei permettono di creare modelli di URL per indirizzi che non vengono visitati spesso, senza interessare le liste di modelli dei proxy. Tali modelli non vengono salvati sul disco rigido, ma mantenuti in memoria ed eliminati alla chiusura della sessione di Firefox">
+<!ENTITY foxyproxy.temp.popup.height "140">
+<!ENTITY foxyproxy.temp.popup.width "400">
+<!ENTITY foxyproxy.temp.label "Utilizza modelli temporanei">
+<!ENTITY foxyproxy.temp.accesskey "t">
+<!ENTITY foxyproxy.temp.tooltip "Selezionare questa opzione per utilizzare il modello solo per la sessione di Firefox attuale">
+<!ENTITY foxyproxy.define.label "Define">
+<!ENTITY foxyproxy.define.accesskey "D">
+<!ENTITY foxyproxy.define.tooltip "Define">
+<!ENTITY foxyproxy.pattern.to.quickadd.label "Pattern to quickly add to proxy">
+<!ENTITY foxyproxy.pattern.to.autoadd.label "Pattern to automatically add to proxy">
+<!ENTITY foxyproxy.home "Home">
+<!ENTITY foxyproxy.support "Support">
+<!ENTITY foxyproxy.credits "Credits">

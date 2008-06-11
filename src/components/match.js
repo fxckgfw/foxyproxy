@@ -33,7 +33,7 @@ if (!CI) {
 ///////////////////////////// Match class///////////////////////
 function Match(enabled, name, pattern, temp, isRegEx, caseSensitive, isBlackList, isMultiLine) {
   this.wrappedJSObject = this;
-  this.init(enabled, name, pattern, temp, isRegEx, caseSensitive, isBlackList, isMultiLine);
+  this.init.apply(this, arguments);
 }
 
 Match.prototype = {

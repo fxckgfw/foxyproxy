@@ -39,14 +39,14 @@ if (!CI) {
     return n ? (n.hasAttribute(name) ? n.getAttribute(name)=="true" : def) : def;
   }
 
-  var loadSubScript = function(filename) {
+  var loadComponentScript = function(filename) {
     try {
       var filePath = componentDir.clone();
       filePath.append(filename);
       loader.loadSubScript(fileProtocolHandler.getURLSpecFromFile(filePath));
     }
     catch (e) {
-      dump("Error loading " + filename + ": " + e + "\n" + e.stack + "\n");
+      dump("Error loading component " + filename + ": " + e + "\n" + e.stack + "\n");
       throw(e);
     }  
   }
@@ -63,8 +63,8 @@ if (!CI) {
     loader = CC["@mozilla.org/moz/jssubscript-loader;1"].createInstance(CI["mozIJSSubScriptLoader"]);
 }
 
-loadSubScript("autoconf.js");
-loadSubScript("match.js");
+loadComponentScript("autoconf.js");
+loadComponentScript("match.js");
 
 var proxyService = CC["@mozilla.org/network/protocol-proxy-service;1"].getService(CI.nsIProtocolProxyService);
 ///////////////////////////// Proxy class ///////////////////////
@@ -73,8 +73,8 @@ function Proxy(fp) {
   this.fp = fp || CC["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;
   this.matches = new Array();
   this.name = this.notes = "";
-  this.manualconf = new ManualConf(fp);
-  this.autoconf = new AutoConf(this, fp);
+  this.manualconf = new ManualConf(this.fp);
+  this.autoconf = new AutoConf(this, this.fp);
   this._mode = "manual"; // manual, auto, direct, random
   this._enabled = true;
   this.selectedTabIndex = 0;

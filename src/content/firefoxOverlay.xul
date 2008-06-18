@@ -68,8 +68,8 @@
   </statusbar>
 
   <toolbarpalette id="BrowserToolbarPalette">
-	  <toolbarbutton id="foxyproxy-button-1" type="menu" mode="patterns" persist="mode" label="&foxyproxy.label;"
-	    class="toolbarbutton-1 chromeclass-toolbar-additional foxyproxybutton"
+	  <toolbarbutton id="foxyproxy-button-1" type="menu" orient="horizontal" mode="patterns" persist="mode" label="&foxyproxy.label;"
+	    class="foxyproxybutton"
 	    onclick="foxyproxy.onSBTBClick(event, foxyproxy.fp.toolbar);event.stopPropagation();event.preventDefault();return false;">
 	      <menupopup id="foxyproxy-toolbarbutton-popup"
 	      onpopuphiding="foxyproxy.onPopupHiding();"

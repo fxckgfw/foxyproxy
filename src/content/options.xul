@@ -468,8 +468,6 @@
                         <menupopup>
                           <menuitem label="&foxyproxy.click.options;"
                             value="options" />
-                          <menuitem label="&foxyproxy.click.options;"
-                            value="options" />
                           <menuitem label="&foxyproxy.click.cycle;"
                             value="cycle" />
                           <menuitem

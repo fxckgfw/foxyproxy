@@ -339,19 +339,17 @@ AutoAdd.prototype.toDOM = function(doc) {
 };
 AutoAdd.prototype.fromDOM = function(doc) {
   SuperAdd.prototype.fromDOM.apply(this, arguments);
-  // new XPathEvaluator() is not yet available.
-  var xpe = CC["@mozilla.org/dom/xpath-evaluator;1"].getService(CI.nsIDOMXPathEvaluator);
   // Note XPath expression array index is 1-based.
-  var n = xpe.evaluate("/foxyproxy/autoadd/match[2]", doc, xpe.createNSResolver(doc), xpe.FIRST_ORDERED_NODE_TYPE, null);  
-  if (n == null) {
-    // TODO: handle pre-2.8 installations
-    dump("upgrade from 2.8\n");
+  var n = doc.evaluate("//foxyproxy/autoadd/match[2]", doc, doc.createNSResolver(doc), doc.ANY_TYPE, null)
+    .iterateNext();      
+  if (n) {
+    try {
+      this._blockedPageMatch.fromDOM(n);
+    }
+    catch (e) {dump(e+"\n");}
   }
   else {
-    //this.__n = n;
-    try {
-      this._blockedPageMatch.fromDOM(n.singleNodeValue);
-    }
-    catch (e) {/*above code fails*/}
+    // TODO: handle pre-2.8 installations
+    dump("upgrade from 2.8\n");
   }
 };

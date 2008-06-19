@@ -98,7 +98,6 @@
 
 <popupset>
   <popup id="wildcardReferencePopup"/>
-  <popup id="patternTemplatePopup"/>
   <popup id="notifyWhenCanceledPopup"/>
 </popupset>
 

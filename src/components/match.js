@@ -47,7 +47,7 @@ Match.prototype = {
   isMultiLine : false,
   
   QueryInterface: function(aIID) {
-    if(!aIID.equals(CI.nsISupports) && !aIID.equals(CI.nsISupportsWeakReference))
+    if (!aIID.equals(CI.nsISupports))
       throw CR.NS_ERROR_NO_INTERFACE;
     return this;
   },

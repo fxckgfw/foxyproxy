@@ -23,7 +23,7 @@ of the Match object to be added to a proxy dynamically:
   .type - whether or not the expanded (post-applyTemplate()) .pattern is black or white list
   .isRegExp - whether or not the expanded (post-applyTemplate()) .pattern is a regexp or a wildcard pattern
   .enabled - always true. doesn't make sense to dynamically add a disabled pattern.
-  .isMultiLine - whether or not .pattern should be searched single or multiline. always false in this context.
+  .isMultiLine - whether or not .pattern should be searched single or multiline.
 
 blockedPageMatch - a Match object specific to AutoAdd only. Only four of the properties are relavent:
   .pattern - A string wildcard or regexp expression of the pattern that marks a page as blocked.
@@ -81,7 +81,7 @@ SuperAdd.prototype = {
   _proxy : null,
   _notify : true,
   _notifyWhenCanceled : true, // TODO: AutoAdd doesn't use; only QuickAdd, so make don't put it on the super class
-  _prompt : false,
+  _prompt : true,
   _match : null,
   fpc : null,
   
@@ -306,9 +306,14 @@ SuperAdd.prototype = {
     this._reload = gGetSafeAttrB(n, "reload", true);    
     this._notify = gGetSafeAttrB(n, "notify", true);
     this._notifyWhenCanceled = gGetSafeAttrB(n, "notifyWhenCanceled", true);
-    this._prompt = gGetSafeAttrB(n, "prompt", false);
+    this._prompt = gGetSafeAttrB(n, "prompt", true);
     var proxyId = gGetSafeAttr(n, "proxy-id", null);
-    if (n) this._match.fromDOM(n.getElementsByTagName("match").item(0));
+    if (n) {
+      this._match.fromDOM(n.getElementsByTagName("match").item(0));
+      var urlTemplate = gGetSafeAttr(n, "urlTemplate");
+      if (urlTemplate) // upgrade from 2.7.5 to 2.8+
+        this._match.pattern = urlTemplate;
+    } 
     this._match.isMultiLine = false; 
     var error;
     if (proxyId) {
@@ -350,6 +355,9 @@ AutoAdd.prototype.fromDOM = function(doc) {
   }
   else {
     // TODO: handle pre-2.8 installations
-    dump("upgrade from 2.8\n");
+    dump("upgrade to 2.8\n");
+    var n = doc.evaluate("//foxyproxy/autoadd/match[1]", doc, doc.createNSResolver(doc), doc.ANY_TYPE, null)
+      .iterateNext();  
+    this._blockedPageMatch.fromDOM(n);
   }
 };

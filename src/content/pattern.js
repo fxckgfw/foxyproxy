@@ -51,6 +51,7 @@ function onOK() {
     window.arguments[0].out = {match:ret};
     return true;
   }
+  return false;
 }
 
 function updateGeneratedPattern() {

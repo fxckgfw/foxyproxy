@@ -229,7 +229,7 @@ Proxy.prototype = {
   },
 
 	resolve : function(spec, host, mp) {
-
+    dump("name = " + this.name + "\n");
 	  function _notifyUserOfError(spec) {
 			this.pacErrorNotification && this.fp.notifier.alert(this.fp.getMessage("foxyproxy"), this.fp.getMessage("proxy.error.for.url") + spec);
 			return null;

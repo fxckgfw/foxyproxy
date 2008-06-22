@@ -344,9 +344,9 @@ AutoAdd.prototype.toDOM = function(doc) {
 };
 AutoAdd.prototype.fromDOM = function(doc) {
   SuperAdd.prototype.fromDOM.apply(this, arguments);
-  // Note XPath expression array index is 1-based.
-  var n = doc.evaluate("//foxyproxy/autoadd/match[2]", doc, doc.createNSResolver(doc), doc.ANY_TYPE, null)
-    .iterateNext();      
+
+  // Note XPath expression array index is 1-based
+  var n = getBlockedPageMatch("/foxyproxy/autoadd/match[2]");  
   if (n) {
     try {
       this._blockedPageMatch.fromDOM(n);
@@ -355,9 +355,20 @@ AutoAdd.prototype.fromDOM = function(doc) {
   }
   else {
     // TODO: handle pre-2.8 installations
-    dump("upgrade to 2.8\n");
-    var n = doc.evaluate("//foxyproxy/autoadd/match[1]", doc, doc.createNSResolver(doc), doc.ANY_TYPE, null)
-      .iterateNext();  
-    this._blockedPageMatch.fromDOM(n);
+    dump("upgrade to 2.8+\n");
+    this._blockedPageMatch.fromDOM(getBlockedPageMatch("/foxyproxy/autoadd/match[1]"));
+  }
+  
+  function getBlockedPageMatch(exp) {
+    // doc.createNSResolver(doc) fails on FF2 (not FF3), so we use an instance of nsIDOMXPathEvaluator instead
+    // of the next line
+    // var n = doc.evaluate(exp, doc, doc.createNSResolver(doc), doc.ANY_TYPE, null).iterateNext();
+  
+    // new XPathEvaluator() is not yet available; must go through XPCOM
+    var xpe = CC["@mozilla.org/dom/xpath-evaluator;1"].getService(CI.nsIDOMXPathEvaluator);
+    // FF 2.0.0.14: iterateNext is not a function
+    var n = xpe.evaluate(exp, doc, xpe.createNSResolver(doc), xpe.FIRST_ORDERED_NODE_TYPE, null);
+    n.QueryInterface(CI.nsIDOMXPathResult); // not necessary in FF3, only 2.x and possibly earlier
+    return n.iterateNext();
   }
 };

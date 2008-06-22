@@ -125,7 +125,7 @@ foxyproxy.prototype = {
   quickadd : null,
 
 	QueryInterface: function(aIID) {
-		if(!aIID.equals(CI.nsISupports) && !aIID.equals(CI.nsIObserver) && !aIID.equals(CI.nsISupportsWeakReference))
+		if (!aIID.equals(CI.nsISupports) && !aIID.equals(CI.nsIObserver))
 			throw CR.NS_ERROR_NO_INTERFACE;
 		return this;
 	},

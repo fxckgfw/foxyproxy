@@ -6,7 +6,7 @@
     <Description rdf:about="urn:mozilla:install-manifest">
         <em:id>foxyproxy@eric.h.jung</em:id>
         <em:name>FoxyProxy</em:name>
-        <em:version>2.8b6</em:version>
+        <em:version>2.8b7</em:version>
         <em:creator>LeahScape, Inc.</em:creator>
         <em:description>Premier proxy management for Firefox</em:description>
         <em:homepageURL>http://foxyproxy.mozdev.org</em:homepageURL>
@@ -34,5 +34,13 @@
                 <em:maxVersion>1.0+</em:maxVersion>
             </Description>
         </em:targetApplication>
+        <!-- Flock -->
+        <em:targetApplication>
+         <Description>
+            <em:id>{a463f10c-3994-11da-9945-000d60ca027b}</em:id>
+            <em:minVersion>0.7</em:minVersion>
+            <em:maxVersion>2.0</em:maxVersion>
+          </Description>
+        </em:targetApplication>        
     </Description>
 </RDF>

@@ -50,3 +50,11 @@ style	chrome://songbird/content/xul/mainScriptsOverlay.xul	chrome://foxyproxy/co
 #style   chrome://songbird/content/xul/layoutBaseOverlay.xul    chrome://foxyproxy/content/foxyproxySongbird.css    application=songbird@songbirdnest.com   appversion>=0.5pre
 # Songbird-specific styles for the options dialog
 style	chrome://foxyproxy/content/options.xul chrome://foxyproxy/content/foxyproxySongbird.css	application=songbird@songbirdnest.com
+
+#Flock
+skin foxyproxy classic/1.0 skin/ application={a463f10c-3994-11da-9945-000d60ca027b}
+overlay chrome://browser/content/browser.xul chrome://foxyproxy/content/firefoxOverlay.xul application={a463f10c-3994-11da-9945-000d60ca027b}
+overlay chrome://browser/content/preferences/preferences.xul chrome://foxyproxy/content/firefoxOptionsOverlay.xul application={a463f10c-3994-11da-9945-000d60ca027b}
+overlay chrome://global/content/alerts/alert.xul chrome://foxyproxy/content/alertOverlay.xul application={a463f10c-3994-11da-9945-000d60ca027b}
+style chrome://global/content/customizeToolbar.xul chrome://foxyproxy/content/foxyproxy.css  application={a463f10c-3994-11da-9945-000d60ca027b}
+

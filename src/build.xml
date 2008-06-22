@@ -2,7 +2,7 @@
 <project name="foxyproxy" default="build-xpi">
 
   <!-- version property is appended to XPI filename; e.g., foxyproxy-1.0.xpi -->
-  <property name="version" value="2.8b4" />
+  <property name="version" value="2.8b6" />
   <property name="temp-path" value="../temp" />
   <property name="src-base" value="."/>
   <property name="target-path" value="../targets"/>
@@ -33,6 +33,7 @@
     <zip destfile="${target-path}/foxyproxy-${version}.xpi">
       <fileset dir="${temp-path}" includes="chrome.manifest install.rdf install.js LICENSE chrome/" />
       <zipfileset dir="${temp-path}/components" prefix="components" includes="**/**" />
+      <zipfileset dir="${temp-path}/modules" prefix="modules" includes="**/**" />    	
       <zipfileset dir="${temp-path}/defaults" prefix="defaults" includes="**/**" />
     </zip>
   </target>

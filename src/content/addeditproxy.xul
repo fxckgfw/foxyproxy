@@ -26,6 +26,7 @@
   persist="screenX screenY">
 
 <script src="addeditproxy.js"/>
+<script src="../modules/nsProxyAutoConfig.js"/>
 
 <vbox observes="torwiz-broadcaster" flex="1">
   <tabbox flex="1">

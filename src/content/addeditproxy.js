@@ -147,9 +147,9 @@ function onAddEdit(isNew) {
   var idx = urlsTree.currentIndex, m;
   if (isNew) {
     m = CC["@leahscape.org/foxyproxy/match;1"].createInstance().wrappedJSObject;
+    idx = proxy.matches.length;
   }
   else if (idx == -1) return; // safety; may not be necessary anymore
-
 
   var params = {inn:{match: (isNew ? m : proxy.matches[idx]), superadd:false}, out:null};
 
@@ -157,11 +157,7 @@ function onAddEdit(isNew) {
     "chrome, dialog, modal, resizable=yes", params).focus();
 
   if (params.out) {
-    if (isNew)
-      proxy.matches[idx] = params.out.match;
-    else
-      proxy.matches.push(match);
-	    
+    proxy.matches[idx] = params.out.match;	    
     _updateView();
     // Select item
 	  urlsTree.view.selection.select(isNew?urlsTree.view.rowCount-1 : urlsTree.currentIndex);
@@ -252,7 +248,6 @@ function onTestAutoConf() {
 		var autoConf = CC["@leahscape.org/foxyproxy/autoconf;1"].createInstance().wrappedJSObject;
 		autoConf.owner = {name: "Test", enabled: true};
 		autoConf.url = autoconfurl.value;
-    autoConf._resolver = CC["@mozilla.org/network/proxy-auto-config;1"].createInstance(CI.nsIProxyAutoConfig);
     autoConf.loadPAC();
     var none=foxyproxy.getMessage("none");
     foxyproxy.alert(this, autoConf.owner.enabled ?

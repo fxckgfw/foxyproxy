@@ -13,8 +13,8 @@
 <!ENTITY foxyproxy.proxy.notes.accesskey "n">
 <!ENTITY foxyproxy.proxy.notes.tooltip "Proxyanteckningar">
 <!ENTITY foxyproxy.pattern.label "Mönster">
-<!ENTITY foxyproxy.pattern.accesskey "P">
-<!ENTITY foxyproxy.pattern.tooltip "URL pattern">
+<!ENTITY foxyproxy.pattern.accesskey "M">
+<!ENTITY foxyproxy.pattern.tooltip "URL-mönster">
 <!ENTITY foxyproxy.pattern.type.label "Typ av mönster">
 <!ENTITY foxyproxy.whitelist.blacklist.label "Vitlista (inkluderade) eller Svartlista (exkluderade)">
 <!ENTITY foxyproxy.pattern.name.label "Namn för mönster">
@@ -229,7 +229,7 @@
 <!ENTITY foxyproxy.autoadd.reload.accesskey "L">
 <!ENTITY foxyproxy.autoadd.reload.tooltip "Automatiskt ladda om sidan efter att har lagts till i proxyn">
 <!ENTITY foxyproxy.autoadd.notify.label "Meddela mig när AutoAdd använts">
-<!ENTITY foxyproxy.autoadd.notify.accesskey "N">
+<!ENTITY foxyproxy.autoadd.notify.accesskey "M">
 <!ENTITY foxyproxy.autoadd.notify.tooltip "Informerar dig när en sida är blockerad &amp; URL-mönstret är tillagd till proxyn">
 <!ENTITY foxyproxy.autoadd.notify.tooltip2 "Display a popup when AutoAdd is activated">
 <!ENTITY foxyproxy.pacloadnotification.label "Meddela mig när proxyns autokonfigurationsfil laddats">
@@ -417,11 +417,11 @@
 <!ENTITY foxyproxy.temp.label "Temporär">
 <!ENTITY foxyproxy.temp.accesskey "T">
 <!ENTITY foxyproxy.temp.tooltip "Mönster används endast för denna Firefox-session">
-<!ENTITY foxyproxy.define.label "Define">
+<!ENTITY foxyproxy.define.label "Definiera">
 <!ENTITY foxyproxy.define.accesskey "D">
-<!ENTITY foxyproxy.define.tooltip "Define">
-<!ENTITY foxyproxy.pattern.to.quickadd.label "Pattern to quickly add to proxy">
-<!ENTITY foxyproxy.pattern.to.autoadd.label "Pattern to automatically add to proxy">
-<!ENTITY foxyproxy.home "Home">
+<!ENTITY foxyproxy.define.tooltip "Definiera">
+<!ENTITY foxyproxy.pattern.to.quickadd.label "Mönster för att snabbt lägga till proxy">
+<!ENTITY foxyproxy.pattern.to.autoadd.label "Mönster för automatiskt lägga till proxy">
+<!ENTITY foxyproxy.home "Hem">
 <!ENTITY foxyproxy.support "Support">
-<!ENTITY foxyproxy.credits "Credits">
+<!ENTITY foxyproxy.credits "Tack till">

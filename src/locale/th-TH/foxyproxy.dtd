@@ -14,7 +14,7 @@
 <!ENTITY foxyproxy.proxy.notes.tooltip "โน้ตพร็อกซี">
 <!ENTITY foxyproxy.pattern.label "รูปแบบที่เข้ากัน">
 <!ENTITY foxyproxy.pattern.accesskey "P">
-<!ENTITY foxyproxy.pattern.tooltip "URL pattern">
+<!ENTITY foxyproxy.pattern.tooltip "รูปแบบยูอาร์แอล">
 <!ENTITY foxyproxy.pattern.type.label "ชนิดรูปแบบ">
 <!ENTITY foxyproxy.whitelist.blacklist.label "รายชื่อสีขาว (รวมด้วย) หรือรายชื่อสีดำ (โดดเดี่ยว)">
 <!ENTITY foxyproxy.pattern.name.label "ชื่อรูปแบบ">
@@ -417,11 +417,11 @@
 <!ENTITY foxyproxy.temp.label "ชั่วคราว">
 <!ENTITY foxyproxy.temp.accesskey "T">
 <!ENTITY foxyproxy.temp.tooltip "รูปแบบใช้เฉพาะการเปิดไฟร์ฟอกซ์ครั้งนี้">
-<!ENTITY foxyproxy.define.label "Define">
+<!ENTITY foxyproxy.define.label "กำหนด">
 <!ENTITY foxyproxy.define.accesskey "D">
-<!ENTITY foxyproxy.define.tooltip "Define">
-<!ENTITY foxyproxy.pattern.to.quickadd.label "Pattern to quickly add to proxy">
-<!ENTITY foxyproxy.pattern.to.autoadd.label "Pattern to automatically add to proxy">
-<!ENTITY foxyproxy.home "Home">
-<!ENTITY foxyproxy.support "Support">
-<!ENTITY foxyproxy.credits "Credits">
+<!ENTITY foxyproxy.define.tooltip "กำหนด">
+<!ENTITY foxyproxy.pattern.to.quickadd.label "ใส่รูปแบบให้การเพิ่มพร็อกซีอย่้างรวดเร็ว">
+<!ENTITY foxyproxy.pattern.to.autoadd.label "ใส่รูปแบบให้การเพิ่มพร็อกซีอย่้างอัตโนมัติ">
+<!ENTITY foxyproxy.home "โฮม">
+<!ENTITY foxyproxy.support "สนับสนุน">
+<!ENTITY foxyproxy.credits "เครดิต">

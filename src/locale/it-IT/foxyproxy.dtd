@@ -13,12 +13,12 @@
 <!ENTITY foxyproxy.proxy.notes.accesskey "o">
 <!ENTITY foxyproxy.proxy.notes.tooltip "Inserire una nota">
 <!ENTITY foxyproxy.pattern.label "Modello corrispondente">
-<!ENTITY foxyproxy.pattern.accesskey "P">
-<!ENTITY foxyproxy.pattern.tooltip "URL pattern">
+<!ENTITY foxyproxy.pattern.accesskey "U">
+<!ENTITY foxyproxy.pattern.tooltip "Modello URL">
 <!ENTITY foxyproxy.pattern.type.label "Tipo di modello corrispondente">
 <!ENTITY foxyproxy.whitelist.blacklist.label "Modello permesso/non permesso">
 <!ENTITY foxyproxy.pattern.name.label "Nome modello">
-<!ENTITY foxyproxy.pattern.name.accesskey "N">
+<!ENTITY foxyproxy.pattern.name.accesskey "d">
 <!ENTITY foxyproxy.pattern.name.tooltip "Nome del modello corrispondente">
 <!ENTITY foxyproxy.url.pattern.label "URL o modello URL">
 <!ENTITY foxyproxy.url.pattern.accesskey "U">
@@ -207,7 +207,7 @@
 <!ENTITY foxyproxy.tab.autoadd.tooltip "Gestione delle opzioni di aggiunta automatica">
 <!ENTITY foxyproxy.autoadd.description "Specificare un modello per identificare i siti bloccati. Quando tale modello viene trovato in un sito, il modello corrispondente all&apos;indirizzo web di quel sito viene automaticamente aggiunto ai proxy e facoltativamente ricaricato. Questo permette di non dovere identificare anticipatamente tutti i siti bloccati">
 <!ENTITY foxyproxy.autoadd.pattern.label "Modello per identificare siti bloccati">
-<!ENTITY foxyproxy.autoadd.pattern.accesskey "M">
+<!ENTITY foxyproxy.autoadd.pattern.accesskey "o">
 <!ENTITY foxyproxy.autoadd.pattern.tooltip "Modello per identificare i siti bloccati">
 <!ENTITY foxyproxy.autoadd.wildcard.example.label "Esempio: *non si è autorizzati a vedere questa pagina*">
 <!ENTITY foxyproxy.autoadd.regex.example.label "Esempio: .*il sito. *è stato bloccato*">
@@ -228,8 +228,8 @@
 <!ENTITY foxyproxy.autoadd.reload.label "Ricarica la pagina dopo che il sito viene aggiunto al proxy">
 <!ENTITY foxyproxy.autoadd.reload.accesskey "R">
 <!ENTITY foxyproxy.autoadd.reload.tooltip "Ricarica automaticamente la pagina dopo essere stata aggiunta ad un proxy">
-<!ENTITY foxyproxy.autoadd.notify.label "Notifica quando l&apos;aggiunta automatica è attivata">
-<!ENTITY foxyproxy.autoadd.notify.accesskey "N">
+<!ENTITY foxyproxy.autoadd.notify.label "Avvisa quando l&apos;aggiunta automatica viene attivata">
+<!ENTITY foxyproxy.autoadd.notify.accesskey "m">
 <!ENTITY foxyproxy.autoadd.notify.tooltip "Informa quando una pagina è bloccata ed il modello URL viene aggiunto ad un proxy">
 <!ENTITY foxyproxy.autoadd.notify.tooltip2 "Un pop-up verrà visualizzato quando verrà attivata l&apos;aggiunta automatica">
 <!ENTITY foxyproxy.pacloadnotification.label "Notifica quando il file di configurazione automatica del proxy viene caricato">
@@ -257,7 +257,7 @@
 <!ENTITY foxyproxy.contextmenu.tooltip "L&apos;elemento di menu &apos;FoxyProxy&apos; verrà mostrato nel menu contestuale">
 <!ENTITY foxyproxy.quickadd.desc1 "L&apos;aggiunta rapida aggiunge un modello di URL dinamico ad un proxy alla pressione dei tasti Alt+F2. È una pratica alternativa all&apos;aggiunta automatica. È possibile personalizzare tale scorciatoia da tastiera tramite l&apos;estensione">
 <!ENTITY foxyproxy.keyconfig.label "KeyConfig">
-<!ENTITY foxyproxy.quickadd.desc2 "">
+<!ENTITY foxyproxy.quickadd.desc2 "extension">
 <!ENTITY foxyproxy.quickadd.label "Aggiunta rapida">
 <!ENTITY foxyproxy.quickadd.accesskey "A">
 <!ENTITY foxyproxy.quickadd.tooltip "Gestione delle opzioni di aggiunta rapida">
@@ -409,7 +409,7 @@
 <!ENTITY foxyproxy.statusbarwidth.label "Larghezza in pixel:">
 <!ENTITY foxyproxy.statusbarwidth.accesskey "L">
 <!ENTITY foxyproxy.statusbarwidth.tooltip "Larghezza dell&apos;area nella barra di stato dove verrà mostrato il testo">
-<!ENTITY foxyproxy.pixels "">
+<!ENTITY foxyproxy.pixels "pixels">
 <!ENTITY foxyproxy.unlimited.label "(0: il testo verrà mostrato per intero) ">
 <!ENTITY foxyproxy.temp.popup.label "I modelli temporanei permettono di creare modelli di URL per indirizzi che non vengono visitati spesso, senza interessare le liste di modelli dei proxy. Tali modelli non vengono salvati sul disco rigido, ma mantenuti in memoria ed eliminati alla chiusura della sessione di Firefox">
 <!ENTITY foxyproxy.temp.popup.height "140">
@@ -417,11 +417,11 @@
 <!ENTITY foxyproxy.temp.label "Utilizza modelli temporanei">
 <!ENTITY foxyproxy.temp.accesskey "t">
 <!ENTITY foxyproxy.temp.tooltip "Selezionare questa opzione per utilizzare il modello solo per la sessione di Firefox attuale">
-<!ENTITY foxyproxy.define.label "Define">
-<!ENTITY foxyproxy.define.accesskey "D">
-<!ENTITY foxyproxy.define.tooltip "Define">
-<!ENTITY foxyproxy.pattern.to.quickadd.label "Pattern to quickly add to proxy">
-<!ENTITY foxyproxy.pattern.to.autoadd.label "Pattern to automatically add to proxy">
-<!ENTITY foxyproxy.home "Home">
-<!ENTITY foxyproxy.support "Support">
-<!ENTITY foxyproxy.credits "Credits">
+<!ENTITY foxyproxy.define.label "Imposta...">
+<!ENTITY foxyproxy.define.accesskey "I">
+<!ENTITY foxyproxy.define.tooltip "Aggiungi/modifica un modello">
+<!ENTITY foxyproxy.pattern.to.quickadd.label "Modello da aggiungere rapidamente al proxy">
+<!ENTITY foxyproxy.pattern.to.autoadd.label "Modello da aggiungere automaticamente al proxy">
+<!ENTITY foxyproxy.home "Visita il sito web">
+<!ENTITY foxyproxy.support "Supporto">
+<!ENTITY foxyproxy.credits "Riconoscimenti">

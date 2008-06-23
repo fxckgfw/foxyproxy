@@ -1,6 +1,6 @@
 <!ENTITY help.title.foxyproxy.help "FoxyProxy 使用說明">
 <!ENTITY help.patterns "網址樣式">
-<!ENTITY help.ff.asks "Firefox 在載入網頁前，會先詢問 PoxyProxy 是否使用代理伺服器，">
+<!ENTITY help.ff.asks "Firefox 在載入網頁前，會先詢問 FoxyProxy 是否使用代理伺服器，">
 <!ENTITY help.fp.answers "FoxyProxy 會試著去比對目前的網址及你定義好的網址樣式來回答 Firefox，而萬用字元是撰寫樣式最簡單的方式。">
 <!ENTITY help.a.wildcards "萬用字元">
 <!ENTITY help.p.wildcards.are "萬用字元是一個很常見的電腦表示方式，星號（*）代表零到多個字元，問號（?）代表任一個字元。">

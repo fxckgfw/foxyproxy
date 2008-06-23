@@ -12,9 +12,9 @@
 <!ENTITY foxyproxy.proxy.notes.label "代理伺服器註釋(N)">
 <!ENTITY foxyproxy.proxy.notes.accesskey "N">
 <!ENTITY foxyproxy.proxy.notes.tooltip "代理伺服器註釋">
-<!ENTITY foxyproxy.pattern.label "樣式">
+<!ENTITY foxyproxy.pattern.label "樣式(P)">
 <!ENTITY foxyproxy.pattern.accesskey "P">
-<!ENTITY foxyproxy.pattern.tooltip "URL pattern">
+<!ENTITY foxyproxy.pattern.tooltip "網址樣式">
 <!ENTITY foxyproxy.pattern.type.label "樣式類別">
 <!ENTITY foxyproxy.whitelist.blacklist.label "白名單或黑名單">
 <!ENTITY foxyproxy.pattern.name.label "樣式名稱(P)">
@@ -228,7 +228,7 @@
 <!ENTITY foxyproxy.autoadd.reload.label "樣式加入代理伺服器設定後重新載入目前網頁(R)">
 <!ENTITY foxyproxy.autoadd.reload.accesskey "R">
 <!ENTITY foxyproxy.autoadd.reload.tooltip "樣式加入代理伺服器設定後自動重新載入目前網頁">
-<!ENTITY foxyproxy.autoadd.notify.label "當「自動新增」啟動時通知我">
+<!ENTITY foxyproxy.autoadd.notify.label "當「自動新增」啟動時通知我(N)">
 <!ENTITY foxyproxy.autoadd.notify.accesskey "N">
 <!ENTITY foxyproxy.autoadd.notify.tooltip "當網頁被阻擋且樣式被加入代理伺服器時通知你">
 <!ENTITY foxyproxy.autoadd.notify.tooltip2 "當「自動新增」啟動時顯示通知視窗">
@@ -417,11 +417,11 @@
 <!ENTITY foxyproxy.temp.label "臨時性樣式(T)">
 <!ENTITY foxyproxy.temp.accesskey "T">
 <!ENTITY foxyproxy.temp.tooltip "樣式只在這次執行 Firefox 有效">
-<!ENTITY foxyproxy.define.label "Define">
+<!ENTITY foxyproxy.define.label "定義(D)">
 <!ENTITY foxyproxy.define.accesskey "D">
-<!ENTITY foxyproxy.define.tooltip "Define">
-<!ENTITY foxyproxy.pattern.to.quickadd.label "Pattern to quickly add to proxy">
-<!ENTITY foxyproxy.pattern.to.autoadd.label "Pattern to automatically add to proxy">
-<!ENTITY foxyproxy.home "Home">
-<!ENTITY foxyproxy.support "Support">
-<!ENTITY foxyproxy.credits "Credits">
+<!ENTITY foxyproxy.define.tooltip "定義">
+<!ENTITY foxyproxy.pattern.to.quickadd.label "要快速新增的樣式">
+<!ENTITY foxyproxy.pattern.to.autoadd.label "要自動新增的樣式">
+<!ENTITY foxyproxy.home "首頁">
+<!ENTITY foxyproxy.support "技術支援">
+<!ENTITY foxyproxy.credits "製作群">

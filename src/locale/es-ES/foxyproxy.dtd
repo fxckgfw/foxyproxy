@@ -14,7 +14,7 @@
 <!ENTITY foxyproxy.proxy.notes.tooltip "Notas del proxy">
 <!ENTITY foxyproxy.pattern.label "Correspondencia de patrones">
 <!ENTITY foxyproxy.pattern.accesskey "P">
-<!ENTITY foxyproxy.pattern.tooltip "URL pattern">
+<!ENTITY foxyproxy.pattern.tooltip "Patrón de direcciones">
 <!ENTITY foxyproxy.pattern.type.label "Tipo de patrón">
 <!ENTITY foxyproxy.whitelist.blacklist.label "Lista blanca (inclusiva) o lista negra (exclusiva)">
 <!ENTITY foxyproxy.pattern.name.label "Nombre del patrón">
@@ -417,11 +417,11 @@
 <!ENTITY foxyproxy.temp.label "Temporales">
 <!ENTITY foxyproxy.temp.accesskey "T">
 <!ENTITY foxyproxy.temp.tooltip "Los patrones se usarán sólamente en esta sesión de Firefox">
-<!ENTITY foxyproxy.define.label "Define">
+<!ENTITY foxyproxy.define.label "Definir">
 <!ENTITY foxyproxy.define.accesskey "D">
-<!ENTITY foxyproxy.define.tooltip "Define">
-<!ENTITY foxyproxy.pattern.to.quickadd.label "Pattern to quickly add to proxy">
-<!ENTITY foxyproxy.pattern.to.autoadd.label "Pattern to automatically add to proxy">
-<!ENTITY foxyproxy.home "Home">
-<!ENTITY foxyproxy.support "Support">
-<!ENTITY foxyproxy.credits "Credits">
+<!ENTITY foxyproxy.define.tooltip "Definir">
+<!ENTITY foxyproxy.pattern.to.quickadd.label "Patrón para añadir rápidamente al proxy">
+<!ENTITY foxyproxy.pattern.to.autoadd.label "Patrón para añadir automáticamente al proxy">
+<!ENTITY foxyproxy.home "Inicio">
+<!ENTITY foxyproxy.support "Soporte">
+<!ENTITY foxyproxy.credits "Créditos">

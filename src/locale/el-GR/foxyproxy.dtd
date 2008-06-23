@@ -13,8 +13,8 @@
 <!ENTITY foxyproxy.proxy.notes.accesskey "Σ">
 <!ENTITY foxyproxy.proxy.notes.tooltip "Σημειώσεις διαμεσολαβητή">
 <!ENTITY foxyproxy.pattern.label "Πρότυπο">
-<!ENTITY foxyproxy.pattern.accesskey "P">
-<!ENTITY foxyproxy.pattern.tooltip "URL pattern">
+<!ENTITY foxyproxy.pattern.accesskey "Π">
+<!ENTITY foxyproxy.pattern.tooltip "Πρότυπο URL">
 <!ENTITY foxyproxy.pattern.type.label "Τύπος προτύπου">
 <!ENTITY foxyproxy.whitelist.blacklist.label "Λίστα επιτρεπόμενων (συμπεριληπτική) ή λίστα μη επιτρεπόμενων (αποριπτική)">
 <!ENTITY foxyproxy.pattern.name.label "Όνομα προτύπου">
@@ -229,7 +229,7 @@
 <!ENTITY foxyproxy.autoadd.reload.accesskey "Α">
 <!ENTITY foxyproxy.autoadd.reload.tooltip "Αυτόματη ανανέωση σελίδας μετά την προσθήκη του προτύπου σε διαμεσολαβητή">
 <!ENTITY foxyproxy.autoadd.notify.label "Ειδοποίηση όταν ενεργοποιηθεί η αυτόματη προσθήκη">
-<!ENTITY foxyproxy.autoadd.notify.accesskey "N">
+<!ENTITY foxyproxy.autoadd.notify.accesskey "ο">
 <!ENTITY foxyproxy.autoadd.notify.tooltip "Σας ενημερώνει όταν μια σελίδα μπλοκαριστεί &amp; το πρότυπο URL προστεθεί σε διαμεσολαβητή">
 <!ENTITY foxyproxy.autoadd.notify.tooltip2 "Προβολή αναδυόμενου όταν ενεργοποιηθεί η αυτόματη προσθήκη">
 <!ENTITY foxyproxy.pacloadnotification.label "Ειδοποίηση όταν φορτώνεται αρχείο αυτόματων ρυθμίσεων">
@@ -417,11 +417,11 @@
 <!ENTITY foxyproxy.temp.label "Προσωρινό">
 <!ENTITY foxyproxy.temp.accesskey "ν">
 <!ENTITY foxyproxy.temp.tooltip "Το πρότυπο θα χρησιμοποιηθεί μόνο σ&apos; αυτή τη συνεδρία.">
-<!ENTITY foxyproxy.define.label "Define">
-<!ENTITY foxyproxy.define.accesskey "D">
-<!ENTITY foxyproxy.define.tooltip "Define">
-<!ENTITY foxyproxy.pattern.to.quickadd.label "Pattern to quickly add to proxy">
-<!ENTITY foxyproxy.pattern.to.autoadd.label "Pattern to automatically add to proxy">
-<!ENTITY foxyproxy.home "Home">
-<!ENTITY foxyproxy.support "Support">
-<!ENTITY foxyproxy.credits "Credits">
+<!ENTITY foxyproxy.define.label "Όρισμός">
+<!ENTITY foxyproxy.define.accesskey "Ο">
+<!ENTITY foxyproxy.define.tooltip "Ορισμός">
+<!ENTITY foxyproxy.pattern.to.quickadd.label "Πρότυπο για άμεση προσθήκη στο διαμεσολαβητή">
+<!ENTITY foxyproxy.pattern.to.autoadd.label "Πρότυπο για αυτόματη προσθήκη στο διαμεσολαβητή">
+<!ENTITY foxyproxy.home "Αρχική σελίδα">
+<!ENTITY foxyproxy.support "Υποστήριξη">
+<!ENTITY foxyproxy.credits "Μνεία">

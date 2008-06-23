@@ -13,12 +13,12 @@
 <!ENTITY foxyproxy.proxy.notes.accesskey "U">
 <!ENTITY foxyproxy.proxy.notes.tooltip "Uwagi o proxy">
 <!ENTITY foxyproxy.pattern.label "Wzorzec">
-<!ENTITY foxyproxy.pattern.accesskey "P">
-<!ENTITY foxyproxy.pattern.tooltip "URL pattern">
+<!ENTITY foxyproxy.pattern.accesskey "W">
+<!ENTITY foxyproxy.pattern.tooltip "Wzorzec URL">
 <!ENTITY foxyproxy.pattern.type.label "Typ wzorca">
 <!ENTITY foxyproxy.whitelist.blacklist.label "Zezwolenia">
 <!ENTITY foxyproxy.pattern.name.label "Nazwa wzorca">
-<!ENTITY foxyproxy.pattern.name.accesskey "W">
+<!ENTITY foxyproxy.pattern.name.accesskey "Z">
 <!ENTITY foxyproxy.pattern.name.tooltip "Nazwa wzorca">
 <!ENTITY foxyproxy.url.pattern.label "Wzorzec URL">
 <!ENTITY foxyproxy.url.pattern.accesskey "U">
@@ -201,7 +201,7 @@
 <!ENTITY foxyproxy.random.includedisabled.tooltip "Dołącza proxy skonfigurowane jako wyłączone do wyboru losowego">
 <!ENTITY foxyproxy.random.settings.label "Losowy wybór proxy">
 <!ENTITY foxyproxy.random.settings.accesskey "L">
-<!ENTITY foxyproxy.random.settings.tooltip "Ustawienia, które oddziałowywują na wybór losowy proxy">
+<!ENTITY foxyproxy.random.settings.tooltip "Ustawienia, które oddziałują na wybór losowy proxy">
 <!ENTITY foxyproxy.tab.autoadd.label "Autododawanie">
 <!ENTITY foxyproxy.tab.autoadd.accesskey "A">
 <!ENTITY foxyproxy.tab.autoadd.tooltip "Zarządzanie ustawieniami automatycznego dodawania">
@@ -417,11 +417,11 @@
 <!ENTITY foxyproxy.temp.label "Wzorce tymczasowe">
 <!ENTITY foxyproxy.temp.accesskey "T">
 <!ENTITY foxyproxy.temp.tooltip "Wzorzec jest używany tylko dla tej sesji Firefoksa">
-<!ENTITY foxyproxy.define.label "Define">
+<!ENTITY foxyproxy.define.label "Zdefiniuj">
 <!ENTITY foxyproxy.define.accesskey "D">
-<!ENTITY foxyproxy.define.tooltip "Define">
-<!ENTITY foxyproxy.pattern.to.quickadd.label "Pattern to quickly add to proxy">
-<!ENTITY foxyproxy.pattern.to.autoadd.label "Pattern to automatically add to proxy">
-<!ENTITY foxyproxy.home "Home">
-<!ENTITY foxyproxy.support "Support">
-<!ENTITY foxyproxy.credits "Credits">
+<!ENTITY foxyproxy.define.tooltip "Zdefiniuj">
+<!ENTITY foxyproxy.pattern.to.quickadd.label "Wzorzec szybkiego dodawania do proxy">
+<!ENTITY foxyproxy.pattern.to.autoadd.label "Wzorzec automatycznego dodawania do proxy">
+<!ENTITY foxyproxy.home "Strona domowa">
+<!ENTITY foxyproxy.support "Pomoc">
+<!ENTITY foxyproxy.credits "Podziękowania">

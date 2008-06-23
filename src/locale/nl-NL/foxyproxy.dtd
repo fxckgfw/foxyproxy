@@ -12,9 +12,9 @@
 <!ENTITY foxyproxy.proxy.notes.label "Opmerkingen bij de proxy">
 <!ENTITY foxyproxy.proxy.notes.accesskey "O">
 <!ENTITY foxyproxy.proxy.notes.tooltip "Opmerkingen bij de proxy">
-<!ENTITY foxyproxy.pattern.label "Vergelijkingspatroon">
+<!ENTITY foxyproxy.pattern.label "Patroon">
 <!ENTITY foxyproxy.pattern.accesskey "P">
-<!ENTITY foxyproxy.pattern.tooltip "URL pattern">
+<!ENTITY foxyproxy.pattern.tooltip "URL patroon">
 <!ENTITY foxyproxy.pattern.type.label "Patroontype">
 <!ENTITY foxyproxy.whitelist.blacklist.label "Witte lijst (opnemen) of zwarte lijst (uitsluiten)">
 <!ENTITY foxyproxy.pattern.name.label "Patroonnaam">
@@ -91,7 +91,7 @@
 <!ENTITY foxyproxy.pattern.description "Hier kunt u specificeren wanneer deze proxy wel of niet wordt gebruikt.">
 <!ENTITY foxyproxy.pattern.matchtype.label "Patroon bevat">
 <!ENTITY foxyproxy.pattern.matchtype2.label "Patroon om geblokkeerde websites te identificeren bevat">
-<!ENTITY foxyproxy.pattern.template.matchtype.label "Patroontemplate bevat">
+<!ENTITY foxyproxy.pattern.template.matchtype.label "Patroonsjabloon bevat">
 <!ENTITY foxyproxy.pattern.whiteblack.label "URL opname/uitsluiting">
 <!ENTITY foxyproxy.add.option.direct.label "Directe verbinding met Internet (geen proxy)">
 <!ENTITY foxyproxy.add.option.direct.accesskey "D">
@@ -319,8 +319,8 @@
 <!ENTITY foxyproxy.ok.tooltip "Venster sluiten">
 <!ENTITY foxyproxy.pattern.template.reference.label "Patroon-template referentie">
 <!ENTITY foxyproxy.pattern.template.reference.accesskey "T">
-<!ENTITY foxyproxy.pattern.template.reference.tooltip "Patroontemplate referentie">
-<!ENTITY foxyproxy.pattern.template.reference.subtitle.label "URL-patroon templates bepalen de opmaak waarin URL&apos;s Snel of Automatisch worden toegevoegd aan proxy&apos;s. Templates ondersteunen de volgende speciale zinsdelen die, wanneer Snel toevoegen of Automatisch toevoegen geactiveerd worden, vervangen worden door de overeenkomstige URL component in de adresbalk.">
+<!ENTITY foxyproxy.pattern.template.reference.tooltip "Patroonsjabloonreferentie">
+<!ENTITY foxyproxy.pattern.template.reference.subtitle.label "URL-patroonsjablonen bepalen de opmaak waarin URL&apos;s Snel of Automatisch worden toegevoegd aan proxy&apos;s. Sjablonen ondersteunen de volgende speciale zinsdelen die, wanneer Snel toevoegen of Automatisch toevoegen geactiveerd worden, vervangen worden door de overeenkomstige URL component in de adresbalk.">
 <!ENTITY foxyproxy.pattern.template.reference.specialstring.label "Speciaal zinsdeel">
 <!ENTITY foxyproxy.pattern.template.reference.subststring.label "Vervangen door">
 <!ENTITY foxyproxy.pattern.template.reference.example.label "Voorbeeld">
@@ -417,11 +417,11 @@
 <!ENTITY foxyproxy.temp.label "Tijdelijk">
 <!ENTITY foxyproxy.temp.accesskey "T">
 <!ENTITY foxyproxy.temp.tooltip "Patroon wordt alleen tijdens deze Firefox-sessie gebruikt">
-<!ENTITY foxyproxy.define.label "Define">
+<!ENTITY foxyproxy.define.label "Definiëren">
 <!ENTITY foxyproxy.define.accesskey "D">
-<!ENTITY foxyproxy.define.tooltip "Define">
-<!ENTITY foxyproxy.pattern.to.quickadd.label "Pattern to quickly add to proxy">
-<!ENTITY foxyproxy.pattern.to.autoadd.label "Pattern to automatically add to proxy">
-<!ENTITY foxyproxy.home "Home">
-<!ENTITY foxyproxy.support "Support">
-<!ENTITY foxyproxy.credits "Credits">
+<!ENTITY foxyproxy.define.tooltip "Definiëren">
+<!ENTITY foxyproxy.pattern.to.quickadd.label "Patroon om snel aan proxy toe te voegen">
+<!ENTITY foxyproxy.pattern.to.autoadd.label "Patroon om automatisch aan proxy toe te voegen">
+<!ENTITY foxyproxy.home "Startpagina">
+<!ENTITY foxyproxy.support "Ondersteuning">
+<!ENTITY foxyproxy.credits "Dankzegging">

@@ -13,8 +13,8 @@
 <!ENTITY foxyproxy.proxy.notes.accesskey "B">
 <!ENTITY foxyproxy.proxy.notes.tooltip "Proxy-Beschreibung">
 <!ENTITY foxyproxy.pattern.label "Muster">
-<!ENTITY foxyproxy.pattern.accesskey "P">
-<!ENTITY foxyproxy.pattern.tooltip "URL pattern">
+<!ENTITY foxyproxy.pattern.accesskey "M">
+<!ENTITY foxyproxy.pattern.tooltip "URL Muster">
 <!ENTITY foxyproxy.pattern.type.label "Typ des Musters">
 <!ENTITY foxyproxy.whitelist.blacklist.label "Whitelist (inklusiv) oder Blacklist (exklusiv)">
 <!ENTITY foxyproxy.pattern.name.label "Name des Musters">
@@ -229,7 +229,7 @@
 <!ENTITY foxyproxy.autoadd.reload.accesskey "L">
 <!ENTITY foxyproxy.autoadd.reload.tooltip "Lädt die Seite automatisch neu, nachdem sie einem Proxy zugeordnet wurde">
 <!ENTITY foxyproxy.autoadd.notify.label "Benachrichtigen, wenn AutoAdd ausgeführt wird">
-<!ENTITY foxyproxy.autoadd.notify.accesskey "N">
+<!ENTITY foxyproxy.autoadd.notify.accesskey "B">
 <!ENTITY foxyproxy.autoadd.notify.tooltip "Benachrichtigung anzeigen, wenn eine Webseite blockiert ist und das URL-Muster einem Proxy per AutoAdd zugeordnet wird">
 <!ENTITY foxyproxy.autoadd.notify.tooltip2 "Display a popup when AutoAdd is activated">
 <!ENTITY foxyproxy.pacloadnotification.label "Benachrichtigen beim Laden von PAC-Dateien">
@@ -417,11 +417,11 @@
 <!ENTITY foxyproxy.temp.label "Temporär">
 <!ENTITY foxyproxy.temp.accesskey "T">
 <!ENTITY foxyproxy.temp.tooltip "Muster wird nur in dieser Firefox-Session verwendet">
-<!ENTITY foxyproxy.define.label "Define">
+<!ENTITY foxyproxy.define.label "Definieren">
 <!ENTITY foxyproxy.define.accesskey "D">
-<!ENTITY foxyproxy.define.tooltip "Define">
-<!ENTITY foxyproxy.pattern.to.quickadd.label "Pattern to quickly add to proxy">
-<!ENTITY foxyproxy.pattern.to.autoadd.label "Pattern to automatically add to proxy">
+<!ENTITY foxyproxy.define.tooltip "Definieren">
+<!ENTITY foxyproxy.pattern.to.quickadd.label "Muster für Schnellzuweisung zu Proxy">
+<!ENTITY foxyproxy.pattern.to.autoadd.label "Muster für automatische Zuweisung zu Proxy">
 <!ENTITY foxyproxy.home "Home">
-<!ENTITY foxyproxy.support "Support">
-<!ENTITY foxyproxy.credits "Credits">
+<!ENTITY foxyproxy.support "Unterstützung">
+<!ENTITY foxyproxy.credits "Danksagungen">

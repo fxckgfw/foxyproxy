@@ -1,9 +1,9 @@
 <!ENTITY foxyproxy.label "FoxyProxy">
 <!ENTITY foxyproxy.accesskey "F">
 <!ENTITY foxyproxy.tooltip "FoxyProxy">
-<!ENTITY foxyproxy.optionsdialog.label "FoxyProxy Options">
-<!ENTITY foxyproxy.options.label "Options">
-<!ENTITY foxyproxy.options.accesskey "O">
+<!ENTITY foxyproxy.optionsdialog.label "FoxyProxy Beállítások">
+<!ENTITY foxyproxy.options.label "Beállítások">
+<!ENTITY foxyproxy.options.accesskey "B">
 <!ENTITY foxyproxy.options.tooltip "Open the Options Dialog">
 <!ENTITY foxyproxy.tree.pickertooltiptext.label "Click to select which columns to display">
 <!ENTITY foxyproxy.proxy.name.label "Proxy Name">
@@ -217,7 +217,7 @@
 <!ENTITY foxyproxy.pattern.template.label "URL Pattern Template">
 <!ENTITY foxyproxy.pattern.template.accesskey "U">
 <!ENTITY foxyproxy.pattern.template.tooltip "URL Pattern Template">
-<!ENTITY foxyproxy.pattern.template.example.label1 "Example for ">
+<!ENTITY foxyproxy.pattern.template.example.label1 "Example for">
 <!ENTITY foxyproxy.pattern.template.example.label2 "http://fred:secret@mail.foo.com:8080/inbox/msg102.htm#subject?style=elegant">
 <!ENTITY foxyproxy.pattern.template.currenturl.label "Current URL">
 <!ENTITY foxyproxy.pattern.template.currenturl.accesskey "C">
@@ -255,7 +255,7 @@
 <!ENTITY foxyproxy.contextmenu.label "Show icon in the context-menu">
 <!ENTITY foxyproxy.contextmenu.accesskey "C">
 <!ENTITY foxyproxy.contextmenu.tooltip "Show icon in the context-menu">
-<!ENTITY foxyproxy.quickadd.desc1 "QuickAdd adds a dynamic URL pattern to a proxy when you press Alt-F2. It is practical alternative to AutoAdd. Customize the Alt-F2 shortcut with the ">
+<!ENTITY foxyproxy.quickadd.desc1 "QuickAdd adds a dynamic URL pattern to a proxy when you press Alt-F2. It is practical alternative to AutoAdd. Customize the Alt-F2 shortcut with the">
 <!ENTITY foxyproxy.keyconfig.label "KeyConfig">
 <!ENTITY foxyproxy.quickadd.desc2 "extension">
 <!ENTITY foxyproxy.quickadd.label "QuickAdd">
@@ -410,7 +410,7 @@
 <!ENTITY foxyproxy.statusbarwidth.accesskey "W">
 <!ENTITY foxyproxy.statusbarwidth.tooltip "Prevents statusbar resizing">
 <!ENTITY foxyproxy.pixels "pixels">
-<!ENTITY foxyproxy.unlimited.label "[0: shrink to fit] ">
+<!ENTITY foxyproxy.unlimited.label "[0: shrink to fit]">
 <!ENTITY foxyproxy.temp.popup.label "Temporary patterns allow you to create patterns for URLs that you don&apos;t visit often without cluttering the pattern list for a proxy. Temporary patterns are not saved to disk. They are kept in-memory and used for this Firefox session only.">
 <!ENTITY foxyproxy.temp.popup.height "120">
 <!ENTITY foxyproxy.temp.popup.width "400">

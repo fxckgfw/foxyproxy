@@ -43,7 +43,10 @@ function SuperAdd(mName) {
     ret.temp = this.temp;
     return ret;
   };
-  this.fpc = CC["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject;
+  try {
+    this.fpc = CC["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject;
+  }
+  catch (e) { /* Firefox Portable 3.0 throws the above statement; Common not yet registered */ }
 }
 
 function QuickAdd(mName) {
@@ -51,6 +54,7 @@ function QuickAdd(mName) {
   this.notificationTitle = "foxyproxy.quickadd.label";
   this.elemName = "quickadd";
   this.elemNameCamelCase = "QuickAdd";
+  this.setFPC();
 }
 function AutoAdd(mName) {
   SuperAdd.apply(this, arguments);
@@ -70,6 +74,7 @@ function AutoAdd(mName) {
   // Strangely, if we override the setter with __defineSetter__, the getter is reset.
   // So we have to forcefully set it again...
   this._blockedPageMatch.__defineGetter__("pattern", function() { return this._pattern; });
+  this.setFPC();
 }
 
 // The super class definition
@@ -86,6 +91,13 @@ SuperAdd.prototype = {
   fpc : null,
   
   _formatConverter : CC["@mozilla.org/widget/htmlformatconverter;1"].createInstance(CI.nsIFormatConverter),
+  
+  setFPC : function() {
+    if (!this.fpc) {
+      // For Portable Firefox 3.0, which has problems setting this.fpc in SuperAdd() ctor.
+      this.fpc = CC["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject;
+    } 
+  }, 
     
   get enabled() { return this._enabled; },
   set enabled(e) {

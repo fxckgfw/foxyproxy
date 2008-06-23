@@ -33,7 +33,7 @@ function onLoad() {
   noURLsCmd = document.getElementById("noURLsCmd");
   timeformat = foxyproxy.getMessage("timeformat");
   _initSettings();
-  setTimeout(function(){sizeToContent()}, 0);
+  //setTimeout(function(){sizeToContent()}, 0);
   CC["@mozilla.org/observer-service;1"].getService(CI.nsIObserverService).addObserver(observer,"foxyproxy-mode-change", false);
 }
 
@@ -482,8 +482,8 @@ function onAutoAddEnabled(cb) {
   else {
     document.getElementById("autoAddBroadcaster").hidden = true;
     foxyproxy.autoadd.enabled = false;
+    sizeToContent();
   }
-  sizeToContent();
 }
 
 function onDefinePattern(superadd) {

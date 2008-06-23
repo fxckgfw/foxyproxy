@@ -13,8 +13,8 @@
 <!ENTITY foxyproxy.proxy.notes.accesskey "t">
 <!ENTITY foxyproxy.proxy.notes.tooltip "Notes concernant le proxy">
 <!ENTITY foxyproxy.pattern.label "Motif de correspondance">
-<!ENTITY foxyproxy.pattern.accesskey "P">
-<!ENTITY foxyproxy.pattern.tooltip "URL pattern">
+<!ENTITY foxyproxy.pattern.accesskey "M">
+<!ENTITY foxyproxy.pattern.tooltip "Motif d&apos;URL">
 <!ENTITY foxyproxy.pattern.type.label "Type de motif">
 <!ENTITY foxyproxy.whitelist.blacklist.label "Liste blanche (autorisés) ou liste noire (exclus)">
 <!ENTITY foxyproxy.pattern.name.label "Nom du motif">
@@ -229,7 +229,7 @@
 <!ENTITY foxyproxy.autoadd.reload.accesskey "R">
 <!ENTITY foxyproxy.autoadd.reload.tooltip "Recharger automatiquement la page après l&apos;ajout du motif au proxy">
 <!ENTITY foxyproxy.autoadd.notify.label "M&apos;avertir lorsque l&apos;AutoAjout est activé">
-<!ENTITY foxyproxy.autoadd.notify.accesskey "N">
+<!ENTITY foxyproxy.autoadd.notify.accesskey "a">
 <!ENTITY foxyproxy.autoadd.notify.tooltip "Vous informe lorsqu&apos;une page est bloquée et que le motif de correspondance est ajouté à un proxy">
 <!ENTITY foxyproxy.autoadd.notify.tooltip2 "Afficher une fenêtre popup lorsque l&apos;AutoAjout est activé">
 <!ENTITY foxyproxy.pacloadnotification.label "M&apos;avertir lors du chargement du fichier d&apos;auto-configuration de proxy">
@@ -417,11 +417,11 @@
 <!ENTITY foxyproxy.temp.label "Temporaire">
 <!ENTITY foxyproxy.temp.accesskey "T">
 <!ENTITY foxyproxy.temp.tooltip "Le motif n&apos;est utilisé que pour cette session de Firefox">
-<!ENTITY foxyproxy.define.label "Define">
+<!ENTITY foxyproxy.define.label "Définir">
 <!ENTITY foxyproxy.define.accesskey "D">
-<!ENTITY foxyproxy.define.tooltip "Define">
-<!ENTITY foxyproxy.pattern.to.quickadd.label "Pattern to quickly add to proxy">
-<!ENTITY foxyproxy.pattern.to.autoadd.label "Pattern to automatically add to proxy">
-<!ENTITY foxyproxy.home "Home">
+<!ENTITY foxyproxy.define.tooltip "Définir">
+<!ENTITY foxyproxy.pattern.to.quickadd.label "Motif à ajouter rapidement au proxy">
+<!ENTITY foxyproxy.pattern.to.autoadd.label "Motif à ajouter automatiquement au proxy">
+<!ENTITY foxyproxy.home "Accueil">
 <!ENTITY foxyproxy.support "Support">
-<!ENTITY foxyproxy.credits "Credits">
+<!ENTITY foxyproxy.credits "Crédits">

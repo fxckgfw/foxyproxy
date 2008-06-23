@@ -1,4 +1,4 @@
-<!ENTITY help.title.foxyproxy.help "Справка FoxyProxy">
+<!ENTITY help.title.foxyproxy.help "Справка по FoxyProxy">
 <!ENTITY help.patterns "шаблон URL">
 <!ENTITY help.ff.asks "Перед тем как загрузить страницу, Firefox выяснит у FoxyProxy если должен использоваться прокси.">
 <!ENTITY help.fp.answers "FoxyProxy answers this question by attempting to match the current URL with all of the URL patterns you define below. The simplest way to specify patterns is with wildcards.">
@@ -9,5 +9,5 @@
 <!ENTITY help.th.url.pattern "шаблон URL">
 <!ENTITY help.th.some.matches "Совпадают">
 <!ENTITY help.th.some.non.matches "Не совпадают">
-<!ENTITY help.td.everything.in.y "Everything in Yahoo&apos;s domain">
+<!ENTITY help.td.everything.in.y "Всё в Yahoo-доменах">
 <!ENTITY help.i.matches.everything "Всё совпадает">

@@ -182,8 +182,11 @@ var AutoConfModule = {
   canUnload: function(aCompMgr) { return true; }
 };
 
-// FoxyProxy's own nsIProxyAutoConfig impl
-// http://mxr.mozilla.org/mozilla-central/source/netwerk/base/src/nsProxyAutoConfig.js?raw=1
+// FoxyProxy's own nsIProxyAutoConfig impl of
+// http://mxr.mozilla.org/mozilla-central/source/netwerk/base/src/nsProxyAutoConfig.js.
+// Why? Because Gecko's impl is a singleton. FoxyProxy needs multiple instances in order to
+// support multiple, simultaneous PAC files (Gecko's impl cannot do this as of Moz 1.9 because
+// of the singleon nature of this component)
 function nsProxyAutoConfig() {};
 
 nsProxyAutoConfig.prototype = {

@@ -214,7 +214,7 @@ nsProxyAutoConfig.prototype = {
         // We can no longer trust this._sandBox. Touching it directly can
         // cause all sorts of pain, so wrap it in an XPCSafeJSObjectWrapper
         // and do all of our work through there.
-        this._sandBox = new XPCSafeJSObjectWrapper(this._sandBox);
+        this._sandBox = XPCSJSOWWrapper(this._sandBox, true);
     },
 
     getProxyForURI: function(testURI, testHost) {
@@ -225,14 +225,20 @@ nsProxyAutoConfig.prototype = {
         try {
             var rval = this._sandBox.FindProxyForURL(testURI, testHost);
         } catch (e) {
-            throw XPCSafeJSObjectWrapper(e);
+            throw XPCSJSOWWrapper(e);
         }
         return rval;
     }
 }
 
+/** XPCSafeJSObjectWrapper is not available before FF 3.0. Only use it if it's available. **/
+function XPCSJSOWWrapper(x, useNew) {
+  return typeof(XPCSafeJSObjectWrapper) == "undefined" ?
+    x : useNew ? new XPCSafeJSObjectWrapper(x) : XPCSafeJSObjectWrapper(x);
+}
+
 function proxyAlert(msg) {
-    msg = XPCSafeJSObjectWrapper(msg);
+    msg = XPCSJSOWWrapper(msg);
     try {
         // It would appear that the console service is threadsafe.
         var cns = Components.classes["@mozilla.org/consoleservice;1"]
@@ -254,7 +260,7 @@ function myIpAddress() {
 
 // wrapper for resolving hostnames called by PAC file
 function dnsResolve(host) {
-    host = XPCSafeJSObjectWrapper(host);
+    host = XPCSJSOWWrapper(host);
     try {
         return dns.resolve(host, 0).getNextAddrAsString();
     } catch (e) {

@@ -365,11 +365,8 @@ AutoAdd.prototype.fromDOM = function(doc) {
     }
     catch (e) {dump(e+"\n");}
   }
-  else {
-    // TODO: handle pre-2.8 installations
-    dump("upgrade to 2.8+\n");
+  else
     this._blockedPageMatch.fromDOM(getBlockedPageMatch("/foxyproxy/autoadd/match[1]"));
-  }
   
   function getBlockedPageMatch(exp) {
     // doc.createNSResolver(doc) fails on FF2 (not FF3), so we use an instance of nsIDOMXPathEvaluator instead

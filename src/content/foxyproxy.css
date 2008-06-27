@@ -115,3 +115,10 @@ treechildren::-moz-tree-checkbox(checked) {
   text-decoration: underline;
   cursor: pointer;
 }
+treechildren::-moz-tree-checkbox {
+  list-style-image: url("");
+}
+treechildren::-moz-tree-checkbox(checked) {
+  list-style-image: url("chrome://foxyproxy/content/images/cbox-check.gif");
+}
+

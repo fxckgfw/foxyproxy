@@ -15,11 +15,15 @@
 //dump("foxyproxy.js\n");
 var CI = Components.interfaces, CC = Components.classes, CR = Components.results, gFP;
 
-var dumpp = function() {
-     try {
+var dumpp = function(e) {
+  if (e) out(e);
+  else {
+    try {
       throw new Error("e");
     }
-    catch (e) {dump("*** " + e + " \n\n\n");dump ("\n" + e.stack + "\n");} 
+    catch (e) {out(e);} 
+  } 
+  function out(e) {dump("FoxyProxy: " + e + " \n\n" + e.stack + "\n");}
 }
 // Get attribute from node if it exists, otherwise return |def|.
 // No exceptions, no errors, no null returns.
@@ -1119,7 +1123,7 @@ biesi>	passing it the appropriate proxyinfo
 	        this.tooltip.showPopup(doc.getElementById("status-bar"), -1, -1, "tooltip", "topright","bottomright");
 					this.timer.initWithCallback(this, 5000, CI.nsITimer.TYPE_ONE_SHOT);
 	      }
-	      catch (e) { dump("alert: " + e + "\n");/* in case win, win.parent, win.parent.document, tooltip, etc. don't exist */ gFP.alert(null, text);}
+	      catch (e) { dumpp(e);/* in case win, win.parent, win.parent.document, tooltip, etc. don't exist */ gFP.alert(null, text);}
       }
     },
 

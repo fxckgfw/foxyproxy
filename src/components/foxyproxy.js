@@ -1123,6 +1123,7 @@ biesi>	passing it the appropriate proxyinfo
 	        this.tooltip.showPopup(doc.getElementById("status-bar"), -1, -1, "tooltip", "topright","bottomright");
 					this.timer.initWithCallback(this, 5000, CI.nsITimer.TYPE_ONE_SHOT);
 	      }
+        // TODO: consider http://developer.mozilla.org/en/docs/XUL:notificationbox
 	      catch (e) { dumpp(e);/* in case win, win.parent, win.parent.document, tooltip, etc. don't exist */ gFP.alert(null, text);}
       }
     },

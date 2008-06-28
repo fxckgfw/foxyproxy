@@ -116,14 +116,17 @@ treechildren::-moz-tree-checkbox(checked) {
   cursor: pointer;
 }
 
+/* This style MUST come before treechildren::-moz-tree-checkbox(checked)
+   otherwise it won't take effect (last tested FF 3.0 on XP). Must specify
+   this style in order for checks to disappear when specifying
+   treechildren::-moz-tree-checkbox(checked) */
+treechildren::-moz-tree-checkbox {
+  list-style-image: none;
+}
+
 /* Must specify because cbox-check.gif not on OS/X */
 treechildren::-moz-tree-checkbox(checked) {
   list-style-image: url("chrome://foxyproxy/content/images/cbox-check.gif");
 }
 
-/* must specify this style in order for checks to disappear when specifying
-  treechildren::-moz-tree-checkbox(checked) */
-treechildren::-moz-tree-checkbox {
-  list-style-image: none;
-}
 

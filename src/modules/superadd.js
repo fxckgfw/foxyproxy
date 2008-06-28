@@ -341,7 +341,8 @@ SuperAdd.prototype = {
     }    
   }    
 };
-// Next two lines must come *after* SuperAdd.prototype definition
+// Next two lines must come *after* SuperAdd.prototype definition.
+// TODO: Use inheritence approach described at http://developer.mozilla.org/en/docs/Core_JavaScript_1.5_Guide:Inheritance instead
 QuickAdd.prototype = new SuperAdd();
 AutoAdd.prototype = new SuperAdd();
 AutoAdd.prototype.__defineGetter__("blockedPageMatch", function() { return this._blockedPageMatch; });

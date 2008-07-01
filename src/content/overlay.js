@@ -81,6 +81,7 @@ var foxyproxy = {
     this.toggleStatusBarWidth(this.fp.statusbar.width);
 		this.setMode(this.fp.mode);
     this._firstRunCheck();
+    this.fp.notifier.emptyQueue();
   },
 
   toggleToolsMenu : function(e) {

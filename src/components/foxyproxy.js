@@ -1088,6 +1088,7 @@ biesi>	passing it the appropriate proxyinfo
   ///////////////// notifier \\\\\\\\\\\\\\\\\\\\\\\\\\\
   // Thanks for the inspiration: InfoRSS extension (Didier Ernotte, 2005)
   notifier : {
+    _queue : [], 
   	alerts : function() {
       try {
         return CC["@mozilla.org/alerts-service;1"].getService(CI.nsIAlertsService);
@@ -1095,7 +1096,7 @@ biesi>	passing it the appropriate proxyinfo
       catch(e) {return null;}
   	}(),
 
-    alert : function(title, text) {
+    alert : function(title, text, noQueue) {
       if (this.alerts)
         this.alerts.showAlertNotification("chrome://foxyproxy/content/images/foxyproxy-nocopy.gif", title, text, false, "", null);
       else {
@@ -1123,9 +1124,22 @@ biesi>	passing it the appropriate proxyinfo
 	        this.tooltip.showPopup(doc.getElementById("status-bar"), -1, -1, "tooltip", "topright","bottomright");
 					this.timer.initWithCallback(this, 5000, CI.nsITimer.TYPE_ONE_SHOT);
 	      }
-        // TODO: consider http://developer.mozilla.org/en/docs/XUL:notificationbox
-	      catch (e) { dumpp(e);/* in case win, win.parent, win.parent.document, tooltip, etc. don't exist */ gFP.alert(null, text);}
+	      catch (e) {
+          /* in case win, win.parent, win.parent.document, tooltip, etc. don't exist */  
+          dump("Window not available for user message: " + text + "\n");
+          if (!noQueue) {
+            dump("Queuing message\n");
+            this._queue.push({text:text, title:title});
+          }
+        }
       }
+    },
+    
+    emptyQueue : function() {
+      for (var i=0,sz=this._queue.length; i<sz; i++) {
+        var msg = this._queue.pop();
+        this.alert(msg.title, msg.text, true);
+      } 
     },
 
     notify : function() {

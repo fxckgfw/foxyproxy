@@ -21,6 +21,14 @@
 <!ENTITY foxyproxy.pattern.accesskey "P">
 <!ENTITY foxyproxy.pattern.tooltip "URL pattern">
 
+<!ENTITY foxyproxy.urlpatterns.label "URL Patterns">
+<!ENTITY foxyproxy.urlpatterns.accesskey "P">
+<!ENTITY foxyproxy.urlpatterns.tooltip "URL patterns">
+
+<!ENTITY foxyproxy.ippatterns.label "IP Address Patterns">
+<!ENTITY foxyproxy.ippatterns.accesskey "I">
+<!ENTITY foxyproxy.ippatterns.tooltip "IP address patterns">
+
 <!ENTITY foxyproxy.pattern.type.label "Pattern Type">
 <!ENTITY foxyproxy.whitelist.blacklist.label "Whitelist (Inclusive) or Blacklist (Exclusive)">
 

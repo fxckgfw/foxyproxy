@@ -65,13 +65,15 @@ if (!CI) {
 
 loadComponentScript("autoconf.js");
 loadComponentScript("match.js");
+loadComponentScript("ippattern.js");
 
 var proxyService = CC["@mozilla.org/network/protocol-proxy-service;1"].getService(CI.nsIProtocolProxyService);
 ///////////////////////////// Proxy class ///////////////////////
 function Proxy(fp) {
   this.wrappedJSObject = this;
   this.fp = fp || CC["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;
-  this.matches = new Array();
+  this.matches = [];
+  this.ippatterns = [];
   this.name = this.notes = "";
   this.manualconf = new ManualConf(this.fp);
   this.autoconf = new AutoConf(this, this.fp);
@@ -115,6 +117,11 @@ Proxy.prototype = {
       this.matches[j] = new Match();
       this.matches[j].fromDOM(temp.item(i));
     }
+    for (var i=0,temp=node.getElementsByTagName("ippattern"); i<temp.length; i++) {
+      var j = this.ippatterns.length;
+      this.ippattern[j] = new IPPattern();
+      this.ippattern[j].fromDOM(temp.item(i));
+    }    
 		this.afterPropertiesSet(fpMode);
   },
 
@@ -134,6 +141,12 @@ Proxy.prototype = {
     e.appendChild(matchesElem);
     for (var j=0, m; j<this.matches.length && (m=this.matches[j]); j++)
       if (!m.temp) matchesElem.appendChild(m.toDOM(doc));
+
+    var ipp = doc.createElement("ippatterns");
+    e.appendChild(ipp);
+    for (var j=0, ip; j<this.ippatterns.length && (ip=this.ippatterns[j]); j++)
+      if (!ip.temp) ipp.appendChild(ip.toDOM(doc));
+            
     e.appendChild(this.autoconf.toDOM(doc));
     e.appendChild(this.manualconf.toDOM(doc));
     return e;
@@ -189,12 +202,8 @@ Proxy.prototype = {
   get mode() {return this._mode;},
 
   /**
-   * Check if any white patterns already match uriStr. As a shortcut,
-   * we first check if the existing white patterns (as strings) equal |patStr|
-   * before performing regular expression matches.
-   *
+   * Check if any white patterns already match uriStr.
    * Black pattern matches take precendence over white pattern matches.
-   * 
    * Note patStr is sometimes null when this method is called.
    */
   isWhiteMatch : function(patStr, uriStr) {
@@ -226,6 +235,10 @@ Proxy.prototype = {
 
   removeMatch : function(removeMe) {
     this.matches = this.matches.filter(function(e) {return e != removeMe;});
+  },
+  
+  removeIPPattern : function(removeMe) {
+    this.ippatterns = this.ippatterns.filter(function(e) {return e != removeMe;});
   },
 
 	resolve : function(spec, host, mp) {

@@ -31,12 +31,14 @@
 <vbox observes="torwiz-broadcaster" flex="1">
   <tabbox flex="1">
   	<tabs id="tabs" style="-moz-appearance: none;">
-  		<tab id="generaltab" label="&foxyproxy.tab.general.label;" accesskey="&foxyproxy.tab.general.accesskey;"
+  		<tab label="&foxyproxy.tab.general.label;" accesskey="&foxyproxy.tab.general.accesskey;"
   		  tooltiptext="&foxyproxy.tab.general.tooltip;" selected="true"/>
   		<tab label="&foxyproxy.tab.proxy.label;" accesskey="&foxyproxy.tab.proxy.accesskey;"
   		  tooltiptext="&foxyproxy.tab.proxy.tooltip;"/>
-  		<tab id="patternstab" label="&foxyproxy.tab.patterns.label;" accesskey="&foxyproxy.tab.patterns.accesskey;"
-  		  tooltiptext="&foxyproxy.tab.patterns.tooltip;"/>
+  		<tab id="urlpatternstab" label="&foxyproxy.urlpatterns.label;" accesskey="&foxyproxy.urlpatterns.accesskey;"
+  		  tooltiptext="&foxyproxy.urlpatterns.tooltip;"/>
+      <tab id="ippatternstab" label="&foxyproxy.ippatterns.label;" accesskey="&foxyproxy.ippatterns.accesskey;"
+        tooltiptext="&foxyproxy.ippatterns.tooltip;"/>        
   	</tabs>
 
 	<tabpanels style="-moz-appearance: none;" flex="1">
@@ -217,6 +219,36 @@
          </tree>
       </hbox>
     </tabpanel>
+
+    <tabpanel flex="1" orient="vertical">
+      <separator class="thin" />
+      <description>&foxyproxy.pattern.description;</description>
+      <separator class="thin"/>
+      <hbox>
+        <button command="addCmd" flex="1"/>
+        <button command="editSelectionCmd" flex="1"/>
+        <button command="deleteSelectionCmd" flex="1"/>
+        <button command="helpCmd" flex="1"/>
+				<button id="wildcardRefBtn" command="wildcardReferenceCmd" flex="1"/>
+      </hbox>
+      <separator class="thin"/>
+      <hbox flex="1">
+      <tree id="ipsTree" flex="1" align="stretch" enableColumnDrag="true" seltype="single" onselect="setButtons();"
+       	onclick="overlay.onTreeClick(event, this);">
+        <treecols id="treeCols" pickertooltiptext="&foxyproxy.tree.pickertooltiptext.label;">
+          <treecol id="enabledCol" label="&foxyproxy.enabled.label;" type="checkbox" flex="1" persist="width ordinal hidden"/><splitter class="tree-splitter"/>
+          <treecol id="nameCol" label="&foxyproxy.pattern.name.label;" flex="1" persist="width ordinal hidden"/><splitter class="tree-splitter"/>
+          <treecol id="patternCol" label="&foxyproxy.url.pattern.label;" flex="1" persist="width ordinal hidden"/><splitter class="tree-splitter"/>
+          <treecol id="patternTypeCol" label="&foxyproxy.pattern.type.label;" flex="1" persist="width ordinal hidden"/><splitter class="tree-splitter"/>
+          <treecol id="blackCol" label="&foxyproxy.whitelist.blacklist.label;" flex="1" persist="width ordinal hidden"/><splitter class="tree-splitter"/>
+          <treecol id="caseSensitiveCol" label="&foxyproxy.casesensitive.label;" flex="1" persist="width ordinal hidden"/><splitter class="tree-splitter"/>            
+          <treecol id="tempCol" label="&foxyproxy.temp.label;" flex="1" persist="width ordinal hidden"/><splitter class="tree-splitter"/>            
+        </treecols>
+         <treechildren context="ipsTreeContext" ondblclick="onAddEdit(false);"/>
+    </tree>
+    </hbox>
+
+    </tabpanel>    
   </tabpanels>
   </tabbox>
 </vbox>
@@ -280,7 +312,7 @@
       &foxyproxy.pactip8.label;</description>
 		</vbox>
 	</popup>
-  <popup id="urlsTreeContext" onpopupshowing="onUrlsTreeMenuPopupShowing();">
+  <popup id="urlsTreeContext" onpopupshowing="onTreeMenuPopupShowing(this.firstChild, urlsTree);">
 		<menuitem id="enabledPopUpMenuItem" command="toggleEnabledCmd" type="checkbox"/>
     <menuseparator/>
     <menuitem class="menuitem-non-iconic" command="addCmd"/>
@@ -290,6 +322,17 @@
     <menuitem class="menuitem-non-iconic" command="helpCmd"/>
     <menuitem class="menuitem-non-iconic" command="closeCmd"/>
   </popup>
+  <popup id="ipsTreeContext" onpopupshowing="onTreeMenuPopupShowing(this.firstChild, ipsTree);">
+		<menuitem id="enabledPopUpMenuItem" command="toggleEnabledCmd" type="checkbox"/>
+    <menuseparator/>
+    <menuitem class="menuitem-non-iconic" command="addCmd"/>
+    <menuitem class="menuitem-non-iconic" command="editSelectionCmd"/>
+    <menuitem class="menuitem-non-iconic" command="deleteSelectionCmd"/>
+    <menuseparator/>
+    <menuitem class="menuitem-non-iconic" command="helpCmd"/>
+    <menuitem class="menuitem-non-iconic" command="closeCmd"/>
+  </popup>
+
 </popupset>
 
 <command id="toggleEnabledCmd"

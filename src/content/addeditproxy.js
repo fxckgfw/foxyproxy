@@ -9,7 +9,7 @@
   and also online at http://www.gnu.org/licenses/gpl.txt
 **/
 const CI = Components.interfaces, CC = Components.classes;
-var urlsTree, proxy, foxyproxy, autoconfurl, overlay, isWindows, fpc;
+var urlsTree, ipsTree, proxy, foxyproxy, autoconfurl, overlay, isWindows, fpc;
 
 function onLoad() {
   isWindows = CC["@mozilla.org/xre/app-info;1"].getService(CI.nsIXULRuntime).OS == "WINNT";
@@ -24,6 +24,7 @@ function onLoad() {
   }
   else
     urlsTree = document.getElementById("urlsTree");
+  ipsTree = document.getElementById("ipsTree");
 
   proxy = window.arguments[0].inn.proxy;
   document.getElementById("proxyname").value = proxy.name;
@@ -45,7 +46,8 @@ function onLoad() {
     document.getElementById("default-proxy-broadcaster").setAttribute("disabled", "true");
 	  document.getElementById("proxyname").disabled =
 	  	document.getElementById("proxynotes").disabled = true;
-    document.getElementById("patternstab").hidden = true;
+    document.getElementById("ippatternstab").hidden =
+      document.getElementById("urlpatternstab").hidden = true;
   }
   document.getElementById("pacLoadNotificationEnabled").checked = proxy.autoconf.loadNotification;
   document.getElementById("pacErrorNotificationEnabled").checked = proxy.autoconf.errorNotification;
@@ -157,7 +159,7 @@ function onAddEdit(isNew) {
     "chrome, dialog, modal, resizable=yes", params).focus();
 
   if (params.out) {
-    proxy.matches[idx] = params.out.match;	    
+    proxy.matches[idx] = params.out.match;
     _updateView();
     // Select item
 	  urlsTree.view.selection.select(isNew?urlsTree.view.rowCount-1 : urlsTree.currentIndex);
@@ -170,36 +172,41 @@ function setButtons() {
 }
 
 function _updateView() {
-  // Redraw the tree
-  urlsTree.view = {
-    rowCount : proxy.matches.length,
-    getCellText : function(row, column) {
-      var s = column.id ? column.id : column;
-      switch(s) {
-        case "nameCol":return proxy.matches[row].name;
-        case "patternCol":return proxy.matches[row].pattern;
-        case "patternTypeCol":return foxyproxy.getMessage(proxy.matches[row].isRegEx ? "foxyproxy.regex.label" : "foxyproxy.wildcard.label");
-        case "blackCol":return foxyproxy.getMessage(proxy.matches[row].isBlackList ? "foxyproxy.blacklist.label" : "foxyproxy.whitelist.label");
-        case "caseSensitiveCol":return foxyproxy.getMessage(proxy.matches[row].caseSensitive ? "yes" : "no");
-        case "tempCol":return foxyproxy.getMessage(proxy.matches[row].temp ? "yes" : "no");
-      }
-    },
-    setCellValue: function(row, col, val) {proxy.matches[row].enabled = val;},
-    getCellValue: function(row, col) {return proxy.matches[row].enabled;},
-    isSeparator: function(aIndex) { return false; },
-    isSorted: function() { return false; },
-    isEditable: function(row, col) { return false; },
-    isContainer: function(aIndex) { return false; },
-    setTree: function(aTree){},
-    getImageSrc: function(aRow, aColumn) {return null;},
-    getProgressMode: function(aRow, aColumn) {},
-    cycleHeader: function(aColId, aElt) {},
-    getRowProperties: function(aRow, aColumn, aProperty) {},
-    getColumnProperties: function(aColumn, aColumnElement, aProperty) {},
-    getCellProperties: function(aRow, aProperty) {},
-    getLevel: function(row){ return 0; }
+  // Redraw the trees
+  urlsTree.view = makeView(proxy.matches);
+  ipsTree.view = makeView(proxy.ippatterns);
 
-  };
+  function makeView(pats) {
+    return {
+      rowCount : pats.length,
+      getCellText : function(row, column) {
+        var s = column.id ? column.id : column;
+        switch(s) {
+          case "nameCol":return pats[row].name;
+          case "patternCol":return pats[row].pattern;
+          case "patternTypeCol":return foxyproxy.getMessage(pats[row].isRegEx ? "foxyproxy.regex.label" : "foxyproxy.wildcard.label");
+          case "blackCol":return foxyproxy.getMessage(pats[row].isBlackList ? "foxyproxy.blacklist.label" : "foxyproxy.whitelist.label");
+          case "caseSensitiveCol":return foxyproxy.getMessage(pats[row].caseSensitive ? "yes" : "no");
+          case "tempCol":return foxyproxy.getMessage(pats[row].temp ? "yes" : "no");
+        }
+      },
+      setCellValue: function(row, col, val) {pats[row].enabled = val;},
+      getCellValue: function(row, col) {return pats[row].enabled;},
+      isSeparator: function(aIndex) { return false; },
+      isSorted: function() { return false; },
+      isEditable: function(row, col) { return false; },
+      isContainer: function(aIndex) { return false; },
+      setTree: function(aTree){},
+      getImageSrc: function(aRow, aColumn) {return null;},
+      getProgressMode: function(aRow, aColumn) {},
+      cycleHeader: function(aColId, aElt) {},
+      getRowProperties: function(aRow, aColumn, aProperty) {},
+      getColumnProperties: function(aColumn, aColumnElement, aProperty) {},
+      getCellProperties: function(aRow, aProperty) {},
+      getLevel: function(row){ return 0; }
+
+    };
+  }
   setButtons();
 }
 
@@ -279,8 +286,8 @@ function onSelectAutoConf() {
   }
 }
 
-function onUrlsTreeMenuPopupShowing() {
-	document.getElementById("enabledPopUpMenuItem").setAttribute("checked", proxy.matches[urlsTree.currentIndex].enabled);
+function onTreeMenuPopupShowing(enabledMenuItem, t) {
+	enabledMenuItem.setAttribute("checked", proxy.matches[t.currentIndex].enabled);
 }
 
 function toggleEnabled() {

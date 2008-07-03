@@ -69,6 +69,17 @@ Match.prototype = {
     // this final assignment forces the regex to be built.
     this.isMultiLine = arguments.length > 7 ? arguments[7] : false;
   },
+  
+  /**
+   * Return true if uriStr matches patStr (white/black; doesn't matter. enabled/disabled doesn't matter).
+   * Return false otherwise.
+   * As a shortcut,we first check if the existing white patterns (as strings) equal |patStr|
+   * before performing regular expression matches (but only if |patStr| is non-null.
+   * Note patStr is sometimes null when this method is called.
+   */
+  match : function(patStr, uriStr) {
+    return ((!patStr && this.pattern == patStr) || this.regex.test(uriStr));  
+  },
 
   set pattern(p) {
     if (!p) p = ""; // prevent null patterns

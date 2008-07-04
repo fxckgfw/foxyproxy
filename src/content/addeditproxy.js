@@ -145,7 +145,7 @@ function _checkUri() {
   }
 }
 
-function onAddEdit(isNew) {
+function onAddEditURLPattern(isNew) {
   var idx = urlsTree.currentIndex, m;
   if (isNew) {
     m = CC["@leahscape.org/foxyproxy/match;1"].createInstance().wrappedJSObject;
@@ -166,8 +166,11 @@ function onAddEdit(isNew) {
   }
 }
 
-function setButtons() {
-  document.getElementById("tree-row-selected").setAttribute("disabled", urlsTree.currentIndex == -1);
+function onAddEditIPPattern(isNew) {
+}
+
+function setButtons(observerId, tree) {
+  document.getElementById(observerId).setAttribute("disabled", tree.currentIndex == -1);
   onAutoConfUrlInput();
 }
 
@@ -207,16 +210,17 @@ function _updateView() {
 
     };
   }
-  setButtons();
+  setButtons("urls-tree-row-selected", urlsTree);
+  setButtons("ips-tree-row-selected", ipsTree);
 }
 
-function onRemove() {
+function onRemove(pats, tree) {
   // Store cur selection
-  var sel = urlsTree.currentIndex;
-  proxy.removeMatch(proxy.matches[sel]);
+  var sel = tree.currentIndex;
+  proxy.removePattern(pats, pats[sel]);
   _updateView();
   // Reselect the next appropriate item
-	urlsTree.view.selection.select(sel+1>urlsTree.view.rowCount ? urlsTree.view.rowCount-1:sel);
+	tree.view.selection.select(sel+1>tree.view.rowCount ? tree.view.rowCount-1:sel);
 }
 
 function toggleMode(mode) {
@@ -237,10 +241,6 @@ function toggleMode(mode) {
     document.getElementById("disabled-broadcaster").removeAttribute("disabled");
     document.getElementById("autoconf-broadcaster1").setAttribute("disabled", "true");
   }
-}
-
-function onHelp() {
-  fpc.openAndReuseOneTabPerURL("http://foxyproxy.mozdev.org/patterns.html");
 }
 
 function onViewAutoConf() {
@@ -286,17 +286,18 @@ function onSelectAutoConf() {
   }
 }
 
-function onTreeMenuPopupShowing(enabledMenuItem, t) {
-	enabledMenuItem.setAttribute("checked", proxy.matches[t.currentIndex].enabled);
+function onTreeMenuPopupShowing(enabledMenuItem, pats, tree) {
+  if (tree.currentIndex == -1) return;
+	enabledMenuItem.setAttribute("checked", pats[tree.currentIndex].enabled);
 }
 
-function toggleEnabled() {
-	proxy.matches[urlsTree.currentIndex].enabled = !proxy.matches[urlsTree.currentIndex].enabled;
+function toggleEnabled(pats, tree) {
+	pats[tree.currentIndex].enabled = !pats[tree.currentIndex].enabled;
   _updateView();
 }
 
-function onWildcardReference() {
-	document.getElementById('wildcardReferencePopup').showPopup(document.getElementById('wildcardRefBtn'), -1, -1, 'popup', 'bottomleft', 'topleft');
+function onWildcardReference(popupId, btnId) {
+	document.getElementById(popupId).showPopup(document.getElementById(btnId), -1, -1, 'popup', 'bottomleft', 'topleft');
 }
 
 function onIsSocks(checked) {

@@ -15,7 +15,7 @@
 if (!CI) {
   // XPCOM module initialization
   var NSGetModule = function() { return ProxyModule; }
-  
+
   var CI = Components.interfaces, CC = Components.classes, CR = Components.results, self,
     fileProtocolHandler = CC["@mozilla.org/network/protocol;1?name=file"].createInstance(CI["nsIFileProtocolHandler"]);
   if ("undefined" != typeof(__LOCATION__)) {
@@ -48,7 +48,7 @@ if (!CI) {
     catch (e) {
       dump("Error loading component " + filename + ": " + e + "\n" + e.stack + "\n");
       throw(e);
-    }  
+    }
   }
   var self,
     fileProtocolHandler = CC["@mozilla.org/network/protocol;1?name=file"].createInstance(CI["nsIFileProtocolHandler"]);
@@ -95,7 +95,7 @@ Proxy.prototype = {
       throw CR.NS_ERROR_NO_INTERFACE;
     return this;
   },
-  
+
   fromDOM : function(node, fpMode) {
     this.name = node.getAttribute("name");
     this.id = node.getAttribute("id") || this.fp.proxies.uniqueRandom();
@@ -121,7 +121,7 @@ Proxy.prototype = {
       var j = this.ippatterns.length;
       this.ippattern[j] = new IPPattern();
       this.ippattern[j].fromDOM(temp.item(i));
-    }    
+    }
 		this.afterPropertiesSet(fpMode);
   },
 
@@ -146,7 +146,7 @@ Proxy.prototype = {
     e.appendChild(ipp);
     for (var j=0, ip; j<this.ippatterns.length && (ip=this.ippatterns[j]); j++)
       if (!ip.temp) ipp.appendChild(ip.toDOM(doc));
-            
+
     e.appendChild(this.autoconf.toDOM(doc));
     e.appendChild(this.manualconf.toDOM(doc));
     return e;
@@ -215,10 +215,10 @@ Proxy.prototype = {
           if (m.isBlackList) {
             // Black takes priority over white
             return false;
-          }          
+          }
           else if (white == -1) {
             white = i; // continue checking for blacklist matches!
-          }          
+          }
         }
       }
     }
@@ -233,12 +233,8 @@ Proxy.prototype = {
     }
   },
 
-  removeMatch : function(removeMe) {
-    this.matches = this.matches.filter(function(e) {return e != removeMe;});
-  },
-  
-  removeIPPattern : function(removeMe) {
-    this.ippatterns = this.ippatterns.filter(function(e) {return e != removeMe;});
+  removePattern : function(list, removeMe) {
+    list = list.filter(function(e) {return e != removeMe;});
   },
 
 	resolve : function(spec, host, mp) {
@@ -317,36 +313,36 @@ ManualConf.prototype = {
   _socksversion: "5",
   _isSocks: false,
   fp : null,
-          
+
   fromDOM : function(n) {
-    this._host = gGetSafeAttr(n, "host", null) || gGetSafeAttr(n, "http", null) ||  
+    this._host = gGetSafeAttr(n, "host", null) || gGetSafeAttr(n, "http", null) ||
       gGetSafeAttr(n, "socks", null) || gGetSafeAttr(n, "ssl", null) ||
       gGetSafeAttr(n, "ftp", null) || gGetSafeAttr(n, "gopher", ""); //"host" is new for 2.5
 
     this._port = gGetSafeAttr(n, "port", null) || gGetSafeAttr(n, "httpport", null) ||
       gGetSafeAttr(n, "socksport", null) || gGetSafeAttr(n, "sslport", null) ||
       gGetSafeAttr(n, "ftpport", null) || gGetSafeAttr(n, "gopherport", ""); // "port" is new for 2.5
-      
+
     this._socksversion = gGetSafeAttr(n, "socksversion", "5");
-      
+
     this._isSocks = n.hasAttribute("isSocks") ? n.getAttribute("isSocks") == "true" :
-      n.getAttribute("http") ? false: 
+      n.getAttribute("http") ? false:
       n.getAttribute("ssl") ? false:
-      n.getAttribute("ftp") ? false:       
+      n.getAttribute("ftp") ? false:
       n.getAttribute("gopher") ? false:
       n.getAttribute("socks") ? true : false; // new for 2.5
-      
+
     this._makeProxy();
   },
 
   toDOM : function(doc)  {
-    var e = doc.createElement("manualconf"); 
-    e.setAttribute("host", this._host);      
+    var e = doc.createElement("manualconf");
+    e.setAttribute("host", this._host);
     e.setAttribute("port", this._port);
     e.setAttribute("socksversion", this._socksversion);
-    e.setAttribute("isSocks", this._isSocks);    
+    e.setAttribute("isSocks", this._isSocks);
     return e;
-  },  
+  },
 
   _makeProxy : function() {
     if (!this._host || !this._port) {
@@ -361,14 +357,14 @@ ManualConf.prototype = {
   set host(e) {
     this._host = e;
     this._makeProxy();
-  },  
+  },
 
   get port() {return this._port;},
   set port(e) {
     this._port = e;
     this._makeProxy();
   },
-     
+
   get isSocks() {return this._isSocks;},
   set isSocks(e) {
     this._isSocks = e;
@@ -402,9 +398,9 @@ var ProxyModule = {
 
   unregisterSelf: function(aCompMgr, aLocation, aType) {
     aCompMgr = aCompMgr.QueryInterface(CI.nsIComponentRegistrar);
-    aCompMgr.unregisterFactoryLocation(this.CLASS_ID, aLocation);        
+    aCompMgr.unregisterFactoryLocation(this.CLASS_ID, aLocation);
   },
-  
+
   getClassObject: function(aCompMgr, aCID, aIID) {
     if (!aIID.equals(CI.nsIFactory))
       throw Components.results.NS_ERROR_NOT_IMPLEMENTED;

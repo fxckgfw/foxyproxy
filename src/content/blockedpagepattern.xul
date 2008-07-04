@@ -36,7 +36,7 @@
   <radiogroup id="matchtype" />
 
   <popupset>
-    <popup id="wildcardReferencePopup" />
+    <popup id="wildcardURLPatternReferencePopup" />
   </popupset>
 
 </dialog>

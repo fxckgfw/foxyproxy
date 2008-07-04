@@ -80,7 +80,7 @@
   </rows>
 </grid>
 <popupset>
-  <popup id="wildcardReferencePopup"/>
+  <popup id="wildcardURLPatternReferencePopup"/>
   <popup id="tempPopup"/>
   <popup id="patternTemplatePopup"/>  
 </popupset>

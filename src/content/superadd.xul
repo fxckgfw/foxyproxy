@@ -86,7 +86,7 @@
 				<label value="&foxyproxy.pattern.template.generatedpattern.label;"
 					control="generatedPattern" tooltiptext="&foxyproxy.pattern.template.generatedpattern.tooltip;" accesskey="&foxyproxy.pattern.template.generatedpattern.accesskey;"/>
 				<textbox id="generatedPattern" tooltiptext="&foxyproxy.pattern.template.generatedpattern.tooltip;" style="font-weight: bold;"/>
-        <toolbarbutton class="foxyproxy-ref" popup="wildcardReferencePopup" tooltiptext="&foxyproxy.wildcard.reference.tooltip;"/>
+        <toolbarbutton class="foxyproxy-ref" popup="wildcardURLPatternReferencePopup" tooltiptext="&foxyproxy.wildcard.reference.tooltip;"/>
 			</row> 
 		</rows>
 	</grid>
@@ -97,7 +97,7 @@
 </groupbox>
 
 <popupset>
-  <popup id="wildcardReferencePopup"/>
+  <popup id="wildcardURLPatternReferencePopup"/>
   <popup id="notifyWhenCanceledPopup"/>
 </popupset>
 

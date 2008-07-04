@@ -352,7 +352,7 @@
   accesskey="&foxyproxy.delete.selection.accesskey;"
   tooltiptext="&foxyproxy.delete.selection.tooltip;"
   observes="urls-tree-row-selected"
-  oncommand="onRemove(proxy.matches, urlsTree);"/>
+  oncommand="onRemoveURLPattern();"/>
 
 <command id="editURLPatternSelectionCmd"
   label="&foxyproxy.edit.selection.label;"
@@ -391,7 +391,7 @@
   accesskey="&foxyproxy.delete.selection.accesskey;"
   tooltiptext="&foxyproxy.delete.selection.tooltip;"
   observes="ips-tree-row-selected"
-  oncommand="onRemove(proxy.ippatterns, ipsTree);"/>
+  oncommand="onRemoveIPPattern();"/>
 
 <command id="editIPPatternSelectionCmd"
   label="&foxyproxy.edit.selection.label;"

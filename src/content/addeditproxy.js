@@ -214,14 +214,23 @@ function _updateView() {
   setButtons("ips-tree-row-selected", ipsTree);
 }
 
-function onRemove(pats, tree) {
+function onRemoveURLPattern() {
   // Store cur selection
-  var sel = tree.currentIndex;
-  proxy.removePattern(pats, pats[sel]);
+  var sel = urlsTree.currentIndex;
+  proxy.removeURLPattern(proxy.matches[sel]);
   _updateView();
   // Reselect the next appropriate item
-	tree.view.selection.select(sel+1>tree.view.rowCount ? tree.view.rowCount-1:sel);
+	urlsTree.view.selection.select(sel+1>urlsTree.view.rowCount ? urlsTree.view.rowCount-1:sel);
 }
+
+function onRemoveIPPattern() {
+  // Store cur selection
+  var sel = ipsTree.currentIndex;
+  proxy.removeIPPattern(proxy.ippatterns[sel]);
+  _updateView();
+  // Reselect the next appropriate item
+	ipsTree.view.selection.select(sel+1>ipsTree.view.rowCount ? ipsTree.view.rowCount-1:sel);
+ }
 
 function toggleMode(mode) {
   // Next line--buggy in FF 1.5.0.1--makes fields enabled but readonly

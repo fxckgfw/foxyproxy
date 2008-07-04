@@ -233,8 +233,12 @@ Proxy.prototype = {
     }
   },
 
-  removePattern : function(list, removeMe) {
-    list = list.filter(function(e) {return e != removeMe;});
+  removeURLPattern : function(removeMe) {
+    this.matches = this.matches.filter(function(e) {return e != removeMe;});
+  },
+
+  removeIPPattern : function(removeMe) {
+    this.ippatterns = this.ippatterns.filter(function(e) {return e != removeMe;});
   },
 
 	resolve : function(spec, host, mp) {

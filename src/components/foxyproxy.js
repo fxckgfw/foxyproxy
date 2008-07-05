@@ -80,7 +80,6 @@ var gLoggEntryFactory = function(proxy, aMatch, uri, type, errMsg) {
 	  }
 	  gObsSvc.notifyObservers(bool, topic, d);
 };
-const exceptionSchemes = ['feed'];
 
 // load js files
 var self;
@@ -326,7 +325,7 @@ biesi>	passing it the appropriate proxyinfo
   	}
 
     try {
-      if (exceptionSchemes[uri.scheme]) return;
+      if (uri.scheme == "feed") return; /* feed schemes handled internally by browser */
     	var spec = uri.spec;
       var mp = this.applyMode(spec);
       var ret = mp.proxy.getProxy(spec, uri.host, mp);

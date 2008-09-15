@@ -6,7 +6,7 @@
     <Description rdf:about="urn:mozilla:install-manifest">
         <em:id>foxyproxy@eric.h.jung</em:id>
         <em:name>FoxyProxy</em:name>
-        <em:version>2.8.3</em:version>
+        <em:version>2.8.6</em:version>
         <em:creator>LeahScape, Inc.</em:creator>
         <em:description>Premier proxy management for Firefox</em:description>
         <em:homepageURL>http://foxyproxy.mozdev.org</em:homepageURL>
@@ -17,14 +17,14 @@
             <Description>
                 <em:id>songbird@songbirdnest.com</em:id>
                 <em:minVersion>0.4</em:minVersion>
-                <em:maxVersion>0.5</em:maxVersion>
+                <em:maxVersion>0.7pre</em:maxVersion>
             </Description>
         </em:targetApplication>
         <em:targetApplication>
             <Description>
                 <em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
                 <em:minVersion>2.0</em:minVersion>
-                <em:maxVersion>3.0.*</em:maxVersion>
+                <em:maxVersion>3.1b1pre</em:maxVersion>
             </Description>
         </em:targetApplication>
         <em:targetApplication>
@@ -41,6 +41,6 @@
             <em:minVersion>0.7</em:minVersion>
             <em:maxVersion>2.0</em:maxVersion>
           </Description>
-        </em:targetApplication>        
+        </em:targetApplication>
     </Description>
 </RDF>

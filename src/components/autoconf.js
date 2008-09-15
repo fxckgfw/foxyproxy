@@ -37,19 +37,17 @@ function AutoConf(owner, fpp) {
   fp = fpp || CC["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;    
   this.timer = CC["@mozilla.org/timer;1"].createInstance(CI.nsITimer);
   this.owner = owner;
-	this._resolver = new nsProxyAutoConfig();
+  this._resolver = new fpProxyAutoConfig(this);
 }
 
 AutoConf.prototype = {
   parser : /\s*(\S+)\s*(?:([^:]+):?(\d*)\s*[;]?\s*)?/,
-  status : 0,
-  error : null,
- 	loadNotification: true,
+  loadNotification: true,
   errorNotification: true,
   url: "",
-  _pac: "",
   _autoReload: false,
   _reloadFreqMins: 60,
+  owner: null,
 
   QueryInterface: function(aIID) {
     if (!aIID.equals(CI.nsISupports))
@@ -60,19 +58,19 @@ AutoConf.prototype = {
   set autoReload(e) {
     this._autoReload = e;
     if (!e && this.timer) {
-			this.timer.cancel();
-		}
+      this.timer.cancel();
+    }
    },
 
   get autoReload() {return this._autoReload;},
 
   set reloadFreqMins(e) {
-  	if (isNaN(e) || e < 1) {
-  		e = 60;
-  	}
-  	else {
-	    this._reloadFreqMins = e;
-	  }
+    if (isNaN(e) || e < 1) {
+      e = 60;
+    }
+    else {
+      this._reloadFreqMins = e;
+    }
    },
   get reloadFreqMins() {return this._reloadFreqMins;},
 
@@ -89,60 +87,73 @@ AutoConf.prototype = {
     e.setAttribute("url", this.url);
     e.setAttribute("loadNotification", this.loadNotification);
     e.setAttribute("errorNotification", this.errorNotification);
-	  e.setAttribute("autoReload", this._autoReload);
-	  e.setAttribute("reloadFreqMins", this._reloadFreqMins);
+    e.setAttribute("autoReload", this._autoReload);
+    e.setAttribute("reloadFreqMins", this._reloadFreqMins);
     return e;
   },
 
+  /**
+   * Stateless function for loading and testing of PAC files.
+   * On error, throws a localized Error object.
+   */
+  testPAC : function(url) {
+    var req = CC["@mozilla.org/xmlextras/xmlhttprequest;1"]
+      .createInstance(CI.nsIXMLHttpRequest);   
+    req.open("GET", url, false); // false means synchronous
+    req.channel.loadFlags |= CI.nsIRequest.LOAD_BYPASS_CACHE;
+    req.send(null);
+    if (req.status == 200 ||
+        (req.status == 0 && (url.indexOf("file://") == 0 || url.indexOf("ftp://") == 0 || url.indexOf("relative://") == 0))) {
+      new fpProxyAutoConfig(this).init(url, req.responseText);
+    }
+    else throw new Error(fp.getMessage("http.error", [req.status]));
+  },
+
   loadPAC : function() {
-    this._pac = "";
     try {
       var req = CC["@mozilla.org/xmlextras/xmlhttprequest;1"]
         .createInstance(CI.nsIXMLHttpRequest);
       req.open("GET", this.url, false); // false means synchronous
+      req.channel.loadFlags |= CI.nsIRequest.LOAD_BYPASS_CACHE;      
       req.send(null);
-      this.status = req.status;
-      if (this.status == 200 || (this.status == 0 && (this.url.indexOf("file://") == 0 || this.url.indexOf("ftp://") == 0 || this.url.indexOf("relative://") == 0))) {
-        try {
-          this._pac = req.responseText;
-          this._resolver.init(this.url, this._pac);
-          this.loadNotification && fp.notifier.alert(fp.getMessage("pac.status"), fp.getMessage("pac.status.success", [this.owner.name]));
-          this.owner._enabled = true; // Use _enabled so we don't loop infinitely
-          this.error = null;
         }
         catch(e) {
-          this._pac = "";
-          this.badPAC("pac.status.error", e);
-        }
+      this.badPAC("pac.status.loadfailure", e);
+      return;
       }
-      else {
-        this.badPAC("pac.status.loadfailure");
-      }
+    if (req.status == 200 ||
+      (req.status == 0 && (this.url.indexOf("file://") == 0 || this.url.indexOf("ftp://") == 0 || this.url.indexOf("relative://") == 0))) {
+        try {
+          this._resolver.init(this.url, req.responseText);
     }
     catch(e) {
-      this.badPAC("pac.status.loadfailure", e);
+          this.badPAC("pac.status.error", e);
+          return;
+    }
+        this.loadNotification && fp.notifier.alert(fp.getMessage("pac.status"), fp.getMessage("pac.status.success", [this.owner.name]));
+        this.owner._enabled = true; // Use _enabled so we don't loop infinitely
+      }
+      else {
+      this.badPAC("pac.status.loadfailure", new Error(fp.getMessage("http.error", [req.status])));
     }
   },
 
-	notify : function(timer) {
-		// nsITimer callback
-		this.loadPAC();
-	},
-  
-  cancelTimer : function() {
-    this.timer.cancel();
-  },
-
-  badPAC : function(res, e) {
-		if (e) {
-      dump("badPAC: " + e + "\n");
-      this.error = e;
-    }
-    this.errorNotification && fp.notifier.alert(fp.getMessage("pac.status"), fp.getMessage(res, [this.owner.name, this.status, this.error]));
+  badPAC : function(r, e) {
+    var msg = fp.getMessage(r, [this.owner.name]) + "\n\n" + e.message;
+    this.errorNotification && fp.notifier.alert(fp.getMessage("pac.status"), msg);
     if (this.owner.lastresort)
       this.owner.mode = "direct"; // don't disable!
     else
-      this.owner.enabled = false;
+      this.owner._enabled = false; // Use _enabled so we don't loop infinitely
+  }, 
+  
+  notify : function(timer) {
+    // nsITimer callback
+    this.loadPAC();
+  },
+  
+  cancelTimer : function() {
+    this.timer.cancel();
   }
 };
 
@@ -187,47 +198,59 @@ var AutoConfModule = {
 // Why? Because Gecko's impl is a singleton. FoxyProxy needs multiple instances in order to
 // support multiple, simultaneous PAC files (Gecko's impl cannot do this as of Moz 1.9 because
 // of the singleon nature of this component)
-function nsProxyAutoConfig() {};
+function fpProxyAutoConfig(owner) {
+  this.owner = owner;
+}
 
-nsProxyAutoConfig.prototype = {
+fpProxyAutoConfig.prototype = {
     // sandbox in which we eval loaded autoconfig js file
-    _sandBox: null, 
+    sandbox : null,
+    owner: null,
 
+    /** throws a localized Error object on error */
     init: function(pacURI, pacText) {
-        // remove PAC configuration if requested
-        if (pacURI == "" || pacText == "") {
-            this._sandBox = null;
-            return;
-        }
-
-        this._sandBox = new Components.utils.Sandbox(pacURI);
-        Components.utils.evalInSandbox(pacUtils, this._sandBox);
-
-        // add predefined functions to pac
-        this._sandBox.importFunction(myIpAddress);
-        this._sandBox.importFunction(dnsResolve);
-        this._sandBox.importFunction(proxyAlert, "alert");
-
-        // evaluate loaded js file
-        Components.utils.evalInSandbox(pacText, this._sandBox);
-
-        // We can no longer trust this._sandBox. Touching it directly can
-        // cause all sorts of pain, so wrap it in an XPCSafeJSObjectWrapper
-        // and do all of our work through there.
-        this._sandBox = XPCSJSOWWrapper(this._sandBox, true);
+      if (pacURI == "" || pacText == "") {
+        dump("FoxyProxy: init(), pacURI or pacText empty\n");    
+        throw new Error(fp.getMessage("pac.empty"));
+      }
+      this.sandbox = new Components.utils.Sandbox(pacURI);
+      Components.utils.evalInSandbox(pacUtils, this.sandbox);
+  
+      // add predefined functions to pac
+      this.sandbox.importFunction(myIpAddress);
+      this.sandbox.importFunction(dnsResolve);
+      this.sandbox.importFunction(proxyAlert, "alert");
+  
+      // evaluate loaded js file
+      Components.utils.evalInSandbox(pacText, this.sandbox);
+  
+      // We can no longer trust this.sandbox. Touching it directly can
+      // cause all sorts of pain, so wrap it in an XPCSafeJSObjectWrapper
+      // and do all of our work through there.
+      this.sandbox = XPCSJSOWWrapper(this.sandbox, true);
+      
+      // Performance improvement in FoxyProxy over Firefox
+      // by doing this next check ONCE in init() except
+      // everytime in getProxyxForURI().
+      if (!("FindProxyForURL" in this.sandbox)) {
+        dump("FoxyProxy: init(), FindProxyForURL not found\n");
+        throw new Error(fp.getMessage("pac.fcn.notfound"));
+      }
+      return true;
     },
 
     getProxyForURI: function(testURI, testHost) {
-        if (!("FindProxyForURL" in this._sandBox))
-            return null;
-
         // Call the original function
         try {
-            var rval = this._sandBox.FindProxyForURL(testURI, testHost);
+          if (testURI == this.owner.url) {
+            dump("FoxyProxy: Preventing cyclical PAC error; using no proxy to load PAC file.\n");
+            return "direct";
+          }
+          return this.sandbox.FindProxyForURL(testURI, testHost);
         } catch (e) {
+            dump("FoxyProxy: getProxyForURI(), " + e + " \n\n" + e.stack + "\n");
             throw XPCSJSOWWrapper(e);
         }
-        return rval;
     }
 }
 

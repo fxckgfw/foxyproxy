@@ -28,6 +28,7 @@ function onOK() {
   var pat = document.getElementById("generatedPattern").value;
   var p = fpc.validatePattern(window, match.isRegEx, pat);
   if (p) {
+    match.pattern = pat; /* in case user has manually changed the pattern */
     window.arguments[0].out = {
       reload:document.getElementById("reload").checked,
       notify:document.getElementById("notify").checked,

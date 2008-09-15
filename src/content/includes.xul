@@ -20,9 +20,6 @@
   var fpclocal = Components.classes["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject;
 </script>
 
-<popup id="wildcardIPPatternReferencePopup" position="before_end">
-  <label id="wildcardref" value="&foxyproxy.wildcard.reference.label;" style="font-weight: bold; text-align: center; margin: 1em 0 0 0;" />
-</popup>
 <!-- begin: thanks to DownThemAll -->
 <popup id="wildcardURLPatternReferencePopup" position="before_end">
   <label id="wildcardref" value="&foxyproxy.wildcard.reference.label;" style="font-weight: bold; text-align: center; margin: 1em 0 0 0;" />

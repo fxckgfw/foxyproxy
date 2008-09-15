@@ -9,7 +9,7 @@
   and also online at http://www.gnu.org/licenses/gpl.txt
 **/
 const CI = Components.interfaces, CC = Components.classes;
-var urlsTree, ipsTree, proxy, foxyproxy, autoconfurl, overlay, isWindows, fpc;
+var urlsTree, proxy, foxyproxy, autoconfurl, overlay, isWindows, fpc;
 
 function onLoad() {
   isWindows = CC["@mozilla.org/xre/app-info;1"].getService(CI.nsIXULRuntime).OS == "WINNT";
@@ -24,7 +24,6 @@ function onLoad() {
   }
   else
     urlsTree = document.getElementById("urlsTree");
-  ipsTree = document.getElementById("ipsTree");
 
   proxy = window.arguments[0].inn.proxy;
   document.getElementById("proxyname").value = proxy.name;
@@ -46,8 +45,7 @@ function onLoad() {
     document.getElementById("default-proxy-broadcaster").setAttribute("disabled", "true");
 	  document.getElementById("proxyname").disabled =
 	  	document.getElementById("proxynotes").disabled = true;
-    document.getElementById("ippatternstab").hidden =
-      document.getElementById("urlpatternstab").hidden = true;
+    document.getElementById("urlpatternstab").hidden = true;
   }
   document.getElementById("pacLoadNotificationEnabled").checked = proxy.autoconf.loadNotification;
   document.getElementById("pacErrorNotificationEnabled").checked = proxy.autoconf.errorNotification;
@@ -96,7 +94,8 @@ function onOK() {
   }
 
 	if (!hasWhite() &&
-		!overlay.ask(this, foxyproxy.getMessage((window.arguments[0].inn.torwiz ? "torwiz.nopatterns.2" : "no.white.patterns.2")))) return false;
+		!overlay.ask(this, foxyproxy.getMessage((window.arguments[0].inn.torwiz ?
+		    "torwiz.nopatterns.3" : "no.white.patterns.3"), [name]))) return false;
 
   proxy.name = name;
   proxy.notes = document.getElementById("proxynotes").value;
@@ -166,9 +165,6 @@ function onAddEditURLPattern(isNew) {
   }
 }
 
-function onAddEditIPPattern(isNew) {
-}
-
 function setButtons(observerId, tree) {
   document.getElementById(observerId).setAttribute("disabled", tree.currentIndex == -1);
   onAutoConfUrlInput();
@@ -177,7 +173,6 @@ function setButtons(observerId, tree) {
 function _updateView() {
   // Redraw the trees
   urlsTree.view = makeView(proxy.matches);
-  ipsTree.view = makeView(proxy.ippatterns);
 
   function makeView(pats) {
     return {
@@ -211,7 +206,6 @@ function _updateView() {
     };
   }
   setButtons("urls-tree-row-selected", urlsTree);
-  setButtons("ips-tree-row-selected", ipsTree);
 }
 
 function onRemoveURLPattern() {
@@ -222,15 +216,6 @@ function onRemoveURLPattern() {
   // Reselect the next appropriate item
 	urlsTree.view.selection.select(sel+1>urlsTree.view.rowCount ? urlsTree.view.rowCount-1:sel);
 }
-
-function onRemoveIPPattern() {
-  // Store cur selection
-  var sel = ipsTree.currentIndex;
-  proxy.removeIPPattern(proxy.ippatterns[sel]);
-  _updateView();
-  // Reselect the next appropriate item
-	ipsTree.view.selection.select(sel+1>ipsTree.view.rowCount ? ipsTree.view.rowCount-1:sel);
- }
 
 function toggleMode(mode) {
   // Next line--buggy in FF 1.5.0.1--makes fields enabled but readonly
@@ -252,23 +237,30 @@ function toggleMode(mode) {
   }
 }
 
+function onHelp() {
+  fpc.openAndReuseOneTabPerURL("http://foxyproxy.mozdev.org/patterns.html");
+}
+
 function onViewAutoConf() {
   var w, p = _checkUri();
-	p &&
-		(w=open("view-source:" + p.spec, "", "scrollbars,resizable,modal,chrome,dialog=no,width=450,height=425").focus());
-  w && (w.windowtype="foxyproxy-options"); // set windowtype so it's forced to close when last browser closes
+  if (p) {
+    // This goes through currently configured proxies, unlike actually loading the PAC.
+    // In that case, DIRECT (no proxy) is used.
+    var url = p.spec + (p.spec.match(/\?/) == null ? "?" : "&") + (new Date()).getTime(); // bypass cache
+		w = open("view-source:" + url, "", "scrollbars,resizable,modal,chrome,dialog=no,width=450,height=425").focus();
+    if (w) w.windowtype="foxyproxy-options"; // set windowtype so it's forced to close when last browser closes
+  }
 }
 
 function onTestAutoConf() {
 	if (_checkUri()) {
-		var autoConf = CC["@leahscape.org/foxyproxy/autoconf;1"].createInstance().wrappedJSObject;
-		autoConf.owner = {name: "Test", enabled: true};
-		autoConf.url = autoconfurl.value;
-    autoConf.loadPAC();
-    var none=foxyproxy.getMessage("none");
-    foxyproxy.alert(this, autoConf.owner.enabled ?
-    	foxyproxy.getMessage("autoconfurl.test.success") :
-    	foxyproxy.getMessage("autoconfurl.test.fail", [autoConf.status, autoConf.error?autoConf.error:none]));
+	  try {
+		  CC["@leahscape.org/foxyproxy/autoconf;1"].createInstance().wrappedJSObject.testPAC(autoconfurl.value);
+      foxyproxy.alert(this, foxyproxy.getMessage("autoconfurl.test.success"));
+	  }
+	  catch (e) {
+	    foxyproxy.alert(this, foxyproxy.getMessage("autoconfurl.test.fail2", [e.message]));
+	  }
 	}
 }
 

@@ -45,18 +45,18 @@ Match.prototype = {
   _caseSensitive : false,
   isBlackList : false,
   isMultiLine : false,
-  
+
   QueryInterface: function(aIID) {
     if (!aIID.equals(CI.nsISupports))
       throw CR.NS_ERROR_NO_INTERFACE;
     return this;
   },
-  
+
   clone : function() {
     return new Match(this.enabled, this.name, this.pattern, this.temp, this.isRegEx, this.caseSensitive,
       this.isBlackList, this.isMultiLine);
   },
-  
+
   init : function(enabled, name, pattern, temp, isRegEx, caseSensitive, isBlackList, isMultiLine) {
     this.enabled = arguments.length > 0 ? arguments[0] : true;
     this.name = name || "";
@@ -64,21 +64,10 @@ Match.prototype = {
     this.temp = arguments.length > 3 ? arguments[3] : false; // doesn't calculate the regex
     this._isRegEx = arguments.length > 4 ? arguments[4] : false;
     this._caseSensitive = arguments.length > 5 ? arguments[5] : false;
-    this.isBlackList = arguments.length > 6 ? arguments[6] : false;  
+    this.isBlackList = arguments.length > 6 ? arguments[6] : false;
     // this.isMultiLine is used instead of this._isMultiLine so that
     // this final assignment forces the regex to be built.
     this.isMultiLine = arguments.length > 7 ? arguments[7] : false;
-  },
-  
-  /**
-   * Return true if uriStr matches patStr (white/black; doesn't matter. enabled/disabled doesn't matter).
-   * Return false otherwise.
-   * As a shortcut,we first check if the existing white patterns (as strings) equal |patStr|
-   * before performing regular expression matches (but only if |patStr| is non-null.
-   * Note patStr is sometimes null when this method is called.
-   */
-  match : function(patStr, uriStr) {
-    return ((!patStr && this.pattern == patStr) || this.regex.test(uriStr));  
   },
 
   set pattern(p) {
@@ -117,7 +106,7 @@ Match.prototype = {
   get caseSensitive() {
     return this._caseSensitive;
   },
-  
+
   buildRegEx : function() {
     var pat = this._pattern;
     if (!this._isRegEx) {
@@ -163,7 +152,7 @@ Match.prototype = {
     matchElem.setAttribute("isRegEx", this.isRegEx);
     matchElem.setAttribute("isBlackList", this.isBlackList);
     matchElem.setAttribute("isMultiLine", this._isMultiLine);
-    matchElem.setAttribute("caseSensitive", this._caseSensitive);    
+    matchElem.setAttribute("caseSensitive", this._caseSensitive);
     return matchElem;
   }
 };
@@ -188,9 +177,9 @@ var MatchModule = {
 
   unregisterSelf: function(aCompMgr, aLocation, aType) {
     aCompMgr = aCompMgr.QueryInterface(CI.nsIComponentRegistrar);
-    aCompMgr.unregisterFactoryLocation(this.CLASS_ID, aLocation);        
+    aCompMgr.unregisterFactoryLocation(this.CLASS_ID, aLocation);
   },
-  
+
   getClassObject: function(aCompMgr, aCID, aIID) {
     if (!aIID.equals(CI.nsIFactory))
       throw Components.results.NS_ERROR_NOT_IMPLEMENTED;

@@ -64,7 +64,8 @@
       <hbox align="center">    
         <checkbox id="caseSensitive" label="&foxyproxy.casesensitive.label;" accesskey="&foxyproxy.casesensitive.accesskey;"
           tooltiptext="&foxyproxy.casesensitive.tooltip;"/>
-        <toolbarbutton class="foxyproxy-ref" popup="patternTemplatePopup" tooltiptext="&foxyproxy.pattern.template.reference.tooltip;"/>
+        <toolbarbutton observes="superadd" class="foxyproxy-ref" popup="patternTemplatePopup" tooltiptext="&foxyproxy.pattern.template.reference.tooltip;"/>
+        <toolbarbutton observes="not-superadd" class="foxyproxy-ref" popup="wildcardURLPatternReferencePopup" tooltiptext="&foxyproxy.pattern.template.reference.tooltip;"/>        
         </hbox>
     </row>
 
@@ -73,7 +74,7 @@
       <textbox id="exampleURL" type="timed" timeout="500"
         flex="1" value="&foxyproxy.pattern.template.example.label2;" oncommand="updateGeneratedPattern();"/>
       <textbox id="generatedPattern" readonly="true" style="font-weight: bold;"/>
-      <toolbarbutton class="foxyproxy-ref" popup="wildcardReferencePopup" tooltiptext="&foxyproxy.wildcard.reference.tooltip;"/>
+      <toolbarbutton class="foxyproxy-ref" popup="wildcardURLPatternReferencePopup" tooltiptext="&foxyproxy.wildcard.reference.tooltip;"/>
     </row>
     <radiogroup id="whiteblacktype"/>
     <radiogroup id="matchtype"/>

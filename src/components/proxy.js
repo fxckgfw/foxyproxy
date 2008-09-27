@@ -17,7 +17,7 @@ if (!CI) {
   var NSGetModule = function() { return ProxyModule; }
 
   var CI = Components.interfaces, CC = Components.classes, CR = Components.results, self,
-    fileProtocolHandler = CC["@mozilla.org/network/protocol;1?name=file"].createInstance(CI["nsIFileProtocolHandler"]);
+    fileProtocolHandler = CC["@mozilla.org/network/protocol;1?name=file"].getService(CI["nsIFileProtocolHandler"]);
   if ("undefined" != typeof(__LOCATION__)) {
     // preferred way
     self = __LOCATION__;
@@ -51,7 +51,7 @@ if (!CI) {
     }
   }
   var self,
-    fileProtocolHandler = CC["@mozilla.org/network/protocol;1?name=file"].createInstance(CI["nsIFileProtocolHandler"]);
+    fileProtocolHandler = CC["@mozilla.org/network/protocol;1?name=file"].getService(CI["nsIFileProtocolHandler"]);
   if ("undefined" != typeof(__LOCATION__)) {
     // preferred way
     self = __LOCATION__;
@@ -60,7 +60,7 @@ if (!CI) {
     self = fileProtocolHandler.getFileFromURLSpec(Components.Exception().filename);
   }
   var dir = self.parent, // the directory this file is in
-    loader = CC["@mozilla.org/moz/jssubscript-loader;1"].createInstance(CI["mozIJSSubScriptLoader"]);
+    loader = CC["@mozilla.org/moz/jssubscript-loader;1"].getService(CI["mozIJSSubScriptLoader"]);
 }
 
 loadComponentScript("autoconf.js");
@@ -194,7 +194,7 @@ Proxy.prototype = {
    * before performing regular expression matches.
    *
    * Black pattern matches take precendence over white pattern matches.
-   * 
+   *
    * Note patStr is sometimes null when this method is called.
    */
   isWhiteMatch : function(patStr, uriStr) {

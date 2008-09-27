@@ -10,7 +10,7 @@
 **/
 var exampleURL, pattern, generatedPattern, caseSensitive, fpc, isSuperAdd;
 function onLoad() {
-  var m = window.arguments[0].inn.match;
+  var m = window.arguments[0].inn.pattern;
   document.getElementById("enabled").checked = m.enabled;
   document.getElementById("name").value = m.name;
   document.getElementById("pattern").value = m.pattern;
@@ -20,13 +20,13 @@ function onLoad() {
   document.getElementById("temp").checked = m.temp;
   isSuperAdd = window.arguments[0].inn.superadd;
   if (isSuperAdd) {
-    document.getElementById("superadd").setAttribute("hidden", false);  
-    document.getElementById("not-superadd").setAttribute("hidden", true);    
+    document.getElementById("superadd").setAttribute("hidden", false);
+    document.getElementById("not-superadd").setAttribute("hidden", true);
   }
   else {
     enabled = m.enabled;
-    document.getElementById("superadd").setAttribute("hidden", true);  
-    document.getElementById("not-superadd").setAttribute("hidden", false);   
+    document.getElementById("superadd").setAttribute("hidden", true);
+    document.getElementById("not-superadd").setAttribute("hidden", false);
   }
   exampleURL = document.getElementById("exampleURL");
   pattern = document.getElementById("pattern");
@@ -48,7 +48,7 @@ function onOK() {
       document.getElementById("name").value, pattern.value,
       document.getElementById("temp").checked, r,
       caseSensitive.checked, document.getElementById("whiteblacktype").value == "b", false);
-    window.arguments[0].out = {match:ret};
+    window.arguments[0].out = {pattern:ret};
     return true;
   }
   return false;

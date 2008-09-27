@@ -9,20 +9,20 @@
 <!ENTITY foxyproxy.proxy.name.label "Имя прокси">
 <!ENTITY foxyproxy.proxy.name.accesskey "И">
 <!ENTITY foxyproxy.proxy.name.tooltip "Имя прокси">
-<!ENTITY foxyproxy.proxy.notes.label "Примечание для прокси">
+<!ENTITY foxyproxy.proxy.notes.label "Примечание">
 <!ENTITY foxyproxy.proxy.notes.accesskey "П">
-<!ENTITY foxyproxy.proxy.notes.tooltip "Примечания">
+<!ENTITY foxyproxy.proxy.notes.tooltip "Более подробное описание прокси">
 <!ENTITY foxyproxy.pattern.label "Шаблон">
 <!ENTITY foxyproxy.pattern.accesskey "Ш">
 <!ENTITY foxyproxy.pattern.tooltip "Шаблон URL">
 <!ENTITY foxyproxy.pattern.type.label "Тип шаблона">
-<!ENTITY foxyproxy.whitelist.blacklist.label "&quot;Белый&quot;/&quot;Чёрный&quot; список (разрешения/запрещения)">
+<!ENTITY foxyproxy.whitelist.blacklist.label "&quot;Белый&quot;/&quot;Чёрный&quot; список (разрешение/запрет)">
 <!ENTITY foxyproxy.pattern.name.label "Имя шаблона">
 <!ENTITY foxyproxy.pattern.name.accesskey "ш">
-<!ENTITY foxyproxy.pattern.name.tooltip "Имя шаблона URL-адреса">
+<!ENTITY foxyproxy.pattern.name.tooltip "Название шаблона URL-адреса">
 <!ENTITY foxyproxy.url.pattern.label "Шаблон URL">
 <!ENTITY foxyproxy.url.pattern.accesskey "U">
-<!ENTITY foxyproxy.url.pattern.tooltip "Шаблон URL">
+<!ENTITY foxyproxy.url.pattern.tooltip "Шаблон URL-адреса">
 <!ENTITY foxyproxy.enabled.label "Включено">
 <!ENTITY foxyproxy.enabled.accesskey "В">
 <!ENTITY foxyproxy.enabled.tooltip "Вкл/Выкл">
@@ -49,7 +49,7 @@
 <!ENTITY foxyproxy.tor.tooltip "Мастер настройки доступа через Tor-сеть">
 <!ENTITY foxyproxy.copy.selection.label "Копировать">
 <!ENTITY foxyproxy.copy.selection.accesskey "К">
-<!ENTITY foxyproxy.copy.selection.tooltip "Скопировать отмеченное">
+<!ENTITY foxyproxy.copy.selection.tooltip "Скопировать отмеченный элемент">
 <!ENTITY foxyproxy.mode.label "Выбран режим">
 <!ENTITY foxyproxy.auto.url.label "URL автоматической настройки прокси">
 <!ENTITY foxyproxy.auto.url.accesskey "а">
@@ -77,7 +77,7 @@
 <!ENTITY foxyproxy.createdBy "Автор:">
 <!ENTITY foxyproxy.copyright "Copyright">
 <!ENTITY foxyproxy.rights "Все права защищены.">
-<!ENTITY foxyproxy.released "Реализовано под лицензией GPL.">
+<!ENTITY foxyproxy.released "Выпущено под лицензией GPL.">
 <!ENTITY foxyproxy.tab.general.label "Общее описание">
 <!ENTITY foxyproxy.tab.general.accesskey "О">
 <!ENTITY foxyproxy.tab.general.tooltip "Управление общим описанием прокси">
@@ -93,13 +93,13 @@
 <!ENTITY foxyproxy.pattern.matchtype2.label "Шаблон для определения блокированных веб-сайтов содержит">
 <!ENTITY foxyproxy.pattern.template.matchtype.label "Образец шаблона содержит">
 <!ENTITY foxyproxy.pattern.whiteblack.label "URL соответствия/исключения">
-<!ENTITY foxyproxy.add.option.direct.label "Прямое подключение к Интернету (без прокси)">
+<!ENTITY foxyproxy.add.option.direct.label "Прямое подключение в Интернет (без прокси)">
 <!ENTITY foxyproxy.add.option.direct.accesskey "П">
 <!ENTITY foxyproxy.add.option.direct.tooltip "Использовать прямой доступ в Интернет (без прокси)">
 <!ENTITY foxyproxy.add.option.manual.label "Ручная настройка прокси">
 <!ENTITY foxyproxy.add.option.manual.accesskey "Р">
 <!ENTITY foxyproxy.add.option.manual.tooltip "Настройка конфигурации прокси вручную">
-<!ENTITY foxyproxy.add.new.pattern.label "Добавить шаблон">
+<!ENTITY foxyproxy.add.new.pattern.label "Добавить">
 <!ENTITY foxyproxy.add.new.pattern.accesskey "Д">
 <!ENTITY foxyproxy.add.new.pattern.tooltip "Добавить новый шаблон">
 <!ENTITY foxyproxy.menubar.file.label "Файл">
@@ -109,13 +109,13 @@
 <!ENTITY foxyproxy.menubar.help.accesskey "П">
 <!ENTITY foxyproxy.menubar.help.tooltip "Открыть меню &quot;Помощь&quot;">
 <!ENTITY foxyproxy.mode.accesskey "М">
-<!ENTITY foxyproxy.mode.tooltip "Выбрать способ включения FoxyProxy">
+<!ENTITY foxyproxy.mode.tooltip "Выбрать способ функционирования FoxyProxy">
 <!ENTITY foxyproxy.tab.proxies.label "Прокси">
 <!ENTITY foxyproxy.tab.proxies.accesskey "П">
 <!ENTITY foxyproxy.tab.proxies.tooltip "Управление прокси">
-<!ENTITY foxyproxy.tab.global.label "Настройки общего описания">
+<!ENTITY foxyproxy.tab.global.label "Общие настройки">
 <!ENTITY foxyproxy.tab.global.accesskey "О">
-<!ENTITY foxyproxy.tab.global.tooltip "Управление настройками общего описания">
+<!ENTITY foxyproxy.tab.global.tooltip "Управление общими настройками">
 <!ENTITY foxyproxy.tab.logging.label "Журналирование">
 <!ENTITY foxyproxy.tab.logging.accesskey "Ж">
 <!ENTITY foxyproxy.tab.logging.tooltip "Управление параметрами журналирования">
@@ -134,7 +134,7 @@
 <!ENTITY foxyproxy.storagelocation.tooltip "Местоположение файла настроек FoxyProxy на диске ПК">
 <!ENTITY foxyproxy.tab.logging.timestamp.label "Время">
 <!ENTITY foxyproxy.tab.logging.url.label "URL">
-<!ENTITY foxyproxy.host.label "Имя хоста">
+<!ENTITY foxyproxy.host.label "Хост">
 <!ENTITY foxyproxy.host.accesskey "И">
 <!ENTITY foxyproxy.host.tooltip "Имя хоста">
 <!ENTITY foxyproxy.clear.label "Очистить">
@@ -146,7 +146,7 @@
 <!ENTITY foxyproxy.save.label "Сохранить">
 <!ENTITY foxyproxy.save.accesskey "С">
 <!ENTITY foxyproxy.save.tooltip "Сохранить журнал">
-<!ENTITY foxyproxy.addnewproxy.label "Добавить прокси">
+<!ENTITY foxyproxy.addnewproxy.label "Добавить">
 <!ENTITY foxyproxy.addnewproxy.accesskey "Д">
 <!ENTITY foxyproxy.addnewproxy.tooltip "Добавить новый прокси">
 <!ENTITY foxyproxy.whitelist.label "&quot;Белый&quot; список">
@@ -161,7 +161,7 @@
 <!ENTITY foxyproxy.usingPFF.label1 "Используется с">
 <!ENTITY foxyproxy.usingPFF.label2 "Portable Firefox">
 <!ENTITY foxyproxy.usingPFF.accesskey "P">
-<!ENTITY foxyproxy.usingPFF.tooltip "Отметьте, если используете расширение с Portable Firefox">
+<!ENTITY foxyproxy.usingPFF.tooltip "Отметьте, если расширение используется с Portable Firefox">
 <!ENTITY foxyproxy.socks.version.label "Версия SOCKS">
 <!ENTITY foxyproxy.autopacurl.label "Автоматически определять настройки прокси">
 <!ENTITY foxyproxy.issocks.label "SOCKS-прокси?">
@@ -186,10 +186,10 @@
 <!ENTITY foxyproxy.minutes.tooltip "мин">
 <!ENTITY foxyproxy.logging.maxsize.label "Максимальный размер до усечения">
 <!ENTITY foxyproxy.logging.maxsize.accesskey "М">
-<!ENTITY foxyproxy.logging.maxsize.tooltip "Максимальное количество записей перед тем как журнал начнёт перезаписываться сначала">
+<!ENTITY foxyproxy.logging.maxsize.tooltip "Максимальное количество записей перед тем как журнал будет перезаписан сначала">
 <!ENTITY foxyproxy.logging.maxsize.button.label "Установить">
 <!ENTITY foxyproxy.logging.maxsize.button.accesskey "У">
-<!ENTITY foxyproxy.logging.maxsize.button.tooltip "Установить максимальное количество записей перед тем как журнал начнёт перезаписываться сначала">
+<!ENTITY foxyproxy.logging.maxsize.button.tooltip "Установить максимальное количество записей перед тем как журнал будет перезаписан сначала">
 <!ENTITY foxyproxy.random.label "Загружать URL через случайно выбранные прокси (игнорировать любые шаблоны и приоритеты)">
 <!ENTITY foxyproxy.random.accesskey "с">
 <!ENTITY foxyproxy.random.tooltip "Загружать URL через случайно выбранные прокси (игнорировать любые шаблоны и приоритеты)">
@@ -248,26 +248,26 @@
 <!ENTITY foxyproxy.pactip2.label "Для PAC-файлов, сохранённых на ftp-сервере, необходимо использовать протокол ftp://. Например, ftp://leahscape.com/path/proxy.pac">
 <!ENTITY foxyproxy.pactip3.label "Возможно использование http://, https:// и любых других протоколов.">
 <!ENTITY foxyproxy.pactip4.label "Finally, if you need to refer to a PAC file on the local file system using a relative path, you can use the special FoxyProxy relative:// scheme. This is useful if your PAC file resides on a thumb drive. Supported relative paths are documented">
-<!ENTITY foxyproxy.pactip5.label "here">
+<!ENTITY foxyproxy.pactip5.label "здесь">
 <!ENTITY foxyproxy.pactip6.label ". Special strings in the relative:// URL you specify are replaced with their corresponding values. For example, relative://ProfD/pacs/proxy3.pac points to the file proxy3.pac in the subdirectory of the">
-<!ENTITY foxyproxy.pactip7.label "Firefox profile directory">
+<!ENTITY foxyproxy.pactip7.label "Каталог Firefox-профиля">
 <!ENTITY foxyproxy.pactip8.label "named pacs/. With Portable Firefox on Windows, the Firefox profile directory is always a relative path because the drive letter can change across computers. Please note that special strings (ProfD, Home, TempD, etc.) are case-sensitive!">
 <!ENTITY foxyproxy.contextmenu.label "Включить FoxyProxy в контекстное меню">
 <!ENTITY foxyproxy.contextmenu.accesskey "к">
 <!ENTITY foxyproxy.contextmenu.tooltip "Включить FoxyProxy в контекстное меню">
-<!ENTITY foxyproxy.quickadd.desc1 "QuickAdd добавляет к прокси динамический шаблон URL когда вы нажимаете Alt-F2. Это альтернатива для АвтоДобавления. Определите Alt-F2 клавиатурное сокращение с">
+<!ENTITY foxyproxy.quickadd.desc1 "Быстрое Добавление подключает к прокси динамический шаблон URL-адреса когда вы нажимаете Alt-F2. Это альтернатива для Автоматического Добавления. Определите Alt-F2 клавиатурное сокращение с">
 <!ENTITY foxyproxy.keyconfig.label "Конфигурация клавиш">
 <!ENTITY foxyproxy.quickadd.desc2 "расширение">
-<!ENTITY foxyproxy.quickadd.label "Оперативное добавление (QuickAdd)">
+<!ENTITY foxyproxy.quickadd.label "Быстрое добавление">
 <!ENTITY foxyproxy.quickadd.accesskey "Q">
-<!ENTITY foxyproxy.quickadd.tooltip "Управление настройками QuickAdd">
-<!ENTITY foxyproxy.quickadd.notify.label "Предупреждать когда активируется QuickAdd">
+<!ENTITY foxyproxy.quickadd.tooltip "Управление настройками Быстрого Добавления">
+<!ENTITY foxyproxy.quickadd.notify.label "Предупреждать когда активируется Быстрое Добавление">
 <!ENTITY foxyproxy.quickadd.notify.accesskey "П">
-<!ENTITY foxyproxy.quickadd.notify.tooltip "Уведомлять когда активизируется QuickAdd">
-<!ENTITY foxyproxy.quickadd.notify.whencanceled.label "Уведомить когда Быстрое добавление отключено">
-<!ENTITY foxyproxy.quickadd.notify.whencanceled.label2 "Быстрое добавление автоматически отменяется если оно активировано через Alt-F2, и текущий URL в строке состояния уже соответствует &quot;белому&quot; списку для существующего прокси. Таким образом предотвращается дублирование шаблонов.">
+<!ENTITY foxyproxy.quickadd.notify.tooltip "Уведомлять когда активируется Быстрое Добавление">
+<!ENTITY foxyproxy.quickadd.notify.whencanceled.label "Уведомить когда Быстрое Добавление отменено">
+<!ENTITY foxyproxy.quickadd.notify.whencanceled.label2 "Быстрое Добавление автоматически отменяется если оно активировано через Alt-F2, и текущий URL в строке состояния уже соответствует &quot;белому&quot; списку для существующего прокси. Таким образом предотвращается дублирование шаблонов.">
 <!ENTITY foxyproxy.quickadd.notify.whencanceled.accesskey "о">
-<!ENTITY foxyproxy.quickadd.notify.whencanceled.tooltip "Отобразить информер когда Быстрое добавление активировано, но отменено">
+<!ENTITY foxyproxy.quickadd.notify.whencanceled.tooltip "Отобразить всплывающее окно когда Быстрое добавление активировано, но отменено">
 <!ENTITY foxyproxy.quickadd.notify.whencanceled.popup.width "400px">
 <!ENTITY foxyproxy.quickadd.notify.whencanceled.popup.height "130px">
 <!ENTITY foxyproxy.whatsthis "Что это?">
@@ -283,18 +283,18 @@
 <!ENTITY foxyproxy.advancedmenus.label "Использовать меню дополнительных настроек">
 <!ENTITY foxyproxy.advancedmenus.accesskey "д">
 <!ENTITY foxyproxy.advancedmenus.tooltip "Использовать меню дополнительных настроек (в стиле FoxyProxy 2.2)">
-<!ENTITY foxyproxy.importsettings.label "Импортировать настройки">
+<!ENTITY foxyproxy.importsettings.label "Импорт">
 <!ENTITY foxyproxy.importsettings.accesskey "И">
-<!ENTITY foxyproxy.importsettings.tooltip "Импорт настроек из файла">
-<!ENTITY foxyproxy.exportsettings.label "Экспортировать настройки">
+<!ENTITY foxyproxy.importsettings.tooltip "Импортировать настройки из файла">
+<!ENTITY foxyproxy.exportsettings.label "Экспорт">
 <!ENTITY foxyproxy.exportsettings.accesskey "Э">
-<!ENTITY foxyproxy.exportsettings.tooltip "Экспорт текущих настроек в файл">
-<!ENTITY foxyproxy.importlist.label "Импортировать список прокси">
+<!ENTITY foxyproxy.exportsettings.tooltip "Экспортировать текущие настройки в файл">
+<!ENTITY foxyproxy.importlist.label "Импорт списка прокси">
 <!ENTITY foxyproxy.importlist.accesskey "И">
 <!ENTITY foxyproxy.importlist.tooltip "Импорт текстового файла со списком прокси-серверов">
-<!ENTITY foxyproxy.wildcard.reference.label "Инструкция по метасимволам">
-<!ENTITY foxyproxy.wildcard.reference.accesskey "И">
-<!ENTITY foxyproxy.wildcard.reference.tooltip "Показать инструкцию по метасимволам">
+<!ENTITY foxyproxy.wildcard.reference.label "Справка по метасимволам">
+<!ENTITY foxyproxy.wildcard.reference.accesskey "С">
+<!ENTITY foxyproxy.wildcard.reference.tooltip "Показать краткую справку по метасимволам">
 <!ENTITY foxyproxy.wildcard.reference.subtitle.label "Звёздочка (*) соответствует 0 или большему любых символов, а вопросительный знак (?) соответствует любому одиночному символу">
 <!ENTITY foxyproxy.wildcard.reference.mistakes "Общие ошибки при создании шаблонов с метасимволами">
 <!ENTITY foxyproxy.wildcard.reference.goal.label "Цель">
@@ -317,12 +317,12 @@
 <!ENTITY foxyproxy.ok.label "ОК">
 <!ENTITY foxyproxy.ok.accesskey "О">
 <!ENTITY foxyproxy.ok.tooltip "Закрыть окно">
-<!ENTITY foxyproxy.pattern.template.reference.label "Ссылка заготовки шаблона">
-<!ENTITY foxyproxy.pattern.template.reference.accesskey "з">
-<!ENTITY foxyproxy.pattern.template.reference.tooltip "Ссылка заготовки шаблона">
-<!ENTITY foxyproxy.pattern.template.reference.subtitle.label "Заготовки шаблонов URL определяют формат URL для прокси, которые используют QuickAdd или Автодобавление. Заготовки поддерживают следующие специальные строки, которые при активизации QuickAdd или Автодобавления заменяются в панели адреса соответствующими компонентами URL.">
-<!ENTITY foxyproxy.pattern.template.reference.specialstring.label "Специальная строка">
-<!ENTITY foxyproxy.pattern.template.reference.subststring.label "Заменить на">
+<!ENTITY foxyproxy.pattern.template.reference.label "Справка по элементам шаблона">
+<!ENTITY foxyproxy.pattern.template.reference.accesskey "с">
+<!ENTITY foxyproxy.pattern.template.reference.tooltip "Справка по элементам шаблона">
+<!ENTITY foxyproxy.pattern.template.reference.subtitle.label "Элементы шаблона URL-адреса определяют формат URL для прокси, которые используют Быстрое или или Автоматическое Добавление. Заготовки поддерживают следующие специальные строки, которые при активизации Быстрого или Автоматического Добавления заменяются в панели адреса соответствующими частями URL-адреса.">
+<!ENTITY foxyproxy.pattern.template.reference.specialstring.label "Элемент">
+<!ENTITY foxyproxy.pattern.template.reference.subststring.label "Замена">
 <!ENTITY foxyproxy.pattern.template.reference.example.label "Пример">
 <!ENTITY foxyproxy.pattern.template.reference.scheme.label "протокол">
 <!ENTITY foxyproxy.pattern.template.reference.username.label "имя">
@@ -344,22 +344,22 @@
 <!ENTITY foxyproxy.pattern.template.reference.popup.width "800px">
 <!ENTITY foxyproxy.notifications.label "Уведомления">
 <!ENTITY foxyproxy.notifications.accesskey "У">
-<!ENTITY foxyproxy.notifications.tooltip "Параметры уведомления">
+<!ENTITY foxyproxy.notifications.tooltip "Настройки уведомлений">
 <!ENTITY foxyproxy.indicators.label "Индикаторы">
 <!ENTITY foxyproxy.indicators.accesskey "И">
 <!ENTITY foxyproxy.indicators.tooltip "Параметры индикатора">
-<!ENTITY foxyproxy.misc.label "Другое">
+<!ENTITY foxyproxy.misc.label "Дополнительно">
 <!ENTITY foxyproxy.misc.accesskey "Д">
 <!ENTITY foxyproxy.misc.tooltip "Дополнительные настройки">
 <!ENTITY foxyproxy.animatedicons.label "Анимировать иконку при использовании прокси">
 <!ENTITY foxyproxy.animatedicons.accesskey "A">
-<!ENTITY foxyproxy.animatedicons.tooltip "Анимировать иконку при использовании прокси (Основные настройки -&gt; Анимация должна быть отмечена)">
+<!ENTITY foxyproxy.animatedicons.tooltip "Анимировать иконку при использовании прокси">
 <!ENTITY foxyproxy.statusbaractivation.label "Активация из строки состояния">
 <!ENTITY foxyproxy.statusbaractivation.accesskey "с">
-<!ENTITY foxyproxy.statusbaractivation.tooltip "Настройки активации расширения из строки состояния">
+<!ENTITY foxyproxy.statusbaractivation.tooltip "Настройка реакции расширения при клике на иконку в строке состояния">
 <!ENTITY foxyproxy.toolbaractivation.label "Активация из панели навигации">
 <!ENTITY foxyproxy.toolbaractivation.accesskey "н">
-<!ENTITY foxyproxy.toolbaractivation.tooltip "Настройки активации расширения из панели навигации">
+<!ENTITY foxyproxy.toolbaractivation.tooltip "Настройки реакции расширения при клике на иконку в панели навигации">
 <!ENTITY foxyproxy.leftclicksb.label "Клик левой кнопкой">
 <!ENTITY foxyproxy.leftclicksb.accesskey "л">
 <!ENTITY foxyproxy.leftclicksb.tooltip "Действие выполняется при клике левой кнопкой по иконке в строке состояния">
@@ -380,13 +380,13 @@
 <!ENTITY foxyproxy.rightclicktb.tooltip "Действие выполняется при клике правой кнопкой по иконке в панели навигации">
 <!ENTITY foxyproxy.click.options "Показать окно настроек">
 <!ENTITY foxyproxy.click.cycle "Цикл по режимам">
-<!ENTITY foxyproxy.click.contextmenu "Показать контекстное меню">
+<!ENTITY foxyproxy.click.contextmenu "Вызвать контекстное меню">
 <!ENTITY foxyproxy.click.reloadcurtab "Обновить текущую вкладку">
 <!ENTITY foxyproxy.click.reloadtabsinbrowser "Обновить все вкладки в текущем окне">
 <!ENTITY foxyproxy.click.reloadtabsinallbrowsers "Обновить все вкладки во всех окнах">
 <!ENTITY foxyproxy.click.removeallcookies "Удалить все куки">
 <!ENTITY foxyproxy.click.toggle "Переключить между текущим режимом и отключением">
-<!ENTITY foxyproxy.includeincycle.label "Включить этот прокси во время цикличного перебора прокси при кликах на строке состояния и навигационной панели (должно быть отмечено: Общие настройки -&gt; Активация строки состояния/навигационной панели -&gt; Цикл по режимам)">
+<!ENTITY foxyproxy.includeincycle.label "Включить этот прокси во время цикличного перебора прокси при кликах на строке состояния и навигационной панели (Общие настройки -&gt; Активация строки состояния/навигационной панели -&gt; Цикл по режимам)">
 <!ENTITY foxyproxy.includeincycle.accesskey "В">
 <!ENTITY foxyproxy.includeincycle.tooltip "Включить этот прокси во время клика в строке состояния или панели инструментов">
 <!ENTITY foxyproxy.changes.msg1 "Внимание - нет настроек для HTTP, SSL, FTP, Gopher и SOCKS!">
@@ -405,12 +405,12 @@
 <!ENTITY foxyproxy.addeditproxy.height "470">
 <!ENTITY foxyproxy.casesensitive.label "С учётом регистра">
 <!ENTITY foxyproxy.casesensitive.accesskey "р">
-<!ENTITY foxyproxy.casesensitive.tooltip "Enables/disables case-sensitivity for URL matching">
+<!ENTITY foxyproxy.casesensitive.tooltip "Вкл/Выкл учёта регистра при поиске соответствия URL-адресу">
 <!ENTITY foxyproxy.statusbarwidth.label "Ширина">
 <!ENTITY foxyproxy.statusbarwidth.accesskey "Ш">
-<!ENTITY foxyproxy.statusbarwidth.tooltip "Предотвратить изменение размера строки состояния">
+<!ENTITY foxyproxy.statusbarwidth.tooltip "Фиксация размера информера в строке состояния">
 <!ENTITY foxyproxy.pixels "пикселов">
-<!ENTITY foxyproxy.unlimited.label "[0: выровнять]">
+<!ENTITY foxyproxy.unlimited.label "[0: выравнивать по имени]">
 <!ENTITY foxyproxy.temp.popup.label "Временные шаблоны позволяют создавать шаблоны адресов URL, которые посещаются редко. Временные шаблоны не сохраняются на диск. Они хранятся в памяти и используются только в текущей сессии Firefox.">
 <!ENTITY foxyproxy.temp.popup.height "120">
 <!ENTITY foxyproxy.temp.popup.width "400">
@@ -420,8 +420,8 @@
 <!ENTITY foxyproxy.define.label "Определение">
 <!ENTITY foxyproxy.define.accesskey "О">
 <!ENTITY foxyproxy.define.tooltip "Определение">
-<!ENTITY foxyproxy.pattern.to.quickadd.label "Шаблон быстро добавляется к прокси">
-<!ENTITY foxyproxy.pattern.to.autoadd.label "Шаблон автоматически добавляется к прокси">
+<!ENTITY foxyproxy.pattern.to.quickadd.label "Шаблон для быстрого добавления к прокси">
+<!ENTITY foxyproxy.pattern.to.autoadd.label "Шаблон для автоматического добавления к прокси">
 <!ENTITY foxyproxy.home "Страница проекта">
 <!ENTITY foxyproxy.support "Поддержка">
 <!ENTITY foxyproxy.credits "Благодарности">

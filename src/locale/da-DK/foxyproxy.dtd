@@ -14,7 +14,7 @@
 <!ENTITY foxyproxy.proxy.notes.tooltip "Proxy noter">
 <!ENTITY foxyproxy.pattern.label "Matchende mønster">
 <!ENTITY foxyproxy.pattern.accesskey "P">
-<!ENTITY foxyproxy.pattern.tooltip "URL pattern">
+<!ENTITY foxyproxy.pattern.tooltip "URL-mønster">
 <!ENTITY foxyproxy.pattern.type.label "Mønstertype">
 <!ENTITY foxyproxy.whitelist.blacklist.label "Hvid liste (inklusiv) eller sort liste (eksklusiv)">
 <!ENTITY foxyproxy.pattern.name.label "Mønsternavn">
@@ -55,7 +55,7 @@
 <!ENTITY foxyproxy.auto.url.accesskey "A">
 <!ENTITY foxyproxy.auto.url.tooltip "Indtast URL for PAC-filen">
 <!ENTITY foxyproxy.auto.url.note.label "http(s)://   ftp://   file://   relative://">
-<!ENTITY foxyproxy.auto.url.note.tooltip "Click the info icon for information on relative://">
+<!ENTITY foxyproxy.auto.url.note.tooltip "Klik på info-ikonet for information om relativ://">
 <!ENTITY foxyproxy.port.label "Port">
 <!ENTITY foxyproxy.port.accesskey "P">
 <!ENTITY foxyproxy.port.tooltip "Port">
@@ -64,7 +64,7 @@
 <!ENTITY foxyproxy.socks.proxy.tooltip "URL på SOCKS-proxy">
 <!ENTITY foxyproxy.socks.v4 "SOCKS v4/4a">
 <!ENTITY foxyproxy.socks.v5 "SOCKS v5">
-<!ENTITY foxyproxy.addeditpattern.title "Tilføj/redigér møsnter">
+<!ENTITY foxyproxy.addeditpattern.title "Tilføj/redigér mønster">
 <!ENTITY foxyproxy.wildcard.label "Jokertegn">
 <!ENTITY foxyproxy.wildcard.accesskey "J">
 <!ENTITY foxyproxy.wildcard.tooltip "Specificerer at URLen eller URL-mønsteret bruger jokertegn og ikke er et regulært udtryk">
@@ -198,8 +198,8 @@
 <!ENTITY foxyproxy.random.includedirect.tooltip "Proxier konfigureret som direkte internetforbindelser bliver inkluderet i tilfældig proxy-valg">
 <!ENTITY foxyproxy.random.includedisabled.label "Inkluder proxier der er slået fra">
 <!ENTITY foxyproxy.random.includedisabled.accesskey "D">
-<!ENTITY foxyproxy.random.includedisabled.tooltip "Proxier konfigureret som slået fra er inkluderet i tilfældig proxy-valg">
-<!ENTITY foxyproxy.random.settings.label "Tilfældig proxy-valg">
+<!ENTITY foxyproxy.random.includedisabled.tooltip "Proxier konfigureret som slået fra er inkluderet i tilfældigt proxy-valg">
+<!ENTITY foxyproxy.random.settings.label "Tilfældigt proxy-valg">
 <!ENTITY foxyproxy.random.settings.accesskey "R">
 <!ENTITY foxyproxy.random.settings.tooltip "Indstillinger som påvirker tilfældigt proxyvalg">
 <!ENTITY foxyproxy.tab.autoadd.label "AutoTilføj">
@@ -247,11 +247,11 @@
 <!ENTITY foxyproxy.pactip1.label "For PAC-filer gemt på en lokal harddisk, brug file:// metoden. For eksempel, file://c:/path/proxy.pac på Windows eller file:///home/users/joe/proxy.pac på Unix/Linux/Mac.">
 <!ENTITY foxyproxy.pactip2.label "For PAC-filer på en ftp-server, brug ftp:// metoden. For eksempel, ftp://leahscape.com/path/proxy.pac">
 <!ENTITY foxyproxy.pactip3.label "Du kan også bruge http://, https://, og enhver anden understøttet metode.">
-<!ENTITY foxyproxy.pactip4.label "Finally, if you need to refer to a PAC file on the local file system using a relative path, you can use the special FoxyProxy relative:// scheme. This is useful if your PAC file resides on a thumb drive. Supported relative paths are documented">
-<!ENTITY foxyproxy.pactip5.label "here">
-<!ENTITY foxyproxy.pactip6.label ". Special strings in the relative:// URL you specify are replaced with their corresponding values. For example, relative://ProfD/pacs/proxy3.pac points to the file proxy3.pac in the subdirectory of the">
-<!ENTITY foxyproxy.pactip7.label "Firefox profile directory">
-<!ENTITY foxyproxy.pactip8.label "named pacs/. With Portable Firefox on Windows, the Firefox profile directory is always a relative path because the drive letter can change across computers. Please note that special strings (ProfD, Home, TempD, etc.) are case-sensitive!">
+<!ENTITY foxyproxy.pactip4.label "Endelig, hvis du skal referere til en PAC-fil på det lokale filsystem ved hjælp af en relativ sti, skal du bruge den specielle FoxyProxy relative:// metode. Dette er nyttigt hvis din PAC-fil er gemt på et eksternt drev. Understøttede relative stier er dokumenteret">
+<!ENTITY foxyproxy.pactip5.label "her">
+<!ENTITY foxyproxy.pactip6.label ". Specielle strenge i relative:// URLen du angiver erstattes med deres korresponderende værdier. For eksempel peger relative://ProfD/pacs/proxy3.pac til filen proxy3.pac i undermappen på">
+<!ENTITY foxyproxy.pactip7.label "Firefox profilmappen">
+<!ENTITY foxyproxy.pactip8.label "kaldet pacs/. Med Portable Firefox på Windows er Firefox profilmappen altid en relativ sti da drevbogstavet kan skifte fra computer til computer. Bemærk venligst at i specielle strenge (ProfD, Home, TempD, etc.) er der forskel på store og små bogstaver!">
 <!ENTITY foxyproxy.contextmenu.label "Vis FoxyProxy i kontekst-menuen">
 <!ENTITY foxyproxy.contextmenu.accesskey "k">
 <!ENTITY foxyproxy.contextmenu.tooltip "Viser FoxyProxy i kontekst-menuen">
@@ -301,7 +301,7 @@
 <!ENTITY foxyproxy.wildcard.reference.goal1.label "Match alle sider i MySpace&apos;s www underdomæne">
 <!ENTITY foxyproxy.wildcard.reference.goal2.label "Match den lokale PC">
 <!ENTITY foxyproxy.wildcard.reference.goal3.label "Match alle underdomæner og sider på abc.com">
-<!ENTITY foxyproxy.wildcard.reference.goal4.label "Match alle sider i domænet foo.com men ikke b.foo.com">
+<!ENTITY foxyproxy.wildcard.reference.goal4.label "Match alle sider i domænet a.foo.com men ikke b.foo.com">
 <!ENTITY foxyproxy.wildcard.reference.correct.label "Korrekt">
 <!ENTITY foxyproxy.wildcard.reference.correct2.label "Skal være to mønstre">
 <!ENTITY foxyproxy.wildcard.reference.incorrect.label "Ikke korrekt">
@@ -403,25 +403,25 @@
 <!ENTITY foxyproxy.torwiz.height "375">
 <!ENTITY foxyproxy.addeditproxy.width "660">
 <!ENTITY foxyproxy.addeditproxy.height "470">
-<!ENTITY foxyproxy.casesensitive.label "Case sensitive">
+<!ENTITY foxyproxy.casesensitive.label "Forskel på store og små bogstaver">
 <!ENTITY foxyproxy.casesensitive.accesskey "C">
-<!ENTITY foxyproxy.casesensitive.tooltip "Enables/disables case-sensitivity for URL matching">
-<!ENTITY foxyproxy.statusbarwidth.label "Fixed width">
+<!ENTITY foxyproxy.casesensitive.tooltip "Aktiverer eller deaktiverer store/små bogstaver for URL-sammenligning">
+<!ENTITY foxyproxy.statusbarwidth.label "Fast bredde">
 <!ENTITY foxyproxy.statusbarwidth.accesskey "W">
-<!ENTITY foxyproxy.statusbarwidth.tooltip "Prevents statusbar resizing">
+<!ENTITY foxyproxy.statusbarwidth.tooltip "Forhindrer ændring af størrelsen på statuslinjen">
 <!ENTITY foxyproxy.pixels "pixels">
-<!ENTITY foxyproxy.unlimited.label "[0: shrink to fit] ">
-<!ENTITY foxyproxy.temp.popup.label "Temporary patterns allow you to create patterns for URLs that you don&apos;t visit often without cluttering the pattern list for a proxy. Temporary patterns are not saved to disk. They are kept in-memory and used for this Firefox session only.">
+<!ENTITY foxyproxy.unlimited.label "[0: indskrænk tilpasset]">
+<!ENTITY foxyproxy.temp.popup.label "Midlertidige mønstre lader dig skabe mønstre for URLer du ikke besøger ret tit, uden at fylde op i mønsterlisten for en proxy. Midlertidige mønstre gemmes ikke på disken. De opbevares i hukommelsen og bruges kun for denne Firefox-session.">
 <!ENTITY foxyproxy.temp.popup.height "120">
 <!ENTITY foxyproxy.temp.popup.width "400">
-<!ENTITY foxyproxy.temp.label "Temporary">
+<!ENTITY foxyproxy.temp.label "Midlertidig">
 <!ENTITY foxyproxy.temp.accesskey "T">
-<!ENTITY foxyproxy.temp.tooltip "Pattern is used only for this Firefox session">
-<!ENTITY foxyproxy.define.label "Define">
+<!ENTITY foxyproxy.temp.tooltip "Møsteret bruges kun i denne Firefox-session.">
+<!ENTITY foxyproxy.define.label "Definér">
 <!ENTITY foxyproxy.define.accesskey "D">
-<!ENTITY foxyproxy.define.tooltip "Define">
-<!ENTITY foxyproxy.pattern.to.quickadd.label "Pattern to quickly add to proxy">
-<!ENTITY foxyproxy.pattern.to.autoadd.label "Pattern to automatically add to proxy">
-<!ENTITY foxyproxy.home "Home">
+<!ENTITY foxyproxy.define.tooltip "Definér">
+<!ENTITY foxyproxy.pattern.to.quickadd.label "Mænster der skal hurtigtilføjes til proxy">
+<!ENTITY foxyproxy.pattern.to.autoadd.label "Mønster der automatisk skal tilføjes til proxy">
+<!ENTITY foxyproxy.home "Hjem">
 <!ENTITY foxyproxy.support "Support">
-<!ENTITY foxyproxy.credits "Credits">
+<!ENTITY foxyproxy.credits "Æren tilgår">

@@ -1,13 +1,13 @@
-<!ENTITY help.title.foxyproxy.help "FoxyProxy Help">
-<!ENTITY help.patterns "URL Patterns">
-<!ENTITY help.ff.asks "Before Firefox loads a URL, Firefox asks FoxyProxy if a proxy should be used. ">
-<!ENTITY help.fp.answers "FoxyProxy answers this question by attempting to match the current URL with all of the URL patterns you define below. The simplest way to specify patterns is with wildcards.">
-<!ENTITY help.a.wildcards "Wildcards">
-<!ENTITY help.p.wildcards.are "Wildcards are pervasive throughout computing; you&apos;ve most likely seen them before. The asterisk (*) substitutes as a wildcard character for zero or more characters, and the question mark (?) substitutes as a wildcard character for any one character. ">
-<!ENTITY help.p.regexp "More advanced matching rules are possible using regular expressions. For details, click the &apos;Help Contents&apos; button.">
-<!ENTITY help.h4.wildcard.examples "Wildcard Examples">
-<!ENTITY help.th.url.pattern "URL Pattern">
-<!ENTITY help.th.some.matches "Some Matches">
-<!ENTITY help.th.some.non.matches "Some Non-Matches">
-<!ENTITY help.td.everything.in.y "Everything in Yahoo&apos;s domain">
-<!ENTITY help.i.matches.everything "Matches everything">
+<!ENTITY help.title.foxyproxy.help "FoxyProxy Hjælp">
+<!ENTITY help.patterns "URL-mønstre">
+<!ENTITY help.ff.asks "Før Firefox indlæser en URL, spørger Firefox FoxyProxy om der skal bruges en proxy.">
+<!ENTITY help.fp.answers "FoxyProxy besvarer dette spørgsmål ved at prøve at matche nuværende URL med alle URL-mønstrene du definerer herunder. Den simpleste metode til at angive mønstre er ved at bruge jokertegn.">
+<!ENTITY help.a.wildcards "Jokertegn">
+<!ENTITY help.p.wildcards.are "Jokertegn bruges overalt i computerverdenen; du er sandsynligvis stødt på dem før. Stjernen (*) gælder som jokertegn for ingen eller flere tegn, og spørgsmålstegnet (?) gælder som jokertegn for et hvilket som helst enkelt tegn.">
+<!ENTITY help.p.regexp "Det er muligt at bruge mere avancerede match-regler via regulære udtryk. For detaljer, klik på &apos;Hjælp indhold&apos; knappen.">
+<!ENTITY help.h4.wildcard.examples "Eksempler på jokertegn">
+<!ENTITY help.th.url.pattern "URL-mønster">
+<!ENTITY help.th.some.matches "Nogle matcher">
+<!ENTITY help.th.some.non.matches "Nogle ikke-matcher">
+<!ENTITY help.td.everything.in.y "Alt i Yahoos domæne">
+<!ENTITY help.i.matches.everything "Matcher alt">

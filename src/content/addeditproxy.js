@@ -152,13 +152,13 @@ function onAddEditURLPattern(isNew) {
   }
   else if (idx == -1) return; // safety; may not be necessary anymore
 
-  var params = {inn:{match: (isNew ? m : proxy.matches[idx]), superadd:false}, out:null};
+  var params = {inn:{pattern: (isNew ? m : proxy.matches[idx]), superadd:false}, out:null};
 
   window.openDialog("chrome://foxyproxy/content/pattern.xul", "",
     "chrome, dialog, modal, resizable=yes", params).focus();
 
   if (params.out) {
-    proxy.matches[idx] = params.out.match;
+    proxy.matches[idx] = params.out.pattern;
     _updateView();
     // Select item
 	  urlsTree.view.selection.select(isNew?urlsTree.view.rowCount-1 : urlsTree.currentIndex);

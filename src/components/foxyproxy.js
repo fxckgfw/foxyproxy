@@ -21,8 +21,8 @@ var dumpp = function(e) {
     try {
       throw new Error("e");
     }
-    catch (e) {out(e);} 
-  } 
+    catch (e) {out(e);}
+  }
   function out(e) {dump("FoxyProxy: " + e + " \n\n" + e.stack + "\n");}
 }
 // Get attribute from node if it exists, otherwise return |def|.
@@ -47,7 +47,7 @@ var loadComponentScript = function(filename) {
   catch (e) {
     dump("Error loading component " + filename + ": " + e + "\n" + e.stack + "\n");
     throw(e);
-  }  
+  }
 };
 var loadModuleScript = function(filename) {
   try {
@@ -60,7 +60,7 @@ var loadModuleScript = function(filename) {
   catch (e) {
     dump("Error loading module " + filename + ": " + e + "\n" + e.stack + "\n");
     throw(e);
-  }  
+  }
 };
 var gLoggEntryFactory = function(proxy, aMatch, uri, type, errMsg) {
     return new LoggEntry(proxy, aMatch, foxyproxy.prototype.logg._noURLs ? foxyproxy.prototype.logg.noURLsMessage : uri, type, errMsg);
@@ -83,7 +83,7 @@ var gLoggEntryFactory = function(proxy, aMatch, uri, type, errMsg) {
 
 // load js files
 var self;
-var fileProtocolHandler = CC["@mozilla.org/network/protocol;1?name=file"].createInstance(CI["nsIFileProtocolHandler"]);
+var fileProtocolHandler = CC["@mozilla.org/network/protocol;1?name=file"].getService(CI["nsIFileProtocolHandler"]);
 if ("undefined" != typeof(__LOCATION__)) {
   // preferred way
   self = __LOCATION__;
@@ -96,7 +96,7 @@ var settingsDir = componentDir.clone();
 settingsDir = settingsDir.parent.parent.parent;
 dump("FoxyProxy settingsDir = " + settingsDir.path + "\n");
 
-var loader = CC["@mozilla.org/moz/jssubscript-loader;1"].createInstance(CI["mozIJSSubScriptLoader"]);
+var loader = CC["@mozilla.org/moz/jssubscript-loader;1"].getService(CI["mozIJSSubScriptLoader"]);
 loadComponentScript("proxy.js");
 loadComponentScript("match.js");
 loadModuleScript("superadd.js");
@@ -104,7 +104,7 @@ loadModuleScript("superadd.js");
 // l is for lulu...
 function foxyproxy() {
   try {
-    SuperAdd.prototype.fp = gFP = this.wrappedJSObject = this;  
+    SuperAdd.prototype.fp = gFP = this.wrappedJSObject = this;
     this._loadStrings();
     this.autoadd = new AutoAdd(this.getMessage("autoadd.pattern.label"));
     this.quickadd = new QuickAdd(this.getMessage("quickadd.pattern.label"));
@@ -112,7 +112,7 @@ function foxyproxy() {
   }
   catch (e) {
     dumpp(e);
-  }  
+  }
 }
 foxyproxy.prototype = {
 	PFF : " ",
@@ -138,10 +138,10 @@ foxyproxy.prototype = {
       case "profile-after-change":
         try {
           this.loadSettings();
-        }        
+        }
         catch (e) {
           dump("observe: " + e + "\n" + e.stack + "\n");
-        }   
+        }
         break;
 			case "app-startup":
 				gObsSvc.addObserver(this, "quit-application", false);
@@ -210,11 +210,11 @@ biesi>	passing it the appropriate proxyinfo
 	},
 
   loadSettings : function() {
-    var req = CC["@mozilla.org/xmlextras/xmlhttprequest;1"].createInstance(CI.nsIXMLHttpRequest);
-    var settingsURI = this.getSettingsURI("uri-string");
-    req.open("GET", settingsURI, false);
-    req.send(null);
-    var doc = req.responseXML;
+    var f = this.getSettingsURI(CI.nsIFile);
+    var s = CC["@mozilla.org/network/file-input-stream;1"].createInstance(CI.nsIFileInputStream);
+    s.init(f, -1, -1, CI.nsIFileInputStream.CLOSE_ON_EOF);
+    var p = CC["@mozilla.org/xmlextras/domparser;1"].createInstance(CI.nsIDOMParser);
+    var doc = p.parseFromStream(s, null, f.fileSize, "text/xml");
     if (!doc || doc.documentElement.nodeName == "parsererror") {
       this.alert(null, this.getMessage("settings.error.2", [settingsURI, settingsURI]));
       this.writeSettings(settingsURI);
@@ -356,17 +356,17 @@ biesi>	passing it the appropriate proxyinfo
       dump("FoxyProxy: Unable to read preference extensions.foxyproxy.settings in getSettingsURI(). Checking for new installation.\n");
       try {
 	    // The first time FP runs, "firstrun" does not exist (i.e., null || false). Subsequent times, "firstrun" == true.
-	    // In other words, this pref is improperly named for its purpose. Better name is "notfirstrun".      
+	    // In other words, this pref is improperly named for its purpose. Better name is "notfirstrun".
         var f = this.getPrefsService("extensions.foxyproxy.").getBoolPref("firstrun");
         if (f)
-          dump("First run of FoxyProxy\n");          
+          dump("First run of FoxyProxy\n");
         else {
-          this.alert(null, this.getMessage("preferences.read.error.warning", ["extensions.foxyproxy.settings", "getSettingsURI()"]) + " " + 
+          this.alert(null, this.getMessage("preferences.read.error.warning", ["extensions.foxyproxy.settings", "getSettingsURI()"]) + " " +
             this.getMessage("preferences.read.error.fatal"));
           // TODO: prompt user for path to old file or create new
         }
       }
-      catch(ex) {}      
+      catch(ex) {}
     }
     if (o) {
       o == this.PFF && (o = this.getDefaultPath());
@@ -488,7 +488,7 @@ biesi>	passing it the appropriate proxyinfo
       //dump("*** writeSettings\n");
       //throw new Error("e");
     //}
-    //catch (e) {catch (e) {dump("*** " + e + " \n\n\n");dump ("\n" + e.stack + "\n");} }    
+    //catch (e) {catch (e) {dump("*** " + e + " \n\n\n");dump ("\n" + e.stack + "\n");} }
     if (!o) {
       try {
         o = gFP.getPrefsService("extensions.foxyproxy.").getCharPref("settings");
@@ -579,16 +579,6 @@ biesi>	passing it the appropriate proxyinfo
     }
     return loggEntry;
   },
-  
-  getIPAddresses : function() {
-    // Thanks, PasteIP extension
-    var DNSService = CC['@mozilla.org/network/dns-service;1'].getService(CI.nsIDNSService);
-    var DNSRecord = DNSService.resolve(DNSService.myHostName, true);
-    var allIPs = [];
-    for (var i=0; DNSRecord.hasMore(); i++)
-      allIPs[i] = DNSRecord.getNextAddrAsString();
-    return allIPs;
-  },  
 
   restart : function() {
 		CC["@mozilla.org/toolkit/app-startup;1"].getService(CI.nsIAppStartup)
@@ -610,9 +600,9 @@ biesi>	passing it the appropriate proxyinfo
    	this._previousMode = gGetSafeAttr(node, "previousMode", "patterns");
 		this.proxies.fromDOM(mode, doc);
 		this.setMode(mode, false, true);
-		this.random.fromDOM(doc); 
+		this.random.fromDOM(doc);
     this.quickadd.fromDOM(doc); // KEEP THIS BEFORE this.autoadd.fromDOM() else fromDOM() is overwritten!?
-    this.autoadd.fromDOM(doc);    
+    this.autoadd.fromDOM(doc);
     this.warnings.fromDOM(doc);
 	},
 
@@ -711,7 +701,7 @@ biesi>	passing it the appropriate proxyinfo
         var n = proxyElems.item(i);
         n.QueryInterface(CI.nsIDOMElement);
         var p = new Proxy(gFP);
-        p.fromDOM(n, mode);  
+        p.fromDOM(n, mode);
         if (!last && n.getAttribute("lastresort") == "true")
           last = p;
         else
@@ -885,7 +875,7 @@ biesi>	passing it the appropriate proxyinfo
 		  // Now deserialize
       var n = doc.getElementsByTagName("logg").item(0);
       this.enabled = gGetSafeAttrB(n, "enabled", false);
-      this._maxSize = gGetSafeAttr(n, "maxSize", 500); 
+      this._maxSize = gGetSafeAttr(n, "maxSize", 500);
       this._templateHeader = gGetSafeAttr(n, "header-v2", this._templateHeader);
       this._templateFooter = gGetSafeAttr(n, "footer-v2", this._templateFooter);
       this._templateRow = gGetSafeAttr(n, "row-v2", this._templateRow);
@@ -1087,7 +1077,7 @@ biesi>	passing it the appropriate proxyinfo
   ///////////////// notifier \\\\\\\\\\\\\\\\\\\\\\\\\\\
   // Thanks for the inspiration: InfoRSS extension (Didier Ernotte, 2005)
   notifier : {
-    _queue : [], 
+    _queue : [],
   	alerts : function() {
       try {
         return CC["@mozilla.org/alerts-service;1"].getService(CI.nsIAlertsService);
@@ -1124,7 +1114,7 @@ biesi>	passing it the appropriate proxyinfo
 					this.timer.initWithCallback(this, 5000, CI.nsITimer.TYPE_ONE_SHOT);
 	      }
 	      catch (e) {
-          /* in case win, win.parent, win.parent.document, tooltip, etc. don't exist */  
+          /* in case win, win.parent, win.parent.document, tooltip, etc. don't exist */
           dump("Window not available for user message: " + text + "\n");
           if (!noQueue) {
             dump("Queuing message\n");
@@ -1133,12 +1123,12 @@ biesi>	passing it the appropriate proxyinfo
         }
       }
     },
-    
+
     emptyQueue : function() {
       for (var i=0,sz=this._queue.length; i<sz; i++) {
         var msg = this._queue.pop();
         this.alert(msg.title, msg.text, true);
-      } 
+      }
     },
 
     notify : function() {
@@ -1195,7 +1185,7 @@ biesi>	passing it the appropriate proxyinfo
 	  	this._leftClick = gGetSafeAttr(n, "left", "options");
 	  	this._middleClick = gGetSafeAttr(n, "middle", "cycle");
 	  	this._rightClick = gGetSafeAttr(n, "right", "contextmenu");
-      this._width = gGetSafeAttr(n, "width", 0);      
+      this._width = gGetSafeAttr(n, "width", 0);
     },
 
     get iconEnabled() { return this._iconEnabled; },
@@ -1231,7 +1221,7 @@ biesi>	passing it the appropriate proxyinfo
       this._rightClick = e;
       gFP.writeSettings();
     },
-    
+
     get width() { return this._width; },
     set width(e) {
       e = parseInt(e);
@@ -1334,18 +1324,18 @@ function LoggEntry(proxy, aMatch, uriStr, type, errMsg) {
     this.timestamp = Date.now();
     this.uri = uriStr;
     this.proxy = proxy;
-    this.proxyName = proxy.name; // Make local copy so logg history doesn't change if user changes proxy    
+    this.proxyName = proxy.name; // Make local copy so logg history doesn't change if user changes proxy
     this.proxyNotes = proxy.notes;  // ""
     if (type == "pat") {
       this.matchName = aMatch.name;  // Make local copy so logg history doesn't change if user changes proxy
       this.matchPattern = aMatch.pattern; // ""
-      this.matchType = aMatch.isRegEx ? this.regExMsg : this.wcMsg;  
+      this.matchType = aMatch.isRegEx ? this.regExMsg : this.wcMsg;
       this.whiteBlack = aMatch.isBlackList ? this.blackMsg : this.whiteMsg; // ""
       this.caseSensitive = aMatch.caseSensitive ? this.yes : this.no; // ""
     }
     else if (type == "ded") {
       this.caseSensitive = this.whiteBlack = this.matchName = this.matchPattern = this.matchType = this.allMsg;
-    }   
+    }
     else if (type == "rand") {
       this.matchName = this.matchPattern = this.matchType = this.whiteBlack = this.randomMsg;
     }
@@ -1366,8 +1356,8 @@ LoggEntry.prototype = {
     this.wcMsg = gFP.getMessage("foxyproxy.wildcard.label");
     this.blackMsg = gFP.getMessage("foxyproxy.blacklist.label");
     this.whiteMsg = gFP.getMessage("foxyproxy.whitelist.label");
-    this.yes = gFP.getMessage("yes");  
-    this.no = gFP.getMessage("no");    
+    this.yes = gFP.getMessage("yes");
+    this.no = gFP.getMessage("no");
   }
 };
 
@@ -1399,7 +1389,7 @@ function gFactoryHolder(aObj) {
       if (aOuter)
         throw CR.NS_ERROR_NO_AGGREGATION;
       if (!this.singleton)
-        this.singleton = new this.constructor; 
+        this.singleton = new this.constructor;
       return this.singleton.QueryInterface(aIID);
     }
   };

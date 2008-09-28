@@ -26,7 +26,75 @@ var foxyproxy = {
       .alert(null, this.fp.getMessage("foxyproxy"), str);
   },
 
-	observe: function(subj, topic, str) {
+  // thanks, mzz
+  updateCheck : {
+    timer : null,
+    first : false,
+    usingObserver : true,
+    check : function() {
+      const CC = Components.classes, CI = Components.interfaces;
+      var vc = CC["@mozilla.org/xpcom/version-comparator;1"].getService(CI.nsIVersionComparator),
+        lastVer, curVer = CC["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject.getVersion();
+      try {
+        lastVer = foxyproxy.fp.getPrefsService("extensions.foxyproxy.").getCharPref("last-version");
+        if (vc.compare(curVer, lastVer) > 0)
+          p(this);
+      }
+      catch(e) {
+        this.first = true;
+        p(this);
+      }
+      function p(o) {
+        var appInfo = CC["@mozilla.org/xre/app-info;1"].getService(CI.nsIXULAppInfo);
+        if(vc.compare(appInfo.version, "3.0") < 0) {
+          // sessionstore-windows-restored notification not supported; just do it now
+          o.usingObserver = false;
+          o.installTimer();
+        }
+        else
+          CC["@mozilla.org/observer-service;1"].getService(CI.nsIObserverService)
+             .addObserver(o, "sessionstore-windows-restored", false);
+      }
+    },
+
+    notify : function() {
+      if (this.usingObserver)
+        Components.classes["@mozilla.org/observer-service;1"].getService(Components.interfaces.nsIObserverService)
+          .removeObserver(this, "sessionstore-windows-restored");
+
+      // Probably not necessary, but does not hurt
+      this.timer = null;
+      var fpc = Components.classes["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject;
+      if (this.first) {
+        x("http://foxyproxy.mozdev.org/help.html");
+        foxyproxy.torWizard(true);
+      }
+      else {
+         x("http://foxyproxy.mozdev.org/releasenotes.html");
+      }
+      function x(url) {
+        fpc.openAndReuseOneTabPerURL(url);
+        // Do this last so we try again next time if we failed to display now
+        foxyproxy.fp.getPrefsService("extensions.foxyproxy.").setCharPref("last-version", fpc.getVersion());
+      }
+    },
+
+   	observe : function(s, topic) {
+      if (topic == "sessionstore-windows-restored") {
+        // If we show the tab now, the tab isn't guaranteed to be topmost
+        // (in Firefox 3.0b5). So use a timer.
+        this.installTimer();
+      }
+    },
+
+    installTimer : function() {
+      this.timer = Components.classes["@mozilla.org/timer;1"].createInstance(Components.interfaces.nsITimer);
+      this.timer.initWithCallback(this, 1000, Components.interfaces.nsITimer.TYPE_ONE_SHOT);
+    }
+  },
+
+
+	observe : function(subj, topic, str) {
     var e;
 		try {
 			e = subj.QueryInterface(Components.interfaces.nsISupportsPRBool).data;
@@ -77,11 +145,11 @@ var foxyproxy = {
     this.toggleContextMenu(this.fp.contextMenu);
     this.checkPageLoad();
     this.toggleStatusBarIcon(this.fp.statusbar.iconEnabled);
-    this.toggleStatusBarText(this.fp.statusbar.textEnabled);    
+    this.toggleStatusBarText(this.fp.statusbar.textEnabled);
     this.toggleStatusBarWidth(this.fp.statusbar.width);
 		this.setMode(this.fp.mode);
-    this._firstRunCheck();
     this.fp.notifier.emptyQueue();
+    this.updateCheck.check();
   },
 
   toggleToolsMenu : function(e) {
@@ -92,20 +160,6 @@ var foxyproxy = {
  	 	this.contextMenuIcon.hidden = !e;
   },
 
-  // The first time FP runs, "firstrun" does not exist (i.e., null || false). Subsequent times, "firstrun" == true.
-  // In other words, this pref is improperly named for its purpose. Better name is "notfirstrun".
-  _firstRunCheck : function() {
-    var f = false;
-    try {
-      f = this.fp.getPrefsService("extensions.foxyproxy.").getBoolPref("firstrun");
-    }
-    catch(e) {}
-    if (!f) {
-      this.torWizard(true);
-      this.fp.getPrefsService("extensions.foxyproxy.").setBoolPref("firstrun", true);
-    }
-  },
-  
   torWizard : function(firstTime) {
     var owner = foxyproxy._getOptionsDlg();
     if (this.ask(owner, (firstTime ? (this.fp.getMessage("welcome") + " ") : "") +
@@ -219,7 +273,7 @@ var foxyproxy = {
     if (doc && doc.location)
       foxyproxy.fp.autoadd.onAutoAdd(window, doc); // can't use |this.fp| because this isn't |foxyproxy|
   },
-  
+
   updateViews : function(writeSettings, updateLogView) {
     // Update view if it's open
     var optionsDlg = foxyproxy._getOptionsDlg();
@@ -316,13 +370,13 @@ var foxyproxy = {
   	// otherwise we get a JS error.
     s && (s.hidden = !e);
   },
-  
+
   toggleStatusBarWidth : function(w) {
     var s=document.getElementById("foxyproxy-status-text");
     // Statusbars don't exist on all windows (e.g,. View Source) so check for existence first,
     // otherwise we get a JS error.
     if (!s) return;
-    var w = this.fp.statusbar.width; 
+    var w = this.fp.statusbar.width;
     if (w > 0)
       s.width = w;
     else {
@@ -332,8 +386,8 @@ var foxyproxy = {
       if (!s.hidden) {
         s.hidden = true;
         s.hidden = false;
-      }     
-    }    
+      }
+    }
   },
 
   // Set toolbar, statusbar, and context menu text and icon colors

@@ -1,18 +1,18 @@
-var fp, fpc, inn, match;
+var fp, fpc, superadd, inn;
 function onLoad() {
   inn = window.arguments[0].inn;
-  match = inn.match;
+  superadd = inn.superadd;
   fp = Components.classes["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;
   fpc = Components.classes["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject;
-  document.getElementById("reload").checked = inn.reload;
-  document.getElementById("prompt").checked = inn.prompt;
-  document.getElementById("notify").checked = inn.notify;
-  document.getElementById("notifyWhenCanceled").checked = inn.notifyWhenCanceled;
+  document.getElementById("reload").checked = superadd.reload;
+  document.getElementById("prompt").checked = superadd.prompt;
+  document.getElementById("notify").checked = superadd.notify;
+  document.getElementById("notifyWhenCanceled").checked = superadd.notifyWhenCanceled;
   document.getElementById("url").value = inn.url;
   updateGeneratedPattern();
   var proxyMenu = document.getElementById("proxyMenu");
-  inn.superadd.updateProxyMenu(proxyMenu, document);
-  if (inn.superadd == fp.autoadd) {
+  superadd.updateProxyMenu(proxyMenu, document);
+  if (superadd == fp.autoadd) {
     // Change QuickAdd references to AutoAdd
     window.document.title = fp.getMessage("foxyproxy.tab.autoadd.label");
     // Show AutoAdd specifics
@@ -20,39 +20,39 @@ function onLoad() {
     e.label = fp.getMessage("foxyproxy.autoadd.notify.label");
     e.setAttribute("tooltiptext", fp.getMessage("foxyproxy.autoadd.notify.tooltip2"));
     document.getElementById("autoAddBroadcaster").setAttribute("hidden", true);
-  }   
-  sizeToContent();  
+  }
+  sizeToContent();
 }
 
 function onOK() {
   var pat = document.getElementById("generatedPattern").value;
-  var p = fpc.validatePattern(window, match.isRegEx, pat);
+  var p = fpc.validatePattern(window, superadd.match.isRegEx, pat);
   if (p) {
-    match.pattern = pat; /* in case user has manually changed the pattern */
     window.arguments[0].out = {
       reload:document.getElementById("reload").checked,
       notify:document.getElementById("notify").checked,
       prompt:document.getElementById("prompt").checked,
       notifyWhenCanceled:document.getElementById("notifyWhenCanceled").checked,
-      proxyId:document.getElementById("proxyMenu").value, 
-      match:match}; 
+      proxyId:document.getElementById("proxyMenu").value};
     return true;
   }
 }
 
 function updateGeneratedPattern() {
 	document.getElementById("generatedPattern").value =
-    fpc.applyTemplate(document.getElementById("url").value, match.pattern, match.caseSensitive);
+    fpc.applyTemplate(document.getElementById("url").value, superadd.match.pattern, superadd.match.caseSensitive);
 }
 
 function onPattern() {
-  var params = {inn:{match:match, superadd:true}, out:null};
+  var p = superadd.match.clone();
+  p.temp = superadd.temp; // see notes in the .match setter in superadd.js as to why we do this
+  var params = {inn:{pattern:p, superadd:true}, out:null};
 
   window.openDialog("chrome://foxyproxy/content/pattern.xul", "",
     "chrome, dialog, modal, resizable=yes", params).focus();
 
   if (params.out) {
-    match = params.out.match;
+    superadd.match = params.out.pattern;
     updateGeneratedPattern();
   }
 }

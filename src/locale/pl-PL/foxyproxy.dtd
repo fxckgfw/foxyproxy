@@ -15,9 +15,9 @@
 <!ENTITY foxyproxy.pattern.label "Wzorzec">
 <!ENTITY foxyproxy.pattern.accesskey "W">
 <!ENTITY foxyproxy.pattern.tooltip "Wzorzec URL">
-<!ENTITY foxyproxy.urlpatterns.label "URL Patterns">
-<!ENTITY foxyproxy.urlpatterns.accesskey "P">
-<!ENTITY foxyproxy.urlpatterns.tooltip "URL patterns">
+<!ENTITY foxyproxy.urlpatterns.label "Adresy URL wzorców">
+<!ENTITY foxyproxy.urlpatterns.accesskey "U">
+<!ENTITY foxyproxy.urlpatterns.tooltip "Adresy URL wzorców">
 <!ENTITY foxyproxy.pattern.type.label "Typ wzorca">
 <!ENTITY foxyproxy.whitelist.blacklist.label "Zezwolenia">
 <!ENTITY foxyproxy.pattern.name.label "Nazwa wzorca">
@@ -79,7 +79,7 @@
 <!ENTITY foxyproxy.version "Wersja">
 <!ENTITY foxyproxy.createdBy "Autor:">
 <!ENTITY foxyproxy.copyright "Prawa autorskie: Copyright">
-<!ENTITY foxyproxy.rights "Wszelkie prawa zastrzeżone.">
+<!ENTITY foxyproxy.rights "Wszelkie prawa zastrzeżone.Adresy URL wzorców">
 <!ENTITY foxyproxy.released "Wydano na bazie licencji GPL.">
 <!ENTITY foxyproxy.tab.general.label "Ogólne">
 <!ENTITY foxyproxy.tab.general.accesskey "O">
@@ -428,9 +428,9 @@
 <!ENTITY foxyproxy.home "Strona domowa">
 <!ENTITY foxyproxy.support "Pomoc">
 <!ENTITY foxyproxy.credits "Podziękowania">
-<!ENTITY foxyproxy.donations "Donations">
-<!ENTITY foxyproxy.please.donate.label "Please Donate">
+<!ENTITY foxyproxy.donations "Dotacje">
+<!ENTITY foxyproxy.please.donate.label "Wykonaj dotację">
 <!ENTITY foxyproxy.please.donate.accesskey "D">
-<!ENTITY foxyproxy.keep.free "Keep FoxyProxy Free">
-<!ENTITY foxyproxy.donation.list.label "Donation List">
+<!ENTITY foxyproxy.keep.free "Pomóż FoxyProxy pozostać darmową aplikacją">
+<!ENTITY foxyproxy.donation.list.label "Lista donatorów">
 <!ENTITY foxyproxy.donation.list.accesskey "L">

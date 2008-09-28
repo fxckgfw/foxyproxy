@@ -15,17 +15,17 @@
 <!ENTITY foxyproxy.pattern.label "Patroon">
 <!ENTITY foxyproxy.pattern.accesskey "P">
 <!ENTITY foxyproxy.pattern.tooltip "URL patroon">
-<!ENTITY foxyproxy.urlpatterns.label "URL Patterns">
+<!ENTITY foxyproxy.urlpatterns.label "URL-patronen">
 <!ENTITY foxyproxy.urlpatterns.accesskey "P">
-<!ENTITY foxyproxy.urlpatterns.tooltip "URL patterns">
+<!ENTITY foxyproxy.urlpatterns.tooltip "URL-patronen">
 <!ENTITY foxyproxy.pattern.type.label "Patroontype">
 <!ENTITY foxyproxy.whitelist.blacklist.label "Witte lijst (opnemen) of zwarte lijst (uitsluiten)">
 <!ENTITY foxyproxy.pattern.name.label "Patroonnaam">
 <!ENTITY foxyproxy.pattern.name.accesskey "P">
 <!ENTITY foxyproxy.pattern.name.tooltip "Naam voor het patroon">
-<!ENTITY foxyproxy.url.pattern.label "URL patroon">
+<!ENTITY foxyproxy.url.pattern.label "URL-patroon">
 <!ENTITY foxyproxy.url.pattern.accesskey "U">
-<!ENTITY foxyproxy.url.pattern.tooltip "URL patroon">
+<!ENTITY foxyproxy.url.pattern.tooltip "URL-patroon">
 <!ENTITY foxyproxy.enabled.label "Ingeschakeld">
 <!ENTITY foxyproxy.enabled.accesskey "I">
 <!ENTITY foxyproxy.enabled.tooltip "Inschakelen/uitschakelen wisselen">
@@ -43,7 +43,7 @@
 <!ENTITY foxyproxy.close.tooltip "Venster sluiten">
 <!ENTITY foxyproxy.about.label "Over">
 <!ENTITY foxyproxy.about.accesskey "O">
-<!ENTITY foxyproxy.about.tooltip "Opent het Over scherm">
+<!ENTITY foxyproxy.about.tooltip "Opent het ‘Over’-venster">
 <!ENTITY foxyproxy.online.label "FoxyProxy op het web">
 <!ENTITY foxyproxy.online.accesskey "P">
 <!ENTITY foxyproxy.online.tooltip "De FoxyProxy website bezoeken">
@@ -95,7 +95,7 @@
 <!ENTITY foxyproxy.pattern.matchtype.label "Patroon bevat">
 <!ENTITY foxyproxy.pattern.matchtype2.label "Patroon om geblokkeerde websites te identificeren bevat">
 <!ENTITY foxyproxy.pattern.template.matchtype.label "Patroonsjabloon bevat">
-<!ENTITY foxyproxy.pattern.whiteblack.label "URL opname/uitsluiting">
+<!ENTITY foxyproxy.pattern.whiteblack.label "URL-opname/uitsluiting">
 <!ENTITY foxyproxy.add.option.direct.label "Directe verbinding met Internet (geen proxy)">
 <!ENTITY foxyproxy.add.option.direct.accesskey "D">
 <!ENTITY foxyproxy.add.option.direct.tooltip "Geen proxy gebruiken - de onderliggende directe internetverbinding gebruiken">
@@ -154,16 +154,16 @@
 <!ENTITY foxyproxy.addnewproxy.tooltip "Nieuwe proxy toevoegen">
 <!ENTITY foxyproxy.whitelist.label "Witte lijst">
 <!ENTITY foxyproxy.whitelist.accesskey "W">
-<!ENTITY foxyproxy.whitelist.tooltip "URL&apos;s die met dit patroon overeenkomen worden via deze proxy geladen">
-<!ENTITY foxyproxy.whitelist.description.label "URL&apos;s die met dit patroon overeenkomen worden via deze proxy geladen">
+<!ENTITY foxyproxy.whitelist.tooltip "URL’s die met dit patroon overeenkomen worden via deze proxy geladen">
+<!ENTITY foxyproxy.whitelist.description.label "URL’s die met dit patroon overeenkomen worden via deze proxy geladen">
 <!ENTITY foxyproxy.blacklist.label "Zwarte lijst">
 <!ENTITY foxyproxy.blacklist.accesskey "Z">
-<!ENTITY foxyproxy.blacklist.tooltip "URL&apos;s die met dit patroon overeenkomen worden NIET via deze proxy geladen">
-<!ENTITY foxyproxy.blacklist.description.label "URL&apos;s die met dit patroon overeenkomen worden NIET via deze proxy geladen">
+<!ENTITY foxyproxy.blacklist.tooltip "URL’s die met dit patroon overeenkomen worden NIET via deze proxy geladen">
+<!ENTITY foxyproxy.blacklist.description.label "URL’s die met dit patroon overeenkomen worden NIET via deze proxy geladen">
 <!ENTITY foxyproxy.whiteblack.description.label "Zwarte lijst (uitsluitings-) patronen hebben voorrang boven witte lijst (opname-) patronen: als een URL overeenkomt met een witte lijst-patroon en een zwarte lijst-patroon voor de zelfde proxy wordt deze niet geladen via die proxy.">
 <!ENTITY foxyproxy.usingPFF.label1 "Ik gebruik">
 <!ENTITY foxyproxy.usingPFF.label2 "Portable Firefox">
-<!ENTITY foxyproxy.usingPFF.accesskey "P">
+<!ENTITY foxyproxy.usingPFF.accesskey "I">
 <!ENTITY foxyproxy.usingPFF.tooltip "Vink dit aan als Portable Firefox wordt gebruikt">
 <!ENTITY foxyproxy.socks.version.label "SOCKS versie">
 <!ENTITY foxyproxy.autopacurl.label "Auto PAC URL">
@@ -189,26 +189,26 @@
 <!ENTITY foxyproxy.minutes.tooltip "minuten">
 <!ENTITY foxyproxy.logging.maxsize.label "Maximale grootte voordat het logbestand weer vooraan begint">
 <!ENTITY foxyproxy.logging.maxsize.accesskey "M">
-<!ENTITY foxyproxy.logging.maxsize.tooltip "Maximaal aantal log-entries voordat het logbestand weer vooraan begint">
+<!ENTITY foxyproxy.logging.maxsize.tooltip "Maximaal aantal logberichten voordat het logbestand weer vooraan begint">
 <!ENTITY foxyproxy.logging.maxsize.button.label "Instellen">
 <!ENTITY foxyproxy.logging.maxsize.button.accesskey "S">
-<!ENTITY foxyproxy.logging.maxsize.button.tooltip "Stelt het maximale aantal log-entries voordat het logbestand weer vooraan begint in">
-<!ENTITY foxyproxy.random.label "URL&apos;s via willekeurige proxy&apos;s laden (alle patronen en voorkeursinstellingen negeren)">
+<!ENTITY foxyproxy.logging.maxsize.button.tooltip "Stelt het maximale aantal logberichten voordat het logbestand weer vooraan begint in">
+<!ENTITY foxyproxy.random.label "URL’s via willekeurige proxy’s laden (alle patronen en voorkeursinstellingen negeren)">
 <!ENTITY foxyproxy.random.accesskey "W">
-<!ENTITY foxyproxy.random.tooltip "URL&apos;s via willekeurige proxy&apos;s laden (alle patronen en voorkeursinstellingen negeren)">
-<!ENTITY foxyproxy.random.includedirect.label "Proxy&apos;s die als directe internetverbindingen zijn geconfigureerd meenemen">
+<!ENTITY foxyproxy.random.tooltip "URL’s via willekeurige proxy’s laden (alle patronen en voorkeursinstellingen negeren)">
+<!ENTITY foxyproxy.random.includedirect.label "Proxy’s die als directe internetverbindingen zijn geconfigureerd meenemen">
 <!ENTITY foxyproxy.random.includedirect.accesskey "I">
-<!ENTITY foxyproxy.random.includedirect.tooltip "Proxy&apos;s die als directe internetverbindingen zijn geconfigureerd worden meegenomen in de willekeurige proxy-selectie">
-<!ENTITY foxyproxy.random.includedisabled.label "Uitgeschakelde proxy&apos;s meenemen">
+<!ENTITY foxyproxy.random.includedirect.tooltip "Proxy’s die als directe internetverbindingen zijn geconfigureerd worden meegenomen in de willekeurige proxyselectie">
+<!ENTITY foxyproxy.random.includedisabled.label "Uitgeschakelde proxy’s meenemen">
 <!ENTITY foxyproxy.random.includedisabled.accesskey "U">
-<!ENTITY foxyproxy.random.includedisabled.tooltip "Proxy&apos;s die als uitgeschakeld zijn geconfigureerd worden meegenomen in de willekeurige proxy-selectie">
+<!ENTITY foxyproxy.random.includedisabled.tooltip "Proxy’s die als uitgeschakeld zijn geconfigureerd worden meegenomen in de willekeurige proxyselectie">
 <!ENTITY foxyproxy.random.settings.label "Willekeurige proxyselectie">
 <!ENTITY foxyproxy.random.settings.accesskey "W">
 <!ENTITY foxyproxy.random.settings.tooltip "Instellingen die willekeurige proxyselectie beïnvloeden">
 <!ENTITY foxyproxy.tab.autoadd.label "Automatisch toevoegen">
 <!ENTITY foxyproxy.tab.autoadd.accesskey "A">
 <!ENTITY foxyproxy.tab.autoadd.tooltip "Instellingen automatisch toevoegen beheren">
-<!ENTITY foxyproxy.autoadd.description "Specificeer hier een patroon dat geblokkeerde websites identificeert. Wanneer het patroon wordt gevonden op een pagina, wordt een patroon dat overeenkomt met de URL van die website automatisch aan een proxy toegevoegd en optioneel opnieuw geladen. Dit voorkomt dat u pro-actief alle geblokkeerde websites moet identificeren.">
+<!ENTITY foxyproxy.autoadd.description "Specificeer hier een patroon dat geblokkeerde websites identificeert. Wanneer het patroon wordt gevonden op een pagina, wordt een patroon dat overeenkomt met de URL van die website automatisch aan een proxy toegevoegd en optioneel opnieuw geladen. Dit voorkomt dat u proactief alle geblokkeerde websites moet identificeren.">
 <!ENTITY foxyproxy.autoadd.pattern.label "Patroon om geblokkeerde websites te identificeren">
 <!ENTITY foxyproxy.autoadd.pattern.accesskey "P">
 <!ENTITY foxyproxy.autoadd.pattern.tooltip "Patroon waarmee geblokkeerde websites worden geïdentificeerd">
@@ -216,7 +216,7 @@
 <!ENTITY foxyproxy.autoadd.regex.example.label "Voorbeeld: *Site has been blocked.*">
 <!ENTITY foxyproxy.autoadd.proxy.label "Proxy waaraan patronen automatisch worden toegevoegd">
 <!ENTITY foxyproxy.autoadd.proxy.accesskey "P">
-<!ENTITY foxyproxy.autoadd.proxy.tooltip "Specificeer de proxy waaraan URL&apos;s automatisch worden toegevoegd">
+<!ENTITY foxyproxy.autoadd.proxy.tooltip "Specificeer de proxy waaraan URL’s automatisch worden toegevoegd">
 <!ENTITY foxyproxy.pattern.template.label "URL-patroontemplate">
 <!ENTITY foxyproxy.pattern.template.accesskey "U">
 <!ENTITY foxyproxy.pattern.template.tooltip "URL-patroontemplate">
@@ -237,20 +237,20 @@
 <!ENTITY foxyproxy.autoadd.notify.tooltip2 "Pop-upvenster weergeven wanneer Automatisch toevoegen wordt geactiveerd">
 <!ENTITY foxyproxy.pacloadnotification.label "Bericht geven wanneer het proxy auto-configuratie bestand wordt geladen">
 <!ENTITY foxyproxy.pacloadnotification.accesskey "L">
-<!ENTITY foxyproxy.pacloadnotification.tooltip "Een pop-upvenster weergeven wanneer een PAC bestand wordt geladen">
+<!ENTITY foxyproxy.pacloadnotification.tooltip "Een pop-upvenster weergeven wanneer een PAC-bestand wordt geladen">
 <!ENTITY foxyproxy.pacerrornotification.label "Bericht geven over fouten van het proxy auto-configuratiebestand">
 <!ENTITY foxyproxy.pacerrornotification.accesskey "F">
-<!ENTITY foxyproxy.pacerrornotification.tooltip "Een pop-upvenster weergeven wanneer PAC bestandsfouten worden gevonden">
-<!ENTITY foxyproxy.toolsmenu.label "Pictogram weergeven in het Firefox Extra menu">
+<!ENTITY foxyproxy.pacerrornotification.tooltip "Een pop-upvenster weergeven wanneer PAC-bestandsfouten worden gevonden">
+<!ENTITY foxyproxy.toolsmenu.label "Pictogram weergeven in het menu Extra">
 <!ENTITY foxyproxy.toolsmenu.accesskey "E">
-<!ENTITY foxyproxy.toolsmenu.tooltip "Pictogram weergeven in het Firefox Extra menu">
+<!ENTITY foxyproxy.toolsmenu.tooltip "Pictogram weergeven in het menu Extra">
 <!ENTITY foxyproxy.tip.label "Tip">
 <!ENTITY foxyproxy.pactips.popup.height "165px">
 <!ENTITY foxyproxy.pactips.popup.width "400px">
-<!ENTITY foxyproxy.pactip1.label "Gebruik voor op de lokale harde schijf opgeslagen PAC bestanden de file:// methode. Bijvoorbeeld: file://c:/path/proxy.pac op Windows of file:///home/users/joe/proxy.pac op Unix/Linux/Mac.">
-<!ENTITY foxyproxy.pactip2.label "Gebruik voor PAC bestanden op een FTP server de ftp:// methode. Bijvoorbeeld: ftp://leahscape.com/path/proxy.pac">
+<!ENTITY foxyproxy.pactip1.label "Gebruik voor op de lokale harde schijf opgeslagen PAC-bestanden de file:// methode. Bijvoorbeeld: file://c:/path/proxy.pac op Windows of file:///home/users/joe/proxy.pac op Unix/Linux/Mac.">
+<!ENTITY foxyproxy.pactip2.label "Gebruik voor PAC-bestanden op een FTP-server de ftp:// methode. Bijvoorbeeld: ftp://leahscape.com/path/proxy.pac">
 <!ENTITY foxyproxy.pactip3.label "U kunt ook de http://, https:// en alle overige ondersteunde methodes gebruiken.">
-<!ENTITY foxyproxy.pactip4.label "Tenslotte: als het nodig is om met een relatief pad naar een PAC bestand op het lokale bestandssysteem te verwijzen, dan kunt u het speciale FoxyProxy relative:// schema gebruiken. Dit is nuttig als uw PAC bestand zich op bijvoorbeeld een Flashdrive bevindt. Ondersteunde relatieve paden staan">
+<!ENTITY foxyproxy.pactip4.label "Tenslotte: als het nodig is om met een relatief pad naar een PAC-bestand op het lokale bestandssysteem te verwijzen, dan kunt u het speciale FoxyProxy relative:// schema gebruiken. Dit is nuttig als uw PAC bestand zich op bijvoorbeeld een Flashdrive bevindt. Ondersteunde relatieve paden staan">
 <!ENTITY foxyproxy.pactip5.label "hier">
 <!ENTITY foxyproxy.pactip6.label "beschreven. Speciale woorden in de relative:// URL die u opgeeft worden vervangen door de ermee overeenkomende waarden. Zo verwijst bijvoorbeeld relative://ProfD/pacs/proxy3.pac naar het bestand proxy3.pac in the submap van de">
 <!ENTITY foxyproxy.pactip7.label "Firefox profielmap">
@@ -258,7 +258,7 @@
 <!ENTITY foxyproxy.contextmenu.label "Pictogram weergeven in het contextmenu">
 <!ENTITY foxyproxy.contextmenu.accesskey "C">
 <!ENTITY foxyproxy.contextmenu.tooltip "Pictogram weergeven in het contextmenu">
-<!ENTITY foxyproxy.quickadd.desc1 "Snel toevoegen voegt een dynamisch URL patroon aan een proxy toe wanneer u op Alt-F2 drukt. Het is een praktisch alternatief voor Automatisch toevoegen. U kunt de Alt-F2 sneltoets aanpassen met de">
+<!ENTITY foxyproxy.quickadd.desc1 "Snel toevoegen voegt een dynamisch URL-patroon aan een proxy toe wanneer u op Alt-F2 drukt. Het is een praktisch alternatief voor Automatisch toevoegen. U kunt de Alt-F2 sneltoets aanpassen met de">
 <!ENTITY foxyproxy.keyconfig.label "KeyConfig">
 <!ENTITY foxyproxy.quickadd.desc2 "extensie">
 <!ENTITY foxyproxy.quickadd.label "SnelToevoegen">
@@ -292,14 +292,14 @@
 <!ENTITY foxyproxy.exportsettings.label "Huidige instellingen exporteren">
 <!ENTITY foxyproxy.exportsettings.accesskey "E">
 <!ENTITY foxyproxy.exportsettings.tooltip "Huidige instellingen naar een bestand exporteren">
-<!ENTITY foxyproxy.importlist.label "Lijst met proxy&apos;s importeren">
+<!ENTITY foxyproxy.importlist.label "Lijst met proxy’s importeren">
 <!ENTITY foxyproxy.importlist.accesskey "I">
-<!ENTITY foxyproxy.importlist.tooltip "Een tekstbestand met proxy&apos;s importeren">
+<!ENTITY foxyproxy.importlist.tooltip "Een tekstbestand met proxy’s importeren">
 <!ENTITY foxyproxy.wildcard.reference.label "Wildcard referentie">
 <!ENTITY foxyproxy.wildcard.reference.accesskey "W">
 <!ENTITY foxyproxy.wildcard.reference.tooltip "Wildcard referentie">
 <!ENTITY foxyproxy.wildcard.reference.subtitle.label "De asterisk (*) matcht geen of meer karakters, en het vraagteken (?) matcht een enkel karakter">
-<!ENTITY foxyproxy.wildcard.reference.mistakes "Veelgemaakte fouten bij het schrijven van wildcard patronen">
+<!ENTITY foxyproxy.wildcard.reference.mistakes "Veelgemaakte fouten bij het schrijven van wildcardpatronen">
 <!ENTITY foxyproxy.wildcard.reference.goal.label "Doel">
 <!ENTITY foxyproxy.wildcard.reference.goal1.label "Alle pagina&apos;s in het www subdomein van MySpace matchen">
 <!ENTITY foxyproxy.wildcard.reference.goal2.label "De lokale PC matchen">
@@ -309,39 +309,39 @@
 <!ENTITY foxyproxy.wildcard.reference.correct2.label "Dienen twee patronen te zijn">
 <!ENTITY foxyproxy.wildcard.reference.incorrect.label "Onjuist">
 <!ENTITY foxyproxy.wildcard.reference.incorrect.reason.label "Reden waarom dit onjuist is">
-<!ENTITY foxyproxy.wildcard.reference.incorrect.reason1.label "Omdat er geen wildcards zijn wordt alleen de homepage gematcht">
+<!ENTITY foxyproxy.wildcard.reference.incorrect.reason1.label "Omdat er geen wildcards zijn wordt alleen de startpagina gematcht">
 <!ENTITY foxyproxy.wildcard.reference.incorrect.reason2.label "FoxyProxy begrijpt deze opmaak niet">
 <!ENTITY foxyproxy.wildcard.reference.incorrect.reason3.label "Er zijn geen wildcards">
 <!ENTITY foxyproxy.wildcard.reference.incorrect.reason4.label "Er zijn geen wildcards">
 <!ENTITY foxyproxy.wildcard.reference.popup.height "350 px">
-<!ENTITY foxyproxy.logging.noURLs.label "URL&apos;s niet opslaan of weergeven">
+<!ENTITY foxyproxy.logging.noURLs.label "URL’s niet opslaan of weergeven">
 <!ENTITY foxyproxy.logging.noURLs.accesskey "U">
-<!ENTITY foxyproxy.logging.noURLs.tooltip "URL&apos;s worden niet in het geheugen of op de harde schijf opgeslagen">
+<!ENTITY foxyproxy.logging.noURLs.tooltip "URL’s worden niet in het geheugen of op de harde schijf opgeslagen">
 <!ENTITY foxyproxy.ok.label "OK">
 <!ENTITY foxyproxy.ok.accesskey "O">
 <!ENTITY foxyproxy.ok.tooltip "Venster sluiten">
-<!ENTITY foxyproxy.pattern.template.reference.label "Patroon-template referentie">
+<!ENTITY foxyproxy.pattern.template.reference.label "Patroonsjabloonreferentie">
 <!ENTITY foxyproxy.pattern.template.reference.accesskey "T">
 <!ENTITY foxyproxy.pattern.template.reference.tooltip "Patroonsjabloonreferentie">
-<!ENTITY foxyproxy.pattern.template.reference.subtitle.label "URL-patroonsjablonen bepalen de opmaak waarin URL&apos;s Snel of Automatisch worden toegevoegd aan proxy&apos;s. Sjablonen ondersteunen de volgende speciale zinsdelen die, wanneer Snel toevoegen of Automatisch toevoegen geactiveerd worden, vervangen worden door de overeenkomstige URL component in de adresbalk.">
+<!ENTITY foxyproxy.pattern.template.reference.subtitle.label "URL-patroonsjablonen bepalen de opmaak waarin URL’s Snel of Automatisch worden toegevoegd aan proxy’s. Sjablonen ondersteunen de volgende speciale zinsdelen die, wanneer Snel toevoegen of Automatisch toevoegen geactiveerd worden, vervangen worden door de overeenkomstige URL component in de adresbalk.">
 <!ENTITY foxyproxy.pattern.template.reference.specialstring.label "Speciaal zinsdeel">
 <!ENTITY foxyproxy.pattern.template.reference.subststring.label "Vervangen door">
 <!ENTITY foxyproxy.pattern.template.reference.example.label "Voorbeeld">
 <!ENTITY foxyproxy.pattern.template.reference.scheme.label "protocol">
 <!ENTITY foxyproxy.pattern.template.reference.username.label "gebruikersnaam">
 <!ENTITY foxyproxy.pattern.template.reference.password.label "wachtwoord">
-<!ENTITY foxyproxy.pattern.template.reference.userpass.label "gebruikersnaam &amp; wachtwoord met &quot;:&quot; &amp; &quot;@&quot;">
+<!ENTITY foxyproxy.pattern.template.reference.userpass.label "gebruikersnaam &amp; wachtwoord met ‘:’ &amp; ‘@’">
 <!ENTITY foxyproxy.pattern.template.reference.host.label "host">
 <!ENTITY foxyproxy.pattern.template.reference.port.label "poort">
-<!ENTITY foxyproxy.pattern.template.reference.hostport.label "host &amp; poort met &quot;:&quot;">
+<!ENTITY foxyproxy.pattern.template.reference.hostport.label "host &amp; poort met ‘:’">
 <!ENTITY foxyproxy.pattern.template.reference.prepath.label "zinsdeel voor het pad">
 <!ENTITY foxyproxy.pattern.template.reference.path.label "pad (inclusief bestandsnaam)">
 <!ENTITY foxyproxy.pattern.template.reference.directory.label "map">
 <!ENTITY foxyproxy.pattern.template.reference.filebasename.label "basisdeel bestandsnaam">
 <!ENTITY foxyproxy.pattern.template.reference.fileextension.label "bestandsextensie">
 <!ENTITY foxyproxy.pattern.template.reference.filename.label "volledige bestandsnaam">
-<!ENTITY foxyproxy.pattern.template.reference.ref.label "deel na het &quot;#&quot;">
-<!ENTITY foxyproxy.pattern.template.reference.query.label "deel na het &quot;?&quot;">
+<!ENTITY foxyproxy.pattern.template.reference.ref.label "deel na het ‘#’">
+<!ENTITY foxyproxy.pattern.template.reference.query.label "deel na het ‘?’">
 <!ENTITY foxyproxy.pattern.template.reference.spec.label "volledige URL">
 <!ENTITY foxyproxy.pattern.template.reference.popup.height "400px">
 <!ENTITY foxyproxy.pattern.template.reference.popup.width "800px">
@@ -389,7 +389,7 @@
 <!ENTITY foxyproxy.click.reloadtabsinallbrowsers "Alle tabbladen in alle browservensters opnieuw laden">
 <!ENTITY foxyproxy.click.removeallcookies "Alle cookies verwijderen">
 <!ENTITY foxyproxy.click.toggle "Wisselen tussen huidige modus en uitgeschakeld">
-<!ENTITY foxyproxy.includeincycle.label "Deze proxy meenemen wanneer door proxy&apos;s wordt gelopen door op de statusbalk of de werkbalk te klikken (Algemene instellingen-&gt;Statusbalk/Werkbalk activering-&gt;Door modi lopen dient te zijn geselecteerd)">
+<!ENTITY foxyproxy.includeincycle.label "Deze proxy meenemen wanneer door proxy’s wordt gelopen door op de statusbalk of de werkbalk te klikken (Algemene instellingen-&gt;Statusbalk/Werkbalk activering-&gt;Door modi lopen dient te zijn geselecteerd)">
 <!ENTITY foxyproxy.includeincycle.accesskey "M">
 <!ENTITY foxyproxy.includeincycle.tooltip "Deze proxy meenemen bij klikken op de statusbalk/werkbalk">
 <!ENTITY foxyproxy.changes.msg1 "Help! Waar zijn de instellingen voor HTTP, SSL, FTP, Gopher en SOCKS?">
@@ -414,7 +414,7 @@
 <!ENTITY foxyproxy.statusbarwidth.tooltip "Voorkomt wijzigen van grootte van de statusbalk">
 <!ENTITY foxyproxy.pixels "pixels">
 <!ENTITY foxyproxy.unlimited.label "[0: op maat aanpassen]">
-<!ENTITY foxyproxy.temp.popup.label "Tijdelijke patronen stellen u in staat om patronen te maken voor UR:&apos;s die u niet vaak bezoekt, zonder dat ze de patronenlijst voor een proxy hinderen. Tijdelijke patronen worden niet op schijf opgeslagen. Ze worden in het geheugen opgeslagen en alleen tijdens deze Firefox-sessie gebruikt">
+<!ENTITY foxyproxy.temp.popup.label "Tijdelijke patronen stellen u in staat om patronen te maken voor URL’s die u niet vaak bezoekt, zonder dat ze de patronenlijst voor een proxy hinderen. Tijdelijke patronen worden niet op schijf opgeslagen. Ze worden in het geheugen opgeslagen en alleen tijdens deze Firefox-sessie gebruikt">
 <!ENTITY foxyproxy.temp.popup.height "120">
 <!ENTITY foxyproxy.temp.popup.width "400">
 <!ENTITY foxyproxy.temp.label "Tijdelijk">
@@ -428,9 +428,9 @@
 <!ENTITY foxyproxy.home "Startpagina">
 <!ENTITY foxyproxy.support "Ondersteuning">
 <!ENTITY foxyproxy.credits "Dankzegging">
-<!ENTITY foxyproxy.donations "Donations">
-<!ENTITY foxyproxy.please.donate.label "Please Donate">
+<!ENTITY foxyproxy.donations "Donaties">
+<!ENTITY foxyproxy.please.donate.label "Doneer a.u.b.">
 <!ENTITY foxyproxy.please.donate.accesskey "D">
-<!ENTITY foxyproxy.keep.free "Keep FoxyProxy Free">
-<!ENTITY foxyproxy.donation.list.label "Donation List">
+<!ENTITY foxyproxy.keep.free "Houd FoxyProxy gratis">
+<!ENTITY foxyproxy.donation.list.label "Donatielijst">
 <!ENTITY foxyproxy.donation.list.accesskey "L">

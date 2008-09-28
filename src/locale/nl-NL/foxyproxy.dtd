@@ -15,6 +15,9 @@
 <!ENTITY foxyproxy.pattern.label "Patroon">
 <!ENTITY foxyproxy.pattern.accesskey "P">
 <!ENTITY foxyproxy.pattern.tooltip "URL patroon">
+<!ENTITY foxyproxy.urlpatterns.label "URL Patterns">
+<!ENTITY foxyproxy.urlpatterns.accesskey "P">
+<!ENTITY foxyproxy.urlpatterns.tooltip "URL patterns">
 <!ENTITY foxyproxy.pattern.type.label "Patroontype">
 <!ENTITY foxyproxy.whitelist.blacklist.label "Witte lijst (opnemen) of zwarte lijst (uitsluiten)">
 <!ENTITY foxyproxy.pattern.name.label "Patroonnaam">
@@ -425,3 +428,9 @@
 <!ENTITY foxyproxy.home "Startpagina">
 <!ENTITY foxyproxy.support "Ondersteuning">
 <!ENTITY foxyproxy.credits "Dankzegging">
+<!ENTITY foxyproxy.donations "Donations">
+<!ENTITY foxyproxy.please.donate.label "Please Donate">
+<!ENTITY foxyproxy.please.donate.accesskey "D">
+<!ENTITY foxyproxy.keep.free "Keep FoxyProxy Free">
+<!ENTITY foxyproxy.donation.list.label "Donation List">
+<!ENTITY foxyproxy.donation.list.accesskey "L">

@@ -15,9 +15,9 @@
 <!ENTITY foxyproxy.pattern.label "Matchende mønster">
 <!ENTITY foxyproxy.pattern.accesskey "P">
 <!ENTITY foxyproxy.pattern.tooltip "URL-mønster">
-<!ENTITY foxyproxy.urlpatterns.label "URL Patterns">
+<!ENTITY foxyproxy.urlpatterns.label "URL-mønstre">
 <!ENTITY foxyproxy.urlpatterns.accesskey "P">
-<!ENTITY foxyproxy.urlpatterns.tooltip "URL patterns">
+<!ENTITY foxyproxy.urlpatterns.tooltip "URL-mønstre">
 <!ENTITY foxyproxy.pattern.type.label "Mønstertype">
 <!ENTITY foxyproxy.whitelist.blacklist.label "Hvid liste (inklusiv) eller sort liste (eksklusiv)">
 <!ENTITY foxyproxy.pattern.name.label "Mønsternavn">
@@ -428,9 +428,9 @@
 <!ENTITY foxyproxy.home "Hjem">
 <!ENTITY foxyproxy.support "Support">
 <!ENTITY foxyproxy.credits "Æren tilgår">
-<!ENTITY foxyproxy.donations "Donations">
-<!ENTITY foxyproxy.please.donate.label "Please Donate">
+<!ENTITY foxyproxy.donations "Donationer">
+<!ENTITY foxyproxy.please.donate.label "Vær venlig at donere">
 <!ENTITY foxyproxy.please.donate.accesskey "D">
-<!ENTITY foxyproxy.keep.free "Keep FoxyProxy Free">
-<!ENTITY foxyproxy.donation.list.label "Donation List">
+<!ENTITY foxyproxy.keep.free "Hold FoxyProxy gratis">
+<!ENTITY foxyproxy.donation.list.label "Donationsliste">
 <!ENTITY foxyproxy.donation.list.accesskey "L">

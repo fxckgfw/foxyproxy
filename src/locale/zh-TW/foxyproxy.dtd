@@ -15,6 +15,9 @@
 <!ENTITY foxyproxy.pattern.label "樣式(P)">
 <!ENTITY foxyproxy.pattern.accesskey "P">
 <!ENTITY foxyproxy.pattern.tooltip "網址樣式">
+<!ENTITY foxyproxy.urlpatterns.label "URL Patterns">
+<!ENTITY foxyproxy.urlpatterns.accesskey "P">
+<!ENTITY foxyproxy.urlpatterns.tooltip "URL patterns">
 <!ENTITY foxyproxy.pattern.type.label "樣式類別">
 <!ENTITY foxyproxy.whitelist.blacklist.label "白名單或黑名單">
 <!ENTITY foxyproxy.pattern.name.label "樣式名稱(P)">
@@ -425,3 +428,9 @@
 <!ENTITY foxyproxy.home "首頁">
 <!ENTITY foxyproxy.support "技術支援">
 <!ENTITY foxyproxy.credits "製作群">
+<!ENTITY foxyproxy.donations "Donations">
+<!ENTITY foxyproxy.please.donate.label "Please Donate">
+<!ENTITY foxyproxy.please.donate.accesskey "D">
+<!ENTITY foxyproxy.keep.free "Keep FoxyProxy Free">
+<!ENTITY foxyproxy.donation.list.label "Donation List">
+<!ENTITY foxyproxy.donation.list.accesskey "L">

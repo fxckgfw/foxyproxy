@@ -15,6 +15,9 @@
 <!ENTITY foxyproxy.pattern.label "Шаблон">
 <!ENTITY foxyproxy.pattern.accesskey "Ш">
 <!ENTITY foxyproxy.pattern.tooltip "Шаблон URL">
+<!ENTITY foxyproxy.urlpatterns.label "URL Patterns">
+<!ENTITY foxyproxy.urlpatterns.accesskey "P">
+<!ENTITY foxyproxy.urlpatterns.tooltip "URL patterns">
 <!ENTITY foxyproxy.pattern.type.label "Тип шаблона">
 <!ENTITY foxyproxy.whitelist.blacklist.label "&quot;Белый&quot;/&quot;Чёрный&quot; список (разрешение/запрет)">
 <!ENTITY foxyproxy.pattern.name.label "Имя шаблона">
@@ -425,3 +428,9 @@
 <!ENTITY foxyproxy.home "Страница проекта">
 <!ENTITY foxyproxy.support "Поддержка">
 <!ENTITY foxyproxy.credits "Благодарности">
+<!ENTITY foxyproxy.donations "Donations">
+<!ENTITY foxyproxy.please.donate.label "Please Donate">
+<!ENTITY foxyproxy.please.donate.accesskey "D">
+<!ENTITY foxyproxy.keep.free "Keep FoxyProxy Free">
+<!ENTITY foxyproxy.donation.list.label "Donation List">
+<!ENTITY foxyproxy.donation.list.accesskey "L">

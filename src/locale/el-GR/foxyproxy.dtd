@@ -15,6 +15,9 @@
 <!ENTITY foxyproxy.pattern.label "Πρότυπο">
 <!ENTITY foxyproxy.pattern.accesskey "Π">
 <!ENTITY foxyproxy.pattern.tooltip "Πρότυπο URL">
+<!ENTITY foxyproxy.urlpatterns.label "URL Patterns">
+<!ENTITY foxyproxy.urlpatterns.accesskey "P">
+<!ENTITY foxyproxy.urlpatterns.tooltip "URL patterns">
 <!ENTITY foxyproxy.pattern.type.label "Τύπος προτύπου">
 <!ENTITY foxyproxy.whitelist.blacklist.label "Λίστα επιτρεπόμενων (συμπεριληπτική) ή λίστα μη επιτρεπόμενων (αποριπτική)">
 <!ENTITY foxyproxy.pattern.name.label "Όνομα προτύπου">
@@ -425,3 +428,9 @@
 <!ENTITY foxyproxy.home "Αρχική σελίδα">
 <!ENTITY foxyproxy.support "Υποστήριξη">
 <!ENTITY foxyproxy.credits "Μνεία">
+<!ENTITY foxyproxy.donations "Donations">
+<!ENTITY foxyproxy.please.donate.label "Please Donate">
+<!ENTITY foxyproxy.please.donate.accesskey "D">
+<!ENTITY foxyproxy.keep.free "Keep FoxyProxy Free">
+<!ENTITY foxyproxy.donation.list.label "Donation List">
+<!ENTITY foxyproxy.donation.list.accesskey "L">

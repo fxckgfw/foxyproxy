@@ -202,7 +202,7 @@ Proxy.prototype = {
     for (var i=0,sz=this.matches.length; i<sz; i++) {
       var m = this.matches[i];
       if (m.enabled) {
-        if ((!patStr && m.pattern == patStr) || m.regex.test(uriStr)) {
+        if ((patStr && m.pattern == patStr) || m.regex.test(uriStr)) {
           if (m.isBlackList) {
             // Black takes priority over white
             return false;

@@ -19,7 +19,7 @@ of the Match object to be added to a proxy dynamically:
   .pattern - A string template, applied to the URL at the time of addition of a dynamic Match object to the SuperAdd object.
     It is *://${3}${6}/* by default.
   .caseSensitive - whether or not the expanded (post-applyTemplate()) .pattern should be compared to URLs case-sensitively
-  .temp - not used; SuperAdd.temp is used instead since match.temp isn't serialized/deserialized to/from DOM 
+  .temp - not used; SuperAdd.temp is used instead since match.temp isn't serialized/deserialized to/from DOM
   .type - whether or not the expanded (post-applyTemplate()) .pattern is black or white list
   .isRegExp - whether or not the expanded (post-applyTemplate()) .pattern is a regexp or a wildcard pattern
   .enabled - always true. doesn't make sense to dynamically add a disabled pattern.
@@ -58,7 +58,7 @@ function QuickAdd(mName) {
 }
 function AutoAdd(mName) {
   SuperAdd.apply(this, arguments);
-  this._blockedPageMatch = new Match(true, "", this.fp.getMessage("not.authorized"), false, false, false, false, true);    
+  this._blockedPageMatch = new Match(true, "", this.fp.getMessage("not.authorized"), false, false, false, false, true);
   this.notificationTitle = "foxyproxy.tab.autoadd.label";
   this.elemName = "autoadd";
   this.elemNameCamelCase = "AutoAdd";
@@ -68,7 +68,7 @@ function AutoAdd(mName) {
     if (!p) p = ""; // prevent null patterns
     this._pattern = p.replace(/^\s*|\s*$/g,""); // trim
     if (this._pattern == "")
-      this._pattern = this.fp.getMessage("not.authorized");    
+      this._pattern = this.fp.getMessage("not.authorized");
     this.buildRegEx();
   });
   // Strangely, if we override the setter with __defineSetter__, the getter is reset.
@@ -89,16 +89,16 @@ SuperAdd.prototype = {
   _prompt : true,
   _match : null,
   fpc : null,
-  
+
   _formatConverter : CC["@mozilla.org/widget/htmlformatconverter;1"].createInstance(CI.nsIFormatConverter),
-  
+
   setFPC : function() {
     if (!this.fpc) {
       // For Portable Firefox 3.0, which has problems setting this.fpc in SuperAdd() ctor.
       this.fpc = CC["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject;
-    } 
-  }, 
-    
+    }
+  },
+
   get enabled() { return this._enabled; },
   set enabled(e) {
     this._enabled = e;
@@ -110,20 +110,20 @@ SuperAdd.prototype = {
   set temp(t) {
     this._temp = t;
     this.fp.writeSettings();
-  },    
+  },
 
   get reload() { return this._reload; },
   set reload(e) {
     this._reload = e;
     this.fp.writeSettings();
-  },    
+  },
 
   get proxy() { return this._proxy; },
   set proxy(p) {
     this._proxy = p;
     this.fp.writeSettings();
   },
-  
+
   set proxyById(id) {
     // Call |set proxy(p) {}|
     this.proxy = this.fp.proxies.getProxyById(id);
@@ -140,17 +140,17 @@ SuperAdd.prototype = {
     this._notifyWhenCanceled = n;
     this.fp.writeSettings();
   },
-  
+
   get prompt() { return this._prompt; },
   set prompt(n) {
     this._prompt = n;
     this.fp.writeSettings();
-  },  
-  
+  },
+
   get match() {
     return this._match.clone();
   },
-  
+
   set match(m) {
     this._match.name = m.name;
     this._match.pattern = m.pattern;
@@ -162,7 +162,7 @@ SuperAdd.prototype = {
     // SuperAdd match objects are never temporary; temp value is stored in SuperAdd.temp instead because
     // Superadd._match.temp must be false else it isn't written to disk.
     // SuperAdd match objects are always enabled (doesn't make sense to add a disabled Match).
-    this._temp = m.temp; /* save to this.temp instead; see notes above as to why */    
+    this._temp = m.temp; /* save to this.temp instead; see notes above as to why */
     this._match.buildRegEx();
     this.fp.writeSettings();
   },
@@ -192,20 +192,22 @@ SuperAdd.prototype = {
       // Select the first one
       this.proxyById = menu.value = popup.firstChild.id;
     }
-  },  
-  
+  },
+
   getPatternFromTemplate : function(window, url) {
     var ret;
     if (this._prompt) {
       ret = this.fpc.onSuperAdd(window, url, this); // prompt user for edits first
-      if (ret)
-        ret.pattern = this.fpc.applyTemplate(url, ret.pattern, ret.caseSensitive); 
+      if (ret) {
+        ret.pattern = this.fpc.applyTemplate(url, ret.pattern, ret.caseSensitive);
+        ret.temp = this.temp; /* the cloned match object doesn't clone temp because it's not deserialized from disk while this.temp is */
       // if !ret then the user canceled the SuperAdd dlg
+      }
     }
     else {
       ret = this.match.clone();
-      ret.pattern = this.fpc.applyTemplate(url, ret.pattern, ret.caseSensitive);    
-      ret.temp = this.temp; /* the cloned match object doesn't clone temp because it's not deserialized from disk while this.temp is */     
+      ret.pattern = this.fpc.applyTemplate(url, ret.pattern, ret.caseSensitive);
+      ret.temp = this.temp; /* the cloned match object doesn't clone temp because it's not deserialized from disk while this.temp is */
     }
     return ret;
   },
@@ -218,14 +220,21 @@ SuperAdd.prototype = {
     if (this._match.pattern != "") {
       // Does this URL already match an existing pattern for a proxy?
       var p = this.fp.proxies.getMatches(this._match.pattern, url).proxy;
-      if (p.lastresort) { // no current proxies match (except the lastresort, which matches everything anyway)      
+      if (p.lastresort) { // no current proxies match (except the lastresort, which matches everything anyway)
         var n, treeWalker = doc.createTreeWalker(doc.documentElement,
           4, {acceptNode: function() {return 1;}}, false);
         while ((n = treeWalker.nextNode())) {
           if (this._blockedPageMatch.regex.test(n.nodeValue)) {
-            var m = this.getPatternFromTemplate(window, url);
-            if (m)
-              this.addPattern(m, doc.location);
+            var match = this.getPatternFromTemplate(window, url);
+            if (match) {
+              // Check for duplicates and exclusions due to black lists
+              var m = match.isBlackList ? this.proxy.isBlackMatch(match.pattern, url) : this.proxy.isWhiteMatch(match.pattern, url);
+              if (m) {
+                // Resist the temptation to inform the user. Does he really care if autoadd was canceled? Interferes with surfing UX.
+              }
+              else
+                this.addPattern(match, doc.location);
+            }
             break;
           }
         }
@@ -244,11 +253,11 @@ SuperAdd.prototype = {
         return oldStr.toString();
       }
     }
-  },  
-  
+  },
+
   /**
    * todo: define this fcn only for quickadd
-   */  
+   */
   onQuickAdd : function(window, doc) {
     var url = doc.location.href;
     var match = this.getPatternFromTemplate(window, url);
@@ -263,18 +272,18 @@ SuperAdd.prototype = {
       else
         this.addPattern(match, doc.location);
     }
-  },  
-    
+  },
+
   /**
    * Push a Match object onto our proxy's match list.
    * Reload the location if necessary.
    */
   addPattern : function(m, loc) {
     this._proxy.matches.push(m);
-    this.fp.writeSettings(); 
+    this.fp.writeSettings();
     this._notify && this.fp.notifier.alert(this.fp.getMessage(this.notificationTitle),
       fp.getMessage("superadd.url.added", [m.pattern, this._proxy.name]));
-    this._reload && loc.reload(); // reload page. TODO: don't call onAutoAdd() on the reloaded page!   
+    this._reload && loc.reload(); // reload page. TODO: don't call onAutoAdd() on the reloaded page!
   },
 
   allowed : function() {
@@ -283,7 +292,7 @@ SuperAdd.prototype = {
         return true;
     return false;
   },
-  
+
 	// Disable superadd if our proxy is being deleted/disabled
 	maintainIntegrity : function(proxyId, isBeingDeleted) {
 		if (this._proxy && this._proxy.id == proxyId) {
@@ -291,31 +300,31 @@ SuperAdd.prototype = {
 		  this.enabled && (this.enabled = false);
 		  if (isBeingDeleted) {
 		  	// Clear it
-		    this.proxy = null;	
+		    this.proxy = null;
 		  }
 		  return true;
 		}
 		return false;
 	},
-	  
+
   toDOM : function(doc) {
     var e = doc.createElement(this.elemName);
     e.setAttribute("enabled", this._enabled);
-    e.setAttribute("temp", this._temp);    
-    e.setAttribute("reload", this._reload);			
+    e.setAttribute("temp", this._temp);
+    e.setAttribute("reload", this._reload);
     e.setAttribute("notify", this._notify);
     e.setAttribute("notifyWhenCanceled", this._notifyWhenCanceled);
-    e.setAttribute("prompt", this._prompt);    
+    e.setAttribute("prompt", this._prompt);
     this._proxy && e.setAttribute("proxy-id", this._proxy.id);
     e.appendChild(this._match.toDOM(doc));
     return e;
   },
-  
+
   fromDOM : function(doc) {
     var n = doc.getElementsByTagName(this.elemName).item(0);
     this._enabled = gGetSafeAttrB(n, "enabled", false);
-    this._temp = gGetSafeAttrB(n, "temp", false);     
-    this._reload = gGetSafeAttrB(n, "reload", true);    
+    this._temp = gGetSafeAttrB(n, "temp", false);
+    this._reload = gGetSafeAttrB(n, "reload", true);
     this._notify = gGetSafeAttrB(n, "notify", true);
     this._notifyWhenCanceled = gGetSafeAttrB(n, "notifyWhenCanceled", true);
     this._prompt = gGetSafeAttrB(n, "prompt", true);
@@ -325,8 +334,8 @@ SuperAdd.prototype = {
       var urlTemplate = gGetSafeAttr(n, "urlTemplate");
       if (urlTemplate) // upgrade from 2.7.5 to 2.8+
         this._match.pattern = urlTemplate;
-    } 
-    this._match.isMultiLine = false; 
+    }
+    this._match.isMultiLine = false;
     var error;
     if (proxyId) {
       // Ensure the proxy still  exists
@@ -338,8 +347,8 @@ SuperAdd.prototype = {
     if (error) {
       this._enabled = false;
       this.fp.alert(null, this.fp.getMessage("superadd.error", [this.elemName]));
-    }    
-  }    
+    }
+  }
 };
 // Next two lines must come *after* SuperAdd.prototype definition.
 // TODO: Use inheritence approach described at http://developer.mozilla.org/en/docs/Core_JavaScript_1.5_Guide:Inheritance instead
@@ -359,7 +368,7 @@ AutoAdd.prototype.fromDOM = function(doc) {
   SuperAdd.prototype.fromDOM.apply(this, arguments);
 
   // Note XPath expression array index is 1-based
-  var n = getBlockedPageMatch("/foxyproxy/autoadd/match[2]");  
+  var n = getBlockedPageMatch("/foxyproxy/autoadd/match[2]");
   if (n) {
     try {
       this._blockedPageMatch.fromDOM(n);
@@ -368,12 +377,12 @@ AutoAdd.prototype.fromDOM = function(doc) {
   }
   else
     this._blockedPageMatch.fromDOM(getBlockedPageMatch("/foxyproxy/autoadd/match[1]"));
-  
+
   function getBlockedPageMatch(exp) {
     // doc.createNSResolver(doc) fails on FF2 (not FF3), so we use an instance of nsIDOMXPathEvaluator instead
     // of the next line
     // var n = doc.evaluate(exp, doc, doc.createNSResolver(doc), doc.ANY_TYPE, null).iterateNext();
-  
+
     // new XPathEvaluator() is not yet available; must go through XPCOM
     var xpe = CC["@mozilla.org/dom/xpath-evaluator;1"].getService(CI.nsIDOMXPathEvaluator);
     // FF 2.0.0.14: iterateNext is not a function

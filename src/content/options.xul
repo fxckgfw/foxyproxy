@@ -744,6 +744,9 @@
     </tabpanels>
   </tabbox>
   <hbox align="center">
+    <label value="&foxyproxy.keep.free;:" style="font-weight: bold;"/>
+    <button command="donateCmd" style="font-weight: bold;"/>
+    <button command="donationListCmd"/>
     <spacer flex="1" />
     <button command="closeCmd" />
   </hbox>
@@ -859,6 +862,14 @@
   <command id="closeCmd" label="&foxyproxy.close.label;"
     accesskey="&foxyproxy.close.accesskey;"
     tooltiptext="&foxyproxy.close.tooltip;" oncommand="window.close()" />
+
+  <command id="donateCmd" label="&foxyproxy.please.donate.label;"
+    accesskey="&foxyproxy.please.donate.accesskey;"
+    tooltiptext="&foxyproxy.please.donate.label;" oncommand="fpc.openAndReuseOneTabPerURL('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=63002');" />
+
+  <command id="donationListCmd" label="&foxyproxy.donation.list.label;"
+    accesskey="&foxyproxy.donation.list.accesskey;"
+    tooltiptext="&foxyproxy.donation.list.label;" oncommand="fpc.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/donations.html');" />
 
   <command id="importSettingsCmd"
     label="&foxyproxy.importsettings.label;"

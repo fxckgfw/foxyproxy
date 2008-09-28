@@ -140,13 +140,13 @@
 <!ENTITY foxyproxy.add.new.pattern.accesskey "A">
 <!ENTITY foxyproxy.add.new.pattern.tooltip "Add New Pattern">
 
-<!ENTITY foxyproxy.menubar.file.label "File"> 
+<!ENTITY foxyproxy.menubar.file.label "File">
 <!ENTITY foxyproxy.menubar.file.accesskey "F">
-<!ENTITY foxyproxy.menubar.file.tooltip "Open the File Menu"> 
+<!ENTITY foxyproxy.menubar.file.tooltip "Open the File Menu">
 
-<!ENTITY foxyproxy.menubar.help.label "Help"> 
+<!ENTITY foxyproxy.menubar.help.label "Help">
 <!ENTITY foxyproxy.menubar.help.accesskey "H">
-<!ENTITY foxyproxy.menubar.help.tooltip "Open the Help Menu"> 
+<!ENTITY foxyproxy.menubar.help.tooltip "Open the Help Menu">
 
 <!ENTITY foxyproxy.mode.label "Select Mode">
 <!ENTITY foxyproxy.mode.accesskey "M">
@@ -237,11 +237,11 @@
 <!ENTITY foxyproxy.movedown.accesskey "D">
 
 <!ENTITY foxyproxy.autoconfurl.view.label "View">
-<!ENTITY foxyproxy.autoconfurl.view.accesskey "V">	   
+<!ENTITY foxyproxy.autoconfurl.view.accesskey "V">
 <!ENTITY foxyproxy.autoconfurl.view.tooltip "View the auto-configuration file">
 
 <!ENTITY foxyproxy.autoconfurl.test.label "Test">
-<!ENTITY foxyproxy.autoconfurl.test.accesskey "T">	   
+<!ENTITY foxyproxy.autoconfurl.test.accesskey "T">
 <!ENTITY foxyproxy.autoconfurl.test.tooltip "Test the auto-configuration file">
 
 <!ENTITY foxyproxy.autoconfurl.reload.label "Reload the PAC every">
@@ -541,3 +541,9 @@
 <!ENTITY foxyproxy.home "Home">
 <!ENTITY foxyproxy.support "Support">
 <!ENTITY foxyproxy.credits "Credits">
+<!ENTITY foxyproxy.donations "Donations">
+<!ENTITY foxyproxy.please.donate.label "Please Donate">
+<!ENTITY foxyproxy.please.donate.accesskey "D">
+<!ENTITY foxyproxy.keep.free "Keep FoxyProxy Free">
+<!ENTITY foxyproxy.donation.list.label "Donation List">
+<!ENTITY foxyproxy.donation.list.accesskey "L">

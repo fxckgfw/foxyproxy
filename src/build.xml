@@ -32,6 +32,9 @@
     <copy file="chrome.manifest.packaging" tofile="${temp-path}/chrome.manifest" />
     <zip destfile="${target-path}/foxyproxy-${version}.xpi">
       <fileset dir="${temp-path}" includes="chrome.manifest install.rdf install.js LICENSE chrome/" />
+      <zipfileset dir="${temp-path}" prefix="chrome" includes="content/**"/>
+      <zipfileset dir="${temp-path}" prefix="chrome" includes="skin/**"/>
+      <zipfileset dir="${temp-path}" prefix="chrome" includes="locale/**"/>
       <zipfileset dir="${temp-path}/components" prefix="components" includes="**/**" />
       <zipfileset dir="${temp-path}/modules" prefix="modules" includes="**/**" />    	
       <zipfileset dir="${temp-path}/defaults" prefix="defaults" includes="**/**" />
@@ -51,5 +54,6 @@
     </delete>
   </target>
 
-  <target name="build-xpi" depends="init,copy,jar,build,clean" />
+  <!--<target name="build-xpi" depends="init,copy,jar,build,clean" />-->
+  <target name="build-xpi" depends="init,copy,build,clean" />
 </project>

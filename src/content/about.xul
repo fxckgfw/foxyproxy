@@ -73,6 +73,9 @@
                 <label value="&foxyproxy.credits;" class="text-link"
                   onclick="fpc.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/credits.html');"
                   tooltiptext="http://foxyproxy.mozdev.org/credits.html" />
+                <label value="&foxyproxy.donation.list.label;" class="text-link"
+                  onclick="fpc.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/donations.html');"
+                  tooltiptext="&foxyproxy.donation.list.label;"/>    
               </row>
             </rows>
           </groupbox>

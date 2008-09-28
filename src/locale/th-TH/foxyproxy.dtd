@@ -15,6 +15,9 @@
 <!ENTITY foxyproxy.pattern.label "รูปแบบที่เข้ากัน">
 <!ENTITY foxyproxy.pattern.accesskey "P">
 <!ENTITY foxyproxy.pattern.tooltip "รูปแบบยูอาร์แอล">
+<!ENTITY foxyproxy.urlpatterns.label "URL Patterns">
+<!ENTITY foxyproxy.urlpatterns.accesskey "P">
+<!ENTITY foxyproxy.urlpatterns.tooltip "URL patterns">
 <!ENTITY foxyproxy.pattern.type.label "ชนิดรูปแบบ">
 <!ENTITY foxyproxy.whitelist.blacklist.label "รายชื่อสีขาว (รวมด้วย) หรือรายชื่อสีดำ (โดดเดี่ยว)">
 <!ENTITY foxyproxy.pattern.name.label "ชื่อรูปแบบ">
@@ -425,3 +428,9 @@
 <!ENTITY foxyproxy.home "โฮม">
 <!ENTITY foxyproxy.support "สนับสนุน">
 <!ENTITY foxyproxy.credits "เครดิต">
+<!ENTITY foxyproxy.donations "Donations">
+<!ENTITY foxyproxy.please.donate.label "Please Donate">
+<!ENTITY foxyproxy.please.donate.accesskey "D">
+<!ENTITY foxyproxy.keep.free "Keep FoxyProxy Free">
+<!ENTITY foxyproxy.donation.list.label "Donation List">
+<!ENTITY foxyproxy.donation.list.accesskey "L">

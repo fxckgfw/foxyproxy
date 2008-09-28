@@ -15,6 +15,9 @@
 <!ENTITY foxyproxy.pattern.label "Modello corrispondente">
 <!ENTITY foxyproxy.pattern.accesskey "U">
 <!ENTITY foxyproxy.pattern.tooltip "Modello URL">
+<!ENTITY foxyproxy.urlpatterns.label "URL Patterns">
+<!ENTITY foxyproxy.urlpatterns.accesskey "P">
+<!ENTITY foxyproxy.urlpatterns.tooltip "URL patterns">
 <!ENTITY foxyproxy.pattern.type.label "Tipo di modello corrispondente">
 <!ENTITY foxyproxy.whitelist.blacklist.label "Modello permesso/non permesso">
 <!ENTITY foxyproxy.pattern.name.label "Nome modello">
@@ -425,3 +428,9 @@
 <!ENTITY foxyproxy.home "Visita il sito web">
 <!ENTITY foxyproxy.support "Supporto">
 <!ENTITY foxyproxy.credits "Riconoscimenti">
+<!ENTITY foxyproxy.donations "Donations">
+<!ENTITY foxyproxy.please.donate.label "Please Donate">
+<!ENTITY foxyproxy.please.donate.accesskey "D">
+<!ENTITY foxyproxy.keep.free "Keep FoxyProxy Free">
+<!ENTITY foxyproxy.donation.list.label "Donation List">
+<!ENTITY foxyproxy.donation.list.accesskey "L">

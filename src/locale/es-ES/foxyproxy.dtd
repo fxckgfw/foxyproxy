@@ -15,6 +15,9 @@
 <!ENTITY foxyproxy.pattern.label "Correspondencia de patrones">
 <!ENTITY foxyproxy.pattern.accesskey "P">
 <!ENTITY foxyproxy.pattern.tooltip "Patrón de direcciones">
+<!ENTITY foxyproxy.urlpatterns.label "URL Patterns">
+<!ENTITY foxyproxy.urlpatterns.accesskey "P">
+<!ENTITY foxyproxy.urlpatterns.tooltip "URL patterns">
 <!ENTITY foxyproxy.pattern.type.label "Tipo de patrón">
 <!ENTITY foxyproxy.whitelist.blacklist.label "Lista blanca (inclusiva) o lista negra (exclusiva)">
 <!ENTITY foxyproxy.pattern.name.label "Nombre del patrón">
@@ -425,3 +428,9 @@
 <!ENTITY foxyproxy.home "Inicio">
 <!ENTITY foxyproxy.support "Soporte">
 <!ENTITY foxyproxy.credits "Créditos">
+<!ENTITY foxyproxy.donations "Donations">
+<!ENTITY foxyproxy.please.donate.label "Please Donate">
+<!ENTITY foxyproxy.please.donate.accesskey "D">
+<!ENTITY foxyproxy.keep.free "Keep FoxyProxy Free">
+<!ENTITY foxyproxy.donation.list.label "Donation List">
+<!ENTITY foxyproxy.donation.list.accesskey "L">

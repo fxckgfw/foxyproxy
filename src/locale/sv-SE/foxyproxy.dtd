@@ -15,9 +15,9 @@
 <!ENTITY foxyproxy.pattern.label "Mönster">
 <!ENTITY foxyproxy.pattern.accesskey "M">
 <!ENTITY foxyproxy.pattern.tooltip "URL-mönster">
-<!ENTITY foxyproxy.urlpatterns.label "URL Patterns">
-<!ENTITY foxyproxy.urlpatterns.accesskey "P">
-<!ENTITY foxyproxy.urlpatterns.tooltip "URL patterns">
+<!ENTITY foxyproxy.urlpatterns.label "URL-mönster">
+<!ENTITY foxyproxy.urlpatterns.accesskey "ö">
+<!ENTITY foxyproxy.urlpatterns.tooltip "URL-mönster">
 <!ENTITY foxyproxy.pattern.type.label "Typ av mönster">
 <!ENTITY foxyproxy.whitelist.blacklist.label "Vitlista (inkluderade) eller Svartlista (exkluderade)">
 <!ENTITY foxyproxy.pattern.name.label "Namn för mönster">
@@ -428,9 +428,9 @@
 <!ENTITY foxyproxy.home "Hem">
 <!ENTITY foxyproxy.support "Support">
 <!ENTITY foxyproxy.credits "Tack till">
-<!ENTITY foxyproxy.donations "Donations">
-<!ENTITY foxyproxy.please.donate.label "Please Donate">
+<!ENTITY foxyproxy.donations "Donationer">
+<!ENTITY foxyproxy.please.donate.label "Donera gärna">
 <!ENTITY foxyproxy.please.donate.accesskey "D">
-<!ENTITY foxyproxy.keep.free "Keep FoxyProxy Free">
-<!ENTITY foxyproxy.donation.list.label "Donation List">
-<!ENTITY foxyproxy.donation.list.accesskey "L">
+<!ENTITY foxyproxy.keep.free "Fortsätt göra FoxyProxy gratis">
+<!ENTITY foxyproxy.donation.list.label "Donatörer">
+<!ENTITY foxyproxy.donation.list.accesskey "ö">

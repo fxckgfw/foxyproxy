@@ -159,9 +159,10 @@ SuperAdd.prototype = {
     this._match.isBlackList = m.isBlackList;
     this._match.isMultiLine = m.isMultiLine;
     // Note: we're not copying m.temp and m.enabled.
+    // SuperAdd.match acts as a template for creating Match objects through QuickAdd/AutoAdd.
     // SuperAdd match objects are never temporary; temp value is stored in SuperAdd.temp instead because
     // Superadd._match.temp must be false else it isn't written to disk.
-    // SuperAdd match objects are always enabled (doesn't make sense to add a disabled Match).
+    // Also, SuperAdd.match objects are always enabled (doesn't make sense to add a disabled Match).
     this._temp = m.temp; /* save to this.temp instead; see notes above as to why */
     this._match.buildRegEx();
     this.fp.writeSettings();
@@ -198,11 +199,7 @@ SuperAdd.prototype = {
     var ret;
     if (this._prompt) {
       ret = this.fpc.onSuperAdd(window, url, this); // prompt user for edits first
-      if (ret) {
-        ret.pattern = this.fpc.applyTemplate(url, ret.pattern, ret.caseSensitive);
-        ret.temp = this.temp; /* the cloned match object doesn't clone temp because it's not deserialized from disk while this.temp is */
       // if !ret then the user canceled the SuperAdd dlg
-      }
     }
     else {
       ret = this.match.clone();

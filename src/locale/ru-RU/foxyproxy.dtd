@@ -15,9 +15,9 @@
 <!ENTITY foxyproxy.pattern.label "Шаблон">
 <!ENTITY foxyproxy.pattern.accesskey "Ш">
 <!ENTITY foxyproxy.pattern.tooltip "Шаблон URL">
-<!ENTITY foxyproxy.urlpatterns.label "URL Patterns">
-<!ENTITY foxyproxy.urlpatterns.accesskey "P">
-<!ENTITY foxyproxy.urlpatterns.tooltip "URL patterns">
+<!ENTITY foxyproxy.urlpatterns.label "Шаблоны URL">
+<!ENTITY foxyproxy.urlpatterns.accesskey "Ш">
+<!ENTITY foxyproxy.urlpatterns.tooltip "Шаблоны URL">
 <!ENTITY foxyproxy.pattern.type.label "Тип шаблона">
 <!ENTITY foxyproxy.whitelist.blacklist.label "&quot;Белый&quot;/&quot;Чёрный&quot; список (разрешение/запрет)">
 <!ENTITY foxyproxy.pattern.name.label "Имя шаблона">
@@ -247,14 +247,14 @@
 <!ENTITY foxyproxy.tip.label "Подсказка">
 <!ENTITY foxyproxy.pactips.popup.height "165px">
 <!ENTITY foxyproxy.pactips.popup.width "400px">
-<!ENTITY foxyproxy.pactip1.label "Для PAC-файлов, сохранённых на локальном диске, необходимо использовать протокол file://. Например, file://c:/path/proxy.pac в Windows или file:///home/users/joe/proxy.pac в Unix/Linux/Mac.">
-<!ENTITY foxyproxy.pactip2.label "Для PAC-файлов, сохранённых на ftp-сервере, необходимо использовать протокол ftp://. Например, ftp://leahscape.com/path/proxy.pac">
+<!ENTITY foxyproxy.pactip1.label "Для PAC-файлов, сохранённых на локальном диске, необходимо использовать протокол file://. Например, &quot;file://c:/path/proxy.pac&quot; в Windows или &quot;file:///home/users/joe/proxy.pac&quot; в Unix/Linux/Mac.">
+<!ENTITY foxyproxy.pactip2.label "Для PAC-файлов, сохранённых на ftp-сервере, необходимо использовать протокол ftp://. Например, &quot;ftp://leahscape.com/path/proxy.pac&quot;">
 <!ENTITY foxyproxy.pactip3.label "Возможно использование http://, https:// и любых других протоколов.">
-<!ENTITY foxyproxy.pactip4.label "Finally, if you need to refer to a PAC file on the local file system using a relative path, you can use the special FoxyProxy relative:// scheme. This is useful if your PAC file resides on a thumb drive. Supported relative paths are documented">
+<!ENTITY foxyproxy.pactip4.label "Наконец, если необходимо сослаться на PAC-файл в локальной файловой системе используя относительное имя, вы можете использовать специальную FoxyProxy-схему - &quot;relative://&quot;. Обычно это бывает если PAC-файл расположен на съёмном устройстве. Поддержка относительных имён документирована">
 <!ENTITY foxyproxy.pactip5.label "здесь">
-<!ENTITY foxyproxy.pactip6.label ". Special strings in the relative:// URL you specify are replaced with their corresponding values. For example, relative://ProfD/pacs/proxy3.pac points to the file proxy3.pac in the subdirectory of the">
+<!ENTITY foxyproxy.pactip6.label ". Специальные строки в указанном URL &quot;relative://&quot; заменяются на соответствующие значения. Например, &quot;relative://ProfD/pacs/proxy3.pac&quot; ссылается на файл &quot;proxy3.pac&quot; в подкаталоге">
 <!ENTITY foxyproxy.pactip7.label "Каталог Firefox-профиля">
-<!ENTITY foxyproxy.pactip8.label "named pacs/. With Portable Firefox on Windows, the Firefox profile directory is always a relative path because the drive letter can change across computers. Please note that special strings (ProfD, Home, TempD, etc.) are case-sensitive!">
+<!ENTITY foxyproxy.pactip8.label "с названием &quot;pacs/&quot;. Для Portable Firefox в Windows, каталог Firefox-профиля всегда имеет относительное имя, так как символ устройства может меняться от компьютера к компьютера. Обратите внимание, для специальных строк (ProfD, Home, TempD, etc.) важен регистр символов!">
 <!ENTITY foxyproxy.contextmenu.label "Включить FoxyProxy в контекстное меню">
 <!ENTITY foxyproxy.contextmenu.accesskey "к">
 <!ENTITY foxyproxy.contextmenu.tooltip "Включить FoxyProxy в контекстное меню">
@@ -428,9 +428,9 @@
 <!ENTITY foxyproxy.home "Страница проекта">
 <!ENTITY foxyproxy.support "Поддержка">
 <!ENTITY foxyproxy.credits "Благодарности">
-<!ENTITY foxyproxy.donations "Donations">
-<!ENTITY foxyproxy.please.donate.label "Please Donate">
-<!ENTITY foxyproxy.please.donate.accesskey "D">
-<!ENTITY foxyproxy.keep.free "Keep FoxyProxy Free">
-<!ENTITY foxyproxy.donation.list.label "Donation List">
-<!ENTITY foxyproxy.donation.list.accesskey "L">
+<!ENTITY foxyproxy.donations "Пожертвования">
+<!ENTITY foxyproxy.please.donate.label "Пожалуйста пожертвуйте">
+<!ENTITY foxyproxy.please.donate.accesskey "ж">
+<!ENTITY foxyproxy.keep.free "Сохраните FoxyProxy свободным">
+<!ENTITY foxyproxy.donation.list.label "Список пожертвователей">
+<!ENTITY foxyproxy.donation.list.accesskey "С">

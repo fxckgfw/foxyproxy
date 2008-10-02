@@ -180,12 +180,8 @@ Common.prototype = {
       superadd.prompt = p.prompt;
       superadd.notifyWhenCanceled = p.notifyWhenCanceled;
       superadd.proxy = fp.proxies.getProxyById(p.proxyId);
-      // SuperAdd match objects are never temporary; temp value is stored in SuperAdd itself.
-      // Match.temp must be false else it isn't written to disk.
-      superadd.match.temp = false;
-      superadd.match.enabled = true; // SuperAdd match objects are always enabled (doesn't make sense to add a disabled Match)
       fp.writeSettings();
-      return superadd.match;
+      return p.match;
     }
   }
 }

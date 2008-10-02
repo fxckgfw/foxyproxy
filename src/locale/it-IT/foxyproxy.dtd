@@ -15,9 +15,9 @@
 <!ENTITY foxyproxy.pattern.label "Modello corrispondente">
 <!ENTITY foxyproxy.pattern.accesskey "U">
 <!ENTITY foxyproxy.pattern.tooltip "Modello URL">
-<!ENTITY foxyproxy.urlpatterns.label "URL Patterns">
-<!ENTITY foxyproxy.urlpatterns.accesskey "P">
-<!ENTITY foxyproxy.urlpatterns.tooltip "URL patterns">
+<!ENTITY foxyproxy.urlpatterns.label "URL o modelli URL">
+<!ENTITY foxyproxy.urlpatterns.accesskey "l">
+<!ENTITY foxyproxy.urlpatterns.tooltip "Gestione degli URL o di modelli URL">
 <!ENTITY foxyproxy.pattern.type.label "Tipo di modello corrispondente">
 <!ENTITY foxyproxy.whitelist.blacklist.label "Modello permesso/non permesso">
 <!ENTITY foxyproxy.pattern.name.label "Nome modello">
@@ -395,7 +395,7 @@
 <!ENTITY foxyproxy.changes.msg1 "Contenuti guida delle impostazioni per HTTP, SSL, FTP, Gopher e SOCKS">
 <!ENTITY foxyproxy.newGUI.popup.height "270px">
 <!ENTITY foxyproxy.newGUI.popup.width "400px">
-<!ENTITY foxyproxy.newGUI1.label "La precedente finestra delle opzioni di FoxyProxy-&gt; Proxy-&gt; Nuovo proxy-&gt; &apos;Dettagli dei proxy&apos; era basata sulla quasi identica finestra delle opzioni di Firefox-&gt; Avanzate-&gt; Rete-&gt; Connessione-&gt; &quot;Impostazioni...&quot;, a sua volta quasi identica alla finestra delle impostazioni proxy nel vecchio browser Mosaic 2.1.1 del 1996. Il problema con tali finestre è la limitata capacità di trasferimento dei dati tramite protocollo. I browser del ventunesimo secolo come Firefox gestiscono molti altri protocolli oltre a HTTP, SSL, FTP e GOPHER. Chiaramente, tali precedenti finestre di dialogo sarebbero poco gestibili se si tentasse di includere ogni protocollo possibile">
+<!ENTITY foxyproxy.newGUI1.label "La precedente finestra delle opzioni di FoxyProxy-&gt; Proxy-&gt; Nuovo proxy-&gt; &apos;Dettagli dei proxy&apos; era basata sulla quasi identica finestra delle opzioni di Firefox-&gt; Avanzate-&gt; Rete-&gt; Connessione-&gt; &quot;Impostazioni…&quot;, a sua volta quasi identica alla finestra delle impostazioni proxy nel vecchio browser Mosaic 2.1.1 del 1996. Il problema con tali finestre è la limitata capacità di trasferimento dei dati tramite protocollo. I browser del ventunesimo secolo come Firefox gestiscono molti altri protocolli oltre a HTTP, SSL, FTP e GOPHER. Chiaramente, tali precedenti finestre di dialogo sarebbero poco gestibili se si tentasse di includere ogni protocollo possibile">
 <!ENTITY foxyproxy.newGUI2.label "Poiché FoxyProxy permette già il trasferimento dei dati tramite protocollo con caratteri jolly e modelli di espressioni regolari, la lista dei protocolli relativa a questa finestra non è necessaria. A partire dalla versione 2.5, nella finestra delle opzioni di FoxyProxy tale lista di protocolli è stata quindi eliminata. Tuttavia, tale modifica non riduce la funzionalità bensì semplifica l&apos;interfaccia grafica. Per trasferire i dati tramite protocollo, definire i modelli permessi/non permessi prestando attenzione alla porzione di schema/protocollo del modello (es: ftp://*.yahoo.com/*, *://leahscape.com/*, ecc)">
 <!ENTITY foxyproxy.newGUI4.label "Fare clic qui per ulteriori informazioni">
 <!ENTITY foxyproxy.error.msg.label "Messaggio di errore">
@@ -420,7 +420,7 @@
 <!ENTITY foxyproxy.temp.label "Utilizza modelli temporanei">
 <!ENTITY foxyproxy.temp.accesskey "t">
 <!ENTITY foxyproxy.temp.tooltip "Selezionare questa opzione per utilizzare il modello solo per la sessione di Firefox attuale">
-<!ENTITY foxyproxy.define.label "Imposta...">
+<!ENTITY foxyproxy.define.label "Imposta…">
 <!ENTITY foxyproxy.define.accesskey "I">
 <!ENTITY foxyproxy.define.tooltip "Aggiungi/modifica un modello">
 <!ENTITY foxyproxy.pattern.to.quickadd.label "Modello da aggiungere rapidamente al proxy">
@@ -428,9 +428,9 @@
 <!ENTITY foxyproxy.home "Visita il sito web">
 <!ENTITY foxyproxy.support "Supporto">
 <!ENTITY foxyproxy.credits "Riconoscimenti">
-<!ENTITY foxyproxy.donations "Donations">
-<!ENTITY foxyproxy.please.donate.label "Please Donate">
+<!ENTITY foxyproxy.donations "Donazioni">
+<!ENTITY foxyproxy.please.donate.label "Effettua una donazione">
 <!ENTITY foxyproxy.please.donate.accesskey "D">
-<!ENTITY foxyproxy.keep.free "Keep FoxyProxy Free">
-<!ENTITY foxyproxy.donation.list.label "Donation List">
+<!ENTITY foxyproxy.keep.free "Mantieni FoxyProxy gratuita">
+<!ENTITY foxyproxy.donation.list.label "Lista delle donazioni">
 <!ENTITY foxyproxy.donation.list.accesskey "L">

@@ -33,15 +33,7 @@
   <i18n id="foxyproxy.contextmenu.label" value="&foxyproxy.contextmenu.label;"/>
   <i18n id="foxyproxy.contextmenu.accesskey" value="&foxyproxy.contextmenu.accesskey;"/>
   <i18n id="foxyproxy.contextmenu.tooltip" value="&foxyproxy.contextmenu.tooltip;"/>
-  
-  <i18n id="foxyproxy.pacloadnotification.label" value="&foxyproxy.pacloadnotification.label;"/>
-  <i18n id="foxyproxy.pacloadnotification.accesskey" value="&foxyproxy.pacloadnotification.accesskey;"/>
-  <i18n id="foxyproxy.pacloadnotification.tooltip" value="&foxyproxy.pacloadnotification.tooltip;"/>
-
-  <i18n id="foxyproxy.pacerrornotification.label" value="&foxyproxy.pacerrornotification.label;"/>
-  <i18n id="foxyproxy.pacerrornotification.accesskey" value="&foxyproxy.pacerrornotification.accesskey;"/>
-  <i18n id="foxyproxy.pacerrornotification.tooltip" value="&foxyproxy.pacerrornotification.tooltip;"/>
-  
+    
   <i18n id="foxyproxy.advancedmenus.label" value="&foxyproxy.advancedmenus.label;"/>
   <i18n id="foxyproxy.advancedmenus.accesskey" value="&foxyproxy.advancedmenus.accesskey;"/>
   <i18n id="foxyproxy.advancedmenus.tooltip" value="&foxyproxy.advancedmenus.tooltip;"/>  
@@ -106,7 +98,6 @@
 	<i18n id="foxyproxy.animatedicons.accesskey" value="&foxyproxy.animatedicons.accesskey;"/>
 	<i18n id="foxyproxy.animatedicons.tooltip" value="&foxyproxy.animatedicons.tooltip;"/>			
 	
-	<i18n id="foxyproxy.pattern.template.example.label2" value="&foxyproxy.pattern.template.example.label2;"/>			
 	<i18n id="foxyproxy.error.msg.label" value="&foxyproxy.error.msg.label;"/>			
 	<i18n id="foxyproxy.pac.result.label" value="&foxyproxy.pac.result.label;"/>			
 

@@ -1,4 +1,4 @@
-f<!ENTITY foxyproxy.label "FoxyProxy">
+<!ENTITY foxyproxy.label "FoxyProxy">
 <!ENTITY foxyproxy.accesskey "F">
 
 <!ENTITY foxyproxy.optionsdialog.label "FoxyProxy Options">

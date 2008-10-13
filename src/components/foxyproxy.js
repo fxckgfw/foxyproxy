@@ -195,7 +195,7 @@ biesi>	passing it the appropriate proxyinfo
 	    createInstance(CI.nsIXMLHttpRequest);
 	  req.open("GET", "chrome://foxyproxy/content/strings.xml", false);
 	  req.send(null);
-	  this.strings._entities = new Array();
+	  this.strings._entities = [];
 	  for (var i=0,e=req.responseXML.getElementsByTagName("i18n"); i<e.length; i++)  {
 	    var attrs = e.item(i).attributes;
 	    this.strings._entities[attrs.getNamedItem("id").nodeValue] = attrs.getNamedItem("value").nodeValue;

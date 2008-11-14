@@ -793,19 +793,43 @@ biesi>	passing it the appropriate proxyinfo
     /**
      * Calculate the list of disabled proxies due to current IP addresses
      */
-    calculateIPFilteredList : function(ips) {
-      if (!("m" in gFP.sandbox)) {
-        gFP.alert(null, gFP.getMessage("license.problem", [gFP.sandbox.reason?gFP.sandbox.reason:""]));
-        return;
-      }    
-      gFP.sandbox.ips = ips;
+    calculateIPFilteredList : function(ips) {	
       for (var i=0; i<this.list.length; i++) {
         var p = this.list[i];
-        gFP.sandbox.P = p; 
-        var white = CU.evalInSandbox("m()", gFP.sandbox);
+        var white = m(p);
         p.ipMatch = white == -1 ? null : p.ippatterns[white];
         p.noUseDueToIP = p.ipMatch == null || p.ipMatch.isBlackList; 
       }
+      /**
+      * Check if any white patterns already match one of the ips. As a shortcut,
+      * we first check if the existing white patterns (as strings) equal |ip|
+      * before performing regular expression matches.
+      *
+      * Black pattern matches take precendence over white pattern matches.
+      *
+      * Return null if no match. Otherwise, return the matched object. Check
+      * the objects |isBlackList| property to determine if the match was black or white.
+      */
+      function m(proxy) {
+      	var white = -1;
+      	for (var i=0,sz=proxy.ippatterns.length; i<sz; i++) {
+      	  var m = proxy.ippatterns[i];
+      	  if (m.enabled) {
+      		for (j in ips) {
+      		  var ip = ips[j];
+      		  if (m.pattern == ip || m.regex.test(ip)) {
+      			if (m.isBlackList) {
+      			  // Black takes priority over white
+      			  proxy.ipMatch = m;
+      			}
+      			else if (white == -1) {
+      			  white = i; // continue checking for blacklist matches!
+      			}
+      		  }
+      		}
+      	  }
+      	}
+      }      
     },    
 
     getRandom : function(uriStr, includeDirect, includeDisabled) {

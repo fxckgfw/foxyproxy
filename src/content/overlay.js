@@ -210,7 +210,7 @@ var foxyproxy = {
         }
         p.manualconf.socksversion=5;
         p.autoconf.url = "";
-        var params = {inn:{proxy:p, torwiz:true}, out:null};
+        var params = {inn:{isNew:true, proxy:p, torwiz:true}, out:null};
 
         var win = owner?owner:window;
         win.openDialog("chrome://foxyproxy/content/addeditproxy.xul", "",

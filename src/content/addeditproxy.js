@@ -9,7 +9,7 @@
   and also online at http://www.gnu.org/licenses/gpl.txt
 **/
 const CI = Components.interfaces, CC = Components.classes;
-var urlsTree, proxy, foxyproxy, autoconfurl, overlay, isWindows, fpc;
+var urlsTree, ipsTree, proxy, foxyproxy, autoconfurl, overlay, isWindows, fpc;
 
 function onLoad() {
   isWindows = CC["@mozilla.org/xre/app-info;1"].getService(CI.nsIXULRuntime).OS == "WINNT";
@@ -24,6 +24,7 @@ function onLoad() {
   }
   else
     urlsTree = document.getElementById("urlsTree");
+  ipsTree = document.getElementById("ipsTree");
 
   proxy = window.arguments[0].inn.proxy;
   document.getElementById("proxyname").value = proxy.name;
@@ -45,13 +46,19 @@ function onLoad() {
     document.getElementById("default-proxy-broadcaster").setAttribute("disabled", "true");
 	  document.getElementById("proxyname").disabled =
 	  	document.getElementById("proxynotes").disabled = true;
-    document.getElementById("urlpatternstab").hidden = true;
+    document.getElementById("ippatternstab").hidden =
+      document.getElementById("urlpatternstab").hidden = true;
   }
   document.getElementById("pacLoadNotificationEnabled").checked = proxy.autoconf.loadNotification;
   document.getElementById("pacErrorNotificationEnabled").checked = proxy.autoconf.errorNotification;
   document.getElementById("autoConfURLReloadEnabled").checked = proxy.autoconf.autoReload;
   document.getElementById("autoConfReloadFreq").value = proxy.autoconf.reloadFreqMins;
 
+  if (window.arguments[0].inn.isNew) {
+    // add pattern to match all IP addresses
+    proxy.ippatterns[0] = CC["@leahscape.org/foxyproxy/match;1"].createInstance().wrappedJSObject;
+    proxy.ippatterns[0].init(true, foxyproxy.getMessage("all"), "*");
+  }
   _updateView();
   sizeToContent();
 }
@@ -144,24 +151,25 @@ function _checkUri() {
   }
 }
 
-function onAddEditURLPattern(isNew) {
-  var idx = urlsTree.currentIndex, m;
+function onAddEditPattern(isNew, tree, patterns) {
+  var idx = tree.currentIndex, m;
   if (isNew) {
     m = CC["@leahscape.org/foxyproxy/match;1"].createInstance().wrappedJSObject;
-    idx = proxy.matches.length;
+    idx = patterns.length;
   }
   else if (idx == -1) return; // safety; may not be necessary anymore
 
-  var params = {inn:{pattern: (isNew ? m : proxy.matches[idx]), superadd:false}, out:null};
+  var params = {inn:{pattern: (isNew ? m : patterns[idx]), superadd:false}, out:null};
 
-  window.openDialog("chrome://foxyproxy/content/pattern.xul", "",
+  window.openDialog("chrome://foxyproxy/content/" + (tree==ipsTree ? "ippattern.xul" : "pattern.xul"), "",
     "chrome, dialog, modal, resizable=yes", params).focus();
 
   if (params.out) {
-    proxy.matches[idx] = params.out.pattern;
+    patterns[idx] = params.out.pattern;
+    if (tree==ipsTree) foxyproxy.calculateIPFilteredList();
     _updateView();
     // Select item
-	  urlsTree.view.selection.select(isNew?urlsTree.view.rowCount-1 : urlsTree.currentIndex);
+	  tree.view.selection.select(isNew?tree.view.rowCount-1 : tree.currentIndex);
   }
 }
 
@@ -173,6 +181,7 @@ function setButtons(observerId, tree) {
 function _updateView() {
   // Redraw the trees
   urlsTree.view = makeView(proxy.matches);
+  ipsTree.view = makeView(proxy.ippatterns);
 
   function makeView(pats) {
     return {
@@ -206,6 +215,7 @@ function _updateView() {
     };
   }
   setButtons("urls-tree-row-selected", urlsTree);
+  setButtons("ips-tree-row-selected", ipsTree);
 }
 
 function onRemoveURLPattern() {
@@ -216,6 +226,15 @@ function onRemoveURLPattern() {
   // Reselect the next appropriate item
 	urlsTree.view.selection.select(sel+1>urlsTree.view.rowCount ? urlsTree.view.rowCount-1:sel);
 }
+
+function onRemoveIPPattern() {
+  // Store cur selection
+  var sel = ipsTree.currentIndex;
+  proxy.removeIPPattern(proxy.ippatterns[sel]);
+  _updateView();
+  // Reselect the next appropriate item
+	ipsTree.view.selection.select(sel+1>ipsTree.view.rowCount ? ipsTree.view.rowCount-1:sel);
+ }
 
 function toggleMode(mode) {
   // Next line--buggy in FF 1.5.0.1--makes fields enabled but readonly

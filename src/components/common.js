@@ -20,19 +20,19 @@ function Common() {
 
 Common.prototype = {
   _ios : CC["@mozilla.org/network/io-service;1"].getService(CI.nsIIOService),
-
+  
   QueryInterface: function(aIID) {
     if (!aIID.equals(CI.nsISupports))
         throw Components.results.NS_ERROR_NO_INTERFACE;
     return this;
   },
-
+  
   // Application-independent version of getMostRecentWindow()
   getMostRecentWindow : function(wm) {
     var tmp = wm || CC["@mozilla.org/appshell/window-mediator;1"].getService(CI.nsIWindowMediator);
     return tmp.getMostRecentWindow("navigator:browser") || tmp.getMostRecentWindow("Songbird:Main");
   },
-
+  
   // Application-independent version of getEnumerator()
   getEnumerator : function() {
     var wm = CC["@mozilla.org/appshell/window-mediator;1"].getService(CI.nsIWindowMediator);
@@ -67,7 +67,7 @@ Common.prototype = {
       w.focus();
     }
   },
-
+  
   validatePattern : function(win, isRegEx, p, msgPrefix) {
     var origPat = p, fp = CC["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;
     p = p.replace(/^\s*|\s*$/g,"");
@@ -111,7 +111,7 @@ Common.prototype = {
     args["name"] && e.setAttribute("name", args["name"]);
     return e;
   },
-
+  
   getVersion : function() {
     return CC["@mozilla.org/extensions/manager;1"]
               .getService(CI.nsIExtensionManager)
@@ -122,22 +122,22 @@ Common.prototype = {
     var flags = caseSensitive ? "gi" : "g";
     try {
       var parsedUrl = this._ios.newURI(url, "UTF-8", null).QueryInterface(CI.nsIURL);
-      var ret = strTemplate.replace("${0}", parsedUrl.scheme?parsedUrl.scheme:"", flags);
-      ret = ret.replace("${1}", parsedUrl.username?parsedUrl.username:"", flags);
-      ret = ret.replace("${2}", parsedUrl.password?parsedUrl.password:"", flags);
-      ret = ret.replace("${3}", parsedUrl.userPass?(parsedUrl.userPass+"@"):"", flags);
-      ret = ret.replace("${4}", parsedUrl.host?parsedUrl.host:"", flags);
-      ret = ret.replace("${5}", parsedUrl.port == -1?"":parsedUrl.port, flags);
-      ret = ret.replace("${6}", parsedUrl.hostPort?parsedUrl.hostPort:"", flags);
-      ret = ret.replace("${7}", parsedUrl.prePath?parsedUrl.prePath:"", flags);
-      ret = ret.replace("${8}", parsedUrl.directory?parsedUrl.directory:"", flags);
-      ret = ret.replace("${9}", parsedUrl.fileBaseName?parsedUrl.fileBaseName:"", flags);
-      ret = ret.replace("${10}", parsedUrl.fileExtension?parsedUrl.fileExtension:"", flags);
-      ret = ret.replace("${11}", parsedUrl.fileName?parsedUrl.fileName:"", flags);
-      ret = ret.replace("${12}", parsedUrl.path?parsedUrl.path:"", flags);
-      ret = ret.replace("${13}", parsedUrl.ref?parsedUrl.ref:"", flags);
+      var ret = strTemplate.replace("${0}", parsedUrl.scheme?parsedUrl.scheme:"", flags);    
+      ret = ret.replace("${1}", parsedUrl.username?parsedUrl.username:"", flags);    
+      ret = ret.replace("${2}", parsedUrl.password?parsedUrl.password:"", flags); 
+      ret = ret.replace("${3}", parsedUrl.userPass?(parsedUrl.userPass+"@"):"", flags); 
+      ret = ret.replace("${4}", parsedUrl.host?parsedUrl.host:"", flags); 
+      ret = ret.replace("${5}", parsedUrl.port == -1?"":parsedUrl.port, flags); 
+      ret = ret.replace("${6}", parsedUrl.hostPort?parsedUrl.hostPort:"", flags); 
+      ret = ret.replace("${7}", parsedUrl.prePath?parsedUrl.prePath:"", flags);                 
+      ret = ret.replace("${8}", parsedUrl.directory?parsedUrl.directory:"", flags); 
+      ret = ret.replace("${9}", parsedUrl.fileBaseName?parsedUrl.fileBaseName:"", flags); 
+      ret = ret.replace("${10}", parsedUrl.fileExtension?parsedUrl.fileExtension:"", flags); 
+      ret = ret.replace("${11}", parsedUrl.fileName?parsedUrl.fileName:"", flags); 
+      ret = ret.replace("${12}", parsedUrl.path?parsedUrl.path:"", flags); 
+      ret = ret.replace("${13}", parsedUrl.ref?parsedUrl.ref:"", flags);                
       ret = ret.replace("${14}", parsedUrl.query?parsedUrl.query:"", flags);
-      ret = ret.replace("${14}", parsedUrl.query?parsedUrl.query:"", flags);
+      ret = ret.replace("${14}", parsedUrl.query?parsedUrl.query:"", flags);       
       ret = ret.replace("${15}", parsedUrl.spec?parsedUrl.spec:"", flags);
       /*ret = ret.replace(/\^|\$|\+|\\|\||\*|\{|\}|\(|\)|\[|\]/g,
         function(s) {
@@ -162,8 +162,8 @@ Common.prototype = {
     }
     catch(e) {/*happens for about:blank, about:config, etc.*/}
     return url;
-  },
-
+  },    
+  
   onSuperAdd : function(wnd, url, superadd) {
     var fp = CC["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;
     var p = {inn:{url:url || this.getMostRecentWindow().content.location.href, superadd:superadd}, out:null};
@@ -209,9 +209,9 @@ var CommonModule = {
 
   unregisterSelf: function(aCompMgr, aLocation, aType) {
     aCompMgr = aCompMgr.QueryInterface(CI.nsIComponentRegistrar);
-    aCompMgr.unregisterFactoryLocation(CLASS_ID, aLocation);
+    aCompMgr.unregisterFactoryLocation(CLASS_ID, aLocation);        
   },
-
+  
   getClassObject: function(aCompMgr, aCID, aIID) {
     if (!aIID.equals(CI.nsIFactory))
       throw Components.results.NS_ERROR_NOT_IMPLEMENTED;

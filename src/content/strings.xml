@@ -33,7 +33,7 @@
   <i18n id="foxyproxy.contextmenu.label" value="&foxyproxy.contextmenu.label;"/>
   <i18n id="foxyproxy.contextmenu.accesskey" value="&foxyproxy.contextmenu.accesskey;"/>
   <i18n id="foxyproxy.contextmenu.tooltip" value="&foxyproxy.contextmenu.tooltip;"/>
-    
+  
   <i18n id="foxyproxy.advancedmenus.label" value="&foxyproxy.advancedmenus.label;"/>
   <i18n id="foxyproxy.advancedmenus.accesskey" value="&foxyproxy.advancedmenus.accesskey;"/>
   <i18n id="foxyproxy.advancedmenus.tooltip" value="&foxyproxy.advancedmenus.tooltip;"/>  
@@ -107,5 +107,8 @@
   <i18n id="foxyproxy.autoadd.notify.tooltip2" value="&foxyproxy.autoadd.notify.tooltip2;"/>
 
   <i18n id="foxyproxy.autoadd.wildcard.example.label" value="&foxyproxy.autoadd.wildcard.example.label;"/> 
-  <i18n id="foxyproxy.autoadd.regex.example.label" value="&foxyproxy.autoadd.regex.example.label;"/>  
+  <i18n id="foxyproxy.autoadd.regex.example.label" value="&foxyproxy.autoadd.regex.example.label;"/>
+  
+  <i18n id="foxyproxy.ip.current.local.refresh.label" value="&foxyproxy.ip.current.local.refresh.label;"/>
+  <i18n id="foxyproxy.ip.current.local.refresh.accesskey" value="&foxyproxy.ip.current.local.refresh.accesskey;"/>  
 </root>

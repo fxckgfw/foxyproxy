@@ -72,6 +72,7 @@ function Proxy(fp) {
   this.wrappedJSObject = this;
   this.fp = fp || CC["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;
   this.matches = [];
+  this.ippatterns = [];
   this.name = this.notes = "";
   this.manualconf = new ManualConf(this.fp);
   this.autoconf = new AutoConf(this, this.fp);
@@ -80,6 +81,8 @@ function Proxy(fp) {
   this.selectedTabIndex = 0;
   this.lastresort = false;
   this.id = this.fp.proxies.uniqueRandom();
+  this.ipMatch = null;
+  this.noUseDueToIP = false;
 }
 
 Proxy.prototype = {
@@ -110,14 +113,36 @@ Proxy.prototype = {
 	  this.lastresort = node.hasAttribute("lastresort") ? node.getAttribute("lastresort") == "true" : false; // new for 2.0
     this.animatedIcons = node.hasAttribute("animatedIcons") ? node.getAttribute("animatedIcons") == "true" : !this.lastresort; // new for 2.4
     this.includeInCycle = node.hasAttribute("includeInCycle") ? node.getAttribute("includeInCycle") == "true" : !this.lastresort; // new for 2.5
-    for (var i=0,temp=node.getElementsByTagName("match"); i<temp.length; i++) {
-      var j = this.matches.length;
-      this.matches[j] = new Match();
-      this.matches[j].fromDOM(temp.item(i));
+    
+    // new XPathEvaluator() is not yet available; must go through XPCOM
+    var xpe = CC["@mozilla.org/dom/xpath-evaluator;1"].getService(CI.nsIDOMXPathEvaluator),
+      resolver = xpe.createNSResolver(node);
+    readPatterns("/foxyproxy/proxies/proxy[@id=" + this.id + "]/matches/match", this.matches);
+    var upgrade = node.getElementsByTagName("ippatterns").length == 0;
+    if (upgrade) {
+      dump("Upgrade from regular FoxyProxy\n");
+      this.ippatterns[0] = new Match(true, this.fp.getMessage("all"), "*");
     }
-		this.afterPropertiesSet(fpMode);
-  },
+    else
+      readPatterns("/foxyproxy/proxies/proxy[@id=" + this.id + "]/ippatterns/match", this.ippatterns);
 
+    this.afterPropertiesSet(fpMode);
+    function readPatterns(exp, arr) {
+      // doc.createNSResolver(doc) fails on FF2 (not FF3), so we use an instance of nsIDOMXPathEvaluator instead
+      // of the next line
+      // var n = doc.evaluate(exp, doc, doc.createNSResolver(doc), doc.ANY_TYPE, null).iterateNext();    
+      var iter = xpe.evaluate(exp, node, resolver, xpe.ANY_TYPE, null);
+      iter.QueryInterface(CI.nsIDOMXPathResult); // not necessary in FF3, only 2.x and possibly earlier
+      var pat = iter.iterateNext(); // FF 2.0.0.14: iterateNext is not a function
+      while (pat) {
+        j = arr.length;
+        arr[j] = new Match();
+        arr[j].fromDOM(pat);
+        pat = iter.iterateNext();
+      }
+    }
+  },
+  
   toDOM : function(doc) {
     var e = doc.createElement("proxy");
     e.setAttribute("name", this.name);
@@ -134,6 +159,12 @@ Proxy.prototype = {
     e.appendChild(matchesElem);
     for (var j=0, m; j<this.matches.length && (m=this.matches[j]); j++)
       if (!m.temp) matchesElem.appendChild(m.toDOM(doc));
+
+    var ipp = doc.createElement("ippatterns");
+    e.appendChild(ipp);
+    for (var j=0, ip; j<this.ippatterns.length && (ip=this.ippatterns[j]); j++)
+      if (!ip.temp) ipp.appendChild(ip.toDOM(doc));
+
     e.appendChild(this.autoconf.toDOM(doc));
     e.appendChild(this.manualconf.toDOM(doc));
     return e;
@@ -194,7 +225,7 @@ Proxy.prototype = {
    * before performing regular expression matches.
    *
    * Black pattern matches take precendence over white pattern matches.
-   *
+   * 
    * Note patStr is sometimes null when this method is called.
    */
   isWhiteMatch : function(patStr, uriStr) {
@@ -223,9 +254,13 @@ Proxy.prototype = {
         return m;
     }
   },
-
+  
   removeURLPattern : function(removeMe) {
     this.matches = this.matches.filter(function(e) {return e != removeMe;});
+  },
+
+  removeIPPattern : function(removeMe) {
+    this.ippatterns = this.ippatterns.filter(function(e) {return e != removeMe;});
   },
 
 	resolve : function(spec, host, mp) {

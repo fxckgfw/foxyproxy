@@ -1,0 +1,213 @@
+<?xml version="1.0"?>
+<!--
+  FoxyProxy
+  Copyright (C) 2006-2008 Eric H. Jung and LeahScape, Inc.
+  http://foxyproxy.mozdev.org/
+  eric.jung@yahoo.com
+
+  This source code is released under the GPL license,
+  available in the LICENSE file at the root of this installation
+  and also online at http://www.gnu.org/licenses/gpl.txt
+-->
+<?xml-stylesheet href="foxyproxy.css" type="text/css"?>
+<!DOCTYPE dialog [
+  <!ENTITY % fp SYSTEM "chrome://foxyproxy/locale/foxyproxy.dtd">
+  %fp;
+  <!ENTITY % fpplus SYSTEM "chrome://foxyproxy/locale/foxyproxyplus.dtd">
+  %fpplus;
+]>
+
+<dialog
+  xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	id="foxyproxypatterndlg3"
+  title="&foxyproxy.label; - &foxyproxy.ip.pattern.addedit.title;"
+  ondialogaccept="return onOK();" defaultButton="accept"
+  onload="onLoad();"
+  persist="screenX screenY"
+  windowtype="foxyproxy">
+
+<script src="ippattern.js"/>
+
+<grid flex="1">
+  <columns>
+    <column/>
+  </columns>   
+  <rows>
+    <row align="center">
+      <hbox align="center">    
+      <checkbox id="enabled" label="&foxyproxy.enabled.label;" accesskey="&foxyproxy.enabled.accesskey;"
+        tooltiptext="&foxyproxy.enabled.tooltip;"/>
+        <checkbox id="temp"
+          label="&foxyproxy.temp.label;"
+          accesskey="&foxyproxy.temp.accesskey;"
+          tooltiptext="&foxyproxy.temp.tooltip;"/> 
+        <toolbarbutton class="foxyproxy-ref"
+          popup="tempIPPopup"
+          tooltiptext="&foxyproxy.whatsthis;"/> 
+      </hbox>
+    </row>    
+    <row align="center">
+    <grid flex="1">
+    <columns><column/><column/><column/></columns>  
+    <rows>
+      <row align="center">
+        <hbox>     
+        <label value="&foxyproxy.pattern.name.label;" control="name"
+          tooltiptext="&foxyproxy.pattern.name.tooltip;" accesskey="&foxyproxy.pattern.name.accesskey;"/>            
+        <textbox id="name" tooltiptext="&foxyproxy.pattern.name.tooltip;" accesskey="&foxyproxy.pattern.name.accesskey;"/>
+        </hbox>
+        <spacer/>
+        <spacer/>
+      </row>
+      <row align="top">
+        <vbox>
+          <hbox align="center">
+          <label value="&foxyproxy.ip.pattern.label;" tooltiptext="&foxyproxy.ip.pattern.tooltip;" accesskey="&foxyproxy.ip.pattern.accesskey;"
+            control="pattern"/>
+          <textbox id="pattern" tooltiptext="&foxyproxy.ip.pattern.tooltip;" accesskey="&foxyproxy.ip.pattern.accesskey;"
+          type="timed" timeout="500" oncommand="updateMatchStatus();"/>
+          <toolbarbutton class="foxyproxy-ref" popup="wildcardIPPatternReferencePopup" tooltiptext="&foxyproxy.pattern.template.reference.tooltip;"/>
+          </hbox>
+          <label style="font-weight: bold;" value="&foxyproxy.ip.pattern.no.match;" observes="no-match-broadcaster"/>
+          <label style="font-weight: bold;color: blue;" value="&foxyproxy.ip.pattern.match;" observes="match-broadcaster"/>
+        </vbox>
+      <groupbox>      
+        <caption label="&foxyproxy.ip.current.local.label;"/> 
+        <menulist id="ipsMenu" tooltiptext="&foxyproxy.ip.current.local.label;">
+          <menupopup id="ipsMenuPopup"/>
+        </menulist>
+        <button label="&foxyproxy.copyip.label;" command="copyIPCmd"/>          
+        <button label="&foxyproxy.refresh.label;" command="refreshIPCmd"/>
+      </groupbox>
+      </row>
+    </rows>
+    </grid>
+    </row>  
+    <radiogroup id="whiteblacktype" orient="vertical">
+      <groupbox>
+      <caption label="&foxyproxy.ip.whiteblack.label;"/>     
+        <grid><columns><column/><column/><column/><column/></columns>
+        <rows>
+          <row align="center">
+            <radio selected="true" value="w"
+              accesskey="&foxyproxy.whitelist.accesskey;"
+              tooltiptext="&foxyproxy.ip.whitelist.description.label;"/>
+            <label value="&foxyproxy.whitelist.label;"
+              style="color: blue; cursor: pointer; margin-left: -0.5em;"
+              tooltiptext="&foxyproxy.ip.whitelist.description.label;"
+              class="text-link"
+              onclick="fpc.openAndReuseOneTabPerURL('http://en.wikipedia.org/wiki/Whitelist');"/>
+            <label value="&foxyproxy.ip.whitelist.description.label;"/>
+            <toolbarbutton class="foxyproxy-ref" popup="wbdesc" tooltiptext="&foxyproxy.wildcard.reference.tooltip;"/>       
+          </row>
+        <row align="center">
+          <radio value="b"
+            accesskey="&foxyproxy.blacklist.accesskey;"
+            tooltiptext="&foxyproxy.ip.blacklist.description.label;"/>
+          <label value="&foxyproxy.blacklist.label;"
+            style="margin-left: -0.5em;"
+            tooltiptext="&foxyproxy.ip.blacklist.description.label;"
+            class="text-link"
+            onclick="fpc.openAndReuseOneTabPerURL('http://en.wikipedia.org/wiki/Blacklist');"/>
+          <label value="&foxyproxy.ip.blacklist.description.label;"/>        
+          <spacer/>
+        </row>
+      </rows>
+      </grid>
+      </groupbox>
+    </radiogroup>
+    <!-- includes.xul isn't used here because the text is different -->
+    <radiogroup id="matchtype" orient="horizontal">
+    <groupbox flex="1">
+        <caption label="&foxyproxy.pattern.matchtype.label;"/>
+        <grid><columns><column/><column/><column/><column/></columns>
+        <rows>
+          <row align="center">
+            <radio selected="true" value="w"
+              accesskey="&foxyproxy.wildcard.accesskey;"
+              tooltiptext="&foxyproxy.wildcard.tooltip;"              
+              oncommand="updateMatchStatus();"/>
+            <label value="&foxyproxy.wildcard.label;"
+              style="margin-left: -0.5em;"
+              class="text-link"
+              onclick="fpc.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/patterns.html#wildcards');"
+              tooltiptext="&foxyproxy.wildcard.tooltip;"/>
+            <label id="wildcardExample" value="&foxyproxy.ip.wildcard.example.label;"/>                                            
+          </row>
+          <row align="center">
+            <radio value="r"
+              accesskey="&foxyproxy.regex.accesskey;"
+              tooltiptext="&foxyproxy.regex.tooltip;"
+              oncommand="updateMatchStatus();"/>
+            <label value="&foxyproxy.regex.label;"
+              style="margin-left: -0.5em;"
+              class="text-link"
+              onclick="fpc.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/patterns.html#regex');"
+              tooltiptext="&foxyproxy.regex.tooltip;"/> 
+            <label id="regexExample" value="&foxyproxy.ip.regex.example.label;"/>       
+            <spacer/>      
+          </row>
+        </rows>
+        </grid>
+     </groupbox>
+     <popup id="wbdesc">
+       <description class="foxyproxy-tooltip foxyproxy-border" width="300" height="70">&foxyproxy.whiteblack.description.label;</description>
+     </popup>      
+    </radiogroup>    
+  </rows>
+</grid>
+<popupset>
+  <popup id="wildcardIPPatternReferencePopup" position="before_end">
+    <label value="&foxyproxy.wildcard.reference.label;" style="font-weight: bold; text-align: center; margin: 1em 0 0 0;" />
+    <label value="&foxyproxy.ip.wildcard.reference.subtitle.label;" style="text-align: center; margin: 0 0 1em 0;" />
+    <grid class="foxyproxy-border" style="margin: .5em;">
+      <columns><column/><column/><column/></columns>
+      <rows>
+        <row>
+          <description class="heading">
+           &foxyproxy.pattern.label;</description>
+          <description class="heading">
+          &foxyproxy.ip.wildcard.reference.matches.label;</description>
+          <description class="heading red">
+          &foxyproxy.ip.wildcard.reference.nomatch.label;</description>
+        </row>
+        <row>
+          <description>192.168.0.*</description>
+          <description>192.168.0.2, 192.168.0.3</description>
+          <description class="red">192.168.1.1, 10.0.0.2</description>
+        </row>
+        <row>
+          <description>75.220.*.*</description>
+          <description>75.220.215.151, 75.220.216.9</description>
+          <description class="red">74.220.215.151, 192.168.1.3</description>
+        </row>        
+        <row>
+          <description>172.*.*.*</description>
+          <description>172.16.1.10, 172.22.0.2</description>
+          <description class="red">66.249.72.234, 75.220.215.157</description>
+        </row>
+        <row>
+          <description>10.*.*.*</description>
+          <description>10.0.0.1, 10.9.8.7</description>
+          <description class="red">192.168.1.3, 64.233.167.99</description>
+        </row>              
+      </rows>
+    </grid>
+  </popup>
+  <popup id="tempIPPopup">
+    <description class="foxyproxy-tooltip foxyproxy-border" width="400" height="70">
+      &foxyproxy.tempip.popup.label;</description>
+  </popup>   
+</popupset>
+
+<command id="copyIPCmd" tooltiptext="&foxyproxy.copyip.tooltip;"
+  accesskey="&foxyproxy.copyip.accesskey;" oncommand="copyIP();"/>
+
+<command id="refreshIPCmd" tooltiptext="&foxyproxy.refresh.tooltip;"
+  accesskey="&foxyproxy.refresh.accesskey;" oncommand="refreshLocalIPs()"/>
+
+<broadcasterset>
+  <broadcaster id="match-broadcaster" hidden="true"/>
+  <broadcaster id="no-match-broadcaster" hidden="true"/>  
+</broadcasterset>
+</dialog>

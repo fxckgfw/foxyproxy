@@ -56,7 +56,7 @@
               tooltiptext="&foxyproxy.help.tooltip;" />
             <!-- tooltiptext is necessary for tooltip, dunno why -->
             <menuitem command="onlineCmd"
-              tooltiptext="&foxyproxy.online.tooltip;" />
+              tooltiptext="&foxyproxy.online.tooltip;" />           
             <!-- tooltiptext is necessary for tooltip, dunno why -->
             <menuitem command="aboutCmd"
               tooltiptext="&foxyproxy.about.tooltip;" />

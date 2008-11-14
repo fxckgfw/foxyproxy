@@ -92,9 +92,8 @@ var foxyproxy = {
       this.timer.initWithCallback(this, 1000, Components.interfaces.nsITimer.TYPE_ONE_SHOT);
     }
   },
-
-
-	observe : function(subj, topic, str) {
+  
+	observe: function(subj, topic, str) {
     var e;
 		try {
 			e = subj.QueryInterface(Components.interfaces.nsISupportsPRBool).data;
@@ -145,11 +144,11 @@ var foxyproxy = {
     this.toggleContextMenu(this.fp.contextMenu);
     this.checkPageLoad();
     this.toggleStatusBarIcon(this.fp.statusbar.iconEnabled);
-    this.toggleStatusBarText(this.fp.statusbar.textEnabled);
+    this.toggleStatusBarText(this.fp.statusbar.textEnabled);    
     this.toggleStatusBarWidth(this.fp.statusbar.width);
 		this.setMode(this.fp.mode);
     this.fp.notifier.emptyQueue();
-    this.updateCheck.check();
+	this.updateCheck.check();    
   },
 
   toggleToolsMenu : function(e) {
@@ -159,7 +158,7 @@ var foxyproxy = {
   toggleContextMenu : function(e) {
  	 	this.contextMenuIcon.hidden = !e;
   },
-
+  
   torWizard : function(firstTime) {
     var owner = foxyproxy._getOptionsDlg();
     if (this.ask(owner, (firstTime ? (this.fp.getMessage("welcome") + " ") : "") +
@@ -267,13 +266,18 @@ var foxyproxy = {
       this.fp.quickadd.onQuickAdd(window, evt.view.content.document);
     }
   },
+  
+  onRefreshLocalIPs : function() {
+    this.fp.refreshLocalIPs();
+    this.fp.notifier.alert(this.fp.getMessage("ip.local"), this.fp.ips.toString());
+  },
 
   onPageLoad : function(evt) {
     var doc = evt.originalTarget; // doc is document that triggered "onload" event
     if (doc && doc.location)
       foxyproxy.fp.autoadd.onAutoAdd(window, doc); // can't use |this.fp| because this isn't |foxyproxy|
   },
-
+  
   updateViews : function(writeSettings, updateLogView) {
     // Update view if it's open
     var optionsDlg = foxyproxy._getOptionsDlg();
@@ -370,13 +374,13 @@ var foxyproxy = {
   	// otherwise we get a JS error.
     s && (s.hidden = !e);
   },
-
+  
   toggleStatusBarWidth : function(w) {
     var s=document.getElementById("foxyproxy-status-text");
     // Statusbars don't exist on all windows (e.g,. View Source) so check for existence first,
     // otherwise we get a JS error.
     if (!s) return;
-    var w = this.fp.statusbar.width;
+    var w = this.fp.statusbar.width; 
     if (w > 0)
       s.width = w;
     else {
@@ -386,8 +390,8 @@ var foxyproxy = {
       if (!s.hidden) {
         s.hidden = true;
         s.hidden = false;
-      }
-    }
+      }     
+    }    
   },
 
   // Set toolbar, statusbar, and context menu text and icon colors
@@ -734,6 +738,13 @@ var foxyproxy = {
 	        this.fp.getMessage("foxyproxy.options.tooltip"));
 	      itm.setAttribute("key", "key_foxyproxyfocus");
 
+        itm = _createMenuItem(menupopup,
+          this.fp.getMessage("foxyproxy.ip.current.local.refresh.label"),
+          "foxyproxy.onRefreshLocalIPs();",
+          this.fp.getMessage("foxyproxy.ip.current.local.refresh.accesskey"),
+          this.fp.getMessage("foxyproxy.ip.current.local.refresh.label"));
+        itm.setAttribute("key", "key_foxyproxyrefresh");
+        
       	_createCheckMenuItem(menupopup,
       	  "foxyproxy.fp.advancedMenus = true;foxyproxy.updateViews(false);",
        	  this.fp.advancedMenus,

@@ -10,10 +10,11 @@
 **/
 
 var foxyproxy, proxyTree, logTree, monthslong, dayslong, overlay, timeformat, saveLogCmd, clearLogCmd, noURLsCmd, fpc;
-const CI = Components.interfaces, CC = Components.classes;
+const CI = Components.interfaces, CC = Components.classes,
+atomService = CC["@mozilla.org/atom-service;1"].getService(CI.nsIAtomService);
 
 function onLoad() {
-  foxyproxy = CC["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;
+  foxyproxy = CC["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;  
   fpc = CC["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject;
   document.getElementById("maxSize").value = foxyproxy.logg.maxSize;
   overlay = fpc.getMostRecentWindow().foxyproxy;
@@ -22,14 +23,14 @@ function onLoad() {
     foxyproxy.getMessage("months.long.6"), foxyproxy.getMessage("months.long.7"), foxyproxy.getMessage("months.long.8"),
     foxyproxy.getMessage("months.long.9"), foxyproxy.getMessage("months.long.10"), foxyproxy.getMessage("months.long.11"),
     foxyproxy.getMessage("months.long.12")];
-
+  
   dayslong = [foxyproxy.getMessage("days.long.1"), foxyproxy.getMessage("days.long.2"),
     foxyproxy.getMessage("days.long.3"), foxyproxy.getMessage("days.long.4"), foxyproxy.getMessage("days.long.5"),
     foxyproxy.getMessage("days.long.6"), foxyproxy.getMessage("days.long.7")];
   proxyTree = document.getElementById("proxyTree");
   logTree = document.getElementById("logTree");
   saveLogCmd = document.getElementById("saveLogCmd");
-  clearLogCmd = document.getElementById("clearLogCmd");
+  clearLogCmd = document.getElementById("clearLogCmd");  
   noURLsCmd = document.getElementById("noURLsCmd");
   timeformat = foxyproxy.getMessage("timeformat");
   _initSettings();
@@ -55,25 +56,25 @@ var observer = {
      }
    }
 }
-
+ 
 function _initSettings() {
   _updateView(false, true);
-  document.getElementById("settingsURL").value = foxyproxy.getSettingsURI("uri-string");
+  document.getElementById("settingsURL").value = foxyproxy.getSettingsURI("uri-string"); 
   document.getElementById("tabs").selectedIndex = foxyproxy.selectedTabIndex;
   document.getElementById("statusbarWidth").value = foxyproxy.statusbar.width;
-  toggleStatusBarText(foxyproxy.statusbar.textEnabled);
+  toggleStatusBarText(foxyproxy.statusbar.textEnabled);  
 }
 
 function onUsingPFF(usingPFF) {
   document.getElementById("settingsURLBtn").disabled = usingPFF;
 	foxyproxy.setSettingsURI(usingPFF?foxyproxy.PFF:foxyproxy.getDefaultPath());
-  _initSettings();
+  _initSettings();  
 }
 
 function _updateLogView() {
 	saveLogCmd.setAttribute("disabled", foxyproxy.logg.length == 0);
-	clearLogCmd.setAttribute("disabled", foxyproxy.logg.length == 0);
-  noURLsCmd.setAttribute("checked", foxyproxy.logg.noURLs);
+	clearLogCmd.setAttribute("disabled", foxyproxy.logg.length == 0);	
+  noURLsCmd.setAttribute("checked", foxyproxy.logg.noURLs); 
   logTree.view = {
     rowCount : foxyproxy.logg.length,
     getCellText : function(row, column) {
@@ -85,10 +86,10 @@ function _updateLogView() {
         case "nameCol":return mp.proxyName;
         case "notesCol":return mp.proxyNotes;
         case "mpNameCol":return mp.matchName;
-        case "mpCol":return mp.matchPattern;
-        case "mpCaseCol":return mp.caseSensitive;
+        case "mpCol":return mp.matchPattern; 
+        case "mpCaseCol":return mp.caseSensitive;       
         case "mpTypeCol":return mp.matchType;
-        case "mpBlackCol":return mp.whiteBlack;
+        case "mpBlackCol":return mp.whiteBlack;       
         case "pacResult":return mp.pacResult;
         case "errCol":return mp.errMsg;
       }
@@ -103,7 +104,7 @@ function _updateLogView() {
     getCellValue: function(row, col) {},
     cycleHeader: function(aColId, aElt) {},
     getRowProperties: function(row, col, props) {
-      /*if (foxyproxy.logg.item(row) && foxyproxy.logg.item(row).matchPattern == NA) {
+      /*if (foxyproxy.logg.item(row) && foxyproxy.logg.item(row).matchPattern == NA) {      
 	  	  var a = Components.classes["@mozilla.org/atom-service;1"].
 		      getService(Components.interfaces.nsIAtomService);
 		    col.AppendElement(a.getAtom("grey"));
@@ -132,24 +133,24 @@ function _updateLogView() {
           case 'ddd':  return dayslong[d.getDay()].substr(0, 3);
           case 'dd':   return zf(d.getDate(), 2);
           case 'hh':   return zf(((h = d.getHours() % 12) ? h : 12), 2);
-          case 'HH':   return zf(d.getHours(), 2);
+          case 'HH':   return zf(d.getHours(), 2);          
           case 'nn':   return zf(d.getMinutes(), 2);
           case 'ss':   return zf(d.getSeconds(), 2);
-          case 'zzz':  return zf(d.getSeconds(), 3);
+          case 'zzz':  return zf(d.getSeconds(), 3);          
           case 'a/p':  return d.getHours() < 12 ? 'AM' : 'PM';
         }
       }
     );
   }
-
+  
 // My own zero-fill fcn, not Tor 2k's. Assumes (n==2 || n == 3) && c<=n.
 function zf(c, n) { c=""+c; return c.length == 1 ? (n==2?'0'+c:'00'+c) : (c.length == 2 ? (n==2?c:'0'+c) : c); }
 
 function _updateModeMenu() {
-	var menu = document.getElementById("modeMenu");
+	var menu = document.getElementById("modeMenu");	
 	var popup=menu.firstChild;
 	fpc.removeChildren(popup);
-
+	
   popup.appendChild(fpc.createMenuItem({idVal:"patterns", labelId:"mode.patterns.label", document:document}));
   for (var i=0,p; i<foxyproxy.proxies.length && ((p=foxyproxy.proxies.item(i)) || 1); i++)
     popup.appendChild(fpc.createMenuItem({idVal:p.id, labelId:"mode.custom.label", labelArgs:[p.name], type:"radio", name:"foxyproxy-enabled-type", document:document}));
@@ -183,7 +184,7 @@ function isUsingPortableFirefox() {
     return foxyproxy.getPrefsService("extensions.foxyproxy.").getCharPref("settings") == foxyproxy.PFF;
   }
   catch(e) {
-    overlay.alert(this, foxyproxy.getMessage("preferences.read.error.warning", ["extensions.foxyproxy.settings", "isUsingPortableFirefox()"]) + " " +
+    overlay.alert(this, foxyproxy.getMessage("preferences.read.error.warning", ["extensions.foxyproxy.settings", "isUsingPortableFirefox()"]) + " " +      
       foxyproxy.getMessage("preferences.read.error.fatal"));
   }
 }
@@ -197,34 +198,34 @@ function _updateView(writeSettings, updateLogView) {
   //document.getElementById("randomIncludeDisabled").checked = foxyproxy.random.includeDisabled;
   document.getElementById("usingPFF").checked =
     document.getElementById("settingsURLBtn").disabled = isUsingPortableFirefox();
-
+  
   _updateSuperAdd(foxyproxy.autoadd, "autoAdd");
-  _updateSuperAdd(foxyproxy.quickadd, "quickAdd");
+  _updateSuperAdd(foxyproxy.quickadd, "quickAdd");  
   document.getElementById("quickAddNotifyWhenCanceled").checked = foxyproxy.quickadd.notifyWhenCanceled; // only exists for QuickAdd
-
+        
   function _updateSuperAdd(saObj, str) {
     var temp = saObj.enabled;
     document.getElementById(str + "Enabled").checked = temp;
     document.getElementById(str + "Broadcaster").hidden = !temp;
     document.getElementById(str + "Reload").checked = saObj.reload;
-    document.getElementById(str + "Notify").checked = saObj.notify;
-    document.getElementById(str + "Prompt").checked = saObj.prompt;
+    document.getElementById(str + "Notify").checked = saObj.notify;   
+    document.getElementById(str + "Prompt").checked = saObj.prompt;  
   }
-
+  
   document.getElementById("toolsMenuEnabled").checked = foxyproxy.toolsMenu;
   document.getElementById("contextMenuEnabled").checked = foxyproxy.contextMenu;
   document.getElementById("statusbarIconEnabled").checked = foxyproxy.statusbar.iconEnabled;
-  document.getElementById("statusbarTextEnabled").checked = foxyproxy.statusbar.textEnabled;
-  document.getElementById("advancedMenusEnabled").checked = foxyproxy.advancedMenus;
+  document.getElementById("statusbarTextEnabled").checked = foxyproxy.statusbar.textEnabled;   
+  document.getElementById("advancedMenusEnabled").checked = foxyproxy.advancedMenus;      
 
-  document.getElementById("sbLeftClickMenu").value = foxyproxy.statusbar.leftClick;
-  document.getElementById("sbMiddleClickMenu").value = foxyproxy.statusbar.middleClick;
-  document.getElementById("sbRightClickMenu").value = foxyproxy.statusbar.rightClick;
+  document.getElementById("sbLeftClickMenu").value = foxyproxy.statusbar.leftClick;        
+  document.getElementById("sbMiddleClickMenu").value = foxyproxy.statusbar.middleClick;          
+  document.getElementById("sbRightClickMenu").value = foxyproxy.statusbar.rightClick;            
 
-  document.getElementById("tbLeftClickMenu").value = foxyproxy.toolbar.leftClick;
-  document.getElementById("tbMiddleClickMenu").value = foxyproxy.toolbar.middleClick;
-  document.getElementById("tbRightClickMenu").value = foxyproxy.toolbar.rightClick;
-
+  document.getElementById("tbLeftClickMenu").value = foxyproxy.toolbar.leftClick;        
+  document.getElementById("tbMiddleClickMenu").value = foxyproxy.toolbar.middleClick;          
+  document.getElementById("tbRightClickMenu").value = foxyproxy.toolbar.rightClick;            
+    
 	_updateModeMenu();
 
   var menu = document.getElementById("autoAddProxyMenu");
@@ -240,26 +241,26 @@ function _updateView(writeSettings, updateLogView) {
     document.getElementById("quickAddEnabled").checked = false;
     onQuickAddEnabled(false);
   }
-
+  
   proxyTree.view  = {
     rowCount : foxyproxy.proxies.length,
     getCellText : function(row, column) {
-      var i = foxyproxy.proxies.item(row);
+      var i = foxyproxy.proxies.item(row);    
       switch(column.id) {
         case "nameCol":return i.name;
-        case "descriptionCol":return i.notes;
+        case "descriptionCol":return i.notes;   
         case "modeCol":return foxyproxy.getMessage(i.mode);
-        case "hostCol":return i.manualconf.host;
-        case "isSocksCol":return i.manualconf.isSocks?foxyproxy.getMessage("yes"):foxyproxy.getMessage("no");
-        case "portCol":return i.manualconf.port;
-        case "socksverCol":return i.manualconf.socksversion == "5" ? "5" : "4/4a";
-        case "autopacCol":return i.autoconf.url;
+        case "hostCol":return i.manualconf.host;           
+        case "isSocksCol":return i.manualconf.isSocks?foxyproxy.getMessage("yes"):foxyproxy.getMessage("no");        
+        case "portCol":return i.manualconf.port;                   
+        case "socksverCol":return i.manualconf.socksversion == "5" ? "5" : "4/4a";                           
+        case "autopacCol":return i.autoconf.url;   
         case "animatedIconsCol":return i.animatedIcons?foxyproxy.getMessage("yes"):foxyproxy.getMessage("no");
         case "cycleCol":return i.includeInCycle?foxyproxy.getMessage("yes"):foxyproxy.getMessage("no");
       }
     },
     setCellValue: function(row, col, val) {foxyproxy.proxies.item(row).enabled = val;},
-    getCellValue: function(row, col) {return foxyproxy.proxies.item(row).enabled;},
+    getCellValue: function(row, col) {return foxyproxy.proxies.item(row).enabled;},    
     isSeparator: function(aIndex) { return false; },
     isSorted: function() { return false; },
     isEditable: function(row, col) { return false; },
@@ -268,9 +269,9 @@ function _updateView(writeSettings, updateLogView) {
     getImageSrc: function(aRow, aColumn) {return null;},
     getProgressMode: function(aRow, aColumn) {},
     cycleHeader: function(aColId, aElt) {},
-    getRowProperties: function(aRow, aColumn, aProperty) {},
-    getColumnProperties: function(aColumn, aColumnElement, aProperty) {},
-    getCellProperties: function(aRow, aProperty) {},
+    getRowProperties: function(r,p) {if (foxyproxy.proxies.item(r).noUseDueToIP) p.AppendElement(atomService.getAtom("unused"));},
+    getColumnProperties: function() {},
+    getCellProperties: function() {},
     getLevel: function(row){ return 0; }
   };
   writeSettings && foxyproxy.writeSettings();
@@ -288,20 +289,20 @@ function onDeleteSelection() {
     overlay.alert(this, foxyproxy.getMessage("delete.proxy.default"));
   else if (overlay.ask(this, foxyproxy.getMessage("delete.proxy.confirm"))) {
 	  // Store cur selection
-	  var sel = proxyTree.currentIndex;
+	  var sel = proxyTree.currentIndex;  
     foxyproxy.proxies.remove(proxyTree.currentIndex);
     _updateView(true);
 	  // Reselect what was previously selected
-		proxyTree.view.selection.select(sel+1>proxyTree.view.rowCount ? 0:sel);
-  }
+		proxyTree.view.selection.select(sel+1>proxyTree.view.rowCount ? 0:sel);    
+  }  
 }
 
 function onCopySelection() {
   if (_isDefaultProxySelected())
     overlay.alert(this, foxyproxy.getMessage("copy.proxy.default"));
-  else {
+  else {  
 	  // Store cur selection
-	  var sel = proxyTree.currentIndex;
+	  var sel = proxyTree.currentIndex;    
 	  var dom = foxyproxy.proxies.item(proxyTree.currentIndex).toDOM(document);
 	  var p = CC["@leahscape.org/foxyproxy/proxy;1"].createInstance().wrappedJSObject;
 	  p.fromDOM(dom);
@@ -309,14 +310,14 @@ function onCopySelection() {
 	  foxyproxy.proxies.push(p);
 	  _updateView(true);
 	  // Reselect what was previously selected
-		proxyTree.view.selection.select(sel);
+		proxyTree.view.selection.select(sel);    	  
 	}
 }
 
 function move(direction) {
   // Store cur selection
   var sel = proxyTree.currentIndex;
-  foxyproxy.proxies.move(proxyTree.currentIndex, direction) && _updateView(true);
+  foxyproxy.proxies.move(proxyTree.currentIndex, direction) && _updateView(true);  
   // Reselect what was previously selected
 	proxyTree.view.selection.select(sel + (direction=="up"?-1:1));
 }
@@ -324,9 +325,9 @@ function move(direction) {
 function onSettings(isNew) {
   var sel = proxyTree.currentIndex,
     params = {inn:{proxy:isNew ?
-      CC["@leahscape.org/foxyproxy/proxy;1"].createInstance().wrappedJSObject :
+      CC["@leahscape.org/foxyproxy/proxy;1"].createInstance().wrappedJSObject : 
       foxyproxy.proxies.item(proxyTree.currentIndex)}, out:null};
-
+        
   window.openDialog("chrome://foxyproxy/content/addeditproxy.xul", "",
     "chrome, dialog, modal, resizable=yes", params).focus();
   if (params.out) {
@@ -334,15 +335,15 @@ function onSettings(isNew) {
     _updateView(true);
     foxyproxy.writeSettings();
 	  // Reselect what was previously selected or the new item
-		proxyTree.view.selection.select(isNew?proxyTree.view.rowCount-2:sel);
+		proxyTree.view.selection.select(isNew?proxyTree.view.rowCount-2:sel);    
   }
 }
 
 function setButtons() {
   document.getElementById("tree-row-selected").setAttribute("disabled", proxyTree.currentIndex == -1);
-  document.getElementById("moveUpCmd").setAttribute("disabled",
+  document.getElementById("moveUpCmd").setAttribute("disabled", 
   	proxyTree.currentIndex == -1 || proxyTree.currentIndex == 0 || _isDefaultProxySelected());
-  document.getElementById("moveDownCmd").setAttribute("disabled",
+  document.getElementById("moveDownCmd").setAttribute("disabled", 
   	proxyTree.currentIndex == -1 || proxyTree.currentIndex == foxyproxy.proxies.length-1 ||
   	(proxyTree.currentIndex+1 < foxyproxy.proxies.length && foxyproxy.proxies.item(proxyTree.currentIndex+1).lastresort));
 }
@@ -389,8 +390,8 @@ function saveLog() {
 	fp.appendFilters(nsIFilePicker.filterHTML | nsIFilePicker.filterAll);
 	if (fp.show() == nsIFilePicker.returnCancel)
  		return;
-
-	var os = CC["@mozilla.org/intl/converter-output-stream;1"].createInstance(CI.nsIConverterOutputStream);
+	
+	var os = CC["@mozilla.org/intl/converter-output-stream;1"].createInstance(CI.nsIConverterOutputStream);	
 	var fos = CC["@mozilla.org/network/file-output-stream;1"].createInstance(CI.nsIFileOutputStream); // create the output stream
 	fos.init(fp.file, 0x02 | 0x08 | 0x20 /*write | create | truncate*/, 0664, 0);
 	os.init(fos, "UTF-8", 0, 0x0000);
@@ -411,14 +412,14 @@ function exportSettings() {
 function importProxyList() {
 }
 
-function onProxyTreeSelected() {
+function onProxyTreeSelected() {	
 	setButtons();
 }
 
 function onProxyTreeMenuPopupShowing() {
 	var e = document.getElementById("enabledPopUpMenuItem"), f = document.getElementById("menuSeperator");
   e.hidden = f.hidden = _isDefaultProxySelected();
-	e.setAttribute("checked", foxyproxy.proxies.item(proxyTree.currentIndex).enabled);
+	e.setAttribute("checked", foxyproxy.proxies.item(proxyTree.currentIndex).enabled); 
 }
 
 function toggleEnabled() {
@@ -441,9 +442,9 @@ function toggleStatusBarText(checked) {
   // document.getElementById("statusBarWidthBroadcaster").setAttribute("disabled", true);
   // Call removeAttribute() instead of setAttribute("disabled", "false") or setAttribute("disabled", false);
   if (checked)
-    document.getElementById("statusBarWidthBroadcaster").removeAttribute("disabled"); // enables!
+    document.getElementById("statusBarWidthBroadcaster").removeAttribute("disabled"); // enables!    
   else
-    document.getElementById("statusBarWidthBroadcaster").setAttribute("disabled", "true");
+    document.getElementById("statusBarWidthBroadcaster").setAttribute("disabled", "true");     
 }
 
 function onQuickAddEnabled(cb) {
@@ -451,7 +452,7 @@ function onQuickAddEnabled(cb) {
     if (foxyproxy.quickadd.allowed()) {
         foxyproxy.quickadd.enabled = true;
         foxyproxy.quickadd.updateProxyMenu(document.getElementById("quickAddProxyMenu"), document);
-        document.getElementById("quickAddBroadcaster").hidden = false;
+        document.getElementById("quickAddBroadcaster").hidden = false;              
     }
     else {
       overlay.alert(this, foxyproxy.getMessage("superadd.verboten2", [foxyproxy.getMessage("foxyproxy.quickadd.label")]));
@@ -469,7 +470,7 @@ function onAutoAddEnabled(cb) {
   if (cb.checked) {
     if (foxyproxy.autoadd.allowed()) {
       foxyproxy.autoadd.enabled = true;
-      document.getElementById("autoAddBroadcaster").hidden = false;
+      document.getElementById("autoAddBroadcaster").hidden = false;     
       foxyproxy.autoadd.updateProxyMenu(document.getElementById("autoAddProxyMenu"), document);
       sizeToContent(); // call this before the alert() otherwise user can see unsized dialog in background
       overlay.alert(this, foxyproxy.getMessage("autoadd.notice"));
@@ -477,7 +478,7 @@ function onAutoAddEnabled(cb) {
     else {
       overlay.alert(this, foxyproxy.getMessage("superadd.verboten2", [foxyproxy.getMessage("foxyproxy.tab.autoadd.label")]));
       cb.checked = false;
-    }
+    }    
   }
   else {
     document.getElementById("autoAddBroadcaster").hidden = true;
@@ -511,5 +512,5 @@ function onBlockedPagePattern() {
     m.isRegEx = params.isRegEx;
     m.caseSensitive = params.caseSensitive;
     foxyproxy.writeSettings();
-  }
+  }    
 }

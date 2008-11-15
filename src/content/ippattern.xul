@@ -51,7 +51,7 @@
     <columns><column/><column/><column/></columns>  
     <rows>
       <row align="center">
-        <hbox>     
+        <hbox align="center">     
         <label value="&foxyproxy.pattern.name.label;" control="name"
           tooltiptext="&foxyproxy.pattern.name.tooltip;" accesskey="&foxyproxy.pattern.name.accesskey;"/>            
         <textbox id="name" tooltiptext="&foxyproxy.pattern.name.tooltip;" accesskey="&foxyproxy.pattern.name.accesskey;"/>
@@ -62,11 +62,11 @@
       <row align="top">
         <vbox>
           <hbox align="center">
-          <label value="&foxyproxy.ip.pattern.label;" tooltiptext="&foxyproxy.ip.pattern.tooltip;" accesskey="&foxyproxy.ip.pattern.accesskey;"
-            control="pattern"/>
-          <textbox id="pattern" tooltiptext="&foxyproxy.ip.pattern.tooltip;" accesskey="&foxyproxy.ip.pattern.accesskey;"
-          type="timed" timeout="500" oncommand="updateMatchStatus();"/>
-          <toolbarbutton class="foxyproxy-ref" popup="wildcardIPPatternReferencePopup" tooltiptext="&foxyproxy.pattern.template.reference.tooltip;"/>
+	          <label value="&foxyproxy.ip.pattern.label;" tooltiptext="&foxyproxy.ip.pattern.tooltip;" accesskey="&foxyproxy.ip.pattern.accesskey;"
+	            control="pattern"/>
+	          <textbox id="pattern" tooltiptext="&foxyproxy.ip.pattern.tooltip;" accesskey="&foxyproxy.ip.pattern.accesskey;"
+	          type="timed" timeout="500" oncommand="updateMatchStatus();"/>
+	          <toolbarbutton class="foxyproxy-ref" popup="wildcardIPPatternReferencePopup" tooltiptext="&foxyproxy.pattern.template.reference.tooltip;"/>
           </hbox>
           <label style="font-weight: bold;" value="&foxyproxy.ip.pattern.no.match;" observes="no-match-broadcaster"/>
           <label style="font-weight: bold;color: blue;" value="&foxyproxy.ip.pattern.match;" observes="match-broadcaster"/>

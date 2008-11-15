@@ -538,7 +538,7 @@
 <!ENTITY foxyproxy.ip.wildcard.example.label "Example: 192.168.1.*">
 <!ENTITY foxyproxy.ip.regex.example.label "Example: 172\.\d+\.1\.10">
 
-<!ENTITY foxyproxy.ip.pattern.match "Pattern matches one more or current local IP addresses">
+<!ENTITY foxyproxy.ip.pattern.match "Pattern matches one or more or current local IP addresses">
 <!ENTITY foxyproxy.ip.pattern.no.match "Pattern doesn't match any current local IP address">
 
 <!ENTITY foxyproxy.ip.current.local.refresh.label "Refresh Local IP Address List">

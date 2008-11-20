@@ -734,6 +734,10 @@ biesi>	passing it the appropriate proxyinfo
         match.name = gFP.getMessage("proxy.default.match.name");
         match.pattern = "*";
         last.matches.push(match);
+        var ippattern = new Match();
+        ippattern.name = gFP.getMessage("proxy.default.match.name");
+        ippattern.pattern = "*";
+        last.ippatterns.push(ippattern);
         last.selectedTabIndex = 0;
         last.animatedIcons = false;
         this.list.push(last); // ensures it really IS last
@@ -796,11 +800,12 @@ biesi>	passing it the appropriate proxyinfo
     calculateIPFilteredList : function(ips) {	
       for (var i=0; i<this.list.length; i++) {
         var p = this.list[i];
-        var white = m(p);
-        p.ipMatch = white == -1 ? null : p.ippatterns[white];
-        p.noUseDueToIP = p.ipMatch == null || p.ipMatch.isBlackList; 
+        var idx = m(p);
+        p.ipMatch = idx == -1 ? null : p.ippatterns[idx];
+        p.noUseDueToIP = p.ipMatch == null || p.ipMatch.isBlackList;
+        dump("Proxy " + p.name + " has been " + (p.noUseDueToIP ? "disabled" : "enabled") + " and matching ip pattern is " + (p.ipMatch == null ? "null" : p.ipMatch.pattern) + " which is " + (p.ipMatch.isBlackList ? "blacklisted" : "whitelisted") + "\n");
       }
-      /**
+     /**
       * Check if any white patterns already match one of the ips. As a shortcut,
       * we first check if the existing white patterns (as strings) equal |ip|
       * before performing regular expression matches.
@@ -811,7 +816,7 @@ biesi>	passing it the appropriate proxyinfo
       * the objects |isBlackList| property to determine if the match was black or white.
       */
       function m(proxy) {
-      	var white = -1;
+      	var idx = -1;
       	for (var i=0,sz=proxy.ippatterns.length; i<sz; i++) {
       	  var m = proxy.ippatterns[i];
       	  if (m.enabled) {
@@ -821,14 +826,16 @@ biesi>	passing it the appropriate proxyinfo
       			if (m.isBlackList) {
       			  // Black takes priority over white
       			  proxy.ipMatch = m;
+      			  return i;
       			}
-      			else if (white == -1) {
-      			  white = i; // continue checking for blacklist matches!
+      			else if (idx == -1) {
+      			  idx = i; // continue checking for blacklist matches!
       			}
       		  }
       		}
       	  }
       	}
+      	return idx;
       }      
     },    
 

@@ -81,7 +81,8 @@ function Proxy(fp) {
   this.selectedTabIndex = 0;
   this.lastresort = false;
   this.id = this.fp.proxies.uniqueRandom();
-  this.ipMatch = null;
+  this.ipMatch = null; /* the Match object representing the ip pattern we've matched. Note the match may be a blacklist pattern,
+    so we use this.noUseDueToIP as a shortcut to checking (this.ipMatch == null || this.ipMatch.isBlackList) */
   this.noUseDueToIP = false;
 }
 
@@ -119,6 +120,7 @@ Proxy.prototype = {
       resolver = xpe.createNSResolver(node);
     readPatterns("/foxyproxy/proxies/proxy[@id=" + this.id + "]/matches/match", this.matches);
     var upgrade = node.getElementsByTagName("ippatterns").length == 0;
+    dump("ippatterns count is " + node.getElementsByTagName("ippatterns").length + "\n");
     if (upgrade) {
       dump("Upgrade from regular FoxyProxy\n");
       this.ippatterns[0] = new Match(true, this.fp.getMessage("all"), "*");

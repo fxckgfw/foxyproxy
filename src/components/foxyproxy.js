@@ -803,7 +803,10 @@ biesi>	passing it the appropriate proxyinfo
         var idx = m(p);
         p.ipMatch = idx == -1 ? null : p.ippatterns[idx];
         p.noUseDueToIP = p.ipMatch == null || p.ipMatch.isBlackList;
-        dump("Proxy " + p.name + " has been " + (p.noUseDueToIP ? "disabled" : "enabled") + " and matching ip pattern is " + (p.ipMatch == null ? "null" : p.ipMatch.pattern) + " which is " + (p.ipMatch.isBlackList ? "blacklisted" : "whitelisted") + "\n");
+        dump("Proxy " + p.name + " has been " + (p.noUseDueToIP ? "disabled" : "enabled") + " and matching ip pattern is " + (p.ipMatch == null ? "null" : p.ipMatch.pattern));
+        if (p.ipMatch)
+        	dump(" which is " + (p.ipMatch.isBlackList ? "blacklisted" : "whitelisted"));
+        dump("\n");
       }
      /**
       * Check if any white patterns already match one of the ips. As a shortcut,

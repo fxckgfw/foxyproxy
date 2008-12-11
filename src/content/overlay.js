@@ -497,6 +497,12 @@ var foxyproxy = {
           // Toggle between current mode and disabled
           fp.setMode(fp.mode == "disabled" ? "previous" : "disabled");
           break;
+        case "refreshlocalips":
+          foxyproxy.onRefreshLocalIPs();
+          break;
+        case "quickadd":
+          foxyproxy.onQuickAddDialog(e);
+          break;
 			}
 		}
 	},
@@ -691,12 +697,20 @@ var foxyproxy = {
 	        this.fp.getMessage("foxyproxy.clear.accesskey"),
 	        this.fp.getMessage("foxyproxy.clear.tooltip"));
 
-	      _createMenuItem(logsubmenupopup,
-	        this.fp.getMessage("foxyproxy.refresh.label"),
-					// Need to refresh the log view so the refresh button is enabled/disabled appropriately
-	        "foxyproxy.updateViews(false, true);",
-	        this.fp.getMessage("foxyproxy.refresh.accesskey"),
-	        this.fp.getMessage("foxyproxy.refresh.tooltip"));
+        itm =_createMenuItem(submenupopup,
+            this.fp.getMessage("foxyproxy.refreshlocalips"),
+            "foxyproxy.onRefreshLocalIPs();",
+            this.fp.getMessage("foxyproxy.refreshlocalips.accesskey"),
+            this.fp.getMessage("foxyproxy.refreshlocalips"));
+          itm.setAttribute("key", "key_foxyproxyrefresh");
+
+        itm =_createMenuItem(submenupopup,
+            this.fp.getMessage("foxyproxy.quickadd.label"),
+            "foxyproxy.onQuickAddDialog(event)",
+            this.fp.getMessage("foxyproxy.quickadd.accesskey"),
+            this.fp.getMessage("foxyproxy.quickadd.tooltip"));
+          itm.setAttribute("key", "key_foxyproxyquickadd");
+          itm.setAttribute("disabled", enableQuickAdd(this.fp));          
 
 	      _createCheckMenuItem(logsubmenupopup,
 					// no need to write settings because changing the attribute makes the fp service re-writes the settings
@@ -715,9 +729,24 @@ var foxyproxy = {
 	        this.fp.getMessage("foxyproxy.options.tooltip"));
 	      itm.setAttribute("key", "key_foxyproxyfocus");
 
+        itm =_createMenuItem(submenupopup,
+          this.fp.getMessage("foxyproxy.quickadd.label"),
+          "foxyproxy.onQuickAddDialog(event)",
+          this.fp.getMessage("foxyproxy.quickadd.accesskey"),
+          this.fp.getMessage("foxyproxy.quickadd.tooltip"));
+        itm.setAttribute("key", "key_foxyproxyquickadd");
+        itm.setAttribute("disabled", enableQuickAdd(this.fp));        
+
+        itm =_createMenuItem(submenupopup,
+          this.fp.getMessage("foxyproxy.refreshlocalips"),
+          "foxyproxy.onRefreshLocalIPs();",
+          this.fp.getMessage("foxyproxy.refreshlocalips.accesskey"),
+          this.fp.getMessage("foxyproxy.refreshlocalips"));
+        itm.setAttribute("key", "key_foxyproxyrefresh");
+          	      
 	      _createMenuItem(submenupopup,
 	        this.fp.getMessage("foxyproxy.help.label"),
-	        "foxyproxy.fpc.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/quickstart.html');",
+	        "foxyproxy.fpc.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/help.html');",
 	        this.fp.getMessage("foxyproxy.help.accesskey"),
 	        this.fp.getMessage("foxyproxy.help.tooltip"));
 
@@ -738,12 +767,20 @@ var foxyproxy = {
 	        this.fp.getMessage("foxyproxy.options.tooltip"));
 	      itm.setAttribute("key", "key_foxyproxyfocus");
 
+        itm =_createMenuItem(menupopup,
+          this.fp.getMessage("foxyproxy.quickadd.label"),
+          "foxyproxy.onQuickAddDialog(event)",
+          this.fp.getMessage("foxyproxy.quickadd.accesskey"),
+          this.fp.getMessage("foxyproxy.quickadd.tooltip"));
+        itm.setAttribute("key", "key_foxyproxyquickadd");
+        itm.setAttribute("disabled", enableQuickAdd(this.fp));
+        
         itm = _createMenuItem(menupopup,
-          this.fp.getMessage("foxyproxy.ip.current.local.refresh.label"),
+          this.fp.getMessage("foxyproxy.refreshlocalips"),
           "foxyproxy.onRefreshLocalIPs();",
-          this.fp.getMessage("foxyproxy.ip.current.local.refresh.accesskey"),
-          this.fp.getMessage("foxyproxy.ip.current.local.refresh.label"));
-        itm.setAttribute("key", "key_foxyproxyrefresh");
+          this.fp.getMessage("foxyproxy.refreshlocalips.accesskey"),
+          this.fp.getMessage("foxyproxy.refreshlocalips"));
+        itm.setAttribute("key", "key_foxyproxyrefresh"); 
         
       	_createCheckMenuItem(menupopup,
       	  "foxyproxy.fp.advancedMenus = true;foxyproxy.updateViews(false);",
@@ -752,6 +789,10 @@ var foxyproxy = {
         	this.fp.getMessage("foxyproxy.advancedmenus.label"),
         	this.fp.getMessage("foxyproxy.advancedmenus.tooltip"));
 	    }
+    }
+    
+    function enableQuickAdd(fp) {
+      return fp.mode != "disabled" && fp.quickadd.enabled;
     }
 
     function _createMenu(menupopup, label, accesskey, tooltip) {

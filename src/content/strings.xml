@@ -109,6 +109,10 @@
   <i18n id="foxyproxy.autoadd.wildcard.example.label" value="&foxyproxy.autoadd.wildcard.example.label;"/> 
   <i18n id="foxyproxy.autoadd.regex.example.label" value="&foxyproxy.autoadd.regex.example.label;"/>
   
-  <i18n id="foxyproxy.ip.current.local.refresh.label" value="&foxyproxy.ip.current.local.refresh.label;"/>
-  <i18n id="foxyproxy.ip.current.local.refresh.accesskey" value="&foxyproxy.ip.current.local.refresh.accesskey;"/>  
+  <i18n id="foxyproxy.refreshlocalips" value="&foxyproxy.refreshlocalips;"/>
+  <i18n id="foxyproxy.refreshlocalips.accesskey" value="&foxyproxy.refreshlocalips.accesskey;"/>  
+  
+  <i18n id="foxyproxy.quickadd.label" value="&foxyproxy.quickadd.label;"/>
+  <i18n id="foxyproxy.quickadd.accesskey" value="&foxyproxy.quickadd.accesskey;"/>
+  <i18n id="foxyproxy.quickadd.tooltip" value="&foxyproxy.quickadd.tooltip;"/>  
 </root>

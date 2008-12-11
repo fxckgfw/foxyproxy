@@ -263,6 +263,10 @@
                             value="reloadtabsinallbrowsers" />
                           <menuitem label="&foxyproxy.click.toggle;"
                             value="toggle" />
+                          <menuitem label="&foxyproxy.quickadd.label;"
+                            value="quickadd" />                            
+                          <menuitem label="&foxyproxy.refreshlocalips;"
+                            value="refreshlocalips" />
                         </menupopup>
                       </menulist>
                     </row>
@@ -297,6 +301,10 @@
                             value="reloadtabsinallbrowsers" />
                           <menuitem label="&foxyproxy.click.toggle;"
                             value="toggle" />
+                          <menuitem label="&foxyproxy.quickadd.label;"
+                            value="quickadd" />                            
+                          <menuitem label="&foxyproxy.refreshlocalips;"
+                            value="refreshlocalips" />                            
                         </menupopup>
                       </menulist>
                     </row>
@@ -331,6 +339,10 @@
                             value="reloadtabsinallbrowsers" />
                           <menuitem label="&foxyproxy.click.toggle;"
                             value="toggle" />
+                          <menuitem label="&foxyproxy.quickadd.label;"
+                            value="quickadd" />                            
+                          <menuitem label="&foxyproxy.refreshlocalips;"
+                            value="refreshlocalips" />                            
                         </menupopup>
                       </menulist>
                     </row>
@@ -419,6 +431,10 @@
                             value="reloadtabsinallbrowsers" />
                           <menuitem label="&foxyproxy.click.toggle;"
                             value="toggle" />
+                          <menuitem label="&foxyproxy.quickadd.label;"
+                            value="quickadd" />                            
+                          <menuitem label="&foxyproxy.refreshlocalips;"
+                            value="refreshlocalips" />                            
                         </menupopup>
                       </menulist>
                     </row>
@@ -453,6 +469,10 @@
                             value="reloadtabsinallbrowsers" />
                           <menuitem label="&foxyproxy.click.toggle;"
                             value="toggle" />
+                          <menuitem label="&foxyproxy.quickadd.label;"
+                            value="quickadd" />                            
+                          <menuitem label="&foxyproxy.refreshlocalips;"
+                            value="refreshlocalips" />                            
                         </menupopup>
                       </menulist>
                     </row>
@@ -487,6 +507,10 @@
                             value="reloadtabsinallbrowsers" />
                           <menuitem label="&foxyproxy.click.toggle;"
                             value="toggle" />
+                          <menuitem label="&foxyproxy.quickadd.label;"
+                            value="quickadd" />                            
+                          <menuitem label="&foxyproxy.refreshlocalips;"
+                            value="refreshlocalips" />                            
                         </menupopup>
                       </menulist>
                     </row>
@@ -901,7 +925,7 @@
   <command id="helpCmd" label="&foxyproxy.help.label;"
     accesskey="&foxyproxy.help.accesskey;"
     tooltiptext="&foxyproxy.help.tooltip;"
-    oncommand="fpc.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/quickstart.html');" />
+    oncommand="fpc.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/help.html');" />
 
   <command id="torWizardCmd" label="&foxyproxy.tor.label;"
     accesskey="&foxyproxy.tor.accesskey;"

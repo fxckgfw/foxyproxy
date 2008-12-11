@@ -227,10 +227,14 @@ biesi>	passing it the appropriate proxyinfo
 
   refreshLocalIPs : function() {
     this.ips = []; // reset
-    var s = CC['@mozilla.org/network/dns-service;1'].getService(CI.nsIDNSService),
-      r = s.resolve(s.myHostName, true);
-    for (var i=0; r.hasMore() && (this.ips[i] = r.getNextAddrAsString()); i++);
-    this.calculateIPFilteredList();    
+    var s = CC['@mozilla.org/network/dns-service;1'].getService(CI.nsIDNSService);
+    try {
+      // Next line can throw 0x804b001e (NS_ERROR_UNKNOWN_HOST) so we try/catch
+      var r = s.resolve(s.myHostName, true);
+      for (var i=0; r.hasMore() && (this.ips[i] = r.getNextAddrAsString()); i++);
+      this.calculateIPFilteredList();       
+    }
+    catch (e) {dump(s.myHostName);}   
   },
   
   calculateIPFilteredList : function() {
@@ -795,7 +799,7 @@ biesi>	passing it the appropriate proxyinfo
     },
     
     /**
-     * Calculate the list of disabled proxies due to current IP addresses
+     * Calculate the list of enabled/disabled proxies due to current IP addresses
      */
     calculateIPFilteredList : function(ips) {	
       for (var i=0; i<this.list.length; i++) {
@@ -803,10 +807,10 @@ biesi>	passing it the appropriate proxyinfo
         var idx = m(p);
         p.ipMatch = idx == -1 ? null : p.ippatterns[idx];
         p.noUseDueToIP = p.ipMatch == null || p.ipMatch.isBlackList;
-        dump("Proxy " + p.name + " has been " + (p.noUseDueToIP ? "disabled" : "enabled") + " and matching ip pattern is " + (p.ipMatch == null ? "null" : p.ipMatch.pattern));
-        if (p.ipMatch)
-        	dump(" which is " + (p.ipMatch.isBlackList ? "blacklisted" : "whitelisted"));
-        dump("\n");
+        //dump("Proxy " + p.name + " has been " + (p.noUseDueToIP ? "disabled" : "enabled") + " and matching ip pattern is " + (p.ipMatch == null ? "null" : p.ipMatch.pattern));
+        //if (p.ipMatch)
+        	//dump(" which is " + (p.ipMatch.isBlackList ? "blacklisted" : "whitelisted"));
+        //dump("\n");
       }
      /**
       * Check if any white patterns already match one of the ips. As a shortcut,

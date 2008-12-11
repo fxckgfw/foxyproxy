@@ -120,7 +120,6 @@ Proxy.prototype = {
       resolver = xpe.createNSResolver(node);
     readPatterns("/foxyproxy/proxies/proxy[@id=" + this.id + "]/matches/match", this.matches);
     var upgrade = node.getElementsByTagName("ippatterns").length == 0;
-    dump("ippatterns count is " + node.getElementsByTagName("ippatterns").length + "\n");
     if (upgrade) {
       dump("Upgrade from regular FoxyProxy\n");
       this.ippatterns[0] = new Match(true, this.fp.getMessage("all"), "*");

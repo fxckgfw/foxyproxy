@@ -541,5 +541,5 @@
 <!ENTITY foxyproxy.ip.pattern.match "Pattern matches one or more or current local IP addresses">
 <!ENTITY foxyproxy.ip.pattern.no.match "Pattern doesn't match any current local IP address">
 
-<!ENTITY foxyproxy.ip.current.local.refresh.label "Refresh Local IP Address List">
-<!ENTITY foxyproxy.ip.current.local.refresh.accesskey "R">
+<!ENTITY foxyproxy.refreshlocalips "Refresh local IP addresses">
+<!ENTITY foxyproxy.refreshlocalips.accesskey "R">

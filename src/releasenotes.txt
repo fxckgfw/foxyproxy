@@ -1,0 +1,8 @@
+2.9
+===
+* Fixed bug on linux (OS/X?) whereby right-clicking on toolbar didn't show context-menu if that was the selected option in
+  Global Settings
+* More options for QuickAdd activation (toolbar, statusbar, context-menu)  
+* Options for "Refresh Local IPs" (toolbar, statusbar, context-menu)
+* Changed help menu item in options dialog and context menus from http://foxyproxy.mozdev.org/quickstart.html to http://foxyproxy.mozdev.org/help.html
+* Improved some icons for dark firefox themes (e.g., nasa theme) -- Thanks, Laban Robokoff.  

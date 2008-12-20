@@ -19,8 +19,16 @@ function onLoad() {
   pattern.value = p.pattern;
   fp = CC["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;  
   fpc = CC["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject;
+  var overlay = fpc.getMostRecentWindow().foxyproxy;
   matchStatus = document.getElementById("match-status"); 
   refreshLocalIPs();
+  if (fp.ips.length == 0)
+    window.setTimeout('overlay.alert(this, fp.getMessage("noLocalIPs"))', 0);
+  else if (fp.ips.length == 1 && fp.ips[0] == "127.0.0.1")
+    window.setTimeout(function() {
+      if (overlay.ask(this, fp.getMessage("localhostOnly")))
+        fpc.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/faq.html#localhostOnly');
+    }, 0);
   sizeToContent();
 }
 

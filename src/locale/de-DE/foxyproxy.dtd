@@ -198,7 +198,7 @@
 <!ENTITY foxyproxy.random.settings.accesskey "Z">
 <!ENTITY foxyproxy.random.settings.tooltip "Einstellungen für die zufällige Proxy-Auswahl">
 <!ENTITY foxyproxy.tab.autoadd.label "AutoAdd">
-<!ENTITY foxyproxy.tab.autoadd.accesskey "A">
+<!ENTITY foxyproxy.tab.autoadd.accesskey "u">
 <!ENTITY foxyproxy.tab.autoadd.tooltip "Einstellungen für AutoAdd verwalten">
 <!ENTITY foxyproxy.autoadd.description "Einige Proxies sperren den Zugriff auf einige Internetseiten. Um dies zu umgehen, geben Sie ein Suchmuster an, das blockierte Websites akzeptiert. Wenn das Suchmuster auf einer Webseite gefunden wird, wird ein URL-Muster für die URL dieser Webseite automatisch einem Proxy zugeordnet und die Seite optional neu geladen. Dies erspart es, blockierte Webseiten explizit vorgeben zu müssen.">
 <!ENTITY foxyproxy.autoadd.pattern.label "URL-Muster zur Identifizierung blockierter Websites">
@@ -394,7 +394,7 @@
 <!ENTITY foxyproxy.support "Unterstützung">
 <!ENTITY foxyproxy.credits "Danksagungen">
 <!ENTITY foxyproxy.please.donate.label "Bitte spenden Sie">
-<!ENTITY foxyproxy.please.donate.accesskey "S">
+<!ENTITY foxyproxy.please.donate.accesskey "B">
 <!ENTITY foxyproxy.keep.free "Erhalten Sie FoxyProxy kostenlos">
 <!ENTITY foxyproxy.donation.list.label "Spendenliste">
-<!ENTITY foxyproxy.donation.list.accesskey "L">
+<!ENTITY foxyproxy.donation.list.accesskey "i">

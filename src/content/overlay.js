@@ -258,12 +258,16 @@ var foxyproxy = {
   },
 
   onQuickAddDialog : function(evt) {
-		if (this.fp.mode != "disabled" && this.fp.quickadd.enabled) {
+	if (this.fp.mode != "disabled") {
+		  if (!this.fp.quickadd.enabled) {
+		    this.fp.notifier.alert(this.fp.getMessage("foxyproxy"), this.fp.getMessage("quickadd.disabled"));
+		    return;
+		  }
 		  if (!evt.view || !evt.view.content || !evt.view.content.document || !evt.view.content.document.location) {
-		  	fp.notifier.alert(fp.getMessage("foxyproxy"), fp.getMessage("quickadd.nourl"));
+		  	this.fp.notifier.alert(this.fp.getMessage("foxyproxy"), this.fp.getMessage("quickadd.nourl"));
 		  	return;
 		  }
-      this.fp.quickadd.onQuickAdd(window, evt.view.content.document);
+    this.fp.quickadd.onQuickAdd(window, evt.view.content.document);
     }
   },
   

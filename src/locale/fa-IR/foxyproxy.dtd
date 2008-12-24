@@ -364,13 +364,13 @@
 <!ENTITY foxyproxy.includeincycle.accesskey "I">
 <!ENTITY foxyproxy.includeincycle.tooltip "در نظر گرفتن این پروکسی هنگام کلیک کردن روی نوار ابزار/وضعیت">
 <!ENTITY foxyproxy.changes.msg1 "کجا هستند؟ SOCKS و HTTP, SSL, FTP, Gopher راهنما!تنظیمات">
-<!ENTITY foxyproxy.newGUI.popup.height "270px">
+<!ENTITY foxyproxy.newGUI.popup.height "280px">
 <!ENTITY foxyproxy.newGUI.popup.width "400px">
 <!ENTITY foxyproxy.newGUI1.label "The old FoxyProxy Proxy Settings screen was based on and nearly identical to Firefox&apos;s Connection Settings dialog, which in turn was nearly identical to the Proxy Settings in the ancient Mosaic 2.1.1 browser from 1996. The problem with all of these screens is their limited ability to route traffic by protocol. 21st century browsers like Firefox handle many more protocols than HTTP, SSL, FTP, and GOPHER. Clearly, these old screens would be unwieldy if they attempted to include every possible protocol.">
 <!ENTITY foxyproxy.newGUI2.label "Since FoxyProxy already enables traffic routing by protocol with wildcard and regular expression patterns, the listing of protocols on this screen is unnecessary. As of version 2.5, FoxyProxy has removed this protocol list from the Proxy Settings GUI. However, this does not reduce functionality. It makes for a simpler interface. If you need to route traffic by protocol, you should define whitelist and blacklist patterns with careful attention to the scheme/protocol portion of the pattern (e.g., ftp://*.yahoo.com/*, *://leahscape.com/*, etc.)">
 <!ENTITY foxyproxy.newGUI4.label "برای اطلاعات بیشتر کلیک کنید">
-<!ENTITY foxyproxy.error.msg.label "پیغام خطا">
-<!ENTITY foxyproxy.pac.result.label "PAC نتایج">
+<!ENTITY foxyproxy.error.msg.label "Error Message">
+<!ENTITY foxyproxy.pac.result.label "PAC Result">
 <!ENTITY foxyproxy.torwiz.width "660">
 <!ENTITY foxyproxy.torwiz.height "375">
 <!ENTITY foxyproxy.casesensitive.label "Case sensitive">

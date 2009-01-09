@@ -65,12 +65,6 @@ function _initSettings() {
   toggleStatusBarText(foxyproxy.statusbar.textEnabled);  
 }
 
-function onUsingPFF(usingPFF) {
-  document.getElementById("settingsURLBtn").disabled = usingPFF;
-	foxyproxy.setSettingsURI(usingPFF?foxyproxy.PFF:foxyproxy.getDefaultPath());
-  _initSettings();  
-}
-
 function _updateLogView() {
 	saveLogCmd.setAttribute("disabled", foxyproxy.logg.length == 0);
 	clearLogCmd.setAttribute("disabled", foxyproxy.logg.length == 0);	
@@ -173,43 +167,36 @@ function onSettingsURLBtn() {
   fp.init(window, foxyproxy.getMessage("file.select"), nsIFilePicker.modeSave);
   fp.defaultString = "foxyproxy.xml";
   fp.appendFilters(nsIFilePicker.filterAll|nsIFilePicker.filterXML);
+  fp.displayDirectory = foxyproxy.getSettingsURI(CI.nsIFile);
   if (fp.show() != nsIFilePicker.returnCancel) {
-  	foxyproxy.setSettingsURI(fp.file);
+    if (!foxyproxy.getDefaultPath().equals(fp.file) &&
+      !overlay.ask(this, foxyproxy.getMessage("settings.warning"), null, null, "read more about it")) {
+        return;
+    }
+    foxyproxy.setSettingsURI(fp.file);
     _initSettings();
   }
 }
 
-function isUsingPortableFirefox() {
-  try {
-    return foxyproxy.getPrefsService("extensions.foxyproxy.").getCharPref("settings") == foxyproxy.PFF;
-  }
-  catch(e) {
-    overlay.alert(this, foxyproxy.getMessage("preferences.read.error.warning", ["extensions.foxyproxy.settings", "isUsingPortableFirefox()"]) + " " +      
-      foxyproxy.getMessage("preferences.read.error.fatal"));
-  }
-}
-
 /* Contains items which can be updated via toolbar/statusbar/menubar/context-menu as well as the options dialog,
-	 so we don't include these in onLoad() or init() */
+so we don't include these in onLoad() or init() */
 function _updateView(writeSettings, updateLogView) {
   document.getElementById("dnsEnabled").checked = foxyproxy.proxyDNS;
   document.getElementById("enableLogging").checked = foxyproxy.logging;
   //document.getElementById("randomIncludeDirect").checked = foxyproxy.random.includeDirect;
   //document.getElementById("randomIncludeDisabled").checked = foxyproxy.random.includeDisabled;
-  document.getElementById("usingPFF").checked =
-    document.getElementById("settingsURLBtn").disabled = isUsingPortableFirefox();
   
   _updateSuperAdd(foxyproxy.autoadd, "autoAdd");
-  _updateSuperAdd(foxyproxy.quickadd, "quickAdd");  
+  _updateSuperAdd(foxyproxy.quickadd, "quickAdd");
   document.getElementById("quickAddNotifyWhenCanceled").checked = foxyproxy.quickadd.notifyWhenCanceled; // only exists for QuickAdd
-        
+
   function _updateSuperAdd(saObj, str) {
     var temp = saObj.enabled;
     document.getElementById(str + "Enabled").checked = temp;
     document.getElementById(str + "Broadcaster").hidden = !temp;
     document.getElementById(str + "Reload").checked = saObj.reload;
-    document.getElementById(str + "Notify").checked = saObj.notify;   
-    document.getElementById(str + "Prompt").checked = saObj.prompt;  
+    document.getElementById(str + "Notify").checked = saObj.notify;
+    document.getElementById(str + "Prompt").checked = saObj.prompt;
   }
   
   document.getElementById("toolsMenuEnabled").checked = foxyproxy.toolsMenu;

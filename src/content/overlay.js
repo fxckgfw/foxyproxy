@@ -321,15 +321,20 @@ var foxyproxy = {
    * Function for displaying dialog box with yes/no buttons (not OK/Cancel buttons),
    * or any arbitrary button labels.
    */
-  ask : function(parent, text, btn1Text, btn2Text) {
+  ask : function(parent, text, btn1Text, btn2Text, btn3Text) {
     var prompts = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
       .getService(Components.interfaces.nsIPromptService);
     !btn1Text && (btn1Text = this.fp.getMessage("yes"));
     !btn2Text && (btn2Text = this.fp.getMessage("no"));
-    return prompts.confirmEx(parent, this.fp.getMessage("foxyproxy"), text,
-      prompts.BUTTON_TITLE_IS_STRING * prompts.BUTTON_POS_0 +
-      prompts.BUTTON_TITLE_IS_STRING * prompts.BUTTON_POS_1,
-      btn1Text, btn2Text, null, null, {}) == 0; // 0 means first button ("yes") was pressed
+    return btn3Text ? prompts.confirmEx(parent, this.fp.getMessage("foxyproxy"), text,
+        prompts.BUTTON_TITLE_IS_STRING * prompts.BUTTON_POS_0 +
+        prompts.BUTTON_TITLE_IS_STRING * prompts.BUTTON_POS_1 +
+        prompts.BUTTON_TITLE_IS_STRING * prompts.BUTTON_POS_2,
+        btn1Text, btn2Text, btn3Text, null, {}) : // 0 means first button ("yes") was pressed
+      prompts.confirmEx(parent, this.fp.getMessage("foxyproxy"), text,
+        prompts.BUTTON_TITLE_IS_STRING * prompts.BUTTON_POS_0 +
+        prompts.BUTTON_TITLE_IS_STRING * prompts.BUTTON_POS_1,
+        btn1Text, btn2Text, null, null, {}) == 0; // 0 means first button ("yes") was pressed
   },
 
   checkPageLoad : function() {

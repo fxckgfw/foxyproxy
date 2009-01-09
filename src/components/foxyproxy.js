@@ -1,18 +1,16 @@
 /**
-  FoxyProxy
-  Copyright (C) 2006-2008 Eric H. Jung and LeahScape, Inc.
-  http://foxyproxy.mozdev.org/
-  eric.jung@yahoo.com
-
-  This source code is released under the GPL license,
-  available in the LICENSE file at the root of this installation
-  and also online at http://www.gnu.org/licenses/gpl.txt
-**/
+ * FoxyProxy Copyright (C) 2006-2008 Eric H. Jung and LeahScape, Inc.
+ * http://foxyproxy.mozdev.org/ eric.jung@yahoo.com
+ * 
+ * This source code is released under the GPL license, available in the LICENSE
+ * file at the root of this installation and also online at
+ * http://www.gnu.org/licenses/gpl.txt
+ */
 
 // See http://forums.mozillazine.org/viewtopic.php?t=308369
 
 // Don't const the next line anymore because of the generic reg code
-//dump("foxyproxy.js\n");
+// dump("foxyproxy.js\n");
 var CI = Components.interfaces, CC = Components.classes, CR = Components.results, gFP;
 
 var dumpp = function(e) {
@@ -71,7 +69,10 @@ var gLoggEntryFactory = function(proxy, aMatch, uri, type, errMsg) {
 		bool.data = subj;
 		var d;
 		if (typeof(data) == "string" || typeof(data) == "number") {
-      /* it's a number when this._mode is 3rd arg, and FoxyProxy is set to a proxy for all URLs */
+      /*
+       * it's a number when this._mode is 3rd arg, and FoxyProxy is set to a
+       * proxy for all URLs
+       */
 	    var	d = CC["@mozilla.org/supports-string;1"].createInstance(CI.nsISupportsString);
 			d.data = "" + data; // force to a string
 	  }
@@ -103,16 +104,7 @@ loadModuleScript("superadd.js");
 
 // l is for lulu...
 function foxyproxy() {
-  try {
-    SuperAdd.prototype.fp = gFP = this.wrappedJSObject = this;  
-    this._loadStrings();
-    this.autoadd = new AutoAdd(this.getMessage("autoadd.pattern.label"));
-    this.quickadd = new QuickAdd(this.getMessage("quickadd.pattern.label"));
-    LoggEntry.prototype.init();
-  }
-  catch (e) {
-    dumpp(e);
-  }  
+  SuperAdd.prototype.fp = gFP = this.wrappedJSObject = this; 
 }
 foxyproxy.prototype = {
 	PFF : " ",
@@ -128,69 +120,87 @@ foxyproxy.prototype = {
   quickadd : null,
   ips : null,
 
-	QueryInterface: function(aIID) {
-		if (!aIID.equals(CI.nsISupports) && !aIID.equals(CI.nsIObserver))
-			throw CR.NS_ERROR_NO_INTERFACE;
-		return this;
-	},
+  QueryInterface: function(aIID) {
+    if (!aIID.equals(CI.nsISupports) && !aIID.equals(CI.nsIObserver))
+        throw CR.NS_ERROR_NO_INTERFACE;
+    return this;
+},
 
-	observe: function(subj, topic, data) {
-		switch(topic) {
-      case "profile-after-change":
-        try {
-          this.loadSettings();
-          this.refreshLocalIPs();     
-        }        
-        catch (e) {
-          dump("observe: " + e + "\n" + e.stack + "\n");
-        }   
-        break;
-			case "app-startup":
-				gObsSvc.addObserver(this, "quit-application", false);
-				gObsSvc.addObserver(this, "domwindowclosed", false);
-        gObsSvc.addObserver(this, "profile-after-change", false);
-				//gObsSvc.addObserver(this, "http-on-modify-request", false);
-				break;
-			case "domwindowclosed":
-			  // Did the last browser window close? It could be that the DOM inspector, JS console,
-			  // or the non-last browser window just closed. In that case, don't close FoxyProxy.
-		    var wm = CC["@mozilla.org/appshell/window-mediator;1"].getService(CI.nsIWindowMediator);
-		    var win = wm.getMostRecentWindow("navigator:browser") || wm.getMostRecentWindow("Songbird:Main");
-		    if (!win) {
-				  this.closeAppWindows("foxyproxy", wm);
-				  this.closeAppWindows("foxyproxy-superadd", wm);
-				  this.closeAppWindows("foxyproxy-options", wm);
-				}
-				break;
-			case "quit-application": // Called whether or not FoxyProxy options dialog is open when app is closing
-			  gObsSvc.removeObserver(this, "quit-application");
-			  gObsSvc.removeObserver(this, "domwindowclosed");
-        gObsSvc.removeObserver(this, "profile-after-change");
-			  break;
-			/*case "quit-application-granted":*/ // Not called if FoxyProxy options dialog is open when app is closing
-			//case "http-on-modify-request":
-				//dump("subj: " + aSubject + "\n");
-				//dump("topic: " + aTopic + "\n");
-				//dump(" data: " + aData + "\n");
-				//var hChannel = subj.QueryInterface(Components.interfaces.nsIHttpChannel);
-				//var tab = this.moo(hChannel);
-//				if (!tab) dump("tab not found for " + hChannel.name + "\n");
-				//dump("tab " + (tab?"found":"not found") + "\n");
-				//break;
-/* proxy-per-tab ideas:
-biesi>	what you could actually do is this:
-	<biesi>	observe http-on-modify-request
-	<biesi>	there, you can get the notificationCallbacks and the window
-	<biesi>	cancel the request if you want a proxy (hopefully that works)
-	<biesi>	then, create a new channel for the original URI and post data etc, using nsIProxiedProtocolHandler for the original scheme
-biesi>	passing it the appropriate proxyinfo
-	<grimholtz>	ok but how does the response get into the right window?
-	<biesi>	ah right
-	<biesi>	forgot to mention that part
-	<biesi>	with help of nsIURILoader::openURI*/
+  init : function() {
+    try {
+      this._loadStrings();
+      this.autoadd = new AutoAdd(this.getMessage("autoadd.pattern.label"));
+      this.quickadd = new QuickAdd(this.getMessage("quickadd.pattern.label"));
+      LoggEntry.prototype.init();
+    }
+    catch (e) {
+      dumpp(e);
+    }     
+  },
 
-		}
-	},
+  observe: function(subj, topic, data) {
+      switch(topic) {
+    case "profile-after-change":
+      try {
+        this.init();
+        this.loadSettings();
+      }
+      catch (e) {
+        dump("*** profile-after-change: " + e + " \n\n\n");dump ("\n" + e.stack + "\n")
+      }
+      break;
+          case "app-startup":
+              gObsSvc.addObserver(this, "quit-application", false);
+              gObsSvc.addObserver(this, "domwindowclosed", false);
+      gObsSvc.addObserver(this, "profile-after-change", false);
+              // gObsSvc.addObserver(this, "http-on-modify-request", false);
+              break;
+          case "domwindowclosed":
+            // Did the last browser window close? It could be that the DOM
+            // inspector, JS console,
+            // or the non-last browser window just closed. In that case, don't
+            // close FoxyProxy.
+          var wm = CC["@mozilla.org/appshell/window-mediator;1"].getService(CI.nsIWindowMediator);
+          var win = wm.getMostRecentWindow("navigator:browser") || wm.getMostRecentWindow("Songbird:Main");
+          if (!win) {
+                this.closeAppWindows("foxyproxy", wm);
+                this.closeAppWindows("foxyproxy-superadd", wm);
+                this.closeAppWindows("foxyproxy-options", wm);
+              }
+              break;
+          case "quit-application": // Called whether or not FoxyProxy options
+                                    // dialog is open when app is closing
+            gObsSvc.removeObserver(this, "quit-application");
+            gObsSvc.removeObserver(this, "domwindowclosed");
+      gObsSvc.removeObserver(this, "profile-after-change");
+            break;
+          /* case "quit-application-granted": */ // Not called if FoxyProxy
+                                                // options dialog is open when
+                                                // app is closing
+          // case "http-on-modify-request":
+              // dump("subj: " + aSubject + "\n");
+              // dump("topic: " + aTopic + "\n");
+              // dump(" data: " + aData + "\n");
+              // var hChannel =
+              // subj.QueryInterface(Components.interfaces.nsIHttpChannel);
+              // var tab = this.moo(hChannel);
+  // if (!tab) dump("tab not found for " + hChannel.name + "\n");
+              // dump("tab " + (tab?"found":"not found") + "\n");
+              // break;
+  /*
+   * proxy-per-tab ideas: biesi> what you could actually do is this: <biesi>
+   * observe http-on-modify-request <biesi> there, you can get the
+   * notificationCallbacks and the window <biesi> cancel the request if you want
+   * a proxy (hopefully that works) <biesi> then, create a new channel for the
+   * original URI and post data etc, using nsIProxiedProtocolHandler for the
+   * original scheme biesi> passing it the appropriate proxyinfo <grimholtz> ok
+   * but how does the response get into the right window? <biesi> ah right
+   * <biesi> forgot to mention that part <biesi> with help of
+   * nsIURILoader::openURI
+   */
+  
+      }
+  },
 
 	_loadStrings: function() {
 	  var req = CC["@mozilla.org/xmlextras/xmlhttprequest;1"].
@@ -218,8 +228,8 @@ biesi>	passing it the appropriate proxyinfo
     var p = CC["@mozilla.org/xmlextras/domparser;1"].createInstance(CI.nsIDOMParser);
     var doc = p.parseFromStream(s, null, f.fileSize, "text/xml");
     if (!doc || doc.documentElement.nodeName == "parsererror") {
-      this.alert(null, this.getMessage("settings.error.2", [settingsURI, settingsURI]));
-      this.writeSettings(settingsURI);
+      this.alert(null, this.getMessage("settings.error.2", [f.path, f.path]));
+      this.writeSettings(f);
     }
     else
       this.fromDOM(doc, doc.documentElement);
@@ -243,8 +253,10 @@ biesi>	passing it the appropriate proxyinfo
   
   get mode() { return this._mode; },
   setMode : function(mode, writeSettings, init) {
-	  // Possible modes are: patterns, _proxy_id_ (for "Use proxy xyz for all URLs), random, roundrobin, disabled, previous.
-    // Note that "previous" isn't used anywhere but this method: it is translated into the previous mode then broadcasted.
+	  // Possible modes are: patterns, _proxy_id_ (for "Use proxy xyz for all
+      // URLs), random, roundrobin, disabled, previous.
+    // Note that "previous" isn't used anywhere but this method: it is
+    // translated into the previous mode then broadcasted.
     if (mode == "previous") {
       if (this.mode == "disabled")
         mode = this.previousMode;
@@ -253,7 +265,9 @@ biesi>	passing it the appropriate proxyinfo
     }
     this._previousMode = this._mode;
     this._mode = mode;
-	  this._selectedProxy = null; // todo: really shouldn't do this in case something tries to load right after this instruction
+	  this._selectedProxy = null; // todo: really shouldn't do this in case
+                                  // something tries to load right after this
+                                  // instruction
     for (var i=0,len=this.proxies.length; i<len; i++) {
       var proxy = this.proxies.item(i);
       if (mode == proxy.id) {
@@ -271,38 +285,46 @@ biesi>	passing it the appropriate proxyinfo
   },
 
   loadDefaultPAC : function() {
-    // User has disabled FoxyProxy, so Firefox network.proxy.* preferences will be used.
-    // If Firefox is configured to use a PAC file, we need to force that PAC file to load.
+    // User has disabled FoxyProxy, so Firefox network.proxy.* preferences will
+    // be used.
+    // If Firefox is configured to use a PAC file, we need to force that PAC
+    // file to load.
     // Firefox won't load it automatically except on startup and after
-    // network.proxy.autoconfig_retry_* seconds. Rather than make the user wait for that,
-    //  we load the PAC file now.
+    // network.proxy.autoconfig_retry_* seconds. Rather than make the user wait
+    // for that,
+    // we load the PAC file now.
     var networkPrefs = this.getPrefsService("network.proxy."), usingPAC;
     try {
-      usingPAC = networkPrefs.getIntPref("type") == 2; // isn't there a const for this?
+      usingPAC = networkPrefs.getIntPref("type") == 2; // isn't there a const
+                                                        // for this?
     }
     catch(e) {
       dump("FoxyProxy: network.proxy.type doesn't exist or can't be read\n");
     }
     if (usingPAC) {
-      // Don't use nsPIProtocolProxyService. From its comments: "[nsPIProtocolProxyService] exists purely as a
-      // hack to support the configureFromPAC method used by the preference panels in the various apps. Those
-      // apps need to be taught to just use the preferences API to "reload" the PAC file. Then, at that point,
+      // Don't use nsPIProtocolProxyService. From its comments:
+      // "[nsPIProtocolProxyService] exists purely as a
+      // hack to support the configureFromPAC method used by the preference
+      // panels in the various apps. Those
+      // apps need to be taught to just use the preferences API to "reload" the
+      // PAC file. Then, at that point,
       // we can eliminate this interface completely."
 
       // var pacURL = networkPrefs.getCharPref("autoconfig_url");
       // var pps = CC["@mozilla.org/network/protocol-proxy-service;1"]
-        //.getService(Components.interfaces.nsPIProtocolProxyService);
+        // .getService(Components.interfaces.nsPIProtocolProxyService);
       // pps.configureFromPAC(pacURL);
 
-      // Instead, change the prefs--the proxy service is observing and will reload the PAC
+      // Instead, change the prefs--the proxy service is observing and will
+      // reload the PAC
       networkPrefs.setIntPref("type", 1);
       networkPrefs.setIntPref("type", 2);
     }
   },
 
   /**
-   * This assumes mode order is:
-   * patterns, proxy1, ..., lastresort, random, roundrobin, disabled
+   * This assumes mode order is: patterns, proxy1, ..., lastresort, random,
+   * roundrobin, disabled
    */
 	cycleMode : function() {
 		var self=this;
@@ -343,7 +365,10 @@ biesi>	passing it the appropriate proxyinfo
   	}
 
     try {
-      if (uri.scheme == "feed") return; /* feed schemes handled internally by browser */
+      if (uri.scheme == "feed") return; /*
+                                         * feed schemes handled internally by
+                                         * browser
+                                         */
     	var spec = uri.spec;
       var mp = this.applyMode(spec);
       var ret = mp.proxy.getProxy(spec, uri.host, mp);
@@ -359,59 +384,53 @@ biesi>	passing it the appropriate proxyinfo
     }
   },
 
-	getPrefsService : function(str) {
+  getPrefsService : function(str) {
     return CC["@mozilla.org/preferences-service;1"].
       getService(CI.nsIPrefService).getBranch(str);
   },
 
-  // Returns settings URI in desired form
+  clearSettingsPref : function(p) {
+    p = p || this.getPrefsService("extensions.foxyproxy.");
+    p.clearUserPref("settings");
+  },
+
+  // Returns settings URI in desired form. Creates the file if it doesn't exist.
   getSettingsURI : function(type) {
-    var o = null;
     try {
-      o = this.getPrefsService("extensions.foxyproxy.").getCharPref("settings");
-    }
-    catch(e) {
-      dump("FoxyProxy: Unable to read preference extensions.foxyproxy.settings in getSettingsURI(). Checking for new installation.\n");
-      try {
-	    // The first time FP runs, "firstrun" does not exist (i.e., null || false). Subsequent times, "firstrun" == true.
-	    // In other words, this pref is improperly named for its purpose. Better name is "notfirstrun".      
-        var f = this.getPrefsService("extensions.foxyproxy.").getBoolPref("firstrun");
-        if (f)
-          dump("First run of FoxyProxy\n");          
-        else {
-          this.alert(null, this.getMessage("preferences.read.error.warning", ["extensions.foxyproxy.settings", "getSettingsURI()"]) + " " + 
-            this.getMessage("preferences.read.error.fatal"));
-          // TODO: prompt user for path to old file or create new
-        }
-      }
-      catch(ex) {}      
-    }
-    if (o) {
-      o == this.PFF && (o = this.getDefaultPath());
-      var file = this.transformer(o, CI.nsIFile);
-      // Does it exist?
-      if (!file.exists()) {
-        this.writeSettings(file);
+      var p = this.getPrefsService("extensions.foxyproxy.");
+      var o = p.getCharPref("settings");
+      if (o == this.PFF) {
+        o = this.getDefaultPath();
+        // Remove the pref since we don't use it anymore
+        // unless it points outside the profile
+        this.clearSettingsPref(p);
       }
     }
-    else {
-      // Default settings file/path
-  	  o = this.setSettingsURI(this.getDefaultPath());
-    }
+    catch(e) {}
+    if (!o)
+      o = this.getDefaultPath();
+    var file = this.transformer(o, CI.nsIFile);
+    // Does it exist?
+    if (!file.exists())
+      this.writeSettings(file);  
     return this.transformer(o, type);
   },
 
   setSettingsURI : function(o) {
+    var file = this.transformer(o, CI.nsIFile);
+    if (this.getDefaultPath().equals(file)) {
+      this.clearSettingsPref();
+      return;
+    }
     var o2 = this.transformer(o, "uri-string");
     try {
-  	  this.writeSettings(o2);
-  	  // Only update the preference if writeSettings() succeeded
-      this.getPrefsService("extensions.foxyproxy.").setCharPref("settings", o==this.PFF ? this.PFF : o2);
+      this.writeSettings(o2);
+      // Only update the preference if writeSettings() succeeded
+      this.getPrefsService("extensions.foxyproxy.").setCharPref("settings", o2);
     }
     catch(e) {
       this.alert(this, this.getMessage("error") + ":\n\n" + e);
     }
-    return o==this.PFF ? this.PFF : o2;
   },
 
   alert : function(wnd, str) {
@@ -420,28 +439,31 @@ biesi>	passing it the appropriate proxyinfo
   },
 
   getDefaultPath : function() {
-    //var file = CC["@mozilla.org/file/local;1"].createInstance(CI.nsILocalFile);
-    //var dir = CC["@mozilla.org/file/directory_service;1"].getService(CI.nsIProperties).get("ProfD", CI.nsILocalFile);
+    // var file =
+    // CC["@mozilla.org/file/local;1"].createInstance(CI.nsILocalFile);
+    // var dir =
+    // CC["@mozilla.org/file/directory_service;1"].getService(CI.nsIProperties).get("ProfD",
+    // CI.nsILocalFile);
     var f = settingsDir.clone();
     f.append("foxyproxy.xml");
-    //dump("settings file: " + f.path + "\n");
+    // dump("settings file: " + f.path + "\n");
     return f;
-    //file.initWithPath(dir.path);
-    //file.appendRelativePath("foxyproxy.xml");
-    //return file;
+    // file.initWithPath(dir.path);
+    // file.appendRelativePath("foxyproxy.xml");
+    // return file;
   },
 
   // Convert |o| from:
-  //   - string of the form c:\path\eric.txt
-  //   - string of the form file:///c:/path/eric.txt
-  //   - nsIFile
-  //   - nsIURI
-  //   - null: implies use of PFF
+  // - string of the form c:\path\eric.txt
+  // - string of the form file:///c:/path/eric.txt
+  // - nsIFile
+  // - nsIURI
+  // - null: implies use of PFF
   // to any of the other three types. Valid values for |desiredType|:
-  //   - "uri-string"
-  //   - "file-string"
-  //   - Components.interfaces.nsIFile
-  //   - Components.interfaces.nsIURI
+  // - "uri-string"
+  // - "file-string"
+  // - Components.interfaces.nsIFile
+  // - Components.interfaces.nsIURI
   transformer : function(o, desiredType) {
     o == this.PFF && (o = this.getDefaultPath());
     const handler = CC["@mozilla.org/network/io-service;1"].
@@ -506,17 +528,8 @@ biesi>	passing it the appropriate proxyinfo
       //throw new Error("e");
     //}
     //catch (e) {catch (e) {dump("*** " + e + " \n\n\n");dump ("\n" + e.stack + "\n");} }    
-    if (!o) {
-      try {
-        o = gFP.getPrefsService("extensions.foxyproxy.").getCharPref("settings");
-      }
-      catch(e) {
-        this.alert(null, this.getMessage("preferences.read.error.warning", ["extensions.foxyproxy.settings", "writeSettings()"]));
-        o = this.getDefaultPath();
-      }
-    }
     try {
-      var o2 = gFP.transformer(o, CI.nsIFile);
+      var o2 = o ? gFP.transformer(o, CI.nsIFile) : gFP.getSettingsURI(CI.nsIFile);
       var foStream = CC["@mozilla.org/network/file-output-stream;1"].
         createInstance(CI.nsIFileOutputStream);
       foStream.init(o2, 0x02 | 0x08 | 0x20, 0664, 0); // write, create, truncate
@@ -583,8 +596,9 @@ biesi>	passing it the appropriate proxyinfo
     var loggEntry;
     switch (this.mode) {
       case "random":
-				//loggEntry = this.proxies.getRandom(spec, this.random._includeDirect, this.random._includeDisabled);
-        //break;
+				// loggEntry = this.proxies.getRandom(spec,
+                // this.random._includeDirect, this.random._includeDisabled);
+        // break;
       case "patterns":
 	      loggEntry = this.proxies.getMatches(null, spec);
         break;
@@ -608,8 +622,17 @@ biesi>	passing it the appropriate proxyinfo
 		this.logg.fromDOM(doc);
 		this._proxyDNS = gGetSafeAttrB(node, "proxyDNS", false);
 		this._toolsMenu = gGetSafeAttrB(node, "toolsMenu", true); // new for 2.0
-		this._contextMenu = gGetSafeAttrB(node, "contextMenu", true); // new for 2.0
-		this._advancedMenus = gGetSafeAttrB(node, "advancedMenus", false); // new for 2.3--default to false if it doesn't exist
+		this._contextMenu = gGetSafeAttrB(node, "contextMenu", true); // new for
+                                                                      // 2.0
+		this._advancedMenus = gGetSafeAttrB(node, "advancedMenus", false); // new
+                                                                            // for
+                                                                            // 2.3--default
+                                                                            // to
+                                                                            // false
+                                                                            // if
+                                                                            // it
+                                                                            // doesn't
+                                                                            // exist
 		this._selectedTabIndex = gGetSafeAttr(node, "selectedTabIndex", "0");
 		var mode = node.hasAttribute("enabledState") ?
 			(node.getAttribute("enabledState") == "" ? "disabled" : node.getAttribute("enabledState")) :
@@ -618,7 +641,8 @@ biesi>	passing it the appropriate proxyinfo
 		this.proxies.fromDOM(mode, doc);
 		this.setMode(mode, false, true);
 		this.random.fromDOM(doc); 
-    this.quickadd.fromDOM(doc); // KEEP THIS BEFORE this.autoadd.fromDOM() else fromDOM() is overwritten!?
+    this.quickadd.fromDOM(doc); // KEEP THIS BEFORE this.autoadd.fromDOM() else
+                                // fromDOM() is overwritten!?
     this.autoadd.fromDOM(doc);    
     this.warnings.fromDOM(doc);
 	},
@@ -645,7 +669,7 @@ biesi>	passing it the appropriate proxyinfo
 	},
 
 
-  ///////////////// random \\\\\\\\\\\\\\\\\\\\\\
+  // /////////////// random \\\\\\\\\\\\\\\\\\\\\\
 
 	random : {
   	_includeDirect : false,
@@ -677,14 +701,14 @@ biesi>	passing it the appropriate proxyinfo
 		}
 	},
 
-  ///////////////// proxies \\\\\\\\\\\\\\\\\\\\\\
+  // /////////////// proxies \\\\\\\\\\\\\\\\\\\\\\
 
   proxies : {
     list : [],
     lastresort : null,
     push : function(p) {
       // not really a push: this inserts p
-      //as the second-to-last item in the list
+      // as the second-to-last item in the list
       if (this.list.length == 0)
         this.list[0] = p;
       else {
@@ -772,7 +796,7 @@ biesi>	passing it the appropriate proxyinfo
         else
           temp[temp.length] = this.list[i];
       }
-      this.list = []; //this.list.splice(0, this.length);
+      this.list = []; // this.list.splice(0, this.length);
       for (var i=0; i<temp.length; i++) {
 	      this.list.push(temp[i]);
 	    }
@@ -799,7 +823,8 @@ biesi>	passing it the appropriate proxyinfo
     },
     
     /**
-     * Calculate the list of enabled/disabled proxies due to current IP addresses
+     * Calculate the list of enabled/disabled proxies due to current IP
+     * addresses
      */
     calculateIPFilteredList : function(ips) {	
       for (var i=0; i<this.list.length; i++) {
@@ -807,21 +832,25 @@ biesi>	passing it the appropriate proxyinfo
         var idx = m(p);
         p.ipMatch = idx == -1 ? null : p.ippatterns[idx];
         p.noUseDueToIP = p.ipMatch == null || p.ipMatch.isBlackList;
-        //dump("Proxy " + p.name + " has been " + (p.noUseDueToIP ? "disabled" : "enabled") + " and matching ip pattern is " + (p.ipMatch == null ? "null" : p.ipMatch.pattern));
-        //if (p.ipMatch)
-        	//dump(" which is " + (p.ipMatch.isBlackList ? "blacklisted" : "whitelisted"));
-        //dump("\n");
+        // dump("Proxy " + p.name + " has been " + (p.noUseDueToIP ? "disabled"
+        // : "enabled") + " and matching ip pattern is " + (p.ipMatch == null ?
+        // "null" : p.ipMatch.pattern));
+        // if (p.ipMatch)
+        	// dump(" which is " + (p.ipMatch.isBlackList ? "blacklisted" :
+            // "whitelisted"));
+        // dump("\n");
       }
      /**
-      * Check if any white patterns already match one of the ips. As a shortcut,
-      * we first check if the existing white patterns (as strings) equal |ip|
-      * before performing regular expression matches.
-      *
-      * Black pattern matches take precendence over white pattern matches.
-      *
-      * Return null if no match. Otherwise, return the matched object. Check
-      * the objects |isBlackList| property to determine if the match was black or white.
-      */
+       * Check if any white patterns already match one of the ips. As a
+       * shortcut, we first check if the existing white patterns (as strings)
+       * equal |ip| before performing regular expression matches.
+       * 
+       * Black pattern matches take precendence over white pattern matches.
+       * 
+       * Return null if no match. Otherwise, return the matched object. Check
+       * the objects |isBlackList| property to determine if the match was black
+       * or white.
+       */
       function m(proxy) {
       	var idx = -1;
       	for (var i=0,sz=proxy.ippatterns.length; i<sz; i++) {
@@ -849,11 +878,12 @@ biesi>	passing it the appropriate proxyinfo
     getRandom : function(uriStr, includeDirect, includeDisabled) {
       var isDirect = true, isDisabled = true, r, cont, maxTries = this.list.length*10;
       do {
-        r = Math.floor(Math.random()*this.list.length); // Thanks Andrew @ http://www.shawnolson.net/a/789/
-        //dump(r+"\n");
+        r = Math.floor(Math.random()*this.list.length); // Thanks Andrew @
+                                                        // http://www.shawnolson.net/a/789/
+        // dump(r+"\n");
         cont = (!includeDirect && this.list[r].mode == "direct") ||
         	(!includeDisabled && !this.list[r]._enabled);
-         //dump("cont="+cont+"\n");
+         // dump("cont="+cont+"\n");
       } while (cont && (--maxTries > 0));
       if (maxTries == 0) {
         return this.lastresort;
@@ -875,7 +905,8 @@ biesi>	passing it the appropriate proxyinfo
     uniqueRandom : function() {
       var unique = true, r;
       do {
-        r = Math.floor(Math.random()*4294967296); // Thanks Andrew @ http://www.shawnolson.net/a/789/
+        r = Math.floor(Math.random()*4294967296); // Thanks Andrew @
+                                                  // http://www.shawnolson.net/a/789/
         for (var i=0; i<this.list.length && unique; i++)
           this.list[i].id == r && (unique = false);
       } while (!unique);
@@ -887,13 +918,15 @@ biesi>	passing it the appropriate proxyinfo
       // Handle foxyproxy "mode"
       if (isBeingDeleted || isBeingDisabled) {
 	      if (gFP._mode == proxy.id) {
-	      	// Mode is set to "Use proxy ABC for all URLs" and ABC is being deleted/disabled
+	      	// Mode is set to "Use proxy ABC for all URLs" and ABC is being
+            // deleted/disabled
 	        gFP.setMode("disabled", true);
 	        updateViews = true;
 	      }
 	    }
       if (isBeingDeleted) {
-        // If the proxy set for "previousMode" is being deleted, change "previousMode"
+        // If the proxy set for "previousMode" is being deleted, change
+        // "previousMode"
         if (gFP.previousMode == proxy.id)
           gFP.previousMode = "patterns";
       }
@@ -906,12 +939,14 @@ biesi>	passing it the appropriate proxyinfo
 	    	updateViews = true;
 	   	}
 
-      // updateViews() with false, false (do not write settings and do not update log view--settings were just written when the properties themselves were updated
+      // updateViews() with false, false (do not write settings and do not
+      // update log view--settings were just written when the properties
+      // themselves were updated
       updateViews && gBroadcast(null, "foxyproxy-updateviews");
     }
   },
 
-  ///////////////// logg \\\\\\\\\\\\\\\\\\\\\\\\\\\
+  // /////////////// logg \\\\\\\\\\\\\\\\\\\\\\\\\\\
   logg : {
     owner : null,
     _maxSize : 500,
@@ -965,7 +1000,9 @@ biesi>	passing it the appropriate proxyinfo
     },
 
     toHTML : function() {
-	    // Doing the heading substitution here (over and over again instead of once in fromDOM()) permits users to switch locales w/o having to restart FF and
+	    // Doing the heading substitution here (over and over again instead of
+        // once in fromDOM()) permits users to switch locales w/o having to
+        // restart FF and
 	    // the changes take effect immediately in FoxyProxy.
 	    var self = this, sz = this.length, ret = this._templateHeader.replace(/\${timestamp-heading}|\${url-heading}|\${proxy-name-heading}|\${proxy-notes-heading}|\${pattern-name-heading}|\${pattern-heading}|\${pattern-case-heading}|\${pattern-type-heading}|\${pattern-color-heading}|\${pac-result-heading}|\${error-msg-heading}/gi,
 	    	function($0) {
@@ -1019,7 +1056,8 @@ biesi>	passing it the appropriate proxyinfo
 			return ret + this._templateFooter;
     },
 
-	  // Thanks for the inspiration, Tor2k (http://www.codeproject.com/jscript/dateformat.asp)
+	  // Thanks for the inspiration, Tor2k
+      // (http://www.codeproject.com/jscript/dateformat.asp)
 	  format : function(d) {
 	    d = new Date(d);
 	    if (!d.valueOf())
@@ -1044,7 +1082,8 @@ biesi>	passing it the appropriate proxyinfo
 	        }
 	      }
 	    );
-		  // My own zero-fill fcn, not Tor 2k's. Assumes (n==2 || n == 3) && c<=n.
+		  // My own zero-fill fcn, not Tor 2k's. Assumes (n==2 || n == 3) &&
+          // c<=n.
 		  function zf(c, n) { c=""+c; return c.length == 1 ? (n==2?'0'+c:'00'+c) : (c.length == 2 ? (n==2?c:'0'+c) : c); }
 	  },
 
@@ -1109,7 +1148,8 @@ biesi>	passing it the appropriate proxyinfo
     clear : function() {
       this._full = false;
       this._end = this._start = 0;
-      //this._elements.forEach(function(element, index, array) {array[index] = null;});
+      // this._elements.forEach(function(element, index, array) {array[index] =
+      // null;});
       this._elements = new Array(this._maxSize);
     },
 
@@ -1144,7 +1184,7 @@ biesi>	passing it the appropriate proxyinfo
     }
   },
 
-  ///////////////// notifier \\\\\\\\\\\\\\\\\\\\\\\\\\\
+  // /////////////// notifier \\\\\\\\\\\\\\\\\\\\\\\\\\\
   // Thanks for the inspiration: InfoRSS extension (Didier Ernotte, 2005)
   notifier : {
     _queue : [], 
@@ -1184,7 +1224,10 @@ biesi>	passing it the appropriate proxyinfo
 					this.timer.initWithCallback(this, 5000, CI.nsITimer.TYPE_ONE_SHOT);
 	      }
 	      catch (e) {
-          /* in case win, win.parent, win.parent.document, tooltip, etc. don't exist */  
+          /*
+           * in case win, win.parent, win.parent.document, tooltip, etc. don't
+           * exist
+           */  
           dump("Window not available for user message: " + text + "\n");
           if (!noQueue) {
             dump("Queuing message\n");
@@ -1228,7 +1271,7 @@ biesi>	passing it the appropriate proxyinfo
     }
   },
 
-  ///////////////// statusbar \\\\\\\\\\\\\\\\\\\\\
+  // /////////////// statusbar \\\\\\\\\\\\\\\\\\\\\
   statusbar : {
     _iconEnabled : true,
     _textEnabled : true,
@@ -1239,8 +1282,10 @@ biesi>	passing it the appropriate proxyinfo
 
     toDOM : function(doc) {
       var e = doc.createElement("statusbar");
-      e.setAttribute("icon", this._iconEnabled); // new for 2.3 (used to be just "enabled")
-      e.setAttribute("text", this._textEnabled); // new for 2.3 (used to be just "enabled")
+      e.setAttribute("icon", this._iconEnabled); // new for 2.3 (used to be
+                                                  // just "enabled")
+      e.setAttribute("text", this._textEnabled); // new for 2.3 (used to be
+                                                  // just "enabled")
       e.setAttribute("left", this._leftClick); // new for 2.5
 	    e.setAttribute("middle", this._middleClick); // new for 2.5
       e.setAttribute("right", this._rightClick); // new for 2.5
@@ -1263,7 +1308,9 @@ biesi>	passing it the appropriate proxyinfo
       this._iconEnabled = e;
       gFP.writeSettings();
 			gBroadcast(e, "foxyproxy-statusbar-icon");
-      e && gFP.setMode(gFP.mode, false, false); // todo: why is this here? can it be removed? it forces PAC to reload
+      e && gFP.setMode(gFP.mode, false, false); // todo: why is this here? can
+                                                // it be removed? it forces PAC
+                                                // to reload
     },
 
     get textEnabled() { return this._textEnabled; },
@@ -1271,7 +1318,9 @@ biesi>	passing it the appropriate proxyinfo
       this._textEnabled = e;
       gFP.writeSettings();
 			gBroadcast(e, "foxyproxy-statusbar-text");
-      e && gFP.setMode(gFP.mode, false, false);  // todo: why is this here? can it be removed? it forces PAC to reload
+      e && gFP.setMode(gFP.mode, false, false);  // todo: why is this here? can
+                                                  // it be removed? it forces
+                                                  // PAC to reload
     },
 
     get leftClick() { return this._leftClick; },
@@ -1302,7 +1351,7 @@ biesi>	passing it the appropriate proxyinfo
     }
   },
 
-  ///////////////// toolbar \\\\\\\\\\\\\\\\\\\\\
+  // /////////////// toolbar \\\\\\\\\\\\\\\\\\\\\
   toolbar : {
     _leftClick : "options",
     _middleClick : "cycle",
@@ -1342,14 +1391,15 @@ biesi>	passing it the appropriate proxyinfo
     }
   },
 
-  ///////////////// strings \\\\\\\\\\\\\\\\\\\\\
+  // /////////////// strings \\\\\\\\\\\\\\\\\\\\\
   getMessage : function(msg, ar) {
     try {
       return this.strings.getMessage(msg, ar);
     }
     catch (e) {
       dump("getMessage: " + e + "\n");
-      this.alert(null, "Error reading string resource: " + msg); // Do not localize!
+      this.alert(null, "Error reading string resource: " + msg); // Do not
+                                                                  // localize!
     }
   },
 
@@ -1389,15 +1439,17 @@ biesi>	passing it the appropriate proxyinfo
   classDescription: "FoxyProxy Core"
 };
 
-///////////////////////////// LoggEntry class ///////////////////////
+// /////////////////////////// LoggEntry class ///////////////////////
 function LoggEntry(proxy, aMatch, uriStr, type, errMsg) {
     this.timestamp = Date.now();
     this.uri = uriStr;
     this.proxy = proxy;
-    this.proxyName = proxy.name; // Make local copy so logg history doesn't change if user changes proxy    
+    this.proxyName = proxy.name; // Make local copy so logg history doesn't
+                                  // change if user changes proxy
     this.proxyNotes = proxy.notes;  // ""
     if (type == "pat") {
-      this.matchName = aMatch.name;  // Make local copy so logg history doesn't change if user changes proxy
+      this.matchName = aMatch.name;  // Make local copy so logg history doesn't
+                                      // change if user changes proxy
       this.matchPattern = aMatch.pattern; // ""
       this.matchType = aMatch.isRegEx ? this.regExMsg : this.wcMsg;  
       this.whiteBlack = aMatch.isBlackList ? this.blackMsg : this.whiteMsg; // ""
@@ -1418,7 +1470,8 @@ function LoggEntry(proxy, aMatch, uriStr, type, errMsg) {
 
 LoggEntry.prototype = {
   errMsg : "", // Default value for MPs which don't have errors
-  pacResult : "", // Default value for MPs which don't have PAC results (i.e., they probably don't use PACs or the PAC returned null
+  pacResult : "", // Default value for MPs which don't have PAC results (i.e.,
+                  // they probably don't use PACs or the PAC returned null
   init : function() { /* one-time init to get localized msgs */
     this.randomMsg = gFP.getMessage("proxy.random");
     this.allMsg = gFP.getMessage("proxy.all.urls");

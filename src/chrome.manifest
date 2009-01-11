@@ -1,6 +1,6 @@
 content foxyproxy content/
 
-locale  foxyproxy af-ZA locale/af-ZA/
+locale  foxyproxy ar locale/ar
 locale  foxyproxy cs-CZ locale/cs-CZ/
 locale  foxyproxy da-DK locale/da-DK/
 locale  foxyproxy de-DE locale/de-DE/
@@ -28,7 +28,6 @@ locale  foxyproxy sv-SE locale/sv-SE/
 locale  foxyproxy th-TH locale/th-TH/
 locale  foxyproxy tr-TR locale/tr-TR/
 locale  foxyproxy uk-UA locale/uk-UA/
-locale  foxyproxy vi-VN locale/vi-VN/
 locale  foxyproxy zh-CN locale/zh-CN/
 locale  foxyproxy zh-TW locale/zh-TW/
 

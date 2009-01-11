@@ -319,22 +319,31 @@ var foxyproxy = {
 
   /**
    * Function for displaying dialog box with yes/no buttons (not OK/Cancel buttons),
-   * or any arbitrary button labels.
+   * or any arbitrary button labels. If btn1Text or btn2Text is null, yes/no values are assumed for them.
+   * btn3Text can be null, in which case no 3rd button is displayed.
+   * Return values: if btn3Text isn't specified, then true/false is returned
+   * corresponding to whether yes (or btn1Text), 1 == no (or btn2Text) was clicked.
+   * if btn3Text is specified, return value is 0, 1, or 2 of the clicked button. Specifically:
+   * 0 == yes (or btn1Text), 1 == no (or btn2Text), 2 == btn3Text.
    */
   ask : function(parent, text, btn1Text, btn2Text, btn3Text) {
     var prompts = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
       .getService(Components.interfaces.nsIPromptService);
     !btn1Text && (btn1Text = this.fp.getMessage("yes"));
     !btn2Text && (btn2Text = this.fp.getMessage("no"));
-    return btn3Text ? prompts.confirmEx(parent, this.fp.getMessage("foxyproxy"), text,
+    if (btn3Text == null)
+      return prompts.confirmEx(parent, this.fp.getMessage("foxyproxy"), text,
+        prompts.BUTTON_TITLE_IS_STRING * prompts.BUTTON_POS_0 +
+        prompts.BUTTON_TITLE_IS_STRING * prompts.BUTTON_POS_1,
+      btn1Text, btn2Text, null, null, {}) == 0; // 0 means first button ("yes") was pressed
+    else { 
+      var ret = prompts.confirmEx(parent, this.fp.getMessage("foxyproxy"), text,
         prompts.BUTTON_TITLE_IS_STRING * prompts.BUTTON_POS_0 +
         prompts.BUTTON_TITLE_IS_STRING * prompts.BUTTON_POS_1 +
         prompts.BUTTON_TITLE_IS_STRING * prompts.BUTTON_POS_2,
-        btn1Text, btn2Text, btn3Text, null, {}) : // 0 means first button ("yes") was pressed
-      prompts.confirmEx(parent, this.fp.getMessage("foxyproxy"), text,
-        prompts.BUTTON_TITLE_IS_STRING * prompts.BUTTON_POS_0 +
-        prompts.BUTTON_TITLE_IS_STRING * prompts.BUTTON_POS_1,
-        btn1Text, btn2Text, null, null, {}) == 0; // 0 means first button ("yes") was pressed
+        btn1Text, btn2Text, btn3Text, null, {});
+      return ret == 0 ? prompts.BUTTON_POS_0 : ret == 1 ? prompts.BUTTON_POS_1 : prompts.BUTTON_POS_2
+    }
   },
 
   checkPageLoad : function() {

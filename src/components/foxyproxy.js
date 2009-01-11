@@ -222,6 +222,7 @@ foxyproxy.prototype = {
 	},
 
   loadSettings : function() {    
+	this.migrateSettingsURI();
     var f = this.getSettingsURI(CI.nsIFile);
     var s = CC["@mozilla.org/network/file-input-stream;1"].createInstance(CI.nsIFileInputStream);
     s.init(f, -1, -1, CI.nsIFileInputStream.CLOSE_ON_EOF);
@@ -391,20 +392,49 @@ foxyproxy.prototype = {
 
   clearSettingsPref : function(p) {
     p = p || this.getPrefsService("extensions.foxyproxy.");
-    p.clearUserPref("settings");
+    try {
+      p.clearUserPref("settings");
+    }
+    catch (e) {}
+  },
+
+  /**
+   * Prior to 2.8.11, the settings filepath was stored as an absolute path in FF preferences.
+   * Look for that abs filepath and get rid of it if necessary (unless the abs filepath is
+   * somewhere other than the default location (the profile dir + "foxyproxy.xml")
+   */
+  migrateSettingsURI : function() {
+    try {
+      var p = this.getPrefsService("extensions.foxyproxy.");
+      var o = p.getCharPref("settings");
+      if (this.isDefaultSettingsURI(o)) {
+        // Remove the pref since we don't use it anymore
+        // unless it points outside the profile
+        this.clearSettingsPref(p);
+      }
+    }
+    catch(e) {}
+  },
+  
+  isDefaultSettingsURI : function(o) {
+    return o == this.PFF || this.transformer(o, CI.nsIFile).equals(this.getDefaultPath());
+  },
+  
+  usingDefaultSettingsURI : function(p) {
+    try {
+      p = p || this.getPrefsService("extensions.foxyproxy.");
+      var v = p.getCharPref("settings");
+      // The very presence of this pref means we're not using the default
+      if (v) return false;
+    }
+    catch(e) {}
+    return true;
   },
 
   // Returns settings URI in desired form. Creates the file if it doesn't exist.
   getSettingsURI : function(type) {
     try {
-      var p = this.getPrefsService("extensions.foxyproxy.");
-      var o = p.getCharPref("settings");
-      if (o == this.PFF) {
-        o = this.getDefaultPath();
-        // Remove the pref since we don't use it anymore
-        // unless it points outside the profile
-        this.clearSettingsPref(p);
-      }
+      var o = this.getPrefsService("extensions.foxyproxy.").getCharPref("settings");
     }
     catch(e) {}
     if (!o)
@@ -417,8 +447,8 @@ foxyproxy.prototype = {
   },
 
   setSettingsURI : function(o) {
-    var file = this.transformer(o, CI.nsIFile);
-    if (this.getDefaultPath().equals(file)) {
+    if (this.isDefaultSettingsURI(o)) {
+      // Remove the pref (if it exists) since it should only be present for non-default settings URIs
       this.clearSettingsPref();
       return;
     }
@@ -1196,44 +1226,53 @@ foxyproxy.prototype = {
   	}(),
 
     alert : function(title, text, noQueue) {
-      if (this.alerts)
-        this.alerts.showAlertNotification("chrome://foxyproxy/content/images/foxyproxy-nocopy.gif", title, text, false, "", null);
-      else {
-      	(!this.timer && (this.timer = CC["@mozilla.org/timer;1"].createInstance(CI.nsITimer)));
-      	this.timer.cancel();
-		    var wm = CC["@mozilla.org/appshell/window-mediator;1"].getService(CI.nsIWindowMediator);
-		    var win = wm.getMostRecentWindow("navigator:browser") || wm.getMostRecentWindow("Songbird:Main");
-		    try {
-			    var doc = win.parent.document;
-	        this.tooltip = doc.getElementById("foxyproxy-popup");
-	        this._removeChildren(this.tooltip);
-	    		var grid = doc.createElement("grid");
-	    		grid.setAttribute("flex", "1");
-	    		this.tooltip.appendChild(grid);
+      if (this.alerts) {
+        // With all the checks to ensure we don't use nsIAlertsService on unsupported platforms,
+        // it would appear it can still happen (http://foxyproxy.mozdev.org/drupal/content/component-returned-failure-code-error-firefox-launch)
+        // So we use a try/catch just in case.
+        try {
+          this.alerts.showAlertNotification("chrome://foxyproxy/content/images/foxyproxy-nocopy.gif", title, text, false, "", null);
+        }
+        catch(e) {
+          this.alerts = null; // now future notifications are now automatically displayed with simpleNotify()
+          simpleNotify(this);
+        }
+      }
+      else
+        simpleNotify(this);
+      function simpleNotify(self) {
+        (!self.timer && (self.timer = CC["@mozilla.org/timer;1"].createInstance(CI.nsITimer)));
+        self.timer.cancel();
+        var wm = CC["@mozilla.org/appshell/window-mediator;1"].getService(CI.nsIWindowMediator);
+        var win = wm.getMostRecentWindow("navigator:browser") || wm.getMostRecentWindow("Songbird:Main");
+        try {
+          var doc = win.parent.document;
+          self.tooltip = doc.getElementById("foxyproxy-popup");
+          self._removeChildren(self.tooltip);
+          var grid = doc.createElement("grid");
+          grid.setAttribute("flex", "1");
+          self.tooltip.appendChild(grid);
 
-	    		var columns = doc.createElement("columns");
-	    		columns.appendChild(doc.createElement("column"));
-	    		grid.appendChild(columns);
+          var columns = doc.createElement("columns");
+          columns.appendChild(doc.createElement("column"));
+          grid.appendChild(columns);
 
-	    		var rows = doc.createElement("rows");
-	    		grid.appendChild(rows);
-	        this._makeHeaderRow(doc, title, rows);
-	        this._makeRow(doc, "", rows);
-	        this._makeRow(doc, text, rows);
-	        this.tooltip.showPopup(doc.getElementById("status-bar"), -1, -1, "tooltip", "topright","bottomright");
-					this.timer.initWithCallback(this, 5000, CI.nsITimer.TYPE_ONE_SHOT);
-	      }
-	      catch (e) {
-          /*
-           * in case win, win.parent, win.parent.document, tooltip, etc. don't
-           * exist
-           */  
+           var rows = doc.createElement("rows");
+           grid.appendChild(rows);
+           self._makeHeaderRow(doc, title, rows);
+           self._makeRow(doc, "", rows);
+           self._makeRow(doc, text, rows);
+           self.tooltip.showPopup(doc.getElementById("status-bar"), -1, -1, "tooltip", "topright","bottomright");
+           self.timer.initWithCallback(self, 5000, CI.nsITimer.TYPE_ONE_SHOT);
+        }
+        catch (e) {
+          /* in case win, win.parent, win.parent.document, tooltip, etc. don't exist */
           dump("Window not available for user message: " + text + "\n");
           if (!noQueue) {
             dump("Queuing message\n");
-            this._queue.push({text:text, title:title});
+            self._queue.push({text:text, title:title});
           }
-        }
+        }        
       }
     },
     

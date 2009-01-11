@@ -1,6 +1,6 @@
 content foxyproxy chrome/content/
 
-locale  foxyproxy af-ZA chrome/locale/af-ZA/
+locale  foxyproxy ar chrome/locale/ar
 locale  foxyproxy cs-CZ chrome/locale/cs-CZ/
 locale  foxyproxy da-DK chrome/locale/da-DK/
 locale  foxyproxy de-DE chrome/locale/de-DE/
@@ -28,7 +28,6 @@ locale  foxyproxy sv-SE chrome/locale/sv-SE/
 locale  foxyproxy th-TH chrome/locale/th-TH/
 locale  foxyproxy tr-TR chrome/locale/tr-TR/
 locale  foxyproxy uk-UA chrome/locale/uk-UA/
-locale  foxyproxy vi-VN chrome/locale/vi-VN/
 locale  foxyproxy zh-CN chrome/locale/zh-CN/
 locale  foxyproxy zh-TW chrome/locale/zh-TW/
 

@@ -355,15 +355,25 @@
                 <caption label="&foxyproxy.misc.label;"
                   tooltiptext="&foxyproxy.misc.tooltip;" />
                 <row align="center">
-                  <label value="&foxyproxy.storagelocation.label;"
+                  <label value="&foxyproxy.storagelocation.label.2;"
                     accesskey="&foxyproxy.storagelocation.accesskey;"
                     tooltiptext="&foxyproxy.storagelocation.tooltip;" />
-                  <textbox id="settingsURL" flex="1" readonly="true"
+                  <!-- style to simulate disabled="true" look-and-feel. we don't want to actually
+                  use disabled="true" because then the user can't scroll the textbox content, copy it
+                  into the clipboard, etc. -->  
+                  <textbox id="settingsURL" flex="1" readonly="true" style="border: gray; color: gray"
                     tooltiptext="&foxyproxy.storagelocation.tooltip;" />
                   <button id="settingsURLBtn" style="min-width: 0.5em;"
                     oncommand="onSettingsURLBtn();" label="..."
                     tooltiptext="&foxyproxy.storagelocation.tooltip;" />
                 </row>
+                <row align="center" observes="notDefaultSettingsBroadcaster">
+                  <description>&foxyproxy.settings.not.default;
+                  <html:a class="link" style="margin: 0 .5em 0 .5em"  
+                    onclick="fpc.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/settings.html');">&foxyproxy.importantnote.label;</html:a>
+                   </description>
+                   <button command="resetSettingsCmd" label="&foxyproxy.resetlocation.label;"/>
+                </row>                
                 <row align="center">
                   <checkbox id="dnsEnabled"
                     label="&foxyproxy.proxydns.label;"
@@ -925,6 +935,11 @@
     tooltiptext="&foxyproxy.define.tooltip;"
     oncommand="onDefinePattern(foxyproxy.autoadd)"/>
 
+  <command id="resetSettingsCmd" label="&foxyproxy.resetlocation.label;"
+    accesskey="&foxyproxy.resetlocation.accesskey;"
+    tooltiptext="&foxyproxy.resetlocation.tooltip;"
+    oncommand="onResetSettingsURL()"/>
+    
   <command id="blockedPagePatternCmd" label="&foxyproxy.define.label;"
     accesskey="&foxyproxy.define.accesskey;"
     tooltiptext="&foxyproxy.define.tooltip;"
@@ -940,6 +955,7 @@
     <broadcaster id="statusBarWidthBroadcaster" disabled="true" />
     <broadcaster id="autoAddBroadcaster" hidden="true" />
     <broadcaster id="quickAddBroadcaster" hidden="true" />    
+    <broadcaster id="notDefaultSettingsBroadcaster" hidden="true"/>    
   </broadcasterset>
 
   <popupset>

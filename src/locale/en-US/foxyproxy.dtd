@@ -168,7 +168,7 @@
 <!ENTITY foxyproxy.showstatusbarmode.accesskey "S">
 <!ENTITY foxyproxy.showstatusbarmode.tooltip "If checked, FoxyProxy mode is shown on the statusbar">
 
-<!ENTITY foxyproxy.storagelocation.label "Settings Storage Location">
+<!ENTITY foxyproxy.storagelocation.label.2 "Settings Location">
 <!ENTITY foxyproxy.storagelocation.accesskey "S">
 <!ENTITY foxyproxy.storagelocation.tooltip "Location to store FoxyProxy's settings">
 
@@ -206,11 +206,6 @@
 <!ENTITY foxyproxy.blacklist.description.label "URLs matching this pattern are NOT loaded through this proxy">
 
 <!ENTITY foxyproxy.whiteblack.description.label "Blacklist (exclusion) patterns have precedence over whitelist (inclusion) patterns: if a URL matches both a whitelisted pattern and a blacklisted pattern for the same proxy, the URL is excluded from being loaded by that proxy.">
-
-<!ENTITY foxyproxy.usingPFF.label1 "I am using">
-<!ENTITY foxyproxy.usingPFF.label2 "Portable Firefox">
-<!ENTITY foxyproxy.usingPFF.accesskey "I">
-<!ENTITY foxyproxy.usingPFF.tooltip "Check here if you are using Portable Firefox">
 
 <!ENTITY foxyproxy.socks.version.label "SOCKS Version">
 <!ENTITY foxyproxy.autopacurl.label "Auto PAC URL">
@@ -509,6 +504,13 @@
 <!ENTITY foxyproxy.donation.list.label "Donation List">
 <!ENTITY foxyproxy.donation.list.accesskey "L">
 
+<!ENTITY foxyproxy.importantnote.label "Read Important Note">
+<!ENTITY foxyproxy.resetlocation.label "Reset Location">
+<!ENTITY foxyproxy.resetlocation.accesskey "R">
+<!ENTITY foxyproxy.resetlocation.tooltip "Store settings in Firefox profile">
+<!ENTITY foxyproxy.settings.not.default "Settings aren't in the default location.">
+
+    
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Add/Edit Local IP Address Pattern">
 <!ENTITY foxyproxy.tempip.popup.label "Temporary patterns allow you to create patterns for local IP addresses that you don't use often without cluttering the IP address pattern list for a proxy. Temporary patterns are not saved to disk. They are kept in-memory and used for this Firefox session only.">
 

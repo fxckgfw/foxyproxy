@@ -59,10 +59,16 @@ var observer = {
  
 function _initSettings() {
   _updateView(false, true);
-  document.getElementById("settingsURL").value = foxyproxy.getSettingsURI("uri-string"); 
+  updateSettingsInfo(); 
   document.getElementById("tabs").selectedIndex = foxyproxy.selectedTabIndex;
   document.getElementById("statusbarWidth").value = foxyproxy.statusbar.width;
   toggleStatusBarText(foxyproxy.statusbar.textEnabled);  
+}
+
+function updateSettingsInfo() {
+  document.getElementById("settingsURL").value = foxyproxy.getSettingsURI("uri-string");
+  document.getElementById("notDefaultSettingsBroadcaster").hidden = foxyproxy.usingDefaultSettingsURI();
+  sizeToContent(); // because .hidden above can change the size of controls
 }
 
 function _updateLogView() {
@@ -167,15 +173,34 @@ function onSettingsURLBtn() {
   fp.init(window, foxyproxy.getMessage("file.select"), nsIFilePicker.modeSave);
   fp.defaultString = "foxyproxy.xml";
   fp.appendFilters(nsIFilePicker.filterAll|nsIFilePicker.filterXML);
-  fp.displayDirectory = foxyproxy.getSettingsURI(CI.nsIFile);
+  fp.displayDirectory = foxyproxy.getSettingsURI(CI.nsIFile); /* WHY IS THIS ALWAYS NULL? */
   if (fp.show() != nsIFilePicker.returnCancel) {
-    if (!foxyproxy.getDefaultPath().equals(fp.file) &&
-      !overlay.ask(this, foxyproxy.getMessage("settings.warning"), null, null, "read more about it")) {
-        return;
+    var defPath = foxyproxy.getDefaultPath();
+    // If the current settings file is in the default path and the user wants to move it, warn him.
+    // Since foxyproxy.getSettingsURI(CI.nsIFile) is always evaluating to null is this context (WHY?!),
+    // I'm skipping the first conditional expression.
+    //if (fp.displayDirectory.equals(defPath) && !defPath.equals(fp.file)) {
+    if (!defPath.equals(fp.file)) {
+      var c = overlay.ask(this, foxyproxy.getMessage("settings.warning"), null, null, foxyproxy.getMessage("more.info"));
+      switch (c) {
+        case CI.nsIPromptService.BUTTON_POS_1:
+          // "no" clicked
+          return;
+        case CI.nsIPromptService.BUTTON_POS_2:
+          // "more info" clicked
+          fpc.openAndReuseOneTabPerURL("http://foxyproxy.mozdev.org/settings.html");
+          return;
+      }
     }
     foxyproxy.setSettingsURI(fp.file);
     _initSettings();
   }
+}
+
+function onResetSettingsURL() {
+  foxyproxy.setSettingsURI(foxyproxy.getDefaultPath());
+  updateSettingsInfo();
+  overlay.alert(this, foxyproxy.getMessage("settings.default"));  
 }
 
 /* Contains items which can be updated via toolbar/statusbar/menubar/context-menu as well as the options dialog,

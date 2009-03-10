@@ -1,4 +1,7 @@
 <?xml version="1.0"?>
+
+<!-- https://developer.mozilla.org/en/Install_Manifests -->
+
 <RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
     xmlns:em="http://www.mozilla.org/2004/em-rdf#"
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
@@ -17,7 +20,7 @@
             <Description>
                 <em:id>songbird@songbirdnest.com</em:id>
                 <em:minVersion>0.4</em:minVersion>
-                <em:maxVersion>1.1.0pre</em:maxVersion>
+                <em:maxVersion>1.2.0a</em:maxVersion>
             </Description>
         </em:targetApplication>
         <em:targetApplication>
@@ -39,7 +42,7 @@
          <Description>
             <em:id>{a463f10c-3994-11da-9945-000d60ca027b}</em:id>
             <em:minVersion>0.7</em:minVersion>
-            <em:maxVersion>2.0</em:maxVersion>
+            <em:maxVersion>2.0.*</em:maxVersion>
           </Description>
         </em:targetApplication>
     </Description>

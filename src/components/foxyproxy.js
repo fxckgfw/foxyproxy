@@ -235,22 +235,6 @@ foxyproxy.prototype = {
     else
       this.fromDOM(doc, doc.documentElement);
   },
-
-  refreshLocalIPs : function() {
-    this.ips = []; // reset
-    var s = CC['@mozilla.org/network/dns-service;1'].getService(CI.nsIDNSService);
-    try {
-      // Next line can throw 0x804b001e (NS_ERROR_UNKNOWN_HOST) so we try/catch
-      var r = s.resolve(s.myHostName, true);
-      for (var i=0; r.hasMore() && (this.ips[i] = r.getNextAddrAsString()); i++);
-      this.calculateIPFilteredList();       
-    }
-    catch (e) {dump(s.myHostName);}   
-  },
-  
-  calculateIPFilteredList : function() {
-    this.proxies.calculateIPFilteredList(this.ips);
-  },
   
   get mode() { return this._mode; },
   setMode : function(mode, writeSettings, init) {
@@ -850,60 +834,7 @@ foxyproxy.prototype = {
       }
       // Failsafe: use lastresort proxy if nothing else was chosen
       return gLoggEntryFactory(this.lastresort, this.lastresort.matches[0], uriStr, "pat");
-    },
-    
-    /**
-     * Calculate the list of enabled/disabled proxies due to current IP
-     * addresses
-     */
-    calculateIPFilteredList : function(ips) {	
-      for (var i=0; i<this.list.length; i++) {
-        var p = this.list[i];
-        var idx = m(p);
-        p.ipMatch = idx == -1 ? null : p.ippatterns[idx];
-        p.noUseDueToIP = p.ipMatch == null || p.ipMatch.isBlackList;
-        // dump("Proxy " + p.name + " has been " + (p.noUseDueToIP ? "disabled"
-        // : "enabled") + " and matching ip pattern is " + (p.ipMatch == null ?
-        // "null" : p.ipMatch.pattern));
-        // if (p.ipMatch)
-        	// dump(" which is " + (p.ipMatch.isBlackList ? "blacklisted" :
-            // "whitelisted"));
-        // dump("\n");
-      }
-     /**
-       * Check if any white patterns already match one of the ips. As a
-       * shortcut, we first check if the existing white patterns (as strings)
-       * equal |ip| before performing regular expression matches.
-       * 
-       * Black pattern matches take precendence over white pattern matches.
-       * 
-       * Return null if no match. Otherwise, return the matched object. Check
-       * the objects |isBlackList| property to determine if the match was black
-       * or white.
-       */
-      function m(proxy) {
-      	var idx = -1;
-      	for (var i=0,sz=proxy.ippatterns.length; i<sz; i++) {
-      	  var m = proxy.ippatterns[i];
-      	  if (m.enabled) {
-      		for (j in ips) {
-      		  var ip = ips[j];
-      		  if (m.pattern == ip || m.regex.test(ip)) {
-      			if (m.isBlackList) {
-      			  // Black takes priority over white
-      			  proxy.ipMatch = m;
-      			  return i;
-      			}
-      			else if (idx == -1) {
-      			  idx = i; // continue checking for blacklist matches!
-      			}
-      		  }
-      		}
-      	  }
-      	}
-      	return idx;
-      }      
-    },    
+    },       
 
     getRandom : function(uriStr, includeDirect, includeDisabled) {
       var isDirect = true, isDisabled = true, r, cont, maxTries = this.list.length*10;

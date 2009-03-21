@@ -81,9 +81,6 @@ function Proxy(fp) {
   this.selectedTabIndex = 0;
   this.lastresort = false;
   this.id = this.fp.proxies.uniqueRandom();
-  this.ipMatch = null; /* the Match object representing the ip pattern we've matched. Note the match may be a blacklist pattern,
-    so we use this.noUseDueToIP as a shortcut to checking (this.ipMatch == null || this.ipMatch.isBlackList) */
-  this.noUseDueToIP = false;
 }
 
 Proxy.prototype = {
@@ -119,14 +116,6 @@ Proxy.prototype = {
     var xpe = CC["@mozilla.org/dom/xpath-evaluator;1"].getService(CI.nsIDOMXPathEvaluator),
       resolver = xpe.createNSResolver(node);
     readPatterns("/foxyproxy/proxies/proxy[@id=" + this.id + "]/matches/match", this.matches);
-    var upgrade = node.getElementsByTagName("ippatterns").length == 0;
-    if (upgrade) {
-      dump("Upgrade from regular FoxyProxy\n");
-      this.ippatterns[0] = new Match(true, this.fp.getMessage("all"), "*");
-    }
-    else
-      readPatterns("/foxyproxy/proxies/proxy[@id=" + this.id + "]/ippatterns/match", this.ippatterns);
-
     this.afterPropertiesSet(fpMode);
     function readPatterns(exp, arr) {
       // doc.createNSResolver(doc) fails on FF2 (not FF3), so we use an instance of nsIDOMXPathEvaluator instead
@@ -160,11 +149,6 @@ Proxy.prototype = {
     e.appendChild(matchesElem);
     for (var j=0, m; j<this.matches.length && (m=this.matches[j]); j++)
       if (!m.temp) matchesElem.appendChild(m.toDOM(doc));
-
-    var ipp = doc.createElement("ippatterns");
-    e.appendChild(ipp);
-    for (var j=0, ip; j<this.ippatterns.length && (ip=this.ippatterns[j]); j++)
-      if (!ip.temp) ipp.appendChild(ip.toDOM(doc));
 
     e.appendChild(this.autoconf.toDOM(doc));
     e.appendChild(this.manualconf.toDOM(doc));
@@ -259,11 +243,7 @@ Proxy.prototype = {
   removeURLPattern : function(removeMe) {
     this.matches = this.matches.filter(function(e) {return e != removeMe;});
   },
-
-  removeIPPattern : function(removeMe) {
-    this.ippatterns = this.ippatterns.filter(function(e) {return e != removeMe;});
-  },
-
+  
 	resolve : function(spec, host, mp) {
 	  function _notifyUserOfError(spec) {
 			this.pacErrorNotification && this.fp.notifier.alert(this.fp.getMessage("foxyproxy"), this.fp.getMessage("proxy.error.for.url") + spec);

@@ -175,9 +175,8 @@
 <!ENTITY foxyproxy.tab.logging.timestamp.label "Timestamp">
 <!ENTITY foxyproxy.tab.logging.url.label "URL">
 
-<!ENTITY foxyproxy.host.label "Host Name">
+<!ENTITY foxyproxy.host.label.2 "Host or IP Address">
 <!ENTITY foxyproxy.host.accesskey "H">
-<!ENTITY foxyproxy.host.tooltip "Host Name">
 
 <!ENTITY foxyproxy.clear.label "Clear">
 <!ENTITY foxyproxy.clear.accesskey "C">
@@ -498,6 +497,7 @@
 <!ENTITY foxyproxy.home "Home">
 <!ENTITY foxyproxy.support "Support">
 <!ENTITY foxyproxy.credits "Credits">
+<!ENTITY foxyproxy.donations "Donations">
 <!ENTITY foxyproxy.please.donate.label "Please Donate">
 <!ENTITY foxyproxy.please.donate.accesskey "D">
 <!ENTITY foxyproxy.keep.free "Keep FoxyProxy Free">
@@ -508,9 +508,9 @@
 <!ENTITY foxyproxy.resetlocation.label "Reset Location">
 <!ENTITY foxyproxy.resetlocation.accesskey "R">
 <!ENTITY foxyproxy.resetlocation.tooltip "Store settings in Firefox profile">
-<!ENTITY foxyproxy.settings.not.default "Settings aren't in the default location.">
 
-    
+
+<!-- begin foxyproxyplus -->    
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Add/Edit Local IP Address Pattern">
 <!ENTITY foxyproxy.tempip.popup.label "Temporary patterns allow you to create patterns for local IP addresses that you don't use often without cluttering the IP address pattern list for a proxy. Temporary patterns are not saved to disk. They are kept in-memory and used for this Firefox session only.">
 
@@ -545,3 +545,4 @@
 
 <!ENTITY foxyproxy.refreshlocalips "Refresh local IP addresses">
 <!ENTITY foxyproxy.refreshlocalips.accesskey "R">
+<!-- end foxyproxyplus -->

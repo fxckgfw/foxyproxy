@@ -43,7 +43,9 @@ Common.prototype = {
 
   openAndReuseOneTabPerURL : function(aURL) {
     var wm = CC["@mozilla.org/appshell/window-mediator;1"].getService(CI.nsIWindowMediator);
-    var winEnum = wm.getEnumerator("navigator:browser") || wm.getEnumerator("Songbird:Main");
+    var winEnum = wm.getEnumerator("navigator:browser");
+    if (!winEnum.hasMoreElements())
+      winEnum = wm.getEnumerator("Songbird:Main");
     while (winEnum.hasMoreElements()) {
       var win = winEnum.getNext();
       var browser = win.getBrowser();
@@ -60,8 +62,9 @@ Common.prototype = {
     var w = this.getMostRecentWindow(wm);
     if (w) {
       // Use an existing browser window
-      if (!w.delayedOpenTab) // SongBird
-        setTimeout(function(aTabElt) { w.gBrowser.selectedTab = aTabElt; }, 0, w.gBrowser.addTab(aURL, null, null, null));
+      if (!w.delayedOpenTab) // SongBird or SeaMonkey
+        CC["@mozilla.org/timer;1"].createInstance(CI.nsITimer)
+          .initWithCallback(function() {w.gBrowser.selectedTab = w.gBrowser.addTab(aURL, null, null, null)}, 0, CI.nsITimer.TYPE_ONE_SHOT);
       else // FF
         w.delayedOpenTab(aURL, null, null, null, null);
       w.focus();

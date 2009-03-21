@@ -124,7 +124,7 @@
               <treecol id="modeCol" label="&foxyproxy.mode.label;"
                 hidden="true" flex="1" persist="width ordinal hidden" />
               <splitter class="tree-splitter" />
-              <treecol id="hostCol" label="&foxyproxy.host.label;"
+              <treecol id="hostCol" label="&foxyproxy.host.label.2;"
                 hidden="true" flex="1" persist="width ordinal hidden" />
               <splitter class="tree-splitter" />
               <treecol id="portCol" label="&foxyproxy.port.label;"
@@ -264,9 +264,7 @@
                           <menuitem label="&foxyproxy.click.toggle;"
                             value="toggle" />
                           <menuitem label="&foxyproxy.quickadd.label;"
-                            value="quickadd" />                            
-                          <menuitem label="&foxyproxy.refreshlocalips;"
-                            value="refreshlocalips" />
+                            value="quickadd" />
                         </menupopup>
                       </menulist>
                     </row>
@@ -302,9 +300,7 @@
                           <menuitem label="&foxyproxy.click.toggle;"
                             value="toggle" />
                           <menuitem label="&foxyproxy.quickadd.label;"
-                            value="quickadd" />                            
-                          <menuitem label="&foxyproxy.refreshlocalips;"
-                            value="refreshlocalips" />                            
+                            value="quickadd" />                          
                         </menupopup>
                       </menulist>
                     </row>
@@ -340,9 +336,7 @@
                           <menuitem label="&foxyproxy.click.toggle;"
                             value="toggle" />
                           <menuitem label="&foxyproxy.quickadd.label;"
-                            value="quickadd" />                            
-                          <menuitem label="&foxyproxy.refreshlocalips;"
-                            value="refreshlocalips" />                            
+                            value="quickadd" />                         
                         </menupopup>
                       </menulist>
                     </row>
@@ -430,9 +424,7 @@
                           <menuitem label="&foxyproxy.click.toggle;"
                             value="toggle" />
                           <menuitem label="&foxyproxy.quickadd.label;"
-                            value="quickadd" />                            
-                          <menuitem label="&foxyproxy.refreshlocalips;"
-                            value="refreshlocalips" />                            
+                            value="quickadd" />                           
                         </menupopup>
                       </menulist>
                     </row>
@@ -468,9 +460,7 @@
                           <menuitem label="&foxyproxy.click.toggle;"
                             value="toggle" />
                           <menuitem label="&foxyproxy.quickadd.label;"
-                            value="quickadd" />                            
-                          <menuitem label="&foxyproxy.refreshlocalips;"
-                            value="refreshlocalips" />                            
+                            value="quickadd" />                           
                         </menupopup>
                       </menulist>
                     </row>
@@ -506,9 +496,7 @@
                           <menuitem label="&foxyproxy.click.toggle;"
                             value="toggle" />
                           <menuitem label="&foxyproxy.quickadd.label;"
-                            value="quickadd" />                            
-                          <menuitem label="&foxyproxy.refreshlocalips;"
-                            value="refreshlocalips" />                            
+                            value="quickadd" />                           
                         </menupopup>
                       </menulist>
                     </row>
@@ -935,11 +923,6 @@
     tooltiptext="&foxyproxy.define.tooltip;"
     oncommand="onDefinePattern(foxyproxy.autoadd)"/>
 
-  <command id="resetSettingsCmd" label="&foxyproxy.resetlocation.label;"
-    accesskey="&foxyproxy.resetlocation.accesskey;"
-    tooltiptext="&foxyproxy.resetlocation.tooltip;"
-    oncommand="onResetSettingsURL()"/>
-    
   <command id="blockedPagePatternCmd" label="&foxyproxy.define.label;"
     accesskey="&foxyproxy.define.accesskey;"
     tooltiptext="&foxyproxy.define.tooltip;"
@@ -949,6 +932,11 @@
     accesskey="&foxyproxy.define.accesskey;"
     tooltiptext="&foxyproxy.define.tooltip;"
     oncommand="onDefinePattern(foxyproxy.quickadd)"/>
+    
+  <command id="resetSettingsCmd" label="&foxyproxy.resetlocation.label;"
+    accesskey="&foxyproxy.resetlocation.accesskey;"
+    tooltiptext="&foxyproxy.resetlocation.tooltip;"
+    oncommand="onResetSettingsURL()"/>
         
   <broadcasterset>
     <broadcaster id="tree-row-selected" disabled="true" />

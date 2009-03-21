@@ -10,8 +10,7 @@
 **/
 
 var foxyproxy, proxyTree, logTree, monthslong, dayslong, overlay, timeformat, saveLogCmd, clearLogCmd, noURLsCmd, fpc;
-const CI = Components.interfaces, CC = Components.classes,
-atomService = CC["@mozilla.org/atom-service;1"].getService(CI.nsIAtomService);
+const CI = Components.interfaces, CC = Components.classes;
 
 function onLoad() {
   foxyproxy = CC["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;  
@@ -281,9 +280,9 @@ function _updateView(writeSettings, updateLogView) {
     getImageSrc: function(aRow, aColumn) {return null;},
     getProgressMode: function(aRow, aColumn) {},
     cycleHeader: function(aColId, aElt) {},
-    getRowProperties: function(r,p) {if (foxyproxy.proxies.item(r).noUseDueToIP) p.AppendElement(atomService.getAtom("unused"));},
-    getColumnProperties: function() {},
-    getCellProperties: function() {},
+    getRowProperties: function(aRow, aColumn, aProperty) {},
+    getColumnProperties: function(aColumn, aColumnElement, aProperty) {},
+    getCellProperties: function(aRow, aProperty) {},
     getLevel: function(row){ return 0; }
   };
   writeSettings && foxyproxy.writeSettings();
@@ -336,7 +335,7 @@ function move(direction) {
 
 function onSettings(isNew) {
   var sel = proxyTree.currentIndex,
-    params = {inn:{isNew:isNew, proxy:isNew ?
+    params = {inn:{proxy:isNew ?
       CC["@leahscape.org/foxyproxy/proxy;1"].createInstance().wrappedJSObject : 
       foxyproxy.proxies.item(proxyTree.currentIndex)}, out:null};
         

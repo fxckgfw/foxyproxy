@@ -37,8 +37,6 @@
   		  tooltiptext="&foxyproxy.tab.proxy.tooltip;"/>
   		<tab id="urlpatternstab" label="&foxyproxy.urlpatterns.label;" accesskey="&foxyproxy.urlpatterns.accesskey;"
   		  tooltiptext="&foxyproxy.urlpatterns.tooltip;"/>
-      <tab id="ippatternstab" label="&foxyproxy.ip.patterns.label;" accesskey="&foxyproxy.ip.patterns.accesskey;"
-        tooltiptext="&foxyproxy.ip.patterns.tooltip;"/>        
   	</tabs>
 
 	<tabpanels style="-moz-appearance: none;" flex="1">
@@ -97,10 +95,10 @@
 				      </hbox>
 							<separator class="thin"/>
               <hbox align="center" class="indent">
-	              <label value="&foxyproxy.host.label;" accesskey="&foxyproxy.host.accesskey;"
-	              	tooltiptext="&foxyproxy.host.tooltip;"
+	              <label value="&foxyproxy.host.label.2;" accesskey="&foxyproxy.host.accesskey;"
+	              	tooltiptext="&foxyproxy.host.label.2;"
 	              	control="host"/>
-	              <textbox id="host" flex="1" observes="disabled-broadcaster" tooltiptext="&foxyproxy.host.tooltip;"/>
+	              <textbox id="host" flex="1" observes="disabled-broadcaster" tooltiptext="&foxyproxy.host.label.2;"/>
 	              <label value="&foxyproxy.port.label;" control="port" accesskey="&foxyproxy.port.accesskey;" tooltiptext="&foxyproxy.port.tooltip;"/>
 	              <textbox id="port" size="5" oninput="if (/\D/.test(this.value)) this.value='';" observes="disabled-broadcaster" tooltiptext="&foxyproxy.port.tooltip;"/>
               </hbox>
@@ -213,39 +211,11 @@
             <treecol id="caseSensitiveCol" label="&foxyproxy.casesensitive.label;" flex="1" persist="width ordinal hidden"/><splitter class="tree-splitter"/>            
             <treecol id="tempCol" label="&foxyproxy.temp.label;" flex="1" persist="width ordinal hidden"/><splitter class="tree-splitter"/>            
           </treecols>
-          <treechildren context="urlsTreeContext" ondblclick="onAddEditPattern(false, urlsTree, proxy.matches);"/>
+          <treechildren context="urlsTreeContext" ondblclick="onAddEditURLPattern(false);"/>
          </tree>
       </hbox>
-    </tabpanel>
-
-    <tabpanel flex="1" orient="vertical">
-      <separator class="thin" />
-      <description>&foxyproxy.pattern.description;</description>
-      <separator class="thin"/>
-      <hbox>
-        <button command="addIPPatternCmd" flex="1"/>
-        <button command="editIPPatternSelectionCmd" flex="1"/>
-        <button command="deleteIPPatternSelectionCmd" flex="1"/>
-        <button command="helpIPPatternCmd" flex="1"/>
-				<button id="wildcardIPPatternRefBtn" command="wildcardIPPatternReferenceCmd" flex="1"/>
-      </hbox>
-      <separator class="thin"/>
-      <hbox flex="1">
-      <tree id="ipsTree" flex="1" align="stretch" enableColumnDrag="true" seltype="single" onselect="setButtons('ips-tree-row-selected', ipsTree);"
-       	onclick="overlay.onTreeClick(event, this);">
-        <treecols id="treeCols" pickertooltiptext="&foxyproxy.tree.pickertooltiptext.label;">
-          <treecol id="enabledCol" label="&foxyproxy.enabled.label;" type="checkbox" flex="1" persist="width ordinal hidden"/><splitter class="tree-splitter"/>
-          <treecol id="nameCol" label="&foxyproxy.pattern.name.label;" flex="1" persist="width ordinal hidden"/><splitter class="tree-splitter"/>
-          <treecol id="patternCol" label="&foxyproxy.ip.pattern.label;" flex="1" persist="width ordinal hidden"/><splitter class="tree-splitter"/>
-          <treecol id="patternTypeCol" label="&foxyproxy.pattern.type.label;" flex="1" persist="width ordinal hidden"/><splitter class="tree-splitter"/>
-          <treecol id="blackCol" label="&foxyproxy.whitelist.blacklist.label;" flex="1" persist="width ordinal hidden"/><splitter class="tree-splitter"/>
-          <treecol id="tempCol" label="&foxyproxy.temp.label;" flex="1" persist="width ordinal hidden"/><splitter class="tree-splitter"/>            
-        </treecols>
-        <treechildren context="ipsTreeContext" ondblclick="onAddEditPattern(false, ipsTree, proxy.ippatterns);"/>
-    </tree>
-    </hbox>
-
-    </tabpanel>    
+      
+    </tabpanel>   
   </tabpanels>
   </tabbox>
 </vbox>
@@ -274,14 +244,13 @@
         <treecol id="caseSensitiveCol" label="&foxyproxy.casesensitive.label;" flex="1" persist="width ordinal hidden"/><splitter class="tree-splitter"/>            
         <treecol id="tempCol" label="&foxyproxy.temp.label;" flex="1" persist="width ordinal hidden"/><splitter class="tree-splitter"/>        
       </treecols>
-      <treechildren context="urlsTreeContext" ondblclick="onAddEditPattern(false, urlsTree, proxy.matches);"/>
+      <treechildren context="urlsTreeContext" ondblclick="onAddEditURLPattern(false);"/>
      </tree>
   </hbox>
 </vbox>
 
 <popupset>
   <popup id="wildcardURLPatternReferencePopup"/>
-  <popup id="wildcardIPPatternReferencePopup"/>
 	<popup id="newGUIPopup">
 		<vbox class="foxyproxy-border" style="height: &foxyproxy.newGUI.popup.height;; width: &foxyproxy.newGUI.popup.width;; padding: .5em;">
 			<description class="foxyproxy-tooltip">
@@ -320,16 +289,6 @@
     <menuitem class="menuitem-non-iconic" command="helpURLPatternCmd"/>
     <menuitem class="menuitem-non-iconic" command="closeCmd"/>
   </popup>
-  <popup id="ipsTreeContext" onpopupshowing="onTreeMenuPopupShowing(this.firstChild, proxy.ippatterns, ipsTree);">
-		<menuitem id="enabledPopUpMenuItem" command="toggleIPPatternEnabledCmd" type="checkbox"/>
-    <menuseparator/>
-    <menuitem class="menuitem-non-iconic" command="addIPPatternCmd"/>
-    <menuitem class="menuitem-non-iconic" command="editIPPatternSelectionCmd"/>
-    <menuitem class="menuitem-non-iconic" command="deleteIPPatternSelectionCmd"/>
-    <menuseparator/>
-    <menuitem class="menuitem-non-iconic" command="helpIPPatternCmd"/>
-    <menuitem class="menuitem-non-iconic" command="closeCmd"/>
-  </popup>
 
 </popupset>
 
@@ -342,7 +301,7 @@
 
 <command id="addURLPatternCmd"
   label="&foxyproxy.add.new.pattern.label;"
-  oncommand="onAddEditPattern(true, urlsTree, proxy.matches);"
+  oncommand="onAddEditURLPattern(true);"
   accesskey="&foxyproxy.add.new.pattern.accesskey;"
   tooltiptext="&foxyproxy.add.new.pattern.tooltip;"/>
 
@@ -358,7 +317,7 @@
   accesskey="&foxyproxy.edit.selection.accesskey;"
   tooltiptext="&foxyproxy.edit.selection.tooltip;"
   observes="urls-tree-row-selected"
-  oncommand="onAddEditPattern(false, urlsTree, proxy.matches);"/>
+  oncommand="onAddEditURLPattern(false);"/>
 
 <command id="helpURLPatternCmd"
   label="&foxyproxy.help.label;"
@@ -372,44 +331,6 @@
   tooltiptext="&foxyproxy.wildcard.reference.tooltip;"
   oncommand="onWildcardReference('wildcardURLPatternReferencePopup', 'wildcardURLPatternRefBtn');"/>
 
-<command id="toggleIPPatternEnabledCmd"
-  label="&foxyproxy.enabled.label;"
-  tooltiptext="&foxyproxy.enabled.tooltip;"
-  accesskey="&foxyproxy.enabled.accesskey;"
-  observes="ips-tree-row-selected"
-  oncommand="toggleEnabled(proxy.ippatterns, ipsTree);"/>
-
-<command id="addIPPatternCmd"
-  label="&foxyproxy.add.new.pattern.label;"
-  oncommand="onAddEditPattern(true, ipsTree, proxy.ippatterns);"
-  accesskey="&foxyproxy.add.new.pattern.accesskey;"
-  tooltiptext="&foxyproxy.add.new.pattern.tooltip;"/>
-
-<command id="deleteIPPatternSelectionCmd"
-  label="&foxyproxy.delete.selection.label;"
-  accesskey="&foxyproxy.delete.selection.accesskey;"
-  tooltiptext="&foxyproxy.delete.selection.tooltip;"
-  observes="ips-tree-row-selected"
-  oncommand="onRemoveIPPattern();"/>
-
-<command id="editIPPatternSelectionCmd"
-  label="&foxyproxy.edit.selection.label;"
-  accesskey="&foxyproxy.edit.selection.accesskey;"
-  tooltiptext="&foxyproxy.edit.selection.tooltip;"
-  observes="ips-tree-row-selected"
-  oncommand="onAddEditPattern(false, ipsTree, proxy.ippatterns);"/>
-
-<command id="helpIPPatternCmd"
-  label="&foxyproxy.help.label;"
-  accesskey="&foxyproxy.help.accesskey;"
-  tooltiptext="&foxyproxy.help.tooltip;"
-  oncommand="fpc.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/ippatterns.html');"/>
-
-<command id="wildcardIPPatternReferenceCmd"
-  label="&foxyproxy.wildcard.reference.label;"
-  accesskey="&foxyproxy.wildcard.reference.accesskey;"
-  tooltiptext="&foxyproxy.wildcard.reference.tooltip;"
-  oncommand="onWildcardReference('wildcardIPPatternReferencePopup', 'wildcardIPPatternRefBtn');"/>
 
 <command id="closeCmd"
   label="&foxyproxy.close.label;"
@@ -437,7 +358,6 @@
   <broadcaster id="autoconf-broadcaster1" disabled="true"/>
   <broadcaster id="autoconf-broadcaster2" disabled="true"/>
   <broadcaster id="urls-tree-row-selected" disabled="true"/>
-  <broadcaster id="ips-tree-row-selected" disabled="true"/>
   <broadcaster id="torwiz-broadcaster" hidden="false"/>
   <broadcaster id="not-torwiz-broadcaster" hidden="true"/>
   <broadcaster id="disabled-broadcaster" disabled="false"/>

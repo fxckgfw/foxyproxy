@@ -71,10 +71,7 @@ var gLoggEntryFactory = function(proxy, aMatch, uri, type, errMsg) {
     bool.data = subj;
     var d;
     if (typeof(data) == "string" || typeof(data) == "number") {
-      /*
-       * it's a number when this._mode is 3rd arg, and FoxyProxy is set to a
-       * proxy for all URLs
-       */
+      /* it's a number when this._mode is 3rd arg, and FoxyProxy is set to a proxy for all URLs */
       var d = CC["@mozilla.org/supports-string;1"].createInstance(CI.nsISupportsString);
       d.data = "" + data; // force to a string
     }
@@ -200,6 +197,9 @@ biesi>  passing it the appropriate proxyinfo
   <biesi> forgot to mention that part
   <biesi> with help of nsIURILoader::openURI*/
 
+    }
+  },
+
   closeAppWindows: function(type, wm) {
     var wm = CC["@mozilla.org/appshell/window-mediator;1"].getService(CI.nsIWindowMediator);
     var e = wm.getEnumerator(type);
@@ -255,8 +255,7 @@ biesi>  passing it the appropriate proxyinfo
     // User has disabled FoxyProxy, so Firefox network.proxy.* preferences will be used.
     // If Firefox is configured to use a PAC file, we need to force that PAC file to load.
     // Firefox won't load it automatically except on startup and after
-    // network.proxy.autoconfig_retry_* seconds. Rather than make the user wait
-    // for that,
+    // network.proxy.autoconfig_retry_* seconds. Rather than make the user wait for that,
     // we load the PAC file now.
     var networkPrefs = this.getPrefsService("network.proxy."), usingPAC;
     try {

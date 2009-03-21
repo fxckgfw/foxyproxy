@@ -72,7 +72,6 @@ function Proxy(fp) {
   this.wrappedJSObject = this;
   this.fp = fp || CC["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;
   this.matches = [];
-  this.ippatterns = [];
   this.name = this.notes = "";
   this.manualconf = new ManualConf(this.fp);
   this.autoconf = new AutoConf(this, this.fp);

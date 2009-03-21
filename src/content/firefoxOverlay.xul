@@ -16,6 +16,10 @@
 
   <script src="overlay.js"/>
 
+  <stringbundleset id="foxyproxy-strings">
+    <stringbundle src="chrome://foxyproxy/locale/foxyproxy.properties"/>   
+  </stringbundleset>
+  
   <!-- menu -->
   <menupopup id="menu_ToolsPopup">
    	<menu id="foxyproxy-tools-menu-1" label="&foxyproxy.label;" insertbefore="devToolsSeparator" position="9"

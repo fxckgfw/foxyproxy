@@ -1,9 +1,9 @@
 @import url(chrome://global/skin/);
 
 tree {min-height: 50px;}
-treechildren::-moz-tree-row(grey) {
+/*treechildren::-moz-tree-row(grey) {
   background-color: rgb(80%, 80%, 80%);
-}
+}*/
 
 #foxyproxy-button-1[mode="patterns"],
 #foxyproxy-context-menu-1[mode="patterns"],

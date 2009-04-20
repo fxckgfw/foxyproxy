@@ -147,7 +147,6 @@ var foxyproxy = {
     this.toggleStatusBarText(this.fp.statusbar.textEnabled);    
     this.toggleStatusBarWidth(this.fp.statusbar.width);
     this.setMode(this.fp.mode);
-    this.fp.notifier.emptyQueue();
   this.updateCheck.check();    
   },
 
@@ -270,11 +269,6 @@ var foxyproxy = {
     this.fp.quickadd.onQuickAdd(window, evt.view.content.document);
     }
   },
-  
-  onRefreshLocalIPs : function() {
-    this.fp.refreshLocalIPs();
-    this.fp.notifier.alert(this.fp.getMessage("ip.local"), this.fp.ips.toString());
-  },
 
   onPageLoad : function(evt) {
     var doc = evt.originalTarget; // doc is document that triggered "onload" event
@@ -337,12 +331,17 @@ var foxyproxy = {
         prompts.BUTTON_TITLE_IS_STRING * prompts.BUTTON_POS_1,
       btn1Text, btn2Text, null, null, {}) == 0; // 0 means first button ("yes") was pressed
     else { 
-      var ret = prompts.confirmEx(parent, this.fp.getMessage("foxyproxy"), text,
+      // No longer displays in proper order and no longer returns proper values on FF 3.0.7 and above.
+      // Insists that 2nd displayed button (1-index) is BUTTON_POS_2 (0-indexed)
+      /*var ret = prompts.confirmEx(parent, this.fp.getMessage("foxyproxy"), text,
         prompts.BUTTON_TITLE_IS_STRING * prompts.BUTTON_POS_0 +
         prompts.BUTTON_TITLE_IS_STRING * prompts.BUTTON_POS_1 +
         prompts.BUTTON_TITLE_IS_STRING * prompts.BUTTON_POS_2,
-        btn1Text, btn2Text, btn3Text, null, {});
-      return ret == 0 ? prompts.BUTTON_POS_0 : ret == 1 ? prompts.BUTTON_POS_1 : prompts.BUTTON_POS_2
+        btn1Text, btn2Text, btn3Text, null, {});*/
+      var p = {inn:{title: text, btn1Text: btn1Text, btn2Text: btn2Text, btn3Text: btn3Text}, out:null};
+      window.openDialog("chrome://foxyproxy/content/triquestion.xul", "",
+        "chrome, dialog, modal, resizable=yes, centerscreen=yes", p).focus();
+      return p.out ? p.out.value : null;
     }
   },
 
@@ -515,9 +514,6 @@ var foxyproxy = {
           // Toggle between current mode and disabled
           fp.setMode(fp.mode == "disabled" ? "previous" : "disabled");
           break;
-        case "refreshlocalips":
-          foxyproxy.onRefreshLocalIPs();
-          break;
         case "quickadd":
           foxyproxy.onQuickAddDialog(e);
           break;
@@ -539,8 +535,8 @@ var foxyproxy = {
       asb.setAttribute("style", "max-height: 400px;");
       asb.setAttribute("flex", "1");
       asb.setAttribute("orient", "vertical");*/
-
-      var checkOne = new Array();
+      
+      var checkOne = [];
       var itm = _createRadioMenuItem(menupopup,
         "patterns",
         this._cmd,
@@ -572,7 +568,7 @@ var foxyproxy = {
             p.animatedIcons,
             this.fp.getMessage("foxyproxy.animatedicons.accesskey"),
             this.fp.getMessage("foxyproxy.animatedicons.label"),
-            this.fp.getMessage("foxyproxy.animatedicons.tooltip"));
+            this.fp.getMessage("foxyproxy.animatedicons.tooltip"));          
         }
 
         itm = _createRadioMenuItem(sbm,
@@ -604,7 +600,7 @@ var foxyproxy = {
                 m.pattern,
                 m.name);
             }
-          }
+          }     
         }
       }
 
@@ -723,13 +719,6 @@ var foxyproxy = {
            this.fp.getMessage("foxyproxy.refresh.tooltip"));
 
         itm =_createMenuItem(submenupopup,
-            this.fp.getMessage("foxyproxy.refreshlocalips"),
-            "foxyproxy.onRefreshLocalIPs();",
-            this.fp.getMessage("foxyproxy.refreshlocalips.accesskey"),
-            this.fp.getMessage("foxyproxy.refreshlocalips"));
-          itm.setAttribute("key", "key_foxyproxyrefresh");
-
-        itm =_createMenuItem(submenupopup,
             this.fp.getMessage("foxyproxy.quickadd.label"),
             "foxyproxy.onQuickAddDialog(event)",
             this.fp.getMessage("foxyproxy.quickadd.accesskey"),
@@ -760,14 +749,7 @@ var foxyproxy = {
           this.fp.getMessage("foxyproxy.quickadd.accesskey"),
           this.fp.getMessage("foxyproxy.quickadd.tooltip"));
         itm.setAttribute("key", "key_foxyproxyquickadd");
-        itm.setAttribute("disabled", disableQuickAdd(this.fp));        
-
-        itm =_createMenuItem(submenupopup,
-          this.fp.getMessage("foxyproxy.refreshlocalips"),
-          "foxyproxy.onRefreshLocalIPs();",
-          this.fp.getMessage("foxyproxy.refreshlocalips.accesskey"),
-          this.fp.getMessage("foxyproxy.refreshlocalips"));
-        itm.setAttribute("key", "key_foxyproxyrefresh");
+        itm.setAttribute("disabled", disableQuickAdd(this.fp));
                   
         _createMenuItem(submenupopup,
           this.fp.getMessage("foxyproxy.help.label"),
@@ -792,6 +774,18 @@ var foxyproxy = {
           this.fp.getMessage("foxyproxy.options.tooltip"));
         itm.setAttribute("key", "key_foxyproxyfocus");
 
+        
+        /* Do the Set Host items. */
+        /*var sel = foxyproxy.parseSelection(p),
+            tmp = curProxy.substring(0, curProxy.length - 1); // because curProxy includes a final "."
+          sbm.appendChild(document.createElement("menuseparator"));
+          itm = _createMenuItem(sbm, this.fp.getMessage("change.host", [sel.selection]),
+              "foxyproxy.changeHost({proxy:" + tmp + ", host:'" + sel.parsedSelection[0] + "', port:'" + sel.parsedSelection[1] + "', reloadcurtab:false});", null, null);
+          itm.setAttribute("disabled", disabledSetHost);
+          itm = _createMenuItem(sbm, this.fp.getMessage("change.host.reload", [sel.selection]),
+              "foxyproxy.changeHost({proxy:" + tmp + ", host:'" + sel.parsedSelection[0] + "', port:'" + sel.parsedSelection[1] + "', reloadcurtab:true});", null, null);
+          itm.setAttribute("disabled", sel.disabled);     
+          */
         itm =_createMenuItem(menupopup,
           this.fp.getMessage("foxyproxy.quickadd.label"),
           "foxyproxy.onQuickAddDialog(event)",
@@ -799,13 +793,6 @@ var foxyproxy = {
           this.fp.getMessage("foxyproxy.quickadd.tooltip"));
         itm.setAttribute("key", "key_foxyproxyquickadd");
         itm.setAttribute("disabled", disableQuickAdd(this.fp));
-        
-        itm = _createMenuItem(menupopup,
-          this.fp.getMessage("foxyproxy.refreshlocalips"),
-          "foxyproxy.onRefreshLocalIPs();",
-          this.fp.getMessage("foxyproxy.refreshlocalips.accesskey"),
-          this.fp.getMessage("foxyproxy.refreshlocalips"));
-        itm.setAttribute("key", "key_foxyproxyrefresh"); 
         
         _createCheckMenuItem(menupopup,
           "foxyproxy.fp.advancedMenus = true;foxyproxy.updateViews(false);",

@@ -253,38 +253,7 @@ function _updateView(writeSettings, updateLogView) {
     onQuickAddEnabled(false);
   }
   
-  proxyTree.view  = {
-    rowCount : foxyproxy.proxies.length,
-    getCellText : function(row, column) {
-      var i = foxyproxy.proxies.item(row);    
-      switch(column.id) {
-        case "nameCol":return i.name;
-        case "descriptionCol":return i.notes;   
-        case "modeCol":return foxyproxy.getMessage(i.mode);
-        case "hostCol":return i.manualconf.host;           
-        case "isSocksCol":return i.manualconf.isSocks?foxyproxy.getMessage("yes"):foxyproxy.getMessage("no");        
-        case "portCol":return i.manualconf.port;                   
-        case "socksverCol":return i.manualconf.socksversion == "5" ? "5" : "4/4a";                           
-        case "autopacCol":return i.autoconf.url;   
-        case "animatedIconsCol":return i.animatedIcons?foxyproxy.getMessage("yes"):foxyproxy.getMessage("no");
-        case "cycleCol":return i.includeInCycle?foxyproxy.getMessage("yes"):foxyproxy.getMessage("no");
-      }
-    },
-    setCellValue: function(row, col, val) {foxyproxy.proxies.item(row).enabled = val;},
-    getCellValue: function(row, col) {return foxyproxy.proxies.item(row).enabled;},    
-    isSeparator: function(aIndex) { return false; },
-    isSorted: function() { return false; },
-    isEditable: function(row, col) { return false; },
-    isContainer: function(aIndex) { return false; },
-    setTree: function(aTree){},
-    getImageSrc: function(aRow, aColumn) {return null;},
-    getProgressMode: function(aRow, aColumn) {},
-    cycleHeader: function(aColId, aElt) {},
-    getRowProperties: function(aRow, aColumn, aProperty) {},
-    getColumnProperties: function(aColumn, aColumnElement, aProperty) {},
-    getCellProperties: function(aRow, aProperty) {},
-    getLevel: function(row){ return 0; }
-  };
+  proxyTree.view = fpc.makeProxyTreeView(foxyproxy);
   writeSettings && foxyproxy.writeSettings();
   setButtons();
   updateLogView && _updateLogView();

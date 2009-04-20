@@ -46,6 +46,8 @@ Common.prototype = {
     var winEnum = wm.getEnumerator("navigator:browser");
     if (!winEnum.hasMoreElements())
       winEnum = wm.getEnumerator("Songbird:Main");
+    if (!winEnum.hasMoreElements())
+      winEnm = wm.getEnumerator("mail:3pane");
     while (winEnum.hasMoreElements()) {
       var win = winEnum.getNext();
       var browser = win.getBrowser();
@@ -186,6 +188,40 @@ Common.prototype = {
       fp.writeSettings();
       return p.match;
     }
+  },
+  makeProxyTreeView : function(fp) {
+    return {
+        rowCount : fp.proxies.length,
+        getCellText : function(row, column) {
+          var i = fp.proxies.item(row);    
+          switch(column.id) {
+            case "nameCol":return i.name;
+            case "descriptionCol":return i.notes;   
+            case "modeCol":return fp.getMessage(i.mode);
+            case "hostCol":return i.manualconf.host;           
+            case "isSocksCol":return i.manualconf.isSocks?fp.getMessage("yes"):fp.getMessage("no");        
+            case "portCol":return i.manualconf.port;                   
+            case "socksverCol":return i.manualconf.socksversion == "5" ? "5" : "4/4a";                           
+            case "autopacCol":return i.autoconf.url;   
+            case "animatedIconsCol":return i.animatedIcons?fp.getMessage("yes"):fp.getMessage("no");
+            case "cycleCol":return i.includeInCycle?fp.getMessage("yes"):fp.getMessage("no");
+          }
+        },
+        setCellValue: function(row, col, val) {fp.proxies.item(row).enabled = val;},
+        getCellValue: function(row, col) {return fp.proxies.item(row).enabled;},    
+        isSeparator: function(aIndex) { return false; },
+        isSorted: function() { return false; },
+        isEditable: function(row, col) { return false; },
+        isContainer: function(aIndex) { return false; },
+        setTree: function(aTree){},
+        getImageSrc: function(aRow, aColumn) {return null;},
+        getProgressMode: function(aRow, aColumn) {},
+        cycleHeader: function(aColId, aElt) {},
+        getRowProperties: function(aRow, aColumn, aProperty) {},
+        getColumnProperties: function(aColumn, aColumnElement, aProperty) {},
+        getCellProperties: function(aRow, aProperty) {},
+        getLevel: function(row){ return 0; }
+      };  
   }
 }
 // Factory

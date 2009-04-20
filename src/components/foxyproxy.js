@@ -1344,21 +1344,31 @@ biesi>  passing it the appropriate proxyinfo
 
   warnings : {
     _noWildcards : false,
+    _noSocksWarning : false,
+    
     get noWildcards() { return this._noWildcards; },
     set noWildcards(e) {
       this._noWildcards = e;
       gFP.writeSettings();
     },
 
+    get noSocksWarning() { return this._noSocksWarning; },
+    set noSocksWarning(e) {
+      this._noSocksWarning = e;
+      gFP.writeSettings();
+    },
+    
     toDOM : function(doc) {
       var e = doc.createElement("warnings"); // new for 2.3
       e.setAttribute("no-wildcards", this._noWildcards);
+      e.setAttribute("no-socks-warning", this._noSocksWarning);
       return e;
     },
 
     fromDOM : function(doc) {
       var n = doc.getElementsByTagName("warnings").item(0);
       this._noWildcards = gGetSafeAttrB(n, "no-wildcards", false);
+      this._noSocksWarning = gGetSafeAttrB(n, "no-socks-warning", false);
     }
   },
   classID: Components.ID("{46466e13-16ab-4565-9924-20aac4d98c82}"),

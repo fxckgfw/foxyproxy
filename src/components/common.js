@@ -189,6 +189,7 @@ Common.prototype = {
       return p.match;
     }
   },
+  
   makeProxyTreeView : function(fp) {
     return {
         rowCount : fp.proxies.length,
@@ -222,6 +223,10 @@ Common.prototype = {
         getCellProperties: function(aRow, aProperty) {},
         getLevel: function(row){ return 0; }
       };  
+  },
+  
+  isThunderbird : function() {
+    return CC["@mozilla.org/xre/app-info;1"].getService(CI.nsIXULAppInfo).ID == "{3550f703-e582-4d05-9a08-453d09bdfdc6}";
   }
 }
 // Factory

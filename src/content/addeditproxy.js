@@ -94,6 +94,16 @@ function onOK() {
 	if (!hasWhite() &&
 		!overlay.ask(this, foxyproxy.getMessage((window.arguments[0].inn.torwiz ?
 		    "torwiz.nopatterns.3" : "no.white.patterns.3"), [name]))) return false;
+	
+	var isSocks = document.getElementById("isSocks").checked;
+	
+	if (fpc.isThunderbird() && !foxyproxy.warnings.noSocksWarning && !isSocks && mode == "manual") {
+	  var cb = {}, ret =
+	    CC["@mozilla.org/embedcomp/prompt-service;1"].getService(CI.nsIPromptService)
+	      .confirmCheck(window, foxyproxy.getMessage("foxyproxy"), foxyproxy.getMessage("socksWarning"), foxyproxy.getMessage("message.stop"), cb);
+	  foxyproxy.warnings.noSocksWarning = cb.value;	  
+	  if (!ret) return false;
+	}
 
   proxy.name = name;
   proxy.notes = document.getElementById("proxynotes").value;
@@ -108,7 +118,7 @@ function onOK() {
   proxy.enabled = enabled;
   proxy.manualconf.host = host;
   proxy.manualconf.port = port;
-  proxy.manualconf.isSocks = document.getElementById("isSocks").checked;
+  proxy.manualconf.isSocks = isSocks;
   proxy.manualconf.socksversion = document.getElementById("socksversion").value;
   proxy.animatedIcons = document.getElementById("animatedIcons").checked;
   proxy.includeInCycle = document.getElementById("cycleEnabled").checked;

@@ -35,6 +35,7 @@ function onLoad() {
   _initSettings();
   //setTimeout(function(){sizeToContent()}, 0);
   CC["@mozilla.org/observer-service;1"].getService(CI.nsIObserverService).addObserver(observer,"foxyproxy-mode-change", false);
+  sizeToContent();
 }
 
 function onOK() {

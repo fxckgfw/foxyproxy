@@ -92,6 +92,10 @@
               <hbox align="center" class="indent">
 				        <label value="&foxyproxy.changes.msg1;" class="text-link" popup="newGUIPopup" tooltiptext="&foxyproxy.changes.msg1;"/>
 				      </hbox>
+              <hbox align="center" class="indent">
+                <label value="&foxyproxy.proxyservice2.label;" class="text-link" tooltiptext="&foxyproxy.proxyservice2.label;"
+                  onclick="fpc.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/proxyservice/');"/>
+              </hbox>          
 							<separator class="thin"/>
               <hbox align="center" class="indent">
 	              <label value="&foxyproxy.host.label.2;" accesskey="&foxyproxy.host.accesskey;"

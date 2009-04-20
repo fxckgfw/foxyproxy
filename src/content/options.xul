@@ -158,6 +158,8 @@
               label=" &foxyproxy.moveup.label;" />
             <button id="down-button" pack="start" command="moveDownCmd"
               label=" &foxyproxy.movedown.label;" />
+            <separator/>
+            <button command="proxyServiceCmd"/>
             <separator />
             <button command="createProxyCmd" />
             <button command="settingsCmd" />
@@ -937,6 +939,10 @@
     accesskey="&foxyproxy.resetlocation.accesskey;"
     tooltiptext="&foxyproxy.resetlocation.tooltip;"
     oncommand="onResetSettingsURL()"/>
+
+  <command id="proxyServiceCmd" label="&foxyproxy.proxyservice.label;"
+    accesskey="&foxyproxy.proxyservice.accesskey;"
+    tooltiptext="&foxyproxy.proxyservice.tooltip;" oncommand="fpc.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/proxyservice/');" />
         
   <broadcasterset>
     <broadcaster id="tree-row-selected" disabled="true" />

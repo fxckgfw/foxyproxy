@@ -1098,6 +1098,7 @@ biesi>  passing it the appropriate proxyinfo
     }(),
 
     alert : function(title, text, noQueue) {
+      if (!title) title = gFP.getMessage("foxyproxy");
       if (this.alerts) {
         // With all the checks to ensure we don't use nsIAlertsService on unsupported platforms,
         // it would appear it can still happen (http://foxyproxy.mozdev.org/drupal/content/component-returned-failure-code-error-firefox-launch)

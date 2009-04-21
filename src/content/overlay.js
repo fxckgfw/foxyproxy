@@ -67,7 +67,7 @@ var foxyproxy = {
       var fpc = Components.classes["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject;
       if (this.first) {
         x("http://foxyproxy.mozdev.org/help.html");
-        foxyproxy.torWizard(true);
+        //foxyproxy.torWizard(true);
       }
       else {
          x("http://foxyproxy.mozdev.org/releasenotes.html");

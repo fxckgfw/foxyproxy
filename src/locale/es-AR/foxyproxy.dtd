@@ -405,7 +405,7 @@
 <!ENTITY foxyproxy.proxyservice.tooltip "Regístrese para obtener los servicios de proxy">
 <!ENTITY foxyproxy.proxyservice2.label "Necesita proxies rápidos, confiables en US, UK u otros países?">
 <!ENTITY foxyproxy.getfoxyproxyplus.label "Obtenga FoxyProxy Plus">
-<!--   begin foxyproxyplus   -->
+<!--    begin foxyproxyplus    -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Agregar/Editar los Patrones de Direcciones IP Locales">
 <!ENTITY foxyproxy.tempip.popup.label "Los patrones temporales le permiten crear patrones para las direcciones IP locales que no utilice a menudo sin engrosar la lista de patrones de direcciones IP locales del proxy . Los patrones temporales no se guardan en el disco. Ellos se mantienen en memoria y en uso para la sesión Firefox en curso solamente.">
 <!ENTITY foxyproxy.ip.pattern.label "Patrón de Direcciones IP Locales">
@@ -442,4 +442,5 @@
 <!ENTITY foxyproxy.everything.label "Todo">
 <!ENTITY foxyproxy.nothing.label "Nada">
 <!ENTITY foxyproxy.ippatterndeletefinal.label "Este es el último patrón de direcciones IP local. Si lo borra, este proxy no podrá ser utilizado. Continúa de todos modos?">
-<!--   end foxyproxyplus   -->
+<!ENTITY foxyproxy.licenseplea.label "FoxyProxy Plus cuenta con un mínimo de medidas de lucha contra la piratería. Si utiliza FoxyProxy Plus, por favor adquiera una licencia. Ha tomado muchos años de trabajo para su desarrollo y mantenimiento, y su compra me alienta a seguir.">
+<!--    end foxyproxyplus    -->

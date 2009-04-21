@@ -239,7 +239,7 @@
 <!ENTITY foxyproxy.pactip5.label "ici">
 <!ENTITY foxyproxy.pactip6.label ". Les chaînes de caractères spéciales contenues dans l&apos;URL relative:// URL que vous avez spécifiée sont remplacées par leurs valeurs correspondantes. Par exemple, relative://ProfD/pacs/proxy3.pac pointe vers le fichier proxy3.pac dans le sous-dossier du">
 <!ENTITY foxyproxy.pactip7.label "dossier « profile » de Firefox">
-<!ENTITY foxyproxy.pactip8.label "nommé pacs/. Avec Portable Firefox sur Windows, le dossier du profil Firefox est toujours un chemin relatif car la lettre du disque peut changer d&apos;un ordianteur à l&apos;autre. Veuillez prendre note que les chaînes de carctères (ProfD, Home, TempD, etc.) sont sensibles à la casse !">
+<!ENTITY foxyproxy.pactip8.label "nommé pacs/. Avec Portable Firefox sur Windows, le dossier du profil Firefox est toujours un chemin relatif car la lettre du disque peut changer d&apos;un ordinateur à l&apos;autre. Veuillez prendre note que les chaînes de caractères (ProfD, Home, TempD, etc.) sont sensibles à la casse !">
 <!ENTITY foxyproxy.contextmenu.label "Afficher l&apos;icône dans le menu contextuel">
 <!ENTITY foxyproxy.contextmenu.accesskey "c">
 <!ENTITY foxyproxy.contextmenu.tooltip "Affiche l&apos;icône dans le menu contextuel">
@@ -398,14 +398,14 @@
 <!ENTITY foxyproxy.resetlocation.label "Réinitialiser l&apos;emplacement">
 <!ENTITY foxyproxy.resetlocation.accesskey "R">
 <!ENTITY foxyproxy.resetlocation.tooltip "Stocker les paramètres dans le profil Firefox">
-<!ENTITY foxyproxy.settings.not.default "Settings aren&apos;t in the default location.">
+<!ENTITY foxyproxy.settings.not.default "Les paramètres ne se trouvent pas à l&apos;emplacement par défaut.">
 <!ENTITY foxyproxy.change.host.reload "Définir un nouvel hôte:port et recharger la page courante">
 <!ENTITY foxyproxy.proxyservice.label "Acheter des services proxy">
 <!ENTITY foxyproxy.proxyservice.accesskey "H">
 <!ENTITY foxyproxy.proxyservice.tooltip "Se connecter pour des services proxy">
-<!ENTITY foxyproxy.proxyservice2.label "Nécessite des proxies rapides et fiables aux États-Unis, en Angletterre ou dans d&apos;autres pays ?">
+<!ENTITY foxyproxy.proxyservice2.label "Nécessite des proxies rapides et fiables aux États-Unis, en Angleterre ou dans d&apos;autres pays ?">
 <!ENTITY foxyproxy.getfoxyproxyplus.label "Obtenir FoxyProxy Plus">
-<!--   begin foxyproxyplus   -->
+<!--    begin foxyproxyplus    -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Ajouter / éditer un motif d&apos;adresse IP Locale">
 <!ENTITY foxyproxy.tempip.popup.label "Les motifs temporaires vous permettent de créer des motifs  que vous n&apos;utilisez pas souvent afin d&apos;éviter de surcharger la liste des motifs d&apos;adresse IP pour un proxy. Les motifs temporaires ne sont pas enregistrés sur le disque. Ils sont conservés en mémoire et ne sont utilisés que dans cette session Firefox.">
 <!ENTITY foxyproxy.ip.pattern.label "Motif d&apos;adresse IP locale">
@@ -426,7 +426,7 @@
 <!ENTITY foxyproxy.copyip.accesskey "C">
 <!ENTITY foxyproxy.ip.wildcard.example.label "Exemple : 192.168.1.*">
 <!ENTITY foxyproxy.ip.regex.example.label "Exemple : 172\.\d+\.1\.10">
-<!ENTITY foxyproxy.ip.pattern.match "Le motif correspond à une ou plusieurs ou l&apos;actuelle adresse IP locale">
+<!ENTITY foxyproxy.ip.pattern.match "Le motif correspond à une ou plusieurs IP locales ou bien à l&apos;adresse courante">
 <!ENTITY foxyproxy.ip.pattern.no.match "Le motif ne correspond à aucune adresse IP courante">
 <!ENTITY foxyproxy.refreshlocalips "Actualiser les adresses IP locales">
 <!ENTITY foxyproxy.refreshlocalips.accesskey "A">
@@ -442,4 +442,5 @@
 <!ENTITY foxyproxy.everything.label "Tout">
 <!ENTITY foxyproxy.nothing.label "Rien">
 <!ENTITY foxyproxy.ippatterndeletefinal.label "Ceci est le dernier motif d&apos;adresse IP locale. Si vous le supprimez, ce proxy ne pourra pas être utilisé. Continuer tout de même ?">
-<!--   end foxyproxyplus   -->
+<!ENTITY foxyproxy.licenseplea.label "FoxyProxy Plus comporte des mesures contre le piratage minimales. Si vous utilisez FoxyProxy Plus, veuillez acheter une licence. Cela a pris plusieurs années de travail de développement et de maintenance, votre achat m&apos;encouragera à continuer.">
+<!--    end foxyproxyplus    -->

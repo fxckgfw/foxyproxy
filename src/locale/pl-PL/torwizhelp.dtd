@@ -4,7 +4,7 @@
 <!ENTITY help.fp.answers "FoxyProxy odpowiadając na to pytanie sprawdza, czy na poniższej liście nie ma zdefiniowanych adresów URL pasujących do adresu zawartego w zapytaniu. Prostym sposobem na zdefiniowanie wzorców jest użycie w nich wieloznaczników.">
 <!ENTITY help.a.wildcards "Wieloznaczniki">
 <!ENTITY help.p.wildcards.are "Wieloznaczniki są elementami przenikającymi przez cały proces obliczeniowy jakich prawdopodobnie nigdy wcześniej nie widziałeś. Gwiazdka (*), jako wieloznacznik jest zamiennikiem wszystkich znaków występujących przed znakiem przed, którym została umieszczona, a znak zapytania (?), zamiennikiem tylko jednego znaku.">
-<!ENTITY help.p.regexp "Bardziej zaawansowanymi regułami są wyrażenia regularne (RegExp). Aby poznać szczegóły wyrażeń regularnych naciśnij przycisk &quot;Pomoc&quot;.">
+<!ENTITY help.p.regexp "Bardziej zaawansowanymi regułami są wyrażenia regularne (RegExp). Aby poznać szczegóły wyrażeń regularnych naciśnij przycisk „Pomoc”.">
 <!ENTITY help.h4.wildcard.examples "Przykłady zastosowań wieloznaczników">
 <!ENTITY help.th.url.pattern "Wzorzec URL">
 <!ENTITY help.th.some.matches "Pasujące">

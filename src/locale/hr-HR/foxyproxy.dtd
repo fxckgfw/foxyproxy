@@ -124,14 +124,13 @@
 <!ENTITY foxyproxy.showstatusbarmode.label "Prikaži mod (tekst) u statusnoj traci">
 <!ENTITY foxyproxy.showstatusbarmode.accesskey "r">
 <!ENTITY foxyproxy.showstatusbarmode.tooltip "Ako je označeno, FoxyProxy mod će biti prikazan u statusnoj traci">
-<!ENTITY foxyproxy.storagelocation.label "Postavke mjesta spremanja">
+<!ENTITY foxyproxy.storagelocation.label.2 "Settings Location">
 <!ENTITY foxyproxy.storagelocation.accesskey "s">
 <!ENTITY foxyproxy.storagelocation.tooltip "Mjesto za spremanje postavki FoxyProxy-a">
 <!ENTITY foxyproxy.tab.logging.timestamp.label "Vremenska oznaka">
 <!ENTITY foxyproxy.tab.logging.url.label "Web adresa">
-<!ENTITY foxyproxy.host.label "Naziv glavnog računala">
+<!ENTITY foxyproxy.host.label.2 "Host or IP Address">
 <!ENTITY foxyproxy.host.accesskey "g">
-<!ENTITY foxyproxy.host.tooltip "Naziv glavnog računala">
 <!ENTITY foxyproxy.clear.label "Očisti">
 <!ENTITY foxyproxy.clear.accesskey "č">
 <!ENTITY foxyproxy.clear.tooltip "Očisti">
@@ -153,10 +152,6 @@
 <!ENTITY foxyproxy.blacklist.tooltip "Web adrese koje odgovaraju ovom primjeru se NE učitavaju putem ovog proxy-a">
 <!ENTITY foxyproxy.blacklist.description.label "Web adrese koje odgovaraju ovom primjeru se NE učitavaju putem ovog proxy-a">
 <!ENTITY foxyproxy.whiteblack.description.label "Primjeri zabranjenog popisa (isključivanja) imaju prioritet nad primjerima dopuštenog popisa (uključivanja): ako web adresa odgovara primjeru i s dopuštenog i s zabranjenog popisa za isti proxy, web adresa je isključena od učitavanja od strane tog proxy-a.">
-<!ENTITY foxyproxy.usingPFF.label1 "Ja koristim">
-<!ENTITY foxyproxy.usingPFF.label2 "Prijenosni Firefox">
-<!ENTITY foxyproxy.usingPFF.accesskey "P">
-<!ENTITY foxyproxy.usingPFF.tooltip "Označite ovdje ako koristite Prijenosni Firefox">
 <!ENTITY foxyproxy.socks.version.label "SOCKS inačica">
 <!ENTITY foxyproxy.autopacurl.label "Automatska PAC web adresa">
 <!ENTITY foxyproxy.issocks.label "SOCKS proxy?">
@@ -393,8 +388,57 @@
 <!ENTITY foxyproxy.home "Home">
 <!ENTITY foxyproxy.support "Support">
 <!ENTITY foxyproxy.credits "Credits">
+<!ENTITY foxyproxy.donations "Donations">
 <!ENTITY foxyproxy.please.donate.label "Please Donate">
 <!ENTITY foxyproxy.please.donate.accesskey "D">
 <!ENTITY foxyproxy.keep.free "Keep FoxyProxy Free">
 <!ENTITY foxyproxy.donation.list.label "Donation List">
 <!ENTITY foxyproxy.donation.list.accesskey "L">
+<!ENTITY foxyproxy.importantnote.label "Read Important Note">
+<!ENTITY foxyproxy.resetlocation.label "Reset Location">
+<!ENTITY foxyproxy.resetlocation.accesskey "R">
+<!ENTITY foxyproxy.resetlocation.tooltip "Store settings in Firefox profile">
+<!ENTITY foxyproxy.settings.not.default "Settings aren&apos;t in the default location.">
+<!ENTITY foxyproxy.change.host.reload "Set new host:port and then reload current page">
+<!ENTITY foxyproxy.proxyservice.label "Buy Proxy Service">
+<!ENTITY foxyproxy.proxyservice.accesskey "P">
+<!ENTITY foxyproxy.proxyservice.tooltip "Sign up for proxy services">
+<!ENTITY foxyproxy.proxyservice2.label "Need fast, reliable proxies in the US, UK, or other countries?">
+<!--  begin foxyproxyplus  -->
+<!ENTITY foxyproxy.ip.pattern.addedit.title "Add/Edit Local IP Address Pattern">
+<!ENTITY foxyproxy.tempip.popup.label "Temporary patterns allow you to create patterns for local IP addresses that you don&apos;t use often without cluttering the IP address pattern list for a proxy. Temporary patterns are not saved to disk. They are kept in-memory and used for this Firefox session only.">
+<!ENTITY foxyproxy.ip.pattern.label "Local IP address pattern">
+<!ENTITY foxyproxy.ip.pattern.accesskey "I">
+<!ENTITY foxyproxy.ip.pattern.tooltip "Local IP address pattern">
+<!ENTITY foxyproxy.ip.patterns.label "Local IP Address Patterns">
+<!ENTITY foxyproxy.ip.patterns.accesskey "I">
+<!ENTITY foxyproxy.ip.patterns.tooltip "Local IP address patterns">
+<!ENTITY foxyproxy.ip.wildcard.reference.matches.label "Matches">
+<!ENTITY foxyproxy.ip.wildcard.reference.nomatch.label "Doesn&apos;t Match">
+<!ENTITY foxyproxy.ip.whiteblack.label "Inclusion/Exclusion">
+<!ENTITY foxyproxy.ip.whitelist.description.label "URLs load through this proxy when one of your IP addresses matches this pattern">
+<!ENTITY foxyproxy.ip.blacklist.description.label "URLs do NOT load through this proxy when one of your IP addresses matches this pattern">
+<!ENTITY foxyproxy.ip.wildcard.reference.subtitle.label "The asterisk (*) matches zero or more characters.">
+<!ENTITY foxyproxy.ip.current.local.label "Current Local IP addresses">
+<!ENTITY foxyproxy.copyip.label "Copy to Pattern">
+<!ENTITY foxyproxy.copyip.tooltip "Copy address to pattern">
+<!ENTITY foxyproxy.copyip.accesskey "C">
+<!ENTITY foxyproxy.ip.wildcard.example.label "Example: 192.168.1.*">
+<!ENTITY foxyproxy.ip.regex.example.label "Example: 172\.\d+\.1\.10">
+<!ENTITY foxyproxy.ip.pattern.match "Pattern matches one or more or current local IP addresses">
+<!ENTITY foxyproxy.ip.pattern.no.match "Pattern doesn&apos;t match any current local IP address">
+<!ENTITY foxyproxy.refreshlocalips "Refresh local IP addresses">
+<!ENTITY foxyproxy.refreshlocalips.accesskey "R">
+<!ENTITY foxyproxy.enterlicense.label "Enter license key">
+<!ENTITY foxyproxy.enteremail.label "Enter email address">
+<!ENTITY foxyproxy.licenseinfo.label "License Info">
+<!ENTITY foxyproxy.licensevalid.label "License valid. Thank you for purchasing FoxyProxy Plus.">
+<!ENTITY foxyproxy.licenseinvalid.label "License invalid. You won&apos;t receive FoxyProxyPlus updates. Please purchase FoxyProxy Plus.">
+<!ENTITY foxyproxy.buynow.label "Buy Now">
+<!ENTITY foxyproxy.checklicense.label "Check License">
+<!ENTITY foxyproxy.checkinglicense.label "Checking...please wait">
+<!ENTITY foxyproxy.routetoleahscape.label "Please make sure Firefox can reach https://leahscape.com/fpplus/license_check.php either with or without a proxy. You can configure patterns for this URL in FoxyProxy Plus if necessary.">
+<!ENTITY foxyproxy.everything.label "Everything">
+<!ENTITY foxyproxy.nothing.label "Nothing">
+<!ENTITY foxyproxy.ippatterndeletefinal.label "This is the last local IP address pattern. If you delete it, this proxy has no possibility of being used. Continue anyway?">
+<!--  end foxyproxyplus  -->

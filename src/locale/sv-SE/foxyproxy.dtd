@@ -55,7 +55,7 @@
 <!ENTITY foxyproxy.auto.url.accesskey "u">
 <!ENTITY foxyproxy.auto.url.tooltip "Ange URL för PAC-filen">
 <!ENTITY foxyproxy.auto.url.note.label "http(s)://   ftp://   file://   relative://">
-<!ENTITY foxyproxy.auto.url.note.tooltip "Click the info icon for information on relative://">
+<!ENTITY foxyproxy.auto.url.note.tooltip "Klicka på info-ikonen för information om relative://">
 <!ENTITY foxyproxy.port.label "Port">
 <!ENTITY foxyproxy.port.accesskey "P">
 <!ENTITY foxyproxy.port.tooltip "Port">
@@ -124,14 +124,13 @@
 <!ENTITY foxyproxy.showstatusbarmode.label "Visa läge (textformat) i verktygsfältet">
 <!ENTITY foxyproxy.showstatusbarmode.accesskey "ä">
 <!ENTITY foxyproxy.showstatusbarmode.tooltip "Om markerad kommer FoxyProxys läge (i textformat) visas i verktygsfältet">
-<!ENTITY foxyproxy.storagelocation.label "Inställning för lagring">
+<!ENTITY foxyproxy.storagelocation.label.2 "Settings Location">
 <!ENTITY foxyproxy.storagelocation.accesskey "g">
 <!ENTITY foxyproxy.storagelocation.tooltip "Plats att lagra inställningar för FoxyProxy">
 <!ENTITY foxyproxy.tab.logging.timestamp.label "Tidsmärkning">
 <!ENTITY foxyproxy.tab.logging.url.label "URL">
-<!ENTITY foxyproxy.host.label "Värdnamn">
+<!ENTITY foxyproxy.host.label.2 "Host eller IP-adress">
 <!ENTITY foxyproxy.host.accesskey "ä">
-<!ENTITY foxyproxy.host.tooltip "Värndnamn">
 <!ENTITY foxyproxy.clear.label "Rensa">
 <!ENTITY foxyproxy.clear.accesskey "R">
 <!ENTITY foxyproxy.clear.tooltip "Rensar">
@@ -153,10 +152,6 @@
 <!ENTITY foxyproxy.blacklist.tooltip "URL matchande detta mönster laddas INTE genom proxy">
 <!ENTITY foxyproxy.blacklist.description.label "URL matchande detta mönster laddas INTE genom proxy">
 <!ENTITY foxyproxy.whiteblack.description.label "Svartlistade (exkludering) mönster har företräde över vitlistade (inkludering): om en URL matchar både vit- och svart-listning kommer URLen exkluderas från att laddas genom proxy.">
-<!ENTITY foxyproxy.usingPFF.label1 "Jag använder">
-<!ENTITY foxyproxy.usingPFF.label2 "Portable Firefox">
-<!ENTITY foxyproxy.usingPFF.accesskey "P">
-<!ENTITY foxyproxy.usingPFF.tooltip "Markera här om du använder Portable Firefox">
 <!ENTITY foxyproxy.socks.version.label "SOCKS-version">
 <!ENTITY foxyproxy.autopacurl.label "Auto PAC URL">
 <!ENTITY foxyproxy.issocks.label "SOCKS proxy?">
@@ -373,8 +368,8 @@
 <!ENTITY foxyproxy.pac.result.label "Resultat PAC">
 <!ENTITY foxyproxy.torwiz.width "660">
 <!ENTITY foxyproxy.torwiz.height "375">
-<!ENTITY foxyproxy.casesensitive.label "Case sensitive">
-<!ENTITY foxyproxy.casesensitive.accesskey "C">
+<!ENTITY foxyproxy.casesensitive.label "Känslig för stora och små bokstäver">
+<!ENTITY foxyproxy.casesensitive.accesskey "K">
 <!ENTITY foxyproxy.casesensitive.tooltip "Enables/disables case-sensitivity for URL matching">
 <!ENTITY foxyproxy.statusbarwidth.label "Fast bredd">
 <!ENTITY foxyproxy.statusbarwidth.accesskey "b">
@@ -393,8 +388,57 @@
 <!ENTITY foxyproxy.home "Hem">
 <!ENTITY foxyproxy.support "Support">
 <!ENTITY foxyproxy.credits "Tack till">
+<!ENTITY foxyproxy.donations "Donations">
 <!ENTITY foxyproxy.please.donate.label "Donera gärna">
 <!ENTITY foxyproxy.please.donate.accesskey "D">
-<!ENTITY foxyproxy.keep.free "Fortsätt göra FoxyProxy gratis">
+<!ENTITY foxyproxy.keep.free "Fortsätt med FoxyProxy gratis">
 <!ENTITY foxyproxy.donation.list.label "Donatörer">
 <!ENTITY foxyproxy.donation.list.accesskey "ö">
+<!ENTITY foxyproxy.importantnote.label "Read Important Note">
+<!ENTITY foxyproxy.resetlocation.label "Återställ plats">
+<!ENTITY foxyproxy.resetlocation.accesskey "r">
+<!ENTITY foxyproxy.resetlocation.tooltip "Lagra inställningar i Firefoxprofilen">
+<!ENTITY foxyproxy.settings.not.default "Settings aren&apos;t in the default location.">
+<!ENTITY foxyproxy.change.host.reload "Set new host:port and then reload current page">
+<!ENTITY foxyproxy.proxyservice.label "Buy Proxy Service">
+<!ENTITY foxyproxy.proxyservice.accesskey "P">
+<!ENTITY foxyproxy.proxyservice.tooltip "Sign up for proxy services">
+<!ENTITY foxyproxy.proxyservice2.label "Need fast, reliable proxies in the US, UK, or other countries?">
+<!--  begin foxyproxyplus  -->
+<!ENTITY foxyproxy.ip.pattern.addedit.title "Add/Edit Local IP Address Pattern">
+<!ENTITY foxyproxy.tempip.popup.label "Temporary patterns allow you to create patterns for local IP addresses that you don&apos;t use often without cluttering the IP address pattern list for a proxy. Temporary patterns are not saved to disk. They are kept in-memory and used for this Firefox session only.">
+<!ENTITY foxyproxy.ip.pattern.label "Local IP address pattern">
+<!ENTITY foxyproxy.ip.pattern.accesskey "I">
+<!ENTITY foxyproxy.ip.pattern.tooltip "Local IP address pattern">
+<!ENTITY foxyproxy.ip.patterns.label "Local IP Address Patterns">
+<!ENTITY foxyproxy.ip.patterns.accesskey "I">
+<!ENTITY foxyproxy.ip.patterns.tooltip "Local IP address patterns">
+<!ENTITY foxyproxy.ip.wildcard.reference.matches.label "Matches">
+<!ENTITY foxyproxy.ip.wildcard.reference.nomatch.label "Doesn&apos;t Match">
+<!ENTITY foxyproxy.ip.whiteblack.label "Inclusion/Exclusion">
+<!ENTITY foxyproxy.ip.whitelist.description.label "URLs load through this proxy when one of your IP addresses matches this pattern">
+<!ENTITY foxyproxy.ip.blacklist.description.label "URLs do NOT load through this proxy when one of your IP addresses matches this pattern">
+<!ENTITY foxyproxy.ip.wildcard.reference.subtitle.label "The asterisk (*) matches zero or more characters.">
+<!ENTITY foxyproxy.ip.current.local.label "Current Local IP addresses">
+<!ENTITY foxyproxy.copyip.label "Copy to Pattern">
+<!ENTITY foxyproxy.copyip.tooltip "Copy address to pattern">
+<!ENTITY foxyproxy.copyip.accesskey "C">
+<!ENTITY foxyproxy.ip.wildcard.example.label "Example: 192.168.1.*">
+<!ENTITY foxyproxy.ip.regex.example.label "Example: 172\.\d+\.1\.10">
+<!ENTITY foxyproxy.ip.pattern.match "Pattern matches one or more or current local IP addresses">
+<!ENTITY foxyproxy.ip.pattern.no.match "Pattern doesn&apos;t match any current local IP address">
+<!ENTITY foxyproxy.refreshlocalips "Refresh local IP addresses">
+<!ENTITY foxyproxy.refreshlocalips.accesskey "R">
+<!ENTITY foxyproxy.enterlicense.label "Enter license key">
+<!ENTITY foxyproxy.enteremail.label "Enter email address">
+<!ENTITY foxyproxy.licenseinfo.label "License Info">
+<!ENTITY foxyproxy.licensevalid.label "License valid. Thank you for purchasing FoxyProxy Plus.">
+<!ENTITY foxyproxy.licenseinvalid.label "License invalid. You won&apos;t receive FoxyProxyPlus updates. Please purchase FoxyProxy Plus.">
+<!ENTITY foxyproxy.buynow.label "Buy Now">
+<!ENTITY foxyproxy.checklicense.label "Check License">
+<!ENTITY foxyproxy.checkinglicense.label "Checking...please wait">
+<!ENTITY foxyproxy.routetoleahscape.label "Please make sure Firefox can reach https://leahscape.com/fpplus/license_check.php either with or without a proxy. You can configure patterns for this URL in FoxyProxy Plus if necessary.">
+<!ENTITY foxyproxy.everything.label "Everything">
+<!ENTITY foxyproxy.nothing.label "Nothing">
+<!ENTITY foxyproxy.ippatterndeletefinal.label "This is the last local IP address pattern. If you delete it, this proxy has no possibility of being used. Continue anyway?">
+<!--  end foxyproxyplus  -->

@@ -4,7 +4,7 @@
 <!ENTITY help.fp.answers "FoxyProxy responde a esta pregunta viendo la correspondencia entre la dirección y todas las plantillas que se hayan definido. La manera más simple de definir plantillas es usando comodines.">
 <!ENTITY help.a.wildcards "Comodines">
 <!ENTITY help.p.wildcards.are "Los comodines son muy comunes en muchos programas; es muy probable que ya haya trabajado con ellos anteriormente. El asterisco (*) corresponde a un comodín para ningún caracter o para varios, mientras que la interrogación (?) se sustituye por un único caracter.">
-<!ENTITY help.p.regexp "s posible usar reglas más avanzadas de correspondencia mediante las expresiones regulares. Para más detalles pulse el botón &apos;Contenidos de la ayuda&apos;.">
+<!ENTITY help.p.regexp "Es posible usar reglas más avanzadas de correspondencia mediante las expresiones regulares. Para más detalles pulse el botón &apos;Contenidos de la ayuda&apos;.">
 <!ENTITY help.h4.wildcard.examples "Ejemplos de comodines">
 <!ENTITY help.th.url.pattern "Plantilla de la dirección">
 <!ENTITY help.th.some.matches "Coincide con">

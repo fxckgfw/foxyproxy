@@ -355,7 +355,7 @@
 <!ENTITY foxyproxy.click.reloadtabsinallbrowsers "Recargar todas las pestañas de todas las ventanas">
 <!ENTITY foxyproxy.click.removeallcookies "Borrar todas las cookies">
 <!ENTITY foxyproxy.click.toggle "Cambia entre el modo actual y el deshabilitado">
-<!ENTITY foxyproxy.includeincycle.label "Include this proxy when cycling proxies by clicking on statusbar or toolbar (Global Settings-&gt;Statusbar/Toolbar Activation-&gt;Cycle through modes must be selected)">
+<!ENTITY foxyproxy.includeincycle.label "Incluir este proxy al iterar entre los proxys pulsando en la barra de estado o de herramientas (Opciones generales-&gt;Barra de estado/ Barra de herramientas-&gt;Iterar en los modos debe estar seleccionado)">
 <!ENTITY foxyproxy.includeincycle.accesskey "I">
 <!ENTITY foxyproxy.includeincycle.tooltip "Incluir este proxy al pulsar la barra de estado/herramientas">
 <!ENTITY foxyproxy.changes.msg1 "¡Ayuda! ¿Cuáles son las opciones para HTTP, SSL, FTP, Gopher y SOCKS?">
@@ -398,24 +398,24 @@
 <!ENTITY foxyproxy.resetlocation.label "Reiniciar ubicación">
 <!ENTITY foxyproxy.resetlocation.accesskey "R">
 <!ENTITY foxyproxy.resetlocation.tooltip "Guardar las opciones en el perfil de Firefox">
-<!ENTITY foxyproxy.settings.not.default "Settings aren&apos;t in the default location.">
-<!ENTITY foxyproxy.change.host.reload "Set new host:port and then reload current page">
-<!ENTITY foxyproxy.proxyservice.label "Buy Proxy Service">
+<!ENTITY foxyproxy.settings.not.default "Las opciones no están en la ruta por defecto.">
+<!ENTITY foxyproxy.change.host.reload "Establezca nuevo host:puerto y recargue la página actual">
+<!ENTITY foxyproxy.proxyservice.label "Comprar el servicio proxy">
 <!ENTITY foxyproxy.proxyservice.accesskey "P">
-<!ENTITY foxyproxy.proxyservice.tooltip "Sign up for proxy services">
-<!ENTITY foxyproxy.proxyservice2.label "Need fast, reliable proxies in the US, UK, or other countries?">
-<!ENTITY foxyproxy.getfoxyproxyplus.label "Get FoxyProxy Plus">
-<!--   begin foxyproxyplus   -->
-<!ENTITY foxyproxy.ip.pattern.addedit.title "Add/Edit Local IP Address Pattern">
+<!ENTITY foxyproxy.proxyservice.tooltip "Conectar para el servicio proxy">
+<!ENTITY foxyproxy.proxyservice2.label "¿Necesita proxys rápidos y confiables en US, UK o en otros países?">
+<!ENTITY foxyproxy.getfoxyproxyplus.label "Obtener FoxyProxy Plus">
+<!--    begin foxyproxyplus    -->
+<!ENTITY foxyproxy.ip.pattern.addedit.title "Añadir/Editar patrón de direcciones IP locales">
 <!ENTITY foxyproxy.tempip.popup.label "Temporary patterns allow you to create patterns for local IP addresses that you don&apos;t use often without cluttering the IP address pattern list for a proxy. Temporary patterns are not saved to disk. They are kept in-memory and used for this Firefox session only.">
-<!ENTITY foxyproxy.ip.pattern.label "Local IP address pattern">
+<!ENTITY foxyproxy.ip.pattern.label "Patrón de dirección IP local">
 <!ENTITY foxyproxy.ip.pattern.accesskey "I">
-<!ENTITY foxyproxy.ip.pattern.tooltip "Local IP address pattern">
-<!ENTITY foxyproxy.ip.patterns.label "Local IP Address Patterns">
+<!ENTITY foxyproxy.ip.pattern.tooltip "Patrón de dirección IP local">
+<!ENTITY foxyproxy.ip.patterns.label "Patrones de direcciones IP locales">
 <!ENTITY foxyproxy.ip.patterns.accesskey "I">
-<!ENTITY foxyproxy.ip.patterns.tooltip "Local IP address patterns">
-<!ENTITY foxyproxy.ip.wildcard.reference.matches.label "Matches">
-<!ENTITY foxyproxy.ip.wildcard.reference.nomatch.label "Doesn&apos;t Match">
+<!ENTITY foxyproxy.ip.patterns.tooltip "Patrones de direcciones IP locales">
+<!ENTITY foxyproxy.ip.wildcard.reference.matches.label "Coincide">
+<!ENTITY foxyproxy.ip.wildcard.reference.nomatch.label "No coincide">
 <!ENTITY foxyproxy.ip.whiteblack.label "Inclusion/Exclusion">
 <!ENTITY foxyproxy.ip.whitelist.description.label "URLs load through this proxy when one of your IP addresses matches this pattern">
 <!ENTITY foxyproxy.ip.blacklist.description.label "URLs do NOT load through this proxy when one of your IP addresses matches this pattern">
@@ -442,4 +442,5 @@
 <!ENTITY foxyproxy.everything.label "Everything">
 <!ENTITY foxyproxy.nothing.label "Nothing">
 <!ENTITY foxyproxy.ippatterndeletefinal.label "This is the last local IP address pattern. If you delete it, this proxy has no possibility of being used. Continue anyway?">
-<!--   end foxyproxyplus   -->
+<!ENTITY foxyproxy.licenseplea.label "FoxyProxy Plus tiene unas medidas mínimas anti-piratería. Si usa FoxyProxy Plus, por favor compre una licencia. Ha llevado varios años de trabajo el desarrollo y mantenimiento, y su compra me anima a continuar.">
+<!--    end foxyproxyplus    -->

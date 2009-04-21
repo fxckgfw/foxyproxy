@@ -405,7 +405,7 @@
 <!ENTITY foxyproxy.proxyservice.tooltip "Sign up for proxy services">
 <!ENTITY foxyproxy.proxyservice2.label "Need fast, reliable proxies in the US, UK, or other countries?">
 <!ENTITY foxyproxy.getfoxyproxyplus.label "Get FoxyProxy Plus">
-<!--   begin foxyproxyplus   -->
+<!--    begin foxyproxyplus    -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Add/Edit Local IP Address Pattern">
 <!ENTITY foxyproxy.tempip.popup.label "Temporary patterns allow you to create patterns for local IP addresses that you don&apos;t use often without cluttering the IP address pattern list for a proxy. Temporary patterns are not saved to disk. They are kept in-memory and used for this Firefox session only.">
 <!ENTITY foxyproxy.ip.pattern.label "Local IP address pattern">
@@ -442,4 +442,5 @@
 <!ENTITY foxyproxy.everything.label "Everything">
 <!ENTITY foxyproxy.nothing.label "Nothing">
 <!ENTITY foxyproxy.ippatterndeletefinal.label "This is the last local IP address pattern. If you delete it, this proxy has no possibility of being used. Continue anyway?">
-<!--   end foxyproxyplus   -->
+<!ENTITY foxyproxy.licenseplea.label "FoxyProxy Plus has minimal anti-piracy measures. If you use FoxyProxy Plus, please purchase a license. It&apos;s taken many years of work to develop and maintain, and your purchase encourages me to continue.">
+<!--    end foxyproxyplus    -->

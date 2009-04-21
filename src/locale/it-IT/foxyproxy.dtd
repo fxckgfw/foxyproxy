@@ -395,15 +395,15 @@
 <!ENTITY foxyproxy.donation.list.label "Lista delle donazioni">
 <!ENTITY foxyproxy.donation.list.accesskey "L">
 <!ENTITY foxyproxy.importantnote.label "Ulteriori informazioni">
-<!ENTITY foxyproxy.resetlocation.label "Ripristina percorso">
+<!ENTITY foxyproxy.resetlocation.label "Ripristina">
 <!ENTITY foxyproxy.resetlocation.accesskey "R">
 <!ENTITY foxyproxy.resetlocation.tooltip "Ripristina il file .xml delle impostazioni nella cartella del profilo di Firefox">
 <!ENTITY foxyproxy.settings.not.default "Il file .xml non è nella cartella predefinita.">
 <!ENTITY foxyproxy.change.host.reload "Impostare il nuovo server e relativa porta, poi ricaricare la pagina">
 <!ENTITY foxyproxy.proxyservice.label "Proxy a pagamento">
-<!ENTITY foxyproxy.proxyservice.accesskey "x">
+<!ENTITY foxyproxy.proxyservice.accesskey "n">
 <!ENTITY foxyproxy.proxyservice.tooltip "Fare clic qui per iscriversi ad un servizio di proxy a pagamento">
-<!ENTITY foxyproxy.proxyservice2.label "Fare clic qui per iscriversi ad un servizio di proxy sicuri (americani, inglesi o di altre nazioni) a pagamento">
+<!ENTITY foxyproxy.proxyservice2.label "Iscrizione ad un servizio di proxy sicuri americani, inglesi o di altre nazioni a pagamento">
 <!ENTITY foxyproxy.getfoxyproxyplus.label "Ottieni FoxyProxy Plus">
 <!--  begin foxyproxyplus  -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Aggiunta/modifica di modelli di indirizzi IP locali">
@@ -442,4 +442,5 @@
 <!ENTITY foxyproxy.everything.label "Tutto">
 <!ENTITY foxyproxy.nothing.label "Niente">
 <!ENTITY foxyproxy.ippatterndeletefinal.label "Questo è l&apos;ultimo modello di indirizzo IP locale. Eliminandolo non sarà più possibile utilizzare il relativo proxy. Proseguire comunque?">
+<!ENTITY foxyproxy.licenseplea.label "FoxyProxy Plus è protetta con misure anti pirateria. Per il suo utilizzo, sostenerne lo sviluppo e il mantenimento (iniziati diversi anni fa) è necessario acquistare una licenza">
 <!--  end foxyproxyplus  -->

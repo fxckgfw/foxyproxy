@@ -405,7 +405,7 @@
 <!ENTITY foxyproxy.proxyservice.tooltip "Εγγραφείτε για υπηρεσίες διαμεσολάβησης">
 <!ENTITY foxyproxy.proxyservice2.label "Χρειάζεστε γρήγορους, αξιόπιστους διαμεσολαβητές στις ΗΠΑ, την Αγγλία ή άλλη χώρα;">
 <!ENTITY foxyproxy.getfoxyproxyplus.label "Πάρτε το FoxyProxy Plus">
-<!--   begin foxyproxyplus   -->
+<!--    begin foxyproxyplus    -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Προσθήκη/επεξεργασία τοπικού πρότυπου διεύθυνσης IP">
 <!ENTITY foxyproxy.tempip.popup.label "Τα προσωρινά πρότυπα σας επιτρέπουν να δημιουργήσετε τοπικά πρότυπα για διευθύνσεις IP που δεν χρησιμοποιείτε συχνά, χωρίς να αυξάνετε την πολυπλοκότητα της λίστας πρότυπων κάποιου διαμεσολαβητή. Τα προσωρινά πρότυπα δεν αποθηκεύονται στο δίσκο, διατηρούνται μόνο στη μνήμη και χρησιμοποιούνται για την τρέχουσα συνεδρία του Firefox.">
 <!ENTITY foxyproxy.ip.pattern.label "Τοπικό πρότυπο διεύθυνσης IP">
@@ -442,4 +442,5 @@
 <!ENTITY foxyproxy.everything.label "Όλα">
 <!ENTITY foxyproxy.nothing.label "Κανένα">
 <!ENTITY foxyproxy.ippatterndeletefinal.label "Αυτό είναι το τελευταίο τοπικό πρότυπο διεύθυνσης IP. Αν το διαγράψετε, αυτός ο διαμεσολαβητής δεν θα χρησιμοποιείται πότε. Συνέχεια;">
-<!--   end foxyproxyplus   -->
+<!ENTITY foxyproxy.licenseplea.label "Το FoxyProxy Plus διαθέτει μερικά αντίμετρα κατά της πειρατείας. Αν χρησιμοποιείτε το FoxyProxy Plus, παρακαλούμε αποκτήστε μια άδεια χρήσης. Η ανάπτυξη και η υποστήριξη του έχει πάρει χρόνια δουλειάς και η αγορά σας θα μας ενθαρύνει να συνεχίσουμε.">
+<!--    end foxyproxyplus    -->

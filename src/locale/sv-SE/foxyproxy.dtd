@@ -405,7 +405,7 @@
 <!ENTITY foxyproxy.proxyservice.tooltip "Anmäl dig till proxy-tjänster">
 <!ENTITY foxyproxy.proxyservice2.label "Behöver du snabba, pålitliga proxy i USA, England eller andra länder?">
 <!ENTITY foxyproxy.getfoxyproxyplus.label "Skaffa FoxyProxy Plus">
-<!--   begin foxyproxyplus   -->
+<!--    begin foxyproxyplus    -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Lägg till/Redigera lokala IP-adressmönster">
 <!ENTITY foxyproxy.tempip.popup.label "Temporära mönster gör att du kan skapa mönster för lokala IP-adresser som du inte använder så ofta. Temporära mönster sparas inte till disk utan behålls bara i minnet så länge Firefox är igång.">
 <!ENTITY foxyproxy.ip.pattern.label "Lokalt IP-adressmönster">
@@ -442,4 +442,5 @@
 <!ENTITY foxyproxy.everything.label "Allt">
 <!ENTITY foxyproxy.nothing.label "Inget">
 <!ENTITY foxyproxy.ippatterndeletefinal.label "Detta är det sista lokala IP-adressmönstret. Om du tar bort det kan denna proxy inte användas. Fortsätta ändå?">
-<!--   end foxyproxyplus   -->
+<!ENTITY foxyproxy.licenseplea.label "FoxyProxy Plus har minimalt kopieringsskydd. Om du använder FoxyProxy Plus vänligen köp en licens. Det har tagit många år av utveckling och underhåll och köper du en licens motiveras jag att fortsätta utvecklingen.">
+<!--    end foxyproxyplus    -->

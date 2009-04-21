@@ -399,13 +399,13 @@
 <!ENTITY foxyproxy.resetlocation.accesskey "R">
 <!ENTITY foxyproxy.resetlocation.tooltip "Zapisuj ustawienia w profilu Firefoksa">
 <!ENTITY foxyproxy.settings.not.default "W domyślnej lokalizacji nie ma ustawień.">
-<!ENTITY foxyproxy.change.host.reload "Określ nowy host:port, a następnie odśwież aktywną stronę">
+<!ENTITY foxyproxy.change.host.reload "Określ nowy serwer:port, a następnie odśwież aktywną stronę">
 <!ENTITY foxyproxy.proxyservice.label "Wykup usługę Proxy">
 <!ENTITY foxyproxy.proxyservice.accesskey "P">
 <!ENTITY foxyproxy.proxyservice.tooltip "Zarejestruj się w usługach proxy">
 <!ENTITY foxyproxy.proxyservice2.label "Potrzebujesz szybkich, niezawodnych proxy w USA, UK lub innych krajach?">
 <!ENTITY foxyproxy.getfoxyproxyplus.label "Skorzystaj z FoxyProxy Plus">
-<!--    begin foxyproxyplus    -->
+<!--     begin foxyproxyplus     -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Dodaj/edytuj wzorzec lokalnego adresu IP">
 <!ENTITY foxyproxy.tempip.popup.label "Wzorce tymczasowe pozwalają na tworzenie wzorców lokalnego adresu IP nie używanych często. Dzięki temu lista wzorców nie jest niepotrzebnie przeładowywana. Wzorce tymczasowe nie są zapisywane na dysku. Są one trzymane w pamięci i używane tylko w aktualnej sesji Firefoksa.">
 <!ENTITY foxyproxy.ip.pattern.label "Wzorzec lokalnego adresu  IP">
@@ -442,4 +442,5 @@
 <!ENTITY foxyproxy.everything.label "Wszystko">
 <!ENTITY foxyproxy.nothing.label "Nic">
 <!ENTITY foxyproxy.ippatterndeletefinal.label "To jest wzorzec ostatniego lokalnego adresu IP. Jeśli go usuniesz, nie będziesz mieć możliwości używania tego proxy. Kontynuować?">
-<!--    end foxyproxyplus    -->
+<!ENTITY foxyproxy.licenseplea.label "FoxyProxy Plus ma minimalne zabezpieczenia anty-pirackie. Jeśli używasz FoxyProxy Plus, kup licencję. Stworzenie FoxyProxy zajęło autorowi wiele lat pracy. Zakup licencji zachęci go do dalszego rozwoju rozszerzenia.">
+<!--     end foxyproxyplus     -->

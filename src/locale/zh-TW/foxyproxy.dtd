@@ -86,7 +86,7 @@
 <!ENTITY foxyproxy.tab.patterns.tooltip "網址樣式設定">
 <!ENTITY foxyproxy.add.title "代理伺服器設定">
 <!ENTITY foxyproxy.pattern.description "你可以在這裏指定是否使用此代理伺服器。">
-<!ENTITY foxyproxy.pattern.matchtype.label "樣式包含">
+<!ENTITY foxyproxy.pattern.matchtype.label "樣式內容">
 <!ENTITY foxyproxy.pattern.whiteblack.label "網址白名單/黑名單">
 <!ENTITY foxyproxy.add.option.direct.label "直接連線（不使用代理伺服器）(D)">
 <!ENTITY foxyproxy.add.option.direct.accesskey "D">
@@ -124,14 +124,13 @@
 <!ENTITY foxyproxy.showstatusbarmode.label "在狀態列以文字顯示目前模式(S)">
 <!ENTITY foxyproxy.showstatusbarmode.accesskey "S">
 <!ENTITY foxyproxy.showstatusbarmode.tooltip "如果啟用這個選項，在狀態列會以文字顯示目前 FoxyProxy 模式">
-<!ENTITY foxyproxy.storagelocation.label "儲存設定資料夾(S)">
+<!ENTITY foxyproxy.storagelocation.label.2 "儲存設定的資料夾(S)">
 <!ENTITY foxyproxy.storagelocation.accesskey "S">
 <!ENTITY foxyproxy.storagelocation.tooltip "儲存 FoxyProxy 設定的資料夾">
 <!ENTITY foxyproxy.tab.logging.timestamp.label "時間">
 <!ENTITY foxyproxy.tab.logging.url.label "網址">
-<!ENTITY foxyproxy.host.label "主機名稱(H)">
+<!ENTITY foxyproxy.host.label.2 "主機或 IP 位址(H)">
 <!ENTITY foxyproxy.host.accesskey "H">
-<!ENTITY foxyproxy.host.tooltip "主機名稱">
 <!ENTITY foxyproxy.clear.label "清除(C)">
 <!ENTITY foxyproxy.clear.accesskey "C">
 <!ENTITY foxyproxy.clear.tooltip "清除">
@@ -153,10 +152,6 @@
 <!ENTITY foxyproxy.blacklist.tooltip "『不』透過此代理伺服器存取符合此樣式的網址">
 <!ENTITY foxyproxy.blacklist.description.label "『不』透過此代理伺服器存取符合此樣式的網址">
 <!ENTITY foxyproxy.whiteblack.description.label "黑名單比白名單有更高的優先權，如果同一網址同時符合黑/白名單的樣式，則『不』透過此代理伺服器存取這個網址。">
-<!ENTITY foxyproxy.usingPFF.label1 "我正使用">
-<!ENTITY foxyproxy.usingPFF.label2 "Portable Firefox">
-<!ENTITY foxyproxy.usingPFF.accesskey "P">
-<!ENTITY foxyproxy.usingPFF.tooltip "如果你使用 Portable Firefox，請勾選此選項">
 <!ENTITY foxyproxy.socks.version.label "SOCKS 版本">
 <!ENTITY foxyproxy.autopacurl.label "自動組態指命碼（PAC）的檔案網址">
 <!ENTITY foxyproxy.issocks.label "SOCKS 代理伺服器？">
@@ -243,8 +238,8 @@
 <!ENTITY foxyproxy.pactip4.label "最後，如果你需要在本機上使用相對路徑去指定自動組態指命碼（PAC）檔案，你可以使用 FoxyProxy 的特殊 relative:// 格式，這在自動組態指命碼（PAC）檔案位於行動碟上時非常有用。目前支援的相對路徑文件在">
 <!ENTITY foxyproxy.pactip5.label "這裏">
 <!ENTITY foxyproxy.pactip6.label "。你在 relative:// 裏所指定的特殊字串，會被取代為對應的值。例如 relative://ProfD/pacs/proxy3.pac 指到位於">
-<!ENTITY foxyproxy.pactip7.label "Firefox 設定檔目錄">
-<!ENTITY foxyproxy.pactip8.label "底下的 pacs 子目錄裏的 proxy3.pac 檔案。Windows 版的 Portable Firefox 裏，Firefox 設定檔目錄一定是相對路徑，因為磁碟機代號在不同電腦上可能是不同的。請注意：「ProfD、Home、TempD…」等特殊字串是有分大小寫的！">
+<!ENTITY foxyproxy.pactip7.label "Firefox 設定檔資料夾">
+<!ENTITY foxyproxy.pactip8.label "底下的 pacs 子資料夾裏的 proxy3.pac 檔案。Windows 版的 Portable Firefox 裏，Firefox 設定檔資料夾一定是相對路徑，因為磁碟機代號在不同電腦上可能是不同的。請注意：「ProfD、Home、TempD…」等特殊字串是有分大小寫的！">
 <!ENTITY foxyproxy.contextmenu.label "在右鍵選單上顯示圖示(C)">
 <!ENTITY foxyproxy.contextmenu.accesskey "C">
 <!ENTITY foxyproxy.contextmenu.tooltip "在右鍵選單上顯示圖示">
@@ -314,7 +309,7 @@
 <!ENTITY foxyproxy.pattern.template.reference.hostport.label "主機及連接埠，含「:」">
 <!ENTITY foxyproxy.pattern.template.reference.prepath.label "路徑前的字串">
 <!ENTITY foxyproxy.pattern.template.reference.path.label "路徑（包括檔案名稱）">
-<!ENTITY foxyproxy.pattern.template.reference.directory.label "目錄">
+<!ENTITY foxyproxy.pattern.template.reference.directory.label "資料夾">
 <!ENTITY foxyproxy.pattern.template.reference.filebasename.label "檔案主檔名">
 <!ENTITY foxyproxy.pattern.template.reference.fileextension.label "檔案副檔名">
 <!ENTITY foxyproxy.pattern.template.reference.filename.label "完整檔案名稱">
@@ -393,8 +388,57 @@
 <!ENTITY foxyproxy.home "首頁">
 <!ENTITY foxyproxy.support "技術支援">
 <!ENTITY foxyproxy.credits "製作群">
+<!ENTITY foxyproxy.donations "捐助">
 <!ENTITY foxyproxy.please.donate.label "請捐助(D)">
 <!ENTITY foxyproxy.please.donate.accesskey "D">
 <!ENTITY foxyproxy.keep.free "維持免費使用 FoxyProxy">
 <!ENTITY foxyproxy.donation.list.label "捐助清單(L)">
 <!ENTITY foxyproxy.donation.list.accesskey "L">
+<!ENTITY foxyproxy.importantnote.label "閱讀重要說明">
+<!ENTITY foxyproxy.resetlocation.label "重設位置(R)">
+<!ENTITY foxyproxy.resetlocation.accesskey "R">
+<!ENTITY foxyproxy.resetlocation.tooltip "將設定儲存在 Firefox 設定檔內">
+<!ENTITY foxyproxy.settings.not.default "Settings aren&apos;t in the default location.">
+<!ENTITY foxyproxy.change.host.reload "Set new host:port and then reload current page">
+<!ENTITY foxyproxy.proxyservice.label "Buy Proxy Service">
+<!ENTITY foxyproxy.proxyservice.accesskey "P">
+<!ENTITY foxyproxy.proxyservice.tooltip "Sign up for proxy services">
+<!ENTITY foxyproxy.proxyservice2.label "Need fast, reliable proxies in the US, UK, or other countries?">
+<!--  begin foxyproxyplus  -->
+<!ENTITY foxyproxy.ip.pattern.addedit.title "Add/Edit Local IP Address Pattern">
+<!ENTITY foxyproxy.tempip.popup.label "Temporary patterns allow you to create patterns for local IP addresses that you don&apos;t use often without cluttering the IP address pattern list for a proxy. Temporary patterns are not saved to disk. They are kept in-memory and used for this Firefox session only.">
+<!ENTITY foxyproxy.ip.pattern.label "Local IP address pattern">
+<!ENTITY foxyproxy.ip.pattern.accesskey "I">
+<!ENTITY foxyproxy.ip.pattern.tooltip "Local IP address pattern">
+<!ENTITY foxyproxy.ip.patterns.label "Local IP Address Patterns">
+<!ENTITY foxyproxy.ip.patterns.accesskey "I">
+<!ENTITY foxyproxy.ip.patterns.tooltip "Local IP address patterns">
+<!ENTITY foxyproxy.ip.wildcard.reference.matches.label "Matches">
+<!ENTITY foxyproxy.ip.wildcard.reference.nomatch.label "Doesn&apos;t Match">
+<!ENTITY foxyproxy.ip.whiteblack.label "Inclusion/Exclusion">
+<!ENTITY foxyproxy.ip.whitelist.description.label "URLs load through this proxy when one of your IP addresses matches this pattern">
+<!ENTITY foxyproxy.ip.blacklist.description.label "URLs do NOT load through this proxy when one of your IP addresses matches this pattern">
+<!ENTITY foxyproxy.ip.wildcard.reference.subtitle.label "The asterisk (*) matches zero or more characters.">
+<!ENTITY foxyproxy.ip.current.local.label "Current Local IP addresses">
+<!ENTITY foxyproxy.copyip.label "Copy to Pattern">
+<!ENTITY foxyproxy.copyip.tooltip "Copy address to pattern">
+<!ENTITY foxyproxy.copyip.accesskey "C">
+<!ENTITY foxyproxy.ip.wildcard.example.label "Example: 192.168.1.*">
+<!ENTITY foxyproxy.ip.regex.example.label "Example: 172\.\d+\.1\.10">
+<!ENTITY foxyproxy.ip.pattern.match "Pattern matches one or more or current local IP addresses">
+<!ENTITY foxyproxy.ip.pattern.no.match "Pattern doesn&apos;t match any current local IP address">
+<!ENTITY foxyproxy.refreshlocalips "Refresh local IP addresses">
+<!ENTITY foxyproxy.refreshlocalips.accesskey "R">
+<!ENTITY foxyproxy.enterlicense.label "Enter license key">
+<!ENTITY foxyproxy.enteremail.label "Enter email address">
+<!ENTITY foxyproxy.licenseinfo.label "License Info">
+<!ENTITY foxyproxy.licensevalid.label "License valid. Thank you for purchasing FoxyProxy Plus.">
+<!ENTITY foxyproxy.licenseinvalid.label "License invalid. You won&apos;t receive FoxyProxyPlus updates. Please purchase FoxyProxy Plus.">
+<!ENTITY foxyproxy.buynow.label "Buy Now">
+<!ENTITY foxyproxy.checklicense.label "Check License">
+<!ENTITY foxyproxy.checkinglicense.label "Checking...please wait">
+<!ENTITY foxyproxy.routetoleahscape.label "Please make sure Firefox can reach https://leahscape.com/fpplus/license_check.php either with or without a proxy. You can configure patterns for this URL in FoxyProxy Plus if necessary.">
+<!ENTITY foxyproxy.everything.label "Everything">
+<!ENTITY foxyproxy.nothing.label "Nothing">
+<!ENTITY foxyproxy.ippatterndeletefinal.label "This is the last local IP address pattern. If you delete it, this proxy has no possibility of being used. Continue anyway?">
+<!--  end foxyproxyplus  -->

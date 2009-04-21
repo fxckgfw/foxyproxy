@@ -1,13 +1,13 @@
-<!ENTITY help.title.foxyproxy.help "FoxyProxy Help">
-<!ENTITY help.patterns "URL Patterns">
-<!ENTITY help.ff.asks "Before Firefox loads a URL, Firefox asks FoxyProxy if a proxy should be used. ">
-<!ENTITY help.fp.answers "FoxyProxy answers this question by attempting to match the current URL with all of the URL patterns you define below. The simplest way to specify patterns is with wildcards.">
-<!ENTITY help.a.wildcards "Wildcards">
-<!ENTITY help.p.wildcards.are "Wildcards are pervasive throughout computing; you&apos;ve most likely seen them before. The asterisk (*) substitutes as a wildcard character for zero or more characters, and the question mark (?) substitutes as a wildcard character for any one character. ">
-<!ENTITY help.p.regexp "More advanced matching rules are possible using regular expressions. For details, click the &apos;Help Contents&apos; button.">
-<!ENTITY help.h4.wildcard.examples "Wildcard Examples">
-<!ENTITY help.th.url.pattern "URL Pattern">
-<!ENTITY help.th.some.matches "Some Matches">
-<!ENTITY help.th.some.non.matches "Some Non-Matches">
-<!ENTITY help.td.everything.in.y "Everything in Yahoo&apos;s domain">
-<!ENTITY help.i.matches.everything "Matches everything">
+<!ENTITY help.title.foxyproxy.help "FoxyProxy ช่วยเหลือ">
+<!ENTITY help.patterns "แบบรูปยูอาร์แอล">
+<!ENTITY help.ff.asks "ก่อนไฟร์ฟอกซ์โหลดยูอาร์แอล ไฟร์ฟอกซ์จะถาม FoxyProxy ก่อนถ้าพร็อกซีควรถูกใช้">
+<!ENTITY help.fp.answers "FoxyProxy ตอบคำถามนี้โดยพยายามจับคู่ยูอาร์แอลกับแบบรูปยูอาร์แอลทั้งหมดที่คุณระบุข้างล่าง วิธีที่ง่ายที่สุดที่จะเจาะจงแบบรูปคือใช้อักขระตัวแทน">
+<!ENTITY help.a.wildcards "อักขระตัวแทน">
+<!ENTITY help.p.wildcards.are "อักขระตัวแทน (wildcard) นิยมใช้ในการประมวลผล คุณต้องเคยเห็นมันมาก่อนแน่ๆ เครื่องหมายดอกจัน (*) แทนอักขระตัวแทนเป็นศูนย์หรืออักขระอื่นๆ และเครื่องหมายปรัศนี (?) แทนอักขระตัวแทนเป็นอักขระหนึ่งใดก็ตาม">
+<!ENTITY help.p.regexp "กฎการจับคู่แบบขั้นสูงอื่นๆทำได้โดยการใส่การแสดงออกทั่วไป คลิก &quot;เนื้อหาช่วยเหลือ&quot; เพื่อดูรายละเอียด">
+<!ENTITY help.h4.wildcard.examples "ตัวอย่างอักขระตัวแทน">
+<!ENTITY help.th.url.pattern "แบบรูปยูอาร์แอล">
+<!ENTITY help.th.some.matches "บางคู่">
+<!ENTITY help.th.some.non.matches "ไม่เข้าคู่">
+<!ENTITY help.td.everything.in.y "ทุกอย่างในโดเมนของยาฮู">
+<!ENTITY help.i.matches.everything "จับคู่ทุกอย่าง">

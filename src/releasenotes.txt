@@ -1,9 +1,2 @@
 2.9
 ===
-* More options for QuickAdd activation (toolbar, statusbar, context-menu)
-* added Logging->Refresh to advanced menus
-* Improved some icons for dark firefox themes (e.g., nasa theme) -- Thanks, Laban Robokoff.
-  --- nah that's  old
-* Fix for Songbird when opening URLs from FoxyProxy (e.g., support link, credits, donate, homepage links, etc)
-* Preliminary SeaMonkey 2.x support  
-

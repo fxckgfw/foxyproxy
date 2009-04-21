@@ -398,48 +398,48 @@
 <!ENTITY foxyproxy.resetlocation.label "Επαναφορά τοποθεσίας">
 <!ENTITY foxyproxy.resetlocation.accesskey "π">
 <!ENTITY foxyproxy.resetlocation.tooltip "Αποθήκευση ρυθμίσεων στο προφίλ χρήστη του Firefox">
-<!ENTITY foxyproxy.settings.not.default "Settings aren&apos;t in the default location.">
-<!ENTITY foxyproxy.change.host.reload "Set new host:port and then reload current page">
-<!ENTITY foxyproxy.proxyservice.label "Buy Proxy Service">
-<!ENTITY foxyproxy.proxyservice.accesskey "P">
-<!ENTITY foxyproxy.proxyservice.tooltip "Sign up for proxy services">
-<!ENTITY foxyproxy.proxyservice2.label "Need fast, reliable proxies in the US, UK, or other countries?">
-<!ENTITY foxyproxy.getfoxyproxyplus.label "Get FoxyProxy Plus">
+<!ENTITY foxyproxy.settings.not.default "Οι ρυθμίσεις δεν βρίσκονται στην αρχική τοποθεσία.">
+<!ENTITY foxyproxy.change.host.reload "Ορίστε νέο εξυπηρετητή και θύρα και ανανεώστε την τρέχουσα σελίδα.">
+<!ENTITY foxyproxy.proxyservice.label "Αγοράστε υπηρεσίες διαμεσολάβησης">
+<!ENTITY foxyproxy.proxyservice.accesskey "δ">
+<!ENTITY foxyproxy.proxyservice.tooltip "Εγγραφείτε για υπηρεσίες διαμεσολάβησης">
+<!ENTITY foxyproxy.proxyservice2.label "Χρειάζεστε γρήγορους, αξιόπιστους διαμεσολαβητές στις ΗΠΑ, την Αγγλία ή άλλη χώρα;">
+<!ENTITY foxyproxy.getfoxyproxyplus.label "Πάρτε το FoxyProxy Plus">
 <!--   begin foxyproxyplus   -->
-<!ENTITY foxyproxy.ip.pattern.addedit.title "Add/Edit Local IP Address Pattern">
-<!ENTITY foxyproxy.tempip.popup.label "Temporary patterns allow you to create patterns for local IP addresses that you don&apos;t use often without cluttering the IP address pattern list for a proxy. Temporary patterns are not saved to disk. They are kept in-memory and used for this Firefox session only.">
-<!ENTITY foxyproxy.ip.pattern.label "Local IP address pattern">
-<!ENTITY foxyproxy.ip.pattern.accesskey "I">
-<!ENTITY foxyproxy.ip.pattern.tooltip "Local IP address pattern">
-<!ENTITY foxyproxy.ip.patterns.label "Local IP Address Patterns">
-<!ENTITY foxyproxy.ip.patterns.accesskey "I">
-<!ENTITY foxyproxy.ip.patterns.tooltip "Local IP address patterns">
-<!ENTITY foxyproxy.ip.wildcard.reference.matches.label "Matches">
-<!ENTITY foxyproxy.ip.wildcard.reference.nomatch.label "Doesn&apos;t Match">
-<!ENTITY foxyproxy.ip.whiteblack.label "Inclusion/Exclusion">
-<!ENTITY foxyproxy.ip.whitelist.description.label "URLs load through this proxy when one of your IP addresses matches this pattern">
-<!ENTITY foxyproxy.ip.blacklist.description.label "URLs do NOT load through this proxy when one of your IP addresses matches this pattern">
-<!ENTITY foxyproxy.ip.wildcard.reference.subtitle.label "The asterisk (*) matches zero or more characters.">
-<!ENTITY foxyproxy.ip.current.local.label "Current Local IP addresses">
-<!ENTITY foxyproxy.copyip.label "Copy to Pattern">
-<!ENTITY foxyproxy.copyip.tooltip "Copy address to pattern">
-<!ENTITY foxyproxy.copyip.accesskey "C">
-<!ENTITY foxyproxy.ip.wildcard.example.label "Example: 192.168.1.*">
-<!ENTITY foxyproxy.ip.regex.example.label "Example: 172\.\d+\.1\.10">
-<!ENTITY foxyproxy.ip.pattern.match "Pattern matches one or more or current local IP addresses">
-<!ENTITY foxyproxy.ip.pattern.no.match "Pattern doesn&apos;t match any current local IP address">
-<!ENTITY foxyproxy.refreshlocalips "Refresh local IP addresses">
-<!ENTITY foxyproxy.refreshlocalips.accesskey "R">
-<!ENTITY foxyproxy.enterlicense.label "Enter license key">
-<!ENTITY foxyproxy.enteremail.label "Enter email address">
-<!ENTITY foxyproxy.licenseinfo.label "License Info">
-<!ENTITY foxyproxy.licensevalid.label "License valid. Thank you for purchasing FoxyProxy Plus.">
-<!ENTITY foxyproxy.licenseinvalid.label "License invalid. You won&apos;t receive FoxyProxyPlus updates. Please purchase FoxyProxy Plus.">
-<!ENTITY foxyproxy.buynow.label "Buy Now">
-<!ENTITY foxyproxy.checklicense.label "Check License">
-<!ENTITY foxyproxy.checkinglicense.label "Checking...please wait">
-<!ENTITY foxyproxy.routetoleahscape.label "Please make sure Firefox can reach https://leahscape.com/fpplus/license_check.php either with or without a proxy. You can configure patterns for this URL in FoxyProxy Plus if necessary.">
-<!ENTITY foxyproxy.everything.label "Everything">
-<!ENTITY foxyproxy.nothing.label "Nothing">
-<!ENTITY foxyproxy.ippatterndeletefinal.label "This is the last local IP address pattern. If you delete it, this proxy has no possibility of being used. Continue anyway?">
+<!ENTITY foxyproxy.ip.pattern.addedit.title "Προσθήκη/επεξεργασία τοπικού πρότυπου διεύθυνσης IP">
+<!ENTITY foxyproxy.tempip.popup.label "Τα προσωρινά πρότυπα σας επιτρέπουν να δημιουργήσετε τοπικά πρότυπα για διευθύνσεις IP που δεν χρησιμοποιείτε συχνά, χωρίς να αυξάνετε την πολυπλοκότητα της λίστας πρότυπων κάποιου διαμεσολαβητή. Τα προσωρινά πρότυπα δεν αποθηκεύονται στο δίσκο, διατηρούνται μόνο στη μνήμη και χρησιμοποιούνται για την τρέχουσα συνεδρία του Firefox.">
+<!ENTITY foxyproxy.ip.pattern.label "Τοπικό πρότυπο διεύθυνσης IP">
+<!ENTITY foxyproxy.ip.pattern.accesskey "τ">
+<!ENTITY foxyproxy.ip.pattern.tooltip "Τοπικό πρότυπο διεύθυνσης IP">
+<!ENTITY foxyproxy.ip.patterns.label "Τοπικά πρότυπα διευθύνσεων IP">
+<!ENTITY foxyproxy.ip.patterns.accesskey "τ">
+<!ENTITY foxyproxy.ip.patterns.tooltip "Τοπικά πρότυπα διευθύνσεων IP">
+<!ENTITY foxyproxy.ip.wildcard.reference.matches.label "Ταιριάζει">
+<!ENTITY foxyproxy.ip.wildcard.reference.nomatch.label "Δεν ταιριάζει">
+<!ENTITY foxyproxy.ip.whiteblack.label "Συμπερίληψη/Απόρριψη">
+<!ENTITY foxyproxy.ip.whitelist.description.label "Τα URL φορτώνονται μέσω αυτού του διαμεσολαβητή όταν μια από τις διευθύνσεις IP ταιριάζει με αυτό το πρότυπο">
+<!ENTITY foxyproxy.ip.blacklist.description.label "Τα URL ΔΕΝ φορτώνονται μέσω αυτού του διαμεσολαβητή όταν μια από τις διευθύνσεις IP ταιριάζει με αυτό το πρότυπο">
+<!ENTITY foxyproxy.ip.wildcard.reference.subtitle.label "Ο αστερίσκος (*) αντιπροσωπεύει κανένα ή πολλούς χαρακτήρες.">
+<!ENTITY foxyproxy.ip.current.local.label "Τρέχουσες τοπικές διευθύνσεις IP">
+<!ENTITY foxyproxy.copyip.label "Αντιγραφή σε πρότυπο">
+<!ENTITY foxyproxy.copyip.tooltip "Αντιγραφή της διεύθυνσης σε πρότυπο">
+<!ENTITY foxyproxy.copyip.accesskey "Α">
+<!ENTITY foxyproxy.ip.wildcard.example.label "Παράδειγμα: 192.168.1.*">
+<!ENTITY foxyproxy.ip.regex.example.label "Παράδειγμα: 172\.\d+\.1\.10">
+<!ENTITY foxyproxy.ip.pattern.match "Το πρότυπο ταιριάζει με μια ή περισσότερες τρέχουσες τοπικές διευθύνσεις IP">
+<!ENTITY foxyproxy.ip.pattern.no.match "Το πρότυπο δεν ταιριάζει με καμία από τις τρέχουσες τοπικές διευθύνσεις IP">
+<!ENTITY foxyproxy.refreshlocalips "Ανανέωση τοπικών διευθύνσεων IP">
+<!ENTITY foxyproxy.refreshlocalips.accesskey "ν">
+<!ENTITY foxyproxy.enterlicense.label "Εισάγετε κωδικό αδειδότησης">
+<!ENTITY foxyproxy.enteremail.label "Εισάγετε διεύθυνση email">
+<!ENTITY foxyproxy.licenseinfo.label "Πληροφορίες αδειοδότησης">
+<!ENTITY foxyproxy.licensevalid.label "Έγκυρη αδειοδότηση. Ευχαριστούμε που αγοράσατε το FoxyProxy Plus.">
+<!ENTITY foxyproxy.licenseinvalid.label "Μη έγκυρη αδειοδότηση. Δεν θα σας παρέχονται ενημερώσεις για το FoxyProxy Plus. Παρακαλούμε αγοράστε το FoxyProxy Plus.">
+<!ENTITY foxyproxy.buynow.label "Αγορά τώρα">
+<!ENTITY foxyproxy.checklicense.label "Έλεγχος αδειοδότησης">
+<!ENTITY foxyproxy.checkinglicense.label "Γίνεται έλεγχος... Παρακαλούμε περιμένετε">
+<!ENTITY foxyproxy.routetoleahscape.label "Παρακαλούμε σιγουρευτείτε ότι ο Firefox έχει πρόσβαση στο https://leahscape.com/fpplus/license_check.php με ή χωρίς διαμεσολαβητή. Αν χρειάζεται, μπορείτε να ορίσετε ένα πρότυπο για το URL στο FoxyProxy Plus.">
+<!ENTITY foxyproxy.everything.label "Όλα">
+<!ENTITY foxyproxy.nothing.label "Κανένα">
+<!ENTITY foxyproxy.ippatterndeletefinal.label "Αυτό είναι το τελευταίο τοπικό πρότυπο διεύθυνσης IP. Αν το διαγράψετε, αυτός ο διαμεσολαβητής δεν θα χρησιμοποιείται πότε. Συνέχεια;">
 <!--   end foxyproxyplus   -->

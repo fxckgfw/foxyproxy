@@ -174,12 +174,12 @@
 <!ENTITY foxyproxy.autoconfurl.reload.tooltip "Określ co jaki czas nastąpi automatyczne odświeżenie pliku *.pac">
 <!ENTITY foxyproxy.minutes.label "min.">
 <!ENTITY foxyproxy.minutes.tooltip "minut">
-<!ENTITY foxyproxy.logging.maxsize.label "Ilość wpisów">
+<!ENTITY foxyproxy.logging.maxsize.label "Liczba wpisów">
 <!ENTITY foxyproxy.logging.maxsize.accesskey "I">
-<!ENTITY foxyproxy.logging.maxsize.tooltip "Maksymalna ilość wpisów dziennika zdarzeń zanim nastąpi zawinięcie do początku">
+<!ENTITY foxyproxy.logging.maxsize.tooltip "Maksymalna liczba wpisów dziennika zdarzeń zanim nastąpi zawinięcie do początku">
 <!ENTITY foxyproxy.logging.maxsize.button.label "Zastosuj">
 <!ENTITY foxyproxy.logging.maxsize.button.accesskey "S">
-<!ENTITY foxyproxy.logging.maxsize.button.tooltip "Ustawia maksymalną ilość wpisów dziennika zdarzeń zanim nastąpi zawinięcie do początku">
+<!ENTITY foxyproxy.logging.maxsize.button.tooltip "Ustawia maksymalną liczbę wpisów dziennika zdarzeń zanim nastąpi zawinięcie do początku">
 <!ENTITY foxyproxy.random.label "Użyj losowo wybranych proxy dla wszystkich adresów URL (ignoruj wszystkie wzorce i priorytety)">
 <!ENTITY foxyproxy.random.accesskey "L">
 <!ENTITY foxyproxy.random.tooltip "Wczytuje adresy URL przez losowo wybrane proxy (ignoruje wszystkie wzorce i priorytety)">
@@ -252,10 +252,10 @@
 <!ENTITY foxyproxy.quickadd.notify.label "Informuj o uaktywnieniu szybkiego dodawania">
 <!ENTITY foxyproxy.quickadd.notify.accesskey "N">
 <!ENTITY foxyproxy.quickadd.notify.tooltip "Wyświetla przewijane okienko, gdy szybkie dodawanie zostaje uaktywnione">
-<!ENTITY foxyproxy.quickadd.notify.whencanceled.label "Powiadamiaj gdy automatyczne dodawanie jest anulowane">
-<!ENTITY foxyproxy.quickadd.notify.whencanceled.label2 "Szybkie dodawanie jest automatycznie anulowane gdy jest uaktywniane przez skrót [Alt+F2], a obecny w pasku adresu URL jest skojarzony z istniejącym dozwolonym wzorcem. Ten sposób zabezpiecza przed utworzeniem duplikatu, który może spowodować zamęt w twojej konfiguracji. To ustawienie nie włącza/wyłącza anulowania, a włącza powiadomienie, gdy anulowanie następuje.">
+<!ENTITY foxyproxy.quickadd.notify.whencanceled.label "Powiadamiaj, gdy automatyczne dodawanie jest anulowane">
+<!ENTITY foxyproxy.quickadd.notify.whencanceled.label2 "Szybkie dodawanie jest automatycznie anulowane, gdy jest uaktywniane przez skrót [Alt+F2], a obecny w pasku adresu URL jest skojarzony z istniejącym dozwolonym wzorcem. Ten sposób zabezpiecza przed utworzeniem duplikatu, który może spowodować zamęt w twojej konfiguracji. To ustawienie nie włącza/wyłącza anulowania, a włącza powiadomienie, gdy anulowanie następuje.">
 <!ENTITY foxyproxy.quickadd.notify.whencanceled.accesskey "P">
-<!ENTITY foxyproxy.quickadd.notify.whencanceled.tooltip "Wyświetl powiadomienie gdy szybkie dodawanie jest uaktywnione ale anulowane">
+<!ENTITY foxyproxy.quickadd.notify.whencanceled.tooltip "Wyświetl powiadomienie, gdy szybkie dodawanie jest uaktywnione ale anulowane">
 <!ENTITY foxyproxy.whatsthis "Co to jest?">
 <!ENTITY foxyproxy.quickadd.prompt.label "Sugeruj edycję i potwierdzanie dodania wzorca">
 <!ENTITY foxyproxy.quickadd.prompt.accesskey "S">
@@ -357,7 +357,7 @@
 <!ENTITY foxyproxy.click.toggle "przełącza pomiędzy trybem aktywnym i wyłączeniem">
 <!ENTITY foxyproxy.includeincycle.label "Dołącz to proxy, gdy klikasz na pasku stanu lub pasku narzędziowym">
 <!ENTITY foxyproxy.includeincycle.accesskey "D">
-<!ENTITY foxyproxy.includeincycle.tooltip "Dołącz to proxy gdy zmieniasz proxy klikając na pasku stanu/pasku narzędziowym (opcja „zmiany na tryby” musi być aktywna)">
+<!ENTITY foxyproxy.includeincycle.tooltip "Dołącz to proxy, gdy zmieniasz proxy klikając na pasku stanu/pasku narzędziowym (opcja „zmiany na tryby” musi być aktywna)">
 <!ENTITY foxyproxy.changes.msg1 "Pomocy! Gdzie są ustawienia dla HTTP, SSL, FTP, Gopher, i SOCKS?">
 <!ENTITY foxyproxy.newGUI.popup.height "280px">
 <!ENTITY foxyproxy.newGUI.popup.width "450px">
@@ -398,48 +398,48 @@
 <!ENTITY foxyproxy.resetlocation.label "Resetuj lokalizację">
 <!ENTITY foxyproxy.resetlocation.accesskey "R">
 <!ENTITY foxyproxy.resetlocation.tooltip "Zapisuj ustawienia w profilu Firefoksa">
-<!ENTITY foxyproxy.settings.not.default "Settings aren&apos;t in the default location.">
-<!ENTITY foxyproxy.change.host.reload "Set new host:port and then reload current page">
-<!ENTITY foxyproxy.proxyservice.label "Buy Proxy Service">
+<!ENTITY foxyproxy.settings.not.default "W domyślnej lokalizacji nie ma ustawień.">
+<!ENTITY foxyproxy.change.host.reload "Określ nowy host:port, a następnie odśwież aktywną stronę">
+<!ENTITY foxyproxy.proxyservice.label "Wykup usługę Proxy">
 <!ENTITY foxyproxy.proxyservice.accesskey "P">
-<!ENTITY foxyproxy.proxyservice.tooltip "Sign up for proxy services">
-<!ENTITY foxyproxy.proxyservice2.label "Need fast, reliable proxies in the US, UK, or other countries?">
-<!ENTITY foxyproxy.getfoxyproxyplus.label "Get FoxyProxy Plus">
-<!--   begin foxyproxyplus   -->
-<!ENTITY foxyproxy.ip.pattern.addedit.title "Add/Edit Local IP Address Pattern">
-<!ENTITY foxyproxy.tempip.popup.label "Temporary patterns allow you to create patterns for local IP addresses that you don&apos;t use often without cluttering the IP address pattern list for a proxy. Temporary patterns are not saved to disk. They are kept in-memory and used for this Firefox session only.">
-<!ENTITY foxyproxy.ip.pattern.label "Local IP address pattern">
+<!ENTITY foxyproxy.proxyservice.tooltip "Zarejestruj się w usługach proxy">
+<!ENTITY foxyproxy.proxyservice2.label "Potrzebujesz szybkich, niezawodnych proxy w USA, UK lub innych krajach?">
+<!ENTITY foxyproxy.getfoxyproxyplus.label "Skorzystaj z FoxyProxy Plus">
+<!--    begin foxyproxyplus    -->
+<!ENTITY foxyproxy.ip.pattern.addedit.title "Dodaj/edytuj wzorzec lokalnego adresu IP">
+<!ENTITY foxyproxy.tempip.popup.label "Wzorce tymczasowe pozwalają na tworzenie wzorców lokalnego adresu IP nie używanych często. Dzięki temu lista wzorców nie jest niepotrzebnie przeładowywana. Wzorce tymczasowe nie są zapisywane na dysku. Są one trzymane w pamięci i używane tylko w aktualnej sesji Firefoksa.">
+<!ENTITY foxyproxy.ip.pattern.label "Wzorzec lokalnego adresu  IP">
 <!ENTITY foxyproxy.ip.pattern.accesskey "I">
-<!ENTITY foxyproxy.ip.pattern.tooltip "Local IP address pattern">
-<!ENTITY foxyproxy.ip.patterns.label "Local IP Address Patterns">
+<!ENTITY foxyproxy.ip.pattern.tooltip "Wzorzec lokalnego adresu IP">
+<!ENTITY foxyproxy.ip.patterns.label "Wzorce lokalnego adresu IP">
 <!ENTITY foxyproxy.ip.patterns.accesskey "I">
-<!ENTITY foxyproxy.ip.patterns.tooltip "Local IP address patterns">
-<!ENTITY foxyproxy.ip.wildcard.reference.matches.label "Matches">
-<!ENTITY foxyproxy.ip.wildcard.reference.nomatch.label "Doesn&apos;t Match">
-<!ENTITY foxyproxy.ip.whiteblack.label "Inclusion/Exclusion">
-<!ENTITY foxyproxy.ip.whitelist.description.label "URLs load through this proxy when one of your IP addresses matches this pattern">
-<!ENTITY foxyproxy.ip.blacklist.description.label "URLs do NOT load through this proxy when one of your IP addresses matches this pattern">
-<!ENTITY foxyproxy.ip.wildcard.reference.subtitle.label "The asterisk (*) matches zero or more characters.">
-<!ENTITY foxyproxy.ip.current.local.label "Current Local IP addresses">
-<!ENTITY foxyproxy.copyip.label "Copy to Pattern">
-<!ENTITY foxyproxy.copyip.tooltip "Copy address to pattern">
-<!ENTITY foxyproxy.copyip.accesskey "C">
-<!ENTITY foxyproxy.ip.wildcard.example.label "Example: 192.168.1.*">
-<!ENTITY foxyproxy.ip.regex.example.label "Example: 172\.\d+\.1\.10">
-<!ENTITY foxyproxy.ip.pattern.match "Pattern matches one or more or current local IP addresses">
-<!ENTITY foxyproxy.ip.pattern.no.match "Pattern doesn&apos;t match any current local IP address">
-<!ENTITY foxyproxy.refreshlocalips "Refresh local IP addresses">
-<!ENTITY foxyproxy.refreshlocalips.accesskey "R">
-<!ENTITY foxyproxy.enterlicense.label "Enter license key">
-<!ENTITY foxyproxy.enteremail.label "Enter email address">
-<!ENTITY foxyproxy.licenseinfo.label "License Info">
-<!ENTITY foxyproxy.licensevalid.label "License valid. Thank you for purchasing FoxyProxy Plus.">
-<!ENTITY foxyproxy.licenseinvalid.label "License invalid. You won&apos;t receive FoxyProxyPlus updates. Please purchase FoxyProxy Plus.">
-<!ENTITY foxyproxy.buynow.label "Buy Now">
-<!ENTITY foxyproxy.checklicense.label "Check License">
-<!ENTITY foxyproxy.checkinglicense.label "Checking...please wait">
-<!ENTITY foxyproxy.routetoleahscape.label "Please make sure Firefox can reach https://leahscape.com/fpplus/license_check.php either with or without a proxy. You can configure patterns for this URL in FoxyProxy Plus if necessary.">
-<!ENTITY foxyproxy.everything.label "Everything">
-<!ENTITY foxyproxy.nothing.label "Nothing">
-<!ENTITY foxyproxy.ippatterndeletefinal.label "This is the last local IP address pattern. If you delete it, this proxy has no possibility of being used. Continue anyway?">
-<!--   end foxyproxyplus   -->
+<!ENTITY foxyproxy.ip.patterns.tooltip "Wzorce lokalnego adresu IP">
+<!ENTITY foxyproxy.ip.wildcard.reference.matches.label "Pasujące">
+<!ENTITY foxyproxy.ip.wildcard.reference.nomatch.label "Niepasujące">
+<!ENTITY foxyproxy.ip.whiteblack.label "Włączenia/Wykluczenia">
+<!ENTITY foxyproxy.ip.whitelist.description.label "Adresy URL są wczytywane przez to proxy, gdy jeden z twoich adresów IP pasuje do tego wzorca">
+<!ENTITY foxyproxy.ip.blacklist.description.label "Adresy URL nie są wczytywane przez to proxy, gdy jeden z twoich adresów IP pasuje do tego wzorca">
+<!ENTITY foxyproxy.ip.wildcard.reference.subtitle.label "Wieloznacznik (*) pasuje do żadnego lub wielu znaków.">
+<!ENTITY foxyproxy.ip.current.local.label "Aktualne lokalne adresy  IP">
+<!ENTITY foxyproxy.copyip.label "Kopiuj do wzorca">
+<!ENTITY foxyproxy.copyip.tooltip "Kopiuje adresy do wzorca">
+<!ENTITY foxyproxy.copyip.accesskey "K">
+<!ENTITY foxyproxy.ip.wildcard.example.label "Przykład: 192.168.1.*">
+<!ENTITY foxyproxy.ip.regex.example.label "Przykład: 172\.\d+\.1\.10">
+<!ENTITY foxyproxy.ip.pattern.match "Wzorzec pasuje do jednego lub więcej lokalnego adresu IP">
+<!ENTITY foxyproxy.ip.pattern.no.match "Wzorzec nie pasuje do żadnego aktualnego lokalnego adresu IP">
+<!ENTITY foxyproxy.refreshlocalips "Odśwież lokalne adresy IP">
+<!ENTITY foxyproxy.refreshlocalips.accesskey "O">
+<!ENTITY foxyproxy.enterlicense.label "Wprowadź klucz licencji">
+<!ENTITY foxyproxy.enteremail.label "Wprowadź adres e-mail">
+<!ENTITY foxyproxy.licenseinfo.label "Informacja o licencji">
+<!ENTITY foxyproxy.licensevalid.label "Licencja jest ważna. Dziękujemy za zakupienie FoxyProxy Plus.">
+<!ENTITY foxyproxy.licenseinvalid.label "Licencja jest nieważna. Nie możesz otrzymywać aktualizacji FoxyProxyPlus. Wykup FoxyProxy Plus.">
+<!ENTITY foxyproxy.buynow.label "Kup teraz">
+<!ENTITY foxyproxy.checklicense.label "Sprawdź licencję">
+<!ENTITY foxyproxy.checkinglicense.label "Sprawdzanie… Proszę czekać.">
+<!ENTITY foxyproxy.routetoleahscape.label "Sprawdź czy Firefox może połączyć się z https://leahscape.com/fpplus/license_check.php z proxy, czy bez proxy. Jeśli to konieczne, możesz skonfigurować wzorce dla tego adresu URL w FoxyProxy Plus.">
+<!ENTITY foxyproxy.everything.label "Wszystko">
+<!ENTITY foxyproxy.nothing.label "Nic">
+<!ENTITY foxyproxy.ippatterndeletefinal.label "To jest wzorzec ostatniego lokalnego adresu IP. Jeśli go usuniesz, nie będziesz mieć możliwości używania tego proxy. Kontynuować?">
+<!--    end foxyproxyplus    -->

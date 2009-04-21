@@ -388,58 +388,58 @@
 <!ENTITY foxyproxy.home "Hem">
 <!ENTITY foxyproxy.support "Support">
 <!ENTITY foxyproxy.credits "Tack till">
-<!ENTITY foxyproxy.donations "Donations">
+<!ENTITY foxyproxy.donations "Donationer">
 <!ENTITY foxyproxy.please.donate.label "Donera gärna">
 <!ENTITY foxyproxy.please.donate.accesskey "D">
 <!ENTITY foxyproxy.keep.free "Fortsätt med FoxyProxy gratis">
 <!ENTITY foxyproxy.donation.list.label "Donatörer">
 <!ENTITY foxyproxy.donation.list.accesskey "ö">
-<!ENTITY foxyproxy.importantnote.label "Read Important Note">
+<!ENTITY foxyproxy.importantnote.label "Läs viktigt meddelande">
 <!ENTITY foxyproxy.resetlocation.label "Återställ plats">
 <!ENTITY foxyproxy.resetlocation.accesskey "r">
 <!ENTITY foxyproxy.resetlocation.tooltip "Lagra inställningar i Firefoxprofilen">
-<!ENTITY foxyproxy.settings.not.default "Settings aren&apos;t in the default location.">
-<!ENTITY foxyproxy.change.host.reload "Set new host:port and then reload current page">
-<!ENTITY foxyproxy.proxyservice.label "Buy Proxy Service">
+<!ENTITY foxyproxy.settings.not.default "Inställningarna sparas inte i standardplatsen.">
+<!ENTITY foxyproxy.change.host.reload "Ange ny värd:port och ladda om aktuell sida">
+<!ENTITY foxyproxy.proxyservice.label "Köp Proxy Service">
 <!ENTITY foxyproxy.proxyservice.accesskey "P">
-<!ENTITY foxyproxy.proxyservice.tooltip "Sign up for proxy services">
-<!ENTITY foxyproxy.proxyservice2.label "Need fast, reliable proxies in the US, UK, or other countries?">
-<!ENTITY foxyproxy.getfoxyproxyplus.label "Get FoxyProxy Plus">
+<!ENTITY foxyproxy.proxyservice.tooltip "Anmäl dig till proxy-tjänster">
+<!ENTITY foxyproxy.proxyservice2.label "Behöver du snabba, pålitliga proxy i USA, England eller andra länder?">
+<!ENTITY foxyproxy.getfoxyproxyplus.label "Skaffa FoxyProxy Plus">
 <!--   begin foxyproxyplus   -->
-<!ENTITY foxyproxy.ip.pattern.addedit.title "Add/Edit Local IP Address Pattern">
-<!ENTITY foxyproxy.tempip.popup.label "Temporary patterns allow you to create patterns for local IP addresses that you don&apos;t use often without cluttering the IP address pattern list for a proxy. Temporary patterns are not saved to disk. They are kept in-memory and used for this Firefox session only.">
-<!ENTITY foxyproxy.ip.pattern.label "Local IP address pattern">
+<!ENTITY foxyproxy.ip.pattern.addedit.title "Lägg till/Redigera lokala IP-adressmönster">
+<!ENTITY foxyproxy.tempip.popup.label "Temporära mönster gör att du kan skapa mönster för lokala IP-adresser som du inte använder så ofta. Temporära mönster sparas inte till disk utan behålls bara i minnet så länge Firefox är igång.">
+<!ENTITY foxyproxy.ip.pattern.label "Lokalt IP-adressmönster">
 <!ENTITY foxyproxy.ip.pattern.accesskey "I">
-<!ENTITY foxyproxy.ip.pattern.tooltip "Local IP address pattern">
-<!ENTITY foxyproxy.ip.patterns.label "Local IP Address Patterns">
+<!ENTITY foxyproxy.ip.pattern.tooltip "Lokalt IP-adressmönster">
+<!ENTITY foxyproxy.ip.patterns.label "Lokala IP-adressmönster">
 <!ENTITY foxyproxy.ip.patterns.accesskey "I">
-<!ENTITY foxyproxy.ip.patterns.tooltip "Local IP address patterns">
-<!ENTITY foxyproxy.ip.wildcard.reference.matches.label "Matches">
-<!ENTITY foxyproxy.ip.wildcard.reference.nomatch.label "Doesn&apos;t Match">
-<!ENTITY foxyproxy.ip.whiteblack.label "Inclusion/Exclusion">
-<!ENTITY foxyproxy.ip.whitelist.description.label "URLs load through this proxy when one of your IP addresses matches this pattern">
-<!ENTITY foxyproxy.ip.blacklist.description.label "URLs do NOT load through this proxy when one of your IP addresses matches this pattern">
-<!ENTITY foxyproxy.ip.wildcard.reference.subtitle.label "The asterisk (*) matches zero or more characters.">
-<!ENTITY foxyproxy.ip.current.local.label "Current Local IP addresses">
-<!ENTITY foxyproxy.copyip.label "Copy to Pattern">
-<!ENTITY foxyproxy.copyip.tooltip "Copy address to pattern">
-<!ENTITY foxyproxy.copyip.accesskey "C">
-<!ENTITY foxyproxy.ip.wildcard.example.label "Example: 192.168.1.*">
-<!ENTITY foxyproxy.ip.regex.example.label "Example: 172\.\d+\.1\.10">
-<!ENTITY foxyproxy.ip.pattern.match "Pattern matches one or more or current local IP addresses">
-<!ENTITY foxyproxy.ip.pattern.no.match "Pattern doesn&apos;t match any current local IP address">
-<!ENTITY foxyproxy.refreshlocalips "Refresh local IP addresses">
-<!ENTITY foxyproxy.refreshlocalips.accesskey "R">
-<!ENTITY foxyproxy.enterlicense.label "Enter license key">
-<!ENTITY foxyproxy.enteremail.label "Enter email address">
-<!ENTITY foxyproxy.licenseinfo.label "License Info">
-<!ENTITY foxyproxy.licensevalid.label "License valid. Thank you for purchasing FoxyProxy Plus.">
-<!ENTITY foxyproxy.licenseinvalid.label "License invalid. You won&apos;t receive FoxyProxyPlus updates. Please purchase FoxyProxy Plus.">
-<!ENTITY foxyproxy.buynow.label "Buy Now">
-<!ENTITY foxyproxy.checklicense.label "Check License">
-<!ENTITY foxyproxy.checkinglicense.label "Checking...please wait">
-<!ENTITY foxyproxy.routetoleahscape.label "Please make sure Firefox can reach https://leahscape.com/fpplus/license_check.php either with or without a proxy. You can configure patterns for this URL in FoxyProxy Plus if necessary.">
-<!ENTITY foxyproxy.everything.label "Everything">
-<!ENTITY foxyproxy.nothing.label "Nothing">
-<!ENTITY foxyproxy.ippatterndeletefinal.label "This is the last local IP address pattern. If you delete it, this proxy has no possibility of being used. Continue anyway?">
+<!ENTITY foxyproxy.ip.patterns.tooltip "Lokala IP-adressmönster">
+<!ENTITY foxyproxy.ip.wildcard.reference.matches.label "Träffar">
+<!ENTITY foxyproxy.ip.wildcard.reference.nomatch.label "Inga träffar">
+<!ENTITY foxyproxy.ip.whiteblack.label "Inkludering/Exkludering">
+<!ENTITY foxyproxy.ip.whitelist.description.label "URLer laddas via denna proxy när en av dina IP-adresser matchar detta mönster">
+<!ENTITY foxyproxy.ip.blacklist.description.label "URLer ladda INTE via denna proxy när en av dina IP-adresser matchar detta mönster">
+<!ENTITY foxyproxy.ip.wildcard.reference.subtitle.label "Asterisk (*) matchar noll eller fler tecken.">
+<!ENTITY foxyproxy.ip.current.local.label "Aktuell lokal IP-adress">
+<!ENTITY foxyproxy.copyip.label "Kopiera till mönster">
+<!ENTITY foxyproxy.copyip.tooltip "Kopiera adress till mönster">
+<!ENTITY foxyproxy.copyip.accesskey "K">
+<!ENTITY foxyproxy.ip.wildcard.example.label "Exempel: 192.168.1.*">
+<!ENTITY foxyproxy.ip.regex.example.label "Exempel: 172\.\d+\.1\.10">
+<!ENTITY foxyproxy.ip.pattern.match "Mönster matchar en eller fler lokala IP-adresser">
+<!ENTITY foxyproxy.ip.pattern.no.match "Mönster matchar inte någon lokal IP-adresser">
+<!ENTITY foxyproxy.refreshlocalips "Uppdatera lokal IP-adress">
+<!ENTITY foxyproxy.refreshlocalips.accesskey "r">
+<!ENTITY foxyproxy.enterlicense.label "Ange licensnyckel">
+<!ENTITY foxyproxy.enteremail.label "Ange e-postadress">
+<!ENTITY foxyproxy.licenseinfo.label "Licensinformation">
+<!ENTITY foxyproxy.licensevalid.label "Licensen är giltig. Tack för att du köpt FoxyProxy Plus.">
+<!ENTITY foxyproxy.licenseinvalid.label "Licensen är inte giltig. Du kommer inte att motta uppdateringar av receive FoxyProxyPlus. Vänligen köp FoxyProxy Plus.">
+<!ENTITY foxyproxy.buynow.label "Köp nu">
+<!ENTITY foxyproxy.checklicense.label "Kontrollera licens">
+<!ENTITY foxyproxy.checkinglicense.label "Kontrollerar...vänligen vänta">
+<!ENTITY foxyproxy.routetoleahscape.label "Kontrollera att Firefox hittar https://leahscape.com/fpplus/license_check.php, antingen med eller utan en proxy. Du kan konfigurera mönster för denna URL i FoxyProxy Plus om så krävs.">
+<!ENTITY foxyproxy.everything.label "Allt">
+<!ENTITY foxyproxy.nothing.label "Inget">
+<!ENTITY foxyproxy.ippatterndeletefinal.label "Detta är det sista lokala IP-adressmönstret. Om du tar bort det kan denna proxy inte användas. Fortsätta ändå?">
 <!--   end foxyproxyplus   -->

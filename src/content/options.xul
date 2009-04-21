@@ -758,7 +758,8 @@
   <hbox align="center">
     <label value="&foxyproxy.keep.free;:" style="font-weight: bold;"/>
     <button command="donateCmd" style="font-weight: bold;"/>
-    <button command="donationListCmd"/>
+    <!-- <button command="donationListCmd"/> -->
+    <button command="fppCmd" style="font-weight: bold;"/>
     <spacer flex="1" />
     <button command="closeCmd" />
   </hbox>
@@ -878,6 +879,9 @@
   <command id="donateCmd" label="&foxyproxy.please.donate.label;"
     accesskey="&foxyproxy.please.donate.accesskey;"
     tooltiptext="&foxyproxy.please.donate.label;" oncommand="fpc.openAndReuseOneTabPerURL('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=63002');" />
+
+  <command id="fppCmd" label="&foxyproxy.getfoxyproxyplus.label;"
+    tooltiptext="&foxyproxy.getfoxyproxyplus.label;" oncommand="fpc.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/fpplus');" />
 
   <command id="donationListCmd" label="&foxyproxy.donation.list.label;"
     accesskey="&foxyproxy.donation.list.accesskey;"

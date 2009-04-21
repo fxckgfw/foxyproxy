@@ -354,7 +354,7 @@
 <!ENTITY foxyproxy.click.reloadtabsinbrowser "Recharge tous les onglets dans le navigateur courant">
 <!ENTITY foxyproxy.click.reloadtabsinallbrowsers "Recharge tous les onglets dans tous les navigateurs">
 <!ENTITY foxyproxy.click.removeallcookies "Supprime tous les cookies">
-<!ENTITY foxyproxy.click.toggle "Toggle between current mode and disabled">
+<!ENTITY foxyproxy.click.toggle "Basculer entre activation du mode actuel et la désactivation">
 <!ENTITY foxyproxy.includeincycle.label "Inclure ce proxy lorsque l&apos;on passe de proxy en proxy en cliquant sur la barre d&apos;état ou la barre d&apos;outils (&quot;Paramètres généraux&quot; -&gt; &quot;Activation de la barre d&apos;état/d&apos;outils&quot; -&gt; &quot;Basculer de modes en modes&quot; doit être sélectionné)">
 <!ENTITY foxyproxy.includeincycle.accesskey "I">
 <!ENTITY foxyproxy.includeincycle.tooltip "Inclure ce proxy en cliquant sur la barre d&apos;état/d&apos;outils">
@@ -386,7 +386,7 @@
 <!ENTITY foxyproxy.pattern.to.quickadd.label "Motif à ajouter rapidement au proxy">
 <!ENTITY foxyproxy.pattern.to.autoadd.label "Motif à ajouter automatiquement au proxy">
 <!ENTITY foxyproxy.home "Accueil">
-<!ENTITY foxyproxy.support "Support">
+<!ENTITY foxyproxy.support "Aide technique">
 <!ENTITY foxyproxy.credits "Crédits">
 <!ENTITY foxyproxy.donations "Dons">
 <!ENTITY foxyproxy.please.donate.label "Veuillez faire un don">
@@ -399,47 +399,47 @@
 <!ENTITY foxyproxy.resetlocation.accesskey "R">
 <!ENTITY foxyproxy.resetlocation.tooltip "Stocker les paramètres dans le profil Firefox">
 <!ENTITY foxyproxy.settings.not.default "Settings aren&apos;t in the default location.">
-<!ENTITY foxyproxy.change.host.reload "Set new host:port and then reload current page">
-<!ENTITY foxyproxy.proxyservice.label "Buy Proxy Service">
-<!ENTITY foxyproxy.proxyservice.accesskey "P">
-<!ENTITY foxyproxy.proxyservice.tooltip "Sign up for proxy services">
-<!ENTITY foxyproxy.proxyservice2.label "Need fast, reliable proxies in the US, UK, or other countries?">
-<!ENTITY foxyproxy.getfoxyproxyplus.label "Get FoxyProxy Plus">
+<!ENTITY foxyproxy.change.host.reload "Définir un nouvel hôte:port et recharger la page courante">
+<!ENTITY foxyproxy.proxyservice.label "Acheter des services proxy">
+<!ENTITY foxyproxy.proxyservice.accesskey "H">
+<!ENTITY foxyproxy.proxyservice.tooltip "Se connecter pour des services proxy">
+<!ENTITY foxyproxy.proxyservice2.label "Nécessite des proxies rapides et fiables aux États-Unis, en Angletterre ou dans d&apos;autres pays ?">
+<!ENTITY foxyproxy.getfoxyproxyplus.label "Obtenir FoxyProxy Plus">
 <!--   begin foxyproxyplus   -->
-<!ENTITY foxyproxy.ip.pattern.addedit.title "Add/Edit Local IP Address Pattern">
-<!ENTITY foxyproxy.tempip.popup.label "Temporary patterns allow you to create patterns for local IP addresses that you don&apos;t use often without cluttering the IP address pattern list for a proxy. Temporary patterns are not saved to disk. They are kept in-memory and used for this Firefox session only.">
-<!ENTITY foxyproxy.ip.pattern.label "Local IP address pattern">
+<!ENTITY foxyproxy.ip.pattern.addedit.title "Ajouter / éditer un motif d&apos;adresse IP Locale">
+<!ENTITY foxyproxy.tempip.popup.label "Les motifs temporaires vous permettent de créer des motifs  que vous n&apos;utilisez pas souvent afin d&apos;éviter de surcharger la liste des motifs d&apos;adresse IP pour un proxy. Les motifs temporaires ne sont pas enregistrés sur le disque. Ils sont conservés en mémoire et ne sont utilisés que dans cette session Firefox.">
+<!ENTITY foxyproxy.ip.pattern.label "Motif d&apos;adresse IP locale">
 <!ENTITY foxyproxy.ip.pattern.accesskey "I">
-<!ENTITY foxyproxy.ip.pattern.tooltip "Local IP address pattern">
-<!ENTITY foxyproxy.ip.patterns.label "Local IP Address Patterns">
+<!ENTITY foxyproxy.ip.pattern.tooltip "Motif d&apos;adresse IP locale">
+<!ENTITY foxyproxy.ip.patterns.label "Motifs d&apos;adresse IP locale">
 <!ENTITY foxyproxy.ip.patterns.accesskey "I">
-<!ENTITY foxyproxy.ip.patterns.tooltip "Local IP address patterns">
-<!ENTITY foxyproxy.ip.wildcard.reference.matches.label "Matches">
-<!ENTITY foxyproxy.ip.wildcard.reference.nomatch.label "Doesn&apos;t Match">
-<!ENTITY foxyproxy.ip.whiteblack.label "Inclusion/Exclusion">
-<!ENTITY foxyproxy.ip.whitelist.description.label "URLs load through this proxy when one of your IP addresses matches this pattern">
-<!ENTITY foxyproxy.ip.blacklist.description.label "URLs do NOT load through this proxy when one of your IP addresses matches this pattern">
-<!ENTITY foxyproxy.ip.wildcard.reference.subtitle.label "The asterisk (*) matches zero or more characters.">
-<!ENTITY foxyproxy.ip.current.local.label "Current Local IP addresses">
-<!ENTITY foxyproxy.copyip.label "Copy to Pattern">
-<!ENTITY foxyproxy.copyip.tooltip "Copy address to pattern">
+<!ENTITY foxyproxy.ip.patterns.tooltip "Motifs d&apos;adresse IP locale">
+<!ENTITY foxyproxy.ip.wildcard.reference.matches.label "Correspondances">
+<!ENTITY foxyproxy.ip.wildcard.reference.nomatch.label "Pas de correspondance">
+<!ENTITY foxyproxy.ip.whiteblack.label "Inclusion / exclusion">
+<!ENTITY foxyproxy.ip.whitelist.description.label "Les URL sont chargées à travers ce proxy lorsqu&apos;une de vos adresses IP correspond à ce motif">
+<!ENTITY foxyproxy.ip.blacklist.description.label "Les URL NE sont PAS chargées à travers ce proxy lorsqu&apos;une de vos adresses IP correspond à ce motif">
+<!ENTITY foxyproxy.ip.wildcard.reference.subtitle.label "L&apos;astérisque (*) correspond à zéro ou plusieurs caractères.">
+<!ENTITY foxyproxy.ip.current.local.label "Adresses IP locales courantes">
+<!ENTITY foxyproxy.copyip.label "Copier comme motif">
+<!ENTITY foxyproxy.copyip.tooltip "Utiliser cette adresse comme motif">
 <!ENTITY foxyproxy.copyip.accesskey "C">
-<!ENTITY foxyproxy.ip.wildcard.example.label "Example: 192.168.1.*">
-<!ENTITY foxyproxy.ip.regex.example.label "Example: 172\.\d+\.1\.10">
-<!ENTITY foxyproxy.ip.pattern.match "Pattern matches one or more or current local IP addresses">
-<!ENTITY foxyproxy.ip.pattern.no.match "Pattern doesn&apos;t match any current local IP address">
-<!ENTITY foxyproxy.refreshlocalips "Refresh local IP addresses">
-<!ENTITY foxyproxy.refreshlocalips.accesskey "R">
-<!ENTITY foxyproxy.enterlicense.label "Enter license key">
-<!ENTITY foxyproxy.enteremail.label "Enter email address">
-<!ENTITY foxyproxy.licenseinfo.label "License Info">
-<!ENTITY foxyproxy.licensevalid.label "License valid. Thank you for purchasing FoxyProxy Plus.">
-<!ENTITY foxyproxy.licenseinvalid.label "License invalid. You won&apos;t receive FoxyProxyPlus updates. Please purchase FoxyProxy Plus.">
-<!ENTITY foxyproxy.buynow.label "Buy Now">
-<!ENTITY foxyproxy.checklicense.label "Check License">
-<!ENTITY foxyproxy.checkinglicense.label "Checking...please wait">
-<!ENTITY foxyproxy.routetoleahscape.label "Please make sure Firefox can reach https://leahscape.com/fpplus/license_check.php either with or without a proxy. You can configure patterns for this URL in FoxyProxy Plus if necessary.">
-<!ENTITY foxyproxy.everything.label "Everything">
-<!ENTITY foxyproxy.nothing.label "Nothing">
-<!ENTITY foxyproxy.ippatterndeletefinal.label "This is the last local IP address pattern. If you delete it, this proxy has no possibility of being used. Continue anyway?">
+<!ENTITY foxyproxy.ip.wildcard.example.label "Exemple : 192.168.1.*">
+<!ENTITY foxyproxy.ip.regex.example.label "Exemple : 172\.\d+\.1\.10">
+<!ENTITY foxyproxy.ip.pattern.match "Le motif correspond à une ou plusieurs ou l&apos;actuelle adresse IP locale">
+<!ENTITY foxyproxy.ip.pattern.no.match "Le motif ne correspond à aucune adresse IP courante">
+<!ENTITY foxyproxy.refreshlocalips "Actualiser les adresses IP locales">
+<!ENTITY foxyproxy.refreshlocalips.accesskey "A">
+<!ENTITY foxyproxy.enterlicense.label "Indiquer la clé de licence">
+<!ENTITY foxyproxy.enteremail.label "Indiquer l&apos;adresse électronique">
+<!ENTITY foxyproxy.licenseinfo.label "Info sur la licence">
+<!ENTITY foxyproxy.licensevalid.label "Licence valide. Merci d&apos;avoir acheté FoxyProxy Plus.">
+<!ENTITY foxyproxy.licenseinvalid.label "Licence invalide. Vous n&apos;obtiendrez pas de mises à jour de FoxyProxy Plus. Veuillez acheter FoxyProxy Plus.">
+<!ENTITY foxyproxy.buynow.label "Acheter maintenant">
+<!ENTITY foxyproxy.checklicense.label "Vérifier la licence">
+<!ENTITY foxyproxy.checkinglicense.label "Vérification en cours…veuillez patienter">
+<!ENTITY foxyproxy.routetoleahscape.label "Veuillez vous assurer que Firefox puisse se connecter à https://leahscape.com/fpplus/license_check.php soit avec, soit sans proxy. Vous pouvez configurer des motifs pour cette URL dans FoxyProxy Plus si nécessaire.">
+<!ENTITY foxyproxy.everything.label "Tout">
+<!ENTITY foxyproxy.nothing.label "Rien">
+<!ENTITY foxyproxy.ippatterndeletefinal.label "Ceci est le dernier motif d&apos;adresse IP locale. Si vous le supprimez, ce proxy ne pourra pas être utilisé. Continuer tout de même ?">
 <!--   end foxyproxyplus   -->

@@ -7,7 +7,7 @@
 <!ENTITY help.p.regexp "Χρησιμοποιώντας κανονικές εκφράσεις έχετε την δυνατότητα να θέσετε πιό εξελιγμένους κάνονες ταιριάζματος. Για λεπτομέριες, κάντε κλικ στο κουμπί «περιεχόμενα βοήθειας».">
 <!ENTITY help.h4.wildcard.examples "Παραδείγματα χαρακτήρων μπαλαντέρ">
 <!ENTITY help.th.url.pattern "Πρότυπο URL">
-<!ENTITY help.th.some.matches "Ταιρίαζει">
+<!ENTITY help.th.some.matches "Ταιριάζει">
 <!ENTITY help.th.some.non.matches "Δεν ταιριάζει">
 <!ENTITY help.td.everything.in.y "Τα πάντα στον ιστότοπο του Yahoo">
 <!ENTITY help.i.matches.everything "Με τα πάντα">

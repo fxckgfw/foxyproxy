@@ -210,10 +210,6 @@ function _updateView(writeSettings, updateLogView) {
   document.getElementById("enableLogging").checked = foxyproxy.logging;
   //document.getElementById("randomIncludeDirect").checked = foxyproxy.random.includeDirect;
   //document.getElementById("randomIncludeDisabled").checked = foxyproxy.random.includeDisabled;
-  
-  _updateSuperAdd(foxyproxy.autoadd, "autoAdd");
-  _updateSuperAdd(foxyproxy.quickadd, "quickAdd");
-  document.getElementById("quickAddNotifyWhenCanceled").checked = foxyproxy.quickadd.notifyWhenCanceled; // only exists for QuickAdd
 
   function _updateSuperAdd(saObj, str) {
     var temp = saObj.enabled;
@@ -223,6 +219,10 @@ function _updateView(writeSettings, updateLogView) {
     document.getElementById(str + "Notify").checked = saObj.notify;
     document.getElementById(str + "Prompt").checked = saObj.prompt;
   }
+
+  _updateSuperAdd(foxyproxy.autoadd, "autoAdd");
+  _updateSuperAdd(foxyproxy.quickadd, "quickAdd");
+  document.getElementById("quickAddNotifyWhenCanceled").checked = foxyproxy.quickadd.notifyWhenCanceled; // only exists for QuickAdd
   
   document.getElementById("toolsMenuEnabled").checked = foxyproxy.toolsMenu;
   document.getElementById("contextMenuEnabled").checked = foxyproxy.contextMenu;

@@ -1,6 +1,6 @@
 <!ENTITY foxyproxy.label "FoxyProxy">
 <!ENTITY foxyproxy.accesskey "F">
-<!ENTITY foxyproxy.optionsdialog.label "FoxyProxy Alternativ">
+<!ENTITY foxyproxy.optionsdialog.label "FoxyProxy alternativ">
 <!ENTITY foxyproxy.options.label "Alternativ">
 <!ENTITY foxyproxy.options.accesskey "A">
 <!ENTITY foxyproxy.options.tooltip "Öppnar alternativ">
@@ -199,7 +199,7 @@
 <!ENTITY foxyproxy.autoadd.pattern.label "Mönster för identifiering av blockerade webbplatser">
 <!ENTITY foxyproxy.autoadd.pattern.accesskey "M">
 <!ENTITY foxyproxy.autoadd.pattern.tooltip "Mönster som identifierar blockerade webbsidor">
-<!ENTITY foxyproxy.autoadd.wildcard.example.label "Expempel: *You are not authorized to view this page*">
+<!ENTITY foxyproxy.autoadd.wildcard.example.label "Exempel: *You are not authorized to view this page*">
 <!ENTITY foxyproxy.autoadd.regex.example.label "Exempel: *Site.*has been blocked.*">
 <!ENTITY foxyproxy.autoadd.proxy.label "Proxy som mönster automatiskt lägger till">
 <!ENTITY foxyproxy.autoadd.proxy.accesskey "P">
@@ -211,17 +211,17 @@
 <!ENTITY foxyproxy.pattern.template.example.label2 "http://fred:secret@mail.foo.com:8080/inbox/msg102.htm#subject?style=elegant">
 <!ENTITY foxyproxy.pattern.template.currenturl.label "Aktuell URL">
 <!ENTITY foxyproxy.pattern.template.currenturl.accesskey "A">
-<!ENTITY foxyproxy.pattern.template.currenturl.tooltip "UTL i adressfältet">
-<!ENTITY foxyproxy.pattern.template.generatedpattern.label "Genererat mönter">
+<!ENTITY foxyproxy.pattern.template.currenturl.tooltip "URL i adressfältet">
+<!ENTITY foxyproxy.pattern.template.generatedpattern.label "Genererat mönster">
 <!ENTITY foxyproxy.pattern.template.generatedpattern.accesskey "G">
 <!ENTITY foxyproxy.pattern.template.generatedpattern.tooltip "Dynamiskt genererat mönster">
 <!ENTITY foxyproxy.autoadd.reload.label "Ladda om webbsida efter att har lagts till i proxyn">
 <!ENTITY foxyproxy.autoadd.reload.accesskey "L">
 <!ENTITY foxyproxy.autoadd.reload.tooltip "Automatiskt ladda om sidan efter att har lagts till i proxyn">
-<!ENTITY foxyproxy.autoadd.notify.label "Meddela mig när AutoAdd använts">
+<!ENTITY foxyproxy.autoadd.notify.label "Meddela mig när AutoAdd används">
 <!ENTITY foxyproxy.autoadd.notify.accesskey "M">
 <!ENTITY foxyproxy.autoadd.notify.tooltip "Informerar dig när en sida är blockerad &amp; URL-mönstret är tillagd till proxyn">
-<!ENTITY foxyproxy.autoadd.notify.tooltip2 "Display a popup when AutoAdd is activated">
+<!ENTITY foxyproxy.autoadd.notify.tooltip2 "Visa en popup-ruta när AutoAdd är aktiverat">
 <!ENTITY foxyproxy.pacloadnotification.label "Meddela mig när proxyns autokonfigurationsfil laddats">
 <!ENTITY foxyproxy.pacloadnotification.accesskey "l">
 <!ENTITY foxyproxy.pacloadnotification.tooltip "Visa en popupruta när en PAC-fil laddats">
@@ -238,7 +238,7 @@
 <!ENTITY foxyproxy.pactip4.label "Finally, if you need to refer to a PAC file on the local file system using a relative path, you can use the special FoxyProxy relative:// scheme. This is useful if your PAC file resides on a thumb drive. Supported relative paths are documented">
 <!ENTITY foxyproxy.pactip5.label "here">
 <!ENTITY foxyproxy.pactip6.label ". Special strings in the relative:// URL you specify are replaced with their corresponding values. For example, relative://ProfD/pacs/proxy3.pac points to the file proxy3.pac in the subdirectory of the">
-<!ENTITY foxyproxy.pactip7.label "Firefox profile directory">
+<!ENTITY foxyproxy.pactip7.label "Firefox profilmapp">
 <!ENTITY foxyproxy.pactip8.label "named pacs/. With Portable Firefox on Windows, the Firefox profile directory is always a relative path because the drive letter can change across computers. Please note that special strings (ProfD, Home, TempD, etc.) are case-sensitive!">
 <!ENTITY foxyproxy.contextmenu.label "Visa ikon i menyn vid högerklick">
 <!ENTITY foxyproxy.contextmenu.accesskey "h">
@@ -246,20 +246,20 @@
 <!ENTITY foxyproxy.quickadd.desc1 "Snabbtillägg lägger till ett dynamiskt URL-mönster till en proxy när Alt+F2. Praktiskt alternativ till Auto-tillägg. Anpassa snabbkommandot Alt+F2 med">
 <!ENTITY foxyproxy.keyconfig.label "Tangentinställning">
 <!ENTITY foxyproxy.quickadd.desc2 "tillägg">
-<!ENTITY foxyproxy.quickadd.label "QuickAdd">
-<!ENTITY foxyproxy.quickadd.accesskey "Q">
-<!ENTITY foxyproxy.quickadd.tooltip "QuickAdd">
+<!ENTITY foxyproxy.quickadd.label "Snabbtillägg">
+<!ENTITY foxyproxy.quickadd.accesskey "ä">
+<!ENTITY foxyproxy.quickadd.tooltip "Snabbtillägg">
 <!ENTITY foxyproxy.quickadd.notify.label "Meddela mig när Snabbtillägg aktiveras">
 <!ENTITY foxyproxy.quickadd.notify.accesskey "n">
 <!ENTITY foxyproxy.quickadd.notify.tooltip "Visa en popup-ruta när Snabbtillägg aktiveras">
-<!ENTITY foxyproxy.quickadd.notify.whencanceled.label "Meddela mig när Snabbtillägg abryts">
+<!ENTITY foxyproxy.quickadd.notify.whencanceled.label "Meddela mig när Snabbtillägg avbryts">
 <!ENTITY foxyproxy.quickadd.notify.whencanceled.label2 "Snabbtillägg avbryts automatiskt när Snabbtillägg aktiveras genom Alt+F2 och aktuell URL i adressfältet redan matchar en befintlig vitlistat proxymönster. På detta sätt förhindras dubletter, vilka kan påverka systemets funktion. Dessa inställningar aktiverar/inaktiverar inte avbrott utan visar istället ett meddelande när så sker.">
 <!ENTITY foxyproxy.quickadd.notify.whencanceled.accesskey "a">
 <!ENTITY foxyproxy.quickadd.notify.whencanceled.tooltip "Visa ett meddelande när Snabbtillägg är aktiverat men avbryts">
 <!ENTITY foxyproxy.whatsthis "Vad är detta?">
-<!ENTITY foxyproxy.quickadd.prompt.label "Begär redigering och bekräftning innan mönster läggs till proxy">
+<!ENTITY foxyproxy.quickadd.prompt.label "Begär redigering och bekräftelse innan mönster läggs till proxy">
 <!ENTITY foxyproxy.quickadd.prompt.accesskey "p">
-<!ENTITY foxyproxy.quickadd.prompt.tooltip "Begär redigering och bekräftning innan mönster läggs till proxy">
+<!ENTITY foxyproxy.quickadd.prompt.tooltip "Begär redigering och bekräftelse innan mönster läggs till proxy">
 <!ENTITY foxyproxy.quickadd.proxy.label "Proxy dit mönster laddas">
 <!ENTITY foxyproxy.quickadd.proxy.accesskey "P">
 <!ENTITY foxyproxy.quickadd.proxy.tooltip "Ange proxy dit mönster skall laddas">
@@ -370,7 +370,7 @@
 <!ENTITY foxyproxy.torwiz.height "375">
 <!ENTITY foxyproxy.casesensitive.label "Känslig för stora och små bokstäver">
 <!ENTITY foxyproxy.casesensitive.accesskey "K">
-<!ENTITY foxyproxy.casesensitive.tooltip "Enables/disables case-sensitivity for URL matching">
+<!ENTITY foxyproxy.casesensitive.tooltip "Slår på/av igenkänning av små/stora bokstäver för URL-matchning">
 <!ENTITY foxyproxy.statusbarwidth.label "Fast bredd">
 <!ENTITY foxyproxy.statusbarwidth.accesskey "b">
 <!ENTITY foxyproxy.statusbarwidth.tooltip "Förhindra storleksändring av statusfältet">

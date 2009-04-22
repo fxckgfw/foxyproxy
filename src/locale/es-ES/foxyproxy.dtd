@@ -407,7 +407,7 @@
 <!ENTITY foxyproxy.getfoxyproxyplus.label "Obtener FoxyProxy Plus">
 <!--    begin foxyproxyplus    -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Añadir/Editar patrón de direcciones IP locales">
-<!ENTITY foxyproxy.tempip.popup.label "Temporary patterns allow you to create patterns for local IP addresses that you don&apos;t use often without cluttering the IP address pattern list for a proxy. Temporary patterns are not saved to disk. They are kept in-memory and used for this Firefox session only.">
+<!ENTITY foxyproxy.tempip.popup.label "Los patrones temporales le permiten crear patrones para direcciones IP locales que no use con frecuencia sin interferir en la lista de patrones de un proxy. Los patrones temporales no se guardan en el disco. Se mantienen en memoria sólo durante la sesión actual de Firefox.">
 <!ENTITY foxyproxy.ip.pattern.label "Patrón de dirección IP local">
 <!ENTITY foxyproxy.ip.pattern.accesskey "I">
 <!ENTITY foxyproxy.ip.pattern.tooltip "Patrón de dirección IP local">
@@ -417,30 +417,30 @@
 <!ENTITY foxyproxy.ip.wildcard.reference.matches.label "Coincide">
 <!ENTITY foxyproxy.ip.wildcard.reference.nomatch.label "No coincide">
 <!ENTITY foxyproxy.ip.whiteblack.label "Inclusion/Exclusion">
-<!ENTITY foxyproxy.ip.whitelist.description.label "URLs load through this proxy when one of your IP addresses matches this pattern">
-<!ENTITY foxyproxy.ip.blacklist.description.label "URLs do NOT load through this proxy when one of your IP addresses matches this pattern">
-<!ENTITY foxyproxy.ip.wildcard.reference.subtitle.label "The asterisk (*) matches zero or more characters.">
-<!ENTITY foxyproxy.ip.current.local.label "Current Local IP addresses">
-<!ENTITY foxyproxy.copyip.label "Copy to Pattern">
-<!ENTITY foxyproxy.copyip.tooltip "Copy address to pattern">
+<!ENTITY foxyproxy.ip.whitelist.description.label "Las direcciones se cargan usando este proxy cuando alguna de sus direcciones IP coincide con este patrón">
+<!ENTITY foxyproxy.ip.blacklist.description.label "Las direcciones no se cargan usando este proxy si ninguna de sus direcciones IP coincide con este patrón">
+<!ENTITY foxyproxy.ip.wildcard.reference.subtitle.label "El asterisco (*) se corresponde con cero o más caracteres.">
+<!ENTITY foxyproxy.ip.current.local.label "Direcciones locales IP actuales">
+<!ENTITY foxyproxy.copyip.label "Copiar a un patrón">
+<!ENTITY foxyproxy.copyip.tooltip "Copiar las direcciones a un patrón">
 <!ENTITY foxyproxy.copyip.accesskey "C">
-<!ENTITY foxyproxy.ip.wildcard.example.label "Example: 192.168.1.*">
-<!ENTITY foxyproxy.ip.regex.example.label "Example: 172\.\d+\.1\.10">
-<!ENTITY foxyproxy.ip.pattern.match "Pattern matches one or more or current local IP addresses">
-<!ENTITY foxyproxy.ip.pattern.no.match "Pattern doesn&apos;t match any current local IP address">
-<!ENTITY foxyproxy.refreshlocalips "Refresh local IP addresses">
+<!ENTITY foxyproxy.ip.wildcard.example.label "Ejemplo: 192.168.1.*">
+<!ENTITY foxyproxy.ip.regex.example.label "Ejemplo: 172\.\d+\.1\.10">
+<!ENTITY foxyproxy.ip.pattern.match "El patrón coincide con una o más de las direcciones IP locales actuales">
+<!ENTITY foxyproxy.ip.pattern.no.match "El patrón no coincide con ninguna de las direcciones IP locales actuales">
+<!ENTITY foxyproxy.refreshlocalips "Refrescar la dirección IP local">
 <!ENTITY foxyproxy.refreshlocalips.accesskey "R">
-<!ENTITY foxyproxy.enterlicense.label "Enter license key">
-<!ENTITY foxyproxy.enteremail.label "Enter email address">
-<!ENTITY foxyproxy.licenseinfo.label "License Info">
-<!ENTITY foxyproxy.licensevalid.label "License valid. Thank you for purchasing FoxyProxy Plus.">
-<!ENTITY foxyproxy.licenseinvalid.label "License invalid. You won&apos;t receive FoxyProxyPlus updates. Please purchase FoxyProxy Plus.">
-<!ENTITY foxyproxy.buynow.label "Buy Now">
-<!ENTITY foxyproxy.checklicense.label "Check License">
-<!ENTITY foxyproxy.checkinglicense.label "Checking...please wait">
-<!ENTITY foxyproxy.routetoleahscape.label "Please make sure Firefox can reach https://leahscape.com/fpplus/license_check.php either with or without a proxy. You can configure patterns for this URL in FoxyProxy Plus if necessary.">
-<!ENTITY foxyproxy.everything.label "Everything">
-<!ENTITY foxyproxy.nothing.label "Nothing">
-<!ENTITY foxyproxy.ippatterndeletefinal.label "This is the last local IP address pattern. If you delete it, this proxy has no possibility of being used. Continue anyway?">
+<!ENTITY foxyproxy.enterlicense.label "Introduzca la clave de licencia">
+<!ENTITY foxyproxy.enteremail.label "Introduzca la dirección de correo">
+<!ENTITY foxyproxy.licenseinfo.label "Información de licencia">
+<!ENTITY foxyproxy.licensevalid.label "Licencia correcta. Gracias por comprar FoxyProxy Plus.">
+<!ENTITY foxyproxy.licenseinvalid.label "Licencia incorrecta. No recibirá actualizaciones de FoxyProxy. Por favor, compre FoxyProxy Plus.">
+<!ENTITY foxyproxy.buynow.label "Comprar ahora">
+<!ENTITY foxyproxy.checklicense.label "Comprobar licencia">
+<!ENTITY foxyproxy.checkinglicense.label "Comprobando...espere por favor">
+<!ENTITY foxyproxy.routetoleahscape.label "Compruebe que puede acceder a la dirección https://leahscape.com/fpplus/license_check.php con o sin proxy. Puede configurar patrones para esta dirección en FoxyProxy Plus si es necesario.">
+<!ENTITY foxyproxy.everything.label "Todo">
+<!ENTITY foxyproxy.nothing.label "Nada">
+<!ENTITY foxyproxy.ippatterndeletefinal.label "Este es el último patrón de dirección local IP. Si lo borra, este proxy no podrá ser usado. ¿Continuar?">
 <!ENTITY foxyproxy.licenseplea.label "FoxyProxy Plus tiene unas medidas mínimas anti-piratería. Si usa FoxyProxy Plus, por favor compre una licencia. Ha llevado varios años de trabajo el desarrollo y mantenimiento, y su compra me anima a continuar.">
 <!--    end foxyproxyplus    -->

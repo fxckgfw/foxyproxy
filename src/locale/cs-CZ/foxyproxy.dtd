@@ -442,5 +442,5 @@
 <!ENTITY foxyproxy.everything.label "Everything">
 <!ENTITY foxyproxy.nothing.label "Nothing">
 <!ENTITY foxyproxy.ippatterndeletefinal.label "This is the last local IP address pattern. If you delete it, this proxy has no possibility of being used. Continue anyway?">
-<!ENTITY foxyproxy.licenseplea.label "FoxyProxy Plus has minimal anti-piracy measures. If you use FoxyProxy Plus, please purchase a license. It&apos;s taken many years of work to develop and maintain, and your purchase encourages me to continue.">
+<!ENTITY foxyproxy.licenseplea.label "FoxyProxy Plus má minimální ochranu před nelegálním kopírováním. Při používání FoxyProxy Plus, prosím, zaplaťte licenci. Vývoj trval mnoho let a Vaše platba mě povzbudí v pokračování.">
 <!--    end foxyproxyplus    -->

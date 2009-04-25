@@ -856,7 +856,7 @@
     label="&foxyproxy.copy.selection.label;"
     accesskey="&foxyproxy.copy.selection.accesskey;"
     tooltiptext="&foxyproxy.copy.selection.tooltip;"
-    oncommand="onCopySelection(document);" observes="tree-row-selected"
+    oncommand="onCopySelection();" observes="tree-row-selected"
     disabled="true" />
 
   <command id="deleteSelectionCmd"

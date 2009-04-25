@@ -70,7 +70,7 @@
         tooltiptext="&foxyproxy.animatedicons.tooltip;"/>
       <checkbox id="cycleEnabled"
 	      class="indent"
-        label="&foxyproxy.includeincycle.label;"
+        label="&foxyproxy.includeincycle.label;" style="width: 20em;"
         accesskey="&foxyproxy.includeincycle.accesskey;"
         tooltiptext="&foxyproxy.includeincycle.tooltip;"/>
 	  </tabpanel>
@@ -105,7 +105,7 @@
 	              <label value="&foxyproxy.port.label;" control="port" accesskey="&foxyproxy.port.accesskey;" tooltiptext="&foxyproxy.port.tooltip;"/>
 	              <textbox id="port" size="5" oninput="if (/\D/.test(this.value)) this.value='';" observes="disabled-broadcaster" tooltiptext="&foxyproxy.port.tooltip;"/>
               </hbox>
-              <hbox class="indent">
+              <hbox align="center" class="indent">
                 <checkbox id="isSocks"
 									label="&foxyproxy.issocks.label;"
 	               	accesskey="&foxyproxy.issocks.accesskey;"

@@ -570,4 +570,12 @@
 
 <!ENTITY foxyproxy.licenseplea.label "FoxyProxy Plus has minimal anti-piracy measures. If you use FoxyProxy Plus, please purchase a license. It's taken many years of work to develop and maintain, and your purchase encourages me to continue.">
 
+<!ENTITY foxyproxy.authentication.label "Authentication">
+<!ENTITY foxyproxy.proxyusername.label "Username">
+<!ENTITY foxyproxy.proxypassword.label "Password">
+<!ENTITY foxyproxy.proxypassword2.label "Password - again">
+<!ENTITY foxyproxy.proxydomain.label "Domain (optional - NTLM only)">
+<!ENTITY foxyproxy.proxydomain.tooltip "NTLM authentication only">
+<!ENTITY foxyproxy.proxy.passwords.nomatch.label "Proxy passwords do not match; please re-enter.">
+
 <!-- end foxyproxyplus -->

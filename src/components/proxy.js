@@ -66,7 +66,8 @@ if (!CI) {
 loadComponentScript("autoconf.js");
 loadComponentScript("match.js");
 
-var proxyService = CC["@mozilla.org/network/protocol-proxy-service;1"].getService(CI.nsIProtocolProxyService);
+var proxyService = CC["@mozilla.org/network/protocol-proxy-service;1"].getService(CI.nsIProtocolProxyService),
+  DEFAULT_COLOR = "#65BAD7"; /* blue */
 ///////////////////////////// Proxy class ///////////////////////
 function Proxy(fp) {
   this.wrappedJSObject = this;
@@ -86,6 +87,7 @@ Proxy.prototype = {
   direct: proxyService.newProxyInfo("direct", "", -1, 0, 0, null),
   animatedIcons: true,
   includeInCycle: true,
+  color: DEFAULT_COLOR,
   fp: null,
 
   QueryInterface: function(aIID) {
@@ -110,6 +112,7 @@ Proxy.prototype = {
 	  this.lastresort = node.hasAttribute("lastresort") ? node.getAttribute("lastresort") == "true" : false; // new for 2.0
     this.animatedIcons = node.hasAttribute("animatedIcons") ? node.getAttribute("animatedIcons") == "true" : !this.lastresort; // new for 2.4
     this.includeInCycle = node.hasAttribute("includeInCycle") ? node.getAttribute("includeInCycle") == "true" : !this.lastresort; // new for 2.5
+    this.color = gGetSafeAttr(node, "color", DEFAULT_COLOR);
     
     // new XPathEvaluator() is not yet available; must go through XPCOM
     var xpe = CC["@mozilla.org/dom/xpath-evaluator;1"].getService(CI.nsIDOMXPathEvaluator),
@@ -143,6 +146,7 @@ Proxy.prototype = {
     e.setAttribute("lastresort", this.lastresort);
     e.setAttribute("animatedIcons", this.animatedIcons);
     e.setAttribute("includeInCycle", this.includeInCycle);
+    e.setAttribute("color", this.color);    
 
     var matchesElem = doc.createElement("matches");
     e.appendChild(matchesElem);

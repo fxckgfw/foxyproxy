@@ -434,7 +434,7 @@
 <!ENTITY foxyproxy.enteremail.label "Enter email address">
 <!ENTITY foxyproxy.licenseinfo.label "License Info">
 <!ENTITY foxyproxy.licensevalid.label "License valid. Thank you for purchasing FoxyProxy Plus.">
-<!ENTITY foxyproxy.licenseinvalid.label "License invalid. You won&apos;t receive FoxyProxyPlus updates. Please purchase FoxyProxy Plus.">
+<!ENTITY foxyproxy.licenseinvalid.label "License invalid. You won&apos;t receive FoxyProxy Plus updates. Please purchase FoxyProxy Plus.">
 <!ENTITY foxyproxy.buynow.label "Buy Now">
 <!ENTITY foxyproxy.checklicense.label "Check License">
 <!ENTITY foxyproxy.checkinglicense.label "Checking...please wait">

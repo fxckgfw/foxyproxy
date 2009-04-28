@@ -129,11 +129,11 @@
 <!ENTITY foxyproxy.storagelocation.tooltip "Η τοποθεσία αποθήκευσης των ρυθμίσεων του FoxyProxy">
 <!ENTITY foxyproxy.tab.logging.timestamp.label "Χρονoσήμανση">
 <!ENTITY foxyproxy.tab.logging.url.label "URL">
-<!ENTITY foxyproxy.host.label.2 "Host or IP Address">
-<!ENTITY foxyproxy.host.accesskey "κ">
-<!ENTITY foxyproxy.clear.label "Καθαρισμός">
+<!ENTITY foxyproxy.host.label.2 "Εξυπηρετητής ή διεύθυνση IP">
+<!ENTITY foxyproxy.host.accesskey "υ">
+<!ENTITY foxyproxy.clear.label "Εκκαθάριση">
 <!ENTITY foxyproxy.clear.accesskey "Κ">
-<!ENTITY foxyproxy.clear.tooltip "Καθαρισμός">
+<!ENTITY foxyproxy.clear.tooltip "Εκκαθάριση">
 <!ENTITY foxyproxy.refresh.label "Ανανέωση">
 <!ENTITY foxyproxy.refresh.accesskey "Α">
 <!ENTITY foxyproxy.refresh.tooltip "Ανανέωση">

@@ -73,6 +73,11 @@
         label="&foxyproxy.includeincycle.label;" style="width: 20em;"
         accesskey="&foxyproxy.includeincycle.accesskey;"
         tooltiptext="&foxyproxy.includeincycle.tooltip;"/>
+      <separator class="thin"/>
+      <hbox align="center">
+        <textbox id="color" class="indent"/>
+        <colorpicker id="colorpicker" onclick="document.getElementById('color').value= this.color"/>
+      </hbox>        
 	  </tabpanel>
 		<tabpanel flex="1" orient="vertical">
 				<separator class="thin" />

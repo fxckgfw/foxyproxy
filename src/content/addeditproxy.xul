@@ -26,6 +26,7 @@
   persist="screenX screenY">
 
 <script src="addeditproxy.js"/>
+<script src="colorvalidator.js"/> <!-- a simple color validator -->
 
 <vbox observes="torwiz-broadcaster" flex="1">
   <tabbox flex="1">
@@ -74,10 +75,16 @@
         accesskey="&foxyproxy.includeincycle.accesskey;"
         tooltiptext="&foxyproxy.includeincycle.tooltip;"/>
       <separator class="thin"/>
-      <hbox align="center">
-        <textbox id="color" class="indent"/>
-        <colorpicker id="colorpicker" onclick="document.getElementById('color').value= this.color"/>
-      </hbox>        
+      <vbox>
+        <hbox align="center">
+          <textbox id="color" class="indent" oninput="customcolor(this.value);"/>
+          <colorpicker id="colorpicker" type="button" onchange="pickcolor(this.color);"/> <!-- NEW SVG -->
+        </hbox>
+        <hbox align="center">
+          <label id="colorfalse" hidden="true" style="color:red;" value="Invalid color" />
+          <label id="colortrue" style="color:green;" value="Valid color" />
+        </hbox>
+      </vbox>        
 	  </tabpanel>
 		<tabpanel flex="1" orient="vertical">
 				<separator class="thin" />

@@ -30,7 +30,8 @@ function onLoad() {
   document.getElementById("proxynotes").value = proxy.notes;
   document.getElementById("animatedIcons").checked = proxy.animatedIcons;
   document.getElementById("cycleEnabled").checked = proxy.includeInCycle;
-  document.getElementById("color").value = document.getElementById("colorpicker").color = proxy.color;
+  document.getElementById("colorpicker").color = proxy.color;
+  pickcolor(proxy.color); // NEW SVG
   document.getElementById("tabs").selectedIndex = proxy.selectedTabIndex;
   document.getElementById("proxyenabled").checked = proxy.enabled;
   document.getElementById("mode").value = proxy.mode;
@@ -123,7 +124,13 @@ function onOK() {
   proxy.manualconf.socksversion = document.getElementById("socksversion").value;
   proxy.animatedIcons = document.getElementById("animatedIcons").checked;
   proxy.includeInCycle = document.getElementById("cycleEnabled").checked;
-  proxy.color = document.getElementById("color").value;
+  var color = new RGBColor(document.getElementById("color").value); // NEW SVG
+  if(color.ok) {
+    proxy.color = document.getElementById("color").value;
+  } else {
+    foxyproxy.alert(this, foxyproxy.getMessage("invalidcolor"));
+    return false;
+  }
   proxy.afterPropertiesSet();
 
   window.arguments[0].out = {proxy:proxy};
@@ -313,4 +320,20 @@ function onWildcardReference(popupId, btnId) {
 
 function onIsSocks(checked) {
 	document.getElementById("socks5").disabled = document.getElementById("socks4").disabled = !checked;
+}
+
+// NEW SVG
+function pickcolor(scolor) {
+	document.getElementById("color").value=scolor;
+}
+function customcolor(scolor) {
+	var color = new RGBColor(scolor);
+	if(color.ok) {
+		document.getElementById("colorpicker").color=scolor;
+		document.getElementById("colorfalse").setAttribute("hidden", "true");
+		document.getElementById("colortrue").setAttribute("hidden", "false");
+	} else {
+		document.getElementById("colorfalse").setAttribute("hidden", "false");
+		document.getElementById("colortrue").setAttribute("hidden", "true");
+	}
 }

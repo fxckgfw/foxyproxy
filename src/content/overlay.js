@@ -14,6 +14,7 @@ var foxyproxy = {
   fp : Components.classes["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject,
   fpc : Components.classes["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject,
   statusIcon : null,
+  svgIcon : null, // NEW SVG
   contextMenuIcon : null,
   toolbarIcon : null,
   toolsMenuIcon : null,
@@ -133,6 +134,7 @@ var foxyproxy = {
 
   onLoad : function() {
     this.statusIcon = document.getElementById("foxyproxy-status-icon");
+    this.svgIcon = document.getElementById("foxyproxy-status-svg");
     this.contextMenuIcon = document.getElementById("foxyproxy-context-menu-1");
     this.toolbarIcon = document.getElementById("foxyproxy-button-1");
     this.toolsMenuIcon = document.getElementById("foxyproxy-tools-menu-1");
@@ -362,6 +364,8 @@ var foxyproxy = {
   throb : function(mp) {
     if (mp.wrappedJSObject.animatedIcons) {
       this.statusIcon.setAttribute("animated", "true");
+      document.getElementById('path3231').setAttribute("style", "fill: "+mp.wrappedJSObject.color+";");
+      fpsvg_animate(); // NEW SVG
       // this.toolbarIcon is null if user hasn't placed it in the toolbar, so we check its existance before calling setAttribute()
       this.toolbarIcon && this.toolbarIcon.setAttribute("animated", "true");
       this.contextMenuIcon.setAttribute("animated", "true");
@@ -373,6 +377,7 @@ var foxyproxy = {
 
   unthrob : function() {
     this.statusIcon.removeAttribute("animated");
+    // NEW SVG - No reason to untrob, as it a static and animated image
     this.contextMenuIcon.removeAttribute("animated");
     // this.toolbarIcon is null if user hasn't placed it in the toolbar, so we check its existance before calling setAttribute()
     this.toolbarIcon && this.toolbarIcon.removeAttribute("animated");
@@ -382,6 +387,7 @@ var foxyproxy = {
 
   ///////////////// statusbar \\\\\\\\\\\\\\\\\\\\\
   toggleStatusBarIcon : function(e) {
+    this.svgIcon.hidden = !e;
     this.statusIcon.hidden = !e;
   },
 
@@ -418,6 +424,8 @@ var foxyproxy = {
     this.contextMenuIcon.setAttribute("mode", m);
     // this.toolbarIcon is null if user hasn't placed it in the toolbar, so we check its existance before calling setAttribute()
     this.toolbarIcon && this.toolbarIcon.setAttribute("mode", m);
+    document.getElementById('path3231').setAttribute("style", "fill: "+((mode == "patterns") ? "#65BAD7;" : this.fp._selectedProxy.color)+";");
+    alert("svgIcon color is nao:\n"+document.getElementById('path3231').getAttribute("style"));
     this.statusIcon.setAttribute("mode", m);
     this.setStatusText(m, null);
   },

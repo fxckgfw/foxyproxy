@@ -10,6 +10,7 @@
   and also online at http://www.gnu.org/licenses/gpl.txt
 -->
 <?xml-stylesheet href="foxyproxy.css" type="text/css"?>
+<?xul-overlay href="chrome://foxyproxy/content/firefoxOverlay-svg.xul"?>
 <!DOCTYPE overlay SYSTEM "chrome://foxyproxy/locale/foxyproxy.dtd">
 
 <overlay id="foxyproxy-overlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
@@ -77,7 +78,13 @@
       id="foxyproxy-status-icon"
       onclick="foxyproxy.onSBTBClick(event, foxyproxy.fp.statusbar);"
       class="statusbarpanel-menu-iconic foxyproxybutton-small"
-      mode="patterns" persist="mode hidden" hidden="true" mousethrough="never"/>  <!--  mousethrough is for SB. See http://www.songbirdnest.com/node/2547 -->      
+      mode="patterns" persist="mode hidden" hidden="true" mousethrough="never"/>  <!--  mousethrough is for SB. See http://www.songbirdnest.com/node/2547 -->    
+    <statusbarpanel 
+      id="foxyproxy-status-svg"
+      onclick="foxyproxy.onSBTBClick(event, foxyproxy.fp.statusbar);"
+      mousethrough="never"> <!-- NEW SVG -->
+        
+    </statusbarpanel>
   </statusbar>
 
   <toolbarpalette id="BrowserToolbarPalette">

@@ -129,4 +129,32 @@ treechildren::-moz-tree-checkbox(checked) {
   list-style-image: url("chrome://foxyproxy/content/images/cbox-check.gif");
 }
 
-
+/* Foxyproxy SVG stuff */#path2453 {
+	fill:#404141;
+	fill-opacity:1;
+	fill-rule:evenodd;
+}
+#path3225 {
+	fill:#ffffff;
+	fill-opacity:1;
+	fill-rule:evenodd;
+}
+#path3231 {
+	fill:#e78500;
+	fill-opacity:1;
+	fill-rule:evenodd;
+}
+#path4743 {
+	fill:#ffffff;
+	fill-opacity:0.20392157;
+	fill-rule:evenodd;
+}
+#colorpicked {
+  width                 : 20px;
+  height                : 20px;
+  margin                : 1px;
+  border-left           : 1px solid ThreeDShadow;
+  border-top            : 1px solid ThreeDShadow;
+  border-right          : 1px solid ThreeDHighlight;
+  border-bottom         : 1px solid ThreeDHighlight;
+}

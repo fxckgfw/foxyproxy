@@ -52,6 +52,13 @@
                   <spacer />
               </row>
               <row align="center">
+                <label value="&foxyproxy.contributionsBy;" />
+                <label value="Jesper Staun Hansen" class="text-link"
+                  onclick="fpc.openAndReuseOneTabPerURL('http://');"
+                  tooltiptext="http://" />
+                  <spacer />
+              </row>              
+              <row align="center">
                 <label
                   value="&foxyproxy.copyright; 2006-2009 LeahScape, Inc." />
                   <spacer /><spacer />

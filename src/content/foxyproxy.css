@@ -129,6 +129,14 @@ treechildren::-moz-tree-checkbox(checked) {
   list-style-image: url("chrome://foxyproxy/content/images/cbox-check.gif");
 }
 
+.invalidcolor {
+  color: red;
+}
+
+.validcolor {
+  color: green;
+}
+
 /* Foxyproxy SVG stuff */#path2453 {
 	fill:#404141;
 	fill-opacity:1;

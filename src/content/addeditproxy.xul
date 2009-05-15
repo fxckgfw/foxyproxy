@@ -79,11 +79,9 @@
         <hbox align="center">
           <textbox id="color" class="indent" oninput="customcolor(this.value);"/>
           <colorpicker id="colorpicker" type="button" onchange="pickcolor(this.color);"/> <!-- NEW SVG -->
-        </hbox>
-        <hbox align="center">
-          <label id="colorfalse" hidden="true" style="color:red;" value="Invalid color" />
-          <label id="colortrue" style="color:green;" value="Valid color" />
-        </hbox>
+          <label id="colorfalse" hidden="true" class="invalidcolor" value="&foxyproxy.invalidcolor.label;" />
+          <label id="colortrue" class="validcolor" value="&foxyproxy.validcolor.label;" />
+        </hbox>          
       </vbox>        
 	  </tabpanel>
 		<tabpanel flex="1" orient="vertical">

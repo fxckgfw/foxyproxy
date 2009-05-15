@@ -581,4 +581,7 @@
 <!ENTITY foxyproxy.proxydomain.tooltip "NTLM authentication only">
 <!ENTITY foxyproxy.proxy.passwords.nomatch.label "Proxy passwords do not match; please re-enter.">
 
+<!ENTITY foxyproxy.invalidcolor.label "Invalid color">
+<!ENTITY foxyproxy.validcolor.label "Valid color">
+
 <!-- end foxyproxyplus -->

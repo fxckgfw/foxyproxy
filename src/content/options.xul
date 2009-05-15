@@ -158,8 +158,6 @@
               label=" &foxyproxy.moveup.label;" />
             <button id="down-button" pack="start" command="moveDownCmd"
               label=" &foxyproxy.movedown.label;" />
-            <separator/>
-            <button command="proxyServiceCmd"/>
             <separator />
             <button command="createProxyCmd" />
             <button command="settingsCmd" />
@@ -756,10 +754,13 @@
     </tabpanels>
   </tabbox>
   <hbox align="center">
-    <label value="&foxyproxy.keep.free;:" style="font-weight: bold;"/>
     <button command="donateCmd" style="font-weight: bold;"/>
     <!-- <button command="donationListCmd"/> -->
     <button command="fppCmd" style="font-weight: bold;"/>
+    <button command="proxyServiceCmd" style="font-weight: bold;"/>
+    <toolbarbutton class="foxyproxy-ref"
+      popup="commercialInfo"
+      tooltiptext="&foxyproxy.whatsthis;"/>    
     <spacer flex="1" />
     <button command="closeCmd" />
   </hbox>
@@ -958,6 +959,15 @@
 
   <popupset>
     <popup id="notifyWhenCanceledPopup"/>
+  <popup id="commercialInfo">
+    <vbox class="foxyproxy-border foxyproxy-tooltip" style="width: 50em; height: 15em;">
+      <description>&foxyproxy.aboutdonate.label;</description>
+      <separator class="thin"/>
+      <description>&foxyproxy.aboutfpplus.label;</description>
+      <separator class="thin"/>
+      <description>&foxyproxy.aboutproxyservice.label;</description>
+    </vbox>
+  </popup>    
   </popupset> 
 
   <keyset>

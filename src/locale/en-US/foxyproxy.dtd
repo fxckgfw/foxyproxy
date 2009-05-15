@@ -98,6 +98,7 @@
 
 <!ENTITY foxyproxy.version "Version">
 <!ENTITY foxyproxy.createdBy "Created By">
+<!ENTITY foxyproxy.contributionsBy "Contributions By">
 <!ENTITY foxyproxy.copyright "Copyright">
 <!ENTITY foxyproxy.rights "All Rights Reserved.">
 <!ENTITY foxyproxy.released "Released under the GPL license.">

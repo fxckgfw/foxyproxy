@@ -128,7 +128,7 @@ function onOK() {
   if(color.ok) {
     proxy.color = document.getElementById("color").value;
   } else {
-    foxyproxy.alert(this, foxyproxy.getMessage("invalidcolor"));
+    foxyproxy.alert(this, foxyproxy.getMessage("foxyproxy.invalidcolor.label"));
     return false;
   }
   proxy.afterPropertiesSet();

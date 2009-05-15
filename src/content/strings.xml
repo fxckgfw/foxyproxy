@@ -112,4 +112,7 @@
   <i18n id="foxyproxy.quickadd.label" value="&foxyproxy.quickadd.label;"/>
   <i18n id="foxyproxy.quickadd.accesskey" value="&foxyproxy.quickadd.accesskey;"/>
   <i18n id="foxyproxy.quickadd.tooltip" value="&foxyproxy.quickadd.tooltip;"/>  
+
+  <i18n id="foxyproxy.invalidcolor.label" value="&foxyproxy.invalidcolor.label;"/>
+  <i18n id="foxyproxy.validcolor.label" value="&foxyproxy.validcolor.label;"/>  
 </root>

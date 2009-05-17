@@ -108,7 +108,7 @@ function foxyproxy() {
 foxyproxy.prototype = {
   PFF : " ",
   _mode : "disabled",
-  _selectedProxy : null,
+  _selectedProxy : null, /* remains null unless all URLs are set to load through a proxy */
   _selectedTabIndex : 0,
   _proxyDNS : false,
   _toolsMenu : true,

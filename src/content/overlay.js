@@ -424,7 +424,7 @@ var foxyproxy = {
     this.contextMenuIcon.setAttribute("mode", m);
     // this.toolbarIcon is null if user hasn't placed it in the toolbar, so we check its existance before calling setAttribute()
     this.toolbarIcon && this.toolbarIcon.setAttribute("mode", m);
-    document.getElementById('path3231').setAttribute("style", "fill: "+((mode == "patterns") ? "#65BAD7;" : this.fp._selectedProxy.color)+";");
+    document.getElementById('path3231').setAttribute("style", "fill: "+((mode == "patterns" || !this.fp._selectedProxy) ? "#65BAD7;" : this.fp._selectedProxy.color)+";");
     alert("svgIcon color is nao:\n"+document.getElementById('path3231').getAttribute("style"));
     this.statusIcon.setAttribute("mode", m);
     this.setStatusText(m, null);

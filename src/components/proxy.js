@@ -78,7 +78,7 @@ function Proxy(fp) {
   this.autoconf = new AutoConf(this, this.fp);
   this._mode = "manual"; // manual, auto, direct, random
   this._enabled = true;
-  this.selectedTabIndex = 0;
+  this.selectedTabIndex = 1; /* default tab is the proxy details tab */
   this.lastresort = false;
   this.id = this.fp.proxies.uniqueRandom();
 }

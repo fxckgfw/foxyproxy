@@ -522,6 +522,9 @@
 <!ENTITY foxyproxy.aboutfpplus.label "The FoxyProxy Plus button brings you to a website where you can read about the additional features provided by the Plus edition and optionally purchase it.">
 <!ENTITY foxyproxy.aboutproxyservice.label "Finally, the proxy service button brings you to our proxy service website, where you can buy reliable, high-bandwidth proxy service in many different countries at reasonable prices.">
 
+<!ENTITY foxyproxy.invalidcolor.label "Invalid color">
+<!ENTITY foxyproxy.validcolor.label "Valid color">
+
 <!-- begin foxyproxyplus -->        
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Add/Edit Local IP Address Pattern">
 <!ENTITY foxyproxy.tempip.popup.label "Temporary patterns allow you to create patterns for local IP addresses that you don't use often without cluttering the IP address pattern list for a proxy. Temporary patterns are not saved to disk. They are kept in-memory and used for this Firefox session only.">
@@ -581,8 +584,5 @@
 <!ENTITY foxyproxy.proxydomain.label "Domain (optional - NTLM only)">
 <!ENTITY foxyproxy.proxydomain.tooltip "NTLM authentication only">
 <!ENTITY foxyproxy.proxy.passwords.nomatch.label "Proxy passwords do not match; please re-enter.">
-
-<!ENTITY foxyproxy.invalidcolor.label "Invalid color">
-<!ENTITY foxyproxy.validcolor.label "Valid color">
 
 <!-- end foxyproxyplus -->

@@ -97,6 +97,7 @@ treechildren::-moz-tree-checkbox(checked) {
 .purple { color: purple; }
 .blue { color: blue; }
 .orange { color: #E78500; }
+.grey { color: #959899; }
 
 .foxyproxy-tooltip {
 	text-align: justify;
@@ -157,10 +158,3 @@ treechildren::-moz-tree-checkbox(checked) {
 	fill-opacity:0.20392157;
 	fill-rule:evenodd;
 }
-.grey { color: #959899; }
-
-.red { color: red; }
-.purple { color: purple; }
-.blue { color: blue; }
-.orange { color: #E78500; }
-.grey { color: #959899; }

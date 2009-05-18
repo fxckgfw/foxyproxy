@@ -424,25 +424,25 @@ var foxyproxy = {
     this.contextMenuIcon.setAttribute("mode", m);
     // this.toolbarIcon is null if user hasn't placed it in the toolbar, so we check its existance before calling setAttribute()
     this.toolbarIcon && this.toolbarIcon.setAttribute("mode", m);
-    var clazz;
+    var color;
     switch (m) {
-      case "patterns":
-        clazz = "#E78500;";
+      case "pattern":
+        color = "#65BAD7;";
         break;
       case "disabled":
-        clazz = "#959899;";
+        color = "#959899;";
         break;
       case "random":
-        clazz = "#69B832;";
+        color = "#69B832;";
         break;
       case "roundrobin":
-        clazz = "purple;";
+        color = "purple;";
         break;
       case "static" :
-        clazz = "#46B8DA;";
+        color = "#46B8DA;";
         break;
     }
-    document.getElementById('path3231').setAttribute("style", "fill: " + clazz);
+    document.getElementById('path3231').setAttribute("style", "fill: " + color);
     this.statusIcon.setAttribute("mode", m);
     this.setStatusText(m, null);
   },

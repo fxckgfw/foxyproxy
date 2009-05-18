@@ -157,12 +157,10 @@ treechildren::-moz-tree-checkbox(checked) {
 	fill-opacity:0.20392157;
 	fill-rule:evenodd;
 }
-#colorpicked {
-  width                 : 20px;
-  height                : 20px;
-  margin                : 1px;
-  border-left           : 1px solid ThreeDShadow;
-  border-top            : 1px solid ThreeDShadow;
-  border-right          : 1px solid ThreeDHighlight;
-  border-bottom         : 1px solid ThreeDHighlight;
-}
+.grey { color: #959899; }
+
+.red { color: red; }
+.purple { color: purple; }
+.blue { color: blue; }
+.orange { color: #E78500; }
+.grey { color: #959899; }

@@ -424,8 +424,25 @@ var foxyproxy = {
     this.contextMenuIcon.setAttribute("mode", m);
     // this.toolbarIcon is null if user hasn't placed it in the toolbar, so we check its existance before calling setAttribute()
     this.toolbarIcon && this.toolbarIcon.setAttribute("mode", m);
-    document.getElementById('path3231').setAttribute("style", "fill: "+((mode == "patterns" || !this.fp._selectedProxy) ? "#65BAD7;" : this.fp._selectedProxy.color)+";");
-    alert("svgIcon color is nao:\n"+document.getElementById('path3231').getAttribute("style"));
+    var clazz;
+    switch (m) {
+      case "patterns":
+        clazz = "#E78500;";
+        break;
+      case "disabled":
+        clazz = "#959899;";
+        break;
+      case "random":
+        clazz = "#69B832;";
+        break;
+      case "roundrobin":
+        clazz = "purple;";
+        break;
+      case "static" :
+        clazz = "#46B8DA;";
+        break;
+    }
+    document.getElementById('path3231').setAttribute("style", "fill: " + clazz);
     this.statusIcon.setAttribute("mode", m);
     this.setStatusText(m, null);
   },

@@ -54,8 +54,8 @@
               <row align="center">
                 <label value="&foxyproxy.contributionsBy;" />
                 <label value="Jesper Staun Hansen" class="text-link"
-                  onclick="fpc.openAndReuseOneTabPerURL('http://');"
-                  tooltiptext="http://" />
+                  onclick="fpc.openAndReuseOneTabPerURL('http://staunhansen.dk/');"
+                  tooltiptext="http://staunhansen.dk/" />
                   <spacer />
               </row>              
               <row align="center">

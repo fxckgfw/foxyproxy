@@ -13,7 +13,6 @@ var foxyproxy = {
   checkboxType : Components.interfaces.nsITreeColumn.TYPE_CHECKBOX,
   fp : Components.classes["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject,
   fpc : Components.classes["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject,
-  statusIcon : null,
   svgIcon : null, // NEW SVG
   contextMenuIcon : null,
   toolbarIcon : null,
@@ -133,7 +132,6 @@ var foxyproxy = {
   },
 
   onLoad : function() {
-    this.statusIcon = document.getElementById("foxyproxy-status-icon");
     this.svgIcon = document.getElementById("foxyproxy-status-svg");
     this.contextMenuIcon = document.getElementById("foxyproxy-context-menu-1");
     this.toolbarIcon = document.getElementById("foxyproxy-button-1");
@@ -363,7 +361,6 @@ var foxyproxy = {
 
   throb : function(mp) {
     if (mp.wrappedJSObject.animatedIcons) {
-      this.statusIcon.setAttribute("animated", "true");
       document.getElementById('path3231').setAttribute("style", "fill: "+mp.wrappedJSObject.color+";");
       fpsvg_animate(); // NEW SVG
       // this.toolbarIcon is null if user hasn't placed it in the toolbar, so we check its existance before calling setAttribute()
@@ -376,7 +373,6 @@ var foxyproxy = {
   },
 
   unthrob : function() {
-    this.statusIcon.removeAttribute("animated");
     // NEW SVG - No reason to untrob, as it a static and animated image
     this.contextMenuIcon.removeAttribute("animated");
     // this.toolbarIcon is null if user hasn't placed it in the toolbar, so we check its existance before calling setAttribute()
@@ -388,7 +384,6 @@ var foxyproxy = {
   ///////////////// statusbar \\\\\\\\\\\\\\\\\\\\\
   toggleStatusBarIcon : function(e) {
     this.svgIcon.hidden = !e;
-    this.statusIcon.hidden = !e;
   },
 
   toggleStatusBarText : function(e) {
@@ -442,8 +437,11 @@ var foxyproxy = {
         color = "#46B8DA;";
         break;
     }
+    if (m == "disabled")
+      document.getElementById('disabled-fp').style.visibility = "visible";
+    else
+      document.getElementById('disabled-fp').style.visibility = "hidden";
     document.getElementById('path3231').setAttribute("style", "fill: " + color);
-    this.statusIcon.setAttribute("mode", m);
     this.setStatusText(m, null);
   },
 
@@ -482,7 +480,7 @@ var foxyproxy = {
     foxyproxy.contextMenuIcon.setAttribute("tooltiptext", txt);
     // this.toolbarIcon is null if user hasn't placed it in the toolbar, so we check its existance before calling setAttribute()
     foxyproxy.toolbarIcon && foxyproxy.toolbarIcon.setAttribute("tooltiptext", txt);
-    foxyproxy.statusIcon.setAttribute("tooltiptext", txt);
+    document.getElementById('foxyproxy-status-svg').setAttribute("tooltiptext", txt);
   },
 
   ///////////////// utilities \\\\\\\\\\\\\\\

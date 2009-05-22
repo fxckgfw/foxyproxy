@@ -61,10 +61,9 @@
       onclick="if(event.button==0) {foxyproxy.onOptionsDialog();event.stopPropagation();} else document.getElementById('foxyproxy-statusbar-popup').showPopup(this, -1, -1, 'popup', 'bottomleft', 'topleft');"
       mode="patterns" persist="mode hidden" hidden="true"/>
     <statusbarpanel 
-      id="foxyproxy-status-icon"
+      id="foxyproxy-status-svg"
       onclick="if(event.button==0) {foxyproxy.onOptionsDialog();event.stopPropagation();} else document.getElementById('foxyproxy-statusbar-popup').showPopup(this, -1, -1, 'popup', 'bottomleft', 'topleft');"
-      class="statusbarpanel-menu-iconic foxyproxybutton-small"
-      mode="patterns" persist="mode hidden" hidden="true"/>      
+      hidden="true"/> <!-- NEW SVG -->
   </statusbar>
 
   <toolbarpalette id="MailToolbarPalette">   

@@ -164,7 +164,6 @@ treechildren::-moz-tree-checkbox(checked) {
   fill: purple;
   fill-opacity:1;
   fill-rule:evenodd;
-    this.svgIcon.init();
 }
 
 #path3231 {

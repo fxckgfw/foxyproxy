@@ -1,7 +1,4 @@
 @import url(chrome://global/skin/);
-/*@namespace url(http://www.w3.org/2000/svg);
-@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
-*/
 
 tree {min-height: 50px;}
 /*treechildren::-moz-tree-row(grey) {
@@ -167,6 +164,7 @@ treechildren::-moz-tree-checkbox(checked) {
   fill: purple;
   fill-opacity:1;
   fill-rule:evenodd;
+    this.svgIcon.init();
 }
 
 #path3231 {

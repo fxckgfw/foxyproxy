@@ -13,7 +13,7 @@ var foxyproxy = {
   checkboxType : Components.interfaces.nsITreeColumn.TYPE_CHECKBOX,
   fp : Components.classes["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject,
   fpc : Components.classes["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject,
-  svgIcon : null, // NEW SVG
+  statusIconColor : null,
   contextMenuIcon : null,
   toolbarIcon : null,
   toolsMenuIcon : null,
@@ -132,7 +132,8 @@ var foxyproxy = {
   },
 
   onLoad : function() {
-    this.svgIcon = document.getElementById("foxyproxy-status-svg");
+    this.svgIcon.init();
+    this.statusIconColor = document.getElementById("path3231");
     this.contextMenuIcon = document.getElementById("foxyproxy-context-menu-1");
     this.toolbarIcon = document.getElementById("foxyproxy-button-1");
     this.toolsMenuIcon = document.getElementById("foxyproxy-tools-menu-1");
@@ -361,8 +362,8 @@ var foxyproxy = {
 
   throb : function(mp) {
     if (mp.wrappedJSObject.animatedIcons) {
-      document.getElementById('path3231').setAttribute("style", "fill: "+mp.wrappedJSObject.color+";");
-      fpsvg_animate(); // NEW SVG
+      this.statusIconColor.setAttribute("style", "fill: "+mp.wrappedJSObject.color+";");
+      this.svgIcon.animate(); // NEW SVG
       // this.toolbarIcon is null if user hasn't placed it in the toolbar, so we check its existance before calling setAttribute()
       this.toolbarIcon && this.toolbarIcon.setAttribute("animated", "true");
       this.contextMenuIcon.setAttribute("animated", "true");
@@ -378,12 +379,49 @@ var foxyproxy = {
     // this.toolbarIcon is null if user hasn't placed it in the toolbar, so we check its existance before calling setAttribute()
     this.toolbarIcon && this.toolbarIcon.removeAttribute("animated");
     this.toolsMenuIcon.removeAttribute("animated");
-    this.setStatusText(this.getModeAsText(this.fp.mode), false);
+    var modeAsText = this.getModeAsText(this.fp.mode);
+    this.setStatusText(modeAsText, false);
+    
+    // Reset the icon color back to what it should be
+    if (modeAsText != "static") {
+      this.statusIconColor.removeAttribute("style");
+      this.statusIconColor.setAttribute("mode", modeAsText);
+    }
   },
+    
 
   ///////////////// statusbar \\\\\\\\\\\\\\\\\\\\\
+  svgIcon : {
+    
+    fpsvg_blu : 4,
+    fpsvg_runners : 0,
+    g3231 : null,
+    
+    init : function() {
+      this.g3231 = document.getElementById("g3231");
+    },
+    
+    animate : function() {
+      if (this.fpsvg_runners > 8) return; // No more runners
+      this.fpsvg_runners++;
+      this.animate_runner();
+    },
+
+    animate_runner : function() {
+      this.g3231.setAttribute("transform", "rotate("+(this.fpsvg_blu/2)+", 8, 8)");
+      this.fpsvg_blu += 6;
+      if (this.fpsvg_blu > 720) {
+        this.fpsvg_blu = 4;
+        this.g3231.setAttribute("transform", "rotate(0, 8, 8)");
+        this.fpsvg_runners--;
+        return;
+      }
+      window.setTimeout("foxyproxy.svgIcon.animate_runner()", 10);
+    }
+  },
+
   toggleStatusBarIcon : function(e) {
-    this.svgIcon.hidden = !e;
+    document.getElementById("foxyproxy-status-svg").hidden = !e;
   },
 
   toggleStatusBarText : function(e) {
@@ -419,39 +457,23 @@ var foxyproxy = {
     this.contextMenuIcon.setAttribute("mode", m);
     // this.toolbarIcon is null if user hasn't placed it in the toolbar, so we check its existance before calling setAttribute()
     this.toolbarIcon && this.toolbarIcon.setAttribute("mode", m);
-    var color;
-    switch (m) {
-      case "pattern":
-        color = "#65BAD7;";
-        break;
-      case "disabled":
-        color = "#959899;";
-        break;
-      case "random":
-        color = "#69B832;";
-        break;
-      case "roundrobin":
-        color = "purple;";
-        break;
-      case "static" :
-        color = "#46B8DA;";
-        break;
+    if (m == "static")
+      this.statusIconColor.setAttribute("style", "fill: " + this.fp._selectedProxy.color);
+    else {
+      this.statusIconColor.removeAttribute("style");
+      this.statusIconColor.setAttribute("mode", m);
     }
-    if (m == "disabled")
-      document.getElementById('disabled-fp').style.visibility = "visible";
-    else
-      document.getElementById('disabled-fp').style.visibility = "hidden";
-    document.getElementById('path3231').setAttribute("style", "fill: " + color);
-    this.setStatusText(m, null);
+    document.getElementById("disabled-ring").setAttribute("mode", m);
+    this.setStatusText(m, false);
   },
 
   getModeAsText : function(mode) {
     return mode != "patterns" && mode != "disabled" && mode != "random" && mode != "roundrobin" ? "static" : mode;
   },
 
-  setStatusText : function(m, literal) {
-    if (literal) {
-      this._adorn(m, null);
+  setStatusText : function(m, skipStyling) {
+    if (skipStyling) {
+      this._adorn(m);
       return;
     }
     switch(m) {
@@ -462,20 +484,30 @@ var foxyproxy = {
         this._adorn(this.fp.getMessage("disabled"), "red");
         break;
       case "random":
-        this._adorn(this.fp.getMessage("random"), "purple");
+        this._adorn(this.fp.getMessage("random"), "green");
         break;
+      case "roundrobin":
+        this._adorn(this.fp.getMessage("roundrobin"), "purple");
+        break;        
       default:
-        this._adorn(this.fp._selectedProxy.name, "blue");
+        this._adorn(this.fp._selectedProxy.name, null, "color: " + this.fp._selectedProxy.color);
     };
   },
 
-  _adorn : function(m, c) {
+  _adorn : function(m, clazz, style) {
     var e = document.getElementById("foxyproxy-status-text");
-    var txt = this.fp.getMessage("foxyproxy") + ": " + m;
+    var txt = this.fp.getMessage("foxyproxy") + ": " + m; /* todo: add pref to make "FoxyProxy:" prefix optional */
     // Statusbars don't exist on all windows (e.g,. View Source) so check for existence first,
     // otherwise we get a JS error.
     e && e.setAttribute("label", txt);
-    c && e.setAttribute("class", c);
+    if (style) { /* style supercedes clazz */
+      e.removeAttribute("class");
+      e.setAttribute("style", style);
+    }
+    else if (clazz) {
+      e.removeAttribute("style");
+      e.setAttribute("class", clazz);
+    }
     foxyproxy.toolsMenuIcon.setAttribute("tooltiptext", txt);
     foxyproxy.contextMenuIcon.setAttribute("tooltiptext", txt);
     // this.toolbarIcon is null if user hasn't placed it in the toolbar, so we check its existance before calling setAttribute()

@@ -75,11 +75,11 @@ Common.prototype = {
     }
   },
   
-  validatePattern : function(win, isRegEx, p, msgPrefix) {
+  validatePattern : function(win, isRegEx, p) {
     var origPat = p, fp = CC["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;
     p = p.replace(/^\s*|\s*$/g,"");
     if (p == "") {
-      fp.alert(win, (msgPrefix?msgPrefix+": ":"") + fp.getMessage("pattern.required"));
+      fp.alert(win, fp.getMessage("pattern.required"));
       return false;
     }
     if (isRegEx) {
@@ -87,18 +87,14 @@ Common.prototype = {
         new RegExp((p[0]=="^"?"":"^") + p + (p[p.length-1]=="$"?"":"$"));
       }
       catch(e) {
-        fp.alert(win, (msgPrefix?msgPrefix+": ":"") + fp.getMessage("pattern.invalid.regex", [origPat]));
+        fp.alert(win, fp.getMessage("pattern.invalid.regex", [origPat]));
         return false;
       }
     }
-    else if (p.indexOf("*") == -1 && p.indexOf("?") == -1 && !fp.warnings.noWildcards) {
-      // No wildcards present; warn user
-      var cb = {};
-      var ret = (CC["@mozilla.org/embedcomp/prompt-service;1"].getService(CI.nsIPromptService)
-        .confirmCheck(win, fp.getMessage("foxyproxy"), (msgPrefix?msgPrefix+": ":"") + fp.getMessage("no.wildcard.characters", [p]), fp.getMessage("message.stop"), cb));
-      fp.warnings.noWildcards = cb.value;
-      if (!ret) return false;
-    }
+    else if (p.indexOf("*") == -1 && p.indexOf("?") == -1 &&
+        !fp.warnings.showWarningIfDesired(win, ["no.wildcard.characters", p], "wildcards"))
+      return false;
+      
     return p;
   },
 

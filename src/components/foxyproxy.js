@@ -1343,32 +1343,48 @@ biesi>  passing it the appropriate proxyinfo
   },
 
   warnings : {
-    _noWildcards : false,
-    _noSocksWarning : false,
+    _warnings : [],
     
-    get noWildcards() { return this._noWildcards; },
-    set noWildcards(e) {
-      this._noWildcards = e;
-      gFP.writeSettings();
-    },
-
-    get noSocksWarning() { return this._noSocksWarning; },
-    set noSocksWarning(e) {
-      this._noSocksWarning = e;
-      gFP.writeSettings();
+    /**
+     * Displays a message to the user with "Cancel" and "OK" buttons
+     * and a "Do not display the message again" checkbox. The latter is maintained
+     * internally. Function returns false if user clicks "Cancel", true if "OK".
+     * 
+     * If no message is to be displayed because the user previously disabled them,
+     * true is returned.
+     *
+     * First arg is the owning/parent window. Second arg is an array whose first
+     * element is the key of the message to display. Subsequent array args are
+     * substitution parameters for the message key, if any.
+     *
+     * Third arg is the name under which to store whether or not this |msg| should be
+     * displayed in the future.
+     */
+    showWarningIfDesired : function(win, msg, name) {
+      if (this._warnings[name] == undefined || this._warnings[name]) {
+        var l10nMessage = gFP.getMessage(msg[0], msg.slice(1)),
+          cb = {}, ret =
+          CC["@mozilla.org/embedcomp/prompt-service;1"].getService(CI.nsIPromptService)
+            .confirmCheck(win, gFP.getMessage("foxyproxy"), l10nMessage,
+                gFP.getMessage("message.stop"), cb);
+        this._warnings[name] = !cb.value; /* note we save the inverse of user's selection because the way the question is phrased */
+        gFP.writeSettings();
+        return ret;
+      }
+      return true;
     },
     
     toDOM : function(doc) {
-      var e = doc.createElement("warnings"); // new for 2.3
-      e.setAttribute("no-wildcards", this._noWildcards);
-      e.setAttribute("no-socks-warning", this._noSocksWarning);
+      var e = doc.createElement("warnings");
+      for (var i in this._warnings)
+        e.setAttribute(i, this._warnings[i]);
       return e;
     },
 
     fromDOM : function(doc) {
       var n = doc.getElementsByTagName("warnings").item(0);
-      this._noWildcards = gGetSafeAttrB(n, "no-wildcards", false);
-      this._noSocksWarning = gGetSafeAttrB(n, "no-socks-warning", false);
+      for (var i=0,sz=n.attributes.length; i<sz; i++)
+        this._warnings[n.attributes[i].nodeName] = n.attributes[i].nodeValue == "true";
     }
   },
   classID: Components.ID("{46466e13-16ab-4565-9924-20aac4d98c82}"),

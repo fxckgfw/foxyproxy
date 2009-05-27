@@ -93,19 +93,14 @@ function onOK() {
 		}
   }
 
-	if (!hasWhite() &&
-		!overlay.ask(this, foxyproxy.getMessage((window.arguments[0].inn.torwiz ?
-		    "torwiz.nopatterns.3" : "no.white.patterns.3"), [name]))) return false;
-	
+	if (!hasWhite() && !foxyproxy.warnings.showWarningIfDesired(window, [window.arguments[0].inn.torwiz ?
+      "torwiz.nopatterns.3" : "no.white.patterns.3", name], "white-patterns"))
+	  return false;
+
 	var isSocks = document.getElementById("isSocks").checked;
 	
-	if (fpc.isThunderbird() && !foxyproxy.warnings.noSocksWarning && !isSocks && mode == "manual") {
-	  var cb = {}, ret =
-	    CC["@mozilla.org/embedcomp/prompt-service;1"].getService(CI.nsIPromptService)
-	      .confirmCheck(window, foxyproxy.getMessage("foxyproxy"), foxyproxy.getMessage("socksWarning"), foxyproxy.getMessage("message.stop"), cb);
-	  foxyproxy.warnings.noSocksWarning = cb.value;	  
-	  if (!ret) return false;
-	}
+	if (fpc.isThunderbird() && !isSocks && mode == "manual" && !fp.warnings.showWarningIfDesired(window, ["socksWarning", p], "socks"))
+	  return false;
 
   proxy.name = name;
   proxy.notes = document.getElementById("proxynotes").value;

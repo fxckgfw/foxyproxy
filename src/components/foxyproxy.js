@@ -92,10 +92,6 @@ else {
   self = fileProtocolHandler.getFileFromURLSpec(Components.Exception().filename);
 }
 var componentDir = self.parent; // the directory this file is in
-var settingsDir = componentDir.clone();
-settingsDir = settingsDir.parent.parent.parent;
-dump("FoxyProxy settingsDir = " + settingsDir.path + "\n");
-
 var loader = CC["@mozilla.org/moz/jssubscript-loader;1"].getService(CI["mozIJSSubScriptLoader"]);
 loadComponentScript("proxy.js");
 loadComponentScript("match.js");
@@ -210,6 +206,7 @@ biesi>  passing it the appropriate proxyinfo
   loadSettings : function() {    
     this.migrateSettingsURI();
     var f = this.getSettingsURI(CI.nsIFile);
+    dump("FoxyProxy settingsDir: " + f.path + "\n");    
     var s = CC["@mozilla.org/network/file-input-stream;1"].createInstance(CI.nsIFileInputStream);
     s.init(f, -1, -1, CI.nsIFileInputStream.CLOSE_ON_EOF);
     var p = CC["@mozilla.org/xmlextras/domparser;1"].createInstance(CI.nsIDOMParser);
@@ -424,15 +421,13 @@ biesi>  passing it the appropriate proxyinfo
   },
 
   getDefaultPath : function() {
-    //var file = CC["@mozilla.org/file/local;1"].createInstance(CI.nsILocalFile);
-    //var dir = CC["@mozilla.org/file/directory_service;1"].getService(CI.nsIProperties).get("ProfD", CI.nsILocalFile);
-    var f = settingsDir.clone();
-    f.append("foxyproxy.xml");
-    // dump("settings file: " + f.path + "\n");
-    return f;
-    // file.initWithPath(dir.path);
-    // file.appendRelativePath("foxyproxy.xml");
-    // return file;
+    var file = CC["@mozilla.org/file/local;1"].createInstance(CI.nsILocalFile);
+    /* Always use ProfD by default in order to support application-wide installations.
+       http://foxyproxy.mozdev.org/drupal/content/tries-use-usrlibfirefox-304foxyproxyxml-linux#comment-974 */
+    var dir = CC["@mozilla.org/file/directory_service;1"].getService(CI.nsIProperties).get("ProfD", CI.nsILocalFile);
+    file.initWithPath(dir.path);
+    file.appendRelativePath("foxyproxy.xml");
+    return file;
   },
 
   // Convert |o| from:

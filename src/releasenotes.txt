@@ -1,2 +1,13 @@
-2.9
-===
+2.9.1
+=====
+* Fixed the huge width of the AddEditProxy dialog so it's not so huge
+* Changed all the donate/buy buttons and links
+* Added jesper to the about box
+* When adding a new proxy, the Proxy Details tab is now the default tab. This contributes towards faster addition of new proxies (one less click)
+* Warning message for "You didn't enter and enable any whitelisted (inclusive) URL patterns ..." now has a "Do not show this message again" checkbox
+  for better usability to people who use FoxyProxy like SwitchProxy (i.e., load all URLs through one proxy at a time)
+* Revamp of "Do not show this message again" checkboxes so they can more easily be added for all sorts of annoying, recurring questions in FoxyProxy. As
+  a side-effect, your previous selections for the two existing "Do not show this message again" checkboxes are reset after upgrading to this version. One
+  of these is "The pattern has no wildcard characters ..." and the other is only for Thunderbird users ("You have chosen a non-SOCKS proxy. POP3, IMAP, and all
+  other email protocols must use SOCKS proxies; they cannot use HTTP proxies. Continue anyway?")
+  

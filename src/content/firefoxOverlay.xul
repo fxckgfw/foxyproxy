@@ -52,7 +52,7 @@
   </keyset>
   
   <popup id="contentAreaContextMenu">
-  	<menu id="foxyproxy-context-menu-1" label="&foxyproxy.label;" 
+  	<menu id="foxyproxy-contextmenu-icon" label="&foxyproxy.label;" 
       accesskey="&foxyproxy.accesskey;" class="menu-iconic foxyproxybutton-small"
       mode="patterns" persist="mode hidden" hidden="false"> 
       <menupopup id="foxyproxy-contextmenu-popup"
@@ -75,14 +75,14 @@
       onclick="foxyproxy.onSBTBClick(event, foxyproxy.fp.statusbar);"
       mode="patterns" persist="mode hidden" hidden="true" mousethrough="never"/> <!--  mousethrough is for SB. See http://www.songbirdnest.com/node/2547 -->
     <statusbarpanel 
-      id="foxyproxy-status-svg"
+      id="foxyproxy-statusbar-icon"
       onclick="foxyproxy.onSBTBClick(event, foxyproxy.fp.statusbar);"
-      hidden="true" mousethrough="never"/> <!-- NEW SVG --> <!--  mousethrough is for SB. See http://www.songbirdnest.com/node/2547 --> 
+      hidden="true" mousethrough="never"/> <!--  mousethrough is for SB. See http://www.songbirdnest.com/node/2547 --> 
   </statusbar>
 
   <toolbarpalette id="BrowserToolbarPalette">
-	  <toolbarbutton id="foxyproxy-button-1" type="menu" orient="horizontal" mode="patterns" persist="mode" label="&foxyproxy.label;"
-	    class="foxyproxybutton" context="foxyproxy-toolbarbutton-popup"
+	  <toolbarbutton id="foxyproxy-toolbar-icon" type="menu" orient="horizontal" mode="patterns" persist="mode" label="&foxyproxy.label;"
+	    context="foxyproxy-toolbarbutton-popup"
 	    onclick="foxyproxy.onSBTBClick(event, foxyproxy.fp.toolbar);event.stopPropagation();event.preventDefault();return false;">
 	      <menupopup id="foxyproxy-toolbarbutton-popup"
 	      onpopuphiding="foxyproxy.onPopupHiding();"

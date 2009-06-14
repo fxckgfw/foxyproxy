@@ -21,7 +21,7 @@
 
   <script src="triquestion.js"/>
 
-  <label id="title"/>
+  <description id="title" style="max-width: 40em;min-width: 40em;width:40em;"/>
   <separator class="thin"/>
   <button id="1" onclick="onOK(0)"/>
   <button id="2" onclick="onOK(1)"/>

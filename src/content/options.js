@@ -183,10 +183,10 @@ function onSettingsURLBtn() {
     if (!defPath.equals(fp.file)) {
       var c = overlay.ask(this, foxyproxy.getMessage("settings.warning"), null, null, foxyproxy.getMessage("more.info"));
       switch (c) {
-        case CI.nsIPromptService.BUTTON_POS_1:
+        case 1:
           // "no" clicked
           return;
-        case CI.nsIPromptService.BUTTON_POS_2:
+        case 2:
           // "more info" clicked
           fpc.openAndReuseOneTabPerURL("http://foxyproxy.mozdev.org/settings.html");
           return;

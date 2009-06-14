@@ -38,7 +38,7 @@
   </keyset>
   
   <popup id="mailContext"> <!-- FF: contentAreaContextMenu TB2: messagePaneContext TB3b2+: mailContext -->
-    <menu id="foxyproxy-context-menu-1" label="&foxyproxy.label;" 
+    <menu id="foxyproxy-contextmenu-icon" label="&foxyproxy.label;" 
       accesskey="&foxyproxy.accesskey;" class="menu-iconic foxyproxybutton-small"
       mode="patterns" persist="mode hidden" hidden="false"> 
       <menupopup id="foxyproxy-contextmenu-popup"
@@ -61,13 +61,13 @@
       onclick="if(event.button==0) {foxyproxy.onOptionsDialog();event.stopPropagation();} else document.getElementById('foxyproxy-statusbar-popup').showPopup(this, -1, -1, 'popup', 'bottomleft', 'topleft');"
       mode="patterns" persist="mode hidden" hidden="true"/>
     <statusbarpanel 
-      id="foxyproxy-status-svg"
+      id="foxyproxy-statusbar-icon"
       onclick="if(event.button==0) {foxyproxy.onOptionsDialog();event.stopPropagation();} else document.getElementById('foxyproxy-statusbar-popup').showPopup(this, -1, -1, 'popup', 'bottomleft', 'topleft');"
       hidden="true"/> <!-- NEW SVG -->
   </statusbar>
 
   <toolbarpalette id="MailToolbarPalette">   
-    <toolbarbutton id="foxyproxy-button-1" type="menu" label="&foxyproxy.label;"
+    <toolbarbutton id="foxyproxy-toolbar-icon" type="menu" label="&foxyproxy.label;"
       accesskey="&foxyproxy.accesskey;"
       class="toolbarbutton-1 chromeclass-toolbar-additional foxyproxybutton">
         <menupopup id="foxyproxy-toolbarbutton-popup"

@@ -13,15 +13,16 @@
  * Handles page selections; e.g., for setting new host:port from user-selected text
  */
 foxyproxy.selection = {
-  reloadCurrentTab: true,
+  reloadcurtab: true,
   onChangeHost : function() {
     var fp = foxyproxy.fp, sel = this.parseSelection();
     if (sel.reason == 0) {
-      var p = {inn:{title:fp.getMessage("choose.proxy", [sel.hostPort])}, out:null};          
+      var p = {inn:{title:fp.getMessage("choose.proxy", [sel.hostPort]), reloadcurtab:this.reloadcurtab}, out:null};          
       window.openDialog("chrome://foxyproxy/content/chooseproxy.xul", "",
         "chrome, dialog, modal, centerscreen=yes, resizable=yes", p).focus();
       if (p.out) {
         p = p.out;
+        this.reloadcurtab = p.reloadcurtab;
         p.proxy.manualconf.host = sel.host;
         p.proxy.manualconf.port = sel.port;        
         fp.notifier.alert(null, fp.getMessage("changed.host", [p.proxy.name, sel.hostPort]));

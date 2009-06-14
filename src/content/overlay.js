@@ -13,7 +13,7 @@ var foxyproxy = {
   checkboxType : Components.interfaces.nsITreeColumn.TYPE_CHECKBOX,
   fp : Components.classes["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject,
   fpc : Components.classes["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject,
-  statusIconColor : null,
+  statusText : null,
   contextMenuIcon : null,
   toolbarIcon : null,
   toolsMenuIcon : null,
@@ -101,7 +101,7 @@ var foxyproxy = {
     catch(e) {}
     switch (topic) {
       case "foxyproxy-throb":
-        this.throb(subj);
+        this.svgIcons.throb(subj);
         break;
       case "foxyproxy-statusbar-icon":
         this.toggleStatusBarIcon(e);
@@ -132,10 +132,10 @@ var foxyproxy = {
   },
 
   onLoad : function() {
-    this.svgIcon.init();
-    this.statusIconColor = document.getElementById("path3231");
-    this.contextMenuIcon = document.getElementById("foxyproxy-context-menu-1");
-    this.toolbarIcon = document.getElementById("foxyproxy-button-1");
+    this.svgIcons.init();
+    this.statusText = document.getElementById("foxyproxy-status-text");
+    this.contextMenuIcon = document.getElementById("contextmenu-icon-3");
+    this.toolbarIcon = document.getElementById("toolbar-icon-3"); /* todo: user might add/remove the toolbar icon from the toolbar after this code executes */
     this.toolsMenuIcon = document.getElementById("foxyproxy-tools-menu-1");
     var obSvc = Components.classes["@mozilla.org/observer-service;1"].getService(Components.interfaces.nsIObserverService);
     for (var i in this.notes) {
@@ -332,15 +332,16 @@ var foxyproxy = {
         prompts.BUTTON_TITLE_IS_STRING * prompts.BUTTON_POS_1,
       btn1Text, btn2Text, null, null, {}) == 0; // 0 means first button ("yes") was pressed
     else { 
-      // No longer displays in proper order and no longer returns proper values on FF 3.0.7 and above.
+      // No longer displays in proper order and no longer returns proper values on FF 3.0.x. (and maybe above?)
       // Insists that 2nd displayed button (1-index) is BUTTON_POS_2 (0-indexed)
       /*var ret = prompts.confirmEx(parent, this.fp.getMessage("foxyproxy"), text,
         prompts.BUTTON_TITLE_IS_STRING * prompts.BUTTON_POS_0 +
         prompts.BUTTON_TITLE_IS_STRING * prompts.BUTTON_POS_1 +
         prompts.BUTTON_TITLE_IS_STRING * prompts.BUTTON_POS_2,
         btn1Text, btn2Text, btn3Text, null, {});*/
-      var p = {inn:{title: text, btn1Text: btn1Text, btn2Text: btn2Text, btn3Text: btn3Text}, out:null};
-      window.openDialog("chrome://foxyproxy/content/triquestion.xul", "",
+      var p = {inn:{title: text, btn1Text: btn1Text, btn2Text: btn2Text, btn3Text: btn3Text}, out:null},
+        w = parent.openDialog ? parent : window;
+      w.openDialog("chrome://foxyproxy/content/triquestion.xul", "",
         "chrome, dialog, modal, resizable=yes, centerscreen=yes", p).focus();
       return p.out ? p.out.value : null;
     }
@@ -359,69 +360,124 @@ var foxyproxy = {
       }
     }
   },
-
-  throb : function(mp) {
-    if (mp.wrappedJSObject.animatedIcons) {
-      this.statusIconColor.setAttribute("style", "fill: "+mp.wrappedJSObject.color+";");
-      this.svgIcon.animate(); // NEW SVG
-      // this.toolbarIcon is null if user hasn't placed it in the toolbar, so we check its existance before calling setAttribute()
-      this.toolbarIcon && this.toolbarIcon.setAttribute("animated", "true");
-      this.contextMenuIcon.setAttribute("animated", "true");
-      this.toolsMenuIcon.setAttribute("animated", "true");
-    }
-    this.setStatusText(mp.wrappedJSObject.name, true);
-    setTimeout("foxyproxy.unthrob()", 800);
-  },
-
-  unthrob : function() {
-    // NEW SVG - No reason to untrob, as it a static and animated image
-    this.contextMenuIcon.removeAttribute("animated");
-    // this.toolbarIcon is null if user hasn't placed it in the toolbar, so we check its existance before calling setAttribute()
-    this.toolbarIcon && this.toolbarIcon.removeAttribute("animated");
-    this.toolsMenuIcon.removeAttribute("animated");
-    var modeAsText = this.getModeAsText(this.fp.mode);
-    this.setStatusText(modeAsText, false);
-    
-    // Reset the icon color back to what it should be
-    if (modeAsText != "static") {
-      this.statusIconColor.removeAttribute("style");
-      this.statusIconColor.setAttribute("mode", modeAsText);
-    }
-  },
     
 
-  ///////////////// statusbar \\\\\\\\\\\\\\\\\\\\\
-  svgIcon : {
+  ///////////////// icons \\\\\\\\\\\\\\\\\\\\\
+  svgIcons : {
     
-    fpsvg_blu : 4,
-    fpsvg_runners : 0,
-    g3231 : null,
+    angle : 4,
+    runners : 0,
+    icons : null,
+    iconColorNodes : null,
+    iconDisabledMask : null,
     
     init : function() {
-      this.g3231 = document.getElementById("g3231");
+      this.icons = [document.getElementById("statusbar-icon-wrapper"),
+        document.getElementById("contextmenu-icon-wrapper")];
+      
+      if (document.getElementById("toolbar-icon-wrapper")) /* null if user isn't using our toolbar icon */
+        this.icons.push(document.getElementById("toolbar-icon-wrapper"));
+      
+      this.iconColorNodes = [document.getElementById("statusbar-icon-3"),        
+        document.getElementById("contextmenu-icon-3")];
+      
+      if (document.getElementById("toolbar-icon-3")) /* null if user isn't using our toolbar icon */
+        this.iconColorNodes.push(document.getElementById("toolbar-icon-3"));
+
+      this.iconDisabledMask = [document.getElementById("statusbar-disabled-wrapper"),        
+        document.getElementById("contextmenu-disabled-wrapper")];
+      
+      if (document.getElementById("toolbar-disabled-wrapper")) /* null if user isn't using our toolbar icon */
+        this.iconColorNodes.push(document.getElementById("toolbar-disabled-wrapper"));
     },
     
     animate : function() {
-      if (this.fpsvg_runners > 8) return; // No more runners
-      this.fpsvg_runners++;
+      if (this.runners > 8) return; // reached the max spin rate
+      this.runners++;
       this.animate_runner();
     },
 
     animate_runner : function() {
-      this.g3231.setAttribute("transform", "rotate("+(this.fpsvg_blu/2)+", 8, 8)");
-      this.fpsvg_blu += 6;
-      if (this.fpsvg_blu > 720) {
-        this.fpsvg_blu = 4;
-        this.g3231.setAttribute("transform", "rotate(0, 8, 8)");
-        this.fpsvg_runners--;
+      for (var i in this.icons)
+        this.icons[i].setAttribute("transform", "rotate("+(this.angle/2)+", 8, 8)");
+      this.angle += 6;
+      if (this.angle > 720) {
+        this.angle = 4;
+        for (var i in this.icons)
+          this.icons[i].setAttribute("transform", "rotate(0, 8, 8)");
+        this.runners--;
+        if (this.runners == 0) {
+          var modeAsText = foxyproxy.getModeAsText(foxyproxy.fp.mode);
+          foxyproxy.setStatusText(modeAsText);          
+          this.resetIconColors(modeAsText);
+        }
         return;
       }
-      window.setTimeout("foxyproxy.svgIcon.animate_runner()", 10);
+      window.setTimeout("foxyproxy.svgIcons.animate_runner()", 10);
+    },
+
+    throb : function(mp) {
+      for (var i in this.iconColorNodes)
+        this.iconColorNodes[i].setAttribute("style", "fill: "+mp.wrappedJSObject.color+";");
+      foxyproxy.statusText.setAttribute("style", "color: "+mp.wrappedJSObject.color+";");    
+      if (mp.wrappedJSObject.animatedIcons) {
+        this.animate();
+        // this.toolbarIcon is null if user hasn't placed it in the toolbar, so we check its existance before calling setAttribute()
+        //foxyproxy.toolbarIcon && foxyproxy.toolbarIcon.setAttribute("animated", "true");
+        //foxyproxy.contextMenuIcon.setAttribute("animated", "true");
+        //foxyproxy.toolsMenuIcon.setAttribute("animated", "true");
+      }
+      foxyproxy.setStatusText(mp.wrappedJSObject.name);
+      setTimeout(this.unthrob, 800, mp);
+    },
+    
+    resetIconColors : function(modeAsText) {
+      // Reset the icon color back to what it should be
+      if (modeAsText != "static") {
+        for (var i in this.iconColorNodes) {
+          this.iconColorNodes[i].removeAttribute("style");
+          this.iconColorNodes[i].setAttribute("mode", modeAsText);
+        }
+        foxyproxy.statusText.removeAttribute("style");
+        foxyproxy.statusText.setAttribute("mode", modeAsText);            
+      }
+    },
+
+    unthrob : function(mp) {
+      if (!mp.wrappedJSObject.animatedIcons) {
+        var modeAsText = foxyproxy.getModeAsText(foxyproxy.fp.mode);
+        foxyproxy.setStatusText(modeAsText);
+        this.resetIconColors(modeAsText);
+      }
+    },
+    
+    set color(c) {
+      if (c)
+        for (var i in this.icons) this.icons[i].setAttribute("style", "fill: " + c);
+      else
+        for (var i in this.icons) this.icons[i].removeAttribute("style");
+    },
+    
+    set mode(m) {
+      if (m == "static") {
+        this.color = foxyproxy.fp._selectedProxy.color;
+        foxyproxy.statusText.setAttribute("style", "color: " + foxyproxy.fp._selectedProxy.color);
+      }
+      else {
+        this.color = null;
+        for (var i in this.iconColorNodes)
+          this.iconColorNodes[i].setAttribute("mode", m);        
+        foxyproxy.statusText.removeAttribute("style");
+        foxyproxy.statusText.setAttribute("mode", m);
+      }      
+      
+      for (var i in this.iconDisabledMask)
+        this.iconDisabledMask[i].setAttribute("mode", m);  
     }
   },
-
+  
   toggleStatusBarIcon : function(e) {
-    document.getElementById("foxyproxy-status-svg").hidden = !e;
+    document.getElementById("foxyproxy-statusbar-icon").hidden = !e;
   },
 
   toggleStatusBarText : function(e) {
@@ -453,68 +509,33 @@ var foxyproxy = {
   // Set toolbar, statusbar, and context menu text and icon colors
   setMode : function(mode) {
     var m = this.getModeAsText(mode);
-    this.toolsMenuIcon.setAttribute("mode", m);
-    this.contextMenuIcon.setAttribute("mode", m);
-    // this.toolbarIcon is null if user hasn't placed it in the toolbar, so we check its existance before calling setAttribute()
-    this.toolbarIcon && this.toolbarIcon.setAttribute("mode", m);
-    if (m == "static")
-      this.statusIconColor.setAttribute("style", "fill: " + this.fp._selectedProxy.color);
-    else {
-      this.statusIconColor.removeAttribute("style");
-      this.statusIconColor.setAttribute("mode", m);
-    }
-    document.getElementById("disabled-ring").setAttribute("mode", m);
-    this.setStatusText(m, false);
+    this.svgIcons.mode = m;  
+    this.setStatusText(m == "static" ?  this.fp._selectedProxy.name : m);
   },
 
   getModeAsText : function(mode) {
     return mode != "patterns" && mode != "disabled" && mode != "random" && mode != "roundrobin" ? "static" : mode;
   },
 
-  setStatusText : function(m, skipStyling) {
-    if (skipStyling) {
-      this._adorn(m);
-      return;
-    }
+  setStatusText : function(m) {
     switch(m) {
       case "patterns":
-        this._adorn(this.fp.getMessage("foxyproxy.tab.patterns.label"), "orange");
+        m = this.fp.getMessage("foxyproxy.tab.patterns.label");
         break;
       case "disabled":
-        this._adorn(this.fp.getMessage("disabled"), "red");
+        m = this.fp.getMessage("disabled");
         break;
       case "random":
-        this._adorn(this.fp.getMessage("random"), "green");
+        m = this.fp.getMessage("random");
         break;
       case "roundrobin":
-        this._adorn(this.fp.getMessage("roundrobin"), "purple");
-        break;        
-      default:
-        this._adorn(this.fp._selectedProxy.name, null, "color: " + this.fp._selectedProxy.color);
+        m = this.fp.getMessage("roundrobin");
+        break;
     };
-  },
-
-  _adorn : function(m, clazz, style) {
-    var e = document.getElementById("foxyproxy-status-text");
     var txt = this.fp.getMessage("foxyproxy") + ": " + m; /* todo: add pref to make "FoxyProxy:" prefix optional */
-    // Statusbars don't exist on all windows (e.g,. View Source) so check for existence first,
-    // otherwise we get a JS error.
-    e && e.setAttribute("label", txt);
-    if (style) { /* style supercedes clazz */
-      e.removeAttribute("class");
-      e.setAttribute("style", style);
-    }
-    else if (clazz) {
-      e.removeAttribute("style");
-      e.setAttribute("class", clazz);
-    }
-    foxyproxy.toolsMenuIcon.setAttribute("tooltiptext", txt);
-    foxyproxy.contextMenuIcon.setAttribute("tooltiptext", txt);
-    // this.toolbarIcon is null if user hasn't placed it in the toolbar, so we check its existance before calling setAttribute()
-    foxyproxy.toolbarIcon && foxyproxy.toolbarIcon.setAttribute("tooltiptext", txt);
-    document.getElementById('foxyproxy-status-svg').setAttribute("tooltiptext", txt);
+    this.statusText.setAttribute("label", txt);
   },
-
+  
   ///////////////// utilities \\\\\\\\\\\\\\\
   onTreeClick : function(e, tree) {
     var row = {}, col = {};

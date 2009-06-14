@@ -10,6 +10,7 @@ function onLoad() {
   document.getElementById("title").value = inn.title;
   proxyTree.view = fpc.makeProxyTreeView(fp);
   proxyTree.view.selection.select(0); /* select the first entry */
+  document.getElementById("reloadcurtab").checked = inn.reloadcurtab;
   sizeToContent();
 }
 

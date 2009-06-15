@@ -111,7 +111,7 @@ Match.prototype = {
     var pat = this._pattern;
     if (!this._isRegEx) {
       // Wildcards
-      pat = pat.replace(/\./g, "\\.");
+      pat = pat.replace(/[$.+()^]/g, "\\$&"); /* $& replaces with the string found, but with that string escaped (like the .lastMatch property) */
       pat = pat.replace(/\*/g, ".*");
       pat = pat.replace(/\?/g, ".");
     }

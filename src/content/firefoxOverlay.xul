@@ -24,8 +24,8 @@
   
   <!-- menu -->
   <menupopup id="menu_ToolsPopup">
-   	<menu id="foxyproxy-tools-menu-1" label="&foxyproxy.label;" insertbefore="devToolsSeparator" position="9"
-      accesskey="&foxyproxy.accesskey;" class="menu-iconic foxyproxybutton-small"
+   	<menu id="foxyproxy-toolsmenu-icon" label="&foxyproxy.label;" insertbefore="devToolsSeparator" position="9"
+      accesskey="&foxyproxy.accesskey;" class="menu-iconic"
       mode="patterns" persist="mode">
       <menupopup id="foxyproxy-toolsmenu-popup"
           onpopupshowing="foxyproxy.onPopupShowing(this, event);"
@@ -35,8 +35,8 @@
 
   <!-- for seamonkey --> 
   <menupopup id="taskPopup">
-     <menu id="foxyproxy-tools-menu-1" label="&foxyproxy.label;" insertbefore="devToolsSeparator" position="9"
-      accesskey="&foxyproxy.accesskey;" class="menu-iconic foxyproxybutton-small"
+     <menu id="foxyproxy-toolsmenu-icon" label="&foxyproxy.label;" insertbefore="devToolsSeparator" position="9"
+      accesskey="&foxyproxy.accesskey;" class="menu-iconic"
       mode="patterns" persist="mode">
       <menupopup id="foxyproxy-toolsmenu-popup"
           onpopupshowing="foxyproxy.onPopupShowing(this, event);"
@@ -53,7 +53,7 @@
   
   <popup id="contentAreaContextMenu">
   	<menu id="foxyproxy-contextmenu-icon" label="&foxyproxy.label;" 
-      accesskey="&foxyproxy.accesskey;" class="menu-iconic foxyproxybutton-small"
+      accesskey="&foxyproxy.accesskey;" class="menu-iconic"
       mode="patterns" persist="mode hidden" hidden="false"> 
       <menupopup id="foxyproxy-contextmenu-popup"
           onpopupshowing="foxyproxy.onPopupShowing(this, event);"

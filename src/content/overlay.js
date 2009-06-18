@@ -136,7 +136,7 @@ var foxyproxy = {
     this.statusText = document.getElementById("foxyproxy-status-text");
     this.contextMenuIcon = document.getElementById("contextmenu-icon-3");
     this.toolbarIcon = document.getElementById("toolbar-icon-3"); /* todo: user might add/remove the toolbar icon from the toolbar after this code executes */
-    this.toolsMenuIcon = document.getElementById("foxyproxy-tools-menu-1");
+    this.toolsMenuIcon = document.getElementById("toolsmenu-icon-3");
     var obSvc = Components.classes["@mozilla.org/observer-service;1"].getService(Components.interfaces.nsIObserverService);
     for (var i in this.notes) {
       obSvc.addObserver(this, this.notes[i], false);
@@ -373,19 +373,19 @@ var foxyproxy = {
     
     init : function() {
       this.icons = [document.getElementById("statusbar-icon-wrapper"),
-        document.getElementById("contextmenu-icon-wrapper")];
+        document.getElementById("contextmenu-icon-wrapper"), document.getElementById("toolsmenu-icon-wrapper")];
       
       if (document.getElementById("toolbar-icon-wrapper")) /* null if user isn't using our toolbar icon */
         this.icons.push(document.getElementById("toolbar-icon-wrapper"));
       
       this.iconColorNodes = [document.getElementById("statusbar-icon-3"),        
-        document.getElementById("contextmenu-icon-3")];
+        document.getElementById("contextmenu-icon-3"), document.getElementById("toolsmenu-icon-3")];
       
       if (document.getElementById("toolbar-icon-3")) /* null if user isn't using our toolbar icon */
         this.iconColorNodes.push(document.getElementById("toolbar-icon-3"));
 
       this.iconDisabledMask = [document.getElementById("statusbar-disabled-wrapper"),        
-        document.getElementById("contextmenu-disabled-wrapper")];
+        document.getElementById("contextmenu-disabled-wrapper"), document.getElementById("toolsmenu-disabled-wrapper")];
       
       if (document.getElementById("toolbar-disabled-wrapper")) /* null if user isn't using our toolbar icon */
         this.iconColorNodes.push(document.getElementById("toolbar-disabled-wrapper"));

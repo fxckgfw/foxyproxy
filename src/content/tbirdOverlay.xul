@@ -22,7 +22,7 @@
 
   <!-- menu -->
   <menupopup id="taskPopup">
-    <menu id="foxyproxy-tools-menu-1" label="&foxyproxy.label;" insertbefore="devToolsSeparator" position="9"
+    <menu id="foxyproxy-toolsmenu-icon" label="&foxyproxy.label;" insertbefore="devToolsSeparator" position="9"
       accesskey="&foxyproxy.accesskey;" class="menu-iconic foxyproxybutton-small"
       mode="patterns" persist="mode">
       <menupopup id="foxyproxy-toolsmenu-popup"

@@ -87,6 +87,7 @@
      child="5" />
    </g>
   </svg>
+  <label value="FoxyProxy"/>
  </hbox>
  
   <hbox id="foxyproxy-toolsmenu-icon" svg="true">
@@ -113,6 +114,7 @@
      child="5" />
    </g>
   </svg>
+  <label value="FoxyProxy"/>  
  </hbox> 
 </overlay>
 

@@ -24,7 +24,7 @@
   
   <!-- menu -->
   <menupopup id="menu_ToolsPopup">
-    <menu insertbefore="devToolsSeparator" position="9" accesskey="&foxyproxy.accesskey;">
+    <menu id="foxyproxyMenu" insertbefore="devToolsSeparator" position="9" accesskey="&foxyproxy.accesskey;">
       <menupopup id="foxyproxy-toolsmenu-popup"
           onpopupshowing="foxyproxy.onPopupShowing(this, event);"
           onpopuphiding="foxyproxy.onPopupHiding();"/>
@@ -34,7 +34,7 @@
 
   <!-- for seamonkey --> 
   <menupopup id="taskPopup">
-     <menu insertbefore="devToolsSeparator" position="9" accesskey="&foxyproxy.accesskey;">
+     <menu id="foxyproxyMenu" insertbefore="devToolsSeparator" position="9" accesskey="&foxyproxy.accesskey;">
       <menupopup id="foxyproxy-toolsmenu-popup"
           onpopupshowing="foxyproxy.onPopupShowing(this, event);"
           onpopuphiding="foxyproxy.onPopupHiding();"/>
@@ -77,6 +77,7 @@
       hidden="true" mousethrough="never"/> <!--  mousethrough is for SB. See http://www.songbirdnest.com/node/2547 --> 
   </statusbar>
 
+  <!--  toolbar -->
   <toolbarpalette id="BrowserToolbarPalette">
 	  <toolbarbutton id="foxyproxy-toolbar-icon" type="menu" orient="horizontal" mode="patterns" persist="mode" label="&foxyproxy.label;"
 	    context="foxyproxy-toolbarbutton-popup"
@@ -86,5 +87,4 @@
 	      onpopupshowing="event.stopPropagation();event.preventDefault();return false;"/>  <!--  todo: do i really need all 3 of these? -->
 	  </toolbarbutton>    
   </toolbarpalette>
-  
 </overlay>

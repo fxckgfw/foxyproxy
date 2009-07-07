@@ -130,12 +130,43 @@ var foxyproxy = {
         break;
     }
   },
+  
+  findToolbarIcon : function() {
+    var toolbox = gNavToolbox ? gNavToolbox.customizeChange /* 3.5+ */ : getNavToolbox().customizeChange /* 3.0.x */;
+    /* Save the original function, prefixed with our name in case other addons are doing the same thing */
+    getNavToolbox().foxyproxyCustomizeChange = getNavToolbox().customizeChange;
+    /* Overwrite the property with our function */
+    getNavToolbox().customizeChange = function() {
+      var toolbarIcon = document.getElementById("toolbar-icon-3");
+      if (toolbarIcon) {
+        /* Our toolbar icon was added. Add a reference to it to our svgIcons arrays. */
+        foxyproxy.svgIcons.iconColorNodes.push(toolbarIcon);
+        foxyproxy.svgIcons.icons.push(toolbarIcon);
+        /* Apply the proper icon coloring to the toolbar icon by setting the mode again */
+        foxyproxy.setMode(foxyproxy.fp.mode);
+      }
+      else {
+        /* Our toolbar icon was removed. Remove the invalid node from our svgIcons arrays. */
+        for (var i=0; i<foxyproxy.svgIcons.iconColorNodes.length; i++) {
+          if (foxyproxy.svgIcons.iconColorNodes[i] == null)
+            foxyproxy.svgIcons.iconColorNodes.splice(i,1);
+        }
+        for (var i=0; i<foxyproxy.svgIcons.icons.length; i++) {
+          if (foxyproxy.svgIcons.icons[i] == null)
+            foxyproxy.svgIcons.icons.splice(i,1);
+        }
+      }
+      /* Call the original function. note that |this| is getNavToolbox(), not foxyproxy */
+      this.foxyproxyCustomizeChange();
+    }    
+  },
 
   onLoad : function() {
     this.svgIcons.init();
     this.statusText = document.getElementById("foxyproxy-status-text");
     this.contextMenuIcon = document.getElementById("contextmenu-icon-3");
-    this.toolbarIcon = document.getElementById("toolbar-icon-3"); /* todo: user might add/remove the toolbar icon from the toolbar after this code executes */
+    setTimeout(this.findToolbarIcon, 100);
+    
     this.toolsMenuIcon = document.getElementById("toolsmenu-icon-3");
     var obSvc = Components.classes["@mozilla.org/observer-service;1"].getService(Components.interfaces.nsIObserverService);
     for (var i in this.notes) {
@@ -148,7 +179,7 @@ var foxyproxy = {
     this.toggleStatusBarText(this.fp.statusbar.textEnabled);    
     this.toggleStatusBarWidth(this.fp.statusbar.width);
     this.setMode(this.fp.mode);
-  this.updateCheck.check();    
+    this.updateCheck.check();
   },
 
   toggleToolsMenu : function(e) {
@@ -420,13 +451,8 @@ var foxyproxy = {
       for (var i in this.iconColorNodes)
         this.iconColorNodes[i].setAttribute("style", "fill: "+mp.wrappedJSObject.color+";");
       foxyproxy.statusText.setAttribute("style", "color: "+mp.wrappedJSObject.color+";");    
-      if (mp.wrappedJSObject.animatedIcons) {
+      if (mp.wrappedJSObject.animatedIcons)
         this.animate();
-        // this.toolbarIcon is null if user hasn't placed it in the toolbar, so we check its existance before calling setAttribute()
-        //foxyproxy.toolbarIcon && foxyproxy.toolbarIcon.setAttribute("animated", "true");
-        //foxyproxy.contextMenuIcon.setAttribute("animated", "true");
-        //foxyproxy.toolsMenuIcon.setAttribute("animated", "true");
-      }
       foxyproxy.setStatusText(mp.wrappedJSObject.name);
       setTimeout(this.unthrob, 800, mp);
     },
@@ -447,7 +473,7 @@ var foxyproxy = {
       if (!mp.wrappedJSObject.animatedIcons) {
         var modeAsText = foxyproxy.getModeAsText(foxyproxy.fp.mode);
         foxyproxy.setStatusText(modeAsText);
-        this.resetIconColors(modeAsText);
+        foxyproxy.svgIcons.resetIconColors(modeAsText);
       }
     },
     
@@ -460,19 +486,18 @@ var foxyproxy = {
     
     set mode(m) {
       if (m == "static") {
-        this.color = foxyproxy.fp._selectedProxy.color;
-        foxyproxy.statusText.setAttribute("style", "color: " + foxyproxy.fp._selectedProxy.color);
-      }
-      else {
-        this.color = null;
+        var color = foxyproxy.fp._selectedProxy.color;
+        foxyproxy.statusText.setAttribute("style", "color: " + color);
         for (var i in this.iconColorNodes)
-          this.iconColorNodes[i].setAttribute("mode", m);        
-        foxyproxy.statusText.removeAttribute("style");
-        foxyproxy.statusText.setAttribute("mode", m);
-      }      
+          this.iconColorNodes[i].setAttribute("style", "fill: "+color+";");        
+      }
+      else
+        this.resetIconColors(m);
       
-      for (var i in this.iconDisabledMask)
-        this.iconDisabledMask[i].setAttribute("mode", m);  
+      for (var i in this.iconDisabledMask) {
+        this.iconDisabledMask[i].removeAttribute("style");
+        this.iconDisabledMask[i].setAttribute("mode", m);
+      }
     }
   },
   
@@ -510,7 +535,7 @@ var foxyproxy = {
   setMode : function(mode) {
     var m = this.getModeAsText(mode);
     this.svgIcons.mode = m;  
-    this.setStatusText(m == "static" ?  this.fp._selectedProxy.name : m);
+    this.setStatusText(m);
   },
 
   getModeAsText : function(mode) {
@@ -531,6 +556,8 @@ var foxyproxy = {
       case "roundrobin":
         m = this.fp.getMessage("roundrobin");
         break;
+      case "static":
+        m = this.fp._selectedProxy.name;
     };
     var txt = this.fp.getMessage("foxyproxy") + ": " + m; /* todo: add pref to make "FoxyProxy:" prefix optional */
     this.statusText.setAttribute("label", txt);

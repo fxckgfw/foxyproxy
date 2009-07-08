@@ -12,6 +12,12 @@
   other email protocols must use SOCKS proxies; they cannot use HTTP proxies. Continue anyway?")
   
 * Fixed longstanding bug whereby regular expression special characters ($, ., +, (, ), and ^) couldn't be used in URL patterns
-* Ability to disable resetting of icon colors after URLs have finished loading. Change the new attribute /foxyproxy[@resetIconColors] from true to false.
-  This enables you to easily see which proxy was last used (instead of having to use the FoxyProxy Logging tab). Note there is no
-  GUI for this setting
+* Ability to disable resetting of icon colors after URLs have finished loading via a "hidden preferenence" (i.e., no GUI currently).
+  Change the attribute /foxyproxy[@resetIconColors] from true to false and restart Firefox.
+  This enables you to easily see which proxy was last used (instead of having to use the FoxyProxy Logging tab).
+* Ability to remove the "FoxyProxy:" prefix in the statubar with a "hidden preferenence" (i.e., no GUI currently).
+  Change the attribute /foxyproxy[@useStatusBarPrefix] from true to false and restart Firefox.
+  This long-requested feature makes FoxyProxy display only the proxy name (or mode) and the FoxyProxy icon in the statusbar.
+  It is useful for people who have lots and lots of Firefox addson that consume statusbar real-estate and who still want
+  to be able to see the name of the current proxy or mode (i.e., users who don't want to uncheck the existing FoxyProxy
+  "Global Settings->Show mode (text) on statusbar" setting.

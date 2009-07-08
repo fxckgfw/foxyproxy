@@ -541,8 +541,9 @@ var foxyproxy = {
       case "static":
         m = this.fp._selectedProxy.name;
     };
-    var txt = this.fp.getMessage("foxyproxy") + ": " + m; /* todo: add pref to make "FoxyProxy:" prefix optional */
-    this.statusText.setAttribute("label", txt);
+    this.statusText.setAttribute("label", this.fp.useStatusBarPrefix ?
+        this.fp.getMessage("foxyproxy") + ": " + m :
+          m);
   },
   
   ///////////////// utilities \\\\\\\\\\\\\\\

@@ -111,6 +111,8 @@ foxyproxy.prototype = {
   _contextMenu : true,
   _advancedMenus : false,
   _previousMode : "patterns",
+  _resetIconColors : true,
+  _useStatusBarPrefix: true,
   autoadd : null,
   quickadd : null,
 
@@ -528,6 +530,12 @@ biesi>  passing it the appropriate proxyinfo
     this.writeSettings();
   },
 
+  get useStatusBarPrefix() { return this._useStatusBarPrefix; },
+  set useStatusBarPrefix(p) {
+    this._useStatusBarPrefix = p;
+    this.writeSettings();
+  },
+
   get proxyDNS() { return this._proxyDNS; },
   set proxyDNS(p) {
     this._proxyDNS = p;
@@ -612,6 +620,7 @@ biesi>  passing it the appropriate proxyinfo
       node.getAttribute("mode"); // renamed to mode in 2.0
     this._previousMode = gGetSafeAttr(node, "previousMode", "patterns");
     this._resetIconColors = gGetSafeAttrB(node, "resetIconColors", true); // new for 2.10
+    this._useStatusBarPrefix = gGetSafeAttrB(node, "useStatusBarPrefix", true); // new for 2.10
     this.proxies.fromDOM(mode, doc);
     this.setMode(mode, false, true);
     this.random.fromDOM(doc); 
@@ -631,6 +640,7 @@ biesi>  passing it the appropriate proxyinfo
     e.setAttribute("advancedMenus", this._advancedMenus);
     e.setAttribute("previousMode", this._previousMode);
     e.setAttribute("resetIconColors", this._resetIconColors);
+    e.setAttribute("useStatusBarPrefix", this._useStatusBarPrefix);
     e.appendChild(this.random.toDOM(doc));
     e.appendChild(this.statusbar.toDOM(doc));
     e.appendChild(this.toolbar.toDOM(doc));

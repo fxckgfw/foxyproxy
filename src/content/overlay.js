@@ -137,24 +137,11 @@ var foxyproxy = {
     getNavToolbox().foxyproxyCustomizeChange = getNavToolbox().customizeChange;
     /* Overwrite the property with our function */
     getNavToolbox().customizeChange = function() {
-      var toolbarIcon = document.getElementById("toolbar-icon-3");
-      if (toolbarIcon) {
-        /* Our toolbar icon was added. Add a reference to it to our svgIcons arrays. */
-        foxyproxy.svgIcons.iconColorNodes.push(toolbarIcon);
-        foxyproxy.svgIcons.icons.push(toolbarIcon);
-        /* Apply the proper icon coloring to the toolbar icon by setting the mode again */
+      /* Our toolbar icon was added or removed to/from the toolbar. Recalc the svgicon arrays */
+      foxyproxy.svgIcons.init();
+      if (document.getElementById("toolbar-icon-3")) {
+        /* Our toolbar icon was added. Apply the proper icon coloring to the toolbar icon by setting the mode again */
         foxyproxy.setMode(foxyproxy.fp.mode);
-      }
-      else {
-        /* Our toolbar icon was removed. Remove the invalid node from our svgIcons arrays. */
-        for (var i=0; i<foxyproxy.svgIcons.iconColorNodes.length; i++) {
-          if (foxyproxy.svgIcons.iconColorNodes[i] == null)
-            foxyproxy.svgIcons.iconColorNodes.splice(i,1);
-        }
-        for (var i=0; i<foxyproxy.svgIcons.icons.length; i++) {
-          if (foxyproxy.svgIcons.icons[i] == null)
-            foxyproxy.svgIcons.icons.splice(i,1);
-        }
       }
       /* Call the original function. note that |this| is getNavToolbox(), not foxyproxy */
       this.foxyproxyCustomizeChange();
@@ -406,8 +393,9 @@ var foxyproxy = {
       this.icons = [document.getElementById("statusbar-icon-wrapper"),
         document.getElementById("contextmenu-icon-wrapper"), document.getElementById("toolsmenu-icon-wrapper")];
       
-      if (document.getElementById("toolbar-icon-wrapper")) /* null if user isn't using our toolbar icon */
+      if (document.getElementById("toolbar-icon-wrapper")) { /* null if user isn't using our toolbar icon */
         this.icons.push(document.getElementById("toolbar-icon-wrapper"));
+      }
       
       this.iconColorNodes = [document.getElementById("statusbar-icon-3"),        
         document.getElementById("contextmenu-icon-3"), document.getElementById("toolsmenu-icon-3")];
@@ -419,7 +407,7 @@ var foxyproxy = {
         document.getElementById("contextmenu-disabled-wrapper"), document.getElementById("toolsmenu-disabled-wrapper")];
       
       if (document.getElementById("toolbar-disabled-wrapper")) /* null if user isn't using our toolbar icon */
-        this.iconColorNodes.push(document.getElementById("toolbar-disabled-wrapper"));
+        this.iconDisabledMask.push(document.getElementById("toolbar-disabled-wrapper"));
     },
     
     animate : function() {

@@ -11,3 +11,7 @@
   of these is "The pattern has no wildcard characters ..." and the other is only for Thunderbird users ("You have chosen a non-SOCKS proxy. POP3, IMAP, and all
   other email protocols must use SOCKS proxies; they cannot use HTTP proxies. Continue anyway?")
   
+* Fixed longstanding bug whereby regular expression special characters ($, ., +, (, ), and ^) couldn't be used in URL patterns
+* Ability to disable resetting of icon colors after URLs have finished loading. Change the new attribute /foxyproxy[@resetIconColors] from true to false.
+  This enables you to easily see which proxy was last used (instead of having to use the FoxyProxy Logging tab). Note there is no
+  GUI for this setting

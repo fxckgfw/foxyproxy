@@ -16,7 +16,7 @@ For build instructions, see how-to-build.txt
 2. Start FF and create a new profile.
 
 3. Install the latest version of Ted's Extension Developer's Extension from
-   http://ted.mielczarek.org/code/mozilla/extensiondev/
+   https://addons.mozilla.org/en-US/firefox/addon/7434
 
 4. Restart FF so the extension is installed.
 

@@ -114,5 +114,8 @@
   <i18n id="foxyproxy.quickadd.tooltip" value="&foxyproxy.quickadd.tooltip;"/>  
 
   <i18n id="foxyproxy.invalidcolor.label" value="&foxyproxy.invalidcolor.label;"/>
-  <i18n id="foxyproxy.validcolor.label" value="&foxyproxy.validcolor.label;"/>  
+  <i18n id="foxyproxy.validcolor.label" value="&foxyproxy.validcolor.label;"/>
+  
+  <i18n id="foxyproxy.add.option.direct.label" value="&foxyproxy.add.option.direct.label;"/>
+  <i18n id="foxyproxy.auto.url.label" value="&foxyproxy.auto.url.label;"/>      
 </root>

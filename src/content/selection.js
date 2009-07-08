@@ -27,14 +27,27 @@ foxyproxy.selection = {
         p.proxy.manualconf.port = sel.port;        
         fp.notifier.alert(null, fp.getMessage("changed.host", [p.proxy.name, sel.hostPort]));
         if (p.reloadcurtab) {
-          var r;
-          if (fp.mode == "disabled") {
-            r = foxyproxy.ask(window, fp.getMessage("enable.before.reloading"), fp.getMessage("yes.use.patterns"), fp.getMessage("yes.use.proxy.for.all", [p.proxy.name]), fp.getMessage("no.keep.disabled"));
+          function askAboutSwitching(str, arg) {
+            var r = foxyproxy.ask(window, arg ? fp.getMessage(str, [arg]) : fp.getMessage(str), fp.getMessage("yes.use.patterns"), fp.getMessage("yes.use.proxy.for.all", [p.proxy.name]), fp.getMessage("no.dont.change.anything"));
             if (r == 0) fp.setMode("patterns", false);
             else if (r == 1) fp.setMode(p.proxy.id, false);
+            return r;
           }
+          if (fp.mode == "disabled")
+            r = askAboutSwitching("enable.before.reloading");
+          else if (fp.mode != "patterns" && fp.mode != "random" && fp.mode != "roundrobin" && fp.mode != p.proxy.id)
+            r = askAboutSwitching("switch.before.reloading", fp._selectedProxy.name);
           if (r != 2 && p.proxy.mode != "manual") {
-            var q = foxyproxy.ask(window, fp.getMessage("switch.proxy.mode", [p.proxy.name, sel.hostPort]));
+            var modeAsText;
+            switch (p.proxy.mode) {
+              case "direct" :
+                modeAsText = fp.getMessage("foxyproxy.add.option.direct.label");
+                break;
+              case "auto" :
+                modeAsText = fp.getMessage("foxyproxy.auto.url.label");
+                break;
+            }
+            var q = foxyproxy.ask(window, fp.getMessage("switch.proxy.mode", [p.proxy.name, modeAsText, sel.hostPort]));
             if (q)
               p.proxy.mode = "manual";
           }      

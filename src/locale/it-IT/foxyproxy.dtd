@@ -69,7 +69,7 @@
 <!ENTITY foxyproxy.regex.label "Espressione regolare">
 <!ENTITY foxyproxy.regex.accesskey "R">
 <!ENTITY foxyproxy.regex.tooltip "L&apos;URL o il modello URL è un&apos;espressione regolare">
-<!ENTITY foxyproxy.regex.example.label "Esempio: https?://.*\.mail\.yahoo\.com/.*">
+<!ENTITY foxyproxy.regex.example.label "Esempio: https?://.*\\.mail\\.yahoo\\.com/.*">
 <!ENTITY foxyproxy.version "Versione">
 <!ENTITY foxyproxy.createdBy "Creata da:">
 <!ENTITY foxyproxy.copyright "Copyright">
@@ -425,7 +425,7 @@
 <!ENTITY foxyproxy.copyip.tooltip "Copia l&apos;indirizzo nel modello">
 <!ENTITY foxyproxy.copyip.accesskey "C">
 <!ENTITY foxyproxy.ip.wildcard.example.label "Esempio: 192.168.1.*">
-<!ENTITY foxyproxy.ip.regex.example.label "Esempio: 172\.\d+\.1\.10">
+<!ENTITY foxyproxy.ip.regex.example.label "Esempio: 172\\.\\d+\\.1\\.10">
 <!ENTITY foxyproxy.ip.pattern.match "Il modello corrisponde ad uno o più indirizzi IP locali attuali">
 <!ENTITY foxyproxy.ip.pattern.no.match "Il modello non corrisponde ad alcun indirizzo IP locale">
 <!ENTITY foxyproxy.refreshlocalips "Ricarica gli indirizzi IP locali">
@@ -443,4 +443,11 @@
 <!ENTITY foxyproxy.nothing.label "Niente">
 <!ENTITY foxyproxy.ippatterndeletefinal.label "Questo è l&apos;ultimo modello di indirizzo IP locale. Eliminandolo non sarà più possibile utilizzare il relativo proxy. Proseguire comunque?">
 <!ENTITY foxyproxy.licenseplea.label "FoxyProxy Plus è protetta con misure anti pirateria. Per il suo utilizzo, sostenerne lo sviluppo e il mantenimento (iniziati diversi anni fa) è necessario acquistare una licenza">
+<!ENTITY foxyproxy.authentication.label "Autenticazione">
+<!ENTITY foxyproxy.proxyusername.label "Nome utente">
+<!ENTITY foxyproxy.proxypassword.label "Password">
+<!ENTITY foxyproxy.proxypassword2.label "Reinserire la password">
+<!ENTITY foxyproxy.proxydomain.label "Dominio (opzionale - solo NTLM)">
+<!ENTITY foxyproxy.proxydomain.tooltip "Inserire solo per autenticazione NTLM">
+<!ENTITY foxyproxy.proxy.passwords.nomatch.label "Le password dei proxy non coincidono. Reinserirle">
 <!--  end foxyproxyplus  -->

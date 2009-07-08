@@ -405,7 +405,7 @@
 <!ENTITY foxyproxy.proxyservice.tooltip "Für Proxy-Dienste registrieren">
 <!ENTITY foxyproxy.proxyservice2.label "Brauchen Sie schnelle, zuverlässige Proxies in den USA, Großbritannien oder anderen Ländern?">
 <!ENTITY foxyproxy.getfoxyproxyplus.label "Hol Dir FoxyProxy Plus">
-<!--    begin foxyproxyplus    -->
+<!--     begin foxyproxyplus     -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Lokales IP-Adressmuster hinzufügen/ändern">
 <!ENTITY foxyproxy.tempip.popup.label "Temporäre Muster erlauben es Ihnen, Muster für selten genutzte lokale IP-Adressen zu erzeugen, ohne dass diese die Liste der IP-Adressmuster eines Proxies überladen. Temporäre Muster werden nicht auf Platte abgelegt. Sie werden im Speicher gehalten und nur für diese Firefox-Sitzung benutzt.">
 <!ENTITY foxyproxy.ip.pattern.label "Lokales IP-Adressmuster">
@@ -443,4 +443,11 @@
 <!ENTITY foxyproxy.nothing.label "Nichts">
 <!ENTITY foxyproxy.ippatterndeletefinal.label "Dies ist das letzte lokale IP-Adressmuster. Falls Sie es löschen, kann dieser Proxy nicht verwendet werden. Dennoch fortsetzen?">
 <!ENTITY foxyproxy.licenseplea.label "FoxyProxy Plus enthält minimale Maßnahmen zur Verhinderung von Piraterie. Falls Sie FoxyProxy Plus verwenden, kaufen Sie bitte eine Lizenz. In der Entwicklung und Pflege von FoxyProxy stecken viele Jahre Arbeit, und Ihr Kauf ermutigt mich, damit weiterzumachen.">
-<!--    end foxyproxyplus    -->
+<!ENTITY foxyproxy.authentication.label "Authentisierung">
+<!ENTITY foxyproxy.proxyusername.label "Benutzername">
+<!ENTITY foxyproxy.proxypassword.label "Passwort">
+<!ENTITY foxyproxy.proxypassword2.label "Passwort - Wiederholung">
+<!ENTITY foxyproxy.proxydomain.label "Domäne (optional - nur NTLM)">
+<!ENTITY foxyproxy.proxydomain.tooltip "Nur NTLM Authentisierung">
+<!ENTITY foxyproxy.proxy.passwords.nomatch.label "Passwörter sind unterschiedlich; bitte neu eingeben.">
+<!--     end foxyproxyplus     -->

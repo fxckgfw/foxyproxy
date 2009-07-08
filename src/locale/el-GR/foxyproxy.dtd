@@ -117,11 +117,11 @@
 <!ENTITY foxyproxy.proxydns.label "Χρήση διαμεσολαβητή SOCKS για διερευνήσεις DNS">
 <!ENTITY foxyproxy.proxydns.accesskey "Ν">
 <!ENTITY foxyproxy.proxydns.tooltip "Αν επιλεγεί, οι διερευνήσεις DNS θα δρομολογούντε μέσω διαμεσολαβητή SOCKS">
-<!ENTITY foxyproxy.proxydns.notice "Απαιτείται επανεκκίνιση του Firefox για να εφαρμοστούν οι νέες ρυθμίσεις. Να γίνει τώρα;">
-<!ENTITY foxyproxy.showstatusbaricon.label "Προβολή εικονίδιου στη γραμμή κατάστασης">
+<!ENTITY foxyproxy.proxydns.notice "Απαιτείται επανεκκίνηση του Firefox για να εφαρμοστούν οι νέες ρυθμίσεις. Να γίνει τώρα;">
+<!ENTITY foxyproxy.showstatusbaricon.label "Προβολή εικονιδίου στη γραμμή κατάστασης">
 <!ENTITY foxyproxy.showstatusbaricon.accesskey "γ">
 <!ENTITY foxyproxy.showstatusbaricon.tooltip "Αν επιλεγεί, θα εμφανίζεται το εικονίδιο του FoxyProxy στη γραμμή κατάστασης">
-<!ENTITY foxyproxy.showstatusbarmode.label "Προβολή κείμενου στη γραμμή κάταστασης">
+<!ENTITY foxyproxy.showstatusbarmode.label "Προβολή κείμενου στη γραμμή κατάστασης">
 <!ENTITY foxyproxy.showstatusbarmode.accesskey "γ">
 <!ENTITY foxyproxy.showstatusbarmode.tooltip "Αν επιλεγεί, θα εμφανίζεται η κατάσταση λειτουργίας του FoxyProxy με κείμενο στη γραμμή κατάστασης">
 <!ENTITY foxyproxy.storagelocation.label.2 "Τοποθεσία αρχείου ρυθμίσεων">
@@ -145,13 +145,13 @@
 <!ENTITY foxyproxy.addnewproxy.tooltip "Προσθήκη νέου διαμεσολαβητή">
 <!ENTITY foxyproxy.whitelist.label "Λίστα επιτρεπόμενων">
 <!ENTITY foxyproxy.whitelist.accesskey "ε">
-<!ENTITY foxyproxy.whitelist.tooltip "Τα URL που συμφωνούν με το συγκεκριμένο πρότυπο θα φορτώνοντε μέσω αυτού του διαμεσολαβητή">
-<!ENTITY foxyproxy.whitelist.description.label "Τα URL που συμφωνούν με το συγκεκριμένο πρότυπο θα φορτώνοντε μέσω αυτού του διαμεσολαβητή">
+<!ENTITY foxyproxy.whitelist.tooltip "Τα URL που συμφωνούν με το συγκεκριμένο πρότυπο θα φορτώνονται μέσω αυτού του διαμεσολαβητή">
+<!ENTITY foxyproxy.whitelist.description.label "Τα URL που συμφωνούν με το συγκεκριμένο πρότυπο θα φορτώνονται μέσω αυτού του διαμεσολαβητή">
 <!ENTITY foxyproxy.blacklist.label "Λίστα απαγορευμένων">
 <!ENTITY foxyproxy.blacklist.accesskey "α">
-<!ENTITY foxyproxy.blacklist.tooltip "Τα URL που συμφωνούν με αυτό το πρότυπο δεν θα φορτώνοντε μέσω αυτού του διαμεσολαβητή">
-<!ENTITY foxyproxy.blacklist.description.label "Τα URL που συμφωνούν με αυτό το πρότυπο δεν θα φορτώνοντε μέσω αυτού του διαμεσολαβητή">
-<!ENTITY foxyproxy.whiteblack.description.label "Τα πρότυπα της λίστας απαγορευμένων(απόριψης) έχουν προτεραιότητα σε σχέση με αυτά της λίστας επιτρεπόμενων(συμπεριληπτικά): Αν ένα URL συμφωνεί και με τα δυο για τον ίδιο διαμεσολαβητή, το URL δεν θα επιτραπεί να φορτωθεί από αυτόν.">
+<!ENTITY foxyproxy.blacklist.tooltip "Τα URL που συμφωνούν με αυτό το πρότυπο δεν θα φορτώνονται μέσω αυτού του διαμεσολαβητή">
+<!ENTITY foxyproxy.blacklist.description.label "Τα URL που συμφωνούν με αυτό το πρότυπο δεν θα φορτώνονται μέσω αυτού του διαμεσολαβητή">
+<!ENTITY foxyproxy.whiteblack.description.label "Τα πρότυπα της λίστας απαγορευμένων(απόρριψης) έχουν προτεραιότητα σε σχέση με αυτά της λίστας επιτρεπόμενων(συμπεριληπτικά): Αν ένα URL συμφωνεί και με τα δυο για τον ίδιο διαμεσολαβητή, το URL δεν θα επιτραπεί να φορτωθεί από αυτόν.">
 <!ENTITY foxyproxy.socks.version.label "Έκδοση SOCKS">
 <!ENTITY foxyproxy.autopacurl.label "Αυτόματο PAC URL">
 <!ENTITY foxyproxy.issocks.label "Διαμεσολαβητής SOCKS;">
@@ -176,14 +176,14 @@
 <!ENTITY foxyproxy.minutes.tooltip "λεπτά">
 <!ENTITY foxyproxy.logging.maxsize.label "Μέγιστο μέγεθος αναδίπλωσης ιστορικού">
 <!ENTITY foxyproxy.logging.maxsize.accesskey "Μ">
-<!ENTITY foxyproxy.logging.maxsize.tooltip "Μέγιστος αριθμός εγγραφών στο ιστορικό καταγραφής πριν αυτό αναδιπλώθει από την αρχή">
+<!ENTITY foxyproxy.logging.maxsize.tooltip "Μέγιστος αριθμός εγγραφών στο ιστορικό καταγραφής πριν αυτό αναδιπλωθεί από την αρχή">
 <!ENTITY foxyproxy.logging.maxsize.button.label "Ορισμός">
 <!ENTITY foxyproxy.logging.maxsize.button.accesskey "Ο">
-<!ENTITY foxyproxy.logging.maxsize.button.tooltip "Ορίζει τον μέγιστο αριθμό εγγραφών του ιστορικού καταγραφής πριν αναδιπλώθει από την αρχή">
-<!ENTITY foxyproxy.random.label "Φόρτωση των URL μέσω τυχαίων διαμεσολαβητών (αγνόωντας κάθε πρότυπο και προτεραιότητα)">
+<!ENTITY foxyproxy.logging.maxsize.button.tooltip "Ορίζει τον μέγιστο αριθμό εγγραφών του ιστορικού καταγραφής πριν αναδιπλωθεί από την αρχή">
+<!ENTITY foxyproxy.random.label "Φόρτωση των URL μέσω τυχαίων διαμεσολαβητών (αγνοώντας κάθε πρότυπο και προτεραιότητα)">
 <!ENTITY foxyproxy.random.accesskey "Τ">
-<!ENTITY foxyproxy.random.tooltip "Φόρτωση των URL μέσω τυχαίων διαμεσολαβητών (αγνόωντας κάθε πρότυπο και προτεραιότητα)">
-<!ENTITY foxyproxy.random.includedirect.label "Συμπεριλήψη διαμεσολαβητών που έχουν ρυθμίστει ως άμεσες συνδέσεις με το διαδίκτυο">
+<!ENTITY foxyproxy.random.tooltip "Φόρτωση των URL μέσω τυχαίων διαμεσολαβητών (αγνοώντας κάθε πρότυπο και προτεραιότητα)">
+<!ENTITY foxyproxy.random.includedirect.label "Συμπεριλήψη διαμεσολαβητών που έχουν ρυθμιστεί ως άμεσες συνδέσεις με το διαδίκτυο">
 <!ENTITY foxyproxy.random.includedirect.accesskey "Σ">
 <!ENTITY foxyproxy.random.includedirect.tooltip "Οι διαμεσολαβητές που έχουν ρυθμιστεί ως άμεσες συνδέσεις με το διαδίκτυο συμπεριλαμβάνονται στην επιλογή τυχαίου διαμεσολαβητή">
 <!ENTITY foxyproxy.random.includedisabled.label "Συμπερίληψη απενεργοποιημένων διαμεσολαβητών">
@@ -228,32 +228,32 @@
 <!ENTITY foxyproxy.pacerrornotification.label "Ειδοποίηση για σφάλματα αρχείων αυτόματων ρυθμίσεων διαμεσολαβητή">
 <!ENTITY foxyproxy.pacerrornotification.accesskey "ι">
 <!ENTITY foxyproxy.pacerrornotification.tooltip "Προβολή αναδυόμενου όταν παρουσιάζονται σφάλματα αρχείων PAC">
-<!ENTITY foxyproxy.toolsmenu.label "Προβολή εικονίδιου στο μενού εργαλείων">
+<!ENTITY foxyproxy.toolsmenu.label "Προβολή εικονιδίου στο μενού εργαλείων">
 <!ENTITY foxyproxy.toolsmenu.accesskey "Ε">
-<!ENTITY foxyproxy.toolsmenu.tooltip "Προβολή εικονίδιου στο μενού εργαλείων του Firefox">
+<!ENTITY foxyproxy.toolsmenu.tooltip "Προβολή εικονιδίου στο μενού εργαλείων του Firefox">
 <!ENTITY foxyproxy.tip.label "Οδηγίες">
 <!ENTITY foxyproxy.pactip1.label "Για αρχεία PAC που υπάρχουν στο δίσκο σας, χρησιμοποιήστε το πρωτόκολλο file://. Για παράδειγμα, file://c:/path/proxy.pac στα Windows ή file:///home/users/joe/proxy.pac σε Unix/Linux/Mac.">
 <!ENTITY foxyproxy.pactip2.label "Για αρχεία PAC που υπάρχουν σε διακομιστή ftp, χρησιμοποιήστε το πρωτόκολλο ftp://. Για παράδειγμα, ftp://leahscape.com/path/proxy.pac">
 <!ENTITY foxyproxy.pactip3.label "Μπορείτε επίσης να χρησιμοποιήσετε τα http://, https://, ή οποιοδήποτε άλλο υποστηριζόμενο πρωτόκολλο.">
-<!ENTITY foxyproxy.pactip4.label "Τέλος, αν θέλετε να αναφερθείτε σε αρχείο PAC του τοπικού συστήματος αρχείων με μια σχετική διαδρομή, μπορείτε να κάνετε χρήση του σχετικού πρότυπου πρωτόκολλου.Αυτό είναι χρήσιμο για την περίπτωση που τα αρχεία PAC βρίσκονται σε κάποιο εξωτερικό δίσκο. Τα υποστηριζόμενα πρότυπα διαδρομών αναφέρονται">
+<!ENTITY foxyproxy.pactip4.label "Τέλος, αν θέλετε να αναφερθείτε σε αρχείο PAC του τοπικού συστήματος αρχείων με μια σχετική διαδρομή, μπορείτε να κάνετε χρήση του σχετικού πρότυπου πρωτοκόλλου.Αυτό είναι χρήσιμο για την περίπτωση που τα αρχεία PAC βρίσκονται σε κάποιο εξωτερικό δίσκο. Τα υποστηριζόμενα πρότυπα διαδρομών αναφέρονται">
 <!ENTITY foxyproxy.pactip5.label "εδώ">
-<!ENTITY foxyproxy.pactip6.label ". Τα ειδικά αλφαρηθμίτικα στα σχετικά πρότυπα πρωτόκολου αντικαθίστανται με τις αντίστοιχες τιμές τους. Για παράδειγμα, το σχετικό ://ProfD/pacs/proxy3.pac «δείχνει» το αρχείο proxy3.pac στον υποκατάλογο του">
+<!ENTITY foxyproxy.pactip6.label ". Τα ειδικά αλφαριθμητικά στα σχετικά πρότυπα πρωτοκόλλου αντικαθίστανται με τις αντίστοιχες τιμές τους. Για παράδειγμα, το σχετικό ://ProfD/pacs/proxy3.pac «δείχνει» το αρχείο proxy3.pac στον υποκατάλογο του">
 <!ENTITY foxyproxy.pactip7.label "κατάλογου που περιέχει τα προφίλ του Firefox">
 <!ENTITY foxyproxy.pactip8.label "που ονομάζεται pacs/. Στον Portable Firefox για τα Windows, ο κατάλογος των προφίλ του Firefox είναι πάντα σχετική διαδρομή γιατί το όνομα του οδηγού μπορεί να αλλάζει από υπολογιστή σε υπολογιστή. Παρακαλούμε να σημειώσετε πως τα ειδικά αλφαριθμητικά (ProfD, Home, TempD, etc.) έχουν διάκριση κεφαλαίων - πεζών!">
-<!ENTITY foxyproxy.contextmenu.label "Προβολή εικονίδιου στο μενού περιεχομένου">
+<!ENTITY foxyproxy.contextmenu.label "Προβολή εικονιδίου στο μενού περιεχομένου">
 <!ENTITY foxyproxy.contextmenu.accesskey "σ">
-<!ENTITY foxyproxy.contextmenu.tooltip "Προβολή εικονίδιου στο μενού περιεχομένου">
+<!ENTITY foxyproxy.contextmenu.tooltip "Προβολή εικονιδίου στο μενού περιεχομένου">
 <!ENTITY foxyproxy.quickadd.desc1 "Η άμεση προσθήκη προσθέτει ένα δυναμικό πρότυπο URL σε διαμεσολαβητή με το Alt-F2. Η συντόμευση Alt-F2 μπορεί να προσαρμοστεί με την χρήση της επέκτασης">
 <!ENTITY foxyproxy.keyconfig.label "KeyConfig">
 <!ENTITY foxyproxy.quickadd.desc2 ".">
 <!ENTITY foxyproxy.quickadd.label "Άμεση προσθήκη">
 <!ENTITY foxyproxy.quickadd.accesskey "μ">
-<!ENTITY foxyproxy.quickadd.tooltip "Διαχείρηση ρυθμίσεων άμεσης προσθήκης">
+<!ENTITY foxyproxy.quickadd.tooltip "Διαχείριση ρυθμίσεων άμεσης προσθήκης">
 <!ENTITY foxyproxy.quickadd.notify.label "Ειδοποίηση όταν ενεργοποιηθεί η άμεση προσθήκη">
 <!ENTITY foxyproxy.quickadd.notify.accesskey "δ">
 <!ENTITY foxyproxy.quickadd.notify.tooltip "Προβολή αναδυόμενου όταν ενεργοποιηθεί η άμεση προσθήκη">
 <!ENTITY foxyproxy.quickadd.notify.whencanceled.label "Ειδοποίηση όταν ακυρωθεί η άμεση προσθήκη">
-<!ENTITY foxyproxy.quickadd.notify.whencanceled.label2 "Η άμεση προσθήκη ακυρώνεται αυτόματα όταν πατήσετε το Alt-F2, αλλά το τρέχον URL ταιρίαζει με κάποιο ήδη υπάρχον πρότυπο της λίστας επιτρεπομένων του διαμεσολαβητή. Έτσι αποφεύγουμε την ύπαρξη διπλότυπων πρότυπων, που μπορούν να κάνουν δύσχρηστες τις ρυθμίσεις σας. Αυτή η ρύθμιση δεν ενεργοποιεί - απενεργοποιεί την ακύρωση, απλά ενεργοποιεί - απενεργοποιεί την ειδοποίηση όταν αυτή συμβεί.">
+<!ENTITY foxyproxy.quickadd.notify.whencanceled.label2 "Η άμεση προσθήκη ακυρώνεται αυτόματα όταν πατήσετε το Alt-F2, αλλά το τρέχον URL ταιριάζει με κάποιο ήδη υπάρχον πρότυπο της λίστας επιτρεπομένων του διαμεσολαβητή. Έτσι αποφεύγουμε την ύπαρξη διπλότυπων πρότυπων, που μπορούν να κάνουν δύσχρηστες τις ρυθμίσεις σας. Αυτή η ρύθμιση δεν ενεργοποιεί - απενεργοποιεί την ακύρωση, απλά ενεργοποιεί - απενεργοποιεί την ειδοποίηση όταν αυτή συμβεί.">
 <!ENTITY foxyproxy.quickadd.notify.whencanceled.accesskey "α">
 <!ENTITY foxyproxy.quickadd.notify.whencanceled.tooltip "Προβολή αναδυόμενου όταν η άμεση προσθήκη ενεργοποιηθεί και ακυρωθεί">
 <!ENTITY foxyproxy.whatsthis "Τι είναι αυτό;">
@@ -331,13 +331,13 @@
 <!ENTITY foxyproxy.toolbaractivation.tooltip "Ρυθμίσεις ενεργοποίησης εργαλειοθήκης">
 <!ENTITY foxyproxy.leftclicksb.label "Αριστερό κλικ">
 <!ENTITY foxyproxy.leftclicksb.accesskey "Α">
-<!ENTITY foxyproxy.leftclicksb.tooltip "Επιλογή ένεργειας αριστερού κλικ στη γραμμή κατάστασης">
+<!ENTITY foxyproxy.leftclicksb.tooltip "Επιλογή ενέργειας αριστερού κλικ στη γραμμή κατάστασης">
 <!ENTITY foxyproxy.middleclicksb.label "Κεντρικό κλικ">
 <!ENTITY foxyproxy.middleclicksb.accesskey "κ">
-<!ENTITY foxyproxy.middleclicksb.tooltip "Επιλογή ένεργειας κεντρικού κλικ στη γραμμή κατάστασης">
+<!ENTITY foxyproxy.middleclicksb.tooltip "Επιλογή ενέργειας κεντρικού κλικ στη γραμμή κατάστασης">
 <!ENTITY foxyproxy.rightclicksb.label "Δεξιό κλικ">
 <!ENTITY foxyproxy.rightclicksb.accesskey "Δ">
-<!ENTITY foxyproxy.rightclicksb.tooltip "Επιλογή ένεργειας δεξιού κλικ στη γραμμή κατάστασης">
+<!ENTITY foxyproxy.rightclicksb.tooltip "Επιλογή ενέργειας δεξιού κλικ στη γραμμή κατάστασης">
 <!ENTITY foxyproxy.leftclicktb.label "Αριστερό κλικ">
 <!ENTITY foxyproxy.leftclicktb.accesskey "Α">
 <!ENTITY foxyproxy.leftclicktb.tooltip "Επιλογή ενέργειας αριστερού κλικ στην εργαλειοθήκη">
@@ -357,12 +357,12 @@
 <!ENTITY foxyproxy.click.toggle "Εναλλαγή μεταξύ της τρέχουσας κατάστασης και απενεργοποίησης">
 <!ENTITY foxyproxy.includeincycle.label "Συμπερίληψη στην εναλλαγή διαμεσολαβητών - με επιλογή της ρύθμισης «εναλλαγή τρόπου λειτουργίας» (γενικές ρυθμίσεις-&gt;ενεργοποίηση γραμμής κατάστασης/εργαλειοθήκης)">
 <!ENTITY foxyproxy.includeincycle.accesskey "Σ">
-<!ENTITY foxyproxy.includeincycle.tooltip "Συμπερίληψη αυτού του διαμεσολαβητή όταν γίνεται κλικ στο εικονίδο γραμμής κατάστασης/εργαλειοθήκης">
+<!ENTITY foxyproxy.includeincycle.tooltip "Συμπερίληψη αυτού του διαμεσολαβητή όταν γίνεται κλικ στο εικονίδιο γραμμής κατάστασης/εργαλειοθήκης">
 <!ENTITY foxyproxy.changes.msg1 "Που είναι οι ρυθμίσεις για HTTP, SSL, FTP, Gopher, και SOCKS;">
 <!ENTITY foxyproxy.newGUI.popup.height "25em">
 <!ENTITY foxyproxy.newGUI.popup.width "50em">
-<!ENTITY foxyproxy.newGUI1.label "Ο παλιός διάλογος ρυθμίσεων διαμεσολαβητών του FoxyProxy ήταν βασισμένος και σχεδόν πανομοιότυπος με τον δίαλογο ρυθμίσεων σύνδεσης του Firefox, που με τη σειρά του ήταν σχεδόν πανομοιότυπος με τις ρυθμίσεις διαμεσολαβητών του απαρχαιωμένου περιηγητή Mosaic 2.1.1 του 1996. Το πρόβλημα με όλους αυτούς τους διαλόγους είναι η μειωμένη δυνατότητα διοχέτευσης κυκλοφορίας ανά πρωτόκολλο. Οι περιηγητές του 21ου αιώνα, όπως ο Firefox, μπορούν να χειριστούν πολλά περισσότερα πρωτόκολλα από τα HTTP, SSL, FTP, και GOPHER. Αυτοί οι διαλόγοι λοιπόν θα ήταν εξαιρετικά δύσχρηστοι αν επιχειρούσαμε να συμπεριλάβουμε όλα τα πρωτόκολλα.">
-<!ENTITY foxyproxy.newGUI2.label "Εφόσον ούτως ή άλλως το FoxyProxy επιτρέπει την διοχέτευση κυκλοφορίας ανά πρωτόκολλο με πρότυπα που περιέχουν κανονικές εκφράσεις και χαρακτήρες μπαλαντέρ, δεν είναι απαραίτητη η παρουσία λίστας πρωτόκολλων, οπότε αρχίζοντας από την έκδοση 2.5 αφαιρέθηκε. Φυσικά αυτό δεν επιδρά στην λειτουργικότητα. Απλά προσφέρει ένα πιο λιτό περιβάλλον διασύνδεσης χρήστη. Αν θέλετε να διοχετεύετε κυκλοφορία ανά πρωτόκολλο, θα πρέπει να ορίσετε πρότυπα επιτρεπόμενων/μη επιτρεπόμενων με προσοχή στο τμήμα πρωτόκολλου (πχ ftp://*.yahoo.com/*, *://leahscape.com/*, κλπ)">
+<!ENTITY foxyproxy.newGUI1.label "Ο παλιός διάλογος ρυθμίσεων διαμεσολαβητών του FoxyProxy ήταν βασισμένος και σχεδόν πανομοιότυπος με τον διάλογο ρυθμίσεων σύνδεσης του Firefox, που με τη σειρά του ήταν σχεδόν πανομοιότυπος με τις ρυθμίσεις διαμεσολαβητών του απαρχαιωμένου περιηγητή Mosaic 2.1.1 του 1996. Το πρόβλημα με όλους αυτούς τους διαλόγους είναι η μειωμένη δυνατότητα διοχέτευσης κυκλοφορίας ανά πρωτόκολλο. Οι περιηγητές του 21ου αιώνα, όπως ο Firefox, μπορούν να χειριστούν πολλά περισσότερα πρωτόκολλα από τα HTTP, SSL, FTP, και GOPHER. Αυτοί οι διαλόγοι λοιπόν θα ήταν εξαιρετικά δύσχρηστοι αν επιχειρούσαμε να συμπεριλάβουμε όλα τα πρωτόκολλα.">
+<!ENTITY foxyproxy.newGUI2.label "Εφόσον ούτως ή άλλως το FoxyProxy επιτρέπει την διοχέτευση κυκλοφορίας ανά πρωτόκολλο με πρότυπα που περιέχουν κανονικές εκφράσεις και χαρακτήρες μπαλαντέρ, δεν είναι απαραίτητη η παρουσία λίστας πρωτόκολλων, οπότε αρχίζοντας από την έκδοση 2.5 αφαιρέθηκε. Φυσικά αυτό δεν επιδρά στην λειτουργικότητα. Απλά προσφέρει ένα πιο λιτό περιβάλλον διασύνδεσης χρήστη. Αν θέλετε να διοχετεύεστε κυκλοφορία ανά πρωτόκολλο, θα πρέπει να ορίσετε πρότυπα επιτρεπόμενων/μη επιτρεπόμενων με προσοχή στο τμήμα πρωτόκολλου (πχ ftp://*.yahoo.com/*, *://leahscape.com/*, κλπ)">
 <!ENTITY foxyproxy.newGUI4.label "Κάντε κλικ εδώ για περισσότερες πληροφορίες.">
 <!ENTITY foxyproxy.error.msg.label "Μήνυμα σφάλματος">
 <!ENTITY foxyproxy.pac.result.label "Αποτελέσματα αρχείου PAC">
@@ -388,7 +388,7 @@
 <!ENTITY foxyproxy.home "Αρχική σελίδα">
 <!ENTITY foxyproxy.support "Υποστήριξη">
 <!ENTITY foxyproxy.credits "Μνεία">
-<!ENTITY foxyproxy.donations "Donations">
+<!ENTITY foxyproxy.donations "Δωρεές">
 <!ENTITY foxyproxy.please.donate.label "Παρακαλούμε κάντε μια δωρεά">
 <!ENTITY foxyproxy.please.donate.accesskey "δ">
 <!ENTITY foxyproxy.keep.free "Διατηρήστε το FoxyProxy  ελεύθερο">
@@ -405,7 +405,7 @@
 <!ENTITY foxyproxy.proxyservice.tooltip "Εγγραφείτε για υπηρεσίες διαμεσολάβησης">
 <!ENTITY foxyproxy.proxyservice2.label "Χρειάζεστε γρήγορους, αξιόπιστους διαμεσολαβητές στις ΗΠΑ, την Αγγλία ή άλλη χώρα;">
 <!ENTITY foxyproxy.getfoxyproxyplus.label "Πάρτε το FoxyProxy Plus">
-<!--    begin foxyproxyplus    -->
+<!--     begin foxyproxyplus     -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Προσθήκη/επεξεργασία τοπικού πρότυπου διεύθυνσης IP">
 <!ENTITY foxyproxy.tempip.popup.label "Τα προσωρινά πρότυπα σας επιτρέπουν να δημιουργήσετε τοπικά πρότυπα για διευθύνσεις IP που δεν χρησιμοποιείτε συχνά, χωρίς να αυξάνετε την πολυπλοκότητα της λίστας πρότυπων κάποιου διαμεσολαβητή. Τα προσωρινά πρότυπα δεν αποθηκεύονται στο δίσκο, διατηρούνται μόνο στη μνήμη και χρησιμοποιούνται για την τρέχουσα συνεδρία του Firefox.">
 <!ENTITY foxyproxy.ip.pattern.label "Τοπικό πρότυπο διεύθυνσης IP">
@@ -443,4 +443,11 @@
 <!ENTITY foxyproxy.nothing.label "Κανένα">
 <!ENTITY foxyproxy.ippatterndeletefinal.label "Αυτό είναι το τελευταίο τοπικό πρότυπο διεύθυνσης IP. Αν το διαγράψετε, αυτός ο διαμεσολαβητής δεν θα χρησιμοποιείται πότε. Συνέχεια;">
 <!ENTITY foxyproxy.licenseplea.label "Το FoxyProxy Plus διαθέτει μερικά αντίμετρα κατά της πειρατείας. Αν χρησιμοποιείτε το FoxyProxy Plus, παρακαλούμε αποκτήστε μια άδεια χρήσης. Η ανάπτυξη και η υποστήριξη του έχει πάρει χρόνια δουλειάς και η αγορά σας θα μας ενθαρύνει να συνεχίσουμε.">
-<!--    end foxyproxyplus    -->
+<!ENTITY foxyproxy.authentication.label "Πιστοποίηση">
+<!ENTITY foxyproxy.proxyusername.label "Όνομα χρήστη">
+<!ENTITY foxyproxy.proxypassword.label "Κωδικός">
+<!ENTITY foxyproxy.proxypassword2.label "Επανάληψη κωδικού">
+<!ENTITY foxyproxy.proxydomain.label "Τομέας (προαιρετικό - μόνο NTLM)">
+<!ENTITY foxyproxy.proxydomain.tooltip "Μόνο πιστοποίηση NTLM">
+<!ENTITY foxyproxy.proxy.passwords.nomatch.label "Δεν ταιριάζουν οι κωδικοί για το διαμεσολαβητή, παρακαλούμε εισάγετε τους ξανά.">
+<!--     end foxyproxyplus     -->

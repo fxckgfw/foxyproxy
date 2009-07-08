@@ -373,8 +373,8 @@
 <!ENTITY foxyproxy.casesensitive.tooltip "Habilitar/Deshabilitar sensible a mayúsculas para la comparación de URL">
 <!ENTITY foxyproxy.statusbarwidth.label "Ancho fijo">
 <!ENTITY foxyproxy.statusbarwidth.accesskey "W">
-<!ENTITY foxyproxy.statusbarwidth.tooltip "Evitar redimensionado de la barra de estado">
-<!ENTITY foxyproxy.pixels "Pixels">
+<!ENTITY foxyproxy.statusbarwidth.tooltip "Evitar re-dimensionado de la barra de estado">
+<!ENTITY foxyproxy.pixels "Pixeles">
 <!ENTITY foxyproxy.unlimited.label "[0: encoger hasta ajustar]">
 <!ENTITY foxyproxy.temp.popup.label "Los patrones temporales le permiten crear pautas para URL que usted no visita a menudo sin llenar la lista de patrones para un proxy. Los patrones temporales no son guardadas en el disco. Son mantenidos en la memoria y utilizados sólo para esta sesión de Firefox.">
 <!ENTITY foxyproxy.temp.label "Temporales">
@@ -405,7 +405,7 @@
 <!ENTITY foxyproxy.proxyservice.tooltip "Regístrese para obtener los servicios de proxy">
 <!ENTITY foxyproxy.proxyservice2.label "Necesita proxies rápidos, confiables en US, UK u otros países?">
 <!ENTITY foxyproxy.getfoxyproxyplus.label "Obtenga FoxyProxy Plus">
-<!--    begin foxyproxyplus    -->
+<!--     begin foxyproxyplus     -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Agregar/Editar los Patrones de Direcciones IP Locales">
 <!ENTITY foxyproxy.tempip.popup.label "Los patrones temporales le permiten crear patrones para las direcciones IP locales que no utilice a menudo sin engrosar la lista de patrones de direcciones IP locales del proxy . Los patrones temporales no se guardan en el disco. Ellos se mantienen en memoria y en uso para la sesión Firefox en curso solamente.">
 <!ENTITY foxyproxy.ip.pattern.label "Patrón de Direcciones IP Locales">
@@ -443,4 +443,11 @@
 <!ENTITY foxyproxy.nothing.label "Nada">
 <!ENTITY foxyproxy.ippatterndeletefinal.label "Este es el último patrón de direcciones IP local. Si lo borra, este proxy no podrá ser utilizado. Continúa de todos modos?">
 <!ENTITY foxyproxy.licenseplea.label "FoxyProxy Plus cuenta con un mínimo de medidas de lucha contra la piratería. Si utiliza FoxyProxy Plus, por favor adquiera una licencia. Ha tomado muchos años de trabajo para su desarrollo y mantenimiento, y su compra me alienta a seguir.">
-<!--    end foxyproxyplus    -->
+<!ENTITY foxyproxy.authentication.label "Autenticación">
+<!ENTITY foxyproxy.proxyusername.label "Nombre de Usuario">
+<!ENTITY foxyproxy.proxypassword.label "Contraseña">
+<!ENTITY foxyproxy.proxypassword2.label "Confirme la Contraseña">
+<!ENTITY foxyproxy.proxydomain.label "Dominio (Opcional - Solamente NTLM)">
+<!ENTITY foxyproxy.proxydomain.tooltip "Autenticación NTLM solamente">
+<!ENTITY foxyproxy.proxy.passwords.nomatch.label "Las contraseñas de Proxy ingresadas no coinciden;por favor debe re-ingresarlas">
+<!--     end foxyproxyplus     -->

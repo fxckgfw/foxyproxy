@@ -11,7 +11,7 @@
 <!ENTITY foxyproxy.proxy.notes.label "代理伺服器註釋(N)">
 <!ENTITY foxyproxy.proxy.notes.accesskey "N">
 <!ENTITY foxyproxy.proxy.notes.tooltip "代理伺服器註釋">
-<!ENTITY foxyproxy.pattern.label "樣式(P)">
+<!ENTITY foxyproxy.pattern.label "樣式">
 <!ENTITY foxyproxy.urlpatterns.label "網址樣式(P)">
 <!ENTITY foxyproxy.urlpatterns.accesskey "P">
 <!ENTITY foxyproxy.urlpatterns.tooltip "網址樣式">
@@ -117,7 +117,7 @@
 <!ENTITY foxyproxy.proxydns.label "透過 SOCKS 代理伺服器查詢網域名稱(U)">
 <!ENTITY foxyproxy.proxydns.accesskey "U">
 <!ENTITY foxyproxy.proxydns.tooltip "如果啟用這個選項，會透過 SOCKS 代理伺服器查詢網域名稱">
-<!ENTITY foxyproxy.proxydns.notice "必需重新啟動 Firefox 才能生效，要馬上重新啟動嗎？">
+<!ENTITY foxyproxy.proxydns.notice "必須重新啟動 Firefox 才能生效，要馬上重新啟動嗎？">
 <!ENTITY foxyproxy.showstatusbaricon.label "在狀態列顯示小圖示(S)">
 <!ENTITY foxyproxy.showstatusbaricon.accesskey "S">
 <!ENTITY foxyproxy.showstatusbaricon.tooltip "如果啟用這個選項，在狀態列會顯示 FoxyProxy 小圖示">
@@ -285,7 +285,7 @@
 <!ENTITY foxyproxy.wildcard.reference.goal3.label "符合 abc.com 上的所有子網域及網頁">
 <!ENTITY foxyproxy.wildcard.reference.goal4.label "符合所有 a.foo.com 而非 b.foo.com 網域上的網頁">
 <!ENTITY foxyproxy.wildcard.reference.correct.label "正確">
-<!ENTITY foxyproxy.wildcard.reference.correct2.label "必需有兩個樣式">
+<!ENTITY foxyproxy.wildcard.reference.correct2.label "必須有兩個樣式">
 <!ENTITY foxyproxy.wildcard.reference.incorrect.label "錯誤">
 <!ENTITY foxyproxy.wildcard.reference.incorrect.reason.label "原因">
 <!ENTITY foxyproxy.wildcard.reference.incorrect.reason1.label "只有首頁符合，不包含萬用字元">
@@ -295,7 +295,7 @@
 <!ENTITY foxyproxy.logging.noURLs.label "不儲存或顯示任何網址(U)">
 <!ENTITY foxyproxy.logging.noURLs.accesskey "U">
 <!ENTITY foxyproxy.logging.noURLs.tooltip "網址不會儲存在記憶體或磁碟上">
-<!ENTITY foxyproxy.pattern.template.reference.label "樣式模板說明(T)">
+<!ENTITY foxyproxy.pattern.template.reference.label "樣式模板說明">
 <!ENTITY foxyproxy.pattern.template.reference.tooltip "樣式模板說明">
 <!ENTITY foxyproxy.pattern.template.reference.specialstring.label "特殊字串">
 <!ENTITY foxyproxy.pattern.template.reference.subststring.label "取代">
@@ -316,18 +316,18 @@
 <!ENTITY foxyproxy.pattern.template.reference.ref.label "「#」後面的部份">
 <!ENTITY foxyproxy.pattern.template.reference.query.label "「?」後面的部份">
 <!ENTITY foxyproxy.pattern.template.reference.spec.label "完整網址">
-<!ENTITY foxyproxy.notifications.label "通知(N)">
+<!ENTITY foxyproxy.notifications.label "通知">
 <!ENTITY foxyproxy.notifications.tooltip "通知設定">
-<!ENTITY foxyproxy.indicators.label "指示器(I)">
+<!ENTITY foxyproxy.indicators.label "指示器">
 <!ENTITY foxyproxy.indicators.tooltip "指示器設定">
-<!ENTITY foxyproxy.misc.label "其它(M)">
+<!ENTITY foxyproxy.misc.label "其它">
 <!ENTITY foxyproxy.misc.tooltip "其它雜項設定">
 <!ENTITY foxyproxy.animatedicons.label "當代理伺服器作用時顯示動畫圖示(A)">
 <!ENTITY foxyproxy.animatedicons.accesskey "A">
 <!ENTITY foxyproxy.animatedicons.tooltip "當代理伺服器作用時顯示動畫圖示（需啟動「一般設定」→「在狀態列顯示小圖示」">
-<!ENTITY foxyproxy.statusbaractivation.label "狀態列功能(S)">
+<!ENTITY foxyproxy.statusbaractivation.label "狀態列功能">
 <!ENTITY foxyproxy.statusbaractivation.tooltip "狀態列功能設定">
-<!ENTITY foxyproxy.toolbaractivation.label "工具列功能(T)">
+<!ENTITY foxyproxy.toolbaractivation.label "工具列功能">
 <!ENTITY foxyproxy.toolbaractivation.tooltip "工具列功能設定">
 <!ENTITY foxyproxy.leftclicksb.label "狀態列圖示點擊滑鼠左鍵(L)">
 <!ENTITY foxyproxy.leftclicksb.accesskey "L">
@@ -362,7 +362,7 @@
 <!ENTITY foxyproxy.newGUI.popup.height "280px">
 <!ENTITY foxyproxy.newGUI.popup.width "400px">
 <!ENTITY foxyproxy.newGUI1.label "舊的 FoxyProxy 代理伺服器設定畫面和 Firefox 的連線設定幾乎是一樣的，換句話說和 Mosaic 2.2.1 版的代理伺服器設定也是幾乎一樣，這些設定畫面有個共通的問題，就是他們處理不同協定時有所限制。21 世紀的瀏覽器像是 Firefox 能夠處理比 HTTP、SSL、FTP 及 GOPHER 更多協定，因此這些舊的設定畫面將會變的非常不方便。">
-<!ENTITY foxyproxy.newGUI2.label "因為 FoxyProxy 已經使用「萬用字元」及「正規表示法」來處理，所以不需要列出協定清單，在 2.5 版時，FoxyProxy 就已經刪掉代理伺服器設定畫面裏的協定清單，這並不會減少 FoxyProxy 的功能，反而讓使用者介面更簡潔。如果你想根據不同協定來處理，你必需小心的設定白名單及黑名單樣式上的協定格式，（範例：ftp://*.yahoo.com/*，*://leahscape.com/*，等等…）">
+<!ENTITY foxyproxy.newGUI2.label "因為 FoxyProxy 已經使用「萬用字元」及「正規表示法」來處理，所以不需要列出協定清單，在 2.5 版時，FoxyProxy 就已經刪掉代理伺服器設定畫面裏的協定清單，這並不會減少 FoxyProxy 的功能，反而讓使用者介面更簡潔。如果你想根據不同協定來處理，你必須小心的設定白名單及黑名單樣式上的協定格式，（範例：ftp://*.yahoo.com/*，*://leahscape.com/*，等等…）">
 <!ENTITY foxyproxy.newGUI4.label "點擊這裏獲得更多資訊。">
 <!ENTITY foxyproxy.error.msg.label "錯誤訊息">
 <!ENTITY foxyproxy.pac.result.label "自動組態指命碼（PAC）結果">
@@ -398,49 +398,56 @@
 <!ENTITY foxyproxy.resetlocation.label "重設位置(R)">
 <!ENTITY foxyproxy.resetlocation.accesskey "R">
 <!ENTITY foxyproxy.resetlocation.tooltip "將設定儲存在 Firefox 設定檔內">
-<!ENTITY foxyproxy.settings.not.default "Settings aren&apos;t in the default location.">
-<!ENTITY foxyproxy.change.host.reload "Set new host:port and then reload current page">
-<!ENTITY foxyproxy.proxyservice.label "Buy Proxy Service">
+<!ENTITY foxyproxy.settings.not.default "設定並未儲存在預設資料夾中">
+<!ENTITY foxyproxy.change.host.reload "設定新的「主機：連接埠」然後重新載入目前頁面">
+<!ENTITY foxyproxy.proxyservice.label "購買代理伺服器服務(P)">
 <!ENTITY foxyproxy.proxyservice.accesskey "P">
-<!ENTITY foxyproxy.proxyservice.tooltip "Sign up for proxy services">
-<!ENTITY foxyproxy.proxyservice2.label "Need fast, reliable proxies in the US, UK, or other countries?">
-<!ENTITY foxyproxy.getfoxyproxyplus.label "Get FoxyProxy Plus">
-<!--    begin foxyproxyplus    -->
-<!ENTITY foxyproxy.ip.pattern.addedit.title "Add/Edit Local IP Address Pattern">
-<!ENTITY foxyproxy.tempip.popup.label "Temporary patterns allow you to create patterns for local IP addresses that you don&apos;t use often without cluttering the IP address pattern list for a proxy. Temporary patterns are not saved to disk. They are kept in-memory and used for this Firefox session only.">
-<!ENTITY foxyproxy.ip.pattern.label "Local IP address pattern">
+<!ENTITY foxyproxy.proxyservice.tooltip "註冊代理伺服器服務">
+<!ENTITY foxyproxy.proxyservice2.label "需要在美國、英國或其它國家使用高速且可靠的代理伺服器嗎？">
+<!ENTITY foxyproxy.getfoxyproxyplus.label "取得 FoxyProxy 進階版">
+<!--     begin foxyproxyplus     -->
+<!ENTITY foxyproxy.ip.pattern.addedit.title "新增/編輯 本機 IP 位址樣式">
+<!ENTITY foxyproxy.tempip.popup.label "臨時性樣式讓你建立不常使用的本機 IP 位址樣式，這些樣式不會儲存到設定檔中造成樣式清單紊亂，而是保留在記憶體中，只在這次執行 Firefox 有效。">
+<!ENTITY foxyproxy.ip.pattern.label "本機 IP 位址樣式">
 <!ENTITY foxyproxy.ip.pattern.accesskey "I">
-<!ENTITY foxyproxy.ip.pattern.tooltip "Local IP address pattern">
-<!ENTITY foxyproxy.ip.patterns.label "Local IP Address Patterns">
+<!ENTITY foxyproxy.ip.pattern.tooltip "本機 IP 位址樣式">
+<!ENTITY foxyproxy.ip.patterns.label "本機 IP 位址樣式">
 <!ENTITY foxyproxy.ip.patterns.accesskey "I">
-<!ENTITY foxyproxy.ip.patterns.tooltip "Local IP address patterns">
-<!ENTITY foxyproxy.ip.wildcard.reference.matches.label "Matches">
-<!ENTITY foxyproxy.ip.wildcard.reference.nomatch.label "Doesn&apos;t Match">
-<!ENTITY foxyproxy.ip.whiteblack.label "Inclusion/Exclusion">
-<!ENTITY foxyproxy.ip.whitelist.description.label "URLs load through this proxy when one of your IP addresses matches this pattern">
-<!ENTITY foxyproxy.ip.blacklist.description.label "URLs do NOT load through this proxy when one of your IP addresses matches this pattern">
-<!ENTITY foxyproxy.ip.wildcard.reference.subtitle.label "The asterisk (*) matches zero or more characters.">
-<!ENTITY foxyproxy.ip.current.local.label "Current Local IP addresses">
-<!ENTITY foxyproxy.copyip.label "Copy to Pattern">
-<!ENTITY foxyproxy.copyip.tooltip "Copy address to pattern">
+<!ENTITY foxyproxy.ip.patterns.tooltip "本機 IP 位址樣式">
+<!ENTITY foxyproxy.ip.wildcard.reference.matches.label "符合">
+<!ENTITY foxyproxy.ip.wildcard.reference.nomatch.label "不符合">
+<!ENTITY foxyproxy.ip.whiteblack.label "包含/例外">
+<!ENTITY foxyproxy.ip.whitelist.description.label "當你的 IP 位址其中一個符合此樣式時，透過此代理伺服器存取網址">
+<!ENTITY foxyproxy.ip.blacklist.description.label "當你的 IP 位址其中一個符合此樣式時，不透過此代理伺服器存取網址">
+<!ENTITY foxyproxy.ip.wildcard.reference.subtitle.label "星號（*）符合零或多個字元">
+<!ENTITY foxyproxy.ip.current.local.label "目前的本機 IP 位址">
+<!ENTITY foxyproxy.copyip.label "複製到樣式(C)">
+<!ENTITY foxyproxy.copyip.tooltip "複製位址到樣式">
 <!ENTITY foxyproxy.copyip.accesskey "C">
-<!ENTITY foxyproxy.ip.wildcard.example.label "Example: 192.168.1.*">
-<!ENTITY foxyproxy.ip.regex.example.label "Example: 172\.\d+\.1\.10">
-<!ENTITY foxyproxy.ip.pattern.match "Pattern matches one or more or current local IP addresses">
-<!ENTITY foxyproxy.ip.pattern.no.match "Pattern doesn&apos;t match any current local IP address">
-<!ENTITY foxyproxy.refreshlocalips "Refresh local IP addresses">
+<!ENTITY foxyproxy.ip.wildcard.example.label "範例：192.168.1.*">
+<!ENTITY foxyproxy.ip.regex.example.label "範例：172\.\d+\.1\.10">
+<!ENTITY foxyproxy.ip.pattern.match "樣式符合一個或多個目前的本機 IP 位址">
+<!ENTITY foxyproxy.ip.pattern.no.match "樣式不符合任何目前的本機 IP 位址">
+<!ENTITY foxyproxy.refreshlocalips "重新整理本機 IP 位址(R)">
 <!ENTITY foxyproxy.refreshlocalips.accesskey "R">
-<!ENTITY foxyproxy.enterlicense.label "Enter license key">
-<!ENTITY foxyproxy.enteremail.label "Enter email address">
-<!ENTITY foxyproxy.licenseinfo.label "License Info">
-<!ENTITY foxyproxy.licensevalid.label "License valid. Thank you for purchasing FoxyProxy Plus.">
-<!ENTITY foxyproxy.licenseinvalid.label "License invalid. You won&apos;t receive FoxyProxyPlus updates. Please purchase FoxyProxy Plus.">
-<!ENTITY foxyproxy.buynow.label "Buy Now">
-<!ENTITY foxyproxy.checklicense.label "Check License">
-<!ENTITY foxyproxy.checkinglicense.label "Checking...please wait">
-<!ENTITY foxyproxy.routetoleahscape.label "Please make sure Firefox can reach https://leahscape.com/fpplus/license_check.php either with or without a proxy. You can configure patterns for this URL in FoxyProxy Plus if necessary.">
-<!ENTITY foxyproxy.everything.label "Everything">
-<!ENTITY foxyproxy.nothing.label "Nothing">
-<!ENTITY foxyproxy.ippatterndeletefinal.label "This is the last local IP address pattern. If you delete it, this proxy has no possibility of being used. Continue anyway?">
-<!ENTITY foxyproxy.licenseplea.label "FoxyProxy Plus has minimal anti-piracy measures. If you use FoxyProxy Plus, please purchase a license. It&apos;s taken many years of work to develop and maintain, and your purchase encourages me to continue.">
-<!--    end foxyproxyplus    -->
+<!ENTITY foxyproxy.enterlicense.label "輸入註冊碼">
+<!ENTITY foxyproxy.enteremail.label "輸入電子郵件">
+<!ENTITY foxyproxy.licenseinfo.label "註冊資訊">
+<!ENTITY foxyproxy.licensevalid.label "有效的註冊碼，感謝你購買 FoxyProxy 進階版">
+<!ENTITY foxyproxy.licenseinvalid.label "無效的註冊碼，你將不會收到任何 FoxyProxy 進階版的更新，請購買 FoxyProxy 進階版">
+<!ENTITY foxyproxy.buynow.label "立即購買">
+<!ENTITY foxyproxy.checklicense.label "檢查註冊碼">
+<!ENTITY foxyproxy.checkinglicense.label "檢查中…請稍待">
+<!ENTITY foxyproxy.routetoleahscape.label "請確認 Firefox 能夠存取 https://leahscape.com/fpplus/license_check.php 這個網址（不論是否透過代理伺服器），如果有需要，你可以在 FoxyProxy 進階版中為這個網址設定一個樣式。">
+<!ENTITY foxyproxy.everything.label "全部">
+<!ENTITY foxyproxy.nothing.label "無">
+<!ENTITY foxyproxy.ippatterndeletefinal.label "這是最後一個本機 IP 位址樣式，如果你刪除此樣式，就不可能使用這個代理伺服器，要繼續嗎？">
+<!ENTITY foxyproxy.licenseplea.label "FoxyProxy 進階版有防盜版措施，如果你要使用 FoxyProxy 進階版，請購買註冊碼。FoxyProxy 進階版花了幾年的時間來開發及維護，你的購買是鼓勵我持續開發的動力。">
+<!ENTITY foxyproxy.authentication.label "認證">
+<!ENTITY foxyproxy.proxyusername.label "使用者名稱">
+<!ENTITY foxyproxy.proxypassword.label "密碼">
+<!ENTITY foxyproxy.proxypassword2.label "密碼 - 再次輸入">
+<!ENTITY foxyproxy.proxydomain.label "網域（非必要的 - 只用於 NTLM）">
+<!ENTITY foxyproxy.proxydomain.tooltip "只用於 NTLM 認證">
+<!ENTITY foxyproxy.proxy.passwords.nomatch.label "代理伺服器密碼錯誤，請重新輸入">
+<!--     end foxyproxyplus     -->

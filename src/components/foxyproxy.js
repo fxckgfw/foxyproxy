@@ -522,6 +522,12 @@ biesi>  passing it the appropriate proxyinfo
     }
   },
 
+  get resetIconColors() { return this._resetIconColors; },
+  set resetIconColors(p) {
+    this._resetIconColors = p;
+    this.writeSettings();
+  },
+
   get proxyDNS() { return this._proxyDNS; },
   set proxyDNS(p) {
     this._proxyDNS = p;
@@ -605,6 +611,7 @@ biesi>  passing it the appropriate proxyinfo
       (node.getAttribute("enabledState") == "" ? "disabled" : node.getAttribute("enabledState")) :
       node.getAttribute("mode"); // renamed to mode in 2.0
     this._previousMode = gGetSafeAttr(node, "previousMode", "patterns");
+    this._resetIconColors = gGetSafeAttrB(node, "resetIconColors", true); // new for 2.10
     this.proxies.fromDOM(mode, doc);
     this.setMode(mode, false, true);
     this.random.fromDOM(doc); 
@@ -623,6 +630,7 @@ biesi>  passing it the appropriate proxyinfo
     e.setAttribute("contextMenu", this._contextMenu);
     e.setAttribute("advancedMenus", this._advancedMenus);
     e.setAttribute("previousMode", this._previousMode);
+    e.setAttribute("resetIconColors", this._resetIconColors);
     e.appendChild(this.random.toDOM(doc));
     e.appendChild(this.statusbar.toDOM(doc));
     e.appendChild(this.toolbar.toDOM(doc));

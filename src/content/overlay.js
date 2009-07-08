@@ -440,7 +440,7 @@ var foxyproxy = {
         if (this.runners == 0) {
           var modeAsText = foxyproxy.getModeAsText(foxyproxy.fp.mode);
           foxyproxy.setStatusText(modeAsText);          
-          this.resetIconColors(modeAsText);
+          foxyproxy.fp.resetIconColors && this.resetIconColors(modeAsText);
         }
         return;
       }
@@ -473,7 +473,7 @@ var foxyproxy = {
       if (!mp.wrappedJSObject.animatedIcons) {
         var modeAsText = foxyproxy.getModeAsText(foxyproxy.fp.mode);
         foxyproxy.setStatusText(modeAsText);
-        foxyproxy.svgIcons.resetIconColors(modeAsText);
+        foxyproxy.fp.resetIconColors && foxyproxy.svgIcons.resetIconColors(modeAsText);
       }
     },
     

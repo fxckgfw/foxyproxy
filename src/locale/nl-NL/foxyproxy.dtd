@@ -129,7 +129,7 @@
 <!ENTITY foxyproxy.storagelocation.tooltip "Locatie waar de instellingen van FoxyProxy worden opgeslagen">
 <!ENTITY foxyproxy.tab.logging.timestamp.label "Tijdsaanduiding">
 <!ENTITY foxyproxy.tab.logging.url.label "URL">
-<!ENTITY foxyproxy.host.label.2 "Host or IP Address">
+<!ENTITY foxyproxy.host.label.2 "Host of IP-adres">
 <!ENTITY foxyproxy.host.accesskey "o">
 <!ENTITY foxyproxy.clear.label "Wissen">
 <!ENTITY foxyproxy.clear.accesskey "W">
@@ -152,7 +152,7 @@
 <!ENTITY foxyproxy.blacklist.tooltip "URL’s die met dit patroon overeenkomen worden NIET via deze proxy geladen">
 <!ENTITY foxyproxy.blacklist.description.label "URL’s die met dit patroon overeenkomen worden NIET via deze proxy geladen">
 <!ENTITY foxyproxy.whiteblack.description.label "Zwarte lijst (uitsluitings-) patronen hebben voorrang boven witte lijst (opname-) patronen: als een URL overeenkomt met een witte lijst-patroon en een zwarte lijst-patroon voor de zelfde proxy wordt deze niet geladen via die proxy.">
-<!ENTITY foxyproxy.socks.version.label "SOCKS versie">
+<!ENTITY foxyproxy.socks.version.label "SOCKS-versie">
 <!ENTITY foxyproxy.autopacurl.label "Automatische PAC-URL">
 <!ENTITY foxyproxy.issocks.label "SOCKS-proxy?">
 <!ENTITY foxyproxy.issocks.accesskey "S">
@@ -398,49 +398,56 @@
 <!ENTITY foxyproxy.resetlocation.label "Locatie verversen">
 <!ENTITY foxyproxy.resetlocation.accesskey "R">
 <!ENTITY foxyproxy.resetlocation.tooltip "Instellingen opslaan in Firefoxprofiel">
-<!ENTITY foxyproxy.settings.not.default "Settings aren&apos;t in the default location.">
-<!ENTITY foxyproxy.change.host.reload "Set new host:port and then reload current page">
-<!ENTITY foxyproxy.proxyservice.label "Buy Proxy Service">
+<!ENTITY foxyproxy.settings.not.default "De instellingen bevinden zich niet op de standaardlokatie.">
+<!ENTITY foxyproxy.change.host.reload "Nieuwe host:port instellen en vervolgens huidige pagina opnieuw laden">
+<!ENTITY foxyproxy.proxyservice.label "Proxydienst kopen">
 <!ENTITY foxyproxy.proxyservice.accesskey "P">
-<!ENTITY foxyproxy.proxyservice.tooltip "Sign up for proxy services">
-<!ENTITY foxyproxy.proxyservice2.label "Need fast, reliable proxies in the US, UK, or other countries?">
-<!ENTITY foxyproxy.getfoxyproxyplus.label "Get FoxyProxy Plus">
-<!--    begin foxyproxyplus    -->
-<!ENTITY foxyproxy.ip.pattern.addedit.title "Add/Edit Local IP Address Pattern">
-<!ENTITY foxyproxy.tempip.popup.label "Temporary patterns allow you to create patterns for local IP addresses that you don&apos;t use often without cluttering the IP address pattern list for a proxy. Temporary patterns are not saved to disk. They are kept in-memory and used for this Firefox session only.">
-<!ENTITY foxyproxy.ip.pattern.label "Local IP address pattern">
+<!ENTITY foxyproxy.proxyservice.tooltip "Aanmelden voor proxydiensten">
+<!ENTITY foxyproxy.proxyservice2.label "Behoefte aan snelle, betrouwbare proxy’s in de VS, het VK of andere landen?">
+<!ENTITY foxyproxy.getfoxyproxyplus.label "Installeer FoxyProxy Plus">
+<!--     begin foxyproxyplus     -->
+<!ENTITY foxyproxy.ip.pattern.addedit.title "Lokaal IP-adrespatroon toevoegen/bewerken">
+<!ENTITY foxyproxy.tempip.popup.label "Met tijdelijke patronen kunt u patronen voor lokale IP-adressen  die u niet vaak gebruikt creëren zonder dat de IP-adressenpatroonlijst voor een proxy wordt vervuild. Tijdelijke patronen wordne niet opgeslagen. Ze worden alleen tijdens deze Firefoxsessie in het geheugen bewaard.">
+<!ENTITY foxyproxy.ip.pattern.label "Lokaal IP-adrespatroon">
 <!ENTITY foxyproxy.ip.pattern.accesskey "I">
-<!ENTITY foxyproxy.ip.pattern.tooltip "Local IP address pattern">
-<!ENTITY foxyproxy.ip.patterns.label "Local IP Address Patterns">
+<!ENTITY foxyproxy.ip.pattern.tooltip "Lokaal IP-adrespatroon">
+<!ENTITY foxyproxy.ip.patterns.label "Lokale IP-adrespatronen">
 <!ENTITY foxyproxy.ip.patterns.accesskey "I">
-<!ENTITY foxyproxy.ip.patterns.tooltip "Local IP address patterns">
-<!ENTITY foxyproxy.ip.wildcard.reference.matches.label "Matches">
-<!ENTITY foxyproxy.ip.wildcard.reference.nomatch.label "Doesn&apos;t Match">
-<!ENTITY foxyproxy.ip.whiteblack.label "Inclusion/Exclusion">
-<!ENTITY foxyproxy.ip.whitelist.description.label "URLs load through this proxy when one of your IP addresses matches this pattern">
-<!ENTITY foxyproxy.ip.blacklist.description.label "URLs do NOT load through this proxy when one of your IP addresses matches this pattern">
-<!ENTITY foxyproxy.ip.wildcard.reference.subtitle.label "The asterisk (*) matches zero or more characters.">
-<!ENTITY foxyproxy.ip.current.local.label "Current Local IP addresses">
-<!ENTITY foxyproxy.copyip.label "Copy to Pattern">
-<!ENTITY foxyproxy.copyip.tooltip "Copy address to pattern">
-<!ENTITY foxyproxy.copyip.accesskey "C">
-<!ENTITY foxyproxy.ip.wildcard.example.label "Example: 192.168.1.*">
-<!ENTITY foxyproxy.ip.regex.example.label "Example: 172\.\d+\.1\.10">
-<!ENTITY foxyproxy.ip.pattern.match "Pattern matches one or more or current local IP addresses">
-<!ENTITY foxyproxy.ip.pattern.no.match "Pattern doesn&apos;t match any current local IP address">
-<!ENTITY foxyproxy.refreshlocalips "Refresh local IP addresses">
-<!ENTITY foxyproxy.refreshlocalips.accesskey "R">
-<!ENTITY foxyproxy.enterlicense.label "Enter license key">
-<!ENTITY foxyproxy.enteremail.label "Enter email address">
-<!ENTITY foxyproxy.licenseinfo.label "License Info">
-<!ENTITY foxyproxy.licensevalid.label "License valid. Thank you for purchasing FoxyProxy Plus.">
-<!ENTITY foxyproxy.licenseinvalid.label "License invalid. You won&apos;t receive FoxyProxyPlus updates. Please purchase FoxyProxy Plus.">
-<!ENTITY foxyproxy.buynow.label "Buy Now">
-<!ENTITY foxyproxy.checklicense.label "Check License">
-<!ENTITY foxyproxy.checkinglicense.label "Checking...please wait">
-<!ENTITY foxyproxy.routetoleahscape.label "Please make sure Firefox can reach https://leahscape.com/fpplus/license_check.php either with or without a proxy. You can configure patterns for this URL in FoxyProxy Plus if necessary.">
-<!ENTITY foxyproxy.everything.label "Everything">
-<!ENTITY foxyproxy.nothing.label "Nothing">
-<!ENTITY foxyproxy.ippatterndeletefinal.label "This is the last local IP address pattern. If you delete it, this proxy has no possibility of being used. Continue anyway?">
-<!ENTITY foxyproxy.licenseplea.label "FoxyProxy Plus has minimal anti-piracy measures. If you use FoxyProxy Plus, please purchase a license. It&apos;s taken many years of work to develop and maintain, and your purchase encourages me to continue.">
-<!--    end foxyproxyplus    -->
+<!ENTITY foxyproxy.ip.patterns.tooltip "Lokale IP-adrespatronen">
+<!ENTITY foxyproxy.ip.wildcard.reference.matches.label "Komt overeen">
+<!ENTITY foxyproxy.ip.wildcard.reference.nomatch.label "Komt niet overeen">
+<!ENTITY foxyproxy.ip.whiteblack.label "Opnemen/uitsluiten">
+<!ENTITY foxyproxy.ip.whitelist.description.label "URL’s worden via deze proxy geladen wanneer één van uw IP-adressen overeenkomt met dit patroon">
+<!ENTITY foxyproxy.ip.blacklist.description.label "URL’s worden NIET via deze proxy geladen wanneer één van uw IP-adressen overeenkomt met dit patroon">
+<!ENTITY foxyproxy.ip.wildcard.reference.subtitle.label "De asterisk (*) komt overeen met nul of meer karakters.">
+<!ENTITY foxyproxy.ip.current.local.label "Huidige lokale IP-adressen">
+<!ENTITY foxyproxy.copyip.label "Naar patroon kopiëren">
+<!ENTITY foxyproxy.copyip.tooltip "Adres naar patroon kopiëren">
+<!ENTITY foxyproxy.copyip.accesskey "K">
+<!ENTITY foxyproxy.ip.wildcard.example.label "Voorbeeld: 192.168.1.*">
+<!ENTITY foxyproxy.ip.regex.example.label "Voorbeeld: 172\.\d+\.1\.10">
+<!ENTITY foxyproxy.ip.pattern.match "Patroon komt overeen met één of meer van de huidige lokale IP-adressen">
+<!ENTITY foxyproxy.ip.pattern.no.match "Patroon komt niet overeen met huidige lokale IP-adressen">
+<!ENTITY foxyproxy.refreshlocalips "Lokale IP-adressen vernieuwen">
+<!ENTITY foxyproxy.refreshlocalips.accesskey "N">
+<!ENTITY foxyproxy.enterlicense.label "Voer licentiesleutel in">
+<!ENTITY foxyproxy.enteremail.label "Voer e-mailadres in">
+<!ENTITY foxyproxy.licenseinfo.label "Licentieinformatie">
+<!ENTITY foxyproxy.licensevalid.label "Licentie geldig. Bedankt voor het kopen van FoxyProxy Plus.">
+<!ENTITY foxyproxy.licenseinvalid.label "Licentie ongeldig. U ontvangt geen updates voor FoxyProxy Plus. Koop a.u.b. FoxyProxy Plus.">
+<!ENTITY foxyproxy.buynow.label "Nu kopen">
+<!ENTITY foxyproxy.checklicense.label "Licentie controleren">
+<!ENTITY foxyproxy.checkinglicense.label "Controleren… wachten a.u.b.">
+<!ENTITY foxyproxy.routetoleahscape.label "Zorg er a.u.b. voor dat Firefox met of zonder een proxy contact kan maken met https://leahscape.com/fpplus/license_check.php. U kunt patronen voor deze URL indien nodig in FoxyProxy Plus instellen.">
+<!ENTITY foxyproxy.everything.label "Alles">
+<!ENTITY foxyproxy.nothing.label "Niets">
+<!ENTITY foxyproxy.ippatterndeletefinal.label "Dit is het laatste lokale IP-adrespatroon. Indien u dit verwijdert kan deze proxy niet worden gebruikt. Toch doorgaan?">
+<!ENTITY foxyproxy.licenseplea.label "FoxyProxy Plus heeft minimale anti-piraterijmaatregelen. Indien u FoxyProxy Plus gebruikt, koop dan een licentie. Het heeft me vele jaren van werk gekost om het te ontwikkelen en onderhouden, en uw aankoop stimuleert me om dit door te zetten.">
+<!ENTITY foxyproxy.authentication.label "Authenticatie">
+<!ENTITY foxyproxy.proxyusername.label "Gebruikersnaam">
+<!ENTITY foxyproxy.proxypassword.label "Wachtwoord">
+<!ENTITY foxyproxy.proxypassword2.label "Wachtwoord - opnieuw">
+<!ENTITY foxyproxy.proxydomain.label "Domein (optioneel - uitsluitend NTLM)">
+<!ENTITY foxyproxy.proxydomain.tooltip "Alleen NTLM-authenticatie">
+<!ENTITY foxyproxy.proxy.passwords.nomatch.label "Proxywachtwoorden komen niet overeen; voer het a.u.b. opnieuw in">
+<!--     end foxyproxyplus     -->

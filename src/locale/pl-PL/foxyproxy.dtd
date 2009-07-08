@@ -405,7 +405,7 @@
 <!ENTITY foxyproxy.proxyservice.tooltip "Zarejestruj się w usługach proxy">
 <!ENTITY foxyproxy.proxyservice2.label "Potrzebujesz szybkich, niezawodnych proxy w USA, UK lub innych krajach?">
 <!ENTITY foxyproxy.getfoxyproxyplus.label "Skorzystaj z FoxyProxy Plus">
-<!--     begin foxyproxyplus     -->
+<!--      begin foxyproxyplus      -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Dodaj/edytuj wzorzec lokalnego adresu IP">
 <!ENTITY foxyproxy.tempip.popup.label "Wzorce tymczasowe pozwalają na tworzenie wzorców lokalnego adresu IP nie używanych często. Dzięki temu lista wzorców nie jest niepotrzebnie przeładowywana. Wzorce tymczasowe nie są zapisywane na dysku. Są one trzymane w pamięci i używane tylko w aktualnej sesji Firefoksa.">
 <!ENTITY foxyproxy.ip.pattern.label "Wzorzec lokalnego adresu  IP">
@@ -443,4 +443,11 @@
 <!ENTITY foxyproxy.nothing.label "Nic">
 <!ENTITY foxyproxy.ippatterndeletefinal.label "To jest wzorzec ostatniego lokalnego adresu IP. Jeśli go usuniesz, nie będziesz mieć możliwości używania tego proxy. Kontynuować?">
 <!ENTITY foxyproxy.licenseplea.label "FoxyProxy Plus ma minimalne zabezpieczenia anty-pirackie. Jeśli używasz FoxyProxy Plus, kup licencję. Stworzenie FoxyProxy zajęło autorowi wiele lat pracy. Zakup licencji zachęci go do dalszego rozwoju rozszerzenia.">
-<!--     end foxyproxyplus     -->
+<!ENTITY foxyproxy.authentication.label "Autoryzacja">
+<!ENTITY foxyproxy.proxyusername.label "Nazwa użytkownika">
+<!ENTITY foxyproxy.proxypassword.label "Hasło">
+<!ENTITY foxyproxy.proxypassword2.label "Powtórz hasło">
+<!ENTITY foxyproxy.proxydomain.label "Domena (opcjonalna – tylko NTLM)">
+<!ENTITY foxyproxy.proxydomain.tooltip "Tylko autoryzacja NTLM">
+<!ENTITY foxyproxy.proxy.passwords.nomatch.label "Hasła proxy nie zgadzają się; wprowadź je ponownie.">
+<!--      end foxyproxyplus      -->

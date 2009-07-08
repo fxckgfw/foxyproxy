@@ -405,7 +405,7 @@
 <!ENTITY foxyproxy.proxyservice.tooltip "Se connecter pour des services proxy">
 <!ENTITY foxyproxy.proxyservice2.label "Nécessite des proxies rapides et fiables aux États-Unis, en Angleterre ou dans d&apos;autres pays ?">
 <!ENTITY foxyproxy.getfoxyproxyplus.label "Obtenir FoxyProxy Plus">
-<!--    begin foxyproxyplus    -->
+<!--     begin foxyproxyplus     -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Ajouter / éditer un motif d&apos;adresse IP Locale">
 <!ENTITY foxyproxy.tempip.popup.label "Les motifs temporaires vous permettent de créer des motifs  que vous n&apos;utilisez pas souvent afin d&apos;éviter de surcharger la liste des motifs d&apos;adresse IP pour un proxy. Les motifs temporaires ne sont pas enregistrés sur le disque. Ils sont conservés en mémoire et ne sont utilisés que dans cette session Firefox.">
 <!ENTITY foxyproxy.ip.pattern.label "Motif d&apos;adresse IP locale">
@@ -443,4 +443,11 @@
 <!ENTITY foxyproxy.nothing.label "Rien">
 <!ENTITY foxyproxy.ippatterndeletefinal.label "Ceci est le dernier motif d&apos;adresse IP locale. Si vous le supprimez, ce proxy ne pourra pas être utilisé. Continuer tout de même ?">
 <!ENTITY foxyproxy.licenseplea.label "FoxyProxy Plus comporte des mesures contre le piratage minimales. Si vous utilisez FoxyProxy Plus, veuillez acheter une licence. Cela a pris plusieurs années de travail de développement et de maintenance, votre achat m&apos;encouragera à continuer.">
-<!--    end foxyproxyplus    -->
+<!ENTITY foxyproxy.authentication.label "Authentification">
+<!ENTITY foxyproxy.proxyusername.label "Nom d&apos;utilisateur">
+<!ENTITY foxyproxy.proxypassword.label "Mot de passe">
+<!ENTITY foxyproxy.proxypassword2.label "Mot de passe - à nouveau">
+<!ENTITY foxyproxy.proxydomain.label "Domaine (facultatif - uniquement NTML)">
+<!ENTITY foxyproxy.proxydomain.tooltip "Uniquement pour authentification NTML">
+<!ENTITY foxyproxy.proxy.passwords.nomatch.label "Les mots de passe de proxy ne coïncident pas, veuillez réessayer.">
+<!--     end foxyproxyplus     -->

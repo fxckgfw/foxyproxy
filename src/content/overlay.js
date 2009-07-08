@@ -10,13 +10,9 @@
 **/
 
 var foxyproxy = {
-  checkboxType : Components.interfaces.nsITreeColumn.TYPE_CHECKBOX,
   fp : Components.classes["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject,
   fpc : Components.classes["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject,
   statusText : null,
-  contextMenuIcon : null,
-  toolbarIcon : null,
-  toolsMenuIcon : null,
   notes: ["foxyproxy-statusbar-icon","foxyproxy-statusbar-text","foxyproxy-statusbar-width","foxyproxy-toolsmenu",
     "foxyproxy-contextmenu","foxyproxy-mode-change","foxyproxy-throb","foxyproxy-updateviews","foxyproxy-autoadd-toggle"],
 
@@ -139,7 +135,7 @@ var foxyproxy = {
     getNavToolbox().customizeChange = function() {
       /* Our toolbar icon was added or removed to/from the toolbar. Recalc the svgicon arrays */
       foxyproxy.svgIcons.init();
-      if (document.getElementById("toolbar-icon-3")) {
+      if (document.getElementById("fp-toolbar-icon-3")) {
         /* Our toolbar icon was added. Apply the proper icon coloring to the toolbar icon by setting the mode again */
         foxyproxy.setMode(foxyproxy.fp.mode);
       }
@@ -151,10 +147,8 @@ var foxyproxy = {
   onLoad : function() {
     this.svgIcons.init();
     this.statusText = document.getElementById("foxyproxy-status-text");
-    this.contextMenuIcon = document.getElementById("contextmenu-icon-3");
     setTimeout(this.findToolbarIcon, 100);
     
-    this.toolsMenuIcon = document.getElementById("toolsmenu-icon-3");
     var obSvc = Components.classes["@mozilla.org/observer-service;1"].getService(Components.interfaces.nsIObserverService);
     for (var i in this.notes) {
       obSvc.addObserver(this, this.notes[i], false);
@@ -170,11 +164,11 @@ var foxyproxy = {
   },
 
   toggleToolsMenu : function(e) {
-    this.toolsMenuIcon.hidden = !e;
+    document.getElementById("fp-toolsmenu-icon-3").hidden = !e;
   },
 
   toggleContextMenu : function(e) {
-    this.contextMenuIcon.hidden = !e;
+    document.getElementById("fp-contextmenu-icon-3").hidden = !e;
   },
   
   torWizard : function(firstTime) {
@@ -390,24 +384,24 @@ var foxyproxy = {
     iconDisabledMask : null,
     
     init : function() {
-      this.icons = [document.getElementById("statusbar-icon-wrapper"),
-        document.getElementById("contextmenu-icon-wrapper"), document.getElementById("toolsmenu-icon-wrapper")];
+      this.icons = [document.getElementById("fp-statusbar-icon-wrapper"),
+        document.getElementById("fp-contextmenu-icon-wrapper"), document.getElementById("fp-toolsmenu-icon-wrapper")];
       
-      if (document.getElementById("toolbar-icon-wrapper")) { /* null if user isn't using our toolbar icon */
-        this.icons.push(document.getElementById("toolbar-icon-wrapper"));
+      if (document.getElementById("fp-toolbar-icon-wrapper")) { /* null if user isn't using our toolbar icon */
+        this.icons.push(document.getElementById("fp-toolbar-icon-wrapper"));
       }
       
-      this.iconColorNodes = [document.getElementById("statusbar-icon-3"),        
-        document.getElementById("contextmenu-icon-3"), document.getElementById("toolsmenu-icon-3")];
+      this.iconColorNodes = [document.getElementById("fp-statusbar-icon-3"),        
+        document.getElementById("fp-contextmenu-icon-3"), document.getElementById("fp-toolsmenu-icon-3")];
       
-      if (document.getElementById("toolbar-icon-3")) /* null if user isn't using our toolbar icon */
-        this.iconColorNodes.push(document.getElementById("toolbar-icon-3"));
+      if (document.getElementById("fp-toolbar-icon-3")) /* null if user isn't using our toolbar icon */
+        this.iconColorNodes.push(document.getElementById("fp-toolbar-icon-3"));
 
-      this.iconDisabledMask = [document.getElementById("statusbar-disabled-wrapper"),        
-        document.getElementById("contextmenu-disabled-wrapper"), document.getElementById("toolsmenu-disabled-wrapper")];
+      this.iconDisabledMask = [document.getElementById("fp-statusbar-disabled-wrapper"),        
+        document.getElementById("fp-contextmenu-disabled-wrapper"), document.getElementById("fp-toolsmenu-disabled-wrapper")];
       
-      if (document.getElementById("toolbar-disabled-wrapper")) /* null if user isn't using our toolbar icon */
-        this.iconDisabledMask.push(document.getElementById("toolbar-disabled-wrapper"));
+      if (document.getElementById("fp-toolbar-disabled-wrapper")) /* null if user isn't using our toolbar icon */
+        this.iconDisabledMask.push(document.getElementById("fp-toolbar-disabled-wrapper"));
     },
     
     animate : function() {
@@ -555,7 +549,7 @@ var foxyproxy = {
   onTreeClick : function(e, tree) {
     var row = {}, col = {};
     tree.treeBoxObject.getCellAt(e.clientX, e.clientY, row, col, {});
-    row.value > -1 && col.value && col.value.type == this.checkboxType && tree.view.selection.select(row.value);
+    row.value > -1 && col.value && col.value.type == Components.interfaces.nsITreeColumn.TYPE_CHECKBOX && tree.view.selection.select(row.value);
   },
 
   ///////////////// menu \\\\\\\\\\\\\\\\\\\\\

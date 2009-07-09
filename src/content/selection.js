@@ -35,7 +35,7 @@ foxyproxy.selection = {
             return r;
           }
           if (fp.mode == "disabled")
-            r = askAboutSwitching("enable.before.reloading");
+            r = askAboutSwitching("enable.before.reloading.2");
           else if (fp.mode != "patterns" && fp.mode != "random" && fp.mode != "roundrobin" && fp.mode != p.proxy.id)
             r = askAboutSwitching("switch.before.reloading", fp._selectedProxy.name);
           if (r != 2 && p.proxy.mode != "manual") {

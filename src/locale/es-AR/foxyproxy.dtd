@@ -72,6 +72,7 @@
 <!ENTITY foxyproxy.regex.example.label "Ejemplo: https?://.*\.mail\.yahoo\.com/.*">
 <!ENTITY foxyproxy.version "Versión">
 <!ENTITY foxyproxy.createdBy "Creado Por">
+<!ENTITY foxyproxy.contributionsBy "Contribuyeron">
 <!ENTITY foxyproxy.copyright "Derechos de Autor">
 <!ENTITY foxyproxy.rights "Todos los Derechos Reservados">
 <!ENTITY foxyproxy.released "Liberado bajo la licencia GPL.">
@@ -391,7 +392,6 @@
 <!ENTITY foxyproxy.donations "Donaciones">
 <!ENTITY foxyproxy.please.donate.label "Por favor Contribuya">
 <!ENTITY foxyproxy.please.donate.accesskey "D">
-<!ENTITY foxyproxy.keep.free "Mantenga a FoxyProxy Libre">
 <!ENTITY foxyproxy.donation.list.label "Lista de Donaciones">
 <!ENTITY foxyproxy.donation.list.accesskey "L">
 <!ENTITY foxyproxy.importantnote.label "Leer Nota importante">
@@ -405,7 +405,12 @@
 <!ENTITY foxyproxy.proxyservice.tooltip "Regístrese para obtener los servicios de proxy">
 <!ENTITY foxyproxy.proxyservice2.label "Necesita proxies rápidos, confiables en US, UK u otros países?">
 <!ENTITY foxyproxy.getfoxyproxyplus.label "Obtenga FoxyProxy Plus">
-<!--     begin foxyproxyplus     -->
+<!ENTITY foxyproxy.aboutdonate.label "El botón de donar te lleva a PayPal, donde usted puede donar al proyecto FoxyProxy para fomentar y apoyar su desarrollo. Si usted usa regularmente FoxyProxy, por favor, considere donar.">
+<!ENTITY foxyproxy.aboutfpplus.label "El botón FoxyProxy Plus lo lleva a un sitio web donde se puede leer acerca de las características adicionales de la edición Plus y, opcionalmente, comprarlo.">
+<!ENTITY foxyproxy.aboutproxyservice.label "Por último, el botón servicio proxy te lleva a nuestro servicio de proxy web, donde puedes comprar servicios proxy fiables, de alto ancho de banda en diferentes países a precios razonables.">
+<!ENTITY foxyproxy.invalidcolor.label "Color inválido">
+<!ENTITY foxyproxy.validcolor.label "Color válido">
+<!--      begin foxyproxyplus      -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Agregar/Editar los Patrones de Direcciones IP Locales">
 <!ENTITY foxyproxy.tempip.popup.label "Los patrones temporales le permiten crear patrones para las direcciones IP locales que no utilice a menudo sin engrosar la lista de patrones de direcciones IP locales del proxy . Los patrones temporales no se guardan en el disco. Ellos se mantienen en memoria y en uso para la sesión Firefox en curso solamente.">
 <!ENTITY foxyproxy.ip.pattern.label "Patrón de Direcciones IP Locales">
@@ -450,4 +455,4 @@
 <!ENTITY foxyproxy.proxydomain.label "Dominio (Opcional - Solamente NTLM)">
 <!ENTITY foxyproxy.proxydomain.tooltip "Autenticación NTLM solamente">
 <!ENTITY foxyproxy.proxy.passwords.nomatch.label "Las contraseñas de Proxy ingresadas no coinciden;por favor debe re-ingresarlas">
-<!--     end foxyproxyplus     -->
+<!--      end foxyproxyplus      -->

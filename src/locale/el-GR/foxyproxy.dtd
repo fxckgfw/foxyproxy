@@ -71,7 +71,8 @@
 <!ENTITY foxyproxy.regex.tooltip "Διευκρινίζει ότι το πρότυπο URL είναι κανονική έκφραση">
 <!ENTITY foxyproxy.regex.example.label "Παράδειγμα : https?://.*\.mail\.yahoo\.com/.*">
 <!ENTITY foxyproxy.version "Έκδοση">
-<!ENTITY foxyproxy.createdBy "Δημιουργήθηκε από">
+<!ENTITY foxyproxy.createdBy "Δημιουργήθηκε από:">
+<!ENTITY foxyproxy.contributionsBy "Συνεισφορές από:">
 <!ENTITY foxyproxy.copyright "Πνευματικά δικαιώματα">
 <!ENTITY foxyproxy.rights "Με την επιφύλαξη παντώς δικαιώματος">
 <!ENTITY foxyproxy.released "Δημοσιεύεται σύμφωνα με την άδεια χρήσης GPL">
@@ -380,7 +381,7 @@
 <!ENTITY foxyproxy.temp.label "Προσωρινό">
 <!ENTITY foxyproxy.temp.accesskey "ν">
 <!ENTITY foxyproxy.temp.tooltip "Το πρότυπο θα χρησιμοποιηθεί μόνο σ&apos; αυτή τη συνεδρία.">
-<!ENTITY foxyproxy.define.label "Όρισμός">
+<!ENTITY foxyproxy.define.label "Ορισμός">
 <!ENTITY foxyproxy.define.accesskey "Ο">
 <!ENTITY foxyproxy.define.tooltip "Ορισμός">
 <!ENTITY foxyproxy.pattern.to.quickadd.label "Πρότυπο για άμεση προσθήκη στο διαμεσολαβητή">
@@ -391,7 +392,6 @@
 <!ENTITY foxyproxy.donations "Δωρεές">
 <!ENTITY foxyproxy.please.donate.label "Παρακαλούμε κάντε μια δωρεά">
 <!ENTITY foxyproxy.please.donate.accesskey "δ">
-<!ENTITY foxyproxy.keep.free "Διατηρήστε το FoxyProxy  ελεύθερο">
 <!ENTITY foxyproxy.donation.list.label "Λίστα δωρεών">
 <!ENTITY foxyproxy.donation.list.accesskey "α">
 <!ENTITY foxyproxy.importantnote.label "Διαβάστε μια σημαντική σημείωση">
@@ -405,7 +405,12 @@
 <!ENTITY foxyproxy.proxyservice.tooltip "Εγγραφείτε για υπηρεσίες διαμεσολάβησης">
 <!ENTITY foxyproxy.proxyservice2.label "Χρειάζεστε γρήγορους, αξιόπιστους διαμεσολαβητές στις ΗΠΑ, την Αγγλία ή άλλη χώρα;">
 <!ENTITY foxyproxy.getfoxyproxyplus.label "Πάρτε το FoxyProxy Plus">
-<!--     begin foxyproxyplus     -->
+<!ENTITY foxyproxy.aboutdonate.label "Το κουμπί δωρεάς σας μεταφέρει στο PayPal απ&apos; όπου μπορείτε να κάνετε μια δωρεά στο έργο FoxyProxy για να ενθαρύνετε και να υποστηρίξετε την ανάπτυξη του. Αν χρησιμοποιείτε συχνά το FoxyProxy, κάντε μια δωρεά!">
+<!ENTITY foxyproxy.aboutfpplus.label "το κουμπί FoxyProxy Plus σας μεταφέρει σε ένα ιστότοπο όπου μπορείτε να διαβάσετε για τα πρόσθετα χαρακτηριστικά της έκδοσης Plus και να την αγοράσετε αν θέλετε.">
+<!ENTITY foxyproxy.aboutproxyservice.label "Τέλος, το κουμπί υπηρεσίας διαμεσολάβησης σας μεταφέρει στον ιστότοπο υπηρεσιών διαμεσολάβησης μας όπου μπορείτε να αγοράσετε αξιόπιστες, υψηλής ταχύτητας υπηρεσίες διαμεσολάβησης για πολλές χώρες σε λογικές τιμές.">
+<!ENTITY foxyproxy.invalidcolor.label "Μη έγκυρο χρώμα">
+<!ENTITY foxyproxy.validcolor.label "Έγκυρο χρώμα">
+<!--      begin foxyproxyplus      -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Προσθήκη/επεξεργασία τοπικού πρότυπου διεύθυνσης IP">
 <!ENTITY foxyproxy.tempip.popup.label "Τα προσωρινά πρότυπα σας επιτρέπουν να δημιουργήσετε τοπικά πρότυπα για διευθύνσεις IP που δεν χρησιμοποιείτε συχνά, χωρίς να αυξάνετε την πολυπλοκότητα της λίστας πρότυπων κάποιου διαμεσολαβητή. Τα προσωρινά πρότυπα δεν αποθηκεύονται στο δίσκο, διατηρούνται μόνο στη μνήμη και χρησιμοποιούνται για την τρέχουσα συνεδρία του Firefox.">
 <!ENTITY foxyproxy.ip.pattern.label "Τοπικό πρότυπο διεύθυνσης IP">
@@ -450,4 +455,4 @@
 <!ENTITY foxyproxy.proxydomain.label "Τομέας (προαιρετικό - μόνο NTLM)">
 <!ENTITY foxyproxy.proxydomain.tooltip "Μόνο πιστοποίηση NTLM">
 <!ENTITY foxyproxy.proxy.passwords.nomatch.label "Δεν ταιριάζουν οι κωδικοί για το διαμεσολαβητή, παρακαλούμε εισάγετε τους ξανά.">
-<!--     end foxyproxyplus     -->
+<!--      end foxyproxyplus      -->

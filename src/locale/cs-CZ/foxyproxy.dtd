@@ -72,6 +72,7 @@
 <!ENTITY foxyproxy.regex.example.label "Příklad: https?://.*\.mail\.yahoo\.com/.*">
 <!ENTITY foxyproxy.version "Verze">
 <!ENTITY foxyproxy.createdBy "Vytvořil:">
+<!ENTITY foxyproxy.contributionsBy "Přispěvatelé:">
 <!ENTITY foxyproxy.copyright "Autorská práva">
 <!ENTITY foxyproxy.rights "Všechna práva vyhrazena.">
 <!ENTITY foxyproxy.released "Uvolněno v rámci GPL licence">
@@ -391,7 +392,6 @@
 <!ENTITY foxyproxy.donations "Dary">
 <!ENTITY foxyproxy.please.donate.label "Podpořte FoxyProxy">
 <!ENTITY foxyproxy.please.donate.accesskey "D">
-<!ENTITY foxyproxy.keep.free "Ať je FoxyProxy zdarma">
 <!ENTITY foxyproxy.donation.list.label "Seznam dárců">
 <!ENTITY foxyproxy.donation.list.accesskey "S">
 <!ENTITY foxyproxy.importantnote.label "Čtěte důležitou poznámku">
@@ -405,7 +405,12 @@
 <!ENTITY foxyproxy.proxyservice.tooltip "Objednat přístup k proxy">
 <!ENTITY foxyproxy.proxyservice2.label "Potřebujete rychlý a spolehlivý proxy server v USA, GB nebo dalších zemích?">
 <!ENTITY foxyproxy.getfoxyproxyplus.label "Získat FoxyProxy Plus">
-<!--     begin foxyproxyplus     -->
+<!ENTITY foxyproxy.aboutdonate.label "Knoflík &quot;Podpořte FoxyProxy&quot; Vám zobrazí stránku služby PayPal, kde můžete finančně podpořit autora. Pokud používáte FoxyProxy pravidelně, zvažte prosím finanční podporu.">
+<!ENTITY foxyproxy.aboutfpplus.label "Knoflík &quot;Získat FoxyProxy Plus&quot; Vám zobrazí stránku kde si můžete přečíst o výhodách poskytovaných FoxyProxy Plus. A případně tento doplněk koupit.">
+<!ENTITY foxyproxy.aboutproxyservice.label "A konečně, knoflík &quot;Koupit přístup k proxy&quot; Vám zobrazí stránku s možností placeného přístupu na spolehlivé a rychlé proxy servery v mnoha zemích za přijatelné ceny.">
+<!ENTITY foxyproxy.invalidcolor.label "Špatná barva">
+<!ENTITY foxyproxy.validcolor.label "Správná barva">
+<!--      begin foxyproxyplus      -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Přidat/upravit vzor pro místní IP adresu">
 <!ENTITY foxyproxy.tempip.popup.label "Dočasné vzory Vám umožní vytvářet pravidla pro místní IP adresy které používáte pouze příležitostně. Dočasné vzory se neukládají na disk. Jsou uloženy v paměti jen po dobu spuštění Firefoxu.">
 <!ENTITY foxyproxy.ip.pattern.label "Vzor pro místní IP adresu">
@@ -450,4 +455,4 @@
 <!ENTITY foxyproxy.proxydomain.label "Doména (volitelné - pouze NTLM)">
 <!ENTITY foxyproxy.proxydomain.tooltip "Pouze NTLM autentizace">
 <!ENTITY foxyproxy.proxy.passwords.nomatch.label "Hesla k proxy se neshodují; prosím zadejte je znova.">
-<!--     end foxyproxyplus     -->
+<!--      end foxyproxyplus      -->

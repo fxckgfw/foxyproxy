@@ -391,7 +391,6 @@
 <!ENTITY foxyproxy.donations "Donationer">
 <!ENTITY foxyproxy.please.donate.label "Donera gärna">
 <!ENTITY foxyproxy.please.donate.accesskey "D">
-<!ENTITY foxyproxy.keep.free "Fortsätt med FoxyProxy gratis">
 <!ENTITY foxyproxy.donation.list.label "Donatörer">
 <!ENTITY foxyproxy.donation.list.accesskey "ö">
 <!ENTITY foxyproxy.importantnote.label "Läs viktigt meddelande">
@@ -405,7 +404,7 @@
 <!ENTITY foxyproxy.proxyservice.tooltip "Anmäl dig till proxy-tjänster">
 <!ENTITY foxyproxy.proxyservice2.label "Behöver du snabba, pålitliga proxy i USA, England eller andra länder?">
 <!ENTITY foxyproxy.getfoxyproxyplus.label "Skaffa FoxyProxy Plus">
-<!--     begin foxyproxyplus     -->
+<!--      begin foxyproxyplus      -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Lägg till/Redigera lokala IP-adressmönster">
 <!ENTITY foxyproxy.tempip.popup.label "Temporära mönster gör att du kan skapa mönster för lokala IP-adresser som du inte använder så ofta. Temporära mönster sparas inte till disk utan behålls bara i minnet så länge Firefox är igång.">
 <!ENTITY foxyproxy.ip.pattern.label "Lokalt IP-adressmönster">
@@ -450,4 +449,4 @@
 <!ENTITY foxyproxy.proxydomain.label "Domän (frivilligt - endast NTLM)">
 <!ENTITY foxyproxy.proxydomain.tooltip "Endast NTLM-autentisering">
 <!ENTITY foxyproxy.proxy.passwords.nomatch.label "Proxylösenord matchar inte; vänligen försök igen.">
-<!--     end foxyproxyplus     -->
+<!--      end foxyproxyplus      -->

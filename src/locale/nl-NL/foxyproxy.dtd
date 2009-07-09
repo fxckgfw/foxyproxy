@@ -72,6 +72,7 @@
 <!ENTITY foxyproxy.regex.example.label "Voorbeeld: https?://.*\.mail\.yahoo\.com/.*">
 <!ENTITY foxyproxy.version "Versie">
 <!ENTITY foxyproxy.createdBy "Gemaakt door:">
+<!ENTITY foxyproxy.contributionsBy "Bijdragen van">
 <!ENTITY foxyproxy.copyright "Auteursrecht">
 <!ENTITY foxyproxy.rights "Alle rechten voorbehouden.">
 <!ENTITY foxyproxy.released "Uitgegeven onder de GPL-licentie.">
@@ -391,7 +392,6 @@
 <!ENTITY foxyproxy.donations "Donations">
 <!ENTITY foxyproxy.please.donate.label "Doneer a.u.b.">
 <!ENTITY foxyproxy.please.donate.accesskey "D">
-<!ENTITY foxyproxy.keep.free "Houd FoxyProxy gratis">
 <!ENTITY foxyproxy.donation.list.label "Donatielijst">
 <!ENTITY foxyproxy.donation.list.accesskey "L">
 <!ENTITY foxyproxy.importantnote.label "Belangrijke opmerking lezen">
@@ -405,7 +405,12 @@
 <!ENTITY foxyproxy.proxyservice.tooltip "Aanmelden voor proxydiensten">
 <!ENTITY foxyproxy.proxyservice2.label "Behoefte aan snelle, betrouwbare proxy’s in de VS, het VK of andere landen?">
 <!ENTITY foxyproxy.getfoxyproxyplus.label "Installeer FoxyProxy Plus">
-<!--     begin foxyproxyplus     -->
+<!ENTITY foxyproxy.aboutdonate.label "De knop Doneren leidt u naar PayPal, waar u kunt doneren aan het FoxyProxy-project om zo de ontwikkeling aan te moedigen en te ondersteunen. Overweeg a.u.b. een donatie als u FoxyProxy regelmatig gebruikt.">
+<!ENTITY foxyproxy.aboutfpplus.label "De knop FoxyProxy Plus leidt u naar een website waar u kunt lezen over de extra functionaliteit die de Plus-versie u biedt en waar u deze eventueel kunt aanschaffen.">
+<!ENTITY foxyproxy.aboutproxyservice.label "Tenslotte leidt de knop Proxydienst u naar een website met proxydiensten, waar u betrouwbare en snelle proxydienst in verschillende landen kunt aanschaffen voor een schappelijke prijs.">
+<!ENTITY foxyproxy.invalidcolor.label "Ongeldige kleur">
+<!ENTITY foxyproxy.validcolor.label "Geldige kleur">
+<!--      begin foxyproxyplus      -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Lokaal IP-adrespatroon toevoegen/bewerken">
 <!ENTITY foxyproxy.tempip.popup.label "Met tijdelijke patronen kunt u patronen voor lokale IP-adressen  die u niet vaak gebruikt creëren zonder dat de IP-adressenpatroonlijst voor een proxy wordt vervuild. Tijdelijke patronen wordne niet opgeslagen. Ze worden alleen tijdens deze Firefoxsessie in het geheugen bewaard.">
 <!ENTITY foxyproxy.ip.pattern.label "Lokaal IP-adrespatroon">
@@ -450,4 +455,4 @@
 <!ENTITY foxyproxy.proxydomain.label "Domein (optioneel - uitsluitend NTLM)">
 <!ENTITY foxyproxy.proxydomain.tooltip "Alleen NTLM-authenticatie">
 <!ENTITY foxyproxy.proxy.passwords.nomatch.label "Proxywachtwoorden komen niet overeen; voer het a.u.b. opnieuw in">
-<!--     end foxyproxyplus     -->
+<!--      end foxyproxyplus      -->

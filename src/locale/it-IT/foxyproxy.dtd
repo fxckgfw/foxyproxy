@@ -391,7 +391,6 @@
 <!ENTITY foxyproxy.donations "Donazioni">
 <!ENTITY foxyproxy.please.donate.label "Effettua una donazione">
 <!ENTITY foxyproxy.please.donate.accesskey "D">
-<!ENTITY foxyproxy.keep.free "Mantieni FoxyProxy gratuita">
 <!ENTITY foxyproxy.donation.list.label "Lista delle donazioni">
 <!ENTITY foxyproxy.donation.list.accesskey "L">
 <!ENTITY foxyproxy.importantnote.label "Ulteriori informazioni">
@@ -405,7 +404,7 @@
 <!ENTITY foxyproxy.proxyservice.tooltip "Fare clic qui per iscriversi ad un servizio di proxy a pagamento">
 <!ENTITY foxyproxy.proxyservice2.label "Iscrizione ad un servizio di proxy sicuri americani, inglesi o di altre nazioni a pagamento">
 <!ENTITY foxyproxy.getfoxyproxyplus.label "Ottieni FoxyProxy Plus">
-<!--  begin foxyproxyplus  -->
+<!--   begin foxyproxyplus   -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Aggiunta/modifica di modelli di indirizzi IP locali">
 <!ENTITY foxyproxy.tempip.popup.label "I modelli temporanei permettono di creare modelli di indirizzi IP locali che non vengono utilizzati spesso, senza interessare le liste di modelli di indirizzi IP dei proxy. Tali modelli non vengono salvati sul disco rigido, ma mantenuti in memoria ed eliminati alla chiusura della sessione di Firefox">
 <!ENTITY foxyproxy.ip.pattern.label "Modello di indirizzo IP locale">
@@ -450,4 +449,4 @@
 <!ENTITY foxyproxy.proxydomain.label "Dominio (opzionale - solo NTLM)">
 <!ENTITY foxyproxy.proxydomain.tooltip "Inserire solo per autenticazione NTLM">
 <!ENTITY foxyproxy.proxy.passwords.nomatch.label "Le password dei proxy non coincidono. Reinserirle">
-<!--  end foxyproxyplus  -->
+<!--   end foxyproxyplus   -->

@@ -391,7 +391,6 @@
 <!ENTITY foxyproxy.donations "捐助">
 <!ENTITY foxyproxy.please.donate.label "請捐助(D)">
 <!ENTITY foxyproxy.please.donate.accesskey "D">
-<!ENTITY foxyproxy.keep.free "維持免費使用 FoxyProxy">
 <!ENTITY foxyproxy.donation.list.label "捐助清單(L)">
 <!ENTITY foxyproxy.donation.list.accesskey "L">
 <!ENTITY foxyproxy.importantnote.label "閱讀重要說明">
@@ -405,7 +404,7 @@
 <!ENTITY foxyproxy.proxyservice.tooltip "註冊代理伺服器服務">
 <!ENTITY foxyproxy.proxyservice2.label "需要在美國、英國或其它國家使用高速且可靠的代理伺服器嗎？">
 <!ENTITY foxyproxy.getfoxyproxyplus.label "取得 FoxyProxy 進階版">
-<!--     begin foxyproxyplus     -->
+<!--      begin foxyproxyplus      -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "新增/編輯 本機 IP 位址樣式">
 <!ENTITY foxyproxy.tempip.popup.label "臨時性樣式讓你建立不常使用的本機 IP 位址樣式，這些樣式不會儲存到設定檔中造成樣式清單紊亂，而是保留在記憶體中，只在這次執行 Firefox 有效。">
 <!ENTITY foxyproxy.ip.pattern.label "本機 IP 位址樣式">
@@ -450,4 +449,4 @@
 <!ENTITY foxyproxy.proxydomain.label "網域（非必要的 - 只用於 NTLM）">
 <!ENTITY foxyproxy.proxydomain.tooltip "只用於 NTLM 認證">
 <!ENTITY foxyproxy.proxy.passwords.nomatch.label "代理伺服器密碼錯誤，請重新輸入">
-<!--     end foxyproxyplus     -->
+<!--      end foxyproxyplus      -->

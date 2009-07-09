@@ -391,7 +391,6 @@
 <!ENTITY foxyproxy.donations "บริจาค">
 <!ENTITY foxyproxy.please.donate.label "กรุณาบริจาค">
 <!ENTITY foxyproxy.please.donate.accesskey "บ">
-<!ENTITY foxyproxy.keep.free "ทำให้ FoxyProxy ใช้ฟรีได้ต่อไป">
 <!ENTITY foxyproxy.donation.list.label "รายชื่อบริจาค">
 <!ENTITY foxyproxy.donation.list.accesskey "ค">
 <!ENTITY foxyproxy.importantnote.label "Read Important Note">
@@ -405,7 +404,7 @@
 <!ENTITY foxyproxy.proxyservice.tooltip "Sign up for proxy services">
 <!ENTITY foxyproxy.proxyservice2.label "Need fast, reliable proxies in the US, UK, or other countries?">
 <!ENTITY foxyproxy.getfoxyproxyplus.label "Get FoxyProxy Plus">
-<!--     begin foxyproxyplus     -->
+<!--      begin foxyproxyplus      -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Add/Edit Local IP Address Pattern">
 <!ENTITY foxyproxy.tempip.popup.label "Temporary patterns allow you to create patterns for local IP addresses that you don&apos;t use often without cluttering the IP address pattern list for a proxy. Temporary patterns are not saved to disk. They are kept in-memory and used for this Firefox session only.">
 <!ENTITY foxyproxy.ip.pattern.label "Local IP address pattern">
@@ -450,4 +449,4 @@
 <!ENTITY foxyproxy.proxydomain.label "Domain (optional - NTLM only)">
 <!ENTITY foxyproxy.proxydomain.tooltip "NTLM authentication only">
 <!ENTITY foxyproxy.proxy.passwords.nomatch.label "Proxy passwords do not match; please re-enter.">
-<!--     end foxyproxyplus     -->
+<!--      end foxyproxyplus      -->

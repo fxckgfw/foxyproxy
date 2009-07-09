@@ -72,6 +72,7 @@
 <!ENTITY foxyproxy.regex.example.label "Na przykład: https?://.*\.mail\.yahoo\.com/.*">
 <!ENTITY foxyproxy.version "Wersja">
 <!ENTITY foxyproxy.createdBy "Autor:">
+<!ENTITY foxyproxy.contributionsBy "Współtwórcy:">
 <!ENTITY foxyproxy.copyright "Prawa autorskie: Copyright">
 <!ENTITY foxyproxy.rights "Wszelkie prawa zastrzeżone. Adresy URL wzorców">
 <!ENTITY foxyproxy.released "Wydano na bazie licencji GPL.">
@@ -329,22 +330,22 @@
 <!ENTITY foxyproxy.statusbaractivation.tooltip "Ustawienia działania przycisków myszy na pasku stanu">
 <!ENTITY foxyproxy.toolbaractivation.label "Działanie ikony FoxyProxy na pasku narzędziowym">
 <!ENTITY foxyproxy.toolbaractivation.tooltip "Ustawienia działania przycisków myszy na pasku narzędziowym">
-<!ENTITY foxyproxy.leftclicksb.label "Kliknięcie l.p.m.">
+<!ENTITY foxyproxy.leftclicksb.label "Kliknięcie lpm.">
 <!ENTITY foxyproxy.leftclicksb.accesskey "L">
-<!ENTITY foxyproxy.leftclicksb.tooltip "Działanie jakie zostanie wykonane po kliknięciu l.p.m. na ikonie FoxyProxy na pasku stanu">
-<!ENTITY foxyproxy.middleclicksb.label "Kliknięcie ś.p.m.">
+<!ENTITY foxyproxy.leftclicksb.tooltip "Działanie jakie zostanie wykonane po kliknięciu lpm. na ikonie FoxyProxy na pasku stanu">
+<!ENTITY foxyproxy.middleclicksb.label "Kliknięcie śpm.">
 <!ENTITY foxyproxy.middleclicksb.accesskey "M">
-<!ENTITY foxyproxy.middleclicksb.tooltip "Działanie jakie zostanie wykonane po kliknięciu ś.p.m. na ikonie FoxyProxy na pasku stanu">
-<!ENTITY foxyproxy.rightclicksb.label "Kliknięcie p.p.m.">
+<!ENTITY foxyproxy.middleclicksb.tooltip "Działanie jakie zostanie wykonane po kliknięciu śpm. na ikonie FoxyProxy na pasku stanu">
+<!ENTITY foxyproxy.rightclicksb.label "Kliknięcie ppm.">
 <!ENTITY foxyproxy.rightclicksb.accesskey "P">
-<!ENTITY foxyproxy.rightclicksb.tooltip "Działanie jakie zostanie wykonane po kliknięciu p.p.m. na ikonie FoxyProxy na pasku stanu">
-<!ENTITY foxyproxy.leftclicktb.label "Kliknięcie l.p.m.">
+<!ENTITY foxyproxy.rightclicksb.tooltip "Działanie jakie zostanie wykonane po kliknięciu ppm. na ikonie FoxyProxy na pasku stanu">
+<!ENTITY foxyproxy.leftclicktb.label "Kliknięcie lpm.">
 <!ENTITY foxyproxy.leftclicktb.accesskey "C">
-<!ENTITY foxyproxy.leftclicktb.tooltip "Działanie jakie zostanie wykonane po kliknięciu l.p.m. na ikonie FoxyProxy na pasku narzędziowym">
-<!ENTITY foxyproxy.middleclicktb.label "Kliknięcie ś.p.m.">
+<!ENTITY foxyproxy.leftclicktb.tooltip "Działanie jakie zostanie wykonane po kliknięciu lpm. na ikonie FoxyProxy na pasku narzędziowym">
+<!ENTITY foxyproxy.middleclicktb.label "Kliknięcie śpm.">
 <!ENTITY foxyproxy.middleclicktb.accesskey "N">
-<!ENTITY foxyproxy.middleclicktb.tooltip "Działanie jakie zostanie wykonane po kliknięciu ś.p.m. na ikonie FoxyProxy na pasku narzędziowym">
-<!ENTITY foxyproxy.rightclicktb.label "Kliknięcie p.p.m.">
+<!ENTITY foxyproxy.middleclicktb.tooltip "Działanie jakie zostanie wykonane po kliknięciu śpm. na ikonie FoxyProxy na pasku narzędziowym">
+<!ENTITY foxyproxy.rightclicktb.label "Kliknięcie ppm.">
 <!ENTITY foxyproxy.rightclicktb.accesskey "K">
 <!ENTITY foxyproxy.rightclicktb.tooltip "Działanie jakie zostanie wykonane po kliknięciu ppm na ikonie FoxyProxy na pasku narzędziowym">
 <!ENTITY foxyproxy.click.options "wyświetla okno dialogowe opcji">
@@ -391,7 +392,6 @@
 <!ENTITY foxyproxy.donations "Dotacje">
 <!ENTITY foxyproxy.please.donate.label "Wykonaj dotację">
 <!ENTITY foxyproxy.please.donate.accesskey "D">
-<!ENTITY foxyproxy.keep.free "Pomóż FoxyProxy pozostać darmową aplikacją">
 <!ENTITY foxyproxy.donation.list.label "Lista donatorów">
 <!ENTITY foxyproxy.donation.list.accesskey "L">
 <!ENTITY foxyproxy.importantnote.label "Przeczytaj ważne informacje">
@@ -399,13 +399,18 @@
 <!ENTITY foxyproxy.resetlocation.accesskey "R">
 <!ENTITY foxyproxy.resetlocation.tooltip "Zapisuj ustawienia w profilu Firefoksa">
 <!ENTITY foxyproxy.settings.not.default "W domyślnej lokalizacji nie ma ustawień.">
-<!ENTITY foxyproxy.change.host.reload "Określ nowy serwer:port, a następnie odśwież aktywną stronę">
+<!ENTITY foxyproxy.change.host.reload "Określ nowy serwer/port, a następnie odśwież aktywną stronę">
 <!ENTITY foxyproxy.proxyservice.label "Wykup usługę Proxy">
 <!ENTITY foxyproxy.proxyservice.accesskey "P">
 <!ENTITY foxyproxy.proxyservice.tooltip "Zarejestruj się w usługach proxy">
 <!ENTITY foxyproxy.proxyservice2.label "Potrzebujesz szybkich, niezawodnych proxy w USA, UK lub innych krajach?">
 <!ENTITY foxyproxy.getfoxyproxyplus.label "Skorzystaj z FoxyProxy Plus">
-<!--      begin foxyproxyplus      -->
+<!ENTITY foxyproxy.aboutdonate.label "Przycisk dotacji przeniesie cię na stronę PayPal, gdzie możesz wykonać dotację na rzecz projektu FoxyProxy i wesprzeć jego dalszy rozwój. Jeśli jesteś stałym użytkownikiem FoxyProxy, rozważ poważnie taką możliwość.">
+<!ENTITY foxyproxy.aboutfpplus.label "Przycisk FoxyProxy Plus przeniesie cię na witrynę, gdzie możesz dowiedzieć się o dodatkowych funkcjach dostarczanych przez wersję Plus i ewentualnie dokonać jej zakupu.">
+<!ENTITY foxyproxy.aboutproxyservice.label "Przycisk usługi proxy przeniesie cię na naszą witrynę usług proxy, gdzie możesz wykupić niezawodne szerokopasmowe usługi proxy w wielu różnych krajach w rozsądnych cenach.">
+<!ENTITY foxyproxy.invalidcolor.label "Nieprawidłowy kolor">
+<!ENTITY foxyproxy.validcolor.label "Prawidłowy kolor">
+<!--       begin foxyproxyplus       -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Dodaj/edytuj wzorzec lokalnego adresu IP">
 <!ENTITY foxyproxy.tempip.popup.label "Wzorce tymczasowe pozwalają na tworzenie wzorców lokalnego adresu IP nie używanych często. Dzięki temu lista wzorców nie jest niepotrzebnie przeładowywana. Wzorce tymczasowe nie są zapisywane na dysku. Są one trzymane w pamięci i używane tylko w aktualnej sesji Firefoksa.">
 <!ENTITY foxyproxy.ip.pattern.label "Wzorzec lokalnego adresu  IP">
@@ -450,4 +455,4 @@
 <!ENTITY foxyproxy.proxydomain.label "Domena (opcjonalna – tylko NTLM)">
 <!ENTITY foxyproxy.proxydomain.tooltip "Tylko autoryzacja NTLM">
 <!ENTITY foxyproxy.proxy.passwords.nomatch.label "Hasła proxy nie zgadzają się; wprowadź je ponownie.">
-<!--      end foxyproxyplus      -->
+<!--       end foxyproxyplus       -->

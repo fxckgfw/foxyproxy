@@ -391,7 +391,6 @@
 <!ENTITY foxyproxy.donations "Пожертвования">
 <!ENTITY foxyproxy.please.donate.label "Пожалуйста пожертвуйте">
 <!ENTITY foxyproxy.please.donate.accesskey "ж">
-<!ENTITY foxyproxy.keep.free "Сохраните FoxyProxy свободным">
 <!ENTITY foxyproxy.donation.list.label "Список пожертвователей">
 <!ENTITY foxyproxy.donation.list.accesskey "С">
 <!ENTITY foxyproxy.importantnote.label "Важное предупреждение">
@@ -405,7 +404,7 @@
 <!ENTITY foxyproxy.proxyservice.tooltip "Подписка на прокси-сервис">
 <!ENTITY foxyproxy.proxyservice2.label "Необходимы быстрые и надёжные прокси в США, Великобритании или других странах?">
 <!ENTITY foxyproxy.getfoxyproxyplus.label "Заказать FoxyProxy Plus">
-<!--     begin foxyproxyplus     -->
+<!--      begin foxyproxyplus      -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Добавить/Изменить локальный шаблон IP-адресов">
 <!ENTITY foxyproxy.tempip.popup.label "Temporary patterns allow you to create patterns for local IP addresses that you don&apos;t use often without cluttering the IP address pattern list for a proxy. Temporary patterns are not saved to disk. They are kept in-memory and used for this Firefox session only.">
 <!ENTITY foxyproxy.ip.pattern.label "Локальный шаблон IP-адресов">
@@ -450,4 +449,4 @@
 <!ENTITY foxyproxy.proxydomain.label "Домен (необязательно - только для NTLM)">
 <!ENTITY foxyproxy.proxydomain.tooltip "Только NTLM-аутентификация">
 <!ENTITY foxyproxy.proxy.passwords.nomatch.label "Прокси-пароль не подошёл; повторите снова.">
-<!--     end foxyproxyplus     -->
+<!--      end foxyproxyplus      -->

@@ -72,6 +72,7 @@
 <!ENTITY foxyproxy.regex.example.label "Eksempel: https?://.*\.mail\.yahoo\.com/.*">
 <!ENTITY foxyproxy.version "Version">
 <!ENTITY foxyproxy.createdBy "Skabt af:">
+<!ENTITY foxyproxy.contributionsBy "Indsats af">
 <!ENTITY foxyproxy.copyright "Ophavsret">
 <!ENTITY foxyproxy.rights "Alle rettigheder forbeholdt">
 <!ENTITY foxyproxy.released "Frigivet under GPL licens">
@@ -391,21 +392,25 @@
 <!ENTITY foxyproxy.donations "Donations">
 <!ENTITY foxyproxy.please.donate.label "Vær venlig at donere">
 <!ENTITY foxyproxy.please.donate.accesskey "D">
-<!ENTITY foxyproxy.keep.free "Hold FoxyProxy gratis">
 <!ENTITY foxyproxy.donation.list.label "Donationsliste">
 <!ENTITY foxyproxy.donation.list.accesskey "L">
 <!ENTITY foxyproxy.importantnote.label "Læs vigtig notat">
 <!ENTITY foxyproxy.resetlocation.label "Reset placering">
 <!ENTITY foxyproxy.resetlocation.accesskey "R">
 <!ENTITY foxyproxy.resetlocation.tooltip "Gem indstillinger i Firefox profil">
-<!ENTITY foxyproxy.settings.not.default "Settings aren&apos;t in the default location.">
-<!ENTITY foxyproxy.change.host.reload "Set new host:port and then reload current page">
-<!ENTITY foxyproxy.proxyservice.label "Buy Proxy Service">
+<!ENTITY foxyproxy.settings.not.default "Indstillingerne er ikke i standard placeringen">
+<!ENTITY foxyproxy.change.host.reload "Sæt ny vært:port og genindlæs nuværende side">
+<!ENTITY foxyproxy.proxyservice.label "Køb Proxy Service">
 <!ENTITY foxyproxy.proxyservice.accesskey "P">
-<!ENTITY foxyproxy.proxyservice.tooltip "Sign up for proxy services">
-<!ENTITY foxyproxy.proxyservice2.label "Need fast, reliable proxies in the US, UK, or other countries?">
-<!ENTITY foxyproxy.getfoxyproxyplus.label "Get FoxyProxy Plus">
-<!--     begin foxyproxyplus     -->
+<!ENTITY foxyproxy.proxyservice.tooltip "Skriv dig op til proxy service">
+<!ENTITY foxyproxy.proxyservice2.label "Brug for hurtig, pålidelig proxier i USA, UK eller andre lande?">
+<!ENTITY foxyproxy.getfoxyproxyplus.label "Få FoxyProxy Plus">
+<!ENTITY foxyproxy.aboutdonate.label "Donationsknappen vil føre dig til PayPal hvor du kan donere til FoxyProxy projektet til at fremme og støtte udviklingen. Hvis du bruger FoxyProxy ofte, overvej venligst at doner.">
+<!ENTITY foxyproxy.aboutfpplus.label "FoxyProxy Plus knappen bringer dig til et hjemmeside hvor du kan læse om de yderligere funktioner der er i Plus udgaven og eventuelt køb af FoxyProxy Plus">
+<!ENTITY foxyproxy.aboutproxyservice.label "Slutteligt, proxy service knappen bringer dig til vores proxy service hjemmeside, hvor du kan købe pålidelig, højhastighed proxy service i mange forskellige lande til fornuftige priser.">
+<!ENTITY foxyproxy.invalidcolor.label "Ugyldig farve">
+<!ENTITY foxyproxy.validcolor.label "Gyldig farve">
+<!--      begin foxyproxyplus      -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Add/Edit Local IP Address Pattern">
 <!ENTITY foxyproxy.tempip.popup.label "Temporary patterns allow you to create patterns for local IP addresses that you don&apos;t use often without cluttering the IP address pattern list for a proxy. Temporary patterns are not saved to disk. They are kept in-memory and used for this Firefox session only.">
 <!ENTITY foxyproxy.ip.pattern.label "Local IP address pattern">
@@ -450,4 +455,4 @@
 <!ENTITY foxyproxy.proxydomain.label "Domain (optional - NTLM only)">
 <!ENTITY foxyproxy.proxydomain.tooltip "NTLM authentication only">
 <!ENTITY foxyproxy.proxy.passwords.nomatch.label "Proxy passwords do not match; please re-enter.">
-<!--     end foxyproxyplus     -->
+<!--      end foxyproxyplus      -->

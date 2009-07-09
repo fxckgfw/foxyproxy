@@ -391,7 +391,6 @@
 <!ENTITY foxyproxy.donations "Donaciones">
 <!ENTITY foxyproxy.please.donate.label "Por favor, haga una donación">
 <!ENTITY foxyproxy.please.donate.accesskey "D">
-<!ENTITY foxyproxy.keep.free "Mantenga FoxyProxy gratuito">
 <!ENTITY foxyproxy.donation.list.label "Lista de donaciones">
 <!ENTITY foxyproxy.donation.list.accesskey "L">
 <!ENTITY foxyproxy.importantnote.label "Nota importante">
@@ -405,7 +404,7 @@
 <!ENTITY foxyproxy.proxyservice.tooltip "Conectar para el servicio proxy">
 <!ENTITY foxyproxy.proxyservice2.label "¿Necesita proxys rápidos y confiables en US, UK o en otros países?">
 <!ENTITY foxyproxy.getfoxyproxyplus.label "Obtener FoxyProxy Plus">
-<!--     begin foxyproxyplus     -->
+<!--      begin foxyproxyplus      -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Añadir/Editar patrón de direcciones IP locales">
 <!ENTITY foxyproxy.tempip.popup.label "Los patrones temporales le permiten crear patrones para direcciones IP locales que no use con frecuencia sin interferir en la lista de patrones de un proxy. Los patrones temporales no se guardan en el disco. Se mantienen en memoria sólo durante la sesión actual de Firefox.">
 <!ENTITY foxyproxy.ip.pattern.label "Patrón de dirección IP local">
@@ -450,4 +449,4 @@
 <!ENTITY foxyproxy.proxydomain.label "Dominio (opcional - sólo NTLM)">
 <!ENTITY foxyproxy.proxydomain.tooltip "Autenticación NTLM sólo">
 <!ENTITY foxyproxy.proxy.passwords.nomatch.label "Las contraseñas no coinciden; por favor, vuelva a introducirlas.">
-<!--     end foxyproxyplus     -->
+<!--      end foxyproxyplus      -->

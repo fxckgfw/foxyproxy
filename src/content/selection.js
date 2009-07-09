@@ -27,6 +27,7 @@ foxyproxy.selection = {
         p.proxy.manualconf.port = sel.port;        
         fp.notifier.alert(null, fp.getMessage("changed.host", [p.proxy.name, sel.hostPort]));
         if (p.reloadcurtab) {
+          var r;
           function askAboutSwitching(str, arg) {
             var r = foxyproxy.ask(window, arg ? fp.getMessage(str, [arg]) : fp.getMessage(str), fp.getMessage("yes.use.patterns"), fp.getMessage("yes.use.proxy.for.all", [p.proxy.name]), fp.getMessage("no.dont.change.anything"));
             if (r == 0) fp.setMode("patterns", false);

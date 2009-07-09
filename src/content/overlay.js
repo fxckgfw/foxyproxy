@@ -717,7 +717,17 @@ var foxyproxy = {
         }
       }
       menupopup.appendChild(document.createElement("menuseparator"));
-
+      
+      /* add the option to "Set xx.xx.xx.xx:yyyy" as new host and port" if applicable selection is made */
+      var sel = this.selection.parseSelection();
+      if (sel.reason == 0) {
+        var itm = _createMenuItem(menupopup,
+          this.fp.getMessage("change.host.2", [sel.hostPort]),
+          "foxyproxy.selection.onChangeHost();", this.fp.getMessage("change.host.accesskey"), null);
+        menupopup.appendChild(document.createElement("menuseparator"));
+        itm.setAttribute("key", "key_foxyproxychangeproxy");
+      }      
+      
       // Advanced menuing
       if (this.fp.advancedMenus) {
         var submenu = document.createElement("menu");

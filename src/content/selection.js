@@ -17,7 +17,7 @@ foxyproxy.selection = {
   onChangeHost : function() {
     var fp = foxyproxy.fp, sel = this.parseSelection();
     if (sel.reason == 0) {
-      var p = {inn:{title:fp.getMessage("choose.proxy", [sel.hostPort]), reloadcurtab:this.reloadcurtab}, out:null};          
+      var p = {inn:{title:fp.getMessage("choose.proxy", [sel.hostPort]), reloadcurtab:this.reloadcurtab, host:sel.host, port:sel.port}, out:null};          
       window.openDialog("chrome://foxyproxy/content/chooseproxy.xul", "",
         "chrome, dialog, modal, centerscreen=yes, resizable=yes", p).focus();
       if (p.out) {

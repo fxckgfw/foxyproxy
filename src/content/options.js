@@ -71,6 +71,70 @@ function updateSettingsInfo() {
   sizeToContent(); // because .hidden above can change the size of controls
 }
 
+function sortlog(columnId) {
+	var columnName;
+	
+	// map columnId to the data
+	switch(columnId) {
+    case "timeCol":columnName = "timestamp"; break;
+    case "urlCol":columnName = "uri"; break;
+    case "nameCol":columnName = "proxyName"; break;
+    case "notesCol":columnName = "proxyNotes"; break;
+    case "mpNameCol":columnName = "matchName"; break;
+    case "mpCol":columnName = "matchPattern";  break;
+    case "mpCaseCol":columnName = "caseSensitive"; break;  
+    case "mpTypeCol":columnName = "matchType"; break;
+    case "mpBlackCol":columnName = "whiteBlack"; break;
+    case "pacResult":columnName = "pacResult"; break;
+    case "errCol":columnName = "errMsg"; break;
+  }
+	
+	// determine how the log is currently sorted (ascending/decending) and by which column (sortResource)
+	var order = logTree.getAttribute("sortDirection") == "ascending" ? 1 : -1;
+	//if the column is passed and it's already sorted by that column, reverse sort
+	if (columnId) {
+		if (logTree.getAttribute("sortResource") == columnId) {
+			order *= -1;
+		}
+	} else {
+		columnId = logTree.getAttribute("sortResource");
+	}
+	
+	function columnSort(a, b) {
+		
+		if (prepareForComparison(a[columnName]) > prepareForComparison(b[columnName])) return 1 * order;
+		if (prepareForComparison(a[columnName]) < prepareForComparison(b[columnName])) return -1 * order;
+		//tie breaker: timestamp ascending is the second level sort
+		if (columnName != "timestamp") {
+			if (prepareForComparison(a["timestamp"]) > prepareForComparison(b["timestamp"])) return 1;
+			if (prepareForComparison(a["timestamp"]) < prepareForComparison(b["timestamp"])) return -1;
+		}
+		return 0;
+	}
+	foxyproxy.logg._elements.sort(columnSort);
+	
+	//setting these will make the sort option persist
+	logTree.setAttribute("sortDirection", order == 1 ? "ascending" : "descending");
+	logTree.setAttribute("sortResource", columnId);
+	
+	//set the appropriate attributes to show to indicator
+	var cols = logTree.getElementsByTagName("treecol");
+	for (var i = 0; i < cols.length; i++) {
+		cols[i].removeAttribute("sortDirection");
+	}
+	document.getElementById(columnId).setAttribute("sortDirection", order == 1 ? "ascending" : "descending");
+	
+	_updateLogView();
+}
+
+//prepares an object for easy comparison against another. for strings, lowercases them
+function prepareForComparison(o) {
+	if (typeof o == "string") {
+		return o.toLowerCase();
+	}
+	return o;
+}
+
 function _updateLogView() {
 	saveLogCmd.setAttribute("disabled", foxyproxy.logg.length == 0);
 	clearLogCmd.setAttribute("disabled", foxyproxy.logg.length == 0);	

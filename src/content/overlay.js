@@ -128,6 +128,8 @@ var foxyproxy = {
   },
   
   findToolbarIcon : function() {
+    if (typeof(gNavToolbox) == "undefined")
+      return; /* We're on Tbird or another platform which doesn't have this */
     var toolbox = gNavToolbox ? gNavToolbox.customizeChange /* 3.5+ */ : getNavToolbox().customizeChange /* 3.0.x */;
     /* Save the original function, prefixed with our name in case other addons are doing the same thing */
     getNavToolbox().foxyproxyCustomizeChange = getNavToolbox().customizeChange;

@@ -1086,6 +1086,9 @@ biesi>  passing it the appropriate proxyinfo
       return this.length == 0 ? null : this._elements[idx];
     },
 
+    /**
+     * Removes the first item from the array; like pop but doesn't return the popped value.
+     */
     _remove : function() {
       if (this.length == 0)
         return;
@@ -1095,6 +1098,20 @@ biesi>  passing it the appropriate proxyinfo
         this._elements[this._start++] = null;
         this._start >= this._maxSize && (this._start = 0);
         this._full = false;
+      }
+    },
+    
+    /** |delete| is a JS keyword so we use |del|
+     * |indices| should be an array of 0-indexed indices to remove
+     */
+    del : function(indices) {
+      for (var i=0; i<indices.length; i++) {
+        var idx = indices[i];
+        // Is index out-of-bounds?
+        if (idx < 0 || idx >= this.length) continue;
+        this._elements.splice(idx, 1); /* todo: should we delete the return to cleanup memory? */
+        this._end--;
+        this._full = false
       }
     }
   },

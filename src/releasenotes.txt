@@ -21,3 +21,4 @@
   It is useful for people who have lots and lots of Firefox addson that consume statusbar real-estate and who still want
   to be able to see the name of the current proxy or mode (i.e., users who don't want to uncheck the existing FoxyProxy
   "Global Settings->Show mode (text) on statusbar" setting.
+* log sorting by clicking on a column -- contributed by Nathan S. Watson-Haigh

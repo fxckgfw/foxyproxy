@@ -405,7 +405,7 @@
 <!ENTITY foxyproxy.proxyservice.tooltip "登录代理服务">
 <!ENTITY foxyproxy.proxyservice2.label "需要美国，英国或者其他国家的快速、可靠的代理服务？">
 <!ENTITY foxyproxy.getfoxyproxyplus.label "获取 FoxyProxy Plus">
-<!--      begin foxyproxyplus      -->
+<!--       begin foxyproxyplus       -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "添加/编辑本地IP地址模式">
 <!ENTITY foxyproxy.tempip.popup.label "临时模式让你可以为不常用的本地IP地址建立模式，以免扰乱代理服务器的IP地址模式列表。临时模式不会保存到磁盘。他们只是保存在内存中供当前 Firefox 会话使用。">
 <!ENTITY foxyproxy.ip.pattern.label "本地IP地址模式">
@@ -450,4 +450,4 @@
 <!ENTITY foxyproxy.proxydomain.label "域（可选 - 仅NTML）">
 <!ENTITY foxyproxy.proxydomain.tooltip "仅使用 NTLM 验证">
 <!ENTITY foxyproxy.proxy.passwords.nomatch.label "代理服务器密码不匹配；请重新输入。">
-<!--      end foxyproxyplus      -->
+<!--       end foxyproxyplus       -->

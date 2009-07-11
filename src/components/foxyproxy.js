@@ -1109,7 +1109,7 @@ biesi>  passing it the appropriate proxyinfo
         var idx = indices[i];
         // Is index out-of-bounds?
         if (idx < 0 || idx >= this.length) continue;
-        this._elements.splice(idx, 1); /* todo: should we delete the return to cleanup memory? */
+        this._elements.splice(idx, 1);
         this._end--;
         this._full = false
       }

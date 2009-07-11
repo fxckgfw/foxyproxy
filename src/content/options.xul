@@ -705,7 +705,7 @@
         <separator />
         <tree id="logTree" align="stretch" enableColumnDrag="true"
 					persist="sortDirection sortResource" sortDirection="ascending" sortResource="timeCol"
-          flex="1" style="width: 5em; height: 2em;" seltype="single">
+          flex="1" style="width: 5em; height: 2em;">
           <treecols
             pickertooltiptext="&foxyproxy.tree.pickertooltiptext.label;">
             <treecol id="timeCol"
@@ -818,6 +818,10 @@
       <menuitem class="menuitem-non-iconic" command="clearLogCmd" />
       <menuitem class="menuitem-non-iconic" command="refreshLogCmd" />
       <menuitem class="menuitem-non-iconic" command="saveLogCmd" />
+			<menuseparator />
+			<menuitem class="menuitem-non-iconic" command="openLogURLInNewTabCmd" />
+      <menuitem class="menuitem-non-iconic" command="copyLogURLToClipboardCmd" />
+      <menuitem class="menuitem-non-iconic" command="deleteLogEntryCmd" />
     </popup>
   </popupset>
 
@@ -836,6 +840,21 @@
     accesskey="&foxyproxy.save.accesskey;"
     oncommand="_updateLogView();saveLog();" />
 
+	<command id="openLogURLInNewTabCmd" label="&foxyproxy.openurlinnewtab.label;"
+    tooltiptext="&foxyproxy.openurlinnewtab.tooltip;"
+    accesskey="&foxyproxy.openurlinnewtab.accesskey;"
+    oncommand="openLogURLInNewTab();" />
+
+  <command id="copyLogURLToClipboardCmd" label="&foxyproxy.copyurltoclipboard.label;"
+    tooltiptext="&foxyproxy.copyurltoclipboard.tooltip;"
+    accesskey="&foxyproxy.copyurltoclipboard.accesskey;"
+    oncommand="copyLogURLToClipboard();" />    
+
+  <command id="deleteLogEntryCmd" label="&foxyproxy.delete.selection.label;"
+    tooltiptext="&foxyproxy.delete.selection.tooltip;"
+    accesskey="&foxyproxy.delete.selection.accesskey;"
+    oncommand="deleteLogEntry();" />
+    
   <command id="maxSizeCmd"
     label="&foxyproxy.logging.maxsize.button.label;"
     tooltiptext="&foxyproxy.logging.maxsize.button.tooltip;"

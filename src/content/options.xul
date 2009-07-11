@@ -709,44 +709,44 @@
              flex="1" style="width: 5em; height: 2em;" onselect="updateLogButtons();">
              <treecols
                pickertooltiptext="&foxyproxy.tree.pickertooltiptext.label;">
-               <treecol id="timeCol"
+               <treecol id="timestamp"
    							onclick="sortlog(this.id)" class="sortDirectionIndicator" sortDirection="ascending"
                  label="&foxyproxy.tab.logging.timestamp.label;" flex="1"
                  persist="width ordinal hidden" />
                <splitter class="tree-splitter" />
-               <treecol id="urlCol"
+               <treecol id="uri"
    							onclick="sortlog(this.id)" class="sortDirectionIndicator"
                  label="&foxyproxy.tab.logging.url.label;" primary="true"
                  flex="1" persist="width ordinal hidden" />
                <splitter class="tree-splitter" />
-               <treecol id="nameCol" label="&foxyproxy.proxy.name.label;"
+               <treecol id="proxyName" label="&foxyproxy.proxy.name.label;"
    							onclick="sortlog(this.id)" class="sortDirectionIndicator"
                  flex="1" persist="width ordinal hidden" />
                <splitter class="tree-splitter" />
-               <treecol id="notesCol" label="&foxyproxy.proxy.notes.label;"
+               <treecol id="proxyNotes" label="&foxyproxy.proxy.notes.label;"
    							onclick="sortlog(this.id)" class="sortDirectionIndicator"
                  flex="1" persist="width ordinal hidden" />
                <splitter class="tree-splitter" />
-               <treecol id="mpNameCol"
+               <treecol id="matchName"
    							onclick="sortlog(this.id)" class="sortDirectionIndicator"
                  label="&foxyproxy.pattern.name.label;" flex="1"
                  persist="width ordinal hidden" />
                <splitter class="tree-splitter" />
-               <treecol id="mpCol" label="&foxyproxy.pattern.label;"
+               <treecol id="matchPattern" label="&foxyproxy.pattern.label;"
    							onclick="sortlog(this.id)" class="sortDirectionIndicator"
                  flex="1" persist="width ordinal hidden" />
                <splitter class="tree-splitter" />
-               <treecol id="mpCaseCol"
+               <treecol id="caseSensitive"
    							onclick="sortlog(this.id)" class="sortDirectionIndicator"
                  label="&foxyproxy.casesensitive.label;" flex="1"
                  persist="width ordinal hidden" />
                <splitter class="tree-splitter" />
-               <treecol id="mpTypeCol"
+               <treecol id="matchType"
    							onclick="sortlog(this.id)" class="sortDirectionIndicator"
                  label="&foxyproxy.pattern.type.label;" flex="1"
                  persist="width ordinal hidden" />
                <splitter class="tree-splitter" />
-               <treecol id="mpBlackCol"
+               <treecol id="whiteBlack"
    							onclick="sortlog(this.id)" class="sortDirectionIndicator"
                  label="&foxyproxy.whitelist.blacklist.label;" flex="1"
                  persist="width ordinal hidden" />
@@ -755,7 +755,7 @@
    							onclick="sortlog(this.id)" class="sortDirectionIndicator"
                  flex="1" persist="width ordinal hidden" />
                <splitter class="tree-splitter" />
-               <treecol id="errCol" label="&foxyproxy.error.msg.label;"
+               <treecol id="errMsg" label="&foxyproxy.error.msg.label;"
    							onclick="sortlog(this.id)" class="sortDirectionIndicator"
                  flex="1" persist="width ordinal hidden" />
                <splitter class="tree-splitter" />

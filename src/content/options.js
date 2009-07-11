@@ -72,22 +72,6 @@ function updateSettingsInfo() {
 }
 
 function sortlog(columnId) {
-	var columnName;
-	
-	// map columnId to the data
-	switch(columnId) {
-    case "timeCol":columnName = "timestamp"; break;
-    case "urlCol":columnName = "uri"; break;
-    case "nameCol":columnName = "proxyName"; break;
-    case "notesCol":columnName = "proxyNotes"; break;
-    case "mpNameCol":columnName = "matchName"; break;
-    case "mpCol":columnName = "matchPattern";  break;
-    case "mpCaseCol":columnName = "caseSensitive"; break;  
-    case "mpTypeCol":columnName = "matchType"; break;
-    case "mpBlackCol":columnName = "whiteBlack"; break;
-    case "pacResult":columnName = "pacResult"; break;
-    case "errCol":columnName = "errMsg"; break;
-  }
 	
 	// determine how the log is currently sorted (ascending/decending) and by which column (sortResource)
 	var order = logTree.getAttribute("sortDirection") == "ascending" ? 1 : -1;
@@ -100,7 +84,7 @@ function sortlog(columnId) {
 		columnId = logTree.getAttribute("sortResource");
 	}
 	
-  //prepares an object for easy comparison against another. for strings, lowercases them
+  // prepares an object for easy comparison against another. for strings, lowercases them
   function prepareForComparison(o) {
     if (typeof o == "string") {
       return o.toLowerCase();
@@ -108,12 +92,11 @@ function sortlog(columnId) {
     return o;
   }
 	
-	function columnSort(a, b) {
-		
-		if (prepareForComparison(a[columnName]) > prepareForComparison(b[columnName])) return 1 * order;
-		if (prepareForComparison(a[columnName]) < prepareForComparison(b[columnName])) return -1 * order;
+	function columnSort(a, b) {		
+		if (prepareForComparison(a[columnId]) > prepareForComparison(b[columnId])) return 1 * order;
+		if (prepareForComparison(a[columnId]) < prepareForComparison(b[columnId])) return -1 * order;
 		//tie breaker: timestamp ascending is the second level sort
-		if (columnName != "timestamp") {
+		if (columnId != "timestamp") {
 			if (prepareForComparison(a["timestamp"]) > prepareForComparison(b["timestamp"])) return 1;
 			if (prepareForComparison(a["timestamp"]) < prepareForComparison(b["timestamp"])) return -1;
 		}
@@ -148,19 +131,8 @@ function _updateLogView(keepSelection) {
     getCellText : function(row, column) {
       var mp = foxyproxy.logg.item(row);
       if (!mp) return;
-      switch(column.id) {
-        case "timeCol":return format(mp.timestamp);
-        case "urlCol":return mp.uri;
-        case "nameCol":return mp.proxyName;
-        case "notesCol":return mp.proxyNotes;
-        case "mpNameCol":return mp.matchName;
-        case "mpCol":return mp.matchPattern; 
-        case "mpCaseCol":return mp.caseSensitive;       
-        case "mpTypeCol":return mp.matchType;
-        case "mpBlackCol":return mp.whiteBlack;       
-        case "pacResult":return mp.pacResult;
-        case "errCol":return mp.errMsg;
-      }
+      if (column.id == "timestamp") return format(mp.timestamp);
+      return mp[column.id];
     },
     isSeparator: function(aIndex) { return false; },
     isSorted: function() { return false; },

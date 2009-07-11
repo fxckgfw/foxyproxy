@@ -62,13 +62,18 @@ Common.prototype = {
 
     // Our URL isn't open. Open it now.
     var w = this.getMostRecentWindow(wm);
+    var event = { notify: function(timer) {w.gBrowser.selectedTab = w.gBrowser.addTab(aURL, null, null, null);} }
+
     if (w) {
       // Note: Since TB doesn't support tabs and trunk isn't the same
       // Use an existing browser window
       if(w.messenger) // Thunderbird
         w.messenger.launchExternalURL(aURL);
-      else if (!w.delayedOpenTab) // SongBird
-        setTimeout(function(aTabElt) { w.gBrowser.selectedTab = aTabElt; }, 0, w.gBrowser.addTab(aURL, null, null, null));
+      else if (!w.delayedOpenTab) /* SongBird, etc. */ {
+        //setTimeout(function(aTabElt) { w.gBrowser.selectedTab = aTabElt; }, 0, w.gBrowser.addTab(aURL, null, null, null));
+        var t = CC["@mozilla.org/timer;1"].createInstance(CI.nsITimer);
+        t.initWithCallback(event, 10, CI.nsITimer.TYPE_ONE_SHOT);
+      }
       else // FF, SM, Flock, etc.
         w.delayedOpenTab(aURL, null, null, null, null);
       w.focus();

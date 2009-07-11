@@ -410,7 +410,7 @@
 <!ENTITY foxyproxy.aboutproxyservice.label "Die &quot;Proxy Service&quot; Schaltfläche schließlich leitet Sie auf die Proxy Service Website weiter, auf der Sie einen zuverlässigen Proxy-Dienst mit hoher Bandbreite in vielen verschiedenen Ländern zu einem günstigen Preis erwerben können.">
 <!ENTITY foxyproxy.invalidcolor.label "Ungültige Farbe">
 <!ENTITY foxyproxy.validcolor.label "Gültige Farbe">
-<!--      begin foxyproxyplus      -->
+<!--       begin foxyproxyplus       -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Lokales IP-Adressmuster hinzufügen/ändern">
 <!ENTITY foxyproxy.tempip.popup.label "Temporäre Muster erlauben es Ihnen, Muster für selten genutzte lokale IP-Adressen zu erzeugen, ohne dass diese die Liste der IP-Adressmuster eines Proxies überladen. Temporäre Muster werden nicht auf Platte abgelegt. Sie werden im Speicher gehalten und nur für diese Firefox-Sitzung benutzt.">
 <!ENTITY foxyproxy.ip.pattern.label "Lokales IP-Adressmuster">
@@ -455,4 +455,4 @@
 <!ENTITY foxyproxy.proxydomain.label "Domäne (optional - nur NTLM)">
 <!ENTITY foxyproxy.proxydomain.tooltip "Nur NTLM Authentisierung">
 <!ENTITY foxyproxy.proxy.passwords.nomatch.label "Passwörter sind unterschiedlich; bitte neu eingeben.">
-<!--      end foxyproxyplus      -->
+<!--       end foxyproxyplus       -->

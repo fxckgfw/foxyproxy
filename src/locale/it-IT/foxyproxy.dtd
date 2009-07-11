@@ -55,7 +55,7 @@
 <!ENTITY foxyproxy.auto.url.accesskey "u">
 <!ENTITY foxyproxy.auto.url.tooltip "Specificare l&apos;URL del file PAC">
 <!ENTITY foxyproxy.auto.url.note.label "http(s)://   ftp://   file://   relative://">
-<!ENTITY foxyproxy.auto.url.note.tooltip "Fare clic sull&apos;icona dei suggerimenti per informazioni sullo schema relative://">
+<!ENTITY foxyproxy.auto.url.note.tooltip "Fare clic sull&apos;icona dei contenuti guida per informazioni sullo schema relative://">
 <!ENTITY foxyproxy.port.label "Porta">
 <!ENTITY foxyproxy.port.accesskey "P">
 <!ENTITY foxyproxy.port.tooltip "Porta da utilizzare">
@@ -69,9 +69,10 @@
 <!ENTITY foxyproxy.regex.label "Espressione regolare">
 <!ENTITY foxyproxy.regex.accesskey "R">
 <!ENTITY foxyproxy.regex.tooltip "L&apos;URL o il modello URL è un&apos;espressione regolare">
-<!ENTITY foxyproxy.regex.example.label "Esempio: https?://.*\\.mail\\.yahoo\\.com/.*">
+<!ENTITY foxyproxy.regex.example.label "Esempio: https?://.*\.mail\.yahoo\.com/.*">
 <!ENTITY foxyproxy.version "Versione">
-<!ENTITY foxyproxy.createdBy "Creata da:">
+<!ENTITY foxyproxy.createdBy "Autore:">
+<!ENTITY foxyproxy.contributionsBy "Collaboratori:">
 <!ENTITY foxyproxy.copyright "Copyright">
 <!ENTITY foxyproxy.rights "Tutti i diritti riservati">
 <!ENTITY foxyproxy.released "Estensione rilasciata sotto la licenza GPL">
@@ -231,7 +232,7 @@
 <!ENTITY foxyproxy.toolsmenu.label "Mostra &apos;FoxyProxy&apos; nel menu &quot;Strumenti&quot; di Firefox">
 <!ENTITY foxyproxy.toolsmenu.accesskey "F">
 <!ENTITY foxyproxy.toolsmenu.tooltip "L&apos;elemento di menu &apos;FoxyProxy&apos; verrà mostrato nel menu &quot;Strumenti&quot; di Firefox">
-<!ENTITY foxyproxy.tip.label "Suggerimento">
+<!ENTITY foxyproxy.tip.label "Contenuti guida">
 <!ENTITY foxyproxy.pactip1.label "Per un file PAC memorizzato su un disco locale utilizzare lo schema file://. Esempio: file://c:/path/proxy.pac con Windows o file:///home/users/joe/proxy.pac con Unix/Linux/Mac">
 <!ENTITY foxyproxy.pactip2.label "Per un file PAC presente su un server ftp utilizzare lo schema ftp://. Esempio: ftp://leahscape.com/path/proxy.pac">
 <!ENTITY foxyproxy.pactip3.label "È possibile utilizzare anche http://, https://, ed ogni altro schema supportato">
@@ -256,7 +257,7 @@
 <!ENTITY foxyproxy.quickadd.notify.whencanceled.label2 "L&apos;aggiunta rapida viene annullata quando la si attiva tramite Alt+F2 e l&apos;URL attuale nella barra degli indirizzi corrisponde ad un modello di proxy permesso. In questo modo vengono evitati modelli duplicati. Questa impostazione non attiva/disattiva l&apos;annullamento, ma permette di visualizzare un avviso quando necessario">
 <!ENTITY foxyproxy.quickadd.notify.whencanceled.accesskey "u">
 <!ENTITY foxyproxy.quickadd.notify.whencanceled.tooltip "Un pop-up verrà visualizzato quando l&apos;aggiunta rapida verrà attivata ma annullata">
-<!ENTITY foxyproxy.whatsthis "Informazioni su questa opzione">
+<!ENTITY foxyproxy.whatsthis "Contenuti guida">
 <!ENTITY foxyproxy.quickadd.prompt.label "Chiedi conferma per la modifica o prima dell&apos;aggiunta di un modello al proxy">
 <!ENTITY foxyproxy.quickadd.prompt.accesskey "C">
 <!ENTITY foxyproxy.quickadd.prompt.tooltip "Chiedi conferma per la modifica o prima dell&apos;aggiunta di un modello al proxy">
@@ -404,7 +405,12 @@
 <!ENTITY foxyproxy.proxyservice.tooltip "Fare clic qui per iscriversi ad un servizio di proxy a pagamento">
 <!ENTITY foxyproxy.proxyservice2.label "Iscrizione ad un servizio di proxy sicuri americani, inglesi o di altre nazioni a pagamento">
 <!ENTITY foxyproxy.getfoxyproxyplus.label "Ottieni FoxyProxy Plus">
-<!--   begin foxyproxyplus   -->
+<!ENTITY foxyproxy.aboutdonate.label "Facendo clic sul pulsante &apos;Effettua una donazione&apos; è possibile incoraggiare e sostenere lo sviluppo di FoxyProxy effettuando una donazione tramite PayPal">
+<!ENTITY foxyproxy.aboutfpplus.label "Facendo clic sul pulsante &apos;Ottieni FoxyProxy Plus&apos; è possibile consultare la pagina web relativa alle funzioni aggiuntive di FoxyProxy Plus ed eventualmente procedere all&apos;acquisto">
+<!ENTITY foxyproxy.aboutproxyservice.label "Infine, facendo clic sul pulsante &apos;Proxy a pagamento&apos; è possibile accedere a prezzi ragionevoli ad un servizio privato di proxy affidabili, con ampia larghezza di banda e disponibili per diversi paesi">
+<!ENTITY foxyproxy.invalidcolor.label "Il codice del colore non è valido">
+<!ENTITY foxyproxy.validcolor.label "Il codice del colore è valido">
+<!--  begin foxyproxyplus  -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Aggiunta/modifica di modelli di indirizzi IP locali">
 <!ENTITY foxyproxy.tempip.popup.label "I modelli temporanei permettono di creare modelli di indirizzi IP locali che non vengono utilizzati spesso, senza interessare le liste di modelli di indirizzi IP dei proxy. Tali modelli non vengono salvati sul disco rigido, ma mantenuti in memoria ed eliminati alla chiusura della sessione di Firefox">
 <!ENTITY foxyproxy.ip.pattern.label "Modello di indirizzo IP locale">
@@ -424,7 +430,7 @@
 <!ENTITY foxyproxy.copyip.tooltip "Copia l&apos;indirizzo nel modello">
 <!ENTITY foxyproxy.copyip.accesskey "C">
 <!ENTITY foxyproxy.ip.wildcard.example.label "Esempio: 192.168.1.*">
-<!ENTITY foxyproxy.ip.regex.example.label "Esempio: 172\\.\\d+\\.1\\.10">
+<!ENTITY foxyproxy.ip.regex.example.label "Esempio: 172\.\d+\.1\.10">
 <!ENTITY foxyproxy.ip.pattern.match "Il modello corrisponde ad uno o più indirizzi IP locali attuali">
 <!ENTITY foxyproxy.ip.pattern.no.match "Il modello non corrisponde ad alcun indirizzo IP locale">
 <!ENTITY foxyproxy.refreshlocalips "Ricarica gli indirizzi IP locali">
@@ -449,4 +455,4 @@
 <!ENTITY foxyproxy.proxydomain.label "Dominio (opzionale - solo NTLM)">
 <!ENTITY foxyproxy.proxydomain.tooltip "Inserire solo per autenticazione NTLM">
 <!ENTITY foxyproxy.proxy.passwords.nomatch.label "Le password dei proxy non coincidono. Reinserirle">
-<!--   end foxyproxyplus   -->
+<!--  end foxyproxyplus  -->

@@ -702,67 +702,91 @@
           <button command="maxSizeCmd" size="4" />
         </hbox>
         <checkbox command="noURLsCmd" />
-        <separator />
-        <tree id="logTree" align="stretch" enableColumnDrag="true"
-					persist="sortDirection sortResource" sortDirection="ascending" sortResource="timeCol"
-          flex="1" style="width: 5em; height: 2em;">
-          <treecols
-            pickertooltiptext="&foxyproxy.tree.pickertooltiptext.label;">
-            <treecol id="timeCol"
-							onclick="sortlog(this.id)" class="sortDirectionIndicator" sortDirection="ascending"
-              label="&foxyproxy.tab.logging.timestamp.label;" flex="1"
-              persist="width ordinal hidden" />
-            <splitter class="tree-splitter" />
-            <treecol id="urlCol"
-							onclick="sortlog(this.id)" class="sortDirectionIndicator"
-              label="&foxyproxy.tab.logging.url.label;" primary="true"
-              flex="1" persist="width ordinal hidden" />
-            <splitter class="tree-splitter" />
-            <treecol id="nameCol" label="&foxyproxy.proxy.name.label;"
-							onclick="sortlog(this.id)" class="sortDirectionIndicator"
-              flex="1" persist="width ordinal hidden" />
-            <splitter class="tree-splitter" />
-            <treecol id="notesCol" label="&foxyproxy.proxy.notes.label;"
-							onclick="sortlog(this.id)" class="sortDirectionIndicator"
-              flex="1" persist="width ordinal hidden" />
-            <splitter class="tree-splitter" />
-            <treecol id="mpNameCol"
-							onclick="sortlog(this.id)" class="sortDirectionIndicator"
-              label="&foxyproxy.pattern.name.label;" flex="1"
-              persist="width ordinal hidden" />
-            <splitter class="tree-splitter" />
-            <treecol id="mpCol" label="&foxyproxy.pattern.label;"
-							onclick="sortlog(this.id)" class="sortDirectionIndicator"
-              flex="1" persist="width ordinal hidden" />
-            <splitter class="tree-splitter" />
-            <treecol id="mpCaseCol"
-							onclick="sortlog(this.id)" class="sortDirectionIndicator"
-              label="&foxyproxy.casesensitive.label;" flex="1"
-              persist="width ordinal hidden" />
-            <splitter class="tree-splitter" />
-            <treecol id="mpTypeCol"
-							onclick="sortlog(this.id)" class="sortDirectionIndicator"
-              label="&foxyproxy.pattern.type.label;" flex="1"
-              persist="width ordinal hidden" />
-            <splitter class="tree-splitter" />
-            <treecol id="mpBlackCol"
-							onclick="sortlog(this.id)" class="sortDirectionIndicator"
-              label="&foxyproxy.whitelist.blacklist.label;" flex="1"
-              persist="width ordinal hidden" />
-            <splitter class="tree-splitter" />
-            <treecol id="pacResult" label="&foxyproxy.pac.result.label;"
-							onclick="sortlog(this.id)" class="sortDirectionIndicator"
-              flex="1" persist="width ordinal hidden" />
-            <splitter class="tree-splitter" />
-            <treecol id="errCol" label="&foxyproxy.error.msg.label;"
-							onclick="sortlog(this.id)" class="sortDirectionIndicator"
-              flex="1" persist="width ordinal hidden" />
-            <splitter class="tree-splitter" />
-          </treecols>
-          <treechildren id="logTreeChildren" flex="1"
-            context="logTreeMenu" />
-        </tree>
+        <separator class="thin"/>
+         <hbox flex="1">
+           <tree id="logTree" align="stretch" enableColumnDrag="true"
+   					persist="sortDirection sortResource" sortDirection="ascending" sortResource="timeCol"
+             flex="1" style="width: 5em; height: 2em;" onselect="updateLogButtons();">
+             <treecols
+               pickertooltiptext="&foxyproxy.tree.pickertooltiptext.label;">
+               <treecol id="timeCol"
+   							onclick="sortlog(this.id)" class="sortDirectionIndicator" sortDirection="ascending"
+                 label="&foxyproxy.tab.logging.timestamp.label;" flex="1"
+                 persist="width ordinal hidden" />
+               <splitter class="tree-splitter" />
+               <treecol id="urlCol"
+   							onclick="sortlog(this.id)" class="sortDirectionIndicator"
+                 label="&foxyproxy.tab.logging.url.label;" primary="true"
+                 flex="1" persist="width ordinal hidden" />
+               <splitter class="tree-splitter" />
+               <treecol id="nameCol" label="&foxyproxy.proxy.name.label;"
+   							onclick="sortlog(this.id)" class="sortDirectionIndicator"
+                 flex="1" persist="width ordinal hidden" />
+               <splitter class="tree-splitter" />
+               <treecol id="notesCol" label="&foxyproxy.proxy.notes.label;"
+   							onclick="sortlog(this.id)" class="sortDirectionIndicator"
+                 flex="1" persist="width ordinal hidden" />
+               <splitter class="tree-splitter" />
+               <treecol id="mpNameCol"
+   							onclick="sortlog(this.id)" class="sortDirectionIndicator"
+                 label="&foxyproxy.pattern.name.label;" flex="1"
+                 persist="width ordinal hidden" />
+               <splitter class="tree-splitter" />
+               <treecol id="mpCol" label="&foxyproxy.pattern.label;"
+   							onclick="sortlog(this.id)" class="sortDirectionIndicator"
+                 flex="1" persist="width ordinal hidden" />
+               <splitter class="tree-splitter" />
+               <treecol id="mpCaseCol"
+   							onclick="sortlog(this.id)" class="sortDirectionIndicator"
+                 label="&foxyproxy.casesensitive.label;" flex="1"
+                 persist="width ordinal hidden" />
+               <splitter class="tree-splitter" />
+               <treecol id="mpTypeCol"
+   							onclick="sortlog(this.id)" class="sortDirectionIndicator"
+                 label="&foxyproxy.pattern.type.label;" flex="1"
+                 persist="width ordinal hidden" />
+               <splitter class="tree-splitter" />
+               <treecol id="mpBlackCol"
+   							onclick="sortlog(this.id)" class="sortDirectionIndicator"
+                 label="&foxyproxy.whitelist.blacklist.label;" flex="1"
+                 persist="width ordinal hidden" />
+               <splitter class="tree-splitter" />
+               <treecol id="pacResult" label="&foxyproxy.pac.result.label;"
+   							onclick="sortlog(this.id)" class="sortDirectionIndicator"
+                 flex="1" persist="width ordinal hidden" />
+               <splitter class="tree-splitter" />
+               <treecol id="errCol" label="&foxyproxy.error.msg.label;"
+   							onclick="sortlog(this.id)" class="sortDirectionIndicator"
+                 flex="1" persist="width ordinal hidden" />
+               <splitter class="tree-splitter" />
+             </treecols>
+             <treechildren id="logTreeChildren" flex="1"
+               context="logTreeMenu" />
+           </tree>
+           <vbox>
+             <button command="openLogURLInNewTabCmd" />
+             <button command="copyLogURLToClipboardCmd" />
+             <button command="deleteLogEntryCmd" />
+           </vbox>       
+         </hbox> 
       </tabpanel>
+      
+      <!-- 
+        <command id="openLogURLInNewTabCmd" label="&foxyproxy.openurlinnewtab.label;"
+    tooltiptext="&foxyproxy.openurlinnewtab.tooltip;"
+    accesskey="&foxyproxy.openurlinnewtab.accesskey;"
+    oncommand="openLogURLInNewTab();" />
+
+  <command id="copyLogURLToClipboardCmd" label="&foxyproxy.copyurltoclipboard.label;"
+    tooltiptext="&foxyproxy.copyurltoclipboard.tooltip;"
+    accesskey="&foxyproxy.copyurltoclipboard.accesskey;"
+    oncommand="copyLogURLToClipboard();" />    
+
+  <command id="deleteLogEntryCmd" label="&foxyproxy.delete.selection.label;"
+    tooltiptext="&foxyproxy.delete.selection.tooltip;"
+    accesskey="&foxyproxy.delete.selection.accesskey;"
+    oncommand="deleteLogEntry();" 
+       -->
     </tabpanels>
   </tabbox>
   <hbox align="center">
@@ -828,32 +852,35 @@
   <command id="clearLogCmd" label="&foxyproxy.clear.label;"
     tooltiptext="&foxyproxy.clear.label;"
     accesskey="&foxyproxy.clear.accesskey;"
-    oncommand="foxyproxy.logg.clear();_updateLogView();" />
+    oncommand="foxyproxy.logg.clear();_updateLogView(false);" />
 
   <command id="refreshLogCmd" label="&foxyproxy.refresh.label;"
     tooltiptext="&foxyproxy.refresh.tooltip;"
     accesskey="&foxyproxy.refresh.accesskey;"
-    oncommand="_updateLogView();" />
+    oncommand="_updateLogView(true);" />
 
   <command id="saveLogCmd" label="&foxyproxy.save.label;"
     tooltiptext="&foxyproxy.save.tooltip;"
     accesskey="&foxyproxy.save.accesskey;"
-    oncommand="_updateLogView();saveLog();" />
+    oncommand="_updateLogView(true);saveLog();" />
 
 	<command id="openLogURLInNewTabCmd" label="&foxyproxy.openurlinnewtab.label;"
     tooltiptext="&foxyproxy.openurlinnewtab.tooltip;"
     accesskey="&foxyproxy.openurlinnewtab.accesskey;"
-    oncommand="openLogURLInNewTab();" />
+    oncommand="openLogURLInNewTab();" observes="logtree-row-selected"
+    disabled="true" />
 
   <command id="copyLogURLToClipboardCmd" label="&foxyproxy.copyurltoclipboard.label;"
     tooltiptext="&foxyproxy.copyurltoclipboard.tooltip;"
     accesskey="&foxyproxy.copyurltoclipboard.accesskey;"
-    oncommand="copyLogURLToClipboard();" />    
+    oncommand="copyLogURLToClipboard();" observes="logtree-row-selected"
+    disabled="true" />    
 
   <command id="deleteLogEntryCmd" label="&foxyproxy.delete.selection.label;"
     tooltiptext="&foxyproxy.delete.selection.tooltip;"
     accesskey="&foxyproxy.delete.selection.accesskey;"
-    oncommand="deleteLogEntry();" />
+    oncommand="deleteLogEntry();" observes="logtree-row-selected"
+    disabled="true" />
     
   <command id="maxSizeCmd"
     label="&foxyproxy.logging.maxsize.button.label;"
@@ -982,6 +1009,7 @@
         
   <broadcasterset>
     <broadcaster id="tree-row-selected" disabled="true" />
+    <broadcaster id="logtree-row-selected" disabled="true" />
     <broadcaster id="statusBarWidthBroadcaster" disabled="true" />
     <broadcaster id="autoAddBroadcaster" hidden="true" />
     <broadcaster id="quickAddBroadcaster" hidden="true" />    

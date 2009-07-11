@@ -91,7 +91,7 @@ function sortlog(columnId) {
 	
 	// determine how the log is currently sorted (ascending/decending) and by which column (sortResource)
 	var order = logTree.getAttribute("sortDirection") == "ascending" ? 1 : -1;
-	//if the column is passed and it's already sorted by that column, reverse sort
+	// if the column is passed and it's already sorted by that column, reverse sort
 	if (columnId) {
 		if (logTree.getAttribute("sortResource") == columnId) {
 			order *= -1;
@@ -99,6 +99,14 @@ function sortlog(columnId) {
 	} else {
 		columnId = logTree.getAttribute("sortResource");
 	}
+	
+  //prepares an object for easy comparison against another. for strings, lowercases them
+  function prepareForComparison(o) {
+    if (typeof o == "string") {
+      return o.toLowerCase();
+    }
+    return o;
+  }
 	
 	function columnSort(a, b) {
 		
@@ -113,32 +121,28 @@ function sortlog(columnId) {
 	}
 	foxyproxy.logg._elements.sort(columnSort);
 	
-	//setting these will make the sort option persist
+	// setting these will make the sort option persist
 	logTree.setAttribute("sortDirection", order == 1 ? "ascending" : "descending");
 	logTree.setAttribute("sortResource", columnId);
 	
-	//set the appropriate attributes to show to indicator
+	// set the appropriate attributes to show to indicator
 	var cols = logTree.getElementsByTagName("treecol");
 	for (var i = 0; i < cols.length; i++) {
 		cols[i].removeAttribute("sortDirection");
 	}
 	document.getElementById(columnId).setAttribute("sortDirection", order == 1 ? "ascending" : "descending");
 	
-	_updateLogView();
+	_updateLogView(false);
 }
 
-//prepares an object for easy comparison against another. for strings, lowercases them
-function prepareForComparison(o) {
-	if (typeof o == "string") {
-		return o.toLowerCase();
-	}
-	return o;
-}
-
-function _updateLogView() {
+function _updateLogView(keepSelection) {
 	saveLogCmd.setAttribute("disabled", foxyproxy.logg.length == 0);
 	clearLogCmd.setAttribute("disabled", foxyproxy.logg.length == 0);	
   noURLsCmd.setAttribute("checked", foxyproxy.logg.noURLs); 
+  var selectedIndices;
+  
+  if (keepSelection) selectedIndices =_getSelectedIndices(logTree);
+  
   logTree.view = {
     rowCount : foxyproxy.logg.length,
     getCellText : function(row, column) {
@@ -178,6 +182,13 @@ function _updateLogView() {
     getCellProperties: function(aRow, props) {},
     getLevel: function(row){ return 0; }
   };
+  
+  if (keepSelection) {
+    // Restore any previous selections
+    for (var i = 0, sz=selectedIndices.length; i<sz; i++)
+      logTree.view.selection.rangedSelect(selectedIndices[i], selectedIndices[i], true);
+  }
+  updateLogButtons();
 }
 
   // Thanks for the inspiration, Tor2k (http://www.codeproject.com/jscript/dateformat.asp)
@@ -321,7 +332,7 @@ function _updateView(writeSettings, updateLogView) {
   proxyTree.view = fpc.makeProxyTreeView(foxyproxy);
   writeSettings && foxyproxy.writeSettings();
   setButtons();
-  updateLogView && _updateLogView();
+  updateLogView && _updateLogView(true);
 }
 
 function onEnableTypeChanged(menu) {
@@ -461,6 +472,10 @@ function onProxyTreeSelected() {
 	setButtons();
 }
 
+function updateLogButtons() {
+  document.getElementById("logtree-row-selected").setAttribute("disabled", _getSelectedIndices(logTree).length == 0);
+}
+
 function onProxyTreeMenuPopupShowing() {
 	var e = document.getElementById("enabledPopUpMenuItem"), f = document.getElementById("menuSeperator");
   e.hidden = f.hidden = _isDefaultProxySelected();
@@ -587,14 +602,15 @@ function openLogURLInNewTab() {
   //var noUrl = foxyproxy.getMessage("log.nourls.url");
   for (var i = 0, sz=selectedIndices.length; i<sz; i++)
     fpc.openAndReuseOneTabPerURL(foxyproxy.logg.item(selectedIndices[i]).uri);
+  
   // Refresh the log view for the user
-  _updateLogView();
+  _updateLogView(true);
 }
 
 function deleteLogEntry() {
   foxyproxy.logg.del(_getSelectedIndices(logTree));
   // Refresh the log view for the user
-  _updateLogView();  
+  _updateLogView(false);  
 }
 
 function copyLogURLToClipboard() {

@@ -1,5 +1,7 @@
-2.9.1
+2.11
 =====
+* Custom colors per proxy -- thanks, Jesper Hansen !!
+* Smooth icon animations -- thanks, Jesper Hansen !!
 * Fixed the huge width of the AddEditProxy dialog so it's not so huge
 * Changed all the donate/buy buttons and links
 * Added jesper to the about box

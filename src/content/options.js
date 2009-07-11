@@ -559,3 +559,52 @@ function onBlockedPagePattern() {
     foxyproxy.writeSettings();
   }    
 }
+
+/**
+ * Get the selected indices of a multiselect tree as an integer array
+ */
+function _getSelectedIndices(tree) {
+  var start = {}, end = {}, numRanges = tree.view.selection.getRangeCount(),
+    selectedIndices = [];
+
+  for (var t = 0; t < numRanges; t++){
+    tree.view.selection.getRangeAt(t, start, end);
+    for (var v = start.value; v <= end.value; v++)
+      selectedIndices.push(v)
+  }
+  return selectedIndices;
+}
+
+function openLogURLInNewTab() {
+  var selectedIndices = _getSelectedIndices(logTree);
+  
+  // If more than 3 selected, ask user if he's sure he wants to open that many tabs
+  if (selectedIndices.length > 4 &&
+    !foxyproxy.warnings.showWarningIfDesired(window, ["reallyOpenXNewTabs",selectedIndices.length], "openXNewTabs"))
+  return;
+  
+  // Open 'em, ignoring entries whose URLs haven't been stored because user had enabled, "Do not store or displays URLs" (for privacy purposes)
+  //var noUrl = foxyproxy.getMessage("log.nourls.url");
+  for (var i = 0, sz=selectedIndices.length; i<sz; i++)
+    fpc.openAndReuseOneTabPerURL(foxyproxy.logg.item(selectedIndices[i]).uri);
+  // Refresh the log view for the user
+  _updateLogView();
+}
+
+function deleteLogEntry() {
+  foxyproxy.logg.del(_getSelectedIndices(logTree));
+  // Refresh the log view for the user
+  _updateLogView();  
+}
+
+function copyLogURLToClipboard() {
+  var selectedIndices = _getSelectedIndices(logTree);
+  
+  // Copy the URLs to the cliboard, separated by spaces if there's more than one selection
+  var txt = "";
+  for (var i = 0, sz = selectedIndices.length; i<sz; i++) {
+    txt += foxyproxy.logg.item(selectedIndices[i]).uri;
+    if (i+1 != sz) txt += " "; // don't add space to the front or the end
+  }
+  CC["@mozilla.org/widget/clipboardhelper;1"].getService(CI.nsIClipboardHelper).copyString(txt);
+}

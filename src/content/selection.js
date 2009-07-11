@@ -74,7 +74,7 @@ foxyproxy.selection = {
      getBrowserSelection() never appears to return null, just the empty string, but we
      check for null anyway just in case that is changed in a future release.*/
     var ret = {};
-    ret.selection = getBrowserSelection();
+    ret.selection = this.getBrowserSelection();
     // Only show these menu items if there is selected text, otherwise they their phrasing
     // appears funny: "Set <blank> as this proxy's new host and port", even if disabled.
     if (ret.selection != null && ret.selection != "") {
@@ -94,5 +94,44 @@ foxyproxy.selection = {
     else
       ret.reason = 1;
     return ret;
+  },
+
+  /**
+   * Copied from Firefox's browser.xul because some platforms (e.g., Tbird)
+   * don't have this method
+   * 
+   * Gets the selected text in the active browser. Leading and trailing
+   * whitespace is removed, and consecutive whitespace is replaced by a single
+   * space. A maximum of 150 characters will be returned, regardless of the value
+   * of aCharLen.
+   *
+   * @param aCharLen
+   *        The maximum number of characters to return.
+   */
+  getBrowserSelection : function(aCharLen) {
+    // selections of more than 150 characters aren't useful
+    const kMaxSelectionLen = 150;
+    const charLen = Math.min(aCharLen || kMaxSelectionLen, kMaxSelectionLen);
+
+    var focusedWindow = document.commandDispatcher.focusedWindow;
+    var selection = focusedWindow.getSelection().toString();
+
+    if (selection) {
+      if (selection.length > charLen) {
+        // only use the first charLen important chars. see bug 221361
+        var pattern = new RegExp("^(?:\\s*.){0," + charLen + "}");
+        pattern.test(selection);
+        selection = RegExp.lastMatch;
+      }
+
+      selection = selection.replace(/^\s+/, "")
+                           .replace(/\s+$/, "")
+                           .replace(/\s+/g, " ");
+
+      if (selection.length > charLen)
+        selection = selection.substr(0, charLen);
+    }
+    return selection;
   }
+
 };

@@ -10,11 +10,13 @@
   and also online at http://www.gnu.org/licenses/gpl.txt
 -->
 <?xml-stylesheet href="foxyproxy.css" type="text/css"?>
+<?xul-overlay href="chrome://foxyproxy/content/firefoxOverlay-svg.xul"?>
 <!DOCTYPE overlay SYSTEM "chrome://foxyproxy/locale/foxyproxy.dtd">
 
 <overlay id="foxyproxy-overlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
-  <script src="chrome://foxyproxy/content/overlay.js"/>
+  <script src="overlay.js"/>
+  <script src="selection.js"/>
 
   <stringbundleset id="foxyproxy-strings">
     <stringbundle src="chrome://foxyproxy/locale/foxyproxy.properties"/>   
@@ -22,29 +24,28 @@
 
   <!-- menu -->
   <menupopup id="taskPopup">
-    <menu id="foxyproxy-toolsmenu-icon" label="&foxyproxy.label;" insertbefore="devToolsSeparator" position="9"
-      accesskey="&foxyproxy.accesskey;" class="menu-iconic foxyproxybutton-small"
-      mode="patterns" persist="mode">
+    <menu id="foxyproxyMenu" insertbefore="devToolsSeparator" position="9" accesskey="&foxyproxy.accesskey;">
       <menupopup id="foxyproxy-toolsmenu-popup"
           onpopupshowing="foxyproxy.onPopupShowing(this, event);"
           onpopuphiding="foxyproxy.onPopupHiding();"/>
-    </menu>
+       <hbox id="foxyproxy-toolsmenu-icon"/>
+    </menu>    
   </menupopup>
 
   <keyset id="taskKeys">
     <!-- accel is ctrl on windows, cmd on mac -->  
     <key id="key_foxyproxyfocus" keycode="VK_F2" modifiers="accel" oncommand="foxyproxy.onOptionsDialog();"/>
     <!-- <key id="key_foxyproxyfocus" keycode="VK_F2" modifiers="alt" oncommand="foxyproxy.onQuickAddDialog(event);"/> -->
+    <key id="key_foxyproxychangeproxy" keycode="VK_F3" modifiers="alt" oncommand="foxyproxy.selection.onChangeHost();"/> 
   </keyset>
   
   <popup id="mailContext"> <!-- FF: contentAreaContextMenu TB2: messagePaneContext TB3b2+: mailContext -->
-    <menu id="foxyproxy-contextmenu-icon" label="&foxyproxy.label;" 
-      accesskey="&foxyproxy.accesskey;" class="menu-iconic foxyproxybutton-small"
-      mode="patterns" persist="mode hidden" hidden="false"> 
+     <menu id="foxyproxy-contextmenu-icon" accesskey="&foxyproxy.accesskey;">
       <menupopup id="foxyproxy-contextmenu-popup"
           onpopupshowing="foxyproxy.onPopupShowing(this, event);"
           onpopuphiding="foxyproxy.onPopupHiding();"/>
-    </menu>
+        <hbox id="foxyproxy-toolsmenu-icon"/>
+    </menu>   
   </popup>
   
   <statusbar id="status-bar">
@@ -58,21 +59,22 @@
       onpopuphiding="foxyproxy.onPopupHiding();"/>
     <statusbarpanel 
       id="foxyproxy-status-text"
-      onclick="if(event.button==0) {foxyproxy.onOptionsDialog();event.stopPropagation();} else document.getElementById('foxyproxy-statusbar-popup').showPopup(this, -1, -1, 'popup', 'bottomleft', 'topleft');"
-      mode="patterns" persist="mode hidden" hidden="true"/>
+      onclick="foxyproxy.onSBTBClick(event, foxyproxy.fp.statusbar);"
+      mode="patterns" persist="mode hidden" hidden="true" mousethrough="never"/>
     <statusbarpanel 
       id="foxyproxy-statusbar-icon"
-      onclick="if(event.button==0) {foxyproxy.onOptionsDialog();event.stopPropagation();} else document.getElementById('foxyproxy-statusbar-popup').showPopup(this, -1, -1, 'popup', 'bottomleft', 'topleft');"
-      hidden="true"/> <!-- NEW SVG -->
+      onclick="foxyproxy.onSBTBClick(event, foxyproxy.fp.statusbar);"
+      hidden="true" mousethrough="never"/> 
   </statusbar>
-
+  
   <toolbarpalette id="MailToolbarPalette">   
-    <toolbarbutton id="foxyproxy-toolbar-icon" type="menu" label="&foxyproxy.label;"
-      accesskey="&foxyproxy.accesskey;"
-      class="toolbarbutton-1 chromeclass-toolbar-additional foxyproxybutton">
+    <toolbarbutton id="foxyproxy-toolbar-icon" type="menu" orient="horizontal" mode="patterns" persist="mode" label="&foxyproxy.label;"
+      context="foxyproxy-toolbarbutton-popup"
+      onclick="foxyproxy.onSBTBClick(event, foxyproxy.fp.toolbar);event.stopPropagation();event.preventDefault();return false;">
         <menupopup id="foxyproxy-toolbarbutton-popup"
-        onpopupshowing="foxyproxy.onPopupShowing(this, event);"
-        onpopuphiding="foxyproxy.onPopupHiding();"/>  
-    </toolbarbutton>
-  </toolbarpalette>  
+        onpopuphiding="foxyproxy.onPopupHiding();"
+        onpopupshowing="event.stopPropagation();event.preventDefault();return false;"/>  <!--  todo: do i really need all 3 of these? -->
+    </toolbarbutton> 
+  </toolbarpalette> 
+   
 </overlay>

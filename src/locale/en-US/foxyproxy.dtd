@@ -191,6 +191,14 @@
 <!ENTITY foxyproxy.save.accesskey "S">
 <!ENTITY foxyproxy.save.tooltip "Save">
 
+<!ENTITY foxyproxy.openurlinnewtab.label "Open URL in New Tab">
+<!ENTITY foxyproxy.openurlinnewtab.accesskey "O">
+<!ENTITY foxyproxy.openurlinnewtab.tooltip "Open URL in New Tab">
+
+<!ENTITY foxyproxy.copyurltoclipboard.label "Copy URL to Clipboard">
+<!ENTITY foxyproxy.copyurltoclipboard.accesskey "C">
+<!ENTITY foxyproxy.copyurltoclipboard.tooltip "Copy URL to Clipboard">
+
 <!ENTITY foxyproxy.addnewproxy.label "Add New Proxy">
 <!ENTITY foxyproxy.addnewproxy.accesskey "A">
 <!ENTITY foxyproxy.addnewproxy.tooltip "Add New Proxy">

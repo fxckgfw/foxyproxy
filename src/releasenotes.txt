@@ -22,3 +22,7 @@
   to be able to see the name of the current proxy or mode (i.e., users who don't want to uncheck the existing FoxyProxy
   "Global Settings->Show mode (text) on statusbar" setting.
 * log sorting by clicking on a column -- contributed by Nathan S. Watson-Haigh
+* open log URLs in tabs -- contributed by Nathan S. Watson-Haigh
+* copy URLs of log rows to clipboard
+* ability to delete log rows
+* fixed launching of URLs for Sonbird and other platforms

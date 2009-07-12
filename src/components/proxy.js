@@ -96,7 +96,7 @@ Proxy.prototype = {
     return this;
   },
 
-  fromDOM : function(node, fpMode) {
+  fromDOM : function(node, includeTempPatterns) {
     this.name = node.getAttribute("name");
     this.id = node.getAttribute("id") || this.fp.proxies.uniqueRandom();
     this.notes = node.getAttribute("notes");
@@ -114,28 +114,18 @@ Proxy.prototype = {
     this.includeInCycle = node.hasAttribute("includeInCycle") ? node.getAttribute("includeInCycle") == "true" : !this.lastresort; // new for 2.5
     this.color = gGetSafeAttr(node, "color", DEFAULT_COLOR);
     
-    // new XPathEvaluator() is not yet available; must go through XPCOM
-    var xpe = CC["@mozilla.org/dom/xpath-evaluator;1"].getService(CI.nsIDOMXPathEvaluator),
-      resolver = xpe.createNSResolver(node);
-    readPatterns("/foxyproxy/proxies/proxy[@id=" + this.id + "]/matches/match", this.matches);
-    this.afterPropertiesSet(fpMode);
-    function readPatterns(exp, arr) {
-      // doc.createNSResolver(doc) fails on FF2 (not FF3), so we use an instance of nsIDOMXPathEvaluator instead
-      // of the next line
-      // var n = doc.evaluate(exp, doc, doc.createNSResolver(doc), doc.ANY_TYPE, null).iterateNext();    
-      var iter = xpe.evaluate(exp, node, resolver, xpe.ANY_TYPE, null);
-      iter.QueryInterface(CI.nsIDOMXPathResult); // not necessary in FF3, only 2.x and possibly earlier
-      var pat = iter.iterateNext(); // FF 2.0.0.14: iterateNext is not a function
-      while (pat) {
-        j = arr.length;
-        arr[j] = new Match();
-        arr[j].fromDOM(pat);
-        pat = iter.iterateNext();
-      }
+    for (var i=0,temp=node.getElementsByTagName("match"); i<temp.length; i++) {
+      var j = this.matches.length;
+      this.matches[j] = new Match();
+      this.matches[j].fromDOM(temp.item(i), includeTempPatterns);
     }
+    this.afterPropertiesSet();
   },
   
-  toDOM : function(doc) {
+  /**
+   * |includeTempPatterns| is only true when the user is copying a proxy and all its data
+   */
+  toDOM : function(doc, includeTempPatterns) {
     var e = doc.createElement("proxy");
     e.setAttribute("name", this.name);
     e.setAttribute("id", this.id);
@@ -151,7 +141,7 @@ Proxy.prototype = {
     var matchesElem = doc.createElement("matches");
     e.appendChild(matchesElem);
     for (var j=0, m; j<this.matches.length && (m=this.matches[j]); j++)
-      if (!m.temp) matchesElem.appendChild(m.toDOM(doc));
+      if (!m.temp || (includeTempPatterns && m.temp)) matchesElem.appendChild(m.toDOM(doc, includeTempPatterns));
 
     e.appendChild(this.autoconf.toDOM(doc));
     e.appendChild(this.manualconf.toDOM(doc));
@@ -180,7 +170,7 @@ Proxy.prototype = {
     this.handleTimer();
   },
 
-	afterPropertiesSet : function(fpMode) {
+	afterPropertiesSet : function() {
 	  // Load PAC if required. Note that loadPAC() is synchronous and if it fails, it changes our mode to "direct" or disables us.
     this.shouldLoadPAC() && this.autoconf.loadPAC();
 

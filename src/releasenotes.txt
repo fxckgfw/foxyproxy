@@ -1,31 +1,4 @@
-2.11
-=====
-* Custom colors per proxy -- thanks, Jesper Hansen !!
-* Smooth icon animations -- thanks, Jesper Hansen !!
-* Fixed the huge width of the AddEditProxy dialog so it's not so huge
-* Changed all the donate/buy buttons and links
-* Added jesper to the about box
-* When adding a new proxy, the Proxy Details tab is now the default tab. This contributes towards faster addition of new proxies (one less click)
-* Warning message for "You didn't enter and enable any whitelisted (inclusive) URL patterns ..." now has a "Do not show this message again" checkbox
-  for better usability to people who use FoxyProxy like SwitchProxy (i.e., load all URLs through one proxy at a time)
-* Revamp of "Do not show this message again" checkboxes so they can more easily be added for all sorts of annoying, recurring questions in FoxyProxy. As
-  a side-effect, your previous selections for the two existing "Do not show this message again" checkboxes are reset after upgrading to this version. One
-  of these is "The pattern has no wildcard characters ..." and the other is only for Thunderbird users ("You have chosen a non-SOCKS proxy. POP3, IMAP, and all
-  other email protocols must use SOCKS proxies; they cannot use HTTP proxies. Continue anyway?")
-  
-* Fixed longstanding bug whereby regular expression special characters ($, ., +, (, ), and ^) couldn't be used in URL patterns
-* Ability to disable resetting of icon colors after URLs have finished loading via a "hidden preferenence" (i.e., no GUI currently).
-  Change the attribute /foxyproxy[@resetIconColors] from true to false and restart Firefox.
-  This enables you to easily see which proxy was last used (instead of having to use the FoxyProxy Logging tab).
-* Ability to remove the "FoxyProxy:" prefix in the statubar with a "hidden preferenence" (i.e., no GUI currently).
-  Change the attribute /foxyproxy[@useStatusBarPrefix] from true to false and restart Firefox.
-  This long-requested feature makes FoxyProxy display only the proxy name (or mode) and the FoxyProxy icon in the statusbar.
-  It is useful for people who have lots and lots of Firefox addson that consume statusbar real-estate and who still want
-  to be able to see the name of the current proxy or mode (i.e., users who don't want to uncheck the existing FoxyProxy
-  "Global Settings->Show mode (text) on statusbar" setting.
-* log sorting by clicking on a column -- contributed by Nathan S. Watson-Haigh
-* open log URLs in tabs -- contributed by Nathan S. Watson-Haigh
-* copy URLs of log rows to clipboard
-* ability to delete log rows
-* fixed launching of URLs for Sonbird and other platforms
-* ability to sort patterns (http://foxyproxy.mozdev.org/drupal/content/move-pattern-or-down-proxy-server-configuration-window)
+2.11.1
+======
+* Fix for http://foxyproxy.mozdev.org/drupal/content/problem-name-icon-display
+* Fix for http://foxyproxy.mozdev.org/drupal/content/copy-selection-proxy-does-not-copy-patterns

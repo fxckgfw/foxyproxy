@@ -22,7 +22,7 @@
     <stringbundle src="chrome://foxyproxy/locale/foxyproxy.properties"/>   
   </stringbundleset>
   
-  <!-- menu -->
+  <!-- firefox tools menu -->
   <menupopup id="menu_ToolsPopup">
     <menu id="foxyproxyMenu" insertbefore="devToolsSeparator" position="9" accesskey="&foxyproxy.accesskey;">
       <menupopup id="foxyproxy-toolsmenu-popup"
@@ -32,7 +32,7 @@
     </menu>
   </menupopup>
 
-  <!-- for seamonkey --> 
+  <!-- seamonkey tools menu --> 
   <menupopup id="taskPopup">
      <menu id="foxyproxyMenu" insertbefore="devToolsSeparator" position="9" accesskey="&foxyproxy.accesskey;">
       <menupopup id="foxyproxy-toolsmenu-popup"

@@ -130,7 +130,7 @@ Match.prototype = {
 	 	}
   },
 
-  fromDOM : function(n) {
+  fromDOM : function(n, includeTempPatterns) {
     var notes = gGetSafeAttr(n, "notes", "");  // name was called notes in v1.0
 	  this.name = gGetSafeAttr(n, "name", notes);
 	  this._isRegEx = gGetSafeAttrB(n, "isRegEx", false);
@@ -141,10 +141,14 @@ Match.prototype = {
     // Set this.caseSensitive instead of this._caseSensitive because the latter creates the regexp.
     this.caseSensitive = gGetSafeAttrB(n, "caseSensitive", false);
     // We don't deserialize this.temp because it's not serialized
+    // exception: use is copying these patterns (including temporary ones)
+    // to a new proxy
+    if (includeTempPatterns)
+      this.temp = gGetSafeAttrB(n, "temp", false);
   },
 
-  toDOM : function(doc) {
-    if (this.temp) return;
+  toDOM : function(doc, includeTempPatterns) {
+    if (!includeTempPatterns && this.temp) return;
     var matchElem = doc.createElement("match");
     matchElem.setAttribute("enabled", this.enabled);
     matchElem.setAttribute("name", this.name);
@@ -153,6 +157,8 @@ Match.prototype = {
     matchElem.setAttribute("isBlackList", this.isBlackList);
     matchElem.setAttribute("isMultiLine", this._isMultiLine);
     matchElem.setAttribute("caseSensitive", this._caseSensitive);
+    if (includeTempPatterns)
+      matchElem.setAttribute("temp", this.temp);
     return matchElem;
   }
 };

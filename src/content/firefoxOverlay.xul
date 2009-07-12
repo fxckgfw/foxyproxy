@@ -54,7 +54,6 @@
       <menupopup id="foxyproxy-contextmenu-popup"
           onpopupshowing="foxyproxy.onPopupShowing(this, event);"
           onpopuphiding="foxyproxy.onPopupHiding();"/>
-        <hbox id="foxyproxy-toolsmenu-icon"/>
     </menu>    
   </popup>
   

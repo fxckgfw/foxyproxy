@@ -182,26 +182,29 @@ function setButtons(observerId, tree) {
   onAutoConfUrlInput();
 }
 
+function getTextForCell(pat, col) {
+  switch (col) {
+    case "name":return pat.name;
+    case "pattern":return pat.pattern;
+    case "isRegEx":return foxyproxy.getMessage(pat.isRegEx ? "foxyproxy.regex.label" : "foxyproxy.wildcard.label");
+    case "isBlackList":return foxyproxy.getMessage(pat.isBlackList ? "foxyproxy.blacklist.label" : "foxyproxy.whitelist.label");
+    case "caseSensitive":return foxyproxy.getMessage(pat.caseSensitive ? "yes" : "no");
+    case "temp":return foxyproxy.getMessage(pat.temp ? "yes" : "no");
+  };
+}
+
 function _updateView() {
   // Redraw the trees
-  urlsTree.view = makeView(proxy.matches);
+  urlsTree.view = makeView();
 
-  function makeView(pats) {
+  function makeView() {
     return {
-      rowCount : pats.length,
+      rowCount : proxy.matches.length,
       getCellText : function(row, column) {
-        var s = column.id ? column.id : column;
-        switch(s) {
-          case "nameCol":return pats[row].name;
-          case "patternCol":return pats[row].pattern;
-          case "patternTypeCol":return foxyproxy.getMessage(pats[row].isRegEx ? "foxyproxy.regex.label" : "foxyproxy.wildcard.label");
-          case "blackCol":return foxyproxy.getMessage(pats[row].isBlackList ? "foxyproxy.blacklist.label" : "foxyproxy.whitelist.label");
-          case "caseSensitiveCol":return foxyproxy.getMessage(pats[row].caseSensitive ? "yes" : "no");
-          case "tempCol":return foxyproxy.getMessage(pats[row].temp ? "yes" : "no");
-        }
+        return getTextForCell(proxy.matches[row], column.id ? column.id : column);
       },
-      setCellValue: function(row, col, val) {pats[row].enabled = val;},
-      getCellValue: function(row, col) {return pats[row].enabled;},
+      setCellValue: function(row, col, val) {proxy.matches[row].enabled = val;},
+      getCellValue: function(row, col) {return proxy.matches[row].enabled;},
       isSeparator: function(aIndex) { return false; },
       isSorted: function() { return false; },
       isEditable: function(row, col) { return false; },
@@ -317,10 +320,10 @@ function onIsSocks(checked) {
 	document.getElementById("socks5").disabled = document.getElementById("socks4").disabled = !checked;
 }
 
-// NEW SVG
 function pickcolor(scolor) {
 	document.getElementById("color").value=scolor;
 }
+
 function customcolor(scolor) {
 	var color = new RGBColor(scolor);
 	if(color.ok) {
@@ -331,4 +334,72 @@ function customcolor(scolor) {
 		document.getElementById("colorfalse").setAttribute("hidden", "false");
 		document.getElementById("colortrue").setAttribute("hidden", "true");
 	}
+}
+
+function getTextForBoolean(b) {
+  return foxyproxy.getMessage(b ? "yes" : "no");
+}
+
+/**
+ * TODO: See if there's any way to generalize this function with sortlog() in options.xul to prevent code duplication
+ */ 
+function sort(columnId) {
+  dump("columnId = " + columnId + "\n");
+  // determine how the urlsTree is currently sorted (ascending/decending) and by which column (sortResource)
+  var order = urlsTree.getAttribute("sortDirection") == "ascending" ? 1 : -1;
+  // if the column is passed and it's already sorted by that column, reverse sort
+  if (columnId) {
+    if (urlsTree.getAttribute("sortResource") == columnId) {
+      order *= -1;
+    }
+  } else {
+    columnId = urlsTree.getAttribute("sortResource");
+  }
+  
+  //prepares an object for easy comparison against another. for strings, lowercases them
+  function prepareForComparison(o) {
+    if (typeof o == "string") {
+      return o.toLowerCase();
+    }
+    return o;
+  }
+  
+  function columnSort(a, b) {
+    // Sort on the displayed text, not the underlying data. The underlying data can be true/false
+    // for some columns while the displayed text can be, for example, "Whitelist/Blacklist" or "yes/no"
+    // or "Wildcards/Regular Expression" 
+    
+    var c, d;
+    if (columnId == "enabled") {
+      if (a.enabled) return -1 * order;
+      if (b.enabled) return order;
+    }
+    else {
+      c = getTextForCell(a, columnId);
+      d = getTextForCell(b, columnId);
+    }
+    
+    if (prepareForComparison(c) > prepareForComparison(d)) return order;
+    if (prepareForComparison(c) < prepareForComparison(d)) return -1 * order;
+    // tie breaker: enabled ascending is the second level sort
+    if (columnId != "enabled") {
+      if (a.enabled) return 1;
+      if (b.enabled) return -1;
+    }
+    return 0;
+  }
+  proxy.matches.sort(columnSort);
+  
+  // setting these will make the sort option persist
+  urlsTree.setAttribute("sortDirection", order == 1 ? "ascending" : "descending");
+  urlsTree.setAttribute("sortResource", columnId);
+  
+  // set the appropriate attributes to show to indicator
+  var cols = urlsTree.getElementsByTagName("treecol");
+  for (var i = 0; i < cols.length; i++) {
+    cols[i].removeAttribute("sortDirection");
+  }
+  document.getElementById(columnId).setAttribute("sortDirection", order == 1 ? "ascending" : "descending");
+  
+  _updateView();
 }

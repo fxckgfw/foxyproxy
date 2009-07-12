@@ -141,12 +141,12 @@
 <!ENTITY foxyproxy.save.label "Αποθήκευση">
 <!ENTITY foxyproxy.save.accesskey "Α">
 <!ENTITY foxyproxy.save.tooltip "Αποθήκευση">
-<!ENTITY foxyproxy.openurlinnewtab.label "Open URL in New Tab">
-<!ENTITY foxyproxy.openurlinnewtab.accesskey "O">
-<!ENTITY foxyproxy.openurlinnewtab.tooltip "Open URL in New Tab">
-<!ENTITY foxyproxy.copyurltoclipboard.label "Copy URL to Clipboard">
-<!ENTITY foxyproxy.copyurltoclipboard.accesskey "C">
-<!ENTITY foxyproxy.copyurltoclipboard.tooltip "Copy URL to Clipboard">
+<!ENTITY foxyproxy.openurlinnewtab.label "Άνοιγμα URL σε νέα καρτέλα">
+<!ENTITY foxyproxy.openurlinnewtab.accesskey "ν">
+<!ENTITY foxyproxy.openurlinnewtab.tooltip "Ανοίγει τα URL σε νέες καρτέλες">
+<!ENTITY foxyproxy.copyurltoclipboard.label "Αντιγραφή του URL στο πρόχειρο">
+<!ENTITY foxyproxy.copyurltoclipboard.accesskey "π">
+<!ENTITY foxyproxy.copyurltoclipboard.tooltip "Αντιγράφει το URL στο πρόχειρο">
 <!ENTITY foxyproxy.addnewproxy.label "Προσθήκη νέου διαμεσολαβητή">
 <!ENTITY foxyproxy.addnewproxy.accesskey "Π">
 <!ENTITY foxyproxy.addnewproxy.tooltip "Προσθήκη νέου διαμεσολαβητή">
@@ -329,7 +329,7 @@
 <!ENTITY foxyproxy.indicators.tooltip "Ρυθμίσεις ενδείξεων">
 <!ENTITY foxyproxy.misc.label "Διάφορα">
 <!ENTITY foxyproxy.misc.tooltip "Διάφορες ρυθμίσεις">
-<!ENTITY foxyproxy.animatedicons.label "Εφέ κίνησης εικονίδιου όταν γίνεται χρήση του διαμεσολαβητή">
+<!ENTITY foxyproxy.animatedicons.label "Εφέ κίνησης εικονιδίου όταν γίνεται χρήση του διαμεσολαβητή">
 <!ENTITY foxyproxy.animatedicons.accesskey "κ">
 <!ENTITY foxyproxy.animatedicons.tooltip "Εφέ κίνησης στο εικονίδιο όταν αυτός ο διαμεσολαβητής είναι ενεργός (πρέπει να έχει ενεργοποιηθεί και η επιλογή για εφέ κίνησης από τις γενικές ρυθμίσεις)">
 <!ENTITY foxyproxy.statusbaractivation.label "Ενεργοποίηση γραμμής κατάστασης">

@@ -28,3 +28,4 @@
 * copy URLs of log rows to clipboard
 * ability to delete log rows
 * fixed launching of URLs for Sonbird and other platforms
+* ability to sort patterns (http://foxyproxy.mozdev.org/drupal/content/move-pattern-or-down-proxy-server-configuration-window)

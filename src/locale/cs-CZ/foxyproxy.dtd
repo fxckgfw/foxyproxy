@@ -141,6 +141,12 @@
 <!ENTITY foxyproxy.save.label "Uložit">
 <!ENTITY foxyproxy.save.accesskey "U">
 <!ENTITY foxyproxy.save.tooltip "Uložit">
+<!ENTITY foxyproxy.openurlinnewtab.label "Open URL in New Tab">
+<!ENTITY foxyproxy.openurlinnewtab.accesskey "O">
+<!ENTITY foxyproxy.openurlinnewtab.tooltip "Open URL in New Tab">
+<!ENTITY foxyproxy.copyurltoclipboard.label "Copy URL to Clipboard">
+<!ENTITY foxyproxy.copyurltoclipboard.accesskey "C">
+<!ENTITY foxyproxy.copyurltoclipboard.tooltip "Copy URL to Clipboard">
 <!ENTITY foxyproxy.addnewproxy.label "Přidat novou proxy">
 <!ENTITY foxyproxy.addnewproxy.accesskey "P">
 <!ENTITY foxyproxy.addnewproxy.tooltip "Přidá nový proxy server">
@@ -410,7 +416,7 @@
 <!ENTITY foxyproxy.aboutproxyservice.label "A konečně, knoflík &quot;Koupit přístup k proxy&quot; Vám zobrazí stránku s možností placeného přístupu na spolehlivé a rychlé proxy servery v mnoha zemích za přijatelné ceny.">
 <!ENTITY foxyproxy.invalidcolor.label "Špatná barva">
 <!ENTITY foxyproxy.validcolor.label "Správná barva">
-<!--       begin foxyproxyplus       -->
+<!--        begin foxyproxyplus        -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Přidat/upravit vzor pro místní IP adresu">
 <!ENTITY foxyproxy.tempip.popup.label "Dočasné vzory Vám umožní vytvářet pravidla pro místní IP adresy které používáte pouze příležitostně. Dočasné vzory se neukládají na disk. Jsou uloženy v paměti jen po dobu spuštění Firefoxu.">
 <!ENTITY foxyproxy.ip.pattern.label "Vzor pro místní IP adresu">
@@ -455,4 +461,4 @@
 <!ENTITY foxyproxy.proxydomain.label "Doména (volitelné - pouze NTLM)">
 <!ENTITY foxyproxy.proxydomain.tooltip "Pouze NTLM autentizace">
 <!ENTITY foxyproxy.proxy.passwords.nomatch.label "Hesla k proxy se neshodují; prosím zadejte je znova.">
-<!--       end foxyproxyplus       -->
+<!--        end foxyproxyplus        -->

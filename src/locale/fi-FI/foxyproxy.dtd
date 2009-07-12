@@ -72,6 +72,7 @@
 <!ENTITY foxyproxy.regex.example.label "Esimerkki: https?://.*\.mail\.yahoo\.com/.*">
 <!ENTITY foxyproxy.version "Versio">
 <!ENTITY foxyproxy.createdBy "Tekijä">
+<!ENTITY foxyproxy.contributionsBy "Contributions By">
 <!ENTITY foxyproxy.copyright "Tekijänoikeudet">
 <!ENTITY foxyproxy.rights "Kaikki Oikeudet Pidätetään.">
 <!ENTITY foxyproxy.released "Julkaistu GPL-lisenssin alaisena.">
@@ -140,6 +141,12 @@
 <!ENTITY foxyproxy.save.label "Save">
 <!ENTITY foxyproxy.save.accesskey "S">
 <!ENTITY foxyproxy.save.tooltip "Save">
+<!ENTITY foxyproxy.openurlinnewtab.label "Open URL in New Tab">
+<!ENTITY foxyproxy.openurlinnewtab.accesskey "O">
+<!ENTITY foxyproxy.openurlinnewtab.tooltip "Open URL in New Tab">
+<!ENTITY foxyproxy.copyurltoclipboard.label "Copy URL to Clipboard">
+<!ENTITY foxyproxy.copyurltoclipboard.accesskey "C">
+<!ENTITY foxyproxy.copyurltoclipboard.tooltip "Copy URL to Clipboard">
 <!ENTITY foxyproxy.addnewproxy.label "Add New Proxy">
 <!ENTITY foxyproxy.addnewproxy.accesskey "A">
 <!ENTITY foxyproxy.addnewproxy.tooltip "Add New Proxy">
@@ -404,7 +411,12 @@
 <!ENTITY foxyproxy.proxyservice.tooltip "Sign up for proxy services">
 <!ENTITY foxyproxy.proxyservice2.label "Need fast, reliable proxies in the US, UK, or other countries?">
 <!ENTITY foxyproxy.getfoxyproxyplus.label "Get FoxyProxy Plus">
-<!--       begin foxyproxyplus       -->
+<!ENTITY foxyproxy.aboutdonate.label "The donate button brings you to PayPal where you can donate to the FoxyProxy project to encourage and support development. If you use FoxyProxy regularly, please consider donating.">
+<!ENTITY foxyproxy.aboutfpplus.label "The FoxyProxy Plus button brings you to a website where you can read about the additional features provided by the Plus edition and optionally purchase it.">
+<!ENTITY foxyproxy.aboutproxyservice.label "Finally, the proxy service button brings you to our proxy service website, where you can buy reliable, high-bandwidth proxy service in many different countries at reasonable prices.">
+<!ENTITY foxyproxy.invalidcolor.label "Invalid color">
+<!ENTITY foxyproxy.validcolor.label "Valid color">
+<!--        begin foxyproxyplus        -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Add/Edit Local IP Address Pattern">
 <!ENTITY foxyproxy.tempip.popup.label "Temporary patterns allow you to create patterns for local IP addresses that you don&apos;t use often without cluttering the IP address pattern list for a proxy. Temporary patterns are not saved to disk. They are kept in-memory and used for this Firefox session only.">
 <!ENTITY foxyproxy.ip.pattern.label "Local IP address pattern">
@@ -449,4 +461,4 @@
 <!ENTITY foxyproxy.proxydomain.label "Domain (optional - NTLM only)">
 <!ENTITY foxyproxy.proxydomain.tooltip "NTLM authentication only">
 <!ENTITY foxyproxy.proxy.passwords.nomatch.label "Proxy passwords do not match; please re-enter.">
-<!--       end foxyproxyplus       -->
+<!--        end foxyproxyplus        -->

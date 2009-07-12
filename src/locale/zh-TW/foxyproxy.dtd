@@ -72,6 +72,7 @@
 <!ENTITY foxyproxy.regex.example.label "範例：https?://.*\.mail\.yahoo\.com/.*">
 <!ENTITY foxyproxy.version "版本">
 <!ENTITY foxyproxy.createdBy "作者">
+<!ENTITY foxyproxy.contributionsBy "Contributions By">
 <!ENTITY foxyproxy.copyright "版權">
 <!ENTITY foxyproxy.rights "版權所有。">
 <!ENTITY foxyproxy.released "符合 GPL 授權。">
@@ -140,6 +141,12 @@
 <!ENTITY foxyproxy.save.label "儲存(S)">
 <!ENTITY foxyproxy.save.accesskey "S">
 <!ENTITY foxyproxy.save.tooltip "儲存">
+<!ENTITY foxyproxy.openurlinnewtab.label "Open URL in New Tab">
+<!ENTITY foxyproxy.openurlinnewtab.accesskey "O">
+<!ENTITY foxyproxy.openurlinnewtab.tooltip "Open URL in New Tab">
+<!ENTITY foxyproxy.copyurltoclipboard.label "Copy URL to Clipboard">
+<!ENTITY foxyproxy.copyurltoclipboard.accesskey "C">
+<!ENTITY foxyproxy.copyurltoclipboard.tooltip "Copy URL to Clipboard">
 <!ENTITY foxyproxy.addnewproxy.label "新增代理伺服器(A)">
 <!ENTITY foxyproxy.addnewproxy.accesskey "A">
 <!ENTITY foxyproxy.addnewproxy.tooltip "新增代理伺服器">
@@ -404,7 +411,12 @@
 <!ENTITY foxyproxy.proxyservice.tooltip "註冊代理伺服器服務">
 <!ENTITY foxyproxy.proxyservice2.label "需要在美國、英國或其它國家使用高速且可靠的代理伺服器嗎？">
 <!ENTITY foxyproxy.getfoxyproxyplus.label "取得 FoxyProxy 進階版">
-<!--       begin foxyproxyplus       -->
+<!ENTITY foxyproxy.aboutdonate.label "The donate button brings you to PayPal where you can donate to the FoxyProxy project to encourage and support development. If you use FoxyProxy regularly, please consider donating.">
+<!ENTITY foxyproxy.aboutfpplus.label "The FoxyProxy Plus button brings you to a website where you can read about the additional features provided by the Plus edition and optionally purchase it.">
+<!ENTITY foxyproxy.aboutproxyservice.label "Finally, the proxy service button brings you to our proxy service website, where you can buy reliable, high-bandwidth proxy service in many different countries at reasonable prices.">
+<!ENTITY foxyproxy.invalidcolor.label "Invalid color">
+<!ENTITY foxyproxy.validcolor.label "Valid color">
+<!--        begin foxyproxyplus        -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "新增/編輯 本機 IP 位址樣式">
 <!ENTITY foxyproxy.tempip.popup.label "臨時性樣式讓你建立不常使用的本機 IP 位址樣式，這些樣式不會儲存到設定檔中造成樣式清單紊亂，而是保留在記憶體中，只在這次執行 Firefox 有效。">
 <!ENTITY foxyproxy.ip.pattern.label "本機 IP 位址樣式">
@@ -449,4 +461,4 @@
 <!ENTITY foxyproxy.proxydomain.label "網域（非必要的 - 只用於 NTLM）">
 <!ENTITY foxyproxy.proxydomain.tooltip "只用於 NTLM 認證">
 <!ENTITY foxyproxy.proxy.passwords.nomatch.label "代理伺服器密碼錯誤，請重新輸入">
-<!--       end foxyproxyplus       -->
+<!--        end foxyproxyplus        -->

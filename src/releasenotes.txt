@@ -2,3 +2,4 @@
 ======
 * Fix for http://foxyproxy.mozdev.org/drupal/content/problem-name-icon-display
 * Fix for http://foxyproxy.mozdev.org/drupal/content/copy-selection-proxy-does-not-copy-patterns
+* locale updates

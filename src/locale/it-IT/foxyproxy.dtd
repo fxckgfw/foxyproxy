@@ -141,12 +141,12 @@
 <!ENTITY foxyproxy.save.label "Salva">
 <!ENTITY foxyproxy.save.accesskey "S">
 <!ENTITY foxyproxy.save.tooltip "Salva">
-<!ENTITY foxyproxy.openurlinnewtab.label "Open URL in New Tab">
-<!ENTITY foxyproxy.openurlinnewtab.accesskey "O">
-<!ENTITY foxyproxy.openurlinnewtab.tooltip "Open URL in New Tab">
-<!ENTITY foxyproxy.copyurltoclipboard.label "Copy URL to Clipboard">
+<!ENTITY foxyproxy.openurlinnewtab.label "Apri URL in nuove schede">
+<!ENTITY foxyproxy.openurlinnewtab.accesskey "A">
+<!ENTITY foxyproxy.openurlinnewtab.tooltip "Apre gli URL selezionati in nuove schede">
+<!ENTITY foxyproxy.copyurltoclipboard.label "Copia URL negli appunti">
 <!ENTITY foxyproxy.copyurltoclipboard.accesskey "C">
-<!ENTITY foxyproxy.copyurltoclipboard.tooltip "Copy URL to Clipboard">
+<!ENTITY foxyproxy.copyurltoclipboard.tooltip "Copia gli URL selezionati negli appunti">
 <!ENTITY foxyproxy.addnewproxy.label "Nuovo proxy">
 <!ENTITY foxyproxy.addnewproxy.accesskey "x">
 <!ENTITY foxyproxy.addnewproxy.tooltip "Aggiungi un nuovo proxy">
@@ -416,7 +416,7 @@
 <!ENTITY foxyproxy.aboutproxyservice.label "Infine, facendo clic sul pulsante &apos;Proxy a pagamento&apos; è possibile accedere a prezzi ragionevoli ad un servizio privato di proxy affidabili, con ampia larghezza di banda e disponibili per diversi paesi">
 <!ENTITY foxyproxy.invalidcolor.label "Il codice del colore non è valido">
 <!ENTITY foxyproxy.validcolor.label "Il codice del colore è valido">
-<!--   begin foxyproxyplus   -->
+<!--  begin foxyproxyplus  -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Aggiunta/modifica di modelli di indirizzi IP locali">
 <!ENTITY foxyproxy.tempip.popup.label "I modelli temporanei permettono di creare modelli di indirizzi IP locali che non vengono utilizzati spesso, senza interessare le liste di modelli di indirizzi IP dei proxy. Tali modelli non vengono salvati sul disco rigido, ma mantenuti in memoria ed eliminati alla chiusura della sessione di Firefox">
 <!ENTITY foxyproxy.ip.pattern.label "Modello di indirizzo IP locale">
@@ -461,4 +461,4 @@
 <!ENTITY foxyproxy.proxydomain.label "Dominio (opzionale - solo NTLM)">
 <!ENTITY foxyproxy.proxydomain.tooltip "Inserire solo per autenticazione NTLM">
 <!ENTITY foxyproxy.proxy.passwords.nomatch.label "Le password dei proxy non coincidono. Reinserirle">
-<!--   end foxyproxyplus   -->
+<!--  end foxyproxyplus  -->

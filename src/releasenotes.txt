@@ -1,5 +1,4 @@
-2.11.1
-======
-* Fix for http://foxyproxy.mozdev.org/drupal/content/problem-name-icon-display
-* Fix for http://foxyproxy.mozdev.org/drupal/content/copy-selection-proxy-does-not-copy-patterns
+* Fixed bug introduced in 2.11 whereby the FoxyProxy Tools menu item and FoxyProxy context-menu item always appear, even when
+    FoxyProxy->Global Settings->Show icon in the Firefox tools menu and 
+    FoxyProxy->Global Settings->Show icon context-menu are unchecked.
 * locale updates

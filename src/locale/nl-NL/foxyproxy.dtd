@@ -141,12 +141,12 @@
 <!ENTITY foxyproxy.save.label "Opslaan">
 <!ENTITY foxyproxy.save.accesskey "O">
 <!ENTITY foxyproxy.save.tooltip "Opslaan">
-<!ENTITY foxyproxy.openurlinnewtab.label "Open URL in New Tab">
+<!ENTITY foxyproxy.openurlinnewtab.label "URL openen in nieuw tabblad">
 <!ENTITY foxyproxy.openurlinnewtab.accesskey "O">
-<!ENTITY foxyproxy.openurlinnewtab.tooltip "Open URL in New Tab">
-<!ENTITY foxyproxy.copyurltoclipboard.label "Copy URL to Clipboard">
-<!ENTITY foxyproxy.copyurltoclipboard.accesskey "C">
-<!ENTITY foxyproxy.copyurltoclipboard.tooltip "Copy URL to Clipboard">
+<!ENTITY foxyproxy.openurlinnewtab.tooltip "URL openen in nieuw tabblad">
+<!ENTITY foxyproxy.copyurltoclipboard.label "URL naar klembord kopiëren">
+<!ENTITY foxyproxy.copyurltoclipboard.accesskey "k">
+<!ENTITY foxyproxy.copyurltoclipboard.tooltip "URL naar klembord kopiëren">
 <!ENTITY foxyproxy.addnewproxy.label "Nieuwe proxy toevoegen">
 <!ENTITY foxyproxy.addnewproxy.accesskey "O">
 <!ENTITY foxyproxy.addnewproxy.tooltip "Nieuwe proxy toevoegen">

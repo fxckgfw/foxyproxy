@@ -141,6 +141,12 @@
 <!ENTITY foxyproxy.save.label "Zapisz">
 <!ENTITY foxyproxy.save.accesskey "a">
 <!ENTITY foxyproxy.save.tooltip "Zapisz">
+<!ENTITY foxyproxy.openurlinnewtab.label "Otwórz URL w nowej karcie">
+<!ENTITY foxyproxy.openurlinnewtab.accesskey "O">
+<!ENTITY foxyproxy.openurlinnewtab.tooltip "Otwórz URL w nowej karcie">
+<!ENTITY foxyproxy.copyurltoclipboard.label "Kopiuj URL do schowka">
+<!ENTITY foxyproxy.copyurltoclipboard.accesskey "K">
+<!ENTITY foxyproxy.copyurltoclipboard.tooltip "Kopiuj URL do schowka">
 <!ENTITY foxyproxy.addnewproxy.label "Dodaj nowe proxy">
 <!ENTITY foxyproxy.addnewproxy.accesskey "D">
 <!ENTITY foxyproxy.addnewproxy.tooltip "Otwiera menu umożliwiające dodanie nowego proxy">
@@ -410,7 +416,7 @@
 <!ENTITY foxyproxy.aboutproxyservice.label "Przycisk usługi proxy przeniesie cię na naszą witrynę usług proxy, gdzie możesz wykupić niezawodne szerokopasmowe usługi proxy w wielu różnych krajach w rozsądnych cenach.">
 <!ENTITY foxyproxy.invalidcolor.label "Nieprawidłowy kolor">
 <!ENTITY foxyproxy.validcolor.label "Prawidłowy kolor">
-<!--        begin foxyproxyplus        -->
+<!--         begin foxyproxyplus         -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Dodaj/edytuj wzorzec lokalnego adresu IP">
 <!ENTITY foxyproxy.tempip.popup.label "Wzorce tymczasowe pozwalają na tworzenie wzorców lokalnego adresu IP nie używanych często. Dzięki temu lista wzorców nie jest niepotrzebnie przeładowywana. Wzorce tymczasowe nie są zapisywane na dysku. Są one trzymane w pamięci i używane tylko w aktualnej sesji Firefoksa.">
 <!ENTITY foxyproxy.ip.pattern.label "Wzorzec lokalnego adresu  IP">
@@ -455,4 +461,4 @@
 <!ENTITY foxyproxy.proxydomain.label "Domena (opcjonalna – tylko NTLM)">
 <!ENTITY foxyproxy.proxydomain.tooltip "Tylko autoryzacja NTLM">
 <!ENTITY foxyproxy.proxy.passwords.nomatch.label "Hasła proxy nie zgadzają się; wprowadź je ponownie.">
-<!--        end foxyproxyplus        -->
+<!--         end foxyproxyplus         -->

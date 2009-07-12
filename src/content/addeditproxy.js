@@ -99,8 +99,10 @@ function onOK() {
 
 	var isSocks = document.getElementById("isSocks").checked;
 	
-	if (fpc.isThunderbird() && !isSocks && mode == "manual" && !fp.warnings.showWarningIfDesired(window, ["socksWarning", p], "socks"))
+	if (fpc.isThunderbird() && !isSocks && mode == "manual" && !foxyproxy.warnings.showWarningIfDesired(window, ["socksWarning"], "socks")) {
+	  alert("returngin flase");
 	  return false;
+	}
 
   proxy.name = name;
   proxy.notes = document.getElementById("proxynotes").value;

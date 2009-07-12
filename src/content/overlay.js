@@ -166,11 +166,11 @@ var foxyproxy = {
   },
 
   toggleToolsMenu : function(e) {
-    document.getElementById("fp-toolsmenu-icon-3").hidden = !e;
+    document.getElementById("foxyproxyMenu").hidden = !e;
   },
 
   toggleContextMenu : function(e) {
-    document.getElementById("fp-contextmenu-icon-3").hidden = !e;
+    document.getElementById("foxyproxy-contextmenu-icon").hidden = !e;
   },
   
   torWizard : function(firstTime) {

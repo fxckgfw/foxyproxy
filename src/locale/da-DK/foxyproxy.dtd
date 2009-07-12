@@ -141,6 +141,12 @@
 <!ENTITY foxyproxy.save.label "Gem">
 <!ENTITY foxyproxy.save.accesskey "m">
 <!ENTITY foxyproxy.save.tooltip "Gem">
+<!ENTITY foxyproxy.openurlinnewtab.label "Open URL in New Tab">
+<!ENTITY foxyproxy.openurlinnewtab.accesskey "O">
+<!ENTITY foxyproxy.openurlinnewtab.tooltip "Open URL in New Tab">
+<!ENTITY foxyproxy.copyurltoclipboard.label "Copy URL to Clipboard">
+<!ENTITY foxyproxy.copyurltoclipboard.accesskey "C">
+<!ENTITY foxyproxy.copyurltoclipboard.tooltip "Copy URL to Clipboard">
 <!ENTITY foxyproxy.addnewproxy.label "Tilføj ny proxy">
 <!ENTITY foxyproxy.addnewproxy.accesskey "T">
 <!ENTITY foxyproxy.addnewproxy.tooltip "Tilføj ny proxy">
@@ -410,7 +416,7 @@
 <!ENTITY foxyproxy.aboutproxyservice.label "Slutteligt, proxy service knappen bringer dig til vores proxy service hjemmeside, hvor du kan købe pålidelig, højhastighed proxy service i mange forskellige lande til fornuftige priser.">
 <!ENTITY foxyproxy.invalidcolor.label "Ugyldig farve">
 <!ENTITY foxyproxy.validcolor.label "Gyldig farve">
-<!--       begin foxyproxyplus       -->
+<!--        begin foxyproxyplus        -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Add/Edit Local IP Address Pattern">
 <!ENTITY foxyproxy.tempip.popup.label "Temporary patterns allow you to create patterns for local IP addresses that you don&apos;t use often without cluttering the IP address pattern list for a proxy. Temporary patterns are not saved to disk. They are kept in-memory and used for this Firefox session only.">
 <!ENTITY foxyproxy.ip.pattern.label "Local IP address pattern">
@@ -455,4 +461,4 @@
 <!ENTITY foxyproxy.proxydomain.label "Domain (optional - NTLM only)">
 <!ENTITY foxyproxy.proxydomain.tooltip "NTLM authentication only">
 <!ENTITY foxyproxy.proxy.passwords.nomatch.label "Proxy passwords do not match; please re-enter.">
-<!--       end foxyproxyplus       -->
+<!--        end foxyproxyplus        -->

@@ -141,6 +141,12 @@
 <!ENTITY foxyproxy.save.label "Guardar">
 <!ENTITY foxyproxy.save.accesskey "S">
 <!ENTITY foxyproxy.save.tooltip "Guardar">
+<!ENTITY foxyproxy.openurlinnewtab.label "Open URL in New Tab">
+<!ENTITY foxyproxy.openurlinnewtab.accesskey "O">
+<!ENTITY foxyproxy.openurlinnewtab.tooltip "Open URL in New Tab">
+<!ENTITY foxyproxy.copyurltoclipboard.label "Copy URL to Clipboard">
+<!ENTITY foxyproxy.copyurltoclipboard.accesskey "C">
+<!ENTITY foxyproxy.copyurltoclipboard.tooltip "Copy URL to Clipboard">
 <!ENTITY foxyproxy.addnewproxy.label "Agregar un Nuevo Proxy">
 <!ENTITY foxyproxy.addnewproxy.accesskey "A">
 <!ENTITY foxyproxy.addnewproxy.tooltip "Agregar un Nuevo Proxy">
@@ -410,7 +416,7 @@
 <!ENTITY foxyproxy.aboutproxyservice.label "Por último, el botón servicio proxy te lleva a nuestro servicio de proxy web, donde puedes comprar servicios proxy fiables, de alto ancho de banda en diferentes países a precios razonables.">
 <!ENTITY foxyproxy.invalidcolor.label "Color inválido">
 <!ENTITY foxyproxy.validcolor.label "Color válido">
-<!--       begin foxyproxyplus       -->
+<!--        begin foxyproxyplus        -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Agregar/Editar los Patrones de Direcciones IP Locales">
 <!ENTITY foxyproxy.tempip.popup.label "Los patrones temporales le permiten crear patrones para las direcciones IP locales que no utilice a menudo sin engrosar la lista de patrones de direcciones IP locales del proxy . Los patrones temporales no se guardan en el disco. Ellos se mantienen en memoria y en uso para la sesión Firefox en curso solamente.">
 <!ENTITY foxyproxy.ip.pattern.label "Patrón de Direcciones IP Locales">
@@ -455,4 +461,4 @@
 <!ENTITY foxyproxy.proxydomain.label "Dominio (Opcional - Solamente NTLM)">
 <!ENTITY foxyproxy.proxydomain.tooltip "Autenticación NTLM solamente">
 <!ENTITY foxyproxy.proxy.passwords.nomatch.label "Las contraseñas de Proxy ingresadas no coinciden;por favor debe re-ingresarlas">
-<!--       end foxyproxyplus       -->
+<!--        end foxyproxyplus        -->

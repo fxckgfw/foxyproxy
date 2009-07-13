@@ -315,7 +315,7 @@ function onEnableTypeChanged(menu) {
 function onDeleteSelection() {
   if (_isDefaultProxySelected())
     overlay.alert(this, foxyproxy.getMessage("delete.proxy.default"));
-  else if (overlay.ask(this, foxyproxy.getMessage("delete.proxy.confirm"))) {
+  else if (foxyproxy.warnings.showWarningIfDesired(window, ["delete.proxy.confirm"], "confirmDeleteProxy")) {
 	  // Store cur selection
 	  var sel = proxyTree.currentIndex;  
     foxyproxy.proxies.remove(proxyTree.currentIndex);

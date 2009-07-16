@@ -600,7 +600,7 @@ var foxyproxy = {
           break;
         case "toggle":
           // Toggle between current mode and disabled
-          fp.setMode(fp.mode == "disabled" ? "previous" : "disabled");
+          fp.setMode(fp.mode == "disabled" ? "previous" : "disabled", true);
           break;
         case "quickadd":
           foxyproxy.onQuickAddDialog(e);

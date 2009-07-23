@@ -24,7 +24,7 @@
 
   <!-- menu -->
   <menupopup id="taskPopup">
-    <menu id="foxyproxyMenu" insertbefore="devToolsSeparator" position="9" accesskey="&foxyproxy.accesskey;">
+    <menu id="foxyproxyMenu" insertafter="javascriptConsole,devToolsSeparator" accesskey="&foxyproxy.accesskey;">
       <menupopup id="foxyproxy-toolsmenu-popup"
           onpopupshowing="foxyproxy.onPopupShowing(this, event);"
           onpopuphiding="foxyproxy.onPopupHiding();"/>

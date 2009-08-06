@@ -937,7 +937,7 @@
 
   <command id="donateCmd" label="&foxyproxy.please.donate.label;"
     accesskey="&foxyproxy.please.donate.accesskey;"
-    tooltiptext="&foxyproxy.please.donate.label;" oncommand="fpc.openAndReuseOneTabPerURL('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=63002');" />
+    tooltiptext="&foxyproxy.please.donate.label;" oncommand="fpc.openAndReuseOneTabPerURL('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=7145571');" />
 
   <command id="fppCmd" label="&foxyproxy.getfoxyproxyplus.label;"
     tooltiptext="&foxyproxy.getfoxyproxyplus.label;" oncommand="fpc.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/fpplus');" />

@@ -107,7 +107,7 @@
 	              <label value="&foxyproxy.host.label.2;" accesskey="&foxyproxy.host.accesskey;"
 	              	tooltiptext="&foxyproxy.host.label.2;"
 	              	control="host"/>
-	              <textbox id="host" flex="1" observes="disabled-broadcaster" tooltiptext="&foxyproxy.host.label.2;"/>
+	              <textbox id="host" flex="1" observes="disabled-broadcaster" tooltiptext="&foxyproxy.host.label.2;" onchange="onHostChange(this);"/>
 	              <label value="&foxyproxy.port.label;" control="port" accesskey="&foxyproxy.port.accesskey;" tooltiptext="&foxyproxy.port.tooltip;"/>
 	              <textbox id="port" size="5" oninput="if (/\D/.test(this.value)) this.value='';" observes="disabled-broadcaster" tooltiptext="&foxyproxy.port.tooltip;"/>
               </hbox>

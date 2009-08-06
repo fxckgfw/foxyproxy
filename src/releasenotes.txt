@@ -2,3 +2,6 @@
   for the statusbar or toolbar, the new mode wasn't restored on Firefox restart.
   Reported at http://foxyproxy.mozdev.org/drupal/content/use-default-startup
 * Moved Tools Menu menuitem after the devToolsSeparator as requested at http://foxyproxy.mozdev.org/drupal/content/tools-menu
+* If the user enters the port as part of the hostname, parse it and put it into the port field automatically.
+  Thanks, Sebastian Lisken <Sebastian dot Lisken at gmx dot net>
+* Changed donation link

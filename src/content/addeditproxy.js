@@ -403,3 +403,20 @@ function sort(columnId) {
   
   _updateView();
 }
+ 
+/**
+ * If the user enters the port as part of the hostname, parse it and put it into the port field automatically.
+ * Thanks, Sebastian Lisken <Sebastian dot Lisken at gmx dot net>
+ */
+function onHostChange(hostInput) {
+  var portInput = document.getElementById("port");
+  hostInput.value = hostInput.value.replace(/^\s*(.*?)\s*$/, "$1");
+  var match = hostInput.value.match(/^(.*?)(?:\s*:\s*|\s+)([0-9]+)$/);
+  if (match) {
+    var port = match[2] - 0;
+    if (port < 0x10000) {
+      hostInput.value = match[1];
+      portInput.value = port;
+    }
+  }
+}

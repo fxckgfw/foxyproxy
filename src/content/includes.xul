@@ -131,8 +131,8 @@
         </description>
         <description>
           http://
-          <html:span class="red">user:pass</html:span>
-          @foo.com:8080/news/bar.htm#anchor?query=abc
+          <html:span class="red">user:pass@</html:span>
+          foo.com:8080/news/bar.htm#anchor?query=abc
         </description>
       </row>
       <row>

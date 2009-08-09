@@ -5,3 +5,6 @@
 * If the user enters the port as part of the hostname, parse it and put it into the port field automatically.
   Thanks, Sebastian Lisken <Sebastian dot Lisken at gmx dot net>
 * Changed donation link
+* Fixed typo as specified here: http://foxyproxy.mozdev.org/drupal/content/pattern-automatically-add-proxy
+* Removed redundant regex code in parsing QuickAdd and AutoAdd patterns, improving the performance when special strings (e.g., *://${3}${6}/*)
+  are expanded

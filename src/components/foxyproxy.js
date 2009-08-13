@@ -243,8 +243,16 @@ biesi>  passing it the appropriate proxyinfo
       proxy.handleTimer();  // Leave this after "proxy.enabled = true" !
       proxy.shouldLoadPAC() && proxy.autoconf.loadPAC();
     }
-    this.toggleFilter(mode != "disabled");
-    mode=="disabled" && this.loadDefaultPAC();
+    // Ensure the new mode is valid. If it's invalid, set mode to disabled for safety (what else should we do?) and spit out
+    // a message. The only time an invalid mode could be specified is if (a) there's a coding error or (b) the user specified
+    // an invalid mode on the command-line arguments
+    if (!this._selectedProxy && mode != "disabled" && mode != "patterns" && mode != "random" && mode != "roundrobin") {
+      dump("FoxyProxy: unrecognized mode specified. Defaulting to \"disabled\".\n");
+      this._mode = "disabled";
+      this.notifier.alert(this.getMessage("foxyproxy"), "Unrecognized mode specified: " + mode);
+    }
+    this.toggleFilter(this._mode != "disabled");
+    this._mode=="disabled" && this.loadDefaultPAC();
     if (init) return;
     writeSettings && this.writeSettings();
     gBroadcast(this.autoadd._enabled, "foxyproxy-mode-change", this._mode);

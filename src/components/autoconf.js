@@ -8,10 +8,6 @@
   available in the LICENSE file at the root of this installation
   and also online at http://www.gnu.org/licenses/gpl.txt
 **/
-
-// See http://forums.mozillazine.org/viewtopic.php?t=308369
-
-//dump("autoconf.js\n");
 if (!CI) {
   // we're not being included by foxyproxy.js
   var CI = Components.interfaces, CC = Components.classes, CR = Components.results, fp;

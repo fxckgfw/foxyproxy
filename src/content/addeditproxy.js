@@ -344,7 +344,6 @@ function getTextForBoolean(b) {
  * TODO: See if there's any way to generalize this function with sortlog() in options.xul to prevent code duplication
  */ 
 function sort(columnId) {
-  dump("columnId = " + columnId + "\n");
   // determine how the urlsTree is currently sorted (ascending/decending) and by which column (sortResource)
   var order = urlsTree.getAttribute("sortDirection") == "ascending" ? 1 : -1;
   // if the column is passed and it's already sorted by that column, reverse sort

@@ -31,26 +31,25 @@ const myAppHandler = {
   {
     try {
       var mode = cmdLine.handleFlagWithParam("foxyproxy-mode", false);
-      if (mode) {
-        dump("FoxyProxy command-line argument: " + mode + "\n");
+      if (mode)
         Components.classes["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject.setMode(mode, false, true);
-      }
     }
     catch (e) {
       Components.utils.reportError("incorrect parameter passed to -viewapp on the command line.");
     }
   },
 
-  // CHANGEME: change the help info as appropriate, but
-  // follow the guidelines in nsICommandLineHandler.idl
-  // specifically, flag descriptions should start at
+  // Per nsICommandLineHandler.idl: flag descriptions should start at
   // character 24, and lines should be wrapped at
   // 72 characters with embedded newlines,
   // and finally, the string should end with a newline
-  helpInfo : "  -myapp               Open My Application\n" +
-             "  -viewapp <uri>       View and edit the URI in My Application,\n" +
-             "                       wrapping this description\n",
-
+  helpInfo : "  -foxyproxy-mode      Start FoxyProxy in the specified mode. Valid\n" +
+             "                       values are:\n" +
+             "                         patterns\n" +
+             "                         disabled\n" +
+             "                         <id of a proxy as specified in foxyproxy.xml's proxy element>\n" +
+             "                         random (not supported)\n" +
+             "                         roundrobin (not supported)\n" +
   /* nsIFactory */
 
   createInstance : function clh_CI(outer, iid)
@@ -62,9 +61,7 @@ const myAppHandler = {
   },
 
   lockFactory : function clh_lock(lock)
-  {
-    /* no-op */
-  }
+  {}
 };
 
 /**

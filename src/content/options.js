@@ -330,9 +330,9 @@ function onCopySelection() {
     overlay.alert(this, foxyproxy.getMessage("copy.proxy.default"));
   else {  
 	  // Store cur selection so we can restore it
-	  var sel = proxyTree.currentIndex;    
-	  var dom = foxyproxy.proxies.item(sel).toDOM(document, true);
-	  var p = CC["@leahscape.org/foxyproxy/proxy;1"].createInstance().wrappedJSObject;
+    var sel = proxyTree.currentIndex, 
+      dom = foxyproxy.proxies.item(sel).toDOM(document, true),
+      p = CC["@leahscape.org/foxyproxy/proxy;1"].createInstance().wrappedJSObject;
 	  p.fromDOM(dom, true);
 	  p.id = foxyproxy.proxies.uniqueRandom(); // give it its own id
 	  foxyproxy.proxies.push(p);

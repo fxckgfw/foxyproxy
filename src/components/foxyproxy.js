@@ -9,8 +9,6 @@
   and also online at http://www.gnu.org/licenses/gpl.txt
 **/
 
-// See http://forums.mozillazine.org/viewtopic.php?t=308369
-
 // Don't const the next line anymore because of the generic reg code
 // dump("foxyproxy.js\n");
 var CI = Components.interfaces, CC = Components.classes, CR = Components.results, gFP;
@@ -1486,7 +1484,7 @@ function NSGetModule(compMgr, fileSpec) {
     gModule._xpComObjects[i] = new gFactoryHolder(gXpComObjects[i]);
 
   return gModule;
-}
+};
 
 function gFactoryHolder(aObj) {
   this.singleton = null;
@@ -1506,7 +1504,7 @@ function gFactoryHolder(aObj) {
   };
 
   this.factory.constructor = aObj;
-}
+};
 var gModule = {
   registerSelf: function (aComponentManager, aFileSpec, aLocation, aType) {
     aComponentManager.QueryInterface(CI.nsIComponentRegistrar);

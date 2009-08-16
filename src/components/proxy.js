@@ -8,9 +8,6 @@
   available in the LICENSE file at the root of this installation
   and also online at http://www.gnu.org/licenses/gpl.txt
 **/
-
-// See http://forums.mozillazine.org/viewtopic.php?t=308369
-
 //dump("proxy.js\n");
 if (!CI) {
   // XPCOM module initialization

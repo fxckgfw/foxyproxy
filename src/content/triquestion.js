@@ -1,3 +1,14 @@
+/**
+  FoxyProxy
+  Copyright (C) 2006-2009 Eric H. Jung and LeahScape, Inc.
+  http://foxyproxy.mozdev.org/
+  eric.jung@yahoo.com
+
+  This source code is released under the GPL license,
+  available in the LICENSE file at the root of this installation
+  and also online at http://www.gnu.org/licenses/gpl.txt
+**/
+
 function onLoad() {
   var btn1 = document.getElementById("1");
   

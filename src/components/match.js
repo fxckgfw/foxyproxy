@@ -12,7 +12,6 @@
 /* A better name for this class would have been Pattern */
 
 //dump("match.js\n");
-// See http://forums.mozillazine.org/viewtopic.php?t=308369
 if (!CI) {
   var CI = Components.interfaces, CC = Components.classes, CR = Components.results;
 

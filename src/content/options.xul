@@ -770,23 +770,6 @@
            </vbox>       
          </hbox> 
       </tabpanel>
-      
-      <!-- 
-        <command id="openLogURLInNewTabCmd" label="&foxyproxy.openurlinnewtab.label;"
-    tooltiptext="&foxyproxy.openurlinnewtab.tooltip;"
-    accesskey="&foxyproxy.openurlinnewtab.accesskey;"
-    oncommand="openLogURLInNewTab();" />
-
-  <command id="copyLogURLToClipboardCmd" label="&foxyproxy.copyurltoclipboard.label;"
-    tooltiptext="&foxyproxy.copyurltoclipboard.tooltip;"
-    accesskey="&foxyproxy.copyurltoclipboard.accesskey;"
-    oncommand="copyLogURLToClipboard();" />    
-
-  <command id="deleteLogEntryCmd" label="&foxyproxy.delete.selection.label;"
-    tooltiptext="&foxyproxy.delete.selection.tooltip;"
-    accesskey="&foxyproxy.delete.selection.accesskey;"
-    oncommand="deleteLogEntry();" 
-       -->
     </tabpanels>
   </tabbox>
   <hbox align="center">

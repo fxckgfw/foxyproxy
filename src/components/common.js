@@ -230,7 +230,8 @@ Common.prototype = {
   isThunderbird : function() {
     return CC["@mozilla.org/xre/app-info;1"].getService(CI.nsIXULAppInfo).ID == "{3550f703-e582-4d05-9a08-453d09bdfdc6}";
   }
-}
+};
+
 // Factory
 var CommonFactory = {
   singleton: null,

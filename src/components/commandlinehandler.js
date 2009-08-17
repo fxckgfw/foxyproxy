@@ -49,9 +49,8 @@ const myAppHandler = {
              "                         disabled\n" +
              "                         <id of a proxy as specified in foxyproxy.xml's proxy element>\n" +
              "                         random (not supported)\n" +
-             "                         roundrobin (not supported)\n" +
+             "                         roundrobin (not supported)\n",
   /* nsIFactory */
-
   createInstance : function clh_CI(outer, iid)
   {
     if (outer != null)

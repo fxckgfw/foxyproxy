@@ -1,3 +1,13 @@
+* Command-line argument now accepted:
+    -foxyproxy-mode [patterns|disabled|<id of a proxy as specified in foxyproxy.xml's proxy element>|random (not supported)|roundrobin (not supported)].
+  Windows examples: firefox.exe -foxyproxy-mode 1095631556
+    firefox.exe -foxyproxy-mode disabled
+    firefox.exe -foxyproxy-mode patterns
+  OSX/Linux example: firefox -foxyproxy-mode 1095631556
+      firefox.exe -foxyproxy-mode disabled
+      firefox.exe -foxyproxy-mode patterns
+  When NOT specified, FoxyProxy resumes from the last mode in which it was used.
+  When specified, FoxyProxy starts in the specified mode.
 * If FoxyProxy's Global Settings are set to "Toggle between current mode and disabled"
   for the statusbar or toolbar, the new mode wasn't restored on Firefox restart.
   Reported at http://foxyproxy.mozdev.org/drupal/content/use-default-startup
@@ -8,7 +18,3 @@
 * Fixed typo as specified here: http://foxyproxy.mozdev.org/drupal/content/pattern-automatically-add-proxy
 * Removed redundant regex code in parsing QuickAdd and AutoAdd patterns, improving the performance when special strings (e.g., *://${3}${6}/*)
   are expanded
-* Command-line argument now accepted:
-    -foxyproxy-mode [patterns|disabled|<id of a proxy as specified in foxyproxy.xml's proxy element>|random (not supported)|roundrobin (not supported)]
-  When NOT specified, FoxyProxy resumes from the last mode in which it was used.
-  When specified, FoxyProxy starts in the specified mode. 

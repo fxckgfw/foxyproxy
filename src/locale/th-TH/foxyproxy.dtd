@@ -72,7 +72,7 @@
 <!ENTITY foxyproxy.regex.example.label "ตัวอย่าง: https?://.*\.mail\.yahoo\.com/.*">
 <!ENTITY foxyproxy.version "รุ่น">
 <!ENTITY foxyproxy.createdBy "สร้างโดย:">
-<!ENTITY foxyproxy.contributionsBy "Contributions By">
+<!ENTITY foxyproxy.contributionsBy "คุโณปการโดย">
 <!ENTITY foxyproxy.copyright "ลิขสิทธิ์">
 <!ENTITY foxyproxy.rights "สงวนลิขสิทธิ์">
 <!ENTITY foxyproxy.released "ออกภายใต้ลิขสิทธิ์">
@@ -141,12 +141,12 @@
 <!ENTITY foxyproxy.save.label "บันทึก">
 <!ENTITY foxyproxy.save.accesskey "บ">
 <!ENTITY foxyproxy.save.tooltip "บันทึก">
-<!ENTITY foxyproxy.openurlinnewtab.label "Open URL in New Tab">
-<!ENTITY foxyproxy.openurlinnewtab.accesskey "O">
-<!ENTITY foxyproxy.openurlinnewtab.tooltip "Open URL in New Tab">
-<!ENTITY foxyproxy.copyurltoclipboard.label "Copy URL to Clipboard">
-<!ENTITY foxyproxy.copyurltoclipboard.accesskey "C">
-<!ENTITY foxyproxy.copyurltoclipboard.tooltip "Copy URL to Clipboard">
+<!ENTITY foxyproxy.openurlinnewtab.label "เปิดยูอาร์แอลในแท็บใหม่">
+<!ENTITY foxyproxy.openurlinnewtab.accesskey "เ">
+<!ENTITY foxyproxy.openurlinnewtab.tooltip "เปิดยูอาร์แอลในแท็บใหม่">
+<!ENTITY foxyproxy.copyurltoclipboard.label "คัดลอกยูอาร์แอลไปยังคลิปบอร์ด">
+<!ENTITY foxyproxy.copyurltoclipboard.accesskey "ค">
+<!ENTITY foxyproxy.copyurltoclipboard.tooltip "คัดลอกยูอาร์แอลไปยังคลิปบอร์ด">
 <!ENTITY foxyproxy.addnewproxy.label "เพิ่มพร็อกซีใหม่">
 <!ENTITY foxyproxy.addnewproxy.accesskey "พ">
 <!ENTITY foxyproxy.addnewproxy.tooltip "เพิ่มพร็อกซีใหม่">
@@ -414,9 +414,9 @@
 <!ENTITY foxyproxy.aboutdonate.label "The donate button brings you to PayPal where you can donate to the FoxyProxy project to encourage and support development. If you use FoxyProxy regularly, please consider donating.">
 <!ENTITY foxyproxy.aboutfpplus.label "The FoxyProxy Plus button brings you to a website where you can read about the additional features provided by the Plus edition and optionally purchase it.">
 <!ENTITY foxyproxy.aboutproxyservice.label "Finally, the proxy service button brings you to our proxy service website, where you can buy reliable, high-bandwidth proxy service in many different countries at reasonable prices.">
-<!ENTITY foxyproxy.invalidcolor.label "Invalid color">
-<!ENTITY foxyproxy.validcolor.label "Valid color">
-<!--        begin foxyproxyplus        -->
+<!ENTITY foxyproxy.invalidcolor.label "สีผิด">
+<!ENTITY foxyproxy.validcolor.label "สีถูกต้อง">
+<!--       begin foxyproxyplus       -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Add/Edit Local IP Address Pattern">
 <!ENTITY foxyproxy.tempip.popup.label "Temporary patterns allow you to create patterns for local IP addresses that you don&apos;t use often without cluttering the IP address pattern list for a proxy. Temporary patterns are not saved to disk. They are kept in-memory and used for this Firefox session only.">
 <!ENTITY foxyproxy.ip.pattern.label "Local IP address pattern">
@@ -461,4 +461,4 @@
 <!ENTITY foxyproxy.proxydomain.label "Domain (optional - NTLM only)">
 <!ENTITY foxyproxy.proxydomain.tooltip "NTLM authentication only">
 <!ENTITY foxyproxy.proxy.passwords.nomatch.label "Proxy passwords do not match; please re-enter.">
-<!--        end foxyproxyplus        -->
+<!--       end foxyproxyplus       -->

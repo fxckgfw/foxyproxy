@@ -8,13 +8,19 @@
       firefox.exe -foxyproxy-mode patterns
   When NOT specified, FoxyProxy resumes from the last mode in which it was used.
   When specified, FoxyProxy starts in the specified mode.
+  
 * If FoxyProxy's Global Settings are set to "Toggle between current mode and disabled"
   for the statusbar or toolbar, the new mode wasn't restored on Firefox restart.
   Reported at http://foxyproxy.mozdev.org/drupal/content/use-default-startup
+  
 * Moved Tools Menu menuitem after the devToolsSeparator as requested at http://foxyproxy.mozdev.org/drupal/content/tools-menu
+
 * If the user enters the port as part of the hostname, parse it and put it into the port field automatically.
   Thanks, Sebastian Lisken <Sebastian dot Lisken at gmx dot net>
+  
 * Changed donation link
+
 * Fixed typo as specified here: http://foxyproxy.mozdev.org/drupal/content/pattern-automatically-add-proxy
+
 * Removed redundant regex code in parsing QuickAdd and AutoAdd patterns, improving the performance when special strings (e.g., *://${3}${6}/*)
   are expanded

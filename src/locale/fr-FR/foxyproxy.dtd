@@ -103,7 +103,7 @@
 <!ENTITY foxyproxy.menubar.file.tooltip "Ouvre le menu « Fichier »">
 <!ENTITY foxyproxy.menubar.help.label "Aide">
 <!ENTITY foxyproxy.menubar.help.accesskey "A">
-<!ENTITY foxyproxy.menubar.help.tooltip "Ouvre le menu d&apos;aide">
+<!ENTITY foxyproxy.menubar.help.tooltip "Ouvre le menu d'aide">
 <!ENTITY foxyproxy.mode.accesskey "m">
 <!ENTITY foxyproxy.mode.tooltip "Permet de choisir la manière avec laquelle FoxyProxy est activée">
 <!ENTITY foxyproxy.tab.proxies.label "Proxies">
@@ -114,23 +114,23 @@
 <!ENTITY foxyproxy.tab.global.tooltip "Gère les paramètres généraux">
 <!ENTITY foxyproxy.tab.logging.label "Identification">
 <!ENTITY foxyproxy.tab.logging.accesskey "f">
-<!ENTITY foxyproxy.tab.logging.tooltip "Gère les paramètres d&apos;identification">
+<!ENTITY foxyproxy.tab.logging.tooltip "Gère les paramètres d'identification">
 <!ENTITY foxyproxy.proxydns.label "Utiliser un proxy SOCKS pour les résolutions DNS">
 <!ENTITY foxyproxy.proxydns.accesskey "U">
 <!ENTITY foxyproxy.proxydns.tooltip "Si cette case est cochée, les résolutions DNS seront routées via un proxy SOCKS">
 <!ENTITY foxyproxy.proxydns.notice "Vous devez redémarrer Firefox pour que les modifications prennent effet. On redémarre ?">
-<!ENTITY foxyproxy.showstatusbaricon.label "Afficher l&apos;icône dans la barre d&apos;état">
+<!ENTITY foxyproxy.showstatusbaricon.label "Afficher l'icône dans la barre d'état">
 <!ENTITY foxyproxy.showstatusbaricon.accesskey "f">
-<!ENTITY foxyproxy.showstatusbaricon.tooltip "Si cette case est cochée, l&apos;icône de Foxyproxy sera affichée dans la barre d&apos;état">
-<!ENTITY foxyproxy.showstatusbarmode.label "Afficher le mode (texte) dans la barre d&apos;état">
+<!ENTITY foxyproxy.showstatusbaricon.tooltip "Si cette case est cochée, l'icône de Foxyproxy sera affichée dans la barre d'état">
+<!ENTITY foxyproxy.showstatusbarmode.label "Afficher le mode (texte) dans la barre d'état">
 <!ENTITY foxyproxy.showstatusbarmode.accesskey "x">
-<!ENTITY foxyproxy.showstatusbarmode.tooltip "Si cette case est cochée, le mode utilisé par Foxyproxy est affiché dans la barre d&apos;état">
+<!ENTITY foxyproxy.showstatusbarmode.tooltip "Si cette case est cochée, le mode utilisé par Foxyproxy est affiché dans la barre d'état">
 <!ENTITY foxyproxy.storagelocation.label.2 "Emplacement des paramètres">
 <!ENTITY foxyproxy.storagelocation.accesskey "S">
 <!ENTITY foxyproxy.storagelocation.tooltip "Emplacement dans lequel sont stockés les paramètres de FoxyProxy">
 <!ENTITY foxyproxy.tab.logging.timestamp.label "Horloge">
 <!ENTITY foxyproxy.tab.logging.url.label "URL">
-<!ENTITY foxyproxy.host.label.2 "Adresse de l&apos;hôte ou de l&apos;IP">
+<!ENTITY foxyproxy.host.label.2 "Adresse de l'hôte ou de l'IP">
 <!ENTITY foxyproxy.host.accesskey "h">
 <!ENTITY foxyproxy.clear.label "Effacer">
 <!ENTITY foxyproxy.clear.accesskey "c">
@@ -141,12 +141,12 @@
 <!ENTITY foxyproxy.save.label "Enregistrer">
 <!ENTITY foxyproxy.save.accesskey "E">
 <!ENTITY foxyproxy.save.tooltip "Enregistrer">
-<!ENTITY foxyproxy.openurlinnewtab.label "Open URL in New Tab">
+<!ENTITY foxyproxy.openurlinnewtab.label "Ouvrir l'URL dans un nouvel onglet">
 <!ENTITY foxyproxy.openurlinnewtab.accesskey "O">
-<!ENTITY foxyproxy.openurlinnewtab.tooltip "Open URL in New Tab">
-<!ENTITY foxyproxy.copyurltoclipboard.label "Copy URL to Clipboard">
-<!ENTITY foxyproxy.copyurltoclipboard.accesskey "C">
-<!ENTITY foxyproxy.copyurltoclipboard.tooltip "Copy URL to Clipboard">
+<!ENTITY foxyproxy.openurlinnewtab.tooltip "Ouvrir l'URL vers un nouvel onglet">
+<!ENTITY foxyproxy.copyurltoclipboard.label "Copier l'URL vers le presse-papiers">
+<!ENTITY foxyproxy.copyurltoclipboard.accesskey "e">
+<!ENTITY foxyproxy.copyurltoclipboard.tooltip "Copier l'URL vers le presse-papiers">
 <!ENTITY foxyproxy.addnewproxy.label "Ajouter un nouveau proxy">
 <!ENTITY foxyproxy.addnewproxy.accesskey "A">
 <!ENTITY foxyproxy.addnewproxy.tooltip "Ajoute un nouveau proxy">
@@ -416,7 +416,7 @@
 <!ENTITY foxyproxy.aboutproxyservice.label "Finalement, le bouton de service proxy vous envoie vers notre site Web de service proxy où vous pouvez acheter un service proxy fiable et avec haute bande passante dans plusieurs pays à des prix raisonnables.">
 <!ENTITY foxyproxy.invalidcolor.label "Couleur invalide">
 <!ENTITY foxyproxy.validcolor.label "Couleur valide">
-<!--        begin foxyproxyplus        -->
+<!--       begin foxyproxyplus       -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Ajouter / éditer un motif d&apos;adresse IP Locale">
 <!ENTITY foxyproxy.tempip.popup.label "Les motifs temporaires vous permettent de créer des motifs  que vous n&apos;utilisez pas souvent afin d&apos;éviter de surcharger la liste des motifs d&apos;adresse IP pour un proxy. Les motifs temporaires ne sont pas enregistrés sur le disque. Ils sont conservés en mémoire et ne sont utilisés que dans cette session Firefox.">
 <!ENTITY foxyproxy.ip.pattern.label "Motif d&apos;adresse IP locale">
@@ -461,4 +461,4 @@
 <!ENTITY foxyproxy.proxydomain.label "Domaine (facultatif - uniquement NTML)">
 <!ENTITY foxyproxy.proxydomain.tooltip "Uniquement pour authentification NTML">
 <!ENTITY foxyproxy.proxy.passwords.nomatch.label "Les mots de passe de proxy ne coïncident pas, veuillez réessayer.">
-<!--        end foxyproxyplus        -->
+<!--       end foxyproxyplus       -->

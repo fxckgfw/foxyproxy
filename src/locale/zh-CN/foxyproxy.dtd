@@ -144,9 +144,9 @@
 <!ENTITY foxyproxy.openurlinnewtab.label "在新标签页打开网址">
 <!ENTITY foxyproxy.openurlinnewtab.accesskey "O">
 <!ENTITY foxyproxy.openurlinnewtab.tooltip "在新标签页打开网址">
-<!ENTITY foxyproxy.copyurltoclipboard.label "网址复制到剪贴板">
+<!ENTITY foxyproxy.copyurltoclipboard.label "网址复制到剪切板">
 <!ENTITY foxyproxy.copyurltoclipboard.accesskey "C">
-<!ENTITY foxyproxy.copyurltoclipboard.tooltip "网址复制到剪贴板">
+<!ENTITY foxyproxy.copyurltoclipboard.tooltip "网址复制到剪切板">
 <!ENTITY foxyproxy.addnewproxy.label "新建代理服务器">
 <!ENTITY foxyproxy.addnewproxy.accesskey "A">
 <!ENTITY foxyproxy.addnewproxy.tooltip "新建代理服务器">
@@ -411,12 +411,12 @@
 <!ENTITY foxyproxy.proxyservice.tooltip "登录代理服务">
 <!ENTITY foxyproxy.proxyservice2.label "需要美国，英国或者其他国家的快速、可靠的代理服务？">
 <!ENTITY foxyproxy.getfoxyproxyplus.label "获取 FoxyProxy Plus">
-<!ENTITY foxyproxy.aboutdonate.label "The donate button brings you to PayPal where you can donate to the FoxyProxy project to encourage and support development. If you use FoxyProxy regularly, please consider donating.">
-<!ENTITY foxyproxy.aboutfpplus.label "The FoxyProxy Plus button brings you to a website where you can read about the additional features provided by the Plus edition and optionally purchase it.">
-<!ENTITY foxyproxy.aboutproxyservice.label "Finally, the proxy service button brings you to our proxy service website, where you can buy reliable, high-bandwidth proxy service in many different countries at reasonable prices.">
-<!ENTITY foxyproxy.invalidcolor.label "Invalid color">
-<!ENTITY foxyproxy.validcolor.label "Valid color">
-<!--        begin foxyproxyplus        -->
+<!ENTITY foxyproxy.aboutdonate.label "捐助按钮使你可以通过 PayPal 想 FoxyProxy 项目提供捐助以支持开发活动。">
+<!ENTITY foxyproxy.aboutfpplus.label "FoxyProxy Plus 按钮将把你带到 Plus 版订购页面。">
+<!ENTITY foxyproxy.aboutproxyservice.label "最后，代理服务按钮带你去订购代理服务。">
+<!ENTITY foxyproxy.invalidcolor.label "无效颜色">
+<!ENTITY foxyproxy.validcolor.label "有效颜色">
+<!--       begin foxyproxyplus       -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "添加/编辑本地IP地址模式">
 <!ENTITY foxyproxy.tempip.popup.label "临时模式让你可以为不常用的本地IP地址建立模式，以免扰乱代理服务器的IP地址模式列表。临时模式不会保存到磁盘。他们只是保存在内存中供当前 Firefox 会话使用。">
 <!ENTITY foxyproxy.ip.pattern.label "本地IP地址模式">
@@ -461,4 +461,4 @@
 <!ENTITY foxyproxy.proxydomain.label "域（可选 - 仅NTML）">
 <!ENTITY foxyproxy.proxydomain.tooltip "仅使用 NTLM 验证">
 <!ENTITY foxyproxy.proxy.passwords.nomatch.label "代理服务器密码不匹配；请重新输入。">
-<!--        end foxyproxyplus        -->
+<!--       end foxyproxyplus       -->

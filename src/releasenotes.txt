@@ -24,3 +24,5 @@
 
 * Removed redundant regex code in parsing QuickAdd and AutoAdd patterns, improving the performance when special strings (e.g., *://${3}${6}/*)
   are expanded
+
+ * Updated locales

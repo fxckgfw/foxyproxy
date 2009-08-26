@@ -194,3 +194,25 @@ g[wrapper="true"]:not([mode="disabled"]) {
   stroke-opacity:1
 }
 /* End SVG stuffs */
+/* Begin awesome colorpicker2 by Jesper Hansen */
+colorpicker2 {
+  -moz-binding: url("colorpicker2.xml#colorpicker2");
+  -moz-user-focus: normal;
+  -moz-user-select: all;
+}
+
+colorpicker2[type="button"] {
+  -moz-binding: url("colorpicker2.xml#colorpicker2-button");
+  width: 38px;
+  height: 24px;
+  border: 2px solid;
+  -moz-border-top-colors: ThreeDLightShadow ThreeDHighlight;
+  -moz-border-right-colors: ThreeDDarkShadow ThreeDShadow;
+  -moz-border-bottom-colors: ThreeDDarkShadow ThreeDShadow;
+  -moz-border-left-colors: ThreeDLightShadow ThreeDHighlight;
+  background-color: ThreeDFace;
+  padding: 3px;
+  -moz-user-focus: normal;
+}
+/* End awesome colorpicker2 by Jesper Hansen */
+

@@ -78,7 +78,7 @@
       <vbox>
         <hbox align="center">
           <textbox id="color" class="indent" oninput="customcolor(this.value);"/>
-          <colorpicker id="colorpicker" type="button" onchange="pickcolor(this.color);"/> <!-- NEW SVG -->
+          <colorpicker2 id="colorpicker" type="button" onchange="pickcolor(this.color);"/> <!-- NEW SVG -->
           <label id="colorfalse" hidden="true" class="invalidcolor" value="&foxyproxy.invalidcolor.label;" />
           <label id="colortrue" class="validcolor" value="&foxyproxy.validcolor.label;" />
         </hbox>          

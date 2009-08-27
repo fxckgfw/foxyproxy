@@ -47,7 +47,7 @@
 }
 
 .SV {
-  background: #FF0000 url('images/SatVal.png');
+  background: #FF0000 url('images/satval.png');
   position: relative;
   cursor: crosshair;
   float: left;
@@ -78,7 +78,7 @@
 }
 
 .Hslide {
-  background: url('images/slideHue.gif');
+  background: url('images/slidehue.gif');
   height: 5px;
   width: 33px;
   position: absolute;

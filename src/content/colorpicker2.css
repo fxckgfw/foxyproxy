@@ -47,7 +47,7 @@
 }
 
 .SV {
-  background: #FF0000 url('SatVal.png');
+  background: #FF0000 url('images/SatVal.png');
   position: relative;
   cursor: crosshair;
   float: left;
@@ -57,7 +57,7 @@
   -moz-user-select: none
 }
 .SVslide {
-  background: url('slide.gif');
+  background: url('images/slide.gif');
   height: 9px;
   width: 9px;
   position: absolute;
@@ -78,7 +78,7 @@
 }
 
 .Hslide {
-  background: url('slideHue.gif');
+  background: url('images/slideHue.gif');
   height: 5px;
   width: 33px;
   position: absolute;

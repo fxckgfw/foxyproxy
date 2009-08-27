@@ -1,6 +1,7 @@
 @import url(chrome://global/skin/);
 
-tree {min-height: 50px;}
+tree[id="urlsTree"], tree[id="torWizUrlsTree"], tree[id="proxyTree"], tree[id="logTree"]
+  {min-height: 50px;}
 /*treechildren::-moz-tree-row(grey) {
   background-color: rgb(80%, 80%, 80%);
 }*/

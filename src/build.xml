@@ -40,7 +40,8 @@
       <fileset dir="${src-path}">
         <patternset id="conditional.sources">
           <include name="**/foxyproxy.css/**"/>
-          <include name="**/common.js/**"/>
+          <include name="**/foxyproxy.js/**"/>
+          <include name="**/firefoxOverlay.xul/**"/>
         </patternset>
       </fileset>
 

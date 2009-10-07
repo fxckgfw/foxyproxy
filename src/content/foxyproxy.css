@@ -218,13 +218,13 @@ colorpicker2[type="button"] {
 }
 /* End awesome colorpicker2 by Jesper Hansen */
 
-/*! begin-foxyproxy-simple !*/
+/*! begin-foxyproxy-simple
 .hide-if-foxyproxy-simple {
   display: none;
 }
-/*! end-foxyproxy-simple !*/     
+end-foxyproxy-simple !*/     
 
-/*! begin-foxyproxy-standard   
+/*! begin-foxyproxy-standard !*/
 .hide-if-foxyproxy-simple {
 }
-end-foxyproxy-standard !*/ 
+/*! end-foxyproxy-standard !*/ 

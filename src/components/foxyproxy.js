@@ -1429,11 +1429,11 @@ biesi>  passing it the appropriate proxyinfo
   },
 
   isFoxyProxySimple : function() {
-    /*! begin-foxyproxy-simple !*/
+    /*! begin-foxyproxy-simple !*/ !*/ !*/ !*/ !*/ !*/ !*/ !*/ !*/
     return true;
-    /*! end-foxyproxy-simple !*/
+    /*! /*! /*! /*! /*! /*! /*! /*! /*! end-foxyproxy-simple !*/
 
-    /*! begin-foxyproxy-standard    
+    /*! begin-foxyproxy-standard         
     return false;
     end-foxyproxy-standard !*/     
   },

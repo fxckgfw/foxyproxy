@@ -625,15 +625,16 @@ var foxyproxy = {
       asb.setAttribute("orient", "vertical");*/
       
       var checkOne = [];
-      var itm = _createRadioMenuItem(menupopup,
-        "patterns",
-        this._cmd,
-        this.fp.getMessage("mode.patterns.accesskey"),
-        this.fp.getMessage("mode.patterns.label"),
-        this.fp.getMessage("mode.patterns.tooltip"));
-      itm.setAttribute("class", "orange");
-      checkOne.push(itm);
-
+      if (!this.fp.isFoxyProxySimple()) {
+        var itm = _createRadioMenuItem(menupopup,
+          "patterns",
+          this._cmd,
+          this.fp.getMessage("mode.patterns.accesskey"),
+          this.fp.getMessage("mode.patterns.label"),
+          this.fp.getMessage("mode.patterns.tooltip"));
+        itm.setAttribute("class", "orange");
+        checkOne.push(itm);
+      }
       for (var i=0; i<this.fp.proxies.length; i++) {
         var p = this.fp.proxies.item(i);
         var pName = p.name;
@@ -789,49 +790,51 @@ var foxyproxy = {
           this.fp.getMessage("foxyproxy.advancedmenus.label"),
           this.fp.getMessage("foxyproxy.advancedmenus.tooltip"));
 
-        var logsubmenupopup =
-          _createMenu(submenupopup,
-          this.fp.getMessage("foxyproxy.tab.logging.label"),
-          this.fp.getMessage("foxyproxy.tab.logging.accesskey"),
-          this.fp.getMessage("foxyproxy.tab.logging.tooltip"));
-
-        _createCheckMenuItem(logsubmenupopup,
-          // no need to write settings because changing the attribute makes the fp service re-write the settings
-          "foxyproxy.fp.logging=!foxyproxy.fp.logging;foxyproxy.updateViews(false);",
-          foxyproxy.fp.logging,
-          this.fp.getMessage("foxyproxy.enabled.accesskey"),
-          this.fp.getMessage("foxyproxy.enabled.label"),
-          this.fp.getMessage("foxyproxy.enabled.tooltip"));
-
-        _createMenuItem(logsubmenupopup,
-          this.fp.getMessage("foxyproxy.clear.label"),
-          "foxyproxy.fp.logg.clear();foxyproxy.updateViews(false, true);",
-          this.fp.getMessage("foxyproxy.clear.accesskey"),
-          this.fp.getMessage("foxyproxy.clear.tooltip"));
-
-       _createMenuItem(logsubmenupopup,
-           this.fp.getMessage("foxyproxy.refresh.label"),
-           // Need to refresh the log view so the refresh button is enabled/disabled appropriately
-           "foxyproxy.updateViews(false, true);",
-           this.fp.getMessage("foxyproxy.refresh.accesskey"),
-           this.fp.getMessage("foxyproxy.refresh.tooltip"));
-
-        itm =_createMenuItem(submenupopup,
-            this.fp.getMessage("foxyproxy.quickadd.label"),
-            "foxyproxy.onQuickAddDialog(event)",
-            this.fp.getMessage("foxyproxy.quickadd.accesskey"),
-            this.fp.getMessage("foxyproxy.quickadd.tooltip"));
-          itm.setAttribute("key", "key_foxyproxyquickadd");
-          itm.setAttribute("disabled", disableQuickAdd(this.fp));          
-
-        _createCheckMenuItem(logsubmenupopup,
-          // no need to write settings because changing the attribute makes the fp service re-writes the settings
-          "foxyproxy.onToggleNoURLs();",
-          foxyproxy.fp.logg.noURLs,
-          this.fp.getMessage("foxyproxy.logging.noURLs.accesskey"),
-          this.fp.getMessage("foxyproxy.logging.noURLs.label"),
-          this.fp.getMessage("foxyproxy.logging.noURLs.tooltip"));
-
+        if (!this.fp.isFoxyProxySimple()) {
+          // No logging and quickadd for FoxyProxy Simple
+          var logsubmenupopup =
+            _createMenu(submenupopup,
+            this.fp.getMessage("foxyproxy.tab.logging.label"),
+            this.fp.getMessage("foxyproxy.tab.logging.accesskey"),
+            this.fp.getMessage("foxyproxy.tab.logging.tooltip"));
+  
+          _createCheckMenuItem(logsubmenupopup,
+            // no need to write settings because changing the attribute makes the fp service re-write the settings
+            "foxyproxy.fp.logging=!foxyproxy.fp.logging;foxyproxy.updateViews(false);",
+            foxyproxy.fp.logging,
+            this.fp.getMessage("foxyproxy.enabled.accesskey"),
+            this.fp.getMessage("foxyproxy.enabled.label"),
+            this.fp.getMessage("foxyproxy.enabled.tooltip"));
+  
+          _createMenuItem(logsubmenupopup,
+            this.fp.getMessage("foxyproxy.clear.label"),
+            "foxyproxy.fp.logg.clear();foxyproxy.updateViews(false, true);",
+            this.fp.getMessage("foxyproxy.clear.accesskey"),
+            this.fp.getMessage("foxyproxy.clear.tooltip"));
+  
+         _createMenuItem(logsubmenupopup,
+             this.fp.getMessage("foxyproxy.refresh.label"),
+             // Need to refresh the log view so the refresh button is enabled/disabled appropriately
+             "foxyproxy.updateViews(false, true);",
+             this.fp.getMessage("foxyproxy.refresh.accesskey"),
+             this.fp.getMessage("foxyproxy.refresh.tooltip"));
+  
+          itm =_createMenuItem(submenupopup,
+              this.fp.getMessage("foxyproxy.quickadd.label"),
+              "foxyproxy.onQuickAddDialog(event)",
+              this.fp.getMessage("foxyproxy.quickadd.accesskey"),
+              this.fp.getMessage("foxyproxy.quickadd.tooltip"));
+            itm.setAttribute("key", "key_foxyproxyquickadd");
+            itm.setAttribute("disabled", disableQuickAdd(this.fp));          
+  
+          _createCheckMenuItem(logsubmenupopup,
+            // no need to write settings because changing the attribute makes the fp service re-writes the settings
+            "foxyproxy.onToggleNoURLs();",
+            foxyproxy.fp.logg.noURLs,
+            this.fp.getMessage("foxyproxy.logging.noURLs.accesskey"),
+            this.fp.getMessage("foxyproxy.logging.noURLs.label"),
+            this.fp.getMessage("foxyproxy.logging.noURLs.tooltip"));
+        }
         submenupopup.appendChild(document.createElement("menuseparator"));
 
         itm =_createMenuItem(submenupopup,
@@ -841,13 +844,16 @@ var foxyproxy = {
           this.fp.getMessage("foxyproxy.options.tooltip"));
         itm.setAttribute("key", "key_foxyproxyfocus");
 
-        itm =_createMenuItem(submenupopup,
-          this.fp.getMessage("foxyproxy.quickadd.label"),
-          "foxyproxy.onQuickAddDialog(event)",
-          this.fp.getMessage("foxyproxy.quickadd.accesskey"),
-          this.fp.getMessage("foxyproxy.quickadd.tooltip"));
-        itm.setAttribute("key", "key_foxyproxyquickadd");
-        itm.setAttribute("disabled", disableQuickAdd(this.fp));
+        if (!this.fp.isFoxyProxySimple()) {
+          // No quickadd for FoxyProxy Simple
+          itm =_createMenuItem(submenupopup,
+            this.fp.getMessage("foxyproxy.quickadd.label"),
+            "foxyproxy.onQuickAddDialog(event)",
+            this.fp.getMessage("foxyproxy.quickadd.accesskey"),
+            this.fp.getMessage("foxyproxy.quickadd.tooltip"));
+          itm.setAttribute("key", "key_foxyproxyquickadd");
+          itm.setAttribute("disabled", disableQuickAdd(this.fp));
+        }
                   
         _createMenuItem(submenupopup,
           this.fp.getMessage("foxyproxy.help.label"),
@@ -884,13 +890,17 @@ var foxyproxy = {
               "foxyproxy.changeHost({proxy:" + tmp + ", host:'" + sel.parsedSelection[0] + "', port:'" + sel.parsedSelection[1] + "', reloadcurtab:true});", null, null);
           itm.setAttribute("disabled", sel.disabled);     
           */
-        itm =_createMenuItem(menupopup,
-          this.fp.getMessage("foxyproxy.quickadd.label"),
-          "foxyproxy.onQuickAddDialog(event)",
-          this.fp.getMessage("foxyproxy.quickadd.accesskey"),
-          this.fp.getMessage("foxyproxy.quickadd.tooltip"));
-        itm.setAttribute("key", "key_foxyproxyquickadd");
-        itm.setAttribute("disabled", disableQuickAdd(this.fp));
+        
+        if (!this.fp.isFoxyProxySimple()) {
+          // No quickadd for FoxyProxy Simple
+          itm =_createMenuItem(menupopup,
+            this.fp.getMessage("foxyproxy.quickadd.label"),
+            "foxyproxy.onQuickAddDialog(event)",
+            this.fp.getMessage("foxyproxy.quickadd.accesskey"),
+            this.fp.getMessage("foxyproxy.quickadd.tooltip"));
+          itm.setAttribute("key", "key_foxyproxyquickadd");
+          itm.setAttribute("disabled", disableQuickAdd(this.fp));
+        }
         
         _createCheckMenuItem(menupopup,
           "foxyproxy.fp.advancedMenus = true;foxyproxy.updateViews(false);",

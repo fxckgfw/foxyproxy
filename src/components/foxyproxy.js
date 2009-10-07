@@ -295,13 +295,12 @@ biesi>  passing it the appropriate proxyinfo
     if (this._selectedProxy && this._selectedProxy.lastresort) {
       this.setMode("disabled", true);
     }
-    else if (this._mode == "disabled") {
-      this.setMode("patterns", true);
+    else if (this._mode == "disabled") {      
+      this.setMode(this.isFoxyProxySimple() ?
+          /* FP Simple has no "patterns" mode, so skip to next one */_getNextAfterPatterns() : "patterns", true);
     }
     else if (this._mode == "patterns") {
-      var p = this.proxies.item(0);
-      (!p || !p.enabled || !p.includeInCycle) && (p = _getNextInCycle(this.proxies.item(0).id));
-      this.setMode(p?p.id:"disabled", true);
+      this.setMode(_getNextAfterPatterns());
     }
     else {
       var p = _getNextInCycle(this._mode);
@@ -310,6 +309,11 @@ biesi>  passing it the appropriate proxyinfo
     function _getNextInCycle(start) {
       for (var p=self.proxies.getNextById(start); p && !p.includeInCycle; p = self.proxies.getNextById(p.id));
       return p;
+    }
+    function _getNextAfterPatterns() {
+      var p = this.proxies.item(0);
+      (!p || !p.enabled || !p.includeInCycle) && (p = _getNextInCycle(this.proxies.item(0).id));
+      return p?p.id:"disabled";      
     }
   },
 
@@ -624,7 +628,7 @@ biesi>  passing it the appropriate proxyinfo
     var mode = node.hasAttribute("enabledState") ?
       (node.getAttribute("enabledState") == "" ? "disabled" : node.getAttribute("enabledState")) :
       node.getAttribute("mode"); // renamed to mode in 2.0
-    this._previousMode = gGetSafeAttr(node, "previousMode", "patterns");
+    this._previousMode = gGetSafeAttr(node, "previousMode", this.isFoxyProxySimple() ? "disabled" : "patterns");
     this._resetIconColors = gGetSafeAttrB(node, "resetIconColors", true); // new for 2.10
     this._useStatusBarPrefix = gGetSafeAttrB(node, "useStatusBarPrefix", true); // new for 2.10
     this.proxies.fromDOM(mode, doc);
@@ -856,7 +860,7 @@ biesi>  passing it the appropriate proxyinfo
       if (isBeingDeleted) {
         // If the proxy set for "previousMode" is being deleted, change "previousMode"
         if (gFP.previousMode == proxy.id)
-          gFP.previousMode = "patterns";
+          gFP.previousMode = gFP.isFoxyProxySimple() ? "disabled" : "patterns";
       }
 
       // Handle AutoAdd & QuickAdd (superadd)
@@ -1422,6 +1426,16 @@ biesi>  passing it the appropriate proxyinfo
       for (var i=0,sz=n.attributes.length; i<sz; i++)
         this._warnings[n.attributes[i].nodeName] = n.attributes[i].nodeValue == "true";
     }
+  },
+
+  isFoxyProxySimple : function() {
+    /*! begin-foxyproxy-simple !*/
+    return true;
+    /*! end-foxyproxy-simple !*/
+
+    /*! begin-foxyproxy-standard    
+    return false;
+    end-foxyproxy-standard !*/     
   },
   classID: Components.ID("{46466e13-16ab-4565-9924-20aac4d98c82}"),
   contractID: "@leahscape.org/foxyproxy/service;1",

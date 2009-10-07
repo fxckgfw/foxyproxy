@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="foxyproxy" default="build-xpi">
+<project name="foxyproxy" default="build-foxyproxy-standard">
 
   <!-- version property is appended to XPI filename; e.g., foxyproxy-1.0.xpi -->
   <property name="version" value="2.14" />
@@ -13,6 +13,136 @@
       <fileset dir="${src-base}" excludes="**/*.xpi/**,**/*.jar/**,**/build.xml/**,**/chrome.manifest/**,**/*.project/**,
         **/foxyproxyplus.*/**" />
     </copy>
+  </target>
+
+  <target name="convert-to-foxyproxy-simple">
+  
+    <!-- 
+      Convert blocks like this:
+      
+        /*! begin-foxyproxy-simple
+        .hide-if-foxyproxy-simple {
+          display: none;
+        }
+        end-foxyproxy-simple !*/
+
+      to:
+      
+        /*! begin-foxyproxy-simple !*/
+        .hide-if-foxyproxy-simple {
+          display: none;
+        }
+        /*! end-foxyproxy-simple !*/      
+     -->
+    <replaceregexp flags="gs">
+      <regexp pattern="(\/\*!\s*begin-foxyproxy-simple)(.*?)(end-foxyproxy-simple\s*!\*\/)"/>
+      <substitution expression="\1 !*\/\2\/\*! \3"/>
+      <fileset dir="${src-path}">
+        <patternset id="conditional.sources">
+          <include name="**/foxyproxy.css/**"/>
+          <include name="**/common.js/**"/>
+        </patternset>
+      </fileset>
+
+    </replaceregexp>    
+
+
+    <!-- 
+      Convert blocks like this:
+      
+        /*! begin-foxyproxy-standard !*/
+        .hide-if-foxyproxy-simple {
+        }
+        /*! end-foxyproxy-standard !*/
+        
+      to:
+      
+        /*! begin-foxyproxy-standard 
+        .hide-if-foxyproxy-simple {
+        }
+        end-foxyproxy-standard !*/        
+     -->    
+    <replaceregexp flags="gs">
+      <regexp pattern="(\/\*!\s*begin-foxyproxy-standard\s*)(!\*\/)(.*?)(\/\*!\s*)(end-foxyproxy-standard\s*!\*\/)"/>
+      <substitution expression="\1\3\5"/>
+      <fileset dir="${src-path}">
+        <patternset refid="conditional.sources"/>
+      </fileset>
+
+    </replaceregexp>  
+
+    <!-- 
+    
+      Now, replace UUID 
+      
+    <replaceregexp flags="gs">
+      <regexp pattern="(foxyproxy@eric.h.jung)"/>
+      <substitution expression="foxyproxysimple@eric.h.jung"/>
+      <fileset dir="${temp-path}" includes="**/*/**"/>
+    </replaceregexp>  
+     -->    
+        
+  </target>    
+
+  <target name="convert-to-foxyproxy-standard">
+    <!-- 
+      Convert blocks like this:
+      
+        /*! begin-foxyproxy-simple !*/
+        .hide-if-foxyproxy-simple {
+          display: none;
+        }
+        /*! end-foxyproxy-simple !*/
+        
+      to:
+              
+        /*! begin-foxyproxy-simple
+        .hide-if-foxyproxy-simple {
+          display: none;
+        }
+        end-foxyproxy-simple !*/ 
+     -->
+    <replaceregexp flags="gs">
+      <regexp pattern="(\/\*!\s*begin-foxyproxy-simple)(\s*!\*\/)(.*?)(\/\*!\s*)(end-foxyproxy-simple\s*!\*\/)"/>
+      <substitution expression="\1\3\5"/>
+      <fileset dir="${src-path}">
+        <patternset refid="conditional.sources"/>
+      </fileset>
+    </replaceregexp>    
+
+
+    <!-- 
+      Convert blocks like this:
+      
+        /*! begin-foxyproxy-standard 
+        .hide-if-foxyproxy-simple {
+        }
+        end-foxyproxy-standard !*/
+        
+      to:
+      
+        /*! begin-foxyproxy-standard !*/
+        .hide-if-foxyproxy-simple {
+        }
+        /*! end-foxyproxy-standard !*/       
+     -->    
+    <replaceregexp flags="gs">
+      <regexp pattern="(\/\*!\s*begin-foxyproxy-standard)(.*?)(end-foxyproxy-standard\s*!\*\/)"/>
+      <substitution expression="\1 !\*\/\2\/\*! \3"/>
+      <fileset dir="${src-path}">
+        <patternset refid="conditional.sources"/>
+      </fileset>
+    </replaceregexp>  
+    <!-- 
+    
+      Now, replace UUID 
+      
+    <replaceregexp flags="gs">
+      <regexp pattern="(foxyproxy@eric.h.jung)"/>
+      <substitution expression="foxyproxysimple@eric.h.jung"/>
+      <fileset dir="${temp-path}" includes="**/*/**"/>
+    </replaceregexp>  
+     -->      
   </target>
 
   <!-- create the jar -->
@@ -33,11 +163,10 @@
       <zipfileset dir="${temp-path}" prefix="chrome" includes="skin/**"/>
       <zipfileset dir="${temp-path}" prefix="chrome" includes="locale/**"/>
       <zipfileset dir="${temp-path}/components" prefix="components" includes="**/**" />
-      <zipfileset dir="${temp-path}/modules" prefix="modules" includes="**/**" />    	
+      <zipfileset dir="${temp-path}/modules" prefix="modules" includes="**/**" />     
       <zipfileset dir="${temp-path}/defaults" prefix="defaults" includes="**/**" />
     </zip>
   </target>
-
 
   <target name="clean">
     <delete dir="${temp-path}" failonerror="false" />
@@ -45,12 +174,36 @@
 
   <target name="init">
     <mkdir dir="${temp-path}" />
-    <mkdir dir="${target-path}" />  	
+    <mkdir dir="${target-path}" />    
     <delete>
       <fileset dir="${target-path}" includes="**/*.*/**"/>
     </delete>
   </target>
 
   <!--<target name="build-xpi" depends="init,copy,jar,build,clean" />-->
-  <target name="build-xpi" depends="init,copy,build,clean" />
+  <target name="build-foxyproxy-standard" depends="init,copy,build,clean" />
+  <target name="build-foxyproxy-simple" depends="init">
+    <property name="src-path" value="${temp-path}"/>
+    <antcall>
+      <target name="copy"/>
+      <param name="src-path" value="${temp-path}"/>
+      <target name="convert-to-foxyproxy-simple"/>
+      <target name="build"/>
+      <!-- <target name="clean"/> -->
+    </antcall>
+  </target>
+    
+  <target name="convert-to-foxyproxy-simple-for-development">
+    <antcall>
+      <param name="src-path" value="${src-base}"/>
+      <target name="convert-to-foxyproxy-simple"/>
+    </antcall>
+  </target>
+  
+  <target name="convert-to-foxyproxy-standard-for-development">
+    <antcall>
+      <param name="src-path" value="${src-base}"/>
+      <target name="convert-to-foxyproxy-standard"/>
+    </antcall>
+  </target>  
 </project>

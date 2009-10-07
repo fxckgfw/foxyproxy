@@ -6,34 +6,19 @@
   <property name="temp-path" value="/tmp/foxyproxy" />
   <property name="src-base" value="."/>
   <property name="target-path" value="../targets"/>
+  <property file="edition.properties"/>
 
   <target name="copy">
     <copy todir="${temp-path}" overwrite="true">
       <!-- ignore timestamps -->
       <fileset dir="${src-base}" excludes="**/*.xpi/**,**/*.jar/**,**/build.xml/**,**/chrome.manifest/**,**/*.project/**,
-        **/foxyproxyplus.*/**" />
+        **/foxyproxyplus.*/**,**/edition.properties/**" />
     </copy>
   </target>
 
   <target name="convert-to-foxyproxy-simple">
   
-    <!-- 
-      Convert blocks like this:
-      
-        /*! begin-foxyproxy-simple
-        .hide-if-foxyproxy-simple {
-          display: none;
-        }
-        end-foxyproxy-simple !*/
-
-      to:
-      
-        /*! begin-foxyproxy-simple !*/
-        .hide-if-foxyproxy-simple {
-          display: none;
-        }
-        /*! end-foxyproxy-simple !*/      
-     -->
+    <!-- uncomment FoxyProxy Simple blocks in JS and CSS files --> 
     <replaceregexp flags="gs">
       <regexp pattern="(\/\*!\s*begin-foxyproxy-simple)(.*?)(end-foxyproxy-simple\s*!\*\/)"/>
       <substitution expression="\1 !*\/\2\/\*! \3"/>
@@ -41,40 +26,41 @@
         <patternset id="conditional.sources">
           <include name="**/foxyproxy.css/**"/>
           <include name="**/foxyproxy.js/**"/>
+        </patternset>
+      </fileset>
+    </replaceregexp>    
+
+    <!-- uncomment FoxyProxy Simple blocks in DTD / XUL / XML / HTMTL files -->   
+    <replaceregexp flags="gs">
+      <regexp pattern="(&lt;!--\s*begin-foxyproxy-simple)(.*?)(end-foxyproxy-simple\s*--&gt;)"/>
+      <substitution expression="\1 --&gt;\2&lt;!-- \3"/>
+      <fileset dir="${src-path}">
+        <patternset id="xml.conditional.sources">
+          <include name="**/foxyproxy.dtd/**"/>
           <include name="**/firefoxOverlay.xul/**"/>
         </patternset>
       </fileset>
+    </replaceregexp>  
 
-    </replaceregexp>    
-
-
-    <!-- 
-      Convert blocks like this:
-      
-        /*! begin-foxyproxy-standard !*/
-        .hide-if-foxyproxy-simple {
-        }
-        /*! end-foxyproxy-standard !*/
-        
-      to:
-      
-        /*! begin-foxyproxy-standard 
-        .hide-if-foxyproxy-simple {
-        }
-        end-foxyproxy-standard !*/        
-     -->    
+    <!-- comment out FoxyProxy Standard blocks in DTD / XUL / XML / HTMTL files -->  
+    <replaceregexp flags="gs">
+      <regexp pattern="(&lt;!--\s*begin-foxyproxy-standard\s*)(--&gt;)(.*?)(&lt;!--\s*)(end-foxyproxy-standard\s*--&gt;)"/>
+      <substitution expression="\1\3\5"/>
+      <fileset dir="${src-path}">
+        <patternset refid="xml.conditional.sources"/>
+      </fileset>
+    </replaceregexp> 
+    
+    <!-- comment out FoxyProxy Standard blocks in JS & CSS files -->    
     <replaceregexp flags="gs">
       <regexp pattern="(\/\*!\s*begin-foxyproxy-standard\s*)(!\*\/)(.*?)(\/\*!\s*)(end-foxyproxy-standard\s*!\*\/)"/>
       <substitution expression="\1\3\5"/>
       <fileset dir="${src-path}">
         <patternset refid="conditional.sources"/>
       </fileset>
-
     </replaceregexp>  
-
-    <!-- 
     
-      Now, replace UUID 
+    <!-- replace UUID 
       
     <replaceregexp flags="gs">
       <regexp pattern="(foxyproxy@eric.h.jung)"/>
@@ -86,23 +72,8 @@
   </target>    
 
   <target name="convert-to-foxyproxy-standard">
-    <!-- 
-      Convert blocks like this:
-      
-        /*! begin-foxyproxy-simple !*/
-        .hide-if-foxyproxy-simple {
-          display: none;
-        }
-        /*! end-foxyproxy-simple !*/
-        
-      to:
-              
-        /*! begin-foxyproxy-simple
-        .hide-if-foxyproxy-simple {
-          display: none;
-        }
-        end-foxyproxy-simple !*/ 
-     -->
+  
+    <!-- comment out FoxyProxy Simple blocks in JS and CSS files --> 
     <replaceregexp flags="gs">
       <regexp pattern="(\/\*!\s*begin-foxyproxy-simple)(\s*!\*\/)(.*?)(\/\*!\s*)(end-foxyproxy-simple\s*!\*\/)"/>
       <substitution expression="\1\3\5"/>
@@ -111,22 +82,16 @@
       </fileset>
     </replaceregexp>    
 
-
-    <!-- 
-      Convert blocks like this:
-      
-        /*! begin-foxyproxy-standard 
-        .hide-if-foxyproxy-simple {
-        }
-        end-foxyproxy-standard !*/
-        
-      to:
-      
-        /*! begin-foxyproxy-standard !*/
-        .hide-if-foxyproxy-simple {
-        }
-        /*! end-foxyproxy-standard !*/       
-     -->    
+    <!-- comment out FoxyProxy Simple blocks in DTD / XUL / XML / HTMTL files -->  
+    <replaceregexp flags="gs">
+      <regexp pattern="(&lt;!--\s*begin-foxyproxy-simple\s*)(--&gt;)(.*?)(&lt;!--\s*)(end-foxyproxy-simple\s*--&gt;)"/>
+      <substitution expression="\1\3\5"/>
+      <fileset dir="${src-path}">
+        <patternset refid="xml.conditional.sources"/>
+      </fileset>
+    </replaceregexp> 
+            
+    <!-- uncomment FoxyProxy Standard blocks in JS and CSS files -->    
     <replaceregexp flags="gs">
       <regexp pattern="(\/\*!\s*begin-foxyproxy-standard)(.*?)(end-foxyproxy-standard\s*!\*\/)"/>
       <substitution expression="\1 !\*\/\2\/\*! \3"/>
@@ -134,9 +99,17 @@
         <patternset refid="conditional.sources"/>
       </fileset>
     </replaceregexp>  
-    <!-- 
+
+    <!-- uncomment FoxyProxy Standard blocks in DTD / XUL / XML / HTMTL files -->  
+    <replaceregexp flags="gs">
+      <regexp pattern="(&lt;!--\s*begin-foxyproxy-standard)(.*?)(end-foxyproxy-standard\s*--&gt;)"/>
+      <substitution expression="\1 --&gt;\2&lt;!-- \3"/>
+      <fileset dir="${src-path}">
+        <patternset refid="xml.conditional.sources"/>
+      </fileset>
+    </replaceregexp> 
     
-      Now, replace UUID 
+    <!-- replace UUID 
       
     <replaceregexp flags="gs">
       <regexp pattern="(foxyproxy@eric.h.jung)"/>
@@ -194,17 +167,21 @@
     </antcall>
   </target>
     
-  <target name="convert-to-foxyproxy-simple-for-development">
+  <target name="convert-to-foxyproxy-simple-for-development" if="standard">    
     <antcall>
       <param name="src-path" value="${src-base}"/>
       <target name="convert-to-foxyproxy-simple"/>
     </antcall>
+    <!-- The <propertyfile/> task appends to the property file, but we want to overwrite -->
+    <echo file="edition.properties" message="simple=true"/>
   </target>
   
-  <target name="convert-to-foxyproxy-standard-for-development">
+  <target name="convert-to-foxyproxy-standard-for-development" if="simple">
     <antcall>
       <param name="src-path" value="${src-base}"/>
       <target name="convert-to-foxyproxy-standard"/>
     </antcall>
+    <!-- The <propertyfile/> task appends to the property file, but we want to overwrite -->
+    <echo file="edition.properties" message="standard=true"/>
   </target>  
 </project>

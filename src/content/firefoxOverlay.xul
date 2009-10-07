@@ -45,7 +45,10 @@
   <keyset id="mainKeyset">
 		<!-- accel is ctrl on windows, cmd on mac -->  
     <key id="key_foxyproxyfocus" keycode="VK_F2" modifiers="accel" oncommand="foxyproxy.onOptionsDialog();"/>
+<!-- begin-foxyproxy-standard -->         
 		<key id="key_foxyproxyquickadd" keycode="VK_F2" modifiers="alt" oncommand="foxyproxy.onQuickAddDialog(event);"/>
+<!-- end-foxyproxy-standard -->
+
     <key id="key_foxyproxychangeproxy" keycode="VK_F3" modifiers="alt" oncommand="foxyproxy.selection.onChangeHost();"/>    
   </keyset>
   

@@ -36,7 +36,7 @@
   		<tab label="&foxyproxy.tab.proxy.label;" accesskey="&foxyproxy.tab.proxy.accesskey;"
   		  tooltiptext="&foxyproxy.tab.proxy.tooltip;"/>
   		<tab id="urlpatternstab" label="&foxyproxy.urlpatterns.label;" accesskey="&foxyproxy.urlpatterns.accesskey;"
-  		  tooltiptext="&foxyproxy.urlpatterns.tooltip;"/>
+  		  tooltiptext="&foxyproxy.urlpatterns.tooltip;" class="hide-if-foxyproxy-simple"/>
   	</tabs>
 
 	<tabpanels style="-moz-appearance: none;" flex="1">
@@ -196,7 +196,7 @@
         </radiogroup>
     </tabpanel>
 
- 		<tabpanel flex="1" orient="vertical">
+ 		<tabpanel flex="1" orient="vertical" class="hide-if-foxyproxy-simple">
  			<separator class="thin" />
       <description>&foxyproxy.pattern.description;</description>
       <separator class="thin"/>

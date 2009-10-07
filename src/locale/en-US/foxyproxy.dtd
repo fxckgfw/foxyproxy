@@ -1,7 +1,15 @@
+<!-- begin-foxyproxy-standard -->    
 <!ENTITY foxyproxy.label "FoxyProxy">
+<!-- end-foxyproxy-standard -->
+
+<!-- todo: rename foxyproxy.label to foxyproxy.label2 -->
+
+<!-- begin-foxyproxy-simple
+<!ENTITY foxyproxy.label "FoxyProxy Basic">
+end-foxyproxy-simple -->
+
 <!ENTITY foxyproxy.accesskey "F">
 
-<!ENTITY foxyproxy.optionsdialog.label "FoxyProxy Options">
 <!ENTITY foxyproxy.options.label "Options">
 <!ENTITY foxyproxy.options.accesskey "O">
 <!ENTITY foxyproxy.options.tooltip "Open the Options Dialog">

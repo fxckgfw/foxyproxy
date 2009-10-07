@@ -198,7 +198,10 @@ function _updateModeMenu() {
 	var popup=menu.firstChild;
 	fpc.removeChildren(popup);
 	
-  popup.appendChild(fpc.createMenuItem({idVal:"patterns", labelId:"mode.patterns.label", document:document}));
+  var n = fpc.createMenuItem({idVal:"patterns", labelId:"mode.patterns.label", document:document});
+  n.setAttribute("class", "hide-if-foxyproxy-simple");
+  popup.appendChild(n);
+  
   for (var i=0,p; i<foxyproxy.proxies.length && ((p=foxyproxy.proxies.item(i)) || 1); i++)
     popup.appendChild(fpc.createMenuItem({idVal:p.id, labelId:"mode.custom.label", labelArgs:[p.name], type:"radio", name:"foxyproxy-enabled-type", document:document}));
     //popup.appendChild(fpc.createMenuItem({idVal["random", labelId:"mode.random.label", document:document}));

@@ -89,13 +89,13 @@
         tooltiptext="&foxyproxy.tab.global.tooltip;" />
       <tab label="&foxyproxy.quickadd.label;"
         accesskey="&foxyproxy.quickadd.accesskey;"
-        tooltiptext="&foxyproxy.quickadd.tooltip;" />
+        tooltiptext="&foxyproxy.quickadd.tooltip;" class="hide-if-foxyproxy-simple"/>
       <tab label="&foxyproxy.tab.autoadd.label;"
         accesskey="&foxyproxy.tab.autoadd.accesskey;"
-        tooltiptext="&foxyproxy.tab.autoadd.tooltip;" />
+        tooltiptext="&foxyproxy.tab.autoadd.tooltip;" class="hide-if-foxyproxy-simple" />
       <tab label="&foxyproxy.tab.logging.label;"
         accesskey="&foxyproxy.tab.logging.accesskey;"
-        tooltiptext="&foxyproxy.tab.logging.tooltip;" />
+        tooltiptext="&foxyproxy.tab.logging.tooltip;" class="hide-if-foxyproxy-simple"/>
     </tabs>
 
     <tabpanels style="-moz-appearance: none;" flex="1">
@@ -264,7 +264,7 @@
                           <menuitem label="&foxyproxy.click.toggle;"
                             value="toggle" />
                           <menuitem label="&foxyproxy.quickadd.label;"
-                            value="quickadd" />
+                            value="quickadd" class="hide-if-foxyproxy-simple"/>
                         </menupopup>
                       </menulist>
                     </row>
@@ -300,7 +300,7 @@
                           <menuitem label="&foxyproxy.click.toggle;"
                             value="toggle" />
                           <menuitem label="&foxyproxy.quickadd.label;"
-                            value="quickadd" />                          
+                            value="quickadd" class="hide-if-foxyproxy-simple"/>                          
                         </menupopup>
                       </menulist>
                     </row>
@@ -336,7 +336,7 @@
                           <menuitem label="&foxyproxy.click.toggle;"
                             value="toggle" />
                           <menuitem label="&foxyproxy.quickadd.label;"
-                            value="quickadd" />                         
+                            value="quickadd" class="hide-if-foxyproxy-simple"/>                         
                         </menupopup>
                       </menulist>
                     </row>
@@ -424,7 +424,7 @@
                           <menuitem label="&foxyproxy.click.toggle;"
                             value="toggle" />
                           <menuitem label="&foxyproxy.quickadd.label;"
-                            value="quickadd" />                           
+                            value="quickadd" class="hide-if-foxyproxy-simple"/>                           
                         </menupopup>
                       </menulist>
                     </row>
@@ -460,7 +460,7 @@
                           <menuitem label="&foxyproxy.click.toggle;"
                             value="toggle" />
                           <menuitem label="&foxyproxy.quickadd.label;"
-                            value="quickadd" />                           
+                            value="quickadd" class="hide-if-foxyproxy-simple"/>                           
                         </menupopup>
                       </menulist>
                     </row>
@@ -496,7 +496,7 @@
                           <menuitem label="&foxyproxy.click.toggle;"
                             value="toggle" />
                           <menuitem label="&foxyproxy.quickadd.label;"
-                            value="quickadd" />                           
+                            value="quickadd" class="hide-if-foxyproxy-simple"/>                           
                         </menupopup>
                       </menulist>
                     </row>
@@ -530,7 +530,7 @@
         <row><separator class="thin"/></row>-->
 
       <!-- quickadd tab -->
-      <tabpanel flex="1" orient="vertical">
+      <tabpanel flex="1" orient="vertical" class="hide-if-foxyproxy-simple">
         <description style="width: 1em;">&foxyproxy.quickadd.desc1;
           <text value="&foxyproxy.keyconfig.label;" class="text-link"
             onclick="fpc.openAndReuseOneTabPerURL('http://forums.mozillazine.org/viewtopic.php?t=72994');" />
@@ -605,7 +605,7 @@
       </tabpanel>
 
       <!-- autoadd tab -->
-      <tabpanel flex="1" orient="vertical">
+      <tabpanel flex="1" orient="vertical" class="hide-if-foxyproxy-simple">
         <description style="width: 1em;">
           &foxyproxy.autoadd.description;
         </description>
@@ -681,7 +681,7 @@
       </tabpanel>
 
       <!-- logging -->
-      <tabpanel flex="1" orient="vertical">
+      <tabpanel flex="1" orient="vertical" class="hide-if-foxyproxy-simple">
         <separator class="thin" />
         <hbox align="center">
           <checkbox id="enableLogging" label="&foxyproxy.enabled.label;"

@@ -1429,13 +1429,13 @@ biesi>  passing it the appropriate proxyinfo
   },
 
   isFoxyProxySimple : function() {
-    /*! begin-foxyproxy-simple !*/ !*/ !*/ !*/ !*/ !*/ !*/ !*/ !*/
+    /*! begin-foxyproxy-simple
     return true;
-    /*! /*! /*! /*! /*! /*! /*! /*! /*! end-foxyproxy-simple !*/
+    end-foxyproxy-simple !*/
 
-    /*! begin-foxyproxy-standard         
+    /*! begin-foxyproxy-standard !*/       
     return false;
-    end-foxyproxy-standard !*/     
+    /*! end-foxyproxy-standard !*/     
   },
   classID: Components.ID("{46466e13-16ab-4565-9924-20aac4d98c82}"),
   contractID: "@leahscape.org/foxyproxy/service;1",

@@ -123,7 +123,10 @@ Common.prototype = {
   getVersion : function() {
     return CC["@mozilla.org/extensions/manager;1"]
               .getService(CI.nsIExtensionManager)
-              .getItemForID("foxyproxy@eric.h.jung").version || "0.0";
+              .getItemForID(
+                  /*! begin-foxyproxy-standard !*/ "foxyproxy@eric.h.jung" /*! end-foxyproxy-standard !*/ 
+                  /*! begin-foxyproxy-simple "foxyproxy-simple@eric.h.jung" end-foxyproxy-simple !*/)
+              .version || "0.0";
   },
 
   applyTemplate : function(url, strTemplate, caseSensitive) {

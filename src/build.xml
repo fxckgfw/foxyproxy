@@ -26,6 +26,7 @@
         <patternset id="conditional.sources">
           <include name="**/foxyproxy.css/**"/>
           <include name="**/foxyproxy.js/**"/>
+          <include name="**/common.js/**"/>
         </patternset>
       </fileset>
     </replaceregexp>    
@@ -38,6 +39,7 @@
         <patternset id="xml.conditional.sources">
           <include name="**/foxyproxy.dtd/**"/>
           <include name="**/firefoxOverlay.xul/**"/>
+          <include name="**/install.rdf/**"/>
         </patternset>
       </fileset>
     </replaceregexp>  

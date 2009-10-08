@@ -4,9 +4,16 @@
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
 
     <Description rdf:about="urn:mozilla:install-manifest">
+<!-- begin-foxyproxy-standard -->
         <em:id>foxyproxy@eric.h.jung</em:id>
-        <em:name>FoxyProxy</em:name>
+        <em:name>FoxyProxy Standard</em:name>
         <em:version>2.14</em:version>
+<!-- end-foxyproxy-standard -->
+<!-- begin-foxyproxy-simple -->
+        <em:id>foxyproxy-simple@eric.h.jung</em:id>
+        <em:name>FoxyProxy E-Z</em:name>
+        <em:version>1.0</em:version>
+<!-- end-foxyproxy-standard -->
         <em:creator>LeahScape, Inc.</em:creator>
         <em:description>Premier proxy management for Firefox</em:description>
         <em:homepageURL>http://foxyproxy.mozdev.org</em:homepageURL>

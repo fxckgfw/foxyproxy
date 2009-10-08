@@ -12,7 +12,7 @@
     <copy todir="${temp-path}" overwrite="true">
       <!-- ignore timestamps -->
       <fileset dir="${src-base}" excludes="**/*.xpi/**,**/*.jar/**,**/build.xml/**,**/chrome.manifest/**,**/*.project/**,
-        **/foxyproxyplus.*/**,**/edition.properties/**" />
+        **/foxyproxyplus.*/**,**/edition.properties/**,**/development.xml/**" />
     </copy>
   </target>
 

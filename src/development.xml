@@ -4,6 +4,18 @@
   <property name="src-base" value="."/>
   <property file="edition.properties"/>
 
+  <patternset id="xml.conditional.sources">
+    <include name="**/foxyproxy.dtd/**"/>
+    <include name="**/firefoxOverlay.xul/**"/>
+    <include name="**/install.rdf/**"/>
+  </patternset>
+
+  <patternset id="conditional.sources">
+    <include name="**/foxyproxy.css/**"/>
+    <include name="**/foxyproxy.js/**"/>
+    <include name="**/common.js/**"/>
+  </patternset>
+    
   <target name="convert-to-foxyproxy-simple" if="standard">
   
     <!-- uncomment FoxyProxy Simple blocks in JS and CSS files --> 
@@ -11,11 +23,7 @@
       <regexp pattern="(\/\*!\s*begin-foxyproxy-simple)(.*?)(end-foxyproxy-simple\s*!\*\/)"/>
       <substitution expression="\1 !*\/\2\/\*! \3"/>
       <fileset dir="${src-path}">
-        <patternset id="conditional.sources">
-          <include name="**/foxyproxy.css/**"/>
-          <include name="**/foxyproxy.js/**"/>
-          <include name="**/common.js/**"/>
-        </patternset>
+        <patternset refid="conditional.sources"/>
       </fileset>
     </replaceregexp>    
 
@@ -24,11 +32,7 @@
       <regexp pattern="(&lt;!--\s*begin-foxyproxy-simple)(.*?)(end-foxyproxy-simple\s*--&gt;)"/>
       <substitution expression="\1 --&gt;\2&lt;!-- \3"/>
       <fileset dir="${src-path}">
-        <patternset id="xml.conditional.sources">
-          <include name="**/foxyproxy.dtd/**"/>
-          <include name="**/firefoxOverlay.xul/**"/>
-          <include name="**/install.rdf/**"/>
-        </patternset>
+        <patternset refid="xml.conditional.sources"/>
       </fileset>
     </replaceregexp>  
 

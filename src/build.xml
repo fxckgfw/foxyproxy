@@ -2,7 +2,6 @@
 <project name="foxyproxy" default="build-foxyproxy-standard">
 
   <!-- version property is appended to XPI filename; e.g., foxyproxy-1.0.xpi -->
-  <property name="version" value="2.14" />
   <property name="temp-path" value="/tmp/foxyproxy" />
   <property name="src-base" value="."/>
   <property name="target-path" value="../targets"/>
@@ -52,22 +51,28 @@
   </target>
 
   <target name="build-foxyproxy-standard" depends="init" if="simple">
+    <property name="version" value="2.14" />
     <property name="src-path" value="${temp-path}"/>
     <antcall>
       <target name="copy"/>
       <param name="src-path" value="${temp-path}"/>
-      <ant file="development.xml" target="convert-to-foxyproxy-standard"/>
+    </antcall>
+    <ant antfile="development.xml" target="convert-to-foxyproxy-standard"/>
+    <antcall>
       <target name="build"/>
       <target name="clean"/>
     </antcall>
   </target>
   
   <target name="build-foxyproxy-simple" depends="init" if="standard">
+    <property name="version" value="1.0" />
     <property name="src-path" value="${temp-path}"/>
     <antcall>
       <target name="copy"/>
       <param name="src-path" value="${temp-path}"/>
-      <ant file="development.xml" target="convert-to-foxyproxy-simple"/>
+    </antcall>
+    <ant antfile="development.xml" target="convert-to-foxyproxy-simple"/>
+    <antcall>      
       <target name="build"/>
       <target name="clean"/>
     </antcall>

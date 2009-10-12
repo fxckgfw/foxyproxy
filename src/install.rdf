@@ -10,8 +10,8 @@
         <em:version>2.14</em:version>
 <!-- end-foxyproxy-standard -->
 <!-- begin-foxyproxy-simple -->
-        <em:id>foxyproxy-simple@eric.h.jung</em:id>
-        <em:name>FoxyProxy E-Z</em:name>
+        <em:id>foxyproxy-basic@eric.h.jung</em:id>
+        <em:name>FoxyProxy Basic</em:name>
         <em:version>1.0</em:version>
 <!-- end-foxyproxy-standard -->
         <em:creator>LeahScape, Inc.</em:creator>

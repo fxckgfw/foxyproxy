@@ -93,9 +93,11 @@ function onOK() {
 		}
   }
 
+/*! begin-foxyproxy-standard !*/
 	if (!hasWhite() && !foxyproxy.warnings.showWarningIfDesired(window, [window.arguments[0].inn.torwiz ?
       "torwiz.nopatterns.3" : "no.white.patterns.3", name], "white-patterns"))
 	  return false;
+/*! end-foxyproxy-standard !*/
 
 	var isSocks = document.getElementById("isSocks").checked;
 	

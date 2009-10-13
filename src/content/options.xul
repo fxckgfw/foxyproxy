@@ -155,10 +155,10 @@
           </tree>
           <vbox>
             <button id="up-button" pack="start" command="moveUpCmd"
-              label=" &foxyproxy.moveup.label;" />
+              label=" &foxyproxy.moveup.label;" class="hide-if-foxyproxy-simple"/>
             <button id="down-button" pack="start" command="moveDownCmd"
-              label=" &foxyproxy.movedown.label;" />
-            <separator />
+              label=" &foxyproxy.movedown.label;" class="hide-if-foxyproxy-simple"/>
+            <separator class="hide-if-foxyproxy-simple"/>
             <button command="createProxyCmd" />
             <button command="settingsCmd" />
             <button command="copySelectionCmd" />

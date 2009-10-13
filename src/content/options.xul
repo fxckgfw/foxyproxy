@@ -121,9 +121,6 @@
                 label="&foxyproxy.proxy.notes.label;" flex="1"
                 persist="width ordinal hidden" />
               <splitter class="tree-splitter" />
-              <treecol id="modeCol" label="&foxyproxy.mode.label;"
-                hidden="true" flex="1" persist="width ordinal hidden" />
-              <splitter class="tree-splitter" />
               <treecol id="hostCol" label="&foxyproxy.host.label.2;"
                 hidden="true" flex="1" persist="width ordinal hidden" />
               <splitter class="tree-splitter" />

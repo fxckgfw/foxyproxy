@@ -555,6 +555,8 @@ function onBlockedPagePattern() {
  * Get the selected indices of a multiselect tree as an integer array
  */
 function _getSelectedIndices(tree) {
+  if (!tree.view) return []; /* handle empty tree views for FoxyProxy Basic */
+  
   var start = {}, end = {}, numRanges = tree.view.selection.getRangeCount(),
     selectedIndices = [];
 

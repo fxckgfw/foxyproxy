@@ -1,3 +1,5 @@
 * New, better colorpicker for selecting color-per-proxy -- Thanks, Jesper!
 * Narrowed CSS specificity for FoxyProxy's tree styling to prevent interference with
     addons such as FindInTabs (https://addons.mozilla.org/en-US/firefox/addon/8078)
+* Removed useless "mode" colum in options dialog tree view
+* Conditional builds for FoxyProxy Basic    

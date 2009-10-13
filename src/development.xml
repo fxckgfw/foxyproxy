@@ -5,15 +5,14 @@
   <property file="edition.properties"/>
 
   <patternset id="xml.conditional.sources">
-    <include name="**/foxyproxy.dtd/**"/>
-    <include name="**/firefoxOverlay.xul/**"/>
-    <include name="**/install.rdf/**"/>
+    <include name="**/*.dtd/**"/>
+    <include name="**/*.xul/**"/>
+    <include name="**/*.rdf/**"/>
   </patternset>
 
   <patternset id="conditional.sources">
-    <include name="**/foxyproxy.css/**"/>
-    <include name="**/foxyproxy.js/**"/>
-    <include name="**/common.js/**"/>
+    <include name="**/*.css/**"/>
+    <include name="**/*.js/**"/>
   </patternset>
     
   <target name="convert-to-foxyproxy-simple" if="standard">

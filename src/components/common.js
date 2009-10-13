@@ -121,12 +121,22 @@ Common.prototype = {
   },
   
   getVersion : function() {
-    return CC["@mozilla.org/extensions/manager;1"]
-              .getService(CI.nsIExtensionManager)
-              .getItemForID(
-                  /*! begin-foxyproxy-standard !*/ "foxyproxy@eric.h.jung" /*! end-foxyproxy-standard !*/ 
-                  /*! begin-foxyproxy-simple "foxyproxy-basic@eric.h.jung" end-foxyproxy-simple !*/)
-              .version || "0.0";
+    try {
+      return CC["@mozilla.org/extensions/manager;1"]
+                .getService(CI.nsIExtensionManager)
+                .getItemForID(
+                    /*! begin-foxyproxy-standard  "foxyproxy@eric.h.jung" end-foxyproxy-standard !*/ 
+                    /*! begin-foxyproxy-simple !*/ "foxyproxy-basic@eric.h.jung" /*! end-foxyproxy-simple !*/)
+                .version || "0.0";
+    }
+    catch (e) {
+      /* this is for development only, really. The only time we'd get into this catch block is if
+       * the extension isn't installed with the correct UUID. That happens when you install FoxyProxy Standard
+       * using this technique: https://developer.mozilla.org/en/Setting_up_extension_development_environment#Firefox_extension_proxy_file
+       * but then switch to using FoxyProxy Basic via the build script (or vice-versa)
+       */
+      return "0.0"; 
+    }
   },
 
   applyTemplate : function(url, strTemplate, caseSensitive) {

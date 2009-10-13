@@ -125,7 +125,7 @@ Common.prototype = {
               .getService(CI.nsIExtensionManager)
               .getItemForID(
                   /*! begin-foxyproxy-standard !*/ "foxyproxy@eric.h.jung" /*! end-foxyproxy-standard !*/ 
-                  /*! begin-foxyproxy-simple "foxyproxy-simple@eric.h.jung" end-foxyproxy-simple !*/)
+                  /*! begin-foxyproxy-simple "foxyproxy-basic@eric.h.jung" end-foxyproxy-simple !*/)
               .version || "0.0";
   },
 

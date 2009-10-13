@@ -66,7 +66,12 @@ var foxyproxy = {
         //foxyproxy.torWizard(true);
       }
       else {
+        /*! begin-foxyproxy-standard !*/
          x("http://foxyproxy.mozdev.org/releasenotes.html");
+        /*! end-foxyproxy-standard !*/
+        /*! begin-foxyproxy-simple
+         x("http://foxyproxy.mozdev.org/basic/releasenotes.html");
+        end-foxyproxy-simple !*/
       }
       function x(url) {
         fpc.openAndReuseOneTabPerURL(url);

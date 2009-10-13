@@ -212,8 +212,7 @@ Common.prototype = {
           var i = fp.proxies.item(row);    
           switch(column.id) {
             case "nameCol":return i.name;
-            case "descriptionCol":return i.notes;   
-            case "modeCol":return fp.getMessage(i.mode);
+            case "descriptionCol":return i.notes;
             case "hostCol":return i.manualconf.host;           
             case "isSocksCol":return i.manualconf.isSocks?fp.getMessage("yes"):fp.getMessage("no");        
             case "portCol":return i.manualconf.port;                   

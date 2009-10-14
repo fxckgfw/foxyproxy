@@ -51,17 +51,8 @@
       <fileset dir="${src-path}">
         <patternset refid="conditional.sources"/>
       </fileset>
-    </replaceregexp>  
+    </replaceregexp> 
     
-    <!-- replace UUID 
-      
-    <replaceregexp flags="gs">
-      <regexp pattern="(foxyproxy@eric.h.jung)"/>
-      <substitution expression="foxyproxysimple@eric.h.jung"/>
-      <fileset dir="${temp-path}" includes="**/*/**"/>
-    </replaceregexp>  
-     -->    
-
     <!-- The <propertyfile/> task appends to the property file, but we want to overwrite -->
     <echo file="edition.properties" message="simple=true"/>  
     <echo message="Converted to simple"/>      
@@ -103,16 +94,7 @@
       <fileset dir="${src-path}">
         <patternset refid="xml.conditional.sources"/>
       </fileset>
-    </replaceregexp> 
-    
-    <!-- replace UUID 
-      
-    <replaceregexp flags="gs">
-      <regexp pattern="(foxyproxy@eric.h.jung)"/>
-      <substitution expression="foxyproxysimple@eric.h.jung"/>
-      <fileset dir="${temp-path}" includes="**/*/**"/>
-    </replaceregexp>  
-     -->      
+    </replaceregexp>
 
     <!-- The <propertyfile/> task appends to the property file, but we want to overwrite -->
     <echo file="edition.properties" message="standard=true"/>   
@@ -132,4 +114,18 @@
       <target name="convert-to-foxyproxy-standard"/>
     </antcall>
   </target>  
+  
+  <target name="echo-standard" if="standard">
+    <echo message="Currently set to FoxyProxy Standard"/>
+  </target>
+
+  <target name="echo-simple" if="simple">
+    <echo message="Currently set to FoxyProxy Simple"/>
+  </target>
+    
+  <target name="echo-current-state">
+    <antcall target="echo-standard"/>
+    <antcall target="echo-simple"/>
+  </target>
+  
 </project>

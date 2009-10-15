@@ -171,10 +171,9 @@ var foxyproxy = {
     document.getElementById("foxyproxy-contextmenu-icon").hidden = !e;
   },
   
-  torWizard : function(firstTime) {
+  torWizard : function() {
     var owner = foxyproxy._getOptionsDlg();
-    if (this.ask(owner, (firstTime ? (this.fp.getMessage("welcome") + " ") : "") +
-        this.fp.getMessage("torwiz.configure"))) {
+    if (this.ask(owner, this.fp.getMessage("torwiz.configure"))) {
       var withoutPrivoxy = this.ask(owner,
         this.fp.getMessage("torwiz.with.without.privoxy"),
         this.fp.getMessage("torwiz.without"),
@@ -207,8 +206,7 @@ var foxyproxy = {
           .createInstance(Components.interfaces.nsISupports).wrappedJSObject;
         match.name = this.fp.getMessage("torwiz.google.mail");
         match.pattern = this.fp.getMessage("torwiz.pattern");
-        p.matches.push(match);
-        p.selectedTabIndex = 2;
+        p.matches.push(match);        
         p.mode = "manual";
         if (withoutPrivoxy) {
           p.manualconf.host="127.0.0.1";
@@ -222,22 +220,31 @@ var foxyproxy = {
         }
         p.manualconf.socksversion=5;
         p.autoconf.url = "";
-        var params = {inn:{isNew:true, proxy:p, torwiz:true}, out:null};
-
-        var win = owner?owner:window;
-        win.openDialog("chrome://foxyproxy/content/addeditproxy.xul", "",
-          "chrome,dialog,modal,resizable=yes,center", params).focus();
-        if (params.out) {
-          this.fp.proxies.push(params.out.proxy);
-          this.fp.proxyDNS = proxyDNS;
-          foxyproxy.updateViews(true);
-          foxyproxy.alert(owner, this.fp.getMessage("torwiz.congratulations"));
-          proxyDNS && this.ask(owner, this.fp.getMessage("foxyproxy.proxydns.notice")) && this.fp.restart();
+        
+        // Open the patterns dialog only if FP Standard
+        if (this.fp.isFoxyProxySimple()) {
+          p.selectedTabIndex = 1;
+          _congrats(p);
         }
-        else
-         ok = false;
+        else {
+          p.selectedTabIndex = 2;
+          var params = {inn:{isNew:true, proxy:p, torwiz:true}, out:null}, win = owner?owner:window;
+          win.openDialog("chrome://foxyproxy/content/addeditproxy.xul", "",
+            "chrome,dialog,modal,resizable=yes,center", params).focus();
+          if (params.out)
+            _congrats(params.out.proxy);
+          else
+            ok = false;
+        }
       }
       !ok && foxyproxy.alert(owner, this.fp.getMessage("torwiz.cancelled"));
+    }
+    function _congrats(p) {
+      foxyproxy.fp.proxies.push(p);
+      foxyproxy.fp.proxyDNS = proxyDNS;
+      foxyproxy.updateViews(true);
+      foxyproxy.alert(owner, foxyproxy.fp.getMessage("torwiz.congratulations"));
+      proxyDNS && foxyproxy.ask(owner, foxyproxy.fp.getMessage("foxyproxy.proxydns.notice")) && foxyproxy.fp.restart();
     }
   },
 

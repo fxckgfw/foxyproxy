@@ -13,7 +13,7 @@
         <em:id>foxyproxy-basic@eric.h.jung</em:id>
         <em:name>FoxyProxy Basic</em:name>
         <em:version>1.0</em:version>
-end-foxyproxy-standard -->
+end-foxyproxy-simple -->
         <em:creator>LeahScape, Inc.</em:creator>
         <em:description>Premier proxy management for Firefox</em:description>
         <em:homepageURL>http://foxyproxy.mozdev.org</em:homepageURL>

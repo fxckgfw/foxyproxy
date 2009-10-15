@@ -61,18 +61,11 @@ var foxyproxy = {
       // Probably not necessary, but does not hurt
       this.timer = null;
       var fpc = Components.classes["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject;
-      if (this.first) {
-        x("http://foxyproxy.mozdev.org/help.html");
-        //foxyproxy.torWizard(true);
-      }
-      else {
-        /*! begin-foxyproxy-standard !*/
-         x("http://foxyproxy.mozdev.org/releasenotes.html");
-        /*! end-foxyproxy-standard !*/
-        /*! begin-foxyproxy-simple
-         x("http://foxyproxy.mozdev.org/basic/releasenotes.html");
-        end-foxyproxy-simple !*/
-      }
+      if (this.first)
+        x(foxyproxy.fp.isFoxyProxySimple() ? "http://foxyproxy.mozdev.org/basic/help.html" : "http://foxyproxy.mozdev.org/help.html");
+      else
+        x(foxyproxy.fp.isFoxyProxySimple() ? "http://foxyproxy.mozdev.org/basic/releasenotes.html" :
+          "http://foxyproxy.mozdev.org/releasenotes.html");
       function x(url) {
         fpc.openAndReuseOneTabPerURL(url);
         // Do this last so we try again next time if we failed to display now

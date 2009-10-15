@@ -122,11 +122,10 @@ Common.prototype = {
   
   getVersion : function() {
     try {
+      var fp = CC["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;
       return CC["@mozilla.org/extensions/manager;1"]
                 .getService(CI.nsIExtensionManager)
-                .getItemForID(
-                    /*! begin-foxyproxy-standard  "foxyproxy@eric.h.jung" end-foxyproxy-standard !*/ 
-                    /*! begin-foxyproxy-simple !*/ "foxyproxy-basic@eric.h.jung" /*! end-foxyproxy-simple !*/)
+                .getItemForID(fp.isFoxyProxySimple() ? "foxyproxy-basic@eric.h.jung" : "foxyproxy@eric.h.jung")
                 .version || "0.0";
     }
     catch (e) {
@@ -135,7 +134,7 @@ Common.prototype = {
        * using this technique: https://developer.mozilla.org/en/Setting_up_extension_development_environment#Firefox_extension_proxy_file
        * but then switch to using FoxyProxy Basic via the build script (or vice-versa)
        */
-      return "0.0"; 
+      return "-1.0"; 
     }
   },
 

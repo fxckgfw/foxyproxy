@@ -956,7 +956,7 @@
   <command id="helpCmd" label="&foxyproxy.help.label;"
     accesskey="&foxyproxy.help.accesskey;"
     tooltiptext="&foxyproxy.help.tooltip;"
-    oncommand="fpc.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/help.html');" />
+    oncommand="fpc.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/' + (foxyproxy.isFoxyProxySimple() ? 'basic/' : '') + 'help.html');" />
 
   <command id="torWizardCmd" label="&foxyproxy.tor.label;"
     accesskey="&foxyproxy.tor.accesskey;"

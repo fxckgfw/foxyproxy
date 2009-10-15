@@ -612,6 +612,7 @@ var foxyproxy = {
   },
 
   onPopupShowing : function(menupopup, evt) {
+    var isFoxyProxySimple = this.fp.isFoxyProxySimple();
     this._popupShowing++;
     if (this._popupShowing == 1) {
       while (menupopup.hasChildNodes()) {
@@ -623,7 +624,7 @@ var foxyproxy = {
       asb.setAttribute("orient", "vertical");*/
       
       var checkOne = [];
-      if (!this.fp.isFoxyProxySimple()) {
+      if (!isFoxyProxySimple) {
         var itm = _createRadioMenuItem(menupopup,
           "patterns",
           this._cmd,
@@ -788,7 +789,7 @@ var foxyproxy = {
           this.fp.getMessage("foxyproxy.advancedmenus.label"),
           this.fp.getMessage("foxyproxy.advancedmenus.tooltip"));
 
-        if (!this.fp.isFoxyProxySimple()) {
+        if (!isFoxyProxySimple) {
           // No logging and quickadd for FoxyProxy Simple
           var logsubmenupopup =
             _createMenu(submenupopup,
@@ -842,7 +843,7 @@ var foxyproxy = {
           this.fp.getMessage("foxyproxy.options.tooltip"));
         itm.setAttribute("key", "key_foxyproxyfocus");
 
-        if (!this.fp.isFoxyProxySimple()) {
+        if (!isFoxyProxySimple) {
           // No quickadd for FoxyProxy Simple
           itm =_createMenuItem(submenupopup,
             this.fp.getMessage("foxyproxy.quickadd.label"),
@@ -855,7 +856,7 @@ var foxyproxy = {
                   
         _createMenuItem(submenupopup,
           this.fp.getMessage("foxyproxy.help.label"),
-          "foxyproxy.fpc.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/help.html');",
+          "foxyproxy.fpc.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/" + (isFoxyProxySimple ? "/basic/" : "") + "/help.html');",
           this.fp.getMessage("foxyproxy.help.accesskey"),
           this.fp.getMessage("foxyproxy.help.tooltip"));
 
@@ -889,7 +890,7 @@ var foxyproxy = {
           itm.setAttribute("disabled", sel.disabled);     
           */
         
-        if (!this.fp.isFoxyProxySimple()) {
+        if (!isFoxyProxySimple) {
           // No quickadd for FoxyProxy Simple
           itm =_createMenuItem(menupopup,
             this.fp.getMessage("foxyproxy.quickadd.label"),

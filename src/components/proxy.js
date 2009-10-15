@@ -106,6 +106,8 @@ Proxy.prototype = {
     	node.getAttribute("mode");
 	  this._mode = this._mode || "manual";
     this.selectedTabIndex = node.getAttribute("selectedTabIndex") || "0";
+    if (this.fp.isFoxyProxySimple() && this.selectedTabIndex > 1)
+      this.selectedTabIndex = 1; /* FoxyProxy Simple only has 2 tabs */
 	  this.lastresort = node.hasAttribute("lastresort") ? node.getAttribute("lastresort") == "true" : false; // new for 2.0
     this.animatedIcons = node.hasAttribute("animatedIcons") ? node.getAttribute("animatedIcons") == "true" : !this.lastresort; // new for 2.4
     this.includeInCycle = node.hasAttribute("includeInCycle") ? node.getAttribute("includeInCycle") == "true" : !this.lastresort; // new for 2.5

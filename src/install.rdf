@@ -12,7 +12,7 @@
 <!-- begin-foxyproxy-simple
         <em:id>foxyproxy-basic@eric.h.jung</em:id>
         <em:name>FoxyProxy Basic</em:name>
-        <em:version>1.0</em:version>
+        <em:version>1.1</em:version>
 end-foxyproxy-simple -->
         <em:creator>LeahScape, Inc.</em:creator>
         <em:description>Premier proxy management for Firefox</em:description>

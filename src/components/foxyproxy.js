@@ -625,9 +625,13 @@ biesi>  passing it the appropriate proxyinfo
     this._contextMenu = gGetSafeAttrB(node, "contextMenu", true); // new for 2.0
     this._advancedMenus = gGetSafeAttrB(node, "advancedMenus", false); // new for 2.3--default to false if it doesn't exist
     this._selectedTabIndex = gGetSafeAttr(node, "selectedTabIndex", "0");
+    if (this._selectedTabIndex > 1 && this.isFoxyProxySimple())
+      this._selectedTabIndex = 0;  /* FoxyProxy Simple has just two tabs */
     var mode = node.hasAttribute("enabledState") ?
       (node.getAttribute("enabledState") == "" ? "disabled" : node.getAttribute("enabledState")) :
       node.getAttribute("mode"); // renamed to mode in 2.0
+    if (mode == "patterns" && this.isFoxyProxySimple())
+      mode = "disabled"; /* FoxyProxy Simple has no "patterns" mode */
     this._previousMode = gGetSafeAttr(node, "previousMode", this.isFoxyProxySimple() ? "disabled" : "patterns");
     this._resetIconColors = gGetSafeAttrB(node, "resetIconColors", true); // new for 2.10
     this._useStatusBarPrefix = gGetSafeAttrB(node, "useStatusBarPrefix", true); // new for 2.10

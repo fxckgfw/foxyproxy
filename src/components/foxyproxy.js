@@ -753,7 +753,7 @@ biesi>  passing it the appropriate proxyinfo
       else {
         last = new Proxy(gFP);
         last.name = gFP.getMessage("proxy.default");
-        last.notes = gFP.getMessage("proxy.default.notes");
+        last.notes = gFP.getMessage(gFP.isFoxyProxySimple() ? "" : "proxy.default.notes");
         last.mode = "direct";
         last.lastresort = true;
         var match = new Match();

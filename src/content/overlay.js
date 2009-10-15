@@ -856,7 +856,7 @@ var foxyproxy = {
                   
         _createMenuItem(submenupopup,
           this.fp.getMessage("foxyproxy.help.label"),
-          "foxyproxy.fpc.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/" + (isFoxyProxySimple ? "/basic/" : "") + "/help.html');",
+          "foxyproxy.fpc.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/" + (isFoxyProxySimple ? "basic/" : "") + "help.html');",
           this.fp.getMessage("foxyproxy.help.accesskey"),
           this.fp.getMessage("foxyproxy.help.tooltip"));
 

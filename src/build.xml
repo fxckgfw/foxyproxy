@@ -27,7 +27,7 @@
   <!-- create foxyproxy-x.y.z.xpi in the current dir using install.rdf in the current dir-->
   <target name="build">
     <copy file="chrome.manifest.packaging" tofile="${temp-path}/chrome.manifest" />
-    <zip destfile="${target-path}/foxyproxy-${version}.xpi">
+    <zip destfile="${target-path}/foxyproxy-${edition}-${version}.xpi">
       <fileset dir="${temp-path}" includes="chrome.manifest install.rdf install.js LICENSE chrome/" />
       <zipfileset dir="${temp-path}" prefix="chrome" includes="content/**"/>
       <zipfileset dir="${temp-path}" prefix="chrome" includes="skin/**"/>
@@ -51,6 +51,7 @@
   </target>
 
   <target name="build-foxyproxy-standard" depends="init" if="simple">
+    <property name="edition" value="standard" />
     <property name="version" value="2.14" />
     <property name="src-path" value="${temp-path}"/>
     <antcall>
@@ -65,6 +66,7 @@
   </target>
   
   <target name="build-foxyproxy-simple" depends="init" if="standard">
+    <property name="edition" value="simple" />
     <property name="version" value="1.0" />
     <property name="src-path" value="${temp-path}"/>
     <antcall>

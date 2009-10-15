@@ -961,7 +961,7 @@
   <command id="torWizardCmd" label="&foxyproxy.tor.label;"
     accesskey="&foxyproxy.tor.accesskey;"
     tooltiptext="&foxyproxy.tor.tooltip;"
-    oncommand="overlay.torWizard(false);" />
+    oncommand="overlay.torWizard();" />
 
   <command id="autoAddPatternCmd" label="&foxyproxy.define.label;"
     accesskey="&foxyproxy.define.accesskey;"

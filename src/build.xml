@@ -50,7 +50,7 @@
     </delete>
   </target>
 
-  <target name="build-foxyproxy-standard" depends="init" if="simple">
+  <target name="build-foxyproxy-standard" depends="init">
     <property name="edition" value="standard" />
     <property name="version" value="2.14" />
     <property name="src-path" value="${temp-path}"/>
@@ -58,14 +58,16 @@
       <target name="copy"/>
       <param name="src-path" value="${temp-path}"/>
     </antcall>
-    <ant antfile="development.xml" target="convert-to-foxyproxy-standard"/>
+    <ant antfile="development.xml" target="convert-to-foxyproxy-standard" inheritAll="false">
+      <property name="standard" value="false"/>
+    </ant>
     <antcall>
       <target name="build"/>
       <target name="clean"/>
     </antcall>
   </target>
   
-  <target name="build-foxyproxy-simple" depends="init" if="standard">
+  <target name="build-foxyproxy-simple" depends="init">
     <property name="edition" value="simple" />
     <property name="version" value="1.1" />
     <property name="src-path" value="${temp-path}"/>
@@ -73,7 +75,9 @@
       <target name="copy"/>
       <param name="src-path" value="${temp-path}"/>
     </antcall>
-    <ant antfile="development.xml" target="convert-to-foxyproxy-simple"/>
+    <ant antfile="development.xml" target="convert-to-foxyproxy-simple" inheritAll="false">
+      <property name="simple" value="false"/>
+    </ant>
     <antcall>      
       <target name="build"/>
       <target name="clean"/>

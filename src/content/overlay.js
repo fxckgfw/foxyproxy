@@ -670,8 +670,7 @@ var foxyproxy = {
           p.id,
           this._cmd,
           pName.substring(0, 1),
-          this.fp.getMessage("mode.custom.label", [pName]),
-          this.fp.getMessage("mode.custom.tooltip", [p.notes]));
+          this.fp.getMessage("mode.custom.label", [pName]), p.notes);
         itm.setAttribute("style", "color: blue;");
         checkOne.push(itm);
 

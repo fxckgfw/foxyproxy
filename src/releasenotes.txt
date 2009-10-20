@@ -2,4 +2,8 @@
 * Narrowed CSS specificity for FoxyProxy's tree styling to prevent interference with
     addons such as FindInTabs (https://addons.mozilla.org/en-US/firefox/addon/8078)
 * Removed useless "mode" colum in options dialog tree view
-* Conditional builds for FoxyProxy Basic    
+* Conditional builds for FoxyProxy Basic 
+* New proxy names default to host/ip address (if one was entered), otherwise they default back to the original "New Proxy" name. Requested here:
+http://foxyproxy.mozdev.org/drupal/content/default-nameip-comment-hint
+* Tooltips for proxies, when listed in any menu, show the proxy notes field (used to replicate the proxy name). Requested here:
+http://foxyproxy.mozdev.org/drupal/content/default-nameip-comment-hint

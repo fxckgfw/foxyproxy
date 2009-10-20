@@ -645,7 +645,7 @@ var foxyproxy = {
         var p = this.fp.proxies.item(i);
         var pName = p.name;
         // Set the submenu based on advancedMenus enabled/disabled
-        var sbm = this.fp.advancedMenus ? _createMenu(menupopup, pName, pName.substring(0, 1), pName) : menupopup;
+        var sbm = this.fp.advancedMenus ? _createMenu(menupopup, pName, pName.substring(0, 1), p.notes) : menupopup;
         var curProxy = "foxyproxy.fp.proxies.item(" + i + ").";
 
         if (this.fp.advancedMenus) {
@@ -671,7 +671,7 @@ var foxyproxy = {
           this._cmd,
           pName.substring(0, 1),
           this.fp.getMessage("mode.custom.label", [pName]),
-          this.fp.getMessage("mode.custom.tooltip", [pName]));
+          this.fp.getMessage("mode.custom.tooltip", [p.notes]));
         itm.setAttribute("style", "color: blue;");
         checkOne.push(itm);
 

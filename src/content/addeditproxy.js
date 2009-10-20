@@ -63,12 +63,12 @@ function trim(s) {
 }
 
 function onOK() {
-  var name = trim(document.getElementById("proxyname").value);
-  if (!name)
-    name = foxyproxy.getMessage("new.proxy");
-  var enabled = document.getElementById("proxyenabled").checked,
-    host = trim(document.getElementById("host").value),
+  var host = trim(document.getElementById("host").value),
     port = document.getElementById("port").value,
+    name = trim(document.getElementById("proxyname").value);
+  if (!name)
+    name = host ? (host + ":" + port) : foxyproxy.getMessage("new.proxy");
+  var enabled = document.getElementById("proxyenabled").checked,    
     url = trim(autoconfurl.value),
     reloadfreq = document.getElementById("autoConfReloadFreq").value;
   var mode = document.getElementById("mode").value;

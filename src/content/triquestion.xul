@@ -29,6 +29,7 @@
 
   <keyset>
     <key id="esc-key" keycode="VK_ESCAPE" command="close();" />
+    <key id="kCloseMac" modifiers="accel" key="W" command="close()" />
   </keyset>
     
 </window>

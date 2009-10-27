@@ -7,3 +7,4 @@
 http://foxyproxy.mozdev.org/drupal/content/default-nameip-comment-hint
 * Tooltips for proxies, when listed in any menu, show the proxy notes field (used to replicate the proxy name). Requested here:
 http://foxyproxy.mozdev.org/drupal/content/default-nameip-comment-hint
+* better debugging for failed proxy filtering (as requested somewhere in the forums)

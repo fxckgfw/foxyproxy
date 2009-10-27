@@ -1,11 +1,11 @@
+<!-- TRANSLATORS: PLEASE DO NOT REMOVE COMMENTS IN THIS FILE. THE BUILD PROCSESS WILL BREAK IF YOU DO, AND YOUR LOCALE WON'T WORK -->
+
 <!-- begin-foxyproxy-standard -->    
-<!ENTITY foxyproxy.label "FoxyProxy">
+<!ENTITY foxyproxy.label2 "FoxyProxy Standard">
 <!-- end-foxyproxy-standard -->
 
-<!-- todo: rename foxyproxy.label to foxyproxy.label2 -->
-
 <!-- begin-foxyproxy-simple
-<!ENTITY foxyproxy.label "FoxyProxy Basic">
+<!ENTITY foxyproxy.label2 "FoxyProxy Basic">
 end-foxyproxy-simple -->
 
 <!ENTITY foxyproxy.accesskey "F">

@@ -141,12 +141,12 @@
 <!ENTITY foxyproxy.save.label "Сохранить">
 <!ENTITY foxyproxy.save.accesskey "С">
 <!ENTITY foxyproxy.save.tooltip "Сохранить журнал">
-<!ENTITY foxyproxy.openurlinnewtab.label "Open URL in New Tab">
-<!ENTITY foxyproxy.openurlinnewtab.accesskey "O">
-<!ENTITY foxyproxy.openurlinnewtab.tooltip "Open URL in New Tab">
-<!ENTITY foxyproxy.copyurltoclipboard.label "Copy URL to Clipboard">
-<!ENTITY foxyproxy.copyurltoclipboard.accesskey "C">
-<!ENTITY foxyproxy.copyurltoclipboard.tooltip "Copy URL to Clipboard">
+<!ENTITY foxyproxy.openurlinnewtab.label "Открыть URL в новой вкладке">
+<!ENTITY foxyproxy.openurlinnewtab.accesskey "О">
+<!ENTITY foxyproxy.openurlinnewtab.tooltip "Открыть URL в новой вкладке">
+<!ENTITY foxyproxy.copyurltoclipboard.label "Копировать URL в клипбоард">
+<!ENTITY foxyproxy.copyurltoclipboard.accesskey "К">
+<!ENTITY foxyproxy.copyurltoclipboard.tooltip "Копировать URL в клипбоард">
 <!ENTITY foxyproxy.addnewproxy.label "Добавить">
 <!ENTITY foxyproxy.addnewproxy.accesskey "Д">
 <!ENTITY foxyproxy.addnewproxy.tooltip "Добавить новый прокси">
@@ -416,7 +416,7 @@
 <!ENTITY foxyproxy.aboutproxyservice.label "Finally, the proxy service button brings you to our proxy service website, where you can buy reliable, high-bandwidth proxy service in many different countries at reasonable prices.">
 <!ENTITY foxyproxy.invalidcolor.label "Неверный цвет">
 <!ENTITY foxyproxy.validcolor.label "Правильный цвет">
-<!--        begin foxyproxyplus        -->
+<!--       begin foxyproxyplus       -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Добавить/Изменить локальный шаблон IP-адресов">
 <!ENTITY foxyproxy.tempip.popup.label "Temporary patterns allow you to create patterns for local IP addresses that you don&apos;t use often without cluttering the IP address pattern list for a proxy. Temporary patterns are not saved to disk. They are kept in-memory and used for this Firefox session only.">
 <!ENTITY foxyproxy.ip.pattern.label "Локальный шаблон IP-адресов">
@@ -461,4 +461,4 @@
 <!ENTITY foxyproxy.proxydomain.label "Домен (необязательно - только для NTLM)">
 <!ENTITY foxyproxy.proxydomain.tooltip "Только NTLM-аутентификация">
 <!ENTITY foxyproxy.proxy.passwords.nomatch.label "Прокси-пароль не подошёл; повторите снова.">
-<!--        end foxyproxyplus        -->
+<!--       end foxyproxyplus       -->

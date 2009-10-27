@@ -142,11 +142,11 @@
 <!ENTITY foxyproxy.save.accesskey "Α">
 <!ENTITY foxyproxy.save.tooltip "Αποθήκευση">
 <!ENTITY foxyproxy.openurlinnewtab.label "Άνοιγμα URL σε νέα καρτέλα">
-<!ENTITY foxyproxy.openurlinnewtab.accesskey "ν">
-<!ENTITY foxyproxy.openurlinnewtab.tooltip "Ανοίγει τα URL σε νέες καρτέλες">
-<!ENTITY foxyproxy.copyurltoclipboard.label "Αντιγραφή του URL στο πρόχειρο">
-<!ENTITY foxyproxy.copyurltoclipboard.accesskey "π">
-<!ENTITY foxyproxy.copyurltoclipboard.tooltip "Αντιγράφει το URL στο πρόχειρο">
+<!ENTITY foxyproxy.openurlinnewtab.accesskey "ο">
+<!ENTITY foxyproxy.openurlinnewtab.tooltip "Άνοιγμα URL σε νέα καρτέλα">
+<!ENTITY foxyproxy.copyurltoclipboard.label "Αντιγραφή URL στο πρόχειρο">
+<!ENTITY foxyproxy.copyurltoclipboard.accesskey "τ">
+<!ENTITY foxyproxy.copyurltoclipboard.tooltip "URL">
 <!ENTITY foxyproxy.addnewproxy.label "Προσθήκη νέου διαμεσολαβητή">
 <!ENTITY foxyproxy.addnewproxy.accesskey "Π">
 <!ENTITY foxyproxy.addnewproxy.tooltip "Προσθήκη νέου διαμεσολαβητή">
@@ -329,7 +329,7 @@
 <!ENTITY foxyproxy.indicators.tooltip "Ρυθμίσεις ενδείξεων">
 <!ENTITY foxyproxy.misc.label "Διάφορα">
 <!ENTITY foxyproxy.misc.tooltip "Διάφορες ρυθμίσεις">
-<!ENTITY foxyproxy.animatedicons.label "Εφέ κίνησης εικονιδίου όταν γίνεται χρήση του διαμεσολαβητή">
+<!ENTITY foxyproxy.animatedicons.label "Εφέ κίνησης εικονίδιου όταν γίνεται χρήση του διαμεσολαβητή">
 <!ENTITY foxyproxy.animatedicons.accesskey "κ">
 <!ENTITY foxyproxy.animatedicons.tooltip "Εφέ κίνησης στο εικονίδιο όταν αυτός ο διαμεσολαβητής είναι ενεργός (πρέπει να έχει ενεργοποιηθεί και η επιλογή για εφέ κίνησης από τις γενικές ρυθμίσεις)">
 <!ENTITY foxyproxy.statusbaractivation.label "Ενεργοποίηση γραμμής κατάστασης">
@@ -416,7 +416,7 @@
 <!ENTITY foxyproxy.aboutproxyservice.label "Τέλος, το κουμπί υπηρεσίας διαμεσολάβησης σας μεταφέρει στον ιστότοπο υπηρεσιών διαμεσολάβησης μας όπου μπορείτε να αγοράσετε αξιόπιστες, υψηλής ταχύτητας υπηρεσίες διαμεσολάβησης για πολλές χώρες σε λογικές τιμές.">
 <!ENTITY foxyproxy.invalidcolor.label "Μη έγκυρο χρώμα">
 <!ENTITY foxyproxy.validcolor.label "Έγκυρο χρώμα">
-<!--        begin foxyproxyplus        -->
+<!--       begin foxyproxyplus       -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Προσθήκη/επεξεργασία τοπικού πρότυπου διεύθυνσης IP">
 <!ENTITY foxyproxy.tempip.popup.label "Τα προσωρινά πρότυπα σας επιτρέπουν να δημιουργήσετε τοπικά πρότυπα για διευθύνσεις IP που δεν χρησιμοποιείτε συχνά, χωρίς να αυξάνετε την πολυπλοκότητα της λίστας πρότυπων κάποιου διαμεσολαβητή. Τα προσωρινά πρότυπα δεν αποθηκεύονται στο δίσκο, διατηρούνται μόνο στη μνήμη και χρησιμοποιούνται για την τρέχουσα συνεδρία του Firefox.">
 <!ENTITY foxyproxy.ip.pattern.label "Τοπικό πρότυπο διεύθυνσης IP">
@@ -461,4 +461,4 @@
 <!ENTITY foxyproxy.proxydomain.label "Τομέας (προαιρετικό - μόνο NTLM)">
 <!ENTITY foxyproxy.proxydomain.tooltip "Μόνο πιστοποίηση NTLM">
 <!ENTITY foxyproxy.proxy.passwords.nomatch.label "Δεν ταιριάζουν οι κωδικοί για το διαμεσολαβητή, παρακαλούμε εισάγετε τους ξανά.">
-<!--        end foxyproxyplus        -->
+<!--       end foxyproxyplus       -->

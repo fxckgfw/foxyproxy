@@ -411,12 +411,12 @@
 <!ENTITY foxyproxy.proxyservice.tooltip "Fare clic qui per iscriversi ad un servizio di proxy a pagamento">
 <!ENTITY foxyproxy.proxyservice2.label "Iscrizione ad un servizio di proxy sicuri americani, inglesi o di altre nazioni a pagamento">
 <!ENTITY foxyproxy.getfoxyproxyplus.label "Ottieni FoxyProxy Plus">
-<!ENTITY foxyproxy.aboutdonate.label "Facendo clic sul pulsante &apos;Effettua una donazione&apos; è possibile incoraggiare e sostenere lo sviluppo di FoxyProxy effettuando una donazione tramite PayPal">
-<!ENTITY foxyproxy.aboutfpplus.label "Facendo clic sul pulsante &apos;Ottieni FoxyProxy Plus&apos; è possibile consultare la pagina web relativa alle funzioni aggiuntive di FoxyProxy Plus ed eventualmente procedere all&apos;acquisto">
-<!ENTITY foxyproxy.aboutproxyservice.label "Infine, facendo clic sul pulsante &apos;Proxy a pagamento&apos; è possibile accedere a prezzi ragionevoli ad un servizio privato di proxy affidabili, con ampia larghezza di banda e disponibili per diversi paesi">
+<!ENTITY foxyproxy.aboutdonate.label "Facendo clic sul pulsante 'Effettua una donazione' è possibile incoraggiare e sostenere lo sviluppo di FoxyProxy effettuando una donazione tramite PayPal">
+<!ENTITY foxyproxy.aboutfpplus.label "Facendo clic sul pulsante 'Ottieni FoxyProxy Plus' è possibile consultare la pagina web relativa alle funzioni aggiuntive di FoxyProxy Plus ed eventualmente procedere all'acquisto">
+<!ENTITY foxyproxy.aboutproxyservice.label "Infine, facendo clic sul pulsante 'Proxy a pagamento' è possibile accedere a prezzi ragionevoli ad un servizio privato di proxy affidabili, con ampia larghezza di banda e disponibili per diversi paesi">
 <!ENTITY foxyproxy.invalidcolor.label "Il codice del colore non è valido">
 <!ENTITY foxyproxy.validcolor.label "Il codice del colore è valido">
-<!--  begin foxyproxyplus  -->
+<!-- begin foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Aggiunta/modifica di modelli di indirizzi IP locali">
 <!ENTITY foxyproxy.tempip.popup.label "I modelli temporanei permettono di creare modelli di indirizzi IP locali che non vengono utilizzati spesso, senza interessare le liste di modelli di indirizzi IP dei proxy. Tali modelli non vengono salvati sul disco rigido, ma mantenuti in memoria ed eliminati alla chiusura della sessione di Firefox">
 <!ENTITY foxyproxy.ip.pattern.label "Modello di indirizzo IP locale">
@@ -433,7 +433,7 @@
 <!ENTITY foxyproxy.ip.wildcard.reference.subtitle.label "L&apos;asterisco (*) equivale a più caratteri">
 <!ENTITY foxyproxy.ip.current.local.label "Indirizzo IP locale attuale">
 <!ENTITY foxyproxy.copyip.label "Copia nel modello">
-<!ENTITY foxyproxy.copyip.tooltip "Copia l&apos;indirizzo nel modello">
+<!ENTITY foxyproxy.copyip.tooltip "Copia l'indirizzo nel modello">
 <!ENTITY foxyproxy.copyip.accesskey "C">
 <!ENTITY foxyproxy.ip.wildcard.example.label "Esempio: 192.168.1.*">
 <!ENTITY foxyproxy.ip.regex.example.label "Esempio: 172\.\d+\.1\.10">
@@ -442,17 +442,17 @@
 <!ENTITY foxyproxy.refreshlocalips "Ricarica gli indirizzi IP locali">
 <!ENTITY foxyproxy.refreshlocalips.accesskey "R">
 <!ENTITY foxyproxy.enterlicense.label "Inserire il numero della licenza">
-<!ENTITY foxyproxy.enteremail.label "Inserire l&apos;indirizzo e-mail">
+<!ENTITY foxyproxy.enteremail.label "Inserire l'indirizzo e-mail">
 <!ENTITY foxyproxy.licenseinfo.label "Informazioni sulla licenza">
 <!ENTITY foxyproxy.licensevalid.label "La licenza è valida. Grazie per aver acquistato FoxyProxy Plus">
 <!ENTITY foxyproxy.licenseinvalid.label "La licenza non è valida. Per ricevere aggiornamenti di FoxyProxy Plus è necessario acquistarne una">
 <!ENTITY foxyproxy.buynow.label "Acquista ora">
 <!ENTITY foxyproxy.checklicense.label "Verifica la licenza">
 <!ENTITY foxyproxy.checkinglicense.label "Verifica in corso… Attendere">
-<!ENTITY foxyproxy.routetoleahscape.label "Accertarsi che Firefox possa raggiungere l&apos;indirizzo web https://leahscape.com/fpplus/license_check.php con o senza proxy, impostando se necessario un modello URL in FoxyProxy Plus">
+<!ENTITY foxyproxy.routetoleahscape.label "Accertarsi che Firefox possa raggiungere l'indirizzo web https://leahscape.com/fpplus/license_check.php con o senza proxy, impostando se necessario un modello URL in FoxyProxy Plus">
 <!ENTITY foxyproxy.everything.label "Tutto">
 <!ENTITY foxyproxy.nothing.label "Niente">
-<!ENTITY foxyproxy.ippatterndeletefinal.label "Questo è l&apos;ultimo modello di indirizzo IP locale. Eliminandolo non sarà più possibile utilizzare il relativo proxy. Proseguire comunque?">
+<!ENTITY foxyproxy.ippatterndeletefinal.label "Questo è l'ultimo modello di indirizzo IP locale. Eliminandolo non sarà più possibile utilizzare il relativo proxy. Proseguire comunque?">
 <!ENTITY foxyproxy.licenseplea.label "FoxyProxy Plus è protetta con misure anti pirateria. Per il suo utilizzo, sostenerne lo sviluppo e il mantenimento (iniziati diversi anni fa) è necessario acquistare una licenza">
 <!ENTITY foxyproxy.authentication.label "Autenticazione">
 <!ENTITY foxyproxy.proxyusername.label "Nome utente">
@@ -461,4 +461,4 @@
 <!ENTITY foxyproxy.proxydomain.label "Dominio (opzionale - solo NTLM)">
 <!ENTITY foxyproxy.proxydomain.tooltip "Inserire solo per autenticazione NTLM">
 <!ENTITY foxyproxy.proxy.passwords.nomatch.label "Le password dei proxy non coincidono. Reinserirle">
-<!--  end foxyproxyplus  -->
+<!-- end foxyproxyplus -->

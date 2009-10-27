@@ -13,7 +13,7 @@
 <?xml-stylesheet href="foxyproxy.css" type="text/css"?>
 <!DOCTYPE overlay SYSTEM "chrome://foxyproxy/locale/foxyproxy.dtd">
 
-<window title="&foxyproxy.label;" orient="vertical"
+<window title="&foxyproxy.label2;" orient="vertical"
   autostretch="always" onload="onLoad();"
   xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
   xmlns:svg="http://www.w3.org/2000/svg" windowtype="foxyproxy"

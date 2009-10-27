@@ -127,7 +127,7 @@
 <!ENTITY foxyproxy.showstatusbarmode.tooltip "If checked, ФоксиПрокси mode is shown on the statusbar">
 <!ENTITY foxyproxy.storagelocation.label.2 "Settings Location">
 <!ENTITY foxyproxy.storagelocation.accesskey "S">
-<!ENTITY foxyproxy.storagelocation.tooltip "Location to store ФоксиПрокси&apos;s settings">
+<!ENTITY foxyproxy.storagelocation.tooltip "Location to store ФоксиПрокси's settings">
 <!ENTITY foxyproxy.tab.logging.timestamp.label "Timestamp">
 <!ENTITY foxyproxy.tab.logging.url.label "URL">
 <!ENTITY foxyproxy.host.label.2 "Хост или IP адреса">
@@ -416,7 +416,7 @@
 <!ENTITY foxyproxy.aboutproxyservice.label "Finally, the proxy service button brings you to our proxy service website, where you can buy reliable, high-bandwidth proxy service in many different countries at reasonable prices.">
 <!ENTITY foxyproxy.invalidcolor.label "Invalid color">
 <!ENTITY foxyproxy.validcolor.label "Valid color">
-<!--        begin foxyproxyplus        -->
+<!--       begin foxyproxyplus       -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Add/Edit Local IP Address Pattern">
 <!ENTITY foxyproxy.tempip.popup.label "Temporary patterns allow you to create patterns for local IP addresses that you don&apos;t use often without cluttering the IP address pattern list for a proxy. Temporary patterns are not saved to disk. They are kept in-memory and used for this Firefox session only.">
 <!ENTITY foxyproxy.ip.pattern.label "Local IP address pattern">
@@ -461,4 +461,4 @@
 <!ENTITY foxyproxy.proxydomain.label "Домен (по жељи - само NTLM)">
 <!ENTITY foxyproxy.proxydomain.tooltip "Само NTLM потврда истинитости">
 <!ENTITY foxyproxy.proxy.passwords.nomatch.label "Лозинке проксија се не поклапају. Унесите их поново.">
-<!--        end foxyproxyplus        -->
+<!--       end foxyproxyplus       -->

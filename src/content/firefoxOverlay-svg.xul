@@ -88,7 +88,7 @@
      child="5" />
    </g>
   </svg>
-  <label value="&foxyproxy.label;"/>
+  <label value="&foxyproxy.label2;"/>
  </hbox>
  
   <hbox id="foxyproxy-toolsmenu-icon" svg="true">
@@ -118,7 +118,7 @@
     </svg>
   </hbox>  
   
-    <label value="&foxyproxy.label;" accesskey="&foxyproxy.accesskey;" key="key_foxyproxyfocus"/>
+    <label value="&foxyproxy.label2;" accesskey="&foxyproxy.accesskey;" key="key_foxyproxyfocus"/>
  </hbox> 
 </overlay>
 

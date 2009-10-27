@@ -10,3 +10,4 @@ http://foxyproxy.mozdev.org/drupal/content/default-nameip-comment-hint
 * better debugging for failed proxy filtering (as requested somewhere in the forums)
 * differentiation between FoxyProxy Basic and FoxyProxy Plus in labels within the application. Previously, such labels just said "FoxyProxy" instead of "FoxyProxy Basic" or "FoxyProxy Standard". This makes it clearer to the user which edition he's using, hopefully making support easier.
 * locale updates
+* Support for closing FoxyProxy dialogs/windows on OS/X with Command-W

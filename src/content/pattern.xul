@@ -15,7 +15,7 @@
 <dialog
   xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
 	id="foxyproxypatterndlg2"
-  title="&foxyproxy.label; - &foxyproxy.addeditpattern.title;"
+  title="&foxyproxy.label2; - &foxyproxy.addeditpattern.title;"
   ondialogaccept="return onOK();" defaultButton="accept"
   onload="onLoad();"
   persist="screenX screenY"

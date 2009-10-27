@@ -14,7 +14,7 @@
 <?xul-overlay href="includes.xul"?>
 <!DOCTYPE overlay SYSTEM "chrome://foxyproxy/locale/foxyproxy.dtd">
 <window id="foxyproxyoptions2" windowtype="foxyproxy-options"
-  title="&foxyproxy.label;"
+  title="&foxyproxy.label2;"
   xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
   xmlns:html="http://www.w3.org/1999/xhtml" persist="screenX screenY"
   onload="onLoad();" onunload="onOK();" context="mainPopup">

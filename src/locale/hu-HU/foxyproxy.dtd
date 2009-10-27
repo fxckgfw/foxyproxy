@@ -3,51 +3,51 @@
 <!ENTITY foxyproxy.optionsdialog.label "FoxyProxy Beállítások">
 <!ENTITY foxyproxy.options.label "Beállítások">
 <!ENTITY foxyproxy.options.accesskey "B">
-<!ENTITY foxyproxy.options.tooltip "Megnyitja a beállítások párbeszédablakot">
+<!ENTITY foxyproxy.options.tooltip "Open the Options Dialog">
 <!ENTITY foxyproxy.tree.pickertooltiptext.label "Click to select which columns to display">
-<!ENTITY foxyproxy.proxy.name.label "Proxy neve">
-<!ENTITY foxyproxy.proxy.name.accesskey "n">
-<!ENTITY foxyproxy.proxy.name.tooltip "Proxy neve">
-<!ENTITY foxyproxy.proxy.notes.label "Proxy megjegyzések">
-<!ENTITY foxyproxy.proxy.notes.accesskey "m">
-<!ENTITY foxyproxy.proxy.notes.tooltip "Proxy megjegyzések">
-<!ENTITY foxyproxy.pattern.label "Minta">
-<!ENTITY foxyproxy.urlpatterns.label "URL minták">
-<!ENTITY foxyproxy.urlpatterns.accesskey "i">
-<!ENTITY foxyproxy.urlpatterns.tooltip "URL minták">
-<!ENTITY foxyproxy.pattern.type.label "Minta típusa">
-<!ENTITY foxyproxy.whitelist.blacklist.label "Fehérlista (engedélyező) vagy feketelista (kizáró)">
-<!ENTITY foxyproxy.pattern.name.label "Minta neve">
-<!ENTITY foxyproxy.pattern.name.accesskey "M">
-<!ENTITY foxyproxy.pattern.name.tooltip "A minta neve">
-<!ENTITY foxyproxy.url.pattern.label "URL minta">
+<!ENTITY foxyproxy.proxy.name.label "Proxy Name">
+<!ENTITY foxyproxy.proxy.name.accesskey "N">
+<!ENTITY foxyproxy.proxy.name.tooltip "Proxy Name">
+<!ENTITY foxyproxy.proxy.notes.label "Proxy Notes">
+<!ENTITY foxyproxy.proxy.notes.accesskey "N">
+<!ENTITY foxyproxy.proxy.notes.tooltip "Proxy Notes">
+<!ENTITY foxyproxy.pattern.label "Pattern">
+<!ENTITY foxyproxy.urlpatterns.label "URL Patterns">
+<!ENTITY foxyproxy.urlpatterns.accesskey "P">
+<!ENTITY foxyproxy.urlpatterns.tooltip "URL patterns">
+<!ENTITY foxyproxy.pattern.type.label "Pattern Type">
+<!ENTITY foxyproxy.whitelist.blacklist.label "Whitelist (Inclusive) or Blacklist (Exclusive)">
+<!ENTITY foxyproxy.pattern.name.label "Pattern Name">
+<!ENTITY foxyproxy.pattern.name.accesskey "P">
+<!ENTITY foxyproxy.pattern.name.tooltip "Name for the pattern">
+<!ENTITY foxyproxy.url.pattern.label "URL pattern">
 <!ENTITY foxyproxy.url.pattern.accesskey "U">
-<!ENTITY foxyproxy.url.pattern.tooltip "URL minta">
-<!ENTITY foxyproxy.enabled.label "Engedélyezve">
+<!ENTITY foxyproxy.url.pattern.tooltip "URL pattern">
+<!ENTITY foxyproxy.enabled.label "Enabled">
 <!ENTITY foxyproxy.enabled.accesskey "E">
-<!ENTITY foxyproxy.enabled.tooltip "Be- és kikapcsolás">
-<!ENTITY foxyproxy.delete.selection.label "Törlés">
-<!ENTITY foxyproxy.delete.selection.accesskey "T">
-<!ENTITY foxyproxy.delete.selection.tooltip "A kiválasztott elem törlése">
-<!ENTITY foxyproxy.edit.selection.label "Szerkesztés">
-<!ENTITY foxyproxy.edit.selection.accesskey "e">
-<!ENTITY foxyproxy.edit.selection.tooltip "A kiválasztott elem szerkesztése">
-<!ENTITY foxyproxy.help.label "Súgó">
-<!ENTITY foxyproxy.help.accesskey "S">
-<!ENTITY foxyproxy.help.tooltip "A súgó megjelenítése">
-<!ENTITY foxyproxy.close.label "Bezárás">
-<!ENTITY foxyproxy.close.accesskey "B">
-<!ENTITY foxyproxy.close.tooltip "Ablak bezárása">
-<!ENTITY foxyproxy.about.label "Névjegy">
-<!ENTITY foxyproxy.about.accesskey "N">
-<!ENTITY foxyproxy.about.tooltip "A FoxyProxy névjegyének megjelenítése">
+<!ENTITY foxyproxy.enabled.tooltip "Toggle enable/disable">
+<!ENTITY foxyproxy.delete.selection.label "Delete Selection">
+<!ENTITY foxyproxy.delete.selection.accesskey "D">
+<!ENTITY foxyproxy.delete.selection.tooltip "Delete the currently selected item">
+<!ENTITY foxyproxy.edit.selection.label "Edit Selection">
+<!ENTITY foxyproxy.edit.selection.accesskey "E">
+<!ENTITY foxyproxy.edit.selection.tooltip "Edit the currently selected item">
+<!ENTITY foxyproxy.help.label "Help Contents">
+<!ENTITY foxyproxy.help.accesskey "H">
+<!ENTITY foxyproxy.help.tooltip "Show Help">
+<!ENTITY foxyproxy.close.label "Close">
+<!ENTITY foxyproxy.close.accesskey "C">
+<!ENTITY foxyproxy.close.tooltip "Close Window">
+<!ENTITY foxyproxy.about.label "About">
+<!ENTITY foxyproxy.about.accesskey "A">
+<!ENTITY foxyproxy.about.tooltip "Opens the about box">
 <!ENTITY foxyproxy.online.label "FoxyProxy Online">
 <!ENTITY foxyproxy.online.accesskey "O">
-<!ENTITY foxyproxy.online.tooltip "Látogassa meg a FoxyProxy weboldalát">
-<!ENTITY foxyproxy.tor.label "Tor Varázsló">
-<!ENTITY foxyproxy.tor.accesskey "V">
-<!ENTITY foxyproxy.tor.tooltip "Tor Varázsló">
-<!ENTITY foxyproxy.copy.selection.label "Másolás">
+<!ENTITY foxyproxy.online.tooltip "Visit the FoxyProxy Website">
+<!ENTITY foxyproxy.tor.label "Tor Wizard">
+<!ENTITY foxyproxy.tor.accesskey "W">
+<!ENTITY foxyproxy.tor.tooltip "Tor Wizard">
+<!ENTITY foxyproxy.copy.selection.label "Copy Selection">
 <!ENTITY foxyproxy.copy.selection.accesskey "C">
 <!ENTITY foxyproxy.copy.selection.tooltip "Copies selection">
 <!ENTITY foxyproxy.mode.label "Select Mode">
@@ -416,7 +416,7 @@
 <!ENTITY foxyproxy.aboutproxyservice.label "Finally, the proxy service button brings you to our proxy service website, where you can buy reliable, high-bandwidth proxy service in many different countries at reasonable prices.">
 <!ENTITY foxyproxy.invalidcolor.label "Invalid color">
 <!ENTITY foxyproxy.validcolor.label "Valid color">
-<!--        begin foxyproxyplus        -->
+<!--       begin foxyproxyplus       -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Add/Edit Local IP Address Pattern">
 <!ENTITY foxyproxy.tempip.popup.label "Temporary patterns allow you to create patterns for local IP addresses that you don&apos;t use often without cluttering the IP address pattern list for a proxy. Temporary patterns are not saved to disk. They are kept in-memory and used for this Firefox session only.">
 <!ENTITY foxyproxy.ip.pattern.label "Local IP address pattern">
@@ -461,4 +461,4 @@
 <!ENTITY foxyproxy.proxydomain.label "Domain (optional - NTLM only)">
 <!ENTITY foxyproxy.proxydomain.tooltip "NTLM authentication only">
 <!ENTITY foxyproxy.proxy.passwords.nomatch.label "Proxy passwords do not match; please re-enter.">
-<!--        end foxyproxyplus        -->
+<!--       end foxyproxyplus       -->

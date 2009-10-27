@@ -340,7 +340,7 @@ biesi>  passing it the appropriate proxyinfo
       return ret ? ret : _err(this, this.getMessage("route.error"));
     }
     catch (e) {
-      dump("applyFilter: " + e + "\n" + e.stack + "\n");
+      dump("applyFilter: " + e + "\n" + e.stack + "\nwith url " + uri.spec + "\n");
       return _err(this, this.getMessage("route.exception", [""]), this.getMessage("route.exception", [": " + e]));
     }
     finally {

@@ -262,14 +262,15 @@ biesi>  passing it the appropriate proxyinfo
     // Firefox won't load it automatically except on startup and after
     // network.proxy.autoconfig_retry_* seconds. Rather than make the user wait for that,
     // we load the PAC file now.
-    var networkPrefs = this.getPrefsService("network.proxy."), usingPAC;
+    var networkPrefs = this.getPrefsService("network.proxy."), type;
     try {
-      usingPAC = networkPrefs.getIntPref("type") == 2; // isn't there a const for this?
+      type = networkPrefs.getIntPref("type");
     }
     catch(e) {
       dump("FoxyProxy: network.proxy.type doesn't exist or can't be read\n");
     }
-    if (usingPAC) {
+    if (type == 2) { /* isn't there a const for this? */ 
+      // Using PAC File.    
       // Don't use nsPIProtocolProxyService. From its comments: "[nsPIProtocolProxyService] exists purely as a
       // hack to support the configureFromPAC method used by the preference panels in the various apps. Those
       // apps need to be taught to just use the preferences API to "reload" the PAC file. Then, at that point,
@@ -283,6 +284,10 @@ biesi>  passing it the appropriate proxyinfo
       // Instead, change the prefs--the proxy service is observing and will reload the PAC
       networkPrefs.setIntPref("type", 1);
       networkPrefs.setIntPref("type", 2);
+    }
+    else if (type == 1) {
+      // SOCKS type. TODO: should we turn on/off network.proxy.socks_remote_dns. For now, leave it alone
+      dump("FoxyProxy: not changing network.proxy.socks_remote_dns\n");
     }
   },
 
@@ -549,9 +554,15 @@ biesi>  passing it the appropriate proxyinfo
   get proxyDNS() { return this._proxyDNS; },
   set proxyDNS(p) {
     this._proxyDNS = p;
+    this.setSocksRemoteDNS(p);
     this.writeSettings();
   },
-
+  
+  setSocksRemoteDNS : function(x) {
+    /* TODO: when x is true, warn user that a SOCKS server must be defined */ 
+    this.getPrefsService("network.proxy.").setBoolPref("socks_remote_dns", x);
+  },
+  
   get selectedTabIndex() { return this._selectedTabIndex; },
   set selectedTabIndex(i) {
     this._selectedTabIndex = i;
@@ -621,6 +632,7 @@ biesi>  passing it the appropriate proxyinfo
     this.toolbar.fromDOM(doc);
     this.logg.fromDOM(doc);
     this._proxyDNS = gGetSafeAttrB(node, "proxyDNS", false);
+    this.setSocksRemoteDNS(this._proxyDNS);
     this._toolsMenu = gGetSafeAttrB(node, "toolsMenu", true); // new for 2.0
     this._contextMenu = gGetSafeAttrB(node, "contextMenu", true); // new for 2.0
     this._advancedMenus = gGetSafeAttrB(node, "advancedMenus", false); // new for 2.3--default to false if it doesn't exist

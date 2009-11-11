@@ -93,12 +93,13 @@ function onOK() {
 		}
   }
 
-/*! begin-foxyproxy-standard !*/
-	if (!hasWhite() && !foxyproxy.warnings.showWarningIfDesired(window, [window.arguments[0].inn.torwiz ?
-      "torwiz.nopatterns.3" : "no.white.patterns.3", name], "white-patterns"))
-	  return false;
-/*! end-foxyproxy-standard !*/
-
+  if (!foxyproxy.isFoxyProxySimple()) {
+    // Don't do this for FoxyProxy Basic
+  	if (!hasWhite() && !foxyproxy.warnings.showWarningIfDesired(window, [window.arguments[0].inn.torwiz ?
+        "torwiz.nopatterns.3" : "no.white.patterns.3", name], "white-patterns"))
+  	  return false;
+  }
+  
 	var isSocks = document.getElementById("isSocks").checked;
 	
 	if (fpc.isThunderbird() && !isSocks && mode == "manual" && !foxyproxy.warnings.showWarningIfDesired(window, ["socksWarning"], "socks"))

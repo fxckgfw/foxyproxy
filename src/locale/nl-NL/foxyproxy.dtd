@@ -1,6 +1,7 @@
-<!ENTITY foxyproxy.label "FoxyProxy">
+<!ENTITY foxyproxy.basic.label "FoxyProxy Basic">
+<!ENTITY foxyproxy.standard.label "FoxyProxy Standard">
+<!ENTITY foxyproxy.plus.label "FoxyProxy Plus">
 <!ENTITY foxyproxy.accesskey "F">
-<!ENTITY foxyproxy.optionsdialog.label "FoxyProxy opties">
 <!ENTITY foxyproxy.options.label "Opties">
 <!ENTITY foxyproxy.options.accesskey "O">
 <!ENTITY foxyproxy.options.tooltip "Het optiesvenster openen">
@@ -416,7 +417,7 @@
 <!ENTITY foxyproxy.aboutproxyservice.label "Tenslotte leidt de knop Proxydienst u naar een website met proxydiensten, waar u betrouwbare en snelle proxydienst in verschillende landen kunt aanschaffen voor een schappelijke prijs.">
 <!ENTITY foxyproxy.invalidcolor.label "Ongeldige kleur">
 <!ENTITY foxyproxy.validcolor.label "Geldige kleur">
-<!--        begin foxyproxyplus        -->
+<!-- begin foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Lokaal IP-adrespatroon toevoegen/bewerken">
 <!ENTITY foxyproxy.tempip.popup.label "Met tijdelijke patronen kunt u patronen voor lokale IP-adressen  die u niet vaak gebruikt creëren zonder dat de IP-adressenpatroonlijst voor een proxy wordt vervuild. Tijdelijke patronen wordne niet opgeslagen. Ze worden alleen tijdens deze Firefoxsessie in het geheugen bewaard.">
 <!ENTITY foxyproxy.ip.pattern.label "Lokaal IP-adrespatroon">
@@ -461,4 +462,4 @@
 <!ENTITY foxyproxy.proxydomain.label "Domein (optioneel - uitsluitend NTLM)">
 <!ENTITY foxyproxy.proxydomain.tooltip "Alleen NTLM-authenticatie">
 <!ENTITY foxyproxy.proxy.passwords.nomatch.label "Proxywachtwoorden komen niet overeen; voer het a.u.b. opnieuw in">
-<!--        end foxyproxyplus        -->
+<!-- end foxyproxyplus -->

@@ -1,16 +1,17 @@
-<!ENTITY foxyproxy.label "ФоксиПрокси">
-<!ENTITY foxyproxy.accesskey "F">
-<!ENTITY foxyproxy.optionsdialog.label "ФоксиПрокси Options">
-<!ENTITY foxyproxy.options.label "Options">
-<!ENTITY foxyproxy.options.accesskey "O">
+<!ENTITY foxyproxy.basic.label "ФоксиПрокси основни">
+<!ENTITY foxyproxy.standard.label "FoxyProxy Standard">
+<!ENTITY foxyproxy.plus.label "FoxyProxy Plus">
+<!ENTITY foxyproxy.accesskey "Ф">
+<!ENTITY foxyproxy.options.label "Опције">
+<!ENTITY foxyproxy.options.accesskey "О">
 <!ENTITY foxyproxy.options.tooltip "Open the Options Dialog">
 <!ENTITY foxyproxy.tree.pickertooltiptext.label "Click to select which columns to display">
-<!ENTITY foxyproxy.proxy.name.label "Proxy Name">
-<!ENTITY foxyproxy.proxy.name.accesskey "N">
-<!ENTITY foxyproxy.proxy.name.tooltip "Proxy Name">
-<!ENTITY foxyproxy.proxy.notes.label "Proxy Notes">
-<!ENTITY foxyproxy.proxy.notes.accesskey "N">
-<!ENTITY foxyproxy.proxy.notes.tooltip "Proxy Notes">
+<!ENTITY foxyproxy.proxy.name.label "Назив проксија">
+<!ENTITY foxyproxy.proxy.name.accesskey "Н">
+<!ENTITY foxyproxy.proxy.name.tooltip "Назив проксија">
+<!ENTITY foxyproxy.proxy.notes.label "Забелешке о проксију">
+<!ENTITY foxyproxy.proxy.notes.accesskey "З">
+<!ENTITY foxyproxy.proxy.notes.tooltip "Забелешке о проксију">
 <!ENTITY foxyproxy.pattern.label "Pattern">
 <!ENTITY foxyproxy.urlpatterns.label "URL Patterns">
 <!ENTITY foxyproxy.urlpatterns.accesskey "P">
@@ -416,7 +417,7 @@
 <!ENTITY foxyproxy.aboutproxyservice.label "Finally, the proxy service button brings you to our proxy service website, where you can buy reliable, high-bandwidth proxy service in many different countries at reasonable prices.">
 <!ENTITY foxyproxy.invalidcolor.label "Invalid color">
 <!ENTITY foxyproxy.validcolor.label "Valid color">
-<!--       begin foxyproxyplus       -->
+<!-- begin foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Add/Edit Local IP Address Pattern">
 <!ENTITY foxyproxy.tempip.popup.label "Temporary patterns allow you to create patterns for local IP addresses that you don&apos;t use often without cluttering the IP address pattern list for a proxy. Temporary patterns are not saved to disk. They are kept in-memory and used for this Firefox session only.">
 <!ENTITY foxyproxy.ip.pattern.label "Local IP address pattern">
@@ -461,4 +462,4 @@
 <!ENTITY foxyproxy.proxydomain.label "Домен (по жељи - само NTLM)">
 <!ENTITY foxyproxy.proxydomain.tooltip "Само NTLM потврда истинитости">
 <!ENTITY foxyproxy.proxy.passwords.nomatch.label "Лозинке проксија се не поклапају. Унесите их поново.">
-<!--       end foxyproxyplus       -->
+<!-- end foxyproxyplus -->

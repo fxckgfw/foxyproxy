@@ -1,5 +1,6 @@
 <!ENTITY foxyproxy.basic.label "FoxyProxy Basic">
 <!ENTITY foxyproxy.standard.label "FoxyProxy Standard">
+<!ENTITY foxyproxy.plus.label "FoxyProxy Plus">
 <!ENTITY foxyproxy.accesskey "F">
 
 <!ENTITY foxyproxy.options.label "Options">
@@ -591,6 +592,4 @@
 <!ENTITY foxyproxy.proxydomain.label "Domain (optional - NTLM only)">
 <!ENTITY foxyproxy.proxydomain.tooltip "NTLM authentication only">
 <!ENTITY foxyproxy.proxy.passwords.nomatch.label "Proxy passwords do not match; please re-enter.">
-
-<!ENTITY foxyproxy.plus.label "FoxyProxy Plus">
 <!-- end foxyproxyplus -->

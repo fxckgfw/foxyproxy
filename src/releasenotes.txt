@@ -13,3 +13,4 @@ http://foxyproxy.mozdev.org/drupal/content/default-nameip-comment-hint
 * Support for closing FoxyProxy dialogs/windows on OS/X with Command-W
 * removed a dump() statement
 * better socks dns handling; still needs work
+* graphic icons for primary buttons on the main FoxyProxy Options dialog

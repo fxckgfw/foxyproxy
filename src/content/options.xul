@@ -151,15 +151,15 @@
               ondblclick="onSettings(false);" context="proxyTreeMenu" />
           </tree>
           <vbox>
-            <button id="up-button" pack="start" command="moveUpCmd"
+            <button id="foxyproxy-up-button" pack="start" command="moveUpCmd"
               label=" &foxyproxy.moveup.label;"/>
-            <button id="down-button" pack="start" command="moveDownCmd"
+            <button id="foxyproxy-down-button" pack="start" command="moveDownCmd"
               label=" &foxyproxy.movedown.label;"/>
             <separator class="hide-if-foxyproxy-simple"/>
-            <button command="createProxyCmd" />
-            <button command="settingsCmd" />
-            <button command="copySelectionCmd" />
-            <button command="deleteSelectionCmd" />
+            <button id="foxyproxy-create-button" command="createProxyCmd" />
+            <button id="foxyproxy-settings-button" command="settingsCmd" />
+            <button id="foxyproxy-copy-button" command="copySelectionCmd" />
+            <button id="foxyproxy-delete-button" command="deleteSelectionCmd" />
           </vbox>
         </hbox>
       </tabpanel>

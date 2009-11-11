@@ -32,8 +32,14 @@ treechildren::-moz-tree-checkbox(checked) {
 #foxyproxy-up-button {
   list-style-image: url("chrome://foxyproxy/content/images/go-up.png");
 }
+#foxyproxy-up-button[disabled="true"] {
+  list-style-image: url("chrome://foxyproxy/content/images/go-up-disabled.png");
+}
 #foxyproxy-down-button {
   list-style-image: url("chrome://foxyproxy/content/images/go-down.png");
+}
+#foxyproxy-down-button[disabled="true"] {
+  list-style-image: url("chrome://foxyproxy/content/images/go-down-disabled.png");
 }
 #foxyproxy-create-button  {
   list-style-image: url("chrome://foxyproxy/content/images/list-add.png");

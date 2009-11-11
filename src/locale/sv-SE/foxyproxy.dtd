@@ -1,6 +1,7 @@
-<!ENTITY foxyproxy.label "FoxyProxy">
+<!ENTITY foxyproxy.basic.label "FoxyProxy Basic">
+<!ENTITY foxyproxy.standard.label "FoxyProxy Standard">
+<!ENTITY foxyproxy.plus.label "FoxyProxy Plus">
 <!ENTITY foxyproxy.accesskey "F">
-<!ENTITY foxyproxy.optionsdialog.label "FoxyProxy alternativ">
 <!ENTITY foxyproxy.options.label "Alternativ">
 <!ENTITY foxyproxy.options.accesskey "A">
 <!ENTITY foxyproxy.options.tooltip "Öppnar alternativ">
@@ -416,7 +417,7 @@
 <!ENTITY foxyproxy.aboutproxyservice.label "Finally, the proxy service button brings you to our proxy service website, where you can buy reliable, high-bandwidth proxy service in many different countries at reasonable prices.">
 <!ENTITY foxyproxy.invalidcolor.label "Invalid color">
 <!ENTITY foxyproxy.validcolor.label "Valid color">
-<!--       begin foxyproxyplus       -->
+<!-- begin foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Lägg till/Redigera lokala IP-adressmönster">
 <!ENTITY foxyproxy.tempip.popup.label "Temporära mönster gör att du kan skapa mönster för lokala IP-adresser som du inte använder så ofta. Temporära mönster sparas inte till disk utan behålls bara i minnet så länge Firefox är igång.">
 <!ENTITY foxyproxy.ip.pattern.label "Lokalt IP-adressmönster">
@@ -461,4 +462,4 @@
 <!ENTITY foxyproxy.proxydomain.label "Domän (frivilligt - endast NTLM)">
 <!ENTITY foxyproxy.proxydomain.tooltip "Endast NTLM-autentisering">
 <!ENTITY foxyproxy.proxy.passwords.nomatch.label "Proxylösenord matchar inte; vänligen försök igen.">
-<!--       end foxyproxyplus       -->
+<!-- end foxyproxyplus -->

@@ -68,7 +68,7 @@
   </statusbar>
   
   <toolbarpalette id="MailToolbarPalette">   
-    <toolbarbutton id="foxyproxy-toolbar-icon" type="menu" orient="horizontal" mode="patterns" persist="mode" label="&foxyproxy.label2;"
+    <toolbarbutton id="foxyproxy-toolbar-icon" type="menu" orient="horizontal" mode="patterns" persist="mode" label="&foxyproxy.standard.label;"
       context="foxyproxy-toolbarbutton-popup"
       onclick="foxyproxy.onSBTBClick(event, foxyproxy.fp.toolbar);event.stopPropagation();event.preventDefault();return false;">
         <menupopup id="foxyproxy-toolbarbutton-popup"

@@ -1,6 +1,7 @@
-<!ENTITY foxyproxy.label "FoxyProxy">
+<!ENTITY foxyproxy.basic.label "FoxyProxy Basic">
+<!ENTITY foxyproxy.standard.label "FoxyProxy Standard">
+<!ENTITY foxyproxy.plus.label "FoxyProxy Plus">
 <!ENTITY foxyproxy.accesskey "F">
-<!ENTITY foxyproxy.optionsdialog.label "Opzioni di FoxyProxy">
 <!ENTITY foxyproxy.options.label "Generali">
 <!ENTITY foxyproxy.options.accesskey "G">
 <!ENTITY foxyproxy.options.tooltip "Accesso alla finestra delle opzioni generali">

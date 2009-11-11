@@ -15,7 +15,7 @@
 <dialog
   xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
   id="foxyproxyblockedpagesdlg"
-  title="&foxyproxy.label2; - &foxyproxy.addeditpattern.title;"
+  title="&foxyproxy.standard.label; - &foxyproxy.addeditpattern.title;"
   ondialogaccept="return onOK();" onload="onLoad();"
   persist="screenX screenY" windowtype="foxyproxy">
 

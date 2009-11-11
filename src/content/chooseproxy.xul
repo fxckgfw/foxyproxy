@@ -13,7 +13,7 @@
 <?xml-stylesheet href="foxyproxy.css" type="text/css"?>
 <!DOCTYPE overlay SYSTEM "chrome://foxyproxy/locale/foxyproxy.dtd">
 <dialog id="foxyproxyoptions2" windowtype="foxyproxy"
-  title="&foxyproxy.label2;" buttons="accept,cancel,extra2"
+  title="&foxyproxy.standard.label;" buttons="accept,cancel,extra2"
   ondialogextra2="onSettings()" buttonlabelextra2="&foxyproxy.addnewproxy.label;" buttonaccesskeyextra2="&foxyproxy.addnewproxy.accesskey;"
   xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
   xmlns:html="http://www.w3.org/1999/xhtml" persist="screenX screenY height width"

@@ -1,6 +1,7 @@
-<!ENTITY foxyproxy.label "FoxyProxy">
+<!ENTITY foxyproxy.basic.label "FoxyProxy Basique">
+<!ENTITY foxyproxy.standard.label "FoxyProxy Standard">
+<!ENTITY foxyproxy.plus.label "FoxyProxy Plus">
 <!ENTITY foxyproxy.accesskey "F">
-<!ENTITY foxyproxy.optionsdialog.label "Options de FoxyProxy">
 <!ENTITY foxyproxy.options.label "Options">
 <!ENTITY foxyproxy.options.accesskey "O">
 <!ENTITY foxyproxy.options.tooltip "Ouvre la fenêtre de dialogue des options">
@@ -12,35 +13,35 @@
 <!ENTITY foxyproxy.proxy.notes.accesskey "t">
 <!ENTITY foxyproxy.proxy.notes.tooltip "Notes concernant le proxy">
 <!ENTITY foxyproxy.pattern.label "Motif de correspondance">
-<!ENTITY foxyproxy.urlpatterns.label "Motifs d&apos;URL">
+<!ENTITY foxyproxy.urlpatterns.label "Motifs d'URL">
 <!ENTITY foxyproxy.urlpatterns.accesskey "M">
-<!ENTITY foxyproxy.urlpatterns.tooltip "Motifs d&apos;URL">
+<!ENTITY foxyproxy.urlpatterns.tooltip "Motifs d'URL">
 <!ENTITY foxyproxy.pattern.type.label "Type de motif">
 <!ENTITY foxyproxy.whitelist.blacklist.label "Liste blanche (autorisés) ou liste noire (exclus)">
 <!ENTITY foxyproxy.pattern.name.label "Nom du motif">
 <!ENTITY foxyproxy.pattern.name.accesskey "m">
 <!ENTITY foxyproxy.pattern.name.tooltip "Nom du motif">
-<!ENTITY foxyproxy.url.pattern.label "Motif d&apos;URL">
+<!ENTITY foxyproxy.url.pattern.label "Motif d'URL">
 <!ENTITY foxyproxy.url.pattern.accesskey "U">
-<!ENTITY foxyproxy.url.pattern.tooltip "Motif d&apos;URL">
+<!ENTITY foxyproxy.url.pattern.tooltip "Motif d'URL">
 <!ENTITY foxyproxy.enabled.label "Activé(e)">
 <!ENTITY foxyproxy.enabled.accesskey "c">
-<!ENTITY foxyproxy.enabled.tooltip "Basculer entre l&apos;état actif et l&apos;état inactif">
+<!ENTITY foxyproxy.enabled.tooltip "Basculer entre l'état actif et l'état inactif">
 <!ENTITY foxyproxy.delete.selection.label "Supprimer la sélection">
 <!ENTITY foxyproxy.delete.selection.accesskey "S">
-<!ENTITY foxyproxy.delete.selection.tooltip "Supprime l&apos;élément sélectionné">
+<!ENTITY foxyproxy.delete.selection.tooltip "Supprime l'élément sélectionné">
 <!ENTITY foxyproxy.edit.selection.label "Éditer la sélection">
 <!ENTITY foxyproxy.edit.selection.accesskey "E">
-<!ENTITY foxyproxy.edit.selection.tooltip "Édite l&apos;élément sélectionné">
-<!ENTITY foxyproxy.help.label "Contenu de l&apos;aide">
+<!ENTITY foxyproxy.edit.selection.tooltip "Édite l'élément sélectionné">
+<!ENTITY foxyproxy.help.label "Contenu de l'aide">
 <!ENTITY foxyproxy.help.accesskey "a">
-<!ENTITY foxyproxy.help.tooltip "Affiche l&apos;aide">
+<!ENTITY foxyproxy.help.tooltip "Affiche l'aide">
 <!ENTITY foxyproxy.close.label "Fermer">
 <!ENTITY foxyproxy.close.accesskey "F">
 <!ENTITY foxyproxy.close.tooltip "Ferme la fenêtre">
 <!ENTITY foxyproxy.about.label "À propos">
 <!ENTITY foxyproxy.about.accesskey "p">
-<!ENTITY foxyproxy.about.tooltip "Ouvre la fenêtre des informations sur l&apos;extension">
+<!ENTITY foxyproxy.about.tooltip "Ouvre la fenêtre des informations sur l'extension">
 <!ENTITY foxyproxy.online.label "FoxyProxy en ligne">
 <!ENTITY foxyproxy.online.accesskey "l">
 <!ENTITY foxyproxy.online.tooltip "Visiter le site Web de FoxyProxy">
@@ -416,7 +417,7 @@
 <!ENTITY foxyproxy.aboutproxyservice.label "Finalement, le bouton de service proxy vous envoie vers notre site Web de service proxy où vous pouvez acheter un service proxy fiable et avec haute bande passante dans plusieurs pays à des prix raisonnables.">
 <!ENTITY foxyproxy.invalidcolor.label "Couleur invalide">
 <!ENTITY foxyproxy.validcolor.label "Couleur valide">
-<!--       begin foxyproxyplus       -->
+<!-- begin foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Ajouter / éditer un motif d&apos;adresse IP Locale">
 <!ENTITY foxyproxy.tempip.popup.label "Les motifs temporaires vous permettent de créer des motifs  que vous n&apos;utilisez pas souvent afin d&apos;éviter de surcharger la liste des motifs d&apos;adresse IP pour un proxy. Les motifs temporaires ne sont pas enregistrés sur le disque. Ils sont conservés en mémoire et ne sont utilisés que dans cette session Firefox.">
 <!ENTITY foxyproxy.ip.pattern.label "Motif d&apos;adresse IP locale">
@@ -461,4 +462,4 @@
 <!ENTITY foxyproxy.proxydomain.label "Domaine (facultatif - uniquement NTML)">
 <!ENTITY foxyproxy.proxydomain.tooltip "Uniquement pour authentification NTML">
 <!ENTITY foxyproxy.proxy.passwords.nomatch.label "Les mots de passe de proxy ne coïncident pas, veuillez réessayer.">
-<!--       end foxyproxyplus       -->
+<!-- end foxyproxyplus -->

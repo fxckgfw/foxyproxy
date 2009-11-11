@@ -1,6 +1,7 @@
-<!ENTITY foxyproxy.label "FoxyProxy">
+<!ENTITY foxyproxy.basic.label "FoxyProxy Βασικό">
+<!ENTITY foxyproxy.standard.label "FoxyProxy Standard">
+<!ENTITY foxyproxy.plus.label "FoxyProxy Plus">
 <!ENTITY foxyproxy.accesskey "o">
-<!ENTITY foxyproxy.optionsdialog.label "Επιλογές FoxyProxy">
 <!ENTITY foxyproxy.options.label "Επιλογές">
 <!ENTITY foxyproxy.options.accesskey "Ε">
 <!ENTITY foxyproxy.options.tooltip "Άνοιγμα του διαλόγου επιλογών">
@@ -416,7 +417,7 @@
 <!ENTITY foxyproxy.aboutproxyservice.label "Τέλος, το κουμπί υπηρεσίας διαμεσολάβησης σας μεταφέρει στον ιστότοπο υπηρεσιών διαμεσολάβησης μας όπου μπορείτε να αγοράσετε αξιόπιστες, υψηλής ταχύτητας υπηρεσίες διαμεσολάβησης για πολλές χώρες σε λογικές τιμές.">
 <!ENTITY foxyproxy.invalidcolor.label "Μη έγκυρο χρώμα">
 <!ENTITY foxyproxy.validcolor.label "Έγκυρο χρώμα">
-<!--       begin foxyproxyplus       -->
+<!-- begin foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Προσθήκη/επεξεργασία τοπικού πρότυπου διεύθυνσης IP">
 <!ENTITY foxyproxy.tempip.popup.label "Τα προσωρινά πρότυπα σας επιτρέπουν να δημιουργήσετε τοπικά πρότυπα για διευθύνσεις IP που δεν χρησιμοποιείτε συχνά, χωρίς να αυξάνετε την πολυπλοκότητα της λίστας πρότυπων κάποιου διαμεσολαβητή. Τα προσωρινά πρότυπα δεν αποθηκεύονται στο δίσκο, διατηρούνται μόνο στη μνήμη και χρησιμοποιούνται για την τρέχουσα συνεδρία του Firefox.">
 <!ENTITY foxyproxy.ip.pattern.label "Τοπικό πρότυπο διεύθυνσης IP">
@@ -461,4 +462,4 @@
 <!ENTITY foxyproxy.proxydomain.label "Τομέας (προαιρετικό - μόνο NTLM)">
 <!ENTITY foxyproxy.proxydomain.tooltip "Μόνο πιστοποίηση NTLM">
 <!ENTITY foxyproxy.proxy.passwords.nomatch.label "Δεν ταιριάζουν οι κωδικοί για το διαμεσολαβητή, παρακαλούμε εισάγετε τους ξανά.">
-<!--       end foxyproxyplus       -->
+<!-- end foxyproxyplus -->

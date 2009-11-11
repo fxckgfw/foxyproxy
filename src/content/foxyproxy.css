@@ -6,24 +6,6 @@ tree[id="urlsTree"], tree[id="torWizUrlsTree"], tree[id="proxyTree"], tree[id="l
   background-color: rgb(80%, 80%, 80%);
 }*/
 
-.foxyproxybutton
-  {-moz-image-region: rect(0px 24px 24px 0px);}
-
-.foxyproxybutton:hover
-  {-moz-image-region: rect(24px 24px 48px 0px);}
-
-[iconsize="small"] .foxyproxybutton
-  {-moz-image-region: rect(0px 40px 16px 24px);}
-
-[iconsize="small"] .foxyproxybutton:hover
-  {-moz-image-region: rect(16px 40px 32px 24px);}
-
-.foxyproxybutton-small
-  {-moz-image-region: rect(0px 40px 16px 24px);}
-
-.foxyproxybutton-small:hover
-  {-moz-image-region: rect(16px 40px 32px 24px);}
-
 treechildren::-moz-tree-checkbox(checked) {
   /* css for checked cells */
   list-style-image: url("chrome://global/skin/checkbox/cbox-check.gif");
@@ -47,11 +29,20 @@ treechildren::-moz-tree-checkbox(checked) {
 #foxyproxy-settings-button  {
   list-style-image: url("chrome://foxyproxy/content/images/accessories-text-editor.png");
 }
+#foxyproxy-settings-button[disabled="true"]  {
+  list-style-image: url("chrome://foxyproxy/content/images/accessories-text-editor-disabled.png");
+}
 #foxyproxy-copy-button  {
   list-style-image: url("chrome://foxyproxy/content/images/edit-copy.png");
 }
+#foxyproxy-copy-button[disabled="true"  {
+  list-style-image: url("chrome://foxyproxy/content/images/edit-copy-disabled.png");
+}
 #foxyproxy-delete-button  {
   list-style-image: url("chrome://foxyproxy/content/images/list-remove.png");
+}
+#foxyproxy-delete-button[disabled="true"]  {
+  list-style-image: url("chrome://foxyproxy/content/images/list-remove-disabled.png");
 }
 
 #foxyproxy-image {

@@ -1,0 +1,12 @@
+var proxies = ["PROXY myproxy.foo.com:9050", "PROXY myproxy.bar.com:8080",
+"PROXY myproxy.baz.com:6667"], t1 = new Date().getTime(), counter = 1;
+
+var secondsToSwitchAfter = 3;
+
+function FindProxyForURL(url, host) {
+  var t2 = new Date.getTime();
+  if (t2 - t1 > secondsToSwitchAfter * 1000)
+    counter++;
+  t1 = t2;
+  return proxies[counter % proxies.length];
+}

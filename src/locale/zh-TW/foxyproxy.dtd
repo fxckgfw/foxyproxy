@@ -1,6 +1,7 @@
-<!ENTITY foxyproxy.label "FoxyProxy">
+<!ENTITY foxyproxy.basic.label "FoxyProxy 基本版">
+<!ENTITY foxyproxy.standard.label "FoxyProxy Standard">
+<!ENTITY foxyproxy.plus.label "FoxyProxy Plus">
 <!ENTITY foxyproxy.accesskey "F">
-<!ENTITY foxyproxy.optionsdialog.label "FoxyProxy 選項">
 <!ENTITY foxyproxy.options.label "選項(O)">
 <!ENTITY foxyproxy.options.accesskey "O">
 <!ENTITY foxyproxy.options.tooltip "開啟選項視窗">
@@ -416,7 +417,7 @@
 <!ENTITY foxyproxy.aboutproxyservice.label "最後，按下「代理伺服器服務」鈕會連線到我們的代理伺服器服務網站，你可以在那裏以合理的價格購買許多不同國家裏可靠且擁有高頻寬的代理伺服器服務。">
 <!ENTITY foxyproxy.invalidcolor.label "無效的顏色">
 <!ENTITY foxyproxy.validcolor.label "有效的顏色">
-<!--        begin foxyproxyplus        -->
+<!-- begin foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "新增/編輯 本機 IP 位址樣式">
 <!ENTITY foxyproxy.tempip.popup.label "臨時性樣式讓你建立不常使用的本機 IP 位址樣式，這些樣式不會儲存到設定檔中造成樣式清單紊亂，而是保留在記憶體中，只在這次執行 Firefox 有效。">
 <!ENTITY foxyproxy.ip.pattern.label "本機 IP 位址樣式">
@@ -461,4 +462,4 @@
 <!ENTITY foxyproxy.proxydomain.label "網域（非必要的 - 只用於 NTLM）">
 <!ENTITY foxyproxy.proxydomain.tooltip "只用於 NTLM 認證">
 <!ENTITY foxyproxy.proxy.passwords.nomatch.label "代理伺服器密碼錯誤，請重新輸入">
-<!--        end foxyproxyplus        -->
+<!-- end foxyproxyplus -->

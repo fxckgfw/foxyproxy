@@ -287,7 +287,6 @@ biesi>  passing it the appropriate proxyinfo
     }
     else if (type == 1) {
       // SOCKS type. TODO: should we turn on/off network.proxy.socks_remote_dns. For now, leave it alone
-      dump("FoxyProxy: not changing network.proxy.socks_remote_dns\n");
     }
   },
 

@@ -19,7 +19,7 @@
   id="foxyproxyaddproxydlg2"
   ondialogaccept="return onOK();"
   onload="onLoad();"
-  title="&foxyproxy.label2; - &foxyproxy.add.title;"
+  title="&foxyproxy.standard.label; - &foxyproxy.add.title;"
   windowtype="foxyproxy"
  	xmlns:html="http://www.w3.org/1999/xhtml"
   xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"

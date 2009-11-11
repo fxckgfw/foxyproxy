@@ -1,6 +1,7 @@
-<!ENTITY foxyproxy.label "FoxyProxy">
+<!ENTITY foxyproxy.basic.label "FoxyProxy 基础版">
+<!ENTITY foxyproxy.standard.label "FoxyProxy Standard">
+<!ENTITY foxyproxy.plus.label "FoxyProxy Plus">
 <!ENTITY foxyproxy.accesskey "F">
-<!ENTITY foxyproxy.optionsdialog.label "FoxyProxy 选项">
 <!ENTITY foxyproxy.options.label "选项">
 <!ENTITY foxyproxy.options.accesskey "O">
 <!ENTITY foxyproxy.options.tooltip "打开选项对话框">
@@ -416,7 +417,7 @@
 <!ENTITY foxyproxy.aboutproxyservice.label "最后，代理服务按钮带你去订购代理服务。">
 <!ENTITY foxyproxy.invalidcolor.label "无效颜色">
 <!ENTITY foxyproxy.validcolor.label "有效颜色">
-<!--       begin foxyproxyplus       -->
+<!-- begin foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "添加/编辑本地IP地址模式">
 <!ENTITY foxyproxy.tempip.popup.label "临时模式让你可以为不常用的本地IP地址建立模式，以免扰乱代理服务器的IP地址模式列表。临时模式不会保存到磁盘。他们只是保存在内存中供当前 Firefox 会话使用。">
 <!ENTITY foxyproxy.ip.pattern.label "本地IP地址模式">
@@ -461,4 +462,4 @@
 <!ENTITY foxyproxy.proxydomain.label "域（可选 - 仅NTML）">
 <!ENTITY foxyproxy.proxydomain.tooltip "仅使用 NTLM 验证">
 <!ENTITY foxyproxy.proxy.passwords.nomatch.label "代理服务器密码不匹配；请重新输入。">
-<!--       end foxyproxyplus       -->
+<!-- end foxyproxyplus -->

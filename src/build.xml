@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="foxyproxy" default="build-foxyproxy-standard">
+<project name="foxyproxy-basic-and-standard" default="build-foxyproxy-standard">
 
   <!-- version property is appended to XPI filename; e.g., foxyproxy-1.0.xpi -->
   <property name="temp-path" value="/tmp/foxyproxy" />
@@ -52,31 +52,31 @@
 
   <target name="build-foxyproxy-standard" depends="init">
     <property name="edition" value="standard" />
-    <property name="version" value="2.15b1" />
+    <property name="version" value="2.15b2" />
     <property name="src-path" value="${temp-path}"/>
     <antcall>
       <target name="copy"/>
       <param name="src-path" value="${temp-path}"/>
     </antcall>
-    <ant antfile="development.xml" target="convert-to-foxyproxy-standard" inheritAll="false">
-      <property name="standard" value="false"/>
-    </ant>
+    <!-- The default codebase already builds FoxyProxy Standard. We don't want to run the 
+	    any regular expression substitions when building Standard, so we skip the call to
+	    development.xml:convert-to-foxyproxy-standard -->
     <antcall>
       <target name="build"/>
       <target name="clean"/>
     </antcall>
   </target>
   
-  <target name="build-foxyproxy-simple" depends="init">
-    <property name="edition" value="simple" />
-    <property name="version" value="1.1" />
+  <target name="build-foxyproxy-basic" depends="init">
+    <property name="edition" value="basic" />
+    <property name="version" value="1.2" />
     <property name="src-path" value="${temp-path}"/>
     <antcall>
       <target name="copy"/>
       <param name="src-path" value="${temp-path}"/>
     </antcall>
-    <ant antfile="development.xml" target="convert-to-foxyproxy-simple" inheritAll="false">
-      <property name="simple" value="false"/>
+    <ant antfile="development.xml" target="convert-to-foxyproxy-basic" inheritAll="true">
+      <property name="standard" value="true"/>
     </ant>
     <antcall>      
       <target name="build"/>

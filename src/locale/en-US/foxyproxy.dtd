@@ -1,13 +1,5 @@
-<!-- TRANSLATORS: PLEASE DO NOT REMOVE COMMENTS IN THIS FILE. THE BUILD PROCSESS WILL BREAK IF YOU DO, AND YOUR LOCALE WON'T WORK -->
-
-<!-- begin-foxyproxy-standard -->    
-<!ENTITY foxyproxy.label2 "FoxyProxy Standard">
-<!-- end-foxyproxy-standard -->
-
-<!-- begin-foxyproxy-simple
-<!ENTITY foxyproxy.label2 "FoxyProxy Basic">
-end-foxyproxy-simple -->
-
+<!ENTITY foxyproxy.basic.label "FoxyProxy Basic">
+<!ENTITY foxyproxy.standard.label "FoxyProxy Standard">
 <!ENTITY foxyproxy.accesskey "F">
 
 <!ENTITY foxyproxy.options.label "Options">
@@ -514,7 +506,6 @@ end-foxyproxy-simple -->
 <!ENTITY foxyproxy.home "Home">
 <!ENTITY foxyproxy.support "Support">
 <!ENTITY foxyproxy.credits "Credits">
-<!ENTITY foxyproxy.donations "Donations">
 <!ENTITY foxyproxy.please.donate.label "Please Donate">
 <!ENTITY foxyproxy.please.donate.accesskey "D">
 <!ENTITY foxyproxy.donation.list.label "Donation List">
@@ -601,4 +592,5 @@ end-foxyproxy-simple -->
 <!ENTITY foxyproxy.proxydomain.tooltip "NTLM authentication only">
 <!ENTITY foxyproxy.proxy.passwords.nomatch.label "Proxy passwords do not match; please re-enter.">
 
+<!ENTITY foxyproxy.plus.label "FoxyProxy Plus">
 <!-- end foxyproxyplus -->

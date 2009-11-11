@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="foxyproxy-development">
 
-  <property name="src-base" value="."/>
+  <property name="src-base" value="."/> <!-- this property can be overridenn by build.xml -->
   <property file="edition.properties"/>
 
   <patternset id="xml.conditional.sources">
@@ -14,7 +14,7 @@
     <include name="**/*.js/**"/>
   </patternset>
     
-  <target name="convert-to-foxyproxy-simple" if="standard">
+  <target name="convert-to-foxyproxy-basic" if="standard">
   
     <!-- uncomment FoxyProxy Simple blocks in JS and CSS files --> 
     <replaceregexp flags="gs">
@@ -45,8 +45,8 @@
 
     <!-- replace &foxyproxy.standard.label; with &foxyproxy.basic.label; -->  
     <replaceregexp flags="gs">
-      <regexp pattern="(&amp;foxyproxy\.label2;)"/>
-      <substitution expression="&amp;foxyproxy.basic.label;"/>
+      <regexp pattern="&amp;foxyproxy\.standard\.label;"/>
+      <substitution expression="&amp;foxyproxy\.basic\.label;"/>
       <fileset dir="${src-path}">
         <patternset refid="xml.conditional.sources"/>
       </fileset>
@@ -62,11 +62,11 @@
     </replaceregexp> 
     
     <!-- The <propertyfile/> task appends to the property file, but we want to overwrite -->
-    <echo file="edition.properties" message="simple=true"/>  
-    <echo message="Converted to simple"/>      
+    <echo file="edition.properties" message="basic=true"/>  
+    <echo message="Converted to basic"/>      
   </target>    
 
-  <target name="convert-to-foxyproxy-standard" if="simple">
+  <target name="convert-to-foxyproxy-standard" if="basic">
   
     <!-- comment out FoxyProxy Simple blocks in JS and CSS files --> 
     <replaceregexp flags="gs">
@@ -109,10 +109,10 @@
     <echo message="Converted to standard"/>  
   </target>
     
-  <target name="convert-to-foxyproxy-simple-for-development">    
+  <target name="convert-to-foxyproxy-basic-for-development">    
     <antcall>
       <param name="src-path" value="${src-base}"/>
-      <target name="convert-to-foxyproxy-simple"/>
+      <target name="convert-to-foxyproxy-basic"/>
     </antcall>
   </target>
   
@@ -127,13 +127,13 @@
     <echo message="Currently set to FoxyProxy Standard"/>
   </target>
 
-  <target name="echo-simple" if="simple">
-    <echo message="Currently set to FoxyProxy Simple"/>
+  <target name="echo-basic" if="basic">
+    <echo message="Currently set to FoxyProxy Basic"/>
   </target>
     
   <target name="echo-current-state">
     <antcall target="echo-standard"/>
-    <antcall target="echo-simple"/>
+    <antcall target="echo-basic"/>
   </target>
   
 </project>

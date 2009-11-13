@@ -91,8 +91,8 @@
 		</rows>
 	</grid>
   <hbox align="center" observes="quickAddBroadcaster">
-    <label value="&foxyproxy.pattern.to.quickadd.label;" control="qapb"/>
-    <button id="qapb" command="patternCmd" label="&foxyproxy.define.label;"/>
+    <label value="&foxyproxy.pattern.to.quickadd.label;" control="foxyproxy-quickadd-pattern-button"/>
+    <button id="foxyproxy-quickadd-pattern-button" command="patternCmd" label="&foxyproxy.define.label;"/>
   </hbox>
 </groupbox>
 

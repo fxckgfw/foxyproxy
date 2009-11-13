@@ -31,11 +31,11 @@
 <vbox observes="torwiz-broadcaster" flex="1">
   <tabbox flex="1">
   	<tabs id="tabs" style="-moz-appearance: none;">
-  		<tab label="&foxyproxy.tab.general.label;" accesskey="&foxyproxy.tab.general.accesskey;"
+  		<tab id="foxyproxy-general-tab" label="&foxyproxy.tab.general.label;" accesskey="&foxyproxy.tab.general.accesskey;"
   		  tooltiptext="&foxyproxy.tab.general.tooltip;" selected="true"/>
-  		<tab label="&foxyproxy.tab.proxy.label;" accesskey="&foxyproxy.tab.proxy.accesskey;"
+  		<tab id="foxyproxy-proxydetails-tab"  label="&foxyproxy.tab.proxy.label;" accesskey="&foxyproxy.tab.proxy.accesskey;"
   		  tooltiptext="&foxyproxy.tab.proxy.tooltip;"/>
-  		<tab id="urlpatternstab" label="&foxyproxy.urlpatterns.label;" accesskey="&foxyproxy.urlpatterns.accesskey;"
+  		<tab id="foxyproxy-urlpatterns-tab" label="&foxyproxy.urlpatterns.label;" accesskey="&foxyproxy.urlpatterns.accesskey;"
   		  tooltiptext="&foxyproxy.urlpatterns.tooltip;" class="hide-if-foxyproxy-simple"/>
   	</tabs>
 
@@ -201,11 +201,11 @@
       <description>&foxyproxy.pattern.description;</description>
       <separator class="thin"/>
       <hbox>
-        <button command="addURLPatternCmd" flex="1"/>
-        <button command="editURLPatternSelectionCmd" flex="1"/>
-        <button command="deleteURLPatternSelectionCmd" flex="1"/>
-        <button command="helpURLPatternCmd" flex="1"/>
-				<button id="wildcardURLPatternRefBtn" command="wildcardURLPatternReferenceCmd" flex="1"/>
+        <button id="foxyproxy-add-url-pattern-button" command="addURLPatternCmd" flex="1"/>
+        <button id="foxyproxy-edit-url-pattern-button" command="editURLPatternSelectionCmd" flex="1"/>
+        <button id="foxyproxy-delete-url-pattern-button" command="deleteURLPatternSelectionCmd" flex="1"/>
+        <button id="foxyproxy-help-url-pattern-button" command="helpURLPatternCmd" flex="1"/>
+				<button id="foxyproxy-wildcard-url-pattern-ref-button" command="wildcardURLPatternReferenceCmd" flex="1"/>
       </hbox>
       <separator class="thin"/>
       <hbox flex="1">
@@ -239,7 +239,7 @@
     <button command="editURLPatternSelectionCmd" flex="1"/>
     <button command="deleteURLPatternSelectionCmd" flex="1"/>
     <button command="helpURLPatternCmd" flex="1"/>
-		<button id="wildcardURLPatternRefBtn" command="wildcardURLPatternReferenceCmd" flex="1"/>
+		<button id="foxyproxy-wildcard-url-pattern-ref-button" command="wildcardURLPatternReferenceCmd" flex="1"/>
   </hbox>
   <separator/>
   <hbox flex="1">
@@ -338,7 +338,7 @@
   label="&foxyproxy.wildcard.reference.label;"
   accesskey="&foxyproxy.wildcard.reference.accesskey;"
   tooltiptext="&foxyproxy.wildcard.reference.tooltip;"
-  oncommand="onWildcardReference('wildcardURLPatternReferencePopup', 'wildcardURLPatternRefBtn');"/>
+  oncommand="onWildcardReference('wildcardURLPatternReferencePopup', 'foxyproxy-wildcard-url-pattern-ref-button');"/>
 
 
 <command id="closeCmd"

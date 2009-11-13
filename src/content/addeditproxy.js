@@ -47,7 +47,7 @@ function onLoad() {
     document.getElementById("default-proxy-broadcaster").setAttribute("disabled", "true");
 	  document.getElementById("proxyname").disabled =
 	  	document.getElementById("proxynotes").disabled = true;
-      document.getElementById("urlpatternstab").hidden = true;
+      document.getElementById("foxyproxy-urlpatterns-tab").hidden = true;
   }
   document.getElementById("pacLoadNotificationEnabled").checked = proxy.autoconf.loadNotification;
   document.getElementById("pacErrorNotificationEnabled").checked = proxy.autoconf.errorNotification;

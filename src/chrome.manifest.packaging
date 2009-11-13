@@ -13,10 +13,8 @@ locale  foxyproxy fi-FI chrome/locale/fi-FI/
 locale  foxyproxy fr-FR chrome/locale/fr-FR/
 locale  foxyproxy hr-HR chrome/locale/hr-HR/
 locale  foxyproxy hu-HU chrome/locale/hu-HU/
-locale  foxyproxy id-ID chrome/locale/id-ID/
 locale  foxyproxy it-IT chrome/locale/it-IT/
 locale  foxyproxy ja-JP chrome/locale/ja-JP/
-locale  foxyproxy mk-MK chrome/locale/mk-MK/
 locale  foxyproxy nl-NL chrome/locale/nl-NL/
 locale  foxyproxy pl-PL chrome/locale/pl-PL/
 locale  foxyproxy pt-BR chrome/locale/pt-BR/

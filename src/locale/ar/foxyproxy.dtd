@@ -1,7 +1,6 @@
 <!ENTITY foxyproxy.basic.label "FoxyProxy Basic">
 <!ENTITY foxyproxy.standard.label "FoxyProxy Standard">
 <!ENTITY foxyproxy.plus.label "FoxyProxy Plus">
-<!ENTITY foxyproxy.accesskey "F">
 <!ENTITY foxyproxy.accesskey "ف">
 <!ENTITY foxyproxy.options.label "خيارات">
 <!ENTITY foxyproxy.options.accesskey "خ">
@@ -397,7 +396,6 @@
 <!ENTITY foxyproxy.home "Home">
 <!ENTITY foxyproxy.support "Support">
 <!ENTITY foxyproxy.credits "Credits">
-<!ENTITY foxyproxy.donations "Donations">
 <!ENTITY foxyproxy.please.donate.label "Please Donate">
 <!ENTITY foxyproxy.please.donate.accesskey "D">
 <!ENTITY foxyproxy.donation.list.label "Donation List">

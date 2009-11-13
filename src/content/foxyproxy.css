@@ -81,6 +81,17 @@ treechildren::-moz-tree-checkbox(checked) {
 #foxyproxy-delete-button[disabled="true"] {
   list-style-image: url("chrome://foxyproxy/content/images/delete-disabled.png"); 
 }
+#foxyproxy-donate-button {
+  list-style-image: url("chrome://foxyproxy/content/images/emblem-favorite.png"); 
+}
+#foxyproxy-plus-button {
+  list-style-image: url("chrome://foxyproxy/content/images/foxyproxyplus.png");
+  font-weight: bold;
+}
+#foxyproxy-proxyservice-button {
+  list-style-image: url("chrome://foxyproxy/content/images/internet-web-browser.png");
+  font-weight: bold;
+}
 /* end options.xul buttons */
 
 /* begin tab icons */

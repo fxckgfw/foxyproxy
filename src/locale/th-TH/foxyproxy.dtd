@@ -396,7 +396,6 @@
 <!ENTITY foxyproxy.home "โฮม">
 <!ENTITY foxyproxy.support "สนับสนุน">
 <!ENTITY foxyproxy.credits "เครดิต">
-<!ENTITY foxyproxy.donations "บริจาค">
 <!ENTITY foxyproxy.please.donate.label "กรุณาบริจาค">
 <!ENTITY foxyproxy.please.donate.accesskey "บ">
 <!ENTITY foxyproxy.donation.list.label "รายชื่อบริจาค">

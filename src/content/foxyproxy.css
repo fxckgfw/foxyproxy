@@ -39,10 +39,10 @@ treechildren::-moz-tree-checkbox(checked) {
 #foxyproxy-copy-button[disabled="true"]  {
   list-style-image: url("chrome://foxyproxy/content/images/monitor_go-disabled.png");
 }
-#foxyproxy-delete-button {
+#foxyproxy-deleteproxy-button {
   list-style-image: url("chrome://foxyproxy/content/images/monitor_delete.png");
 }
-#foxyproxy-delete-button[disabled="true"]  {
+#foxyproxy-deleteproxy-button[disabled="true"]  {
   list-style-image: url("chrome://foxyproxy/content/images/monitor_delete-disabled.png");
 }
 #foxyproxy-quickadd-pattern-button, #foxyproxy-autoadd-pattern-button, #foxyproxy-autoadd-block-pattern-button {

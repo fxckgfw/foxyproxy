@@ -396,7 +396,6 @@
 <!ENTITY foxyproxy.home "Home">
 <!ENTITY foxyproxy.support "Support">
 <!ENTITY foxyproxy.credits "Credits">
-<!ENTITY foxyproxy.donations "Donations">
 <!ENTITY foxyproxy.please.donate.label "Please Donate">
 <!ENTITY foxyproxy.please.donate.accesskey "D">
 <!ENTITY foxyproxy.donation.list.label "Donation List">

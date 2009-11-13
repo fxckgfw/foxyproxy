@@ -81,19 +81,19 @@
   <tabbox flex="1" style="margin: .5em;">
     <tabs id="tabs"
       onselect="foxyproxy.selectedTabIndex=this.selectedIndex;">
-      <tab label="&foxyproxy.tab.proxies.label;"
+      <tab id="foxyproxy-proxy-tab" label="&foxyproxy.tab.proxies.label;"
         accesskey="&foxyproxy.tab.proxies.accesskey;" selected="true"
         tooltiptext="&foxyproxy.tab.proxies.tooltip;" />
-      <tab label="&foxyproxy.tab.global.label;"
+      <tab id="foxyproxy-global-tab" label="&foxyproxy.tab.global.label;"
         accesskey="&foxyproxy.tab.global.accesskey;"
         tooltiptext="&foxyproxy.tab.global.tooltip;" />
-      <tab label="&foxyproxy.quickadd.label;"
+      <tab id="foxyproxy-quickadd-tab" label="&foxyproxy.quickadd.label;"
         accesskey="&foxyproxy.quickadd.accesskey;"
         tooltiptext="&foxyproxy.quickadd.tooltip;" class="hide-if-foxyproxy-simple"/>
-      <tab label="&foxyproxy.tab.autoadd.label;"
+      <tab id="foxyproxy-autoadd-tab" label="&foxyproxy.tab.autoadd.label;"
         accesskey="&foxyproxy.tab.autoadd.accesskey;"
         tooltiptext="&foxyproxy.tab.autoadd.tooltip;" class="hide-if-foxyproxy-simple" />
-      <tab label="&foxyproxy.tab.logging.label;"
+      <tab id="foxyproxy-logging-tab" label="&foxyproxy.tab.logging.label;"
         accesskey="&foxyproxy.tab.logging.accesskey;"
         tooltiptext="&foxyproxy.tab.logging.tooltip;" class="hide-if-foxyproxy-simple"/>
     </tabs>
@@ -595,8 +595,8 @@
           </rows>
         </grid>
         <hbox align="center" observes="quickAddBroadcaster" >
-          <label value="&foxyproxy.pattern.to.quickadd.label;" control="qapb"/>
-          <button id="qapb" command="quickAddPatternCmd" label="&foxyproxy.define.label;"/>
+          <label value="&foxyproxy.pattern.to.quickadd.label;" control="foxyproxy-quickadd-pattern-button"/>
+          <button id="foxyproxy-quickadd-pattern-button" command="quickAddPatternCmd" label="&foxyproxy.define.label;"/>
         </hbox>
       </groupbox>
       </tabpanel>
@@ -665,12 +665,12 @@
           <grid>
             <columns><column/><column/></columns><rows>
             <row align="center" observes="autoAddBroadcaster">
-              <label value="&foxyproxy.autoadd.pattern.label;" control="bspb"/>
-              <button id="bspc" command="blockedPagePatternCmd" label="&foxyproxy.define.label;"/>
+              <label value="&foxyproxy.autoadd.pattern.label;" control="foxyproxy-autoadd-block-pattern-button"/>
+              <button id="foxyproxy-autoadd-block-pattern-button" command="blockedPagePatternCmd" label="&foxyproxy.define.label;"/>
             </row>
             <row align="center" observes="autoAddBroadcaster" >
-              <label value="&foxyproxy.pattern.to.autoadd.label;" control="aapb"/>
-              <button id="aapb" command="autoAddPatternCmd" label="&foxyproxy.define.label;"/>
+              <label value="&foxyproxy.pattern.to.autoadd.label;" control="foxyproxy-autoadd-pattern-button"/>
+              <button id="foxyproxy-autoadd-pattern-button" command="autoAddPatternCmd" label="&foxyproxy.define.label;"/>
             </row>
           </rows>
           </grid>
@@ -685,9 +685,9 @@
             accesskey="&foxyproxy.enabled.accesskey;"
             tooltiptext="&foxyproxy.enabled.tooltip;"
             oncommand="foxyproxy.logging=!foxyproxy.logging;" />
-          <button command="clearLogCmd" />
-          <button command="refreshLogCmd" />
-          <button command="saveLogCmd" />
+          <button id="foxyproxy-clear-button" command="clearLogCmd" />
+          <button id="foxyproxy-refresh-button" command="refreshLogCmd" />
+          <button id="foxyproxy-save-button" command="saveLogCmd" />
           <spacer flex="1" />
           <text value="&foxyproxy.logging.maxsize.label;"
             accesskey="&foxyproxy.logging.maxsize.accesskey;"
@@ -696,7 +696,7 @@
           <textbox id="maxSize" size="4"
             accesskey="&foxyproxy.logging.maxsize.accesskey;"
             tooltiptext="&foxyproxy.logging.maxsize.tooltip;" />
-          <button command="maxSizeCmd" size="4" />
+          <button id="foxyproxy-set-button" command="maxSizeCmd" size="4" />
         </hbox>
         <checkbox command="noURLsCmd" />
         <separator class="thin"/>
@@ -761,9 +761,9 @@
                context="logTreeMenu" />
            </tree>
            <vbox>
-             <button command="openLogURLInNewTabCmd" />
-             <button command="copyLogURLToClipboardCmd" />
-             <button command="deleteLogEntryCmd" />
+             <button id="foxyproxy-open-tab-button" command="openLogURLInNewTabCmd" />
+             <button id="foxyproxy-copy-clipboard-button" command="copyLogURLToClipboardCmd" />
+             <button id="foxyproxy-delete-button" command="deleteLogEntryCmd" />
            </vbox>       
          </hbox> 
       </tabpanel>
@@ -778,7 +778,7 @@
       popup="commercialInfo"
       tooltiptext="&foxyproxy.whatsthis;"/>    
     <spacer flex="1" />
-    <button command="closeCmd" />
+    <button command="closeCmd" class="button-icon" icon="accept"/>
   </hbox>
   <separator class="thin" />
 

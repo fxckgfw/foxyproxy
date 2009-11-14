@@ -2,7 +2,7 @@
 * Color now displayed in FoxyProxy Options dialog as requested here: http://foxyproxy.mozdev.org/drupal/content/color-icon-status-bar#comment-2849
 * Narrowed CSS specificity for FoxyProxy's tree styling to prevent interference with
     addons such as FindInTabs (https://addons.mozilla.org/en-US/firefox/addon/8078).  This also fixes the long-standing
-    bug in sometimes Firefox versiosn whereby the Firefox addressbar/awesomebar shows blank lines when autosuggesting websites.
+    bug in some Firefox versions whereby the Firefox addressbar/awesomebar shows blank lines when autosuggesting websites.
 * Removed useless "mode" column in options dialog tree view
 * New proxy names default to host/ip address (if one was entered), otherwise they default back to the original "New Proxy" name. Requested here:
 http://foxyproxy.mozdev.org/drupal/content/default-nameip-comment-hint

@@ -532,6 +532,7 @@
 
 <!ENTITY foxyproxy.invalidcolor.label "Invalid color">
 <!ENTITY foxyproxy.validcolor.label "Valid color">
+<!ENTITY foxyproxy.color.label "Color">
 
 <!-- begin foxyproxyplus -->        
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Add/Edit Local IP Address Pattern">

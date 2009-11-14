@@ -84,7 +84,8 @@ Proxy.prototype = {
   direct: proxyService.newProxyInfo("direct", "", -1, 0, 0, null),
   animatedIcons: true,
   includeInCycle: true,
-  color: DEFAULT_COLOR,
+  _color: DEFAULT_COLOR,
+  colorString: "nmbado",
   fp: null,
 
   QueryInterface: function(aIID) {
@@ -135,7 +136,7 @@ Proxy.prototype = {
     e.setAttribute("lastresort", this.lastresort);
     e.setAttribute("animatedIcons", this.animatedIcons);
     e.setAttribute("includeInCycle", this.includeInCycle);
-    e.setAttribute("color", this.color);    
+    e.setAttribute("color", this._color);    
 
     var matchesElem = doc.createElement("matches");
     e.appendChild(matchesElem);
@@ -146,6 +147,32 @@ Proxy.prototype = {
     e.appendChild(this.manualconf.toDOM(doc));
     return e;
   },
+  
+  /**
+   * Create a variable that represents the color but as all letters.
+   * This is because the CSS style treechildren::-moz-tree-cell(x) requires
+   * x to be all letters (no numbers or symbols)
+   */
+  set color(n) {
+    this._color = n;
+    var str = new String(n); /* ensure it's a String type, not a Number type */
+    str = str.toLowerCase();
+    var temp = ["g", "h", "i", "j", "k", "m", "n", "o", "p", "q"];
+    temp["a"] = "a";
+    temp["b"] = "b";
+    temp["c"] = "c";
+    temp["d"] = "d";
+    temp["e"] = "e";
+    temp["f"] = "f";
+    temp["#"] = ""; 
+    this.colorString = "";
+    for (var i=0, len = str.length; i<len; i++)
+      this.colorString += temp[str[i]];
+  },
+  
+  get color() {
+    return this._color;
+  },  
 
   set enabled(e) {
     if (this.lastresort && !e) return; // can't ever disable this guy

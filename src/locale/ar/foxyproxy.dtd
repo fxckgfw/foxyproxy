@@ -416,6 +416,7 @@
 <!ENTITY foxyproxy.aboutproxyservice.label "أخيرا, زر خدمة البروكسي يقودك إلى صفحة البروكسي,حيث تستطيع أن تشتري شيء يعتمد عليه, عالي الإتصال لدول كثيرة بأسعار معقولة.">
 <!ENTITY foxyproxy.invalidcolor.label "لون غير متاح">
 <!ENTITY foxyproxy.validcolor.label "لون متاح">
+<!ENTITY foxyproxy.color.label "Color">
 <!-- begin foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Add/Edit Local IP Address Pattern">
 <!ENTITY foxyproxy.tempip.popup.label "Temporary patterns allow you to create patterns for local IP addresses that you don&apos;t use often without cluttering the IP address pattern list for a proxy. Temporary patterns are not saved to disk. They are kept in-memory and used for this Firefox session only.">

@@ -416,6 +416,7 @@
 <!ENTITY foxyproxy.aboutproxyservice.label "Die &quot;Proxy Service&quot; Schaltfläche schließlich leitet Sie auf die Proxy Service Website weiter, auf der Sie einen zuverlässigen Proxy-Dienst mit hoher Bandbreite in vielen verschiedenen Ländern zu einem günstigen Preis erwerben können.">
 <!ENTITY foxyproxy.invalidcolor.label "Ungültige Farbe">
 <!ENTITY foxyproxy.validcolor.label "Gültige Farbe">
+<!ENTITY foxyproxy.color.label "Color">
 <!-- begin foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Lokales IP-Adressmuster hinzufügen/ändern">
 <!ENTITY foxyproxy.tempip.popup.label "Temporäre Muster erlauben es Ihnen, Muster für selten genutzte lokale IP-Adressen zu erzeugen, ohne dass diese die Liste der IP-Adressmuster eines Proxies überladen. Temporäre Muster werden nicht auf Platte abgelegt. Sie werden im Speicher gehalten und nur für diese Firefox-Sitzung benutzt.">

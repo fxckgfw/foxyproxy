@@ -416,6 +416,7 @@
 <!ENTITY foxyproxy.aboutproxyservice.label "Przycisk usługi proxy przeniesie cię na naszą witrynę usług proxy, gdzie możesz wykupić niezawodne szerokopasmowe usługi proxy w wielu różnych krajach w rozsądnych cenach.">
 <!ENTITY foxyproxy.invalidcolor.label "Nieprawidłowy kolor">
 <!ENTITY foxyproxy.validcolor.label "Prawidłowy kolor">
+<!ENTITY foxyproxy.color.label "Color">
 <!-- begin foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Dodaj/edytuj wzorzec lokalnego adresu IP">
 <!ENTITY foxyproxy.tempip.popup.label "Wzorce tymczasowe pozwalają na tworzenie wzorców lokalnego adresu IP nie używanych często. Dzięki temu lista wzorców nie jest niepotrzebnie przeładowywana. Wzorce tymczasowe nie są zapisywane na dysku. Są one trzymane w pamięci i używane tylko w aktualnej sesji Firefoksa.">

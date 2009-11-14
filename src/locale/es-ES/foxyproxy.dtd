@@ -416,6 +416,7 @@
 <!ENTITY foxyproxy.aboutproxyservice.label "Finalmente, el botón servicio proxy le lleva a nuestro sitio web de servicios proxy, donde puede comprar servicios proxy confiables y de alto ancho de banda en diferentes países a un precio razonable.">
 <!ENTITY foxyproxy.invalidcolor.label "Color incorrecto">
 <!ENTITY foxyproxy.validcolor.label "Color correcto">
+<!ENTITY foxyproxy.color.label "Color">
 <!-- begin foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Añadir/Editar patrón de direcciones IP locales">
 <!ENTITY foxyproxy.tempip.popup.label "Los patrones temporales le permiten crear patrones para direcciones IP locales que no use con frecuencia sin interferir en la lista de patrones de un proxy. Los patrones temporales no se guardan en el disco. Se mantienen en memoria sólo durante la sesión actual de Firefox.">

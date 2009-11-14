@@ -416,6 +416,7 @@
 <!ENTITY foxyproxy.aboutproxyservice.label "Finally, the proxy service button brings you to our proxy service website, where you can buy reliable, high-bandwidth proxy service in many different countries at reasonable prices.">
 <!ENTITY foxyproxy.invalidcolor.label "Invalid color">
 <!ENTITY foxyproxy.validcolor.label "Valid color">
+<!ENTITY foxyproxy.color.label "Color">
 <!-- begin foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Lägg till/Redigera lokala IP-adressmönster">
 <!ENTITY foxyproxy.tempip.popup.label "Temporära mönster gör att du kan skapa mönster för lokala IP-adresser som du inte använder så ofta. Temporära mönster sparas inte till disk utan behålls bara i minnet så länge Firefox är igång.">

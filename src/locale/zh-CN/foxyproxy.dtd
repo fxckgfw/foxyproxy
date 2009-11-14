@@ -416,6 +416,7 @@
 <!ENTITY foxyproxy.aboutproxyservice.label "最后，代理服务按钮带你去订购代理服务。">
 <!ENTITY foxyproxy.invalidcolor.label "无效颜色">
 <!ENTITY foxyproxy.validcolor.label "有效颜色">
+<!ENTITY foxyproxy.color.label "Color">
 <!-- begin foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "添加/编辑本地IP地址模式">
 <!ENTITY foxyproxy.tempip.popup.label "临时模式让你可以为不常用的本地IP地址建立模式，以免扰乱代理服务器的IP地址模式列表。临时模式不会保存到磁盘。他们只是保存在内存中供当前 Firefox 会话使用。">

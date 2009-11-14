@@ -416,6 +416,7 @@
 <!ENTITY foxyproxy.aboutproxyservice.label "Finalement, le bouton de service proxy vous envoie vers notre site Web de service proxy où vous pouvez acheter un service proxy fiable et avec haute bande passante dans plusieurs pays à des prix raisonnables.">
 <!ENTITY foxyproxy.invalidcolor.label "Couleur invalide">
 <!ENTITY foxyproxy.validcolor.label "Couleur valide">
+<!ENTITY foxyproxy.color.label "Color">
 <!-- begin foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Ajouter / éditer un motif d&apos;adresse IP Locale">
 <!ENTITY foxyproxy.tempip.popup.label "Les motifs temporaires vous permettent de créer des motifs  que vous n&apos;utilisez pas souvent afin d&apos;éviter de surcharger la liste des motifs d&apos;adresse IP pour un proxy. Les motifs temporaires ne sont pas enregistrés sur le disque. Ils sont conservés en mémoire et ne sont utilisés que dans cette session Firefox.">

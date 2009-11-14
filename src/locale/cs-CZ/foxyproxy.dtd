@@ -416,6 +416,7 @@
 <!ENTITY foxyproxy.aboutproxyservice.label "A konečně, knoflík &quot;Koupit přístup k proxy&quot; Vám zobrazí stránku s možností placeného přístupu na spolehlivé a rychlé proxy servery v mnoha zemích za přijatelné ceny.">
 <!ENTITY foxyproxy.invalidcolor.label "Špatná barva">
 <!ENTITY foxyproxy.validcolor.label "Správná barva">
+<!ENTITY foxyproxy.color.label "Color">
 <!-- begin foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Přidat/upravit vzor pro místní IP adresu">
 <!ENTITY foxyproxy.tempip.popup.label "Dočasné vzory Vám umožní vytvářet pravidla pro místní IP adresy které používáte pouze příležitostně. Dočasné vzory se neukládají na disk. Jsou uloženy v paměti jen po dobu spuštění Firefoxu.">

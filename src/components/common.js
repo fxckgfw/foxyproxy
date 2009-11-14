@@ -205,6 +205,7 @@ Common.prototype = {
   },
   
   makeProxyTreeView : function(fp) {
+    
     return {
         rowCount : fp.proxies.length,
         getCellText : function(row, column) {
@@ -233,7 +234,13 @@ Common.prototype = {
         cycleHeader: function(aColId, aElt) {},
         getRowProperties: function(aRow, aColumn, aProperty) {},
         getColumnProperties: function(aColumn, aColumnElement, aProperty) {},
-        getCellProperties: function(aRow, aProperty) {},
+        getCellProperties: function(row, col, props) {
+          if (col.id == "colorCol") {
+            var i = fp.proxies.item(row);
+            var atom = CC["@mozilla.org/atom-service;1"].getService(CI.nsIAtomService).getAtom(i.colorString);
+            props.AppendElement(atom);
+          } 
+        },
         getLevel: function(row){ return 0; }
       };  
   },

@@ -204,45 +204,56 @@ Common.prototype = {
     }
   },
   
-  makeProxyTreeView : function(fp) {
+  makeProxyTreeView : function(fp, document) {    
+    var ret = {
+      rowCount : fp.proxies.length,
+      getCellText : function(row, column) {
+        var i = fp.proxies.item(row);    
+        switch(column.id) {
+          case "nameCol":return i.name;
+          case "descriptionCol":return i.notes;
+          case "hostCol":return i.manualconf.host;           
+          case "isSocksCol":return i.manualconf.isSocks?fp.getMessage("yes"):fp.getMessage("no");        
+          case "portCol":return i.manualconf.port;                   
+          case "socksverCol":return i.manualconf.socksversion == "5" ? "5" : "4/4a";                           
+          case "autopacCol":return i.autoconf.url;   
+          case "animatedIconsCol":return i.animatedIcons?fp.getMessage("yes"):fp.getMessage("no");
+          case "cycleCol":return i.includeInCycle?fp.getMessage("yes"):fp.getMessage("no");
+        }
+      },
+      setCellValue: function(row, col, val) {fp.proxies.item(row).enabled = val;},
+      getCellValue: function(row, col) {return fp.proxies.item(row).enabled;},    
+      isSeparator: function(aIndex) { return false; },
+      isSorted: function() { return false; },
+      isEditable: function(row, col) { return false; },
+      isContainer: function(aIndex) { return false; },
+      setTree: function(aTree){},
+      getImageSrc: function(aRow, aColumn) {return null;},
+      getProgressMode: function(aRow, aColumn) {},
+      cycleHeader: function(aColId, aElt) {},
+      getRowProperties: function(aRow, aColumn, aProperty) {},
+      getColumnProperties: function(aColumn, aColumnElement, aProperty) {},
+      getCellProperties: function(row, col, props) {
+        if (col.id == "colorCol") {
+          var i = fp.proxies.item(row);
+          var atom = CC["@mozilla.org/atom-service;1"].getService(CI.nsIAtomService).getAtom(i.colorString);
+          props.AppendElement(atom);
+        } 
+      },
+      getLevel: function(row){ return 0; }
+    };
     
-    return {
-        rowCount : fp.proxies.length,
-        getCellText : function(row, column) {
-          var i = fp.proxies.item(row);    
-          switch(column.id) {
-            case "nameCol":return i.name;
-            case "descriptionCol":return i.notes;
-            case "hostCol":return i.manualconf.host;           
-            case "isSocksCol":return i.manualconf.isSocks?fp.getMessage("yes"):fp.getMessage("no");        
-            case "portCol":return i.manualconf.port;                   
-            case "socksverCol":return i.manualconf.socksversion == "5" ? "5" : "4/4a";                           
-            case "autopacCol":return i.autoconf.url;   
-            case "animatedIconsCol":return i.animatedIcons?fp.getMessage("yes"):fp.getMessage("no");
-            case "cycleCol":return i.includeInCycle?fp.getMessage("yes"):fp.getMessage("no");
-          }
-        },
-        setCellValue: function(row, col, val) {fp.proxies.item(row).enabled = val;},
-        getCellValue: function(row, col) {return fp.proxies.item(row).enabled;},    
-        isSeparator: function(aIndex) { return false; },
-        isSorted: function() { return false; },
-        isEditable: function(row, col) { return false; },
-        isContainer: function(aIndex) { return false; },
-        setTree: function(aTree){},
-        getImageSrc: function(aRow, aColumn) {return null;},
-        getProgressMode: function(aRow, aColumn) {},
-        cycleHeader: function(aColId, aElt) {},
-        getRowProperties: function(aRow, aColumn, aProperty) {},
-        getColumnProperties: function(aColumn, aColumnElement, aProperty) {},
-        getCellProperties: function(row, col, props) {
-          if (col.id == "colorCol") {
-            var i = fp.proxies.item(row);
-            var atom = CC["@mozilla.org/atom-service;1"].getService(CI.nsIAtomService).getAtom(i.colorString);
-            props.AppendElement(atom);
-          } 
-        },
-        getLevel: function(row){ return 0; }
-      };  
+    /* Set the color column dynamically. Note that "x" in the CSS class
+       treechildren::-moz-tree-cell(x) must contain only letters. No numbers or symbols,
+       so we can't use proxy.id or proxy.name or even proxy.color. Hence, the special
+       proxy.colorString property that is a mapping of proxy.color to letters only
+     */
+    var styleSheet = document.styleSheets[0], proxies = fp.proxies;
+    for (var i=0, len=fp.proxies.length; i<len; i++) {
+      var p = fp.proxies.item(i);
+      styleSheet.insertRule("treechildren::-moz-tree-cell(" + p.colorString + "){border: 1px solid black;background-color:" + p.color + "}", styleSheet.cssRules.length);
+    }
+    return ret;
   },
   
   isThunderbird : function() {

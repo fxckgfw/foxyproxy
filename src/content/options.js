@@ -305,18 +305,7 @@ function _updateView(writeSettings, updateLogView) {
     onQuickAddEnabled(false);
   }
   
-  proxyTree.view = fpc.makeProxyTreeView(foxyproxy);
-  
-  /* Set the color column dynamically. Note that "x" in the CSS class
-     treechildren::-moz-tree-cell(x) must contain only letters. No numbers or symbols,
-     so we can't use proxy.id or proxy.name or even proxy.color. Hence, the special
-     proxy.colorString property that is a mapping of proxy.color to letters only
-   */
-  var styleSheet = document.styleSheets[0], proxies = foxyproxy.proxies;
-  for (var i=0, len=foxyproxy.proxies.length; i<len; i++) {
-    var p = foxyproxy.proxies.item(i);
-    styleSheet.insertRule("treechildren::-moz-tree-cell(" + p.colorString + "){border: 1px solid black;background-color:" + p.color + "}", styleSheet.cssRules.length);
-  }
+  proxyTree.view = fpc.makeProxyTreeView(foxyproxy, document);
   
   writeSettings && foxyproxy.writeSettings();
   setButtons();

@@ -31,6 +31,9 @@
       <treecol id="enabledCol" label="&foxyproxy.enabled.label;"
         flex="1" persist="width ordinal hidden" type="checkbox" />
       <splitter class="tree-splitter" />
+      <treecol id="colorCol" label="&foxyproxy.color.label;"
+        flex="1" persist="width ordinal hidden" />
+      <splitter class="tree-splitter" />
       <treecol id="nameCol" label="&foxyproxy.proxy.name.label;"
         primary="true" flex="1" persist="width ordinal hidden" />
       <splitter class="tree-splitter" />

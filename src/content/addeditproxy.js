@@ -430,7 +430,7 @@ function onRemoteDNSResolver(cb) {
   var temp = foxyproxy.proxies.dnsResolverProxy;
   // Is there already a remote DNS resolver defined (and it isn't us)?
   if (cb.checked && temp && temp.id != proxy.id) {
-    overlay.alert(window, foxyproxy.getMessage("dnsResolver.exists", [temp.name]));
+    overlay.alert(window, foxyproxy.getMessage("dnsResolver.exists", [temp.name,temp.name]));
     cb.checked = false;
   }
 }

@@ -172,74 +172,72 @@ var foxyproxy = {
   },
   
   torWizard : function() {
-    var owner = foxyproxy._getOptionsDlg();
-    if (this.ask(owner, this.fp.getMessage("torwiz.configure"))) {
-      var withoutPrivoxy = this.ask(owner,
-        this.fp.getMessage("torwiz.with.without.privoxy"),
-        this.fp.getMessage("torwiz.without"),
-        this.fp.getMessage("torwiz.with"));
-      !withoutPrivoxy && (withoutPrivoxy = !this.ask(owner, this.fp.getMessage("torwiz.privoxy.not.required")));
-      var input = {value:withoutPrivoxy?"9050":"8118"};
-      var ok, title = this.fp.getMessage("foxyproxy"),
-        portMsg = this.fp.getMessage("torwiz.port", [this.fp.getMessage(withoutPrivoxy?"tor":"privoxy")]);
-      do {
-        ok = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
-          .getService(Components.interfaces.nsIPromptService)
-          .prompt(owner, title, portMsg, input, null, {});
-        if (ok) {
-          if (isNaN(input.value) || input.value == "") {
-            foxyproxy.alert(owner, this.fp.getMessage("torwiz.nan"));
-            ok = false;
-          }
-        }
-        else
-          break;
-      } while (!ok);
-      var proxyDNS;
-      ok && (proxyDNS = this.ask(owner, this.fp.getMessage("torwiz.proxydns")));
+    var owner = foxyproxy._getOptionsDlg(),
+      withoutPrivoxy = this.ask(owner,
+      this.fp.getMessage("torwiz.with.without.privoxy"),
+      this.fp.getMessage("torwiz.without"),
+      this.fp.getMessage("torwiz.with"));
+    var input = {value:withoutPrivoxy?"9050":"8118"};
+    var ok, title = this.fp.getMessage("foxyproxy"),
+      portMsg = this.fp.getMessage("torwiz.port", [this.fp.getMessage(withoutPrivoxy?"tor":"privoxy")]);
+    do {
+      ok = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
+        .getService(Components.interfaces.nsIPromptService)
+        .prompt(owner, title, portMsg, input, null, {});
       if (ok) {
-        var p = Components.classes["@leahscape.org/foxyproxy/proxy;1"]
-          .createInstance(Components.interfaces.nsISupports).wrappedJSObject;
-        p.name = this.fp.getMessage("tor");
-        p.notes = this.fp.getMessage("torwiz.proxy.notes");
-        p.dnsResolver = proxyDNS;
-        var match = Components.classes["@leahscape.org/foxyproxy/match;1"]
-          .createInstance(Components.interfaces.nsISupports).wrappedJSObject;
-        match.name = this.fp.getMessage("torwiz.google.mail");
-        match.pattern = this.fp.getMessage("torwiz.pattern");
-        p.matches.push(match);        
-        p.mode = "manual";
-        if (withoutPrivoxy) {
-          p.manualconf.host="127.0.0.1";
-          p.manualconf.port=9050;
-          p.manualconf.isSocks=true;
-        }
-        else {
-          p.manualconf.host="127.0.0.1";
-          p.manualconf.port=8118;
-          p.manualconf.isSocks=false;
-        }
-        p.manualconf.socksversion=5;
-        p.autoconf.url = "";
-        
-        // Open the patterns dialog only if FP Standard
-        if (this.fp.isFoxyProxySimple()) {
-          p.selectedTabIndex = 1;
-          _congrats(p);
-        }
-        else {
-          p.selectedTabIndex = 2;
-          var params = {inn:{isNew:true, proxy:p, torwiz:true}, out:null}, win = owner?owner:window;
-          win.openDialog("chrome://foxyproxy/content/addeditproxy.xul", "",
-            "chrome,dialog,modal,resizable=yes,center", params).focus();
-          if (params.out)
-            _congrats(params.out.proxy);
-          else
-            ok = false;
+        if (isNaN(input.value) || input.value == "") {
+          foxyproxy.alert(owner, this.fp.getMessage("torwiz.nan"));
+          ok = false;
         }
       }
-      !ok && foxyproxy.alert(owner, this.fp.getMessage("torwiz.cancelled"));
+      else
+        break;
+    } while (!ok);
+    if (ok) {
+      // Prompt use about proxying DNS queries, but only if another proxy
+      // isn't already set for that
+      var proxyDNS = this.fp.proxyDNS ? false : this.ask(owner, this.fp.getMessage("torwiz.proxydns"));
+      var p = Components.classes["@leahscape.org/foxyproxy/proxy;1"]
+        .createInstance(Components.interfaces.nsISupports).wrappedJSObject;
+      p.name = this.fp.getMessage("tor");
+      p.notes = this.fp.getMessage("torwiz.proxy.notes");
+      p.dnsResolver = proxyDNS;
+      var match = Components.classes["@leahscape.org/foxyproxy/match;1"]
+        .createInstance(Components.interfaces.nsISupports).wrappedJSObject;
+      match.name = this.fp.getMessage("torwiz.google.mail");
+      match.pattern = this.fp.getMessage("torwiz.pattern");
+      p.matches.push(match);        
+      p.mode = "manual";
+      if (withoutPrivoxy) {
+        p.manualconf.host="127.0.0.1";
+        p.manualconf.port=9050;
+        p.manualconf.isSocks=true;
+      }
+      else {
+        p.manualconf.host="127.0.0.1";
+        p.manualconf.port=8118;
+        p.manualconf.isSocks=false;
+      }
+      p.manualconf.socksversion=5;
+      p.autoconf.url = "";
+      
+      // Open the patterns dialog only if FP Standard
+      if (this.fp.isFoxyProxySimple()) {
+        p.selectedTabIndex = 1;
+        _congrats(p);
+      }
+      else {
+        p.selectedTabIndex = 2;
+        var params = {inn:{isNew:true, proxy:p, torwiz:true}, out:null}, win = owner?owner:window;
+        win.openDialog("chrome://foxyproxy/content/addeditproxy.xul", "",
+          "chrome,dialog,modal,resizable=yes,center", params).focus();
+        if (params.out)
+          _congrats(params.out.proxy);
+        else
+          ok = false;
+      }
     }
+    !ok && foxyproxy.alert(owner, this.fp.getMessage("torwiz.cancelled"));
     function _congrats(p) {
       foxyproxy.fp.proxies.push(p);
       foxyproxy.updateViews(true);

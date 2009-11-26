@@ -763,6 +763,13 @@ biesi>  passing it the appropriate proxyinfo
       return a?a[0]:null;
     },
     
+    /**
+     * This *should* return only 1 element, otherwise we're in a bad state.
+     */
+    get dnsResolverProxies() {
+      return this.list.filter(function(e) {return e.dnsResolver && e.enabled;});
+    },
+    
     getIndexById : function(id) {
       var len=this.length;
       for (var i=0; i<len; i++) {
@@ -927,18 +934,22 @@ biesi>  passing it the appropriate proxyinfo
     
     /**
      * Possibly the remote DNS resolver has been changed (created, changed, deleted, disabled).
-     * If |subj| is null, we should search for a dnsResolver AND IGNORE |data|. Otherwise,
-     * the affected dnsResolver is |subj| and is either enabled or disabled based
-     * on the value of |data|.
      */
     observe : function(subj, topic, data) {
       if (topic == "foxyproxy-dns-resolver") {
         if (gFP.mode == "disabled") return;          
         else {
-          var enabled = false, proxyDNS = false, remoteDNSResolver = this.dnsResolverProxy; /* search for the dnsResolver amongst all proxies */
-          if (remoteDNSResolver)
-            enabled = remoteDNSResolver.enabled;
-          if (remoteDNSResolver && enabled) {
+          // First, ensure there is only one dnsResolverProxy
+          var remoteDNSResolvers = this.dnsResolverProxies, len=remoteDNSResolvers.length;
+          if (len > 1) {
+            // Turn them all off except the first
+            for (var i=1; i<len; i++)
+              remoteDNSResolvers[i].dnsResolver = false;
+            gFP.writeSettings(); // write the changes we just fixed
+          }
+          // Now set the proxy as the dns resolver
+          var proxyDNS = false, remoteDNSResolver = this.dnsResolverProxy; /* search for the dnsResolver amongst all proxies */
+          if (remoteDNSResolver) {
             var mc = remoteDNSResolver.manualconf;
             if (mc.isSocks) {
               var p = gFP.getPrefsService("network.proxy.");
@@ -947,7 +958,7 @@ biesi>  passing it the appropriate proxyinfo
               p.setIntPref("socks_port", mc.port);
               p.setIntPref("socks_version", mc.socksversion);
               p.setBoolPref("socks_remote_dns", true);
-             proxyDNS = true;
+              proxyDNS = true;
             }
             else
               gFP.notifier.alert(gFP.getMessage("foxyproxy"), gFP.getMessage("dnsResolver.not.socks", [remoteDNSResolver.name]));                 

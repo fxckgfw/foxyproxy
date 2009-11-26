@@ -160,7 +160,6 @@
 <!ENTITY foxyproxy.proxydns.label2 "Use this proxy for all DNS lookups">
 <!ENTITY foxyproxy.proxydns.accesskey "U">
 <!ENTITY foxyproxy.proxydns.tooltip2 "If checked, DNS lookups are routed through this proxy">
-<!ENTITY foxyproxy.proxydns.notice "Firefox must restart for settings to take effect. Restart now?">
 
 <!ENTITY foxyproxy.showstatusbaricon.label "Show icon on statusbar">
 <!ENTITY foxyproxy.showstatusbaricon.accesskey "S">

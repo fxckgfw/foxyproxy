@@ -416,7 +416,7 @@
 <!ENTITY foxyproxy.aboutproxyservice.label "Infine, facendo clic sul pulsante 'Proxy a pagamento' è possibile accedere a prezzi ragionevoli ad un servizio privato di proxy affidabili, con ampia larghezza di banda e disponibili per diversi paesi">
 <!ENTITY foxyproxy.invalidcolor.label "Il codice del colore non è valido">
 <!ENTITY foxyproxy.validcolor.label "Il codice del colore è valido">
-<!ENTITY foxyproxy.color.label "Color">
+<!ENTITY foxyproxy.color.label "Colore">
 <!-- begin foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Aggiunta/modifica di modelli di indirizzi IP locali">
 <!ENTITY foxyproxy.tempip.popup.label "I modelli temporanei permettono di creare modelli di indirizzi IP locali che non vengono utilizzati spesso, senza interessare le liste di modelli di indirizzi IP dei proxy. Tali modelli non vengono salvati sul disco rigido, ma mantenuti in memoria ed eliminati alla chiusura della sessione di Firefox">

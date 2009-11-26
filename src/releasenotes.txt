@@ -12,3 +12,6 @@ FoxyProxy Standard 2.17 and FoxyProxy Basic 1.3
 * Added proxy color to the logging tab
 * Fixed text-wrapping when resizing the "Choose Proxy" dialog (initiated from the Alt+F3 "QuickProxy" shortcut)
 * Proxy color now displayed when pressing the Alt+F3 "QuickProxy" shortcut
+* Fixed bug whereby some alert boxes weren't properly parented/owned. This led to some alerts not being properly modal
+  with respect to the window/dialog that issued the alert.
+* Fixed various minor bugs with the Tor Wizard; also removed a step in the wizard

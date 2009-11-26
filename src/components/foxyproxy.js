@@ -947,8 +947,6 @@ biesi>  passing it the appropriate proxyinfo
               p.setIntPref("socks_port", mc.port);
               p.setIntPref("socks_version", mc.socksversion);
               p.setBoolPref("socks_remote_dns", true);
-              //if (promptRestart)
-                //overlay.ask(window, '&foxyproxy.proxydns.notice;') && foxyproxy.restart();
              proxyDNS = true;
             }
             else

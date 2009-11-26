@@ -16,13 +16,14 @@
   title="&foxyproxy.standard.label;" buttons="accept,cancel,extra2"
   ondialogextra2="onSettings()" buttonlabelextra2="&foxyproxy.addnewproxy.label;" buttonaccesskeyextra2="&foxyproxy.addnewproxy.accesskey;"
   xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-  xmlns:html="http://www.w3.org/1999/xhtml" persist="screenX screenY height width"
+  xmlns:html="http://www.w3.org/1999/xhtml" persist="screenX screenY"
   onload="onLoad();" ondialogaccept="onOK();">
 
   <script src="chooseproxy.js" />
   
-  <label id="title"/>
   <separator class="thin"/>
+  <description id="title" style="width: 1em;font-weight:bold;"/>
+  <separator/>
   <tree id="proxyTree" align="stretch" enableColumnDrag="true"
     flex="1" style="width: 35em; height: 10em;" seltype="single"
     onclick="overlay.onTreeClick(event, this);">

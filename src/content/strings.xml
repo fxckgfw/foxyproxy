@@ -12,10 +12,8 @@
 <?xml-stylesheet href="foxyproxy.css" type="text/css"?>
 <!DOCTYPE overlay SYSTEM "chrome://foxyproxy/locale/foxyproxy.dtd">
 
-<root>  
-  <i18n id="foxyproxy.proxydns.label" value="&foxyproxy.proxydns.label;"/>
+<root>
   <i18n id="foxyproxy.proxydns.accesskey" value="&foxyproxy.proxydns.accesskey;"/>  
-  <i18n id="foxyproxy.proxydns.tooltip" value="&foxyproxy.proxydns.tooltip;"/>  
   <i18n id="foxyproxy.proxydns.notice" value="&foxyproxy.proxydns.notice;"/>  
   
   <i18n id="foxyproxy.showstatusbaricon.label" value="&foxyproxy.showstatusbaricon.label;"/>

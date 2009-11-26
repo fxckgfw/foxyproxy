@@ -369,13 +369,6 @@
                    <button command="resetSettingsCmd" label="&foxyproxy.resetlocation.label;"/>
                 </row>                
                 <row align="center">
-                  <checkbox id="dnsEnabled"
-                    label="&foxyproxy.proxydns.label;"
-                    accesskey="&foxyproxy.proxydns.accesskey;"
-                    tooltiptext="&foxyproxy.proxydns.tooltip;"
-                    oncommand="foxyproxy.proxyDNS = this.checked;overlay.ask(window, '&foxyproxy.proxydns.notice;') &amp;&amp; foxyproxy.restart();" />
-                </row>
-                <row align="center">
                   <checkbox id="advancedMenusEnabled"
                     label="&foxyproxy.advancedmenus.label;"
                     accesskey="&foxyproxy.advancedmenus.accesskey;"
@@ -701,6 +694,12 @@
             tooltiptext="&foxyproxy.logging.maxsize.tooltip;" />
           <button id="foxyproxy-set-button" command="maxSizeCmd" size="4" />
         </hbox>
+
+        <hbox align="center">
+          <button id="foxyproxy-open-tab-button" command="openLogURLInNewTabCmd" />
+          <button id="foxyproxy-copy-clipboard-button" command="copyLogURLToClipboardCmd" />
+          <button id="foxyproxy-delete-button" command="deleteLogEntryCmd" />
+        </hbox>
         <checkbox command="noURLsCmd" />
         <separator class="thin"/>
          <hbox flex="1">
@@ -718,6 +717,9 @@
    							onclick="sortlog(this.id)" class="sortDirectionIndicator"
                  label="&foxyproxy.tab.logging.url.label;" primary="true"
                  flex="1" persist="width ordinal hidden" />
+               <splitter class="tree-splitter" />
+               <treecol id="colorCol" label="&foxyproxy.color.label;" flex="1"
+                 persist="width ordinal hidden" />
                <splitter class="tree-splitter" />
                <treecol id="proxyName" label="&foxyproxy.proxy.name.label;"
    							onclick="sortlog(this.id)" class="sortDirectionIndicator"
@@ -763,11 +765,6 @@
              <treechildren id="logTreeChildren" flex="1"
                context="logTreeMenu" />
            </tree>
-           <vbox>
-             <button id="foxyproxy-open-tab-button" command="openLogURLInNewTabCmd" />
-             <button id="foxyproxy-copy-clipboard-button" command="copyLogURLToClipboardCmd" />
-             <button id="foxyproxy-delete-button" command="deleteLogEntryCmd" />
-           </vbox>       
          </hbox> 
       </tabpanel>
     </tabpanels>

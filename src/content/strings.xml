@@ -14,7 +14,6 @@
 
 <root>
   <i18n id="foxyproxy.proxydns.accesskey" value="&foxyproxy.proxydns.accesskey;"/>  
-  <i18n id="foxyproxy.proxydns.notice" value="&foxyproxy.proxydns.notice;"/>  
   
   <i18n id="foxyproxy.showstatusbaricon.label" value="&foxyproxy.showstatusbaricon.label;"/>
   <i18n id="foxyproxy.showstatusbaricon.accesskey" value="&foxyproxy.showstatusbaricon.accesskey;"/>
@@ -73,8 +72,6 @@
 
   <i18n id="foxyproxy.blacklist.label" value="&foxyproxy.blacklist.label;"/>
   <i18n id="foxyproxy.whitelist.label" value="&foxyproxy.whitelist.label;"/>    
-  
-	<i18n id="foxyproxy.proxydns.notice" value="&foxyproxy.proxydns.notice;"/>
 
 	<i18n id="foxyproxy.tab.logging.timestamp.label" value="&foxyproxy.tab.logging.timestamp.label;"/>
 	<i18n id="foxyproxy.tab.logging.url.label" value="&foxyproxy.tab.logging.url.label;"/>

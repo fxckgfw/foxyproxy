@@ -113,6 +113,7 @@ Proxy.prototype = {
     this.animatedIcons = node.hasAttribute("animatedIcons") ? node.getAttribute("animatedIcons") == "true" : !this.lastresort; // new for 2.4
     this.includeInCycle = node.hasAttribute("includeInCycle") ? node.getAttribute("includeInCycle") == "true" : !this.lastresort; // new for 2.5
     this.color = gGetSafeAttr(node, "color", DEFAULT_COLOR);
+    this._dnsResolver = gGetSafeAttrB(node, "dnsResolver", false);
     
     for (var i=0,temp=node.getElementsByTagName("match"); i<temp.length; i++) {
       var j = this.matches.length;
@@ -136,7 +137,8 @@ Proxy.prototype = {
     e.setAttribute("lastresort", this.lastresort);
     e.setAttribute("animatedIcons", this.animatedIcons);
     e.setAttribute("includeInCycle", this.includeInCycle);
-    e.setAttribute("color", this._color);    
+    e.setAttribute("color", this._color);
+    e.setAttribute("dnsResolver", this._dnsResolver);
 
     var matchesElem = doc.createElement("matches");
     e.appendChild(matchesElem);
@@ -146,6 +148,14 @@ Proxy.prototype = {
     e.appendChild(this.autoconf.toDOM(doc));
     e.appendChild(this.manualconf.toDOM(doc));
     return e;
+  },
+
+  set dnsResolver(n) {
+    this._dnsResolver = n;
+  },
+    
+  get dnsResolver() {
+    return this._dnsResolver;
   },
   
   /**
@@ -179,6 +189,7 @@ Proxy.prototype = {
     this._enabled = e;
 		this.shouldLoadPAC() && this.autoconf.loadPAC();
     this.handleTimer();
+    this.fp.broadcast(null, "foxyproxy-dns-resolver");
   },
 
   get enabled() {return this._enabled;},
@@ -366,7 +377,7 @@ ManualConf.prototype = {
     e.setAttribute("host", this._host);
     e.setAttribute("port", this._port);
     e.setAttribute("socksversion", this._socksversion);
-    e.setAttribute("isSocks", this._isSocks);
+    e.setAttribute("isSocks", this._isSocks); 
     return e;
   },
 
@@ -377,7 +388,7 @@ ManualConf.prototype = {
     this.proxy = this._isSocks ? proxyService.newProxyInfo(this._socksversion == "5"?"socks":"socks4", this._host, this._port,
           this.fp.proxyDNS ? CI.nsIProxyInfo.TRANSPARENT_PROXY_RESOLVES_HOST : 0, 0, null): // never ignore, never failover
           proxyService.newProxyInfo("http", this._host, this._port, 0, 0, null);
-  },
+  },  
 
   get host() {return this._host;},
   set host(e) {

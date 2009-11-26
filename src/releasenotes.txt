@@ -3,7 +3,9 @@ FoxyProxy Standard 2.17 and FoxyProxy Basic 1.3
 
 * DNS lookups now fixed! Removed the Global Setting "Use SOCKS proxy for DNS lookups" and replaced it with
   a "Use this proxy for all DNS lookups" checkbox on each Proxy Settings dialog. However, only one proxy can be
-  chosen amongst all proxies. See screenshot here: and here:
+  chosen for DNS lookups amongst all proxies. This is a Firefox limitation. See screenshot here:
+  http://foxyproxy.mozdev.org/images/screenshots/2.17/proxy-settings.png and here:
+  http://foxyproxy.mozdev.org/images/screenshots/2.17/only-one-dns-resolver-for-all-proxies.png
 * Fixed "Cycle Through Modes" bug as described here: http://foxyproxy.mozdev.org/drupal/content/cycle-through-modes-issue
 * Logging tab: moved "Open URL in New Tab", "Copy URL to Clipboard", and "Delete Selection" buttons above the log so the horizontal
   view of the log is maximized. Requested here: 

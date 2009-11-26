@@ -69,8 +69,8 @@ var gLoggEntryFactory = function(proxy, aMatch, uri, type, errMsg) {
     bool.data = subj;
     var d;
     if (typeof(data) == "string" || typeof(data) == "number") {
-      /* it's a number when this._mode is 3rd arg, and FoxyProxy is set to a proxy for all URLs.
-       * also a number when a new dnsResolver is set in proxy.js.
+      /*
+       * it's a number when this._mode is 3rd arg, and FoxyProxy is set to a proxy for all URLs
        */
       var d = CC["@mozilla.org/supports-string;1"].createInstance(CI.nsISupportsString);
       d.data = "" + data; // force to a string

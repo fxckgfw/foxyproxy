@@ -244,7 +244,6 @@ var foxyproxy = {
       foxyproxy.fp.proxies.push(p);
       foxyproxy.updateViews(true);
       foxyproxy.alert(owner, foxyproxy.fp.getMessage("torwiz.congratulations"));
-      //proxyDNS && foxyproxy.ask(owner, foxyproxy.fp.getMessage("foxyproxy.proxydns.notice")) && foxyproxy.fp.restart();
       foxyproxy.fp.broadcast(null, "foxyproxy-dns-resolver"); /* check for a new DNS resolver */
     }
   },

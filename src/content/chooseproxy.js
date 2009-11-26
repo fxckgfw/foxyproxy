@@ -14,10 +14,7 @@ function onLoad() {
   
   proxyTree.view = fpc.makeProxyTreeView(fp, document);
   proxyTree.view.selection.select(0); /* select the first entry */
-  var reloadCurTab = document.getElementById("reloadcurtab");
-  if (inn.hideReloadCurTab)
-    reloadCurTab.hidden = true;
-  reloadCurTab.checked = inn.reloadcurtab;
+  document.getElementById("reloadcurtab").checked = inn.reloadcurtab;
   sizeToContent();
 }
 

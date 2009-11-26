@@ -214,7 +214,7 @@
       </hbox>
       <separator class="thin"/>
       <hbox flex="1">
-        <tree id="urlsTree" flex="1" align="stretch" enableColumnDrag="true" seltype="single" onselect="setButtons('urls-tree-row-selected', urlsTree);"
+        <tree id="urlsTree" flex="1" align="stretch" enableColumnDrag="true" seltype="single" onselect="setButtons('urls-tree-row-selected', this;"
 	        	onclick="overlay.onTreeClick(event, this);" persist="sortDirection sortResource" sortDirection="ascending" sortResource="name">
           <treecols onclick="sort(this.id)" pickertooltiptext="&foxyproxy.tree.pickertooltiptext.label;">
             <treecol id="enabled" onclick="sort(this.id)" label="&foxyproxy.enabled.label;" type="checkbox" flex="1" persist="width ordinal hidden"/><splitter class="tree-splitter"/>
@@ -248,15 +248,16 @@
   </hbox>
   <separator/>
   <hbox flex="1">
-    <tree id="torWizUrlsTree" flex="1" align="stretch" enableColumnDrag="true" seltype="single" onselect="setButtons('urls-tree-row-selected', urlsTree);">
-      <treecols pickertooltiptext="&foxyproxy.tree.pickertooltiptext.label;">
-        <treecol id="enabledCol" label="&foxyproxy.enabled.label;" type="checkbox" flex="1" persist="width ordinal hidden"/><splitter class="tree-splitter"/>
-        <treecol id="nameCol" label="&foxyproxy.pattern.name.label;" flex="1" persist="width ordinal hidden"/><splitter class="tree-splitter"/>
-        <treecol id="patternCol" label="&foxyproxy.url.pattern.label;" flex="1" persist="width ordinal hidden"/><splitter class="tree-splitter"/>
-        <treecol id="patternTypeCol" label="&foxyproxy.pattern.type.label;" flex="1" persist="width ordinal hidden"/><splitter class="tree-splitter"/>
-        <treecol id="blackCol" label="&foxyproxy.whitelist.blacklist.label;" flex="1" persist="width ordinal hidden"/><splitter class="tree-splitter"/>
-        <treecol id="caseSensitiveCol" label="&foxyproxy.casesensitive.label;" flex="1" persist="width ordinal hidden"/><splitter class="tree-splitter"/>            
-        <treecol id="tempCol" label="&foxyproxy.temp.label;" flex="1" persist="width ordinal hidden"/><splitter class="tree-splitter"/>        
+    <tree id="torWizUrlsTree" flex="1" align="stretch" enableColumnDrag="true" seltype="single" onselect="setButtons('urls-tree-row-selected', this);"
+        onclick="overlay.onTreeClick(event, this);" persist="sortDirection sortResource" sortDirection="ascending" sortResource="name">
+      <treecols onclick="sort(this.id)" pickertooltiptext="&foxyproxy.tree.pickertooltiptext.label;">
+        <treecol id="enabled" onclick="sort(this.id)" label="&foxyproxy.enabled.label;" type="checkbox" flex="1" persist="width ordinal hidden"/><splitter class="tree-splitter"/>
+        <treecol id="name" onclick="sort(this.id)" label="&foxyproxy.pattern.name.label;" flex="1" persist="width ordinal hidden"/><splitter class="tree-splitter"/>
+        <treecol id="pattern" onclick="sort(this.id)" label="&foxyproxy.url.pattern.label;" flex="1" persist="width ordinal hidden"/><splitter class="tree-splitter"/>
+        <treecol id="isRegEx" onclick="sort(this.id)" label="&foxyproxy.pattern.type.label;" flex="1" persist="width ordinal hidden"/><splitter class="tree-splitter"/>
+        <treecol id="isBlackList" onclick="sort(this.id)" label="&foxyproxy.whitelist.blacklist.label;" flex="1" persist="width ordinal hidden"/><splitter class="tree-splitter"/>
+        <treecol id="caseSensitive" onclick="sort(this.id)" label="&foxyproxy.casesensitive.label;" flex="1" persist="width ordinal hidden"/><splitter class="tree-splitter"/>            
+        <treecol id="temp" onclick="sort(this.id)" label="&foxyproxy.temp.label;" flex="1" persist="width ordinal hidden"/><splitter class="tree-splitter"/>            
       </treecols>
       <treechildren context="urlsTreeContext" ondblclick="onAddEditURLPattern(false);"/>
      </tree>

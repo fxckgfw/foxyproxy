@@ -41,6 +41,7 @@ function onLoad() {
   document.getElementById("isSocks").checked = proxy.manualconf.isSocks;
 	onIsSocks(proxy.mode == "manual" && proxy.manualconf.isSocks);
   document.getElementById("socksversion").value = proxy.manualconf.socksversion;
+  document.getElementById("remoteDNSResolver").checked = proxy.dnsResolver;
   autoconfurl.value = proxy.autoconf.url;
 
   if (proxy.lastresort) {
@@ -129,8 +130,8 @@ function onOK() {
     foxyproxy.alert(this, foxyproxy.getMessage("foxyproxy.invalidcolor.label"));
     return false;
   }
+  proxy.dnsResolver = document.getElementById("remoteDNSResolver").checked;
   proxy.afterPropertiesSet();
-
   window.arguments[0].out = {proxy:proxy};
   return true;
 }
@@ -320,7 +321,9 @@ function onWildcardReference(popupId, btnId) {
 }
 
 function onIsSocks(checked) {
-	document.getElementById("socks5").disabled = document.getElementById("socks4").disabled = !checked;
+  document.getElementById("remoteDNSResolver").disabled = document.getElementById("socks5").disabled = document.getElementById("socks4").disabled = !checked;
+  if (!checked)
+    document.getElementById("remoteDNSResolver").checked = false; /* forcibly uncheck remoteDNSResolver when this isn't a socks proxy */
 }
 
 function pickcolor(scolor) {
@@ -420,5 +423,14 @@ function onHostChange(hostInput) {
       hostInput.value = match[1];
       portInput.value = port;
     }
+  }
+}
+
+function onRemoteDNSResolver(cb) {
+  var temp = foxyproxy.proxies.dnsResolverProxy;
+  // Is there already a remote DNS resolver defined (and it isn't us)?
+  if (cb.checked && temp && temp.id != proxy.id) {
+    overlay.alert(window, foxyproxy.getMessage("dnsResolver.exists", [temp.name]));
+    cb.checked = false;
   }
 }

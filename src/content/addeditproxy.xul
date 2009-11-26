@@ -122,6 +122,11 @@
                   <radio id="socks4" value="4" label="&foxyproxy.socks.v4;" accesskey="4" observes="disabled-broadcaster"/>
                   <radio id="socks5" value="5" label="&foxyproxy.socks.v5;" accesskey="5" observes="disabled-broadcaster"/>
                 </radiogroup>
+                <checkbox id="remoteDNSResolver" observes="disabled-broadcaster"
+                  label="&foxyproxy.proxydns.label2;"
+                  accesskey="&foxyproxy.proxydns.accesskey;"
+                  tooltiptext="&foxyproxy.proxydns.tooltip2;"
+                  oncommand="onRemoteDNSResolver(this)"/>
               </hbox>
             </groupbox>
           <separator class="thin"/>

@@ -157,9 +157,9 @@
 <!ENTITY foxyproxy.tab.logging.accesskey "L">
 <!ENTITY foxyproxy.tab.logging.tooltip "Manage Logging Settings">
 
-<!ENTITY foxyproxy.proxydns.label "Use SOCKS proxy for DNS lookups">
+<!ENTITY foxyproxy.proxydns.label2 "Use this proxy for all DNS lookups">
 <!ENTITY foxyproxy.proxydns.accesskey "U">
-<!ENTITY foxyproxy.proxydns.tooltip "If checked, DNS lookups are routed through a SOCKS proxy">
+<!ENTITY foxyproxy.proxydns.tooltip2 "If checked, DNS lookups are routed through this proxy">
 <!ENTITY foxyproxy.proxydns.notice "Firefox must restart for settings to take effect. Restart now?">
 
 <!ENTITY foxyproxy.showstatusbaricon.label "Show icon on statusbar">

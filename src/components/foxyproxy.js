@@ -69,7 +69,9 @@ var gLoggEntryFactory = function(proxy, aMatch, uri, type, errMsg) {
     bool.data = subj;
     var d;
     if (typeof(data) == "string" || typeof(data) == "number") {
-      /* it's a number when this._mode is 3rd arg, and FoxyProxy is set to a proxy for all URLs */
+      /* it's a number when this._mode is 3rd arg, and FoxyProxy is set to a proxy for all URLs.
+       * also a number when a new dnsResolver is set in proxy.js.
+       */
       var d = CC["@mozilla.org/supports-string;1"].createInstance(CI.nsISupportsString);
       d.data = "" + data; // force to a string
     }
@@ -118,7 +120,11 @@ foxyproxy.prototype = {
     if (!aIID.equals(CI.nsISupports) && !aIID.equals(CI.nsIObserver))
         throw CR.NS_ERROR_NO_INTERFACE;
     return this;
-},
+  },
+  
+  broadcast : function(subj, topic, data) {
+    gBroadcast(subj, topic, data);
+  },
 
   init : function() {
     try {
@@ -147,6 +153,7 @@ foxyproxy.prototype = {
               gObsSvc.addObserver(this, "domwindowclosed", false);
         gObsSvc.addObserver(this, "domwindowopened", false);
       gObsSvc.addObserver(this, "profile-after-change", false);
+      gObsSvc.addObserver(this.proxies, "foxyproxy-dns-resolver", false);
         //gObsSvc.addObserver(this, "http-on-modify-request", false);
               break;
           case "domwindowclosed":
@@ -165,6 +172,7 @@ foxyproxy.prototype = {
             gObsSvc.removeObserver(this, "domwindowclosed");
         gObsSvc.removeObserver(this, "domwindowopened");
             gObsSvc.removeObserver(this, "profile-after-change");
+            gObsSvc.removeObserver(this.proxies, "foxyproxy-dns-resolver");
             break;
       /*case "foxyproxy-window-opened":*/
       case "domwindowopened":
@@ -250,7 +258,13 @@ biesi>  passing it the appropriate proxyinfo
       this.notifier.alert(this.getMessage("foxyproxy"), "Unrecognized mode specified: " + mode);
     }
     this.toggleFilter(this._mode != "disabled");
-    this._mode=="disabled" && this.loadDefaultPAC();
+    if (this._mode=="disabled") {
+      this.loadDefaultPAC();
+      this.clearPrefs("network.proxy.", "type", "socks", "socks_port", "socks_version", "socks_remote_dns"); /* clear remote DNS lookup prefs */
+    }
+    else
+      gBroadcast(null, "foxyproxy-dns-resolver");
+    
     if (init) return;
     writeSettings && this.writeSettings();
     gBroadcast(this.autoadd._enabled, "foxyproxy-mode-change", this._mode);
@@ -295,7 +309,6 @@ biesi>  passing it the appropriate proxyinfo
    * patterns, proxy1, ..., lastresort, random, roundrobin, disabled
    */
   cycleMode : function() {
-    var self=this;
     if (this._selectedProxy && this._selectedProxy.lastresort) {
       this.setMode("disabled", true);
     }
@@ -311,11 +324,11 @@ biesi>  passing it the appropriate proxyinfo
       this.setMode(p?p.id:"disabled", true);
     }
     function _getNextInCycle(start) {
-      for (var p=self.proxies.getNextById(start); p && !p.includeInCycle; p = self.proxies.getNextById(p.id));
+      for (var p=gFP.proxies.getNextById(start); p && !p.includeInCycle; p = gFP.proxies.getNextById(p.id));
       return p;
     }
     function _getNextAfterPatterns() {
-      var p = this.proxies.item(0);
+      var p = gFP.proxies.item(0);
       (!p || !p.enabled || !p.includeInCycle) && (p = _getNextInCycle(this.proxies.item(0).id));
       return p?p.id:"disabled";      
     }
@@ -360,10 +373,17 @@ biesi>  passing it the appropriate proxyinfo
 
   clearSettingsPref : function(p) {
     p = p || this.getPrefsService("extensions.foxyproxy.");
-    try {
+    if (p.prefHasUserValue("settings"))
       p.clearUserPref("settings");
+  },
+  
+  clearPrefs : function(branch) {
+    var p = this.getPrefsService(branch);
+    // Iterate through non-declared args
+    for (var i=1, len=arguments.length; i<len; i++) {
+      if (p.prefHasUserValue(arguments[i]))
+        p.clearUserPref(arguments[i]);
     }
-    catch (e) {}
   },
 
   /**
@@ -550,16 +570,15 @@ biesi>  passing it the appropriate proxyinfo
     this.writeSettings();
   },
 
+  /** 
+   * Just a true/false shortcut; doesn't actually contain the DNS proxy info. Used when
+   *  deciding to set CI.nsIProxyInfo.TRANSPARENT_PROXY_RESOLVES_HOST or not so we don't
+   *  slow down PAC logic.
+   */
   get proxyDNS() { return this._proxyDNS; },
   set proxyDNS(p) {
     this._proxyDNS = p;
-    this.setSocksRemoteDNS(p);
     this.writeSettings();
-  },
-  
-  setSocksRemoteDNS : function(x) {
-    /* TODO: when x is true, warn user that a SOCKS server must be defined */ 
-    this.getPrefsService("network.proxy.").setBoolPref("socks_remote_dns", x);
   },
   
   get selectedTabIndex() { return this._selectedTabIndex; },
@@ -631,7 +650,6 @@ biesi>  passing it the appropriate proxyinfo
     this.toolbar.fromDOM(doc);
     this.logg.fromDOM(doc);
     this._proxyDNS = gGetSafeAttrB(node, "proxyDNS", false);
-    this.setSocksRemoteDNS(this._proxyDNS);
     this._toolsMenu = gGetSafeAttrB(node, "toolsMenu", true); // new for 2.0
     this._contextMenu = gGetSafeAttrB(node, "contextMenu", true); // new for 2.0
     this._advancedMenus = gGetSafeAttrB(node, "advancedMenus", false); // new for 2.3--default to false if it doesn't exist
@@ -647,7 +665,7 @@ biesi>  passing it the appropriate proxyinfo
     this._resetIconColors = gGetSafeAttrB(node, "resetIconColors", true); // new for 2.10
     this._useStatusBarPrefix = gGetSafeAttrB(node, "useStatusBarPrefix", true); // new for 2.10
     this.proxies.fromDOM(mode, doc);
-    this.setMode(mode, false, true);
+    this.setMode(mode, false, true);    
     this.random.fromDOM(doc); 
     this.quickadd.fromDOM(doc); // KEEP THIS BEFORE this.autoadd.fromDOM() else fromDOM() is overwritten!?
     this.autoadd.fromDOM(doc);    
@@ -736,7 +754,15 @@ biesi>  passing it the appropriate proxyinfo
       var a = this.list.filter(function(e) {return e.id == this;}, id);
       return a?a[0]:null;
     },
-
+    
+    /**
+     * Search for the dnsResolver amongst all proxies
+     */
+    get dnsResolverProxy() {
+      var a = this.list.filter(function(e) {return e.dnsResolver && e.enabled;});
+      return a?a[0]:null;
+    },
+    
     getIndexById : function(id) {
       var len=this.length;
       for (var i=0; i<len; i++) {
@@ -776,7 +802,7 @@ biesi>  passing it the appropriate proxyinfo
         this.list.push(last); // ensures it really IS last
         gFP.writeSettings();
       }
-      this.lastresort = last;
+      this.lastresort = last;    
     },
 
     toDOM : function(doc) {
@@ -876,6 +902,15 @@ biesi>  passing it the appropriate proxyinfo
         // If the proxy set for "previousMode" is being deleted, change "previousMode"
         if (gFP.previousMode == proxy.id)
           gFP.previousMode = gFP.isFoxyProxySimple() ? "disabled" : "patterns";
+        removeDNSResolver();
+      }      
+      else if (isBeingDisabled)
+        removeDNSResolver();
+      
+      function removeDNSResolver() {
+        // Remove the dnsResolver if this proxy was it
+        if (proxy.dnsResolver)
+          gBroadcast(null, "foxyproxy-dns-resolver");
       }
 
       // Handle AutoAdd & QuickAdd (superadd)
@@ -885,13 +920,49 @@ biesi>  passing it the appropriate proxyinfo
       if (gFP.quickadd.maintainIntegrity(proxy.id, isBeingDeleted) && !updateViews) {
         updateViews = true;
       }
-
+      
       // updateViews() with false, false (do not write settings and do not update log view--settings were just written when the properties themselves were updated
       updateViews && gBroadcast(null, "foxyproxy-updateviews");
+    },
+    
+    /**
+     * Possibly the remote DNS resolver has been changed (created, changed, deleted, disabled).
+     * If |subj| is null, we should search for a dnsResolver AND IGNORE |data|. Otherwise,
+     * the affected dnsResolver is |subj| and is either enabled or disabled based
+     * on the value of |data|.
+     */
+    observe : function(subj, topic, data) {
+      if (topic == "foxyproxy-dns-resolver") {
+        if (gFP.mode == "disabled") return;          
+        else {
+          var enabled = false, proxyDNS = false, remoteDNSResolver = this.dnsResolverProxy; /* search for the dnsResolver amongst all proxies */
+          if (remoteDNSResolver)
+            enabled = remoteDNSResolver.enabled;
+          if (remoteDNSResolver && enabled) {
+            var mc = remoteDNSResolver.manualconf;
+            if (mc.isSocks) {
+              var p = gFP.getPrefsService("network.proxy.");
+              p.setIntPref("type", 1);
+              p.setCharPref("socks", mc.host);
+              p.setIntPref("socks_port", mc.port);
+              p.setIntPref("socks_version", mc.socksversion);
+              p.setBoolPref("socks_remote_dns", true);
+              //if (promptRestart)
+                //overlay.ask(window, '&foxyproxy.proxydns.notice;') && foxyproxy.restart();
+             proxyDNS = true;
+            }
+            else
+              gFP.notifier.alert(gFP.getMessage("foxyproxy"), gFP.getMessage("dnsResolver.not.socks", [remoteDNSResolver.name]));                 
+          }
+          else
+            gFP.clearPrefs("network.proxy.", "type", "socks", "socks_port", "socks_version", "socks_remote_dns"); /* clear socks prefs */   
+        }
+        gFP.proxyDNS = proxyDNS;
+      }
     }
   },
 
-  // /////////////// logg \\\\\\\\\\\\\\\\\\\\\\\\\\\
+  ///////////////// logg \\\\\\\\\\\\\\\\\\\\\\\\\\\
   logg : {
     owner : null,
     _maxSize : 500,
@@ -1482,6 +1553,7 @@ function LoggEntry(proxy, aMatch, uriStr, type, errMsg) {
     else if (type == "err") {
       this.errMsg = errMsg;
     }
+    this.colorString = proxy.colorString;
 }
 
 LoggEntry.prototype = {

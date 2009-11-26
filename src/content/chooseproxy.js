@@ -7,10 +7,17 @@ function onLoad() {
   fpc = CC["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject;
   overlay = fpc.getMostRecentWindow().foxyproxy;
   inn = window.arguments[0].inn;
-  document.getElementById("title").value = inn.title;
+  
+  // Append title as a textnode to the description so text wrapping works
+  var title = document.getElementById("title");
+  title.appendChild(document.createTextNode(inn.title));
+  
   proxyTree.view = fpc.makeProxyTreeView(fp, document);
   proxyTree.view.selection.select(0); /* select the first entry */
-  document.getElementById("reloadcurtab").checked = inn.reloadcurtab;
+  var reloadCurTab = document.getElementById("reloadcurtab");
+  if (inn.hideReloadCurTab)
+    reloadCurTab.hidden = true;
+  reloadCurTab.checked = inn.reloadcurtab;
   sizeToContent();
 }
 
@@ -34,6 +41,7 @@ function onSettings() {
     fp.proxies.push(params.out.proxy);
     proxyTree.view = fpc.makeProxyTreeView(fp, document); /* reset the view to show the new entry */
     fp.writeSettings();  
+    fp.broadcast(null, "foxyproxy-dns-resolver"); /* check for a new DNS resolver */
   }
 
   // Reselect what was previously selected or the new item

@@ -19,7 +19,7 @@ var foxyproxy = {
   alert : function(wnd, str) {
     Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
       .getService(Components.interfaces.nsIPromptService)
-      .alert(null, this.fp.getMessage("foxyproxy"), str);
+      .alert(wnd?wnd:null, this.fp.getMessage("foxyproxy"), str);
   },
 
   // thanks, mzz
@@ -202,6 +202,7 @@ var foxyproxy = {
           .createInstance(Components.interfaces.nsISupports).wrappedJSObject;
         p.name = this.fp.getMessage("tor");
         p.notes = this.fp.getMessage("torwiz.proxy.notes");
+        p.dnsResolver = proxyDNS;
         var match = Components.classes["@leahscape.org/foxyproxy/match;1"]
           .createInstance(Components.interfaces.nsISupports).wrappedJSObject;
         match.name = this.fp.getMessage("torwiz.google.mail");
@@ -241,10 +242,10 @@ var foxyproxy = {
     }
     function _congrats(p) {
       foxyproxy.fp.proxies.push(p);
-      foxyproxy.fp.proxyDNS = proxyDNS;
       foxyproxy.updateViews(true);
       foxyproxy.alert(owner, foxyproxy.fp.getMessage("torwiz.congratulations"));
-      proxyDNS && foxyproxy.ask(owner, foxyproxy.fp.getMessage("foxyproxy.proxydns.notice")) && foxyproxy.fp.restart();
+      //proxyDNS && foxyproxy.ask(owner, foxyproxy.fp.getMessage("foxyproxy.proxydns.notice")) && foxyproxy.fp.restart();
+      foxyproxy.fp.broadcast(null, "foxyproxy-dns-resolver"); /* check for a new DNS resolver */
     }
   },
 
@@ -751,13 +752,6 @@ var foxyproxy = {
             this.fp.getMessage("foxyproxy.tab.global.label"),
             this.fp.getMessage("foxyproxy.tab.global.accesskey"),
             this.fp.getMessage("foxyproxy.tab.global.tooltip"));
-
-        _createCheckMenuItem(gssubmenupopup,
-          "foxyproxy.fp.proxyDNS=!foxyproxy.fp.proxyDNS;foxyproxy.updateViews(false);foxyproxy.ask(null, foxyproxy.fp.getMessage('foxyproxy.proxydns.notice')) && foxyproxy.fp.restart();",
-          this.fp.proxyDNS,
-          this.fp.getMessage("foxyproxy.proxydns.accesskey"),
-          this.fp.getMessage("foxyproxy.proxydns.label"),
-          this.fp.getMessage("foxyproxy.proxydns.tooltip"));
 
         _createCheckMenuItem(gssubmenupopup,
           "foxyproxy.fp.statusbar.iconEnabled=!foxyproxy.fp.statusbar.iconEnabled;foxyproxy.updateViews(false);",

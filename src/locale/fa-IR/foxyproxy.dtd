@@ -116,10 +116,9 @@
 <!ENTITY foxyproxy.tab.logging.label "گزارش گیری">
 <!ENTITY foxyproxy.tab.logging.accesskey "ا">
 <!ENTITY foxyproxy.tab.logging.tooltip "مدیریت تنظیمات گزارش گیری">
-<!ENTITY foxyproxy.proxydns.label "استفاده از پروکسی SOCKS برای جستجوی DNS">
+<!ENTITY foxyproxy.proxydns.label2 "">
 <!ENTITY foxyproxy.proxydns.accesskey "ا">
-<!ENTITY foxyproxy.proxydns.tooltip "در صورت انتخاب٬جستجوی DNS از طریق یک پروکسی SOCKS صورت می گیرد.">
-<!ENTITY foxyproxy.proxydns.notice "برای اعمال تنظیمات فایرفاکس باید دوباره راه اندازی شود.راه اندازی دوباره؟">
+<!ENTITY foxyproxy.proxydns.tooltip2 "">
 <!ENTITY foxyproxy.showstatusbaricon.label "نمایش آیکون در نوار وضعیت">
 <!ENTITY foxyproxy.showstatusbaricon.accesskey "ا">
 <!ENTITY foxyproxy.showstatusbaricon.tooltip "در صورت انتخاب آیکون برنامه در نوار وضعیت نمایش داده خواهد شد.">

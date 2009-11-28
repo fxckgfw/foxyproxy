@@ -116,10 +116,9 @@
 <!ENTITY foxyproxy.tab.logging.label "Loggning">
 <!ENTITY foxyproxy.tab.logging.accesskey "L">
 <!ENTITY foxyproxy.tab.logging.tooltip "Hanterar inställningar för loggen">
-<!ENTITY foxyproxy.proxydns.label "Använd SOCKS-proxy för DNS-sökningar">
+<!ENTITY foxyproxy.proxydns.label2 "">
 <!ENTITY foxyproxy.proxydns.accesskey "S">
-<!ENTITY foxyproxy.proxydns.tooltip "Om markerad kommer DNS-sökningar omdirigeras genom en SOCKS-proxy">
-<!ENTITY foxyproxy.proxydns.notice "Firefox måste startas om för att inställningarna skall träda i kraft. Starta om nu?">
+<!ENTITY foxyproxy.proxydns.tooltip2 "">
 <!ENTITY foxyproxy.showstatusbaricon.label "Visa ikon i verktygsfält">
 <!ENTITY foxyproxy.showstatusbaricon.accesskey "v">
 <!ENTITY foxyproxy.showstatusbaricon.tooltip "Om markerad kommer en ikon visas i verktygsfältet">

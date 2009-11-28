@@ -116,10 +116,9 @@
 <!ENTITY foxyproxy.tab.logging.label "Logging">
 <!ENTITY foxyproxy.tab.logging.accesskey "L">
 <!ENTITY foxyproxy.tab.logging.tooltip "Logging-Einstellungen verwalten">
-<!ENTITY foxyproxy.proxydns.label "SOCKS-Proxy für DNS-Lookups verwenden">
+<!ENTITY foxyproxy.proxydns.label2 "Verwende diesen Proxy für alle DNS-Anfragen">
 <!ENTITY foxyproxy.proxydns.accesskey "D">
-<!ENTITY foxyproxy.proxydns.tooltip "Wenn ausgewählt, werden DNS-Lookups durch das SOCKS-Proxy geroutet">
-<!ENTITY foxyproxy.proxydns.notice "Firefox muss neu gestartet werden, um die Änderungen auszuführen. Jetzt neu starten?">
+<!ENTITY foxyproxy.proxydns.tooltip2 "Falls ausgewählt, werden alle DNS-Anfragen durch diesen Proxy geleitet">
 <!ENTITY foxyproxy.showstatusbaricon.label "Icon in der Statuszeile anzeigen">
 <!ENTITY foxyproxy.showstatusbaricon.accesskey "I">
 <!ENTITY foxyproxy.showstatusbaricon.tooltip "FoxyProxy Icon wird in der Statuszeile angezeigt">

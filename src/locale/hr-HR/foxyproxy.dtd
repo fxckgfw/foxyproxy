@@ -116,10 +116,9 @@
 <!ENTITY foxyproxy.tab.logging.label "Zapisivanje">
 <!ENTITY foxyproxy.tab.logging.accesskey "Z">
 <!ENTITY foxyproxy.tab.logging.tooltip "Uredi postavke zapisivanja">
-<!ENTITY foxyproxy.proxydns.label "Koristi SOCKS proxy za pretrage DNS-a">
+<!ENTITY foxyproxy.proxydns.label2 "">
 <!ENTITY foxyproxy.proxydns.accesskey "K">
-<!ENTITY foxyproxy.proxydns.tooltip "Ako je označeno, pretrage DNS-a su preusmjerene kroz SOCKS proxy">
-<!ENTITY foxyproxy.proxydns.notice "Da bi se primijenila ova promjena, Firefox se mora ponovno pokrenuti. Ponovno pokrenuti sada?">
+<!ENTITY foxyproxy.proxydns.tooltip2 "">
 <!ENTITY foxyproxy.showstatusbaricon.label "Prikaži ikonu u statusnoj traci">
 <!ENTITY foxyproxy.showstatusbaricon.accesskey "P">
 <!ENTITY foxyproxy.showstatusbaricon.tooltip "Ako je označeno, FoxyProxy ikona će biti prikazana u statusnoj traci">

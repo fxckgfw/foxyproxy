@@ -116,10 +116,9 @@
 <!ENTITY foxyproxy.tab.logging.label "Журналирование">
 <!ENTITY foxyproxy.tab.logging.accesskey "Ж">
 <!ENTITY foxyproxy.tab.logging.tooltip "Управление параметрами журналирования">
-<!ENTITY foxyproxy.proxydns.label "Использовать SOCKS-прокси для DNS-запросов">
+<!ENTITY foxyproxy.proxydns.label2 "">
 <!ENTITY foxyproxy.proxydns.accesskey "И">
-<!ENTITY foxyproxy.proxydns.tooltip "Если отмечено, тогда DNS-запросы отправляются через SOCKS-прокси">
-<!ENTITY foxyproxy.proxydns.notice "Новые настройки вступят в силу после перезагрузки браузера. Перезагрузить?">
+<!ENTITY foxyproxy.proxydns.tooltip2 "">
 <!ENTITY foxyproxy.showstatusbaricon.label "Отобразить иконку в строке состояния">
 <!ENTITY foxyproxy.showstatusbaricon.accesskey "С">
 <!ENTITY foxyproxy.showstatusbaricon.tooltip "Если отмечено, тогда иконка FoxyProxy будет отображена в строке состояния">

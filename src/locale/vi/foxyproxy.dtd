@@ -116,10 +116,9 @@
 <!ENTITY foxyproxy.tab.logging.label "Log">
 <!ENTITY foxyproxy.tab.logging.accesskey "o">
 <!ENTITY foxyproxy.tab.logging.tooltip "Quản lí Thiết lập Log">
-<!ENTITY foxyproxy.proxydns.label "Dùng proxy SOCKS cho tra cứu DNS">
+<!ENTITY foxyproxy.proxydns.label2 "Dùng proxy này cho tất cả các lượt tra cứu DNS">
 <!ENTITY foxyproxy.proxydns.accesskey "S">
-<!ENTITY foxyproxy.proxydns.tooltip "Nếu chọn, tra cứu DNS sẽ được đi qua một proxy SOCKS">
-<!ENTITY foxyproxy.proxydns.notice "Firefox phải khởi động lại để thiết lập thực hiện được. Khởi động lại ngay?">
+<!ENTITY foxyproxy.proxydns.tooltip2 "Nếu chọn, các lượt tra cứu DNS sẽ được định tuyến thông qua proxy này">
 <!ENTITY foxyproxy.showstatusbaricon.label "Hiện biểu tượng trên thanh trạng thái">
 <!ENTITY foxyproxy.showstatusbaricon.accesskey "i">
 <!ENTITY foxyproxy.showstatusbaricon.tooltip "Nếu chọn, biểu tượng FoxyProxy sẽ được hiện trên thanh trạng thái">

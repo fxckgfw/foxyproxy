@@ -1,4 +1,4 @@
-FoxyProxy Standard 2.17 and FoxyProxy Basic 1.3
+FoxyProxy Standard 2.16 and FoxyProxy Basic 1.3
 ===============================================
 
 * DNS lookups now fixed! Removed the Global Setting "Use SOCKS proxy for DNS lookups" and replaced it with

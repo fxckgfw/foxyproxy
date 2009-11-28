@@ -1,4 +1,4 @@
-<!ENTITY foxyproxy.basic.label "FoxyProxy Βασικό">
+<!ENTITY foxyproxy.basic.label "FoxyProxy Basic">
 <!ENTITY foxyproxy.standard.label "FoxyProxy Standard">
 <!ENTITY foxyproxy.plus.label "FoxyProxy Plus">
 <!ENTITY foxyproxy.accesskey "o">
@@ -116,10 +116,9 @@
 <!ENTITY foxyproxy.tab.logging.label "Συνδέσεις">
 <!ENTITY foxyproxy.tab.logging.accesskey "Σ">
 <!ENTITY foxyproxy.tab.logging.tooltip "Διαχείριση ρυθμίσεων συνδέσεων">
-<!ENTITY foxyproxy.proxydns.label "Χρήση διαμεσολαβητή SOCKS για διερευνήσεις DNS">
+<!ENTITY foxyproxy.proxydns.label2 "Χρήση διαμεσολαβητή για όλες τις αναζήτησεις DNS">
 <!ENTITY foxyproxy.proxydns.accesskey "Ν">
-<!ENTITY foxyproxy.proxydns.tooltip "Αν επιλεγεί, οι διερευνήσεις DNS θα δρομολογούντε μέσω διαμεσολαβητή SOCKS">
-<!ENTITY foxyproxy.proxydns.notice "Απαιτείται επανεκκίνηση του Firefox για να εφαρμοστούν οι νέες ρυθμίσεις. Να γίνει τώρα;">
+<!ENTITY foxyproxy.proxydns.tooltip2 "Αν επιλεγεί, όλες οι αναζητήσεις DNS θα δρομολογούνται μέσω αυτού του διαμεσολαβητή">
 <!ENTITY foxyproxy.showstatusbaricon.label "Προβολή εικονιδίου στη γραμμή κατάστασης">
 <!ENTITY foxyproxy.showstatusbaricon.accesskey "γ">
 <!ENTITY foxyproxy.showstatusbaricon.tooltip "Αν επιλεγεί, θα εμφανίζεται το εικονίδιο του FoxyProxy στη γραμμή κατάστασης">

@@ -116,10 +116,9 @@
 <!ENTITY foxyproxy.tab.logging.label "ログ">
 <!ENTITY foxyproxy.tab.logging.accesskey "L">
 <!ENTITY foxyproxy.tab.logging.tooltip "ログ設定の管理">
-<!ENTITY foxyproxy.proxydns.label "DNS 解決に SOCKS を利用する">
+<!ENTITY foxyproxy.proxydns.label2 "">
 <!ENTITY foxyproxy.proxydns.accesskey "U">
-<!ENTITY foxyproxy.proxydns.tooltip "チェックすると SOCKS プロキシ経由で DNS 解決をします">
-<!ENTITY foxyproxy.proxydns.notice "設定を有効にするため Firefox を再起動する必要があります。今すぐ再起動しますか？">
+<!ENTITY foxyproxy.proxydns.tooltip2 "">
 <!ENTITY foxyproxy.showstatusbaricon.label "ステータスバーにアイコンを表示する">
 <!ENTITY foxyproxy.showstatusbaricon.accesskey "S">
 <!ENTITY foxyproxy.showstatusbaricon.tooltip "チェックするとステータスバーに FoxyProxy のアイコンが表示されます">

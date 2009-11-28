@@ -116,10 +116,9 @@
 <!ENTITY foxyproxy.tab.logging.label "Вхід">
 <!ENTITY foxyproxy.tab.logging.accesskey "х">
 <!ENTITY foxyproxy.tab.logging.tooltip "Налаштувати Параметри Входу">
-<!ENTITY foxyproxy.proxydns.label "Використовувати SOCKS проксі для запитів DNS">
+<!ENTITY foxyproxy.proxydns.label2 "">
 <!ENTITY foxyproxy.proxydns.accesskey "В">
-<!ENTITY foxyproxy.proxydns.tooltip "Якщо вибрано, DNS запити посилаються через SOCKS проксі">
-<!ENTITY foxyproxy.proxydns.notice "Firefox необхідно перезапустити, щоб налаштування почали діяти. Перезапустити зараз?">
+<!ENTITY foxyproxy.proxydns.tooltip2 "">
 <!ENTITY foxyproxy.showstatusbaricon.label "Show icon on statusbar">
 <!ENTITY foxyproxy.showstatusbaricon.accesskey "S">
 <!ENTITY foxyproxy.showstatusbaricon.tooltip "If checked, FoxyProxy icon is shown on the statusbar">

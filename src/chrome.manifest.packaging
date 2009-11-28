@@ -10,7 +10,7 @@ locale  foxyproxy es-AR chrome/locale/es-AR/
 locale  foxyproxy es-ES chrome/locale/es-ES/
 locale  foxyproxy fa-IR chrome/locale/fa-IR/
 locale  foxyproxy fi-FI chrome/locale/fi-FI/
-locale  foxyproxy fr-FR chrome/locale/fr-FR/
+locale  foxyproxy fr-FR chrome/locale/fr/
 locale  foxyproxy hr-HR chrome/locale/hr-HR/
 locale  foxyproxy hu-HU chrome/locale/hu-HU/
 locale  foxyproxy it-IT chrome/locale/it-IT/
@@ -26,7 +26,7 @@ locale  foxyproxy sv-SE chrome/locale/sv-SE/
 locale  foxyproxy th-TH chrome/locale/th-TH/
 locale  foxyproxy tr-TR chrome/locale/tr-TR/
 locale  foxyproxy uk-UA chrome/locale/uk-UA/
-locale  foxyproxy vi-VN chrome/locale/vi-VN/
+locale  foxyproxy vi-VN chrome/locale/vi/
 locale  foxyproxy zh-CN chrome/locale/zh-CN/
 locale  foxyproxy zh-TW chrome/locale/zh-TW/
 

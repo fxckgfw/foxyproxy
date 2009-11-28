@@ -56,7 +56,7 @@
 <!ENTITY foxyproxy.auto.url.accesskey "A">
 <!ENTITY foxyproxy.auto.url.tooltip "Wprowadź adres URL pliku *.pac">
 <!ENTITY foxyproxy.auto.url.note.label "http(s)://   ftp://   file://   relative://">
-<!ENTITY foxyproxy.auto.url.note.tooltip "Kliknij na ikonie Info, aby uzyskać odpowiednie informacje://">
+<!ENTITY foxyproxy.auto.url.note.tooltip "Kliknij ikonę Info, aby uzyskać odpowiednie informacje://">
 <!ENTITY foxyproxy.port.label "Port">
 <!ENTITY foxyproxy.port.accesskey "P">
 <!ENTITY foxyproxy.port.tooltip "Podaj numer portu">
@@ -90,9 +90,9 @@
 <!ENTITY foxyproxy.pattern.description "Tutaj można dodać lub usunąć adres URL jaki używa to proxy">
 <!ENTITY foxyproxy.pattern.matchtype.label "Zawartość wzorca">
 <!ENTITY foxyproxy.pattern.whiteblack.label "URL dozwolone/niedozwolone">
-<!ENTITY foxyproxy.add.option.direct.label "Bezpośrednie połączenie z internetem (bez proxy)">
+<!ENTITY foxyproxy.add.option.direct.label "Bezpośrednie połączenie z Internetem (bez proxy)">
 <!ENTITY foxyproxy.add.option.direct.accesskey "B">
-<!ENTITY foxyproxy.add.option.direct.tooltip "Proxy nie będzie używane, zostanie użyte bezpośrednie połączenie z internetem">
+<!ENTITY foxyproxy.add.option.direct.tooltip "Proxy nie będzie używane, zostanie użyte bezpośrednie połączenie z Internetem">
 <!ENTITY foxyproxy.add.option.manual.label "Ręczna konfiguracja serwerów proxy">
 <!ENTITY foxyproxy.add.option.manual.accesskey "R">
 <!ENTITY foxyproxy.add.option.manual.tooltip "Ręczna konfiguracja serwerów proxy">
@@ -116,10 +116,9 @@
 <!ENTITY foxyproxy.tab.logging.label "Dziennik">
 <!ENTITY foxyproxy.tab.logging.accesskey "D">
 <!ENTITY foxyproxy.tab.logging.tooltip "Zarządzanie ustawieniami dziennika zdarzeń">
-<!ENTITY foxyproxy.proxydns.label "Użyj SOCKS proxy dla translacji adresów DNS">
+<!ENTITY foxyproxy.proxydns.label2 "Użyj to proxy dla wszystkich wyszukiwań DNS">
 <!ENTITY foxyproxy.proxydns.accesskey "U">
-<!ENTITY foxyproxy.proxydns.tooltip "Jeżeli opcja jest zaznaczona, translacje adresów DNS będą przechodziły przez serwer proxy SOCKS">
-<!ENTITY foxyproxy.proxydns.notice "Aby zmiany zostały zastosowane należy ponownie uruchomić przeglądarkę.">
+<!ENTITY foxyproxy.proxydns.tooltip2 "Po zaznaczeniu tej opcji wyszukiwania DNS będą kierowane przez to proxy">
 <!ENTITY foxyproxy.showstatusbaricon.label "Wyświetl ikonę na pasku stanu">
 <!ENTITY foxyproxy.showstatusbaricon.accesskey "Y">
 <!ENTITY foxyproxy.showstatusbaricon.tooltip "Po zaznaczeniu tej opcji ikona FoxyProxy będzie wyświetlana na pasku stanu">

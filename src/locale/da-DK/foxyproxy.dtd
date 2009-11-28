@@ -116,10 +116,9 @@
 <!ENTITY foxyproxy.tab.logging.label "Logning">
 <!ENTITY foxyproxy.tab.logging.accesskey "L">
 <!ENTITY foxyproxy.tab.logging.tooltip "Administrer logningsindstillinger">
-<!ENTITY foxyproxy.proxydns.label "Brug SOCKS proxy til DNS-opslag">
+<!ENTITY foxyproxy.proxydns.label2 "Brug denne proxy for alle adresse (DNS) opslag">
 <!ENTITY foxyproxy.proxydns.accesskey "u">
-<!ENTITY foxyproxy.proxydns.tooltip "Hvis afkrydset, dirigeres DNS-opslag igennem en SOCKS proxy">
-<!ENTITY foxyproxy.proxydns.notice "Du skal genstarte alle Firefox-browsere før ændringen træder i kraft.">
+<!ENTITY foxyproxy.proxydns.tooltip2 "Hvis valgt vil alle adresse (DNS) opslag ske gennem denne proxy">
 <!ENTITY foxyproxy.showstatusbaricon.label "Vis ikon på statuslinjen">
 <!ENTITY foxyproxy.showstatusbaricon.accesskey "s">
 <!ENTITY foxyproxy.showstatusbaricon.tooltip "Hvis markeret bliver FoxyProxy ikon ikon vist på statuslinje">

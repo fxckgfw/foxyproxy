@@ -113,35 +113,34 @@
 <!ENTITY foxyproxy.tab.global.label "Global Settings">
 <!ENTITY foxyproxy.tab.global.accesskey "G">
 <!ENTITY foxyproxy.tab.global.tooltip "Manage Global Settings">
-<!ENTITY foxyproxy.tab.logging.label "Logging">
-<!ENTITY foxyproxy.tab.logging.accesskey "L">
+<!ENTITY foxyproxy.tab.logging.label "Записивање">
+<!ENTITY foxyproxy.tab.logging.accesskey "З">
 <!ENTITY foxyproxy.tab.logging.tooltip "Manage Logging Settings">
-<!ENTITY foxyproxy.proxydns.label "Use SOCKS proxy for DNS lookups">
-<!ENTITY foxyproxy.proxydns.accesskey "U">
-<!ENTITY foxyproxy.proxydns.tooltip "If checked, DNS lookups are routed through a SOCKS proxy">
-<!ENTITY foxyproxy.proxydns.notice "Firefox must restart for settings to take effect. Restart now?">
-<!ENTITY foxyproxy.showstatusbaricon.label "Show icon on statusbar">
-<!ENTITY foxyproxy.showstatusbaricon.accesskey "S">
+<!ENTITY foxyproxy.proxydns.label2 "Коритси овај прокси за све DNS претраге">
+<!ENTITY foxyproxy.proxydns.accesskey "Д">
+<!ENTITY foxyproxy.proxydns.tooltip2 "">
+<!ENTITY foxyproxy.showstatusbaricon.label "Прикажи икону на статусној траци">
+<!ENTITY foxyproxy.showstatusbaricon.accesskey "Р">
 <!ENTITY foxyproxy.showstatusbaricon.tooltip "If checked, ФоксиПрокси icon is shown on the statusbar">
 <!ENTITY foxyproxy.showstatusbarmode.label "Show mode (text) on statusbar">
-<!ENTITY foxyproxy.showstatusbarmode.accesskey "S">
+<!ENTITY foxyproxy.showstatusbarmode.accesskey "Т">
 <!ENTITY foxyproxy.showstatusbarmode.tooltip "If checked, ФоксиПрокси mode is shown on the statusbar">
 <!ENTITY foxyproxy.storagelocation.label.2 "Settings Location">
-<!ENTITY foxyproxy.storagelocation.accesskey "S">
+<!ENTITY foxyproxy.storagelocation.accesskey "М">
 <!ENTITY foxyproxy.storagelocation.tooltip "Location to store ФоксиПрокси's settings">
 <!ENTITY foxyproxy.tab.logging.timestamp.label "Timestamp">
 <!ENTITY foxyproxy.tab.logging.url.label "URL">
 <!ENTITY foxyproxy.host.label.2 "Хост или IP адреса">
-<!ENTITY foxyproxy.host.accesskey "H">
-<!ENTITY foxyproxy.clear.label "Clear">
-<!ENTITY foxyproxy.clear.accesskey "C">
-<!ENTITY foxyproxy.clear.tooltip "Clear">
-<!ENTITY foxyproxy.refresh.label "Refresh">
-<!ENTITY foxyproxy.refresh.accesskey "R">
-<!ENTITY foxyproxy.refresh.tooltip "Refresh">
-<!ENTITY foxyproxy.save.label "Save">
-<!ENTITY foxyproxy.save.accesskey "S">
-<!ENTITY foxyproxy.save.tooltip "Save">
+<!ENTITY foxyproxy.host.accesskey "Х">
+<!ENTITY foxyproxy.clear.label "Очисти">
+<!ENTITY foxyproxy.clear.accesskey "О">
+<!ENTITY foxyproxy.clear.tooltip "Очисти">
+<!ENTITY foxyproxy.refresh.label "Освежи">
+<!ENTITY foxyproxy.refresh.accesskey "Ч">
+<!ENTITY foxyproxy.refresh.tooltip "Освежи">
+<!ENTITY foxyproxy.save.label "Сачувај">
+<!ENTITY foxyproxy.save.accesskey "С">
+<!ENTITY foxyproxy.save.tooltip "Сачувај">
 <!ENTITY foxyproxy.openurlinnewtab.label "Open URL in New Tab">
 <!ENTITY foxyproxy.openurlinnewtab.accesskey "O">
 <!ENTITY foxyproxy.openurlinnewtab.tooltip "Open URL in New Tab">
@@ -449,12 +448,12 @@
 <!ENTITY foxyproxy.licenseinvalid.label "License invalid. You won&apos;t receive FoxyProxyPlus updates. Please purchase FoxyProxy Plus.">
 <!ENTITY foxyproxy.buynow.label "Buy Now">
 <!ENTITY foxyproxy.checklicense.label "Check License">
-<!ENTITY foxyproxy.checkinglicense.label "Checking...please wait">
+<!ENTITY foxyproxy.checkinglicense.label "Проверавање...">
 <!ENTITY foxyproxy.routetoleahscape.label "Please make sure Firefox can reach https://leahscape.com/fpplus/license_check.php either with or without a proxy. You can configure patterns for this URL in FoxyProxy Plus if necessary.">
-<!ENTITY foxyproxy.everything.label "Everything">
-<!ENTITY foxyproxy.nothing.label "Nothing">
+<!ENTITY foxyproxy.everything.label "Све">
+<!ENTITY foxyproxy.nothing.label "Ништа">
 <!ENTITY foxyproxy.ippatterndeletefinal.label "This is the last local IP address pattern. If you delete it, this proxy has no possibility of being used. Continue anyway?">
-<!ENTITY foxyproxy.licenseplea.label "FoxyProxy Plus has minimal anti-piracy measures. If you use FoxyProxy Plus, please purchase a license. It&apos;s taken many years of work to develop and maintain, and your purchase encourages me to continue.">
+<!ENTITY foxyproxy.licenseplea.label "FoxyProxy Plus has minimal anti-piracy measures. If you use FoxyProxy Plus, please purchase a license. It's taken many years of work to develop and maintain, and your purchase encourages me to continue.">
 <!ENTITY foxyproxy.authentication.label "Authentication">
 <!ENTITY foxyproxy.proxyusername.label "Корисничко име">
 <!ENTITY foxyproxy.proxypassword.label "Лозинка">

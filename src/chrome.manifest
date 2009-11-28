@@ -10,7 +10,7 @@ locale  foxyproxy es-AR locale/es-AR/
 locale  foxyproxy es-ES locale/es-ES/
 locale  foxyproxy fa-IR locale/fa-IR/
 locale  foxyproxy fi-FI locale/fi-FI/
-locale  foxyproxy fr-FR locale/fr-FR/
+locale  foxyproxy fr-FR locale/fr/
 locale  foxyproxy hr-HR locale/hr-HR/
 locale  foxyproxy hu-HU locale/hu-HU/
 locale  foxyproxy it-IT locale/it-IT/
@@ -26,7 +26,7 @@ locale  foxyproxy sv-SE locale/sv-SE/
 locale  foxyproxy th-TH locale/th-TH/
 locale  foxyproxy tr-TR locale/tr-TR/
 locale  foxyproxy uk-UA locale/uk-UA/
-locale  foxyproxy vi-VN locale/vi-VN/
+locale  foxyproxy vi-VN locale/vi/
 locale  foxyproxy zh-CN locale/zh-CN/
 locale  foxyproxy zh-TW locale/zh-TW/
 

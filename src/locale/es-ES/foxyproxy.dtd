@@ -116,10 +116,9 @@
 <!ENTITY foxyproxy.tab.logging.label "Registro">
 <!ENTITY foxyproxy.tab.logging.accesskey "R">
 <!ENTITY foxyproxy.tab.logging.tooltip "Cambiar opciones de registro">
-<!ENTITY foxyproxy.proxydns.label "Usar un proxy SOCKS para la búsqueda DNS">
+<!ENTITY foxyproxy.proxydns.label2 "Usar este proxy para todas las búsquedas DNS">
 <!ENTITY foxyproxy.proxydns.accesskey "U">
-<!ENTITY foxyproxy.proxydns.tooltip "Si se selecciona, la búsqueda DNS se realizará a través de un servidor proxy SOCKS">
-<!ENTITY foxyproxy.proxydns.notice "Es necesario reiniciar Firefox para aplicar los cambios, ¿Reiniciar ahora?">
+<!ENTITY foxyproxy.proxydns.tooltip2 "Si la marca, las búsquedas DNS se enrutarán a través de este proxy">
 <!ENTITY foxyproxy.showstatusbaricon.label "Mostrar un icono en la barra de estado">
 <!ENTITY foxyproxy.showstatusbaricon.accesskey "i">
 <!ENTITY foxyproxy.showstatusbaricon.tooltip "Si marca esta opción, el icono de FoxyProxy se mostrará en la barra de estado">

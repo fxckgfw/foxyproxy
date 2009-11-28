@@ -116,10 +116,9 @@
 <!ENTITY foxyproxy.tab.logging.label "Žurnál">
 <!ENTITY foxyproxy.tab.logging.accesskey "Ž">
 <!ENTITY foxyproxy.tab.logging.tooltip "Úprava nastavení žurnálu">
-<!ENTITY foxyproxy.proxydns.label "Použít SOCKS proxy pro vyhledávání DNS záznamů">
+<!ENTITY foxyproxy.proxydns.label2 "Použít tuto proxy pro všechny DNS dotazy.">
 <!ENTITY foxyproxy.proxydns.accesskey "P">
-<!ENTITY foxyproxy.proxydns.tooltip "Pokud je zaškrtnuto, tak DNS hledání jsou směrované přes SOCKS proxy">
-<!ENTITY foxyproxy.proxydns.notice "Je zapotřebí restartovat Firefox aby se projevili změny, restartovat nyní ?">
+<!ENTITY foxyproxy.proxydns.tooltip2 "Při zapnutí jsou všechny DNS dotazy směrovány přes tuto proxy.">
 <!ENTITY foxyproxy.showstatusbaricon.label "Zobrazit ikonu ve stavovém řádku">
 <!ENTITY foxyproxy.showstatusbaricon.accesskey "S">
 <!ENTITY foxyproxy.showstatusbaricon.tooltip "Pokud je zaškrtnuto, tak se zobrazuje ve stavovém řádku ikona FoxyProxy">

@@ -116,10 +116,9 @@
 <!ENTITY foxyproxy.tab.logging.label "Protokol">
 <!ENTITY foxyproxy.tab.logging.accesskey "l">
 <!ENTITY foxyproxy.tab.logging.tooltip "Správa nastavenia protokolu">
-<!ENTITY foxyproxy.proxydns.label "Použiť SOCKS Proxy pre vyhľadávanie DNS záznamov">
+<!ENTITY foxyproxy.proxydns.label2 "">
 <!ENTITY foxyproxy.proxydns.accesskey "P">
-<!ENTITY foxyproxy.proxydns.tooltip "Ak je označené, DNS hľadania sú smerované cez SOCKS Proxy">
-<!ENTITY foxyproxy.proxydns.notice "Musíte reštartovať Firefox, aby sa prejavili zmeny. Reštartovať teraz?">
+<!ENTITY foxyproxy.proxydns.tooltip2 "">
 <!ENTITY foxyproxy.showstatusbaricon.label "Zobraziť ikonu v stavovom riadku">
 <!ENTITY foxyproxy.showstatusbaricon.accesskey "S">
 <!ENTITY foxyproxy.showstatusbaricon.tooltip "Ak je táto voľba označená, v stavovom riadku je zobrazená ikona FoxyProxy">

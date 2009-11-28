@@ -116,10 +116,9 @@
 <!ENTITY foxyproxy.tab.logging.label "การบันทึกงาน">
 <!ENTITY foxyproxy.tab.logging.accesskey "บ">
 <!ENTITY foxyproxy.tab.logging.tooltip "จัดการการตั้งค่าการบันทึกงาน">
-<!ENTITY foxyproxy.proxydns.label "ใช้พร็อกซีซอกส์กับ DNS lookups">
+<!ENTITY foxyproxy.proxydns.label2 "ใช้พรอกซีนี้ในการค้นหา DNS">
 <!ENTITY foxyproxy.proxydns.accesskey "D">
-<!ENTITY foxyproxy.proxydns.tooltip "หากเลือกแล้ว DNS lookups จะถูกนำทางผ่านพร็อกซีซอกส์">
-<!ENTITY foxyproxy.proxydns.notice "จะต้องเริ่มไฟร์ฟอกซ์ใหม่ให้เห็นผลการตั้งค่า เริ่มใหม่เลยหรือไม่">
+<!ENTITY foxyproxy.proxydns.tooltip2 "ทำเครื่องหมายเพื่อใช้การค้นหา DNS ผ่านพรอกซีนี้">
 <!ENTITY foxyproxy.showstatusbaricon.label "แสดงไอคอนบนแถบสถานะ">
 <!ENTITY foxyproxy.showstatusbaricon.accesskey "ค">
 <!ENTITY foxyproxy.showstatusbaricon.tooltip "เลือกเพื่อแสดงไอคอนบนแถบสถานะ">

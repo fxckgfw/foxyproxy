@@ -116,9 +116,9 @@
 <!ENTITY foxyproxy.tab.logging.label "Logging">
 <!ENTITY foxyproxy.tab.logging.accesskey "L">
 <!ENTITY foxyproxy.tab.logging.tooltip "Manage Logging Settings">
-<!ENTITY foxyproxy.proxydns.label2 "">
+<!ENTITY foxyproxy.proxydns.label2 "Use this proxy for all DNS lookups">
 <!ENTITY foxyproxy.proxydns.accesskey "U">
-<!ENTITY foxyproxy.proxydns.tooltip2 "">
+<!ENTITY foxyproxy.proxydns.tooltip2 "If checked, DNS lookups are routed through this proxy">
 <!ENTITY foxyproxy.showstatusbaricon.label "Show icon on statusbar">
 <!ENTITY foxyproxy.showstatusbaricon.accesskey "S">
 <!ENTITY foxyproxy.showstatusbaricon.tooltip "If checked, FoxyProxy icon is shown on the statusbar">

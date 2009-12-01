@@ -116,9 +116,9 @@
 <!ENTITY foxyproxy.tab.logging.label "Naplózás">
 <!ENTITY foxyproxy.tab.logging.accesskey "N">
 <!ENTITY foxyproxy.tab.logging.tooltip "Naplózási beállítások elvégzése">
-<!ENTITY foxyproxy.proxydns.label2 "">
+<!ENTITY foxyproxy.proxydns.label2 "Use this proxy for all DNS lookups">
 <!ENTITY foxyproxy.proxydns.accesskey "U">
-<!ENTITY foxyproxy.proxydns.tooltip2 "">
+<!ENTITY foxyproxy.proxydns.tooltip2 "If checked, DNS lookups are routed through this proxy">
 <!ENTITY foxyproxy.showstatusbaricon.label "Ikon megjelenítése az állapotsorban">
 <!ENTITY foxyproxy.showstatusbaricon.accesskey "I">
 <!ENTITY foxyproxy.showstatusbaricon.tooltip "If checked, FoxyProxy icon is shown on the statusbar">

@@ -118,7 +118,7 @@
 <!ENTITY foxyproxy.tab.logging.tooltip "Manage Logging Settings">
 <!ENTITY foxyproxy.proxydns.label2 "Коритси овај прокси за све DNS претраге">
 <!ENTITY foxyproxy.proxydns.accesskey "Д">
-<!ENTITY foxyproxy.proxydns.tooltip2 "">
+<!ENTITY foxyproxy.proxydns.tooltip2 "If checked, DNS lookups are routed through this proxy">
 <!ENTITY foxyproxy.showstatusbaricon.label "Прикажи икону на статусној траци">
 <!ENTITY foxyproxy.showstatusbaricon.accesskey "Р">
 <!ENTITY foxyproxy.showstatusbaricon.tooltip "If checked, ФоксиПрокси icon is shown on the statusbar">

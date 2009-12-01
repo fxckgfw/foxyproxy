@@ -116,9 +116,9 @@
 <!ENTITY foxyproxy.tab.logging.label "Registrazioni">
 <!ENTITY foxyproxy.tab.logging.accesskey "z">
 <!ENTITY foxyproxy.tab.logging.tooltip "Gestione delle opzioni delle registrazioni">
-<!ENTITY foxyproxy.proxydns.label2 "">
-<!ENTITY foxyproxy.proxydns.accesskey "K">
-<!ENTITY foxyproxy.proxydns.tooltip2 "">
+<!ENTITY foxyproxy.proxydns.label2 "Usa questo proxy per la ricerca dei DNS">
+<!ENTITY foxyproxy.proxydns.accesskey "o">
+<!ENTITY foxyproxy.proxydns.tooltip2 "La ricerca dei DNS avverrà attraverso questo proxy">
 <!ENTITY foxyproxy.showstatusbaricon.label "Mostra icona nella barra di stato">
 <!ENTITY foxyproxy.showstatusbaricon.accesskey "o">
 <!ENTITY foxyproxy.showstatusbaricon.tooltip "L&apos;icona di FoxyProxy verrà visualizzata nella barra di stato">
@@ -177,7 +177,7 @@
 <!ENTITY foxyproxy.autoconfurl.test.accesskey "T">
 <!ENTITY foxyproxy.autoconfurl.test.tooltip "Testa il file di autoconfigurazione">
 <!ENTITY foxyproxy.autoconfurl.reload.label "Ricarica il file PAC ogni">
-<!ENTITY foxyproxy.autoconfurl.reload.accesskey "R">
+<!ENTITY foxyproxy.autoconfurl.reload.accesskey "a">
 <!ENTITY foxyproxy.autoconfurl.reload.tooltip "Ricarica automaticamente il file PAC nell&apos;intervallo specificato">
 <!ENTITY foxyproxy.minutes.label "minuti">
 <!ENTITY foxyproxy.minutes.tooltip "minuti">

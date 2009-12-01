@@ -116,9 +116,9 @@
 <!ENTITY foxyproxy.tab.logging.label "Zapisivanje">
 <!ENTITY foxyproxy.tab.logging.accesskey "Z">
 <!ENTITY foxyproxy.tab.logging.tooltip "Uredi postavke zapisivanja">
-<!ENTITY foxyproxy.proxydns.label2 "">
+<!ENTITY foxyproxy.proxydns.label2 "Use this proxy for all DNS lookups">
 <!ENTITY foxyproxy.proxydns.accesskey "K">
-<!ENTITY foxyproxy.proxydns.tooltip2 "">
+<!ENTITY foxyproxy.proxydns.tooltip2 "If checked, DNS lookups are routed through this proxy">
 <!ENTITY foxyproxy.showstatusbaricon.label "Prikaži ikonu u statusnoj traci">
 <!ENTITY foxyproxy.showstatusbaricon.accesskey "P">
 <!ENTITY foxyproxy.showstatusbaricon.tooltip "Ako je označeno, FoxyProxy ikona će biti prikazana u statusnoj traci">

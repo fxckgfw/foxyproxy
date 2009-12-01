@@ -116,10 +116,9 @@
 <!ENTITY foxyproxy.tab.logging.label "Identification">
 <!ENTITY foxyproxy.tab.logging.accesskey "f">
 <!ENTITY foxyproxy.tab.logging.tooltip "Gère les paramètres d'identification">
-<!ENTITY foxyproxy.proxydns.label "Utiliser un proxy SOCKS pour les résolutions DNS">
+<!ENTITY foxyproxy.proxydns.label2 "Utiliser ce proxy pour Toutes recherches de DNS">
 <!ENTITY foxyproxy.proxydns.accesskey "U">
-<!ENTITY foxyproxy.proxydns.tooltip "Si cette case est cochée, les résolutions DNS seront routées via un proxy SOCKS">
-<!ENTITY foxyproxy.proxydns.notice "Vous devez redémarrer Firefox pour que les modifications prennent effet. On redémarre ?">
+<!ENTITY foxyproxy.proxydns.tooltip2 "Si coché, les recherches de DNS sont routées à travers ce proxy">
 <!ENTITY foxyproxy.showstatusbaricon.label "Afficher l'icône dans la barre d'état">
 <!ENTITY foxyproxy.showstatusbaricon.accesskey "f">
 <!ENTITY foxyproxy.showstatusbaricon.tooltip "Si cette case est cochée, l'icône de Foxyproxy sera affichée dans la barre d'état">

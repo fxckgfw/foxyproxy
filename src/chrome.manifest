@@ -1,6 +1,6 @@
 content foxyproxy content/
 
-locale  foxyproxy ar locale/ar
+locale  foxyproxy ar locale/ar/
 locale  foxyproxy cs-CZ locale/cs-CZ/
 locale  foxyproxy da-DK locale/da-DK/
 locale  foxyproxy de-DE locale/de-DE/

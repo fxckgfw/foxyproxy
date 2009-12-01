@@ -116,9 +116,9 @@
 <!ENTITY foxyproxy.tab.logging.label "گزارش گیری">
 <!ENTITY foxyproxy.tab.logging.accesskey "ا">
 <!ENTITY foxyproxy.tab.logging.tooltip "مدیریت تنظیمات گزارش گیری">
-<!ENTITY foxyproxy.proxydns.label2 "">
+<!ENTITY foxyproxy.proxydns.label2 "Use this proxy for all DNS lookups">
 <!ENTITY foxyproxy.proxydns.accesskey "ا">
-<!ENTITY foxyproxy.proxydns.tooltip2 "">
+<!ENTITY foxyproxy.proxydns.tooltip2 "If checked, DNS lookups are routed through this proxy">
 <!ENTITY foxyproxy.showstatusbaricon.label "نمایش آیکون در نوار وضعیت">
 <!ENTITY foxyproxy.showstatusbaricon.accesskey "ا">
 <!ENTITY foxyproxy.showstatusbaricon.tooltip "در صورت انتخاب آیکون برنامه در نوار وضعیت نمایش داده خواهد شد.">

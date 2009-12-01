@@ -116,9 +116,9 @@
 <!ENTITY foxyproxy.tab.logging.label "Loggning">
 <!ENTITY foxyproxy.tab.logging.accesskey "L">
 <!ENTITY foxyproxy.tab.logging.tooltip "Hanterar inställningar för loggen">
-<!ENTITY foxyproxy.proxydns.label2 "">
+<!ENTITY foxyproxy.proxydns.label2 "Use this proxy for all DNS lookups">
 <!ENTITY foxyproxy.proxydns.accesskey "S">
-<!ENTITY foxyproxy.proxydns.tooltip2 "">
+<!ENTITY foxyproxy.proxydns.tooltip2 "If checked, DNS lookups are routed through this proxy">
 <!ENTITY foxyproxy.showstatusbaricon.label "Visa ikon i verktygsfält">
 <!ENTITY foxyproxy.showstatusbaricon.accesskey "v">
 <!ENTITY foxyproxy.showstatusbaricon.tooltip "Om markerad kommer en ikon visas i verktygsfältet">

@@ -1,6 +1,6 @@
 content foxyproxy chrome/content/
 
-locale  foxyproxy ar chrome/locale/ar
+locale  foxyproxy ar chrome/locale/ar/
 locale  foxyproxy cs-CZ chrome/locale/cs-CZ/
 locale  foxyproxy da-DK chrome/locale/da-DK/
 locale  foxyproxy de-DE chrome/locale/de-DE/

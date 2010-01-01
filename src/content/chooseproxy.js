@@ -37,8 +37,7 @@ function onSettings() {
   if (params.out) {
     fp.proxies.push(params.out.proxy);
     proxyTree.view = fpc.makeProxyTreeView(fp, document); /* reset the view to show the new entry */
-    fp.writeSettings();  
-    fp.broadcast(null, "foxyproxy-dns-resolver"); /* check for a new DNS resolver */
+    fp.writeSettings();
   }
 
   // Reselect what was previously selected or the new item

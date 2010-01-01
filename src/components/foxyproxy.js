@@ -106,7 +106,6 @@ foxyproxy.prototype = {
   _mode : "disabled",
   _selectedProxy : null, /* remains null unless all URLs are set to load through a proxy */
   _selectedTabIndex : 0,
-  _proxyDNS : false,
   _toolsMenu : true,
   _contextMenu : true,
   _advancedMenus : false,
@@ -143,6 +142,7 @@ foxyproxy.prototype = {
       try {
         this.init();
         this.loadSettings();
+        this.defaultPrefs.init();
       }
       catch (e) {
         dumpp(e);
@@ -153,7 +153,6 @@ foxyproxy.prototype = {
               gObsSvc.addObserver(this, "domwindowclosed", false);
         gObsSvc.addObserver(this, "domwindowopened", false);
       gObsSvc.addObserver(this, "profile-after-change", false);
-      gObsSvc.addObserver(this.proxies, "foxyproxy-dns-resolver", false);
         //gObsSvc.addObserver(this, "http-on-modify-request", false);
               break;
           case "domwindowclosed":
@@ -172,7 +171,7 @@ foxyproxy.prototype = {
             gObsSvc.removeObserver(this, "domwindowclosed");
         gObsSvc.removeObserver(this, "domwindowopened");
             gObsSvc.removeObserver(this, "profile-after-change");
-            gObsSvc.removeObserver(this.proxies, "foxyproxy-dns-resolver");
+            this.defaultPrefs.uninit();
             break;
       /*case "foxyproxy-window-opened":*/
       case "domwindowopened":
@@ -257,51 +256,17 @@ biesi>  passing it the appropriate proxyinfo
       this._mode = "disabled";
       this.notifier.alert(this.getMessage("foxyproxy"), "Unrecognized mode specified: " + mode);
     }
-    this.toggleFilter(this._mode != "disabled");
-    if (this._mode=="disabled") {
-      this.loadDefaultPAC();
-      this.clearPrefs("network.proxy.", "type", "socks", "socks_port", "socks_version", "socks_remote_dns"); /* clear remote DNS lookup prefs */
-    }
-    else
-      gBroadcast(null, "foxyproxy-dns-resolver");
+    this.toggleFilter(this._mode != "disabled");    
     
+    if (this._mode=="disabled")
+      gFP.defaultPrefs.restoreOriginals();
+    else
+      gFP.defaultPrefs.setNewValues();
+      
     if (init) return;
+    
     writeSettings && this.writeSettings();
     gBroadcast(this.autoadd._enabled, "foxyproxy-mode-change", this._mode);
-  },
-
-  loadDefaultPAC : function() {
-    // User has disabled FoxyProxy, so Firefox network.proxy.* preferences will be used.
-    // If Firefox is configured to use a PAC file, we need to force that PAC file to load.
-    // Firefox won't load it automatically except on startup and after
-    // network.proxy.autoconfig_retry_* seconds. Rather than make the user wait for that,
-    // we load the PAC file now.
-    var networkPrefs = this.getPrefsService("network.proxy."), type;
-    try {
-      type = networkPrefs.getIntPref("type");
-    }
-    catch(e) {
-      dump("FoxyProxy: network.proxy.type doesn't exist or can't be read\n");
-    }
-    if (type == 2) { /* isn't there a const for this? */ 
-      // Using PAC File.    
-      // Don't use nsPIProtocolProxyService. From its comments: "[nsPIProtocolProxyService] exists purely as a
-      // hack to support the configureFromPAC method used by the preference panels in the various apps. Those
-      // apps need to be taught to just use the preferences API to "reload" the PAC file. Then, at that point,
-      // we can eliminate this interface completely."
-
-      // var pacURL = networkPrefs.getCharPref("autoconfig_url");
-      // var pps = CC["@mozilla.org/network/protocol-proxy-service;1"]
-        // .getService(Components.interfaces.nsPIProtocolProxyService);
-      // pps.configureFromPAC(pacURL);
-
-      // Instead, change the prefs--the proxy service is observing and will reload the PAC
-      networkPrefs.setIntPref("type", 1);
-      networkPrefs.setIntPref("type", 2);
-    }
-    else if (type == 1) {
-      // SOCKS type. TODO: should we turn on/off network.proxy.socks_remote_dns. For now, leave it alone
-    }
   },
 
   /**
@@ -350,7 +315,8 @@ biesi>  passing it the appropriate proxyinfo
     }
 
     try {
-      if (uri.scheme == "feed") return; /* feed schemes handled internally by browser */
+      var s = uri.scheme;
+      if (s == "feed" || s == "sacore" || s == "dssrequest") return; /* feed schemes handled internally by browser. ignore Mcafee site advisor (http://foxyproxy.mozdev.org/drupal/content/foxyproxy-latest-mcafee-site-advisor) */
       var spec = uri.spec;
       var mp = this.applyMode(spec);
       var ret = mp.proxy.getProxy(spec, uri.host, mp);
@@ -375,15 +341,6 @@ biesi>  passing it the appropriate proxyinfo
     p = p || this.getPrefsService("extensions.foxyproxy.");
     if (p.prefHasUserValue("settings"))
       p.clearUserPref("settings");
-  },
-  
-  clearPrefs : function(branch) {
-    var p = this.getPrefsService(branch);
-    // Iterate through non-declared args
-    for (var i=1, len=arguments.length; i<len; i++) {
-      if (p.prefHasUserValue(arguments[i]))
-        p.clearUserPref(arguments[i]);
-    }
   },
 
   /**
@@ -569,17 +526,6 @@ biesi>  passing it the appropriate proxyinfo
     this._useStatusBarPrefix = p;
     this.writeSettings();
   },
-
-  /** 
-   * Just a true/false shortcut; doesn't actually contain the DNS proxy info. Used when
-   *  deciding to set CI.nsIProxyInfo.TRANSPARENT_PROXY_RESOLVES_HOST or not so we don't
-   *  slow down PAC logic.
-   */
-  get proxyDNS() { return this._proxyDNS; },
-  set proxyDNS(p) {
-    this._proxyDNS = p;
-    this.writeSettings();
-  },
   
   get selectedTabIndex() { return this._selectedTabIndex; },
   set selectedTabIndex(i) {
@@ -649,7 +595,6 @@ biesi>  passing it the appropriate proxyinfo
     this.statusbar.fromDOM(doc);
     this.toolbar.fromDOM(doc);
     this.logg.fromDOM(doc);
-    this._proxyDNS = gGetSafeAttrB(node, "proxyDNS", false);
     this._toolsMenu = gGetSafeAttrB(node, "toolsMenu", true); // new for 2.0
     this._contextMenu = gGetSafeAttrB(node, "contextMenu", true); // new for 2.0
     this._advancedMenus = gGetSafeAttrB(node, "advancedMenus", false); // new for 2.3--default to false if it doesn't exist
@@ -670,6 +615,7 @@ biesi>  passing it the appropriate proxyinfo
     this.quickadd.fromDOM(doc); // KEEP THIS BEFORE this.autoadd.fromDOM() else fromDOM() is overwritten!?
     this.autoadd.fromDOM(doc);    
     this.warnings.fromDOM(doc);
+    this.defaultPrefs.fromDOM(doc);
   },
 
   toDOM : function() {
@@ -677,7 +623,6 @@ biesi>  passing it the appropriate proxyinfo
     var e = doc.createElement("foxyproxy");
     e.setAttribute("mode", this._mode);
     e.setAttribute("selectedTabIndex", this._selectedTabIndex);
-    e.setAttribute("proxyDNS", this._proxyDNS);
     e.setAttribute("toolsMenu", this._toolsMenu);
     e.setAttribute("contextMenu", this._contextMenu);
     e.setAttribute("advancedMenus", this._advancedMenus);
@@ -691,12 +636,126 @@ biesi>  passing it the appropriate proxyinfo
     e.appendChild(this.warnings.toDOM(doc));
     e.appendChild(this.autoadd.toDOM(doc));
     e.appendChild(this.quickadd.toDOM(doc));
+    e.appendChild(this.defaultPrefs.toDOM(doc));
     e.appendChild(this.proxies.toDOM(doc));
     return e;
   },
 
+  // Manages the saving of original pref values on installation
+  // and their restoration when FoxyProxy is disabled/uninstalled through the EM.
+  // Also forces our values to remain in effect even if the user or
+  // another extension changes them. Restores values to original
+  // when FoxyProxy is in disabled mode.
+  defaultPrefs : {
+    originalDisablePrefetch : false,
+    //network.dns.disablePrefetchFromHTTPS
+    networkPrefsObserver : null,
+    shouldRestoreOriginals : false, /* flag per https://developer.mozilla.org/en/Code_snippets/Miscellaneous#Receiving_notification_before_an_extension_is_disabled_and.2for_uninstalled */
 
-  // /////////////// random \\\\\\\\\\\\\\\\\\\\\\
+    QueryInterface: function(aIID) {
+      if (!aIID.equals(CI.nsISupports) && !aIID.equals(CI.nsIObserver))
+          throw CR.NS_ERROR_NO_INTERFACE;
+      return this;
+    },
+    
+    // Install observers
+    init : function() {
+      this.networkPrefsObserver = gFP.getPrefsService("network.dns.");
+      this.networkPrefsObserver.QueryInterface(CI.nsIPrefBranch2).addObserver("", this, false);
+      gObsSvc.addObserver(this, "em-action-requested", false);
+      gObsSvc.addObserver(this, "quit-application", false);
+    },
+    
+    // Uninstall observers
+    uninit : function() {
+      if (!this.networkPrefsObserver) // we're not initialized and calling gObsSvc.removeObserver() will throw
+        return;
+      this.networkPrefsObserver.removeObserver("", this);
+      this.networkPrefsObserver = null;
+      gObsSvc.removeObserver(this, "em-action-requested");
+      gObsSvc.removeObserver(this, "quit-application");
+    },
+  
+    observe : function(subj, topic, data) {
+      try {
+        if (topic == "nsPref:changed" && data == "disablePrefetch") {
+          var p = gFP.getPrefsService("network.dns."),
+            hasValue = p.prefHasUserValue("disablePrefetch");
+          if (!hasValue || (hasValue && !p.getBoolPref("disablePrefetch")))
+            this.setNewValues();
+        }
+        else if (topic == "em-action-requested")
+          this.checkRestoreOriginals(data, subj.QueryInterface(CI.nsIUpdateItem));
+        else if (topic == "quit-application" && this.shouldRestoreOriginals)
+          this.restoreOriginals();
+      }
+      catch (e) {
+        dumpp(e);
+      }
+    },
+    
+    // Should we restore the original pre-FoxyProxy values?
+    checkRestoreOriginals : function(d, updateItem) {
+      var guid = updateItem.id;
+      if (guid == "foxyproxy-basic@eric.h.jung" || guid == "foxyproxy@eric.h.jung" || guid == "foxyproxyplus@leahscape.com") {
+        if (d == "item-cancel-action")
+          this.shouldRestoreOriginals = false;
+        else if (d == "item-uninstalled" || d == "item-disabled")
+          this.shouldRestoreOriginals = true;
+        else if (d == "item-enabled")
+          this.shouldRestoreOriginals = false;
+      }
+    },
+    
+    // Restore the original pre-FoxyProxy values and stop observing changes
+    restoreOriginals : function() {
+      var p = gFP.getPrefsService("network.dns.");
+      this.uninit(); // stop observing the prefs while we change them
+      if (this.originalDisablePrefetch)
+        p.setBoolPref("disablePrefetch", true);
+      else {
+        try {
+          if (p.prefHasUserValue("disablePrefetch"))
+            p.clearUserPref("disablePrefetch");
+        }
+        catch (e) {
+          dumpp(e);
+        }
+      }
+      // Note we don't start observing the prefs again
+    },
+    
+    // Save the original prefs for restoring when FoxyProxy is disabled/uninstalled.
+    // Then set the new values. This is called on first run of FoxyProxy.
+    saveOriginals : function() {
+      var p = gFP.getPrefsService("network.dns."),
+        hasValue = p.prefHasUserValue("disablePrefetch");
+      this.originalDisablePrefetch = hasValue && p.getBoolPref("disablePrefetch");
+      gFP.writeSettings();
+    },
+    
+    // Set our desired values for the prefs; may or may not be the same as the originals
+    setNewValues : function() {
+      this.uninit(); // stop observing the prefs while we change them
+      gFP.getPrefsService("network.dns.").setBoolPref("disablePrefetch", true);
+      this.init(); // start observing the prefs again
+    },
+    
+    fromDOM : function(doc) {
+      var n = doc.getElementsByTagName("defaultPrefs").item(0);
+      if (!n) return; // for pre-2.17 foxyproxy.xml files that don't have this node
+      this.originalDisablePrefetch = gGetSafeAttrB(n, "originalDisablePrefetch", false);      
+    },
+    
+    toDOM : function(doc) {
+      var e = doc.createElement("defaultPrefs");
+      e.setAttribute("originalDisablePrefetch", this.originalDisablePrefetch);
+      return e;
+    }
+  
+  },
+
+  ///////////////// random \\\\\\\\\\\\\\\\\\\\\\
 
   random : {
     _includeDirect : false,
@@ -728,7 +787,7 @@ biesi>  passing it the appropriate proxyinfo
     }
   },
 
-  // /////////////// proxies \\\\\\\\\\\\\\\\\\\\\\
+  ///////////////// proxies \\\\\\\\\\\\\\\\\\\\\\
 
   proxies : {
     list : [],
@@ -753,21 +812,6 @@ biesi>  passing it the appropriate proxyinfo
     getProxyById : function(id) {
       var a = this.list.filter(function(e) {return e.id == this;}, id);
       return a?a[0]:null;
-    },
-    
-    /**
-     * Search for the dnsResolver amongst all proxies
-     */
-    get dnsResolverProxy() {
-      var a = this.list.filter(function(e) {return e.dnsResolver && e.enabled;});
-      return a?a[0]:null;
-    },
-    
-    /**
-     * This *should* return only 1 element, otherwise we're in a bad state.
-     */
-    get dnsResolverProxies() {
-      return this.list.filter(function(e) {return e.dnsResolver && e.enabled;});
     },
     
     getIndexById : function(id) {
@@ -909,15 +953,6 @@ biesi>  passing it the appropriate proxyinfo
         // If the proxy set for "previousMode" is being deleted, change "previousMode"
         if (gFP.previousMode == proxy.id)
           gFP.previousMode = gFP.isFoxyProxySimple() ? "disabled" : "patterns";
-        removeDNSResolver();
-      }      
-      else if (isBeingDisabled)
-        removeDNSResolver();
-      
-      function removeDNSResolver() {
-        // Remove the dnsResolver if this proxy was it
-        if (proxy.dnsResolver)
-          gBroadcast(null, "foxyproxy-dns-resolver");
       }
 
       // Handle AutoAdd & QuickAdd (superadd)
@@ -930,44 +965,6 @@ biesi>  passing it the appropriate proxyinfo
       
       // updateViews() with false, false (do not write settings and do not update log view--settings were just written when the properties themselves were updated
       updateViews && gBroadcast(null, "foxyproxy-updateviews");
-    },
-    
-    /**
-     * Possibly the remote DNS resolver has been changed (created, changed, deleted, disabled).
-     */
-    observe : function(subj, topic, data) {
-      if (topic == "foxyproxy-dns-resolver") {
-        if (gFP.mode == "disabled") return;          
-        else {
-          // First, ensure there is only one dnsResolverProxy
-          var remoteDNSResolvers = this.dnsResolverProxies, len=remoteDNSResolvers.length;
-          if (len > 1) {
-            // Turn them all off except the first
-            for (var i=1; i<len; i++)
-              remoteDNSResolvers[i].dnsResolver = false;
-            gFP.writeSettings(); // write the changes we just fixed
-          }
-          // Now set the proxy as the dns resolver
-          var proxyDNS = false, remoteDNSResolver = this.dnsResolverProxy; /* search for the dnsResolver amongst all proxies */
-          if (remoteDNSResolver) {
-            var mc = remoteDNSResolver.manualconf;
-            if (mc.isSocks) {
-              var p = gFP.getPrefsService("network.proxy.");
-              p.setIntPref("type", 1);
-              p.setCharPref("socks", mc.host);
-              p.setIntPref("socks_port", mc.port);
-              p.setIntPref("socks_version", mc.socksversion);
-              p.setBoolPref("socks_remote_dns", true);
-              proxyDNS = true;
-            }
-            else
-              gFP.notifier.alert(gFP.getMessage("foxyproxy"), gFP.getMessage("dnsResolver.not.socks", [remoteDNSResolver.name]));                 
-          }
-          else
-            gFP.clearPrefs("network.proxy.", "type", "socks", "socks_port", "socks_version", "socks_remote_dns"); /* clear socks prefs */   
-        }
-        gFP.proxyDNS = proxyDNS;
-      }
     }
   },
 

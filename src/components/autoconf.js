@@ -44,6 +44,7 @@ AutoConf.prototype = {
   _autoReload: false,
   _reloadFreqMins: 60,
   owner: null,
+  disabledDueToBadPAC: false,
 
   QueryInterface: function(aIID) {
     if (!aIID.equals(CI.nsISupports))
@@ -76,6 +77,7 @@ AutoConf.prototype = {
     this.errorNotification = gGetSafeAttrB(n, "errorNotification", true);
     this._autoReload = gGetSafeAttrB(n, "autoReload", false);
     this._reloadFreqMins = gGetSafeAttr(n, "reloadFreqMins", 60);
+    this.disabledDueToBadPAC = gGetSafeAttrB(n, "disabledDueToBadPAC", true);
   },
 
   toDOM : function(doc) {
@@ -85,6 +87,7 @@ AutoConf.prototype = {
     e.setAttribute("errorNotification", this.errorNotification);
     e.setAttribute("autoReload", this._autoReload);
     e.setAttribute("reloadFreqMins", this._reloadFreqMins);
+    e.setAttribute("disabledDueToBadPAC", this.disabledDueToBadPAC);
     return e;
   },
 
@@ -135,12 +138,13 @@ AutoConf.prototype = {
   },
 
   badPAC : function(r, e) {
+    this.disabledDueToBadPAC = true; // TODO: write settings file
     var msg = fp.getMessage(r, [this.owner.name]) + "\n\n" + e.message;
     this.errorNotification && fp.notifier.alert(fp.getMessage("pac.status"), msg);
     if (this.owner.lastresort)
       this.owner.mode = "direct"; // don't disable!
     else
-      this.owner._enabled = false; // Use _enabled so we don't loop infinitely
+      this.owner._enabled = false; // Use _enabled so we don't loop infinitely    
   }, 
   
   notify : function(timer) {

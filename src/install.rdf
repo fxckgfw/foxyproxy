@@ -7,12 +7,12 @@
 <!-- begin-foxyproxy-standard -->
         <em:id>foxyproxy@eric.h.jung</em:id>
         <em:name>FoxyProxy Standard</em:name>
-        <em:version>2.16.1</em:version>
+        <em:version>2.17b2</em:version>
 <!-- end-foxyproxy-standard -->
 <!-- begin-foxyproxy-simple
         <em:id>foxyproxy-basic@eric.h.jung</em:id>
         <em:name>FoxyProxy Basic</em:name>
-        <em:version>1.3.1</em:version>
+        <em:version>1.4b2</em:version>
 end-foxyproxy-simple -->
         <em:creator>LeahScape, Inc.</em:creator>
         <em:description>Premier proxy management for Firefox</em:description>

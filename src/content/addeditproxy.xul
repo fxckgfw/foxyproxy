@@ -74,15 +74,19 @@
         label="&foxyproxy.includeincycle.label;" style="width: 20em;"
         accesskey="&foxyproxy.includeincycle.accesskey;"
         tooltiptext="&foxyproxy.includeincycle.tooltip;"/>
+      <checkbox id="proxyDNS" class="indent" observes="direct-broadcaster"
+        label="&foxyproxy.proxydns.label3;"
+        accesskey="&foxyproxy.proxydns.accesskey;"
+        tooltiptext="&foxyproxy.proxydns.tooltip3;"/>
       <separator class="thin"/>
       <vbox>
         <hbox align="center">
           <textbox id="color" class="indent" oninput="customcolor(this.value);"/>
-          <colorpicker2 id="colorpicker" type="button" onchange="pickcolor(this.color);"/> <!-- NEW SVG -->
+          <colorpicker2 id="colorpicker" type="button" onchange="pickcolor(this.color);"/>
           <label id="colorfalse" hidden="true" class="invalidcolor" value="&foxyproxy.invalidcolor.label;" />
           <label id="colortrue" class="validcolor" value="&foxyproxy.validcolor.label;" />
         </hbox>          
-      </vbox>        
+      </vbox> 
 	  </tabpanel>
 		<tabpanel flex="1" orient="vertical">
 				<separator class="thin" />
@@ -116,17 +120,11 @@
 									label="&foxyproxy.issocks.label;"
 	               	accesskey="&foxyproxy.issocks.accesskey;"
 	               	tooltiptext="&foxyproxy.issocks.tooltip;"
-	               	observes="disabled-broadcaster"
-	               	oncommand="onIsSocks(this.checked)"/>
+	               	observes="disabled-broadcaster"/>
                 <radiogroup id="socksversion" orient="horizontal">
                   <radio id="socks4" value="4" label="&foxyproxy.socks.v4;" accesskey="4" observes="disabled-broadcaster"/>
                   <radio id="socks5" value="5" label="&foxyproxy.socks.v5;" accesskey="5" observes="disabled-broadcaster"/>
                 </radiogroup>
-                <checkbox id="remoteDNSResolver" observes="disabled-broadcaster"
-                  label="&foxyproxy.proxydns.label2;"
-                  accesskey="&foxyproxy.proxydns.accesskey;"
-                  tooltiptext="&foxyproxy.proxydns.tooltip2;"
-                  oncommand="onRemoteDNSResolver(this)"/>
               </hbox>
             </groupbox>
           <separator class="thin"/>
@@ -214,7 +212,7 @@
       </hbox>
       <separator class="thin"/>
       <hbox flex="1">
-        <tree id="urlsTree" flex="1" align="stretch" enableColumnDrag="true" seltype="single" onselect="setButtons('urls-tree-row-selected', this;"
+        <tree id="urlsTree" flex="1" align="stretch" enableColumnDrag="true" seltype="single" onselect="setButtons('urls-tree-row-selected', this);"
 	        	onclick="overlay.onTreeClick(event, this);" persist="sortDirection sortResource" sortDirection="ascending" sortResource="name">
           <treecols onclick="sort(this.id)" pickertooltiptext="&foxyproxy.tree.pickertooltiptext.label;">
             <treecol id="enabled" onclick="sort(this.id)" label="&foxyproxy.enabled.label;" type="checkbox" flex="1" persist="width ordinal hidden"/><splitter class="tree-splitter"/>
@@ -378,6 +376,7 @@
   <broadcaster id="disabled-broadcaster" disabled="false"/>
   <broadcaster id="default-proxy-broadcaster" disabled="false"/>
   <broadcaster id="issocks-broadcaster" disabled="false"/>
+  <broadcaster id="direct-broadcaster" disabled="false"/>
 </broadcasterset>
 
 </dialog>

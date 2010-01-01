@@ -329,7 +329,6 @@ function onDeleteSelection() {
 	  // Store cur selection
 	  var sel = proxyTree.currentIndex;  
     foxyproxy.proxies.remove(proxyTree.currentIndex);
-    foxyproxy.broadcast(null, "foxyproxy-dns-resolver"); /* update remote DNS resolver, if necessary */
     _updateView(true);
 	  // Reselect what was previously selected
 		proxyTree.view.selection.select(sel+1>proxyTree.view.rowCount ? 0:sel);    
@@ -346,10 +345,7 @@ function onCopySelection() {
       dom = orig.toDOM(document, true),
       p = CC["@leahscape.org/foxyproxy/proxy;1"].createInstance().wrappedJSObject;
 	  p.fromDOM(dom, true);
-	  p.id = foxyproxy.proxies.uniqueRandom(); // give it its own id
-	  // If the original is the remoteDNSResolver, don't allow the copy to be one, too (since we can only have one for the whole system)
-	  if (orig.dnsResolver)
-	    p.dnsResolver = false; 
+	  p.id = foxyproxy.proxies.uniqueRandom(); // give it its own id 
 	  foxyproxy.proxies.push(p);
 	  _updateView(true);
 	  // Reselect what was previously selected
@@ -379,7 +375,6 @@ function onSettings(isNew) {
     foxyproxy.writeSettings();
 	  // Reselect what was previously selected or the new item
 		proxyTree.view.selection.select(isNew?proxyTree.view.rowCount-2:sel); 
-    foxyproxy.broadcast(null, "foxyproxy-dns-resolver"); /* check for a new DNS resolver */
   }
 }
 
@@ -473,7 +468,6 @@ function onProxyTreeMenuPopupShowing() {
 function toggleEnabled() {
 	var p = foxyproxy.proxies.item(proxyTree.currentIndex);
 	p.enabled = !p.enabled;
-	foxyproxy.broadcast(null, "foxyproxy-dns-resolver");  /* update remote DNS resolver, if necessary */
 	_updateView(true, false);
 }
 

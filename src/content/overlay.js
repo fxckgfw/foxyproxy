@@ -61,11 +61,13 @@ var foxyproxy = {
       // Probably not necessary, but does not hurt
       this.timer = null;
       var fpc = Components.classes["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject;
-      if (this.first)
+      if (this.first) {
+        foxyproxy.fp.defaultPrefs.saveOriginals();
         x(foxyproxy.fp.isFoxyProxySimple() ? "http://foxyproxy.mozdev.org/basic/help.html" : "http://foxyproxy.mozdev.org/help.html");
+      }
       else
         x(foxyproxy.fp.isFoxyProxySimple() ? "http://foxyproxy.mozdev.org/basic/releasenotes.html" :
-          "http://foxyproxy.mozdev.org/releasenotes.html");
+          "http://foxyproxy.mozdev.org/releasenotes.html");      
       function x(url) {
         fpc.openAndReuseOneTabPerURL(url);
         // Do this last so we try again next time if we failed to display now
@@ -196,12 +198,12 @@ var foxyproxy = {
     if (ok) {
       // Prompt use about proxying DNS queries, but only if another proxy
       // isn't already set for that
-      var proxyDNS = this.fp.proxyDNS ? false : this.ask(owner, this.fp.getMessage("torwiz.proxydns"));
+      var proxyDNS = this.ask(owner, this.fp.getMessage("torwiz.proxydns"));
       var p = Components.classes["@leahscape.org/foxyproxy/proxy;1"]
         .createInstance(Components.interfaces.nsISupports).wrappedJSObject;
       p.name = this.fp.getMessage("tor");
       p.notes = this.fp.getMessage("torwiz.proxy.notes");
-      p.dnsResolver = proxyDNS;
+      p.proxyDNS = proxyDNS;
       var match = Components.classes["@leahscape.org/foxyproxy/match;1"]
         .createInstance(Components.interfaces.nsISupports).wrappedJSObject;
       match.name = this.fp.getMessage("torwiz.google.mail");
@@ -242,7 +244,6 @@ var foxyproxy = {
       foxyproxy.fp.proxies.push(p);
       foxyproxy.updateViews(true);
       foxyproxy.alert(owner, foxyproxy.fp.getMessage("torwiz.congratulations"));
-      foxyproxy.fp.broadcast(null, "foxyproxy-dns-resolver"); /* check for a new DNS resolver */
     }
   },
 
@@ -669,7 +670,7 @@ var foxyproxy = {
           this._cmd,
           pName.substring(0, 1),
           this.fp.getMessage("mode.custom.label", [pName]), p.notes);
-        itm.setAttribute("style", "color: blue;");
+        itm.setAttribute("style", "color: " + p.color);
         checkOne.push(itm);
 
         if (this.fp.advancedMenus) {

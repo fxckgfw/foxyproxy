@@ -71,7 +71,7 @@ function Proxy(fp) {
   this.fp = fp || CC["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;
   this.matches = [];
   this.name = this.notes = "";
-  this.manualconf = new ManualConf(this.fp);
+  this.manualconf = new ManualConf(this, this.fp);
   this.autoconf = new AutoConf(this, this.fp);
   this._mode = "manual"; // manual, auto, direct, random
   this._enabled = true;
@@ -86,6 +86,7 @@ Proxy.prototype = {
   includeInCycle: true,
   _color: DEFAULT_COLOR,
   colorString: "nmbado",
+  proxyDNS: false,
   fp: null,
 
   QueryInterface: function(aIID) {
@@ -100,6 +101,7 @@ Proxy.prototype = {
     this.notes = node.getAttribute("notes");
     this._enabled = node.getAttribute("enabled") == "true";
     this.autoconf.fromDOM(node.getElementsByTagName("autoconf").item(0));
+    this.proxyDNS = gGetSafeAttrB(node, "proxyDNS", false); // Keep this before deserializing manualconf so that manualconf.proxy is constructed properly
     this.manualconf.fromDOM(node.getElementsByTagName("manualconf").item(0));
     // 1.1 used "manual" instead of "mode" and was true/false only (for manual or auto)
     this._mode = node.hasAttribute("manual") ?
@@ -112,8 +114,7 @@ Proxy.prototype = {
 	  this.lastresort = node.hasAttribute("lastresort") ? node.getAttribute("lastresort") == "true" : false; // new for 2.0
     this.animatedIcons = node.hasAttribute("animatedIcons") ? node.getAttribute("animatedIcons") == "true" : !this.lastresort; // new for 2.4
     this.includeInCycle = node.hasAttribute("includeInCycle") ? node.getAttribute("includeInCycle") == "true" : !this.lastresort; // new for 2.5
-    this.color = gGetSafeAttr(node, "color", DEFAULT_COLOR);
-    this._dnsResolver = gGetSafeAttrB(node, "dnsResolver", false);
+    this.color = gGetSafeAttr(node, "color", DEFAULT_COLOR);    
     
     for (var i=0,temp=node.getElementsByTagName("match"); i<temp.length; i++) {
       var j = this.matches.length;
@@ -138,7 +139,7 @@ Proxy.prototype = {
     e.setAttribute("animatedIcons", this.animatedIcons);
     e.setAttribute("includeInCycle", this.includeInCycle);
     e.setAttribute("color", this._color);
-    e.setAttribute("dnsResolver", this._dnsResolver);
+    e.setAttribute("proxyDNS", this.proxyDNS);
 
     var matchesElem = doc.createElement("matches");
     e.appendChild(matchesElem);
@@ -148,14 +149,6 @@ Proxy.prototype = {
     e.appendChild(this.autoconf.toDOM(doc));
     e.appendChild(this.manualconf.toDOM(doc));
     return e;
-  },
-
-  set dnsResolver(n) {
-    this._dnsResolver = n;
-  },
-    
-  get dnsResolver() {
-    return this._dnsResolver;
   },
   
   /**
@@ -182,14 +175,13 @@ Proxy.prototype = {
   
   get color() {
     return this._color;
-  },  
+  },
 
   set enabled(e) {
     if (this.lastresort && !e) return; // can't ever disable this guy
     this._enabled = e;
 		this.shouldLoadPAC() && this.autoconf.loadPAC();
     this.handleTimer();
-    this.fp.broadcast(null, "foxyproxy-dns-resolver");
   },
 
   get enabled() {return this._enabled;},
@@ -290,18 +282,17 @@ Proxy.prototype = {
 	    for (var i=0; i<tokens.length; i++) {
 	      var components = this.autoconf.parser.exec(tokens[i]);
 	      if (!components) continue;
+	      var tmp = this.proxyDNS ? CI.nsIProxyInfo.TRANSPARENT_PROXY_RESOLVES_HOST : 0;
 	      switch (components[1]) {
 	        case "proxy":
-	          proxies.push(proxyService.newProxyInfo("http", components[2], components[3], 0, 0, null));
+	          proxies.push(proxyService.newProxyInfo("http", components[2], components[3], tmp, 0, null));
 	          break;
 	        case "socks":
 	        case "socks5":
-	          proxies.push(proxyService.newProxyInfo("socks", components[2], components[3],
-	            this.fp._proxyDNS ? CI.nsIProxyInfo.TRANSPARENT_PROXY_RESOLVES_HOST : 0, 0, null));
+	          proxies.push(proxyService.newProxyInfo("socks", components[2], components[3], tmp, 0, null));
 	          break;
 	        case "socks4":
-	          proxies.push(proxyService.newProxyInfo("socks4", components[2], components[3],
-	            this.fp._proxyDNS ? CI.nsIProxyInfo.TRANSPARENT_PROXY_RESOLVES_HOST : 0, 0, null));
+	          proxies.push(proxyService.newProxyInfo("socks4", components[2], components[3], tmp, 0, null));
 	          break;
 	        case "direct":
 	          proxies.push(this.direct);
@@ -340,7 +331,8 @@ Proxy.prototype = {
 };
 
 ///////////////////////////// ManualConf class ///////////////////////
-function ManualConf(fp) {
+function ManualConf(owner, fp) {
+  this.owner = owner;
   this.fp = fp;
 }
 
@@ -350,6 +342,7 @@ ManualConf.prototype = {
   _socksversion: "5",
   _isSocks: false,
   fp : null,
+  owner: null,
 
   fromDOM : function(n) {
     this._host = gGetSafeAttr(n, "host", null) || gGetSafeAttr(n, "http", null) ||
@@ -382,13 +375,12 @@ ManualConf.prototype = {
   },
 
   _makeProxy : function() {
-    if (!this._host || !this._port) {
+    if (!this._host || !this._port)
       return;
-    }
     this.proxy = this._isSocks ? proxyService.newProxyInfo(this._socksversion == "5"?"socks":"socks4", this._host, this._port,
-          this.fp.proxyDNS ? CI.nsIProxyInfo.TRANSPARENT_PROXY_RESOLVES_HOST : 0, 0, null): // never ignore, never failover
+          this.owner.proxyDNS ? CI.nsIProxyInfo.TRANSPARENT_PROXY_RESOLVES_HOST : 0, 0, null): // never ignore, never failover
           proxyService.newProxyInfo("http", this._host, this._port, 0, 0, null);
-  },  
+  },
 
   get host() {return this._host;},
   set host(e) {

@@ -8,11 +8,21 @@
   available in the LICENSE file at the root of this installation
   and also online at http://www.gnu.org/licenses/gpl.txt
 **/
-var fpc;
+var fpc, intervalId, angle = 4, iconRotater;
 
 function onLoad() {
   document.documentElement.getButton("accept").focus()
   fpc = Components.classes["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject;
   document.getElementById("ver").value += " " + fpc.getVersion();
-	sizeToContent();      
+	sizeToContent();  
+	iconRotater = document.getElementById("fp-statusbar-icon-rotater");
+	intervalId = window.setInterval(animate, 10);
+}
+
+function animate() {
+  iconRotater.setAttribute("transform", "rotate("+(angle)+", 9, 9)");
+  if ((angle += 10) > 1440) {
+    iconRotater.setAttribute("transform", "rotate(0, 9, 9)");
+    window.clearInterval(intervalId);
+  }
 }

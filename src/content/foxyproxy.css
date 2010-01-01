@@ -144,12 +144,6 @@ tab[id^="foxyproxy-"] /* selectall tabs whose id have the prefix "foxyproxy-" */
 }
 /* end addedit.xul button button icons */
 
-
-#foxyproxy-image {
-  cursor: pointer;
-  list-style-image: url("chrome://foxyproxy/content/images/foxyproxy-with-copy.gif");
-}
-
 .heading {text-decoration: underline; font-weight:bold;}
 
 .foxyproxy-ref {

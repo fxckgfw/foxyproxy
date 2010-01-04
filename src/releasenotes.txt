@@ -15,3 +15,5 @@
 
 * TODO: put loadDefaultPAC() from foxyproxy.js back (well, its functionality anyway)
         finish and/or more testing for auto re-enable of PAC if it's disabled due to PAC not found
+        
+* Width and height of main options dialog and proxy settings dialog remembered between opening/closing        

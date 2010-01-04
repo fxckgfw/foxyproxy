@@ -16,7 +16,7 @@
 <window id="foxyproxyoptions2" windowtype="foxyproxy-options"
   title="&foxyproxy.standard.label;"
   xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-  xmlns:html="http://www.w3.org/1999/xhtml" persist="screenX screenY"
+  xmlns:html="http://www.w3.org/1999/xhtml" persist="screenX screenY width height"
   onload="onLoad();" onunload="onOK();" context="mainPopup">
 
   <script src="options.js" />

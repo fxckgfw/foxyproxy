@@ -268,7 +268,7 @@ Proxy.prototype = {
   
 	resolve : function(spec, host, mp) {
 	  function _notifyUserOfError(spec) {
-			this.pacErrorNotification && this.fp.notifier.alert(this.fp.getMessage("foxyproxy"), this.fp.getMessage("proxy.error.for.url") + spec);
+			/*this.autoconf.errorNotification &&*/ this.fp.notifier.alert(this.fp.getMessage("foxyproxy"), this.fp.getMessage("proxy.error.for.url", [spec]));
 			return null;
 		}
 	  // See http://wp.netscape.com/eng/mozilla/2.0/relnotes/demo/proxy-live.html
@@ -298,7 +298,7 @@ Proxy.prototype = {
 	          proxies.push(this.direct);
 	          break;
 	        default:
-	          return this._notifyUserOfError(spec);
+	          return _notifyUserOfError(spec);
 	      }
 	    }
 	    // Build a proxy list for proxy for failover support
@@ -307,7 +307,7 @@ Proxy.prototype = {
 	      proxies[i-1].failoverProxy = proxies[i];
 	    }
 	    if (proxies[0] == null) {
-		    return this._notifyUserOfError(spec);
+		    return _notifyUserOfError(spec);
 		  }
 		  else if (proxies[1]) {
 			  proxies[0].failoverTimeout = 1800;

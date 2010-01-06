@@ -16,4 +16,6 @@
 * TODO: put loadDefaultPAC() from foxyproxy.js back (well, its functionality anyway)
         finish and/or more testing for auto re-enable of PAC if it's disabled due to PAC not found
         
-* Width and height of main options dialog and proxy settings dialog remembered between opening/closing        
+* Width and height of main options dialog and proxy settings dialog remembered between opening/closing
+* Fixed bug which prevented the proper display of an error message to the user if he was using a PAC with a syntax error or other problems.
+  Discussed here: http://foxyproxy.mozdev.org/drupal/content/seems-be-bug-using-pac-files-thisnotifyuseroferrors     

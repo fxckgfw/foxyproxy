@@ -219,6 +219,10 @@ Common.prototype = {
           case "autopacCol":return i.autoconf.url;   
           case "animatedIconsCol":return i.animatedIcons?fp.getMessage("yes"):fp.getMessage("no");
           case "cycleCol":return i.includeInCycle?fp.getMessage("yes"):fp.getMessage("no");
+          case "remoteDNSCol":
+            if (i.mode == "direct") return fp.getMessage("not.applicable");
+            else
+              return i.proxyDNS ? fp.getMessage("yes"):fp.getMessage("no");
         }
       },
       setCellValue: function(row, col, val) {fp.proxies.item(row).enabled = val;},

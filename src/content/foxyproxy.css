@@ -133,6 +133,9 @@ tab[id^="foxyproxy-"] /* selectall tabs whose id have the prefix "foxyproxy-" */
 #foxyproxy-edit-url-pattern-button {
   list-style-image: url("chrome://foxyproxy/content/images/page_edit.png");
 }
+#foxyproxy-copy-url-pattern-button {
+  list-style-image: url("chrome://foxyproxy/content/images/page_copy.png");
+}
 #foxyproxy-delete-url-pattern-button {
   list-style-image: url("chrome://foxyproxy/content/images/page_delete.png");
 }

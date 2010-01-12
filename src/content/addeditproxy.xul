@@ -206,6 +206,7 @@
       <hbox>
         <button id="foxyproxy-add-url-pattern-button" command="addURLPatternCmd" flex="1"/>
         <button id="foxyproxy-edit-url-pattern-button" command="editURLPatternSelectionCmd" flex="1"/>
+        <button id="foxyproxy-copy-url-pattern-button" command="copyURLPatternSelectionCmd" flex="1"/>
         <button id="foxyproxy-delete-url-pattern-button" command="deleteURLPatternSelectionCmd" flex="1"/>
         <button id="foxyproxy-help-url-pattern-button" command="helpURLPatternCmd" flex="1"/>
 				<button id="foxyproxy-wildcard-url-pattern-ref-button" command="wildcardURLPatternReferenceCmd" flex="1"/>
@@ -218,10 +219,10 @@
             <treecol id="enabled" onclick="sort(this.id)" label="&foxyproxy.enabled.label;" type="checkbox" flex="1" persist="width ordinal hidden"/><splitter class="tree-splitter"/>
             <treecol id="name" onclick="sort(this.id)" label="&foxyproxy.pattern.name.label;" flex="1" persist="width ordinal hidden"/><splitter class="tree-splitter"/>
             <treecol id="pattern" onclick="sort(this.id)" label="&foxyproxy.url.pattern.label;" flex="1" persist="width ordinal hidden"/><splitter class="tree-splitter"/>
-            <treecol id="isRegEx" onclick="sort(this.id)" label="&foxyproxy.pattern.type.label;" flex="1" persist="width ordinal hidden"/><splitter class="tree-splitter"/>
+            <treecol id="isRegEx" onclick="sort(this.id)" label="&foxyproxy.pattern.type.label;" flex="1" persist="width ordinal hidden" hidden="true"/><splitter class="tree-splitter"/>
             <treecol id="isBlackList" onclick="sort(this.id)" label="&foxyproxy.whitelist.blacklist.label;" flex="1" persist="width ordinal hidden"/><splitter class="tree-splitter"/>
-            <treecol id="caseSensitive" onclick="sort(this.id)" label="&foxyproxy.casesensitive.label;" flex="1" persist="width ordinal hidden"/><splitter class="tree-splitter"/>            
-            <treecol id="temp" onclick="sort(this.id)" label="&foxyproxy.temp.label;" flex="1" persist="width ordinal hidden"/><splitter class="tree-splitter"/>            
+            <treecol id="caseSensitive" onclick="sort(this.id)" label="&foxyproxy.casesensitive.label;" flex="1" persist="width ordinal hidden" hidden="true"/><splitter class="tree-splitter"/>            
+            <treecol id="temp" onclick="sort(this.id)" label="&foxyproxy.temp.label;" flex="1" persist="width ordinal hidden" hidden="true"/><splitter class="tree-splitter"/>            
           </treecols>
           <treechildren context="urlsTreeContext" ondblclick="onAddEditURLPattern(false);"/>
          </tree>
@@ -240,6 +241,7 @@
   <hbox>
     <button command="addURLPatternCmd" flex="1"/>
     <button command="editURLPatternSelectionCmd" flex="1"/>
+    <button command="copyURLPatternSelectionCmd" flex="1"/>
     <button command="deleteURLPatternSelectionCmd" flex="1"/>
     <button command="helpURLPatternCmd" flex="1"/>
 		<button id="foxyproxy-wildcard-url-pattern-ref-button" command="wildcardURLPatternReferenceCmd" flex="1"/>
@@ -297,6 +299,7 @@
     <menuseparator/>
     <menuitem class="menuitem-non-iconic" command="addURLPatternCmd"/>
     <menuitem class="menuitem-non-iconic" command="editURLPatternSelectionCmd"/>
+    <menuitem class="menuitem-non-iconic" command="copyURLPatternSelectionCmd"/>
     <menuitem class="menuitem-non-iconic" command="deleteURLPatternSelectionCmd"/>
     <menuseparator/>
     <menuitem class="menuitem-non-iconic" command="helpURLPatternCmd"/>
@@ -331,6 +334,13 @@
   tooltiptext="&foxyproxy.edit.selection.tooltip;"
   observes="urls-tree-row-selected"
   oncommand="onAddEditURLPattern(false);"/>
+
+<command id="copyURLPatternSelectionCmd"
+  label="&foxyproxy.copy.selection.label;"
+  accesskey="&foxyproxy.copy.selection.accesskey;"
+  tooltiptext="&foxyproxy.copy.selection.tooltip;"
+  observes="urls-tree-row-selected"
+  oncommand="onCopyURLPattern();"/>
 
 <command id="helpURLPatternCmd"
   label="&foxyproxy.help.label;"

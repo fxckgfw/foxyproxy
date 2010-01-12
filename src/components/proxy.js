@@ -86,7 +86,7 @@ Proxy.prototype = {
   includeInCycle: true,
   _color: DEFAULT_COLOR,
   colorString: "nmbado",
-  proxyDNS: false,
+  _proxyDNS: false,
   fp: null,
 
   QueryInterface: function(aIID) {
@@ -101,7 +101,7 @@ Proxy.prototype = {
     this.notes = node.getAttribute("notes");
     this._enabled = node.getAttribute("enabled") == "true";
     this.autoconf.fromDOM(node.getElementsByTagName("autoconf").item(0));
-    this.proxyDNS = gGetSafeAttrB(node, "proxyDNS", false); // Keep this before deserializing manualconf so that manualconf.proxy is constructed properly
+    this._proxyDNS = gGetSafeAttrB(node, "proxyDNS", false);
     this.manualconf.fromDOM(node.getElementsByTagName("manualconf").item(0));
     // 1.1 used "manual" instead of "mode" and was true/false only (for manual or auto)
     this._mode = node.hasAttribute("manual") ?
@@ -139,7 +139,7 @@ Proxy.prototype = {
     e.setAttribute("animatedIcons", this.animatedIcons);
     e.setAttribute("includeInCycle", this.includeInCycle);
     e.setAttribute("color", this._color);
-    e.setAttribute("proxyDNS", this.proxyDNS);
+    e.setAttribute("proxyDNS", this._proxyDNS);
 
     var matchesElem = doc.createElement("matches");
     e.appendChild(matchesElem);
@@ -150,6 +150,13 @@ Proxy.prototype = {
     e.appendChild(this.manualconf.toDOM(doc));
     return e;
   },
+  
+  set proxyDNS(e) {
+    this._proxyDNS = e;
+    this.manualconf._makeProxy();
+  },
+
+  get proxyDNS() {return this._proxyDNS;},  
   
   /**
    * Create a variable that represents the color but as all letters.
@@ -282,7 +289,7 @@ Proxy.prototype = {
 	    for (var i=0; i<tokens.length; i++) {
 	      var components = this.autoconf.parser.exec(tokens[i]);
 	      if (!components) continue;
-	      var tmp = this.proxyDNS ? CI.nsIProxyInfo.TRANSPARENT_PROXY_RESOLVES_HOST : 0;
+	      var tmp = this._proxyDNS ? CI.nsIProxyInfo.TRANSPARENT_PROXY_RESOLVES_HOST : 0;
 	      switch (components[1]) {
 	        case "proxy":
 	          proxies.push(proxyService.newProxyInfo("http", components[2], components[3], tmp, 0, null));
@@ -378,7 +385,7 @@ ManualConf.prototype = {
     if (!this._host || !this._port)
       return;
     this.proxy = this._isSocks ? proxyService.newProxyInfo(this._socksversion == "5"?"socks":"socks4", this._host, this._port,
-          this.owner.proxyDNS ? CI.nsIProxyInfo.TRANSPARENT_PROXY_RESOLVES_HOST : 0, 0, null): // never ignore, never failover
+          this.owner._proxyDNS ? CI.nsIProxyInfo.TRANSPARENT_PROXY_RESOLVES_HOST : 0, 0, null): // never ignore, never failover
           proxyService.newProxyInfo("http", this._host, this._port, 0, 0, null);
   },
 

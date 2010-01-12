@@ -71,7 +71,7 @@
         flex="1" persist="width ordinal hidden" />
       <splitter class="tree-splitter" />
       <treecol id="remoteDNSCol"
-        label="&foxyproxy.proxyDNS.label;" hidden="true"
+        label="&foxyproxy.proxydns.label4;" hidden="true"
         flex="1" persist="width ordinal hidden" />
       <splitter class="tree-splitter" />
     </treecols>

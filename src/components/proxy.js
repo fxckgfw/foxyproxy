@@ -86,7 +86,7 @@ Proxy.prototype = {
   includeInCycle: true,
   _color: DEFAULT_COLOR,
   colorString: "nmbado",
-  _proxyDNS: false,
+  _proxyDNS: true,
   fp: null,
 
   QueryInterface: function(aIID) {
@@ -101,7 +101,7 @@ Proxy.prototype = {
     this.notes = node.getAttribute("notes");
     this._enabled = node.getAttribute("enabled") == "true";
     this.autoconf.fromDOM(node.getElementsByTagName("autoconf").item(0));
-    this._proxyDNS = gGetSafeAttrB(node, "proxyDNS", false);
+    this._proxyDNS = gGetSafeAttrB(node, "proxyDNS", true);
     this.manualconf.fromDOM(node.getElementsByTagName("manualconf").item(0));
     // 1.1 used "manual" instead of "mode" and was true/false only (for manual or auto)
     this._mode = node.hasAttribute("manual") ?

@@ -70,6 +70,10 @@
         label="&foxyproxy.includeincycle.label;" hidden="true"
         flex="1" persist="width ordinal hidden" />
       <splitter class="tree-splitter" />
+      <treecol id="remoteDNSCol"
+        label="&foxyproxy.proxyDNS.label;" hidden="true"
+        flex="1" persist="width ordinal hidden" />
+      <splitter class="tree-splitter" />
     </treecols>
     <treechildren id="proxyTreeChildren" flex="1"
       ondblclick="onOK();close();"/>

@@ -198,12 +198,11 @@ var foxyproxy = {
     if (ok) {
       // Prompt use about proxying DNS queries, but only if another proxy
       // isn't already set for that
-      var proxyDNS = this.ask(owner, this.fp.getMessage("torwiz.proxydns"));
       var p = Components.classes["@leahscape.org/foxyproxy/proxy;1"]
         .createInstance(Components.interfaces.nsISupports).wrappedJSObject;
       p.name = this.fp.getMessage("tor");
       p.notes = this.fp.getMessage("torwiz.proxy.notes");
-      p.proxyDNS = proxyDNS;
+      p.proxyDNS = true;
       var match = Components.classes["@leahscape.org/foxyproxy/match;1"]
         .createInstance(Components.interfaces.nsISupports).wrappedJSObject;
       match.name = this.fp.getMessage("torwiz.google.mail");

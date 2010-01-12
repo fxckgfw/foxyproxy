@@ -235,6 +235,22 @@ function onRemoveURLPattern() {
 	urlsTree.view.selection.select(sel+1>urlsTree.view.rowCount ? urlsTree.view.rowCount-1:sel);
 }
 
+function onCopyURLPattern() {
+  // Get current selection
+  var currentMatch = proxy.matches[urlsTree.currentIndex];
+  // Make new match
+  var m = CC["@leahscape.org/foxyproxy/match;1"].createInstance().wrappedJSObject,
+    idx = proxy.matches.length,  
+    dom = currentMatch.toDOM(document, true);
+  m.fromDOM(dom, true);
+  
+  proxy.matches[idx] = m;
+  _updateView();
+
+  // Select new item
+  urlsTree.view.selection.select(urlsTree.view.rowCount-1);
+}
+
 function toggleMode(mode) {
   // Next line--buggy in FF 1.5.0.1--makes fields enabled but readonly
   // document.getElementById("disabled-broadcaster").setAttribute("disabled", mode == "auto" ? "true" : "false");
@@ -244,17 +260,20 @@ function toggleMode(mode) {
     document.getElementById("autoconf-broadcaster1").removeAttribute("disabled");
 		document.getElementById("disabled-broadcaster").setAttribute("disabled", "true");
 		document.getElementById("direct-broadcaster").removeAttribute("disabled", "true");
+		document.getElementById("proxyDNS").hidden = false;
 		onAutoConfUrlInput();
   }
   else if (mode == "direct") {
     document.getElementById("disabled-broadcaster").setAttribute("disabled", "true");
 		document.getElementById("autoconf-broadcaster1").setAttribute("disabled", "true");
-		document.getElementById("direct-broadcaster").setAttribute("disabled", "true");		
+		document.getElementById("direct-broadcaster").setAttribute("disabled", "true");
+		document.getElementById("proxyDNS").hidden = true;
   }
   else {
     document.getElementById("disabled-broadcaster").removeAttribute("disabled");
     document.getElementById("autoconf-broadcaster1").setAttribute("disabled", "true");
     document.getElementById("direct-broadcaster").removeAttribute("disabled");
+    document.getElementById("proxyDNS").hidden = false;
   }
 }
 

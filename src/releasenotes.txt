@@ -6,13 +6,7 @@
 * Work towards: if PAC is disabled due to the PAC not found, it will be automatically restored
   when the PAC file is next found
 * McAfee Site Advisor support (http://foxyproxy.mozdev.org/drupal/content/foxyproxy-latest-mcafee-site-advisor)
-* Added a hidden setting (i.e., no GUI currently) which, when set, prevents the default behavior of proxy disabling when its PAC file is bad.
-  A "bad" PAC file is one that can't be loaded (perhaps it's not available on the current network connection) or can't be parsed successfully.
-  In the case of the Default proxy loading a bad PAC file, the default behavior is to switch it to DIRECT (i.e., no proxy and no PAC file).
-  This behavior, too, is prevented with the same hidden setting. To use the setting, close Firefox. Open foxyproxy.xml (the FAQ explains
-  how to find this file). Change instances of the XML attribute /foxyproxy/proxies/proxy[@disableOnBadPAC] on the proxies whose behavior you
-  want changed. The default value is true; change it to false to override the default behavior. Feature requested by Tony here:
-  http://foxyproxy.mozdev.org/drupal/content/one-my-proxies-being-disabled.
+* Work towards http://foxyproxy.mozdev.org/drupal/content/one-my-proxies-being-disabled but feature is not yet complete.
 * Width and height of main options dialog and proxy settings dialog remembered between opening/closing
 * Fixed bug which prevented the proper display of an error message to the user if he was using a PAC with a syntax error or other problems.
   Discussed here: http://foxyproxy.mozdev.org/drupal/content/seems-be-bug-using-pac-files-thisnotifyuseroferrors

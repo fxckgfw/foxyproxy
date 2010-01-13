@@ -2,7 +2,7 @@
   on hostnames loading through this proxy". This checkbox is now checked by default for new SOCKS proxies.
 * Menu colors (statusbar, toolbar, context-menu) now match customized proxy color
 * Minor Add/Edit Proxy dialog bug fix
-* Animated foxyproxy icon in About box (Thanks, Jesper!)
+* Animated FoxyProxy icon in About box (Thanks, Jesper!)
 * Work towards: if PAC is disabled due to the PAC not found, it will be automatically restored
   when the PAC file is next found
 * McAfee Site Advisor support (http://foxyproxy.mozdev.org/drupal/content/foxyproxy-latest-mcafee-site-advisor)
@@ -13,34 +13,29 @@
   how to find this file). Change instances of the XML attribute /foxyproxy/proxies/proxy[@disableOnBadPAC] on the proxies whose behavior you
   want changed. The default value is true; change it to false to override the default behavior. Feature requested by Tony here:
   http://foxyproxy.mozdev.org/drupal/content/one-my-proxies-being-disabled.
-  
 * Width and height of main options dialog and proxy settings dialog remembered between opening/closing
 * Fixed bug which prevented the proper display of an error message to the user if he was using a PAC with a syntax error or other problems.
   Discussed here: http://foxyproxy.mozdev.org/drupal/content/seems-be-bug-using-pac-files-thisnotifyuseroferrors
-  
 * Proxy DNS column added to Proxies list in the main window and ChooseProxy window (displayed with Alt+F3)
-
 * Default display columns for new installations is now:
-
-Proxy list:
-   Enabled
-   Color
-   Proxy Name
-   Proxy Notes
-
-URLS Patterns list:
-   Enabled
-   Pattern Name
-   URL pattern
-   Whitelist/Blacklist
-
-Logging list:
-   Timestamp
-   Color
-   Proxy Name   
-   URL
-   Pattern Name
-All other columns are still available but must be enabled explictly. The point is to enable less clutter
-by hiding by default lesser-important columns.
-
+    Proxy list:
+       Enabled
+       Color
+       Proxy Name
+       Proxy Notes
+    
+    URLS Patterns list:
+       Enabled
+       Pattern Name
+       URL pattern
+       Whitelist/Blacklist
+    
+    Logging list:
+       Timestamp
+       Color
+       Proxy Name   
+       URL
+       Pattern Name
+  All other columns are still available but must be enabled explictly. The point is to enable less clutter
+  by hiding by default lesser-important columns.
 * Tor wizard now uses remote DNS lookup by default instead of prompting the user   

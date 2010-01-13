@@ -99,7 +99,11 @@ Common.prototype = {
     else if (p.indexOf("*") == -1 && p.indexOf("?") == -1 &&
         !fp.warnings.showWarningIfDesired(win, ["no.wildcard.characters", p], "wildcards"))
       return false;
-      
+    // Check for parenthesis without backslash
+    if (new RegExp("[^\\\\]\\(|[^\\\\]\\)", "g").test(p) &&
+        !fp.warnings.showWarningIfDesired(win, ["no.parentheses"], "parentheses")) {
+      return false;
+    }
     return p;
   },
 

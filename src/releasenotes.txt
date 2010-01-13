@@ -33,3 +33,5 @@
   All other columns are still available but must be enabled explictly. The point is to enable less clutter
   by hiding by default lesser-important columns.
 * Tor wizard now uses remote DNS lookup by default instead of prompting the user   
+* Warning about using parentheses without a backslash in patterns. Since backreferences aren't relevant in FoxyProxy,
+  there's no point in using parentheses without matching them literally.

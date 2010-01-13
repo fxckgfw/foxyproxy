@@ -116,9 +116,10 @@
 <!ENTITY foxyproxy.tab.logging.label "Registo">
 <!ENTITY foxyproxy.tab.logging.accesskey "L">
 <!ENTITY foxyproxy.tab.logging.tooltip "Gerir as configurações de Registo">
-<!ENTITY foxyproxy.proxydns.label2 "Use this proxy for all DNS lookups">
+<!ENTITY foxyproxy.proxydns.label3 "Perform remote DNS lookups on hostnames loading through this proxy">
 <!ENTITY foxyproxy.proxydns.accesskey "U">
-<!ENTITY foxyproxy.proxydns.tooltip2 "If checked, DNS lookups are routed through this proxy">
+<!ENTITY foxyproxy.proxydns.tooltip3 "If checked, hostnames of URLs loading through this proxy are also resolved by this proxy">
+<!ENTITY foxyproxy.proxydns.label4 "Proxy DNS">
 <!ENTITY foxyproxy.showstatusbaricon.label "Mostrar o icon na barra de estados">
 <!ENTITY foxyproxy.showstatusbaricon.accesskey "S">
 <!ENTITY foxyproxy.showstatusbaricon.tooltip "Se seleccionado, o icon do FoxyProxy é mostrado na barra de estados">

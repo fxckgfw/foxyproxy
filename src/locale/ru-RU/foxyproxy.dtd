@@ -116,9 +116,10 @@
 <!ENTITY foxyproxy.tab.logging.label "Журналирование">
 <!ENTITY foxyproxy.tab.logging.accesskey "Ж">
 <!ENTITY foxyproxy.tab.logging.tooltip "Управление параметрами журналирования">
-<!ENTITY foxyproxy.proxydns.label2 "Использовать этот прокси для всех DNS-запросов">
+<!ENTITY foxyproxy.proxydns.label3 "Perform remote DNS lookups on hostnames loading through this proxy">
 <!ENTITY foxyproxy.proxydns.accesskey "И">
-<!ENTITY foxyproxy.proxydns.tooltip2 "Если отмечено, DNS-запросы посылаются через этот прокси">
+<!ENTITY foxyproxy.proxydns.tooltip3 "If checked, hostnames of URLs loading through this proxy are also resolved by this proxy">
+<!ENTITY foxyproxy.proxydns.label4 "Proxy DNS">
 <!ENTITY foxyproxy.showstatusbaricon.label "Отобразить иконку в строке состояния">
 <!ENTITY foxyproxy.showstatusbaricon.accesskey "С">
 <!ENTITY foxyproxy.showstatusbaricon.tooltip "Если отмечено, тогда иконка FoxyProxy будет отображена в строке состояния">

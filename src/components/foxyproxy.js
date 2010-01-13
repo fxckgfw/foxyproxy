@@ -722,6 +722,35 @@ biesi>  passing it the appropriate proxyinfo
           dumpp(e);
         }
       }
+
+      // If Firefox is configured to use a PAC file, we need to force that PAC file to load.
+      // Firefox won't load it automatically except on startup and after
+      // network.proxy.autoconfig_retry_* seconds. Rather than make the user wait for that,
+      // we load the PAC file now by flipping network.proxy.type (Firefox is observing that pref)
+      var networkPrefs = gFP.getPrefsService("network.proxy."), type;
+      try {
+        type = networkPrefs.getIntPref("type");
+      }
+      catch(e) {
+        dump("FoxyProxy: network.proxy.type doesn't exist or can't be read\n");
+        dumpp(e);
+      }
+      if (type == 2) { /* isn't there a const for this? */ 
+        // network.proxy.type is set to use a PAC file.    
+        // Don't use nsPIProtocolProxyService to load the PAC. From its comments: "[nsPIProtocolProxyService] exists purely as a
+        // hack to support the configureFromPAC method used by the preference panels in the various apps. Those
+        // apps need to be taught to just use the preferences API to "reload" the PAC file. Then, at that point,
+        // we can eliminate this interface completely."
+
+        // var pacURL = networkPrefs.getCharPref("autoconfig_url");
+        // var pps = CC["@mozilla.org/network/protocol-proxy-service;1"]
+          // .getService(Components.interfaces.nsPIProtocolProxyService);
+        // pps.configureFromPAC(pacURL);
+
+        // Instead, change the prefs--the proxy service is observing and will reload the PAC
+        networkPrefs.setIntPref("type", 1);
+        networkPrefs.setIntPref("type", 2);
+      }
       // Note we don't start observing the prefs again
     },
     

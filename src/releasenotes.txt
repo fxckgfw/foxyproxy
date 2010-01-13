@@ -3,8 +3,6 @@
 * Menu colors (statusbar, toolbar, context-menu) now match customized proxy color
 * Minor Add/Edit Proxy dialog bug fix
 * Animated FoxyProxy icon in About box (Thanks, Jesper!)
-* Work towards: if PAC is disabled due to the PAC not found, it will be automatically restored
-  when the PAC file is next found
 * McAfee Site Advisor support (http://foxyproxy.mozdev.org/drupal/content/foxyproxy-latest-mcafee-site-advisor)
 * Work towards http://foxyproxy.mozdev.org/drupal/content/one-my-proxies-being-disabled but feature is not yet complete.
 * Width and height of main options dialog and proxy settings dialog remembered between opening/closing

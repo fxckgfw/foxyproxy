@@ -116,9 +116,10 @@
 <!ENTITY foxyproxy.tab.logging.label "Log">
 <!ENTITY foxyproxy.tab.logging.accesskey "o">
 <!ENTITY foxyproxy.tab.logging.tooltip "Quản lí Thiết lập Log">
-<!ENTITY foxyproxy.proxydns.label2 "Dùng proxy này cho tất cả các lượt tra cứu DNS">
+<!ENTITY foxyproxy.proxydns.label3 "Perform remote DNS lookups on hostnames loading through this proxy">
 <!ENTITY foxyproxy.proxydns.accesskey "S">
-<!ENTITY foxyproxy.proxydns.tooltip2 "Nếu chọn, các lượt tra cứu DNS sẽ được định tuyến thông qua proxy này">
+<!ENTITY foxyproxy.proxydns.tooltip3 "If checked, hostnames of URLs loading through this proxy are also resolved by this proxy">
+<!ENTITY foxyproxy.proxydns.label4 "Proxy DNS">
 <!ENTITY foxyproxy.showstatusbaricon.label "Hiện biểu tượng trên thanh trạng thái">
 <!ENTITY foxyproxy.showstatusbaricon.accesskey "i">
 <!ENTITY foxyproxy.showstatusbaricon.tooltip "Nếu chọn, biểu tượng FoxyProxy sẽ được hiện trên thanh trạng thái">

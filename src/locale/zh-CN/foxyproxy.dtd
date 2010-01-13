@@ -116,9 +116,10 @@
 <!ENTITY foxyproxy.tab.logging.label "日志">
 <!ENTITY foxyproxy.tab.logging.accesskey "L">
 <!ENTITY foxyproxy.tab.logging.tooltip "管理日志设置">
-<!ENTITY foxyproxy.proxydns.label2 "对所有 DNS 查询使用这个代理服务器">
+<!ENTITY foxyproxy.proxydns.label3 "Perform remote DNS lookups on hostnames loading through this proxy">
 <!ENTITY foxyproxy.proxydns.accesskey "U">
-<!ENTITY foxyproxy.proxydns.tooltip2 "如果选中，将通过这个代理服务器进行 DNS 查询">
+<!ENTITY foxyproxy.proxydns.tooltip3 "If checked, hostnames of URLs loading through this proxy are also resolved by this proxy">
+<!ENTITY foxyproxy.proxydns.label4 "Proxy DNS">
 <!ENTITY foxyproxy.showstatusbaricon.label "在状态栏显示图标">
 <!ENTITY foxyproxy.showstatusbaricon.accesskey "S">
 <!ENTITY foxyproxy.showstatusbaricon.tooltip "如果勾选，FoxyProxy 图标将显示在状态栏">

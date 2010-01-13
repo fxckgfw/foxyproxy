@@ -116,9 +116,10 @@
 <!ENTITY foxyproxy.tab.logging.label "Žurnál">
 <!ENTITY foxyproxy.tab.logging.accesskey "Ž">
 <!ENTITY foxyproxy.tab.logging.tooltip "Úprava nastavení žurnálu">
-<!ENTITY foxyproxy.proxydns.label2 "Použít tuto proxy pro všechny DNS dotazy.">
+<!ENTITY foxyproxy.proxydns.label3 "Perform remote DNS lookups on hostnames loading through this proxy">
 <!ENTITY foxyproxy.proxydns.accesskey "P">
-<!ENTITY foxyproxy.proxydns.tooltip2 "Při zapnutí jsou všechny DNS dotazy směrovány přes tuto proxy.">
+<!ENTITY foxyproxy.proxydns.tooltip3 "If checked, hostnames of URLs loading through this proxy are also resolved by this proxy">
+<!ENTITY foxyproxy.proxydns.label4 "Proxy DNS">
 <!ENTITY foxyproxy.showstatusbaricon.label "Zobrazit ikonu ve stavovém řádku">
 <!ENTITY foxyproxy.showstatusbaricon.accesskey "S">
 <!ENTITY foxyproxy.showstatusbaricon.tooltip "Pokud je zaškrtnuto, tak se zobrazuje ve stavovém řádku ikona FoxyProxy">

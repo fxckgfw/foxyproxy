@@ -116,9 +116,9 @@
 <!ENTITY foxyproxy.tab.logging.label "Registro">
 <!ENTITY foxyproxy.tab.logging.accesskey "R">
 <!ENTITY foxyproxy.tab.logging.tooltip "Cambiar opciones de registro">
-<!ENTITY foxyproxy.proxydns.label3 "Perform remote DNS lookups on hostnames loading through this proxy">
+<!ENTITY foxyproxy.proxydns.label3 "Relizar búsquedas remotas DNS de hosts cargados usando este proxy">
 <!ENTITY foxyproxy.proxydns.accesskey "U">
-<!ENTITY foxyproxy.proxydns.tooltip3 "If checked, hostnames of URLs loading through this proxy are also resolved by this proxy">
+<!ENTITY foxyproxy.proxydns.tooltip3 "Si lo marca, los hosts o direcciones cargados con este proxy se resolverán también con él">
 <!ENTITY foxyproxy.proxydns.label4 "Proxy DNS">
 <!ENTITY foxyproxy.showstatusbaricon.label "Mostrar un icono en la barra de estado">
 <!ENTITY foxyproxy.showstatusbaricon.accesskey "i">

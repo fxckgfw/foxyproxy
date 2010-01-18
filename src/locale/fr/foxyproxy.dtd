@@ -116,10 +116,10 @@
 <!ENTITY foxyproxy.tab.logging.label "Identification">
 <!ENTITY foxyproxy.tab.logging.accesskey "f">
 <!ENTITY foxyproxy.tab.logging.tooltip "Gère les paramètres d'identification">
-<!ENTITY foxyproxy.proxydns.label3 "Perform remote DNS lookups on hostnames loading through this proxy">
+<!ENTITY foxyproxy.proxydns.label3 "Effectuer une recherche DNS à distance sur les noms d'hôte chargés via ce proxy">
 <!ENTITY foxyproxy.proxydns.accesskey "U">
-<!ENTITY foxyproxy.proxydns.tooltip3 "If checked, hostnames of URLs loading through this proxy are also resolved by this proxy">
-<!ENTITY foxyproxy.proxydns.label4 "Proxy DNS">
+<!ENTITY foxyproxy.proxydns.tooltip3 "Si cochée, les noms d'hôte des URL chargée via ce proxy seront également résolues par ce proxy">
+<!ENTITY foxyproxy.proxydns.label4 "DNS du proxy">
 <!ENTITY foxyproxy.showstatusbaricon.label "Afficher l'icône dans la barre d'état">
 <!ENTITY foxyproxy.showstatusbaricon.accesskey "f">
 <!ENTITY foxyproxy.showstatusbaricon.tooltip "Si cette case est cochée, l'icône de Foxyproxy sera affichée dans la barre d'état">

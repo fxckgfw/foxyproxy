@@ -116,9 +116,9 @@
 <!ENTITY foxyproxy.tab.logging.label "Logning">
 <!ENTITY foxyproxy.tab.logging.accesskey "L">
 <!ENTITY foxyproxy.tab.logging.tooltip "Administrer logningsindstillinger">
-<!ENTITY foxyproxy.proxydns.label3 "Perform remote DNS lookups on hostnames loading through this proxy">
+<!ENTITY foxyproxy.proxydns.label3 "Udfør eksterne DNS opslag på adresser som indlæses igennem denne proxy">
 <!ENTITY foxyproxy.proxydns.accesskey "u">
-<!ENTITY foxyproxy.proxydns.tooltip3 "If checked, hostnames of URLs loading through this proxy are also resolved by this proxy">
+<!ENTITY foxyproxy.proxydns.tooltip3 "Hvis afmærket, vil adresser af URL'er som indlæses igennem denne proxy også blive opslået af denne proxy">
 <!ENTITY foxyproxy.proxydns.label4 "Proxy DNS">
 <!ENTITY foxyproxy.showstatusbaricon.label "Vis ikon på statuslinjen">
 <!ENTITY foxyproxy.showstatusbaricon.accesskey "s">

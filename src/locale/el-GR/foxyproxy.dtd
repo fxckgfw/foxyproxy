@@ -116,10 +116,10 @@
 <!ENTITY foxyproxy.tab.logging.label "Συνδέσεις">
 <!ENTITY foxyproxy.tab.logging.accesskey "Σ">
 <!ENTITY foxyproxy.tab.logging.tooltip "Διαχείριση ρυθμίσεων συνδέσεων">
-<!ENTITY foxyproxy.proxydns.label3 "Perform remote DNS lookups on hostnames loading through this proxy">
+<!ENTITY foxyproxy.proxydns.label3 "Εκτέλεση απομακρυσμένης αναζήτησης DNS για κεντρικούς υπολογιστές που φορτώνονται από τον διαμεσολαβητή">
 <!ENTITY foxyproxy.proxydns.accesskey "Ν">
-<!ENTITY foxyproxy.proxydns.tooltip3 "If checked, hostnames of URLs loading through this proxy are also resolved by this proxy">
-<!ENTITY foxyproxy.proxydns.label4 "Proxy DNS">
+<!ENTITY foxyproxy.proxydns.tooltip3 "Αν επιλεχθεί, τα ονόματα κεντρικών υπολογιστών που βρίσκονται πίσω από τα URL και φορτώνονται από αυτό τον διαμεσολαβητή, θα ανιχνεύονται επίσης από αυτό τον διαμεσολαβητή">
+<!ENTITY foxyproxy.proxydns.label4 "DNS διαμεσολαβητή">
 <!ENTITY foxyproxy.showstatusbaricon.label "Προβολή εικονιδίου στη γραμμή κατάστασης">
 <!ENTITY foxyproxy.showstatusbaricon.accesskey "γ">
 <!ENTITY foxyproxy.showstatusbaricon.tooltip "Αν επιλεγεί, θα εμφανίζεται το εικονίδιο του FoxyProxy στη γραμμή κατάστασης">

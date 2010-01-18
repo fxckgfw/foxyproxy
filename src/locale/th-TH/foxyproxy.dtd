@@ -116,10 +116,10 @@
 <!ENTITY foxyproxy.tab.logging.label "การบันทึกงาน">
 <!ENTITY foxyproxy.tab.logging.accesskey "บ">
 <!ENTITY foxyproxy.tab.logging.tooltip "จัดการการตั้งค่าการบันทึกงาน">
-<!ENTITY foxyproxy.proxydns.label3 "Perform remote DNS lookups on hostnames loading through this proxy">
+<!ENTITY foxyproxy.proxydns.label3 "สั่งการการค้นหา DNS ในการโหลดโฮสต์เนมทางไกลโดยใช้พรอกซีนี้">
 <!ENTITY foxyproxy.proxydns.accesskey "D">
-<!ENTITY foxyproxy.proxydns.tooltip3 "If checked, hostnames of URLs loading through this proxy are also resolved by this proxy">
-<!ENTITY foxyproxy.proxydns.label4 "Proxy DNS">
+<!ENTITY foxyproxy.proxydns.tooltip3 "ทำเครื่องหมายเพื่อให้ใช้พรอกซีนี้กับโฮสต์เนมของการโหลด URL">
+<!ENTITY foxyproxy.proxydns.label4 "พรอกซี DNS">
 <!ENTITY foxyproxy.showstatusbaricon.label "แสดงไอคอนบนแถบสถานะ">
 <!ENTITY foxyproxy.showstatusbaricon.accesskey "ค">
 <!ENTITY foxyproxy.showstatusbaricon.tooltip "เลือกเพื่อแสดงไอคอนบนแถบสถานะ">

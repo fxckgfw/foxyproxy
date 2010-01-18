@@ -116,10 +116,10 @@
 <!ENTITY foxyproxy.tab.logging.label "記錄">
 <!ENTITY foxyproxy.tab.logging.accesskey "L">
 <!ENTITY foxyproxy.tab.logging.tooltip "管理記錄設定">
-<!ENTITY foxyproxy.proxydns.label3 "Perform remote DNS lookups on hostnames loading through this proxy">
+<!ENTITY foxyproxy.proxydns.label3 "透過此代理伺服器查詢網域名稱">
 <!ENTITY foxyproxy.proxydns.accesskey "U">
-<!ENTITY foxyproxy.proxydns.tooltip3 "If checked, hostnames of URLs loading through this proxy are also resolved by this proxy">
-<!ENTITY foxyproxy.proxydns.label4 "Proxy DNS">
+<!ENTITY foxyproxy.proxydns.tooltip3 "如果啟用這個選項，使用此代理伺服器的網址也透過此代理伺服器查詢網域名稱">
+<!ENTITY foxyproxy.proxydns.label4 "代理伺服器 DNS">
 <!ENTITY foxyproxy.showstatusbaricon.label "在狀態列顯示小圖示">
 <!ENTITY foxyproxy.showstatusbaricon.accesskey "S">
 <!ENTITY foxyproxy.showstatusbaricon.tooltip "如果啟用這個選項，在狀態列會顯示 FoxyProxy 小圖示">
@@ -240,8 +240,8 @@
 <!ENTITY foxyproxy.toolsmenu.accesskey "T">
 <!ENTITY foxyproxy.toolsmenu.tooltip "在 Firefox 工具選單上顯示圖示">
 <!ENTITY foxyproxy.tip.label "小技巧">
-<!ENTITY foxyproxy.pactip1.label "自動組態指命碼（PAC）檔案在本機上，請使用 file:// 格式。範例：file://c:/path/proxy.pac（Windows）或 file:///home/users/joe/proxy.pac（Unix/Linux/Mac）。">
-<!ENTITY foxyproxy.pactip2.label "自動組態指命碼（PAC）檔案在 FTP 伺服器上，請使用 ftp:// 格式。範例：ftp://leahscape.com/path/proxy.pac">
+<!ENTITY foxyproxy.pactip1.label "自動組態指命碼（PAC）檔案在本機上，請使用 file:// 格式。例如：file://c:/path/proxy.pac（Windows）或 file:///home/users/joe/proxy.pac（Unix/Linux/Mac）。">
+<!ENTITY foxyproxy.pactip2.label "自動組態指命碼（PAC）檔案在 FTP 伺服器上，請使用 ftp:// 格式。例如：ftp://leahscape.com/path/proxy.pac">
 <!ENTITY foxyproxy.pactip3.label "你也可以使用 http://、https://、及其它支援的格式。">
 <!ENTITY foxyproxy.pactip4.label "最後，如果你需要在本機上使用相對路徑去指定自動組態指命碼（PAC）檔案，你可以使用 FoxyProxy 的特殊 relative:// 格式，這在自動組態指命碼（PAC）檔案位於行動碟上時非常有用。目前支援的相對路徑文件在">
 <!ENTITY foxyproxy.pactip5.label "這裏">
@@ -370,7 +370,7 @@
 <!ENTITY foxyproxy.newGUI.popup.height "280px">
 <!ENTITY foxyproxy.newGUI.popup.width "400px">
 <!ENTITY foxyproxy.newGUI1.label "舊的 FoxyProxy 代理伺服器設定畫面和 Firefox 的連線設定幾乎是一樣的，換句話說和 Mosaic 2.2.1 版的代理伺服器設定也是幾乎一樣，這些設定畫面有個共通的問題，就是他們處理不同協定時有所限制。21 世紀的瀏覽器像是 Firefox 能夠處理比 HTTP、SSL、FTP 及 GOPHER 更多協定，因此這些舊的設定畫面將會變的非常不方便。">
-<!ENTITY foxyproxy.newGUI2.label "因為 FoxyProxy 已經使用「萬用字元」及「正規表示法」來處理，所以不需要列出協定清單，在 2.5 版時，FoxyProxy 就已經刪掉代理伺服器設定畫面裏的協定清單，這並不會減少 FoxyProxy 的功能，反而讓使用者介面更簡潔。如果你想根據不同協定來處理，你必須小心的設定白名單及黑名單樣式上的協定格式，（範例：ftp://*.yahoo.com/*，*://leahscape.com/*，等等…）">
+<!ENTITY foxyproxy.newGUI2.label "因為 FoxyProxy 已經使用「萬用字元」及「正規表示法」來處理，所以不需要列出協定清單，在 2.5 版時，FoxyProxy 就已經刪掉代理伺服器設定畫面裏的協定清單，這並不會減少 FoxyProxy 的功能，反而讓使用者介面更簡潔。如果你想根據不同協定來處理，你必須小心的設定白名單及黑名單樣式上的協定格式，（例如：ftp://*.yahoo.com/*，*://leahscape.com/*，等等…）">
 <!ENTITY foxyproxy.newGUI4.label "點擊這裏獲得更多資訊。">
 <!ENTITY foxyproxy.error.msg.label "錯誤訊息">
 <!ENTITY foxyproxy.pac.result.label "自動組態指命碼（PAC）結果">

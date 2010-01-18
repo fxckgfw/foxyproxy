@@ -116,9 +116,9 @@
 <!ENTITY foxyproxy.tab.logging.label "Logging">
 <!ENTITY foxyproxy.tab.logging.accesskey "L">
 <!ENTITY foxyproxy.tab.logging.tooltip "Logging-Einstellungen verwalten">
-<!ENTITY foxyproxy.proxydns.label3 "Perform remote DNS lookups on hostnames loading through this proxy">
+<!ENTITY foxyproxy.proxydns.label3 "DNS-Auflösung für Host-Namen, die durch diesen Proxy geladen werden, entfernt ausführen.">
 <!ENTITY foxyproxy.proxydns.accesskey "D">
-<!ENTITY foxyproxy.proxydns.tooltip3 "If checked, hostnames of URLs loading through this proxy are also resolved by this proxy">
+<!ENTITY foxyproxy.proxydns.tooltip3 "Falls ausgewählt, werden die Host-Namen von URLs, die durch diesen Proxy geladen werden, auch über diesen Proxy aufgelöst.">
 <!ENTITY foxyproxy.proxydns.label4 "Proxy DNS">
 <!ENTITY foxyproxy.showstatusbaricon.label "Icon in der Statuszeile anzeigen">
 <!ENTITY foxyproxy.showstatusbaricon.accesskey "I">

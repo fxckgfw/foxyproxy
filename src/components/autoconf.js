@@ -115,32 +115,40 @@ AutoConf.prototype = {
       req.open("GET", this.url, false); // false means synchronous
       req.channel.loadFlags |= CI.nsIRequest.LOAD_BYPASS_CACHE;      
       req.send(null);
-        }
-        catch(e) {
+    }
+    catch(e) {
       this.badPAC("pac.status.loadfailure", e);
       return;
-      }
+    }
     if (req.status == 200 ||
       (req.status == 0 && (this.url.indexOf("file://") == 0 || this.url.indexOf("ftp://") == 0 || this.url.indexOf("relative://") == 0))) {
         try {
           this._resolver.init(this.url, req.responseText);
-    }
-    catch(e) {
+        }
+        catch(e) {
           this.badPAC("pac.status.error", e);
           return;
-    }
+        }
         this.loadNotification && fp.notifier.alert(fp.getMessage("pac.status"), fp.getMessage("pac.status.success", [this.owner.name]));
         this.owner._enabled = true; // Use _enabled so we don't loop infinitely
-      }
-      else {
+        if (this.disabledDueToBadPAC) {
+          this.disabledDueToBadPAC = false; /* reset */
+          this.owner.fp.writeSettings();
+        }
+    }
+    else {
       this.badPAC("pac.status.loadfailure", new Error(fp.getMessage("http.error", [req.status])));
     }
   },
 
   badPAC : function(r, e) {
-    this.disabledDueToBadPAC = true; // TODO: write settings file
+    if (!this.disabledDueToBadPAC) { /* marker to try loading the PAC next time */
+      this.disabledDueToBadPAC = true;
+      this.owner.fp.writeSettings();
+    }
     var msg = fp.getMessage(r, [this.owner.name]) + "\n\n" + e.message;
     this.errorNotification && fp.notifier.alert(fp.getMessage("pac.status"), msg);
+    if (!this.disableOnBadPAC) return; /* override default behavior to disable proxies (and switch the default proxy to DIRECT) with bad PACs */
     if (this.owner.lastresort)
       this.owner.mode = "direct"; // don't disable!
     else

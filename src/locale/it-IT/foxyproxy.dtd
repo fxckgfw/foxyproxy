@@ -117,7 +117,7 @@
 <!ENTITY foxyproxy.tab.logging.accesskey "z">
 <!ENTITY foxyproxy.tab.logging.tooltip "Gestione delle opzioni delle registrazioni">
 <!ENTITY foxyproxy.proxydns.label3 "Effettua la ricerca remota dei DNS per i nomi dei server con questo proxy">
-<!ENTITY foxyproxy.proxydns.accesskey "o">
+<!ENTITY foxyproxy.proxydns.accesskey "D">
 <!ENTITY foxyproxy.proxydns.tooltip3 "Selezionando questa opzione verrà effettuata la risoluzione dei nomi dei server degli URL caricati attraverso questo proxy">
 <!ENTITY foxyproxy.proxydns.label4 "Proxy DNS">
 <!ENTITY foxyproxy.showstatusbaricon.label "Mostra icona nella barra di stato">

@@ -1,1 +1,6 @@
+* Fixed resizing problem FoxyProxy windows
+* Fix for href="http://foxyproxy.mozdev.org/drupal/content/one-my-proxies-being-disabled.
+  If proxy is disabled because of missing or broken PAC, it is attempted to be restored on restart of FF.
+* Locale updates
 * Increased minimum Firefox version to 3.0a1. 2.0.* is no longer supported / tested.
+* Songbird version bump

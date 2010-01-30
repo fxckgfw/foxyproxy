@@ -294,7 +294,7 @@ biesi>  passing it the appropriate proxyinfo
     }
     function _getNextAfterPatterns() {
       var p = gFP.proxies.item(0);
-      (!p || !p.enabled || !p.includeInCycle) && (p = _getNextInCycle(this.proxies.item(0).id));
+      (!p || !p.enabled || !p.includeInCycle) && (p = _getNextInCycle(gFP.proxies.item(0).id));
       return p?p.id:"disabled";      
     }
   },

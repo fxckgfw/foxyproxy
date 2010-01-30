@@ -44,7 +44,8 @@ AutoConf.prototype = {
   _autoReload: false,
   _reloadFreqMins: 60,
   owner: null,
-  disabledDueToBadPAC: false,
+  //disabledDueToBadPAC: false,
+  disableOnBadPAC: true,
 
   QueryInterface: function(aIID) {
     if (!aIID.equals(CI.nsISupports))
@@ -77,7 +78,8 @@ AutoConf.prototype = {
     this.errorNotification = gGetSafeAttrB(n, "errorNotification", true);
     this._autoReload = gGetSafeAttrB(n, "autoReload", false);
     this._reloadFreqMins = gGetSafeAttr(n, "reloadFreqMins", 60);
-    this.disabledDueToBadPAC = gGetSafeAttrB(n, "disabledDueToBadPAC", true);
+    //this.disabledDueToBadPAC = gGetSafeAttrB(n, "disabledDueToBadPAC", false);
+    this.disableOnBadPAC = gGetSafeAttrB(n, "disableOnBadPAC", true);
   },
 
   toDOM : function(doc) {
@@ -87,7 +89,8 @@ AutoConf.prototype = {
     e.setAttribute("errorNotification", this.errorNotification);
     e.setAttribute("autoReload", this._autoReload);
     e.setAttribute("reloadFreqMins", this._reloadFreqMins);
-    e.setAttribute("disabledDueToBadPAC", this.disabledDueToBadPAC);
+    //e.setAttribute("disabledDueToBadPAC", this.disabledDueToBadPAC);
+    e.setAttribute("disableOnBadPAC", this.disableOnBadPAC);
     return e;
   },
 
@@ -131,10 +134,10 @@ AutoConf.prototype = {
         }
         this.loadNotification && fp.notifier.alert(fp.getMessage("pac.status"), fp.getMessage("pac.status.success", [this.owner.name]));
         this.owner._enabled = true; // Use _enabled so we don't loop infinitely
-        if (this.disabledDueToBadPAC) {
-          this.disabledDueToBadPAC = false; /* reset */
-          this.owner.fp.writeSettings();
-        }
+        //if (this.disabledDueToBadPAC) {
+          //this.disabledDueToBadPAC = false; /* reset */
+          //this.owner.fp.writeSettings();
+        //}
     }
     else {
       this.badPAC("pac.status.loadfailure", new Error(fp.getMessage("http.error", [req.status])));
@@ -142,16 +145,15 @@ AutoConf.prototype = {
   },
 
   badPAC : function(r, e) {
-    if (!this.disabledDueToBadPAC) { /* marker to try loading the PAC next time */
-      this.disabledDueToBadPAC = true;
-      this.owner.fp.writeSettings();
-    }
+    //if (!this.disabledDueToBadPAC) { /* marker to try loading the PAC next time */
+      //this.disabledDueToBadPAC = true;
+      //this.owner.fp.writeSettings();
+    //}
     var msg = fp.getMessage(r, [this.owner.name]) + "\n\n" + e.message;
     this.errorNotification && fp.notifier.alert(fp.getMessage("pac.status"), msg);
-    if (!this.disableOnBadPAC) return; /* override default behavior to disable proxies (and switch the default proxy to DIRECT) with bad PACs */
     if (this.owner.lastresort)
       this.owner.mode = "direct"; // don't disable!
-    else
+    else if (this.disableOnBadPAC)
       this.owner._enabled = false; // Use _enabled so we don't loop infinitely    
   }, 
   

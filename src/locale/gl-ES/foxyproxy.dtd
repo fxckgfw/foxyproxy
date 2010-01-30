@@ -1,11 +1,11 @@
-<!ENTITY foxyproxy.basic.label "FoxyProxy Basic">
-<!ENTITY foxyproxy.standard.label "FoxyProxy Standard">
+<!ENTITY foxyproxy.basic.label "FoxyProxy Básico">
+<!ENTITY foxyproxy.standard.label "FoxyProxy Estándar">
 <!ENTITY foxyproxy.plus.label "FoxyProxy Plus">
 <!ENTITY foxyproxy.accesskey "F">
-<!ENTITY foxyproxy.options.label "Options">
+<!ENTITY foxyproxy.options.label "Opcións">
 <!ENTITY foxyproxy.options.accesskey "O">
-<!ENTITY foxyproxy.options.tooltip "Open the Options Dialog">
-<!ENTITY foxyproxy.tree.pickertooltiptext.label "Click to select which columns to display">
+<!ENTITY foxyproxy.options.tooltip "Abrir a caixa de diálogo Opcións">
+<!ENTITY foxyproxy.tree.pickertooltiptext.label "Preme aquí para seleccionar que columnas amosar">
 <!ENTITY foxyproxy.proxy.name.label "Proxy Name">
 <!ENTITY foxyproxy.proxy.name.accesskey "N">
 <!ENTITY foxyproxy.proxy.name.tooltip "Proxy Name">

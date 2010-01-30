@@ -122,9 +122,9 @@ Proxy.prototype = {
       this.matches[j].fromDOM(temp.item(i), includeTempPatterns);
     }
     // Were we disabled due to a bad/missing PAC file? If so, try enabling ourselves again.
-    if (this.autoconf.disabledDueToBadPAC) {
-      this._enabled = true;
-    }
+    //if (this.autoconf.disabledDueToBadPAC) {
+      //this._enabled = true;
+    //}
     this.afterPropertiesSet();
   },
   

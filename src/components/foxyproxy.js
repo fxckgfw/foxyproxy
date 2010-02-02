@@ -114,6 +114,8 @@ foxyproxy.prototype = {
   _useStatusBarPrefix: true,
   autoadd : null,
   quickadd : null,
+  excludePatternsFromCycling : false,
+  excludeDisabledFromCycling : false,
 
   QueryInterface: function(aIID) {
     if (!aIID.equals(CI.nsISupports) && !aIID.equals(CI.nsIObserver))
@@ -272,19 +274,30 @@ biesi>  passing it the appropriate proxyinfo
   /**
    * This assumes mode order is:
    * patterns, proxy1, ..., lastresort, random, roundrobin, disabled
+   * "patterns" can be removed from the cycle with if this.excludePatternsFromCycling is true
+   * "disabled" can be removed from the cycle with if this.excludeDisabledFromCycling is true
    */
   cycleMode : function() {
     if (this._selectedProxy && this._selectedProxy.lastresort) {
-      this.setMode("disabled", true);
+      // We're at the end of the proxy list. Either set
+      // to "disabled" or, if the user doesn't want "disabled"
+      // in the cycle, wrap around to "patterns". Ah, but if the
+      // user doesn't want "patterns" in the cycle, then wrap
+      // around to the next proxy after "patterns"
+      if (gFP.excludeDisabledFromCycling)
+        this.setMode(gFP.excludePatternsFromCycling ? _getNextAfterPatterns() : "patterns", true);          
+      else
+        this.setMode("disabled", true);      
     }
     else if (this._mode == "disabled") {      
-      this.setMode(this.isFoxyProxySimple() ?
+      this.setMode(this.isFoxyProxySimple() || gFP.excludePatternsFromCycling ?
           /* FP Simple has no "patterns" mode, so skip to next one */_getNextAfterPatterns() : "patterns", true);
     }
     else if (this._mode == "patterns") {
-      this.setMode(_getNextAfterPatterns());
+      this.setMode(_getNextAfterPatterns(), true);
     }
     else {
+      // Mode is set to a specific proxy for all URLs
       var p = _getNextInCycle(this._mode);
       this.setMode(p?p.id:"disabled", true);
     }
@@ -609,6 +622,8 @@ biesi>  passing it the appropriate proxyinfo
     this._previousMode = gGetSafeAttr(node, "previousMode", this.isFoxyProxySimple() ? "disabled" : "patterns");
     this._resetIconColors = gGetSafeAttrB(node, "resetIconColors", true); // new for 2.10
     this._useStatusBarPrefix = gGetSafeAttrB(node, "useStatusBarPrefix", true); // new for 2.10
+    this.excludePatternsFromCycling = gGetSafeAttrB(node, "excludePatternsFromCycling", false);
+    this.excludeDisabledFromCycling = gGetSafeAttrB(node, "excludeDisabledFromCycling", false);   
     this.proxies.fromDOM(mode, doc);
     this.setMode(mode, false, true);    
     this.random.fromDOM(doc); 
@@ -629,6 +644,8 @@ biesi>  passing it the appropriate proxyinfo
     e.setAttribute("previousMode", this._previousMode);
     e.setAttribute("resetIconColors", this._resetIconColors);
     e.setAttribute("useStatusBarPrefix", this._useStatusBarPrefix);
+    e.setAttribute("excludePatternsFromCycling", this.excludePatternsFromCycling);
+    e.setAttribute("excludeDisabledFromCycling", this.excludeDisabledFromCycling);
     e.appendChild(this.random.toDOM(doc));
     e.appendChild(this.statusbar.toDOM(doc));
     e.appendChild(this.toolbar.toDOM(doc));

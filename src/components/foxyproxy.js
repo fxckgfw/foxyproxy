@@ -850,6 +850,41 @@ biesi>  passing it the appropriate proxyinfo
       }
       return true;
     },
+    
+    /**
+     *  Prevent inserts beyond the last item since
+     * the last item must always remain our |lastResort|.
+     * 
+     * idx: "last", "first" (same as 0), "random", or an integer between 0 (inclusive) and this.length()-1 (inclusive)
+     *      if null, "first" is assumed.
+     * p: the proxy to insert at position |idx|
+     */
+    insertAt : function(idx, p) {
+      // Is idx a word or a number?
+      if (!isNaN(parseInt(idx))) {
+        // Number - a specific position was specified
+        idx = parseInt(idx);
+        if (idx < 0 || idx > this.list.length-1) return; /* Prevent inserts at or after lastResort */
+        if (this.list.length == 0) // Shouldn't really ever happen since we'll always have a lastResort
+          this.list[0] = p; 
+        else {
+          // Shift everyone to the right by one (up to, but not including, the proxy at idx)
+          for (var i=this.list.length; i>idx; i--) {
+            this.list[i] = this.list[i-1]
+          }
+          this.list[i] = p; // now i == idx, so insert our newbie there
+        }
+      }
+      else {
+        // idx is a word
+        switch (idx) {
+          case "random": this.insertAt(Math.floor(Math.random()*this.list.length) /* does not include this.list.length in possible outcome */, p); break; /* thanks Andrew @ http://www.shawnolson.net/a/789/ */           
+          case "last": this.push(p); break;
+          case "first": /* Deliberate fall-through */
+          default: this.insertAt(this.list.length-1, p); break;               
+        }
+      }
+    },
 
     get length() {
       return this.list.length;
@@ -860,12 +895,71 @@ biesi>  passing it the appropriate proxyinfo
       return a?a[0]:null;
     },
     
+    /**
+     * Returns the first existing proxy with the given name or null
+     * if none found.
+     */
+    getProxyByName : function(name) {
+      var a = this.list.filter(function(e) {return e.name == this;}, name);
+      return a?a[0]:null;
+    },
+    
     getIndexById : function(id) {
       var len=this.length;
       for (var i=0; i<len; i++) {
         if (this.list[i].id == id) return i;
       }
       return -1;
+    },
+    
+    /**
+     *  Returns the index of the first proxy with |name| or -1 if none exists with that name
+     */
+    getIndexByName : function(name) {
+      for (var i=0, len=this.length; i<len; i++) {
+        if (this.list[i].name == name) return i;
+      }
+      return -1;    
+    },
+    
+    /**
+     * Merges the first existing proxy with |proxy|. Searches by name.
+     * |nameValuePairs| is an associative array of the properties to
+     * update in the existing proxy.
+     * Returns null or the proxy which was affected (merged with |proxy|).
+     */
+    mergeByName : function(proxy, nameValuePairs) {
+      var idx = this.getIndexByName(proxy.name);
+      if (idx > -1) {
+        this.list[idx].merge(proxy, nameValuePairs);
+        return this.list[idx];
+      }
+      return null;
+    },
+    
+    /**
+     * Deletes the first proxy with the specified |name|, or none if there are
+     * no proxies with the specified |name|. Returns the affected index or -1.
+     * 
+     * If |all| is true, all proxies with the specified |name| are deleted, and
+     * an array of the deleted indices is returned.
+     */
+    deleteByName : function(name, all) {
+      if (all) {
+        var ret = [], idx = -1;
+        while ((idx = this.getIndexByName(name)) > -1) {
+          ret.push(idx);
+          this.remove(idx);
+        }
+        return ret;
+      }
+      else {
+        var idx = this.getIndexByName(name);
+        if (idx > -1) {
+          this.remove(idx);
+          return idx;
+        }
+      }
     },
 
     fromDOM : function(mode, doc) {

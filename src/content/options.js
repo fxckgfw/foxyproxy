@@ -34,12 +34,16 @@ function onLoad() {
   timeformat = foxyproxy.getMessage("timeformat");
   _initSettings();
   //setTimeout(function(){sizeToContent()}, 0);
-  CC["@mozilla.org/observer-service;1"].getService(CI.nsIObserverService).addObserver(observer,"foxyproxy-mode-change", false);
+  var obs = CC["@mozilla.org/observer-service;1"].getService(CI.nsIObserverService);
+  obs.addObserver(observer,"foxyproxy-mode-change", false);
+  obs.addObserver(observer,"foxyproxy-proxy-change", false);
   sizeToContent();
 }
 
 function onOK() {
-  CC["@mozilla.org/observer-service;1"].getService(CI.nsIObserverService).removeObserver(observer, "foxyproxy-mode-change");
+  var obs = CC["@mozilla.org/observer-service;1"].getService(CI.nsIObserverService);
+  obs.removeObserver(observer, "foxyproxy-mode-change");
+  obs.removeObserver(observer, "foxyproxy-proxy-change");
 }
 
 var observer = {
@@ -50,6 +54,7 @@ var observer = {
     }
     catch(e) {}
     switch (topic) {
+      case "foxyproxy-proxy-change": /* deliberate fall-through */
       case "foxyproxy-mode-change":
         _updateView();
         break;

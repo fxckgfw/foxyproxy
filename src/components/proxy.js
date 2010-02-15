@@ -88,6 +88,8 @@ Proxy.prototype = {
   colorString: "nmbado",
   _proxyDNS: true,
   fp: null,
+  readOnlyProperties : ["lastresort", "fp", "wrappedJSObject", "matches", /* from ManualConf */ "owner",
+                        /* from AutoConf */ "timer", /* from AutoConf */  "_resolver"],
 
   QueryInterface: function(aIID) {
     if (!aIID.equals(CI.nsISupports))
@@ -154,6 +156,112 @@ Proxy.prototype = {
     e.appendChild(this.manualconf.toDOM(doc));
     return e;
   },
+  
+  /**
+   * Merge |src| into this, using the keys of the |nameValuePairs|
+   * associative array as the properties to overwrite in |this|.
+   */
+  merge : function(src, nameValuePairs) {
+    for (var propertyName in nameValuePairs) {
+      // Simple sanity check on our input
+      var obj = this.propertyBelongsTo(propertyName, this, this.manualconf, this.autoconf);
+      // If obj == null then we don't understand this property, so ignore it.
+      if (obj)
+        obj[propertyName] = nameValuePairs[propertyName];
+    }
+  },
+  
+  getPropertyValue : function(propertyName) {
+    var obj = this.propertyBelongsTo(propertyName, this, this.manualconf, this.autoconf);
+    return obj ? obj[propertyName] : "";
+  },
+  
+  /**
+   * Checks if |propertyName| is a known writable property of the classes Proxy,
+   * ManualConf, or AutoConf (excepting readOnly properties). |x|, |y|, or |z|
+   * is returned, respectively, based on |propertyName's| membership in one of those
+   * classes, If the property is unknown or read-only, null is returned.
+   */
+  propertyBelongsTo : function(propertyName, x, y, z) {
+    function validType(str) {
+      return str == "string" || str == "boolean" || str == "number";
+    }    
+    if (this.readOnlyProperties.indexOf(propertyName) > -1) return null;
+    
+    if (validType(typeof(this[propertyName])))
+      return x;
+    else if (validType(typeof(this.manualconf[propertyName])))
+      return y;
+    else if (validType(typeof(this.autoconf[propertyName])))
+      return z;
+    return null;    
+  },
+  
+  /**
+   * Use as a static-style method on this class.
+   * Returns a |Proxy| instance based on the |nameValuePairs|
+   * associative array. Each key in the array is expected to be
+   * a property of either Proxy, ManualConf, or AutoConf, otherwise
+   * it is ignored.
+   */
+  fromAssociateArray : function(nameValuePairs) {
+    var doc = CC["@mozilla.org/xml/xml-document;1"].createInstance(CI.nsIDOMDocument),
+      proxyElem = doc.createElement("proxy"),
+      manualConfElem = doc.createElement("manualconf"),
+      autoConfElem = doc.createElement("autoconf");
+    
+    proxyElem.appendChild(manualConfElem);
+    proxyElem.appendChild(autoConfElem);
+    for (var i in nameValuePairs) {
+      // Simple sanity check on our input
+      var elem = this.propertyBelongsTo(i, proxyElem, manualConfElem, autoConfElem);
+      /* If elem == null then we don't understand this property, so ignore it.
+         However, even if an unrecognized property were to slip by us here,
+         the |Proxy.fromDOM()| code would ignore it anyway. This check just prevents us from
+         building an arbitrarily large DOM element.
+      */
+      if (elem)
+        elem.setAttribute(i, nameValuePairs[i] == null ? "" : nameValuePairs[i]);         
+    }
+    // Turn it on by default
+    if (!nameValuePairs["enabled"])
+      proxyElem.setAttribute("enabled", "true");
+    
+    // If a socks version was specified and either isSocks is true or no isSocks parameter was specified,
+    // then enable socks
+    if (nameValuePairs["socksversion"] && (nameValuePairs["isSocks"] == "true" || !nameValuePairs["isSocks"])) {
+      nameValuePairs["isSocks"] = true;
+      manualConfElem.setAttribute("isSocks", "true");
+      manualConfElem.setAttribute("socksversion", parseInt(nameValuePairs["socksversion"]));
+    }    
+    // If a URL was specified and either mode was specified as auto or no mode was specified,
+    // then set mode to auto
+    if (nameValuePairs["url"] && (nameValuePairs["mode"] == "auto" || !nameValuePairs["mode"])) {
+      nameValuePairs["mode"] = "auto";
+      proxyElem.setAttribute("mode", "auto");
+    }
+    // Change the mode to "direct" if we don't have enough info for "manual" and "auto"
+    var noManual = (nameValuePairs["host"] && !nameValuePairs["port"]) ||
+      (!nameValuePairs["host"] && nameValuePairs["port"]);
+    if (!nameValuePairs["url"] && noManual) {
+      nameValuePairs["mode"] = "direct";      
+      proxyElem.setAttribute("mode", "direct");
+      dump("No host and port specified, and no PAC URL specified; setting proxy mode to direct.\n");
+    }
+
+    // Set a default name if one wasn't specified. Don't set the default name based
+    // on the mode because proxies like these will end up with different names:
+    // proxy:host=my.proxy.server.com&port=999
+    // proxy:host=my.proxy.server.com&port=999&mode=direct
+    if (!nameValuePairs["name"]) {
+      if (noManual)
+        nameValuePairs["name"] = nameValuePairs["url"] ? nameValuePairs["url"] : this.fp.getMessage("new.proxy");
+      else
+        nameValuePairs["name"] = nameValuePairs["host"] + ":" + nameValuePairs["port"];
+      proxyElem.setAttribute("name", nameValuePairs["name"]);
+    }
+    this.fromDOM(proxyElem, true);
+  },  
   
   set proxyDNS(e) {
     this._proxyDNS = e;

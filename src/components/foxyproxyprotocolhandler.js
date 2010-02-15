@@ -101,7 +101,7 @@ Protocol.prototype = {
           fp.proxies.deleteByName(proxy.name, false);
           fp.broadcast(null, "foxyproxy-proxy-change");
           break;
-        case "deleteAll":
+        case "deleteMultiple":
           fp.proxies.deleteByName(proxy.name, true);
           fp.broadcast(null, "foxyproxy-proxy-change");
           break;
@@ -121,7 +121,7 @@ Protocol.prototype = {
     // Can't set mode to "this" if you're deleting.
     if (nameValuePairs["foxyProxyMode"] == "this") {
       nameValuePairs["foxyProxyMode"] = 
-        nameValuePairs["action"] == "delete" || nameValuePairs["action"] == "deleteOne" || nameValuePairs["action"] == "deleteAll" ?
+        nameValuePairs["action"] == "delete" || nameValuePairs["action"] == "deleteOne" || nameValuePairs["action"] == "deleteMultiple" ?
         null :
         proxy.id;
     }

@@ -1,2 +1,4 @@
 * Two new hidden settings: excludePatternsFromCycling and excludeDisabledFromCycling.
   This is for http://foxyproxy.mozdev.org/drupal/content/improving-cycle-through-proxies-mode
+* Support for the proxy:// protocol (scheme)
+* Version bumps

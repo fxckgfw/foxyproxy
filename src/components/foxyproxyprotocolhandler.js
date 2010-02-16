@@ -143,7 +143,7 @@ Protocol.prototype = {
     
     // User-feedback?
     if (nameValuePairs["confirmation"] == "popup") {
-      fp.notifier.alert(fp.getMessage("foxyproxy"), fp.getMessage("proxy.configured", [proxy.name]));
+      fp.notifier.alert(fp.getMessage("foxyproxy"), fp.getMessage("proxy.configured", [nameValuePairs["name"]]));
       return new nsDummyChannel();
     }
     else if (nameValuePairs["confirmation"]) {

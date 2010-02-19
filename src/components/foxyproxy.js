@@ -116,6 +116,7 @@ foxyproxy.prototype = {
   quickadd : null,
   excludePatternsFromCycling : false,
   excludeDisabledFromCycling : false,
+  ignoreProxyScheme : false,
 
   QueryInterface: function(aIID) {
     if (!aIID.equals(CI.nsISupports) && !aIID.equals(CI.nsIObserver))
@@ -623,7 +624,8 @@ biesi>  passing it the appropriate proxyinfo
     this._resetIconColors = gGetSafeAttrB(node, "resetIconColors", true); // new for 2.10
     this._useStatusBarPrefix = gGetSafeAttrB(node, "useStatusBarPrefix", true); // new for 2.10
     this.excludePatternsFromCycling = gGetSafeAttrB(node, "excludePatternsFromCycling", false);
-    this.excludeDisabledFromCycling = gGetSafeAttrB(node, "excludeDisabledFromCycling", false);   
+    this.excludeDisabledFromCycling = gGetSafeAttrB(node, "excludeDisabledFromCycling", false);
+    this.ignoreProxyScheme = gGetSafeAttrB(node, "ignoreProxyScheme", false);
     this.proxies.fromDOM(mode, doc);
     this.setMode(mode, false, true);    
     this.random.fromDOM(doc); 
@@ -646,6 +648,7 @@ biesi>  passing it the appropriate proxyinfo
     e.setAttribute("useStatusBarPrefix", this._useStatusBarPrefix);
     e.setAttribute("excludePatternsFromCycling", this.excludePatternsFromCycling);
     e.setAttribute("excludeDisabledFromCycling", this.excludeDisabledFromCycling);
+    e.setAttribute("ignoreProxyScheme", this.ignoreProxyScheme);
     e.appendChild(this.random.toDOM(doc));
     e.appendChild(this.statusbar.toDOM(doc));
     e.appendChild(this.toolbar.toDOM(doc));

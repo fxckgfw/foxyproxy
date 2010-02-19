@@ -59,9 +59,12 @@ Common.prototype = {
         }
       }
     }
-
     // Our URL isn't open. Open it now.
-    var w = this.getMostRecentWindow(wm);
+    this.openTab(aURL);
+  },
+  
+  openTab : function(aURL) {
+    var w = this.getMostRecentWindow();
     var event = { notify: function(timer) {w.gBrowser.selectedTab = w.gBrowser.addTab(aURL, null, null, null);} }
 
     if (w) {
@@ -266,6 +269,21 @@ Common.prototype = {
   
   isThunderbird : function() {
     return CC["@mozilla.org/xre/app-info;1"].getService(CI.nsIXULAppInfo).ID == "{3550f703-e582-4d05-9a08-453d09bdfdc6}";
+  },
+  
+  notify : function(msg, buttons) {
+    var wm = this.getMostRecentWindow(), nb = wm.gBrowser.getNotificationBox(),
+      n = nb.getNotificationWithValue("foxyproxy-proxy-scheme"),
+      fp = CC["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject,
+      message = fp.getMessage(msg);
+    if (n) {
+      n.label = message;
+    }
+    else {
+      nb.appendNotification(message, "foxyproxy-proxy-scheme",
+          'chrome://browser/skin/Info.png',
+          nb.PRIORITY_CRITICAL_BLOCK, buttons)      
+    }
   }
 };
 

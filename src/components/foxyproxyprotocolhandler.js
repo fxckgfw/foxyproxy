@@ -50,7 +50,9 @@ Protocol.prototype = {
     return uri;
   },
 
-  newChannel: function(aURI) {
+  processURI : function(aURI) {
+    dump("processURI\n");
+    
     // aURI is a nsIUri, so get a string from it using .spec
     var uri = aURI.spec;
     // strip away the proxy: part
@@ -69,16 +71,15 @@ Protocol.prototype = {
         foundSomeInput = true;
       }
     }
-    if (!foundSomeInput) return new nsDummyChannel();
-    var fp = CC["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject,
-      proxy = CC["@leahscape.org/foxyproxy/proxy;1"].createInstance().wrappedJSObject;
+    if (!foundSomeInput) return;
+    var proxy = CC["@leahscape.org/foxyproxy/proxy;1"].createInstance().wrappedJSObject;
     proxy.fromAssociateArray(nameValuePairs);
     // We accept URIs like this:
     //   proxy:foxyProxyMode=disabled
     // with no other parameters. In cases like that, we must skip the
     // create/update/delete proxy code otherwise we'll create an empty/useless proxy
     // Note: |uri| has been stripped of its scheme at this point.
-    
+    var fp = CC["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;
     if (!(/^foxyProxyMode=[^&]*$/.test(uri))) {
       // Are we adding a new proxy, or deleting or updating an existing one? Default is to updateOrAdd.
       if (!nameValuePairs["action"]) { /* no action was specified */
@@ -144,7 +145,7 @@ Protocol.prototype = {
     // User-feedback?
     if (nameValuePairs["confirmation"] == "popup") {
       fp.notifier.alert(fp.getMessage("foxyproxy"), fp.getMessage("proxy.configured", [nameValuePairs["name"]]));
-      return new nsDummyChannel();
+      return;
     }
     else if (nameValuePairs["confirmation"]) {
       // Is it a valid URL?
@@ -152,11 +153,36 @@ Protocol.prototype = {
         CC["@mozilla.org/network/io-service;1"]
            .getService(CI.nsIIOService).newURI(nameValuePairs["confirmation"], "UTF-8", null);
       }
-      catch(e) {/* not a valid URL */ return new nsDummyChannel(); }
-      var channel = CC[kIOSERVICE_CONTRACTID].getService(nsIIOService).newChannel("chrome://foxyproxy/content/confirmation.html?url=" + nameValuePairs["confirmation"], null, null);
-      channel.originalURI = aURI;
-      return channel;
-    }
+      catch(e) {/* not a valid URL */ return; }
+      CC["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject
+        .openTab(nameValuePairs["confirmation"]);
+    }   
+  },
+  
+  newChannel: function(aURI) {
+    var fp = CC["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;
+    if (fp.ignoreProxyScheme) return new nsDummyChannel();
+    
+    // user notification first
+    var fpc = CC["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject;
+    var fpph = this;
+    var buttons = [
+      { label: fp.getMessage("yes"),
+        accessKey: fp.getMessage("yes.accesskey"),
+        popup: null, 
+        callback: function(nb, button) {
+          fpph.processURI(aURI);
+        }
+      },
+      {
+        label: fp.getMessage("no"),
+        accessKey: fp.getMessage("no.accesskey"),
+        popup: null, 
+        callback: function(nb, button) {
+        }
+      }
+    ];
+    fpc.notify("proxy.scheme.warning", buttons);
     return new nsDummyChannel();
   }
 }
@@ -185,7 +211,7 @@ nsDummyChannel.prototype.asyncOpen =
 function bc_open(observer, ctxt) {
   // We don't throw this (a number, not a real 'resultcode') because it
   // upsets xpconnect if we do (error in the js console).
-  Components.returnCode = NS_ERROR_NO_CONTENT;
+  Components.returnCode = CR.NS_ERROR_NO_CONTENT;
 }
 
 nsDummyChannel.prototype.asyncRead =

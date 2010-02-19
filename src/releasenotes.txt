@@ -1,4 +1,5 @@
-* Two new hidden settings: excludePatternsFromCycling and excludeDisabledFromCycling.
-  This is for http://foxyproxy.mozdev.org/drupal/content/improving-cycle-through-proxies-mode
-* Support for the proxy:// protocol (scheme)
-* Version bumps
+* New hidden setting: ignoreProxyScheme (false by default)
+  in reponse to http://foxyproxy.mozdev.org/drupal/content/security-new-proxy-protocol-feature
+* User must confirm the acceptance of changes when a proxy:// link is activated.
+  This is also in response to reponse to http://foxyproxy.mozdev.org/drupal/content/security-new-proxy-protocol-feature
+* Locale updates

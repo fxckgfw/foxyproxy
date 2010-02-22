@@ -24,7 +24,7 @@ end-foxyproxy-simple -->
             <Description>
                 <em:id>songbird@songbirdnest.com</em:id>
                 <em:minVersion>0.4</em:minVersion>
-                <em:maxVersion>1.7a</em:maxVersion>
+                <em:maxVersion>1.7.0a</em:maxVersion>
             </Description>
         </em:targetApplication>
         <em:targetApplication>

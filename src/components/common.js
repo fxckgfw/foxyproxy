@@ -271,18 +271,28 @@ Common.prototype = {
     return CC["@mozilla.org/xre/app-info;1"].getService(CI.nsIXULAppInfo).ID == "{3550f703-e582-4d05-9a08-453d09bdfdc6}";
   },
   
-  notify : function(msg, buttons) {
+  notify : function(msg, buttons, callback) {
     var wm = this.getMostRecentWindow(), nb = wm.gBrowser.getNotificationBox(),
       n = nb.getNotificationWithValue("foxyproxy-proxy-scheme"),
       fp = CC["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject,
       message = fp.getMessage(msg);
+    if (!buttons) {
+      buttons = [
+        { 
+          label: wm.gNavigatorBundle.getString("xpinstallPromptAllowButton"),
+          accessKey: wm.gNavigatorBundle.getString("xpinstallPromptAllowButton.accesskey"),
+          popup: null, 
+          callback: callback
+        }                 
+      ];  
+    }
     if (n) {
       n.label = message;
     }
     else {
       nb.appendNotification(message, "foxyproxy-proxy-scheme",
-          'chrome://browser/skin/Info.png',
-          nb.PRIORITY_CRITICAL_BLOCK, buttons)      
+          "chrome://foxyproxy/content/images/16x16.gif",
+          nb.PRIORITY_WARNING_MEDIUM, buttons);
     }
   }
 };

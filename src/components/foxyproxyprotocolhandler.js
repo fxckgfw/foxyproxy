@@ -51,8 +51,6 @@ Protocol.prototype = {
   },
 
   processURI : function(aURI) {
-    dump("processURI\n");
-    
     // aURI is a nsIUri, so get a string from it using .spec
     var uri = aURI.spec;
     // strip away the proxy: part
@@ -164,25 +162,9 @@ Protocol.prototype = {
     if (fp.ignoreProxyScheme) return new nsDummyChannel();
     
     // user notification first
-    var fpc = CC["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject;
-    var fpph = this;
-    var buttons = [
-      { label: fp.getMessage("yes"),
-        accessKey: fp.getMessage("yes.accesskey"),
-        popup: null, 
-        callback: function(nb, button) {
-          fpph.processURI(aURI);
-        }
-      },
-      {
-        label: fp.getMessage("no"),
-        accessKey: fp.getMessage("no.accesskey"),
-        popup: null, 
-        callback: function(nb, button) {
-        }
-      }
-    ];
-    fpc.notify("proxy.scheme.warning", buttons);
+    var fpc = CC["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject
+      fpph = this;
+    fpc.notify("proxy.scheme.warning.2", null, function() {fpph.processURI(aURI)});
     return new nsDummyChannel();
   }
 }

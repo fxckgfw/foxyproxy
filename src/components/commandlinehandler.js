@@ -1,10 +1,13 @@
-const nsISupports           = Components.interfaces.nsISupports;
-const nsICategoryManager    = Components.interfaces.nsICategoryManager;
-const nsIComponentRegistrar = Components.interfaces.nsIComponentRegistrar;
-const nsICommandLine        = Components.interfaces.nsICommandLine;
-const nsICommandLineHandler = Components.interfaces.nsICommandLineHandler;
-const nsIFactory            = Components.interfaces.nsIFactory;
-const nsIModule             = Components.interfaces.nsIModule;
+const CC = Components.classes;
+const CI = Components.interfaces;
+
+const nsISupports           = CI.nsISupports;
+const nsICategoryManager    = CI.nsICategoryManager;
+const nsIComponentRegistrar = CI.nsIComponentRegistrar;
+const nsICommandLine        = CI.nsICommandLine;
+const nsICommandLineHandler = CI.nsICommandLineHandler;
+const nsIFactory            = CI.nsIFactory;
+const nsIModule             = CI.nsIModule;
 
 const clh_contractID = "@mozilla.org/commandlinehandler/general-startup;1?type=foxyproxy";
 const clh_CID = Components.ID("{ea321380-6b35-4e15-8d1e-fe6dc9c2ccae}");
@@ -32,7 +35,7 @@ const myAppHandler = {
     try {
       var mode = cmdLine.handleFlagWithParam("foxyproxy-mode", false);
       if (mode)
-        Components.classes["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject.setMode(mode, false, true);
+        CC["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject.setMode(mode, false, true);
     }
     catch (e) {
       Components.utils.reportError("incorrect parameter passed to -viewapp on the command line.");
@@ -97,7 +100,7 @@ const myAppHandlerModule = {
                                     location,
                                     type);
 
-    var catMan = Components.classes["@mozilla.org/categorymanager;1"].
+    var catMan = CC["@mozilla.org/categorymanager;1"].
       getService(nsICategoryManager);
     catMan.addCategoryEntry("command-line-handler",
                             clh_category,
@@ -109,7 +112,7 @@ const myAppHandlerModule = {
     compMgr.QueryInterface(nsIComponentRegistrar);
     compMgr.unregisterFactoryLocation(clh_CID, location);
 
-    var catMan = Components.classes["@mozilla.org/categorymanager;1"].
+    var catMan = CC["@mozilla.org/categorymanager;1"].
       getService(nsICategoryManager);
     catMan.deleteCategoryEntry("command-line-handler", clh_category);
   },

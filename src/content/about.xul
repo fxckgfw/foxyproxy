@@ -110,7 +110,6 @@
                 <label value="&foxyproxy.home;" class="text-link" onclick="fpc.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/');" tooltiptext="http://foxyproxy.mozdev.org" />
                 <label value="&foxyproxy.support;" class="text-link" onclick="fpc.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/drupal');" tooltiptext="http://foxyproxy.mozdev.org/drupal" />
                 <label value="&foxyproxy.credits;" class="text-link" onclick="fpc.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/credits.html');" tooltiptext="http://foxyproxy.mozdev.org/credits.html" />
-                <label value="&foxyproxy.donation.list.label;" class="text-link" onclick="fpc.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/donations.html');" tooltiptext="&foxyproxy.donation.list.label;" />
               </row>
             </rows>
           </groupbox>

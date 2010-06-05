@@ -398,8 +398,6 @@
 <!ENTITY foxyproxy.credits "Μνεία">
 <!ENTITY foxyproxy.please.donate.label "Παρακαλούμε κάντε μια δωρεά">
 <!ENTITY foxyproxy.please.donate.accesskey "δ">
-<!ENTITY foxyproxy.donation.list.label "Λίστα δωρεών">
-<!ENTITY foxyproxy.donation.list.accesskey "α">
 <!ENTITY foxyproxy.importantnote.label "Διαβάστε μια σημαντική σημείωση">
 <!ENTITY foxyproxy.resetlocation.label "Επαναφορά τοποθεσίας">
 <!ENTITY foxyproxy.resetlocation.accesskey "π">
@@ -417,6 +415,17 @@
 <!ENTITY foxyproxy.invalidcolor.label "Μη έγκυρο χρώμα">
 <!ENTITY foxyproxy.validcolor.label "Έγκυρο χρώμα">
 <!ENTITY foxyproxy.color.label "Color">
+<!ENTITY foxyproxy.server.subscriptions.label "Συνδρομές διακομιστών">
+<!ENTITY foxyproxy.server.subscriptions.tooltip "Διαχείριση συνδρομών διακομιστών">
+<!ENTITY foxyproxy.server.subscriptions.accesskey "δ">
+<!ENTITY foxyproxy.pattern.subscriptions.label "Συνδρομές πρότυπων">
+<!ENTITY foxyproxy.pattern.subscriptions.tooltip "Διαχείριση συνδρομών πρότυπων">
+<!ENTITY foxyproxy.pattern.subscriptions.accesskey "σ">
+<!ENTITY foxyproxy.name.label "Όνομα">
+<!ENTITY foxyproxy.notes.label "Σημειώσεις">
+<!ENTITY foxyproxy.url.label "url">
+<!ENTITY foxyproxy.lastupdate.label "Τελευταία ενημέρωση">
+<!ENTITY foxyproxy.updatefrequency.label "Συχνότητα ενημερώσεων">
 <!-- begin foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Προσθήκη/επεξεργασία τοπικού πρότυπου διεύθυνσης IP">
 <!ENTITY foxyproxy.tempip.popup.label "Τα προσωρινά πρότυπα σας επιτρέπουν να δημιουργήσετε τοπικά πρότυπα για διευθύνσεις IP που δεν χρησιμοποιείτε συχνά, χωρίς να αυξάνετε την πολυπλοκότητα της λίστας πρότυπων κάποιου διαμεσολαβητή. Τα προσωρινά πρότυπα δεν αποθηκεύονται στο δίσκο, διατηρούνται μόνο στη μνήμη και χρησιμοποιούνται για την τρέχουσα συνεδρία του Firefox.">
@@ -446,11 +455,15 @@
 <!ENTITY foxyproxy.enteremail.label "Εισάγετε διεύθυνση email">
 <!ENTITY foxyproxy.licenseinfo.label "Πληροφορίες αδειοδότησης">
 <!ENTITY foxyproxy.licensevalid.label "Έγκυρη αδειοδότηση. Ευχαριστούμε που αγοράσατε το FoxyProxy Plus.">
+<!ENTITY foxyproxy.subexpired.label "Η άδεια είναι έγκυρη αλλά η συνδρομή ενημερώσεων έχει λήξει. Δεν λαμβάνετε ενημερώσεις για το FoxyProxy Plus.">
 <!ENTITY foxyproxy.licenseinvalid.label "Μη έγκυρη αδειοδότηση. Δεν θα σας παρέχονται ενημερώσεις για το FoxyProxy Plus. Παρακαλούμε αγοράστε το FoxyProxy Plus.">
 <!ENTITY foxyproxy.buynow.label "Αγορά τώρα">
 <!ENTITY foxyproxy.checklicense.label "Έλεγχος αδειοδότησης">
 <!ENTITY foxyproxy.checkinglicense.label "Γίνεται έλεγχος... Παρακαλούμε περιμένετε">
-<!ENTITY foxyproxy.routetoleahscape.label "Παρακαλούμε σιγουρευτείτε ότι ο Firefox έχει πρόσβαση στο https://leahscape.com/fpplus/license_check.php με ή χωρίς διαμεσολαβητή. Αν χρειάζεται, μπορείτε να ορίσετε ένα πρότυπο για το URL στο FoxyProxy Plus.">
+<!ENTITY foxyproxy.yourversion.label "Η έκδοση σας">
+<!ENTITY foxyproxy.latestversion.label "Νεότερη έκδοση">
+<!ENTITY foxyproxy.routetoleahscape.label.1 "Παρακαλούμε βεβαιωθείτε ότι ο Firefox έχει πρόσβαση στο">
+<!ENTITY foxyproxy.routetoleahscape.label.2 "είτε χωρίς, είτε μέσω διαμεσολαβητή. Μπορείτε να ορίσετε πρότυπα γι' αυτό το URL στο FoxyProxy Plus αν χρειάζεται.">
 <!ENTITY foxyproxy.everything.label "Όλα">
 <!ENTITY foxyproxy.nothing.label "Κανένα">
 <!ENTITY foxyproxy.ippatterndeletefinal.label "Αυτό είναι το τελευταίο τοπικό πρότυπο διεύθυνσης IP. Αν το διαγράψετε, αυτός ο διαμεσολαβητής δεν θα χρησιμοποιείται πότε. Συνέχεια;">

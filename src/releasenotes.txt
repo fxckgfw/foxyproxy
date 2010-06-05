@@ -1,4 +1,4 @@
-* Made proxy:// warning non-modal
-* Custom foxyproxy icon for proxy:// warnings
-* Locale updates
-* Version bumps
+* Limited use of network.dns.disablePrefetch to when FoxyProxy is enabled & requires it
+* Fixed http://foxyproxy.mozdev.org/drupal/content/download-manager-doesnt-open-link-downloads-complete-desktop-alert
+* Removed donation link from About box; the donation page is no longer maintained
+* Lots of locale updates

@@ -398,8 +398,6 @@
 <!ENTITY foxyproxy.credits "Crédits">
 <!ENTITY foxyproxy.please.donate.label "Veuillez faire un don">
 <!ENTITY foxyproxy.please.donate.accesskey "D">
-<!ENTITY foxyproxy.donation.list.label "Liste des dons">
-<!ENTITY foxyproxy.donation.list.accesskey "L">
 <!ENTITY foxyproxy.importantnote.label "Lire une note importante">
 <!ENTITY foxyproxy.resetlocation.label "Réinitialiser l&apos;emplacement">
 <!ENTITY foxyproxy.resetlocation.accesskey "R">
@@ -417,6 +415,17 @@
 <!ENTITY foxyproxy.invalidcolor.label "Couleur invalide">
 <!ENTITY foxyproxy.validcolor.label "Couleur valide">
 <!ENTITY foxyproxy.color.label "Color">
+<!ENTITY foxyproxy.server.subscriptions.label "Server Subscriptions">
+<!ENTITY foxyproxy.server.subscriptions.tooltip "Manage Server Subscriptions">
+<!ENTITY foxyproxy.server.subscriptions.accesskey "S">
+<!ENTITY foxyproxy.pattern.subscriptions.label "Pattern Subscriptions">
+<!ENTITY foxyproxy.pattern.subscriptions.tooltip "Manage Pattern Subscriptions">
+<!ENTITY foxyproxy.pattern.subscriptions.accesskey "S">
+<!ENTITY foxyproxy.name.label "Nom">
+<!ENTITY foxyproxy.notes.label "Notes">
+<!ENTITY foxyproxy.url.label "url">
+<!ENTITY foxyproxy.lastupdate.label "Dernière mise à jour">
+<!ENTITY foxyproxy.updatefrequency.label "Fréquence des mises à jour">
 <!-- begin foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Ajouter / éditer un motif d&apos;adresse IP Locale">
 <!ENTITY foxyproxy.tempip.popup.label "Les motifs temporaires vous permettent de créer des motifs  que vous n&apos;utilisez pas souvent afin d&apos;éviter de surcharger la liste des motifs d&apos;adresse IP pour un proxy. Les motifs temporaires ne sont pas enregistrés sur le disque. Ils sont conservés en mémoire et ne sont utilisés que dans cette session Firefox.">
@@ -446,11 +455,15 @@
 <!ENTITY foxyproxy.enteremail.label "Indiquer l&apos;adresse électronique">
 <!ENTITY foxyproxy.licenseinfo.label "Info sur la licence">
 <!ENTITY foxyproxy.licensevalid.label "Licence valide. Merci d&apos;avoir acheté FoxyProxy Plus.">
+<!ENTITY foxyproxy.subexpired.label "License valid, but your update subscription expired. You are not receiving FoxyProxy Plus updates.">
 <!ENTITY foxyproxy.licenseinvalid.label "Licence invalide. Vous n&apos;obtiendrez pas de mises à jour de FoxyProxy Plus. Veuillez acheter FoxyProxy Plus.">
 <!ENTITY foxyproxy.buynow.label "Acheter maintenant">
 <!ENTITY foxyproxy.checklicense.label "Vérifier la licence">
 <!ENTITY foxyproxy.checkinglicense.label "Vérification en cours…veuillez patienter">
-<!ENTITY foxyproxy.routetoleahscape.label "Veuillez vous assurer que Firefox puisse se connecter à https://leahscape.com/fpplus/license_check.php soit avec, soit sans proxy. Vous pouvez configurer des motifs pour cette URL dans FoxyProxy Plus si nécessaire.">
+<!ENTITY foxyproxy.yourversion.label "Votre version">
+<!ENTITY foxyproxy.latestversion.label "Dernière version">
+<!ENTITY foxyproxy.routetoleahscape.label.1 "Please make sure Firefox can reach">
+<!ENTITY foxyproxy.routetoleahscape.label.2 "either with or without a proxy. You can configure patterns for this URL in FoxyProxy Plus if necessary.">
 <!ENTITY foxyproxy.everything.label "Tout">
 <!ENTITY foxyproxy.nothing.label "Rien">
 <!ENTITY foxyproxy.ippatterndeletefinal.label "Ceci est le dernier motif d&apos;adresse IP locale. Si vous le supprimez, ce proxy ne pourra pas être utilisé. Continuer tout de même ?">

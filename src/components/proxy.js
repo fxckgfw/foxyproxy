@@ -158,6 +158,16 @@ Proxy.prototype = {
   },
   
   /**
+   * If this proxy requires network.dns.disablePrefetch to be false,
+   * return true. network.dns.disablePrefetch must be false when the
+   * user wants to proxy DNS requests through this proxy. Otherwise,
+   * Firefox won't always use this proxy for DNS lookups.
+   */
+  shouldDisableDNSPrefetch : function() {
+    return this._mode != "direct" && this._enabled && this._proxyDNS;
+  },
+  
+  /**
    * Merge |src| into this, using the keys of the |nameValuePairs|
    * associative array as the properties to overwrite in |this|.
    */

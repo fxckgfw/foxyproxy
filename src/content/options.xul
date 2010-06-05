@@ -72,7 +72,7 @@
     <label value="&foxyproxy.mode.label;:"
       tooltiptext="&foxyproxy.mode.tooltip;"
       accesskey="&foxyproxy.mode.accesskey;" command="modeMenuPopup" />
-    <menulist id="modeMenu" oncommand="onEnableTypeChanged(this);"
+    <menulist id="modeMenu" oncommand="onModeChanged(this);"
       tooltiptext="&foxyproxy.mode.tooltip;">
       <menupopup id="modeMenuPopup" />
     </menulist>
@@ -87,6 +87,12 @@
       <tab id="foxyproxy-global-tab" label="&foxyproxy.tab.global.label;"
         accesskey="&foxyproxy.tab.global.accesskey;"
         tooltiptext="&foxyproxy.tab.global.tooltip;" />
+      <!--<tab id="foxyproxy-server-subscriptions-tab" label="&foxyproxy.server.subscriptions.label;"
+        accesskey="&foxyproxy.server.subscriptions.accesskey;"
+        tooltiptext="&foxyproxy.server.subscriptions.tooltip;" />
+      <tab id="foxyproxy-pattern-subscriptions-tab" label="&foxyproxy.pattern.subscriptions.label;"
+        accesskey="&foxyproxy.pattern.subscriptions.accesskey;"
+        tooltiptext="&foxyproxy.pattern.subscriptions.tooltip;" />-->
       <tab id="foxyproxy-quickadd-tab" label="&foxyproxy.quickadd.label;"
         accesskey="&foxyproxy.quickadd.accesskey;"
         tooltiptext="&foxyproxy.quickadd.tooltip;" class="hide-if-foxyproxy-simple"/>
@@ -525,7 +531,53 @@
         </row>
         </groupbox>
         <row><separator class="thin"/></row>-->
+<!--
+      <tabpanel flex="1" orient="vertical">
+        <separator class="thin" />
 
+        <hbox flex="1">
+          <tree id="serverSubTree" align="stretch" enableColumnDrag="true"
+            flex="1" style="width: 5em; height: 2em; " seltype="single"
+            onselect="onServerSubTreeSelected();"
+            onclick="overlay.onTreeClick(event, this);">
+            <treecols
+              pickertooltiptext="&foxyproxy.tree.pickertooltiptext.label;">
+              <treecol id="enabledCol" label="&foxyproxy.enabled.label;"
+                flex="1" persist="width ordinal hidden" type="checkbox" />
+              <splitter class="tree-splitter"/>
+              <treecol id="nameCol" label="&foxyproxy.name.label;"
+                flex="1" persist="width ordinal hidden" />
+              <splitter class="tree-splitter" />
+              <treecol id="notesCol" label="&foxyproxy.notes.label;"
+                primary="true" flex="1" persist="width ordinal hidden" />
+              <splitter class="tree-splitter" />
+              <treecol id="notesCol" label="&foxyproxy.lastupdate.label;"
+                primary="true" flex="1" persist="width ordinal hidden" />
+              <splitter class="tree-splitter" />
+              <treecol id="notesCol" label="&foxyproxy.url.label;"
+                primary="true" flex="1" persist="width ordinal hidden" />
+              <splitter class="tree-splitter" />
+              <treecol id="notesCol" label="&foxyproxy.updatefrequency.label;"
+                primary="true" flex="1" persist="width ordinal hidden" />
+              <splitter class="tree-splitter" />
+            </treecols>
+            <treechildren id="serverSubTreeChildren" flex="1"
+              ondblclick="onSettings(false);" context="serverSubTreeMenu" />
+          </tree>
+          <vbox>
+            <button id="foxyproxy-up-button" pack="start" command="moveUpCmd"
+              label=" &foxyproxy.moveup.label;"/>
+            <button id="foxyproxy-down-button" pack="start" command="moveDownCmd"
+              label=" &foxyproxy.movedown.label;"/>
+            <separator class="hide-if-foxyproxy-simple"/>
+            <button id="foxyproxy-create-button" command="createProxyCmd" />
+            <button id="foxyproxy-settings-button" command="settingsCmd" />
+            <button id="foxyproxy-copy-button" command="copySelectionCmd" />
+            <button id="foxyproxy-deleteproxy-button" command="deleteSelectionCmd" />
+          </vbox>
+        </hbox>
+      </tabpanel>
+-->      
       <!-- quickadd tab -->
       <tabpanel flex="1" orient="vertical" class="hide-if-foxyproxy-simple">
         <description style="width: 1em;">&foxyproxy.quickadd.desc1;
@@ -775,7 +827,6 @@
   </tabbox>
   <hbox align="center">
     <button id="foxyproxy-donate-button" command="donateCmd" style="font-weight: bold;"/>
-    <!-- <button command="donationListCmd"/> -->
     <button id="foxyproxy-plus-button" command="fppCmd"/>
     <button id="foxyproxy-proxyservice-button" command="proxyServiceCmd" style="font-weight: bold;"/>
     <toolbarbutton class="foxyproxy-ref"
@@ -888,11 +939,11 @@
     oncommand="onSettings(true);" />
 
   <command id="moveUpCmd" tooltiptext="&foxyproxy.moveup.tooltip;"
-    accesskey="&foxyproxy.moveup.accesskey;" oncommand="move('up');"
+    accesskey="&foxyproxy.moveup.accesskey;" oncommand="onMove('up');"
     disabled="true" />
 
   <command id="moveDownCmd" tooltiptext="&foxyproxy.movedown.tooltip;"
-    accesskey="&foxyproxy.movedown.accesskey;" oncommand="move('down');"
+    accesskey="&foxyproxy.movedown.accesskey;" oncommand="onMove('down');"
     disabled="true" />
 
   <command id="copySelectionCmd"
@@ -925,10 +976,6 @@
 
   <command id="fppCmd" label="&foxyproxy.getfoxyproxyplus.label;"
     tooltiptext="&foxyproxy.getfoxyproxyplus.label;" oncommand="fpc.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/fpplus');" />
-
-  <command id="donationListCmd" label="&foxyproxy.donation.list.label;"
-    accesskey="&foxyproxy.donation.list.accesskey;"
-    tooltiptext="&foxyproxy.donation.list.label;" oncommand="fpc.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/donations.html');" />
 
   <command id="importSettingsCmd"
     label="&foxyproxy.importsettings.label;"

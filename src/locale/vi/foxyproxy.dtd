@@ -398,8 +398,6 @@
 <!ENTITY foxyproxy.credits "Công trạng">
 <!ENTITY foxyproxy.please.donate.label "Vui lòng Quyên góp">
 <!ENTITY foxyproxy.please.donate.accesskey "V">
-<!ENTITY foxyproxy.donation.list.label "Danh sách Quyên góp">
-<!ENTITY foxyproxy.donation.list.accesskey "D">
 <!ENTITY foxyproxy.importantnote.label "Đọc Lưu ý Quan trọng">
 <!ENTITY foxyproxy.resetlocation.label "Thiết lập lại Vị trí">
 <!ENTITY foxyproxy.resetlocation.accesskey "l">
@@ -417,6 +415,17 @@
 <!ENTITY foxyproxy.invalidcolor.label "Màu không hợp lệ">
 <!ENTITY foxyproxy.validcolor.label "Màu hợp lệ">
 <!ENTITY foxyproxy.color.label "Màu">
+<!ENTITY foxyproxy.server.subscriptions.label "Server Subscriptions">
+<!ENTITY foxyproxy.server.subscriptions.tooltip "Manage Server Subscriptions">
+<!ENTITY foxyproxy.server.subscriptions.accesskey "S">
+<!ENTITY foxyproxy.pattern.subscriptions.label "Pattern Subscriptions">
+<!ENTITY foxyproxy.pattern.subscriptions.tooltip "Manage Pattern Subscriptions">
+<!ENTITY foxyproxy.pattern.subscriptions.accesskey "S">
+<!ENTITY foxyproxy.name.label "Name">
+<!ENTITY foxyproxy.notes.label "Notes">
+<!ENTITY foxyproxy.url.label "url">
+<!ENTITY foxyproxy.lastupdate.label "Last Update">
+<!ENTITY foxyproxy.updatefrequency.label "Update Frequency">
 <!-- begin foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Thêm/Chỉnh sửa mẫu Địa chỉ IP Nội bộ">
 <!ENTITY foxyproxy.tempip.popup.label "Các mẫu tạm thời cho phép bạn tạo ra các mẫu cho những địa chỉ IP nội bộ mà bạn không dùng thường xuyên mà không làm bới tung danh sách mẫu địa chỉ IP của một proxy. Mẫu tạm thời không được lưu vào đĩa. Chúng chỉ được giữ trong bộ nhớ cho phiên duyệt web này mà thôi.">
@@ -446,11 +455,15 @@
 <!ENTITY foxyproxy.enteremail.label "Nhập địa chỉ email">
 <!ENTITY foxyproxy.licenseinfo.label "Thông tin Giấy phép">
 <!ENTITY foxyproxy.licensevalid.label "Giấy phép hợp lệ. Cảm ơn bạn đã mua FoxyProxy Cộng.">
+<!ENTITY foxyproxy.subexpired.label "License valid, but your update subscription expired. You are not receiving FoxyProxy Plus updates.">
 <!ENTITY foxyproxy.licenseinvalid.label "Giấy phép không hợp lệ. Bạn sẽ không nhận được cập nhật cho FoxyProxy Cộng. Vui lòng mua FoxyProxy Cộng.">
 <!ENTITY foxyproxy.buynow.label "Mua ngay">
 <!ENTITY foxyproxy.checklicense.label "Kiểm tra Giấy phép">
 <!ENTITY foxyproxy.checkinglicense.label "Đang kiểm tra... vui lòng đợi">
-<!ENTITY foxyproxy.routetoleahscape.label "Vui lòng chắc chắn rằng Firefox có thể vào https://leahscape.com/fpplus/license_check.php cho dù có hoặc không có proxy. Bạn có thể cấu hình các mẫu cho URL này trong FoxyProxy Cộng nếu cần.">
+<!ENTITY foxyproxy.yourversion.label "Your Version ">
+<!ENTITY foxyproxy.latestversion.label "Newest Version ">
+<!ENTITY foxyproxy.routetoleahscape.label.1 "Please make sure Firefox can reach">
+<!ENTITY foxyproxy.routetoleahscape.label.2 "either with or without a proxy. You can configure patterns for this URL in FoxyProxy Plus if necessary.">
 <!ENTITY foxyproxy.everything.label "Mọi thứ">
 <!ENTITY foxyproxy.nothing.label "Không">
 <!ENTITY foxyproxy.ippatterndeletefinal.label "Đây là mẫu địa chỉ IP nội bộ cuối cùng. Nếu bạn xóa nó, proxy này không còn có thể được dùng nữa. Vẫn tiếp tục?">

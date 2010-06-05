@@ -398,8 +398,6 @@
 <!ENTITY foxyproxy.credits "Riconoscimenti">
 <!ENTITY foxyproxy.please.donate.label "Effettua una donazione">
 <!ENTITY foxyproxy.please.donate.accesskey "D">
-<!ENTITY foxyproxy.donation.list.label "Lista delle donazioni">
-<!ENTITY foxyproxy.donation.list.accesskey "L">
 <!ENTITY foxyproxy.importantnote.label "Ulteriori informazioni">
 <!ENTITY foxyproxy.resetlocation.label "Ripristina">
 <!ENTITY foxyproxy.resetlocation.accesskey "R">
@@ -417,6 +415,17 @@
 <!ENTITY foxyproxy.invalidcolor.label "Il codice del colore non è valido">
 <!ENTITY foxyproxy.validcolor.label "Il codice del colore è valido">
 <!ENTITY foxyproxy.color.label "Colore">
+<!ENTITY foxyproxy.server.subscriptions.label "Proxy sottoscritti">
+<!ENTITY foxyproxy.server.subscriptions.tooltip "Gestione dei proxy sottoscritti">
+<!ENTITY foxyproxy.server.subscriptions.accesskey "y">
+<!ENTITY foxyproxy.pattern.subscriptions.label "Modelli sottoscritti">
+<!ENTITY foxyproxy.pattern.subscriptions.tooltip "Gestione dei modelli sottoscritti">
+<!ENTITY foxyproxy.pattern.subscriptions.accesskey "l">
+<!ENTITY foxyproxy.name.label "Nome">
+<!ENTITY foxyproxy.notes.label "Nota">
+<!ENTITY foxyproxy.url.label "URL">
+<!ENTITY foxyproxy.lastupdate.label "Ultimo aggiornamento">
+<!ENTITY foxyproxy.updatefrequency.label "Frequenza aggiornamento">
 <!-- begin foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Aggiunta/modifica di modelli di indirizzi IP locali">
 <!ENTITY foxyproxy.tempip.popup.label "I modelli temporanei permettono di creare modelli di indirizzi IP locali che non vengono utilizzati spesso, senza interessare le liste di modelli di indirizzi IP dei proxy. Tali modelli non vengono salvati sul disco rigido, ma mantenuti in memoria ed eliminati alla chiusura della sessione di Firefox">
@@ -446,11 +455,15 @@
 <!ENTITY foxyproxy.enteremail.label "Inserire l'indirizzo e-mail">
 <!ENTITY foxyproxy.licenseinfo.label "Informazioni sulla licenza">
 <!ENTITY foxyproxy.licensevalid.label "La licenza è valida. Grazie per aver acquistato FoxyProxy Plus">
+<!ENTITY foxyproxy.subexpired.label "La licenza è valida ma è scaduta la sottoscrizione per gli aggiornamenti di FoxyProxy Plus, che quindi non verrà aggiornata">
 <!ENTITY foxyproxy.licenseinvalid.label "La licenza non è valida. Per ricevere aggiornamenti di FoxyProxy Plus è necessario acquistarne una">
 <!ENTITY foxyproxy.buynow.label "Acquista ora">
 <!ENTITY foxyproxy.checklicense.label "Verifica la licenza">
 <!ENTITY foxyproxy.checkinglicense.label "Verifica in corso… Attendere">
-<!ENTITY foxyproxy.routetoleahscape.label "Accertarsi che Firefox possa raggiungere l'indirizzo web https://leahscape.com/fpplus/license_check.php con o senza proxy, impostando se necessario un modello URL in FoxyProxy Plus">
+<!ENTITY foxyproxy.yourversion.label "Versione attuale ">
+<!ENTITY foxyproxy.latestversion.label "Versione più recente">
+<!ENTITY foxyproxy.routetoleahscape.label.1 "Accertarsi che Firefox possa raggiungere l'indirizzo web">
+<!ENTITY foxyproxy.routetoleahscape.label.2 "con o senza proxy, impostando se necessario un modello URL in FoxyProxy Plus">
 <!ENTITY foxyproxy.everything.label "Tutto">
 <!ENTITY foxyproxy.nothing.label "Niente">
 <!ENTITY foxyproxy.ippatterndeletefinal.label "Questo è l'ultimo modello di indirizzo IP locale. Eliminandolo non sarà più possibile utilizzare il relativo proxy. Proseguire comunque?">

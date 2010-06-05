@@ -398,8 +398,6 @@
 <!ENTITY foxyproxy.credits "贡献者">
 <!ENTITY foxyproxy.please.donate.label "请捐助">
 <!ENTITY foxyproxy.please.donate.accesskey "D">
-<!ENTITY foxyproxy.donation.list.label "捐赠列表">
-<!ENTITY foxyproxy.donation.list.accesskey "L">
 <!ENTITY foxyproxy.importantnote.label "阅读重要说明">
 <!ENTITY foxyproxy.resetlocation.label "重置位置">
 <!ENTITY foxyproxy.resetlocation.accesskey "R">
@@ -417,6 +415,17 @@
 <!ENTITY foxyproxy.invalidcolor.label "无效颜色">
 <!ENTITY foxyproxy.validcolor.label "有效颜色">
 <!ENTITY foxyproxy.color.label "Color">
+<!ENTITY foxyproxy.server.subscriptions.label "Server Subscriptions">
+<!ENTITY foxyproxy.server.subscriptions.tooltip "Manage Server Subscriptions">
+<!ENTITY foxyproxy.server.subscriptions.accesskey "S">
+<!ENTITY foxyproxy.pattern.subscriptions.label "Pattern Subscriptions">
+<!ENTITY foxyproxy.pattern.subscriptions.tooltip "Manage Pattern Subscriptions">
+<!ENTITY foxyproxy.pattern.subscriptions.accesskey "S">
+<!ENTITY foxyproxy.name.label "Name">
+<!ENTITY foxyproxy.notes.label "Notes">
+<!ENTITY foxyproxy.url.label "url">
+<!ENTITY foxyproxy.lastupdate.label "Last Update">
+<!ENTITY foxyproxy.updatefrequency.label "Update Frequency">
 <!-- begin foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "添加/编辑本地IP地址模式">
 <!ENTITY foxyproxy.tempip.popup.label "临时模式让你可以为不常用的本地IP地址建立模式，以免扰乱代理服务器的IP地址模式列表。临时模式不会保存到磁盘。他们只是保存在内存中供当前 Firefox 会话使用。">
@@ -446,11 +455,15 @@
 <!ENTITY foxyproxy.enteremail.label "输入邮件地址">
 <!ENTITY foxyproxy.licenseinfo.label "许可信息">
 <!ENTITY foxyproxy.licensevalid.label "许可有效。感谢订购 FoxyProxy Plus。">
+<!ENTITY foxyproxy.subexpired.label "License valid, but your update subscription expired. You are not receiving FoxyProxy Plus updates.">
 <!ENTITY foxyproxy.licenseinvalid.label "许可无效。你不会收到 FoxyProxyPlus 更新，请订购 FoxyProxy Plus。">
 <!ENTITY foxyproxy.buynow.label "现在购买">
 <!ENTITY foxyproxy.checklicense.label "检查许可">
 <!ENTITY foxyproxy.checkinglicense.label "正在检查...请稍候">
-<!ENTITY foxyproxy.routetoleahscape.label "请确认 Firefox 可以通过或者不通过代理访问 https://leahscape.com/fpplus/license_check.php 。如果需要，你可以为这个URL在 FoxyProxy 中定义模式。">
+<!ENTITY foxyproxy.yourversion.label "Your Version ">
+<!ENTITY foxyproxy.latestversion.label "Newest Version ">
+<!ENTITY foxyproxy.routetoleahscape.label.1 "Please make sure Firefox can reach">
+<!ENTITY foxyproxy.routetoleahscape.label.2 "either with or without a proxy. You can configure patterns for this URL in FoxyProxy Plus if necessary.">
 <!ENTITY foxyproxy.everything.label "每一个">
 <!ENTITY foxyproxy.nothing.label "无">
 <!ENTITY foxyproxy.ippatterndeletefinal.label "这是最后一个本地IP地址模式。如果你删除之，这个代理服务器就不会被使用。依然继续？">

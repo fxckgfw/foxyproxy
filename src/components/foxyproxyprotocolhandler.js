@@ -135,10 +135,8 @@ Protocol.prototype = {
     
     // Set mode last in case user is setting mode to the proxy we just configured.
     // (In that case, setting mode earlier will result in the proxy not being found)
-    if (nameValuePairs["foxyProxyMode"]) {
-      fp.setMode(nameValuePairs["foxyProxyMode"], true);  
-      fp.broadcast(null, "foxyproxy-mode-change");
-    }
+    if (nameValuePairs["foxyProxyMode"])
+      fp.setMode(nameValuePairs["foxyProxyMode"], true);
     
     // User-feedback?
     if (nameValuePairs["confirmation"] == "popup") {

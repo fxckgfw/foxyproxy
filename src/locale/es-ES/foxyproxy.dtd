@@ -398,8 +398,6 @@
 <!ENTITY foxyproxy.credits "Créditos">
 <!ENTITY foxyproxy.please.donate.label "Por favor, haga una donación">
 <!ENTITY foxyproxy.please.donate.accesskey "D">
-<!ENTITY foxyproxy.donation.list.label "Lista de donaciones">
-<!ENTITY foxyproxy.donation.list.accesskey "L">
 <!ENTITY foxyproxy.importantnote.label "Nota importante">
 <!ENTITY foxyproxy.resetlocation.label "Reiniciar ubicación">
 <!ENTITY foxyproxy.resetlocation.accesskey "R">
@@ -417,6 +415,17 @@
 <!ENTITY foxyproxy.invalidcolor.label "Color incorrecto">
 <!ENTITY foxyproxy.validcolor.label "Color correcto">
 <!ENTITY foxyproxy.color.label "Color">
+<!ENTITY foxyproxy.server.subscriptions.label "Server Subscriptions">
+<!ENTITY foxyproxy.server.subscriptions.tooltip "Manage Server Subscriptions">
+<!ENTITY foxyproxy.server.subscriptions.accesskey "S">
+<!ENTITY foxyproxy.pattern.subscriptions.label "Pattern Subscriptions">
+<!ENTITY foxyproxy.pattern.subscriptions.tooltip "Manage Pattern Subscriptions">
+<!ENTITY foxyproxy.pattern.subscriptions.accesskey "S">
+<!ENTITY foxyproxy.name.label "Name">
+<!ENTITY foxyproxy.notes.label "Notes">
+<!ENTITY foxyproxy.url.label "url">
+<!ENTITY foxyproxy.lastupdate.label "Last Update">
+<!ENTITY foxyproxy.updatefrequency.label "Update Frequency">
 <!-- begin foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Añadir/Editar patrón de direcciones IP locales">
 <!ENTITY foxyproxy.tempip.popup.label "Los patrones temporales le permiten crear patrones para direcciones IP locales que no use con frecuencia sin interferir en la lista de patrones de un proxy. Los patrones temporales no se guardan en el disco. Se mantienen en memoria sólo durante la sesión actual de Firefox.">
@@ -446,11 +455,15 @@
 <!ENTITY foxyproxy.enteremail.label "Introduzca la dirección de correo">
 <!ENTITY foxyproxy.licenseinfo.label "Información de licencia">
 <!ENTITY foxyproxy.licensevalid.label "Licencia correcta. Gracias por comprar FoxyProxy Plus.">
+<!ENTITY foxyproxy.subexpired.label "License valid, but your update subscription expired. You are not receiving FoxyProxy Plus updates.">
 <!ENTITY foxyproxy.licenseinvalid.label "Licencia incorrecta. No recibirá actualizaciones de FoxyProxy. Por favor, compre FoxyProxy Plus.">
 <!ENTITY foxyproxy.buynow.label "Comprar ahora">
 <!ENTITY foxyproxy.checklicense.label "Comprobar licencia">
 <!ENTITY foxyproxy.checkinglicense.label "Comprobando...espere por favor">
-<!ENTITY foxyproxy.routetoleahscape.label "Compruebe que puede acceder a la dirección https://leahscape.com/fpplus/license_check.php con o sin proxy. Puede configurar patrones para esta dirección en FoxyProxy Plus si es necesario.">
+<!ENTITY foxyproxy.yourversion.label "Your Version ">
+<!ENTITY foxyproxy.latestversion.label "Newest Version ">
+<!ENTITY foxyproxy.routetoleahscape.label.1 "Please make sure Firefox can reach">
+<!ENTITY foxyproxy.routetoleahscape.label.2 "either with or without a proxy. You can configure patterns for this URL in FoxyProxy Plus if necessary.">
 <!ENTITY foxyproxy.everything.label "Todo">
 <!ENTITY foxyproxy.nothing.label "Nada">
 <!ENTITY foxyproxy.ippatterndeletefinal.label "Este es el último patrón de dirección local IP. Si lo borra, este proxy no podrá ser usado. ¿Continuar?">

@@ -398,8 +398,6 @@
 <!ENTITY foxyproxy.credits "Tack till">
 <!ENTITY foxyproxy.please.donate.label "Donera gärna">
 <!ENTITY foxyproxy.please.donate.accesskey "D">
-<!ENTITY foxyproxy.donation.list.label "Donatörer">
-<!ENTITY foxyproxy.donation.list.accesskey "ö">
 <!ENTITY foxyproxy.importantnote.label "Läs viktigt meddelande">
 <!ENTITY foxyproxy.resetlocation.label "Återställ plats">
 <!ENTITY foxyproxy.resetlocation.accesskey "r">
@@ -417,6 +415,17 @@
 <!ENTITY foxyproxy.invalidcolor.label "Invalid color">
 <!ENTITY foxyproxy.validcolor.label "Valid color">
 <!ENTITY foxyproxy.color.label "Color">
+<!ENTITY foxyproxy.server.subscriptions.label "Server Subscriptions">
+<!ENTITY foxyproxy.server.subscriptions.tooltip "Manage Server Subscriptions">
+<!ENTITY foxyproxy.server.subscriptions.accesskey "S">
+<!ENTITY foxyproxy.pattern.subscriptions.label "Pattern Subscriptions">
+<!ENTITY foxyproxy.pattern.subscriptions.tooltip "Manage Pattern Subscriptions">
+<!ENTITY foxyproxy.pattern.subscriptions.accesskey "S">
+<!ENTITY foxyproxy.name.label "Name">
+<!ENTITY foxyproxy.notes.label "Notes">
+<!ENTITY foxyproxy.url.label "url">
+<!ENTITY foxyproxy.lastupdate.label "Last Update">
+<!ENTITY foxyproxy.updatefrequency.label "Update Frequency">
 <!-- begin foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Lägg till/Redigera lokala IP-adressmönster">
 <!ENTITY foxyproxy.tempip.popup.label "Temporära mönster gör att du kan skapa mönster för lokala IP-adresser som du inte använder så ofta. Temporära mönster sparas inte till disk utan behålls bara i minnet så länge Firefox är igång.">
@@ -446,11 +455,15 @@
 <!ENTITY foxyproxy.enteremail.label "Ange e-postadress">
 <!ENTITY foxyproxy.licenseinfo.label "Licensinformation">
 <!ENTITY foxyproxy.licensevalid.label "Licensen är giltig. Tack för att du köpt FoxyProxy Plus.">
+<!ENTITY foxyproxy.subexpired.label "License valid, but your update subscription expired. You are not receiving FoxyProxy Plus updates.">
 <!ENTITY foxyproxy.licenseinvalid.label "Licensen är inte giltig. Du kommer inte att motta uppdateringar av receive FoxyProxyPlus. Vänligen köp FoxyProxy Plus.">
 <!ENTITY foxyproxy.buynow.label "Köp nu">
 <!ENTITY foxyproxy.checklicense.label "Kontrollera licens">
 <!ENTITY foxyproxy.checkinglicense.label "Kontrollerar...vänligen vänta">
-<!ENTITY foxyproxy.routetoleahscape.label "Kontrollera att Firefox hittar https://leahscape.com/fpplus/license_check.php, antingen med eller utan en proxy. Du kan konfigurera mönster för denna URL i FoxyProxy Plus om så krävs.">
+<!ENTITY foxyproxy.yourversion.label "Your Version ">
+<!ENTITY foxyproxy.latestversion.label "Newest Version ">
+<!ENTITY foxyproxy.routetoleahscape.label.1 "Please make sure Firefox can reach">
+<!ENTITY foxyproxy.routetoleahscape.label.2 "either with or without a proxy. You can configure patterns for this URL in FoxyProxy Plus if necessary.">
 <!ENTITY foxyproxy.everything.label "Allt">
 <!ENTITY foxyproxy.nothing.label "Inget">
 <!ENTITY foxyproxy.ippatterndeletefinal.label "Detta är det sista lokala IP-adressmönstret. Om du tar bort det kan denna proxy inte användas. Fortsätta ändå?">

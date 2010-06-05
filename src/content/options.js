@@ -33,7 +33,6 @@ function onLoad() {
   noURLsCmd = document.getElementById("noURLsCmd");
   timeformat = foxyproxy.getMessage("timeformat");
   _initSettings();
-  //setTimeout(function(){sizeToContent()}, 0);
   var obs = CC["@mozilla.org/observer-service;1"].getService(CI.nsIObserverService);
   obs.addObserver(observer,"foxyproxy-mode-change", false);
   obs.addObserver(observer,"foxyproxy-proxy-change", false);
@@ -52,11 +51,11 @@ var observer = {
     try {
       e = subj.QueryInterface(CI.nsISupportsPRBool).data;
     }
-    catch(e) {}
+    catch(ex) {}
     switch (topic) {
       case "foxyproxy-proxy-change": /* deliberate fall-through */
       case "foxyproxy-mode-change":
-        _updateView();
+        _updateView(e);
         break;
      }
    }
@@ -317,12 +316,14 @@ function _updateView(writeSettings, updateLogView) {
   
   proxyTree.view = fpc.makeProxyTreeView(foxyproxy, document);
   
-  writeSettings && foxyproxy.writeSettings();
+  if (writeSettings)
+    foxyproxy.writeSettings();
   setButtons();
-  updateLogView && _updateLogView(true);
+  if (updateLogView)
+    _updateLogView(true);
 }
 
-function onEnableTypeChanged(menu) {
+function onModeChanged(menu) {
   foxyproxy.setMode(menu.selectedItem.id, true);
   _updateView();
 }
@@ -334,7 +335,7 @@ function onDeleteSelection() {
 	  // Store cur selection
 	  var sel = proxyTree.currentIndex;  
     foxyproxy.proxies.remove(proxyTree.currentIndex);
-    _updateView(true);
+    foxyproxy.broadcast(true /*write settings*/, "foxyproxy-proxy-change");
 	  // Reselect what was previously selected
 		proxyTree.view.selection.select(sel+1>proxyTree.view.rowCount ? 0:sel);    
   }  
@@ -352,13 +353,13 @@ function onCopySelection() {
 	  p.fromDOM(dom, true);
 	  p.id = foxyproxy.proxies.uniqueRandom(); // give it its own id 
 	  foxyproxy.proxies.push(p);
-	  _updateView(true);
+	  foxyproxy.broadcast(true /*write settings*/, "foxyproxy-proxy-change");
 	  // Reselect what was previously selected
 		proxyTree.view.selection.select(sel);    	  
 	}
 }
 
-function move(direction) {
+function onMove(direction) {
   // Store cur selection
   var sel = proxyTree.currentIndex;
   foxyproxy.proxies.move(proxyTree.currentIndex, direction) && _updateView(true);  
@@ -375,9 +376,8 @@ function onSettings(isNew) {
   window.openDialog("chrome://foxyproxy/content/addeditproxy.xul", "",
     "chrome, dialog, modal, resizable=yes", params).focus();
   if (params.out) {
-    isNew && foxyproxy.proxies.push(params.out.proxy);
-    _updateView(true);
-    foxyproxy.writeSettings();
+    if (isNew) foxyproxy.proxies.push(params.out.proxy);
+    foxyproxy.broadcast(true /*write settings*/, "foxyproxy-proxy-change");
 	  // Reselect what was previously selected or the new item
 		proxyTree.view.selection.select(isNew?proxyTree.view.rowCount-2:sel); 
   }
@@ -473,7 +473,7 @@ function onProxyTreeMenuPopupShowing() {
 function toggleEnabled() {
 	var p = foxyproxy.proxies.item(proxyTree.currentIndex);
 	p.enabled = !p.enabled;
-	_updateView(true, false);
+	foxyproxy.broadcast(true /*write settings*/, "foxyproxy-proxy-change");
 }
 
 function _isDefaultProxySelected() {

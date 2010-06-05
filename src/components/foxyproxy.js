@@ -144,8 +144,10 @@ foxyproxy.prototype = {
     case "profile-after-change":
       try {
         this.init();
+        // Initialize defaultPrefs before initial call to this.setMode().
+        // setMode()is called from this.loadSettings()->this.fromDOM(), but also from commandlinehandler.js.        
+        this.defaultPrefs.init();        
         this.loadSettings();
-        this.defaultPrefs.init();
       }
       catch (e) {
         dumpp(e);
@@ -259,17 +261,12 @@ biesi>  passing it the appropriate proxyinfo
       this._mode = "disabled";
       this.notifier.alert(this.getMessage("foxyproxy"), "Unrecognized mode specified: " + mode);
     }
-    this.toggleFilter(this._mode != "disabled");    
     
-    if (this._mode=="disabled")
-      gFP.defaultPrefs.restoreOriginals();
-    else
-      gFP.defaultPrefs.setNewValues();
-      
-    if (init) return;
-    
-    writeSettings && this.writeSettings();
+    this.toggleFilter(this._mode != "disabled");
     gBroadcast(this.autoadd._enabled, "foxyproxy-mode-change", this._mode);
+    if (init) return;    
+    if (writeSettings)
+      this.writeSettings();
   },
 
   /**
@@ -682,8 +679,9 @@ biesi>  passing it the appropriate proxyinfo
     init : function() {
       this.networkPrefsObserver = gFP.getPrefsService("network.dns.");
       this.networkPrefsObserver.QueryInterface(CI.nsIPrefBranch2).addObserver("", this, false);
-      gObsSvc.addObserver(this, "em-action-requested", false);
-      gObsSvc.addObserver(this, "quit-application", false);
+      for each (let i in ["foxyproxy-mode-change", "foxyproxy-proxy-change", "em-action-requested",
+          "quit-application"])
+        gObsSvc.addObserver(this, i, false);
     },
     
     // Uninstall observers
@@ -692,8 +690,9 @@ biesi>  passing it the appropriate proxyinfo
         return;
       this.networkPrefsObserver.removeObserver("", this);
       this.networkPrefsObserver = null;
-      gObsSvc.removeObserver(this, "em-action-requested");
-      gObsSvc.removeObserver(this, "quit-application");
+      for each (let i in ["foxyproxy-mode-change", "foxyproxy-proxy-change", "em-action-requested",
+          "quit-application"])
+        gObsSvc.removeObserver(this, i);
     },
   
     observe : function(subj, topic, data) {
@@ -708,9 +707,37 @@ biesi>  passing it the appropriate proxyinfo
           this.checkRestoreOriginals(data, subj.QueryInterface(CI.nsIUpdateItem));
         else if (topic == "quit-application" && this.shouldRestoreOriginals)
           this.restoreOriginals();
+        else if (topic == "foxyproxy-mode-change") {
+        	if (gFP._mode=="disabled") {
+        	  restore(this);
+        	  return;
+        	}
+        	setOrUnsetPrefetch(this);
+        }
+        else if (topic == "foxyproxy-proxy-change") {
+          if (gFP._mode=="disabled") return;
+          setOrUnsetPrefetch(this);
+        }
       }
-      catch (e) {
-        dumpp(e);
+      catch (e) { dumpp(e); }
+      function setOrUnsetPrefetch(self) {
+        // Mode will never be "disabled" when in this fcn
+        if (gFP._selectedProxy) {
+          // Mode is "Use proxy xyz for all URLs". Does the selected proxy require dns prefetch disabling?
+          if (gFP._selectedProxy.shouldDisableDNSPrefetch())
+            self.setNewValues();
+          else restore(self);
+        }
+        else {
+          // Mode is patterns, random, or roundrobin
+          if (gFP.proxies.requiresRemoteDNSLookups())
+            self.setNewValues();
+          else restore(self);
+        }
+      }
+      function restore(self) {
+        self.restoreOriginals();
+        self.init(); // Reinstall observers
       }
     },
     
@@ -896,6 +923,10 @@ biesi>  passing it the appropriate proxyinfo
     getProxyById : function(id) {
       var a = this.list.filter(function(e) {return e.id == this;}, id);
       return a?a[0]:null;
+    },
+
+    requiresRemoteDNSLookups : function() {
+      return this.list.some(function(e) {return e.shouldDisableDNSPrefetch();});
     },
     
     /**
@@ -1379,7 +1410,8 @@ biesi>  passing it the appropriate proxyinfo
         // it would appear it can still happen (http://foxyproxy.mozdev.org/drupal/content/component-returned-failure-code-error-firefox-launch)
         // So we use a try/catch just in case.
         try {
-          this.alerts.showAlertNotification("chrome://foxyproxy/content/images/foxyproxy-nocopy.gif", title, text, false, "", null);
+          this.alerts.showAlertNotification("chrome://foxyproxy/content/images/foxyproxy-nocopy.gif", title, text, true, "",
+              {observe: function() {/*no-op; just permits the window to close sooner*/}}, "FoxyProxy");
         }
         catch(e) {
           this.alerts = null; // now future notifications are now automatically displayed with simpleNotify()
@@ -1647,6 +1679,19 @@ biesi>  passing it the appropriate proxyinfo
         return ret;
       }
       return true;
+    },
+
+    /* return true or false based on whether or not we should show the |name|d warning */
+    getWarning : function(name) {
+      if (this._warnings[name] == undefined || this._warnings[name])
+        return true;
+      return false;
+    },
+    
+    /* sets the |name|d warning to never show again */
+    setWarning : function(name, bool) {
+      this._warnings[name] = bool;
+      gFP.writeSettings();
     },
     
     toDOM : function(doc) {

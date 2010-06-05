@@ -1,9 +1,9 @@
 content foxyproxy content/
 
 locale  foxyproxy ar locale/ar/
-locale  foxyproxy cs-CZ locale/cs-CZ/
+locale  foxyproxy cs locale/cs/
 locale  foxyproxy da-DK locale/da-DK/
-locale  foxyproxy de-DE locale/de-DE/
+locale  foxyproxy de locale/de/
 locale  foxyproxy el-GR locale/el-GR/
 locale  foxyproxy en-US locale/en-US/
 locale  foxyproxy es-AR locale/es-AR/
@@ -22,7 +22,7 @@ locale  foxyproxy pt-BR locale/pt-BR/
 locale  foxyproxy pt-PT locale/pt-PT/
 locale  foxyproxy ru-RU locale/ru-RU/
 locale  foxyproxy sk  locale/sk/
-locale  foxyproxy sr-RS locale/sr-RS/
+locale  foxyproxy sr locale/sr/
 locale  foxyproxy sv-SE locale/sv-SE/
 locale  foxyproxy th-TH locale/th-TH/
 locale  foxyproxy tr-TR locale/tr-TR/
@@ -35,7 +35,6 @@ locale  foxyproxy zh-TW locale/zh-TW/
 skin    foxyproxy classic/1.0 skin/ application={ec8030f7-c20a-464f-9b0e-13a3a9e97384}
 overlay chrome://browser/content/browser.xul  chrome://foxyproxy/content/firefoxOverlay.xul application={ec8030f7-c20a-464f-9b0e-13a3a9e97384}
 overlay chrome://browser/content/preferences/preferences.xul  chrome://foxyproxy/content/firefoxOptionsOverlay.xul  application={ec8030f7-c20a-464f-9b0e-13a3a9e97384}
-overlay chrome://global/content/alerts/alert.xul  chrome://foxyproxy/content/alertOverlay.xul application={ec8030f7-c20a-464f-9b0e-13a3a9e97384}
 style chrome://global/content/customizeToolbar.xul  chrome://foxyproxy/content/foxyproxy.css  application={ec8030f7-c20a-464f-9b0e-13a3a9e97384}
 
 #Tbird (incomplete)
@@ -47,7 +46,6 @@ style chrome://global/content/customizeToolbar.xul  chrome://foxyproxy/content/f
 overlay chrome://songbird/content/xul/mainScriptsOverlay.xul  chrome://foxyproxy/content/firefoxOverlay.xul application=songbird@songbirdnest.com
 #overlay chrome://songbird/content/xul/layoutBaseOverlay.xul     chrome://foxyproxy/content/firefoxOverlay.xul   application=songbird@songbirdnest.com    appversion>=0.5pre
 overlay chrome://browser/content/preferences/preferences.xul  chrome://foxyproxy/content/firefoxOptionsOverlay.xul  application=songbird@songbirdnest.com
-overlay chrome://browser/content/alerts/alert.xul chrome://foxyproxy/content/alertOverlay.xul application=songbird@songbirdnest.com
 # Songbird-specific styles for the Tools->FoxyProxy menu
 style chrome://songbird/content/xul/mainScriptsOverlay.xul  chrome://foxyproxy/content/foxyproxySongbird.css  application=songbird@songbirdnest.com
 #style   chrome://songbird/content/xul/layoutBaseOverlay.xul    chrome://foxyproxy/content/foxyproxySongbird.css    application=songbird@songbirdnest.com   appversion>=0.5pre
@@ -58,11 +56,9 @@ style chrome://foxyproxy/content/options.xul chrome://foxyproxy/content/foxyprox
 skin foxyproxy classic/1.0 skin/ application={a463f10c-3994-11da-9945-000d60ca027b}
 overlay chrome://browser/content/browser.xul chrome://foxyproxy/content/firefoxOverlay.xul application={a463f10c-3994-11da-9945-000d60ca027b}
 overlay chrome://browser/content/preferences/preferences.xul chrome://foxyproxy/content/firefoxOptionsOverlay.xul application={a463f10c-3994-11da-9945-000d60ca027b}
-overlay chrome://global/content/alerts/alert.xul chrome://foxyproxy/content/alertOverlay.xul application={a463f10c-3994-11da-9945-000d60ca027b}
 style chrome://global/content/customizeToolbar.xul chrome://foxyproxy/content/foxyproxy.css  application={a463f10c-3994-11da-9945-000d60ca027b}
 
 #SeaMonkey
 skin    foxyproxy classic/1.0 chrome/skin/ application={92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}
 overlay chrome://navigator/content/navigator.xul  chrome://foxyproxy/content/firefoxOverlay.xul application={92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}
-overlay chrome://global/content/alerts/alert.xul  chrome://foxyproxy/content/alertOverlay.xul application={92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}
 style chrome://global/content/customizeToolbar.xul  chrome://foxyproxy/content/foxyproxy.css application={92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}

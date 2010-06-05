@@ -117,7 +117,7 @@
 <!ENTITY foxyproxy.tab.logging.accesskey "L">
 <!ENTITY foxyproxy.tab.logging.tooltip "Loginstellingen beheren">
 <!ENTITY foxyproxy.proxydns.label3 "DNS-lookups op afstand uitvoeren voor hostnamen die via deze proxy laden">
-<!ENTITY foxyproxy.proxydns.accesskey "G">
+<!ENTITY foxyproxy.proxydns.accesskey "D">
 <!ENTITY foxyproxy.proxydns.tooltip3 "Indien aangevinkt worden URL’s die via deze proxy laden ook gezocht via deze proxy">
 <!ENTITY foxyproxy.proxydns.label4 "Proxy-DNS">
 <!ENTITY foxyproxy.showstatusbaricon.label "Pictogram op statusbalk weergeven">
@@ -398,8 +398,6 @@
 <!ENTITY foxyproxy.credits "Dankzegging">
 <!ENTITY foxyproxy.please.donate.label "Doneer a.u.b.">
 <!ENTITY foxyproxy.please.donate.accesskey "D">
-<!ENTITY foxyproxy.donation.list.label "Donatielijst">
-<!ENTITY foxyproxy.donation.list.accesskey "L">
 <!ENTITY foxyproxy.importantnote.label "Belangrijke opmerking lezen">
 <!ENTITY foxyproxy.resetlocation.label "Locatie verversen">
 <!ENTITY foxyproxy.resetlocation.accesskey "R">
@@ -416,7 +414,18 @@
 <!ENTITY foxyproxy.aboutproxyservice.label "Tenslotte leidt de knop Proxydienst u naar een website met proxydiensten, waar u betrouwbare en snelle proxydienst in verschillende landen kunt aanschaffen voor een schappelijke prijs.">
 <!ENTITY foxyproxy.invalidcolor.label "Ongeldige kleur">
 <!ENTITY foxyproxy.validcolor.label "Geldige kleur">
-<!ENTITY foxyproxy.color.label "Color">
+<!ENTITY foxyproxy.color.label "Kleur">
+<!ENTITY foxyproxy.server.subscriptions.label "Serverabonnementen">
+<!ENTITY foxyproxy.server.subscriptions.tooltip "Serverabonnementen beheren">
+<!ENTITY foxyproxy.server.subscriptions.accesskey "S">
+<!ENTITY foxyproxy.pattern.subscriptions.label "Patroonabonnementen">
+<!ENTITY foxyproxy.pattern.subscriptions.tooltip "Patroonabonnementen beheren">
+<!ENTITY foxyproxy.pattern.subscriptions.accesskey "P">
+<!ENTITY foxyproxy.name.label "Naam">
+<!ENTITY foxyproxy.notes.label "Opmerkingen">
+<!ENTITY foxyproxy.url.label "URL">
+<!ENTITY foxyproxy.lastupdate.label "Laatste update">
+<!ENTITY foxyproxy.updatefrequency.label "Update-interval">
 <!-- begin foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Lokaal IP-adrespatroon toevoegen/bewerken">
 <!ENTITY foxyproxy.tempip.popup.label "Met tijdelijke patronen kunt u patronen voor lokale IP-adressen  die u niet vaak gebruikt creëren zonder dat de IP-adressenpatroonlijst voor een proxy wordt vervuild. Tijdelijke patronen wordne niet opgeslagen. Ze worden alleen tijdens deze Firefoxsessie in het geheugen bewaard.">
@@ -446,11 +455,15 @@
 <!ENTITY foxyproxy.enteremail.label "Voer e-mailadres in">
 <!ENTITY foxyproxy.licenseinfo.label "Licentieinformatie">
 <!ENTITY foxyproxy.licensevalid.label "Licentie geldig. Bedankt voor het kopen van FoxyProxy Plus.">
+<!ENTITY foxyproxy.subexpired.label "Licentie geldig, maar uw update-abonnement is verlopen. U intvangt geen updates meer voor FoxyProxy Plus.">
 <!ENTITY foxyproxy.licenseinvalid.label "Licentie ongeldig. U ontvangt geen updates voor FoxyProxy Plus. Koop a.u.b. FoxyProxy Plus.">
 <!ENTITY foxyproxy.buynow.label "Nu kopen">
 <!ENTITY foxyproxy.checklicense.label "Licentie controleren">
 <!ENTITY foxyproxy.checkinglicense.label "Controleren… wachten a.u.b.">
-<!ENTITY foxyproxy.routetoleahscape.label "Zorg er a.u.b. voor dat Firefox met of zonder een proxy contact kan maken met https://leahscape.com/fpplus/license_check.php. U kunt patronen voor deze URL indien nodig in FoxyProxy Plus instellen.">
+<!ENTITY foxyproxy.yourversion.label "Uw versie">
+<!ENTITY foxyproxy.latestversion.label "Nieuwste versie">
+<!ENTITY foxyproxy.routetoleahscape.label.1 "Zorg er a.u.b. voor dat Firefox">
+<!ENTITY foxyproxy.routetoleahscape.label.2 "met of zonder proxy kan bereiken. U kunt indien nodig in FoxyProxy Plus patronen voor deze URL instellen.">
 <!ENTITY foxyproxy.everything.label "Alles">
 <!ENTITY foxyproxy.nothing.label "Niets">
 <!ENTITY foxyproxy.ippatterndeletefinal.label "Dit is het laatste lokale IP-adrespatroon. Indien u dit verwijdert kan deze proxy niet worden gebruikt. Toch doorgaan?">

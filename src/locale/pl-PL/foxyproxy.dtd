@@ -398,8 +398,6 @@
 <!ENTITY foxyproxy.credits "Podziękowania">
 <!ENTITY foxyproxy.please.donate.label "Wykonaj dotację">
 <!ENTITY foxyproxy.please.donate.accesskey "D">
-<!ENTITY foxyproxy.donation.list.label "Lista donatorów">
-<!ENTITY foxyproxy.donation.list.accesskey "L">
 <!ENTITY foxyproxy.importantnote.label "Przeczytaj ważne informacje">
 <!ENTITY foxyproxy.resetlocation.label "Resetuj lokalizację">
 <!ENTITY foxyproxy.resetlocation.accesskey "R">
@@ -417,6 +415,17 @@
 <!ENTITY foxyproxy.invalidcolor.label "Nieprawidłowy kolor">
 <!ENTITY foxyproxy.validcolor.label "Prawidłowy kolor">
 <!ENTITY foxyproxy.color.label "Color">
+<!ENTITY foxyproxy.server.subscriptions.label "Server Subscriptions">
+<!ENTITY foxyproxy.server.subscriptions.tooltip "Manage Server Subscriptions">
+<!ENTITY foxyproxy.server.subscriptions.accesskey "S">
+<!ENTITY foxyproxy.pattern.subscriptions.label "Pattern Subscriptions">
+<!ENTITY foxyproxy.pattern.subscriptions.tooltip "Manage Pattern Subscriptions">
+<!ENTITY foxyproxy.pattern.subscriptions.accesskey "S">
+<!ENTITY foxyproxy.name.label "Name">
+<!ENTITY foxyproxy.notes.label "Notes">
+<!ENTITY foxyproxy.url.label "url">
+<!ENTITY foxyproxy.lastupdate.label "Last Update">
+<!ENTITY foxyproxy.updatefrequency.label "Update Frequency">
 <!-- begin foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Dodaj/edytuj wzorzec lokalnego adresu IP">
 <!ENTITY foxyproxy.tempip.popup.label "Wzorce tymczasowe pozwalają na tworzenie wzorców lokalnego adresu IP nie używanych często. Dzięki temu lista wzorców nie jest niepotrzebnie przeładowywana. Wzorce tymczasowe nie są zapisywane na dysku. Są one trzymane w pamięci i używane tylko w aktualnej sesji Firefoksa.">
@@ -446,11 +455,15 @@
 <!ENTITY foxyproxy.enteremail.label "Wprowadź adres e-mail">
 <!ENTITY foxyproxy.licenseinfo.label "Informacja o licencji">
 <!ENTITY foxyproxy.licensevalid.label "Licencja jest ważna. Dziękujemy za zakupienie FoxyProxy Plus.">
+<!ENTITY foxyproxy.subexpired.label "License valid, but your update subscription expired. You are not receiving FoxyProxy Plus updates.">
 <!ENTITY foxyproxy.licenseinvalid.label "Licencja jest nieważna. Nie możesz otrzymywać aktualizacji FoxyProxyPlus. Wykup FoxyProxy Plus.">
 <!ENTITY foxyproxy.buynow.label "Kup teraz">
 <!ENTITY foxyproxy.checklicense.label "Sprawdź licencję">
 <!ENTITY foxyproxy.checkinglicense.label "Sprawdzanie… Proszę czekać.">
-<!ENTITY foxyproxy.routetoleahscape.label "Sprawdź czy Firefox może połączyć się z https://leahscape.com/fpplus/license_check.php z proxy, czy bez proxy. Jeśli to konieczne, możesz skonfigurować wzorce dla tego adresu URL w FoxyProxy Plus.">
+<!ENTITY foxyproxy.yourversion.label "Your Version ">
+<!ENTITY foxyproxy.latestversion.label "Newest Version ">
+<!ENTITY foxyproxy.routetoleahscape.label.1 "Please make sure Firefox can reach">
+<!ENTITY foxyproxy.routetoleahscape.label.2 "either with or without a proxy. You can configure patterns for this URL in FoxyProxy Plus if necessary.">
 <!ENTITY foxyproxy.everything.label "Wszystko">
 <!ENTITY foxyproxy.nothing.label "Nic">
 <!ENTITY foxyproxy.ippatterndeletefinal.label "To jest wzorzec ostatniego lokalnego adresu IP. Jeśli go usuniesz, nie będziesz mieć możliwości używania tego proxy. Kontynuować?">

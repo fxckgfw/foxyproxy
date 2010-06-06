@@ -1,4 +1,5 @@
 * Limited use of network.dns.disablePrefetch to when FoxyProxy is enabled & requires it
 * Fixed http://foxyproxy.mozdev.org/drupal/content/download-manager-doesnt-open-link-downloads-complete-desktop-alert
 * Removed donation link from About box; the donation page is no longer maintained
+* Fixed About box layout on Windows as discussed at http://www.babelzilla.org/forum/index.php?s=&showtopic=1932&view=findpost&p=55251
 * Lots of locale updates

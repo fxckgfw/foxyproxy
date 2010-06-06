@@ -61,61 +61,38 @@
             </g>
           </svg>
         </hbox>
+        <vbox>
+          <hbox style="margin-left: 1em;">
+            <label id="ver" value="&foxyproxy.version;" style="font-weight: bold; font-size: large;" />
+          </hbox>
+          <hbox style="margin-left: 1em;">
+            <label value="&foxyproxy.createdBy;" />
+            <label value="Eric H. Jung" class="text-link" onclick="fpc.openAndReuseOneTabPerURL('mailto:eric.jung@yahoo.com');" tooltiptext="mailto:eric.jung@yahoo.com" />
+          </hbox>
+          <hbox style="margin-left: 1em;">
+            <label value="&foxyproxy.contributionsBy;" />
+            <label value="Jesper Staun Hansen" class="text-link" onclick="fpc.openAndReuseOneTabPerURL('http://staunhansen.dk/');" tooltiptext="http://staunhansen.dk/" />
+          </hbox>
+          <hbox style="margin-left: 1em;">
+            <label value="&foxyproxy.copyright; 2006-2010 LeahScape, Inc." />
+            <spacer />
+          </hbox>
+          <hbox style="margin-left: 1em;">
+            <label value="&foxyproxy.rights;" />
+          </hbox>
+          <hbox style="margin-left: 1em;">
+            <label value="&foxyproxy.released;" />
+          </hbox>
+          <separator />
+          <hbox style="margin-left: 1em;">
+            <label value="&foxyproxy.home;" class="text-link" onclick="fpc.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/');" tooltiptext="http://foxyproxy.mozdev.org" />
+            <label value="&foxyproxy.support;" class="text-link" onclick="fpc.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/drupal');" tooltiptext="http://foxyproxy.mozdev.org/drupal" />
+            <label value="&foxyproxy.credits;" class="text-link" onclick="fpc.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/credits.html');" tooltiptext="http://foxyproxy.mozdev.org/credits.html" />
+          </hbox>
+        </vbox>
 
-        <grid style="margin-left: 1em;">
-          <columns>
-            <column />
-            <column />
-            <column />
-          </columns>
-          <groupbox style="margin-left: 1em;">
-
-            <rows>
-              <row align="center">
-                <label id="ver" value="&foxyproxy.version;" style="font-weight: bold; font-size: large;" />
-                <spacer />
-                <spacer />
-              </row>
-              <row align="center">
-                <label value="&foxyproxy.createdBy;" />
-                <label value="Eric H. Jung" class="text-link" onclick="fpc.openAndReuseOneTabPerURL('mailto:eric.jung@yahoo.com');" tooltiptext="mailto:eric.jung@yahoo.com" />
-                <spacer />
-              </row>
-              <row align="center">
-                <label value="&foxyproxy.contributionsBy;" />
-                <label value="Jesper Staun Hansen" class="text-link" onclick="fpc.openAndReuseOneTabPerURL('http://staunhansen.dk/');" tooltiptext="http://staunhansen.dk/" />
-                <spacer />
-              </row>
-              <row align="center">
-                <label value="&foxyproxy.copyright; 2006-2009 LeahScape, Inc." />
-                <spacer />
-                <spacer />
-              </row>
-              <row align="center">
-                <label value="&foxyproxy.rights;" />
-                <spacer />
-                <spacer />
-              </row>
-              <row align="center">
-                <label value="&foxyproxy.released;" />
-                <spacer />
-                <spacer />
-              </row>
-              <row align="center">
-                <separator />
-                <spacer />
-                <spacer />
-              </row>
-              <row align="center">
-                <label value="&foxyproxy.home;" class="text-link" onclick="fpc.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/');" tooltiptext="http://foxyproxy.mozdev.org" />
-                <label value="&foxyproxy.support;" class="text-link" onclick="fpc.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/drupal');" tooltiptext="http://foxyproxy.mozdev.org/drupal" />
-                <label value="&foxyproxy.credits;" class="text-link" onclick="fpc.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/credits.html');" tooltiptext="http://foxyproxy.mozdev.org/credits.html" />
-              </row>
-            </rows>
-          </groupbox>
-
-        </grid>
       </hbox>
     </vbox>
+
   </groupbox>
 </dialog>

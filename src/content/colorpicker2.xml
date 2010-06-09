@@ -1,5 +1,14 @@
 <?xml version="1.0"?>
-
+<!--
+  FoxyProxy
+  Copyright (C) 2006-#%#% Eric H. Jung and LeahScape, Inc.
+  http://foxyproxy.mozdev.org/
+  eric.jung@yahoo.com
+  
+  This source code is released under the GPL license,
+  available in the LICENSE file at the root of this installation
+  and also online at http://www.gnu.org/licenses/gpl.txt
+-->
 <bindings id="colorpicker2Bindings"
    xmlns="http://www.mozilla.org/xbl"
    xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"

@@ -1,6 +1,6 @@
 /**
   FoxyProxy
-  Copyright (C) 2006-2009 Eric H. Jung and LeahScape, Inc.
+  Copyright (C) 2006-#%#% Eric H. Jung and LeahScape, Inc.
   http://foxyproxy.mozdev.org/
   eric.jung@yahoo.com
 
@@ -163,6 +163,16 @@ var foxyproxy = {
     this.toggleStatusBarWidth(this.fp.statusbar.width);
     this.setMode(this.fp.mode);
     this.updateCheck.check();
+    // if os/x add label to FoxyProxy Tools menu.
+    if (Components.classes["@mozilla.org/xre/app-info;1"].getService(Components.interfaces.nsIXULRuntime).OS == "Darwin") {
+/*! begin-foxyproxy-simple
+      document.getElementById("foxyproxyMenu").setAttribute("label", this.fp.getMessage("foxyproxy.basic.label"));
+end-foxyproxy-simple !*/
+
+/*! begin-foxyproxy-standard !*/
+      document.getElementById("foxyproxyMenu").setAttribute("label", this.fp.getMessage("foxyproxy.standard.label"));
+/*! end-foxyproxy-standard !*/
+    }
   },
 
   toggleToolsMenu : function(e) {

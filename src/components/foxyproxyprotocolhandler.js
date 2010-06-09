@@ -1,6 +1,6 @@
 /**
   FoxyProxy
-  Copyright (C) 2006-2010 LeahScape, Inc.
+  Copyright (C) 2006-#%#% LeahScape, Inc.
   http://foxyproxy.mozdev.org/
   eric.jung@yahoo.com
 

@@ -1,6 +1,6 @@
 /**
   FoxyProxy
-  Copyright (C) 2006-2009 Eric H. Jung and LeahScape, Inc.
+  Copyright (C) 2006-#%#% Eric H. Jung and LeahScape, Inc.
   http://foxyproxy.mozdev.org/
   eric.jung@yahoo.com
 
@@ -8,7 +8,6 @@
   available in the LICENSE file at the root of this installation
   and also online at http://www.gnu.org/licenses/gpl.txt
 **/
-
 // common fcns used throughout foxyproxy, exposed a an xpcom service
 
 const CI = Components.interfaces;

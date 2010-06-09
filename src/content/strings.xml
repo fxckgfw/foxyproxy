@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
   FoxyProxy
-  Copyright (C) 2006-2009 Eric H. Jung and LeahScape, Inc.
+  Copyright (C) 2006-#%#% Eric H. Jung and LeahScape, Inc.
   http://foxyproxy.mozdev.org/
   eric.jung@yahoo.com
 
@@ -110,5 +110,8 @@
   <i18n id="foxyproxy.validcolor.label" value="&foxyproxy.validcolor.label;"/>
   
   <i18n id="foxyproxy.add.option.direct.label" value="&foxyproxy.add.option.direct.label;"/>
-  <i18n id="foxyproxy.auto.url.label" value="&foxyproxy.auto.url.label;"/>      
+  <i18n id="foxyproxy.auto.url.label" value="&foxyproxy.auto.url.label;"/>  
+  
+  <i18n id="foxyproxy.standard.label" value="&foxyproxy.standard.label;"/>
+  <i18n id="foxyproxy.basic.label" value="&foxyproxy.basic.label;"/>
 </root>

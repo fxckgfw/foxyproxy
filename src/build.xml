@@ -1,4 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+  FoxyProxy
+  Copyright (C) 2006-2010 Eric H. Jung and LeahScape, Inc.
+  http://foxyproxy.mozdev.org/
+  eric.jung@yahoo.com
+  
+  This source code is released under the GPL license,
+  available in the LICENSE file at the root of this installation
+  and also online at http://www.gnu.org/licenses/gpl.txt
+-->
 <project name="foxyproxy-basic-and-standard" default="build-foxyproxy-standard">
 
   <!-- version property is appended to XPI filename; e.g., foxyproxy-1.0.xpi -->
@@ -27,6 +37,12 @@
   <!-- create foxyproxy-x.y.z.xpi in the current dir using install.rdf in the current dir-->
   <target name="build">
     <copy file="chrome.manifest.packaging" tofile="${temp-path}/chrome.manifest" />
+    <!-- set the copyright date in license header blocks --> 
+    <replaceregexp flags="gs">
+      <regexp pattern="#%#%"/>
+      <substitution expression="2010"/>
+      <fileset dir="${temp-path}" includes="**/**"/>
+    </replaceregexp>
     <zip destfile="${target-path}/foxyproxy-${edition}-${version}.xpi">
       <fileset dir="${temp-path}" includes="chrome.manifest install.rdf install.js LICENSE chrome/" />
       <zipfileset dir="${temp-path}" prefix="chrome" includes="content/**"/>

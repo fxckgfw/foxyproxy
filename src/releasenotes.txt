@@ -1,3 +1,4 @@
+<li>Fixed Javascript errors reported in JS console when a PAC file is used.</li>
 <li>Removed extraneous file confirmation.html from XPI</li>
 <li><Fixed tools menu problem in OS/X</li>
 <li>Updated license block copyrights</li>

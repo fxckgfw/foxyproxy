@@ -101,7 +101,8 @@ AutoConf.prototype = {
   testPAC : function(url) {
     var req = CC["@mozilla.org/xmlextras/xmlhttprequest;1"]
       .createInstance(CI.nsIXMLHttpRequest);   
-    req.open("GET", url, false); // false means synchronous
+    req.overrideMimeType("application/javascript");
+    req.open("GET", url, false); // false means synchronous    
     req.channel.loadFlags |= CI.nsIRequest.LOAD_BYPASS_CACHE;
     req.send(null);
     if (req.status == 200 ||
@@ -115,6 +116,7 @@ AutoConf.prototype = {
     try {
       var req = CC["@mozilla.org/xmlextras/xmlhttprequest;1"]
         .createInstance(CI.nsIXMLHttpRequest);
+      req.overrideMimeType("application/javascript");
       req.open("GET", this.url, false); // false means synchronous
       req.channel.loadFlags |= CI.nsIRequest.LOAD_BYPASS_CACHE;      
       req.send(null);

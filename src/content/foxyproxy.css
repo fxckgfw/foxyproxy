@@ -96,7 +96,7 @@ treechildren::-moz-tree-checkbox(checked) {
   font-weight: bold;
 }
 #foxyproxy-plus-button {
-  list-style-image: url("chrome://foxyproxy/content/images/foxyproxyplus.png");
+  list-style-image: url("chrome://foxyproxy/content/images/fpplus.png");
   font-weight: bold;
 }
 #foxyproxy-proxyservice-button {

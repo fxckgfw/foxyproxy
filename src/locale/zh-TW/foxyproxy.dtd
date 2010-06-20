@@ -415,17 +415,17 @@
 <!ENTITY foxyproxy.invalidcolor.label "無效的顏色">
 <!ENTITY foxyproxy.validcolor.label "有效的顏色">
 <!ENTITY foxyproxy.color.label "顏色">
-<!ENTITY foxyproxy.server.subscriptions.label "Server Subscriptions">
-<!ENTITY foxyproxy.server.subscriptions.tooltip "Manage Server Subscriptions">
+<!ENTITY foxyproxy.server.subscriptions.label "伺服器訂閱">
+<!ENTITY foxyproxy.server.subscriptions.tooltip "管理伺服器訂閱">
 <!ENTITY foxyproxy.server.subscriptions.accesskey "S">
-<!ENTITY foxyproxy.pattern.subscriptions.label "Pattern Subscriptions">
-<!ENTITY foxyproxy.pattern.subscriptions.tooltip "Manage Pattern Subscriptions">
+<!ENTITY foxyproxy.pattern.subscriptions.label "樣式訂閱">
+<!ENTITY foxyproxy.pattern.subscriptions.tooltip "管理樣式訂閱">
 <!ENTITY foxyproxy.pattern.subscriptions.accesskey "S">
-<!ENTITY foxyproxy.name.label "Name">
-<!ENTITY foxyproxy.notes.label "Notes">
-<!ENTITY foxyproxy.url.label "url">
-<!ENTITY foxyproxy.lastupdate.label "Last Update">
-<!ENTITY foxyproxy.updatefrequency.label "Update Frequency">
+<!ENTITY foxyproxy.name.label "名稱">
+<!ENTITY foxyproxy.notes.label "註釋">
+<!ENTITY foxyproxy.url.label "網址">
+<!ENTITY foxyproxy.lastupdate.label "上一次更新">
+<!ENTITY foxyproxy.updatefrequency.label "更新頻率">
 <!-- begin foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "新增/編輯 本機 IP 位址樣式">
 <!ENTITY foxyproxy.tempip.popup.label "臨時性樣式讓你建立不常使用的本機 IP 位址樣式，這些樣式不會儲存到設定檔中造成樣式清單紊亂，而是保留在記憶體中，只在這次執行 Firefox 有效。">
@@ -454,16 +454,16 @@
 <!ENTITY foxyproxy.enterlicense.label "輸入註冊碼">
 <!ENTITY foxyproxy.enteremail.label "輸入電子郵件">
 <!ENTITY foxyproxy.licenseinfo.label "註冊資訊">
-<!ENTITY foxyproxy.licensevalid.label "有效的註冊碼，感謝你購買 FoxyProxy 進階版">
-<!ENTITY foxyproxy.subexpired.label "License valid, but your update subscription expired. You are not receiving FoxyProxy Plus updates.">
-<!ENTITY foxyproxy.licenseinvalid.label "無效的註冊碼，你將不會收到任何 FoxyProxy 進階版的更新，請購買 FoxyProxy 進階版">
+<!ENTITY foxyproxy.licensevalid.label "有效的註冊碼，感謝你購買 FoxyProxy 進階版。">
+<!ENTITY foxyproxy.subexpired.label "有效的註冊碼，但更新訂閱已過期，你不會收到任何 FoxyProxy 進階版的更新。">
+<!ENTITY foxyproxy.licenseinvalid.label "無效的註冊碼，你不會收到任何 FoxyProxy 進階版的更新，請購買 FoxyProxy 進階版。">
 <!ENTITY foxyproxy.buynow.label "立即購買">
 <!ENTITY foxyproxy.checklicense.label "檢查註冊碼">
 <!ENTITY foxyproxy.checkinglicense.label "檢查中…請稍待">
-<!ENTITY foxyproxy.yourversion.label "Your Version ">
-<!ENTITY foxyproxy.latestversion.label "Newest Version ">
-<!ENTITY foxyproxy.routetoleahscape.label.1 "Please make sure Firefox can reach">
-<!ENTITY foxyproxy.routetoleahscape.label.2 "either with or without a proxy. You can configure patterns for this URL in FoxyProxy Plus if necessary.">
+<!ENTITY foxyproxy.yourversion.label "你的版本 ">
+<!ENTITY foxyproxy.latestversion.label "最新版本 ">
+<!ENTITY foxyproxy.routetoleahscape.label.1 "請確認 Firefox 可以存取">
+<!ENTITY foxyproxy.routetoleahscape.label.2 "（直接連線或透過代理伺服器），如果有需要，你可以在 FoxyProxy 進階版中為這個網址設定一個樣式。">
 <!ENTITY foxyproxy.everything.label "全部">
 <!ENTITY foxyproxy.nothing.label "無">
 <!ENTITY foxyproxy.ippatterndeletefinal.label "這是最後一個本機 IP 位址樣式，如果你刪除此樣式，就不可能使用這個代理伺服器，要繼續嗎？">

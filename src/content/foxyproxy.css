@@ -93,6 +93,7 @@ treechildren::-moz-tree-checkbox(checked) {
 }
 #foxyproxy-donate-button {
   list-style-image: url("chrome://foxyproxy/content/images/emblem-favorite.png"); 
+  font-weight: bold;
 }
 #foxyproxy-plus-button {
   list-style-image: url("chrome://foxyproxy/content/images/foxyproxyplus.png");

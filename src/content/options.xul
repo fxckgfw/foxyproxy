@@ -826,9 +826,9 @@
     </tabpanels>
   </tabbox>
   <hbox align="center">
-    <button id="foxyproxy-donate-button" command="donateCmd" style="font-weight: bold;"/>
+    <button id="foxyproxy-donate-button" command="donateCmd"/>
     <button id="foxyproxy-plus-button" command="fppCmd"/>
-    <button id="foxyproxy-proxyservice-button" command="proxyServiceCmd" style="font-weight: bold;"/>
+    <button id="foxyproxy-proxyservice-button" command="proxyServiceCmd"/>
     <toolbarbutton class="foxyproxy-ref"
       popup="commercialInfo"
       tooltiptext="&foxyproxy.whatsthis;"/>    

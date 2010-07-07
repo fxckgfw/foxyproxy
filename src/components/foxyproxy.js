@@ -145,7 +145,7 @@ foxyproxy.prototype = {
       try {
         this.init();
         // Initialize defaultPrefs before initial call to this.setMode().
-        // setMode()is called from this.loadSettings()->this.fromDOM(), but also from commandlinehandler.js.        
+        // setMode() is called from this.loadSettings()->this.fromDOM(), but also from commandlinehandler.js.        
         this.defaultPrefs.init();        
         this.loadSettings();
       }
@@ -664,10 +664,13 @@ biesi>  passing it the appropriate proxyinfo
   // another extension changes them. Restores values to original
   // when FoxyProxy is in disabled mode.
   defaultPrefs : {
-    originalDisablePrefetch : false,
+    FALSE : 0x10,
+    TRUE : 0x11,    
+    CLEARED : 0x12,
+    origPrefetch : null,
     //network.dns.disablePrefetchFromHTTPS
-    networkPrefsObserver : null,
-    shouldRestoreOriginals : false, /* flag per https://developer.mozilla.org/en/Code_snippets/Miscellaneous#Receiving_notification_before_an_extension_is_disabled_and.2for_uninstalled */
+    networkPrefsObserver : null, /* We save this instance because we must call removeObserver method on the same nsIPrefBranch2 instance on which we called addObserver method in order to remove an observer */
+    beingUninstalled : false, /* flag per https://developer.mozilla.org/en/Code_snippets/Miscellaneous#Receiving_notification_before_an_extension_is_disabled_and.2for_uninstalled */
 
     QueryInterface: function(aIID) {
       if (!aIID.equals(CI.nsISupports) && !aIID.equals(CI.nsIObserver))
@@ -677,19 +680,29 @@ biesi>  passing it the appropriate proxyinfo
     
     // Install observers
     init : function() {
-      this.networkPrefsObserver = gFP.getPrefsService("network.dns.");
-      this.networkPrefsObserver.QueryInterface(CI.nsIPrefBranch2).addObserver("", this, false);
+      this.addPrefsObserver();
       for each (let i in ["foxyproxy-mode-change", "foxyproxy-proxy-change", "em-action-requested",
           "quit-application"])
         gObsSvc.addObserver(this, i, false);
     },
     
-    // Uninstall observers
-    uninit : function() {
+    addPrefsObserver : function() {
+      if (!this.networkPrefsObserver) {
+        this.networkPrefsObserver = gFP.getPrefsService("network.dns.");
+        this.networkPrefsObserver.QueryInterface(CI.nsIPrefBranch2).addObserver("", this, false);        
+      }
+    },
+    
+    removePrefsObserver : function() {
       if (!this.networkPrefsObserver) // we're not initialized and calling gObsSvc.removeObserver() will throw
         return;
       this.networkPrefsObserver.removeObserver("", this);
       this.networkPrefsObserver = null;
+    },
+    
+    // Uninstall observers
+    uninit : function() {
+      this.removePrefsObserver();
       for each (let i in ["foxyproxy-mode-change", "foxyproxy-proxy-change", "em-action-requested",
           "quit-application"])
         gObsSvc.removeObserver(this, i);
@@ -698,21 +711,25 @@ biesi>  passing it the appropriate proxyinfo
     observe : function(subj, topic, data) {
       try {
         if (topic == "nsPref:changed" && data == "disablePrefetch") {
-          var p = gFP.getPrefsService("network.dns."),
-            hasValue = p.prefHasUserValue("disablePrefetch");
-          if (!hasValue || (hasValue && !p.getBoolPref("disablePrefetch")))
-            this.setNewValues();
+          if (this.shouldDisableDNSPrefetch())
+            this.disablePrefetch();
+          // Don't restore originals if shouldDisableDNSPrefetch == false -- let the user do what he wants with the setting
         }
         else if (topic == "em-action-requested")
-          this.checkRestoreOriginals(data, subj.QueryInterface(CI.nsIUpdateItem));
-        else if (topic == "quit-application" && this.shouldRestoreOriginals)
-          this.restoreOriginals();
+          this.restoreOnExit(data, subj.QueryInterface(CI.nsIUpdateItem));
+        else if (topic == "quit-application" && this.beingUninstalled)
+          this.restoreOriginals(false);
         else if (topic == "foxyproxy-mode-change") {
         	if (gFP._mode=="disabled") {
-        	  restore(this);
+        	  this.restoreOriginals(true);
+        	  // Stop listening for pref changes
+        	  this.removePrefsObserver();
         	  return;
         	}
+        	if (gFP._previousMode=="disabled") // We're coming out of disabled mode
+        	  this.saveOriginals();
         	setOrUnsetPrefetch(this);
+        	this.addPrefsObserver(); // Start listening for pref changes if we aren't already
         }
         else if (topic == "foxyproxy-proxy-change") {
           if (gFP._mode=="disabled") return;
@@ -721,51 +738,55 @@ biesi>  passing it the appropriate proxyinfo
       }
       catch (e) { dumpp(e); }
       function setOrUnsetPrefetch(self) {
-        // Mode will never be "disabled" when in this fcn
-        if (gFP._selectedProxy) {
-          // Mode is "Use proxy xyz for all URLs". Does the selected proxy require dns prefetch disabling?
-          if (gFP._selectedProxy.shouldDisableDNSPrefetch())
-            self.setNewValues();
-          else restore(self);
-        }
-        else {
-          // Mode is patterns, random, or roundrobin
-          if (gFP.proxies.requiresRemoteDNSLookups())
-            self.setNewValues();
-          else restore(self);
-        }
-      }
-      function restore(self) {
-        self.restoreOriginals();
-        self.init(); // Reinstall observers
+        if (self.shouldDisableDNSPrefetch())
+          self.disablePrefetch();
+        else
+          self.restoreOriginals(true);
       }
     },
     
-    // Should we restore the original pre-FoxyProxy values?
-    checkRestoreOriginals : function(d, updateItem) {
+    shouldDisableDNSPrefetch : function() {
+      if (gFP._mode=="disabled") return false;
+      // Is mode "Use proxy xyz for all URLs". Does the selected proxy require dns prefetch disabling?
+      if (gFP._selectedProxy)
+        return gFP._selectedProxy.shouldDisableDNSPrefetch()
+      // Mode is patterns, random, or roundrobin
+      return gFP.proxies.requiresRemoteDNSLookups();
+    },
+    
+    // FoxyProxy being disabled/uninstalled. Should we restore the original pre-FoxyProxy values?
+    restoreOnExit : function(d, updateItem) {
       var guid = updateItem.id;
       if (guid == "foxyproxy-basic@eric.h.jung" || guid == "foxyproxy@eric.h.jung" || guid == "foxyproxyplus@leahscape.com") {
         if (d == "item-cancel-action")
-          this.shouldRestoreOriginals = false;
+          this.beingUninstalled = false;
         else if (d == "item-uninstalled" || d == "item-disabled")
-          this.shouldRestoreOriginals = true;
+          this.beingUninstalled = true;
         else if (d == "item-enabled")
-          this.shouldRestoreOriginals = false;
+          this.beingUninstalled = false;
       }
     },
     
     // Restore the original pre-FoxyProxy values and stop observing changes
-    restoreOriginals : function() {
+    restoreOriginals : function(contObserving) {
       var p = gFP.getPrefsService("network.dns.");
       this.uninit(); // stop observing the prefs while we change them
-      if (this.originalDisablePrefetch)
+      if (this.origPrefetch == this.TRUE) {
+        dump("setting disablePrefetch to true\n");
         p.setBoolPref("disablePrefetch", true);
-      else {
+      }
+      else if (this.origPrefetch == this.FALSE) {
+        dump("setting disablePrefetch to false\n");
+        p.setBoolPref("disablePrefetch", false);
+      }
+      else if (this.origPrefetch == this.CLEARED) {
         try {
-          if (p.prefHasUserValue("disablePrefetch"))
+          if (p.prefHasUserValue("disablePrefetch")) {
+            dump("clearing disablePrefetch\n");
             p.clearUserPref("disablePrefetch");
+          }
         }
-        catch (e) {
+        catch (e) { /* i don't think this is necessary since p.prefHasUserValue() is called before clearing */
           dumpp(e);
         }
       }
@@ -798,20 +819,20 @@ biesi>  passing it the appropriate proxyinfo
         networkPrefs.setIntPref("type", 1);
         networkPrefs.setIntPref("type", 2);
       }
-      // Note we don't start observing the prefs again
+      if (contObserving)
+        this.init(); // Add our observers again
     },
     
-    // Save the original prefs for restoring when FoxyProxy is disabled/uninstalled.
-    // Then set the new values. This is called on first run of FoxyProxy.
+    // Save the original prefs for restoring when FoxyProxy is disabled/uninstalled
     saveOriginals : function() {
-      var p = gFP.getPrefsService("network.dns."),
-        hasValue = p.prefHasUserValue("disablePrefetch");
-      this.originalDisablePrefetch = hasValue && p.getBoolPref("disablePrefetch");
+      var p = gFP.getPrefsService("network.dns.");
+      this.origPrefetch = p.prefHasUserValue("disablePrefetch") ?
+          (p.getBoolPref("disablePrefetch") ? this.TRUE : this.FALSE) : this.CLEARED;
       gFP.writeSettings();
     },
     
     // Set our desired values for the prefs; may or may not be the same as the originals
-    setNewValues : function() {
+    disablePrefetch : function() {
       this.uninit(); // stop observing the prefs while we change them
       gFP.getPrefsService("network.dns.").setBoolPref("disablePrefetch", true);
       this.init(); // start observing the prefs again
@@ -820,15 +841,14 @@ biesi>  passing it the appropriate proxyinfo
     fromDOM : function(doc) {
       var n = doc.getElementsByTagName("defaultPrefs").item(0);
       if (!n) return; // for pre-2.17 foxyproxy.xml files that don't have this node
-      this.originalDisablePrefetch = gGetSafeAttrB(n, "originalDisablePrefetch", false);      
+      this.origPrefetch = gGetSafeAttr(n, "origPrefetch", null);      
     },
     
     toDOM : function(doc) {
       var e = doc.createElement("defaultPrefs");
-      e.setAttribute("originalDisablePrefetch", this.originalDisablePrefetch);
+      e.setAttribute("origPrefetch", this.origPrefetch);
       return e;
     }
-  
   },
 
   ///////////////// random \\\\\\\\\\\\\\\\\\\\\\

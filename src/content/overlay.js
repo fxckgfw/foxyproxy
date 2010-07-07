@@ -61,10 +61,8 @@ var foxyproxy = {
       // Probably not necessary, but does not hurt
       this.timer = null;
       var fpc = Components.classes["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject;
-      if (this.first) {
-        foxyproxy.fp.defaultPrefs.saveOriginals();
+      if (this.first)
         x(foxyproxy.fp.isFoxyProxySimple() ? "http://foxyproxy.mozdev.org/basic/help.html" : "http://foxyproxy.mozdev.org/help.html");
-      }
       else
         x(foxyproxy.fp.isFoxyProxySimple() ? "http://foxyproxy.mozdev.org/basic/releasenotes.html" :
           "http://foxyproxy.mozdev.org/releasenotes.html");      

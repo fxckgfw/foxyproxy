@@ -26,9 +26,9 @@ if (!CI) {
     n.QueryInterface(CI.nsIDOMElement);
     return n ? (n.hasAttribute(name) ? n.getAttribute(name)=="true" : def) : def;
   };
-  // XPCOM module initialization
-  var NSGetModule = function() { return MatchModule; }
 }
+Components.utils.import("resource://gre/modules/XPCOMUtils.jsm");
+
 ///////////////////////////// Match class///////////////////////
 function Match(enabled, name, pattern, temp, isRegEx, caseSensitive, isBlackList, isMultiLine) {
   this.wrappedJSObject = this;
@@ -44,12 +44,6 @@ Match.prototype = {
   _caseSensitive : false,
   isBlackList : false,
   isMultiLine : false,
-
-  QueryInterface: function(aIID) {
-    if (!aIID.equals(CI.nsISupports))
-      throw CR.NS_ERROR_NO_INTERFACE;
-    return this;
-  },
 
   clone : function() {
     return new Match(this.enabled, this.name, this.pattern, this.temp, this.isRegEx, this.caseSensitive,
@@ -159,41 +153,19 @@ Match.prototype = {
     if (includeTempPatterns)
       matchElem.setAttribute("temp", this.temp);
     return matchElem;
-  }
+  },
+  
+  QueryInterface: XPCOMUtils.generateQI([CI.nsISupports]),
+  classDescription: "FoxyProxy Match Component",
+  classID: Components.ID("{2b49ed90-f194-11da-8ad9-0800200c9a66}"),
+  contractID: "@leahscape.org/foxyproxy/match;1",  
 };
 
-var MatchFactory = {
-  createInstance: function (aOuter, aIID) {
-    if (aOuter != null)
-      throw CR.NS_ERROR_NO_AGGREGATION;
-    return (new Match()).QueryInterface(aIID);
-  }
-};
-
-var MatchModule = {
-  CLASS_ID : Components.ID("2b49ed90-f194-11da-8ad9-0800200c9a66"),
-  CLASS_NAME : "FoxyProxy Match Component",
-  CONTRACT_ID : "@leahscape.org/foxyproxy/match;1",
-
-  registerSelf: function(aCompMgr, aFileSpec, aLocation, aType) {
-    aCompMgr = aCompMgr.QueryInterface(CI.nsIComponentRegistrar);
-    aCompMgr.registerFactoryLocation(this.CLASS_ID, this.CLASS_NAME, this.CONTRACT_ID, aFileSpec, aLocation, aType);
-  },
-
-  unregisterSelf: function(aCompMgr, aLocation, aType) {
-    aCompMgr = aCompMgr.QueryInterface(CI.nsIComponentRegistrar);
-    aCompMgr.unregisterFactoryLocation(this.CLASS_ID, aLocation);
-  },
-
-  getClassObject: function(aCompMgr, aCID, aIID) {
-    if (!aIID.equals(CI.nsIFactory))
-      throw Components.results.NS_ERROR_NOT_IMPLEMENTED;
-
-    if (aCID.equals(this.CLASS_ID))
-      return MatchFactory;
-
-    throw CR.NS_ERROR_NO_INTERFACE;
-  },
-
-  canUnload: function(aCompMgr) { return true; }
-};
+/**
+ * XPCOMUtils.generateNSGetFactory was introduced in Mozilla 2 (Firefox 4)
+ * XPCOMUtils.generateNSGetModule is for Mozilla 1.9.2 and earlier (Firefox 3.6)
+ */
+if (XPCOMUtils.generateNSGetFactory)
+  var NSGetFactory = XPCOMUtils.generateNSGetFactory([Match]);
+else
+  var NSGetModule = XPCOMUtils.generateNSGetModule([Match]);

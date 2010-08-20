@@ -52,5 +52,5 @@ function onSettings() {
 
   // Reselect what was previously selected or the new item
   proxyTree.view.selection.select(proxyTree.view.rowCount-2);
-  document.documentElement.acceptDialog();
+  //document.documentElement.acceptDialog();
 }

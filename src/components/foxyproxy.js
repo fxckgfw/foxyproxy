@@ -12,7 +12,7 @@
 // Don't const the next line anymore because of the generic reg code
 // dump("foxyproxy.js\n");
 var CI = Components.interfaces, CC = Components.classes, CR = Components.results, gFP;
-
+Components.utils.import("resource://gre/modules/XPCOMUtils.jsm");
 var dumpp = function(e) {
   if (e) out(e);
   else {
@@ -100,7 +100,7 @@ loadModuleScript("superadd.js");
 // l is for lulu...
 function foxyproxy() {
   SuperAdd.prototype.fp = gFP = this.wrappedJSObject = this;
-}
+};
 foxyproxy.prototype = {
   PFF : " ",
   _mode : "disabled",
@@ -117,12 +117,6 @@ foxyproxy.prototype = {
   excludePatternsFromCycling : false,
   excludeDisabledFromCycling : false,
   ignoreProxyScheme : false,
-
-  QueryInterface: function(aIID) {
-    if (!aIID.equals(CI.nsISupports) && !aIID.equals(CI.nsIObserver))
-        throw CR.NS_ERROR_NO_INTERFACE;
-    return this;
-  },
   
   broadcast : function(subj, topic, data) {
     gBroadcast(subj, topic, data);
@@ -141,70 +135,42 @@ foxyproxy.prototype = {
   
   observe: function(subj, topic, data) {
       switch(topic) {
-    case "profile-after-change":
-      try {
-        this.init();
-        // Initialize defaultPrefs before initial call to this.setMode().
-        // setMode() is called from this.loadSettings()->this.fromDOM(), but also from commandlinehandler.js.        
-        this.defaultPrefs.init();        
-        this.loadSettings();
-      }
-      catch (e) {
-        dumpp(e);
-      }
-      break;
-          case "app-startup":
-              gObsSvc.addObserver(this, "quit-application", false);
-              gObsSvc.addObserver(this, "domwindowclosed", false);
-        gObsSvc.addObserver(this, "domwindowopened", false);
-      gObsSvc.addObserver(this, "profile-after-change", false);
-        //gObsSvc.addObserver(this, "http-on-modify-request", false);
-              break;
-          case "domwindowclosed":
+        case "profile-after-change":
+          gObsSvc.addObserver(this, "quit-application", false);
+          gObsSvc.addObserver(this, "domwindowclosed", false);
+          gObsSvc.addObserver(this, "domwindowopened", false);
+          try {
+            this.init();
+            // Initialize defaultPrefs before initial call to this.setMode().
+            // setMode() is called from this.loadSettings()->this.fromDOM(), but also from commandlinehandler.js.
+            this.defaultPrefs.init();        
+            this.loadSettings();
+          }
+          catch (e) {
+            dumpp(e);
+          }
+        break;
+      case "domwindowclosed":
         // Did the last browser window close? It could be that the DOM inspector, JS console,
         // or the non-last browser window just closed. In that case, don't close FoxyProxy.
-          var wm = CC["@mozilla.org/appshell/window-mediator;1"].getService(CI.nsIWindowMediator);
-          var win = wm.getMostRecentWindow("navigator:browser") || wm.getMostRecentWindow("Songbird:Main");
-          if (!win) {
-                this.closeAppWindows("foxyproxy", wm);
-                this.closeAppWindows("foxyproxy-superadd", wm);
-                this.closeAppWindows("foxyproxy-options", wm);
-              }
-              break;
+        var wm = CC["@mozilla.org/appshell/window-mediator;1"].getService(CI.nsIWindowMediator);
+        var win = wm.getMostRecentWindow("navigator:browser") || wm.getMostRecentWindow("Songbird:Main");
+        if (!win) {
+          this.closeAppWindows("foxyproxy", wm);
+          this.closeAppWindows("foxyproxy-superadd", wm);
+          this.closeAppWindows("foxyproxy-options", wm);
+        }
+        break;
       case "quit-application": // Called whether or not FoxyProxy options dialog is open when app is closing
-            gObsSvc.removeObserver(this, "quit-application");
-            gObsSvc.removeObserver(this, "domwindowclosed");
+        gObsSvc.removeObserver(this, "quit-application");
+        gObsSvc.removeObserver(this, "domwindowclosed");
         gObsSvc.removeObserver(this, "domwindowopened");
-            gObsSvc.removeObserver(this, "profile-after-change");
-            this.defaultPrefs.uninit();
-            break;
-      /*case "foxyproxy-window-opened":*/
+        this.defaultPrefs.uninit();
+        break;
       case "domwindowopened":
         this.strings.load();
         this.notifier.emptyQueue();
         break;
-      /*case "quit-application-granted":*/ // Not called if FoxyProxy options dialog is open when app is closing
-          // case "http-on-modify-request":
-              // dump("subj: " + aSubject + "\n");
-              // dump("topic: " + aTopic + "\n");
-              // dump(" data: " + aData + "\n");
-        //var hChannel = subj.QueryInterface(Components.interfaces.nsIHttpChannel);
-              // var tab = this.moo(hChannel);
-  // if (!tab) dump("tab not found for " + hChannel.name + "\n");
-              // dump("tab " + (tab?"found":"not found") + "\n");
-              // break;
-/* proxy-per-tab ideas:
-biesi>  what you could actually do is this:
-  <biesi> observe http-on-modify-request
-  <biesi> there, you can get the notificationCallbacks and the window
-  <biesi> cancel the request if you want a proxy (hopefully that works)
-  <biesi> then, create a new channel for the original URI and post data etc, using nsIProxiedProtocolHandler for the original scheme
-biesi>  passing it the appropriate proxyinfo
-  <grimholtz> ok but how does the response get into the right window?
-  <biesi> ah right
-  <biesi> forgot to mention that part
-  <biesi> with help of nsIURILoader::openURI*/
-
     }
   },
 
@@ -671,12 +637,7 @@ biesi>  passing it the appropriate proxyinfo
     //network.dns.disablePrefetchFromHTTPS
     networkPrefsObserver : null, /* We save this instance because we must call removeObserver method on the same nsIPrefBranch2 instance on which we called addObserver method in order to remove an observer */
     beingUninstalled : false, /* flag per https://developer.mozilla.org/en/Code_snippets/Miscellaneous#Receiving_notification_before_an_extension_is_disabled_and.2for_uninstalled */
-
-    QueryInterface: function(aIID) {
-      if (!aIID.equals(CI.nsISupports) && !aIID.equals(CI.nsIObserver))
-          throw CR.NS_ERROR_NO_INTERFACE;
-      return this;
-    },
+    QueryInterface: XPCOMUtils.generateQI([CI.nsISupports, CI.nsIObserver]),
     
     // Install observers
     init : function() {
@@ -1739,7 +1700,17 @@ biesi>  passing it the appropriate proxyinfo
   },
   classID: Components.ID("{46466e13-16ab-4565-9924-20aac4d98c82}"),
   contractID: "@leahscape.org/foxyproxy/service;1",
-  classDescription: "FoxyProxy Core"
+  classDescription: "FoxyProxy Core",
+  QueryInterface: XPCOMUtils.generateQI([CI.nsISupports, CI.nsIObserver]),
+  _xpcom_categories: /* this var for for pre gecko-2.0 */ [{category:"profile-after-change", entry:"foxyproxy_catobserver"}],  
+  _xpcom_factory: {
+    singleton: null,
+    createInstance: function (aOuter, aIID) {
+      if (aOuter) throw CR.NS_ERROR_NO_AGGREGATION;
+      if (!this.singleton) this.singleton = new foxyproxy();
+      return this.singleton.QueryInterface(aIID);
+    }
+  }
 };
 
 // /////////////////////////// LoggEntry class ///////////////////////
@@ -1768,7 +1739,7 @@ function LoggEntry(proxy, aMatch, uriStr, type, errMsg) {
       this.errMsg = errMsg;
     }
     this.colorString = proxy.colorString;
-}
+};
 
 LoggEntry.prototype = {
   errMsg : "", // Default value for MPs which don't have errors
@@ -1785,83 +1756,11 @@ LoggEntry.prototype = {
   }
 };
 
-
-var gXpComObjects = [foxyproxy];
-var gCatObserverName = "foxyproxy_catobserver";
-var gCatContractId = foxyproxy.prototype.contractID;
-
-
-function NSGetModule(compMgr, fileSpec) {
-  gModule._catObserverName = gCatObserverName;
-  gModule._catContractId = gCatContractId;
-
-  for (var i in gXpComObjects)
-    gModule._xpComObjects[i] = new gFactoryHolder(gXpComObjects[i]);
-
-  return gModule;
-};
-
-function gFactoryHolder(aObj) {
-  this.singleton = null;
-  this.CID        = aObj.prototype.classID;
-  this.contractID = aObj.prototype.contractID;
-  this.className  = aObj.prototype.classDescription;
-  this.factory =
-  {
-    createInstance: function(aOuter, aIID)
-    {
-      if (aOuter)
-        throw CR.NS_ERROR_NO_AGGREGATION;
-      if (!this.singleton)
-        this.singleton = new this.constructor; 
-      return this.singleton.QueryInterface(aIID);
-    }
-  };
-
-  this.factory.constructor = aObj;
-};
-var gModule = {
-  registerSelf: function (aComponentManager, aFileSpec, aLocation, aType) {
-    aComponentManager.QueryInterface(CI.nsIComponentRegistrar);
-    for (var key in this._xpComObjects)
-    {
-      var obj = this._xpComObjects[key];
-      aComponentManager.registerFactoryLocation(obj.CID, obj.className,
-      obj.contractID, aFileSpec, aLocation, aType);
-    }
-
-    var catman = CC["@mozilla.org/categorymanager;1"].getService(CI.nsICategoryManager);
-    catman.addCategoryEntry("app-startup", this._catObserverName, this._catContractId, true, true);
-  },
-
-  unregisterSelf: function(aCompMgr, aFileSpec, aLocation) {
-    var catman = CC["@mozilla.org/categorymanager;1"].getService(CI.nsICategoryManager);
-    catman.deleteCategoryEntry("app-startup", this._catObserverName, true);
-
-    aComponentManager.QueryInterface(CI.nsIComponentRegistrar);
-    for (var key in this._xpComObjects)
-    {
-      var obj = this._xpComObjects[key];
-      aComponentManager.unregisterFactoryLocation(obj.CID, aFileSpec);
-    }
-  },
-
-  getClassObject: function(aComponentManager, aCID, aIID) {
-    if (!aIID.equals(CI.nsIFactory))
-      throw CR.NS_ERROR_NOT_IMPLEMENTED;
-
-    for (var key in this._xpComObjects)
-    {
-      if (aCID.equals(this._xpComObjects[key].CID))
-        return this._xpComObjects[key].factory;
-    }
-
-    throw CR.NS_ERROR_NO_INTERFACE;
-  },
-
-  canUnload: function(aComponentManager) { return true; },
-
-  _xpComObjects: {},
-  _catObserverName: null,
-  _catContractId: null
-};
+/**
+ * XPCOMUtils.generateNSGetFactory was introduced in Mozilla 2 (Firefox 4)
+ * XPCOMUtils.generateNSGetModule is for Mozilla 1.9.2 and earlier (Firefox 3.6)
+ */
+if (XPCOMUtils.generateNSGetFactory)
+  var NSGetFactory = XPCOMUtils.generateNSGetFactory([foxyproxy]);
+else
+  var NSGetModule = XPCOMUtils.generateNSGetModule([foxyproxy]);

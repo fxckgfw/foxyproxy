@@ -23,9 +23,9 @@ if (!CI) {
     n.QueryInterface(CI.nsIDOMElement);
     return n ? (n.hasAttribute(name) ? n.getAttribute(name)=="true" : def) : def;
   };
-  // XPCOM module initialization
-  var NSGetModule = function() { return AutoConfModule; }
 }
+
+Components.utils.import("resource://gre/modules/XPCOMUtils.jsm");
 
 ///////////////////////////// AutoConf class ///////////////////////
 function AutoConf(owner, fpp) {
@@ -46,13 +46,8 @@ AutoConf.prototype = {
   owner: null,
   //disabledDueToBadPAC: false,
   disableOnBadPAC: true,
+  QueryInterface: XPCOMUtils.generateQI([CI.nsISupports]),
 
-  QueryInterface: function(aIID) {
-    if (!aIID.equals(CI.nsISupports))
-      throw CR.NS_ERROR_NO_INTERFACE;
-    return this;
-  },
-    
   set autoReload(e) {
     this._autoReload = e;
     if (!e && this.timer) {
@@ -156,7 +151,7 @@ AutoConf.prototype = {
     if (this.owner.lastresort)
       this.owner.mode = "direct"; // don't disable!
     else if (this.disableOnBadPAC)
-      this.owner._enabled = false; // Use _enabled so we don't loop infinitely    
+      this.owner._enabled = false; // Use _enabled so we don't loop infinitely
   }, 
   
   notify : function(timer) {
@@ -166,44 +161,21 @@ AutoConf.prototype = {
   
   cancelTimer : function() {
     this.timer.cancel();
-  }
-};
-
-var AutoConfFactory = {
-  createInstance: function (aOuter, aIID) {
-    if (aOuter != null)
-      throw CR.NS_ERROR_NO_AGGREGATION;
-    return (new AutoConf()).QueryInterface(aIID);
-  }
-};
-
-var AutoConfModule = {
-  CLASS_ID : Components.ID("54382370-f194-11da-8ad9-0800200c9a66"),
-  CLASS_NAME : "FoxyProxy AutoConfiguration Component",
-  CONTRACT_ID : "@leahscape.org/foxyproxy/autoconf;1",
-  
-  registerSelf: function(aCompMgr, aFileSpec, aLocation, aType) {
-    aCompMgr = aCompMgr.QueryInterface(CI.nsIComponentRegistrar);
-    aCompMgr.registerFactoryLocation(this.CLASS_ID, this.CLASS_NAME, this.CONTRACT_ID, aFileSpec, aLocation, aType);
-  },
-
-  unregisterSelf: function(aCompMgr, aLocation, aType) {
-    aCompMgr = aCompMgr.QueryInterface(CI.nsIComponentRegistrar);
-    aCompMgr.unregisterFactoryLocation(this.CLASS_ID, aLocation);        
   },
   
-  getClassObject: function(aCompMgr, aCID, aIID) {
-    if (!aIID.equals(CI.nsIFactory))
-      throw Components.results.NS_ERROR_NOT_IMPLEMENTED;
-
-    if (aCID.equals(this.CLASS_ID))
-      return AutoConfFactory;
-
-    throw Components.results.NS_ERROR_NO_INTERFACE;
-  },
-
-  canUnload: function(aCompMgr) { return true; }
+  classDescription: "FoxyProxy AutoConfiguration Component",
+  classID: Components.ID("{54382370-f194-11da-8ad9-0800200c9a66}"),
+  contractID: "@leahscape.org/foxyproxy/autoconf;1",  
 };
+
+/**
+ * XPCOMUtils.generateNSGetFactory was introduced in Mozilla 2 (Firefox 4)
+ * XPCOMUtils.generateNSGetModule is for Mozilla 1.9.2 and earlier (Firefox 3.6)
+ */
+if (XPCOMUtils.generateNSGetFactory)
+  var NSGetFactory = XPCOMUtils.generateNSGetFactory([AutoConf]);
+else
+  var NSGetModule = XPCOMUtils.generateNSGetModule([AutoConf]);
 
 // FoxyProxy's own nsIProxyAutoConfig impl of
 // http://mxr.mozilla.org/mozilla-central/source/netwerk/base/src/nsProxyAutoConfig.js.
@@ -303,7 +275,7 @@ function dnsResolve(host) {
     }
 }
 
-var dns = Components.classes["@mozilla.org/network/dns-service;1"].getService(Components.interfaces.nsIDNSService);
+var dns = CC["@mozilla.org/network/dns-service;1"].getService(CI.nsIDNSService);
 
 var pacUtils = 
 "function dnsDomainIs(host, domain) {\n" +

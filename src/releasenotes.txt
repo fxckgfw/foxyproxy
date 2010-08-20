@@ -1,3 +1,2 @@
-<li>Fixed minor DNS prefetch bug discussed <a href="http://foxyproxy.mozdev.org/drupal/content/cant-turn-dns-prefetch-function">here</a> whereby
-DNS prefetch defaults weren't being properly restored.</li>
-<li>Increased Firefox version compatibilty</li>
+* Firefox 4 compatibility
+* Changed default proxy color from #65BAD7 to #0055E5

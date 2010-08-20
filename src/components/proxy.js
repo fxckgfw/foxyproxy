@@ -62,9 +62,10 @@ if (!CI) {
 
 loadComponentScript("autoconf.js");
 loadComponentScript("match.js");
+Components.utils.import("resource://gre/modules/XPCOMUtils.jsm");
 
 var proxyService = CC["@mozilla.org/network/protocol-proxy-service;1"].getService(CI.nsIProtocolProxyService),
-  DEFAULT_COLOR = "#65BAD7"; /* blue */
+  DEFAULT_COLOR = "#0055E5"; /* blue */
 ///////////////////////////// Proxy class ///////////////////////
 function Proxy(fp) {
   this.wrappedJSObject = this;
@@ -90,12 +91,6 @@ Proxy.prototype = {
   fp: null,
   readOnlyProperties : ["lastresort", "fp", "wrappedJSObject", "matches", /* from ManualConf */ "owner",
                         /* from AutoConf */ "timer", /* from AutoConf */  "_resolver"],
-
-  QueryInterface: function(aIID) {
-    if (!aIID.equals(CI.nsISupports))
-      throw CR.NS_ERROR_NO_INTERFACE;
-    return this;
-  },
 
   fromDOM : function(node, includeTempPatterns) {
     this.name = node.getAttribute("name");
@@ -456,8 +451,22 @@ Proxy.prototype = {
       case "auto":return this.resolve(spec, host, mp);
 	    case "direct":return this.direct;
     }
-  }
+  },
+  
+  QueryInterface: XPCOMUtils.generateQI([CI.nsISupports]),
+  classDescription: "FoxyProxy Proxy Component",
+  classID: Components.ID("{51b469a0-edc1-11da-8ad9-0800200c9a66}"),
+  contractID: "@leahscape.org/foxyproxy/proxy;1"    
 };
+
+/**
+ * XPCOMUtils.generateNSGetFactory was introduced in Mozilla 2 (Firefox 4)
+ * XPCOMUtils.generateNSGetModule is for Mozilla 1.9.2 and earlier (Firefox 3.6)
+ */
+if (XPCOMUtils.generateNSGetFactory)
+  var NSGetFactory = XPCOMUtils.generateNSGetFactory([Proxy]);
+else
+  var NSGetModule = XPCOMUtils.generateNSGetModule([Proxy]);
 
 ///////////////////////////// ManualConf class ///////////////////////
 function ManualConf(owner, fp) {
@@ -534,40 +543,4 @@ ManualConf.prototype = {
     this._socksversion = e;
     this._makeProxy();
   }
-};
-
-var ProxyFactory = {
-  createInstance: function (aOuter, aIID) {
-    if (aOuter != null)
-      throw CR.NS_ERROR_NO_AGGREGATION;
-    return (new Proxy()).QueryInterface(aIID);
-  }
-};
-
-var ProxyModule = {
-  CLASS_ID : Components.ID("51b469a0-edc1-11da-8ad9-0800200c9a66"),
-  CLASS_NAME : "FoxyProxy Proxy Component",
-  CONTRACT_ID : "@leahscape.org/foxyproxy/proxy;1",
-
-  registerSelf: function(aCompMgr, aFileSpec, aLocation, aType) {
-    aCompMgr = aCompMgr.QueryInterface(CI.nsIComponentRegistrar);
-    aCompMgr.registerFactoryLocation(this.CLASS_ID, this.CLASS_NAME, this.CONTRACT_ID, aFileSpec, aLocation, aType);
-  },
-
-  unregisterSelf: function(aCompMgr, aLocation, aType) {
-    aCompMgr = aCompMgr.QueryInterface(CI.nsIComponentRegistrar);
-    aCompMgr.unregisterFactoryLocation(this.CLASS_ID, aLocation);
-  },
-
-  getClassObject: function(aCompMgr, aCID, aIID) {
-    if (!aIID.equals(CI.nsIFactory))
-      throw Components.results.NS_ERROR_NOT_IMPLEMENTED;
-
-    if (aCID.equals(this.CLASS_ID))
-      return ProxyFactory;
-
-    throw CR.NS_ERROR_NO_INTERFACE;
-  },
-
-  canUnload: function(aCompMgr) { return true; }
 };

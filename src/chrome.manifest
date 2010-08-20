@@ -31,6 +31,33 @@ locale  foxyproxy vi locale/vi/
 locale  foxyproxy zh-CN locale/zh-CN/
 locale  foxyproxy zh-TW locale/zh-TW/
 
+category profile-after-change foxyproxy @leahscape.org/foxyproxy/service;1
+category command-line-handler CmdLineHandler @mozilla.org/commandlinehandler/general-startup;1?type=foxyproxy
+
+component {54382370-f194-11da-8ad9-0800200c9a66} components/autoconf.js
+contract @leahscape.org/foxyproxy/autoconf;1 {54382370-f194-11da-8ad9-0800200c9a66}
+
+component {ecbe324b-9ad7-401a-a272-5cc1efba9be6} components/common.js
+contract @leahscape.org/foxyproxy/common;1 {ecbe324b-9ad7-401a-a272-5cc1efba9be6}
+
+component {ea321380-6b35-4e15-8d1e-fe6dc9c2ccae} components/commandlinehandler.js
+contract @mozilla.org/commandlinehandler/general-startup;1?type=foxyproxy {ea321380-6b35-4e15-8d1e-fe6dc9c2ccae}
+
+component {46466e13-16ab-4565-9924-20aac4d98c82} components/foxyproxy.js
+contract @leahscape.org/foxyproxy/service;1 {46466e13-16ab-4565-9924-20aac4d98c82}
+
+component {d1362868-da85-4faa-b1bf-24bfd936b0a6} components/foxyproxyprotocolhandler.js
+contract @mozilla.org/network/protocol;1?name=proxy {d1362868-da85-4faa-b1bf-24bfd936b0a6}
+
+component {2b49ed90-f194-11da-8ad9-0800200c9a66} components/match.js
+contract @leahscape.org/foxyproxy/match;1 {2b49ed90-f194-11da-8ad9-0800200c9a66}
+
+component {51b469a0-edc1-11da-8ad9-0800200c9a66} components/proxy.js
+contract @leahscape.org/foxyproxy/proxy;1 {51b469a0-edc1-11da-8ad9-0800200c9a66}
+
+component {22ed2962-a8ec-11dc-8314-0800200c9a66} components/relativeprotocolhandler.js
+contract @mozilla.org/network/protocol;1?name=relative {22ed2962-a8ec-11dc-8314-0800200c9a66}
+
 #Firefox
 skin    foxyproxy classic/1.0 skin/ application={ec8030f7-c20a-464f-9b0e-13a3a9e97384}
 overlay chrome://browser/content/browser.xul  chrome://foxyproxy/content/firefoxOverlay.xul application={ec8030f7-c20a-464f-9b0e-13a3a9e97384}

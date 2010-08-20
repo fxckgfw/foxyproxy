@@ -12,19 +12,33 @@
 
 const CI = Components.interfaces;
 const CC = Components.classes;
+Components.utils.import("resource://gre/modules/XPCOMUtils.jsm");
 
 function Common() {
   this.wrappedJSObject = this;
+  uuid = CC["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject.
+    isFoxyProxySimple() ? "foxyproxy-basic@eric.h.jung" : "foxyproxy@eric.h.jung";
+
+  // Get installed version
+  if ("@mozilla.org/extensions/manager;1" in CC) {
+    // Pre-Gecko 2.0
+    this.version = CC["@mozilla.org/extensions/manager;1"]
+      .getService(CI.nsIExtensionManager)
+      .getItemForID(uuid)
+      .version || "0.0";
+  }
+  else {
+    // Post-Gecko 2.0
+    Components.utils.import("resource://gre/modules/AddonManager.jsm");
+    var self = this;
+    AddonManager.getAddonByID(uuid, function(addon) {self.version = addon.version;});
+  }
 }
 
 Common.prototype = {
+  QueryInterface: XPCOMUtils.generateQI([CI.nsISupports]),
   _ios : CC["@mozilla.org/network/io-service;1"].getService(CI.nsIIOService),
-  
-  QueryInterface: function(aIID) {
-    if (!aIID.equals(CI.nsISupports))
-        throw Components.results.NS_ERROR_NO_INTERFACE;
-    return this;
-  },
+  version: null,
   
   // Application-independent version of getMostRecentWindow()
   getMostRecentWindow : function(wm) {
@@ -127,21 +141,7 @@ Common.prototype = {
   },
   
   getVersion : function() {
-    try {
-      var fp = CC["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;
-      return CC["@mozilla.org/extensions/manager;1"]
-                .getService(CI.nsIExtensionManager)
-                .getItemForID(fp.isFoxyProxySimple() ? "foxyproxy-basic@eric.h.jung" : "foxyproxy@eric.h.jung")
-                .version || "0.0";
-    }
-    catch (e) {
-      /* this is for development only, really. The only time we'd get into this catch block is if
-       * the extension isn't installed with the correct UUID. That happens when you install FoxyProxy Standard
-       * using this technique: https://developer.mozilla.org/en/Setting_up_extension_development_environment#Firefox_extension_proxy_file
-       * but then switch to using FoxyProxy Basic via the build script (or vice-versa)
-       */
-      return "-1.0"; 
-    }
+    return this.version;
   },
 
   applyTemplate : function(url, strTemplate, caseSensitive) {
@@ -293,48 +293,28 @@ Common.prototype = {
           "chrome://foxyproxy/content/images/16x16.gif",
           nb.PRIORITY_WARNING_MEDIUM, buttons);
     }
-  }
-};
-
-// Factory
-var CommonFactory = {
-  singleton: null,
-  createInstance: function (aOuter, aIID) {
-    if (aOuter != null)
-      throw Components.results.NS_ERROR_NO_AGGREGATION;
-    if (this.singleton == null)
-      this.singleton = new Common();
-    return this.singleton.QueryInterface(aIID);
-  }
-};
-
-
-const CLASS_ID = Components.ID("ecbe324b-9ad7-401a-a272-5cc1efba9be6");
-
-// Module
-var CommonModule = {
-  registerSelf: function(aCompMgr, aFileSpec, aLocation, aType) {
-    aCompMgr = aCompMgr.QueryInterface(CI.nsIComponentRegistrar);
-    aCompMgr.registerFactoryLocation(CLASS_ID, "FoxyProxy Common", "@leahscape.org/foxyproxy/common;1", aFileSpec, aLocation, aType);
-  },
-
-  unregisterSelf: function(aCompMgr, aLocation, aType) {
-    aCompMgr = aCompMgr.QueryInterface(CI.nsIComponentRegistrar);
-    aCompMgr.unregisterFactoryLocation(CLASS_ID, aLocation);        
   },
   
-  getClassObject: function(aCompMgr, aCID, aIID) {
-    if (!aIID.equals(CI.nsIFactory))
-      throw Components.results.NS_ERROR_NOT_IMPLEMENTED;
-
-    if (aCID.equals(CLASS_ID))
-      return CommonFactory;
-
-    throw Components.results.NS_ERROR_NO_INTERFACE;
-  },
-
-  canUnload: function(aCompMgr) { return true; }
+  classDescription: "FoxyProxy Common Utils",
+  classID: Components.ID("{ecbe324b-9ad7-401a-a272-5cc1efba9be6}"),
+  contractID: "@leahscape.org/foxyproxy/common;1",  
+  _xpcom_factory: {
+    singleton: null,
+    createInstance: function (aOuter, aIID) {
+      if (aOuter)
+        throw Components.results.NS_ERROR_NO_AGGREGATION;
+      if (!this.singleton)
+        this.singleton = new Common();
+      return this.singleton.QueryInterface(aIID);
+    }
+  }
 };
 
-//module initialization
-function NSGetModule(aCompMgr, aFileSpec) { return CommonModule; }
+/**
+ * XPCOMUtils.generateNSGetFactory was introduced in Mozilla 2 (Firefox 4)
+ * XPCOMUtils.generateNSGetModule is for Mozilla 1.9.2 and earlier (Firefox 3.6)
+ */
+if (XPCOMUtils.generateNSGetFactory)
+  var NSGetFactory = XPCOMUtils.generateNSGetFactory([Common]);
+else
+  var NSGetModule = XPCOMUtils.generateNSGetModule([Common]);

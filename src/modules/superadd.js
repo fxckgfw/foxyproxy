@@ -43,10 +43,10 @@ function SuperAdd(mName) {
     ret.temp = this.temp;
     return ret;
   };
-  try {
-    this.fpc = CC["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject;
-  }
-  catch (e) { /* Firefox Portable 3.0 throws the above statement; Common not yet registered */ }
+  //try {
+    //this.fpc = CC["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject;
+  //}
+  //catch (e) { /* Firefox Portable 3.0 & FF 4.0b3 throws the above statement. We use setFPC() below. */ }
 }
 
 function QuickAdd(mName) {
@@ -93,10 +93,8 @@ SuperAdd.prototype = {
   _formatConverter : CC["@mozilla.org/widget/htmlformatconverter;1"].createInstance(CI.nsIFormatConverter),
 
   setFPC : function() {
-    if (!this.fpc) {
-      // For Portable Firefox 3.0, which has problems setting this.fpc in SuperAdd() ctor.
-      this.fpc = CC["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject;
-    }
+    // For Portable Firefox 3.0 && FF4.0b3, which has problems setting this.fpc in SuperAdd() ctor.
+    this.fpc = CC["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject;
   },
 
   get enabled() { return this._enabled; },

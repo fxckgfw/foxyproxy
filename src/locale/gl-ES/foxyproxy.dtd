@@ -274,10 +274,10 @@
 <!ENTITY foxyproxy.advancedmenus.label "Usar Menús Avanzados">
 <!ENTITY foxyproxy.advancedmenus.accesskey "M">
 <!ENTITY foxyproxy.advancedmenus.tooltip "Usar Menús Avanzados (estilo-FoxyProxy 2.2)">
-<!ENTITY foxyproxy.importsettings.label "Importar configuracións">
+<!ENTITY foxyproxy.importsettings.label2 "Configuración de Importación">
 <!ENTITY foxyproxy.importsettings.accesskey "I">
 <!ENTITY foxyproxy.importsettings.tooltip "Importar configuracións dun ficheiro">
-<!ENTITY foxyproxy.exportsettings.label "Exportar as configuracións actuais">
+<!ENTITY foxyproxy.exportsettings.label2 "Configuración de Exportación en curso">
 <!ENTITY foxyproxy.exportsettings.accesskey "E">
 <!ENTITY foxyproxy.exportsettings.tooltip "Exportar as configuracións actuais a un ficheiro">
 <!ENTITY foxyproxy.importlist.label "Importar unha lista de proxys">
@@ -426,6 +426,9 @@
 <!ENTITY foxyproxy.url.label "url">
 <!ENTITY foxyproxy.lastupdate.label "Last Update">
 <!ENTITY foxyproxy.updatefrequency.label "Update Frequency">
+<!ENTITY foxyproxy.hosting.label1 "Grazas a">
+<!ENTITY foxyproxy.ocs.label "OCS">
+<!ENTITY foxyproxy.hosting.label2 "para aloxamento do sitio web de FoxyProxy. Se precisa aloxamento, por favor considere OCS.">
 <!-- begin foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Engadir/editar Patrón de Enderezos IP Locais">
 <!ENTITY foxyproxy.tempip.popup.label "Os patróns temporais lle permiten crear patróns para enderezos IP locais que non usa con frecuencia sen conxestionar a lista de patróns de enderezos IP dun proxy. Os patróns temporais non se gardan no disco. Son mantidos na memoria e utilizados soamente para esta sesión do Firefox.">

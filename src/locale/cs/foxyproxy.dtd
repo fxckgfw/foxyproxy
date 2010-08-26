@@ -274,10 +274,10 @@
 <!ENTITY foxyproxy.advancedmenus.label "Použít rozvětvené nabídky">
 <!ENTITY foxyproxy.advancedmenus.accesskey "R">
 <!ENTITY foxyproxy.advancedmenus.tooltip "Použít rozvětvené nabídky (jako v FoxyProxy 2.2)">
-<!ENTITY foxyproxy.importsettings.label "Nahrát nastavení">
+<!ENTITY foxyproxy.importsettings.label2 "Nahrát nastavení">
 <!ENTITY foxyproxy.importsettings.accesskey "N">
 <!ENTITY foxyproxy.importsettings.tooltip "Nahrát nastavení ze souboru">
-<!ENTITY foxyproxy.exportsettings.label "Uložit nastavení">
+<!ENTITY foxyproxy.exportsettings.label2 "Uložit nastavení">
 <!ENTITY foxyproxy.exportsettings.accesskey "U">
 <!ENTITY foxyproxy.exportsettings.tooltip "Uložit aktuální nastavení do souboru">
 <!ENTITY foxyproxy.importlist.label "Nahrát seznam proxy serverů">
@@ -426,6 +426,9 @@
 <!ENTITY foxyproxy.url.label "url">
 <!ENTITY foxyproxy.lastupdate.label "Last Update">
 <!ENTITY foxyproxy.updatefrequency.label "Update Frequency">
+<!ENTITY foxyproxy.hosting.label1 "Díky">
+<!ENTITY foxyproxy.ocs.label "OCS">
+<!ENTITY foxyproxy.hosting.label2 "za hostování stránek FoxyProxy. Když potřebujete hosting, zkuste OCS.">
 <!-- begin foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Přidat/upravit vzor pro místní IP adresu">
 <!ENTITY foxyproxy.tempip.popup.label "Dočasné vzory Vám umožní vytvářet pravidla pro místní IP adresy které používáte pouze příležitostně. Dočasné vzory se neukládají na disk. Jsou uloženy v paměti jen po dobu spuštění Firefoxu.">

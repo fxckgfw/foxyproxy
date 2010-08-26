@@ -448,9 +448,72 @@ function saveLog() {
 }
 
 function importSettings() {
+  var picker = importExportPrompt();
+  if (!picker) return;
+  
+  var f1 = CC["@mozilla.org/file/local;1"].createInstance(CI.nsILocalFile),
+    f2 = CC["@mozilla.org/file/local;1"].createInstance(CI.nsILocalFile),
+    settingsFile = foxyproxy.getSettingsURI(CI.nsIFile);
+
+  try {
+    // Set f2 to user-selected directory (excluding filename)
+    f2.initWithPath(picker.file.path.substring(0, picker.file.path.indexOf(picker.file.leafName)));
+    f1.initWithFile(settingsFile);
+    if (!foxyproxy.parseValidateSettings(picker.file)) {
+      // Invalid file
+      overlay.alert(this, foxyproxy.getMessage("import.error", [picker.file.path]));
+      return;
+    }
+    // Are you sure? You'll overwrite current settings.
+    if (!overlay.ask(this, foxyproxy.getMessage("import.warning")))
+      return;
+  
+    if (settingsFile.exists()) // should always be true
+      settingsFile.remove(false);
+    
+    f1.initWithPath(settingsFile.path.substring(0, settingsFile.path.indexOf(settingsFile.leafName)));
+    picker.file.copyTo(f1, settingsFile.leafName);
+    
+    if (overlay.ask(this, foxyproxy.getMessage("import.success", [picker.file.path])))
+      foxyproxy.restart();
+  }
+  catch (e) {
+    dump(e + "\n");
+    overlay.alert(this, foxyproxy.getMessage("copy.error", [f1.path, picker.file.path]));
+    return;
+  }  
+}
+
+function importExportPrompt(isExport) {
+  var nsIFilePicker = CI.nsIFilePicker,
+  picker = CC["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
+  picker.init(window, foxyproxy.getMessage(isExport ? "export.settings":"import.settings"),
+    isExport ? nsIFilePicker.modeSave : nsIFilePicker.modeOpen);
+  picker.defaultExtension = "xml";
+  picker.appendFilters(nsIFilePicker.filterAll);
+  return picker.show() == nsIFilePicker.returnCancel ? null : picker;
 }
 
 function exportSettings() {
+  var picker = importExportPrompt();
+  if (!picker) return;
+
+  var f2 = CC["@mozilla.org/file/local;1"].createInstance(CI.nsILocalFile),
+    settingsFile = foxyproxy.getSettingsURI(CI.nsIFile);
+  
+  try {
+    // Set f2 to user-selected directory (excluding filename)
+    f2.initWithPath(picker.file.path.substring(0, picker.file.path.indexOf(picker.file.leafName)));
+    if (picker.file.exists()) // Delete if the file already exists
+      picker.file.remove(false);
+    settingsFile.copyTo(f2, picker.file.leafName);      
+    overlay.alert(this, foxyproxy.getMessage("export.success", [picker.file.path])); 
+  }
+  catch (e) {
+    dump(e + "\n");
+    overlay.alert(this, foxyproxy.getMessage("copy.error", [settingsFile.path, picker.file.path]));
+    return;
+  }
 }
 
 function importProxyList() {

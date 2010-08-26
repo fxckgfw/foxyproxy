@@ -36,13 +36,13 @@
               tooltiptext="&foxyproxy.tor.tooltip;" />
             <!-- tooltiptext is necessary for tooltip, dunno why -->
             <menuseparator />
-            <!-- <menuitem command="importSettingsCmd" tooltiptext="&foxyproxy.importsettings.tooltip;"/>-->
+            <menuitem command="importSettingsCmd" tooltiptext="&foxyproxy.importsettings.tooltip;"/>
             <!-- tooltiptext is necessary for tooltip, dunno why -->
-            <!-- <menuitem command="exportSettingsCmd" tooltiptext="&foxyproxy.exportsettings.tooltip;"/>-->
+            <menuitem command="exportSettingsCmd" tooltiptext="&foxyproxy.exportsettings.tooltip;"/>
             <!-- tooltiptext is necessary for tooltip, dunno why -->
             <!-- <menuitem command="importListCmd" tooltiptext="&foxyproxy.importlist.tooltip;"/> -->
             <!-- tooltiptext is necessary for tooltip, dunno why -->
-            <!-- <menuseparator/> -->
+            <menuseparator/>
             <menuitem command="closeCmd"
               tooltiptext="&foxyproxy.close.tooltip;" />
             <!-- tooltiptext is necessary for tooltip, dunno why -->
@@ -83,25 +83,25 @@
       onselect="foxyproxy.selectedTabIndex=this.selectedIndex;">
       <tab id="foxyproxy-proxy-tab" label="&foxyproxy.tab.proxies.label;"
         accesskey="&foxyproxy.tab.proxies.accesskey;" selected="true"
-        tooltiptext="&foxyproxy.tab.proxies.tooltip;" />
+        tooltiptext="&foxyproxy.tab.proxies.tooltip;" class="uncram-tab"/>
       <tab id="foxyproxy-global-tab" label="&foxyproxy.tab.global.label;"
         accesskey="&foxyproxy.tab.global.accesskey;"
-        tooltiptext="&foxyproxy.tab.global.tooltip;" />
+        tooltiptext="&foxyproxy.tab.global.tooltip;" class="uncram-tab"/>
       <!--<tab id="foxyproxy-server-subscriptions-tab" label="&foxyproxy.server.subscriptions.label;"
         accesskey="&foxyproxy.server.subscriptions.accesskey;"
-        tooltiptext="&foxyproxy.server.subscriptions.tooltip;" />
+        tooltiptext="&foxyproxy.server.subscriptions.tooltip;" class="uncram-tab"/>
       <tab id="foxyproxy-pattern-subscriptions-tab" label="&foxyproxy.pattern.subscriptions.label;"
         accesskey="&foxyproxy.pattern.subscriptions.accesskey;"
-        tooltiptext="&foxyproxy.pattern.subscriptions.tooltip;" />-->
+        tooltiptext="&foxyproxy.pattern.subscriptions.tooltip;" class="uncram-tab"/>-->
       <tab id="foxyproxy-quickadd-tab" label="&foxyproxy.quickadd.label;"
         accesskey="&foxyproxy.quickadd.accesskey;"
-        tooltiptext="&foxyproxy.quickadd.tooltip;" class="hide-if-foxyproxy-simple"/>
+        tooltiptext="&foxyproxy.quickadd.tooltip;" class="hide-if-foxyproxy-simple uncram-tab"/>
       <tab id="foxyproxy-autoadd-tab" label="&foxyproxy.tab.autoadd.label;"
         accesskey="&foxyproxy.tab.autoadd.accesskey;"
-        tooltiptext="&foxyproxy.tab.autoadd.tooltip;" class="hide-if-foxyproxy-simple" />
+        tooltiptext="&foxyproxy.tab.autoadd.tooltip;" class="hide-if-foxyproxy-simple uncram-tab" />
       <tab id="foxyproxy-logging-tab" label="&foxyproxy.tab.logging.label;"
         accesskey="&foxyproxy.tab.logging.accesskey;"
-        tooltiptext="&foxyproxy.tab.logging.tooltip;" class="hide-if-foxyproxy-simple"/>
+        tooltiptext="&foxyproxy.tab.logging.tooltip;" class="hide-if-foxyproxy-simple uncram-tab"/>
     </tabs>
 
     <tabpanels style="-moz-appearance: none;" flex="1">
@@ -169,10 +169,10 @@
             <button id="foxyproxy-down-button" pack="start" command="moveDownCmd"
               label=" &foxyproxy.movedown.label;"/>
             <separator class="hide-if-foxyproxy-simple"/>
-            <button id="foxyproxy-create-button" command="createProxyCmd" />
-            <button id="foxyproxy-settings-button" command="settingsCmd" />
-            <button id="foxyproxy-copy-button" command="copySelectionCmd" />
-            <button id="foxyproxy-deleteproxy-button" command="deleteSelectionCmd" />
+            <button id="foxyproxy-create-button" pack="start" command="createProxyCmd" class="uncram-btn"/>
+            <button id="foxyproxy-settings-button" pack="start" command="settingsCmd" class="uncram-btn"/>
+            <button id="foxyproxy-copy-button" pack="start" command="copySelectionCmd" class="uncram-btn"/>
+            <button id="foxyproxy-deleteproxy-button" pack="start" command="deleteSelectionCmd" class="uncram-btn"/>
           </vbox>
         </hbox>
       </tabpanel>
@@ -648,7 +648,7 @@
         </grid>
         <hbox align="center" observes="quickAddBroadcaster" >
           <label value="&foxyproxy.pattern.to.quickadd.label;" control="foxyproxy-quickadd-pattern-button"/>
-          <button id="foxyproxy-quickadd-pattern-button" command="quickAddPatternCmd" label="&foxyproxy.define.label;"/>
+          <button id="foxyproxy-quickadd-pattern-button" command="quickAddPatternCmd" label="&foxyproxy.define.label;" class="uncram-btn"/>
         </hbox>
       </groupbox>
       </tabpanel>
@@ -718,11 +718,11 @@
             <columns><column/><column/></columns><rows>
             <row align="center" observes="autoAddBroadcaster">
               <label value="&foxyproxy.autoadd.pattern.label;" control="foxyproxy-autoadd-block-pattern-button"/>
-              <button id="foxyproxy-autoadd-block-pattern-button" command="blockedPagePatternCmd" label="&foxyproxy.define.label;"/>
+              <button id="foxyproxy-autoadd-block-pattern-button" command="blockedPagePatternCmd" label="&foxyproxy.define.label;" class="uncram-btn" pack="start"/>
             </row>
             <row align="center" observes="autoAddBroadcaster" >
               <label value="&foxyproxy.pattern.to.autoadd.label;" control="foxyproxy-autoadd-pattern-button"/>
-              <button id="foxyproxy-autoadd-pattern-button" command="autoAddPatternCmd" label="&foxyproxy.define.label;"/>
+              <button id="foxyproxy-autoadd-pattern-button" command="autoAddPatternCmd" label="&foxyproxy.define.label;" class="uncram-btn" pack="start"/>
             </row>
           </rows>
           </grid>
@@ -737,9 +737,9 @@
             accesskey="&foxyproxy.enabled.accesskey;"
             tooltiptext="&foxyproxy.enabled.tooltip;"
             oncommand="foxyproxy.logging=!foxyproxy.logging;" />
-          <button id="foxyproxy-clear-button" command="clearLogCmd" />
-          <button id="foxyproxy-refresh-button" command="refreshLogCmd" />
-          <button id="foxyproxy-save-button" command="saveLogCmd" />
+          <button id="foxyproxy-clear-button" command="clearLogCmd" class="uncram-btn-btn"/>
+          <button id="foxyproxy-refresh-button" command="refreshLogCmd" class="uncram"/>
+          <button id="foxyproxy-save-button" command="saveLogCmd" class="uncram-btn"/>
           <spacer flex="1" />
           <text value="&foxyproxy.logging.maxsize.label;"
             accesskey="&foxyproxy.logging.maxsize.accesskey;"
@@ -748,13 +748,13 @@
           <textbox id="maxSize" size="4"
             accesskey="&foxyproxy.logging.maxsize.accesskey;"
             tooltiptext="&foxyproxy.logging.maxsize.tooltip;" />
-          <button id="foxyproxy-set-button" command="maxSizeCmd" size="4" />
+          <button id="foxyproxy-set-button" command="maxSizeCmd" size="4" class="uncram-btn"/>
         </hbox>
 
         <hbox align="center">
-          <button id="foxyproxy-open-tab-button" command="openLogURLInNewTabCmd" />
-          <button id="foxyproxy-copy-clipboard-button" command="copyLogURLToClipboardCmd" />
-          <button id="foxyproxy-delete-button" command="deleteLogEntryCmd" />
+          <button id="foxyproxy-open-tab-button" command="openLogURLInNewTabCmd" class="uncram-btn"/>
+          <button id="foxyproxy-copy-clipboard-button" command="copyLogURLToClipboardCmd" class="uncram-btn"/>
+          <button id="foxyproxy-delete-button" command="deleteLogEntryCmd" class="uncram-btn"/>
         </hbox>
         <checkbox command="noURLsCmd" />
         <separator class="thin"/>
@@ -826,9 +826,9 @@
     </tabpanels>
   </tabbox>
   <hbox align="center">
-    <button id="foxyproxy-donate-button" command="donateCmd"/>
-    <button id="foxyproxy-plus-button" command="fppCmd"/>
-    <button id="foxyproxy-proxyservice-button" command="proxyServiceCmd"/>
+    <button id="foxyproxy-donate-button" command="donateCmd" class="uncram-btn"/>
+    <button id="foxyproxy-plus-button" command="fppCmd" class="uncram-btn"/>
+    <button id="foxyproxy-proxyservice-button" command="proxyServiceCmd" class="uncram-btn"/>
     <toolbarbutton class="foxyproxy-ref"
       popup="commercialInfo"
       tooltiptext="&foxyproxy.whatsthis;"/>    
@@ -856,10 +856,10 @@
       <menuseparator />
       <menuitem class="menuitem-non-iconic" command="torWizardCmd" />
       <menuseparator />
-      <!-- <menuitem class="menuitem-non-iconic" command="importSettingsCmd"/>
+      <menuitem class="menuitem-non-iconic" command="importSettingsCmd"/>
         <menuitem class="menuitem-non-iconic" command="exportSettingsCmd"/>
-        <menuitem class="menuitem-non-iconic" command="importListCmd"/>
-        <menuseparator/>         -->
+        <!-- <menuitem class="menuitem-non-iconic" command="importListCmd"/> -->
+        <menuseparator/>
       <menuitem class="menuitem-non-iconic" command="helpCmd" />
       <menuitem class="menuitem-non-iconic" command="closeCmd" />
     </popup>
@@ -978,13 +978,13 @@
     tooltiptext="&foxyproxy.getfoxyproxyplus.label;" oncommand="fpc.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/fpplus');" />
 
   <command id="importSettingsCmd"
-    label="&foxyproxy.importsettings.label;"
+    label="&foxyproxy.importsettings.label2;"
     accesskey="&foxyproxy.importsettings.accesskey;"
     tooltiptext="&foxyproxy.importsettings.tooltip;"
     oncommand="importSettings();" />
 
   <command id="exportSettingsCmd"
-    label="&foxyproxy.exportsettings.label;"
+    label="&foxyproxy.exportsettings.label2;"
     accesskey="&foxyproxy.exportsettings.accesskey;"
     tooltiptext="&foxyproxy.exportsettings.tooltip;"
     oncommand="exportSettings();" />

@@ -274,10 +274,10 @@
 <!ENTITY foxyproxy.advancedmenus.label "Dùng Trình đơn Nâng cao">
 <!ENTITY foxyproxy.advancedmenus.accesskey "D">
 <!ENTITY foxyproxy.advancedmenus.tooltip "Dùng trình đơn nâng cao (Kiểu FoxyProxy 2.2)">
-<!ENTITY foxyproxy.importsettings.label "Nhập thiết lập">
+<!ENTITY foxyproxy.importsettings.label2 "Import Settings">
 <!ENTITY foxyproxy.importsettings.accesskey "N">
 <!ENTITY foxyproxy.importsettings.tooltip "Nhập thiết lập từ một tập tin">
-<!ENTITY foxyproxy.exportsettings.label "Xuất thiết lập hiện tại">
+<!ENTITY foxyproxy.exportsettings.label2 "Export Current Settings">
 <!ENTITY foxyproxy.exportsettings.accesskey "X">
 <!ENTITY foxyproxy.exportsettings.tooltip "Xuất thiết lập hiện tại ra tập tin">
 <!ENTITY foxyproxy.importlist.label "Nhập danh sách proxy">
@@ -426,6 +426,9 @@
 <!ENTITY foxyproxy.url.label "url">
 <!ENTITY foxyproxy.lastupdate.label "Last Update">
 <!ENTITY foxyproxy.updatefrequency.label "Update Frequency">
+<!ENTITY foxyproxy.hosting.label1 "Thanks to ">
+<!ENTITY foxyproxy.ocs.label "OCS">
+<!ENTITY foxyproxy.hosting.label2 " for hosting FoxyProxy's website. If you need hosting, please consider OCS.">
 <!-- begin foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Thêm/Chỉnh sửa mẫu Địa chỉ IP Nội bộ">
 <!ENTITY foxyproxy.tempip.popup.label "Các mẫu tạm thời cho phép bạn tạo ra các mẫu cho những địa chỉ IP nội bộ mà bạn không dùng thường xuyên mà không làm bới tung danh sách mẫu địa chỉ IP của một proxy. Mẫu tạm thời không được lưu vào đĩa. Chúng chỉ được giữ trong bộ nhớ cho phiên duyệt web này mà thôi.">

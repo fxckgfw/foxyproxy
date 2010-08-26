@@ -274,10 +274,10 @@
 <!ENTITY foxyproxy.advancedmenus.label "Utiliser les menus avancés">
 <!ENTITY foxyproxy.advancedmenus.accesskey "M">
 <!ENTITY foxyproxy.advancedmenus.tooltip "Utiliser les menus avancés (style Foxyproxy 2.2)">
-<!ENTITY foxyproxy.importsettings.label "Importer des paramètres">
+<!ENTITY foxyproxy.importsettings.label2 "Importer des paramètres">
 <!ENTITY foxyproxy.importsettings.accesskey "I">
 <!ENTITY foxyproxy.importsettings.tooltip "Importe les paramètres contenus dans un fichier">
-<!ENTITY foxyproxy.exportsettings.label "Exporter les paramètres actuels">
+<!ENTITY foxyproxy.exportsettings.label2 "Exporter les paramètres courants">
 <!ENTITY foxyproxy.exportsettings.accesskey "E">
 <!ENTITY foxyproxy.exportsettings.tooltip "Exporte les paramètres actuels vers un fichier">
 <!ENTITY foxyproxy.importlist.label "Importer une liste de proxies">
@@ -426,6 +426,9 @@
 <!ENTITY foxyproxy.url.label "url">
 <!ENTITY foxyproxy.lastupdate.label "Dernière mise à jour">
 <!ENTITY foxyproxy.updatefrequency.label "Fréquence des mises à jour">
+<!ENTITY foxyproxy.hosting.label1 "Merci à">
+<!ENTITY foxyproxy.ocs.label "OCS">
+<!ENTITY foxyproxy.hosting.label2 "pour héberger le site Web de FoxyProxy. Si vous avez besoin d'un hébergement, veuillez prendre en considération OCS.">
 <!-- begin foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Ajouter / éditer un motif d&apos;adresse IP Locale">
 <!ENTITY foxyproxy.tempip.popup.label "Les motifs temporaires vous permettent de créer des motifs  que vous n&apos;utilisez pas souvent afin d&apos;éviter de surcharger la liste des motifs d&apos;adresse IP pour un proxy. Les motifs temporaires ne sont pas enregistrés sur le disque. Ils sont conservés en mémoire et ne sont utilisés que dans cette session Firefox.">

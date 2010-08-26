@@ -5,3 +5,4 @@
 <li>Version bumps; officially dropping support for Firefox 3.0.x -- I'll see if I can bring it back later. Previous FoxyProxy
 release actually doesn't work with Firefox 3.0 already due to the Firefox 4.0 porting efforts. Unfortunately, it wasn't
 labeled as such in install.rdf.</li>
+<li>Credit to OCS in the about box</li>

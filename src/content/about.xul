@@ -85,6 +85,14 @@
           </hbox>
           <separator />
           <hbox style="margin-left: 1em;">
+            <description style="width: 20em;">&foxyproxy.hosting.label1;
+              <text value="&foxyproxy.ocs.label;" class="text-link"
+                onclick="fpc.openAndReuseOneTabPerURL('http://www.ocssolutions.com/foxyproxy-hosting.php?src=addon');" />
+              &foxyproxy.hosting.label2;
+            </description>
+          </hbox>
+          <separator />
+          <hbox style="margin-left: 1em;">
             <label value="&foxyproxy.home;" class="text-link" onclick="fpc.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/');" tooltiptext="http://foxyproxy.mozdev.org" />
             <label value="&foxyproxy.support;" class="text-link" onclick="fpc.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/drupal');" tooltiptext="http://foxyproxy.mozdev.org/drupal" />
             <label value="&foxyproxy.credits;" class="text-link" onclick="fpc.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/credits.html');" tooltiptext="http://foxyproxy.mozdev.org/credits.html" />

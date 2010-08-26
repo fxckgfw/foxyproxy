@@ -274,10 +274,10 @@
 <!ENTITY foxyproxy.advancedmenus.label "ใช้เมนูขั้นสูง">
 <!ENTITY foxyproxy.advancedmenus.accesskey "ม">
 <!ENTITY foxyproxy.advancedmenus.tooltip "ใช้เมนูขั้นสูง (FoxyProxy 2.2-style)">
-<!ENTITY foxyproxy.importsettings.label "นำเข้าการตั้งค่า">
+<!ENTITY foxyproxy.importsettings.label2 "นำเข้าการตั้งค่า">
 <!ENTITY foxyproxy.importsettings.accesskey "น">
 <!ENTITY foxyproxy.importsettings.tooltip "นำเข้าการตั้งค่าจากแฟ้ม">
-<!ENTITY foxyproxy.exportsettings.label "ส่งออกการตั้งค่า">
+<!ENTITY foxyproxy.exportsettings.label2 "ส่งออกการตั้งค่าปัจจุบัน">
 <!ENTITY foxyproxy.exportsettings.accesskey "อ">
 <!ENTITY foxyproxy.exportsettings.tooltip "ส่งออกการตั้งค่าไปยังแฟ้ม">
 <!ENTITY foxyproxy.importlist.label "นำเข้ารายชื่อพร็อกซี">
@@ -426,6 +426,9 @@
 <!ENTITY foxyproxy.url.label "url">
 <!ENTITY foxyproxy.lastupdate.label "Last Update">
 <!ENTITY foxyproxy.updatefrequency.label "Update Frequency">
+<!ENTITY foxyproxy.hosting.label1 "ขอขอบคุณ">
+<!ENTITY foxyproxy.ocs.label "OCS">
+<!ENTITY foxyproxy.hosting.label2 "สำหรับการโฮสต์เว็บไซต์ FoxyProxy ถ้าคุณต้องการโฮสต์กรุณาติดต่อ OCS">
 <!-- begin foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Add/Edit Local IP Address Pattern">
 <!ENTITY foxyproxy.tempip.popup.label "Temporary patterns allow you to create patterns for local IP addresses that you don&apos;t use often without cluttering the IP address pattern list for a proxy. Temporary patterns are not saved to disk. They are kept in-memory and used for this Firefox session only.">

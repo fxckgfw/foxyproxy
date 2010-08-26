@@ -274,10 +274,10 @@
 <!ENTITY foxyproxy.advancedmenus.label "使用進階選單">
 <!ENTITY foxyproxy.advancedmenus.accesskey "M">
 <!ENTITY foxyproxy.advancedmenus.tooltip "使用進階選單（FoxyProxy 2.2 風格）">
-<!ENTITY foxyproxy.importsettings.label "匯入設定值">
+<!ENTITY foxyproxy.importsettings.label2 "Import Settings">
 <!ENTITY foxyproxy.importsettings.accesskey "I">
 <!ENTITY foxyproxy.importsettings.tooltip "由檔案匯入設定值">
-<!ENTITY foxyproxy.exportsettings.label "匯出設定值">
+<!ENTITY foxyproxy.exportsettings.label2 "Export Current Settings">
 <!ENTITY foxyproxy.exportsettings.accesskey "E">
 <!ENTITY foxyproxy.exportsettings.tooltip "將設定值匯出到檔案">
 <!ENTITY foxyproxy.importlist.label "匯入代理伺服器清單">
@@ -426,6 +426,9 @@
 <!ENTITY foxyproxy.url.label "網址">
 <!ENTITY foxyproxy.lastupdate.label "上一次更新">
 <!ENTITY foxyproxy.updatefrequency.label "更新頻率">
+<!ENTITY foxyproxy.hosting.label1 "Thanks to ">
+<!ENTITY foxyproxy.ocs.label "OCS">
+<!ENTITY foxyproxy.hosting.label2 " for hosting FoxyProxy's website. If you need hosting, please consider OCS.">
 <!-- begin foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "新增/編輯 本機 IP 位址樣式">
 <!ENTITY foxyproxy.tempip.popup.label "臨時性樣式讓你建立不常使用的本機 IP 位址樣式，這些樣式不會儲存到設定檔中造成樣式清單紊亂，而是保留在記憶體中，只在這次執行 Firefox 有效。">

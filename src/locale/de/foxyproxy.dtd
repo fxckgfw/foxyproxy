@@ -274,10 +274,10 @@
 <!ENTITY foxyproxy.advancedmenus.label "Verwende erweiterte Menüs">
 <!ENTITY foxyproxy.advancedmenus.accesskey "W">
 <!ENTITY foxyproxy.advancedmenus.tooltip "Verwende erweiterte Menüs (im Stil von FoxyProxy 2.2)">
-<!ENTITY foxyproxy.importsettings.label "Importiere Einstellungen">
+<!ENTITY foxyproxy.importsettings.label2 "Import Settings">
 <!ENTITY foxyproxy.importsettings.accesskey "I">
 <!ENTITY foxyproxy.importsettings.tooltip "Importiere Einstellungen aus Datei">
-<!ENTITY foxyproxy.exportsettings.label "Exportiere aktuelle Einstellungen">
+<!ENTITY foxyproxy.exportsettings.label2 "Export Current Settings">
 <!ENTITY foxyproxy.exportsettings.accesskey "E">
 <!ENTITY foxyproxy.exportsettings.tooltip "Exportiere aktuelle Einstellungen in eine Datei">
 <!ENTITY foxyproxy.importlist.label "Importiere Proxy-Liste">
@@ -426,6 +426,9 @@
 <!ENTITY foxyproxy.url.label "url">
 <!ENTITY foxyproxy.lastupdate.label "Last Update">
 <!ENTITY foxyproxy.updatefrequency.label "Update Frequency">
+<!ENTITY foxyproxy.hosting.label1 "Thanks to ">
+<!ENTITY foxyproxy.ocs.label "OCS">
+<!ENTITY foxyproxy.hosting.label2 " for hosting FoxyProxy's website. If you need hosting, please consider OCS.">
 <!-- begin foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Lokales IP-Adressmuster hinzufügen/ändern">
 <!ENTITY foxyproxy.tempip.popup.label "Temporäre Muster erlauben es Ihnen, Muster für selten genutzte lokale IP-Adressen zu erzeugen, ohne dass diese die Liste der IP-Adressmuster eines Proxies überladen. Temporäre Muster werden nicht auf Platte abgelegt. Sie werden im Speicher gehalten und nur für diese Firefox-Sitzung benutzt.">

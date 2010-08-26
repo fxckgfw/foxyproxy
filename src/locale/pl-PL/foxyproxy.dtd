@@ -274,10 +274,10 @@
 <!ENTITY foxyproxy.advancedmenus.label "Użyj zaawansowanych menu">
 <!ENTITY foxyproxy.advancedmenus.accesskey "H">
 <!ENTITY foxyproxy.advancedmenus.tooltip "Używa zaawansowanych menu (styl FoxyProxy 2.2)">
-<!ENTITY foxyproxy.importsettings.label "Importuj ustawienia">
+<!ENTITY foxyproxy.importsettings.label2 "Importuj ustawienia">
 <!ENTITY foxyproxy.importsettings.accesskey "I">
 <!ENTITY foxyproxy.importsettings.tooltip "Importuje ustawienia z pliku">
-<!ENTITY foxyproxy.exportsettings.label "Eksportuj ustawienia">
+<!ENTITY foxyproxy.exportsettings.label2 "Eksportuj aktualne ustawienia">
 <!ENTITY foxyproxy.exportsettings.accesskey "E">
 <!ENTITY foxyproxy.exportsettings.tooltip "Eksportuje ustawienia do pliku">
 <!ENTITY foxyproxy.importlist.label "Importuj listę proxy">
@@ -426,6 +426,9 @@
 <!ENTITY foxyproxy.url.label "url">
 <!ENTITY foxyproxy.lastupdate.label "Last Update">
 <!ENTITY foxyproxy.updatefrequency.label "Update Frequency">
+<!ENTITY foxyproxy.hosting.label1 "Podziękowania dla">
+<!ENTITY foxyproxy.ocs.label "OCS">
+<!ENTITY foxyproxy.hosting.label2 "za hosting witryny FoxyProxy. Jeśli potrzebujesz hostingu, rozważ OCS.">
 <!-- begin foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Dodaj/edytuj wzorzec lokalnego adresu IP">
 <!ENTITY foxyproxy.tempip.popup.label "Wzorce tymczasowe pozwalają na tworzenie wzorców lokalnego adresu IP nie używanych często. Dzięki temu lista wzorców nie jest niepotrzebnie przeładowywana. Wzorce tymczasowe nie są zapisywane na dysku. Są one trzymane w pamięci i używane tylko w aktualnej sesji Firefoksa.">

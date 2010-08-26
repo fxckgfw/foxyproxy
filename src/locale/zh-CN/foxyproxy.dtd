@@ -274,10 +274,10 @@
 <!ENTITY foxyproxy.advancedmenus.label "使用高级菜单">
 <!ENTITY foxyproxy.advancedmenus.accesskey "M">
 <!ENTITY foxyproxy.advancedmenus.tooltip "使用高级菜单(FoxyProxy 2.2 样式)">
-<!ENTITY foxyproxy.importsettings.label "导入设置">
+<!ENTITY foxyproxy.importsettings.label2 "导入设置">
 <!ENTITY foxyproxy.importsettings.accesskey "I">
 <!ENTITY foxyproxy.importsettings.tooltip "从文件导入设置">
-<!ENTITY foxyproxy.exportsettings.label "导出当前设置">
+<!ENTITY foxyproxy.exportsettings.label2 "导出当前设置">
 <!ENTITY foxyproxy.exportsettings.accesskey "E">
 <!ENTITY foxyproxy.exportsettings.tooltip "导出当前设置到文件">
 <!ENTITY foxyproxy.importlist.label "导入代理服务器列表">
@@ -415,17 +415,20 @@
 <!ENTITY foxyproxy.invalidcolor.label "无效颜色">
 <!ENTITY foxyproxy.validcolor.label "有效颜色">
 <!ENTITY foxyproxy.color.label "Color">
-<!ENTITY foxyproxy.server.subscriptions.label "Server Subscriptions">
-<!ENTITY foxyproxy.server.subscriptions.tooltip "Manage Server Subscriptions">
+<!ENTITY foxyproxy.server.subscriptions.label "服务器订阅">
+<!ENTITY foxyproxy.server.subscriptions.tooltip "管理服务器订阅">
 <!ENTITY foxyproxy.server.subscriptions.accesskey "S">
-<!ENTITY foxyproxy.pattern.subscriptions.label "Pattern Subscriptions">
-<!ENTITY foxyproxy.pattern.subscriptions.tooltip "Manage Pattern Subscriptions">
+<!ENTITY foxyproxy.pattern.subscriptions.label "模式订阅">
+<!ENTITY foxyproxy.pattern.subscriptions.tooltip "管理模式订阅">
 <!ENTITY foxyproxy.pattern.subscriptions.accesskey "S">
-<!ENTITY foxyproxy.name.label "Name">
-<!ENTITY foxyproxy.notes.label "Notes">
-<!ENTITY foxyproxy.url.label "url">
-<!ENTITY foxyproxy.lastupdate.label "Last Update">
-<!ENTITY foxyproxy.updatefrequency.label "Update Frequency">
+<!ENTITY foxyproxy.name.label "名字">
+<!ENTITY foxyproxy.notes.label "注释">
+<!ENTITY foxyproxy.url.label "网址">
+<!ENTITY foxyproxy.lastupdate.label "最近更新">
+<!ENTITY foxyproxy.updatefrequency.label "更新频率">
+<!ENTITY foxyproxy.hosting.label1 "感谢">
+<!ENTITY foxyproxy.ocs.label "OCS">
+<!ENTITY foxyproxy.hosting.label2 "为了存放 FoxyProxy 的网站。如果你需要存放，请联系 OCS。">
 <!-- begin foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "添加/编辑本地IP地址模式">
 <!ENTITY foxyproxy.tempip.popup.label "临时模式让你可以为不常用的本地IP地址建立模式，以免扰乱代理服务器的IP地址模式列表。临时模式不会保存到磁盘。他们只是保存在内存中供当前 Firefox 会话使用。">
@@ -455,15 +458,15 @@
 <!ENTITY foxyproxy.enteremail.label "输入邮件地址">
 <!ENTITY foxyproxy.licenseinfo.label "许可信息">
 <!ENTITY foxyproxy.licensevalid.label "许可有效。感谢订购 FoxyProxy Plus。">
-<!ENTITY foxyproxy.subexpired.label "License valid, but your update subscription expired. You are not receiving FoxyProxy Plus updates.">
+<!ENTITY foxyproxy.subexpired.label "许可有效，但是你的更新订阅已经过期。你接收不到 FoxyProxy Plus 的更新。">
 <!ENTITY foxyproxy.licenseinvalid.label "许可无效。你不会收到 FoxyProxyPlus 更新，请订购 FoxyProxy Plus。">
 <!ENTITY foxyproxy.buynow.label "现在购买">
 <!ENTITY foxyproxy.checklicense.label "检查许可">
 <!ENTITY foxyproxy.checkinglicense.label "正在检查...请稍候">
-<!ENTITY foxyproxy.yourversion.label "Your Version ">
-<!ENTITY foxyproxy.latestversion.label "Newest Version ">
-<!ENTITY foxyproxy.routetoleahscape.label.1 "Please make sure Firefox can reach">
-<!ENTITY foxyproxy.routetoleahscape.label.2 "either with or without a proxy. You can configure patterns for this URL in FoxyProxy Plus if necessary.">
+<!ENTITY foxyproxy.yourversion.label "你的版本">
+<!ENTITY foxyproxy.latestversion.label "最新版本">
+<!ENTITY foxyproxy.routetoleahscape.label.1 "请确认 Firefox 可以访问">
+<!ENTITY foxyproxy.routetoleahscape.label.2 "无论有没有代理服务器，如有必要，你都可以在 FoxyProxy Plus 中卫这个网址配置模式。">
 <!ENTITY foxyproxy.everything.label "每一个">
 <!ENTITY foxyproxy.nothing.label "无">
 <!ENTITY foxyproxy.ippatterndeletefinal.label "这是最后一个本地IP地址模式。如果你删除之，这个代理服务器就不会被使用。依然继续？">

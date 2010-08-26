@@ -1,4 +1,4 @@
-<!ENTITY help.title.foxyproxy.help "ФоксиПрокси помоћ">
+<!ENTITY help.title.foxyproxy.help "Помоћ за Фоксипрокси">
 <!ENTITY help.patterns "URL шаблони">
 <!ENTITY help.ff.asks "Before Firefox loads a URL, Firefox asks ФоксиПрокси if a proxy should be used.">
 <!ENTITY help.fp.answers "ФоксиПрокси answers this question by attempting to match the current URL with all of the URL patterns you define below. The simplest way to specify patterns is with wildcards.">

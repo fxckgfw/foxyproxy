@@ -274,10 +274,10 @@
 <!ENTITY foxyproxy.advancedmenus.label "Geavanceerde menu’s gebruiken">
 <!ENTITY foxyproxy.advancedmenus.accesskey "a">
 <!ENTITY foxyproxy.advancedmenus.tooltip "Geavanceerde menu’s gebruiken (FoxyProxy 2.2-stijl)">
-<!ENTITY foxyproxy.importsettings.label "Instellingen importeren">
+<!ENTITY foxyproxy.importsettings.label2 "Import Settings">
 <!ENTITY foxyproxy.importsettings.accesskey "I">
 <!ENTITY foxyproxy.importsettings.tooltip "Instellingen importeren uit een bestand">
-<!ENTITY foxyproxy.exportsettings.label "Huidige instellingen exporteren">
+<!ENTITY foxyproxy.exportsettings.label2 "Export Current Settings">
 <!ENTITY foxyproxy.exportsettings.accesskey "E">
 <!ENTITY foxyproxy.exportsettings.tooltip "Huidige instellingen naar een bestand exporteren">
 <!ENTITY foxyproxy.importlist.label "Lijst met proxy’s importeren">
@@ -426,6 +426,9 @@
 <!ENTITY foxyproxy.url.label "URL">
 <!ENTITY foxyproxy.lastupdate.label "Laatste update">
 <!ENTITY foxyproxy.updatefrequency.label "Update-interval">
+<!ENTITY foxyproxy.hosting.label1 "Thanks to ">
+<!ENTITY foxyproxy.ocs.label "OCS">
+<!ENTITY foxyproxy.hosting.label2 " for hosting FoxyProxy's website. If you need hosting, please consider OCS.">
 <!-- begin foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Lokaal IP-adrespatroon toevoegen/bewerken">
 <!ENTITY foxyproxy.tempip.popup.label "Met tijdelijke patronen kunt u patronen voor lokale IP-adressen  die u niet vaak gebruikt creëren zonder dat de IP-adressenpatroonlijst voor een proxy wordt vervuild. Tijdelijke patronen wordne niet opgeslagen. Ze worden alleen tijdens deze Firefoxsessie in het geheugen bewaard.">

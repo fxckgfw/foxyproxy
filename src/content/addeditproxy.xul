@@ -32,11 +32,11 @@
   <tabbox flex="1">
   	<tabs id="tabs" style="-moz-appearance: none;">
   		<tab id="foxyproxy-general-tab" label="&foxyproxy.tab.general.label;" accesskey="&foxyproxy.tab.general.accesskey;"
-  		  tooltiptext="&foxyproxy.tab.general.tooltip;" selected="true"/>
+  		  tooltiptext="&foxyproxy.tab.general.tooltip;" selected="true" class="uncram-tab"/>
   		<tab id="foxyproxy-proxydetails-tab"  label="&foxyproxy.tab.proxy.label;" accesskey="&foxyproxy.tab.proxy.accesskey;"
-  		  tooltiptext="&foxyproxy.tab.proxy.tooltip;"/>
+  		  tooltiptext="&foxyproxy.tab.proxy.tooltip;" class="uncram-tab"/>
   		<tab id="foxyproxy-urlpatterns-tab" label="&foxyproxy.urlpatterns.label;" accesskey="&foxyproxy.urlpatterns.accesskey;"
-  		  tooltiptext="&foxyproxy.urlpatterns.tooltip;" class="hide-if-foxyproxy-simple"/>
+  		  tooltiptext="&foxyproxy.urlpatterns.tooltip;" class="hide-if-foxyproxy-simple uncram-tab"/>
   	</tabs>
 
 	<tabpanels style="-moz-appearance: none;" flex="1">
@@ -204,12 +204,12 @@
       <description>&foxyproxy.pattern.description;</description>
       <separator class="thin"/>
       <hbox>
-        <button id="foxyproxy-add-url-pattern-button" command="addURLPatternCmd" flex="1"/>
-        <button id="foxyproxy-edit-url-pattern-button" command="editURLPatternSelectionCmd" flex="1"/>
-        <button id="foxyproxy-copy-url-pattern-button" command="copyURLPatternSelectionCmd" flex="1"/>
-        <button id="foxyproxy-delete-url-pattern-button" command="deleteURLPatternSelectionCmd" flex="1"/>
-        <button id="foxyproxy-help-url-pattern-button" command="helpURLPatternCmd" flex="1"/>
-				<button id="foxyproxy-wildcard-url-pattern-ref-button" command="wildcardURLPatternReferenceCmd" flex="1"/>
+        <button id="foxyproxy-add-url-pattern-button" command="addURLPatternCmd" flex="1" class="uncram-btn"/>
+        <button id="foxyproxy-edit-url-pattern-button" command="editURLPatternSelectionCmd" flex="1" class="uncram-btn"/>
+        <button id="foxyproxy-copy-url-pattern-button" command="copyURLPatternSelectionCmd" flex="1" class="uncram-btn"/>
+        <button id="foxyproxy-delete-url-pattern-button" command="deleteURLPatternSelectionCmd" flex="1" class="uncram-btn"/>
+        <button id="foxyproxy-help-url-pattern-button" command="helpURLPatternCmd" flex="1" class="uncram-btn"/>
+		    <button id="foxyproxy-wildcard-url-pattern-ref-button" command="wildcardURLPatternReferenceCmd" flex="1" class="uncram-btn"/>
       </hbox>
       <separator class="thin"/>
       <hbox flex="1">
@@ -239,12 +239,12 @@
   <description>&foxyproxy.pattern.description;</description>
   <separator class="thin"/>
   <hbox>
-    <button command="addURLPatternCmd" flex="1"/>
-    <button command="editURLPatternSelectionCmd" flex="1"/>
-    <button command="copyURLPatternSelectionCmd" flex="1"/>
-    <button command="deleteURLPatternSelectionCmd" flex="1"/>
-    <button command="helpURLPatternCmd" flex="1"/>
-		<button id="foxyproxy-wildcard-url-pattern-ref-button" command="wildcardURLPatternReferenceCmd" flex="1"/>
+    <button id="fpaupb" command="addURLPatternCmd" flex="1" class="uncram-btn"/>
+    <button id="fpeupb" command="editURLPatternSelectionCmd" flex="1" class="uncram-btn"/>
+    <button id="fpcupb" command="copyURLPatternSelectionCmd" flex="1" class="uncram-btn"/>
+    <button id="fpdupb" command="deleteURLPatternSelectionCmd" flex="1" class="uncram-btn"/>
+    <button id="fphupb" command="helpURLPatternCmd" flex="1" class="uncram-btn"/>
+	<button id="fpwupb" command="wildcardURLPatternReferenceCmd" flex="1" class="uncram-btn"/>
   </hbox>
   <separator/>
   <hbox flex="1">

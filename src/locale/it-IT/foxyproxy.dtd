@@ -274,10 +274,10 @@
 <!ENTITY foxyproxy.advancedmenus.label "Utilizza menu avanzati">
 <!ENTITY foxyproxy.advancedmenus.accesskey "M">
 <!ENTITY foxyproxy.advancedmenus.tooltip "Verranno utilizzati i menu avanzati (stile di FoxyProxy 2.2)">
-<!ENTITY foxyproxy.importsettings.label "Importa impostazioni">
+<!ENTITY foxyproxy.importsettings.label2 "Importa impostazioni…">
 <!ENTITY foxyproxy.importsettings.accesskey "I">
 <!ENTITY foxyproxy.importsettings.tooltip "Importa le impostazioni da un file">
-<!ENTITY foxyproxy.exportsettings.label "Esporta impostazioni">
+<!ENTITY foxyproxy.exportsettings.label2 "Esporta impostazioni…">
 <!ENTITY foxyproxy.exportsettings.accesskey "E">
 <!ENTITY foxyproxy.exportsettings.tooltip "Esporta le impostazioni attuali in un file">
 <!ENTITY foxyproxy.importlist.label "Importa lista di proxy">
@@ -426,6 +426,9 @@
 <!ENTITY foxyproxy.url.label "URL">
 <!ENTITY foxyproxy.lastupdate.label "Ultimo aggiornamento">
 <!ENTITY foxyproxy.updatefrequency.label "Frequenza aggiornamento">
+<!ENTITY foxyproxy.hosting.label1 "Ringraziamenti a ">
+<!ENTITY foxyproxy.ocs.label "OCS">
+<!ENTITY foxyproxy.hosting.label2 " per la fornitura di spazio web per il sito di FoxyProxy">
 <!-- begin foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Aggiunta/modifica di modelli di indirizzi IP locali">
 <!ENTITY foxyproxy.tempip.popup.label "I modelli temporanei permettono di creare modelli di indirizzi IP locali che non vengono utilizzati spesso, senza interessare le liste di modelli di indirizzi IP dei proxy. Tali modelli non vengono salvati sul disco rigido, ma mantenuti in memoria ed eliminati alla chiusura della sessione di Firefox">

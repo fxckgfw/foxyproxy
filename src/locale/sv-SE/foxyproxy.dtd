@@ -274,10 +274,10 @@
 <!ENTITY foxyproxy.advancedmenus.label "Använd avancerad meny">
 <!ENTITY foxyproxy.advancedmenus.accesskey "c">
 <!ENTITY foxyproxy.advancedmenus.tooltip "Använd avancerad meny (FoxyProxy 2.2-stil)">
-<!ENTITY foxyproxy.importsettings.label "Importera inställningar">
+<!ENTITY foxyproxy.importsettings.label2 "Import Settings">
 <!ENTITY foxyproxy.importsettings.accesskey "I">
 <!ENTITY foxyproxy.importsettings.tooltip "Importera inställningar från en fil">
-<!ENTITY foxyproxy.exportsettings.label "Exportera aktuella inställningar">
+<!ENTITY foxyproxy.exportsettings.label2 "Export Current Settings">
 <!ENTITY foxyproxy.exportsettings.accesskey "E">
 <!ENTITY foxyproxy.exportsettings.tooltip "Exporterar aktuella inställningar till en fil">
 <!ENTITY foxyproxy.importlist.label "Importera en proxylista">
@@ -426,6 +426,9 @@
 <!ENTITY foxyproxy.url.label "url">
 <!ENTITY foxyproxy.lastupdate.label "Last Update">
 <!ENTITY foxyproxy.updatefrequency.label "Update Frequency">
+<!ENTITY foxyproxy.hosting.label1 "Thanks to ">
+<!ENTITY foxyproxy.ocs.label "OCS">
+<!ENTITY foxyproxy.hosting.label2 " for hosting FoxyProxy's website. If you need hosting, please consider OCS.">
 <!-- begin foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Lägg till/Redigera lokala IP-adressmönster">
 <!ENTITY foxyproxy.tempip.popup.label "Temporära mönster gör att du kan skapa mönster för lokala IP-adresser som du inte använder så ofta. Temporära mönster sparas inte till disk utan behålls bara i minnet så länge Firefox är igång.">

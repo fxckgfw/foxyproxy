@@ -16,6 +16,7 @@ locale  foxyproxy hr-HR chrome/locale/hr-HR/
 locale  foxyproxy hu-HU chrome/locale/hu-HU/
 locale  foxyproxy it-IT chrome/locale/it-IT/
 locale  foxyproxy ja-JP chrome/locale/ja-JP/
+locale  foxyproxy lv-LV chrome/locale/lv-LV/
 locale  foxyproxy nl chrome/locale/nl/
 locale  foxyproxy pl-PL chrome/locale/pl-PL/
 locale  foxyproxy pt-BR chrome/locale/pt-BR/
@@ -89,3 +90,6 @@ style chrome://global/content/customizeToolbar.xul chrome://foxyproxy/content/fo
 skin    foxyproxy classic/1.0 chrome/skin/
 overlay chrome://navigator/content/navigator.xul  chrome://foxyproxy/content/firefoxOverlay.xul application={92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}
 style chrome://global/content/customizeToolbar.xul  chrome://foxyproxy/content/foxyproxy.css application={92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}
+
+#overrides by OS
+style chrome://foxyproxy/content/options.xul chrome://foxyproxy/content/foxyproxy-win.css os=WINNT

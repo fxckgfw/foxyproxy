@@ -1,2 +1,7 @@
-* Firefox 4 compatibility
-* Changed default proxy color from #65BAD7 to #0055E5
+<li>Added import/export of settings - requested <a href="http://foxyproxy.mozdev.org/drupal/content/exportingimporting-settings-another-file">here</a></li>
+<li>Removed extraneous stdout messages that got included in 2.21.3 (or so)</li>
+<li>Fixed spacing issue on Windows whereby images in buttons and tabs were crammed too close to their button/tab text</li>
+<li>Locale updates</li>
+<li>Version bumps; officially dropping support for Firefox 3.0.x -- I'll see if I can bring it back later. Previous FoxyProxy
+release actually doesn't work with Firefox 3.0 already due to the Firefox 4.0 porting efforts. Unfortunately, it wasn't
+labeled as such in install.rdf.</li>

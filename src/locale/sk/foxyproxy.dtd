@@ -274,10 +274,10 @@
 <!ENTITY foxyproxy.advancedmenus.label "Použiť rozšírené ponuky">
 <!ENTITY foxyproxy.advancedmenus.accesskey "p">
 <!ENTITY foxyproxy.advancedmenus.tooltip "Použije rozšírené ponuky (štýl FoxyProxy 2.2)">
-<!ENTITY foxyproxy.importsettings.label "Importovať nastavenia">
+<!ENTITY foxyproxy.importsettings.label2 "Import Settings">
 <!ENTITY foxyproxy.importsettings.accesskey "I">
 <!ENTITY foxyproxy.importsettings.tooltip "Importovať nastavenia zo súboru">
-<!ENTITY foxyproxy.exportsettings.label "Exportovať aktuálne nastavenia">
+<!ENTITY foxyproxy.exportsettings.label2 "Export Current Settings">
 <!ENTITY foxyproxy.exportsettings.accesskey "E">
 <!ENTITY foxyproxy.exportsettings.tooltip "Exportovať aktuálne nastavenia do súboru">
 <!ENTITY foxyproxy.importlist.label "Importovať zoznam proxy serverov">
@@ -426,6 +426,9 @@
 <!ENTITY foxyproxy.url.label "url">
 <!ENTITY foxyproxy.lastupdate.label "Last Update">
 <!ENTITY foxyproxy.updatefrequency.label "Update Frequency">
+<!ENTITY foxyproxy.hosting.label1 "Thanks to ">
+<!ENTITY foxyproxy.ocs.label "OCS">
+<!ENTITY foxyproxy.hosting.label2 " for hosting FoxyProxy's website. If you need hosting, please consider OCS.">
 <!-- begin foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Add/Edit Local IP Address Pattern">
 <!ENTITY foxyproxy.tempip.popup.label "Temporary patterns allow you to create patterns for local IP addresses that you don't use often without cluttering the IP address pattern list for a proxy. Temporary patterns are not saved to disk. They are kept in-memory and used for this Firefox session only.">

@@ -138,22 +138,22 @@ tab[id^="foxyproxy-"] /* selectall tabs whose id have the prefix "foxyproxy-" */
 /* end tab icons */
 
 /* begin addedit.xul button icons */
-#foxyproxy-add-url-pattern-button {
+#foxyproxy-add-url-pattern-button,#fpaupb {
   list-style-image: url("chrome://foxyproxy/content/images/page_add.png");
 }
-#foxyproxy-edit-url-pattern-button {
+#foxyproxy-edit-url-pattern-button,#fpeupb {
   list-style-image: url("chrome://foxyproxy/content/images/page_edit.png");
 }
-#foxyproxy-copy-url-pattern-button {
+#foxyproxy-copy-url-pattern-button,#fpcupb {
   list-style-image: url("chrome://foxyproxy/content/images/page_copy.png");
 }
-#foxyproxy-delete-url-pattern-button {
+#foxyproxy-delete-url-pattern-button,#fpdupb {
   list-style-image: url("chrome://foxyproxy/content/images/page_delete.png");
 }
-#foxyproxy-help-url-pattern-button {
+#foxyproxy-help-url-pattern-button,#fphupb {
   list-style-image: url("chrome://foxyproxy/content/images/help-browser.png");
 }
-#foxyproxy-wildcard-url-pattern-ref-button {
+#foxyproxy-wildcard-url-pattern-ref-button,#fpwupb {
   list-style-image: url("chrome://foxyproxy/content/images/dialog-information.png");
 }
 /* end addedit.xul button button icons */

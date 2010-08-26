@@ -184,17 +184,29 @@ foxyproxy.prototype = {
   loadSettings : function() {    
     this.migrateSettingsURI();
     var f = this.getSettingsURI(CI.nsIFile);
-    dump("FoxyProxy settingsDir: " + f.path + "\n");    
-    var s = CC["@mozilla.org/network/file-input-stream;1"].createInstance(CI.nsIFileInputStream);
-    s.init(f, -1, -1, CI.nsIFileInputStream.CLOSE_ON_EOF);
-    var p = CC["@mozilla.org/xmlextras/domparser;1"].createInstance(CI.nsIDOMParser);
-    var doc = p.parseFromStream(s, null, f.fileSize, "text/xml");
-    if (!doc || doc.documentElement.nodeName == "parsererror") {
+    dump("FoxyProxy settingsDir: " + f.path + "\n");
+    var doc = this.parseValidateSettings(f);
+    if (!doc) {
       this.alert(null, this.getMessage("settings.error.2", [f.path, f.path]));
       this.writeSettings(f);
     }
     else
       this.fromDOM(doc, doc.documentElement);
+  },
+
+  /* Parsing and very basic validation that the settings file is legit. TODO: we could create an XSD for complete validation */
+  parseValidateSettings : function(f) {
+    try {
+      var s = CC["@mozilla.org/network/file-input-stream;1"].createInstance(CI.nsIFileInputStream);
+      s.init(f, -1, -1, CI.nsIFileInputStream.CLOSE_ON_EOF);
+      var p = CC["@mozilla.org/xmlextras/domparser;1"].createInstance(CI.nsIDOMParser),
+        doc = p.parseFromStream(s, null, f.fileSize, "text/xml");
+      return doc && doc.documentElement.nodeName == "foxyproxy" /* checks for parsererror nodeName; i.e. malformed XML */ ?
+        doc : null;
+    }
+    catch (e) {
+      dump("FoxyProxy parsing/validation error: " + e + "\n");
+    }
   },
   
   get mode() { return this._mode; },
@@ -364,8 +376,8 @@ foxyproxy.prototype = {
     var file = this.transformer(o, CI.nsIFile);
     // Does it exist?
     if (!file.exists())
-      this.writeSettings(file);  
-    return this.transformer(o, type);
+      this.writeSettings(file);
+    return (typeof(type) == "object" && "equals" in type && type.equals(CI.nsIFile)) ? file : this.transformer(o, type);
   },
 
   setSettingsURI : function(o) {
@@ -440,8 +452,8 @@ foxyproxy.prototype = {
       case CI.nsIFile:
         switch(typeof(o)) {
           case "string":
-      if (o.indexOf("://" > -1)) return handler.getFileFromURLSpec(o);
-            return this.createFile(o).path;
+            if (o.indexOf("://" > -1)) return handler.getFileFromURLSpec(o);
+              return this.createFile(o).path;
           case "object":
             if (o instanceof CI.nsIFile) return o;
             if (o instanceof CI.nsIURI) return handler.getFileFromURLSpec(o.spec);
@@ -459,7 +471,6 @@ foxyproxy.prototype = {
             return null; // unknown type
         }
     }
-
   },
 
   // Create nsIFile from a string
@@ -732,20 +743,14 @@ foxyproxy.prototype = {
     restoreOriginals : function(contObserving) {
       var p = gFP.getPrefsService("network.dns.");
       this.uninit(); // stop observing the prefs while we change them
-      if (this.origPrefetch == this.TRUE) {
-        dump("setting disablePrefetch to true\n");
+      if (this.origPrefetch == this.TRUE)
         p.setBoolPref("disablePrefetch", true);
-      }
-      else if (this.origPrefetch == this.FALSE) {
-        dump("setting disablePrefetch to false\n");
+      else if (this.origPrefetch == this.FALSE)
         p.setBoolPref("disablePrefetch", false);
-      }
       else if (this.origPrefetch == this.CLEARED) {
         try {
-          if (p.prefHasUserValue("disablePrefetch")) {
-            dump("clearing disablePrefetch\n");
+          if (p.prefHasUserValue("disablePrefetch"))
             p.clearUserPref("disablePrefetch");
-          }
         }
         catch (e) { /* i don't think this is necessary since p.prefHasUserValue() is called before clearing */
           dumpp(e);

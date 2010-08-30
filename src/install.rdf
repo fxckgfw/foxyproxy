@@ -2,7 +2,7 @@
 <!--
   FoxyProxy
   Copyright (C) 2006-#%#% Eric H. Jung and LeahScape, Inc.
-  http://foxyproxy.mozdev.org/
+  http://getfoxyproxy.org/
   eric.jung@yahoo.com
   
   This source code is released under the GPL license,
@@ -17,16 +17,16 @@
 <!-- begin-foxyproxy-standard -->
         <em:id>foxyproxy@eric.h.jung</em:id>
         <em:name>FoxyProxy Standard</em:name>
-        <em:version>2.22</em:version>
+        <em:version>2.22.1</em:version>
 <!-- end-foxyproxy-standard -->
 <!-- begin-foxyproxy-simple
         <em:id>foxyproxy-basic@eric.h.jung</em:id>
         <em:name>FoxyProxy Basic</em:name>
-        <em:version>1.8</em:version>
+        <em:version>1.8.1</em:version>
 end-foxyproxy-simple -->
         <em:creator>LeahScape, Inc.</em:creator>
         <em:description>Premier proxy management for Firefox</em:description>
-        <em:homepageURL>http://foxyproxy.mozdev.org</em:homepageURL>
+        <em:homepageURL>http://getfoxyproxy.org</em:homepageURL>
         <em:aboutURL>chrome://foxyproxy/content/about.xul</em:aboutURL>
         <em:optionsURL>chrome://foxyproxy/content/options.xul</em:optionsURL>
         <em:iconURL>chrome://foxyproxy/content/images/foxyproxy-nocopy.gif</em:iconURL>

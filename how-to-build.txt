@@ -17,9 +17,14 @@ PATH variable and exporting the ANT_HOME environment variable. If you use
 Eclipse IDE, you neither have to download the JDK nor setup ant environment
 variables.
 
+You also need ant-optional JARs. For debian-based linux distributions,
+see http://packages.debian.org/lenny/ant-optional. Alternatively, just add
+ant-nodeps.jar to your CLASSPATH environment vairable.
+
 The ant build script is src/build.xml. The default target, named "build",
 builds the XPI in the directory ../targets.
 If you want to change this directory, change the value of the target-path
 property.Note that forward slashes are platform-independent in ant scripts;
 they work on both windows and *nix -- providing you have appropriate
 permissions on them.
+

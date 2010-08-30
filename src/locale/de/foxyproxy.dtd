@@ -274,10 +274,10 @@
 <!ENTITY foxyproxy.advancedmenus.label "Verwende erweiterte Menüs">
 <!ENTITY foxyproxy.advancedmenus.accesskey "W">
 <!ENTITY foxyproxy.advancedmenus.tooltip "Verwende erweiterte Menüs (im Stil von FoxyProxy 2.2)">
-<!ENTITY foxyproxy.importsettings.label2 "Import Settings">
+<!ENTITY foxyproxy.importsettings.label2 "Importiere Einstellungen">
 <!ENTITY foxyproxy.importsettings.accesskey "I">
 <!ENTITY foxyproxy.importsettings.tooltip "Importiere Einstellungen aus Datei">
-<!ENTITY foxyproxy.exportsettings.label2 "Export Current Settings">
+<!ENTITY foxyproxy.exportsettings.label2 "Exportiere aktuelle Einstellungen">
 <!ENTITY foxyproxy.exportsettings.accesskey "E">
 <!ENTITY foxyproxy.exportsettings.tooltip "Exportiere aktuelle Einstellungen in eine Datei">
 <!ENTITY foxyproxy.importlist.label "Importiere Proxy-Liste">
@@ -414,21 +414,21 @@
 <!ENTITY foxyproxy.aboutproxyservice.label "Die &quot;Proxy Service&quot; Schaltfläche schließlich leitet Sie auf die Proxy Service Website weiter, auf der Sie einen zuverlässigen Proxy-Dienst mit hoher Bandbreite in vielen verschiedenen Ländern zu einem günstigen Preis erwerben können.">
 <!ENTITY foxyproxy.invalidcolor.label "Ungültige Farbe">
 <!ENTITY foxyproxy.validcolor.label "Gültige Farbe">
-<!ENTITY foxyproxy.color.label "Color">
-<!ENTITY foxyproxy.server.subscriptions.label "Server Subscriptions">
-<!ENTITY foxyproxy.server.subscriptions.tooltip "Manage Server Subscriptions">
-<!ENTITY foxyproxy.server.subscriptions.accesskey "S">
-<!ENTITY foxyproxy.pattern.subscriptions.label "Pattern Subscriptions">
-<!ENTITY foxyproxy.pattern.subscriptions.tooltip "Manage Pattern Subscriptions">
-<!ENTITY foxyproxy.pattern.subscriptions.accesskey "S">
+<!ENTITY foxyproxy.color.label "Farbe">
+<!ENTITY foxyproxy.server.subscriptions.label "Server-Abonnements">
+<!ENTITY foxyproxy.server.subscriptions.tooltip "Server-Abonnements verwalten">
+<!ENTITY foxyproxy.server.subscriptions.accesskey "A">
+<!ENTITY foxyproxy.pattern.subscriptions.label "Muster-Abonnements">
+<!ENTITY foxyproxy.pattern.subscriptions.tooltip "Muster-Abonnements verwalten">
+<!ENTITY foxyproxy.pattern.subscriptions.accesskey "A">
 <!ENTITY foxyproxy.name.label "Name">
-<!ENTITY foxyproxy.notes.label "Notes">
+<!ENTITY foxyproxy.notes.label "Notizen">
 <!ENTITY foxyproxy.url.label "url">
-<!ENTITY foxyproxy.lastupdate.label "Last Update">
-<!ENTITY foxyproxy.updatefrequency.label "Update Frequency">
-<!ENTITY foxyproxy.hosting.label1 "Thanks to ">
+<!ENTITY foxyproxy.lastupdate.label "Letzte Aktualisierung">
+<!ENTITY foxyproxy.updatefrequency.label "Aktualisierungshäufigkeit">
+<!ENTITY foxyproxy.hosting.label1 "Danke an">
 <!ENTITY foxyproxy.ocs.label "OCS">
-<!ENTITY foxyproxy.hosting.label2 " for hosting FoxyProxy's website. If you need hosting, please consider OCS.">
+<!ENTITY foxyproxy.hosting.label2 "für das Hosten der FoxyProxy Website. Bitte berücksichtigen Sie OCS bei der Auswahl ihres Hosters.">
 <!-- begin foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Lokales IP-Adressmuster hinzufügen/ändern">
 <!ENTITY foxyproxy.tempip.popup.label "Temporäre Muster erlauben es Ihnen, Muster für selten genutzte lokale IP-Adressen zu erzeugen, ohne dass diese die Liste der IP-Adressmuster eines Proxies überladen. Temporäre Muster werden nicht auf Platte abgelegt. Sie werden im Speicher gehalten und nur für diese Firefox-Sitzung benutzt.">
@@ -458,15 +458,15 @@
 <!ENTITY foxyproxy.enteremail.label "EMail-Adresse eingeben">
 <!ENTITY foxyproxy.licenseinfo.label "Lizenzinformation">
 <!ENTITY foxyproxy.licensevalid.label "Lizenz ist gültig. Danke für den Kauf von FoxyProxy Plus.">
-<!ENTITY foxyproxy.subexpired.label "License valid, but your update subscription expired. You are not receiving FoxyProxy Plus updates.">
+<!ENTITY foxyproxy.subexpired.label "Lizenz ist gültig, aber Ihr Update-Abonnement ist abgelaufen. Sie erhalten keine neuen FoxyProxy Plus Updates mehr.">
 <!ENTITY foxyproxy.licenseinvalid.label "Lizenz ist ungültig. Sie werden keine Updates für FoxyProxy Plus erhalten. Bitte kaufen Sie FoxyProxy Plus.">
 <!ENTITY foxyproxy.buynow.label "Jetzt kaufen">
 <!ENTITY foxyproxy.checklicense.label "Lizenz überprüfen">
 <!ENTITY foxyproxy.checkinglicense.label "Überprüfung läuft...bitte warten">
-<!ENTITY foxyproxy.yourversion.label "Your Version ">
-<!ENTITY foxyproxy.latestversion.label "Newest Version ">
-<!ENTITY foxyproxy.routetoleahscape.label.1 "Please make sure Firefox can reach">
-<!ENTITY foxyproxy.routetoleahscape.label.2 "either with or without a proxy. You can configure patterns for this URL in FoxyProxy Plus if necessary.">
+<!ENTITY foxyproxy.yourversion.label "Ihre Version">
+<!ENTITY foxyproxy.latestversion.label "Neueste Version">
+<!ENTITY foxyproxy.routetoleahscape.label.1 "Bitte stellen Sie sicher, dass Firefox">
+<!ENTITY foxyproxy.routetoleahscape.label.2 "entweder mit oder ohne Proxy erreichen kann. Sie können Muster für diese URL falls nötig in FoxyProxy Plus konfigurieren.">
 <!ENTITY foxyproxy.everything.label "Alles">
 <!ENTITY foxyproxy.nothing.label "Nichts">
 <!ENTITY foxyproxy.ippatterndeletefinal.label "Dies ist das letzte lokale IP-Adressmuster. Falls Sie es löschen, kann dieser Proxy nicht verwendet werden. Dennoch fortsetzen?">

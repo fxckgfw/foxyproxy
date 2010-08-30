@@ -1,7 +1,7 @@
 /**
   FoxyProxy
   Copyright (C) 2006-#%#% Eric H. Jung and LeahScape, Inc.
-  http://foxyproxy.mozdev.org/
+  http://getfoxyproxy.org/
   eric.jung@yahoo.com
 
   This source code is released under the GPL license,
@@ -249,7 +249,7 @@ function onSettingsURLBtn() {
           return;
         case 2:
           // "more info" clicked
-          fpc.openAndReuseOneTabPerURL("http://foxyproxy.mozdev.org/settings.html");
+          fpc.openAndReuseOneTabPerURL("http://getfoxyproxy.org/settings.html");
           return;
       }
     }
@@ -448,7 +448,7 @@ function saveLog() {
 }
 
 function importSettings() {
-  var picker = importExportPrompt();
+  var picker = importExportPrompt(false);
   if (!picker) return;
   
   var f1 = CC["@mozilla.org/file/local;1"].createInstance(CI.nsILocalFile),
@@ -495,7 +495,7 @@ function importExportPrompt(isExport) {
 }
 
 function exportSettings() {
-  var picker = importExportPrompt();
+  var picker = importExportPrompt(true);
   if (!picker) return;
 
   var f2 = CC["@mozilla.org/file/local;1"].createInstance(CI.nsILocalFile),

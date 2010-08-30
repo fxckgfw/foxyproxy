@@ -274,10 +274,10 @@
 <!ENTITY foxyproxy.advancedmenus.label "Χρήση μενού για προχωρημένους">
 <!ENTITY foxyproxy.advancedmenus.accesskey "χ">
 <!ENTITY foxyproxy.advancedmenus.tooltip "Χρήση μενού για προχωρημένους (στο στυλ του FoxyProxy 2.2)">
-<!ENTITY foxyproxy.importsettings.label2 "Import Settings">
+<!ENTITY foxyproxy.importsettings.label2 "Εισαγωγή ρυθμίσεων">
 <!ENTITY foxyproxy.importsettings.accesskey "ι">
 <!ENTITY foxyproxy.importsettings.tooltip "Εισαγωγή ρυθμίσεων από αρχείο">
-<!ENTITY foxyproxy.exportsettings.label2 "Export Current Settings">
+<!ENTITY foxyproxy.exportsettings.label2 "Εξαγωγή τρεχουσών ρυθμίσεων">
 <!ENTITY foxyproxy.exportsettings.accesskey "ξ">
 <!ENTITY foxyproxy.exportsettings.tooltip "Εξαγωγή των ρυθμίσεων σε αρχείο">
 <!ENTITY foxyproxy.importlist.label "Εισαγωγή λίστας διαμεσολαβητών">
@@ -426,9 +426,9 @@
 <!ENTITY foxyproxy.url.label "url">
 <!ENTITY foxyproxy.lastupdate.label "Τελευταία ενημέρωση">
 <!ENTITY foxyproxy.updatefrequency.label "Συχνότητα ενημερώσεων">
-<!ENTITY foxyproxy.hosting.label1 "Thanks to ">
+<!ENTITY foxyproxy.hosting.label1 "Ευχαριστούμε την">
 <!ENTITY foxyproxy.ocs.label "OCS">
-<!ENTITY foxyproxy.hosting.label2 " for hosting FoxyProxy's website. If you need hosting, please consider OCS.">
+<!ENTITY foxyproxy.hosting.label2 "για την φιλοξενία του ιστότοπου του FoxyProxy. Αν ψάχνετε για το που θα ανεβάσετε τις σελίδες σας, έχετε την OCS υπόψιν.">
 <!-- begin foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Προσθήκη/επεξεργασία τοπικού πρότυπου διεύθυνσης IP">
 <!ENTITY foxyproxy.tempip.popup.label "Τα προσωρινά πρότυπα σας επιτρέπουν να δημιουργήσετε τοπικά πρότυπα για διευθύνσεις IP που δεν χρησιμοποιείτε συχνά, χωρίς να αυξάνετε την πολυπλοκότητα της λίστας πρότυπων κάποιου διαμεσολαβητή. Τα προσωρινά πρότυπα δεν αποθηκεύονται στο δίσκο, διατηρούνται μόνο στη μνήμη και χρησιμοποιούνται για την τρέχουσα συνεδρία του Firefox.">

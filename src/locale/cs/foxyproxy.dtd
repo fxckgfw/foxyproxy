@@ -478,4 +478,16 @@
 <!ENTITY foxyproxy.proxydomain.label "Doména (volitelné - pouze NTLM)">
 <!ENTITY foxyproxy.proxydomain.tooltip "Pouze NTLM autentizace">
 <!ENTITY foxyproxy.proxy.passwords.nomatch.label "Hesla k proxy se neshodují; prosím zadejte je znova.">
+<!ENTITY foxyproxy.traininglogging.label "Training &amp; Logging">
+<!ENTITY foxyproxy.traininglogging.tooltip "Manage Training &amp; Logging Settings">
+<!ENTITY foxyproxy.traininglogging.accesskey "L">
+<!ENTITY foxyproxy.training.start "Start Training">
+<!ENTITY foxyproxy.training.stop "Stop Training">
+<!ENTITY foxyproxy.patternsforall.label "Create Patterns for All">
+<!ENTITY foxyproxy.patternsforall.accesskey "A">
+<!ENTITY foxyproxy.patternsforall.tooltip "Create Patterns for All URLs">
+<!ENTITY foxyproxy.patternsforselected.label "Create Patterns for Selected">
+<!ENTITY foxyproxy.patternsforselected.accesskey "S">
+<!ENTITY foxyproxy.patternsforselected.tooltip "Create Patterns for Selected URLs">
+<!ENTITY foxyproxy.patterntoadd.label "Pattern to Add">
 <!-- end foxyproxyplus -->

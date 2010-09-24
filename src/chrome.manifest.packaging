@@ -18,7 +18,7 @@ locale  foxyproxy it-IT chrome/locale/it-IT/
 locale  foxyproxy ja-JP chrome/locale/ja-JP/
 locale  foxyproxy lv-LV chrome/locale/lv-LV/
 locale  foxyproxy nl chrome/locale/nl/
-locale  foxyproxy pl-PL chrome/locale/pl-PL/
+locale  foxyproxy pl chrome/locale/pl/
 locale  foxyproxy pt-BR chrome/locale/pt-BR/
 locale  foxyproxy pt-PT chrome/locale/pt-PT/
 locale  foxyproxy ru-RU chrome/locale/ru-RU/

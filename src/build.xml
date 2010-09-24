@@ -44,7 +44,7 @@
       <fileset dir="${temp-path}" includes="**/**"/>
     </replaceregexp>
     <zip destfile="${target-path}/foxyproxy-${edition}-${version}.xpi">
-      <fileset dir="${temp-path}" includes="chrome.manifest install.rdf install.js LICENSE chrome/" />
+      <fileset dir="${temp-path}" includes="chrome.manifest install.rdf LICENSE chrome/" />
       <zipfileset dir="${temp-path}" prefix="chrome" includes="content/**"/>
       <zipfileset dir="${temp-path}" prefix="chrome" includes="skin/**"/>
       <zipfileset dir="${temp-path}" prefix="chrome" includes="locale/**"/>
@@ -68,7 +68,7 @@
 
   <target name="build-foxyproxy-standard" depends="init">
     <property name="edition" value="standard" />
-    <property name="version" value="2.22.1" />
+    <property name="version" value="2.23" />
     <property name="src-path" value="${temp-path}"/>
     <antcall>
       <target name="copy"/>

@@ -1,2 +1,1 @@
-Fixed import/export settings dialog--previously it always said "import" even when doing an export
-Updated build instructions 
+* Removed hyperlink around Jesper Hansen's name in the About window since his website appears to be gone

@@ -478,4 +478,16 @@
 <!ENTITY foxyproxy.proxydomain.label "網域（非必要的 - 只用於 NTLM）">
 <!ENTITY foxyproxy.proxydomain.tooltip "只用於 NTLM 認證">
 <!ENTITY foxyproxy.proxy.passwords.nomatch.label "代理伺服器密碼錯誤，請重新輸入">
+<!ENTITY foxyproxy.traininglogging.label "Training &amp; Logging">
+<!ENTITY foxyproxy.traininglogging.tooltip "Manage Training &amp; Logging Settings">
+<!ENTITY foxyproxy.traininglogging.accesskey "L">
+<!ENTITY foxyproxy.training.start "Start Training">
+<!ENTITY foxyproxy.training.stop "Stop Training">
+<!ENTITY foxyproxy.patternsforall.label "Create Patterns for All">
+<!ENTITY foxyproxy.patternsforall.accesskey "A">
+<!ENTITY foxyproxy.patternsforall.tooltip "Create Patterns for All URLs">
+<!ENTITY foxyproxy.patternsforselected.label "Create Patterns for Selected">
+<!ENTITY foxyproxy.patternsforselected.accesskey "S">
+<!ENTITY foxyproxy.patternsforselected.tooltip "Create Patterns for Selected URLs">
+<!ENTITY foxyproxy.patterntoadd.label "Pattern to Add">
 <!-- end foxyproxyplus -->

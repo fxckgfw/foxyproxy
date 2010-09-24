@@ -71,7 +71,7 @@
           </hbox>
           <hbox style="margin-left: 1em;">
             <label value="&foxyproxy.contributionsBy;" />
-            <label value="Jesper Staun Hansen" class="text-link" onclick="fpc.openAndReuseOneTabPerURL('http://staunhansen.dk/');" tooltiptext="http://staunhansen.dk/" />
+            <label value="Jesper Staun Hansen"/>
           </hbox>
           <hbox style="margin-left: 1em;">
             <label value="&foxyproxy.copyright; 2006-2010 LeahScape, Inc." />

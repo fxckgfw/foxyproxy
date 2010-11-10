@@ -1479,7 +1479,7 @@ foxyproxy.prototype = {
   // /////////////// statusbar \\\\\\\\\\\\\\\\\\\\\
   statusbar : {
     _iconEnabled : true,
-    _textEnabled : true,
+    _textEnabled : false,
     _leftClick : "options",
     _middleClick : "cycle",
     _rightClick : "contextmenu",

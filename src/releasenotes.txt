@@ -1,1 +1,2 @@
 * Removed hyperlink around Jesper Hansen's name in the About window since his website appears to be gone
+* Fix for windows tools menu indent problem - thanks Nils Maier!

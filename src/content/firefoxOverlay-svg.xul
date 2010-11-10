@@ -91,9 +91,8 @@
   <label value="&foxyproxy.standard.label;"/>
  </hbox>
  
-  <hbox id="foxyproxy-toolsmenu-icon" svg="true">
-  <hbox flex="1" key="key_foxyproxyfocus">
-    <svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="16" height="16" key="key_foxyproxyfocus">
+  <menu id="foxyproxyMenu" svg="true">
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="16" height="16">
      <defs />
      <g id="fp-toolsmenu-icon-wrapper">
       <path
@@ -116,9 +115,6 @@
        child="5" />
      </g>
     </svg>
-  </hbox>  
-  
-    <label value="&foxyproxy.standard.label;" accesskey="&foxyproxy.accesskey;" key="key_foxyproxyfocus"/>
- </hbox> 
+  </menu>  
 </overlay>
 

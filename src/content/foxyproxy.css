@@ -10,6 +10,11 @@
 **/
 @import url(chrome://global/skin/);
 
+menu.menu-iconic-foxyproxy {
+  -moz-binding: url(bindings.xml#menu-iconic-foxyproxy);
+}
+
+/* specificity fixes http://getfoxyproxy.org/drupal/content/empty-lines-auto-complete-input-typetextadress-bar */
 tree[id="urlsTree"], tree[id="torWizUrlsTree"], tree[id="proxyTree"], tree[id="logTree"]
   {min-height: 50px;}
 /*treechildren::-moz-tree-row(grey) {

@@ -1,2 +1,9 @@
 * Removed hyperlink around Jesper Hansen's name in the About window since his website appears to be gone
 * Fix for windows tools menu indent problem - thanks Nils Maier!
+* Changing statusbar info default. Previously, the statusbar by default displayed "FoxyProxy: <mode>"
+  then the FoxyProxy icon. Since, color-per-proxy was introduced, it doesn't make much sense to
+  keep "FoxyProxy: <mode>" there by default. Mode can be inferred from the icon color. Moreover,
+  many addons are trying to minimize their statusbar footprint these days. It makes sense to
+  remove this default option. You can restore it by clicking Ctrl+F2 then Global Settings tab->
+  Indicators->Show mode (text) on statusbar. This does not affect upgraded installations; only new
+  installations.

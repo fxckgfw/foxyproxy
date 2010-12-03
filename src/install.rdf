@@ -14,6 +14,7 @@
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
 
     <Description rdf:about="urn:mozilla:install-manifest">
+		<em:unpack>true</em:unpack>
 <!-- begin-foxyproxy-standard -->
         <em:id>foxyproxy@eric.h.jung</em:id>
         <em:name>FoxyProxy Standard</em:name>

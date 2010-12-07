@@ -1,10 +1,10 @@
 <!ENTITY help.title.foxyproxy.help "Помоћ за Фоксипрокси">
 <!ENTITY help.patterns "URL шаблони">
-<!ENTITY help.ff.asks "Before Firefox loads a URL, Firefox asks ФоксиПрокси if a proxy should be used.">
-<!ENTITY help.fp.answers "ФоксиПрокси answers this question by attempting to match the current URL with all of the URL patterns you define below. The simplest way to specify patterns is with wildcards.">
+<!ENTITY help.ff.asks "Пре него Фајерфокс учита URL, прво пита Фоксипроксија да ли треба користити прокси.">
+<!ENTITY help.fp.answers "Фоксипрокси одговара тако што покушава да пронађе подударање тренутног URL-а и задатог шаблона URL-а. Најједноставније је користити џокер знаке.">
 <!ENTITY help.a.wildcards "Џокер знаци">
-<!ENTITY help.p.wildcards.are "Wildcards are pervasive throughout computing; you've most likely seen them before. The asterisk (*) substitutes as a wildcard character for zero or more characters, and the question mark (?) substitutes as a wildcard character for any one character.">
-<!ENTITY help.p.regexp "More advanced matching rules are possible using regular expressions. For details, click the 'Help Contents' button.">
+<!ENTITY help.p.wildcards.are "Џокер знаци се често користе на рачунарима, па сте их, вероватно, већ видели. Звездица (*) замењује један или више џокер знакова, а упитник (?) замењује било који знак.">
+<!ENTITY help.p.regexp "Могуће је користити напредна правила коришћењем регуларних израза. За више детаља, притисните дугме „Помоћ”.">
 <!ENTITY help.h4.wildcard.examples "Примери џокер знакова">
 <!ENTITY help.th.url.pattern "URL шаблон">
 <!ENTITY help.th.some.matches "Нека поклапања">

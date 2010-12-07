@@ -478,16 +478,16 @@
 <!ENTITY foxyproxy.proxydomain.label "Domain (optional - NTLM only)">
 <!ENTITY foxyproxy.proxydomain.tooltip "NTLM authentication only">
 <!ENTITY foxyproxy.proxy.passwords.nomatch.label "Proxy passwords do not match; please re-enter.">
-<!ENTITY foxyproxy.traininglogging.label "Training &amp; Logging">
-<!ENTITY foxyproxy.traininglogging.tooltip "Manage Training &amp; Logging Settings">
-<!ENTITY foxyproxy.traininglogging.accesskey "L">
-<!ENTITY foxyproxy.training.start "Start Training">
-<!ENTITY foxyproxy.training.stop "Stop Training">
-<!ENTITY foxyproxy.patternsforall.label "Create Patterns for All">
-<!ENTITY foxyproxy.patternsforall.accesskey "A">
-<!ENTITY foxyproxy.patternsforall.tooltip "Create Patterns for All URLs">
-<!ENTITY foxyproxy.patternsforselected.label "Create Patterns for Selected">
-<!ENTITY foxyproxy.patternsforselected.accesskey "S">
-<!ENTITY foxyproxy.patternsforselected.tooltip "Create Patterns for Selected URLs">
-<!ENTITY foxyproxy.patterntoadd.label "Pattern to Add">
+<!ENTITY foxyproxy.traininglogging.label "Træning &amp; logning">
+<!ENTITY foxyproxy.traininglogging.tooltip "Rediger trænings- og logningsindstillinger">
+<!ENTITY foxyproxy.traininglogging.accesskey "l">
+<!ENTITY foxyproxy.training.start "Start træning">
+<!ENTITY foxyproxy.training.stop "Stop træning">
+<!ENTITY foxyproxy.patternsforall.label "Opret mønstre for alle">
+<!ENTITY foxyproxy.patternsforall.accesskey "a">
+<!ENTITY foxyproxy.patternsforall.tooltip "Opret mønstre for alle URLer">
+<!ENTITY foxyproxy.patternsforselected.label "Opret mønstre for valgte">
+<!ENTITY foxyproxy.patternsforselected.accesskey "v">
+<!ENTITY foxyproxy.patternsforselected.tooltip "Opret mønstre for valgte URLer">
+<!ENTITY foxyproxy.patterntoadd.label "Mønster der skal tilføjes">
 <!-- end foxyproxyplus -->

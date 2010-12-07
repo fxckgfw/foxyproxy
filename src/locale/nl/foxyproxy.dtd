@@ -478,16 +478,16 @@
 <!ENTITY foxyproxy.proxydomain.label "Domein (optioneel - uitsluitend NTLM)">
 <!ENTITY foxyproxy.proxydomain.tooltip "Alleen NTLM-authenticatie">
 <!ENTITY foxyproxy.proxy.passwords.nomatch.label "Proxywachtwoorden komen niet overeen; voer het a.u.b. opnieuw in">
-<!ENTITY foxyproxy.traininglogging.label "Training &amp; Logging">
-<!ENTITY foxyproxy.traininglogging.tooltip "Manage Training &amp; Logging Settings">
+<!ENTITY foxyproxy.traininglogging.label "Training &amp; loggen">
+<!ENTITY foxyproxy.traininglogging.tooltip "Instellingen Training &amp; loggen beheren">
 <!ENTITY foxyproxy.traininglogging.accesskey "L">
-<!ENTITY foxyproxy.training.start "Start Training">
-<!ENTITY foxyproxy.training.stop "Stop Training">
-<!ENTITY foxyproxy.patternsforall.label "Create Patterns for All">
+<!ENTITY foxyproxy.training.start "Training starten">
+<!ENTITY foxyproxy.training.stop "Training stoppen">
+<!ENTITY foxyproxy.patternsforall.label "Patronen voor alles maken">
 <!ENTITY foxyproxy.patternsforall.accesskey "A">
-<!ENTITY foxyproxy.patternsforall.tooltip "Create Patterns for All URLs">
-<!ENTITY foxyproxy.patternsforselected.label "Create Patterns for Selected">
+<!ENTITY foxyproxy.patternsforall.tooltip "Patronen voor alle URL’s maken">
+<!ENTITY foxyproxy.patternsforselected.label "Patronen voor selectie maken">
 <!ENTITY foxyproxy.patternsforselected.accesskey "S">
-<!ENTITY foxyproxy.patternsforselected.tooltip "Create Patterns for Selected URLs">
-<!ENTITY foxyproxy.patterntoadd.label "Pattern to Add">
+<!ENTITY foxyproxy.patternsforselected.tooltip "Patronen voor geselecteerde URL’s maken">
+<!ENTITY foxyproxy.patterntoadd.label "Toe te voegen patroon">
 <!-- end foxyproxyplus -->

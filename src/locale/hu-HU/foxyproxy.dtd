@@ -451,7 +451,7 @@
 <!ENTITY foxyproxy.ip.wildcard.example.label "Example: 192.168.1.*">
 <!ENTITY foxyproxy.ip.regex.example.label "Example: 172\.\d+\.1\.10">
 <!ENTITY foxyproxy.ip.pattern.match "Pattern matches one or more or current local IP addresses">
-<!ENTITY foxyproxy.ip.pattern.no.match "Pattern doesn&apos;t match any current local IP address">
+<!ENTITY foxyproxy.ip.pattern.no.match "Pattern doesn't match any current local IP address">
 <!ENTITY foxyproxy.refreshlocalips "Refresh local IP addresses">
 <!ENTITY foxyproxy.refreshlocalips.accesskey "R">
 <!ENTITY foxyproxy.enterlicense.label "Enter license key">
@@ -459,18 +459,18 @@
 <!ENTITY foxyproxy.licenseinfo.label "License Info">
 <!ENTITY foxyproxy.licensevalid.label "License valid. Thank you for purchasing FoxyProxy Plus.">
 <!ENTITY foxyproxy.subexpired.label "License valid, but your update subscription expired. You are not receiving FoxyProxy Plus updates.">
-<!ENTITY foxyproxy.licenseinvalid.label "License invalid. You won&apos;t receive FoxyProxyPlus updates. Please purchase FoxyProxy Plus.">
+<!ENTITY foxyproxy.licenseinvalid.label "License invalid. You won't receive FoxyProxyPlus updates. Please purchase FoxyProxy Plus.">
 <!ENTITY foxyproxy.buynow.label "Buy Now">
 <!ENTITY foxyproxy.checklicense.label "Check License">
 <!ENTITY foxyproxy.checkinglicense.label "Checking...please wait">
-<!ENTITY foxyproxy.yourversion.label "Your Version ">
-<!ENTITY foxyproxy.latestversion.label "Newest Version ">
+<!ENTITY foxyproxy.yourversion.label "Your Version">
+<!ENTITY foxyproxy.latestversion.label "Newest Version">
 <!ENTITY foxyproxy.routetoleahscape.label.1 "Please make sure Firefox can reach">
 <!ENTITY foxyproxy.routetoleahscape.label.2 "either with or without a proxy. You can configure patterns for this URL in FoxyProxy Plus if necessary.">
 <!ENTITY foxyproxy.everything.label "Everything">
 <!ENTITY foxyproxy.nothing.label "Nothing">
 <!ENTITY foxyproxy.ippatterndeletefinal.label "This is the last local IP address pattern. If you delete it, this proxy has no possibility of being used. Continue anyway?">
-<!ENTITY foxyproxy.licenseplea.label "FoxyProxy Plus has minimal anti-piracy measures. If you use FoxyProxy Plus, please purchase a license. It&apos;s taken many years of work to develop and maintain, and your purchase encourages me to continue.">
+<!ENTITY foxyproxy.licenseplea.label "FoxyProxy Plus has minimal anti-piracy measures. If you use FoxyProxy Plus, please purchase a license. It's taken many years of work to develop and maintain, and your purchase encourages me to continue.">
 <!ENTITY foxyproxy.authentication.label "Authentication">
 <!ENTITY foxyproxy.proxyusername.label "Username">
 <!ENTITY foxyproxy.proxypassword.label "Password">
@@ -478,16 +478,16 @@
 <!ENTITY foxyproxy.proxydomain.label "Domain (optional - NTLM only)">
 <!ENTITY foxyproxy.proxydomain.tooltip "NTLM authentication only">
 <!ENTITY foxyproxy.proxy.passwords.nomatch.label "Proxy passwords do not match; please re-enter.">
-<!ENTITY foxyproxy.traininglogging.label "Training &amp; Logging">
-<!ENTITY foxyproxy.traininglogging.tooltip "Manage Training &amp; Logging Settings">
-<!ENTITY foxyproxy.traininglogging.accesskey "L">
-<!ENTITY foxyproxy.training.start "Start Training">
-<!ENTITY foxyproxy.training.stop "Stop Training">
-<!ENTITY foxyproxy.patternsforall.label "Create Patterns for All">
-<!ENTITY foxyproxy.patternsforall.accesskey "A">
-<!ENTITY foxyproxy.patternsforall.tooltip "Create Patterns for All URLs">
-<!ENTITY foxyproxy.patternsforselected.label "Create Patterns for Selected">
-<!ENTITY foxyproxy.patternsforselected.accesskey "S">
-<!ENTITY foxyproxy.patternsforselected.tooltip "Create Patterns for Selected URLs">
-<!ENTITY foxyproxy.patterntoadd.label "Pattern to Add">
+<!ENTITY foxyproxy.traininglogging.label "Tanítás és Naplózás">
+<!ENTITY foxyproxy.traininglogging.tooltip "Tanítási és Naplózási beállítások kezelése">
+<!ENTITY foxyproxy.traininglogging.accesskey "N">
+<!ENTITY foxyproxy.training.start "Tanítás kezdése">
+<!ENTITY foxyproxy.training.stop "Tanítás befejezése">
+<!ENTITY foxyproxy.patternsforall.label "Minta készítése az összeshez">
+<!ENTITY foxyproxy.patternsforall.accesskey "s">
+<!ENTITY foxyproxy.patternsforall.tooltip "Minta készítése az összes URL-hez">
+<!ENTITY foxyproxy.patternsforselected.label "Minta készítése az kiválasztottakhoz">
+<!ENTITY foxyproxy.patternsforselected.accesskey "k">
+<!ENTITY foxyproxy.patternsforselected.tooltip "Minta készítése az kiválasztott URL-hez">
+<!ENTITY foxyproxy.patterntoadd.label "Hozzáadandó minta">
 <!-- end foxyproxyplus -->

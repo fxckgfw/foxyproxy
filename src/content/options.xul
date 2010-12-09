@@ -2,7 +2,7 @@
 <!--
   FoxyProxy
   Copyright (C) 2006-#%#% Eric H. Jung and LeahScape, Inc.
-  http://foxyproxy.mozdev.org/
+  http://getfoxyproxy.org/
   eric.jung@yahoo.com
   
   This source code is released under the GPL license,
@@ -374,7 +374,7 @@
                 <row align="center" observes="notDefaultSettingsBroadcaster">
                   <description>&foxyproxy.settings.not.default;
                   <html:a class="link" style="margin: 0 .5em 0 .5em"  
-                    onclick="fpc.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/settings.html');">&foxyproxy.importantnote.label;</html:a>
+                    onclick="fpc.openAndReuseOneTabPerURL('http://getfoxyproxy.org/settings.html');">&foxyproxy.importantnote.label;</html:a>
                    </description>
                    <button command="resetSettingsCmd" label="&foxyproxy.resetlocation.label;"/>
                 </row>                
@@ -975,7 +975,7 @@
     tooltiptext="&foxyproxy.please.donate.label;" oncommand="fpc.openAndReuseOneTabPerURL('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=7145571');" />
 
   <command id="fppCmd" label="&foxyproxy.getfoxyproxyplus.label;"
-    tooltiptext="&foxyproxy.getfoxyproxyplus.label;" oncommand="fpc.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/fpplus');" />
+    tooltiptext="&foxyproxy.getfoxyproxyplus.label;" oncommand="fpc.openAndReuseOneTabPerURL('http://getfoxyproxy.org/fpplus');" />
 
   <command id="importSettingsCmd"
     label="&foxyproxy.importsettings.label2;"
@@ -1002,12 +1002,12 @@
   <command id="onlineCmd" label="&foxyproxy.online.label;"
     accesskey="&foxyproxy.online.accesskey;"
     tooltiptext="&foxyproxy.online.tooltip;"
-    oncommand="fpc.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/');" />
+    oncommand="fpc.openAndReuseOneTabPerURL('http://getfoxyproxy.org/');" />
 
   <command id="helpCmd" label="&foxyproxy.help.label;"
     accesskey="&foxyproxy.help.accesskey;"
     tooltiptext="&foxyproxy.help.tooltip;"
-    oncommand="fpc.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/' + (foxyproxy.isFoxyProxySimple() ? 'basic/' : '') + 'help.html');" />
+    oncommand="fpc.openAndReuseOneTabPerURL('http://getfoxyproxy.org/' + (foxyproxy.isFoxyProxySimple() ? 'basic/' : '') + 'help.html');" />
 
   <command id="torWizardCmd" label="&foxyproxy.tor.label;"
     accesskey="&foxyproxy.tor.accesskey;"
@@ -1036,7 +1036,7 @@
 
   <command id="proxyServiceCmd" label="&foxyproxy.proxyservice.label;"
     accesskey="&foxyproxy.proxyservice.accesskey;"
-    tooltiptext="&foxyproxy.proxyservice.tooltip;" oncommand="fpc.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/proxyservice/');" />
+    tooltiptext="&foxyproxy.proxyservice.tooltip;" oncommand="fpc.openAndReuseOneTabPerURL('http://getfoxyproxy.org/proxyservice/');" />
         
   <broadcasterset>
     <broadcaster id="tree-row-selected" disabled="true" />

@@ -1,7 +1,7 @@
 /**
   FoxyProxy
   Copyright (C) 2006-#%#% LeahScape, Inc.
-  http://foxyproxy.mozdev.org/
+  http://getfoxyproxy.org/
   eric.jung@yahoo.com
 
   This source code is released under the GPL license,

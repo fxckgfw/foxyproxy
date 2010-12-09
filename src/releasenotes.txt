@@ -7,3 +7,5 @@
   remove this default option. You can restore it by clicking Ctrl+F2 then Global Settings tab->
   Indicators->Show mode (text) on statusbar. This does not affect upgraded installations; only new
   installations.
+* Changed references of foxyproxy.mozdev.org to getfoxyproxy.org
+* Improved support for Firefox 4 beta. Known bug: context-menus are translucent on Windows.

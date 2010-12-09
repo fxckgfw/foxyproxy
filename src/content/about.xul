@@ -2,7 +2,7 @@
 <!--
   FoxyProxy
   Copyright (C) 2006-#%#% Eric H. Jung and LeahScape, Inc.
-  http://foxyproxy.mozdev.org/
+  http://getfoxyproxy.org/
   eric.jung@yahoo.com
   
   This source code is released under the GPL license,
@@ -93,9 +93,9 @@
           </hbox>
           <separator />
           <hbox style="margin-left: 1em;">
-            <label value="&foxyproxy.home;" class="text-link" onclick="fpc.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/');" tooltiptext="http://foxyproxy.mozdev.org" />
+            <label value="&foxyproxy.home;" class="text-link" onclick="fpc.openAndReuseOneTabPerURL('http://getfoxyproxy.org/');" tooltiptext="http://getfoxyproxy.org" />
             <label value="&foxyproxy.support;" class="text-link" onclick="fpc.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/drupal');" tooltiptext="http://foxyproxy.mozdev.org/drupal" />
-            <label value="&foxyproxy.credits;" class="text-link" onclick="fpc.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/credits.html');" tooltiptext="http://foxyproxy.mozdev.org/credits.html" />
+            <label value="&foxyproxy.credits;" class="text-link" onclick="fpc.openAndReuseOneTabPerURL('http://getfoxyproxy.org/credits.html');" tooltiptext="http://getfoxyproxy.org/credits.html" />
           </hbox>
         </vbox>
 

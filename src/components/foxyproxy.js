@@ -1,7 +1,7 @@
 /**
   FoxyProxy
   Copyright (C) 2006-#%#% Eric H. Jung and LeahScape, Inc.
-  http://foxyproxy.mozdev.org/
+  http://getfoxyproxy.org/
   eric.jung@yahoo.com
 
   This source code is released under the GPL license,
@@ -1137,7 +1137,7 @@ foxyproxy.prototype = {
     _start : 0,
     _full : false,
     enabled : false,
-    _templateHeader : "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\n<html xmlns=\"http://www.w3.org/1999/xhtml\"><head><title></title><link rel=\"icon\" href=\"http://foxyproxy.mozdev.org/favicon.ico\"/><link rel=\"shortcut icon\" href=\"http://foxyproxy.mozdev.org/favicon.ico\"/><link rel=\"stylesheet\" href=\"http://foxyproxy.mozdev.org/styles/log.css\" type=\"text/css\"/></head><body><table class=\"log-table\"><thead><tr><td class=\"heading\">${timestamp-heading}</td><td class=\"heading\">${url-heading}</td><td class=\"heading\">${proxy-name-heading}</td><td class=\"heading\">${proxy-notes-heading}</td><td class=\"heading\">${pattern-name-heading}</td><td class=\"heading\">${pattern-heading}</td><td class=\"heading\">${pattern-case-heading}</td><td class=\"heading\">${pattern-type-heading}</td><td class=\"heading\">${pattern-color-heading}</td><td class=\"heading\">${pac-result-heading}</td><td class=\"heading\">${error-msg-heading}</td></tr></thead><tfoot><tr><td/></tr></tfoot><tbody>",
+    _templateHeader : "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\n<html xmlns=\"http://www.w3.org/1999/xhtml\"><head><title></title><link rel=\"icon\" href=\"http://getfoxyproxy.org/favicon.ico\"/><link rel=\"shortcut icon\" href=\"http://getfoxyproxy.org/favicon.ico\"/><link rel=\"stylesheet\" href=\"http://getfoxyproxy.org/styles/log.css\" type=\"text/css\"/></head><body><table class=\"log-table\"><thead><tr><td class=\"heading\">${timestamp-heading}</td><td class=\"heading\">${url-heading}</td><td class=\"heading\">${proxy-name-heading}</td><td class=\"heading\">${proxy-notes-heading}</td><td class=\"heading\">${pattern-name-heading}</td><td class=\"heading\">${pattern-heading}</td><td class=\"heading\">${pattern-case-heading}</td><td class=\"heading\">${pattern-type-heading}</td><td class=\"heading\">${pattern-color-heading}</td><td class=\"heading\">${pac-result-heading}</td><td class=\"heading\">${error-msg-heading}</td></tr></thead><tfoot><tr><td/></tr></tfoot><tbody>",
     _templateFooter : "</tbody></table></body></html>",
     _templateRow : "<tr><td class=\"timestamp\">${timestamp}</td><td class=\"url\"><a href=\"${url}\">${url}</a></td><td class=\"proxy-name\">${proxy-name}</td><td class=\"proxy-notes\">${proxy-notes}</td><td class=\"pattern-name\">${pattern-name}</td><td class=\"pattern\">${pattern}</td><td class=\"pattern-case\">${pattern-case}</td><td class=\"pattern-type\">${pattern-type}</td><td class=\"pattern-color\">${pattern-color}</td><td class=\"pac-result\">${pac-result}</td><td class=\"error-msg\">${error-msg}</td></tr>",
     _timeformat : null,

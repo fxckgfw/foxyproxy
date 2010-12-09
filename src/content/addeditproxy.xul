@@ -2,7 +2,7 @@
 <!--
   FoxyProxy
   Copyright (C) 2006-#%#% Eric H. Jung and LeahScape, Inc.
-  http://foxyproxy.mozdev.org/
+  http://getfoxyproxy.org/
   eric.jung@yahoo.com
 
   This source code is released under the GPL license,
@@ -273,7 +273,7 @@
       <separator class="thin"/>
 			<description class="foxyproxy-tooltip">&foxyproxy.newGUI2.label;</description>
       <separator class="thin"/>      
-			<description class="text-link" onclick="fpc.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/settings-gui.html');">
+			<description class="text-link" onclick="fpc.openAndReuseOneTabPerURL('http://getfoxyproxy.org/settings-gui.html');">
 				&foxyproxy.newGUI4.label;</description>
 		</vbox>
 	</popup>
@@ -287,7 +287,7 @@
       <separator class="thin"/>
 			<description width="1"><!-- weirdness on ff3 if no width specified -->&foxyproxy.pactip4.label;
       <html:a class="link"        
-        onclick="fpc.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/relativescheme.html');">&foxyproxy.pactip5.label;</html:a>
+        onclick="fpc.openAndReuseOneTabPerURL('http://getfoxyproxy.org/relativescheme.html');">&foxyproxy.pactip5.label;</html:a>
       &foxyproxy.pactip6.label;
       <html:a class="link"
         onclick="fpc.openAndReuseOneTabPerURL('http://www.mozilla.org/support/firefox/profile#locate');">&foxyproxy.pactip7.label;</html:a>
@@ -346,7 +346,7 @@
   label="&foxyproxy.help.label;"
   accesskey="&foxyproxy.help.accesskey;"
   tooltiptext="&foxyproxy.help.tooltip;"
-  oncommand="fpc.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/patterns.html');"/>
+  oncommand="fpc.openAndReuseOneTabPerURL('http://getfoxyproxy.org/patterns.html');"/>
 
 <command id="wildcardURLPatternReferenceCmd"
   label="&foxyproxy.wildcard.reference.label;"

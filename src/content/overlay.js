@@ -1,7 +1,7 @@
 /**
   FoxyProxy
   Copyright (C) 2006-#%#% Eric H. Jung and LeahScape, Inc.
-  http://foxyproxy.mozdev.org/
+  http://getfoxyproxy.org/
   eric.jung@yahoo.com
 
   This source code is released under the GPL license,
@@ -62,10 +62,10 @@ var foxyproxy = {
       this.timer = null;
       var fpc = Components.classes["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject;
       if (this.first)
-        x(foxyproxy.fp.isFoxyProxySimple() ? "http://foxyproxy.mozdev.org/basic/help.html" : "http://foxyproxy.mozdev.org/help.html");
+        x(foxyproxy.fp.isFoxyProxySimple() ? "http://getfoxyproxy.org/basic/help.html" : "http://getfoxyproxy.org/help.html");
       else
-        x(foxyproxy.fp.isFoxyProxySimple() ? "http://foxyproxy.mozdev.org/basic/releasenotes.html" :
-          "http://foxyproxy.mozdev.org/releasenotes.html");      
+        x(foxyproxy.fp.isFoxyProxySimple() ? "http://getfoxyproxy.org/basic/releasenotes.html" :
+          "http://getfoxyproxy.org/releasenotes.html");      
       function x(url) {
         fpc.openAndReuseOneTabPerURL(url);
         // Do this last so we try again next time if we failed to display now
@@ -861,7 +861,7 @@ end-foxyproxy-simple !*/
                   
         _createMenuItem(submenupopup,
           this.fp.getMessage("foxyproxy.help.label"),
-          "foxyproxy.fpc.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/" + (isFoxyProxySimple ? "basic/" : "") + "help.html');",
+          "foxyproxy.fpc.openAndReuseOneTabPerURL('http://getfoxyproxy.org/" + (isFoxyProxySimple ? "basic/" : "") + "help.html');",
           this.fp.getMessage("foxyproxy.help.accesskey"),
           this.fp.getMessage("foxyproxy.help.tooltip"));
 

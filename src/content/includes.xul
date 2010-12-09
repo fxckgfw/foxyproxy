@@ -2,7 +2,7 @@
 <!--
   FoxyProxy
   Copyright (C) 2006-#%#% Eric H. Jung and LeahScape, Inc.
-  http://foxyproxy.mozdev.org/
+  http://getfoxyproxy.org/
   eric.jung@yahoo.com
 
   This source code is released under the GPL license,
@@ -320,7 +320,7 @@
         <label value="&foxyproxy.wildcard.label;"
           style="margin-left: -0.5em;"
           class="text-link"
-          onclick="fpclocal.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/patterns.html#wildcards');"
+          onclick="fpclocal.openAndReuseOneTabPerURL('http://getfoxyproxy.org/patterns.html#wildcards');"
           tooltiptext="&foxyproxy.wildcard.tooltip;"/>
         <label id="wildcardExample" value="&foxyproxy.wildcard.example.label;"/>                                            
       </row>
@@ -331,7 +331,7 @@
         <label value="&foxyproxy.regex.label;"
           style="margin-left: -0.5em;"
           class="text-link"
-          onclick="fpclocal.openAndReuseOneTabPerURL('http://foxyproxy.mozdev.org/patterns.html#regex');"
+          onclick="fpclocal.openAndReuseOneTabPerURL('http://getfoxyproxy.org/patterns.html#regex');"
           tooltiptext="&foxyproxy.regex.tooltip;"/> 
         <label id="regexExample" value="&foxyproxy.regex.example.label;"/>       
         <spacer/>      

@@ -1,7 +1,7 @@
 /**
   FoxyProxy
   Copyright (C) 2006-#%#% Eric H. Jung and LeahScape, Inc.
-  http://foxyproxy.mozdev.org/
+  http://getfoxyproxy.org/
   eric.jung@yahoo.com
 
   This source code is released under the GPL license,
@@ -278,7 +278,7 @@ function toggleMode(mode) {
 }
 
 function onHelp() {
-  fpc.openAndReuseOneTabPerURL("http://foxyproxy.mozdev.org/patterns.html");
+  fpc.openAndReuseOneTabPerURL("http://getfoxyproxy.org/patterns.html");
 }
 
 function onViewAutoConf() {

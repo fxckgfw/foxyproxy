@@ -21,7 +21,7 @@
 </script>
 
 <!-- begin: thanks to DownThemAll -->
-<popup id="wildcardURLPatternReferencePopup" position="before_end">
+<menupopup id="wildcardURLPatternReferencePopup" position="before_end">
   <label id="wildcardref" value="&foxyproxy.wildcard.reference.label;" style="font-weight: bold; text-align: center; margin: 1em 0 0 0;" />
   <label id="wildcardrefSub" value="&foxyproxy.wildcard.reference.subtitle.label;" style="text-align: center; margin: 0 0 1.5em 0;" />
     <grid class="foxyproxy-border" style="margin: 0 .5em 0 .5em;">
@@ -67,9 +67,9 @@
         </row>
       </rows>
     </grid>
-</popup>  
+</menupopup>  
 <!-- end: thanks to DownThemAll -->
-<popup id="patternTemplatePopup" position="before_end">
+<menupopup id="patternTemplatePopup" position="before_end">
   <description
     style="font-weight: bold; text-align: center; margin: 1em 0 0 0;">
     &foxyproxy.pattern.template.reference.label;
@@ -273,7 +273,7 @@
       </row>
     </rows>
   </grid>
-</popup>
+</menupopup>
 
 <radiogroup id="whiteblacktype" orient="vertical">
   <groupbox>
@@ -339,16 +339,16 @@
     </rows>
     </grid>
  </groupbox>
- <popup id="wbdesc">
+ <menupopup id="wbdesc">
    <description class="foxyproxy-tooltip foxyproxy-border" width="400" height="80">&foxyproxy.whiteblack.description.label;</description>
- </popup>      
+ </menupopup>      
 </radiogroup>
-<popup id="notifyWhenCanceledPopup">
+<menupopup id="notifyWhenCanceledPopup">
   <description class="foxyproxy-tooltip foxyproxy-border" width="400" height="80">
     &foxyproxy.quickadd.notify.whencanceled.label2;</description>
-</popup>  
-<popup id="tempPopup">
+</menupopup>  
+<menupopup id="tempPopup">
   <description class="foxyproxy-tooltip foxyproxy-border" width="400" height="80">
     &foxyproxy.temp.popup.label;</description>
-</popup>
+</menupopup>
 </overlay>

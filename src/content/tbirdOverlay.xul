@@ -39,14 +39,14 @@
     <key id="key_foxyproxychangeproxy" keycode="VK_F3" modifiers="alt" oncommand="foxyproxy.selection.onChangeHost();"/> 
   </keyset>
   
-  <popup id="mailContext"> <!-- FF: contentAreaContextMenu TB2: messagePaneContext TB3b2+: mailContext -->
+  <menupopup id="mailContext"> <!-- FF: contentAreaContextMenu TB2: messagePaneContext TB3b2+: mailContext -->
      <menu id="foxyproxy-contextmenu-icon" accesskey="&foxyproxy.accesskey;">
       <menupopup id="foxyproxy-contextmenu-popup"
           onpopupshowing="foxyproxy.onPopupShowing(this, event);"
           onpopuphiding="foxyproxy.onPopupHiding();"/>
         <hbox id="foxyproxy-toolsmenu-icon"/>
     </menu>   
-  </popup>
+  </menupopup>
   
   <statusbar id="status-bar">
     <hbox>

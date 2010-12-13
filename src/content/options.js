@@ -359,6 +359,13 @@ function onCopySelection() {
 	}
 }
 
+/** Similar to onMode() */
+function useSelectedForAllURLs() {
+  var p = foxyproxy.proxies.item(proxyTree.currentIndex);
+  foxyproxy.setMode(p.id, true);
+  _updateView();
+}
+
 function onMove(direction) {
   // Store cur selection
   var sel = proxyTree.currentIndex;

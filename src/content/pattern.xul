@@ -81,9 +81,9 @@
   </rows>
 </grid>
 <popupset>
-  <popup id="wildcardURLPatternReferencePopup"/>
-  <popup id="tempPopup"/>
-  <popup id="patternTemplatePopup"/>  
+  <menupopup id="wildcardURLPatternReferencePopup"/>
+  <menupopup id="tempPopup"/>
+  <menupopup id="patternTemplatePopup"/>  
 </popupset>
 
 <broadcasterset>

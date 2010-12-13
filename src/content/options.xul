@@ -838,11 +838,13 @@
   <separator class="thin" />
 
   <popupset>
-    <popup id="proxyTreeMenu"
+    <menupopup id="proxyTreeMenu"
       onpopupshowing="onProxyTreeMenuPopupShowing();">
       <menuitem id="enabledPopUpMenuItem" command="toggleEnabledCmd"
         type="checkbox" />
       <menuseparator id="menuSeperator" />
+      <menuitem class="menuitem-non-iconic" command="useForAllURLsCmd" />
+      <menuseparator id="menuSeperator" />      
       <menuitem class="menuitem-non-iconic" command="createProxyCmd" />
       <menuseparator />
       <menuitem class="menuitem-non-iconic" command="settingsCmd" />
@@ -862,18 +864,18 @@
         <menuseparator/>
       <menuitem class="menuitem-non-iconic" command="helpCmd" />
       <menuitem class="menuitem-non-iconic" command="closeCmd" />
-    </popup>
+    </menupopup>
 
-    <popup id="mainPopup">
+    <menupopup id="mainPopup">
       <menuitem class="menuitem-non-iconic" command="createProxyCmd" />
       <menuseparator />
       <menuitem class="menuitem-non-iconic" command="torWizardCmd" />
       <menuseparator />
       <menuitem class="menuitem-non-iconic" command="helpCmd" />
       <menuitem class="menuitem-non-iconic" command="closeCmd" />
-    </popup>
+    </menupopup>
 
-    <popup id="logTreeMenu">
+    <menupopup id="logTreeMenu">
       <menuitem class="menuitem-non-iconic" command="clearLogCmd" />
       <menuitem class="menuitem-non-iconic" command="refreshLogCmd" />
       <menuitem class="menuitem-non-iconic" command="saveLogCmd" />
@@ -881,7 +883,7 @@
 			<menuitem class="menuitem-non-iconic" command="openLogURLInNewTabCmd" />
       <menuitem class="menuitem-non-iconic" command="copyLogURLToClipboardCmd" />
       <menuitem class="menuitem-non-iconic" command="deleteLogEntryCmd" />
-    </popup>
+    </menupopup>
   </popupset>
 
   <command id="clearLogCmd" label="&foxyproxy.clear.label;"
@@ -932,6 +934,11 @@
     tooltiptext="&foxyproxy.enabled.tooltip;"
     accesskey="&foxyproxy.enabled.accesskey;"
     oncommand="toggleEnabled();" />
+
+  <command id="useForAllURLsCmd" label="&foxyproxy.useselectedforallurls.label;"
+    tooltiptext="&foxyproxy.useselectedforallurls.tooltip;"
+    accesskey="&foxyproxy.useselectedforallurls.accesskey;"
+    oncommand="useSelectedForAllURLs();" />
 
   <command id="createProxyCmd" label="&foxyproxy.addnewproxy.label;"
     tooltiptext="&foxyproxy.addnewproxy.tooltip;"
@@ -1048,16 +1055,16 @@
   </broadcasterset>
 
   <popupset>
-    <popup id="notifyWhenCanceledPopup"/>
-  <popup id="commercialInfo">
-    <vbox class="foxyproxy-border foxyproxy-tooltip" style="width: 50em; height: 15em;">
-      <description>&foxyproxy.aboutdonate.label;</description>
-      <separator class="thin"/>
-      <description>&foxyproxy.aboutfpplus.label;</description>
-      <separator class="thin"/>
-      <description>&foxyproxy.aboutproxyservice.label;</description>
-    </vbox>
-  </popup>    
+    <menupopup id="notifyWhenCanceledPopup"/>
+    <menupopup id="commercialInfo">
+      <vbox class="foxyproxy-border foxyproxy-tooltip" style="width: 50em; height: 15em;">
+        <description>&foxyproxy.aboutdonate.label;</description>
+        <separator class="thin"/>
+        <description>&foxyproxy.aboutfpplus.label;</description>
+        <separator class="thin"/>
+        <description>&foxyproxy.aboutproxyservice.label;</description>
+      </vbox>
+    </menupopup>    
   </popupset> 
 
   <keyset>

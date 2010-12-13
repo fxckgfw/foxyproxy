@@ -97,8 +97,8 @@
 </groupbox>
 
 <popupset>
-  <popup id="wildcardURLPatternReferencePopup"/>
-  <popup id="notifyWhenCanceledPopup"/>
+  <menupopup id="wildcardURLPatternReferencePopup"/>
+  <menupopup id="notifyWhenCanceledPopup"/>
 </popupset>
 
 <broadcasterset>

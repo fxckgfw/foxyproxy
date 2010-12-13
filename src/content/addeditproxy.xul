@@ -265,8 +265,8 @@
 </vbox>
 
 <popupset>
-  <popup id="wildcardURLPatternReferencePopup"/>
-	<popup id="newGUIPopup">
+  <menupopup id="wildcardURLPatternReferencePopup"/>
+	<menupopup id="newGUIPopup">
 		<vbox class="foxyproxy-border" style="height: &foxyproxy.newGUI.popup.height;; width: &foxyproxy.newGUI.popup.width;; padding: .5em;">
 			<description class="foxyproxy-tooltip">
 				&foxyproxy.newGUI1.label;</description>        
@@ -276,8 +276,8 @@
 			<description class="text-link" onclick="fpc.openAndReuseOneTabPerURL('http://getfoxyproxy.org/settings-gui.html');">
 				&foxyproxy.newGUI4.label;</description>
 		</vbox>
-	</popup>
-	<popup id="pacTipsPopup">
+	</menupopup>
+	<menupopup id="pacTipsPopup">
 		<vbox class="foxyproxy-border foxyproxy-tooltip" height="175">
 			<label value="&foxyproxy.pactip1.label;"/>
       <separator class="thin"/>
@@ -293,8 +293,8 @@
         onclick="fpc.openAndReuseOneTabPerURL('http://www.mozilla.org/support/firefox/profile#locate');">&foxyproxy.pactip7.label;</html:a>
       &foxyproxy.pactip8.label;</description>
 		</vbox>
-	</popup>
-  <popup id="urlsTreeContext" onpopupshowing="onTreeMenuPopupShowing(this.firstChild, proxy.matches, urlsTree);">
+	</menupopup>
+  <menupopup id="urlsTreeContext" onpopupshowing="onTreeMenuPopupShowing(this.firstChild, proxy.matches, urlsTree);">
 		<menuitem id="enabledPopUpMenuItem" command="toggleURLPatternEnabledCmd" type="checkbox"/>
     <menuseparator/>
     <menuitem class="menuitem-non-iconic" command="addURLPatternCmd"/>
@@ -304,7 +304,7 @@
     <menuseparator/>
     <menuitem class="menuitem-non-iconic" command="helpURLPatternCmd"/>
     <menuitem class="menuitem-non-iconic" command="closeCmd"/>
-  </popup>
+  </menupopup>
 
 </popupset>
 

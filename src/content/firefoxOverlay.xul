@@ -51,13 +51,13 @@
     <key id="key_foxyproxychangeproxy" keycode="VK_F3" modifiers="alt" oncommand="foxyproxy.selection.onChangeHost();"/>    
   </keyset>
   
-  <popup id="contentAreaContextMenu">
+  <menupopup id="contentAreaContextMenu">
      <menu id="foxyproxy-contextmenu-icon" accesskey="&foxyproxy.accesskey;">
       <menupopup id="foxyproxy-contextmenu-popup"
           onpopupshowing="foxyproxy.onPopupShowing(this, event);"
           onpopuphiding="foxyproxy.onPopupHiding();"/>
     </menu>    
-  </popup>
+  </menupopup>
   
   <statusbar id="status-bar">
     <hbox>

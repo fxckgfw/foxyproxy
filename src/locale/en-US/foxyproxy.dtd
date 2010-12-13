@@ -204,6 +204,10 @@
 <!ENTITY foxyproxy.addnewproxy.accesskey "A">
 <!ENTITY foxyproxy.addnewproxy.tooltip "Add New Proxy">
 
+<!ENTITY foxyproxy.useselectedforallurls.label "Use selected proxy for all URLs">
+<!ENTITY foxyproxy.useselectedforallurls.accesskey "U">
+<!ENTITY foxyproxy.useselectedforallurls.tooltip "Use selected proxy for all URLs">
+
 <!ENTITY foxyproxy.whitelist.label "Whitelist">
 <!ENTITY foxyproxy.whitelist.accesskey "W">
 <!ENTITY foxyproxy.whitelist.tooltip "URLs matching this pattern are loaded through this proxy">

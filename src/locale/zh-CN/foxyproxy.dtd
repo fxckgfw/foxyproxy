@@ -151,6 +151,9 @@
 <!ENTITY foxyproxy.addnewproxy.label "新建代理服务器">
 <!ENTITY foxyproxy.addnewproxy.accesskey "A">
 <!ENTITY foxyproxy.addnewproxy.tooltip "新建代理服务器">
+<!ENTITY foxyproxy.useselectedforallurls.label "Use selected proxy for all URLs">
+<!ENTITY foxyproxy.useselectedforallurls.accesskey "U">
+<!ENTITY foxyproxy.useselectedforallurls.tooltip "Use selected proxy for all URLs">
 <!ENTITY foxyproxy.whitelist.label "白名单">
 <!ENTITY foxyproxy.whitelist.accesskey "W">
 <!ENTITY foxyproxy.whitelist.tooltip "匹配此模板的 URL 将通过这个代理服务器加载">

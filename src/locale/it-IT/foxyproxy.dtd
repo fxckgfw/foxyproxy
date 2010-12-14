@@ -151,6 +151,9 @@
 <!ENTITY foxyproxy.addnewproxy.label "Nuovo proxy">
 <!ENTITY foxyproxy.addnewproxy.accesskey "x">
 <!ENTITY foxyproxy.addnewproxy.tooltip "Aggiungi un nuovo proxy">
+<!ENTITY foxyproxy.useselectedforallurls.label "Use selected proxy for all URLs">
+<!ENTITY foxyproxy.useselectedforallurls.accesskey "U">
+<!ENTITY foxyproxy.useselectedforallurls.tooltip "Use selected proxy for all URLs">
 <!ENTITY foxyproxy.whitelist.label "Modello permesso">
 <!ENTITY foxyproxy.whitelist.accesskey "e">
 <!ENTITY foxyproxy.whitelist.tooltip "Gli indirizzi web corrispondenti a questo modello verranno caricati attraverso questo proxy">

@@ -151,6 +151,9 @@
 <!ENTITY foxyproxy.addnewproxy.label "Lägg till ny proxy">
 <!ENTITY foxyproxy.addnewproxy.accesskey "L">
 <!ENTITY foxyproxy.addnewproxy.tooltip "Lägger till ny proxy">
+<!ENTITY foxyproxy.useselectedforallurls.label "Use selected proxy for all URLs">
+<!ENTITY foxyproxy.useselectedforallurls.accesskey "U">
+<!ENTITY foxyproxy.useselectedforallurls.tooltip "Use selected proxy for all URLs">
 <!ENTITY foxyproxy.whitelist.label "Vitlista">
 <!ENTITY foxyproxy.whitelist.accesskey "V">
 <!ENTITY foxyproxy.whitelist.tooltip "URL matchande detta mönster laddas genom proxy">

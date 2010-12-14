@@ -151,6 +151,9 @@
 <!ENTITY foxyproxy.addnewproxy.label "Thêm Proxy Mới">
 <!ENTITY foxyproxy.addnewproxy.accesskey "M">
 <!ENTITY foxyproxy.addnewproxy.tooltip "Thêm Proxy Mới">
+<!ENTITY foxyproxy.useselectedforallurls.label "Use selected proxy for all URLs">
+<!ENTITY foxyproxy.useselectedforallurls.accesskey "U">
+<!ENTITY foxyproxy.useselectedforallurls.tooltip "Use selected proxy for all URLs">
 <!ENTITY foxyproxy.whitelist.label "Sổ trắng">
 <!ENTITY foxyproxy.whitelist.accesskey "r">
 <!ENTITY foxyproxy.whitelist.tooltip "URL khớp mẫu này được nạp thông qua proxy này">

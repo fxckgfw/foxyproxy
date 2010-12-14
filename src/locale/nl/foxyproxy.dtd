@@ -151,6 +151,9 @@
 <!ENTITY foxyproxy.addnewproxy.label "Nieuwe proxy toevoegen">
 <!ENTITY foxyproxy.addnewproxy.accesskey "O">
 <!ENTITY foxyproxy.addnewproxy.tooltip "Nieuwe proxy toevoegen">
+<!ENTITY foxyproxy.useselectedforallurls.label "Use selected proxy for all URLs">
+<!ENTITY foxyproxy.useselectedforallurls.accesskey "U">
+<!ENTITY foxyproxy.useselectedforallurls.tooltip "Use selected proxy for all URLs">
 <!ENTITY foxyproxy.whitelist.label "Witte lijst">
 <!ENTITY foxyproxy.whitelist.accesskey "W">
 <!ENTITY foxyproxy.whitelist.tooltip "URL’s die met dit patroon overeenkomen worden via deze proxy geladen">

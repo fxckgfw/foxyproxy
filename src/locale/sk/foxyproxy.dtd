@@ -151,6 +151,9 @@
 <!ENTITY foxyproxy.addnewproxy.label "Pridať nový server proxy">
 <!ENTITY foxyproxy.addnewproxy.accesskey "P">
 <!ENTITY foxyproxy.addnewproxy.tooltip "Pridá nový proxy server">
+<!ENTITY foxyproxy.useselectedforallurls.label "Use selected proxy for all URLs">
+<!ENTITY foxyproxy.useselectedforallurls.accesskey "U">
+<!ENTITY foxyproxy.useselectedforallurls.tooltip "Use selected proxy for all URLs">
 <!ENTITY foxyproxy.whitelist.label "Biela listina">
 <!ENTITY foxyproxy.whitelist.accesskey "B">
 <!ENTITY foxyproxy.whitelist.tooltip "Adresy URL zhodujúce sa s týmto vzorom budú načítané cez tento proxy server">

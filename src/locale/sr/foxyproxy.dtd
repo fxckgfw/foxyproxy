@@ -151,6 +151,9 @@
 <!ENTITY foxyproxy.addnewproxy.label "Додај нови прокси">
 <!ENTITY foxyproxy.addnewproxy.accesskey "Н">
 <!ENTITY foxyproxy.addnewproxy.tooltip "Додај нови прокси">
+<!ENTITY foxyproxy.useselectedforallurls.label "Use selected proxy for all URLs">
+<!ENTITY foxyproxy.useselectedforallurls.accesskey "U">
+<!ENTITY foxyproxy.useselectedforallurls.tooltip "Use selected proxy for all URLs">
 <!ENTITY foxyproxy.whitelist.label "Бела листа">
 <!ENTITY foxyproxy.whitelist.accesskey "Б">
 <!ENTITY foxyproxy.whitelist.tooltip "URL-ови који се поклапају са шаблоном учитавају се кроз овај прокси">

@@ -151,6 +151,9 @@
 <!ENTITY foxyproxy.addnewproxy.label "Dodaj novi Proxy">
 <!ENTITY foxyproxy.addnewproxy.accesskey "D">
 <!ENTITY foxyproxy.addnewproxy.tooltip "Dodaj novi Proxy">
+<!ENTITY foxyproxy.useselectedforallurls.label "Use selected proxy for all URLs">
+<!ENTITY foxyproxy.useselectedforallurls.accesskey "U">
+<!ENTITY foxyproxy.useselectedforallurls.tooltip "Use selected proxy for all URLs">
 <!ENTITY foxyproxy.whitelist.label "Dozvoljeni popis">
 <!ENTITY foxyproxy.whitelist.accesskey "z">
 <!ENTITY foxyproxy.whitelist.tooltip "Web adrese koje odgovaraju ovom primjeru se učitavaju putem ovog proxy-a">

@@ -151,6 +151,9 @@
 <!ENTITY foxyproxy.addnewproxy.label "افزودن پروکسی تازه">
 <!ENTITY foxyproxy.addnewproxy.accesskey "ا">
 <!ENTITY foxyproxy.addnewproxy.tooltip "افزودن پروکسی تازه">
+<!ENTITY foxyproxy.useselectedforallurls.label "Use selected proxy for all URLs">
+<!ENTITY foxyproxy.useselectedforallurls.accesskey "U">
+<!ENTITY foxyproxy.useselectedforallurls.tooltip "Use selected proxy for all URLs">
 <!ENTITY foxyproxy.whitelist.label "لیست سفید">
 <!ENTITY foxyproxy.whitelist.accesskey "د">
 <!ENTITY foxyproxy.whitelist.tooltip "آدرس هایی که با این الگو همخوانی دارند از این پروکسی بارگذاری شده اند.">

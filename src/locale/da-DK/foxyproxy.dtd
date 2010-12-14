@@ -151,6 +151,9 @@
 <!ENTITY foxyproxy.addnewproxy.label "Tilføj ny proxy">
 <!ENTITY foxyproxy.addnewproxy.accesskey "T">
 <!ENTITY foxyproxy.addnewproxy.tooltip "Tilføj ny proxy">
+<!ENTITY foxyproxy.useselectedforallurls.label "Use selected proxy for all URLs">
+<!ENTITY foxyproxy.useselectedforallurls.accesskey "U">
+<!ENTITY foxyproxy.useselectedforallurls.tooltip "Use selected proxy for all URLs">
 <!ENTITY foxyproxy.whitelist.label "Hvid liste">
 <!ENTITY foxyproxy.whitelist.accesskey "W">
 <!ENTITY foxyproxy.whitelist.tooltip "URLer der matcher dette mønster vil blive indlæst gennem denne proxy">

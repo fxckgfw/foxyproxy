@@ -151,6 +151,9 @@
 <!ENTITY foxyproxy.addnewproxy.label "Új proxy hozzáadása">
 <!ENTITY foxyproxy.addnewproxy.accesskey "J">
 <!ENTITY foxyproxy.addnewproxy.tooltip "Új proxy hozzáadása">
+<!ENTITY foxyproxy.useselectedforallurls.label "Use selected proxy for all URLs">
+<!ENTITY foxyproxy.useselectedforallurls.accesskey "U">
+<!ENTITY foxyproxy.useselectedforallurls.tooltip "Use selected proxy for all URLs">
 <!ENTITY foxyproxy.whitelist.label "Whitelist">
 <!ENTITY foxyproxy.whitelist.accesskey "W">
 <!ENTITY foxyproxy.whitelist.tooltip "URLs matching this pattern are loaded through this proxy">

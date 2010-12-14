@@ -151,6 +151,9 @@
 <!ENTITY foxyproxy.addnewproxy.label "Додати Новий Проксі">
 <!ENTITY foxyproxy.addnewproxy.accesskey "Д">
 <!ENTITY foxyproxy.addnewproxy.tooltip "Додати Новий Проксі">
+<!ENTITY foxyproxy.useselectedforallurls.label "Use selected proxy for all URLs">
+<!ENTITY foxyproxy.useselectedforallurls.accesskey "U">
+<!ENTITY foxyproxy.useselectedforallurls.tooltip "Use selected proxy for all URLs">
 <!ENTITY foxyproxy.whitelist.label "Білий Список">
 <!ENTITY foxyproxy.whitelist.accesskey "Б">
 <!ENTITY foxyproxy.whitelist.tooltip "URL-адреси, що відповідають цьому зразку завантажуються через цей проксі">

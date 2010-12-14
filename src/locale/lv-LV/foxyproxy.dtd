@@ -151,6 +151,9 @@
 <!ENTITY foxyproxy.addnewproxy.label "Pievienot jaunu starpniekserveri">
 <!ENTITY foxyproxy.addnewproxy.accesskey "A">
 <!ENTITY foxyproxy.addnewproxy.tooltip "Pievienot jaunu starpniekserveri">
+<!ENTITY foxyproxy.useselectedforallurls.label "Use selected proxy for all URLs">
+<!ENTITY foxyproxy.useselectedforallurls.accesskey "U">
+<!ENTITY foxyproxy.useselectedforallurls.tooltip "Use selected proxy for all URLs">
 <!ENTITY foxyproxy.whitelist.label "Baltais saraksts">
 <!ENTITY foxyproxy.whitelist.accesskey "B">
 <!ENTITY foxyproxy.whitelist.tooltip "Adreses, kas atbilst šim sarakstam tiks lādētas caur šo starpniekserveri">

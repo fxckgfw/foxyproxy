@@ -241,8 +241,12 @@ foxyproxy.prototype = {
     }
     
     this.toggleFilter(this._mode != "disabled");
+    // This line must come before the next one -- gBroadcast(...) Otherwise, AutoAdd and QuickAdd write their settings before
+    // they've been deserialized, resulting in them always getting written to disk as disabled (althogh the file itself is already
+    // in-memory, so they will be enabled until restart. Unless, of course, the user first does something to FoxyProxy which forces
+    // it to flush it's in-memory state to disk (e.g., switch FoxyProxy tabs, edit a proxy/pattern, etc)
+    if (init) return;
     gBroadcast(this.autoadd._enabled, "foxyproxy-mode-change", this._mode);
-    if (init) return;    
     if (writeSettings)
       this.writeSettings();
   },

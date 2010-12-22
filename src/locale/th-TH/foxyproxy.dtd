@@ -151,9 +151,9 @@
 <!ENTITY foxyproxy.addnewproxy.label "เพิ่มพร็อกซีใหม่">
 <!ENTITY foxyproxy.addnewproxy.accesskey "พ">
 <!ENTITY foxyproxy.addnewproxy.tooltip "เพิ่มพร็อกซีใหม่">
-<!ENTITY foxyproxy.useselectedforallurls.label "Use selected proxy for all URLs">
-<!ENTITY foxyproxy.useselectedforallurls.accesskey "U">
-<!ENTITY foxyproxy.useselectedforallurls.tooltip "Use selected proxy for all URLs">
+<!ENTITY foxyproxy.useselectedforallurls.label "ใช้พร็อกซีที่เลือกกับทุกยูอาร์แอล">
+<!ENTITY foxyproxy.useselectedforallurls.accesskey "ใ">
+<!ENTITY foxyproxy.useselectedforallurls.tooltip "ใช้พร็อกซีที่เลือกกับทุกยูอาร์แอล">
 <!ENTITY foxyproxy.whitelist.label "รายชื่อสีขาว">
 <!ENTITY foxyproxy.whitelist.accesskey "ข">
 <!ENTITY foxyproxy.whitelist.tooltip "ยูอาร์แอลที่เข้าคู่กับแบบรูปโหลดผ่านพร็อกซีนี้">

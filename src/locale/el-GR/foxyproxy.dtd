@@ -151,9 +151,9 @@
 <!ENTITY foxyproxy.addnewproxy.label "Προσθήκη νέου διαμεσολαβητή">
 <!ENTITY foxyproxy.addnewproxy.accesskey "Π">
 <!ENTITY foxyproxy.addnewproxy.tooltip "Προσθήκη νέου διαμεσολαβητή">
-<!ENTITY foxyproxy.useselectedforallurls.label "Use selected proxy for all URLs">
-<!ENTITY foxyproxy.useselectedforallurls.accesskey "U">
-<!ENTITY foxyproxy.useselectedforallurls.tooltip "Use selected proxy for all URLs">
+<!ENTITY foxyproxy.useselectedforallurls.label "Χρήση επιλεγμένου διαμεσολαβητή για όλα τα URL">
+<!ENTITY foxyproxy.useselectedforallurls.accesskey "ο">
+<!ENTITY foxyproxy.useselectedforallurls.tooltip "Χρήση του επιλεγμένου διαμεσολαβητή για όλα τα URL">
 <!ENTITY foxyproxy.whitelist.label "Λίστα επιτρεπόμενων">
 <!ENTITY foxyproxy.whitelist.accesskey "ε">
 <!ENTITY foxyproxy.whitelist.tooltip "Τα URL που συμφωνούν με το συγκεκριμένο πρότυπο θα φορτώνονται μέσω αυτού του διαμεσολαβητή">

@@ -174,6 +174,7 @@ function _updateLogView(keepSelection) {
 }
 
   // Thanks for the inspiration, Tor2k (http://www.codeproject.com/jscript/dateformat.asp)
+  // Same as foxyproxy.js's logg.format(). TODO: merge to prevent duplicated code.
   function format(d) {
     d = new Date(d);
     if (!d.valueOf())
@@ -193,7 +194,7 @@ function _updateLogView(keepSelection) {
           case 'HH':   return zf(d.getHours(), 2);          
           case 'nn':   return zf(d.getMinutes(), 2);
           case 'ss':   return zf(d.getSeconds(), 2);
-          case 'zzz':  return zf(d.getSeconds(), 3);          
+          case 'zzz':  return zf(d.getMilliseconds(), 3);          
           case 'a/p':  return d.getHours() < 12 ? 'AM' : 'PM';
         }
       }

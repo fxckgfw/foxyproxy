@@ -1,4 +1,1 @@
-* Fix for http://foxyproxy.mozdev.org/drupal/content/quickadd-function-settings-never-stored. This
-  affected both QuickAdd & AutoAdd, not just QuickAdd.
-* Fix for Firefox 4 status bar context-menu as described here: http://foxyproxy.mozdev.org/drupal/content/does-not-work-40b7-and-later#comment-5302
-* Locale updates
+* Fixed http://foxyproxy.mozdev.org/drupal/content/logging-view-milliseconds-field-wrong

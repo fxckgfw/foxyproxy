@@ -1260,7 +1260,7 @@ foxyproxy.prototype = {
             case 'HH':   return zf(d.getHours(), 2);
             case 'nn':   return zf(d.getMinutes(), 2);
             case 'ss':   return zf(d.getSeconds(), 2);
-            case 'zzz':  return zf(d.getSeconds(), 3);
+            case 'zzz':  return zf(d.getMilliseconds(), 3);
             case 'a/p':  return d.getHours() < 12 ? 'AM' : 'PM';
           }
         }

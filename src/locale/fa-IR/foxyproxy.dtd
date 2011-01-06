@@ -377,7 +377,6 @@
 <!ENTITY foxyproxy.newGUI4.label "برای اطلاعات بیشتر کلیک کنید">
 <!ENTITY foxyproxy.error.msg.label "Error Message">
 <!ENTITY foxyproxy.pac.result.label "PAC Result">
-<!ENTITY foxyproxy.torwiz.width "660">
 <!ENTITY foxyproxy.torwiz.height "375">
 <!ENTITY foxyproxy.casesensitive.label "Case sensitive">
 <!ENTITY foxyproxy.casesensitive.accesskey "C">

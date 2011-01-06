@@ -84,16 +84,18 @@
       <tab id="foxyproxy-proxy-tab" label="&foxyproxy.tab.proxies.label;"
         accesskey="&foxyproxy.tab.proxies.accesskey;" selected="true"
         tooltiptext="&foxyproxy.tab.proxies.tooltip;" class="uncram-tab"/>
+      <!--<tab id="foxyproxy-pattern-subscriptions-tab" 
+	label="&foxyproxy.pattern.subscriptions.label;"
+        accesskey="&foxyproxy.pattern.subscriptions.accesskey;"
+	tooltiptext="&foxyproxy.pattern.subscriptions.tooltip;" 
+	class="uncram-tab"/>-->
       <tab id="foxyproxy-global-tab" label="&foxyproxy.tab.global.label;"
         accesskey="&foxyproxy.tab.global.accesskey;"
         tooltiptext="&foxyproxy.tab.global.tooltip;" class="uncram-tab"/>
       <!--<tab id="foxyproxy-server-subscriptions-tab" label="&foxyproxy.server.subscriptions.label;"
         accesskey="&foxyproxy.server.subscriptions.accesskey;"
-        tooltiptext="&foxyproxy.server.subscriptions.tooltip;" class="uncram-tab"/>
-      <tab id="foxyproxy-pattern-subscriptions-tab" label="&foxyproxy.pattern.subscriptions.label;"
-        accesskey="&foxyproxy.pattern.subscriptions.accesskey;"
-        tooltiptext="&foxyproxy.pattern.subscriptions.tooltip;" class="uncram-tab"/>-->
-      <tab id="foxyproxy-quickadd-tab" label="&foxyproxy.quickadd.label;"
+	tooltiptext="&foxyproxy.server.subscriptions.tooltip;" class="uncram-tab"/>-->
+     <tab id="foxyproxy-quickadd-tab" label="&foxyproxy.quickadd.label;"
         accesskey="&foxyproxy.quickadd.accesskey;"
         tooltiptext="&foxyproxy.quickadd.tooltip;" class="hide-if-foxyproxy-simple uncram-tab"/>
       <tab id="foxyproxy-autoadd-tab" label="&foxyproxy.tab.autoadd.label;"
@@ -176,6 +178,12 @@
           </vbox>
         </hbox>
       </tabpanel>
+
+      <!-- pattern subscriptions 
+      <tabpanel flex="1" orient="vertical">
+        <separator class="thin" />
+
+      </tabpanel>-->
 
       <!-- global settings -->
       <tabpanel flex="1" orient="vertical">

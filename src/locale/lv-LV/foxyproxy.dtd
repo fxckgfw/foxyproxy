@@ -377,7 +377,6 @@
 <!ENTITY foxyproxy.newGUI4.label "Klikšķiniet šeit, lai iegūtu papildus informāciju.">
 <!ENTITY foxyproxy.error.msg.label "Kļūdas paziņojums">
 <!ENTITY foxyproxy.pac.result.label "PAC rezultāts">
-<!ENTITY foxyproxy.torwiz.width "660">
 <!ENTITY foxyproxy.torwiz.height "375">
 <!ENTITY foxyproxy.casesensitive.label "Lielo-mazo burtu jutīgs">
 <!ENTITY foxyproxy.casesensitive.accesskey "L">

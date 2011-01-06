@@ -377,7 +377,6 @@
 <!ENTITY foxyproxy.newGUI4.label "Nhấn vào đây để biết thêm chi tiết.">
 <!ENTITY foxyproxy.error.msg.label "Thông báo Lỗi">
 <!ENTITY foxyproxy.pac.result.label "Kết quả PAC">
-<!ENTITY foxyproxy.torwiz.width "660">
 <!ENTITY foxyproxy.torwiz.height "375">
 <!ENTITY foxyproxy.casesensitive.label "Phân biệt HOA-thường">
 <!ENTITY foxyproxy.casesensitive.accesskey "A">

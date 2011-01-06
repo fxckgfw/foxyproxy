@@ -377,7 +377,6 @@
 <!ENTITY foxyproxy.newGUI4.label "Za više informacija kliknite ovdje.">
 <!ENTITY foxyproxy.error.msg.label "Poruka o grešci">
 <!ENTITY foxyproxy.pac.result.label "PAC rezultat">
-<!ENTITY foxyproxy.torwiz.width "660">
 <!ENTITY foxyproxy.torwiz.height "375">
 <!ENTITY foxyproxy.casesensitive.label "Case sensitive">
 <!ENTITY foxyproxy.casesensitive.accesskey "C">

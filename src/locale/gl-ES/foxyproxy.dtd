@@ -377,7 +377,6 @@
 <!ENTITY foxyproxy.newGUI4.label "Prema aquí para máis información.">
 <!ENTITY foxyproxy.error.msg.label "Mensaxe de erro">
 <!ENTITY foxyproxy.pac.result.label "Resultado PAC">
-<!ENTITY foxyproxy.torwiz.width "660">
 <!ENTITY foxyproxy.torwiz.height "375">
 <!ENTITY foxyproxy.casesensitive.label "distingue maiúsculas e minúsculas">
 <!ENTITY foxyproxy.casesensitive.accesskey "C">

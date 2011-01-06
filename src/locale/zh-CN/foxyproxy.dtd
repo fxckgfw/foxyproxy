@@ -377,7 +377,6 @@
 <!ENTITY foxyproxy.newGUI4.label "点击获得更多信息。">
 <!ENTITY foxyproxy.error.msg.label "错误信息">
 <!ENTITY foxyproxy.pac.result.label "PAC 结果">
-<!ENTITY foxyproxy.torwiz.width "660">
 <!ENTITY foxyproxy.torwiz.height "375">
 <!ENTITY foxyproxy.casesensitive.label "区分大小写">
 <!ENTITY foxyproxy.casesensitive.accesskey "C">

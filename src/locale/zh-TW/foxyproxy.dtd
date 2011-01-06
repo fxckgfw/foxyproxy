@@ -377,7 +377,6 @@
 <!ENTITY foxyproxy.newGUI4.label "點擊這裏獲得更多資訊。">
 <!ENTITY foxyproxy.error.msg.label "錯誤訊息">
 <!ENTITY foxyproxy.pac.result.label "自動組態指命碼（PAC）結果">
-<!ENTITY foxyproxy.torwiz.width "660">
 <!ENTITY foxyproxy.torwiz.height "375">
 <!ENTITY foxyproxy.casesensitive.label "符合大小寫">
 <!ENTITY foxyproxy.casesensitive.accesskey "C">

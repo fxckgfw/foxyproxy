@@ -377,7 +377,6 @@
 <!ENTITY foxyproxy.newGUI4.label "Κάντε κλικ εδώ για περισσότερες πληροφορίες.">
 <!ENTITY foxyproxy.error.msg.label "Μήνυμα σφάλματος">
 <!ENTITY foxyproxy.pac.result.label "Αποτελέσματα αρχείου PAC">
-<!ENTITY foxyproxy.torwiz.width "89em">
 <!ENTITY foxyproxy.torwiz.height "54em">
 <!ENTITY foxyproxy.casesensitive.label "Ταίριασμα χαρακτήρα">
 <!ENTITY foxyproxy.casesensitive.accesskey "Τ">

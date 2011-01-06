@@ -233,7 +233,7 @@
   </tabbox>
 </vbox>
 
-<vbox width="&foxyproxy.torwiz.width;" height="&foxyproxy.torwiz.height;" observes="not-torwiz-broadcaster" flex="1">
+<vbox height="&foxyproxy.torwiz.height;" observes="not-torwiz-broadcaster" flex="1">
   <iframe class="foxyproxy-border" src="chrome://foxyproxy/content/torwizhelp.xhtml" flex="1"/>
   <separator/>
   <description>&foxyproxy.pattern.description;</description>

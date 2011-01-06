@@ -377,7 +377,6 @@
 <!ENTITY foxyproxy.newGUI4.label "Kliknij tutaj, aby uzyskać więcej informacji.">
 <!ENTITY foxyproxy.error.msg.label "Informacja o błędzie">
 <!ENTITY foxyproxy.pac.result.label "Wynik PAC">
-<!ENTITY foxyproxy.torwiz.width "690px">
 <!ENTITY foxyproxy.torwiz.height "375px">
 <!ENTITY foxyproxy.casesensitive.label "Rozróżniaj wielkość znaków">
 <!ENTITY foxyproxy.casesensitive.accesskey "E">

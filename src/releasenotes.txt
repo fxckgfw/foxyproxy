@@ -1,3 +1,4 @@
 * Fixed http://foxyproxy.mozdev.org/drupal/content/logging-view-milliseconds-field-wrong
 * Fixed radio button overlayed with text in the mode menu
 * Fixed Torwizard issue (button text did not fit into the buttons)
+* added Georg Koppen to about.xul (as a contributor)

@@ -38,7 +38,7 @@ function Match(enabled, name, pattern, temp, isRegEx, caseSensitive, isBlackList
 Match.prototype = {
   enabled : true,
   name : "",
-  pattern : "",
+  _pattern : "",
   temp : false,
   _isRegEx : false,
   _caseSensitive : false,
@@ -46,14 +46,14 @@ Match.prototype = {
   isMultiLine : false,
 
   clone : function() {
-    return new Match(this.enabled, this.name, this.pattern, this.temp, this.isRegEx, this.caseSensitive,
+    return new Match(this.enabled, this.name, this._pattern, this.temp, this.isRegEx, this.caseSensitive,
       this.isBlackList, this.isMultiLine);
   },
 
   init : function(enabled, name, pattern, temp, isRegEx, caseSensitive, isBlackList, isMultiLine) {
     this.enabled = arguments.length > 0 ? arguments[0] : true;
     this.name = name || "";
-    this.pattern = pattern || "";
+    this._pattern = pattern || "";
     this.temp = arguments.length > 3 ? arguments[3] : false; // doesn't calculate the regex
     this._isRegEx = arguments.length > 4 ? arguments[4] : false;
     this._caseSensitive = arguments.length > 5 ? arguments[5] : false;

@@ -84,11 +84,11 @@
       <tab id="foxyproxy-proxy-tab" label="&foxyproxy.tab.proxies.label;"
         accesskey="&foxyproxy.tab.proxies.accesskey;" selected="true"
         tooltiptext="&foxyproxy.tab.proxies.tooltip;" class="uncram-tab"/>
-      <!--<tab id="foxyproxy-pattern-subscriptions-tab" 
+      <tab id="foxyproxy-pattern-subscriptions-tab" 
 	label="&foxyproxy.pattern.subscriptions.label;"
         accesskey="&foxyproxy.pattern.subscriptions.accesskey;"
 	tooltiptext="&foxyproxy.pattern.subscriptions.tooltip;" 
-	class="uncram-tab"/>-->
+	class="hide-if-foxyproxy-simple uncram-tab"/>
       <tab id="foxyproxy-global-tab" label="&foxyproxy.tab.global.label;"
         accesskey="&foxyproxy.tab.global.accesskey;"
         tooltiptext="&foxyproxy.tab.global.tooltip;" class="uncram-tab"/>
@@ -179,11 +179,79 @@
         </hbox>
       </tabpanel>
 
-      <!-- pattern subscriptions 
+      <!-- pattern subscriptions -->
       <tabpanel flex="1" orient="vertical">
         <separator class="thin" />
-
-      </tabpanel>-->
+        <hbox height="200">
+           <tree id="subscriptionTree" align="stretch" enableColumnDrag="true"
+		 flex="1" style="width: 5em; height: 2em;" selType="single">
+             <treecols
+               pickertooltiptext="&foxyproxy.tree.pickertooltiptext.label;">
+	       <treecol id="subscriptionEnabled" 
+		        label="&foxyproxy.enabled.label;" 
+                        flex="1" persist="width ordinal hidden" />
+               <splitter class="tree-splitter" />
+	       <treecol id="subscriptionName" label="&foxyproxy.name.label;"
+                        flex="1" persist="width ordinal hidden" />
+               <splitter class="tree-splitter" />
+	       <treecol id="subscriptionNotes" label="&foxyproxy.notes.label;"
+			flex="1" persist="width ordinal hidden"/>
+               <splitter class="tree-splitter" />
+	       <treecol id="subscriptionUri" label="&foxyproxy.url.label;"
+                        flex="1" persist="width ordinal hidden" />
+               <splitter class="tree-splitter" />
+	       <treecol id="subscriptionRefresh" 
+		        label="&foxyproxy.updatefrequency.label;"
+                        flex="1" persist="width ordinal hidden"/>
+               <splitter class="tree-splitter" />
+               <treecol id="subscriptionStatus" label="&foxyproxy.status.label;"
+			flex="1" persist="width ordinal hidden" />
+               <splitter class="tree-splitter" />
+               <treecol id="subscriptionLastUpdate" 
+                        label="&foxyproxy.lastupdate.label;"
+                        flex="1" persist="width ordinal hidden" hidden="true"/>
+               <splitter class="tree-splitter" />
+               <treecol id="subscriptionFormat" label="&foxyproxy.format.label;" 
+                        flex="1" persist="width ordinal hidden" hidden="true"/>
+               <splitter class="tree-splitter" />
+               <treecol id="subscriptionObfuscation"
+		        label="&foxyproxy.obfuscation.label;"
+			flex="1" persist="width ordinal hidden" hidden="true"/>
+               <splitter class="tree-splitter" />
+             </treecols>
+             <treechildren id="subscriptionTreeChildren" flex="1" />
+           </tree>
+         </hbox> 
+	 <hbox>
+	   <button id="subscriptionWizard"  
+	     style="padding: 10px 50px;" 
+	     label="&foxyproxy.pattern.subscriptions.wizard.label;"
+	     tooltiptext="&foxyproxy.pattern.subscriptions.wizard.tooltip;"/>
+           <spacer flex="1" />
+	   <vbox>
+	     <menulist pack="start"
+	       tooltiptext="&foxyproxy.pattern.subscriptions.menulist.tooltip;">
+	       <menupopup>
+	         <menuitem 
+		   label="&foxyproxy.pattern.subscriptions.addSubscription;"/>
+	         <menuitem 
+		   label="&foxyproxy.pattern.subscriptions.editSelection;"/>
+	         <menuitem 
+		   label="&foxyproxy.pattern.subscriptions.deleteSelections;"/>
+	         <menuitem 
+		   label="&foxyproxy.pattern.subscriptions.refreshSelections;"/>
+	         <menuitem 
+		   label="&foxyproxy.pattern.subscriptions.viewSubscription;"/>
+	       </menupopup>
+	     </menulist>
+	   </vbox>
+	   <vbox pack="start">
+	   <button id="subscriptionAction"
+	           label="&foxyproxy.pattern.subscriptions.go.label;"
+		   tooltiptext="&foxyproxy.pattern.subscriptions.go.tooltip;"/>
+	   </vbox>
+	 </hbox>
+      </tabpanel>
 
       <!-- global settings -->
       <tabpanel flex="1" orient="vertical">

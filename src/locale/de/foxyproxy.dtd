@@ -423,11 +423,26 @@
 <!ENTITY foxyproxy.pattern.subscriptions.label "Muster-Abonnements">
 <!ENTITY foxyproxy.pattern.subscriptions.tooltip "Muster-Abonnements verwalten">
 <!ENTITY foxyproxy.pattern.subscriptions.accesskey "A">
+<!ENTITY foxyproxy.pattern.subscriptions.wizard.label "Wizard">
+<!ENTITY foxyproxy.pattern.subscriptions.wizard.tooltip "Hier klicken, um den Wizard für Muster-Abonnements zu starten.">
+<!ENTITY foxyproxy.pattern.subscriptions.menulist.tooltip "Wähle aus, was mit Muster-Abonnements geschehen soll.">
+<!ENTITY foxyproxy.pattern.subscriptions.addSubscription "Neues Abonnement hinzufügen">
+<!ENTITY foxyproxy.pattern.subscriptions.editSelection "Auswahl bearbeiten">
+<!ENTITY foxyproxy.pattern.subscriptions.deleteSelections "Auswahl löschen">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshSelections "Auswahl aktualisieren">
+<!ENTITY foxyproxy.pattern.subscriptions.viewSubscription "Abonnement ansehen">
+<!ENTITY foxyproxy.pattern.subscriptions.go.label "Los">
+<!ENTITY foxyproxy.pattern.subscriptions.go.tooltip "Hier klicken, um die Auswahl auszuführen.">
+
+
 <!ENTITY foxyproxy.name.label "Name">
 <!ENTITY foxyproxy.notes.label "Notizen">
 <!ENTITY foxyproxy.url.label "url">
 <!ENTITY foxyproxy.lastupdate.label "Letzte Aktualisierung">
 <!ENTITY foxyproxy.updatefrequency.label "Aktualisierungshäufigkeit">
+<!ENTITY foxyproxy.status.label "Status">
+<!ENTITY foxyproxy.format.label "Format">
+<!ENTITY foxyproxy.obfuscation.label "Verschleierung">
 <!ENTITY foxyproxy.hosting.label1 "Danke an">
 <!ENTITY foxyproxy.ocs.label "OCS">
 <!ENTITY foxyproxy.hosting.label2 "für das Hosten der FoxyProxy Website. Bitte berücksichtigen Sie OCS bei der Auswahl ihres Hosters.">

@@ -3,3 +3,4 @@
 * Fixed Torwizard issue (button text did not fit into the buttons)
 * Added Georg Koppen to about.xul (as a contributor)
 * Fixed small issue concerning setting the TRANPARENT_PROXY_RESOLVES_HOST-flag
+* Fixed pattern coding error. Unlikely to have caused problems except for Firefox 4.0b9 compatibility due to https://bugzilla.mozilla.org/show_bug.cgi?id=622321 

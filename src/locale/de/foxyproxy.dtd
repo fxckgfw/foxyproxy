@@ -56,7 +56,7 @@
 <!ENTITY foxyproxy.auto.url.accesskey "U">
 <!ENTITY foxyproxy.auto.url.tooltip "URL der PAC-Datei eingeben">
 <!ENTITY foxyproxy.auto.url.note.label "http(s)://   ftp://   file://   relative://">
-<!ENTITY foxyproxy.auto.url.note.tooltip "Klicken Sie das Info-Icon für Informationen über relative://">
+<!ENTITY foxyproxy.auto.url.note.tooltip "Klicken Sie auf das Info-Icon für Informationen über relative://">
 <!ENTITY foxyproxy.port.label "Port">
 <!ENTITY foxyproxy.port.accesskey "P">
 <!ENTITY foxyproxy.port.tooltip "Port">
@@ -142,12 +142,12 @@
 <!ENTITY foxyproxy.save.label "Speichern">
 <!ENTITY foxyproxy.save.accesskey "S">
 <!ENTITY foxyproxy.save.tooltip "Speichern">
-<!ENTITY foxyproxy.openurlinnewtab.label "Open URL in New Tab">
+<!ENTITY foxyproxy.openurlinnewtab.label "URL in einem neuen Tab öffnen">
 <!ENTITY foxyproxy.openurlinnewtab.accesskey "O">
-<!ENTITY foxyproxy.openurlinnewtab.tooltip "Open URL in New Tab">
-<!ENTITY foxyproxy.copyurltoclipboard.label "Copy URL to Clipboard">
+<!ENTITY foxyproxy.openurlinnewtab.tooltip "URL in einem neuen Tab öffnen">
+<!ENTITY foxyproxy.copyurltoclipboard.label "URL in die Zwischenablage kopieren">
 <!ENTITY foxyproxy.copyurltoclipboard.accesskey "C">
-<!ENTITY foxyproxy.copyurltoclipboard.tooltip "Copy URL to Clipboard">
+<!ENTITY foxyproxy.copyurltoclipboard.tooltip "URL in die Zwischenablage kopieren">
 <!ENTITY foxyproxy.addnewproxy.label "Neuer Proxy">
 <!ENTITY foxyproxy.addnewproxy.accesskey "N">
 <!ENTITY foxyproxy.addnewproxy.tooltip "Neuen Proxy hinzufügen">
@@ -172,7 +172,7 @@
 <!ENTITY foxyproxy.moveup.tooltip "Priorität der aktuellen Auswahl erhöhen">
 <!ENTITY foxyproxy.moveup.accesskey "U">
 <!ENTITY foxyproxy.movedown.label "Abwärts">
-<!ENTITY foxyproxy.movedown.tooltip "Priorität der aktuellen Auswahl vermindern">
+<!ENTITY foxyproxy.movedown.tooltip "Priorität der aktuellen Auswahl verringern">
 <!ENTITY foxyproxy.movedown.accesskey "B">
 <!ENTITY foxyproxy.autoconfurl.view.label "Ansicht">
 <!ENTITY foxyproxy.autoconfurl.view.accesskey "A">
@@ -207,7 +207,7 @@
 <!ENTITY foxyproxy.tab.autoadd.accesskey "u">
 <!ENTITY foxyproxy.tab.autoadd.tooltip "Einstellungen für AutoAdd verwalten">
 <!ENTITY foxyproxy.autoadd.description "Einige Proxies sperren den Zugriff auf einige Internetseiten. Um dies zu umgehen, geben Sie ein Suchmuster an, das blockierte Websites akzeptiert. Wenn das Suchmuster auf einer Webseite gefunden wird, wird ein URL-Muster für die URL dieser Webseite automatisch einem Proxy zugeordnet und die Seite optional neu geladen. Dies erspart es, blockierte Webseiten explizit vorgeben zu müssen.">
-<!ENTITY foxyproxy.autoadd.pattern.label "URL-Muster zur Identifizierung blockierter Websites">
+<!ENTITY foxyproxy.autoadd.pattern.label "URL-Muster zur Identifikation blockierter Websites">
 <!ENTITY foxyproxy.autoadd.pattern.accesskey "M">
 <!ENTITY foxyproxy.autoadd.pattern.tooltip "Muster für die Identifikation blockierter Webseiten">
 <!ENTITY foxyproxy.autoadd.wildcard.example.label "Beispiel: *Zugriff auf diese Seite verweigert.*">
@@ -264,9 +264,9 @@
 <!ENTITY foxyproxy.quickadd.notify.accesskey "B">
 <!ENTITY foxyproxy.quickadd.notify.tooltip "Zeigt ein Popup-Fenster an, wenn QuickAdd aktiviert wird">
 <!ENTITY foxyproxy.quickadd.notify.whencanceled.label "Benachrichtigen, wenn QuickAdd abgebrochen wird">
-<!ENTITY foxyproxy.quickadd.notify.whencanceled.label2 "QuickAdd wird automatisch abgebrochen, wenn es durch die Tastenkombination Alt-F2 aufgerufen wurde und die aktuelle URL in der Adresszeile bereits von der Whitelist eines existierenden Proxys abgedeckt wird. Auf diese Weise wird ein Aufblähen der Konfiguration durch Mehrfachdefinitionen von Mustern vermieden. Diese Einstellung beeinflußt nicht das Abbruchverhalten; sie steuert vielmehr die Benachrichtigung über Abbrüche.">
+<!ENTITY foxyproxy.quickadd.notify.whencanceled.label2 "QuickAdd wird automatisch abgebrochen, wenn es durch die Tastenkombination Alt-F2 aufgerufen wurde und die aktuelle URL in der Adresszeile bereits von der Whitelist eines existierenden Proxies abgedeckt wird. Auf diese Weise wird ein Aufblähen der Konfiguration durch Mehrfachdefinitionen von Mustern vermieden. Diese Einstellung beeinflusst nicht das Abbruchverhalten; sie steuert vielmehr die Benachrichtigung über Abbrüche.">
 <!ENTITY foxyproxy.quickadd.notify.whencanceled.accesskey "A">
-<!ENTITY foxyproxy.quickadd.notify.whencanceled.tooltip "Zeigt ein Popup-Fenster ann, wenn QuickAdd aktiviert und abgebrochen wird">
+<!ENTITY foxyproxy.quickadd.notify.whencanceled.tooltip "Zeigt ein Popup-Fenster an, wenn QuickAdd aktiviert und abgebrochen wird">
 <!ENTITY foxyproxy.whatsthis "Kontexthilfe">
 <!ENTITY foxyproxy.quickadd.prompt.label "Eingabeaufforderung für Editieren und Konfiguration, bevor ein Muster einem Proxy hinzugefügt wird">
 <!ENTITY foxyproxy.quickadd.prompt.accesskey "P">
@@ -309,7 +309,7 @@
 <!ENTITY foxyproxy.pattern.template.reference.label "Referenz zu Musterschablonen">
 <!ENTITY foxyproxy.pattern.template.reference.tooltip "Referenz zu Musterschablonen">
 <!ENTITY foxyproxy.pattern.template.reference.specialstring.label "Reservierter Ausdruck">
-<!ENTITY foxyproxy.pattern.template.reference.subststring.label "Ersetzung durch">
+<!ENTITY foxyproxy.pattern.template.reference.subststring.label "Ersetzt durch">
 <!ENTITY foxyproxy.pattern.template.reference.example.label "Beispiel">
 <!ENTITY foxyproxy.pattern.template.reference.scheme.label "Protokoll">
 <!ENTITY foxyproxy.pattern.template.reference.username.label "Benutzer">
@@ -351,13 +351,13 @@
 <!ENTITY foxyproxy.rightclicksb.tooltip "Aktion bei Rechtsklick auf FoxyProxy in der Statuszeile">
 <!ENTITY foxyproxy.leftclicktb.label "Linksklick">
 <!ENTITY foxyproxy.leftclicktb.accesskey "L">
-<!ENTITY foxyproxy.leftclicktb.tooltip "Aktion bei Linksklick auf FoxyProxy im Toolbar">
+<!ENTITY foxyproxy.leftclicktb.tooltip "Aktion bei Linksklick auf FoxyProxy in der Werkzeugleiste">
 <!ENTITY foxyproxy.middleclicktb.label "Mittelklick">
 <!ENTITY foxyproxy.middleclicktb.accesskey "M">
-<!ENTITY foxyproxy.middleclicktb.tooltip "Aktion bei Mittelklick auf FoxyProxy im Toolbar">
+<!ENTITY foxyproxy.middleclicktb.tooltip "Aktion bei Mittelklick auf FoxyProxy in der Toolbar">
 <!ENTITY foxyproxy.rightclicktb.label "Rechtsklick">
 <!ENTITY foxyproxy.rightclicktb.accesskey "R">
-<!ENTITY foxyproxy.rightclicktb.tooltip "Aktion bei Rechtsklick auf FoxyProxy im Toolbar">
+<!ENTITY foxyproxy.rightclicktb.tooltip "Aktion bei Rechtsklick auf FoxyProxy in der Toolbar">
 <!ENTITY foxyproxy.click.options "Zeigt den Optionsdialog">
 <!ENTITY foxyproxy.click.cycle "Zyklischer Wechsel durch die Modi">
 <!ENTITY foxyproxy.click.contextmenu "Zeigt das Kontextmenü">
@@ -426,15 +426,13 @@
 <!ENTITY foxyproxy.pattern.subscriptions.wizard.label "Wizard">
 <!ENTITY foxyproxy.pattern.subscriptions.wizard.tooltip "Hier klicken, um den Wizard für Muster-Abonnements zu starten.">
 <!ENTITY foxyproxy.pattern.subscriptions.menulist.tooltip "Wähle aus, was mit Muster-Abonnements geschehen soll.">
-<!ENTITY foxyproxy.pattern.subscriptions.addSubscription "Neues Abonnement hinzufügen">
+<!ENTITY foxyproxy.pattern.subscriptions.addSubscription "Neues Muster-Abonnement hinzufügen">
 <!ENTITY foxyproxy.pattern.subscriptions.editSelection "Auswahl bearbeiten">
 <!ENTITY foxyproxy.pattern.subscriptions.deleteSelections "Auswahl löschen">
 <!ENTITY foxyproxy.pattern.subscriptions.refreshSelections "Auswahl aktualisieren">
-<!ENTITY foxyproxy.pattern.subscriptions.viewSubscription "Abonnement ansehen">
+<!ENTITY foxyproxy.pattern.subscriptions.viewSubscription "Muster-Abonnement ansehen">
 <!ENTITY foxyproxy.pattern.subscriptions.go.label "Los">
 <!ENTITY foxyproxy.pattern.subscriptions.go.tooltip "Hier klicken, um die Auswahl auszuführen.">
-
-
 <!ENTITY foxyproxy.name.label "Name">
 <!ENTITY foxyproxy.notes.label "Notizen">
 <!ENTITY foxyproxy.url.label "url">
@@ -472,7 +470,7 @@
 <!ENTITY foxyproxy.refreshlocalips "Aktualisiere lokale IP-Adressen">
 <!ENTITY foxyproxy.refreshlocalips.accesskey "A">
 <!ENTITY foxyproxy.enterlicense.label "Lizenzschlüssel eingeben">
-<!ENTITY foxyproxy.enteremail.label "EMail-Adresse eingeben">
+<!ENTITY foxyproxy.enteremail.label "E-Mail-Adresse eingeben">
 <!ENTITY foxyproxy.licenseinfo.label "Lizenzinformation">
 <!ENTITY foxyproxy.licensevalid.label "Lizenz ist gültig. Danke für den Kauf von FoxyProxy Plus.">
 <!ENTITY foxyproxy.subexpired.label "Lizenz ist gültig, aber Ihr Update-Abonnement ist abgelaufen. Sie erhalten keine neuen FoxyProxy Plus Updates mehr.">
@@ -496,15 +494,15 @@
 <!ENTITY foxyproxy.proxydomain.tooltip "Nur NTLM Authentisierung">
 <!ENTITY foxyproxy.proxy.passwords.nomatch.label "Passwörter sind unterschiedlich; bitte neu eingeben.">
 <!ENTITY foxyproxy.traininglogging.label "Training &amp; Logging">
-<!ENTITY foxyproxy.traininglogging.tooltip "Manage Training &amp; Logging Settings">
+<!ENTITY foxyproxy.traininglogging.tooltip "Training &amp; Logging Einstellungen verwalten">
 <!ENTITY foxyproxy.traininglogging.accesskey "L">
-<!ENTITY foxyproxy.training.start "Start Training">
-<!ENTITY foxyproxy.training.stop "Stop Training">
-<!ENTITY foxyproxy.patternsforall.label "Create Patterns for All">
+<!ENTITY foxyproxy.training.start "Beginne Training">
+<!ENTITY foxyproxy.training.stop "Beende Training">
+<!ENTITY foxyproxy.patternsforall.label "Erstelle Muster für alle">
 <!ENTITY foxyproxy.patternsforall.accesskey "A">
-<!ENTITY foxyproxy.patternsforall.tooltip "Create Patterns for All URLs">
-<!ENTITY foxyproxy.patternsforselected.label "Create Patterns for Selected">
+<!ENTITY foxyproxy.patternsforall.tooltip "Erstelle Muster für alle URLs">
+<!ENTITY foxyproxy.patternsforselected.label "Erstelle Muster für ausgewählte">
 <!ENTITY foxyproxy.patternsforselected.accesskey "S">
-<!ENTITY foxyproxy.patternsforselected.tooltip "Create Patterns for Selected URLs">
-<!ENTITY foxyproxy.patterntoadd.label "Pattern to Add">
+<!ENTITY foxyproxy.patternsforselected.tooltip "Erstelle Muster für ausgewählte URLs">
+<!ENTITY foxyproxy.patterntoadd.label "Hinzuzufügendes Muster">
 <!-- end foxyproxyplus -->

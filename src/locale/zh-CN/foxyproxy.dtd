@@ -423,11 +423,24 @@
 <!ENTITY foxyproxy.pattern.subscriptions.label "模式订阅">
 <!ENTITY foxyproxy.pattern.subscriptions.tooltip "管理模式订阅">
 <!ENTITY foxyproxy.pattern.subscriptions.accesskey "S">
+<!ENTITY foxyproxy.pattern.subscriptions.wizard.label "Wizard">
+<!ENTITY foxyproxy.pattern.subscriptions.wizard.tooltip "Click here to start the pattern subscription wizard.">
+<!ENTITY foxyproxy.pattern.subscriptions.menulist.tooltip "Select what to do with pattern subscriptions.">
+<!ENTITY foxyproxy.pattern.subscriptions.addSubscription "Add New Pattern Subscription">
+<!ENTITY foxyproxy.pattern.subscriptions.editSelection "Edit Selection">
+<!ENTITY foxyproxy.pattern.subscriptions.deleteSelections "Delete Selections">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshSelections "Refresh Selections">
+<!ENTITY foxyproxy.pattern.subscriptions.viewSubscription "View Pattern Subscription">
+<!ENTITY foxyproxy.pattern.subscriptions.go.label "Go">
+<!ENTITY foxyproxy.pattern.subscriptions.go.tooltip "Click here to execute your selection.">
 <!ENTITY foxyproxy.name.label "名字">
 <!ENTITY foxyproxy.notes.label "注释">
 <!ENTITY foxyproxy.url.label "网址">
 <!ENTITY foxyproxy.lastupdate.label "最近更新">
 <!ENTITY foxyproxy.updatefrequency.label "更新频率">
+<!ENTITY foxyproxy.status.label "Status">
+<!ENTITY foxyproxy.format.label "Format">
+<!ENTITY foxyproxy.obfuscation.label "Obfuscation">
 <!ENTITY foxyproxy.hosting.label1 "感谢">
 <!ENTITY foxyproxy.ocs.label "OCS">
 <!ENTITY foxyproxy.hosting.label2 "为了存放 FoxyProxy 的网站。如果你需要存放，请联系 OCS。">

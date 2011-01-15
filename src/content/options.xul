@@ -114,7 +114,7 @@
 
         <hbox flex="1">
           <tree id="proxyTree" align="stretch" enableColumnDrag="true"
-            flex="1" style="width: 5em; height: 2em; " seltype="single"
+            flex="1" class="treeStyling" seltype="single"
             onselect="onProxyTreeSelected();"
             onclick="overlay.onTreeClick(event, this);">
             <treecols
@@ -184,7 +184,7 @@
         <separator class="thin" />
         <hbox height="200">
            <tree id="subscriptionTree" align="stretch" enableColumnDrag="true"
-		 flex="1" style="width: 5em; height: 2em;" selType="single">
+		 flex="1" selType="single">
              <treecols
                pickertooltiptext="&foxyproxy.tree.pickertooltiptext.label;">
 	       <treecol id="subscriptionEnabled" 
@@ -224,7 +224,6 @@
          </hbox> 
 	 <hbox>
 	   <button id="subscriptionWizard"  
-	     style="padding: 10px 50px;" 
 	     label="&foxyproxy.pattern.subscriptions.wizard.label;"
 	     tooltiptext="&foxyproxy.pattern.subscriptions.wizard.tooltip;"/>
            <spacer flex="1" />
@@ -659,7 +658,7 @@
         <description style="width: 1em;">&foxyproxy.quickadd.desc1;
           <text value="&foxyproxy.keyconfig.label;" class="text-link"
             onclick="fpc.openAndReuseOneTabPerURL('http://forums.mozillazine.org/viewtopic.php?t=72994');" />
-          &foxyproxy.quickadd.desc2;
+          &foxyproxy.quickadd.desc2;.
         </description>
         <checkbox id="quickAddEnabled" 
           label="&foxyproxy.enabled.label;"

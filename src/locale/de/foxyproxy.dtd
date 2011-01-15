@@ -433,6 +433,24 @@
 <!ENTITY foxyproxy.pattern.subscriptions.viewSubscription "Muster-Abonnement ansehen">
 <!ENTITY foxyproxy.pattern.subscriptions.go.label "Los">
 <!ENTITY foxyproxy.pattern.subscriptions.go.tooltip "Hier klicken, um die Auswahl auszuführen.">
+<!ENTITY foxyproxy.pattern.subscriptions.lastStatus.label "Letzter Status">
+<!ENTITY foxyproxy.pattern.subscriptions.addedit.tile "Muster-Abonnement hinzufügen/bearbeiten">
+<!ENTITY foxyproxy.pattern.subscriptions.name.label "Abonnement-Name">
+<!ENTITY foxyproxy.pattern.subscriptions.name.tooltip "Abonnement-Name">
+<!ENTITY foxyproxy.pattern.subscriptions.notes.label "Abonnement-Beschreibung">
+<!ENTITY foxyproxy.pattern.subscriptions.notes.tooltip "Abonnement-Beschreibung">
+<!ENTITY foxyproxy.pattern.subscriptions.url.label "Abonnement-URL">
+<!ENTITY foxyproxy.pattern.subscriptions.url.tooltip "Abonnement-URL">
+<!ENTITY foxyproxy.pattern.subscriptions.proxies.tooltip "Proxies, die diese Musterliste abonniert haben.">
+<!ENTITY foxyproxy.pattern.subscriptions.addProxies.label "Proxies hinzufügen">
+<!ENTITY foxyproxy.pattern.subscriptions.addProxies.tooltip "Proxies hinzufügen, die diese Musterliste abonnieren sollen">
+<!ENTITY foxyproxy.pattern.subscriptions.removeProxies.label "Ausgewählte entfernen">
+<!ENTITY foxyproxy.pattern.subscriptions.removeProxies.tooltip "Abonnement dieser Musterliste für ausgewählte Proxies beenden">
+<!ENTITY foxyproxy.pattern.subscriptions.refresh.label "Aktualisierungsintervall">
+<!ENTITY foxyproxy.pattern.subscriptions.refresh.tooltip "Aktualisierungsintervall dieses Muster-Abonnements in Minuten">
+<!ENTITY foxyproxy.pattern.subscriptions.zeroRefresh "(0, um nie zu aktualisieren)">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshNow.label "Jetzt aktualisieren">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshNow.tooltip "Dieses Muster-Abonnement jetzt aktualisieren">
 <!ENTITY foxyproxy.name.label "Name">
 <!ENTITY foxyproxy.notes.label "Notizen">
 <!ENTITY foxyproxy.url.label "url">

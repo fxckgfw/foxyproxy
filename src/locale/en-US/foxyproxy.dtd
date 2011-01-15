@@ -552,7 +552,24 @@
 <!ENTITY foxyproxy.pattern.subscriptions.viewSubscription "View Pattern Subscription">
 <!ENTITY foxyproxy.pattern.subscriptions.go.label "Go">
 <!ENTITY foxyproxy.pattern.subscriptions.go.tooltip "Click here to execute your selection.">
-
+<!ENTITY foxyproxy.pattern.subscriptions.lastStatus.label "Last Status">
+<!ENTITY foxyproxy.pattern.subscriptions.addedit.tile "Add/Edit Pattern Subscription"> 
+<!ENTITY foxyproxy.pattern.subscriptions.name.label "Subscription Name">
+<!ENTITY foxyproxy.pattern.subscriptions.name.tooltip "Subscription Name">
+<!ENTITY foxyproxy.pattern.subscriptions.notes.label "Subscription Description">
+<!ENTITY foxyproxy.pattern.subscriptions.notes.tooltip "Subscription Description">
+<!ENTITY foxyproxy.pattern.subscriptions.url.label "Subscription URL">
+<!ENTITY foxyproxy.pattern.subscriptions.url.tooltip "Subscription URL">
+<!ENTITY foxyproxy.pattern.subscriptions.proxies.tooltip "Proxies that have subscribed to this pattern list">
+<!ENTITY foxyproxy.pattern.subscriptions.addProxies.label "Add Proxies">
+<!ENTITY foxyproxy.pattern.subscriptions.addProxies.tooltip "Add proxies that shall subscribe to this pattern list">
+<!ENTITY foxyproxy.pattern.subscriptions.removeProxies.label "Remove Selected">
+<!ENTITY foxyproxy.pattern.subscriptions.removeProxies.tooltip "Cancel the subscription of this pattern list for selected proxies">
+<!ENTITY foxyproxy.pattern.subscriptions.refresh.label "Refresh Rate">
+<!ENTITY foxyproxy.pattern.subscriptions.refresh.tooltip "Refresh rate of this pattern subscription in minutes">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshNow.label "Refresh Now">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshNow.tooltip "Refresh this pattern subscription now">
+<!ENTITY foxyproxy.pattern.subscriptions.zeroRefresh "(0 to never refresh)">
 <!ENTITY foxyproxy.name.label "Name">
 <!ENTITY foxyproxy.notes.label "Notes">
 <!ENTITY foxyproxy.url.label "url">

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  FoxyProxy
+  Copyright (C) 2006-2011 Eric H. Jung and LeahScape, Inc.
+  http://getfoxyproxy.org/
+  eric.jung@yahoo.com
+  
+  This source code is released under the GPL license,
+  available in the LICENSE file at the root of this installation
+  and also online at http://www.gnu.org/licenses/gpl.txt
+-->
+
+<?xml-stylesheet href="foxyproxy.css" type="text/css"?>
+<!DOCTYPE overlay SYSTEM "chrome://foxyproxy/locale/foxyproxy.dtd">
+
+
+<dialog id="foxyproxyoptions2" windowtype="foxyproxy"
+        title="&foxyproxy.standard.label;" buttons="accept,cancel,extra2"
+	buttonlabelextra2="&foxyproxy.pattern.subscriptions.lastStatus.label;" 
+        xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	persist="screenX screenY">
+
+  <script src="addeditsubscription.js" />
+
+  <vbox>
+    <separator class="thin"/>
+      <description id="addeditSubscriptionTitle">
+        &foxyproxy.pattern.subscriptions.addedit.tile;
+      </description>
+    <separator/> 
+    <hbox>
+      <checkbox id="subscriptionEnabled" checked="true" 
+	        label="&foxyproxy.enabled.label;" 
+	        accesskey="&foxyproxy.enabled.accesskey;"/> 
+    </hbox>
+    <!--  thanks Teo! -->
+    <grid class="indent">
+      <columns>
+        <column/>
+        <column flex="1"/>
+      </columns>
+      <rows>
+        <row align="center">
+	  <label value="&foxyproxy.pattern.subscriptions.name.label;" 
+	         control="subscriptionName" 
+                 tooltiptext="&foxyproxy.pattern.subscriptions.name.tooltip;"/>
+	  <menulist id="subscriptionName" editable="true">
+            <menupopup>
+              <menuitem />
+            </menupopup>
+          </menulist>
+	</row>
+        <row align="center">
+	  <label value="&foxyproxy.pattern.subscriptions.notes.label;" 
+	         control="subscriptionNotes" 
+		 tooltiptext="&foxyproxy.pattern.subscriptions.notes.tooltip;"/>
+          <textbox id="subscriptionNotes" multiline="true"/>
+	</row>
+        <row align="center">
+	  <label value="&foxyproxy.pattern.subscriptions.url.label;" 
+	         control="subscriptionUrl" 
+                 tooltiptext="&foxyproxy.pattern.subscriptions.url.tooltip;"/>
+	  <textbox id="subscriptionUrl" /> 
+        </row>
+	<row align="center">
+	  <label value="&foxyproxy.tab.proxies.label;" 
+            control="subscriptionUrl" 
+            tooltiptext="&foxyproxy.pattern.subscriptions.proxies.tooltip;"/>
+	  <tree id="subscriptionProxyTree" align="stretch" class="treeStyling" 
+	        enableColumnDrag="true">
+            <treecols
+              pickertooltiptext="&foxyproxy.tree.pickertooltiptext.label;">
+              <treecol id="subEnabledCol" label="&foxyproxy.enabled.label;"
+                flex="1" persist="width ordinal hidden" type="checkbox" />
+              <splitter class="tree-splitter"/>
+              <treecol id="subColorCol" label="&foxyproxy.color.label;"
+                flex="1" persist="width ordinal hidden" />
+              <splitter class="tree-splitter" />
+              <treecol id="subNameCol" label="&foxyproxy.proxy.name.label;"
+                primary="true" flex="1" persist="width ordinal hidden" />
+              <splitter class="tree-splitter" />
+              <treecol id="subDescriptionCol"
+                label="&foxyproxy.proxy.notes.label;" flex="1"
+                persist="width ordinal hidden" />
+              <splitter class="tree-splitter" />
+              <treecol id="subHostCol" label="&foxyproxy.host.label.2;"
+                hidden="true" flex="1" persist="width ordinal hidden" />
+              <splitter class="tree-splitter" />
+              <treecol id="subPortCol" label="&foxyproxy.port.label;"
+                hidden="true" flex="1" persist="width ordinal hidden" />
+              <splitter class="tree-splitter" />
+              <treecol id="subIsSocksCol" label="&foxyproxy.issocks.label;"
+                hidden="true" flex="1" persist="width ordinal hidden" />
+              <splitter class="tree-splitter" />
+              <treecol id="subSocksverCol"
+                label="&foxyproxy.socks.version.label;" hidden="true"
+                flex="1" persist="width ordinal hidden" />
+              <splitter class="tree-splitter" />
+              <treecol id="subAutopacCol"
+                label="&foxyproxy.autopacurl.label;" hidden="true"
+                flex="1" persist="width ordinal hidden" />
+              <splitter class="tree-splitter" />
+              <treecol id="subAnimatedIconsCol"
+                label="&foxyproxy.animatedicons.label;" hidden="true"
+                flex="1" persist="width ordinal hidden" />
+              <splitter class="tree-splitter" />
+              <treecol id="subCycleCol"
+                label="&foxyproxy.includeincycle.label;" hidden="true"
+                flex="1" persist="width ordinal hidden" />
+              <splitter class="tree-splitter" />
+              <treecol id="subRemoteDNSCol"
+                label="&foxyproxy.proxydns.label4;" hidden="true"
+                flex="1" persist="width ordinal hidden" />
+              <splitter class="tree-splitter" />
+            </treecols>
+	    <treechildren id="subProxyTreeChildren" flex="1" />
+          </tree> 
+        </row>
+	<row>
+          <spacer flex="1" />
+	  <hbox>
+	    <spacer flex="1" />
+	    <button id="subAddProxies"
+	      label="&foxyproxy.pattern.subscriptions.addProxies.label;" 
+	      tooltiptext="&foxyproxy.pattern.subscriptions.addProxies.tooltip;"/> 
+	    <button id="subRemoveProxies" 
+	      label="&foxyproxy.pattern.subscriptions.removeProxies.label;"
+	      tooltiptext="&foxyproxy.pattern.subscriptions.removeProxies.tooltip;"/>
+	  </hbox>
+	</row>
+	<row align="center">
+	  <label value="&foxyproxy.pattern.subscriptions.refresh.label;" 
+            control="refresh"
+            tooltiptext="&foxyproxy.pattern.subscriptions.refresh.tooltip;"/>
+	  <hbox align="center">
+	    <textbox id="refresh" type="number" size="4"/>
+	    <label value="&foxyproxy.minutes.label;" control="refresh"/>
+	    <button label="&foxyproxy.pattern.subscriptions.refreshNow.label;"
+	      tooltiptext="&foxyproxy.pattern.subscriptions.refreshNow.tooltip;"/>
+	  </hbox>
+	</row>
+	<row id="zeroRefresh">
+	  <label value="&foxyproxy.pattern.subscriptions.zeroRefresh;"/>
+	  <spacer flex="1" />
+	</row>
+      </rows>
+    </grid> 
+  </vbox>  
+</dialog>

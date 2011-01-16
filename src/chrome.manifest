@@ -2,7 +2,7 @@ content foxyproxy content/
 
 locale  foxyproxy ar locale/ar/
 locale  foxyproxy cs locale/cs/
-locale  foxyproxy da-DK locale/da-DK/
+locale  foxyproxy da locale/da/
 locale  foxyproxy de locale/de/
 locale  foxyproxy el-GR locale/el-GR/
 locale  foxyproxy en-US locale/en-US/
@@ -21,6 +21,7 @@ locale  foxyproxy nl locale/nl/
 locale  foxyproxy pl locale/pl/
 locale  foxyproxy pt-BR locale/pt-BR/
 locale  foxyproxy pt-PT locale/pt-PT/
+locale  foxyproxy ro locale/ro/
 locale  foxyproxy ru-RU locale/ru-RU/
 locale  foxyproxy sk  locale/sk/
 locale  foxyproxy sr locale/sr/

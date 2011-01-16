@@ -2,7 +2,7 @@ content foxyproxy chrome/content/
 
 locale  foxyproxy ar chrome/locale/ar/
 locale  foxyproxy cs chrome/locale/cs/
-locale  foxyproxy da-DK chrome/locale/da-DK/
+locale  foxyproxy da chrome/locale/da/
 locale  foxyproxy de chrome/locale/de/
 locale  foxyproxy el-GR chrome/locale/el-GR/
 locale  foxyproxy en-US chrome/locale/en-US/
@@ -21,6 +21,7 @@ locale  foxyproxy nl chrome/locale/nl/
 locale  foxyproxy pl chrome/locale/pl/
 locale  foxyproxy pt-BR chrome/locale/pt-BR/
 locale  foxyproxy pt-PT chrome/locale/pt-PT/
+locale  foxyproxy ro chrome/locale/ro/
 locale  foxyproxy ru-RU chrome/locale/ru-RU/
 locale  foxyproxy sk  chrome/locale/sk/
 locale  foxyproxy sr chrome/locale/sr/

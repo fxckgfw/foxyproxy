@@ -179,8 +179,12 @@ tab[id^="foxyproxy-"] /* selectall tabs whose id have the prefix "foxyproxy-" */
   width: 1em;
   font-weight: bold;
 }
+#subscriptionProxyTree {
+  margin-top: .5em;
+  margin-bottom: .5em;
+}
 #zeroRefresh {
-  margin-top: -.5em;
+  margin-top: -.6em;
 }
 /* end addeditsubscription.xul CSS */
 

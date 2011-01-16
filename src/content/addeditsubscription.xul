@@ -143,6 +143,30 @@
 	  <label value="&foxyproxy.pattern.subscriptions.zeroRefresh;"/>
 	  <spacer flex="1" />
 	</row>
+	<row align="center">
+	  <label value="&foxyproxy.format.label;"
+	    tooltiptext="&foxyproxy.pattern.subscriptions.format.tooltip;"/>
+	  <hbox align="center">
+            <menulist>
+	      <menupopup>
+                <menuitem label="FoxyProxy"/>
+		<menuitem label="AutoProxy"/>
+              </menupopup>
+	    </menulist>
+	    <toolbarbutton class="foxyproxy-ref"
+                           tooltiptext="&foxyproxy.whatsthis;"/> 
+            <label value="&foxyproxy.obfuscation.label;"
+              tooltiptext="&foxyproxy.pattern.subscriptions.obfuscation.tooltip;"/>
+	    <menulist>
+	      <menupopup>
+                <menuitem label="&foxyproxy.none.label;"/>
+		<menuitem label="Base64"/>
+              </menupopup>
+	    </menulist>
+	    <toolbarbutton class="foxyproxy-ref"
+                           tooltiptext="&foxyproxy.whatsthis;"/> 
+	  </hbox>
+	</row>
       </rows>
     </grid> 
   </vbox>  

@@ -5,4 +5,4 @@
 * Fixed small issue concerning setting the TRANPARENT_PROXY_RESOLVES_HOST-flag
 * Fixed pattern coding error. Unlikely to have caused problems except for Firefox 4.0b9 compatibility due to https://bugzilla.mozilla.org/show_bug.cgi?id=622321 
 * Fixed minor typos in german language files
-* added new locales (da, pl-PL, et-EE, ro)
+* added new locale (ro)

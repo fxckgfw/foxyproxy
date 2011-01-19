@@ -43,11 +43,11 @@ Match.prototype = {
   _isRegEx : false,
   _caseSensitive : false,
   isBlackList : false,
-  isMultiLine : false,
+  _isMultiLine : false,
 
   clone : function() {
     return new Match(this.enabled, this.name, this._pattern, this.temp, this.isRegEx, this.caseSensitive,
-      this.isBlackList, this.isMultiLine);
+      this.isBlackList, this._isMultiLine);
   },
 
   init : function(enabled, name, pattern, temp, isRegEx, caseSensitive, isBlackList, isMultiLine) {
@@ -58,9 +58,8 @@ Match.prototype = {
     this._isRegEx = arguments.length > 4 ? arguments[4] : false;
     this._caseSensitive = arguments.length > 5 ? arguments[5] : false;
     this.isBlackList = arguments.length > 6 ? arguments[6] : false;
-    // this.isMultiLine is used instead of this._isMultiLine so that
-    // this final assignment forces the regex to be built.
-    this.isMultiLine = arguments.length > 7 ? arguments[7] : false;
+    this._isMultiLine = arguments.length > 7 ? arguments[7] : false;
+    this.buildRegEx();
   },
 
   set pattern(p) {

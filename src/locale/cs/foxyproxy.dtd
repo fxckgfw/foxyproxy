@@ -142,12 +142,12 @@
 <!ENTITY foxyproxy.save.label "Uložit">
 <!ENTITY foxyproxy.save.accesskey "U">
 <!ENTITY foxyproxy.save.tooltip "Uložit">
-<!ENTITY foxyproxy.openurlinnewtab.label "Open URL in New Tab">
+<!ENTITY foxyproxy.openurlinnewtab.label "Otevřít URL v novém panelu">
 <!ENTITY foxyproxy.openurlinnewtab.accesskey "O">
-<!ENTITY foxyproxy.openurlinnewtab.tooltip "Open URL in New Tab">
-<!ENTITY foxyproxy.copyurltoclipboard.label "Copy URL to Clipboard">
+<!ENTITY foxyproxy.openurlinnewtab.tooltip "Otevřít URL v novém panelu">
+<!ENTITY foxyproxy.copyurltoclipboard.label "Zkopírovat URL do schránky">
 <!ENTITY foxyproxy.copyurltoclipboard.accesskey "C">
-<!ENTITY foxyproxy.copyurltoclipboard.tooltip "Copy URL to Clipboard">
+<!ENTITY foxyproxy.copyurltoclipboard.tooltip "Zkopírovat URL do schránky">
 <!ENTITY foxyproxy.addnewproxy.label "Přidat novou proxy">
 <!ENTITY foxyproxy.addnewproxy.accesskey "P">
 <!ENTITY foxyproxy.addnewproxy.tooltip "Přidá nový proxy server">

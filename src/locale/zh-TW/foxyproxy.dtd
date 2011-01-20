@@ -277,10 +277,10 @@
 <!ENTITY foxyproxy.advancedmenus.label "使用進階選單">
 <!ENTITY foxyproxy.advancedmenus.accesskey "M">
 <!ENTITY foxyproxy.advancedmenus.tooltip "使用進階選單（FoxyProxy 2.2 風格）">
-<!ENTITY foxyproxy.importsettings.label2 "Import Settings">
+<!ENTITY foxyproxy.importsettings.label2 "匯入設定值">
 <!ENTITY foxyproxy.importsettings.accesskey "I">
 <!ENTITY foxyproxy.importsettings.tooltip "由檔案匯入設定值">
-<!ENTITY foxyproxy.exportsettings.label2 "Export Current Settings">
+<!ENTITY foxyproxy.exportsettings.label2 "匯出設定值">
 <!ENTITY foxyproxy.exportsettings.accesskey "E">
 <!ENTITY foxyproxy.exportsettings.tooltip "將設定值匯出到檔案">
 <!ENTITY foxyproxy.importlist.label "匯入代理伺服器清單">
@@ -441,9 +441,9 @@
 <!ENTITY foxyproxy.status.label "Status">
 <!ENTITY foxyproxy.format.label "Format">
 <!ENTITY foxyproxy.obfuscation.label "Obfuscation">
-<!ENTITY foxyproxy.hosting.label1 "Thanks to ">
+<!ENTITY foxyproxy.hosting.label1 "感謝 ">
 <!ENTITY foxyproxy.ocs.label "OCS">
-<!ENTITY foxyproxy.hosting.label2 " for hosting FoxyProxy's website. If you need hosting, please consider OCS.">
+<!ENTITY foxyproxy.hosting.label2 " 提供 FoxyProxy 網站代管服務，如果你有網站代管服務需求，請考慮 OCS。">
 <!-- begin foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "新增/編輯 本機 IP 位址樣式">
 <!ENTITY foxyproxy.tempip.popup.label "臨時性樣式讓你建立不常使用的本機 IP 位址樣式，這些樣式不會儲存到設定檔中造成樣式清單紊亂，而是保留在記憶體中，只在這次執行 Firefox 有效。">
@@ -493,16 +493,16 @@
 <!ENTITY foxyproxy.proxydomain.label "網域（非必要的 - 只用於 NTLM）">
 <!ENTITY foxyproxy.proxydomain.tooltip "只用於 NTLM 認證">
 <!ENTITY foxyproxy.proxy.passwords.nomatch.label "代理伺服器密碼錯誤，請重新輸入">
-<!ENTITY foxyproxy.traininglogging.label "Training &amp; Logging">
-<!ENTITY foxyproxy.traininglogging.tooltip "Manage Training &amp; Logging Settings">
+<!ENTITY foxyproxy.traininglogging.label "訓練及記錄">
+<!ENTITY foxyproxy.traininglogging.tooltip "訓練及記錄設定">
 <!ENTITY foxyproxy.traininglogging.accesskey "L">
-<!ENTITY foxyproxy.training.start "Start Training">
-<!ENTITY foxyproxy.training.stop "Stop Training">
-<!ENTITY foxyproxy.patternsforall.label "Create Patterns for All">
+<!ENTITY foxyproxy.training.start "開始訓練">
+<!ENTITY foxyproxy.training.stop "停止訓練">
+<!ENTITY foxyproxy.patternsforall.label "對所有網址建立樣式">
 <!ENTITY foxyproxy.patternsforall.accesskey "A">
-<!ENTITY foxyproxy.patternsforall.tooltip "Create Patterns for All URLs">
-<!ENTITY foxyproxy.patternsforselected.label "Create Patterns for Selected">
+<!ENTITY foxyproxy.patternsforall.tooltip "對所有網址建立樣式">
+<!ENTITY foxyproxy.patternsforselected.label "對選擇的網址建立樣式">
 <!ENTITY foxyproxy.patternsforselected.accesskey "S">
-<!ENTITY foxyproxy.patternsforselected.tooltip "Create Patterns for Selected URLs">
-<!ENTITY foxyproxy.patterntoadd.label "Pattern to Add">
+<!ENTITY foxyproxy.patternsforselected.tooltip "對選擇的網址建立樣式">
+<!ENTITY foxyproxy.patterntoadd.label "要新增的樣式">
 <!-- end foxyproxyplus -->

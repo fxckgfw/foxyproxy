@@ -1,5 +1,5 @@
-<!ENTITY foxyproxy.basic.label "FoxyProxy Basic">
-<!ENTITY foxyproxy.standard.label "FoxyProxy Standard">
+<!ENTITY foxyproxy.basic.label "FoxyProxy, базовая версия">
+<!ENTITY foxyproxy.standard.label "FoxyProxy, стандартная версия">
 <!ENTITY foxyproxy.plus.label "FoxyProxy Plus">
 <!ENTITY foxyproxy.accesskey "F">
 <!ENTITY foxyproxy.options.label "Настройки">
@@ -116,10 +116,10 @@
 <!ENTITY foxyproxy.tab.logging.label "Журналирование">
 <!ENTITY foxyproxy.tab.logging.accesskey "Ж">
 <!ENTITY foxyproxy.tab.logging.tooltip "Управление параметрами журналирования">
-<!ENTITY foxyproxy.proxydns.label3 "Perform remote DNS lookups on hostnames loading through this proxy">
+<!ENTITY foxyproxy.proxydns.label3 "Производить поиск имён хостов на внешнем DNS через этот прокси">
 <!ENTITY foxyproxy.proxydns.accesskey "И">
-<!ENTITY foxyproxy.proxydns.tooltip3 "If checked, hostnames of URLs loading through this proxy are also resolved by this proxy">
-<!ENTITY foxyproxy.proxydns.label4 "Proxy DNS">
+<!ENTITY foxyproxy.proxydns.tooltip3 "Если опция отмечена, тогда имена хостов URL-адресов загружающиеся через этот прокси и также резолвятся через него">
+<!ENTITY foxyproxy.proxydns.label4 "DNS-прокси">
 <!ENTITY foxyproxy.showstatusbaricon.label "Отобразить иконку в строке состояния">
 <!ENTITY foxyproxy.showstatusbaricon.accesskey "С">
 <!ENTITY foxyproxy.showstatusbaricon.tooltip "Если отмечено, тогда иконка FoxyProxy будет отображена в строке состояния">
@@ -131,7 +131,7 @@
 <!ENTITY foxyproxy.storagelocation.tooltip "Местоположение файла настроек FoxyProxy на диске ПК">
 <!ENTITY foxyproxy.tab.logging.timestamp.label "Время">
 <!ENTITY foxyproxy.tab.logging.url.label "URL">
-<!ENTITY foxyproxy.host.label.2 "Host or IP Address">
+<!ENTITY foxyproxy.host.label.2 "хост или IP-адрес">
 <!ENTITY foxyproxy.host.accesskey "И">
 <!ENTITY foxyproxy.clear.label "Очистить">
 <!ENTITY foxyproxy.clear.accesskey "О">
@@ -277,10 +277,10 @@
 <!ENTITY foxyproxy.advancedmenus.label "Использовать меню дополнительных настроек">
 <!ENTITY foxyproxy.advancedmenus.accesskey "д">
 <!ENTITY foxyproxy.advancedmenus.tooltip "Использовать меню дополнительных настроек (в стиле FoxyProxy 2.2)">
-<!ENTITY foxyproxy.importsettings.label2 "Import Settings">
+<!ENTITY foxyproxy.importsettings.label2 "Импорт настроек">
 <!ENTITY foxyproxy.importsettings.accesskey "И">
 <!ENTITY foxyproxy.importsettings.tooltip "Импортировать настройки из файла">
-<!ENTITY foxyproxy.exportsettings.label2 "Export Current Settings">
+<!ENTITY foxyproxy.exportsettings.label2 "Экспортировать текущие настройки">
 <!ENTITY foxyproxy.exportsettings.accesskey "Э">
 <!ENTITY foxyproxy.exportsettings.tooltip "Экспортировать текущие настройки в файл">
 <!ENTITY foxyproxy.importlist.label "Импорт списка прокси">
@@ -416,12 +416,12 @@
 <!ENTITY foxyproxy.aboutproxyservice.label "Finally, the proxy service button brings you to our proxy service website, where you can buy reliable, high-bandwidth proxy service in many different countries at reasonable prices.">
 <!ENTITY foxyproxy.invalidcolor.label "Неверный цвет">
 <!ENTITY foxyproxy.validcolor.label "Правильный цвет">
-<!ENTITY foxyproxy.color.label "Color">
-<!ENTITY foxyproxy.server.subscriptions.label "Server Subscriptions">
-<!ENTITY foxyproxy.server.subscriptions.tooltip "Manage Server Subscriptions">
+<!ENTITY foxyproxy.color.label "Цвет">
+<!ENTITY foxyproxy.server.subscriptions.label "Серверные подписки">
+<!ENTITY foxyproxy.server.subscriptions.tooltip "Управление серверными подписками">
 <!ENTITY foxyproxy.server.subscriptions.accesskey "S">
-<!ENTITY foxyproxy.pattern.subscriptions.label "Pattern Subscriptions">
-<!ENTITY foxyproxy.pattern.subscriptions.tooltip "Manage Pattern Subscriptions">
+<!ENTITY foxyproxy.pattern.subscriptions.label "Образец подписок">
+<!ENTITY foxyproxy.pattern.subscriptions.tooltip "Управление образцами подписок">
 <!ENTITY foxyproxy.pattern.subscriptions.accesskey "S">
 <!ENTITY foxyproxy.pattern.subscriptions.wizard.label "Wizard">
 <!ENTITY foxyproxy.pattern.subscriptions.wizard.tooltip "Click here to start the pattern subscription wizard.">
@@ -434,19 +434,19 @@
 <!ENTITY foxyproxy.pattern.subscriptions.go.label "Go">
 <!ENTITY foxyproxy.pattern.subscriptions.go.tooltip "Click here to execute your selection.">
 <!ENTITY foxyproxy.name.label "Name">
-<!ENTITY foxyproxy.notes.label "Notes">
+<!ENTITY foxyproxy.notes.label "Примечания">
 <!ENTITY foxyproxy.url.label "url">
-<!ENTITY foxyproxy.lastupdate.label "Last Update">
-<!ENTITY foxyproxy.updatefrequency.label "Update Frequency">
+<!ENTITY foxyproxy.lastupdate.label "Последнее обновление">
+<!ENTITY foxyproxy.updatefrequency.label "Частота обновлений">
 <!ENTITY foxyproxy.status.label "Status">
 <!ENTITY foxyproxy.format.label "Format">
 <!ENTITY foxyproxy.obfuscation.label "Obfuscation">
-<!ENTITY foxyproxy.hosting.label1 "Thanks to ">
+<!ENTITY foxyproxy.hosting.label1 "Благодарности ">
 <!ENTITY foxyproxy.ocs.label "OCS">
-<!ENTITY foxyproxy.hosting.label2 " for hosting FoxyProxy's website. If you need hosting, please consider OCS.">
+<!ENTITY foxyproxy.hosting.label2 " за хостинг вебсайта проекта FoxyProxy. Если вам нужен хостинг рассмотрите OCS.">
 <!-- begin foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Добавить/Изменить локальный шаблон IP-адресов">
-<!ENTITY foxyproxy.tempip.popup.label "Temporary patterns allow you to create patterns for local IP addresses that you don&apos;t use often without cluttering the IP address pattern list for a proxy. Temporary patterns are not saved to disk. They are kept in-memory and used for this Firefox session only.">
+<!ENTITY foxyproxy.tempip.popup.label "Temporary patterns allow you to create patterns for local IP addresses that you don't use often without cluttering the IP address pattern list for a proxy. Temporary patterns are not saved to disk. They are kept in-memory and used for this Firefox session only.">
 <!ENTITY foxyproxy.ip.pattern.label "Локальный шаблон IP-адресов">
 <!ENTITY foxyproxy.ip.pattern.accesskey "Л">
 <!ENTITY foxyproxy.ip.pattern.tooltip "Локальный шаблон IP-адресов">
@@ -466,26 +466,26 @@
 <!ENTITY foxyproxy.ip.wildcard.example.label "Например: 192.168.1.*">
 <!ENTITY foxyproxy.ip.regex.example.label "Например: 172\.\d+\.1\.10">
 <!ENTITY foxyproxy.ip.pattern.match "Шаблон соответствует одному или более локальным IP-адресам">
-<!ENTITY foxyproxy.ip.pattern.no.match "Pattern doesn&apos;t match any current local IP address">
+<!ENTITY foxyproxy.ip.pattern.no.match "Pattern doesn't match any current local IP address">
 <!ENTITY foxyproxy.refreshlocalips "Обновить локальные IP-адреса">
 <!ENTITY foxyproxy.refreshlocalips.accesskey "О">
-<!ENTITY foxyproxy.enterlicense.label "Ввести лицнзионный ключ">
+<!ENTITY foxyproxy.enterlicense.label "Ввести лицензионный ключ">
 <!ENTITY foxyproxy.enteremail.label "Ввести адрес эл.почты">
 <!ENTITY foxyproxy.licenseinfo.label "Информация о лицензии">
-<!ENTITY foxyproxy.licensevalid.label "License valid. Thank you for purchasing FoxyProxy Plus.">
+<!ENTITY foxyproxy.licensevalid.label "Лицензия действительна. Спасибо за покупку FoxyProxy Plus.">
 <!ENTITY foxyproxy.subexpired.label "License valid, but your update subscription expired. You are not receiving FoxyProxy Plus updates.">
-<!ENTITY foxyproxy.licenseinvalid.label "License invalid. You won&apos;t receive FoxyProxyPlus updates. Please purchase FoxyProxy Plus.">
-<!ENTITY foxyproxy.buynow.label "Buy Now">
-<!ENTITY foxyproxy.checklicense.label "Check License">
-<!ENTITY foxyproxy.checkinglicense.label "Checking...please wait">
-<!ENTITY foxyproxy.yourversion.label "Your Version ">
-<!ENTITY foxyproxy.latestversion.label "Newest Version ">
+<!ENTITY foxyproxy.licenseinvalid.label "License invalid. You won't receive FoxyProxyPlus updates. Please purchase FoxyProxy Plus.">
+<!ENTITY foxyproxy.buynow.label "Купить">
+<!ENTITY foxyproxy.checklicense.label "Проверка лицензии">
+<!ENTITY foxyproxy.checkinglicense.label "Идёт проверка...подождите">
+<!ENTITY foxyproxy.yourversion.label "Ваша версия ">
+<!ENTITY foxyproxy.latestversion.label "Новая версия ">
 <!ENTITY foxyproxy.routetoleahscape.label.1 "Please make sure Firefox can reach">
 <!ENTITY foxyproxy.routetoleahscape.label.2 "either with or without a proxy. You can configure patterns for this URL in FoxyProxy Plus if necessary.">
-<!ENTITY foxyproxy.everything.label "Everything">
-<!ENTITY foxyproxy.nothing.label "Nothing">
+<!ENTITY foxyproxy.everything.label "Все">
+<!ENTITY foxyproxy.nothing.label "Ни одного">
 <!ENTITY foxyproxy.ippatterndeletefinal.label "This is the last local IP address pattern. If you delete it, this proxy has no possibility of being used. Continue anyway?">
-<!ENTITY foxyproxy.licenseplea.label "FoxyProxy Plus has minimal anti-piracy measures. If you use FoxyProxy Plus, please purchase a license. It&apos;s taken many years of work to develop and maintain, and your purchase encourages me to continue.">
+<!ENTITY foxyproxy.licenseplea.label "FoxyProxy Plus has minimal anti-piracy measures. If you use FoxyProxy Plus, please purchase a license. It's taken many years of work to develop and maintain, and your purchase encourages me to continue.">
 <!ENTITY foxyproxy.authentication.label "Аутентификация">
 <!ENTITY foxyproxy.proxyusername.label "Имя">
 <!ENTITY foxyproxy.proxypassword.label "Пароль">

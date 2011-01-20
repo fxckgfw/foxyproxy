@@ -448,9 +448,12 @@
 <!ENTITY foxyproxy.pattern.subscriptions.removeProxies.tooltip "Abonnement dieser Musterliste für ausgewählte Proxies beenden">
 <!ENTITY foxyproxy.pattern.subscriptions.refresh.label "Aktualisierungsintervall">
 <!ENTITY foxyproxy.pattern.subscriptions.refresh.tooltip "Aktualisierungsintervall dieses Muster-Abonnements in Minuten">
-<!ENTITY foxyproxy.pattern.subscriptions.zeroRefresh "(0, um nie zu aktualisieren)">
 <!ENTITY foxyproxy.pattern.subscriptions.refreshNow.label "Jetzt aktualisieren">
 <!ENTITY foxyproxy.pattern.subscriptions.refreshNow.tooltip "Dieses Muster-Abonnement jetzt aktualisieren">
+<!ENTITY foxyproxy.pattern.subscriptions.zeroRefresh "(0, um nie zu aktualisieren)">
+<!ENTITY foxyproxy.pattern.subscriptions.format.tooltip "Format dieses Muster-Abonnements">
+<!ENTITY foxyproxy.pattern.subscriptions.obfuscation.tooltip "Verschleierungsformat dieses Muster-Abonnements">
+<!ENTITY foxyproxy.none.label "Keine">
 <!ENTITY foxyproxy.name.label "Name">
 <!ENTITY foxyproxy.notes.label "Notizen">
 <!ENTITY foxyproxy.url.label "url">

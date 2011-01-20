@@ -424,23 +424,23 @@
 <!ENTITY foxyproxy.pattern.subscriptions.tooltip "Patroonabonnementen beheren">
 <!ENTITY foxyproxy.pattern.subscriptions.accesskey "P">
 <!ENTITY foxyproxy.pattern.subscriptions.wizard.label "Wizard">
-<!ENTITY foxyproxy.pattern.subscriptions.wizard.tooltip "Click here to start the pattern subscription wizard.">
-<!ENTITY foxyproxy.pattern.subscriptions.menulist.tooltip "Select what to do with pattern subscriptions.">
-<!ENTITY foxyproxy.pattern.subscriptions.addSubscription "Add New Pattern Subscription">
-<!ENTITY foxyproxy.pattern.subscriptions.editSelection "Edit Selection">
-<!ENTITY foxyproxy.pattern.subscriptions.deleteSelections "Delete Selections">
-<!ENTITY foxyproxy.pattern.subscriptions.refreshSelections "Refresh Selections">
-<!ENTITY foxyproxy.pattern.subscriptions.viewSubscription "View Pattern Subscription">
-<!ENTITY foxyproxy.pattern.subscriptions.go.label "Go">
-<!ENTITY foxyproxy.pattern.subscriptions.go.tooltip "Click here to execute your selection.">
+<!ENTITY foxyproxy.pattern.subscriptions.wizard.tooltip "Klik hier om de patroonabonnementswizard te starten.">
+<!ENTITY foxyproxy.pattern.subscriptions.menulist.tooltip "Selecteer wat u wilt doen met patroonabonnementen.">
+<!ENTITY foxyproxy.pattern.subscriptions.addSubscription "Nieuw patroonabonnement toevoegen">
+<!ENTITY foxyproxy.pattern.subscriptions.editSelection "Selectie bewerken">
+<!ENTITY foxyproxy.pattern.subscriptions.deleteSelections "Selecties verwijderen">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshSelections "Selecties vernieuwen">
+<!ENTITY foxyproxy.pattern.subscriptions.viewSubscription "Patroonabonnement bekijken">
+<!ENTITY foxyproxy.pattern.subscriptions.go.label "Start">
+<!ENTITY foxyproxy.pattern.subscriptions.go.tooltip "Klik hier om uw selectie uit te voeren.">
 <!ENTITY foxyproxy.name.label "Naam">
 <!ENTITY foxyproxy.notes.label "Opmerkingen">
 <!ENTITY foxyproxy.url.label "URL">
 <!ENTITY foxyproxy.lastupdate.label "Laatste update">
 <!ENTITY foxyproxy.updatefrequency.label "Update-interval">
 <!ENTITY foxyproxy.status.label "Status">
-<!ENTITY foxyproxy.format.label "Format">
-<!ENTITY foxyproxy.obfuscation.label "Obfuscation">
+<!ENTITY foxyproxy.format.label "Opmaak">
+<!ENTITY foxyproxy.obfuscation.label "Versluiering">
 <!ENTITY foxyproxy.hosting.label1 "Met dank aan">
 <!ENTITY foxyproxy.ocs.label "OCS">
 <!ENTITY foxyproxy.hosting.label2 "voor het hosten van de website van FoxyProxy. Als u hosting nodig heeft, overweeg dan OCS.">

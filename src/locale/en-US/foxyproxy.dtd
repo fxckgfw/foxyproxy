@@ -570,6 +570,9 @@
 <!ENTITY foxyproxy.pattern.subscriptions.refreshNow.label "Refresh Now">
 <!ENTITY foxyproxy.pattern.subscriptions.refreshNow.tooltip "Refresh this pattern subscription now">
 <!ENTITY foxyproxy.pattern.subscriptions.zeroRefresh "(0 to never refresh)">
+<!ENTITY foxyproxy.pattern.subscriptions.format.tooltip "Format of this pattern subscription list">
+<!ENTITY foxyproxy.pattern.subscriptions.obfuscation.tooltip "Obfuscation format of this pattern subscription">
+<!ENTITY foxyproxy.none.label "None">
 <!ENTITY foxyproxy.name.label "Name">
 <!ENTITY foxyproxy.notes.label "Notes">
 <!ENTITY foxyproxy.url.label "url">

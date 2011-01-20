@@ -553,7 +553,7 @@
 <!ENTITY foxyproxy.pattern.subscriptions.go.label "Go">
 <!ENTITY foxyproxy.pattern.subscriptions.go.tooltip "Click here to execute your selection.">
 <!ENTITY foxyproxy.pattern.subscriptions.lastStatus.label "Last Status">
-<!ENTITY foxyproxy.pattern.subscriptions.addedit.tile "Add/Edit Pattern Subscription"> 
+<!ENTITY foxyproxy.pattern.subscriptions.addedit.title "Add/Edit Pattern Subscription"> 
 <!ENTITY foxyproxy.pattern.subscriptions.name.label "Subscription Name">
 <!ENTITY foxyproxy.pattern.subscriptions.name.tooltip "Subscription Name">
 <!ENTITY foxyproxy.pattern.subscriptions.notes.label "Subscription Description">

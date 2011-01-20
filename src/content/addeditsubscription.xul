@@ -14,7 +14,7 @@
 <!DOCTYPE overlay SYSTEM "chrome://foxyproxy/locale/foxyproxy.dtd">
 
 
-<dialog id="foxyproxyoptions2" windowtype="foxyproxy"
+<dialog id="foxyproxySubscriptions" windowtype="foxyproxy"
         title="&foxyproxy.standard.label;" buttons="accept,cancel,extra2"
 	buttonlabelextra2="&foxyproxy.pattern.subscriptions.lastStatus.label;" 
         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
@@ -128,7 +128,7 @@
 	      tooltiptext="&foxyproxy.pattern.subscriptions.removeProxies.tooltip;"/>
 	  </hbox>
 	</row>
-	<row align="center">
+	<row id="refreshRow" align="center">
 	  <label value="&foxyproxy.pattern.subscriptions.refresh.label;" 
             control="refresh"
             tooltiptext="&foxyproxy.pattern.subscriptions.refresh.tooltip;"/>
@@ -155,6 +155,7 @@
 	    </menulist>
 	    <toolbarbutton class="foxyproxy-ref"
                            tooltiptext="&foxyproxy.whatsthis;"/> 
+            <spacer flex="1"/>
             <label value="&foxyproxy.obfuscation.label;"
               tooltiptext="&foxyproxy.pattern.subscriptions.obfuscation.tooltip;"/>
 	    <menulist>
@@ -165,6 +166,7 @@
 	    </menulist>
 	    <toolbarbutton class="foxyproxy-ref"
                            tooltiptext="&foxyproxy.whatsthis;"/> 
+            <spacer flex="1"/>
 	  </hbox>
 	</row>
       </rows>

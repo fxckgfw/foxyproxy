@@ -175,13 +175,21 @@ tab[id^="foxyproxy-"] /* selectall tabs whose id have the prefix "foxyproxy-" */
 /* end addedit.xul button button icons */
 
 /* begin addeditsubscription.xul CSS */
+#foxyproxySubscriptions {
+  height: 500px;
+  width: 700px;
+}
+
 #addeditSubscriptionTitle {
   width: 1em;
   font-weight: bold;
 }
 #subscriptionProxyTree {
   margin-top: .5em;
-  margin-bottom: .5em;
+  margin-bottom: .2em;
+}
+#refreshRow {
+  margin-top: .5em;
 }
 #zeroRefresh {
   margin-top: -.6em;

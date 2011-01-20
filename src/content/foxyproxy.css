@@ -180,7 +180,7 @@ tab[id^="foxyproxy-"] /* selectall tabs whose id have the prefix "foxyproxy-" */
   width: 700px;
 }
 
-#addeditSubscriptionTitle {
+#addeditSubscriptionTitle, #lastStatusTitle {
   width: 1em;
   font-weight: bold;
 }

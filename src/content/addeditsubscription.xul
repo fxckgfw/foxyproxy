@@ -17,6 +17,7 @@
 <dialog id="foxyproxySubscriptions" windowtype="foxyproxy"
         title="&foxyproxy.standard.label;" buttons="accept,cancel,extra2"
 	buttonlabelextra2="&foxyproxy.pattern.subscriptions.lastStatus.label;" 
+	ondialogextra2="window.openDialog('chrome://foxyproxy/content/laststatus.xul', '', 'chrome, dialog, modal, resizable');"
         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
 	persist="screenX screenY">
 
@@ -25,7 +26,7 @@
   <vbox>
     <separator class="thin"/>
       <description id="addeditSubscriptionTitle">
-        &foxyproxy.pattern.subscriptions.addedit.tile;
+        &foxyproxy.pattern.subscriptions.addedit.title;
       </description>
     <separator/> 
     <hbox>

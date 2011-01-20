@@ -175,7 +175,7 @@ SuperAdd.prototype = {
     this.fpc.removeChildren(popup);
     for (var i=0,p; i<this.fp.proxies.length && ((p=this.fp.proxies.item(i)) || 1); i++) {
       if (!p.lastresort && p.enabled) {
-        popup.appendChild(this.fpc.createMenuItem({idVal:p.id, labelVal:p.name, type:"radio", name:"foxyproxy-enabled-type",
+        popup.appendChild(this.fpc.createMenuItem({idVal:p.id, labelVal:p.name, name:"foxyproxy-enabled-type",
           document:doc}));
         //popup.appendChild(this.fpc.createMenuItem({idVal:"disabled", labelId:"mode.disabled.label"}));
       }

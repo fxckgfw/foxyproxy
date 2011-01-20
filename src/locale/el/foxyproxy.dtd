@@ -423,24 +423,24 @@
 <!ENTITY foxyproxy.pattern.subscriptions.label "Συνδρομές πρότυπων">
 <!ENTITY foxyproxy.pattern.subscriptions.tooltip "Διαχείριση συνδρομών πρότυπων">
 <!ENTITY foxyproxy.pattern.subscriptions.accesskey "σ">
-<!ENTITY foxyproxy.pattern.subscriptions.wizard.label "Wizard">
-<!ENTITY foxyproxy.pattern.subscriptions.wizard.tooltip "Click here to start the pattern subscription wizard.">
-<!ENTITY foxyproxy.pattern.subscriptions.menulist.tooltip "Select what to do with pattern subscriptions.">
-<!ENTITY foxyproxy.pattern.subscriptions.addSubscription "Add New Pattern Subscription">
-<!ENTITY foxyproxy.pattern.subscriptions.editSelection "Edit Selection">
-<!ENTITY foxyproxy.pattern.subscriptions.deleteSelections "Delete Selections">
-<!ENTITY foxyproxy.pattern.subscriptions.refreshSelections "Refresh Selections">
-<!ENTITY foxyproxy.pattern.subscriptions.viewSubscription "View Pattern Subscription">
-<!ENTITY foxyproxy.pattern.subscriptions.go.label "Go">
-<!ENTITY foxyproxy.pattern.subscriptions.go.tooltip "Click here to execute your selection.">
+<!ENTITY foxyproxy.pattern.subscriptions.wizard.label "Βοηθός">
+<!ENTITY foxyproxy.pattern.subscriptions.wizard.tooltip "Κάντε κλικ για εκκίνηση του βοηθού συνδρομής σε πρότυπα.">
+<!ENTITY foxyproxy.pattern.subscriptions.menulist.tooltip "Επιλογή ενέργειας για συνδρομές πρότυπων.">
+<!ENTITY foxyproxy.pattern.subscriptions.addSubscription "Προσθήκη νέας συνδρομής σε πρότυπο">
+<!ENTITY foxyproxy.pattern.subscriptions.editSelection "Επεξεργασία επιλογής">
+<!ENTITY foxyproxy.pattern.subscriptions.deleteSelections "Διαγραφή επιλογών">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshSelections "Ανανέωση επιλογών">
+<!ENTITY foxyproxy.pattern.subscriptions.viewSubscription "Προβολή συνδρομής προτύπου">
+<!ENTITY foxyproxy.pattern.subscriptions.go.label "Μετάβαση">
+<!ENTITY foxyproxy.pattern.subscriptions.go.tooltip "Κάντε κλικ για εκτέλεση.">
 <!ENTITY foxyproxy.name.label "Όνομα">
 <!ENTITY foxyproxy.notes.label "Σημειώσεις">
 <!ENTITY foxyproxy.url.label "url">
 <!ENTITY foxyproxy.lastupdate.label "Τελευταία ενημέρωση">
 <!ENTITY foxyproxy.updatefrequency.label "Συχνότητα ενημερώσεων">
-<!ENTITY foxyproxy.status.label "Status">
-<!ENTITY foxyproxy.format.label "Format">
-<!ENTITY foxyproxy.obfuscation.label "Obfuscation">
+<!ENTITY foxyproxy.status.label "Κατάσταση">
+<!ENTITY foxyproxy.format.label "Μορφή">
+<!ENTITY foxyproxy.obfuscation.label "Απόκρυψη">
 <!ENTITY foxyproxy.hosting.label1 "Ευχαριστούμε την">
 <!ENTITY foxyproxy.ocs.label "OCS">
 <!ENTITY foxyproxy.hosting.label2 "για την φιλοξενία του ιστότοπου του FoxyProxy. Αν ψάχνετε για το που θα ανεβάσετε τις σελίδες σας, έχετε την OCS υπόψιν.">

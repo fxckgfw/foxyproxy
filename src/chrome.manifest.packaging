@@ -4,7 +4,7 @@ locale  foxyproxy ar chrome/locale/ar/
 locale  foxyproxy cs chrome/locale/cs/
 locale  foxyproxy da chrome/locale/da/
 locale  foxyproxy de chrome/locale/de/
-locale  foxyproxy el-GR chrome/locale/el-GR/
+locale  foxyproxy el chrome/locale/el/
 locale  foxyproxy en-US chrome/locale/en-US/
 locale  foxyproxy es-AR chrome/locale/es-AR/
 locale  foxyproxy es-ES chrome/locale/es-ES/

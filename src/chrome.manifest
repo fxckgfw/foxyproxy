@@ -4,7 +4,7 @@ locale  foxyproxy ar locale/ar/
 locale  foxyproxy cs locale/cs/
 locale  foxyproxy da locale/da/
 locale  foxyproxy de locale/de/
-locale  foxyproxy el-GR locale/el-GR/
+locale  foxyproxy el locale/el/
 locale  foxyproxy en-US locale/en-US/
 locale  foxyproxy es-AR locale/es-AR/
 locale  foxyproxy es-ES locale/es-ES/

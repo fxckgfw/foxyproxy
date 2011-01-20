@@ -434,7 +434,7 @@
 <!ENTITY foxyproxy.pattern.subscriptions.go.label "Los">
 <!ENTITY foxyproxy.pattern.subscriptions.go.tooltip "Hier klicken, um die Auswahl auszuführen.">
 <!ENTITY foxyproxy.pattern.subscriptions.lastStatus.label "Letzter Status">
-<!ENTITY foxyproxy.pattern.subscriptions.addedit.tile "Muster-Abonnement hinzufügen/bearbeiten">
+<!ENTITY foxyproxy.pattern.subscriptions.addedit.title "Muster-Abonnement hinzufügen/bearbeiten">
 <!ENTITY foxyproxy.pattern.subscriptions.name.label "Abonnement-Name">
 <!ENTITY foxyproxy.pattern.subscriptions.name.tooltip "Abonnement-Name">
 <!ENTITY foxyproxy.pattern.subscriptions.notes.label "Abonnement-Beschreibung">

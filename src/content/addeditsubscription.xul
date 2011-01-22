@@ -15,20 +15,20 @@
 
 
 <dialog id="foxyproxySubscriptions" windowtype="foxyproxy"
-        title="&foxyproxy.standard.label;" buttons="accept,cancel,extra2"
+        title="&foxyproxy.standard.label; - 
+	       &foxyproxy.pattern.subscriptions.addedit.title;" 
+	buttons="accept,cancel,extra2"
 	buttonlabelextra2="&foxyproxy.pattern.subscriptions.lastStatus.label;" 
-	ondialogextra2="window.openDialog('chrome://foxyproxy/content/laststatus.xul', '', 'chrome, dialog, modal, resizable');"
+	onload="onLoad();" ondialogaccept="onOK();" 
+	ondialogcancel="onCancel();" ondialogextra2="onLastStatus();" 
         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-	persist="screenX screenY">
+	persist="screenX screenY"
+	>
 
   <script src="addeditsubscription.js" />
 
   <vbox>
     <separator class="thin"/>
-      <description id="addeditSubscriptionTitle">
-        &foxyproxy.pattern.subscriptions.addedit.title;
-      </description>
-    <separator/> 
     <hbox>
       <checkbox id="subscriptionEnabled" checked="true" 
 	        label="&foxyproxy.enabled.label;" 
@@ -68,7 +68,7 @@
             control="subscriptionUrl" 
             tooltiptext="&foxyproxy.pattern.subscriptions.proxies.tooltip;"/>
 	  <tree id="subscriptionProxyTree" align="stretch" class="treeStyling" 
-	        enableColumnDrag="true">
+	        enableColumnDrag="true" rows="4">
             <treecols
               pickertooltiptext="&foxyproxy.tree.pickertooltiptext.label;">
               <treecol id="subEnabledCol" label="&foxyproxy.enabled.label;"
@@ -123,7 +123,8 @@
 	    <spacer flex="1" />
 	    <button id="subAddProxies"
 	      label="&foxyproxy.pattern.subscriptions.addProxies.label;" 
-	      tooltiptext="&foxyproxy.pattern.subscriptions.addProxies.tooltip;"/> 
+	      tooltiptext="&foxyproxy.pattern.subscriptions.addProxies.tooltip;"
+	      onclick="addProxy();"/> 
 	    <button id="subRemoveProxies" 
 	      label="&foxyproxy.pattern.subscriptions.removeProxies.label;"
 	      tooltiptext="&foxyproxy.pattern.subscriptions.removeProxies.tooltip;"/>

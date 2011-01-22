@@ -13,8 +13,10 @@
 <?xml-stylesheet href="foxyproxy.css" type="text/css"?>
 <!DOCTYPE overlay SYSTEM "chrome://foxyproxy/locale/foxyproxy.dtd">
 <dialog id="foxyproxyoptions2" windowtype="foxyproxy"
-  title="&foxyproxy.standard.label;" buttons="accept,cancel,extra2"
-  ondialogextra2="onSettings()" buttonlabelextra2="&foxyproxy.addnewproxy.label;" buttonaccesskeyextra2="&foxyproxy.addnewproxy.accesskey;"
+  title="&foxyproxy.standard.label; - &foxyproxy.selectproxy.label;" 
+  buttons="accept,cancel,extra2"
+  ondialogextra2="onSettings()" buttonlabelextra2="&foxyproxy.addnewproxy.label;" 
+  buttonaccesskeyextra2="&foxyproxy.addnewproxy.accesskey;"
   xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
   xmlns:html="http://www.w3.org/1999/xhtml" persist="screenX screenY"
   onload="onLoad();" ondialogaccept="onOK();">
@@ -41,9 +43,6 @@
       <treecol id="descriptionCol"
         label="&foxyproxy.proxy.notes.label;" flex="1"
         persist="width ordinal hidden" />
-      <splitter class="tree-splitter" />
-      <treecol id="modeCol" label="&foxyproxy.mode.label;"
-        hidden="true" flex="1" persist="width ordinal hidden" />
       <splitter class="tree-splitter" />
       <treecol id="hostCol" label="&foxyproxy.host.label.2;"
         hidden="true" flex="1" persist="width ordinal hidden" />

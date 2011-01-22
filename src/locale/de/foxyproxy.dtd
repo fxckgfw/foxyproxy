@@ -420,6 +420,7 @@
 <!ENTITY foxyproxy.server.subscriptions.label "Server-Abonnements">
 <!ENTITY foxyproxy.server.subscriptions.tooltip "Server-Abonnements verwalten">
 <!ENTITY foxyproxy.server.subscriptions.accesskey "A">
+<!ENTITY foxyproxy.selectproxy.label "Proxy auswählen">
 <!ENTITY foxyproxy.pattern.subscriptions.label "Muster-Abonnements">
 <!ENTITY foxyproxy.pattern.subscriptions.tooltip "Muster-Abonnements verwalten">
 <!ENTITY foxyproxy.pattern.subscriptions.accesskey "A">

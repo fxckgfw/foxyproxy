@@ -8,23 +8,32 @@
   available in the LICENSE file at the root of this installation
   and also online at http://www.gnu.org/licenses/gpl.txt
 **/
-var proxyTree, fp, fpc, overlay, inn;
+var proxyTree, fp, fpc, inn;
 const CC = Components.classes, CI = Components.interfaces;
 
 function onLoad() {
   proxyTree = document.getElementById("proxyTree");
   fp = CC["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;  
   fpc = CC["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject;
-  overlay = fpc.getMostRecentWindow().foxyproxy;
   inn = window.arguments[0].inn;
-  
+
+  // Using the chooseproxy.xul for pattern subscription purposes we do
+  // neither need the extra2 button nor the reloadcurtab-checkbox. Thus,
+  // collapsing them.
+  if (inn.pattern) {
+    document.documentElement.getButton("extra2").collapsed = true;
+    document.getElementById("reloadcurtab").collapsed = true;
+  }
+
   // Append title as a textnode to the description so text wrapping works
   var title = document.getElementById("title");
   title.appendChild(document.createTextNode(inn.title));
   
   proxyTree.view = fpc.makeProxyTreeView(fp, document);
   proxyTree.view.selection.select(0); /* select the first entry */
-  document.getElementById("reloadcurtab").checked = inn.reloadcurtab;
+  if (!inn.pattern) {
+    document.getElementById("reloadcurtab").checked = inn.reloadcurtab;
+  }
   sizeToContent();
 }
 

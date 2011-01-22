@@ -182,9 +182,9 @@
       <!-- pattern subscriptions -->
       <tabpanel flex="1" orient="vertical">
         <separator class="thin" />
-        <hbox height="200">
+        <hbox>
            <tree id="subscriptionTree" align="stretch" enableColumnDrag="true"
-		 flex="1" selType="single">
+		 flex="1" selType="single" rows="10">
              <treecols
                pickertooltiptext="&foxyproxy.tree.pickertooltiptext.label;">
 	       <treecol id="subscriptionEnabled" 
@@ -223,9 +223,11 @@
            </tree>
          </hbox> 
 	 <hbox>
+	   <!-- currently hidden as its functionality is not implemented yet -->
 	   <button id="subscriptionWizard"  
 	     label="&foxyproxy.pattern.subscriptions.wizard.label;"
-	     tooltiptext="&foxyproxy.pattern.subscriptions.wizard.tooltip;"/>
+	     tooltiptext="&foxyproxy.pattern.subscriptions.wizard.tooltip;"
+	     hidden="true"/>
            <spacer flex="1" />
 	   <vbox>
 	     <menulist pack="start"

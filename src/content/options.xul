@@ -200,6 +200,9 @@
 	       <treecol id="subscriptionUri" label="&foxyproxy.url.label;"
                         flex="1" persist="width ordinal hidden" />
                <splitter class="tree-splitter" />
+	       <treecol id="subscriptionProxy" label="&foxyproxy.proxy.label;"
+                        flex="1" persist="width ordinal hidden" hidden="true"/>
+               <splitter class="tree-splitter" /> 
 	       <treecol id="subscriptionRefresh" 
 		        label="&foxyproxy.updatefrequency.label;"
                         flex="1" persist="width ordinal hidden"/>

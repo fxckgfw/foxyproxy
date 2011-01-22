@@ -26,13 +26,15 @@
 
   <vbox>
     <separator class="thin"/>
-    <tree id="lastStatusTree" rows="10" hidecolumnpicker="true" 
-          width="300" flex="1">
-      <treecols>
-        <treecol id="statusContainer" flex="1" 
+    <hbox>
+      <tree id="lastStatusTree" rows="10" hidecolumnpicker="true" 
+            width="300" flex="1">
+        <treecols>
+          <treecol id="statusContainer" flex="1" 
                  label="&foxyproxy.pattern.subscriptions.lastStatus.label;"/> 
-      </treecols>
-      <treechildren/>
-    </tree>
+        </treecols>
+        <treechildren/>
+      </tree>
+    </hbox>
   </vbox>
 </dialog>

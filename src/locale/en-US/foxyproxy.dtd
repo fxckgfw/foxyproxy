@@ -145,6 +145,8 @@
 <!ENTITY foxyproxy.mode.accesskey "M">
 <!ENTITY foxyproxy.mode.tooltip "Select how to enable FoxyProxy">
 
+<!ENTITY foxyproxy.proxy.label "Proxy">
+
 <!ENTITY foxyproxy.tab.proxies.label "Proxies">
 <!ENTITY foxyproxy.tab.proxies.accesskey "P">
 <!ENTITY foxyproxy.tab.proxies.tooltip "Manage Proxies">

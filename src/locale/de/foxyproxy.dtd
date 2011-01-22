@@ -107,6 +107,7 @@
 <!ENTITY foxyproxy.menubar.help.tooltip "Öffnet das Hilfe-Menü">
 <!ENTITY foxyproxy.mode.accesskey "M">
 <!ENTITY foxyproxy.mode.tooltip "Auswahl, wie FoxyProxy aktiviert wird">
+<!ENTITY foxyproxy.proxy.label "Proxy">
 <!ENTITY foxyproxy.tab.proxies.label "Proxies">
 <!ENTITY foxyproxy.tab.proxies.accesskey "P">
 <!ENTITY foxyproxy.tab.proxies.tooltip "Proxies verwalten">

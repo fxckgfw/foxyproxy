@@ -21,6 +21,7 @@
 	buttonlabelextra2="&foxyproxy.pattern.subscriptions.lastStatus.label;" 
 	onload="onLoad();" ondialogaccept="onOK();" 
 	ondialogcancel="onCancel();" ondialogextra2="onLastStatus();" 
+	xmlns:html="http://www.w3.org/1999/xhtml" 
         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
 	persist="screenX screenY"
 	>
@@ -137,6 +138,8 @@
 	  <hbox align="center">
 	    <textbox id="refresh" type="number" size="4"/>
 	    <label value="&foxyproxy.minutes.label;" control="refresh"/>
+	    <toolbarbutton class="foxyproxy-ref" popup="refreshHelp"
+                           tooltiptext="&foxyproxy.whatsthis;"/>  
 	    <button label="&foxyproxy.pattern.subscriptions.refreshNow.label;"
 	      tooltiptext="&foxyproxy.pattern.subscriptions.refreshNow.tooltip;"/>
 	  </hbox>
@@ -155,7 +158,7 @@
 		<menuitem label="AutoProxy"/>
               </menupopup>
 	    </menulist>
-	    <toolbarbutton class="foxyproxy-ref"
+	    <toolbarbutton class="foxyproxy-ref" popup="formatHelp"
                            tooltiptext="&foxyproxy.whatsthis;"/> 
             <spacer flex="1"/>
             <label value="&foxyproxy.obfuscation.label;"
@@ -166,7 +169,7 @@
 		<menuitem label="Base64"/>
               </menupopup>
 	    </menulist>
-	    <toolbarbutton class="foxyproxy-ref"
+	    <toolbarbutton class="foxyproxy-ref" popup="obfuscationHelp"
                            tooltiptext="&foxyproxy.whatsthis;"/> 
             <spacer flex="1"/>
 	  </hbox>
@@ -174,4 +177,41 @@
       </rows>
     </grid> 
   </vbox>  
+
+  <popupset>
+    <menupopup id="refreshHelp">
+      <vbox class="foxyproxy-border foxyproxy-tooltip foxyproxy-help">
+	<description>
+	  &foxyproxy.pattern.subscriptions.refreshHelp1; 
+	  <!--Maybe there is a better solution to get the bold text inlcuded-->
+	  <html:span style="font-weight: bold;">
+	    &foxyproxy.pattern.subscriptions.refreshHelp2;</html:span> 
+          &foxyproxy.pattern.subscriptions.refreshHelp3; 
+	  <html:a class="link"        
+	          onclick="contextHelp('refresh');">
+		  &foxyproxy.pactip5.label;</html:a>.
+	</description>
+      </vbox>  
+    </menupopup>
+    <menupopup id="formatHelp">
+      <vbox class="foxyproxy-border foxyproxy-tooltip foxyproxy-help">
+	<description>
+	  &foxyproxy.pattern.subscriptions.formatHelp;
+	  <html:a class="link"        
+	          onclick="contextHelp('format');">
+		  &foxyproxy.pactip5.label;</html:a>.
+	</description>
+      </vbox>
+    </menupopup>
+    <menupopup id="obfuscationHelp">
+      <vbox class="foxyproxy-border foxyproxy-tooltip foxyproxy-help">
+	<description>
+	  &foxyproxy.pattern.subscriptions.obfuscationHelp;
+	  <html:a class="link"        
+	          onclick="contextHelp('obfuscation');">
+		  &foxyproxy.pactip5.label;</html:a>.
+	</description>
+      </vbox> 
+    </menupopup>
+  </popupset>
 </dialog>

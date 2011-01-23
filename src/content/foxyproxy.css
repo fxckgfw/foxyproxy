@@ -148,7 +148,7 @@ tab[id^="foxyproxy-"] /* selectall tabs whose id have the prefix "foxyproxy-" */
 /* end tab icons */
 
 /* begin other stylings in options.xul */
-#subscriptionWizard {
+#subscriptionsWizard {
   padding: 10px 50px;
 }
 /* end other stylings in options.xul */
@@ -179,7 +179,6 @@ tab[id^="foxyproxy-"] /* selectall tabs whose id have the prefix "foxyproxy-" */
   height: 500px;
   width: 700px;
 }
-
 #addeditSubscriptionTitle, #lastStatusTitle {
   width: 1em;
   font-weight: bold;
@@ -194,6 +193,11 @@ tab[id^="foxyproxy-"] /* selectall tabs whose id have the prefix "foxyproxy-" */
 #zeroRefresh {
   margin-top: -.6em;
 }
+.foxyproxy-help {
+  min-height: 10em;
+  width: 20em;
+}
+
 /* end addeditsubscription.xul CSS */
 
 .heading {text-decoration: underline; font-weight:bold;}

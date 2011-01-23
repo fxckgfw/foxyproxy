@@ -9,7 +9,7 @@
   and also online at http://www.gnu.org/licenses/gpl.txt
 **/
 
-var foxyproxy, proxyTree, logTree, monthslong, dayslong, overlay, timeformat, saveLogCmd, clearLogCmd, noURLsCmd, fpc;
+var foxyproxy, proxyTree, subscriptionsTree, logTree, monthslong, dayslong, overlay, timeformat, saveLogCmd, clearLogCmd, noURLsCmd, fpc;
 const CI = Components.interfaces, CC = Components.classes;
 
 function onLoad() {
@@ -27,6 +27,7 @@ function onLoad() {
     foxyproxy.getMessage("days.long.3"), foxyproxy.getMessage("days.long.4"), foxyproxy.getMessage("days.long.5"),
     foxyproxy.getMessage("days.long.6"), foxyproxy.getMessage("days.long.7")];
   proxyTree = document.getElementById("proxyTree");
+  subscriptionsTree = document.getElementById("subscriptionsTree");
   logTree = document.getElementById("logTree");
   saveLogCmd = document.getElementById("saveLogCmd");
   clearLogCmd = document.getElementById("clearLogCmd");  

@@ -1,5 +1,7 @@
 "use strict";
 
+var Cc = Components.classes;
+
 function onLoad() {
    
 }
@@ -32,5 +34,23 @@ function addProxy() {
         "modal, centerscreen, resizable", p).focus(); 
   if (p.out) {
     p = p.out;
+  }
+}
+
+function contextHelp(type) {
+  var fpc = Cc["@leahscape.org/foxyproxy/common;1"].getService().
+            wrappedJSObject;  
+  switch (type) {
+    case "format":
+      fpc.openAndReuseOneTabPerURL('http://getfoxyproxy.org/patternsubscriptions/index.html#format'); 
+      break;
+    case "obfuscation":
+      fpc.openAndReuseOneTabPerURL('http://getfoxyproxy.org/patternsubscriptions/index.html#obfuscation'); 
+      break;
+    case "refresh":
+      fpc.openAndReuseOneTabPerURL('http://getfoxyproxy.org/patternsubscriptions/index.html#refresh-rate'); 
+      break;
+    default:
+      break;
   }
 }

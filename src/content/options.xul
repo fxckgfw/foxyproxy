@@ -182,52 +182,52 @@
       <!-- pattern subscriptions -->
       <tabpanel flex="1" orient="vertical">
         <separator class="thin" />
-        <hbox>
-           <tree id="subscriptionTree" align="stretch" enableColumnDrag="true"
-		 flex="1" selType="single" rows="10">
+        <hbox flex="1">
+           <tree id="subscriptionsTree" align="stretch" enableColumnDrag="true"
+		 flex="1" selType="single">
              <treecols
                pickertooltiptext="&foxyproxy.tree.pickertooltiptext.label;">
-	       <treecol id="subscriptionEnabled" 
+	       <treecol id="subscriptionsEnabled" 
 		        label="&foxyproxy.enabled.label;" 
                         flex="1" persist="width ordinal hidden" />
                <splitter class="tree-splitter" />
-	       <treecol id="subscriptionName" label="&foxyproxy.name.label;"
+	       <treecol id="subscriptionsName" label="&foxyproxy.name.label;"
                         flex="1" persist="width ordinal hidden" />
                <splitter class="tree-splitter" />
-	       <treecol id="subscriptionNotes" label="&foxyproxy.notes.label;"
+	       <treecol id="subscriptionsNotes" label="&foxyproxy.notes.label;"
 			flex="1" persist="width ordinal hidden"/>
                <splitter class="tree-splitter" />
-	       <treecol id="subscriptionUri" label="&foxyproxy.url.label;"
+	       <treecol id="subscriptionsUri" label="&foxyproxy.url.label;"
                         flex="1" persist="width ordinal hidden" />
                <splitter class="tree-splitter" />
-	       <treecol id="subscriptionProxy" label="&foxyproxy.proxy.label;"
+	       <treecol id="subscriptionsProxy" label="&foxyproxy.proxy.label;"
                         flex="1" persist="width ordinal hidden" hidden="true"/>
                <splitter class="tree-splitter" /> 
-	       <treecol id="subscriptionRefresh" 
+	       <treecol id="subscriptionsRefresh" 
 		        label="&foxyproxy.updatefrequency.label;"
                         flex="1" persist="width ordinal hidden"/>
                <splitter class="tree-splitter" />
-               <treecol id="subscriptionStatus" label="&foxyproxy.status.label;"
+               <treecol id="subscriptionsStatus" label="&foxyproxy.status.label;"
 			flex="1" persist="width ordinal hidden" />
                <splitter class="tree-splitter" />
-               <treecol id="subscriptionLastUpdate" 
+               <treecol id="subscriptionsLastUpdate" 
                         label="&foxyproxy.lastupdate.label;"
                         flex="1" persist="width ordinal hidden" hidden="true"/>
                <splitter class="tree-splitter" />
-               <treecol id="subscriptionFormat" label="&foxyproxy.format.label;" 
+               <treecol id="subscriptionsFormat" label="&foxyproxy.format.label;" 
                         flex="1" persist="width ordinal hidden" hidden="true"/>
                <splitter class="tree-splitter" />
-               <treecol id="subscriptionObfuscation"
+               <treecol id="subscriptionsObfuscation"
 		        label="&foxyproxy.obfuscation.label;"
 			flex="1" persist="width ordinal hidden" hidden="true"/>
                <splitter class="tree-splitter" />
              </treecols>
-             <treechildren id="subscriptionTreeChildren" flex="1" />
+             <treechildren id="subscriptionsTreeChildren" flex="1" />
            </tree>
          </hbox> 
 	 <hbox>
 	   <!-- currently hidden as its functionality is not implemented yet -->
-	   <button id="subscriptionWizard"  
+	   <button id="subscriptionsWizard"  
 	     label="&foxyproxy.pattern.subscriptions.wizard.label;"
 	     tooltiptext="&foxyproxy.pattern.subscriptions.wizard.tooltip;"
 	     hidden="true"/>

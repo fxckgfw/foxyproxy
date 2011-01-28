@@ -11,8 +11,8 @@
 
 // Don't const the next line anymore because of the generic reg code
 // dump("foxyproxy.js\n");
-var CI = Components.interfaces, CC = Components.classes, CR = Components.results, gFP;
-Components.utils.import("resource://gre/modules/XPCOMUtils.jsm");
+var CI = Components.interfaces, CC = Components.classes, CR = Components.results, CU = Components.utils, gFP;
+CU.import("resource://gre/modules/XPCOMUtils.jsm");
 var dumpp = function(e) {
   if (e) out(e);
   else {
@@ -100,6 +100,10 @@ loadModuleScript("superadd.js");
 // l is for lulu...
 function foxyproxy() {
   SuperAdd.prototype.fp = gFP = this.wrappedJSObject = this;
+  // That CU call has to be here, otherwise it would not work. See:
+  // https://developer.mozilla.org/en/JavaScript/Code_modules/Using section
+  // "Custom modules and XPCOM components" 
+  CU.import("resource://foxyproxy/patternSubscriptions.jsm", this);
 };
 foxyproxy.prototype = {
   PFF : " ",
@@ -611,6 +615,7 @@ foxyproxy.prototype = {
     this.autoadd.fromDOM(doc);    
     this.warnings.fromDOM(doc);
     this.defaultPrefs.fromDOM(doc);
+    //this.patternSubscriptions.fromDOM(doc);
   },
 
   toDOM : function() {
@@ -636,6 +641,7 @@ foxyproxy.prototype = {
     e.appendChild(this.quickadd.toDOM(doc));
     e.appendChild(this.defaultPrefs.toDOM(doc));
     e.appendChild(this.proxies.toDOM(doc));
+    // e.appendChild(this.patternSubscriptions.toDOM(doc));
     return e;
   },
 

@@ -1,5 +1,7 @@
 content foxyproxy content/
 
+resource foxyproxy modules/
+
 locale  foxyproxy ar locale/ar/
 locale  foxyproxy cs locale/cs/
 locale  foxyproxy da locale/da/

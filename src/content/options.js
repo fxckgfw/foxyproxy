@@ -10,7 +10,9 @@
 **/
 
 var foxyproxy, proxyTree, subscriptionsTree, logTree, monthslong, dayslong, overlay, timeformat, saveLogCmd, clearLogCmd, noURLsCmd, fpc;
-const CI = Components.interfaces, CC = Components.classes;
+const CI = Components.interfaces, CC = Components.classes, CU = Components.utils;
+
+CU.import("resource://foxyproxy/patternSubscriptions.jsm");
 
 function onLoad() {
   foxyproxy = CC["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;  
@@ -317,6 +319,7 @@ function _updateView(writeSettings, updateLogView) {
   }
   
   proxyTree.view = fpc.makeProxyTreeView(foxyproxy, document);
+  subscriptionsTree.view = patternSubscriptions.makeSubscriptionsTreeView();
   
   if (writeSettings)
     foxyproxy.writeSettings();

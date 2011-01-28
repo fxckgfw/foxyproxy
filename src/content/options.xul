@@ -188,11 +188,12 @@
              <treecols
                pickertooltiptext="&foxyproxy.tree.pickertooltiptext.label;">
 	       <treecol id="subscriptionsEnabled" 
-		        label="&foxyproxy.enabled.label;" 
-                        flex="1" persist="width ordinal hidden" />
+		        label="&foxyproxy.enabled.label;" flex="1" 
+		        persist="width ordinal hidden" type="checkbox"/>
                <splitter class="tree-splitter" />
 	       <treecol id="subscriptionsName" label="&foxyproxy.name.label;"
-                        flex="1" persist="width ordinal hidden" />
+		        primary="true" flex="1" 
+		        persist="width ordinal hidden" />
                <splitter class="tree-splitter" />
 	       <treecol id="subscriptionsNotes" label="&foxyproxy.notes.label;"
 			flex="1" persist="width ordinal hidden"/>
@@ -207,15 +208,17 @@
 		        label="&foxyproxy.updatefrequency.label;"
                         flex="1" persist="width ordinal hidden"/>
                <splitter class="tree-splitter" />
-               <treecol id="subscriptionsStatus" label="&foxyproxy.status.label;"
+	       <treecol id="subscriptionsStatus" 
+		        label="&foxyproxy.status.label;"
 			flex="1" persist="width ordinal hidden" />
                <splitter class="tree-splitter" />
                <treecol id="subscriptionsLastUpdate" 
                         label="&foxyproxy.lastupdate.label;"
                         flex="1" persist="width ordinal hidden" hidden="true"/>
                <splitter class="tree-splitter" />
-               <treecol id="subscriptionsFormat" label="&foxyproxy.format.label;" 
-                        flex="1" persist="width ordinal hidden" hidden="true"/>
+	       <treecol id="subscriptionsFormat" 
+		        label="&foxyproxy.format.label;" flex="1" 
+		        persist="width ordinal hidden" hidden="true"/>
                <splitter class="tree-splitter" />
                <treecol id="subscriptionsObfuscation"
 		        label="&foxyproxy.obfuscation.label;"

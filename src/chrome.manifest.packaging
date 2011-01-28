@@ -1,5 +1,7 @@
 content foxyproxy chrome/content/
 
+resource foxyproxy modules/
+
 locale  foxyproxy ar chrome/locale/ar/
 locale  foxyproxy cs chrome/locale/cs/
 locale  foxyproxy da chrome/locale/da/

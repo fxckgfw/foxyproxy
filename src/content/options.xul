@@ -236,7 +236,7 @@
 	     hidden="true"/>
            <spacer flex="1" />
 	   <vbox>
-	     <menulist pack="start"
+	     <menulist id="actionList" pack="start"
 	       tooltiptext="&foxyproxy.pattern.subscriptions.menulist.tooltip;">
 	       <menupopup>
 	         <menuitem 
@@ -253,7 +253,7 @@
 	     </menulist>
 	   </vbox>
 	   <vbox pack="start">
-	     <button id="subscriptionAction" onclick="window.openDialog('chrome://foxyproxy/content/addeditsubscription.xul', '', 'chrome, dialog, modal, resizable=yes');"
+	     <button id="subscriptionsAction" onclick="onSubscriptionsAction();"
 	           label="&foxyproxy.pattern.subscriptions.go.label;"
 		   tooltiptext="&foxyproxy.pattern.subscriptions.go.tooltip;"/>
 	   </vbox>

@@ -1,3 +1,14 @@
+/**
+  FoxyProxy
+  Copyright (C) 2006-#%#% Eric H. Jung and LeahScape, Inc.
+  http://getfoxyproxy.org/
+  eric.jung@yahoo.com
+
+  This source code is released under the GPL license,
+  available in the LICENSE file at the root of this installation
+  and also online at http://www.gnu.org/licenses/gpl.txt
+**/
+
 "use strict";
 
 var Cc = Components.classes;
@@ -15,8 +26,7 @@ function onCancel() {
 }
 
 function onLastStatus() {
-  window.openDialog('chrome://foxyproxy/content/laststatus.xul', '', 
-      'modal, centerscreen, resizable').focus();
+  window.openDialog('chrome://foxyproxy/content/pattern-subscriptions/laststatus.xul', '', 'modal, centerscreen, resizable').focus();
 }
 
 function addProxy() {

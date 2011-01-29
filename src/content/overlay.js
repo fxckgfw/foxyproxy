@@ -219,12 +219,12 @@ end-foxyproxy-simple !*/
       p.mode = "manual";
       if (withoutPrivoxy) {
         p.manualconf.host="127.0.0.1";
-        p.manualconf.port=9050;
+        p.manualconf.port=input.value;
         p.manualconf.isSocks=true;
       }
       else {
         p.manualconf.host="127.0.0.1";
-        p.manualconf.port=8118;
+        p.manualconf.port=input.value;
         p.manualconf.isSocks=false;
       }
       p.manualconf.socksversion=5;

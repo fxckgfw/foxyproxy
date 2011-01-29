@@ -404,6 +404,57 @@ function setButtons() {
   	(proxyTree.currentIndex+1 < foxyproxy.proxies.length && foxyproxy.proxies.item(proxyTree.currentIndex+1).lastresort));
 }
 
+function onSubscriptionsAction() {
+  var selectedSubscription;
+  var params;
+  try {
+  switch (document.getElementById("actionList").selectedIndex) {
+    case 0:  
+      window.openDialog('chrome://foxyproxy/content/pattern-subscriptions/addeditsubscription.xul', 
+        '', 'modal, resizable=yes', null); 
+      break;
+    case 1: 
+      if (subscriptionsTree.currentIndex < 0) {
+        // Alert here that something has to be selected!
+	break;
+      }
+      selectedSubscription = patternSubscriptions.
+	subscriptionsList[subscriptionsTree.currentIndex];
+      dump("subscriptionsTree.currentIndex is: " + subscriptionsTree.currentIndex + "\n");
+      params = {
+        inn : {
+          subscription : selectedSubscription
+        },
+        out : null
+      };
+      window.openDialog('chrome://foxyproxy/content/pattern-subscriptions/addeditsubscription.xul', 
+        '', 'modal, resizable=yes', params); 
+      break;
+    case 2:
+      if (subscriptionsTree.currentIndex < 0) {
+        // Alert here that something has to be selected!
+	break;
+      } 
+      break;
+    case 3:
+      if (subscriptionsTree.currentIndex < 0) {
+        // Alert here that something has to be selected!
+	break;
+      } 
+      break;  
+    case 4:
+      if (subscriptionsTree.currentIndex < 0) {
+        // Alert here that something has to be selected!
+	break;
+      } 
+      break;
+  } 
+  } catch (e) {
+    dump("There went something wrong in the Treeselection: " + e);
+
+  }
+}
+
 function onMaxSize() {
 	var v = document.getElementById("maxSize").value;
 	var passed = true;

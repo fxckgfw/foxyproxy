@@ -199,6 +199,10 @@ end-foxyproxy-simple !*/
           foxyproxy.alert(owner, this.fp.getMessage("torwiz.nan"));
           ok = false;
         }
+	if (input.value > 65535 || input.value < 0) {
+          foxyproxy.alert(owner, this.fp.getMessage("torwiz.wrongPort")); 
+	  ok = false;
+	}
       }
       else
         break;

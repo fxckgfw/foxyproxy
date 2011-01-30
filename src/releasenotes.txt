@@ -8,4 +8,4 @@
 * added new locale (ro)
 * Fixed radio button overlayed with text in the mode menu (Quick- and
   AutoAdd)
-* Fixed Torwizard issues (custom ports were not saved)
+* Fixed Torwizard issues (custom ports were not saved; added port check)

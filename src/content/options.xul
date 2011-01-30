@@ -184,7 +184,7 @@
         <separator class="thin" />
         <hbox flex="1">
            <tree id="subscriptionsTree" align="stretch" enableColumnDrag="true"
-		 flex="1" selType="single">
+		 flex="1" selType="single" rows="8">
              <treecols
                pickertooltiptext="&foxyproxy.tree.pickertooltiptext.label;">
 	       <treecol id="subscriptionsEnabled" 

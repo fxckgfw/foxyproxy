@@ -615,7 +615,6 @@ foxyproxy.prototype = {
     this.autoadd.fromDOM(doc);    
     this.warnings.fromDOM(doc);
     this.defaultPrefs.fromDOM(doc);
-    //this.patternSubscriptions.fromDOM(doc);
   },
 
   toDOM : function() {
@@ -641,7 +640,6 @@ foxyproxy.prototype = {
     e.appendChild(this.quickadd.toDOM(doc));
     e.appendChild(this.defaultPrefs.toDOM(doc));
     e.appendChild(this.proxies.toDOM(doc));
-    // e.appendChild(this.patternSubscriptions.toDOM(doc));
     return e;
   },
 

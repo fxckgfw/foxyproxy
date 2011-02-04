@@ -29,7 +29,7 @@ function onLoad() {
   var title = document.getElementById("title");
   title.appendChild(document.createTextNode(inn.title));
   
-  proxyTree.view = fpc.makeProxyTreeView(fp, document);
+  proxyTree.view = fpc.makeProxyTreeView(fp.proxies, document);
   proxyTree.view.selection.select(0); /* select the first entry */
   if (!inn.pattern) {
     document.getElementById("reloadcurtab").checked = inn.reloadcurtab;

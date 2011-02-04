@@ -149,6 +149,7 @@ foxyproxy.prototype = {
             // setMode() is called from this.loadSettings()->this.fromDOM(), but also from commandlinehandler.js.
             this.defaultPrefs.init();        
             this.loadSettings();
+	    this.patternSubscriptions.loadSavedSubscriptions();
           }
           catch (e) {
             dumpp(e);

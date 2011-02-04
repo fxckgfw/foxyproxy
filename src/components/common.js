@@ -14,10 +14,11 @@ const CI = Components.interfaces;
 const CC = Components.classes;
 Components.utils.import("resource://gre/modules/XPCOMUtils.jsm");
 
+var fp = CC["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;
+
 function Common() {
   this.wrappedJSObject = this;
-  uuid = CC["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject.
-    isFoxyProxySimple() ? "foxyproxy-basic@eric.h.jung" : "foxyproxy@eric.h.jung";
+  uuid = fp.isFoxyProxySimple() ? "foxyproxy-basic@eric.h.jung" : "foxyproxy@eric.h.jung";
 
   // Get installed version
   if ("@mozilla.org/extensions/manager;1" in CC) {
@@ -97,7 +98,7 @@ Common.prototype = {
   },
   
   validatePattern : function(win, isRegEx, p) {
-    var origPat = p, fp = CC["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;
+    var origPat = p;
     p = p.replace(/^\s*|\s*$/g,"");
     if (p == "") {
       fp.alert(win, fp.getMessage("pattern.required"));
@@ -132,7 +133,6 @@ Common.prototype = {
     var doc = args.document || document;
     var e = doc.createElement("menuitem");
     e.setAttribute("id", args["idVal"]);
-    var fp = CC["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;
     e.setAttribute("label", args["labelId"]?fp.getMessage(args["labelId"], args["labelArgs"]) : args["labelVal"]);
     e.setAttribute("value", args["idVal"]);
     args["type"] && e.setAttribute("type", args["type"]);
@@ -190,7 +190,6 @@ Common.prototype = {
   },    
   
   onSuperAdd : function(wnd, url, superadd) {
-    var fp = CC["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;
     var p = {inn:{url:url || this.getMostRecentWindow().content.location.href, superadd:superadd}, out:null};
     // superadd.proxy is null when user hasn't yet used QuickAdd
     if (superadd.proxy != null)
@@ -210,11 +209,11 @@ Common.prototype = {
     }
   },
   
-  makeProxyTreeView : function(fp, document) {    
+  makeProxyTreeView : function(proxies, document) {    
     var ret = {
-      rowCount : fp.proxies.length,
+      rowCount : proxies.length,
       getCellText : function(row, column) {
-        var i = fp.proxies.item(row);    
+        var i = proxies.item(row);    
         switch(column.id) {
           case "nameCol":return i.name;
           case "descriptionCol":return i.notes;
@@ -231,8 +230,8 @@ Common.prototype = {
               return i.proxyDNS ? fp.getMessage("yes"):fp.getMessage("no");
         }
       },
-      setCellValue: function(row, col, val) {fp.proxies.item(row).enabled = val;},
-      getCellValue: function(row, col) {return fp.proxies.item(row).enabled;},    
+      setCellValue: function(row, col, val) {proxies.item(row).enabled = val;},
+      getCellValue: function(row, col) {return proxies.item(row).enabled;},    
       isSeparator: function(aIndex) { return false; },
       isSorted: function() { return false; },
       isEditable: function(row, col) { return false; },
@@ -245,7 +244,7 @@ Common.prototype = {
       getColumnProperties: function(aColumn, aColumnElement, aProperty) {},
       getCellProperties: function(row, col, props) {
         if (col.id == "colorCol") {
-          var i = fp.proxies.item(row);
+          var i = proxies.item(row);
           var atom = CC["@mozilla.org/atom-service;1"].getService(CI.nsIAtomService).getAtom(i.colorString);
           props.AppendElement(atom);
         } 
@@ -258,9 +257,9 @@ Common.prototype = {
        so we can't use proxy.id or proxy.name or even proxy.color. Hence, the special
        proxy.colorString property that is a mapping of proxy.color to letters only
      */
-    var styleSheet = document.styleSheets[0], proxies = fp.proxies;
-    for (var i=0, len=fp.proxies.length; i<len; i++) {
-      var p = fp.proxies.item(i);
+    var styleSheet = document.styleSheets[0];
+    for (var i=0, len=proxies.length; i<len; i++) {
+      var p = proxies.item(i);
       styleSheet.insertRule("treechildren::-moz-tree-cell(" + p.colorString + "){border: 1px solid black;background-color:" + p.color + "}", styleSheet.cssRules.length);
     }
     return ret;
@@ -273,7 +272,6 @@ Common.prototype = {
   notify : function(msg, buttons, callback) {
     var wm = this.getMostRecentWindow(), nb = wm.gBrowser.getNotificationBox(),
       n = nb.getNotificationWithValue("foxyproxy-proxy-scheme"),
-      fp = CC["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject,
       message = fp.getMessage(msg);
     if (!buttons) {
       buttons = [

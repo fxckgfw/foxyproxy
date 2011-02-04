@@ -318,7 +318,7 @@ function _updateView(writeSettings, updateLogView) {
     onQuickAddEnabled(false);
   }
   
-  proxyTree.view = fpc.makeProxyTreeView(foxyproxy, document);
+  proxyTree.view = fpc.makeProxyTreeView(foxyproxy.proxies, document);
   subscriptionsTree.view = patternSubscriptions.makeSubscriptionsTreeView();
   
   if (writeSettings)
@@ -410,8 +410,12 @@ function onSubscriptionsAction() {
   try {
   switch (document.getElementById("actionList").selectedIndex) {
     case 0:  
+      params = {
+        inn : null
+      };	
       window.openDialog('chrome://foxyproxy/content/pattern-subscriptions/addeditsubscription.xul', 
-        '', 'modal, resizable=yes', null); 
+        '', 'modal, resizable=yes', params).focus(); 
+      subscriptionsTree.view = patternSubscriptions.makeSubscriptionsTreeView();
       break;
     case 1: 
       if (subscriptionsTree.currentIndex < 0) {
@@ -424,11 +428,10 @@ function onSubscriptionsAction() {
       params = {
         inn : {
           subscription : selectedSubscription
-        },
-        out : null
+        }
       };
       window.openDialog('chrome://foxyproxy/content/pattern-subscriptions/addeditsubscription.xul', 
-        '', 'modal, resizable=yes', params); 
+        '', 'modal, resizable=yes', params).focus(); 
       break;
     case 2:
       if (subscriptionsTree.currentIndex < 0) {

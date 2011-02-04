@@ -13,19 +13,57 @@
 
 var Ci = Components.interfaces, Cu = Components.utils, Cc = Components.classes;
 
-Cu.import("resource://foxyproxy/patternSubscription.jsm");
-
 var EXPORTED_SYMBOLS = ["patternSubscriptions"];
 
 var patternSubscriptions = {
  
-  subscriptionsList: [],
+  subscriptionsList : [],
+
+  defaultMetaValues :  {
+    formatVersion : 1,
+    checksum : "",
+    algorithm : "",
+    url : "",
+    format : "FoxyProxy",
+    obfuscation : "none",
+    name : "",
+    notes : "",
+    enabled : true,
+    refresh : 60,
+  },
+
+  loadSavedSubscriptions: function() {
+    try {
+      var line = {};
+      var hasmore;
+      var savedPatternsFile = this.getSubscriptionsFile(true);
+      if (!savedPatternsFile) {
+        // We do not have savedPatterns yet, thus returning...
+	return;
+      }
+      var istream = Cc["@mozilla.org/network/file-input-stream;1"].
+                  createInstance(Ci.nsIFileInputStream);
+      // -1 has the same effect as 0444.
+      istream.init(savedPatternsFile, 0x01, -1, 0);
+      var conStream = Cc["@mozilla.org/intl/converter-input-stream;1"].
+                createInstance(Ci.nsIConverterInputStream);
+      conStream.init(istream, "UTF-8", 0, 0);
+      conStream.QueryInterface(Ci.nsIUnicharLineInputStream);
+      do {
+        hasmore = conStream.readLine(line);
+        this.subscriptionsList.push(this.getObjectFromJSON(line.value));
+      } while(hasmore);
+      conStream.close(); 
+    } catch (e) {
+      dump("Error while loading the saved subscriptions: " + e + "\n");
+    }
+  },
 
   loadSubscription: function(aURLString) {
     try {
-      var nativeJSON;
       var subscriptionText;
-      var subscriptionJSON;
+      var parsedSubscription;
+      var subscriptionJSON = null;
       var req = Cc["@mozilla.org/xmlextras/xmlhttprequest;1"].
         createInstance(Ci.nsIXMLHttpRequest);
 
@@ -38,34 +76,153 @@ var patternSubscriptions = {
       req.send(null);
       subscriptionText = req.responseText;
 
-      // As FoxyProxy shall be usable with FF < 3.5 we use nsIJSON.
-      nativeJSON = Cc["@mozilla.org/dom/json;1"].createInstance(Ci.nsIJSON);
-      subscriptionJSON = nativeJSON.decode(subscriptionText);
-      this.parseSubscription(subscriptionJSON, aURLString);
+      subscriptionJSON = this.getObjectFromJSON(subscriptionText);
+      if (subscriptionJSON !== null) {
+        parsedSubscription = this.
+	  parseSubscription(subscriptionJSON, aURLString);
+	if (parsedSubscription !== null) {
+	  return parsedSubscription;
+        } else {
+	  return false;
+	}
+      }
     } catch (e) {
-      dump("Error fetching the example JSON file: " + e);
+      dump("Error fetching the example JSON file: " + e + "\n");
     }
   },
 
-  parseSubscription: function(aSubscription, aURLString) {
-    var subProperty;
-    var newSub = new PatternSubscription();
-    for (subProperty in aSubscription.metadata) {
-      // Maybe someone cluttered the metadata or mistyped a property...
-      if (newSub.hasOwnProperty(subProperty)) {
-        newSub[subProperty] = aSubscription.metadata[subProperty];
+  getObjectFromJSON: function(aString) {
+    var json;
+    try {
+      if (!aString) {
+	return;
       }
+      // As FoxyProxy shall be usable with FF < 3.5 we use nsIJSON. But
+      // Thunderbird does not support nsIJSON. Thus, we check for the proper
+      // method to use here.
+      if (typeof Components.interfaces.nsIJSON === "undefined") {
+	return JSON.parse(aString);
+      } else {
+        json = Cc["@mozilla.org/dom/json;1"].createInstance(Ci.nsIJSON);
+        return json.decode(aString); 
+      }
+    } catch (e) {
+      dump("Error while parsing the JSON: " + e + "\n");
     }
-    // If we still do not have a name for our subscription let it be its URL.
-    if (!newSub.name || newSub.name === "") {
-      newSub.name = aURLString;
+  },
+
+   getJSONFromObject: function(aObject) {
+    var json;
+    try {
+      // As FoxyProxy shall be usable with FF < 3.5 we use nsIJSON. But
+      // Thunderbird does not support nsIJSON. Thus, we check for the proper
+      // method to use here.
+      if (typeof Components.interfaces.nsIJSON === "undefined") {
+	return JSON.stringify(aObject);
+      } else {
+        json = Cc["@mozilla.org/dom/json;1"].createInstance(Ci.nsIJSON);
+        return json.encode(aObject); 
+      }
+    } catch (e) {
+      dump("Error while parsing the JSON: " + e + "\n");
     }
-    // If no URL is given in the metadata set it to the current one.
-    if (!newSub.url || newSub.url === "") {
-      newSub.url = aURLString;
+  },
+ 
+
+  parseSubscription: function(aSubscription, aURLString) {
+    try {
+      var subProperty;
+      // And maybe someone cluttered the subscription in other ways...
+      for (subProperty in aSubscription) {
+	dump("subProperty is: " + subProperty + "\n");
+        if (subProperty !== "metadata" && subProperty !== "subscription") {
+          delete aSubscription[subProperty];
+        }	  
+      }
+      // And maybe someone cluttered the metadata or mistyped a property...
+      for (subProperty in aSubscription.metadata) {
+        if (!this.defaultMetaValues[subProperty]) {
+	  delete aSubscription.metadata[subProperty];
+        }
+      }
+      // Or did that concerning the subscription part.
+      for (subProperty in aSubscription.subscription) {
+	if (subProperty !== "patterns") {
+	  dump("We found: " + subProperty + " here!\n");
+	  delete aSubscription.subscription[subProperty];
+	}
+      }
+      return aSubscription; 
+    } catch(e) {
+      dump("There occurred an error while parsing the loaded subscription: " +
+	 e + "\n"); 
+      return null;
     }
-    newSub.patterns = aSubscription.subscription.patterns;
-    this.subscriptionsList.push(newSub);
+  },
+
+  addSubscription: function(newSub, userValues) {
+    var userValue;
+    // We need this do respect the users wishes concerning the name and other
+    // metadata properties. If we would not do this the default values that
+    // may be delivered with the subscription itself (i.e. its metadate) would
+    // overwrite the users' choices.
+    for (userValue in userValues) {
+      newSub.metadata[userValue] = userValues[userValue];
+    } 
+    newSub.metadata.lastUpdate = new Date();
+    //TODO: i18n version!
+    newSub.metadata.lastStatus = "OK";
+    this.subscriptionsList.push(newSub); 
+    this.writeSubscriptions();
+  }, 
+
+  writeSubscriptions: function() {
+    try {
+      var subscriptionsData = "";
+      var foStream;
+      var converter;
+      var subFile = this.getSubscriptionsFile(false);	
+      for (var i = 0; i < this.subscriptionsList.length; i++) {
+        subscriptionsData = subscriptionsData + this.getJSONFromObject(this.
+	  subscriptionsList[i]) + "\n";
+      }
+      foStream = Cc["@mozilla.org/network/file-output-stream;1"].
+                   createInstance(Ci.nsIFileOutputStream);
+      // We should set it to the hex equivalent of 0644
+      foStream.init(subFile, 0x02 | 0x08 | 0x20, -1, 0);
+      converter = Cc["@mozilla.org/intl/converter-output-stream;1"].
+                   createInstance(Ci.nsIConverterOutputStream);
+      converter.init(foStream, "UTF-8", 0, 0);
+      converter.writeString(subscriptionsData);
+      converter.close(); 
+    } catch (e) {
+      dump("Error while writing the subscriptions to disc: " + e + "\n");
+    }
+  },
+
+  getSubscriptionsFile: function(isStart) {
+    // TODO: Merge the duplicated code with the one in foxyproxy.js
+    var file = Cc["@mozilla.org/file/local;1"].createInstance(Ci.nsILocalFile);
+    /* Always use ProfD by default in order to support application-wide 
+       installations. http://foxyproxy.mozdev.org/drupal/content/
+       tries-use-usrlibfirefox-304foxyproxyxml-linux#comment-974 */
+    var dir = Cc["@mozilla.org/file/directory_service;1"].
+      getService(Ci.nsIProperties).get("ProfD", Ci.nsILocalFile);
+    file.initWithPath(dir.path);
+    file.appendRelativePath("patternSubscriptions.txt");
+    if ((!file.exists() || !file.isFile())) {
+      if (isStart) {
+	// Maybe we do not need such a file at all. Therefore, postponing its
+	// creation.
+	return false;
+      }
+      // Owners may do everthing with the file, the group and others are
+      // only allowed to read it. 0x1E4 is the same as 0744 but we use it here
+      // as octal literals and escape sequences are deprecated and the 
+      // respective costants are not available yet, see: bug 433295.
+      file.create(Ci.nsIFile.NORMAL_FILE_TYPE, 0x1E4); 
+    }
+    return file;
   },
 
   makeSubscriptionsTreeView: function() {
@@ -75,31 +232,31 @@ var patternSubscriptions = {
       getCellText : function(row, column) {
         var i = that.subscriptionsList[row];
         switch(column.id) {
-          case "subscriptionsEnabled" : return i.enabled;
-	  case "subscriptionsName" : return i.name;
-          case "subscriptionsNotes" : return i.notes;
-          case "subscriptionsUri" : return i.url;           
+          case "subscriptionsEnabled" : return i.metadata.enabled;
+	  case "subscriptionsName" : return i.metadata.name;
+          case "subscriptionsNotes" : return i.metadata.notes;
+          case "subscriptionsUri" : return i.metadata.url;           
           case "subscriptionsProxy":
 	    var proxyString = "";
-	    for (var j = 0; j < i.proxies.length; j++) {
-              proxyString = proxyString + i.proxies[j].name;
-	      if (j < i.proxies.length - 1) {
+	    for (var j = 0; j < i.metadata.proxies.length; j++) {
+              proxyString = proxyString + i.metadata.proxies[j].name;
+	      if (j < i.metadata.proxies.length - 1) {
 		proxyString = proxyString + ", ";
               }
 	    }
 	    return proxyString; 
-          case "subscriptionsRefresh" : return i.refresh;                   
-          case "subscriptionsStatus" : return i.lastStatus;
-          case "subscriptionsLastUpdate" : return i.lastUpdate;   
-          case "subscriptionsFormat" : return i.format;
-          case "subscriptionsOfuscation" : return i.obfuscation;
+          case "subscriptionsRefresh" : return i.metadata.refresh;
+          case "subscriptionsStatus" : return i.metadata.lastStatus;
+          case "subscriptionsLastUpdate" : return i.metadata.lastUpdate;   
+          case "subscriptionsFormat" : return i.metadata.format;
+          case "subscriptionsObfuscation" : return i.metadata.obfuscation;
         }
       },
       setCellValue: function(row, col, val) {
-		      that.subscriptionsList[row].enabled = val;
+		      that.subscriptionsList[row].metadata.enabled = val;
 		    },
       getCellValue: function(row, col) {
-		      return that.subscriptionsList[row].enabled;
+		      return that.subscriptionsList[row].metadata.enabled;
 		    },    
       isSeparator: function(aIndex) { return false; },
       isSorted: function() { return false; },

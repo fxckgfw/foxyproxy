@@ -21,7 +21,7 @@
 	buttons="accept,cancel,extra2"
 	buttonlabelextra2="&foxyproxy.pattern.subscriptions.lastStatus.label;" 
 	onload="onLoad();" ondialogaccept="onOK();" 
-	ondialogcancel="onCancel();" ondialogextra2="onLastStatus();" 
+	ondialogextra2="onLastStatus();" 
 	xmlns:html="http://www.w3.org/1999/xhtml" 
         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
 	persist="screenX screenY"
@@ -153,7 +153,7 @@
 	  <label value="&foxyproxy.format.label;"
 	    tooltiptext="&foxyproxy.pattern.subscriptions.format.tooltip;"/>
 	  <hbox align="center">
-            <menulist>
+            <menulist id="subscriptionFormat">
 	      <menupopup>
                 <menuitem label="FoxyProxy"/>
 		<menuitem label="AutoProxy"/>
@@ -164,7 +164,7 @@
             <spacer flex="1"/>
             <label value="&foxyproxy.obfuscation.label;"
               tooltiptext="&foxyproxy.pattern.subscriptions.obfuscation.tooltip;"/>
-	    <menulist>
+	    <menulist id="subscriptionObfuscation">
 	      <menupopup>
                 <menuitem label="&foxyproxy.none.label;"/>
 		<menuitem label="Base64"/>

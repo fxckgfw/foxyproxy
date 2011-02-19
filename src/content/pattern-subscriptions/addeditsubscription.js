@@ -47,39 +47,39 @@ function onLoad() {
     }
   } 
   } catch(e) {
-    dump("Ther went something wrong within the onLoad function: " + e + "\n");
+    dump("There went something wrong within the onLoad function: " + e + "\n");
   }
 }
 
 function onOK() {
   try {
-  var userValues = {};
-  var parsedSubscription;
-  var url = document.getElementById("subscriptionUrl").value;
-  // ToDo: Do we want to check whether it is really a URL here?
-  if (url === null || url === "") {
-    // ToDo: message for dtd
-    fp.alert(this, fp.getMessage("")); 
-    return false;
-  }
-  userValues.enabled = document.getElementById("subscriptionEnabled").checked;
-  userValues.name = document.getElementById("subscriptionName").value;  
-  userValues.notes = document.getElementById("subscriptionNotes").value; 
-  userValues.url = url;
-  userValues.proxies = [];
-  userValues.refresh = document.getElementById("refresh").value;
-  userValues.format = document.getElementById("subscriptionFormat").
-    selectedItem.label;
-  userValues.obfuscation = document.getElementById("subscriptionObfuscation").
-    selectedItem.label;
-  parsedSubscription = patternSubscriptions.loadSubscription(userValues.url);
-  if (parsedSubscription) {
-    patternSubscriptions.addSubscription(parsedSubscription, userValues);
-  } else {
-    fp.getMessage(this, ""); 
-    return false;
-  }
-  return true;
+    var userValues = {};
+    var parsedSubscription;
+    var url = document.getElementById("subscriptionUrl").value;
+    // ToDo: Do we want to check whether it is really a URL here?
+    if (url === null || url === "") {
+      // ToDo: message for dtd
+      fp.alert(this, fp.getMessage("")); 
+      return false;
+    }
+    userValues.enabled = document.getElementById("subscriptionEnabled").checked;
+    userValues.name = document.getElementById("subscriptionName").value;  
+    userValues.notes = document.getElementById("subscriptionNotes").value; 
+    userValues.url = url;
+    userValues.proxies = [];
+    userValues.refresh = document.getElementById("refresh").value;
+    userValues.format = document.getElementById("subscriptionFormat").
+      selectedItem.label;
+    userValues.obfuscation = document.getElementById("subscriptionObfuscation").
+      selectedItem.label;
+    parsedSubscription = patternSubscriptions.loadSubscription(userValues.url);
+    if (parsedSubscription) {
+      patternSubscriptions.addSubscription(parsedSubscription, userValues);
+    } else {
+      fp.getMessage(this, ""); 
+      return false;
+    }
+    return true;
   } catch(e) {
     dump("There went something wrong in the onOK function: " + e + "\n");
   }

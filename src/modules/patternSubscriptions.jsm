@@ -32,13 +32,15 @@ var patternSubscriptions = {
     refresh : 60,
   },
 
+  // TODO: Find a way to load the file efficiently using our XmlHTTPRequest
+  // method below...
   loadSavedSubscriptions: function() {
     try {
       var line = {};
       var hasmore;
       var savedPatternsFile = this.getSubscriptionsFile(true);
       if (!savedPatternsFile) {
-        // We do not have savedPatterns yet, thus returning...
+        // We do not have saved Patterns yet, thus returning...
 	return;
       }
       var istream = Cc["@mozilla.org/network/file-input-stream;1"].
@@ -66,6 +68,9 @@ var patternSubscriptions = {
       var subscriptionJSON = null;
       var req = Cc["@mozilla.org/xmlextras/xmlhttprequest;1"].
         createInstance(Ci.nsIXMLHttpRequest);
+      /*req.onreadystatechange = function (aEvt) {
+
+      };*/
 
       req.open("GET", aURLString, false);
       // We do need the following line of code. Otherwise we would get an error
@@ -94,6 +99,7 @@ var patternSubscriptions = {
   getObjectFromJSON: function(aString) {
     var json;
     try {
+      // Should never happen...
       if (!aString) {
 	return;
       }
@@ -272,13 +278,5 @@ var patternSubscriptions = {
       getLevel: function(row){ return 0; } 
     };
     return ret;
-  },
-
-  toDOM: function() {
-
-  },
-
-  fromDOM: function(doc) {
-
   }
 }

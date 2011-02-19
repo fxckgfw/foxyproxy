@@ -14,11 +14,10 @@ const CI = Components.interfaces;
 const CC = Components.classes;
 Components.utils.import("resource://gre/modules/XPCOMUtils.jsm");
 
-var fp = CC["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;
-
 function Common() {
   this.wrappedJSObject = this;
-  uuid = fp.isFoxyProxySimple() ? "foxyproxy-basic@eric.h.jung" : "foxyproxy@eric.h.jung";
+  uuid = CC["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject.
+    isFoxyProxySimple() ? "foxyproxy-basic@eric.h.jung" : "foxyproxy@eric.h.jung";
 
   // Get installed version
   if ("@mozilla.org/extensions/manager;1" in CC) {
@@ -98,7 +97,7 @@ Common.prototype = {
   },
   
   validatePattern : function(win, isRegEx, p) {
-    var origPat = p;
+    var origPat = p, fp = CC["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;
     p = p.replace(/^\s*|\s*$/g,"");
     if (p == "") {
       fp.alert(win, fp.getMessage("pattern.required"));
@@ -133,6 +132,7 @@ Common.prototype = {
     var doc = args.document || document;
     var e = doc.createElement("menuitem");
     e.setAttribute("id", args["idVal"]);
+    var fp = CC["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;
     e.setAttribute("label", args["labelId"]?fp.getMessage(args["labelId"], args["labelArgs"]) : args["labelVal"]);
     e.setAttribute("value", args["idVal"]);
     args["type"] && e.setAttribute("type", args["type"]);
@@ -190,6 +190,7 @@ Common.prototype = {
   },    
   
   onSuperAdd : function(wnd, url, superadd) {
+    var fp = CC["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;
     var p = {inn:{url:url || this.getMostRecentWindow().content.location.href, superadd:superadd}, out:null};
     // superadd.proxy is null when user hasn't yet used QuickAdd
     if (superadd.proxy != null)
@@ -208,11 +209,12 @@ Common.prototype = {
       return p.match;
     }
   },
-  
+
   makeProxyTreeView : function(proxies, document) {    
     var ret = {
       rowCount : proxies.length,
       getCellText : function(row, column) {
+	var fp = CC["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject; 
         var i = proxies.item(row);    
         switch(column.id) {
           case "nameCol":return i.name;
@@ -263,7 +265,7 @@ Common.prototype = {
       styleSheet.insertRule("treechildren::-moz-tree-cell(" + p.colorString + "){border: 1px solid black;background-color:" + p.color + "}", styleSheet.cssRules.length);
     }
     return ret;
-  },
+  }, 
   
   isThunderbird : function() {
     return CC["@mozilla.org/xre/app-info;1"].getService(CI.nsIXULAppInfo).ID == "{3550f703-e582-4d05-9a08-453d09bdfdc6}";
@@ -272,6 +274,7 @@ Common.prototype = {
   notify : function(msg, buttons, callback) {
     var wm = this.getMostRecentWindow(), nb = wm.gBrowser.getNotificationBox(),
       n = nb.getNotificationWithValue("foxyproxy-proxy-scheme"),
+      fp = CC["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject,
       message = fp.getMessage(msg);
     if (!buttons) {
       buttons = [

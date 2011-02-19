@@ -448,9 +448,22 @@ function onSubscriptionsAction() {
       break;
     case 2:
       if (subscriptionsTree.currentIndex < 0) {
-        // Alert here that something has to be selected!
+	foxyproxy.alert(this, 
+	    foxyproxy.getMessage("patternsubscription.none.selected"));  
 	break;
-      } 
+      }
+      var promptSvc = CC["@mozilla.org/embedcomp/prompt-service;1"].
+                      getService(CI.nsIPromptService); 
+      var result = promptSvc.confirm(null, foxyproxy.
+	  getMessage("patternsubscription.del.dialog.title"), foxyproxy.
+	  getMessage("patternsubscription.del.dialog"));
+      if (result) {
+        patternSubscriptions.subscriptionsList.splice(subscriptionsTree.
+          currentIndex, 1);
+        patternSubscriptions.writeSubscriptions();
+        subscriptionsTree.view = patternSubscriptions.
+          makeSubscriptionsTreeView(); 
+      }
       break;
     case 3:
       if (subscriptionsTree.currentIndex < 0) {

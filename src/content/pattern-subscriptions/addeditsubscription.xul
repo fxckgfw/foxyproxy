@@ -20,7 +20,7 @@
 	       &foxyproxy.pattern.subscriptions.addedit.title;" 
 	buttons="accept,cancel,extra2"
 	buttonlabelextra2="&foxyproxy.pattern.subscriptions.lastStatus.label;" 
-	onload="onLoad();" ondialogaccept="onOK();" 
+	onload="onLoad();" ondialogaccept="return onOK();" 
 	ondialogextra2="onLastStatus();" 
 	xmlns:html="http://www.w3.org/1999/xhtml" 
         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"

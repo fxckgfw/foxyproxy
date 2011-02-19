@@ -29,7 +29,7 @@ var patternSubscriptions = {
     name : "",
     notes : "",
     enabled : true,
-    refresh : 60,
+    refresh : 60
   },
 
   // TODO: Find a way to load the file efficiently using our XmlHTTPRequest
@@ -87,12 +87,12 @@ var patternSubscriptions = {
 	  parseSubscription(subscriptionJSON, aURLString);
 	if (parsedSubscription !== null) {
 	  return parsedSubscription;
-        } else {
-	  return false;
 	}
       }
+      return false;
     } catch (e) {
       dump("Error fetching the example JSON file: " + e + "\n");
+      return false;
     }
   },
 
@@ -134,7 +134,6 @@ var patternSubscriptions = {
     }
   },
  
-
   parseSubscription: function(aSubscription, aURLString) {
     try {
       var subProperty;
@@ -168,7 +167,7 @@ var patternSubscriptions = {
 
   addSubscription: function(newSub, userValues) {
     var userValue;
-    // We need this do respect the users wishes concerning the name and other
+    // We need this do respect the user's wishes concerning the name and other
     // metadata properties. If we would not do this the default values that
     // may be delivered with the subscription itself (i.e. its metadate) would
     // overwrite the users' choices.
@@ -181,6 +180,15 @@ var patternSubscriptions = {
     this.subscriptionsList.push(newSub); 
     this.writeSubscriptions();
   }, 
+
+  editSubscription: function(oldSub, userValues, index) {
+    var userValue;
+    for (userValue in userValues) {
+      oldSub.metadata[userValue] = userValues[userValue];
+    } 
+    this.subscriptionsList[index] = oldSub;
+    this.writeSubscriptions();
+  },
 
   writeSubscriptions: function() {
     try {

@@ -411,27 +411,40 @@ function onSubscriptionsAction() {
   switch (document.getElementById("actionList").selectedIndex) {
     case 0:  
       params = {
-        inn : null
+        inn : null,
+        out : null
       };	
       window.openDialog('chrome://foxyproxy/content/pattern-subscriptions/addeditsubscription.xul', 
         '', 'modal, resizable=yes', params).focus(); 
-      subscriptionsTree.view = patternSubscriptions.makeSubscriptionsTreeView();
+      if (params.out) {
+        patternSubscriptions.addSubscription(params.out.subscription, 
+	  params.out.userValues); 
+        subscriptionsTree.view = patternSubscriptions.
+	  makeSubscriptionsTreeView();
+      }
       break;
     case 1: 
       if (subscriptionsTree.currentIndex < 0) {
-        // Alert here that something has to be selected!
+	foxyproxy.alert(this, 
+	    foxyproxy.getMessage("patternsubscription.none.selected"));  
 	break;
       }
       selectedSubscription = patternSubscriptions.
 	subscriptionsList[subscriptionsTree.currentIndex];
-      dump("subscriptionsTree.currentIndex is: " + subscriptionsTree.currentIndex + "\n");
       params = {
         inn : {
-          subscription : selectedSubscription
+          metadata : selectedSubscription.metadata,
+          subscription : selectedSubscription.subscription
         }
       };
       window.openDialog('chrome://foxyproxy/content/pattern-subscriptions/addeditsubscription.xul', 
         '', 'modal, resizable=yes', params).focus(); 
+      if (params.out) {
+        patternSubscriptions.editSubscription(selectedSubscription, params.out.
+	    userValues, subscriptionsTree.currentIndex);
+	subscriptionsTree.view = patternSubscriptions.
+	  makeSubscriptionsTreeView(); 
+      }
       break;
     case 2:
       if (subscriptionsTree.currentIndex < 0) {

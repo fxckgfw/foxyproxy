@@ -19,33 +19,33 @@ Cu.import("resource://foxyproxy/patternSubscriptions.jsm");
 
 function onLoad() {
   try {
-  var subscription;
-  var proxyTree = document.getElementById("subscriptionProxyTree");
-  var formatList = document.getElementById("subscriptionFormat");
-  var obfuscationList = document.getElementById("subscriptionObfuscation");
-  if (window.arguments[0].inn !== null) {
-    subscription = window.arguments[0].inn.subscription; 
-    document.getElementById("subscriptionName").value = subscription.name;
-    document.getElementById("subscriptionNotes").value = subscription.notes;
-    document.getElementById("subscriptionUrl").value = subscription.url;
-    if (subscription.proxies) {
-      proxyTree.view = fpc.makeProxyTreeView(subscription.proxies, document);
-    }
-    document.getElementById("refresh").value = subscription.refresh;
-    // Assuming we have only 'FoxyProxy' and 'AutoProxy' as format values...
-    if (subscription.format === "FoxyProxy") {
-      formatList.selectedIndex = 0;
-    } else {
-      formatList.selectedIndex = 1;
+    var metadata;
+    var proxyTree = document.getElementById("subscriptionProxyTree");
+    var formatList = document.getElementById("subscriptionFormat");
+    var obfuscationList = document.getElementById("subscriptionObfuscation");
+    if (window.arguments[0].inn !== null) {
+      metadata = window.arguments[0].inn.metadata;
+      document.getElementById("subscriptionName").value = metadata.name;
+      document.getElementById("subscriptionNotes").value = metadata.notes;
+      document.getElementById("subscriptionUrl").value = metadata.url;
+      if (metadata.proxies) {
+        proxyTree.view = fpc.makeProxyTreeView(metadata.proxies, document);
+      }
+      document.getElementById("refresh").value = metadata.refresh;
+      // Assuming we have only 'FoxyProxy' and 'AutoProxy' as format values...
+      if (metadata.format === "FoxyProxy") {
+        formatList.selectedIndex = 0;
+      } else {
+        formatList.selectedIndex = 1;
+      } 
+      // And assuming that we only have 'None' and 'Base64' so far as 
+      // obfusctaion methods...
+      if (metadata.obfuscation === "Base64") {
+        obfuscationList.selectedIndex = 1;
+      } else {
+        obfuscationList.selectedIndex = 0;
+      }
     } 
-    // And assuming that we only have 'None' and 'Base64' so far as 
-    // obfusctaion methods...
-    if (subscription.obfuscation === "Base64") {
-      obfuscationList.selectedIndex = 1;
-    } else {
-      obfuscationList.selectedIndex = 0;
-    }
-  } 
   } catch(e) {
     dump("There went something wrong within the onLoad function: " + e + "\n");
   }
@@ -58,8 +58,7 @@ function onOK() {
     var url = document.getElementById("subscriptionUrl").value;
     // ToDo: Do we want to check whether it is really a URL here?
     if (url === null || url === "") {
-      // ToDo: message for dtd
-      fp.alert(this, fp.getMessage("")); 
+      fp.alert(this, fp.getMessage("patternsubscription.invalid.url")); 
       return false;
     }
     userValues.enabled = document.getElementById("subscriptionEnabled").checked;
@@ -72,14 +71,23 @@ function onOK() {
       selectedItem.label;
     userValues.obfuscation = document.getElementById("subscriptionObfuscation").
       selectedItem.label;
-    parsedSubscription = patternSubscriptions.loadSubscription(userValues.url);
-    if (parsedSubscription) {
-      patternSubscriptions.addSubscription(parsedSubscription, userValues);
+    if (window.arguments[0].inn === null) {
+      parsedSubscription = patternSubscriptions.
+	loadSubscription(userValues.url);
+      if (parsedSubscription) {
+        window.arguments[0].out = {
+          subscription : parsedSubscription,
+          userValues : userValues
+        };
+	return true;
+      }
     } else {
-      fp.getMessage(this, ""); 
-      return false;
+      window.arguments[0].out = {
+        userValues : userValues
+      }
+      return true;
     }
-    return true;
+    return false;
   } catch(e) {
     dump("There went something wrong in the onOK function: " + e + "\n");
   }

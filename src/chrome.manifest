@@ -96,3 +96,4 @@ style chrome://global/content/customizeToolbar.xul  chrome://foxyproxy/content/f
 
 #overrides by OS
 style chrome://foxyproxy/content/options.xul chrome://foxyproxy/content/foxyproxy-win.css os=WINNT
+style chrome://foxyproxy/content/addeditproxy.xul chrome://foxyproxy/content/foxyproxy-win.css os=WINNT

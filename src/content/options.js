@@ -9,7 +9,8 @@
   and also online at http://www.gnu.org/licenses/gpl.txt
 **/
 
-var foxyproxy, proxyTree, subscriptionsTree, logTree, monthslong, dayslong, overlay, timeformat, saveLogCmd, clearLogCmd, noURLsCmd, fpc;
+var foxyproxy, proxyTree, subscriptionsTree, logTree, overlay, saveLogCmd, 
+  clearLogCmd, noURLsCmd, fpc;
 const CI = Components.interfaces, CC = Components.classes, CU = Components.utils;
 
 CU.import("resource://foxyproxy/patternSubscriptions.jsm");
@@ -19,22 +20,12 @@ function onLoad() {
   fpc = CC["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject;
   document.getElementById("maxSize").value = foxyproxy.logg.maxSize;
   overlay = fpc.getMostRecentWindow().foxyproxy;
-  monthslong = [foxyproxy.getMessage("months.long.1"), foxyproxy.getMessage("months.long.2"),
-    foxyproxy.getMessage("months.long.3"), foxyproxy.getMessage("months.long.4"), foxyproxy.getMessage("months.long.5"),
-    foxyproxy.getMessage("months.long.6"), foxyproxy.getMessage("months.long.7"), foxyproxy.getMessage("months.long.8"),
-    foxyproxy.getMessage("months.long.9"), foxyproxy.getMessage("months.long.10"), foxyproxy.getMessage("months.long.11"),
-    foxyproxy.getMessage("months.long.12")];
-  
-  dayslong = [foxyproxy.getMessage("days.long.1"), foxyproxy.getMessage("days.long.2"),
-    foxyproxy.getMessage("days.long.3"), foxyproxy.getMessage("days.long.4"), foxyproxy.getMessage("days.long.5"),
-    foxyproxy.getMessage("days.long.6"), foxyproxy.getMessage("days.long.7")];
   proxyTree = document.getElementById("proxyTree");
   subscriptionsTree = document.getElementById("subscriptionsTree");
   logTree = document.getElementById("logTree");
   saveLogCmd = document.getElementById("saveLogCmd");
   clearLogCmd = document.getElementById("clearLogCmd");  
   noURLsCmd = document.getElementById("noURLsCmd");
-  timeformat = foxyproxy.getMessage("timeformat");
   _initSettings();
   var obs = CC["@mozilla.org/observer-service;1"].getService(CI.nsIObserverService);
   obs.addObserver(observer,"foxyproxy-mode-change", false);
@@ -138,7 +129,7 @@ function _updateLogView(keepSelection) {
     getCellText : function(row, column) {
       var mp = foxyproxy.logg.item(row);
       if (!mp) return;
-      if (column.id == "timestamp") return format(mp.timestamp);
+      if (column.id == "timestamp") return foxyproxy.logg.format(mp.timestamp);
       return mp[column.id];
     },
     isSeparator: function(aIndex) { return false; },
@@ -175,37 +166,6 @@ function _updateLogView(keepSelection) {
   }
   updateLogButtons();
 }
-
-  // Thanks for the inspiration, Tor2k (http://www.codeproject.com/jscript/dateformat.asp)
-  // Same as foxyproxy.js's logg.format(). TODO: merge to prevent duplicated code.
-  function format(d) {
-    d = new Date(d);
-    if (!d.valueOf())
-      return '&nbsp;';
-
-    return timeformat.replace(/(yyyy|mmmm|mmm|mm|dddd|ddd|dd|hh|HH|nn|ss|zzz|a\/p)/gi,
-      function($1) {
-        switch ($1) {
-          case 'yyyy': return d.getFullYear();
-          case 'mmmm': return monthslong[d.getMonth()];
-          case 'mmm':  return monthslong[d.getMonth()].substr(0, 3);
-          case 'mm':   return zf((d.getMonth() + 1), 2);
-          case 'dddd': return dayslong[d.getDay()];
-          case 'ddd':  return dayslong[d.getDay()].substr(0, 3);
-          case 'dd':   return zf(d.getDate(), 2);
-          case 'hh':   return zf(((h = d.getHours() % 12) ? h : 12), 2);
-          case 'HH':   return zf(d.getHours(), 2);          
-          case 'nn':   return zf(d.getMinutes(), 2);
-          case 'ss':   return zf(d.getSeconds(), 2);
-          case 'zzz':  return zf(d.getMilliseconds(), 3);          
-          case 'a/p':  return d.getHours() < 12 ? 'AM' : 'PM';
-        }
-      }
-    );
-  }
-  
-// My own zero-fill fcn, not Tor 2k's. Assumes (n==2 || n == 3) && c<=n.
-function zf(c, n) { c=""+c; return c.length == 1 ? (n==2?'0'+c:'00'+c) : (c.length == 2 ? (n==2?c:'0'+c) : c); }
 
 function _updateModeMenu() {
 	var menu = document.getElementById("modeMenu");	
@@ -466,10 +426,32 @@ function onSubscriptionsAction() {
       }
       break;
     case 3:
+      var currentSubscription;
+      var refreshedSubsricption;
       if (subscriptionsTree.currentIndex < 0) {
-        // Alert here that something has to be selected!
+	foxyproxy.alert(this, 
+	    foxyproxy.getMessage("patternsubscription.none.selected"));  
 	break;
       } 
+      currentSubscription = patternSubscriptions.
+        subscriptionsList[subscriptionsTree.currentIndex];
+      refreshedSubscription = patternSubscriptions.
+	loadSubscription(currentSubscription.metadata.url); 
+      if (!refreshedSubscription) {
+        dump("The subscription updated failed!\n"); 
+	currentSubscription.metadata.status = foxyproxy.getMessage("error"); 
+      } else {
+	// We do not want to loose our metadata here as the user just 
+	// refreshed tha subscription to get up-to-date patterns.
+	currentSubscription.subscription = refreshedSubscription.subscription;
+      }
+      currentSubscription.metadata.lastUpdate = foxyproxy.logg.
+	format(Date.now()); 
+      patternSubscriptions.subscriptionsList[subscriptionsTree.currentIndex] =
+        currentSubscription;	
+      patternSubscriptions.writeSubscriptions(); 
+      subscriptionsTree.view = patternSubscriptions.
+          makeSubscriptionsTreeView(); 
       break;  
     case 4:
       if (subscriptionsTree.currentIndex < 0) {

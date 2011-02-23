@@ -139,7 +139,6 @@ var patternSubscriptions = {
       var subProperty;
       // And maybe someone cluttered the subscription in other ways...
       for (subProperty in aSubscription) {
-	dump("subProperty is: " + subProperty + "\n");
         if (subProperty !== "metadata" && subProperty !== "subscription") {
           delete aSubscription[subProperty];
         }	  
@@ -167,6 +166,8 @@ var patternSubscriptions = {
 
   addSubscription: function(newSub, userValues) {
     var userValue;
+    var fp = Cc["@leahscape.org/foxyproxy/service;1"].
+	         getService().wrappedJSObject; 
     // We need this do respect the user's wishes concerning the name and other
     // metadata properties. If we would not do this the default values that
     // may be delivered with the subscription itself (i.e. its metadate) would
@@ -174,7 +175,7 @@ var patternSubscriptions = {
     for (userValue in userValues) {
       newSub.metadata[userValue] = userValues[userValue];
     } 
-    newSub.metadata.lastUpdate = new Date();
+    newSub.metadata.lastUpdate = fp.logg.format(Date.now()); 
     //TODO: i18n version!
     newSub.metadata.lastStatus = "OK";
     this.subscriptionsList.push(newSub); 

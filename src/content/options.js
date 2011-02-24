@@ -368,98 +368,108 @@ function onSubscriptionsAction() {
   var selectedSubscription;
   var params;
   try {
-  switch (document.getElementById("actionList").selectedIndex) {
-    case 0:  
-      params = {
-        inn : null,
-        out : null
-      };	
-      window.openDialog('chrome://foxyproxy/content/pattern-subscriptions/addeditsubscription.xul', 
+    switch (document.getElementById("actionList").selectedIndex) {
+      case 0:  
+        params = {
+          inn : null,
+          out : null
+        };	
+        window.openDialog('chrome://foxyproxy/content/pattern-subscriptions/addeditsubscription.xul', 
         '', 'modal, resizable=yes', params).focus(); 
-      if (params.out) {
-        patternSubscriptions.addSubscription(params.out.subscription, 
-	  params.out.userValues); 
-        subscriptionsTree.view = patternSubscriptions.
-	  makeSubscriptionsTreeView();
-      }
-      break;
-    case 1: 
-      if (subscriptionsTree.currentIndex < 0) {
-	foxyproxy.alert(this, 
-	    foxyproxy.getMessage("patternsubscription.none.selected"));  
-	break;
-      }
-      selectedSubscription = patternSubscriptions.
-	subscriptionsList[subscriptionsTree.currentIndex];
-      params = {
-        inn : {
-          metadata : selectedSubscription.metadata,
-          subscription : selectedSubscription.subscription
+        if (params.out) {
+          patternSubscriptions.addSubscription(params.out.subscription, 
+	    params.out.userValues); 
+          subscriptionsTree.view = patternSubscriptions.
+	    makeSubscriptionsTreeView();
         }
-      };
-      window.openDialog('chrome://foxyproxy/content/pattern-subscriptions/addeditsubscription.xul', 
-        '', 'modal, resizable=yes', params).focus(); 
-      if (params.out) {
-        patternSubscriptions.editSubscription(selectedSubscription, params.out.
-	    userValues, subscriptionsTree.currentIndex);
-	subscriptionsTree.view = patternSubscriptions.
-	  makeSubscriptionsTreeView(); 
-      }
-      break;
-    case 2:
-      if (subscriptionsTree.currentIndex < 0) {
-	foxyproxy.alert(this, 
+        break;
+      case 1: 
+        if (subscriptionsTree.currentIndex < 0) {
+	  foxyproxy.alert(this, 
 	    foxyproxy.getMessage("patternsubscription.none.selected"));  
-	break;
-      }
-      var promptSvc = CC["@mozilla.org/embedcomp/prompt-service;1"].
+	  break;
+        }
+        selectedSubscription = patternSubscriptions.
+	  subscriptionsList[subscriptionsTree.currentIndex];
+        params = {
+          inn : {
+            metadata : selectedSubscription.metadata,
+            subscription : selectedSubscription.subscription
+          }
+        };
+        window.openDialog('chrome://foxyproxy/content/pattern-subscriptions/addeditsubscription.xul', 
+        '', 'modal, resizable=yes', params).focus(); 
+        if (params.out) {
+          patternSubscriptions.editSubscription(selectedSubscription, params.
+            out.userValues, subscriptionsTree.currentIndex);
+          subscriptionsTree.view = patternSubscriptions.
+            makeSubscriptionsTreeView(); 
+        }
+        break;
+      case 2:
+        if (subscriptionsTree.currentIndex < 0) {
+          foxyproxy.alert(this, 
+            foxyproxy.getMessage("patternsubscription.none.selected"));  
+          break;
+        }
+        var promptSvc = CC["@mozilla.org/embedcomp/prompt-service;1"].
                       getService(CI.nsIPromptService); 
-      var result = promptSvc.confirm(null, foxyproxy.
-	  getMessage("patternsubscription.del.dialog.title"), foxyproxy.
-	  getMessage("patternsubscription.del.dialog"));
-      if (result) {
-        patternSubscriptions.subscriptionsList.splice(subscriptionsTree.
-          currentIndex, 1);
-        patternSubscriptions.writeSubscriptions();
+        var result = promptSvc.confirm(null, foxyproxy.
+          getMessage("patternsubscription.del.dialog.title"), foxyproxy.
+          getMessage("patternsubscription.del.dialog"));
+        if (result) {
+          patternSubscriptions.subscriptionsList.splice(subscriptionsTree.
+            currentIndex, 1);
+          patternSubscriptions.writeSubscriptions();
+          subscriptionsTree.view = patternSubscriptions.
+            makeSubscriptionsTreeView(); 
+        }
+        break;
+      case 3:
+        var refreshedSubscription;
+        if (subscriptionsTree.currentIndex < 0) {
+	  foxyproxy.alert(this, 
+	    foxyproxy.getMessage("patternsubscription.none.selected"));  
+	  break;
+        } 
+        selectedSubscription = patternSubscriptions.
+          subscriptionsList[subscriptionsTree.currentIndex];
+        refreshedSubscription = patternSubscriptions.
+	  loadSubscription(selectedSubscription.metadata.url); 
+        if (!refreshedSubscription) {
+          dump("The subscription updated failed!\n"); 
+	  selectedSubscription.metadata.status = foxyproxy.getMessage("error"); 
+        } else {
+	  // We do not want to loose our metadata here as the user just 
+	  // refreshed the subscription to get up-to-date patterns.
+	  selectedSubscription.subscription = refreshedSubscription.
+            subscription;
+        }
+        selectedSubscription.metadata.lastUpdate = foxyproxy.logg.
+	  format(Date.now()); 
+        patternSubscriptions.subscriptionsList[subscriptionsTree.currentIndex] =
+          selectedSubscription;	
+        patternSubscriptions.writeSubscriptions(); 
         subscriptionsTree.view = patternSubscriptions.
           makeSubscriptionsTreeView(); 
-      }
-      break;
-    case 3:
-      var currentSubscription;
-      var refreshedSubsricption;
-      if (subscriptionsTree.currentIndex < 0) {
-	foxyproxy.alert(this, 
+        break;  
+      case 4:
+        if (subscriptionsTree.currentIndex < 0) {
+	  foxyproxy.alert(this, 
 	    foxyproxy.getMessage("patternsubscription.none.selected"));  
-	break;
-      } 
-      currentSubscription = patternSubscriptions.
-        subscriptionsList[subscriptionsTree.currentIndex];
-      refreshedSubscription = patternSubscriptions.
-	loadSubscription(currentSubscription.metadata.url); 
-      if (!refreshedSubscription) {
-        dump("The subscription updated failed!\n"); 
-	currentSubscription.metadata.status = foxyproxy.getMessage("error"); 
-      } else {
-	// We do not want to loose our metadata here as the user just 
-	// refreshed tha subscription to get up-to-date patterns.
-	currentSubscription.subscription = refreshedSubscription.subscription;
-      }
-      currentSubscription.metadata.lastUpdate = foxyproxy.logg.
-	format(Date.now()); 
-      patternSubscriptions.subscriptionsList[subscriptionsTree.currentIndex] =
-        currentSubscription;	
-      patternSubscriptions.writeSubscriptions(); 
-      subscriptionsTree.view = patternSubscriptions.
-          makeSubscriptionsTreeView(); 
-      break;  
-    case 4:
-      if (subscriptionsTree.currentIndex < 0) {
-        // Alert here that something has to be selected!
-	break;
-      } 
+	  break;
+        } 
+        selectedSubscription = patternSubscriptions.
+	  subscriptionsList[subscriptionsTree.currentIndex];
+        params = {
+          inn : {
+            subscription : selectedSubscription.subscription
+          }
+        };
+        window.openDialog('chrome://foxyproxy/content/pattern-subscriptions/patternsView.xul', 
+        '', 'modal, resizable=yes', params).focus(); 
       break;
-  } 
+    } 
   } catch (e) {
     dump("There went something wrong in the Treeselection: " + e);
 

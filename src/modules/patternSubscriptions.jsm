@@ -271,7 +271,7 @@ var patternSubscriptions = {
 	  case "subscriptionsName" : return i.metadata.name;
           case "subscriptionsNotes" : return i.metadata.notes;
           case "subscriptionsUri" : return i.metadata.url;           
-          case "subscriptionsProxy":
+          /*case "subscriptionsProxy":
 	    var proxyString = "";
 	    for (var j = 0; j < i.metadata.proxies.length; j++) {
               proxyString = proxyString + i.metadata.proxies[j].name;
@@ -279,7 +279,7 @@ var patternSubscriptions = {
 		proxyString = proxyString + ", ";
               }
 	    }
-	    return proxyString; 
+	    return proxyString; */
           case "subscriptionsRefresh" : return i.metadata.refresh;
           case "subscriptionsStatus" : return i.metadata.lastStatus;
           case "subscriptionsLastUpdate" : return i.metadata.lastUpdate;   

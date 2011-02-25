@@ -12,15 +12,28 @@
 "use strict";
 
 var Cc = Components.classes, Cu = Components.utils;
+var proxyTree;
 var fpc = Cc["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject;
 var fp = Cc["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;
+var proxies = {
+  list : [],
+  push : function(p) {
+    this.list.push(p);
+  },
+  get length() {
+    return this.list.length;
+  },
+  item : function(i) {
+    return this.list[i];
+  }
+}
 
 Cu.import("resource://foxyproxy/patternSubscriptions.jsm");
 
 function onLoad() {
   try {
     var metadata;
-    var proxyTree = document.getElementById("subscriptionProxyTree");
+    proxyTree = document.getElementById("subscriptionProxyTree");
     var formatList = document.getElementById("subscriptionFormat");
     var obfuscationList = document.getElementById("subscriptionObfuscation");
     if (window.arguments[0].inn !== null) {
@@ -29,8 +42,15 @@ function onLoad() {
       document.getElementById("subscriptionName").value = metadata.name;
       document.getElementById("subscriptionNotes").value = metadata.notes;
       document.getElementById("subscriptionUrl").value = metadata.url;
-      if (metadata.proxies) {
-        proxyTree.view = fpc.makeProxyTreeView(metadata.proxies, document);
+      if (metadata.proxies.length > 0) {
+	for (var i = 0; i < metadata.proxies.length; i++) {
+	  for (var j = 0; j < fp.proxies.length; j++) { 
+	    if (metadata.proxies[i] === fp.proxies.item(j).id) {
+	      proxies.list.push(fp.proxies.item(j));
+	    }
+	  }
+	}
+        proxyTree.view = fpc.makeProxyTreeView(proxies, document);
       }
       document.getElementById("refresh").value = metadata.refresh;
       // Assuming we have only 'FoxyProxy' and 'AutoProxy' as format values...
@@ -55,6 +75,7 @@ function onLoad() {
 function onOK() {
   try {
     var userValues = {};
+    userValues.proxies = [];
     var parsedSubscription;
     var url = document.getElementById("subscriptionUrl").value;
     // ToDo: Do we want to check whether it is really a URL here?
@@ -66,7 +87,9 @@ function onOK() {
     userValues.name = document.getElementById("subscriptionName").value;  
     userValues.notes = document.getElementById("subscriptionNotes").value; 
     userValues.url = url;
-    userValues.proxies = [];
+    for (var i = 0; i < proxies.list.length; i++) {
+      userValues.proxies.push(proxies.item(i).id);
+    }
     userValues.refresh = document.getElementById("refresh").value;
     userValues.format = document.getElementById("subscriptionFormat").
       selectedItem.label;
@@ -98,18 +121,33 @@ function onLastStatus() {
   window.openDialog('chrome://foxyproxy/content/pattern-subscriptions/laststatus.xul', '', 'modal, centerscreen, resizable').focus();
 }
 
-function addProxy() {
-  var p = {
-    inn: {
-      title: fp.getMessage("choose.proxy.patterns"), 
-      pattern: true
-    }, 
-    out: null
-  };          
-  window.openDialog("chrome://foxyproxy/content/chooseproxy.xul", "",
+function addProxy(e) {
+  if (e.type === "click" && e.button === 0) { 
+    var p = {
+      inn: {
+        title: fp.getMessage("choose.proxy.patterns"), 
+        pattern: true
+      }, 
+      out: null
+    };          
+    window.openDialog("chrome://foxyproxy/content/chooseproxy.xul", "",
         "modal, centerscreen, resizable", p).focus(); 
-  if (p.out) {
-    p = p.out;
+    if (p.out) {
+      proxies.push(p.out.proxy);
+      document.getElementById("subscriptionProxyTree").view = fpc.
+        makeProxyTreeView(proxies, document); 
+    }
+  }
+}
+
+function removeProxy(e) {
+  if (e.type === "click" && e.button === 0) { 
+    if (proxyTree.currentIndex < 0) {
+      fp.alert(this, fp.getMessage("patternsubscription.noproxy.selected")); 
+      return;
+    }   
+    proxies.list.splice(proxyTree.currentIndex, 1); 
+    proxyTree.view = fpc.makeProxyTreeView(proxies, document); 
   }
 }
 

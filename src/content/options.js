@@ -393,8 +393,8 @@ function onSubscriptionsAction() {
 	  subscriptionsList[subscriptionsTree.currentIndex];
         params = {
           inn : {
-            metadata : selectedSubscription.metadata,
-            subscription : selectedSubscription.subscription
+            subscription : selectedSubscription,
+            index : subscriptionsTree.currentIndex
           }
         };
         window.openDialog('chrome://foxyproxy/content/pattern-subscriptions/addeditsubscription.xul', 
@@ -420,36 +420,20 @@ function onSubscriptionsAction() {
         if (result) {
           patternSubscriptions.subscriptionsList.splice(subscriptionsTree.
             currentIndex, 1);
-          patternSubscriptions.writeSubscriptions();
+          patternSubscriptions.writeSubscription();
           subscriptionsTree.view = patternSubscriptions.
             makeSubscriptionsTreeView(); 
         }
         break;
       case 3:
-        var refreshedSubscription;
         if (subscriptionsTree.currentIndex < 0) {
 	  foxyproxy.alert(this, 
 	    foxyproxy.getMessage("patternsubscription.none.selected"));  
 	  break;
         } 
-        selectedSubscription = patternSubscriptions.
-          subscriptionsList[subscriptionsTree.currentIndex];
-        refreshedSubscription = patternSubscriptions.
-	  loadSubscription(selectedSubscription.metadata.url); 
-        if (!refreshedSubscription) {
-          dump("The subscription updated failed!\n"); 
-	  selectedSubscription.metadata.status = foxyproxy.getMessage("error"); 
-        } else {
-	  // We do not want to loose our metadata here as the user just 
-	  // refreshed the subscription to get up-to-date patterns.
-	  selectedSubscription.subscription = refreshedSubscription.
-            subscription;
-        }
-        selectedSubscription.metadata.lastUpdate = foxyproxy.logg.
-	  format(Date.now()); 
-        patternSubscriptions.subscriptionsList[subscriptionsTree.currentIndex] =
-          selectedSubscription;	
-        patternSubscriptions.writeSubscriptions(); 
+        patternSubscriptions.refreshSubscription(patternSubscriptions.
+          subscriptionsList[subscriptionsTree.currentIndex], subscriptionsTree.
+          currentIndex);
         subscriptionsTree.view = patternSubscriptions.
           makeSubscriptionsTreeView(); 
         break;  

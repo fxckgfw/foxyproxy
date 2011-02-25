@@ -38,7 +38,7 @@ var patternSubscriptions = {
     try {
       var line = {};
       var hasmore;
-      var savedPatternsFile = this.getSubscriptionsFile(true);
+      var savedPatternsFile = this.getSubscriptionFile(true);
       if (!savedPatternsFile) {
         // We do not have saved Patterns yet, thus returning...
 	return;
@@ -179,7 +179,7 @@ var patternSubscriptions = {
     //TODO: i18n version!
     newSub.metadata.lastStatus = "OK";
     this.subscriptionsList.push(newSub); 
-    this.writeSubscriptions();
+    this.writeSubscription();
   }, 
 
   editSubscription: function(oldSub, userValues, index) {
@@ -188,15 +188,15 @@ var patternSubscriptions = {
       oldSub.metadata[userValue] = userValues[userValue];
     } 
     this.subscriptionsList[index] = oldSub;
-    this.writeSubscriptions();
+    this.writeSubscription();
   },
 
-  writeSubscriptions: function() {
+  writeSubscription: function() {
     try {
       var subscriptionsData = "";
       var foStream;
       var converter;
-      var subFile = this.getSubscriptionsFile(false);	
+      var subFile = this.getSubscriptionFile(false);	
       for (var i = 0; i < this.subscriptionsList.length; i++) {
         subscriptionsData = subscriptionsData + this.getJSONFromObject(this.
 	  subscriptionsList[i]) + "\n";
@@ -215,7 +215,27 @@ var patternSubscriptions = {
     }
   },
 
-  getSubscriptionsFile: function(isStart) {
+  refreshSubscription: function(aSubscription, aIndex) {
+    var refreshedSubscription = this.loadSubscription(aSubscription.
+      metadata.url); 
+    var fp = Cc["@leahscape.org/foxyproxy/service;1"].
+	         getService().wrappedJSObject; 
+    if (!refreshedSubscription) {
+      fp.alert(fp.getMessage("foxyproxy"), fp.getMessage("patternsubscription.update.failure")); 
+      aSubscription.metadata.status = fp.getMessage("error"); 
+    } else {
+      // We do not want to loose our metadata here as the user just 
+      // refreshed the subscription to get up-to-date patterns.
+      aSubscription.subscription = refreshedSubscription.
+        subscription;
+      fp.alert(fp.getMessage("foxyproxy"),fp.getMessage("patternsubscription.update.success")); 
+    }
+    aSubscription.metadata.lastUpdate = fp.logg.format(Date.now()); 
+    this.subscriptionsList[aIndex] = aSubscription;	
+    this.writeSubscription(); 
+  },
+
+  getSubscriptionFile: function(isStart) {
     // TODO: Merge the duplicated code with the one in foxyproxy.js
     var file = Cc["@mozilla.org/file/local;1"].createInstance(Ci.nsILocalFile);
     /* Always use ProfD by default in order to support application-wide 

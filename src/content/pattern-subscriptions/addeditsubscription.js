@@ -24,7 +24,7 @@ function onLoad() {
     var formatList = document.getElementById("subscriptionFormat");
     var obfuscationList = document.getElementById("subscriptionObfuscation");
     if (window.arguments[0].inn !== null) {
-      metadata = window.arguments[0].inn.metadata;
+      metadata = window.arguments[0].inn.subscription.metadata;
       document.getElementById("subscriptionName").value = metadata.name;
       document.getElementById("subscriptionNotes").value = metadata.notes;
       document.getElementById("subscriptionUrl").value = metadata.url;
@@ -98,8 +98,6 @@ function onLastStatus() {
 }
 
 function addProxy() {
-  var fp = Cc["@leahscape.org/foxyproxy/service;1"].getService().
-             wrappedJSObject; 
   var p = {
     inn: {
       title: fp.getMessage("choose.proxy.patterns"), 
@@ -127,5 +125,15 @@ function contextHelp(type) {
       break;
     default:
       break;
+  }
+}
+
+function refreshSubscription(e) {
+  if (e.type === "click" && e.button === 0) {
+    if (window.arguments[0].inn === null) {
+      fp.alert(this, fp.getMessage("patternsubscription.invalid.refresh"));
+    }
+    patternSubscriptions.refreshSubscription(window.arguments[0].inn.
+      subscription, window.arguments[0].inn.index); 
   }
 }

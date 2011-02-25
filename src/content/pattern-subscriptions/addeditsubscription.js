@@ -25,6 +25,7 @@ function onLoad() {
     var obfuscationList = document.getElementById("subscriptionObfuscation");
     if (window.arguments[0].inn !== null) {
       metadata = window.arguments[0].inn.subscription.metadata;
+      document.getElementById("subscriptionEnabled").checked = metadata.enabled;
       document.getElementById("subscriptionName").value = metadata.name;
       document.getElementById("subscriptionNotes").value = metadata.notes;
       document.getElementById("subscriptionUrl").value = metadata.url;

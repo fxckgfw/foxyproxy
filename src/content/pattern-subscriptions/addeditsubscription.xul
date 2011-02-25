@@ -73,45 +73,45 @@
 	        enableColumnDrag="true" rows="4">
             <treecols
               pickertooltiptext="&foxyproxy.tree.pickertooltiptext.label;">
-              <treecol id="subEnabledCol" label="&foxyproxy.enabled.label;"
+              <treecol id="enabledCol" label="&foxyproxy.enabled.label;"
                 flex="1" persist="width ordinal hidden" type="checkbox" />
               <splitter class="tree-splitter"/>
-              <treecol id="subColorCol" label="&foxyproxy.color.label;"
+              <treecol id="colorCol" label="&foxyproxy.color.label;"
                 flex="1" persist="width ordinal hidden" />
               <splitter class="tree-splitter" />
-              <treecol id="subNameCol" label="&foxyproxy.proxy.name.label;"
+              <treecol id="nameCol" label="&foxyproxy.proxy.name.label;"
                 primary="true" flex="1" persist="width ordinal hidden" />
               <splitter class="tree-splitter" />
-              <treecol id="subDescriptionCol"
+              <treecol id="descriptionCol"
                 label="&foxyproxy.proxy.notes.label;" flex="1"
                 persist="width ordinal hidden" />
               <splitter class="tree-splitter" />
-              <treecol id="subHostCol" label="&foxyproxy.host.label.2;"
+              <treecol id="hostCol" label="&foxyproxy.host.label.2;"
                 hidden="true" flex="1" persist="width ordinal hidden" />
               <splitter class="tree-splitter" />
-              <treecol id="subPortCol" label="&foxyproxy.port.label;"
+              <treecol id="portCol" label="&foxyproxy.port.label;"
                 hidden="true" flex="1" persist="width ordinal hidden" />
               <splitter class="tree-splitter" />
-              <treecol id="subIsSocksCol" label="&foxyproxy.issocks.label;"
+              <treecol id="ssSocksCol" label="&foxyproxy.issocks.label;"
                 hidden="true" flex="1" persist="width ordinal hidden" />
               <splitter class="tree-splitter" />
-              <treecol id="subSocksverCol"
+              <treecol id="socksverCol"
                 label="&foxyproxy.socks.version.label;" hidden="true"
                 flex="1" persist="width ordinal hidden" />
               <splitter class="tree-splitter" />
-              <treecol id="subAutopacCol"
+              <treecol id="autopacCol"
                 label="&foxyproxy.autopacurl.label;" hidden="true"
                 flex="1" persist="width ordinal hidden" />
               <splitter class="tree-splitter" />
-              <treecol id="subAnimatedIconsCol"
+              <treecol id="animatedIconsCol"
                 label="&foxyproxy.animatedicons.label;" hidden="true"
                 flex="1" persist="width ordinal hidden" />
               <splitter class="tree-splitter" />
-              <treecol id="subCycleCol"
+              <treecol id="cycleCol"
                 label="&foxyproxy.includeincycle.label;" hidden="true"
                 flex="1" persist="width ordinal hidden" />
               <splitter class="tree-splitter" />
-              <treecol id="subRemoteDNSCol"
+              <treecol id="remoteDNSCol"
                 label="&foxyproxy.proxydns.label4;" hidden="true"
                 flex="1" persist="width ordinal hidden" />
               <splitter class="tree-splitter" />
@@ -126,10 +126,11 @@
 	    <button id="subAddProxies"
 	      label="&foxyproxy.pattern.subscriptions.addProxies.label;" 
 	      tooltiptext="&foxyproxy.pattern.subscriptions.addProxies.tooltip;"
-	      onclick="addProxy();"/> 
+	      onclick="addProxy(event);"/> 
 	    <button id="subRemoveProxies" 
 	      label="&foxyproxy.pattern.subscriptions.removeProxies.label;"
-	      tooltiptext="&foxyproxy.pattern.subscriptions.removeProxies.tooltip;"/>
+	      tooltiptext="&foxyproxy.pattern.subscriptions.removeProxies.tooltip;"
+	      onclick="removeProxy(event);"/>
 	  </hbox>
 	</row>
 	<row id="refreshRow" align="center">

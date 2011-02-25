@@ -427,7 +427,7 @@
 <!ENTITY foxyproxy.pattern.subscriptions.accesskey "A">
 <!ENTITY foxyproxy.pattern.subscriptions.wizard.label "Wizard">
 <!ENTITY foxyproxy.pattern.subscriptions.wizard.tooltip "Hier klicken, um den Wizard für Muster-Abonnements zu starten.">
-<!ENTITY foxyproxy.pattern.subscriptions.menulist.tooltip "Wähle aus, was mit Muster-Abonnements geschehen soll.">
+<!ENTITY foxyproxy.pattern.subscriptions.menulist.tooltip "Wählen Sie aus, was mit Muster-Abonnements geschehen soll.">
 <!ENTITY foxyproxy.pattern.subscriptions.addSubscription "Neues Muster-Abonnement hinzufügen">
 <!ENTITY foxyproxy.pattern.subscriptions.editSelection "Auswahl bearbeiten">
 <!ENTITY foxyproxy.pattern.subscriptions.deleteSelections "Auswahl löschen">

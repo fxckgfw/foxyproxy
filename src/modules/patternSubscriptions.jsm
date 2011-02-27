@@ -43,7 +43,7 @@ var patternSubscriptions = {
       var line = {};
       var hasmore;
       var loadedSubscription;
-      var savedPatternsFile = this.getSubscriptionFile(true);
+      var savedPatternsFile = this.getSubscriptionsFile(true);
       if (!savedPatternsFile) {
         // We do not have saved Patterns yet, thus returning...
 	return;
@@ -71,7 +71,7 @@ var patternSubscriptions = {
     }
   },
 
-  loadSubscription: function(aURLString) {
+  loadSubscription: function(aURLString, bBase64Checked) {
     try {
       var subscriptionText;
       var parsedSubscription;
@@ -90,12 +90,24 @@ var patternSubscriptions = {
       req.overrideMimeType("application/json");
       req.send(null);
       subscriptionText = req.responseText;
-
+      // TODO: Implement RegEx-Test for Base64, see:
+      // http://www.perlmonks.org/index.pl?node_id=775820 
+      // Until we have this test we assume first to have plain text and if this
+      // is not working we assume a Base64 encoded response. If the last thing
+      // is not working either the subscription parsing and import fails.
       subscriptionJSON = this.getObjectFromJSON(subscriptionText);
-      if (subscriptionJSON !== null) {
+      if (!subscriptionJSON) {
+        dump("The response contained invalid JSON while assuming a plain " +
+              "text! We try Base64 decoding first...\n");
+        // We need to replace newlines and other special characters here.
+        // otherwise the decoding would fail.
+	subscriptionText = atob(req.responseText.replace(/\s/g, ""));
+        subscriptionJSON = this.getObjectFromJSON(subscriptionText); 
+      }
+      if (subscriptionJSON) {
         parsedSubscription = this.
 	  parseSubscription(subscriptionJSON, aURLString);
-	if (parsedSubscription !== null) {
+	if (parsedSubscription) {
 	  return parsedSubscription;
 	}
       }
@@ -279,7 +291,7 @@ var patternSubscriptions = {
       var subscriptionsData = "";
       var foStream;
       var converter;
-      var subFile = this.getSubscriptionFile(false);	
+      var subFile = this.getSubscriptionsFile(false);	
       for (var i = 0; i < this.subscriptionsList.length; i++) {
         subscriptionsData = subscriptionsData + this.getJSONFromObject(this.
 	  subscriptionsList[i]) + "\n";
@@ -339,7 +351,7 @@ var patternSubscriptions = {
     this.writeSubscription(); 
   },
 
-  getSubscriptionFile: function(isStart) {
+  getSubscriptionsFile: function(isStart) {
     // TODO: Merge the duplicated code with the one in foxyproxy.js
     var file = Cc["@mozilla.org/file/local;1"].createInstance(Ci.nsILocalFile);
     /* Always use ProfD by default in order to support application-wide 

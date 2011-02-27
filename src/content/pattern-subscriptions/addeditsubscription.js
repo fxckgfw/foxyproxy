@@ -15,6 +15,8 @@ var Cc = Components.classes, Cu = Components.utils;
 var proxyTree;
 var fpc = Cc["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject;
 var fp = Cc["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;
+// We need this proxy wrapper at least in order to use the makeProxyTreeView
+// method in common.js
 var proxies = {
   list : [],
   push : function(p) {
@@ -42,6 +44,14 @@ function onLoad() {
       document.getElementById("subscriptionName").value = metadata.name;
       document.getElementById("subscriptionNotes").value = metadata.notes;
       document.getElementById("subscriptionUrl").value = metadata.url;
+      // The following piece of code deals with the problem of correlating
+      // proxies to subscriptions. The single proxies are not parsable using
+      // JSON but our whole pattern subscription feature depends on that.
+      // Thus, in order to get the proxies related to a subscription their
+      // id's are saved into an array that is parsable using JSON (see: onOk())
+      // and if the addeditsubscription dialog is loaded the proxies object
+      // is constructed using those saved id's. That accomplish the following
+      // five lines of code.
       if (metadata.proxies.length > 0) {
 	for (var i = 0; i < metadata.proxies.length; i++) {
 	  for (var j = 0; j < fp.proxies.length; j++) { 
@@ -173,6 +183,6 @@ function refreshSubscription(e) {
       fp.alert(this, fp.getMessage("patternsubscription.invalid.refresh"));
     }
     patternSubscriptions.refreshSubscription(window.arguments[0].inn.
-      subscription, window.arguments[0].inn.index); 
+      subscription, true);
   }
 }

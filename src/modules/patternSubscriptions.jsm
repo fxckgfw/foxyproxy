@@ -29,8 +29,12 @@ var patternSubscriptions = {
     name : "",
     notes : "",
     enabled : true,
-    refresh : 60
+    refresh : 60,
+    nextUpdate : 0,
+    timer : null
   },
+
+  subscriptionsTree : null,
 
   // TODO: Find a way to load the file efficiently using our XmlHTTPRequest
   // method below...
@@ -38,6 +42,7 @@ var patternSubscriptions = {
     try {
       var line = {};
       var hasmore;
+      var loadedSubscription;
       var savedPatternsFile = this.getSubscriptionFile(true);
       if (!savedPatternsFile) {
         // We do not have saved Patterns yet, thus returning...
@@ -53,7 +58,12 @@ var patternSubscriptions = {
       conStream.QueryInterface(Ci.nsIUnicharLineInputStream);
       do {
         hasmore = conStream.readLine(line);
-        this.subscriptionsList.push(this.getObjectFromJSON(line.value));
+        loadedSubscription = this.getObjectFromJSON(line.value); 
+        this.subscriptionsList.push(loadedSubscription);
+        if (loadedSubscription.metadata.refresh != 0) {
+          delete loadedSubscription.metadata.timer;
+          this.setSubscriptionTimer(loadedSubscription, false, true);
+	}
       } while(hasmore);
       conStream.close(); 
     } catch (e) {
@@ -137,7 +147,7 @@ var patternSubscriptions = {
   parseSubscription: function(aSubscription, aURLString) {
     try {
       var subProperty;
-      // And maybe someone cluttered the subscription in other ways...
+      // Maybe someone cluttered the subscription in other ways...
       for (subProperty in aSubscription) {
         if (subProperty !== "metadata" && subProperty !== "subscription") {
           delete aSubscription[subProperty];
@@ -164,8 +174,8 @@ var patternSubscriptions = {
     }
   },
 
-  addSubscription: function(newSub, userValues) {
-    var userValue;
+  addSubscription: function(aSubscription, userValues) {
+    var userValue, d, subLength;
     var fp = Cc["@leahscape.org/foxyproxy/service;1"].
 	         getService().wrappedJSObject; 
     // We need this do respect the user's wishes concerning the name and other
@@ -173,22 +183,95 @@ var patternSubscriptions = {
     // may be delivered with the subscription itself (i.e. its metadate) would
     // overwrite the users' choices.
     for (userValue in userValues) {
-      newSub.metadata[userValue] = userValues[userValue];
+      aSubscription.metadata[userValue] = userValues[userValue];
     } 
-    newSub.metadata.lastUpdate = fp.logg.format(Date.now()); 
-    //TODO: i18n version!
-    newSub.metadata.lastStatus = "OK";
-    this.subscriptionsList.push(newSub); 
+    // If the name is empty take the URL.
+    if (aSubscription.metadata.name === "") {
+      aSubscription.metadata.name = aSubscription.metadata.url;
+    }
+    aSubscription.metadata.lastUpdate = fp.logg.format(Date.now()); 
+    aSubscription.metadata.lastStatus = fp.getMessage("okay");
+    if (aSubscription.metadata.refresh > 0) { 
+      this.setSubscriptionTimer(aSubscription, false, false);
+    }
+    this.subscriptionsList.push(aSubscription); 
     this.writeSubscription();
   }, 
 
-  editSubscription: function(oldSub, userValues, index) {
+  editSubscription: function(aSubscription, userValues, index) {
     var userValue;
+    var oldRefresh = aSubscription.metadata.refresh;
     for (userValue in userValues) {
-      oldSub.metadata[userValue] = userValues[userValue];
+      aSubscription.metadata[userValue] = userValues[userValue];
     } 
-    this.subscriptionsList[index] = oldSub;
+    // If the name is empty take the URL.
+    if (aSubscription.metadata.name === "") {
+      aSubscription.metadata.name = aSubscription.metadata.url;
+    } 
+    if (oldRefresh !== aSubscription.metadata.refresh) {
+      // We need type coercion here, hence "==" instead of "===".
+      if (aSubscription.metadata.refresh == 0) {
+        aSubscription.metadata.timer.cancel();
+        delete aSubscription.metadata.timer;
+        // There is no next update as refresh got set to zero. Therefore, 
+        // deleting this property as well.
+        delete aSubscription.metadata.nextUpdate;
+        // Again, we need type coercion...
+      } else if (oldRefresh == 0) {
+        this.setSubscriptionTimer(aSubscription, false, false);
+      } else {
+	// We already had a timer just resetting it to the new refresh value.
+        this.setSubscriptionTimer(aSubscription, true, false);
+      }
+    } 
+    this.subscriptionsList[index] = aSubscription;
     this.writeSubscription();
+  },
+
+  setSubscriptionTimer: function(aSubscription, bRefresh, bStartup) {
+    dump("Called setSubscriptionTimer!\n");
+    var timer, d, that, event;
+    // Now calculating the next time to refresh the subscription and setting
+    // a respective timer just in case the user wants to have an automatic
+    // update of her subscription.
+    if (!aSubscription.metadata.timer) {
+      timer = Cc["@mozilla.org/timer;1"].createInstance(Ci.nsITimer);
+      aSubscription.metadata.timer = timer; 
+    } else {
+      timer = aSubscription.metadata.timer;
+    }
+    d = new Date().getTime();
+    if (bStartup) {
+      if (aSubscription.metadata.nextUpdate <= d) {
+        this.refreshSubscription(aSubscription, false);
+        return;
+      }
+    } else {
+      // TODO: Investigate whether there is an easy way to use 
+      // metadata.lastUpdate here in order to calculate the next update time in
+      // ms since 1969/01/01. By this we would not need metadata.nextUpdate.
+      aSubscription.metadata.nextUpdate = d + aSubscription.metadata.
+        refresh * 60 * 1000; 
+    }
+    that = this;
+    event = {
+      notify : function(timer) {
+        that.refreshSubscription(aSubscription, false);
+        that.subscriptionsTree.view = that.makeSubscriptionsTreeView();
+      }
+    };
+    if (bRefresh) {
+      timer.cancel();
+      aSubscription.metadata.timer.cancel();
+    }
+    if (bStartup) {
+      // Just a TYPE_ONE_SHOT on startup to come into the regular update cycle.
+      timer.initWithCallback(event, aSubscription.metadata.nextUpdate - d, Ci.
+        nsITimer.TYPE_ONE_SHOT);
+    } else { 
+      timer.initWithCallback(event, aSubscription.metadata.refresh * 60 * 1000,
+        Ci.nsITimer.TYPE_REPEATING_SLACK);
+    }
   },
 
   writeSubscription: function() {
@@ -215,22 +298,43 @@ var patternSubscriptions = {
     }
   },
 
-  refreshSubscription: function(aSubscription, aIndex) {
+  refreshSubscription: function(aSubscription, showResponse) {
+    // We are calculating the index in this method in order to be able to
+    // use it with the nsITimer instances as well. If we would get the 
+    // index from our caller it could happen that the index is wrong due
+    // to changes in the subscription list while the timer was "sleeping".
+    var aIndex;
+    for (var i = 0; i < this.subscriptionsList.length; i++) {
+      if (this.subscriptionsList[i] === aSubscription) {
+	aIndex = i;
+      }
+    }
     var refreshedSubscription = this.loadSubscription(aSubscription.
       metadata.url); 
     var fp = Cc["@leahscape.org/foxyproxy/service;1"].
-	         getService().wrappedJSObject; 
+             getService().wrappedJSObject; 
     if (!refreshedSubscription) {
-      fp.alert(fp.getMessage("foxyproxy"), fp.getMessage("patternsubscription.update.failure")); 
+      fp.alert(fp.getMessage("foxyproxy"), fp.
+        getMessage("patternsubscription.update.failure")); 
       aSubscription.metadata.status = fp.getMessage("error"); 
     } else {
       // We do not want to loose our metadata here as the user just 
       // refreshed the subscription to get up-to-date patterns.
       aSubscription.subscription = refreshedSubscription.
         subscription;
-      fp.alert(fp.getMessage("foxyproxy"),fp.getMessage("patternsubscription.update.success")); 
+      // If we have a timer-based update of subscriptions we deactiva the
+      // success popup as it can be quite annoying to get such kinds of popups
+      // while surfing. TODO: Think about doing the same for failed updates. 
+      if (showResponse) {
+        fp.alert(fp.getMessage("foxyproxy"),fp.getMessage("patternsubscription.update.success")); 
+      }
     }
     aSubscription.metadata.lastUpdate = fp.logg.format(Date.now()); 
+    // Refreshing a subscription means refreshing the timer as well if there
+    // is any...
+    if (aSubscription.metadata.refresh > 0) {
+      this.setSubscriptionTimer(aSubscription, true, false);
+    }
     this.subscriptionsList[aIndex] = aSubscription;	
     this.writeSubscription(); 
   },
@@ -261,6 +365,8 @@ var patternSubscriptions = {
   },
 
   makeSubscriptionsTreeView: function() {
+    var fp = Cc["@leahscape.org/foxyproxy/service;1"].
+	         getService().wrappedJSObject; 
     var that = this;
     var ret = {
       rowCount : that.subscriptionsList.length,
@@ -271,15 +377,25 @@ var patternSubscriptions = {
 	  case "subscriptionsName" : return i.metadata.name;
           case "subscriptionsNotes" : return i.metadata.notes;
           case "subscriptionsUri" : return i.metadata.url;           
-          /*case "subscriptionsProxy":
+	  // We are doing here a similar thing as in addeditsubscription.js
+	  // in the onLoad() function described: As we only saved the id's
+	  // and the id's are not really helpful for users, we just use them to 
+	  // get the respective name of a proxy out of the proxies object
+	  // belonging to the foxyproxy service. These names are then displayed
+	  // in the subscriptions tree comma separated in the proxy column.
+          case "subscriptionsProxy":
 	    var proxyString = "";
 	    for (var j = 0; j < i.metadata.proxies.length; j++) {
-              proxyString = proxyString + i.metadata.proxies[j].name;
-	      if (j < i.metadata.proxies.length - 1) {
-		proxyString = proxyString + ", ";
+	      for (var k = 0; k < fp.proxies.length; k++) {
+		if (i.metadata.proxies[j] === fp.proxies.item(k).id) {
+                  proxyString = proxyString + fp.proxies.item(k).name;
+	          if (j < i.metadata.proxies.length - 1) {
+		    proxyString = proxyString + ", ";
+                  }
+		}
               }
 	    }
-	    return proxyString; */
+	    return proxyString; 
           case "subscriptionsRefresh" : return i.metadata.refresh;
           case "subscriptionsStatus" : return i.metadata.lastStatus;
           case "subscriptionsLastUpdate" : return i.metadata.lastUpdate;   

@@ -22,6 +22,11 @@ function onLoad() {
   overlay = fpc.getMostRecentWindow().foxyproxy;
   proxyTree = document.getElementById("proxyTree");
   subscriptionsTree = document.getElementById("subscriptionsTree");
+  // Having the tree in our module as well in order to get used easier by
+  // its methods.
+  if (patternSubscriptions.subscriptionsTree === null) {
+    patternSubscriptions.subscriptionsTree = subscriptionsTree;
+  }
   logTree = document.getElementById("logTree");
   saveLogCmd = document.getElementById("saveLogCmd");
   clearLogCmd = document.getElementById("clearLogCmd");  
@@ -412,12 +417,17 @@ function onSubscriptionsAction() {
             foxyproxy.getMessage("patternsubscription.none.selected"));  
           break;
         }
+	var selectedSubscription = patternSubscriptions.
+          subscriptionsList[subscriptionsTree.currentIndex];
         var promptSvc = CC["@mozilla.org/embedcomp/prompt-service;1"].
                       getService(CI.nsIPromptService); 
         var result = promptSvc.confirm(null, foxyproxy.
           getMessage("patternsubscription.del.dialog.title"), foxyproxy.
           getMessage("patternsubscription.del.dialog"));
         if (result) {
+	  if (selectedSubscription.timer) {
+	    selectedSubscription.timer.cancel();
+	  }
           patternSubscriptions.subscriptionsList.splice(subscriptionsTree.
             currentIndex, 1);
           patternSubscriptions.writeSubscription();
@@ -432,8 +442,7 @@ function onSubscriptionsAction() {
 	  break;
         } 
         patternSubscriptions.refreshSubscription(patternSubscriptions.
-          subscriptionsList[subscriptionsTree.currentIndex], subscriptionsTree.
-          currentIndex);
+          subscriptionsList[subscriptionsTree.currentIndex], true);
         subscriptionsTree.view = patternSubscriptions.
           makeSubscriptionsTreeView(); 
         break;  

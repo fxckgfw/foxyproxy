@@ -433,6 +433,12 @@ function onSubscriptionsAction() {
           patternSubscriptions.writeSubscription();
           subscriptionsTree.view = patternSubscriptions.
             makeSubscriptionsTreeView(); 
+          // Deleting the subscription file if it is empty in order avoid errors
+          // during startup.
+          if (patternSubscriptions.subscriptionsList.length === 0) {
+            dump("Deleting the subscriptions file...\n");
+	    patternSubscriptions.getSubscriptionsFile().remove(false);
+          }
         }
         break;
       case 3:

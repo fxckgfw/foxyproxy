@@ -419,12 +419,8 @@ function onSubscriptionsAction() {
         }
 	var selectedSubscription = patternSubscriptions.
           subscriptionsList[subscriptionsTree.currentIndex];
-        var promptSvc = CC["@mozilla.org/embedcomp/prompt-service;1"].
-                      getService(CI.nsIPromptService); 
-        var result = promptSvc.confirm(null, foxyproxy.
-          getMessage("patternsubscription.del.dialog.title"), foxyproxy.
-          getMessage("patternsubscription.del.dialog"));
-        if (result) {
+        if (foxyproxy.warnings.showWarningIfDesired(window, 
+          ["patternsubscription.del.subscription"], "patSubDelete")) {
 	  if (selectedSubscription.timer) {
 	    selectedSubscription.timer.cancel();
 	  }

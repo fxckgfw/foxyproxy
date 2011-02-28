@@ -43,6 +43,10 @@ var patternSubscriptions = {
       var line = {};
       var hasmore;
       var loadedSubscription;
+      // We do not need the foxyproxy service here but initialising it for the
+      // other methods of this module using it.
+      this.fp = Cc["@leahscape.org/foxyproxy/service;1"].getService().
+        wrappedJSObject; 
       var savedPatternsFile = this.getSubscriptionsFile(true);
       if (!savedPatternsFile) {
         // We do not have saved Patterns yet, thus returning...
@@ -71,7 +75,7 @@ var patternSubscriptions = {
     }
   },
 
-  loadSubscription: function(aURLString, bBase64Checked) {
+  loadSubscription: function(aURLString) {
     try {
       var subscriptionText;
       var parsedSubscription;
@@ -99,8 +103,10 @@ var patternSubscriptions = {
       if (!subscriptionJSON) {
         dump("The response contained invalid JSON while assuming a plain " +
               "text! We try Base64 decoding first...\n");
-        // We need to replace newlines and other special characters here.
-        // otherwise the decoding would fail.
+        // We need to replace newlines and other special characters here. As 
+	// there are lots of implementations that differ on this issue and the
+	// issue whether there should/may be a specific line length (say 64 or
+	// 76 chars).
 	subscriptionText = atob(req.responseText.replace(/\s/g, ""));
         subscriptionJSON = this.getObjectFromJSON(subscriptionText); 
       }
@@ -158,7 +164,7 @@ var patternSubscriptions = {
  
   parseSubscription: function(aSubscription, aURLString) {
     try {
-      var subProperty;
+      var subProperty, ok;
       // Maybe someone cluttered the subscription in other ways...
       for (subProperty in aSubscription) {
         if (subProperty !== "metadata" && subProperty !== "subscription") {
@@ -167,7 +173,7 @@ var patternSubscriptions = {
       }
       // And maybe someone cluttered the metadata or mistyped a property...
       for (subProperty in aSubscription.metadata) {
-        if (!this.defaultMetaValues[subProperty]) {
+        if (!this.defaultMetaValues.hasOwnProperty(subProperty)) {
 	  delete aSubscription.metadata[subProperty];
         }
       }
@@ -176,6 +182,32 @@ var patternSubscriptions = {
 	if (subProperty !== "patterns") {
 	  dump("We found: " + subProperty + " here!\n");
 	  delete aSubscription.subscription[subProperty];
+	}
+      }
+      // We are quite permissive here. All we need is a checksum. If somebody
+      // forgot to add that the subscription is MD5 encoded (using the 
+      // algorithm property of the metadata object) we try that though. But we
+      // only check the subscription object for several reasons: 1) It is this 
+      // object that contains data that we want to have error free. The 
+      // metadata is not so important as the user can overwrite a lot of its
+      // properties and it contains only additional information 2) We cannot
+      // hash the whole a whole subscription as this would include hashing the
+      // hash itself, a thing that would not lead to the desired result 
+      // without introducing other means of transporting this hash (e.g. using
+      // a special HTTP header). But the latter would have drawbacks we want to
+      // avoid 3) To cope with 2) we could exclude the checksum property from 
+      // getting hashed and hash just all the other parts of the subscription.
+      // However, that would require a more sophisticated implementation which
+      // currently seems not worth the effort. Thus, sticking to a hashed 
+      // subscription object.
+      if (aSubscription.metadata.checksum) {
+        ok = this.checksumVerification(aSubscription.metadata.checksum, 
+          aSubscription);
+	if (!ok) {
+          if (!this.fp.warnings.showWarningIfDesired(null, 
+            ["patternsubscription.warning.md5"], "md5Warning")) {
+	    return false;
+	  }
 	}
       }
       return aSubscription; 
@@ -188,8 +220,6 @@ var patternSubscriptions = {
 
   addSubscription: function(aSubscription, userValues) {
     var userValue, d, subLength;
-    var fp = Cc["@leahscape.org/foxyproxy/service;1"].
-	         getService().wrappedJSObject; 
     // We need this do respect the user's wishes concerning the name and other
     // metadata properties. If we would not do this the default values that
     // may be delivered with the subscription itself (i.e. its metadate) would
@@ -201,8 +231,8 @@ var patternSubscriptions = {
     if (aSubscription.metadata.name === "") {
       aSubscription.metadata.name = aSubscription.metadata.url;
     }
-    aSubscription.metadata.lastUpdate = fp.logg.format(Date.now()); 
-    aSubscription.metadata.lastStatus = fp.getMessage("okay");
+    aSubscription.metadata.lastUpdate = this.fp.logg.format(Date.now()); 
+    aSubscription.metadata.lastStatus = this.fp.getMessage("okay");
     if (aSubscription.metadata.refresh > 0) { 
       this.setSubscriptionTimer(aSubscription, false, false);
     }
@@ -323,25 +353,24 @@ var patternSubscriptions = {
     }
     var refreshedSubscription = this.loadSubscription(aSubscription.
       metadata.url); 
-    var fp = Cc["@leahscape.org/foxyproxy/service;1"].
-             getService().wrappedJSObject; 
     if (!refreshedSubscription) {
-      fp.alert(fp.getMessage("foxyproxy"), fp.
+      this.fp.alert(this.fp.getMessage("foxyproxy"), this.fp.
         getMessage("patternsubscription.update.failure")); 
-      aSubscription.metadata.status = fp.getMessage("error"); 
+      aSubscription.metadata.status = this.fp.getMessage("error"); 
     } else {
       // We do not want to loose our metadata here as the user just 
       // refreshed the subscription to get up-to-date patterns.
       aSubscription.subscription = refreshedSubscription.
         subscription;
-      // If we have a timer-based update of subscriptions we deactiva the
+      // If we have a timer-based update of subscriptions we deactive the
       // success popup as it can be quite annoying to get such kinds of popups
       // while surfing. TODO: Think about doing the same for failed updates. 
       if (showResponse) {
-        fp.alert(fp.getMessage("foxyproxy"),fp.getMessage("patternsubscription.update.success")); 
+        this.fp.alert(this.fp.getMessage("foxyproxy"),this.fp.
+          getMessage("patternsubscription.update.success")); 
       }
     }
-    aSubscription.metadata.lastUpdate = fp.logg.format(Date.now()); 
+    aSubscription.metadata.lastUpdate = this.fp.logg.format(Date.now()); 
     // Refreshing a subscription means refreshing the timer as well if there
     // is any...
     if (aSubscription.metadata.refresh > 0) {
@@ -376,9 +405,40 @@ var patternSubscriptions = {
     return file;
   },
 
+  checksumVerification: function(aChecksum, aSubscription) {
+    var result, data, ch, hash, finalHash, i;
+    // First getting the subscription object in a proper stringified form.
+    // As JSON allows (additional) whitespace (see:
+    // http://www.ietf.org/rfc/rfc4627.txt section 2) we must get rid of it 
+    // first.
+    var subscriptionJSON = this.getJSONFromObject(aSubscription.subscription).
+      replace(/\s/g, "");
+    // Following https://developer.mozilla.org/En/NsICryptoHash 
+    var converter = Cc["@mozilla.org/intl/scriptableunicodeconverter"].
+                    createInstance(Ci.nsIScriptableUnicodeConverter);
+    converter.charset = "UTF-8";
+    var result = {};
+    data  = converter.convertToByteArray(subscriptionJSON, result);
+    ch = Cc["@mozilla.org/security/hash;1"].createInstance(Ci.nsICryptoHash);
+    // We just have the checksum here (maybe the user forgot to specify MD5) in
+    // the metadata. But we can safely assume MD5 here as we are currently
+    // supoorting just this hash algorithm.
+    ch.init(ch.MD5);
+    ch.update(data, data.length); 
+    hash = ch.finish(false);
+    finalHash = [this.toHexString(hash.charCodeAt(i)) for(i in hash)].
+      join("");
+    if (finalHash === aChecksum) {
+      return true;
+    }
+    return false;
+  },
+
+  toHexString: function(charCode) {
+    return ("0" + charCode.toString(16)).slice(-2);
+  },
+
   makeSubscriptionsTreeView: function() {
-    var fp = Cc["@leahscape.org/foxyproxy/service;1"].
-	         getService().wrappedJSObject; 
     var that = this;
     var ret = {
       rowCount : that.subscriptionsList.length,
@@ -398,9 +458,9 @@ var patternSubscriptions = {
           case "subscriptionsProxy":
 	    var proxyString = "";
 	    for (var j = 0; j < i.metadata.proxies.length; j++) {
-	      for (var k = 0; k < fp.proxies.length; k++) {
-		if (i.metadata.proxies[j] === fp.proxies.item(k).id) {
-                  proxyString = proxyString + fp.proxies.item(k).name;
+	      for (var k = 0; k < this.fp.proxies.length; k++) {
+		if (i.metadata.proxies[j] === this.fp.proxies.item(k).id) {
+                  proxyString = proxyString + this.fp.proxies.item(k).name;
 	          if (j < i.metadata.proxies.length - 1) {
 		    proxyString = proxyString + ", ";
                   }

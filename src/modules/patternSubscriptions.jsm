@@ -75,7 +75,7 @@ var patternSubscriptions = {
     }
   },
 
-  loadSubscription: function(aURLString) {
+  loadSubscription: function(aURLString, bBase64) {
     try {
       var subscriptionText;
       var parsedSubscription;
@@ -109,13 +109,45 @@ var patternSubscriptions = {
 	// 76 chars).
 	subscriptionText = atob(req.responseText.replace(/\s/g, ""));
         subscriptionJSON = this.getObjectFromJSON(subscriptionText); 
-      }
-      if (subscriptionJSON) {
-        parsedSubscription = this.
-	  parseSubscription(subscriptionJSON, aURLString);
-	if (parsedSubscription) {
-	  return parsedSubscription;
-	}
+        // We do not need to process the subscription any further if we got 
+        // again no proper subscription object or if the user does not want
+        // to import a Base64 encoded subscription (in case she selected "none"
+        // as obfuscation).
+        if (!subscriptionJSON) {
+          return false;
+        } else if (!bBase64 && !this.fp.warnings.showWarningIfDesired(null, 
+          ["patternsubscription.warning.base64"], "noneEncodingWarning")) { 
+          return false;
+        }
+        // Now, we reuse the bBase64 flag to indicate whether "Base64" should 
+        // show up in the subscriptionsTree. Setting it to true, as we have a 
+        // Base64 encoded subscription.
+        if (!bBase64) {
+          bBase64 = true; 
+        }
+      } else {
+        // The subscription seems to have no Base64 format. Before 
+        // proceeding any further let's check whether the user had selected 
+        // Base64 as encoding and if so whether she wants to import the pattern
+        // subscription though.
+	if (bBase64 && !this.fp.warnings.showWarningIfDesired(null, 
+            ["patternsubscription.warning.not.base64"], "base64Warning")) {
+          return false;
+        }
+        // bBase64 reuse...
+        if (bBase64) {
+          bBase64 = false;
+        }
+      } 
+      parsedSubscription = this.
+        parseSubscription(subscriptionJSON, aURLString);
+      if (parsedSubscription) {
+        if (bBase64) {
+          parsedSubscription.metadata.obfuscation = "Base64";
+	} else {
+          parsedSubscription.metadata.obfuscation = this.fp.getMessage("none");
+        }
+        return parsedSubscription;
       }
       return false;
     } catch (e) {
@@ -203,12 +235,18 @@ var patternSubscriptions = {
       if (aSubscription.metadata.checksum) {
         ok = this.checksumVerification(aSubscription.metadata.checksum, 
           aSubscription);
-	if (!ok) {
+        if (!ok) {
           if (!this.fp.warnings.showWarningIfDesired(null, 
             ["patternsubscription.warning.md5"], "md5Warning")) {
-	    return false;
-	  }
-	}
+            return false;
+          }
+        } else {
+          // Getting the metadata right...
+          if (!aSubscription.metadata.obfuscation || !aSubscription.metadata.
+            algorithm.toLowerCase() !== "md5") {
+            aSubscription.metadata.algorithm = "md5";
+          }
+        }
       }
       return aSubscription; 
     } catch(e) {
@@ -225,7 +263,9 @@ var patternSubscriptions = {
     // may be delivered with the subscription itself (i.e. its metadate) would
     // overwrite the users' choices.
     for (userValue in userValues) {
-      aSubscription.metadata[userValue] = userValues[userValue];
+      if (userValue !== "obfuscation") {
+        aSubscription.metadata[userValue] = userValues[userValue];
+      }
     } 
     // If the name is empty take the URL.
     if (aSubscription.metadata.name === "") {
@@ -351,8 +391,14 @@ var patternSubscriptions = {
 	aIndex = i;
       }
     }
+    // Estimating whether the user wants to have the subscription base64 
+    // encoded. We use this as a parameter to show the proper dialog if there
+    // is a mismatch between the users choice and the subscription's
+    // encoding.
+    var base64Encoded = aSubscription.metadata.obfuscation.toLowerCase() ===
+      "base64";
     var refreshedSubscription = this.loadSubscription(aSubscription.
-      metadata.url); 
+      metadata.url, base64Encoded); 
     if (!refreshedSubscription) {
       this.fp.alert(this.fp.getMessage("foxyproxy"), this.fp.
         getMessage("patternsubscription.update.failure")); 
@@ -408,11 +454,11 @@ var patternSubscriptions = {
   checksumVerification: function(aChecksum, aSubscription) {
     var result, data, ch, hash, finalHash, i;
     // First getting the subscription object in a proper stringified form.
-    // As JSON allows (additional) whitespace (see:
-    // http://www.ietf.org/rfc/rfc4627.txt section 2) we must get rid of it 
-    // first.
-    var subscriptionJSON = this.getJSONFromObject(aSubscription.subscription).
-      replace(/\s/g, "");
+    // That means just to stringify the Object. JSON allows (additional) 
+    // whitespace (see: http://www.ietf.org/rfc/rfc4627.txt section 2) 
+    // but we got rid of it while creating the JSON object the first time.
+    var subscriptionJSON = this.getJSONFromObject(aSubscription.subscription);
+    
     // Following https://developer.mozilla.org/En/NsICryptoHash 
     var converter = Cc["@mozilla.org/intl/scriptableunicodeconverter"].
                     createInstance(Ci.nsIScriptableUnicodeConverter);
@@ -421,12 +467,12 @@ var patternSubscriptions = {
     data  = converter.convertToByteArray(subscriptionJSON, result);
     ch = Cc["@mozilla.org/security/hash;1"].createInstance(Ci.nsICryptoHash);
     // We just have the checksum here (maybe the user forgot to specify MD5) in
-    // the metadata. But we can safely assume MD5 here as we are currently
-    // supoorting just this hash algorithm.
+    // the metadata. But we can safely assume MD5 as we are currently
+    // supporting just this hash algorithm.
     ch.init(ch.MD5);
     ch.update(data, data.length); 
     hash = ch.finish(false);
-    finalHash = [this.toHexString(hash.charCodeAt(i)) for(i in hash)].
+    finalHash = [this.toHexString(hash.charCodeAt(i)) for (i in hash)].
       join("");
     if (finalHash === aChecksum) {
       return true;

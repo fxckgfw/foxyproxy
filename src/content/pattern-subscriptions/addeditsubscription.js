@@ -86,7 +86,7 @@ function onOK() {
   try {
     var userValues = {};
     userValues.proxies = [];
-    var parsedSubscription;
+    var parsedSubscription, base64Encoded;
     var url = document.getElementById("subscriptionUrl").value;
     // ToDo: Do we want to check whether it is really a URL here?
     if (url === null || url === "") {
@@ -106,8 +106,9 @@ function onOK() {
     userValues.obfuscation = document.getElementById("subscriptionObfuscation").
       selectedItem.label;
     if (window.arguments[0].inn === null) {
+      base64Encoded = userValues.obfuscation.toLowerCase() === "base64";
       parsedSubscription = patternSubscriptions.
-	loadSubscription(userValues.url);
+	loadSubscription(userValues.url, base64Encoded);
       if (parsedSubscription) {
         window.arguments[0].out = {
           subscription : parsedSubscription,

@@ -142,7 +142,7 @@
 	    <label value="&foxyproxy.minutes.label;" control="refresh"/>
 	    <toolbarbutton class="foxyproxy-ref" popup="refreshHelp"
                            tooltiptext="&foxyproxy.whatsthis;"/>  
-            <button onclick="refreshSubscription(event);" 
+            <button id="refreshButton" onclick="refreshSubscription(event);" 
               label="&foxyproxy.pattern.subscriptions.refreshNow.label;"
 	      tooltiptext="&foxyproxy.pattern.subscriptions.refreshNow.tooltip;"/>
 	  </hbox>

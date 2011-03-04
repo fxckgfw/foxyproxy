@@ -21,6 +21,7 @@
 	buttons="accept"
         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
 	persist="screenX screenY"
+	onload="onLoad();"
 	ondialogaccept="onOK();">
 
   <script src="laststatus.js" />
@@ -29,7 +30,7 @@
     <separator class="thin"/>
     <hbox>
       <tree id="lastStatusTree" rows="10" hidecolumnpicker="true" 
-            width="300" flex="1">
+            width="450" flex="1">
         <treecols>
           <treecol id="statusContainer" flex="1" 
                  label="&foxyproxy.pattern.subscriptions.lastStatus.label;"/> 

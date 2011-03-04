@@ -35,9 +35,9 @@ Cu.import("resource://foxyproxy/patternSubscriptions.jsm");
 function onLoad() {
   try {
     var metadata;
-    proxyTree = document.getElementById("subscriptionProxyTree");
     var formatList = document.getElementById("subscriptionFormat");
     var obfuscationList = document.getElementById("subscriptionObfuscation");
+    proxyTree = document.getElementById("subscriptionProxyTree"); 
     if (window.arguments[0].inn !== null) {
       metadata = window.arguments[0].inn.subscription.metadata;
       document.getElementById("subscriptionEnabled").checked = metadata.enabled;
@@ -76,7 +76,13 @@ function onLoad() {
       } else {
         obfuscationList.selectedIndex = 0;
       }
-    } 
+    } else {
+      // As the user is adding a new subscription there is nothing to refresh
+      // yet. There is no last status either. Therefore, we disabling these
+      // buttons.
+      document.getElementById("refreshButton").disabled = true;
+      document.documentElement.getButton("extra2").disabled = true;
+    }
   } catch(e) {
     dump("There went something wrong within the onLoad function: " + e + "\n");
   }
@@ -109,6 +115,8 @@ function onOK() {
       base64Encoded = userValues.obfuscation.toLowerCase() === "base64";
       parsedSubscription = patternSubscriptions.
 	loadSubscription(userValues.url, base64Encoded);
+      // If the second element of the returned array is null (i.e. giving
+      // not true) we know that we got a subscription back as first element.
       if (parsedSubscription) {
         window.arguments[0].out = {
           subscription : parsedSubscription,
@@ -129,7 +137,20 @@ function onOK() {
 }
 
 function onLastStatus() {
-  window.openDialog('chrome://foxyproxy/content/pattern-subscriptions/laststatus.xul', '', 'modal, centerscreen, resizable').focus();
+  var metadata = window.arguments[0].inn.subscription.metadata;
+  var statusString = metadata.lastUpdate + "   " + metadata.lastStatus;
+  if (!metadata.errorMessages) {
+    statusString = statusString + "   " + window.arguments[0].inn.subscription.
+      subscription.patterns.length + " " +
+      fp.getMessage("patternsubscription.successful.retrieved"); 
+  } 
+  var p = {
+    inn: {
+      status: statusString,
+      errorMessages: metadata.errorMessages 
+    }
+  };
+  window.openDialog('chrome://foxyproxy/content/pattern-subscriptions/laststatus.xul', '', 'modal, centerscreen, resizable', p).focus();
 }
 
 function addProxy(e) {
@@ -180,9 +201,6 @@ function contextHelp(type) {
 
 function refreshSubscription(e) {
   if (e.type === "click" && e.button === 0) {
-    if (window.arguments[0].inn === null) {
-      fp.alert(this, fp.getMessage("patternsubscription.invalid.refresh"));
-    }
     patternSubscriptions.refreshSubscription(window.arguments[0].inn.
       subscription, true);
   }

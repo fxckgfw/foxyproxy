@@ -115,9 +115,12 @@ function onOK() {
       base64Encoded = userValues.obfuscation.toLowerCase() === "base64";
       parsedSubscription = patternSubscriptions.
 	loadSubscription(userValues.url, base64Encoded);
-      // If the second element of the returned array is null (i.e. giving
-      // not true) we know that we got a subscription back as first element.
-      if (parsedSubscription) {
+      // The following is kind of a trivial array test. We need that to check
+      // whether we got an array of error Messages back or a subscription
+      // object. Iff the latter is the case we add a new subscription. As we
+      // do not have any subscription yet if we got an array back, we silently
+      // ignore it and returning just false. 
+      if (parsedSubscription && parsedSubscription.length === undefined) {
         window.arguments[0].out = {
           subscription : parsedSubscription,
           userValues : userValues

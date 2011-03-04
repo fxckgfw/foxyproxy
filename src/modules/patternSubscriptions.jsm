@@ -79,6 +79,7 @@ var patternSubscriptions = {
 
   loadSubscription: function(aURLString, bBase64) {
     try {
+      var errorMessages = [];
       var subscriptionText;
       var parsedSubscription;
       var subscriptionJSON = null;
@@ -116,9 +117,14 @@ var patternSubscriptions = {
         // to import a Base64 encoded subscription (in case she selected "none"
         // as obfuscation).
         if (!subscriptionJSON) {
+          errorMessages.push(this.fp.
+            getMessage("patternsubscription.error.JSON"));
+          return errorMessages;
         } else if (!bBase64 && !this.fp.warnings.showWarningIfDesired(null, 
           ["patternsubscription.warning.base64"], "noneEncodingWarning")) { 
-           return false; 
+          errorMessages.push(this.fp.
+            getMessage("patternsubscription.error.cancel64")); 
+          return errorMessages; 
         }
         // Now, we reuse the bBase64 flag to indicate whether "Base64" should 
         // show up in the subscriptionsTree. Setting it to true, as we have a 
@@ -133,35 +139,43 @@ var patternSubscriptions = {
         // subscription though.
 	if (bBase64 && !this.fp.warnings.showWarningIfDesired(null, 
             ["patternsubscription.warning.not.base64"], "base64Warning")) {
-	   return false; 
+          errorMessages.push(this.fp.
+            getMessage("patternsubscription.error.cancel64")); 
+          return errorMessages;  
         }
         // bBase64 reuse...
         if (bBase64) {
           bBase64 = false;
         }
       } 
-      // We are getting an array back, containing two elements. Iff the 
-      // latter is null we know that the former is a susbcription. Otherwise
-      // errors occurred.
       parsedSubscription = this.
-        parseSubscription(subscriptionJSON, aURLString);
-      if (parsedSubscription) {
+        parseSubscription(subscriptionJSON, aURLString, errorMessages);
+      if (parsedSubscription && parsedSubscription.length === undefined) {
         if (bBase64) {
           parsedSubscription.metadata.obfuscation = "Base64";
 	} else {
           parsedSubscription.metadata.obfuscation = this.fp.getMessage("none");
         }
         return parsedSubscription;
+      } else {
+        // Got back error messages and making sure that they are shown in the
+	// lastStatus dialog
+        return parsedSubscription;
       }
-      return false;
     } catch (e) {
       if (e.name === "NS_ERROR_FILE_NOT_FOUND") {
         this.fp.alert(this.fp.getMessage("foxyproxy"), this.fp.
         getMessage("patternsubscription.error.network"));        
+        errorMessages.push(this.fp.
+          getMessage("patternsubscription.error.network")); 
       } else {
         dump("Error in loadSubscription(): " + e + "\n");
+        this.fp.alert(this.fp.getMessage("foxyproxy"), this.fp.
+        getMessage("patternsubscription.error.network.unspecified")); 
+        errorMessages.push(this.fp.
+          getMessage("patternsubscription.error.network.unspecified")); 
       }
-      return false;
+      return errorMessages;
     }
   },
 
@@ -204,7 +218,7 @@ var patternSubscriptions = {
     }
   },
  
-  parseSubscription: function(aSubscription, aURLString) {
+  parseSubscription: function(aSubscription, aURLString, errorMessages) {
     try {
       var subProperty, ok;
       // Maybe someone cluttered the subscription in other ways...
@@ -248,7 +262,9 @@ var patternSubscriptions = {
         if (!ok) {
           if (!this.fp.warnings.showWarningIfDesired(null, 
             ["patternsubscription.warning.md5"], "md5Warning")) {
-            return false;
+	    errorMessages.push(this.fp.
+            getMessage("patternsubscription.error.cancel5")); 
+            return errorMessages;
           }
         } else {
           // Getting the metadata right...
@@ -259,9 +275,11 @@ var patternSubscriptions = {
       }
       return aSubscription; 
     } catch(e) {
-      dump("There occurred an error while parsing the loaded subscription: " +
-	 e + "\n"); 
-      return false;
+      this.fp.alert(this.fp.getMessage("foxyproxy"), this.fp.
+        getMessage("patternsubscription.error.parse"));        
+        errorMessages.push(this.fp.
+          getMessage("patternsubscription.error.parse")); 
+      return errorMessages;
     }
   },
 
@@ -409,12 +427,15 @@ var patternSubscriptions = {
       "base64";
     var refreshedSubscription = this.loadSubscription(aSubscription.
       metadata.url, base64Encoded); 
-    if (!refreshedSubscription) {
+    // Our "array test" we deployed addeditsubscription.js as well.
+    if (refreshedSubscription && !(refreshedSubscription.length === 
+          undefined)) {
       this.fp.alert(this.fp.getMessage("foxyproxy"), this.fp.
         getMessage("patternsubscription.update.failure")); 
       aSubscription.metadata.lastStatus = this.fp.getMessage("error"); 
-      // TODO: Find a way to handel error messages properly!!
-      aSubscription.metadata.errorMessages = null;
+      // So, we really did not get a proper subscription but error messages.
+      // Making sure that they are shown in the lastStatus dialog.
+      aSubscription.metadata.errorMessages = refreshedSubscription;
     } else {
       // We do not want to loose our metadata here as the user just 
       // refreshed the subscription to get up-to-date patterns.
@@ -424,12 +445,12 @@ var patternSubscriptions = {
       aSubscription.metadata.obfuscation = refreshedSubscription.
         metadata.obfuscation;	
       aSubscription.metadata.lastStatus = this.fp.getMessage("okay");
-      // We did not got any errors. Therefore, resetting the errorMessages
+      // We did not get any errors. Therefore, resetting the errorMessages
       // array to null.
       aSubscription.metadata.errorMessages = null;
       // If we have a timer-based update of subscriptions we deactive the
       // success popup as it can be quite annoying to get such kinds of popups
-      // while surfing. TODO: Think about doing the same for failed updates. 
+      // while surfing. TODO: Think about doing the same for failed updates.
       if (showResponse) {
         this.fp.alert(this.fp.getMessage("foxyproxy"),this.fp.
           getMessage("patternsubscription.update.success")); 

@@ -23,13 +23,13 @@ function onLoad() {
   if (errorMessages) {
     treeChildren.push("");
     for (i = 0; i < errorMessages.length; i++) {
-      treeChildren.push(errorMessages[i]);
+      treeChildren.push(errorMessages[i].replace(/\n/g, " "));
     } 
   }
   var statusTree = document.getElementById("lastStatusTree");
   statusTree.view = {
     get rowCount() {
-      if (!errorMessages) {
+      if (errorMessages.length === 0) {
         return 1;
       } else {
         // One additional line for the status message and one is an empty line
@@ -52,6 +52,25 @@ function onLoad() {
   };
 }
 
-function onOK() {
+function copyLastStatus() {
+  var clipboardString = "";
+  var statusTree = document.getElementById("lastStatusTree"); 
+  var treeRows = statusTree.view.rowCount;
+  for (var i = 0; i < treeRows; i++) {
+    // We have just one column, thus getting the first is sufficient here.
+    clipboardString += statusTree.view.getCellText(i, statusTree.columns.
+      getFirstColumn());
+    // We want to have an empty line if we have error messages. But only one
+    // after the general status message (timestamp and status).
+    if (i === 0 && i+1 !== treeRows) {
+      clipboardString += "\n\n";
+    }
+  }
+  Components.classes["@mozilla.org/widget/clipboardhelper;1"].
+    getService(Components.interfaces.nsIClipboardHelper).
+    copyString(clipboardString); 
+}
 
+function onOK() {
+  return;
 }

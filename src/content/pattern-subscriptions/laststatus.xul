@@ -20,9 +20,10 @@
 	       &foxyproxy.pattern.subscriptions.lastStatus.label;" 
 	buttons="accept"
         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-	persist="screenX screenY"
+	persist="screenX screenY width height"
 	onload="onLoad();"
-	ondialogaccept="onOK();">
+	ondialogaccept="onOK();"
+	context="lastStatusPopup">
 
   <script src="laststatus.js" />
 
@@ -39,4 +40,13 @@
       </tree>
     </hbox>
   </vbox>
+
+  <menupopup id="lastStatusPopup">
+    <menuitem class="menuitem-non-iconic" command="copyCmd"/>
+  </menupopup>
+
+  <command id="copyCmd" 
+           label="&foxyproxy.pattern.subscriptions.copyLastStatus.label;"
+           tooltip="&foxyproxy.pattern.subscriptions.copyLastStatus.tooltip;"
+           oncommand="copyLastStatus();"/>
 </dialog>

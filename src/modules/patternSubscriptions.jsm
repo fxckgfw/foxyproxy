@@ -110,7 +110,7 @@ var patternSubscriptions = {
 	// there are lots of implementations that differ on this issue and the
 	// issue whether there should/may be a specific line length (say 64 or
 	// 76 chars).
-	subscriptionText = atob(req.responseText.replace(/\s/g, ""));
+	subscriptionText = atob(req.responseText.replace(/\s*/g, ""));
         subscriptionJSON = this.getObjectFromJSON(subscriptionText); 
         // We do not need to process the subscription any further if we got 
         // again no proper subscription object or if the user does not want

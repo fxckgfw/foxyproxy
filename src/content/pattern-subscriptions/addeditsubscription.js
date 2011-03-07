@@ -104,7 +104,22 @@ function onOK() {
     userValues.notes = document.getElementById("subscriptionNotes").value; 
     userValues.url = url;
     for (var i = 0; i < proxies.list.length; i++) {
-      userValues.proxies.push(proxies.item(i).id);
+      // Now are we going to implement the crucial part of the pattern
+      // subscription feature: Adding the patterns to the proxies.
+      // We probably need no valiatePattern()-call as in pattern.js as the user
+      // is not entering a custom pattern itself but imports a list assuming
+      // the latter is less error prone.
+      // But we ask first whether the user really wants to get rid of her old
+      // patterns and subscribe to the new list instead 
+      if (this.fp.warnings.showWarningIfDesired(window, 
+          ["patternsubscription.warning.subscription", proxies.list[i].name], 
+          "patSubWarning")) {
+        // Creating the array of proxy id's for saving to disk and rebuilding 
+        // the proxy list on startup.
+        userValues.proxies.push(proxies.item(i).id);
+      } else {
+	return false;
+      }
     }
     userValues.refresh = document.getElementById("refresh").value;
     userValues.format = document.getElementById("subscriptionFormat").

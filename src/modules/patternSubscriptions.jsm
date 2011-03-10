@@ -309,6 +309,7 @@ var patternSubscriptions = {
   }, 
 
   editSubscription: function(aSubscription, userValues, index) {
+    // TODO: What shall we do if the user changed the URL?
     var userValue;
     var oldRefresh = aSubscription.metadata.refresh;
     for (userValue in userValues) {
@@ -413,7 +414,7 @@ var patternSubscriptions = {
     // use it with the nsITimer instances as well. If we would get the 
     // index from our caller it could happen that the index is wrong due
     // to changes in the subscription list while the timer was "sleeping".
-    var aIndex;
+    var aIndex, proxyList = [];
     for (var i = 0; i < this.subscriptionsList.length; i++) {
       if (this.subscriptionsList[i] === aSubscription) {
 	aIndex = i;
@@ -462,8 +463,53 @@ var patternSubscriptions = {
     if (aSubscription.metadata.refresh > 0) {
       this.setSubscriptionTimer(aSubscription, true, false);
     }
+    // And it means above all refreshing the patterns... But first we generate 
+    // the proxy list.
+    if (aSubscription.metadata.proxies.length > 0) {
+      for (var i = 0; i < aSubscription.metadata.proxies.length; i++) {
+        for (var j = 0; j < this.fp.proxies.length; j++) { 
+          if (aSubscription.metadata.proxies[i] === 
+              this.fp.proxies.item(j).id) {
+            this.fp.proxies.item(j).matches = [];
+            proxyList.push(this.fp.proxies.item(j));
+          }
+        }
+      }
+      this.addPatterns(aIndex, proxyList); 
+    } 
     this.subscriptionsList[aIndex] = aSubscription;	
     this.writeSubscription(); 
+  },
+
+  addPatterns: function(currentSubIndex, proxyList) {
+    var currentSub;
+    var currentMet;
+    var currentPat;
+    var pattern;
+    var i,j; 
+    if (currentSubIndex) {
+      currentSub = this.subscriptionsList[currentIndex];
+    } else {
+      currentSub = this.subscriptionsList[this.subscriptionsList.length - 1];
+    }
+    currentMet = currentSub.metadata;
+    currentPat = currentSub.subscription;
+    for (i = 0; i < proxyList.length; i++) {
+      // Resetting the pattern array first...
+      // TODO: Maybe we could find a way to blend an old subscription or
+      // old patterns with a new one!?
+      proxyList[i].matches = [];
+      for (j = 0; j < currentPat.patterns.length; j++) {
+        pattern = Cc["@leahscape.org/foxyproxy/match;1"].createInstance().
+                  wrappedJSObject; 
+        pattern.init(currentSub.metadata.enabled, currentPat.patterns[j].name, 
+                     currentPat.patterns[j].pattern, false, currentPat.
+                     patterns[j].type.toLowerCase() === "wildcard" ? false : 
+                     true, currentPat.patterns[j].caseSensitive ? true : false,
+                     currentPat.patterns[j].whitelist ? true : false, false);
+        proxyList[i].matches.push(pattern);
+      }
+    } 
   },
 
   getSubscriptionsFile: function(isStart) {

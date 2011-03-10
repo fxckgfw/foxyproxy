@@ -24,7 +24,7 @@ function onLoad() {
     document.getElementById("not-superadd").setAttribute("hidden", true);
   }
   else {
-    enabled = m.enabled;
+    var enabled = m.enabled;
     document.getElementById("superadd").setAttribute("hidden", true);
     document.getElementById("not-superadd").setAttribute("hidden", false);
   }

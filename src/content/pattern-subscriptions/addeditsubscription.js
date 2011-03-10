@@ -110,16 +110,25 @@ function onOK() {
       // is not entering a custom pattern itself but imports a list assuming
       // the latter is less error prone.
       // But we ask first whether the user really wants to get rid of her old
-      // patterns and subscribe to the new list instead 
-      if (this.fp.warnings.showWarningIfDesired(window, 
+      // patterns and subscribe to the new list instead. We ask only if the 
+      // user is new to this feature (i.e. the proxies list was emtpy while
+      // the addeditsubscription.xul was loaded) avoiding further complexity
+      // and assuming she knows what she does (scary!). Of course, if a user
+      // deletes all proxies in a subscription once and adds one again later,
+      // is getting asked again. That seems okay.
+      if (!window.arguments[0].inn || window.arguments[0].inn.subscription.
+	  metadata.proxies.length === 0) {
+        if (!this.fp.warnings.showWarningIfDesired(window, 
           ["patternsubscription.warning.subscription", proxies.list[i].name], 
           "patSubWarning")) {
-        // Creating the array of proxy id's for saving to disk and rebuilding 
-        // the proxy list on startup.
-        userValues.proxies.push(proxies.item(i).id);
-      } else {
-	return false;
+          // The user did not want to import the subscription for one proxy.
+          // Giving her the opportunity to rethink the whole story.
+	  return false;
+        }
       }
+      // Creating the array of proxy id's for saving to disk and rebuilding 
+      // the proxy list on startup.
+      userValues.proxies.push(proxies.item(i).id);
     }
     userValues.refresh = document.getElementById("refresh").value;
     userValues.format = document.getElementById("subscriptionFormat").
@@ -138,13 +147,16 @@ function onOK() {
       if (parsedSubscription && parsedSubscription.length === undefined) {
         window.arguments[0].out = {
           subscription : parsedSubscription,
-          userValues : userValues
+          userValues : userValues,
+	  // Returning the proxies as well makes it easier to add the patterns.
+          proxies : proxies
         };
 	return true;
       }
     } else {
       window.arguments[0].out = {
-        userValues : userValues
+        userValues : userValues,
+        proxies : proxies
       }
       return true;
     }
@@ -196,6 +208,8 @@ function removeProxy(e) {
       fp.alert(this, fp.getMessage("patternsubscription.noproxy.selected")); 
       return;
     }   
+    // Deleting the pattern subscription first
+    proxies.list[proxyTree.currentIndex].matches = [];
     proxies.list.splice(proxyTree.currentIndex, 1); 
     proxyTree.view = fpc.makeProxyTreeView(proxies, document); 
   }

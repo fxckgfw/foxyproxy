@@ -372,6 +372,7 @@ function setButtons() {
 function onSubscriptionsAction() {
   var selectedSubscription;
   var params;
+  var proxyList;
   try {
     switch (document.getElementById("actionList").selectedIndex) {
       case 0:  
@@ -384,6 +385,12 @@ function onSubscriptionsAction() {
         if (params.out) {
           patternSubscriptions.addSubscription(params.out.subscription, 
 	    params.out.userValues); 
+	  // Now adding the patterns to the proxies provided the user has added
+          // at least one proxy in the addeditsubscription dialog.
+	  proxyList = params.out.proxies.list; 
+	  if (proxyList.length !== 0) {
+	    patternSubscriptions.addPatterns(null, proxyList);
+	  }
           subscriptionsTree.view = patternSubscriptions.
 	    makeSubscriptionsTreeView();
         }
@@ -407,6 +414,13 @@ function onSubscriptionsAction() {
         if (params.out) {
           patternSubscriptions.editSubscription(selectedSubscription, params.
             out.userValues, subscriptionsTree.currentIndex);
+          // If new proxies were added we should add the patterns to them as
+          // well.
+          proxyList = params.out.proxies.list; 
+          if (proxyList.length !== 0) {
+            patternSubscriptions.addPatterns(subscriptionsTree.currentIndex,
+              proxyList);
+          } 
           subscriptionsTree.view = patternSubscriptions.
             makeSubscriptionsTreeView(); 
         }
@@ -424,6 +438,20 @@ function onSubscriptionsAction() {
 	  if (selectedSubscription.timer) {
 	    selectedSubscription.timer.cancel();
 	  }
+          // Deleting the patterns as well if we have proxies following them...
+          // TODO: Maybe we should have the following lines of code as an own
+          // function as we need it at least three times in FoxyProxy (probably)
+          // best located in patternSubscriptions.jsm.
+	  var selSubProxies = selectedSubscription.metadata.proxies;
+          if (selSubProxies.length > 0) {
+            for (var i = 0; i < selSubProxies.length; i++) {
+              for (var j = 0; j < foxyproxy.proxies.length; j++) { 
+                if (selSubProxies[i] === foxyproxy.proxies.item(j).id) {
+                  foxyproxy.proxies.item(j).matches = [];
+                }
+              }
+            }
+          }
           patternSubscriptions.subscriptionsList.splice(subscriptionsTree.
             currentIndex, 1);
           patternSubscriptions.writeSubscription();

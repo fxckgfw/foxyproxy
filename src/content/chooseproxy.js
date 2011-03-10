@@ -38,6 +38,11 @@ function onLoad() {
 }
 
 function onOK() {
+  if (window.arguments[0].inn.pattern && 
+    proxyTree.currentIndex === fp.proxies.length -1) {
+    fp.alert(window, fp.getMessage("patternsubscription.pattern.default")); 
+    return false;
+  }
   if (proxyTree.currentIndex != -1)
     window.arguments[0].out = {proxy:fp.proxies.item(proxyTree.currentIndex), reloadcurtab:
       document.getElementById("reloadcurtab").checked};

@@ -19,7 +19,7 @@
   buttonaccesskeyextra2="&foxyproxy.addnewproxy.accesskey;"
   xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
   xmlns:html="http://www.w3.org/1999/xhtml" persist="screenX screenY width height"
-  onload="onLoad();" ondialogaccept="onOK();">
+  onload="onLoad();" ondialogaccept="return onOK();">
 
   <script src="chooseproxy.js" />
   

@@ -221,12 +221,24 @@ function onSettingsURLBtn() {
       }
     }
     foxyproxy.setSettingsURI(fp.file);
+    // We write the pattern subscriptions as well to the new place (if there 
+    // are any). We do not do this in the general writeSubscriptions method in
+    // foxyproxy.js as this would only imply unnecessary disk I/O (the 
+    // pattern subscriptions would then always be written, even if any tiny 
+    // and unrelated setting was changed).
+    if (patternSubscriptions.subscriptionsList.length > 0) {
+     patternSubscriptions.writeSubscriptions();
+    }
     _initSettings();
   }
 }
 
 function onResetSettingsURL() {
   foxyproxy.setSettingsURI(foxyproxy.getDefaultPath());
+  // Writing the current pattern subscriptions back to the default path as well.
+  if (patternSubscriptions.subscriptionsList.length > 0) {
+     patternSubscriptions.writeSubscriptions();
+  } 
   updateSettingsInfo();
   overlay.alert(this, foxyproxy.getMessage("settings.default"));  
 }
@@ -452,7 +464,7 @@ function onSubscriptionsAction() {
           }
           patternSubscriptions.subscriptionsList.splice(subscriptionsTree.
             currentIndex, 1);
-          patternSubscriptions.writeSubscription();
+          patternSubscriptions.writeSubscriptions();
           subscriptionsTree.view = patternSubscriptions.
             makeSubscriptionsTreeView(); 
           // Deleting the subscription file if it is empty in order avoid errors

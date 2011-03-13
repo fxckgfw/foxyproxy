@@ -104,6 +104,9 @@ function foxyproxy() {
   // https://developer.mozilla.org/en/JavaScript/Code_modules/Using section
   // "Custom modules and XPCOM components" 
   CU.import("resource://foxyproxy/patternSubscriptions.jsm", this);
+  // We need a reference to this service as well in our patternSubscriptions
+  // file (e.g. for displaying messages in chrome code).
+  this.patternSubscriptions.fp = this;
 };
 foxyproxy.prototype = {
   PFF : " ",
@@ -149,7 +152,6 @@ foxyproxy.prototype = {
             // setMode() is called from this.loadSettings()->this.fromDOM(), but also from commandlinehandler.js.
             this.defaultPrefs.init();        
             this.loadSettings();
-	    this.patternSubscriptions.loadSavedSubscriptions();
           }
           catch (e) {
             dumpp(e);
@@ -195,8 +197,17 @@ foxyproxy.prototype = {
       this.alert(null, this.getMessage("settings.error.2", [f.path, f.path]));
       this.writeSettings(f);
     }
-    else
+    else {
       this.fromDOM(doc, doc.documentElement);
+    }
+    // Now we load the pattern subscriptions as well if there are any.
+    var subFile = f.parent.clone();
+    subFile.append("patternSubscriptions.json");
+    // If we do not have a file yet we do not do anything here concerning the
+    // pattern subscriptions. Maybe the user does not need that feature at all.
+    if (subFile.exists() && subFile.isFile()) {
+      this.patternSubscriptions.loadSavedSubscriptions(subFile);
+    }
   },
 
   /* Parsing and very basic validation that the settings file is legit. TODO: we could create an XSD for complete validation */

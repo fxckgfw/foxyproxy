@@ -38,16 +38,11 @@ var patternSubscriptions = {
 
   // TODO: Find a way to load the file efficiently using our XmlHTTPRequest
   // method below...
-  loadSavedSubscriptions: function() {
+  loadSavedSubscriptions: function(savedPatternsFile) {
     try {
       var line = {};
       var hasmore;
       var loadedSubscription;
-      // We do not need the foxyproxy service here but initialising it for the
-      // other methods of this module using it.
-      this.fp = Cc["@leahscape.org/foxyproxy/service;1"].getService().
-        wrappedJSObject; 
-      var savedPatternsFile = this.getSubscriptionsFile(true);
       if (!savedPatternsFile) {
         // We do not have saved Patterns yet, thus returning...
 	return;
@@ -305,7 +300,7 @@ var patternSubscriptions = {
       this.setSubscriptionTimer(aSubscription, false, false);
     }
     this.subscriptionsList.push(aSubscription); 
-    this.writeSubscription();
+    this.writeSubscriptions();
   }, 
 
   editSubscription: function(aSubscription, userValues, index) {
@@ -336,7 +331,7 @@ var patternSubscriptions = {
       }
     } 
     this.subscriptionsList[index] = aSubscription;
-    this.writeSubscription();
+    this.writeSubscriptions();
   },
 
   setSubscriptionTimer: function(aSubscription, bRefresh, bStartup) {
@@ -385,12 +380,12 @@ var patternSubscriptions = {
     }
   },
 
-  writeSubscription: function() {
+  writeSubscriptions: function() {
     try {
       var subscriptionsData = "";
       var foStream;
       var converter;
-      var subFile = this.getSubscriptionsFile(false);	
+      var subFile = this.getSubscriptionsFile();	
       for (var i = 0; i < this.subscriptionsList.length; i++) {
         subscriptionsData = subscriptionsData + this.getJSONFromObject(this.
 	  subscriptionsList[i]) + "\n";
@@ -478,7 +473,7 @@ var patternSubscriptions = {
       this.addPatterns(aIndex, proxyList); 
     } 
     this.subscriptionsList[aIndex] = aSubscription;	
-    this.writeSubscription(); 
+    this.writeSubscriptions(); 
   },
 
   addPatterns: function(currentSubIndex, proxyList) {
@@ -512,22 +507,12 @@ var patternSubscriptions = {
     } 
   },
 
-  getSubscriptionsFile: function(isStart) {
-    // TODO: Merge the duplicated code with the one in foxyproxy.js
+  getSubscriptionsFile: function() {
     var file = Cc["@mozilla.org/file/local;1"].createInstance(Ci.nsILocalFile);
-    /* Always use ProfD by default in order to support application-wide 
-       installations. http://foxyproxy.mozdev.org/drupal/content/
-       tries-use-usrlibfirefox-304foxyproxyxml-linux#comment-974 */
-    var dir = Cc["@mozilla.org/file/directory_service;1"].
-      getService(Ci.nsIProperties).get("ProfD", Ci.nsILocalFile);
-    file.initWithPath(dir.path);
-    file.appendRelativePath("patternSubscriptions.txt");
+    var subDir = this.fp.getSettingsURI(Ci.nsIFile).parent;
+    file.initWithPath(subDir.path);
+    file.appendRelativePath("patternSubscriptions.json");
     if ((!file.exists() || !file.isFile())) {
-      if (isStart) {
-	// Maybe we do not need such a file at all. Therefore, postponing its
-	// creation.
-	return false;
-      }
       // Owners may do everthing with the file, the group and others are
       // only allowed to read it. 0x1E4 is the same as 0744 but we use it here
       // as octal literals and escape sequences are deprecated and the 

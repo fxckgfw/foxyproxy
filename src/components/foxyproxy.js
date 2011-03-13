@@ -363,12 +363,22 @@ foxyproxy.prototype = {
     return o == this.PFF || this.transformer(o, CI.nsIFile).equals(this.getDefaultPath());
   },
   
-  usingDefaultSettingsURI : function(p) {
+  usingDefaultSettingsFolder : function(p) {
     try {
       p = p || this.getPrefsService("extensions.foxyproxy.");
       var v = p.getCharPref("settings");
-      // The very presence of this pref means we're not using the default
-      if (v) return false;
+      // The very presence of this pref just means that the user is either 
+      // using a different file name or a different path to the settings file
+      // or both. Only if we find a different path is false returned as a
+      // different file name alone is no portability problem see:
+      // http://getfoxyproxy.org/settings.html. 
+      if (v.slice(0, v.lastIndexOf("/") + 1) !== 
+          this.transformer(this.getDefaultPath().parent, "uri-string")) {
+	return false;
+      }
+      else {
+        return true;
+      }
     }
     catch(e) {}
     return true;

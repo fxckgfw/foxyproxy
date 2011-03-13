@@ -70,7 +70,7 @@ function _initSettings() {
 
 function updateSettingsInfo() {
   document.getElementById("settingsURL").value = foxyproxy.getSettingsURI("uri-string");
-  document.getElementById("notDefaultSettingsBroadcaster").hidden = foxyproxy.usingDefaultSettingsURI();
+  document.getElementById("notDefaultSettingsBroadcaster").hidden = foxyproxy.usingDefaultSettingsFolder();
   sizeToContent(); // because .hidden above can change the size of controls
 }
 
@@ -203,14 +203,12 @@ function onSettingsURLBtn() {
   fp.init(window, foxyproxy.getMessage("file.select"), nsIFilePicker.modeSave);
   fp.defaultString = "foxyproxy.xml";
   fp.appendFilters(nsIFilePicker.filterAll|nsIFilePicker.filterXML);
-  fp.displayDirectory = foxyproxy.getSettingsURI(CI.nsIFile); /* WHY IS THIS ALWAYS NULL? */
+  fp.displayDirectory = foxyproxy.getSettingsURI(CI.nsIFile).parent; 
   if (fp.show() != nsIFilePicker.returnCancel) {
     var defPath = foxyproxy.getDefaultPath();
     // If the current settings file is in the default path and the user wants to move it, warn him.
-    // Since foxyproxy.getSettingsURI(CI.nsIFile) is always evaluating to null is this context (WHY?!),
-    // I'm skipping the first conditional expression.
-    //if (fp.displayDirectory.equals(defPath) && !defPath.equals(fp.file)) {
-    if (!defPath.equals(fp.file)) {
+    if (fp.displayDirectory.equals(defPath.parent) && !defPath.parent.
+        equals(fp.file.parent)) {
       var c = overlay.ask(this, foxyproxy.getMessage("settings.warning"), null, null, foxyproxy.getMessage("more.info"));
       switch (c) {
         case 1:

@@ -591,8 +591,16 @@ function importSettings() {
     f1.initWithPath(settingsFile.path.substring(0, settingsFile.path.indexOf(settingsFile.leafName)));
     picker.file.copyTo(f1, settingsFile.leafName);
     
-    if (overlay.ask(this, foxyproxy.getMessage("import.success", [picker.file.path])))
+    if (overlay.ask(this, foxyproxy.
+      getMessage("import.success", [picker.file.path]))) {
+      // We have to handle the import and export of pattern subscriptions a bit 
+      // differently here as they are in JSON and not in XML. See as well the 
+      // comment in exportSettings(). "True" and "false" as arguments mean that
+      // we have an import (probably of pattern subscriptions as well) and they 
+      // should be removed from the normal FoxyProxy settings file afterwards.
+      patternSubscriptions.handleImportExport(true, false);
       foxyproxy.restart();
+    }
   }
   catch (e) {
     dump(e + "\n");
@@ -614,7 +622,17 @@ function importExportPrompt(isExport) {
 function exportSettings() {
   var picker = importExportPrompt(true);
   if (!picker) return;
-
+  // We have the pattern subscriptions and the other FoxyProxy settings in
+  // differernt files in order to reduce the necessary disk I/O while running
+  // FoxyProxy. But we need the pattern subscriptions as well if a user wants
+  // to export her settings. Therefore, handleImportExport() prepares the 
+  // settings file before exporting (i.e. the pattern subscriptions are added) 
+  // if "false" and "true" are passed as parameters. We use "false" and "false" 
+  // as parameters in order to remove the subscriptions from the settings file 
+  // again after it got exported in order not to clutter it unnecessarily.
+  if (patternSubscriptions.subscriptionsList.length > 0) {
+    patternSubscriptions.handleImportExport(false, true);
+  }
   var f2 = CC["@mozilla.org/file/local;1"].createInstance(CI.nsILocalFile),
     settingsFile = foxyproxy.getSettingsURI(CI.nsIFile);
   
@@ -630,6 +648,11 @@ function exportSettings() {
     dump(e + "\n");
     overlay.alert(this, foxyproxy.getMessage("copy.error", [settingsFile.path, picker.file.path]));
     return;
+  }
+  finally {
+    if (patternSubscriptions.subscriptionsList.length > 0) {
+      patternSubscriptions.handleImportExport(false, false);
+    } 
   }
 }
 

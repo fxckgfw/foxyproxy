@@ -380,6 +380,21 @@ var patternSubscriptions = {
     }
   },
 
+  getSubscriptionsFile: function() {
+    var file = Cc["@mozilla.org/file/local;1"].createInstance(Ci.nsILocalFile);
+    var subDir = this.fp.getSettingsURI(Ci.nsIFile).parent;
+    file.initWithPath(subDir.path);
+    file.appendRelativePath("patternSubscriptions.json");
+    if ((!file.exists() || !file.isFile())) {
+      // Owners may do everthing with the file, the group and others are
+      // only allowed to read it. 0x1E4 is the same as 0744 but we use it here
+      // as octal literals and escape sequences are deprecated and the 
+      // respective costants are not available yet, see: bug 433295.
+      file.create(Ci.nsIFile.NORMAL_FILE_TYPE, 0x1E4); 
+    }
+    return file;
+  }, 
+
   writeSubscriptions: function() {
     try {
       var subscriptionsData = "";
@@ -402,6 +417,121 @@ var patternSubscriptions = {
     } catch (e) {
       dump("Error while writing the subscriptions to disc: " + e + "\n");
     }
+  },
+
+  handleImportExport: function(bImport, bPreparation) {
+    var patternElements;
+    var f = this.fp.getSettingsURI(Ci.nsIFile);
+    var s = Cc["@mozilla.org/network/file-input-stream;1"].createInstance(Ci.
+      nsIFileInputStream);
+    s.init(f, -1, -1, Ci.nsIFileInputStream.CLOSE_ON_EOF);
+    var p = Cc["@mozilla.org/xmlextras/domparser;1"].createInstance(Ci.
+      nsIDOMParser);
+    var doc = p.parseFromStream(s, null, f.fileSize, "text/xml"); 
+    if (bPreparation) {
+      // Now we are adding the pattern subscriptions.
+      doc.documentElement.appendChild(this.toDOM(doc));
+    } 
+    if (bImport) {
+      // Convert the subscriptions (if there are any) to objects and put them
+      // (back) to the susbcriptionsList.
+      patternElement = doc.getElementsByTagName("patternSubscriptions").item(0);
+      if (patternElement) {
+        this.fromDOM(patternElement);
+      } else {
+	// Although it is not a preparation we set the flag to "true" as we 
+	// not not need to execute the respective if-path as there are no
+	// pattern susbcriptions to erase.
+        bPreparation = true;
+      }
+    } 
+    if (!bPreparation) {
+      // As we only want to export these subscriptions and have a separate file
+      // to store them locally, we remove them after the file was exported in
+      // order to avoid messing unnecessarily with the settings file.
+      // The same holds for the import case.
+      patternElement = doc.getElementsByTagName("patternSubscriptions").
+        item(0);
+      doc.documentElement.removeChild(patternElement);
+    }
+    var foStream = Cc["@mozilla.org/network/file-output-stream;1"].
+        createInstance(Ci.nsIFileOutputStream);
+    foStream.init(f, 0x02 | 0x08 | 0x20, 0664, 0); // write, create, truncate
+    // In foxyproxy.js is a call to gFP.toDOM() used instead of doc but that is
+    // not available here as the patternSubscriptions are not written there.
+    // The result is two missing newlines, one before and one after the DOCTYPE
+    // declaration. But that does not matter for parsing the settings. 
+    Cc["@mozilla.org/xmlextras/xmlserializer;1"].
+      createInstance(Ci.nsIDOMSerializer).serializeToStream(doc, foStream, "UTF-8");
+      // foStream.write(str, str.length);
+      foStream.close() 
+  },
+
+  fromDOM: function(patElem) {
+    var subscription, metaNode, subNode, attrib, patternsNode, patterns,
+      name, value;
+    var subs = patElem.getElementsByTagName("subscription");
+    for (var i = 0; i < subs.length; i++) {
+      subscription = {};
+      metaNode = subs[i].getElementsByTagName("metadata").item(0);
+      if (metaNode) {
+        subscription.metadata = {};
+        attrib = metaNode.attributes;
+        for (j = 0; j < attrib.length; j++) {
+          name = attrib.item(j).nodeName; 
+	  value = attrib.item(j).nodeValue; 
+          subscription.metadata[name] = value; 
+        }	  
+      }	
+      subNode = subs[i].getElementsByTagName("patternSub").item(0);
+      if (subNode) {
+        subscription.subscription = {};
+        patternsNode = subNode.getElementsByTagName("patterns").item(0);
+        if (patternsNode) {
+	  subscription.subscription.patterns = [];
+	  patterns = patternsNode.getElementsByTagName("pattern");
+	  for (var k = 0; k < patterns.length; k++) {
+            subscription.subscription.patterns[k] = {};
+	    attrib = patterns[k].attributes;
+	    for (var l = 0; l < attrib.length; l++) {
+	      name = attrib.item(l).nodeName; 
+	      value = attrib.item(l).nodeValue; 
+              subscription.subscription.patterns[k][name] = value; 
+            }
+          }
+        }
+      }
+      this.subscriptionsList.push(subscription);
+    }
+    // Add now save the pattern subscriptions to disk...
+    this.writeSubscriptions();
+  },
+
+  toDOM: function(doc) {
+    var sub, meta, sub2, pat, pat2, patterns;
+    var e = doc.createElement("patternSubscriptions");
+    for (var i = 0; i < this.subscriptionsList.length; i++) {
+      patterns = this.subscriptionsList[i].subscription.patterns;
+      sub = doc.createElement("subscription");
+      meta = doc.createElement("metadata");
+      sub2 = doc.createElement("patternSub");
+      pat = doc.createElement("patterns");
+      for (a in this.subscriptionsList[i].metadata) {
+	meta.setAttribute(a, this.subscriptionsList[i].metadata[a])
+      }
+      sub.appendChild(meta);
+      for (j = 0; j < patterns.length; j++) {
+	pat2 = doc.createElement("pattern");
+        for (a in patterns[j]) {
+          pat2.setAttribute(a, patterns[j][a]);  
+	}
+	pat.appendChild(pat2);
+      }
+      sub2.appendChild(pat);
+      sub.appendChild(sub2);
+      e.appendChild(sub);
+    }
+    return e;
   },
 
   refreshSubscription: function(aSubscription, showResponse) {
@@ -505,21 +635,6 @@ var patternSubscriptions = {
         proxyList[i].matches.push(pattern);
       }
     } 
-  },
-
-  getSubscriptionsFile: function() {
-    var file = Cc["@mozilla.org/file/local;1"].createInstance(Ci.nsILocalFile);
-    var subDir = this.fp.getSettingsURI(Ci.nsIFile).parent;
-    file.initWithPath(subDir.path);
-    file.appendRelativePath("patternSubscriptions.json");
-    if ((!file.exists() || !file.isFile())) {
-      // Owners may do everthing with the file, the group and others are
-      // only allowed to read it. 0x1E4 is the same as 0744 but we use it here
-      // as octal literals and escape sequences are deprecated and the 
-      // respective costants are not available yet, see: bug 433295.
-      file.create(Ci.nsIFile.NORMAL_FILE_TYPE, 0x1E4); 
-    }
-    return file;
   },
 
   checksumVerification: function(aChecksum, aSubscription) {

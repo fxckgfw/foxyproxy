@@ -70,7 +70,7 @@ function _initSettings() {
 
 function updateSettingsInfo() {
   document.getElementById("settingsURL").value = foxyproxy.getSettingsURI("uri-string");
-  document.getElementById("notDefaultSettingsBroadcaster").hidden = foxyproxy.usingDefaultSettingsFolder();
+  document.getElementById("notDefaultSettingsBroadcaster").hidden = foxyproxy.usingDefaultSettingsURI();
   sizeToContent(); // because .hidden above can change the size of controls
 }
 
@@ -203,6 +203,8 @@ function onSettingsURLBtn() {
   fp.init(window, foxyproxy.getMessage("file.select"), nsIFilePicker.modeSave);
   fp.defaultString = "foxyproxy.xml";
   fp.appendFilters(nsIFilePicker.filterAll|nsIFilePicker.filterXML);
+  // nsIFilePicker.displayDirectory requires a directory WITHOUT a filename
+  // appended. Hence we use .parent here and in the following lines of code.
   fp.displayDirectory = foxyproxy.getSettingsURI(CI.nsIFile).parent; 
   if (fp.show() != nsIFilePicker.returnCancel) {
     var defPath = foxyproxy.getDefaultPath();

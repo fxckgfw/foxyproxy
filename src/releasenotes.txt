@@ -10,3 +10,4 @@
   AutoAdd)
 * Fixed Torwizard issues (custom ports were not saved; added port check)
 * Fixed crammed list-style-icons bug in URL patterns tab (addeditproxy.xul)
+* Fixed nsIFilePicker bug in options.js (rev754, rev758) and enhanced triquestions.xul and .js (rev755)

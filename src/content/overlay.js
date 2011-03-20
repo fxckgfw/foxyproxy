@@ -145,6 +145,8 @@ var foxyproxy = {
   },
 
   onLoad : function() {
+    Components.utils.import("resource://foxyproxy/patternSubscriptions.jsm", 
+      this); 
     this.svgIcons.init();
     this.statusText = document.getElementById("foxyproxy-status-text");
     setTimeout(this.findToolbarIcon, 100);
@@ -170,6 +172,28 @@ end-foxyproxy-simple !*/
 /*! begin-foxyproxy-standard !*/
       document.getElementById("foxyproxyMenu").setAttribute("label", this.fp.getMessage("foxyproxy.standard.label"));
 /*! end-foxyproxy-standard !*/
+    }
+    // Checking whether we had some pattern subscription load failures during
+    // startup (in the first case the whole subscription could not be loaded
+    // and in the second one just the metadata was available).
+    // TODO: Maybe finding an even better solution: having a timer that shows
+    // the proper dialog after the main window is shown to the user... 
+    if (this.patternSubscriptions.failureOnStartup) {
+     this.fp.alert(null, this.fp.
+       getMessage("patternsubscription.error.saved", 
+       [this.patternSubscriptions.failureOnStartup])); 
+    }
+    var failedSubs = this.patternSubscriptions.partialLoadFailure;
+    for (var i=0; i < failedSubs.length; i++) {
+      // We got susbcriptions where just the metadata could be loaded. Asking
+      // the user if she wants to refresh the subscription now in order to 
+      // have a useable pattern subscription.
+      var refreshSubscription = this.ask(window, this.fp.
+        getMessage("patternsubscription.error.patterns.refresh", 
+	  [failedSubs[i].metadata.name]), null, null, null); 
+      if (refreshSubscription) {
+        this.patternSubscriptions.refreshSubscription(failedSubs[i], true); 
+      }
     }
   },
 

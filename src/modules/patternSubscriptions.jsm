@@ -36,13 +36,26 @@ var patternSubscriptions = {
 
   subscriptionsTree : null,
 
+  // We count here the amount of load failures during startup in order to
+  // show a dialog with the proper amount in overlay.js
+  failureOnStartup : 0,
+
+  // We save pattern subscriptions in this array which could only be loaded
+  // partially after startup (or refresh) due to errors in the JSON. The idea
+  // is to show the user a respective dialog (see onLoad() i options.js)
+  // asking here to refresh the corrupted subscription immediately.
+  partialLoadFailure : [],
+
   // TODO: Find a way to load the file efficiently using our XmlHTTPRequest
   // method below...
   loadSavedSubscriptions: function(savedPatternsFile) {
     try {
       var line = {};
+      var errorMessages = [];
       var hasmore;
       var loadedSubscription;
+      var metaIdx;
+      var parseString;
       if (!savedPatternsFile) {
         // We do not have saved Patterns yet, thus returning...
 	return;
@@ -57,13 +70,53 @@ var patternSubscriptions = {
       conStream.QueryInterface(Ci.nsIUnicharLineInputStream);
       do {
         hasmore = conStream.readLine(line);
-        loadedSubscription = this.getObjectFromJSON(line.value); 
-	if (loadedSubscription) {
-          this.subscriptionsList.push(loadedSubscription);
-          if (loadedSubscription.metadata.refresh != 0) {
+        loadedSubscription = this.getObjectFromJSON(line.value, errorMessages); 
+	if (loadedSubscription && loadedSubscription.length === undefined) {
+          if (loadedSubscription.metadata && 
+              loadedSubscription.metadata.refresh != 0) {
             delete loadedSubscription.metadata.timer;
             this.setSubscriptionTimer(loadedSubscription, false, true);
 	  }
+	  this.subscriptionsList.push(loadedSubscription); 
+	} else {
+          // Parsing the whole subscription failed but maybe we can parse at
+          // least the metadata to show the user the problematic subscription
+          // in the subscriptionsTree. Thus, looking for "metadata" first.
+          // If we do not find it (because the problem occurred there) then
+	  // obviously we are not able to display anything in the tree.
+          metaIdx = line.value.indexOf('"metadata"');
+          if (metaIdx > -1) {
+            // As we cannot be sure that the JSON starts with "{"metadata""
+            // (e.g. if the pattern subscription had not had one) we prepend one
+            // "{" to our string to parse. We append one as well in order to be
+            // sure that our metadata string is valid JSON regardless where 
+            // its position in the saved subscription is.
+	    parseString = "{" + line.value.slice(metaIdx, line.value.
+              indexOf("}", metaIdx) + 1) + "}";
+            loadedSubscription = this.getObjectFromJSON(parseString, 
+              errorMessages);
+	    if (loadedSubscription && loadedSubscription.length === undefined) {
+              // At least we could parse the metadata. Now, we can show the
+              // subscription in the tree after setting the last status 
+              // properly. Afterwards we ask the user if she wants to refresh
+              // her subscription immediately in order to solve the issue 
+	      // with the corrupt pattern part.
+	      errorMessages.push(this.fp.
+                getMessage("patternsubscription.error.patterns", 
+                [loadedSubscription.metadata.name])); 
+	      loadedSubscription.metadata.lastStatus = this.fp.
+                getMessage("error"); 
+	      loadedSubscription.metadata.errorMessages = errorMessages;
+	      this.subscriptionsList.push(loadedSubscription); 
+	      this.partialLoadFailure.push(loadedSubscription);
+            } else {
+	      this.failureOnStartup++;
+            }
+	  } else {
+	    this.failureOnStartup++;
+	  } 
+	  // TODO: Show a dialog asking whether the user wants to refresh the
+	  // subscription in order to replace the corrupted patterns.
 	}
       } while(hasmore);
       conStream.close(); 
@@ -97,8 +150,9 @@ var patternSubscriptions = {
       // Until we have this test we assume first to have plain text and if this
       // is not working we assume a Base64 encoded response. If the last thing
       // is not working either the subscription parsing and import fails.
-      subscriptionJSON = this.getObjectFromJSON(subscriptionText);
-      if (!subscriptionJSON) {
+      subscriptionJSON = this.getObjectFromJSON(subscriptionText, 
+        errorMessages);
+      if (subscriptionJSON && !(subscriptionJSON.length === undefined)) {
         dump("The response contained invalid JSON while assuming a plain " +
               "text! We try Base64 decoding first...\n");
         // We need to replace newlines and other special characters here. As 
@@ -106,12 +160,13 @@ var patternSubscriptions = {
 	// issue whether there should/may be a specific line length (say 64 or
 	// 76 chars).
 	subscriptionText = atob(req.responseText.replace(/\s*/g, ""));
-        subscriptionJSON = this.getObjectFromJSON(subscriptionText); 
+        subscriptionJSON = this.getObjectFromJSON(subscriptionText, 
+          errorMessages); 
         // We do not need to process the subscription any further if we got 
         // again no proper subscription object or if the user does not want
         // to import a Base64 encoded subscription (in case she selected "none"
         // as obfuscation).
-        if (!subscriptionJSON) {
+        if (subscriptionJSON && !(subscriptionJSON.length === undefined)) {
           errorMessages.push(this.fp.
             getMessage("patternsubscription.error.JSON"));
           return errorMessages;
@@ -146,6 +201,9 @@ var patternSubscriptions = {
       parsedSubscription = this.
         parseSubscription(subscriptionJSON, aURLString, errorMessages);
       if (parsedSubscription && parsedSubscription.length === undefined) {
+	if (!parsedSubscription.metadata) {
+	  parsedSubscription.metadata = {};
+        }
         if (bBase64) {
           parsedSubscription.metadata.obfuscation = "Base64";
 	} else {
@@ -159,13 +217,13 @@ var patternSubscriptions = {
       }
     } catch (e) {
       if (e.name === "NS_ERROR_FILE_NOT_FOUND") {
-        this.fp.alert(this.fp.getMessage("foxyproxy"), this.fp.
-        getMessage("patternsubscription.error.network"));        
+        this.fp.alert(null, this.fp.
+          getMessage("patternsubscription.error.network"));        
         errorMessages.push(this.fp.
           getMessage("patternsubscription.error.network")); 
       } else {
         dump("Error in loadSubscription(): " + e + "\n");
-        this.fp.alert(this.fp.getMessage("foxyproxy"), this.fp.
+        this.fp.alert(null, this.fp.
         getMessage("patternsubscription.error.network.unspecified")); 
         errorMessages.push(this.fp.
           getMessage("patternsubscription.error.network.unspecified")); 
@@ -174,12 +232,14 @@ var patternSubscriptions = {
     }
   },
 
-  getObjectFromJSON: function(aString) {
+  getObjectFromJSON: function(aString, errorMessages) {
     var json;
     try {
       // Should never happen...
       if (!aString) {
-	return false;
+	errorMessages.push(this.fp.
+          getMessage("patternsubscription.error.JSONString"));
+	return errorMessages;
       }
       // As FoxyProxy shall be usable with FF < 3.5 we use nsIJSON. But
       // Thunderbird does not support nsIJSON. Thus, we check for the proper
@@ -192,7 +252,9 @@ var patternSubscriptions = {
       }
     } catch (e) {
       dump("Error while parsing the JSON: " + e + "\n");
-      return false; 
+      errorMessages.push(this.fp.
+            getMessage("patternsubscription.error.JSON"));
+      return errorMessages; 
     }
   },
 
@@ -251,7 +313,7 @@ var patternSubscriptions = {
       // However, that would require a more sophisticated implementation which
       // currently seems not worth the effort. Thus, sticking to a hashed 
       // subscription object.
-      if (aSubscription.metadata.checksum) {
+      if (aSubscription.metadata && aSubscription.metadata.checksum) {
         ok = this.checksumVerification(aSubscription.metadata.checksum, 
           aSubscription);
         if (!ok) {
@@ -270,7 +332,7 @@ var patternSubscriptions = {
       }
       return aSubscription; 
     } catch(e) {
-      this.fp.alert(this.fp.getMessage("foxyproxy"), this.fp.
+      this.fp.alert(null, this.fp.
         getMessage("patternsubscription.error.parse"));        
         errorMessages.push(this.fp.
           getMessage("patternsubscription.error.parse")); 
@@ -553,10 +615,10 @@ var patternSubscriptions = {
       "base64";
     var refreshedSubscription = this.loadSubscription(aSubscription.
       metadata.url, base64Encoded); 
-    // Our "array test" we deployed addeditsubscription.js as well.
+    // Our "array test" we deployed in addeditsubscription.js as well.
     if (refreshedSubscription && !(refreshedSubscription.length === 
           undefined)) {
-      this.fp.alert(this.fp.getMessage("foxyproxy"), this.fp.
+      this.fp.alert(null, this.fp.
         getMessage("patternsubscription.update.failure")); 
       aSubscription.metadata.lastStatus = this.fp.getMessage("error"); 
       // So, we really did not get a proper subscription but error messages.
@@ -578,7 +640,7 @@ var patternSubscriptions = {
       // success popup as it can be quite annoying to get such kinds of popups
       // while surfing. TODO: Think about doing the same for failed updates.
       if (showResponse) {
-        this.fp.alert(this.fp.getMessage("foxyproxy"),this.fp.
+        this.fp.alert(null, this.fp.
           getMessage("patternsubscription.update.success")); 
       }
     }

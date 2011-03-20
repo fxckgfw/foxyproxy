@@ -143,7 +143,7 @@ function onOK() {
       // whether we got an array of error Messages back or a subscription
       // object. Iff the latter is the case we add a new subscription. As we
       // do not have any subscription yet if we got an array back, we silently
-      // ignore it and returning just false. 
+      // ignore it and return just false. 
       if (parsedSubscription && parsedSubscription.length === undefined) {
         window.arguments[0].out = {
           subscription : parsedSubscription,

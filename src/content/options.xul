@@ -201,7 +201,8 @@
 	       <treecol id="subscriptionsNotes" label="&foxyproxy.notes.label;"
 			flex="1" persist="width ordinal hidden"/>
                <splitter class="tree-splitter" />
-	       <treecol id="subscriptionsUri" label="&foxyproxy.url.label;"
+	       <treecol id="subscriptionsUri" 
+                        label="&foxyproxy.tab.logging.url.label;"
                         flex="1" persist="width ordinal hidden" />
                <splitter class="tree-splitter" />
 	       <treecol id="subscriptionsProxy" label="&foxyproxy.proxy.label;"

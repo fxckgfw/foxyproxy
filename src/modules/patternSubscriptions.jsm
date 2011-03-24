@@ -51,7 +51,7 @@ var patternSubscriptions = {
   loadSavedSubscriptions: function(savedPatternsFile) {
     try {
       var line = {};
-      var errorMessages = [];
+      var errorMessages;
       var hasmore;
       var loadedSubscription;
       var metaIdx;
@@ -69,6 +69,9 @@ var patternSubscriptions = {
       conStream.init(istream, "UTF-8", 0, 0);
       conStream.QueryInterface(Ci.nsIUnicharLineInputStream);
       do {
+        // Every subscription should just get its related error messages, 
+        // therefore resetting errorMessages here.
+	errorMessages = [];
         hasmore = conStream.readLine(line);
         loadedSubscription = this.getObjectFromJSON(line.value, errorMessages); 
 	if (loadedSubscription && loadedSubscription.length === undefined) {
@@ -115,8 +118,6 @@ var patternSubscriptions = {
 	  } else {
 	    this.failureOnStartup++;
 	  } 
-	  // TODO: Show a dialog asking whether the user wants to refresh the
-	  // subscription in order to replace the corrupted patterns.
 	}
       } while(hasmore);
       conStream.close(); 
@@ -133,6 +134,7 @@ var patternSubscriptions = {
       var subscriptionJSON = null;
       var req = Cc["@mozilla.org/xmlextras/xmlhttprequest;1"].
         createInstance(Ci.nsIXMLHttpRequest);
+      // We shouuld not use onreadystatechange due to performance issues!
       /*req.onreadystatechange = function (aEvt) {
 
       };*/
@@ -422,7 +424,7 @@ var patternSubscriptions = {
         refresh * 60 * 1000; 
     }
     that = this;
-    event = {
+    var event = {
       notify : function(timer) {
         that.refreshSubscription(aSubscription, false);
         that.subscriptionsTree.view = that.makeSubscriptionsTreeView();
@@ -675,7 +677,7 @@ var patternSubscriptions = {
     var pattern;
     var i,j; 
     if (currentSubIndex) {
-      currentSub = this.subscriptionsList[currentIndex];
+      currentSub = this.subscriptionsList[currentSubIndex];
     } else {
       currentSub = this.subscriptionsList[this.subscriptionsList.length - 1];
     }
@@ -686,15 +688,17 @@ var patternSubscriptions = {
       // TODO: Maybe we could find a way to blend an old subscription or
       // old patterns with a new one!?
       proxyList[i].matches = [];
-      for (j = 0; j < currentPat.patterns.length; j++) {
-        pattern = Cc["@leahscape.org/foxyproxy/match;1"].createInstance().
-                  wrappedJSObject; 
-        pattern.init(currentSub.metadata.enabled, currentPat.patterns[j].name, 
-                     currentPat.patterns[j].pattern, false, currentPat.
-                     patterns[j].type.toLowerCase() === "wildcard" ? false : 
-                     true, currentPat.patterns[j].caseSensitive ? true : false,
-                     currentPat.patterns[j].whitelist ? true : false, false);
-        proxyList[i].matches.push(pattern);
+      if (currentPat && currentPat.patterns) {
+        for (j = 0; j < currentPat.patterns.length; j++) {
+          pattern = Cc["@leahscape.org/foxyproxy/match;1"].createInstance().
+                    wrappedJSObject; 
+          pattern.init(currentSub.metadata.enabled, currentPat.patterns[j].name, 
+                      currentPat.patterns[j].pattern, false, currentPat.
+                      patterns[j].type.toLowerCase() === "wildcard" ? false : 
+                      true, currentPat.patterns[j].caseSensitive ? true : false,
+                      currentPat.patterns[j].whitelist ? true : false, false);
+          proxyList[i].matches.push(pattern);
+        }
       }
     } 
   },

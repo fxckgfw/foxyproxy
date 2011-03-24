@@ -147,6 +147,10 @@ var foxyproxy = {
   onLoad : function() {
     Components.utils.import("resource://foxyproxy/patternSubscriptions.jsm", 
       this); 
+    var timer = Components.classes["@mozilla.org/timer;1"].
+      createInstance(Components.interfaces.nsITimer); 
+    var timer2 = Components.classes["@mozilla.org/timer;1"].
+      createInstance(Components.interfaces.nsITimer); 
     this.svgIcons.init();
     this.statusText = document.getElementById("foxyproxy-status-text");
     setTimeout(this.findToolbarIcon, 100);
@@ -175,25 +179,41 @@ end-foxyproxy-simple !*/
     }
     // Checking whether we had some pattern subscription load failures during
     // startup (in the first case the whole subscription could not be loaded
-    // and in the second one just the metadata was available).
-    // TODO: Maybe finding an even better solution: having a timer that shows
-    // the proper dialog after the main window is shown to the user... 
-    if (this.patternSubscriptions.failureOnStartup) {
-     this.fp.alert(null, this.fp.
-       getMessage("patternsubscription.error.saved", 
-       [this.patternSubscriptions.failureOnStartup])); 
-    }
-    var failedSubs = this.patternSubscriptions.partialLoadFailure;
-    for (var i=0; i < failedSubs.length; i++) {
-      // We got susbcriptions where just the metadata could be loaded. Asking
-      // the user if she wants to refresh the subscription now in order to 
-      // have a useable pattern subscription.
-      var refreshSubscription = this.ask(window, this.fp.
-        getMessage("patternsubscription.error.patterns.refresh", 
-	  [failedSubs[i].metadata.name]), null, null, null); 
-      if (refreshSubscription) {
-        this.patternSubscriptions.refreshSubscription(failedSubs[i], true); 
+    // and in the second tne just the metadata was available). If so, we show
+    // the proper dialogs without blocking the UI using nsITimer.
+    // TODO: Do we really want to have two nsITimer here getting (in the worst
+    // case) multiple dialogs?
+    var that = this;
+    var failedOnStartup = {
+      notify: function(timer) {
+        that.fp.alert(null, that.fp.
+          getMessage("patternsubscription.error.saved", 
+          [that.patternSubscriptions.failureOnStartup])); 
       }
+    };
+    if (this.patternSubscriptions.failureOnStartup) {
+     timer.initWithCallback(failedOnStartup, 200, 
+	 Components.interfaces.nsITimer.TYPE_ONE_SHOT);
+    }
+    var failedPatternLoad = {
+      notify: function(timer) {
+        for (var i=0; i < failedSubs.length; i++) {
+          // We got susbcriptions where just the metadata could be loaded. 
+          // Asking the user if she wants to refresh the subscription now in 
+          // order to have a useable pattern subscription.
+          var refreshSubscription = that.ask(window, that.fp.
+            getMessage("patternsubscription.error.patterns.refresh", 
+	    [failedSubs[i].metadata.name]), null, null, null); 
+          if (refreshSubscription) {
+            that.patternSubscriptions.refreshSubscription(failedSubs[i], true); 
+          }
+        }
+      }
+    }; 
+    var failedSubs = this.patternSubscriptions.partialLoadFailure;
+    if (failedSubs.length > 0) {
+      timer2.initWithCallback(failedPatternLoad, 500, 
+	 Components.interfaces.nsITimer.TYPE_ONE_SHOT); 
     }
   },
 

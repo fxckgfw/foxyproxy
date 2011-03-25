@@ -28,7 +28,16 @@ var proxies = {
   item : function(i) {
     return this.list[i];
   }
-}
+};
+
+// These are the ones we load in the onLoad() function. We need them separated
+// from the proxy object above in order to add patterns (and show a warning 
+// dialog) only to newly added proxies.
+var oldProxies = [];
+
+// These proxies are the ones a user selected for getting untied from the 
+// current subscription.
+var removeProxies = [];
 
 Cu.import("resource://foxyproxy/patternSubscriptions.jsm");
 
@@ -57,11 +66,16 @@ function onLoad() {
 	  for (var j = 0; j < fp.proxies.length; j++) { 
 	    if (metadata.proxies[i] === fp.proxies.item(j).id) {
 	      proxies.list.push(fp.proxies.item(j));
+              // We are pushing the proxies here as well and do not copy them
+              // once we added all of them to the proxy.list array because
+              // we would have to write some array copy code we only need here.
+	      oldProxies.push(fp.proxies.item(j));
 	    }
 	  }
 	}
         proxyTree.view = fpc.makeProxyTreeView(proxies, document);
       }
+
       document.getElementById("refresh").value = metadata.refresh;
       // Assuming we have only 'FoxyProxy' and 'AutoProxy' as format values...
       if (metadata.format === "FoxyProxy") {
@@ -92,6 +106,8 @@ function onOK() {
   try {
     var userValues = {};
     userValues.proxies = [];
+    var proxyFound;
+    var newProxies = [];
     var parsedSubscription, base64Encoded;
     var url = document.getElementById("subscriptionUrl").value;
     // ToDo: Do we want to check whether it is really a URL here?
@@ -109,13 +125,13 @@ function onOK() {
       // We probably need no valiatePattern()-call as in pattern.js as the user
       // is not entering a custom pattern itself but imports a list assuming
       // the latter is less error prone.
-      // But we ask first whether the user really wants to get rid of her old
+      // But we ask first whether the user really wants to deactivate her old
       // patterns and subscribe to the new list instead. We ask only if the 
       // user is new to this feature (i.e. the proxies list was emtpy while
       // the addeditsubscription.xul was loaded) avoiding further complexity
       // and assuming she knows what she does (scary!). Of course, if a user
       // deletes all proxies in a subscription once and adds one again later,
-      // is getting asked again. That seems okay.
+      // she is getting asked again. That seems okay.
       if (!window.arguments[0].inn || window.arguments[0].inn.subscription.
 	  metadata.proxies.length === 0) {
         if (!this.fp.warnings.showWarningIfDesired(window, 
@@ -149,14 +165,34 @@ function onOK() {
           subscription : parsedSubscription,
           userValues : userValues,
 	  // Returning the proxies as well makes it easier to add the patterns.
-          proxies : proxies
+          proxies : proxies.list
         };
 	return true;
       }
     } else {
+      // If a user edits a subscription it can happen that she already had
+      // added proxies to it. But we want to give only those back that were
+      // not yet tied to the subscription in order to avoid doubling the
+      // patterns. Therefore extracting the new ones.
+      // We cannot just slice the oldProxies and proxies.list array as the 
+      // user may have deleted some of the oldProxies, added some new, 
+      // deleted some of them again etc. We have to compare the id's or some
+      // other distinguishing attribute.
+      // TODO: Is there really no easier way?
+      for (var i = 0; i < proxies.length; i++) {
+	proxyFound = false;
+        for (var j = 0; j < oldProxies.length; j++) {
+          if (oldProxies[j].id === proxies.item(i).id) {
+	    proxyFound = true;
+	  }
+	} 
+	if (!proxyFound) {
+	  newProxies.push(proxies.item(i));
+        };
+      }
       window.arguments[0].out = {
         userValues : userValues,
-        proxies : proxies
+        proxies : newProxies
       }
       return true;
     }
@@ -208,9 +244,7 @@ function removeProxy(e) {
       fp.alert(this, fp.getMessage("patternsubscription.noproxy.selected")); 
       return;
     }   
-    // Deleting the pattern subscription first
-    proxies.list[proxyTree.currentIndex].matches = [];
-    proxies.list.splice(proxyTree.currentIndex, 1); 
+    removeProxies.push(proxies.list.splice(proxyTree.currentIndex, 1)); 
     proxyTree.view = fpc.makeProxyTreeView(proxies, document); 
   }
 }

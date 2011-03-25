@@ -399,7 +399,7 @@ function onSubscriptionsAction() {
 	    params.out.userValues); 
 	  // Now adding the patterns to the proxies provided the user has added
           // at least one proxy in the addeditsubscription dialog.
-	  proxyList = params.out.proxies.list; 
+	  proxyList = params.out.proxies; 
 	  if (proxyList.length !== 0) {
 	    patternSubscriptions.addPatterns(null, proxyList);
 	  }
@@ -427,8 +427,8 @@ function onSubscriptionsAction() {
           patternSubscriptions.editSubscription(selectedSubscription, params.
             out.userValues, subscriptionsTree.currentIndex);
           // If new proxies were added we should add the patterns to them as
-          // well.
-          proxyList = params.out.proxies.list; 
+          // well but only to them!
+          proxyList = params.out.proxies; 
           if (proxyList.length !== 0) {
             patternSubscriptions.addPatterns(subscriptionsTree.currentIndex,
               proxyList);

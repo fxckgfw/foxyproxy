@@ -680,14 +680,20 @@ var patternSubscriptions = {
       currentSub = this.subscriptionsList[currentSubIndex];
     } else {
       currentSub = this.subscriptionsList[this.subscriptionsList.length - 1];
+      // The user added at least one new proxy to the subscription. We should 
+      // "save" the proxy's old patterns first in order to restore them later if 
+      // it is not anymore tied to the subscription or the subscription is
+      // deleted. The most conveneient way is just disabling the old ones. That
+      // has the advantages that the user is still able to see, edit and remove
+      // them while having a pattern subscription. And we avoid wrinting code 
+      // necessary for storing - deleting - restoring old patterns.
+      this.disableCustomPatterns(proxyList, currentSub);
     }
     currentMet = currentSub.metadata;
     currentPat = currentSub.subscription;
     for (i = 0; i < proxyList.length; i++) {
-      // Resetting the pattern array first...
       // TODO: Maybe we could find a way to blend an old subscription or
       // old patterns with a new one!?
-      proxyList[i].matches = [];
       if (currentPat && currentPat.patterns) {
         for (j = 0; j < currentPat.patterns.length; j++) {
           pattern = Cc["@leahscape.org/foxyproxy/match;1"].createInstance().
@@ -701,6 +707,20 @@ var patternSubscriptions = {
         }
       }
     } 
+  },
+
+  disableCustomPatterns: function(aProxyList, aSubscription) {
+    var patternLength;
+    for (var i = 0; i < aProxyList.length; i++) {
+      // We disable the old pattern(s) only if the proxy had at least one 
+      // already AND the new subscription is enabled.    
+      patternLength = aProxyList[i].matches.length;
+      if (patternLength && aSubscription.metadata.enabled) {
+        for (var j = 0; j < patternLength; j++) {
+           aProxyList[i].matches[j].enabled = false; 
+        }
+      }
+    }
   },
 
   checksumVerification: function(aChecksum, aSubscription) {

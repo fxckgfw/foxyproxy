@@ -671,6 +671,11 @@ var patternSubscriptions = {
   },
 
   addPatterns: function(currentSubIndex, proxyList) {
+    // Now are we going to implement the crucial part of the pattern
+    // subscription feature: Adding the patterns to the proxies.
+    // We probably need no valiatePattern()-call as in pattern.js as the user
+    // is not entering a custom pattern itself but imports a list assuming
+    // the latter is less error prone.
     var currentSub;
     var currentMet;
     var currentPat;

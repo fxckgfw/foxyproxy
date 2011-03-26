@@ -120,18 +120,23 @@ function onOK() {
     userValues.notes = document.getElementById("subscriptionNotes").value; 
     userValues.url = url;
     for (var i = 0; i < proxies.list.length; i++) {
-      // Now are we going to implement the crucial part of the pattern
-      // subscription feature: Adding the patterns to the proxies.
-      // We probably need no valiatePattern()-call as in pattern.js as the user
-      // is not entering a custom pattern itself but imports a list assuming
-      // the latter is less error prone.
-      // But we ask first whether the user really wants to deactivate her old
-      // patterns and subscribe to the new list instead. We ask only if the 
-      // user is new to this feature (i.e. the proxies list was emtpy while
-      // the addeditsubscription.xul was loaded) avoiding further complexity
-      // and assuming she knows what she does (scary!). Of course, if a user
-      // deletes all proxies in a subscription once and adds one again later,
-      // she is getting asked again. That seems okay.
+      // Let's check first whether the user has added the same proxy more than
+      // once to the subscription. We do not allow that.
+      for (var j = i + 1; j < proxies.list.length; j++) {
+        if (proxies.list[i].id === proxies.list[j].id) {
+          this.fp.alert(null, this.fp.
+            getMessage("patternsubscription.warning.dupProxy", 
+            [proxies.list[i].name]));
+          return false;
+	}
+      }
+      // Before we add the new patetrns we ask whether the user really wants to 
+      // deactivate her old patterns and subscribe to the new list instead. We 
+      // ask only if the user is new to this feature (i.e. the proxies list was 
+      // empty while the addeditsubscription.xul was loaded) avoiding further 
+      // complexity and assuming she knows what she does (scary!). Of course, 
+      // if a user deletes all proxies in a subscription once and adds one again
+      // later, she is getting asked again. That seems okay.
       if (!window.arguments[0].inn || window.arguments[0].inn.subscription.
 	  metadata.proxies.length === 0) {
         if (!this.fp.warnings.showWarningIfDesired(window, 
@@ -224,6 +229,7 @@ function addProxy(e) {
     var p = {
       inn: {
         title: fp.getMessage("choose.proxy.patterns"), 
+        
         pattern: true
       }, 
       out: null

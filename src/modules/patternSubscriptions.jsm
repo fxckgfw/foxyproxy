@@ -728,6 +728,38 @@ var patternSubscriptions = {
     }
   },
 
+  deletePatterns: function(aProxyList, bSubEnabled) {
+    var i,j,k, matchLength; 
+    for (i = 0; i < aProxyList.length; i++) {
+      // If the pattern subscription is enabled we know we have to delete
+      // the enabled patterns and enable the disabled ones (if there are
+      // any). If not we just remove the disabled patterns.
+      j = k = 0;
+      matchLength = aProxyList[i].matches.length;
+      if (bSubEnabled) { 
+        do {  
+          if (aProxyList[i].matches[j].enabled) {
+            aProxyList[i].matches.splice(j, 1);
+          } else {
+            aProxyList[i].matches[j].enabled = true;
+	    j++;
+          }
+          k++;
+	} while (k < matchLength)
+      } else {
+        do {  
+          if (!aProxyList[i].matches[j].enabled) {
+            aProxyList[i].matches.splice(j, 1);
+          } else {
+            j++;	
+          }
+          k++;
+        } while (k < matchLength);  
+      }
+    } 
+    this.fp.writeSettings(); 
+  },
+
   checksumVerification: function(aChecksum, aSubscription) {
     var result, data, ch, hash, finalHash, i;
     // First getting the subscription object in a proper stringified form.
@@ -759,6 +791,18 @@ var patternSubscriptions = {
 
   toHexString: function(charCode) {
     return ("0" + charCode.toString(16)).slice(-2);
+  },
+
+  getProxiesFromId: function(aIdArray) {
+    var proxyArray = [];
+    for (var i = 0; i < aIdArray.length; i++) {
+      for (var j = 0; j < this.fp.proxies.length; j++) { 
+        if (aIdArray[i] === this.fp.proxies.item(j).id) { 
+	  proxyArray.push(this.fp.proxies.item(j));
+        }
+      }
+    }
+    return proxyArray;
   },
 
   makeSubscriptionsTreeView: function() {

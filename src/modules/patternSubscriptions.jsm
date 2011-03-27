@@ -655,15 +655,10 @@ var patternSubscriptions = {
     // And it means above all refreshing the patterns... But first we generate 
     // the proxy list.
     if (aSubscription.metadata.proxies.length > 0) {
-      for (var i = 0; i < aSubscription.metadata.proxies.length; i++) {
-        for (var j = 0; j < this.fp.proxies.length; j++) { 
-          if (aSubscription.metadata.proxies[i] === 
-              this.fp.proxies.item(j).id) {
-            this.fp.proxies.item(j).matches = [];
-            proxyList.push(this.fp.proxies.item(j));
-          }
-        }
-      }
+      proxyList = this.getProxiesFromId(aSubscription.metadata.proxies);
+      // First, deleting the old subscription patterns.
+      this.deletePatterns(proxyList, aSubscription.metadata.enabled);
+      // Now, we add the refreshed ones...
       this.addPatterns(aIndex, proxyList); 
     } 
     this.subscriptionsList[aIndex] = aSubscription;	

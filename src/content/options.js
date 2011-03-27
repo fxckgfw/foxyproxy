@@ -451,18 +451,12 @@ function onSubscriptionsAction() {
 	    selectedSubscription.timer.cancel();
 	  }
           // Deleting the patterns as well if we have proxies following them...
-          // TODO: Maybe we should have the following lines of code as an own
-          // function as we need it at least three times in FoxyProxy (probably)
-          // best located in patternSubscriptions.jsm.
 	  var selSubProxies = selectedSubscription.metadata.proxies;
           if (selSubProxies.length > 0) {
-            for (var i = 0; i < selSubProxies.length; i++) {
-              for (var j = 0; j < foxyproxy.proxies.length; j++) { 
-                if (selSubProxies[i] === foxyproxy.proxies.item(j).id) {
-                  foxyproxy.proxies.item(j).matches = [];
-                }
-              }
-            }
+            selSubProxies = patternSubscriptions.
+              getProxiesFromId(selSubProxies);
+            patternSubscriptions.deletePatterns(selSubProxies, 
+		selectedSubscription.metadata.enabled);
           }
           patternSubscriptions.subscriptionsList.splice(subscriptionsTree.
             currentIndex, 1);

@@ -44,6 +44,7 @@ Cu.import("resource://foxyproxy/patternSubscriptions.jsm");
 function onLoad() {
   try {
     var metadata;
+    var proxyArray;
     var formatList = document.getElementById("subscriptionFormat");
     var obfuscationList = document.getElementById("subscriptionObfuscation");
     proxyTree = document.getElementById("subscriptionProxyTree"); 
@@ -62,17 +63,14 @@ function onLoad() {
       // is constructed using those saved id's. That accomplish the following
       // five lines of code.
       if (metadata.proxies.length > 0) {
-	for (var i = 0; i < metadata.proxies.length; i++) {
-	  for (var j = 0; j < fp.proxies.length; j++) { 
-	    if (metadata.proxies[i] === fp.proxies.item(j).id) {
-	      proxies.list.push(fp.proxies.item(j));
-              // We are pushing the proxies here as well and do not copy them
-              // once we added all of them to the proxy.list array because
-              // we would have to write some array copy code we only need here.
-	      oldProxies.push(fp.proxies.item(j));
-	    }
-	  }
-	}
+        proxyArray = patternSubscriptions.getProxiesFromId(metadata.proxies);	
+	for (var i = 0; i < proxyArray.length; i++) {
+          proxies.push(proxyArray[i]);
+          // We are pushing the proxies here as well and do not copy them
+          // once we added all of them to the proxy.list array because
+          // we would have to write some array copy code we only need here.
+          oldProxies.push(proxyArray[i]);
+        }
         proxyTree.view = fpc.makeProxyTreeView(proxies, document);
       }
 
@@ -119,10 +117,10 @@ function onOK() {
     userValues.name = document.getElementById("subscriptionName").value;  
     userValues.notes = document.getElementById("subscriptionNotes").value; 
     userValues.url = url;
-    for (var i = 0; i < proxies.list.length; i++) {
+    for (i = 0; i < proxies.list.length; i++) {
       // Let's check first whether the user has added the same proxy more than
       // once to the subscription. We do not allow that.
-      for (var j = i + 1; j < proxies.list.length; j++) {
+      for (j = i + 1; j < proxies.list.length; j++) {
         if (proxies.list[i].id === proxies.list[j].id) {
           this.fp.alert(null, this.fp.
             getMessage("patternsubscription.warning.dupProxy", 
@@ -137,8 +135,8 @@ function onOK() {
       // complexity and assuming she knows what she does (scary!). Of course, 
       // if a user deletes all proxies in a subscription once and adds one again
       // later, she is getting asked again. That seems okay.
-      if (!window.arguments[0].inn || window.arguments[0].inn.subscription.
-	  metadata.proxies.length === 0) {
+      if ((!window.arguments[0].inn || window.arguments[0].inn.subscription.
+	  metadata.proxies.length === 0) && userValues.enabled) {
         if (!this.fp.warnings.showWarningIfDesired(window, 
           ["patternsubscription.warning.subscription", proxies.list[i].name], 
           "patSubWarning")) {
@@ -175,6 +173,15 @@ function onOK() {
 	return true;
       }
     } else {
+      // The user has edited the pattern subscription. Maybe she removed a proxy
+      // and we have to delete the respective patterns and to restore the old
+      // ones now. Note: We just need to include the code here, i.e. if the user
+      // edits a subscription as there can be no patterns to remove/enable if 
+      // the user adds a new subscription.
+      if (removeProxies.length > 0) {
+        patternSubscriptions.deletePatterns(removeProxies, window.arguments[0].
+          inn.subscription.metadata.enabled);
+      }	
       // If a user edits a subscription it can happen that she already had
       // added proxies to it. But we want to give only those back that were
       // not yet tied to the subscription in order to avoid doubling the
@@ -184,9 +191,9 @@ function onOK() {
       // deleted some of them again etc. We have to compare the id's or some
       // other distinguishing attribute.
       // TODO: Is there really no easier way?
-      for (var i = 0; i < proxies.length; i++) {
+      for (i = 0; i < proxies.length; i++) {
 	proxyFound = false;
-        for (var j = 0; j < oldProxies.length; j++) {
+        for (j = 0; j < oldProxies.length; j++) {
           if (oldProxies[j].id === proxies.item(i).id) {
 	    proxyFound = true;
 	  }
@@ -250,7 +257,10 @@ function removeProxy(e) {
       fp.alert(this, fp.getMessage("patternsubscription.noproxy.selected")); 
       return;
     }   
-    removeProxies.push(proxies.list.splice(proxyTree.currentIndex, 1)); 
+    // Why does removeProxies.push(proxies.list.
+    // splice(proxyTree.currentIndex,1)) not work?
+    removeProxies.push(proxies.list[proxyTree.currentIndex]);
+    proxies.list.splice(proxyTree.currentIndex, 1);
     proxyTree.view = fpc.makeProxyTreeView(proxies, document); 
   }
 }

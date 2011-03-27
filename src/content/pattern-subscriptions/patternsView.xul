@@ -19,7 +19,8 @@
 <dialog buttons="accept"
   id="foxyproxypatternsview"
   onload="onLoad();"
-  title="&foxyproxy.standard.label; - &foxyproxy.add.title;"
+  title="&foxyproxy.standard.label; - 
+         &foxyproxy.pattern.subscriptions.pattern.window.title;"
   windowtype="foxyproxy"
  	xmlns:html="http://www.w3.org/1999/xhtml"
   xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"

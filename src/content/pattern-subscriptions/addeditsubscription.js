@@ -176,7 +176,7 @@ function onOK() {
       // The user has edited the pattern subscription. Maybe she removed a proxy
       // and we have to delete the respective patterns and to restore the old
       // ones now. Note: We just need to include the code here, i.e. if the user
-      // edits a subscription as there can be no patterns to remove/enable if 
+      // edits a subscription, as there can be no patterns to remove/enable if 
       // the user adds a new subscription.
       if (removeProxies.length > 0) {
         patternSubscriptions.deletePatterns(removeProxies, window.arguments[0].

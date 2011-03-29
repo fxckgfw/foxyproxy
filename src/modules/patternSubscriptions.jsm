@@ -520,7 +520,7 @@ var patternSubscriptions = {
     }
     var foStream = Cc["@mozilla.org/network/file-output-stream;1"].
         createInstance(Ci.nsIFileOutputStream);
-    foStream.init(f, 0x02 | 0x08 | 0x20, 0664, 0); // write, create, truncate
+    foStream.init(f, 0x02 | 0x08 | 0x20, -1, 0); // write, create, truncate
     // In foxyproxy.js is a call to gFP.toDOM() used instead of doc but that is
     // not available here as the patternSubscriptions are not written there.
     // The result is two missing newlines, one before and one after the DOCTYPE

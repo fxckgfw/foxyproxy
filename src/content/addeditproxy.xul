@@ -223,6 +223,7 @@
             <treecol id="isBlackList" onclick="sort(this.id)" label="&foxyproxy.whitelist.blacklist.label;" flex="1" persist="width ordinal hidden"/><splitter class="tree-splitter"/>
             <treecol id="caseSensitive" onclick="sort(this.id)" label="&foxyproxy.casesensitive.label;" flex="1" persist="width ordinal hidden" hidden="true"/><splitter class="tree-splitter"/>            
             <treecol id="temp" onclick="sort(this.id)" label="&foxyproxy.temp.label;" flex="1" persist="width ordinal hidden" hidden="true"/><splitter class="tree-splitter"/>            
+	    <treecol id="fromSubscription" onclick="sort(this.id)" label="&foxyproxy.fromSubscription.label;" flex="1" persist="width ordinal hidden" hidden="true"/><splitter class="tree-splitter"/> 
           </treecols>
           <treechildren context="urlsTreeContext" ondblclick="onAddEditURLPattern(false);"/>
          </tree>

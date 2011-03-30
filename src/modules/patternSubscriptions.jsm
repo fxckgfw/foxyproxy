@@ -680,14 +680,6 @@ var patternSubscriptions = {
       currentSub = this.subscriptionsList[currentSubIndex];
     } else {
       currentSub = this.subscriptionsList[this.subscriptionsList.length - 1];
-      // The user added at least one new proxy to the subscription. We should 
-      // "save" the proxy's old patterns first in order to restore them later if 
-      // it is not anymore tied to the subscription or the subscription is
-      // deleted. The most conveneient way is just disabling the old ones. That
-      // has the advantages that the user is still able to see, edit and remove
-      // them while having a pattern subscription. And we avoid wrinting code 
-      // necessary for storing - deleting - restoring old patterns.
-      this.disableCustomPatterns(proxyList, currentSub);
     }
     currentMet = currentSub.metadata;
     currentPat = currentSub.subscription;
@@ -702,57 +694,41 @@ var patternSubscriptions = {
                       currentPat.patterns[j].pattern, false, currentPat.
                       patterns[j].type.toLowerCase() === "wildcard" ? false : 
                       true, currentPat.patterns[j].caseSensitive ? true : false,
-                      currentPat.patterns[j].whitelist ? true : false, false);
+                      currentPat.patterns[j].whitelist ? true : false, false,
+		      true);
           proxyList[i].matches.push(pattern);
         }
       }
     } 
   },
 
-  disableCustomPatterns: function(aProxyList, aSubscription) {
-    var patternLength;
+  deletePatterns: function(aProxyList) {
+    var i,j,k,matchesLength; 
+    for (i = 0; i < aProxyList.length; i++) {
+      matchesLength = aProxyList[i].matches.length; 
+      j = k = 0;
+      do {
+        if (aProxyList[i].matches[j].fromSubscription) {
+            aProxyList[i].matches.splice(j, 1);
+        } else {
+          j++;	
+        }
+          k++;
+      } while (k < matchesLength);  
+    } 
+    this.fp.writeSettings(); 
+  },
+
+  changeSubStatus: function(aProxyList, bNewStatus) {
     for (var i = 0; i < aProxyList.length; i++) {
-      // We disable the old pattern(s) only if the proxy had at least one 
-      // already AND the new subscription is enabled.    
-      patternLength = aProxyList[i].matches.length;
-      if (patternLength && aSubscription.metadata.enabled) {
-        for (var j = 0; j < patternLength; j++) {
-           aProxyList[i].matches[j].enabled = false; 
+      for (var j = 0; j < aProxyList[i].matches.length; j++) {
+        // We know already that the status has changed. Thus, we only need to
+        // apply the new one to the subscription patterns.
+        if (aProxyList[i].matches[j].fromSubscription) {
+          aProxyList[i].matches[j].enabled = bNewStatus;
         }
       }
     }
-  },
-
-  deletePatterns: function(aProxyList, bSubEnabled) {
-    var i,j,k, matchLength; 
-    for (i = 0; i < aProxyList.length; i++) {
-      // If the pattern subscription is enabled we know we have to delete
-      // the enabled patterns and enable the disabled ones (if there are
-      // any). If not we just remove the disabled patterns.
-      j = k = 0;
-      matchLength = aProxyList[i].matches.length;
-      if (bSubEnabled) { 
-        do {  
-          if (aProxyList[i].matches[j].enabled) {
-            aProxyList[i].matches.splice(j, 1);
-          } else {
-            aProxyList[i].matches[j].enabled = true;
-	    j++;
-          }
-          k++;
-	} while (k < matchLength)
-      } else {
-        do {  
-          if (!aProxyList[i].matches[j].enabled) {
-            aProxyList[i].matches.splice(j, 1);
-          } else {
-            j++;	
-          }
-          k++;
-        } while (k < matchLength);  
-      }
-    } 
-    this.fp.writeSettings(); 
   },
 
   checksumVerification: function(aChecksum, aSubscription) {

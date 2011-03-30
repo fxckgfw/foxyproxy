@@ -30,7 +30,7 @@ if (!CI) {
 Components.utils.import("resource://gre/modules/XPCOMUtils.jsm");
 
 ///////////////////////////// Match class///////////////////////
-function Match(enabled, name, pattern, temp, isRegEx, caseSensitive, isBlackList, isMultiLine) {
+function Match(enabled, name, pattern, temp, isRegEx, caseSensitive, isBlackList, isMultiLine, fromSubscription) {
   this.wrappedJSObject = this;
   this.init.apply(this, arguments);
 }
@@ -44,10 +44,11 @@ Match.prototype = {
   _caseSensitive : false,
   isBlackList : false,
   _isMultiLine : false,
+  _fromSubscription : false,
 
   clone : function() {
     return new Match(this.enabled, this.name, this._pattern, this.temp, this.isRegEx, this.caseSensitive,
-      this.isBlackList, this._isMultiLine);
+      this.isBlackList, this._isMultiLine, this._fromSubscription);
   },
 
   init : function(enabled, name, pattern, temp, isRegEx, caseSensitive, isBlackList, isMultiLine) {
@@ -59,6 +60,7 @@ Match.prototype = {
     this._caseSensitive = arguments.length > 5 ? arguments[5] : false;
     this.isBlackList = arguments.length > 6 ? arguments[6] : false;
     this._isMultiLine = arguments.length > 7 ? arguments[7] : false;
+    this._fromSubscription = arguments.length > 8 ? arguments[8] : false;
     this.buildRegEx();
   },
 
@@ -99,6 +101,14 @@ Match.prototype = {
     return this._caseSensitive;
   },
 
+  set fromSubscription(m) {
+    this._fromSubscription = m;
+  },
+
+  get fromSubscription() {
+    return this._fromSubscription;
+  },
+
   buildRegEx : function() {
     var pat = this._pattern;
     if (!this._isRegEx) {
@@ -132,6 +142,7 @@ Match.prototype = {
 	  this._isMultiLine = gGetSafeAttrB(n, "isMultiLine", false);
     // Set this.caseSensitive instead of this._caseSensitive because the latter creates the regexp.
     this.caseSensitive = gGetSafeAttrB(n, "caseSensitive", false);
+    this._fromSubscription = gGetSafeAttrB(n, "fromSubscription", false);
     // We don't deserialize this.temp because it's not serialized
     // exception: use is copying these patterns (including temporary ones)
     // to a new proxy
@@ -149,6 +160,7 @@ Match.prototype = {
     matchElem.setAttribute("isBlackList", this.isBlackList);
     matchElem.setAttribute("isMultiLine", this._isMultiLine);
     matchElem.setAttribute("caseSensitive", this._caseSensitive);
+    matchElem.setAttribute("fromSubscription", this._fromSubscription);
     if (includeTempPatterns)
       matchElem.setAttribute("temp", this.temp);
     return matchElem;

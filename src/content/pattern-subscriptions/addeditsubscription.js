@@ -35,9 +35,8 @@ var proxies = {
 // dialog) only to newly added proxies.
 var oldProxies = [];
 
-// These proxies are the ones a user selected for getting untied from the 
-// current subscription.
-var removeProxies = [];
+// Helper Array for proxy handling current subscription.
+var helperProxies = [];
 
 Cu.import("resource://foxyproxy/patternSubscriptions.jsm");
 
@@ -117,33 +116,16 @@ function onOK() {
     userValues.name = document.getElementById("subscriptionName").value;  
     userValues.notes = document.getElementById("subscriptionNotes").value; 
     userValues.url = url;
-    for (i = 0; i < proxies.list.length; i++) {
+    for (var i = 0; i < proxies.list.length; i++) {
       // Let's check first whether the user has added the same proxy more than
       // once to the subscription. We do not allow that.
-      for (j = i + 1; j < proxies.list.length; j++) {
+      for (var j = i + 1; j < proxies.list.length; j++) {
         if (proxies.list[i].id === proxies.list[j].id) {
           this.fp.alert(null, this.fp.
             getMessage("patternsubscription.warning.dupProxy", 
             [proxies.list[i].name]));
           return false;
 	}
-      }
-      // Before we add the new patetrns we ask whether the user really wants to 
-      // deactivate her old patterns and subscribe to the new list instead. We 
-      // ask only if the user is new to this feature (i.e. the proxies list was 
-      // empty while the addeditsubscription.xul was loaded) avoiding further 
-      // complexity and assuming she knows what she does (scary!). Of course, 
-      // if a user deletes all proxies in a subscription once and adds one again
-      // later, she is getting asked again. That seems okay.
-      if ((!window.arguments[0].inn || window.arguments[0].inn.subscription.
-	  metadata.proxies.length === 0) && userValues.enabled) {
-        if (!this.fp.warnings.showWarningIfDesired(window, 
-          ["patternsubscription.warning.subscription", proxies.list[i].name], 
-          "patSubWarning")) {
-          // The user did not want to import the subscription for one proxy.
-          // Giving her the opportunity to rethink the whole story.
-	  return false;
-        }
       }
       // Creating the array of proxy id's for saving to disk and rebuilding 
       // the proxy list on startup.
@@ -178,9 +160,8 @@ function onOK() {
       // ones now. Note: We just need to include the code here, i.e. if the user
       // edits a subscription, as there can be no patterns to remove/enable if 
       // the user adds a new subscription.
-      if (removeProxies.length > 0) {
-        patternSubscriptions.deletePatterns(removeProxies, window.arguments[0].
-          inn.subscription.metadata.enabled);
+      if (helperProxies.length > 0) {
+        patternSubscriptions.deletePatterns(helperProxies); 
       }	
       // If a user edits a subscription it can happen that she already had
       // added proxies to it. But we want to give only those back that were
@@ -196,11 +177,27 @@ function onOK() {
         for (j = 0; j < oldProxies.length; j++) {
           if (oldProxies[j].id === proxies.item(i).id) {
 	    proxyFound = true;
+            // Now, the second use case of our herlperPrxies array (the first
+            // was storing the proxies that need to get removed from the 
+            // subscription.
+            helperProxies.push(oldProxies[j]); 
 	  }
 	} 
 	if (!proxyFound) {
 	  newProxies.push(proxies.item(i));
         };
+      }
+      // Now we check whether the status of the subscription will be changed.
+      // If so, we call the necessary method to do this for the old proxies as
+      // the new ones will automatically be up-to-date due to addPatterns().
+      if (userValues.enabled !== window.arguments[0].inn.subscription.
+	  metadata.enabled && helperProxies.length > 0) {
+        // Okay, we had proxies and we know that these are really only proxies
+        // we had when we loaded the addeditsubscriptions.xul AND are still to
+        // be used for the subscription. AND the status changed. Let's adapt 
+	// it for the patterns tied to these old proxies.
+	patternSubscriptions.changeSubStatus(helperProxies, 
+          userValues.enabled);
       }
       window.arguments[0].out = {
         userValues : userValues,
@@ -257,9 +254,9 @@ function removeProxy(e) {
       fp.alert(this, fp.getMessage("patternsubscription.noproxy.selected")); 
       return;
     }   
-    // Why does removeProxies.push(proxies.list.
+    // Why does helperProxies.push(proxies.list.
     // splice(proxyTree.currentIndex,1)) not work?
-    removeProxies.push(proxies.list[proxyTree.currentIndex]);
+    helperProxies.push(proxies.list[proxyTree.currentIndex]);
     proxies.list.splice(proxyTree.currentIndex, 1);
     proxyTree.view = fpc.makeProxyTreeView(proxies, document); 
   }

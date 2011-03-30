@@ -193,6 +193,8 @@ function getTextForCell(pat, col) {
     case "isBlackList":return foxyproxy.getMessage(pat.isBlackList ? "foxyproxy.blacklist.label" : "foxyproxy.whitelist.label");
     case "caseSensitive":return foxyproxy.getMessage(pat.caseSensitive ? "yes" : "no");
     case "temp":return foxyproxy.getMessage(pat.temp ? "yes" : "no");
+    case "fromSubscription":return foxyproxy.
+      getMessage(pat.fromSubscription ? "yes" : "no");
   };
 }
 

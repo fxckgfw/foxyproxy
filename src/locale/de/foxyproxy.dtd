@@ -394,6 +394,7 @@
 <!ENTITY foxyproxy.define.label "Definieren">
 <!ENTITY foxyproxy.define.accesskey "D">
 <!ENTITY foxyproxy.define.tooltip "Definieren">
+<!ENTITY foxyproxy.fromSubscription.label "Abonniert">
 <!ENTITY foxyproxy.pattern.to.quickadd.label "Muster für Schnellzuweisung zu Proxy">
 <!ENTITY foxyproxy.pattern.to.autoadd.label "Muster für automatische Zuweisung zu Proxy">
 <!ENTITY foxyproxy.home "Home">

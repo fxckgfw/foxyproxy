@@ -124,6 +124,11 @@ tab[id^="foxyproxy-"] /* selectall tabs whose id have the prefix "foxyproxy-" */
 #foxyproxy-proxy-tab {
   list-style-image: url("chrome://foxyproxy/content/images/monitor.png");
 }
+/* We take the bitmap here and not the SVG icon as the latter can only be
+ * displayed by Firefox > 4*/
+#foxyproxy-pattern-subscriptions-tab {
+  list-style-image: url("chrome://foxyproxy/content/images/pattern.png");
+}
 #foxyproxy-global-tab {
   list-style-image: url("chrome://foxyproxy/content/images/world.png");
 }

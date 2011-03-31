@@ -725,7 +725,7 @@ var patternSubscriptions = {
         // We know already that the status has changed. Thus, we only need to
         // apply the new one to the subscription patterns.
         if (aProxyList[i].matches[j].fromSubscription) {
-          aProxyList[i].matches[j].enabled = bNewStatus;
+	  aProxyList[i].matches[j].enabled = bNewStatus;
         }
       }
     }

@@ -22,11 +22,6 @@ function onLoad() {
   overlay = fpc.getMostRecentWindow().foxyproxy;
   proxyTree = document.getElementById("proxyTree");
   subscriptionsTree = document.getElementById("subscriptionsTree");
-  // Having the tree in our module as well in order to get used easier by
-  // its methods.
-  if (patternSubscriptions.subscriptionsTree === null) {
-    patternSubscriptions.subscriptionsTree = subscriptionsTree;
-  }
   logTree = document.getElementById("logTree");
   saveLogCmd = document.getElementById("saveLogCmd");
   clearLogCmd = document.getElementById("clearLogCmd");  
@@ -35,6 +30,7 @@ function onLoad() {
   var obs = CC["@mozilla.org/observer-service;1"].getService(CI.nsIObserverService);
   obs.addObserver(observer,"foxyproxy-mode-change", false);
   obs.addObserver(observer,"foxyproxy-proxy-change", false);
+  obs.addObserver(observer,"foxyproxy-tree-update", false);
   sizeToContent();
 }
 
@@ -42,6 +38,7 @@ function onOK() {
   var obs = CC["@mozilla.org/observer-service;1"].getService(CI.nsIObserverService);
   obs.removeObserver(observer, "foxyproxy-mode-change");
   obs.removeObserver(observer, "foxyproxy-proxy-change");
+  obs.removeObserver(observer, "foxyproxy-tree-update");
 }
 
 var observer = {
@@ -55,6 +52,10 @@ var observer = {
       case "foxyproxy-proxy-change": /* deliberate fall-through */
       case "foxyproxy-mode-change":
         _updateView(e);
+        break;
+      case "foxyproxy-tree-update":
+        subscriptionsTree.view = patternSubscriptions.
+          makeSubscriptionsTreeView();
         break;
      }
    }

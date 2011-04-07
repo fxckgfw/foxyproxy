@@ -105,7 +105,8 @@ function onOK() {
     userValues.proxies = [];
     var proxyFound;
     var newProxies = [];
-    var parsedSubscription, base64Encoded;
+    var parsedSubscription, base64Encoded
+    var errorText = "";
     var url = document.getElementById("subscriptionUrl").value;
     // ToDo: Do we want to check whether it is really a URL here?
     if (url === null || url === "") {
@@ -143,8 +144,8 @@ function onOK() {
       // The following is kind of a trivial array test. We need that to check
       // whether we got an array of error Messages back or a subscription
       // object. Iff the latter is the case we add a new subscription. As we
-      // do not have any subscription yet if we got an array back, we silently
-      // ignore it and return just false. 
+      // do not have any subscription yet if we got an array back, we show
+      // an import error message and just return false.
       if (parsedSubscription && parsedSubscription.length === undefined) {
         window.arguments[0].out = {
           subscription : parsedSubscription,
@@ -153,6 +154,13 @@ function onOK() {
           proxies : proxies.list
         };
 	return true;
+      } else {
+        for (i = 0; i < parsedSubscription.length; i++) {
+	  errorText = errorText + "\n" + parsedSubscription[i];
+        }
+	dump("Here we go!");
+        fp.alert(null, fp.getMessage(
+          "patternsubscription.initial.import.failure") + "\n" + errorText);
       }
     } else {
       // The user has edited the pattern subscription. Maybe she removed a proxy

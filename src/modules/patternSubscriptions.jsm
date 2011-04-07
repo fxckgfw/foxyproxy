@@ -75,12 +75,14 @@ var patternSubscriptions = {
         hasmore = conStream.readLine(line);
         loadedSubscription = this.getObjectFromJSON(line.value, errorMessages); 
 	if (loadedSubscription && loadedSubscription.length === undefined) {
+	  dump("Pushed the subscription!\n");
+	  this.subscriptionsList.push(loadedSubscription); 
           if (loadedSubscription.metadata && 
               loadedSubscription.metadata.refresh != 0) {
             delete loadedSubscription.metadata.timer;
+	    dump("Called Timer!\n");
             this.setSubscriptionTimer(loadedSubscription, false, true);
 	  }
-	  this.subscriptionsList.push(loadedSubscription); 
 	} else {
           // Parsing the whole subscription failed but maybe we can parse at
           // least the metadata to show the user the problematic subscription
@@ -134,7 +136,8 @@ var patternSubscriptions = {
       var subscriptionJSON = null;
       var req = Cc["@mozilla.org/xmlextras/xmlhttprequest;1"].
         createInstance(Ci.nsIXMLHttpRequest);
-      // We shouuld not use onreadystatechange due to performance issues!
+      // We should not use onreadystatechange due to performance issues!
+      // See: https://developer.mozilla.org/en/Extensions/Performance_best_practices_in_extensions 
       /*req.onreadystatechange = function (aEvt) {
 
       };*/
@@ -147,9 +150,7 @@ var patternSubscriptions = {
       req.overrideMimeType("application/json");
       req.send(null);
       subscriptionText = req.responseText;
-      // TODO: Implement RegEx-Test for Base64, see:
-      // http://www.perlmonks.org/index.pl?node_id=775820 
-      // Until we have this test we assume first to have plain text and if this
+      // First we guess we have a plain text subscription and if this
       // is not working we assume a Base64 encoded response. If the last thing
       // is not working either the subscription parsing and import fails.
       subscriptionJSON = this.getObjectFromJSON(subscriptionText, 
@@ -157,11 +158,25 @@ var patternSubscriptions = {
       if (subscriptionJSON && !(subscriptionJSON.length === undefined)) {
         dump("The response contained invalid JSON while assuming a plain " +
               "text! We try Base64 decoding first...\n");
-        // We need to replace newlines and other special characters here. As 
-	// there are lots of implementations that differ on this issue and the
-	// issue whether there should/may be a specific line length (say 64 or
-	// 76 chars).
-	subscriptionText = atob(req.responseText.replace(/\s*/g, ""));
+        // Ugh, using a call to evalInSandbox() for Base64 checking! The reason
+        // for this is that the atob() call fails silently if there is an error
+        // within the Base64 response but we want to show this to the FoxyProxy
+        // users. 
+	try {
+	  var mySandbox = Components.utils.Sandbox(this.getWindow());
+	  mySandbox.window = this.getWindow();
+	  // We need to replace newlines and other special characters here. As 
+	  // there are lots of implementations that differ on this issue and the
+          // issue whether there should/may be a specific line length (say 64 or
+          // 76 chars). 
+	  mySandbox.responseText = req.responseText.replace(/\s*/g, '');
+	  subscriptionText = Components.utils.
+            evalInSandbox("window.atob(responseText);", mySandbox); 
+	} catch (e) {
+          errorMessages.push(this.fp.
+              getMessage("patternsubscription.error.base64"));
+          return errorMessages;
+	}
         subscriptionJSON = this.getObjectFromJSON(subscriptionText, 
           errorMessages); 
         // We do not need to process the subscription any further if we got 
@@ -170,7 +185,7 @@ var patternSubscriptions = {
         // as obfuscation).
         if (subscriptionJSON && !(subscriptionJSON.length === undefined)) {
           errorMessages.push(this.fp.
-            getMessage("patternsubscription.error.JSON"));
+           getMessage("patternsubscription.error.JSON"));
           return errorMessages;
         } else if (!bBase64 && !this.fp.warnings.showWarningIfDesired(null, 
           ["patternsubscription.warning.base64"], "noneEncodingWarning")) { 
@@ -219,14 +234,10 @@ var patternSubscriptions = {
       }
     } catch (e) {
       if (e.name === "NS_ERROR_FILE_NOT_FOUND") {
-        this.fp.alert(null, this.fp.
-          getMessage("patternsubscription.error.network"));        
         errorMessages.push(this.fp.
           getMessage("patternsubscription.error.network")); 
       } else {
         dump("Error in loadSubscription(): " + e + "\n");
-        this.fp.alert(null, this.fp.
-        getMessage("patternsubscription.error.network.unspecified")); 
         errorMessages.push(this.fp.
           getMessage("patternsubscription.error.network.unspecified")); 
       }
@@ -364,6 +375,8 @@ var patternSubscriptions = {
       this.setSubscriptionTimer(aSubscription, false, false);
     }
     this.subscriptionsList.push(aSubscription); 
+    this.fp.alert(null, this.fp.
+      getMessage("patternsubscription.initial.import.success"));
     this.writeSubscriptions();
   }, 
 
@@ -427,7 +440,9 @@ var patternSubscriptions = {
     var event = {
       notify : function(timer) {
         that.refreshSubscription(aSubscription, false);
-        that.subscriptionsTree.view = that.makeSubscriptionsTreeView();
+	// We just need the notification to redraw the tree...
+	dump("Broadcasted tree update!\n");
+	that.fp.broadcast(null, "foxyproxy-tree-update", null); 
       }
     };
     if (bRefresh) {
@@ -599,6 +614,7 @@ var patternSubscriptions = {
   },
 
   refreshSubscription: function(aSubscription, showResponse) {
+    var errorText = "";
     // We are calculating the index in this method in order to be able to
     // use it with the nsITimer instances as well. If we would get the 
     // index from our caller it could happen that the index is wrong due
@@ -620,8 +636,11 @@ var patternSubscriptions = {
     // Our "array test" we deployed in addeditsubscription.js as well.
     if (refreshedSubscription && !(refreshedSubscription.length === 
           undefined)) {
+      for (var i = 0; i < refreshedSubscription.length; i++) {
+        errorText = errorText + "\n" + refreshedSubscription[i];
+      }
       this.fp.alert(null, this.fp.
-        getMessage("patternsubscription.update.failure")); 
+        getMessage("patternsubscription.update.failure") + "\n" + errorText); 
       aSubscription.metadata.lastStatus = this.fp.getMessage("error"); 
       // So, we really did not get a proper subscription but error messages.
       // Making sure that they are shown in the lastStatus dialog.
@@ -776,6 +795,12 @@ var patternSubscriptions = {
     return proxyArray;
   },
 
+  getWindow: function() {
+    return Components.classes["@mozilla.org/appshell/window-mediator;1"].
+      getService(Components.interfaces.nsIWindowMediator).
+      getMostRecentWindow('navigator:browser').content.wrappedJSObject;
+  },  
+
   makeSubscriptionsTreeView: function() {
     var that = this;
     var ret = {
@@ -834,4 +859,5 @@ var patternSubscriptions = {
     };
     return ret;
   }
+
 }

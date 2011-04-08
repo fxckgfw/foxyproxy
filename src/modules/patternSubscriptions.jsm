@@ -380,7 +380,7 @@ var patternSubscriptions = {
     if (aSubscription.metadata.refresh > 0) { 
       this.setSubscriptionTimer(aSubscription, false, false);
     }
-    this.subscriptionsList.push(aSubscription); 
+    this.subscriptionsList.push(aSubscription);
     this.fp.alert(null, this.fp.
       getMessage("patternsubscription.initial.import.success"));
     this.writeSubscriptions();
@@ -391,7 +391,7 @@ var patternSubscriptions = {
     var userValue;
     var oldRefresh = aSubscription.metadata.refresh;
     for (userValue in userValues) {
-      aSubscription.metadata[userValue] = userValues[userValue];
+      aSubscription.metadata.userValue = userValues[userValue];
     } 
     // If the name is empty take the URL.
     if (aSubscription.metadata.name === "") {
@@ -705,6 +705,7 @@ var patternSubscriptions = {
     if (currentSubIndex) {
       currentSub = this.subscriptionsList[currentSubIndex];
     } else {
+      // Adding patterns to a subscription just added to the subscripions list.
       currentSub = this.subscriptionsList[this.subscriptionsList.length - 1];
     }
     currentMet = currentSub.metadata;

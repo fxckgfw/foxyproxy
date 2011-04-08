@@ -51,6 +51,7 @@ var patternSubscriptions = {
   loadSavedSubscriptions: function(savedPatternsFile) {
     try {
       var line = {};
+      var i;
       var errorMessages;
       var hasmore;
       var loadedSubscription;
@@ -77,12 +78,6 @@ var patternSubscriptions = {
 	if (loadedSubscription && loadedSubscription.length === undefined) {
 	  dump("Pushed the subscription!\n");
 	  this.subscriptionsList.push(loadedSubscription); 
-          if (loadedSubscription.metadata && 
-              loadedSubscription.metadata.refresh != 0) {
-            delete loadedSubscription.metadata.timer;
-	    dump("Called Timer!\n");
-            this.setSubscriptionTimer(loadedSubscription, false, true);
-	  }
 	} else {
           // Parsing the whole subscription failed but maybe we can parse at
           // least the metadata to show the user the problematic subscription
@@ -122,6 +117,23 @@ var patternSubscriptions = {
 	  } 
 	}
       } while(hasmore);
+      try {
+        // We could not do this in the while loop above as every time the timer
+        // needs to be refreshed the subscriptions are written to disk. Thus, if
+        // that happens to the first loaded subscription there may occur a loss
+        // of the other subscriptions as the subscriptions list would not be
+        // populated with them yet.
+        for (i = 0; i < this.subscriptionsList.length; i++) {
+          if (this.subscriptionsList[i].metadata && 
+              this.subscriptionsList[i].metadata.refresh != 0) {
+            delete this.subscriptionsList[i].metadata.timer;
+	    dump("Called Timer!\n");
+            this.setSubscriptionTimer(this.subscriptionsList[i], false, true);
+	  } 
+        } 
+      } catch (ex) {
+        dump("Error while resetting the subscription timer: " + e + "\n");
+      }
       conStream.close(); 
     } catch (e) {
       dump("Error while loading the saved subscriptions: " + e + "\n");
@@ -136,12 +148,6 @@ var patternSubscriptions = {
       var subscriptionJSON = null;
       var req = Cc["@mozilla.org/xmlextras/xmlhttprequest;1"].
         createInstance(Ci.nsIXMLHttpRequest);
-      // We should not use onreadystatechange due to performance issues!
-      // See: https://developer.mozilla.org/en/Extensions/Performance_best_practices_in_extensions 
-      /*req.onreadystatechange = function (aEvt) {
-
-      };*/
-
       req.open("GET", aURLString, false);
       // We do need the following line of code. Otherwise we would get an error
       // that our JSON is not well formed if we load it from a local drive. See:
@@ -184,8 +190,8 @@ var patternSubscriptions = {
         // to import a Base64 encoded subscription (in case she selected "none"
         // as obfuscation).
         if (subscriptionJSON && !(subscriptionJSON.length === undefined)) {
-          errorMessages.push(this.fp.
-           getMessage("patternsubscription.error.JSON"));
+          errorMessages.splice(errorMessages.length -1, 1, this.fp.
+           getMessage("patternsubscription.error.JSON2"));
           return errorMessages;
         } else if (!bBase64 && !this.fp.warnings.showWarningIfDesired(null, 
           ["patternsubscription.warning.base64"], "noneEncodingWarning")) { 
@@ -475,6 +481,7 @@ var patternSubscriptions = {
   }, 
 
   writeSubscriptions: function() {
+    dump("WriteSusbcriptions got called!\n");
     try {
       var subscriptionsData = "";
       var foStream;

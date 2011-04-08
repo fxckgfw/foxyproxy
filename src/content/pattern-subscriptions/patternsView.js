@@ -1,5 +1,3 @@
-"use strict";
-
 /**
   FoxyProxy
   Copyright (C) 2006-#%#% Eric H. Jung and LeahScape, Inc.
@@ -10,6 +8,8 @@
   available in the LICENSE file at the root of this installation
   and also online at http://www.gnu.org/licenses/gpl.txt
 **/
+
+"use strict";
 
 function onLoad() {
   var patternsViewTree = document.getElementById("patternsViewTree");

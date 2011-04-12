@@ -132,7 +132,7 @@ var patternSubscriptions = {
 	  } 
         } 
       } catch (ex) {
-        dump("Error while resetting the subscription timer: " + e + "\n");
+        dump("Error while resetting the subscription timer: " + ex + "\n");
       }
       conStream.close(); 
     } catch (e) {

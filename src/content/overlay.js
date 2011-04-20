@@ -640,7 +640,14 @@ end-foxyproxy-simple !*/
           break;
         case "contextmenu":
           this._popupShowing = 0;
-          document.getElementById("foxyproxy-statusbar-popup").showPopup(e.target, -1, -1, "popup", "bottomleft", "topleft");
+	  if (e.target.id === "foxyproxy-toolbar-icon") {
+            popupElement = document.
+              getElementById("foxyproxy-toolbarbutton-popup");
+          } else {
+            popupElement = document.
+              getElementById("foxyproxy-statusbar-popup"); 
+          } 
+          popupElement.showPopup(e.target, -1, -1, "popup", "bottomleft", "topleft");
           break;
         case "reloadcurtab":
           gBrowser.reloadTab(gBrowser.mCurrentTab);

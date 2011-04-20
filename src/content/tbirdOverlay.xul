@@ -70,11 +70,13 @@
   <toolbarpalette id="MailToolbarPalette">   
     <toolbarbutton id="foxyproxy-toolbar-icon" type="menu" orient="horizontal" mode="patterns" persist="mode" label="&foxyproxy.standard.label;"
       context="foxyproxy-toolbarbutton-popup"
-      onclick="foxyproxy.onSBTBClick(event, foxyproxy.fp.toolbar);event.stopPropagation();event.preventDefault();return false;">
-        <menupopup id="foxyproxy-toolbarbutton-popup"
-        onpopuphiding="foxyproxy.onPopupHiding();"
-        onpopupshowing="event.stopPropagation();event.preventDefault();return false;"/>  <!--  todo: do i really need all 3 of these? -->
+      onclick="foxyproxy.onSBTBClick(event, foxyproxy.fp.toolbar)">
     </toolbarbutton> 
   </toolbarpalette> 
-   
+
+  <popupset>
+    <menupopup id="foxyproxy-toolbarbutton-popup"
+        onpopuphiding="foxyproxy.onPopupHiding();"
+	onpopupshowing="foxyproxy.onPopupShowing(this, event);"/> 
+  </popupset> 
 </overlay>

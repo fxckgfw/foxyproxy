@@ -62,7 +62,7 @@ function onLoad() {
       // is constructed using those saved id's. That accomplish the following
       // five lines of code.
       if (metadata.proxies.length > 0) {
-        proxyArray = patternSubscriptions.getProxiesFromId(metadata.proxies);	
+        proxyArray = fp.proxies.getProxiesFromId(metadata.proxies);	
 	for (var i = 0; i < proxyArray.length; i++) {
           proxies.push(proxyArray[i]);
           // We are pushing the proxies here as well and do not copy them
@@ -82,7 +82,7 @@ function onLoad() {
       } 
       // And assuming that we only have 'None' and 'Base64' so far as 
       // obfusctaion methods...
-      if (metadata.obfuscation === "Base64") {
+      if (metadata.obfuscation === "base64") {
         obfuscationList.selectedIndex = 1;
       } else {
         obfuscationList.selectedIndex = 0;
@@ -136,9 +136,9 @@ function onOK() {
     userValues.format = document.getElementById("subscriptionFormat").
       selectedItem.label;
     userValues.obfuscation = document.getElementById("subscriptionObfuscation").
-      selectedItem.label;
+      selectedItem.label.toLowerCase();
     if (window.arguments[0].inn === null) {
-      base64Encoded = userValues.obfuscation.toLowerCase() === "base64";
+      base64Encoded = userValues.obfuscation === "base64";
       parsedSubscription = patternSubscriptions.
 	loadSubscription(userValues.url, base64Encoded);
       // The following is kind of a trivial array test. We need that to check
@@ -158,7 +158,6 @@ function onOK() {
         for (i = 0; i < parsedSubscription.length; i++) {
 	  errorText = errorText + "\n" + parsedSubscription[i];
         }
-	dump("Here we go!");
         fp.alert(null, fp.getMessage(
           "patternsubscription.initial.import.failure") + "\n" + errorText);
       }

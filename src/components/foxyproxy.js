@@ -104,9 +104,6 @@ function foxyproxy() {
   // https://developer.mozilla.org/en/JavaScript/Code_modules/Using section
   // "Custom modules and XPCOM components" 
   CU.import("resource://foxyproxy/patternSubscriptions.jsm", this);
-  // We need a reference to this service as well in our patternSubscriptions
-  // file (e.g. for displaying messages in chrome code).
-  this.patternSubscriptions.fp = this;
 };
 foxyproxy.prototype = {
   PFF : " ",
@@ -148,6 +145,7 @@ foxyproxy.prototype = {
           gObsSvc.addObserver(this, "domwindowopened", false);
           try {
             this.init();
+            this.patternSubscriptions.init();
             // Initialize defaultPrefs before initial call to this.setMode().
             // setMode() is called from this.loadSettings()->this.fromDOM(), but also from commandlinehandler.js.
             this.defaultPrefs.init();        
@@ -934,6 +932,17 @@ foxyproxy.prototype = {
     requiresRemoteDNSLookups : function() {
       return this.list.some(function(e) {return e.shouldDisableDNSPrefetch();});
     },
+
+    getProxiesFromId: function(aIdArray) {
+      var proxyArray = [];
+      for (var i = 0; i < aIdArray.length; i++) {
+        var proxy = this.getProxyById(aIdArray[i]);
+        if (proxy) {
+          proxyArray.push(proxy);
+        }
+      }
+      return proxyArray;
+    }, 
     
     /**
      * Returns the first existing proxy with the given name or null

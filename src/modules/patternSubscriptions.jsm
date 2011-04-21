@@ -46,6 +46,13 @@ var patternSubscriptions = {
   // asking here to refresh the corrupted subscription immediately.
   partialLoadFailure : [],
 
+  init: function() {
+    this.fp = Cc["@leahscape.org/foxyproxy/service;1"].getService().
+      wrappedJSObject;
+    this.fpc = Cc["@leahscape.org/foxyproxy/common;1"].getService().
+      wrappedJSObject; 
+  },
+
   // TODO: Find a way to load the file efficiently using our XmlHTTPRequest
   // method below...
   loadSavedSubscriptions: function(savedPatternsFile) {
@@ -169,15 +176,17 @@ var patternSubscriptions = {
         // within the Base64 response but we want to show this to the FoxyProxy
         // users. 
 	try {
-	  var mySandbox = Components.utils.Sandbox(this.getWindow());
-	  mySandbox.window = this.getWindow();
+	  //TODO: Why not using a chrome window?
+	  var win = this.fpc.getMostRecentWindow();
+	  var mySandbox = Cu.Sandbox(win);
+	  mySandbox.window = win;
 	  // We need to replace newlines and other special characters here. As 
 	  // there are lots of implementations that differ on this issue and the
           // issue whether there should/may be a specific line length (say 64 or
           // 76 chars). 
 	  mySandbox.responseText = req.responseText.replace(/\s*/g, '');
-	  subscriptionText = Components.utils.
-            evalInSandbox("window.atob(responseText);", mySandbox); 
+          subscriptionText = Cu.evalInSandbox("window.atob(responseText);",
+            mySandbox); 
 	} catch (e) {
           errorMessages.push(this.fp.
               getMessage("patternsubscription.error.base64"));
@@ -263,7 +272,7 @@ var patternSubscriptions = {
       // As FoxyProxy shall be usable with FF < 3.5 we use nsIJSON. But
       // Thunderbird does not support nsIJSON. Thus, we check for the proper
       // method to use here.
-      if (typeof Components.interfaces.nsIJSON === "undefined") {
+      if (typeof Ci.nsIJSON === "undefined") {
 	return JSON.parse(aString);
       } else {
         json = Cc["@mozilla.org/dom/json;1"].createInstance(Ci.nsIJSON);
@@ -283,7 +292,7 @@ var patternSubscriptions = {
       // As FoxyProxy shall be usable with FF < 3.5 we use nsIJSON. But
       // Thunderbird does not support nsIJSON. Thus, we check for the proper
       // method to use here.
-      if (typeof Components.interfaces.nsIJSON === "undefined") {
+      if (typeof Ci.nsIJSON === "undefined") {
 	return JSON.stringify(aObject);
       } else {
         json = Cc["@mozilla.org/dom/json;1"].createInstance(Ci.nsIJSON);
@@ -474,7 +483,7 @@ var patternSubscriptions = {
       // Owners may do everthing with the file, the group and others are
       // only allowed to read it. 0x1E4 is the same as 0744 but we use it here
       // as octal literals and escape sequences are deprecated and the 
-      // respective costants are not available yet, see: bug 433295.
+      // respective constants are not available yet, see: bug 433295.
       file.create(Ci.nsIFile.NORMAL_FILE_TYPE, 0x1E4); 
     }
     return file;
@@ -626,18 +635,18 @@ var patternSubscriptions = {
     // use it with the nsITimer instances as well. If we would get the 
     // index from our caller it could happen that the index is wrong due
     // to changes in the subscription list while the timer was "sleeping".
-    var aIndex, proxyList = [];
+    var aIndex = null, proxyList = [];
     for (var i = 0; i < this.subscriptionsList.length; i++) {
       if (this.subscriptionsList[i] === aSubscription) {
 	aIndex = i;
       }
     }
+    if (aIndex === null) return;
     // Estimating whether the user wants to have the subscription base64 
     // encoded. We use this as a parameter to show the proper dialog if there
     // is a mismatch between the users choice and the subscription's
     // encoding.
-    var base64Encoded = aSubscription.metadata.obfuscation.toLowerCase() ===
-      "base64";
+    var base64Encoded = aSubscription.metadata.obfuscation === "base64";
     var refreshedSubscription = this.loadSubscription(aSubscription.
       metadata.url, base64Encoded); 
     // Our "array test" we deployed in addeditsubscription.js as well.
@@ -681,7 +690,8 @@ var patternSubscriptions = {
     // And it means above all refreshing the patterns... But first we generate 
     // the proxy list.
     if (aSubscription.metadata.proxies.length > 0) {
-      proxyList = this.getProxiesFromId(aSubscription.metadata.proxies);
+      proxyList = this.fp.proxies.getProxiesFromId(aSubscription.metadata.
+        proxies);
       // First, deleting the old subscription patterns.
       this.deletePatterns(proxyList, aSubscription.metadata.enabled);
       // Now, we add the refreshed ones...
@@ -730,11 +740,21 @@ var patternSubscriptions = {
   },
 
   deletePatterns: function(aProxyList) {
+    // This method deletes all the patterns belonging to a subscription.
+    // That holds for all proxies that were tied to it and are contained in
+    // the aProxyList argument.
     var i,j,k,matchesLength; 
     for (i = 0; i < aProxyList.length; i++) {
       matchesLength = aProxyList[i].matches.length; 
       j = k = 0;
       do {
+        // That loop does the following: Check the pattern j of the proxy i
+        // whether it is from a subscription. If so, delete it (splice()-call)
+        // raise k and start at the same position again (now being the next)
+        // pattern. If not, raise j (i.e. check the pattern at the next 
+        // position in the array at the next time running the loop) and k.
+        // That goes until all the patterns are checked, i.e. until k equals
+        // the patterns length.
         if (aProxyList[i].matches[j].fromSubscription) {
             aProxyList[i].matches.splice(j, 1);
         } else {
@@ -790,24 +810,6 @@ var patternSubscriptions = {
   toHexString: function(charCode) {
     return ("0" + charCode.toString(16)).slice(-2);
   },
-
-  getProxiesFromId: function(aIdArray) {
-    var proxyArray = [];
-    for (var i = 0; i < aIdArray.length; i++) {
-      for (var j = 0; j < this.fp.proxies.length; j++) { 
-        if (aIdArray[i] === this.fp.proxies.item(j).id) { 
-	  proxyArray.push(this.fp.proxies.item(j));
-        }
-      }
-    }
-    return proxyArray;
-  },
-
-  getWindow: function() {
-    return Components.classes["@mozilla.org/appshell/window-mediator;1"].
-      getService(Components.interfaces.nsIWindowMediator).
-      getMostRecentWindow('navigator:browser').content.wrappedJSObject;
-  },  
 
   makeSubscriptionsTreeView: function() {
     var that = this;

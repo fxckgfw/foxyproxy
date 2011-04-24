@@ -566,7 +566,7 @@
 <!ENTITY foxyproxy.pattern.subscriptions.url.tooltip "Subscription URL">
 <!ENTITY foxyproxy.pattern.subscriptions.proxies.tooltip "Proxies that have subscribed to this pattern list">
 <!ENTITY foxyproxy.pattern.subscriptions.addProxies.label "Add Proxies">
-<!ENTITY foxyproxy.pattern.subscriptions.addProxies.tooltip "Add proxies that shall subscribe to this pattern list">
+<!ENTITY foxyproxy.pattern.subscriptions.addProxies.tooltip "Add proxies that will subscribe to this pattern list">
 <!ENTITY foxyproxy.pattern.subscriptions.removeProxies.label "Remove Selected">
 <!ENTITY foxyproxy.pattern.subscriptions.removeProxies.tooltip "Cancel the subscription of this pattern list for selected proxies">
 <!ENTITY foxyproxy.pattern.subscriptions.refresh.label "Refresh Rate">

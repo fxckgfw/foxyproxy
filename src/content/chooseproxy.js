@@ -38,15 +38,17 @@ function onLoad() {
 }
 
 function onOK() {
-  if (window.arguments[0].inn.pattern && 
-    proxyTree.currentIndex === fp.proxies.length -1) {
-    fp.alert(window, fp.getMessage("patternsubscription.pattern.default")); 
-    return false;
-  }
-  if (proxyTree.currentIndex != -1)
-    window.arguments[0].out = {proxy:fp.proxies.item(proxyTree.currentIndex), reloadcurtab:
+  if (proxyTree.currentIndex !== -1) {
+    if (inn.pattern && fp.proxies.item(proxyTree.currentIndex).lastresort) { 
+      fp.alert(window, fp.getMessage("patternsubscription.pattern.default")); 
+      return false;
+    }
+    window.arguments[0].out = {proxy:fp.proxies.item(proxyTree.currentIndex), 
+      reloadcurtab:
       document.getElementById("reloadcurtab").checked};
-  return true;
+    return true;
+  }
+  return false;
 }
 
 function onSettings() {

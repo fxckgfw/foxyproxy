@@ -10,7 +10,7 @@
 **/
 
 var foxyproxy, proxyTree, subscriptionsTree, logTree, overlay, saveLogCmd, 
-  clearLogCmd, noURLsCmd, fpc;
+  clearLogCmd, noURLsCmd, fpc, patternsIcon, patternsIconTimerId;
 const CI = Components.interfaces, CC = Components.classes, CU = Components.utils;
 
 CU.import("resource://foxyproxy/patternSubscriptions.jsm");
@@ -32,9 +32,13 @@ function onLoad() {
   obs.addObserver(observer,"foxyproxy-proxy-change", false);
   obs.addObserver(observer,"foxyproxy-tree-update", false);
   sizeToContent();
+  var svgDoc = document.getElementById("svg2885");
+  patternsIcon = svgDoc.getElementsByTagName("rect");
+  startPatternsIconAnimation();
 }
 
 function onOK() {
+  clearTimeout(patternsIconTimerId);
   var obs = CC["@mozilla.org/observer-service;1"].getService(CI.nsIObserverService);
   obs.removeObserver(observer, "foxyproxy-mode-change");
   obs.removeObserver(observer, "foxyproxy-proxy-change");
@@ -813,4 +817,13 @@ function copyLogURLToClipboard() {
     if (i+1 != sz) txt += " "; // don't add space to the front or the end
   }
   CC["@mozilla.org/widget/clipboardhelper;1"].getService(CI.nsIClipboardHelper).copyString(txt);
+}
+
+function startPatternsIconAnimation() {
+  patternsIconTimerId = setInterval(function() {
+    for (var i=0, sz=patternsIcon.length; i<sz; i++) {
+      patternsIcon[i].setAttribute("style", "fill: " + ("#" + Math.round(0xffffff * Math.random()).toString(16))
+        + ";fill-opacity:1;fill-rule:nonzero;stroke:none");
+    }
+  }, 200);
 }

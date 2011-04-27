@@ -12,6 +12,7 @@
 
 <?xml-stylesheet href="foxyproxy.css" type="text/css"?>
 <?xul-overlay href="includes.xul"?>
+<?xul-overlay href="chrome://foxyproxy/content/optionsOverlay-svg.xul"?>
 <!DOCTYPE overlay SYSTEM "chrome://foxyproxy/locale/foxyproxy.dtd">
 <window id="foxyproxyoptions2" windowtype="foxyproxy-options"
   title="&foxyproxy.standard.label;"
@@ -84,11 +85,7 @@
       <tab id="foxyproxy-proxy-tab" label="&foxyproxy.tab.proxies.label;"
         accesskey="&foxyproxy.tab.proxies.accesskey;" selected="true"
         tooltiptext="&foxyproxy.tab.proxies.tooltip;" class="uncram-tab"/>
-      <tab id="foxyproxy-pattern-subscriptions-tab" 
-	label="&foxyproxy.pattern.subscriptions.label;"
-        accesskey="&foxyproxy.pattern.subscriptions.accesskey;"
-	tooltiptext="&foxyproxy.pattern.subscriptions.tooltip;" 
-	class="hide-if-foxyproxy-simple uncram-tab"/>
+      <tab id="foxyproxy-pattern-subscriptions-tab"/>
       <tab id="foxyproxy-global-tab" label="&foxyproxy.tab.global.label;"
         accesskey="&foxyproxy.tab.global.accesskey;"
         tooltiptext="&foxyproxy.tab.global.tooltip;" class="uncram-tab"/>

@@ -822,8 +822,12 @@ function copyLogURLToClipboard() {
 function startPatternsIconAnimation() {
   patternsIconTimerId = setInterval(function() {
     for (var i=0, sz=patternsIcon.length; i<sz; i++) {
-      patternsIcon[i].setAttribute("style", "fill: " + ("#" + Math.round(0xffffff * Math.random()).toString(16))
-        + ";fill-opacity:1;fill-rule:nonzero;stroke:none");
+      var hexColor = Math.round(0xffffff * Math.random()).toString(16);
+      if (hexColor.length != 6) {
+        for (var j=0; j<6-hexColor.length+1; j++)
+          hexColor = "0" + hexColor; //prepend leading zeros to ensure 6 digits
+      }
+      patternsIcon[i].setAttribute("style", "fill: " + ("#" + hexColor) + ";fill-opacity:1;fill-rule:nonzero;stroke:none");
     }
   }, 200);
 }

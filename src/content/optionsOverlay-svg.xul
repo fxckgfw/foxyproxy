@@ -13,7 +13,6 @@
 <overlay id="options-svg-overlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
  <tab id="foxyproxy-pattern-subscriptions-tab" svg="true"
-  label="HELLO WERLD"
   accesskey="&foxyproxy.pattern.subscriptions.accesskey;"
   tooltiptext="&foxyproxy.pattern.subscriptions.tooltip;" 
   class="hide-if-foxyproxy-simple uncram-tab">
@@ -380,5 +379,6 @@
        style="fill:#ccff99;fill-opacity:1;fill-rule:nonzero;stroke:none" />
   </g>
 </svg>
+<label>&foxyproxy.pattern.subscriptions.label;</label>
 </tab>
 </overlay>

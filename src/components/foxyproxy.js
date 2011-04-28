@@ -934,9 +934,9 @@ foxyproxy.prototype = {
     },
 
     getProxiesFromId: function(aIdArray) {
-      var proxyArray = [];
-      for (var i = 0; i < aIdArray.length; i++) {
-        var proxy = this.getProxyById(aIdArray[i]);
+      let proxyArray = [];
+      for (let i = 0; i < aIdArray.length; i++) {
+        let proxy = this.getProxyById(aIdArray[i]);
         if (proxy) {
           proxyArray.push(proxy);
         }

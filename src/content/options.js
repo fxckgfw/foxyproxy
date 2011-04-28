@@ -38,7 +38,7 @@ function onLoad() {
 }
 
 function onOK() {
-  clearTimeout(patternsIconTimerId);
+  clearInterval(patternsIconTimerId);
   var obs = CC["@mozilla.org/observer-service;1"].getService(CI.nsIObserverService);
   obs.removeObserver(observer, "foxyproxy-mode-change");
   obs.removeObserver(observer, "foxyproxy-proxy-change");
@@ -386,31 +386,117 @@ function setButtons() {
   	(proxyTree.currentIndex+1 < foxyproxy.proxies.length && foxyproxy.proxies.item(proxyTree.currentIndex+1).lastresort));
 }
 
+function addPatternSubscription() {
+  let params = {
+        inn : null,
+        out : null
+      };	
+  window.openDialog('chrome://foxyproxy/content/pattern-subscriptions/addeditsubscription.xul', 
+    '', 'modal, resizable=yes', params).focus(); 
+  if (params.out) {
+    patternSubscriptions.addSubscription(params.out.subscription, 
+      params.out.userValues); 
+    // Now adding the patterns to the proxies provided the user has added
+    // at least one proxy in the addeditsubscription dialog.
+    let proxyList = params.out.proxies; 
+    if (proxyList.length !== 0) {
+      patternSubscriptions.addPatterns(null, proxyList);
+    }
+    subscriptionsTree.view = patternSubscriptions.makeSubscriptionsTreeView();
+  } 
+}
+
+function editPatternSubscription() {
+  let selectedSubscription = patternSubscriptions.
+    subscriptionsList[subscriptionsTree.currentIndex];
+  let params = {
+        inn : {
+          subscription : selectedSubscription,
+          index : subscriptionsTree.currentIndex
+        }
+      };
+  window.openDialog('chrome://foxyproxy/content/pattern-subscriptions/addeditsubscription.xul', 
+    '', 'modal, resizable=yes', params).focus(); 
+  if (params.out) {
+    patternSubscriptions.editSubscription(selectedSubscription, params.
+      out.userValues, subscriptionsTree.currentIndex);
+    // If new proxies were added we should add the patterns to them as
+    // well but only to them!
+    let proxyList = params.out.proxies; 
+    if (proxyList.length !== 0) {
+      patternSubscriptions.addPatterns(subscriptionsTree.currentIndex,
+        proxyList);
+    } 
+    subscriptionsTree.view = patternSubscriptions.makeSubscriptionsTreeView(); 
+  }
+}
+
+function deletePatternSubscriptions() {
+  // We save the current index to select the proper row after the
+  // subscription got deleted.
+  let selIndex = subscriptionsTree.currentIndex; 
+  // Currently, we have seltype=single that's why "selectecSubscription" is
+  // in singular but it is planned to allow the user to delete more than one
+  // subscription at once. That's why "deletePatternSubscriptions" is in 
+  // plural. The same reasoning holds for the two following functions.
+  let selectedSubscription = patternSubscriptions.subscriptionsList[selIndex];
+  if (foxyproxy.warnings.showWarningIfDesired(window, 
+      ["patternsubscription.del.subscription"], "patSubDelete")) {
+    if (selectedSubscription.timer) {
+      selectedSubscription.timer.cancel();
+    }
+    // Deleting the patterns as well if we have proxies following them...
+    let selSubProxies = selectedSubscription.metadata.proxies;
+    if (selSubProxies.length > 0) {
+      selSubProxies = foxyproxy.proxies.getProxiesFromId(selSubProxies);
+      patternSubscriptions.deletePatterns(selSubProxies, 
+        selectedSubscription.metadata.enabled);
+    }
+    patternSubscriptions.subscriptionsList.splice(selIndex, 1);
+    patternSubscriptions.writeSubscriptions();
+    subscriptionsTree.view = patternSubscriptions.makeSubscriptionsTreeView(); 
+    // Deleting the subscription file if it is empty in order avoid errors
+    // during startup.
+    if (patternSubscriptions.subscriptionsList.length === 0) {
+      dump("Deleting the subscriptions file...\n");
+      patternSubscriptions.getSubscriptionsFile().remove(false);
+      // We need that here otherwise are all options in the context menu still
+      // selected even if no subscription exists anymore.
+      document.getElementById("patsubtree-row-selected").
+        setAttribute("disabled", true);
+    } else {
+      // Easy as we currently have seltype=single
+      if (selIndex === subscriptionsTree.view.rowCount) {
+        selIndex = selIndex - 1;
+      }
+      subscriptionsTree.view.selection.select(selIndex);  
+    }
+  }
+}
+
+function refreshPatternSubscriptions() {
+  patternSubscriptions.refreshSubscription(patternSubscriptions.
+    subscriptionsList[subscriptionsTree.currentIndex], true);
+  subscriptionsTree.view = patternSubscriptions.makeSubscriptionsTreeView();
+}
+
+function viewPatternSubscriptions() {
+  let selectedSubscription = patternSubscriptions.
+    subscriptionsList[subscriptionsTree.currentIndex];
+  let params = {
+        inn : {
+          subscription : selectedSubscription.subscription
+        }
+      };
+  window.openDialog('chrome://foxyproxy/content/pattern-subscriptions/patternsView.xul', 
+    '', 'modal, resizable=yes', params).focus();
+}
+
 function onSubscriptionsAction() {
-  var selectedSubscription;
-  var params;
-  var proxyList;
   try {
     switch (document.getElementById("actionList").selectedIndex) {
       case 0:  
-        params = {
-          inn : null,
-          out : null
-        };	
-        window.openDialog('chrome://foxyproxy/content/pattern-subscriptions/addeditsubscription.xul', 
-        '', 'modal, resizable=yes', params).focus(); 
-        if (params.out) {
-          patternSubscriptions.addSubscription(params.out.subscription, 
-	    params.out.userValues); 
-	  // Now adding the patterns to the proxies provided the user has added
-          // at least one proxy in the addeditsubscription dialog.
-	  proxyList = params.out.proxies; 
-	  if (proxyList.length !== 0) {
-	    patternSubscriptions.addPatterns(null, proxyList);
-	  }
-          subscriptionsTree.view = patternSubscriptions.
-	    makeSubscriptionsTreeView();
-        }
+        addPatternSubscription();
         break;
       case 1: 
         if (subscriptionsTree.currentIndex < 0) {
@@ -418,29 +504,7 @@ function onSubscriptionsAction() {
 	    foxyproxy.getMessage("patternsubscription.none.selected"));  
 	  break;
         }
-        selectedSubscription = patternSubscriptions.
-	  subscriptionsList[subscriptionsTree.currentIndex];
-        params = {
-          inn : {
-            subscription : selectedSubscription,
-            index : subscriptionsTree.currentIndex
-          }
-        };
-        window.openDialog('chrome://foxyproxy/content/pattern-subscriptions/addeditsubscription.xul', 
-        '', 'modal, resizable=yes', params).focus(); 
-        if (params.out) {
-          patternSubscriptions.editSubscription(selectedSubscription, params.
-            out.userValues, subscriptionsTree.currentIndex);
-          // If new proxies were added we should add the patterns to them as
-          // well but only to them!
-          proxyList = params.out.proxies; 
-          if (proxyList.length !== 0) {
-            patternSubscriptions.addPatterns(subscriptionsTree.currentIndex,
-              proxyList);
-          } 
-          subscriptionsTree.view = patternSubscriptions.
-            makeSubscriptionsTreeView(); 
-        }
+        editPatternSubscription();
         break;
       case 2:
         if (subscriptionsTree.currentIndex < 0) {
@@ -448,33 +512,7 @@ function onSubscriptionsAction() {
             foxyproxy.getMessage("patternsubscription.none.selected"));  
           break;
         }
-	var selectedSubscription = patternSubscriptions.
-          subscriptionsList[subscriptionsTree.currentIndex];
-        if (foxyproxy.warnings.showWarningIfDesired(window, 
-          ["patternsubscription.del.subscription"], "patSubDelete")) {
-	  if (selectedSubscription.timer) {
-	    selectedSubscription.timer.cancel();
-	  }
-          // Deleting the patterns as well if we have proxies following them...
-	  var selSubProxies = selectedSubscription.metadata.proxies;
-          if (selSubProxies.length > 0) {
-            selSubProxies = patternSubscriptions.
-              getProxiesFromId(selSubProxies);
-            patternSubscriptions.deletePatterns(selSubProxies, 
-		selectedSubscription.metadata.enabled);
-          }
-          patternSubscriptions.subscriptionsList.splice(subscriptionsTree.
-            currentIndex, 1);
-          patternSubscriptions.writeSubscriptions();
-          subscriptionsTree.view = patternSubscriptions.
-            makeSubscriptionsTreeView(); 
-          // Deleting the subscription file if it is empty in order avoid errors
-          // during startup.
-          if (patternSubscriptions.subscriptionsList.length === 0) {
-            dump("Deleting the subscriptions file...\n");
-	    patternSubscriptions.getSubscriptionsFile().remove(false);
-          }
-        }
+        deletePatternSubscriptions();
         break;
       case 3:
         if (subscriptionsTree.currentIndex < 0) {
@@ -482,10 +520,7 @@ function onSubscriptionsAction() {
 	    foxyproxy.getMessage("patternsubscription.none.selected"));  
 	  break;
         } 
-        patternSubscriptions.refreshSubscription(patternSubscriptions.
-          subscriptionsList[subscriptionsTree.currentIndex], true);
-        subscriptionsTree.view = patternSubscriptions.
-          makeSubscriptionsTreeView(); 
+        refreshPatternSubscriptions();
         break;  
       case 4:
         if (subscriptionsTree.currentIndex < 0) {
@@ -493,16 +528,8 @@ function onSubscriptionsAction() {
 	    foxyproxy.getMessage("patternsubscription.none.selected"));  
 	  break;
         } 
-        selectedSubscription = patternSubscriptions.
-	  subscriptionsList[subscriptionsTree.currentIndex];
-        params = {
-          inn : {
-            subscription : selectedSubscription.subscription
-          }
-        };
-        window.openDialog('chrome://foxyproxy/content/pattern-subscriptions/patternsView.xul', 
-        '', 'modal, resizable=yes', params).focus(); 
-      break;
+        viewPatternSubscriptions();
+        break;
     } 
   } catch (e) {
     dump("There went something wrong in the Treeselection: " + e);
@@ -664,6 +691,12 @@ function onProxyTreeSelected() {
 	setButtons();
 }
 
+function onPatSubTreeSelected() {
+  var selLength = _getSelectedIndices(subscriptionsTree).length; 
+  document.getElementById("patsubtree-row-selected").setAttribute("disabled", 
+    selLength === 0);
+}
+
 function updateLogButtons() {
   document.getElementById("logtree-row-selected").setAttribute("disabled", _getSelectedIndices(logTree).length == 0);
 }
@@ -821,13 +854,15 @@ function copyLogURLToClipboard() {
 
 function startPatternsIconAnimation() {
   patternsIconTimerId = setInterval(function() {
-    for (var i=0, sz=patternsIcon.length; i<sz; i++) {
-      var hexColor = Math.round(0xffffff * Math.random()).toString(16);
-      if (hexColor.length != 6) {
-        for (var j=0; j<6-hexColor.length+1; j++)
-          hexColor = "0" + hexColor; //prepend leading zeros to ensure 6 digits
+    for (let i = 0; i < patternsIcon.length; i++) {
+      let color = Math.round(0xffffff * Math.random()).toString(16); 
+      if (color.length < 6) {
+        do {
+          color = "0" + color;
+        } while (color.length < 6)
       }
-      patternsIcon[i].setAttribute("style", "fill: " + ("#" + hexColor) + ";fill-opacity:1;fill-rule:nonzero;stroke:none");
+      patternsIcon[i].setAttribute("style", "fill: " + ("#" + color)
+        + ";fill-opacity:1;fill-rule:nonzero;stroke:none");
     }
   }, 200);
 }

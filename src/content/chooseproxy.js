@@ -62,7 +62,7 @@ function onSettings() {
     "chrome, dialog, modal, resizable=yes", params).focus();
   if (params.out) {
     fp.proxies.push(params.out.proxy);
-    proxyTree.view = fpc.makeProxyTreeView(fp, document); /* reset the view to show the new entry */
+    proxyTree.view = fpc.makeProxyTreeView(fp.proxies, document); /* reset the view to show the new entry */
     fp.writeSettings();
   }
 

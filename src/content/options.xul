@@ -20,7 +20,7 @@
   xmlns:html="http://www.w3.org/1999/xhtml" persist="screenX screenY"
   onload="onLoad();" onunload="onOK();" context="mainPopup">
 
-  <script src="options.js" />
+  <script type="application/x-javascript;version=1.7" src="options.js" />
   <vbox>
     <!-- menu -->
     <toolbox>
@@ -184,7 +184,7 @@
 	       pattern subscriptions to fill it); your computer would almost
 	       freeze in this case -->
            <tree id="subscriptionsTree" align="stretch" enableColumnDrag="true"
-		 flex="1" selType="single">
+                 flex="1" seltype="single" onselect="onPatSubTreeSelected();">
              <treecols
                pickertooltiptext="&foxyproxy.tree.pickertooltiptext.label;">
 	       <treecol id="subscriptionsEnabled" 
@@ -226,7 +226,8 @@
 			flex="1" persist="width ordinal hidden" hidden="true"/>
                <splitter class="tree-splitter" />
              </treecols>
-             <treechildren id="subscriptionsTreeChildren" flex="1" />
+	     <treechildren id="subscriptionsTreeChildren" flex="1" 
+	       ondblclick="onSettings(false);" context="patternSubTreeMenu" />
            </tree>
          </hbox> 
 	 <hbox>
@@ -968,7 +969,44 @@
       <menuitem class="menuitem-non-iconic" command="copyLogURLToClipboardCmd" />
       <menuitem class="menuitem-non-iconic" command="deleteLogEntryCmd" />
     </menupopup>
+
+    <menupopup id="patternSubTreeMenu">
+      <menuitem class="menuitem-non-iconic" command="addPatSubCmd" />
+      <menuitem class="menuitem-non-iconic" command="editPatSubCmd" /> 
+      <menuitem class="menuitem-non-iconic" command="deletePatSubCmd" />
+      <menuitem class="menuitem-non-iconic" command="refreshPatSubCmd" /> 
+      <menuitem class="menuitem-non-iconic" command="viewPatSubCmd" /> 
+    </menupopup>
   </popupset>
+
+  <command id="addPatSubCmd" 
+    label="&foxyproxy.pattern.subscriptions.addSubscription;" 
+    tooltiptext="&foxyproxy.pattern.subscriptions.addSubscription;" 
+    oncommand="addPatternSubscription();" /> 
+
+  <command id="editPatSubCmd" 
+    label="&foxyproxy.pattern.subscriptions.editSelection;" 
+    tooltiptext="&foxyproxy.pattern.subscriptions.editSelection;" 
+    oncommand="editPatternSubscription();" 
+    disabled="true" observes="patsubtree-row-selected" />
+
+  <command id="deletePatSubCmd" 
+    label="&foxyproxy.pattern.subscriptions.deleteSelections;" 
+    tooltiptext="&foxyproxy.pattern.subscriptions.deleteSelections;" 
+    oncommand="deletePatternSubscriptions();" 
+    disabled="true" observes="patsubtree-row-selected" />
+
+  <command id="refreshPatSubCmd" 
+    label="&foxyproxy.pattern.subscriptions.refreshSelections;" 
+    tooltiptext="&foxyproxy.pattern.subscriptions.refreshSelections;" 
+    oncommand="refreshPatternSubscriptions();"
+    disabled="true" observes="patsubtree-row-selected" /> 
+
+  <command id="viewPatSubCmd" 
+    label="&foxyproxy.pattern.subscriptions.viewSubscription;" 
+    tooltiptext="&foxyproxy.pattern.subscriptions.viewSubscription;" 
+    oncommand="viewPatternSubscriptions();"
+    disabled="true" observes="patsubtree-row-selected" /> 
 
   <command id="clearLogCmd" label="&foxyproxy.clear.label;"
     tooltiptext="&foxyproxy.clear.label;"
@@ -1132,6 +1170,7 @@
   <broadcasterset>
     <broadcaster id="tree-row-selected" disabled="true" />
     <broadcaster id="logtree-row-selected" disabled="true" />
+    <broadcaster id="patsubtree-row-selected" disabled="true" />
     <broadcaster id="statusBarWidthBroadcaster" disabled="true" />
     <broadcaster id="autoAddBroadcaster" hidden="true" />
     <broadcaster id="quickAddBroadcaster" hidden="true" />    

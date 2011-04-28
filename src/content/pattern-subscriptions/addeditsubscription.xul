@@ -92,7 +92,7 @@
               <treecol id="portCol" label="&foxyproxy.port.label;"
                 hidden="true" flex="1" persist="width ordinal hidden" />
               <splitter class="tree-splitter" />
-              <treecol id="ssSocksCol" label="&foxyproxy.issocks.label;"
+              <treecol id="isSocksCol" label="&foxyproxy.issocks.label;"
                 hidden="true" flex="1" persist="width ordinal hidden" />
               <splitter class="tree-splitter" />
               <treecol id="socksverCol"

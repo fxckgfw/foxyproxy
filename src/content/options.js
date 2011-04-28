@@ -692,7 +692,7 @@ function onProxyTreeSelected() {
 }
 
 function onPatSubTreeSelected() {
-  var selLength = _getSelectedIndices(subscriptionsTree).length; 
+  let selLength = _getSelectedIndices(subscriptionsTree).length; 
   document.getElementById("patsubtree-row-selected").setAttribute("disabled", 
     selLength === 0);
 }

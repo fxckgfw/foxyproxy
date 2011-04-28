@@ -122,8 +122,7 @@ function onOK() {
       // once to the subscription. We do not allow that.
       for (var j = i + 1; j < proxies.list.length; j++) {
         if (proxies.list[i].id === proxies.list[j].id) {
-          this.fp.alert(null, this.fp.
-            getMessage("patternsubscription.warning.dupProxy", 
+          fp.alert(null, fp.getMessage("patternsubscription.warning.dupProxy", 
             [proxies.list[i].name]));
           return false;
 	}
@@ -184,9 +183,9 @@ function onOK() {
         for (j = 0; j < oldProxies.length; j++) {
           if (oldProxies[j].id === proxies.item(i).id) {
 	    proxyFound = true;
-            // Now, the second use case of our herlperPrxies array (the first
+            // Now, the second use case of our herlperProxies array (the first
             // was storing the proxies that need to get removed from the 
-            // subscription.
+            // subscription).
             helperProxies.push(oldProxies[j]); 
 	  }
 	} 

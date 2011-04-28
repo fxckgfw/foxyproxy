@@ -400,7 +400,7 @@ var patternSubscriptions = {
     var userValue;
     var oldRefresh = aSubscription.metadata.refresh;
     for (userValue in userValues) {
-      aSubscription.metadata.userValue = userValues[userValue];
+      aSubscription.metadata[userValue] = userValues[userValue];
     } 
     // If the name is empty take the URL.
     if (aSubscription.metadata.name === "") {

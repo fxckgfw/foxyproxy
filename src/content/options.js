@@ -32,7 +32,7 @@ function onLoad() {
   obs.addObserver(observer,"foxyproxy-proxy-change", false);
   obs.addObserver(observer,"foxyproxy-tree-update", false);
   sizeToContent();
-  var svgDoc = document.getElementById("patterns-svg");
+  let svgDoc = document.getElementById("patterns-svg");
   patternsIcon = svgDoc.getElementsByTagName("rect");
   startPatternsIconAnimation();
 }

@@ -423,24 +423,24 @@
 <!ENTITY foxyproxy.pattern.subscriptions.label "Pattern Subscriptions">
 <!ENTITY foxyproxy.pattern.subscriptions.tooltip "Manage Pattern Subscriptions">
 <!ENTITY foxyproxy.pattern.subscriptions.accesskey "S">
-<!ENTITY foxyproxy.pattern.subscriptions.wizard.label "Wizard">
-<!ENTITY foxyproxy.pattern.subscriptions.wizard.tooltip "Click here to start the pattern subscription wizard.">
-<!ENTITY foxyproxy.pattern.subscriptions.menulist.tooltip "Select what to do with pattern subscriptions.">
-<!ENTITY foxyproxy.pattern.subscriptions.addSubscription "Add New Pattern Subscription">
-<!ENTITY foxyproxy.pattern.subscriptions.editSelection "Edit Selection">
-<!ENTITY foxyproxy.pattern.subscriptions.deleteSelections "Delete Selections">
-<!ENTITY foxyproxy.pattern.subscriptions.refreshSelections "Refresh Selections">
-<!ENTITY foxyproxy.pattern.subscriptions.viewSubscription "View Pattern Subscription">
-<!ENTITY foxyproxy.pattern.subscriptions.go.label "Go">
-<!ENTITY foxyproxy.pattern.subscriptions.go.tooltip "Click here to execute your selection.">
+<!ENTITY foxyproxy.pattern.subscriptions.wizard.label "Чаробњак">
+<!ENTITY foxyproxy.pattern.subscriptions.wizard.tooltip "Кликните овде да бисте покренули чаробњак за претплату на шаблон.">
+<!ENTITY foxyproxy.pattern.subscriptions.menulist.tooltip "Изаберите шта желите да урадите са претплатама на шаблоне.">
+<!ENTITY foxyproxy.pattern.subscriptions.addSubscription "Додај нову претплату на шаблон">
+<!ENTITY foxyproxy.pattern.subscriptions.editSelection "Уреди изабрано">
+<!ENTITY foxyproxy.pattern.subscriptions.deleteSelections "Избриши изабрано">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshSelections "Освежи изабрано">
+<!ENTITY foxyproxy.pattern.subscriptions.viewSubscription "Погледај претплату на шаблон">
+<!ENTITY foxyproxy.pattern.subscriptions.go.label "Крени">
+<!ENTITY foxyproxy.pattern.subscriptions.go.tooltip "Притисните овде да бисте извршили изабрано.">
 <!ENTITY foxyproxy.name.label "Name">
 <!ENTITY foxyproxy.notes.label "Notes">
 <!ENTITY foxyproxy.url.label "url">
 <!ENTITY foxyproxy.lastupdate.label "Last Update">
 <!ENTITY foxyproxy.updatefrequency.label "Update Frequency">
-<!ENTITY foxyproxy.status.label "Status">
-<!ENTITY foxyproxy.format.label "Format">
-<!ENTITY foxyproxy.obfuscation.label "Obfuscation">
+<!ENTITY foxyproxy.status.label "Стање">
+<!ENTITY foxyproxy.format.label "Облик">
+<!ENTITY foxyproxy.obfuscation.label "Обмањивање">
 <!ENTITY foxyproxy.hosting.label1 "Thanks to">
 <!ENTITY foxyproxy.ocs.label "OCS">
 <!ENTITY foxyproxy.hosting.label2 "for hosting FoxyProxy's website. If you need hosting, please consider OCS.">

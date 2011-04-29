@@ -319,8 +319,17 @@ function onDeleteSelection() {
   if (_isDefaultProxySelected())
     overlay.alert(this, foxyproxy.getMessage("delete.proxy.default"));
   else if (foxyproxy.warnings.showWarningIfDesired(window, ["delete.proxy.confirm"], "confirmDeleteProxy")) {
-	  // Store cur selection
-	  var sel = proxyTree.currentIndex;  
+    // Store cur selection
+    var sel = proxyTree.currentIndex;  
+    // We have to delete the proxy from the subscription as well. Otherwise
+    // there occur errors later on while loading/removing the subscription as
+    // the proxy is still saved in the subscription but not found anymore. We
+    // do this before we delete the proxy itself in order to get the necessary
+    // information (i.e. its id).
+    if (patternSubscriptions.subscriptionsList.length > 0) {
+      let proxyId = foxyproxy.proxies.list[sel].id;
+      patternSubscriptions.removeDeletedProxies(proxyId);
+    } 
     foxyproxy.proxies.remove(proxyTree.currentIndex);
     foxyproxy.broadcast(true /*write settings*/, "foxyproxy-proxy-change");
 	  // Reselect what was previously selected

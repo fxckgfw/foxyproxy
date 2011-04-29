@@ -391,10 +391,10 @@
 <!ENTITY foxyproxy.temp.label "Temporär">
 <!ENTITY foxyproxy.temp.accesskey "T">
 <!ENTITY foxyproxy.temp.tooltip "Muster wird nur in dieser Firefox-Session verwendet">
+<!ENTITY foxyproxy.fromSubscription.label "Abonniert">
 <!ENTITY foxyproxy.define.label "Definieren">
 <!ENTITY foxyproxy.define.accesskey "D">
 <!ENTITY foxyproxy.define.tooltip "Definieren">
-<!ENTITY foxyproxy.fromSubscription.label "Abonniert">
 <!ENTITY foxyproxy.pattern.to.quickadd.label "Muster für Schnellzuweisung zu Proxy">
 <!ENTITY foxyproxy.pattern.to.autoadd.label "Muster für automatische Zuweisung zu Proxy">
 <!ENTITY foxyproxy.home "Home">
@@ -444,7 +444,7 @@
 <!ENTITY foxyproxy.pattern.subscriptions.notes.tooltip "Abonnement-Beschreibung">
 <!ENTITY foxyproxy.pattern.subscriptions.url.label "Abonnement-URL">
 <!ENTITY foxyproxy.pattern.subscriptions.url.tooltip "Abonnement-URL">
-<!ENTITY foxyproxy.pattern.subscriptions.proxies.tooltip "Proxies, die diese Musterliste abonniert haben.">
+<!ENTITY foxyproxy.pattern.subscriptions.proxies.tooltip "Proxies, die diese Musterliste abonniert haben">
 <!ENTITY foxyproxy.pattern.subscriptions.addProxies.label "Proxies hinzufügen">
 <!ENTITY foxyproxy.pattern.subscriptions.addProxies.tooltip "Proxies hinzufügen, die diese Musterliste abonnieren sollen">
 <!ENTITY foxyproxy.pattern.subscriptions.removeProxies.label "Ausgewählte entfernen">
@@ -453,15 +453,15 @@
 <!ENTITY foxyproxy.pattern.subscriptions.refresh.tooltip "Aktualisierungsintervall dieses Muster-Abonnements in Minuten">
 <!ENTITY foxyproxy.pattern.subscriptions.refreshNow.label "Jetzt aktualisieren">
 <!ENTITY foxyproxy.pattern.subscriptions.refreshNow.tooltip "Dieses Muster-Abonnement jetzt aktualisieren">
-<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp1 "Geben Sie die Anzahl der Minuten an, nach der das Abonnement aktualisiert werden soll. Die Aktualisierung des Abonnements "> 
+<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp1 "Geben Sie die Anzahl der Minuten an, nach der das Abonnement aktualisiert werden soll. Die Aktualisierung des Abonnements ">
 <!ENTITY foxyproxy.pattern.subscriptions.refreshHelp2 "entfernt alle vorhandenen Muster ">
 <!ENTITY foxyproxy.pattern.subscriptions.refreshHelp3 "und fügt dann die unter der Abonnements-URL gefundenen ein. Lesen Sie mehr dazu ">
 <!ENTITY foxyproxy.pattern.subscriptions.zeroRefresh "(0, um nie zu aktualisieren)">
 <!ENTITY foxyproxy.pattern.subscriptions.format.tooltip "Format dieses Muster-Abonnements">
-<!ENTITY foxyproxy.pattern.subscriptions.formatHelp "Wählen Sie das Format aus, in dem das Abonnement geschrieben ist. Normalerweise wird das automatisch von FoxyProxy erkannt. Lesen Sie mehr dazu ">
+<!ENTITY foxyproxy.pattern.subscriptions.formatHelp "Wählen Sie das Format aus, in dem das Abonnement geschrieben ist. Normalerweise wird das automatisch von FoxyProxy erkannt. Lesen Sie mehr dazu">
 <!ENTITY foxyproxy.pattern.subscriptions.obfuscation.tooltip "Verschleierungsformat dieses Muster-Abonnements">
 <!ENTITY foxyproxy.pattern.subscriptions.obfuscationHelp "Abonnements sind optional verschleiert um eine Inhaltsfilterung durch Computer zwischen Ihnen und der Abonnement-URL zu verhindern. Normalerweise wird dies automatisch von FoxyProxy erkannt. Lesen Sie mehr dazu ">
-<!ENTITY foxyproxy.pattern.subscriptions.copyLastStatus.label "Kopiere letzen Status in die Zwischenablage"> 
+<!ENTITY foxyproxy.pattern.subscriptions.copyLastStatus.label "Kopiere letzen Status in die Zwischenablage">
 <!ENTITY foxyproxy.pattern.subscriptions.copyLastStatus.tooltip "Kopiere letzen Status in die Zwischenablage">
 <!ENTITY foxyproxy.pattern.subscriptions.pattern.window.title "Abonnementmuster">
 <!ENTITY foxyproxy.none.label "Keine">

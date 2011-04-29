@@ -701,6 +701,20 @@ var patternSubscriptions = {
     this.writeSubscriptions(); 
   },
 
+  removeDeletedProxies: function(aProxyId) {
+    for (let i = 0, sz = this.subscriptionsList.length; i < sz; i++) {
+      let proxyList = this.subscriptionsList[i].metadata.proxies;
+      for (let j = 0, psz = proxyList.length; j < psz; j++) {
+        if (proxyList[j] === aProxyId) {
+          proxyList.splice(j, 1);
+          // As we know there is just one instance of a proxy tied to the
+          // subscription we can leave the innermost for loop now.
+          break;
+        }
+      } 
+    }
+  },
+
   addPatterns: function(currentSubIndex, proxyList) {
     // Now are we going to implement the crucial part of the pattern
     // subscription feature: Adding the patterns to the proxies.

@@ -14,12 +14,12 @@ const CI = Components.interfaces;
 const CC = Components.classes;
 Components.utils.import("resource://gre/modules/XPCOMUtils.jsm");
 
-var fp = CC["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;
+var fp; 
 
 function Common() {
   this.wrappedJSObject = this;
-  uuid = fp.isFoxyProxySimple() ? "foxyproxy-basic@eric.h.jung" : "foxyproxy@eric.h.jung";
-
+  fp = CC["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;   
+  let uuid = fp.isFoxyProxySimple() ? "foxyproxy-basic@eric.h.jung" : "foxyproxy@eric.h.jung";
   // Get installed version
   if ("@mozilla.org/extensions/manager;1" in CC) {
     // Pre-Gecko 2.0

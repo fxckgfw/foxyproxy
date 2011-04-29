@@ -2,18 +2,18 @@
 <!ENTITY foxyproxy.standard.label "FoxyProxy Standard">
 <!ENTITY foxyproxy.plus.label "FoxyProxy Plus">
 <!ENTITY foxyproxy.accesskey "F">
-<!ENTITY foxyproxy.options.label "Options">
+<!ENTITY foxyproxy.options.label "Opțiuni">
 <!ENTITY foxyproxy.options.accesskey "O">
-<!ENTITY foxyproxy.options.tooltip "Open the Options Dialog">
+<!ENTITY foxyproxy.options.tooltip "Deschide caseta de opțiuni">
 <!ENTITY foxyproxy.tree.pickertooltiptext.label "Click to select which columns to display">
-<!ENTITY foxyproxy.proxy.name.label "Proxy Name">
-<!ENTITY foxyproxy.proxy.name.accesskey "N">
-<!ENTITY foxyproxy.proxy.name.tooltip "Proxy Name">
-<!ENTITY foxyproxy.proxy.notes.label "Proxy Notes">
+<!ENTITY foxyproxy.proxy.name.label "Denumire proxy">
+<!ENTITY foxyproxy.proxy.name.accesskey "D">
+<!ENTITY foxyproxy.proxy.name.tooltip "Denumire configurație proxy">
+<!ENTITY foxyproxy.proxy.notes.label "Note proxy">
 <!ENTITY foxyproxy.proxy.notes.accesskey "N">
-<!ENTITY foxyproxy.proxy.notes.tooltip "Proxy Notes">
-<!ENTITY foxyproxy.pattern.label "Pattern">
-<!ENTITY foxyproxy.urlpatterns.label "URL Patterns">
+<!ENTITY foxyproxy.proxy.notes.tooltip "Note despre serverul proxy">
+<!ENTITY foxyproxy.pattern.label "Șablon">
+<!ENTITY foxyproxy.urlpatterns.label "Șabloane adresă">
 <!ENTITY foxyproxy.urlpatterns.accesskey "P">
 <!ENTITY foxyproxy.urlpatterns.tooltip "URL patterns">
 <!ENTITY foxyproxy.pattern.type.label "Pattern Type">

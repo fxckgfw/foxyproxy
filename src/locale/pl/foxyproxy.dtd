@@ -340,24 +340,24 @@
 <!ENTITY foxyproxy.statusbaractivation.tooltip "Ustawienia działania przycisków myszy na pasku stanu">
 <!ENTITY foxyproxy.toolbaractivation.label "Działanie ikony FoxyProxy na pasku narzędziowym">
 <!ENTITY foxyproxy.toolbaractivation.tooltip "Ustawienia działania przycisków myszy na pasku narzędziowym">
-<!ENTITY foxyproxy.leftclicksb.label "Kliknięcie lpm.">
+<!ENTITY foxyproxy.leftclicksb.label "Kliknięcie l.p.m.">
 <!ENTITY foxyproxy.leftclicksb.accesskey "L">
-<!ENTITY foxyproxy.leftclicksb.tooltip "Działanie jakie zostanie wykonane po kliknięciu lpm. na ikonie FoxyProxy na pasku stanu">
-<!ENTITY foxyproxy.middleclicksb.label "Kliknięcie śpm.">
+<!ENTITY foxyproxy.leftclicksb.tooltip "Działanie jakie zostanie wykonane po kliknięciu l.p.m. na ikonie FoxyProxy na pasku stanu">
+<!ENTITY foxyproxy.middleclicksb.label "Kliknięcie ś.p.m.">
 <!ENTITY foxyproxy.middleclicksb.accesskey "M">
-<!ENTITY foxyproxy.middleclicksb.tooltip "Działanie jakie zostanie wykonane po kliknięciu śpm. na ikonie FoxyProxy na pasku stanu">
-<!ENTITY foxyproxy.rightclicksb.label "Kliknięcie ppm.">
+<!ENTITY foxyproxy.middleclicksb.tooltip "Działanie jakie zostanie wykonane po kliknięciu ś.p.m. na ikonie FoxyProxy na pasku stanu">
+<!ENTITY foxyproxy.rightclicksb.label "Kliknięcie p.p.m.">
 <!ENTITY foxyproxy.rightclicksb.accesskey "P">
-<!ENTITY foxyproxy.rightclicksb.tooltip "Działanie jakie zostanie wykonane po kliknięciu ppm. na ikonie FoxyProxy na pasku stanu">
-<!ENTITY foxyproxy.leftclicktb.label "Kliknięcie lpm.">
+<!ENTITY foxyproxy.rightclicksb.tooltip "Działanie jakie zostanie wykonane po kliknięciu p.p.m. na ikonie FoxyProxy na pasku stanu">
+<!ENTITY foxyproxy.leftclicktb.label "Kliknięcie l.p.m.">
 <!ENTITY foxyproxy.leftclicktb.accesskey "C">
-<!ENTITY foxyproxy.leftclicktb.tooltip "Działanie jakie zostanie wykonane po kliknięciu lpm. na ikonie FoxyProxy na pasku narzędziowym">
-<!ENTITY foxyproxy.middleclicktb.label "Kliknięcie śpm.">
+<!ENTITY foxyproxy.leftclicktb.tooltip "Działanie jakie zostanie wykonane po kliknięciu l.p.m. na ikonie FoxyProxy na pasku narzędziowym">
+<!ENTITY foxyproxy.middleclicktb.label "Kliknięcie ś.p.m.">
 <!ENTITY foxyproxy.middleclicktb.accesskey "N">
-<!ENTITY foxyproxy.middleclicktb.tooltip "Działanie jakie zostanie wykonane po kliknięciu śpm. na ikonie FoxyProxy na pasku narzędziowym">
-<!ENTITY foxyproxy.rightclicktb.label "Kliknięcie ppm.">
+<!ENTITY foxyproxy.middleclicktb.tooltip "Działanie jakie zostanie wykonane po kliknięciu ś.p.m. na ikonie FoxyProxy na pasku narzędziowym">
+<!ENTITY foxyproxy.rightclicktb.label "Kliknięcie p.p.m.">
 <!ENTITY foxyproxy.rightclicktb.accesskey "K">
-<!ENTITY foxyproxy.rightclicktb.tooltip "Działanie jakie zostanie wykonane po kliknięciu ppm na ikonie FoxyProxy na pasku narzędziowym">
+<!ENTITY foxyproxy.rightclicktb.tooltip "Działanie jakie zostanie wykonane po kliknięciu p.p.m na ikonie FoxyProxy na pasku narzędziowym">
 <!ENTITY foxyproxy.click.options "wyświetla okno dialogowe opcji">
 <!ENTITY foxyproxy.click.cycle "zmienia na tryby">
 <!ENTITY foxyproxy.click.contextmenu "wyświetla menu kontekstowe">
@@ -416,38 +416,38 @@
 <!ENTITY foxyproxy.aboutproxyservice.label "Przycisk usługi proxy przeniesie cię na naszą witrynę usług proxy, gdzie możesz wykupić niezawodne szerokopasmowe usługi proxy w wielu różnych krajach w rozsądnych cenach.">
 <!ENTITY foxyproxy.invalidcolor.label "Nieprawidłowy kolor">
 <!ENTITY foxyproxy.validcolor.label "Prawidłowy kolor">
-<!ENTITY foxyproxy.color.label "Color">
-<!ENTITY foxyproxy.server.subscriptions.label "Server Subscriptions">
-<!ENTITY foxyproxy.server.subscriptions.tooltip "Manage Server Subscriptions">
+<!ENTITY foxyproxy.color.label "Kolor">
+<!ENTITY foxyproxy.server.subscriptions.label "Serwer subskrypcji">
+<!ENTITY foxyproxy.server.subscriptions.tooltip "Zarządzaj serwerem subskrypcji">
 <!ENTITY foxyproxy.server.subscriptions.accesskey "S">
-<!ENTITY foxyproxy.pattern.subscriptions.label "Pattern Subscriptions">
-<!ENTITY foxyproxy.pattern.subscriptions.tooltip "Manage Pattern Subscriptions">
+<!ENTITY foxyproxy.pattern.subscriptions.label "Subskrypcje wzorca">
+<!ENTITY foxyproxy.pattern.subscriptions.tooltip "zarządzaj subskrypcjami wzorca">
 <!ENTITY foxyproxy.pattern.subscriptions.accesskey "S">
-<!ENTITY foxyproxy.pattern.subscriptions.wizard.label "Wizard">
-<!ENTITY foxyproxy.pattern.subscriptions.wizard.tooltip "Click here to start the pattern subscription wizard.">
-<!ENTITY foxyproxy.pattern.subscriptions.menulist.tooltip "Select what to do with pattern subscriptions.">
-<!ENTITY foxyproxy.pattern.subscriptions.addSubscription "Add New Pattern Subscription">
-<!ENTITY foxyproxy.pattern.subscriptions.editSelection "Edit Selection">
-<!ENTITY foxyproxy.pattern.subscriptions.deleteSelections "Delete Selections">
-<!ENTITY foxyproxy.pattern.subscriptions.refreshSelections "Refresh Selections">
-<!ENTITY foxyproxy.pattern.subscriptions.viewSubscription "View Pattern Subscription">
-<!ENTITY foxyproxy.pattern.subscriptions.go.label "Go">
-<!ENTITY foxyproxy.pattern.subscriptions.go.tooltip "Click here to execute your selection.">
-<!ENTITY foxyproxy.name.label "Name">
-<!ENTITY foxyproxy.notes.label "Notes">
+<!ENTITY foxyproxy.pattern.subscriptions.wizard.label "Asystent">
+<!ENTITY foxyproxy.pattern.subscriptions.wizard.tooltip "Kliknij tutaj, by uruchomić asystenta subskrypcji.">
+<!ENTITY foxyproxy.pattern.subscriptions.menulist.tooltip "Wybierz, co robić ze subskrypcjami wzorca.">
+<!ENTITY foxyproxy.pattern.subscriptions.addSubscription "Dodaj nowy subskrypcję wzorca">
+<!ENTITY foxyproxy.pattern.subscriptions.editSelection "Edytuj wybrane">
+<!ENTITY foxyproxy.pattern.subscriptions.deleteSelections "Usuń wybrane">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshSelections "Odśwież wybrane">
+<!ENTITY foxyproxy.pattern.subscriptions.viewSubscription "Zobacz subskrypcję wzorca">
+<!ENTITY foxyproxy.pattern.subscriptions.go.label "Przejdź">
+<!ENTITY foxyproxy.pattern.subscriptions.go.tooltip "Kliknij tutaj, by wykonać wybraną czynność.">
+<!ENTITY foxyproxy.name.label "Nazwa">
+<!ENTITY foxyproxy.notes.label "Uwagi">
 <!ENTITY foxyproxy.url.label "url">
-<!ENTITY foxyproxy.lastupdate.label "Last Update">
-<!ENTITY foxyproxy.updatefrequency.label "Update Frequency">
+<!ENTITY foxyproxy.lastupdate.label "Ostatnia aktualizacja">
+<!ENTITY foxyproxy.updatefrequency.label "Częstotliwość aktualizacji">
 <!ENTITY foxyproxy.status.label "Status">
 <!ENTITY foxyproxy.format.label "Format">
-<!ENTITY foxyproxy.obfuscation.label "Obfuscation">
+<!ENTITY foxyproxy.obfuscation.label "Zaciemnianie">
 <!ENTITY foxyproxy.hosting.label1 "Podziękowania dla">
 <!ENTITY foxyproxy.ocs.label "OCS">
 <!ENTITY foxyproxy.hosting.label2 "za hosting witryny FoxyProxy. Jeśli potrzebujesz hostingu, rozważ OCS.">
 <!-- begin foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Dodaj/edytuj wzorzec lokalnego adresu IP">
 <!ENTITY foxyproxy.tempip.popup.label "Wzorce tymczasowe pozwalają na tworzenie wzorców lokalnego adresu IP nie używanych często. Dzięki temu lista wzorców nie jest niepotrzebnie przeładowywana. Wzorce tymczasowe nie są zapisywane na dysku. Są one trzymane w pamięci i używane tylko w aktualnej sesji Firefoksa.">
-<!ENTITY foxyproxy.ip.pattern.label "Wzorzec lokalnego adresu  IP">
+<!ENTITY foxyproxy.ip.pattern.label "Wzorzec lokalnego adresu IP">
 <!ENTITY foxyproxy.ip.pattern.accesskey "I">
 <!ENTITY foxyproxy.ip.pattern.tooltip "Wzorzec lokalnego adresu IP">
 <!ENTITY foxyproxy.ip.patterns.label "Wzorce lokalnego adresu IP">
@@ -473,19 +473,19 @@
 <!ENTITY foxyproxy.enteremail.label "Wprowadź adres e-mail">
 <!ENTITY foxyproxy.licenseinfo.label "Informacja o licencji">
 <!ENTITY foxyproxy.licensevalid.label "Licencja jest ważna. Dziękujemy za zakupienie FoxyProxy Plus.">
-<!ENTITY foxyproxy.subexpired.label "License valid, but your update subscription expired. You are not receiving FoxyProxy Plus updates.">
+<!ENTITY foxyproxy.subexpired.label "Licencja jest ważna, ale aktualizacja subskrypcji dobiegła kończ. Nie otrzymujesz już aktualizacji FoxyProxy Plus.">
 <!ENTITY foxyproxy.licenseinvalid.label "Licencja jest nieważna. Nie możesz otrzymywać aktualizacji FoxyProxyPlus. Wykup FoxyProxy Plus.">
 <!ENTITY foxyproxy.buynow.label "Kup teraz">
 <!ENTITY foxyproxy.checklicense.label "Sprawdź licencję">
 <!ENTITY foxyproxy.checkinglicense.label "Sprawdzanie… Proszę czekać.">
-<!ENTITY foxyproxy.yourversion.label "Your Version ">
-<!ENTITY foxyproxy.latestversion.label "Newest Version ">
-<!ENTITY foxyproxy.routetoleahscape.label.1 "Please make sure Firefox can reach">
-<!ENTITY foxyproxy.routetoleahscape.label.2 "either with or without a proxy. You can configure patterns for this URL in FoxyProxy Plus if necessary.">
+<!ENTITY foxyproxy.yourversion.label "Twoja wersja">
+<!ENTITY foxyproxy.latestversion.label "Najnowsza wersja">
+<!ENTITY foxyproxy.routetoleahscape.label.1 "Upewnij się, że Firefox może łączyć się">
+<!ENTITY foxyproxy.routetoleahscape.label.2 "z lub bez serwera proxy. W razie potrzeby, możesz skonfigurować wzorce dla tego adresu URL w FoxyProxy Plus.">
 <!ENTITY foxyproxy.everything.label "Wszystko">
 <!ENTITY foxyproxy.nothing.label "Nic">
 <!ENTITY foxyproxy.ippatterndeletefinal.label "To jest wzorzec ostatniego lokalnego adresu IP. Jeśli go usuniesz, nie będziesz mieć możliwości używania tego proxy. Kontynuować?">
-<!ENTITY foxyproxy.licenseplea.label "FoxyProxy Plus ma minimalne zabezpieczenia anty-pirackie. Jeśli używasz FoxyProxy Plus, kup licencję. Stworzenie FoxyProxy zajęło autorowi wiele lat pracy. Zakup licencji zachęci go do dalszego rozwoju rozszerzenia.">
+<!ENTITY foxyproxy.licenseplea.label "FoxyProxy Plus ma minimalne zabezpieczenia antypirackie. Jeśli używasz FoxyProxy Plus, kup licencję. Stworzenie FoxyProxy zajęło autorowi wiele lat pracy. Zakup licencji zachęci go do dalszego rozwoju rozszerzenia.">
 <!ENTITY foxyproxy.authentication.label "Autoryzacja">
 <!ENTITY foxyproxy.proxyusername.label "Nazwa użytkownika">
 <!ENTITY foxyproxy.proxypassword.label "Hasło">
@@ -493,16 +493,16 @@
 <!ENTITY foxyproxy.proxydomain.label "Domena (opcjonalna – tylko NTLM)">
 <!ENTITY foxyproxy.proxydomain.tooltip "Tylko autoryzacja NTLM">
 <!ENTITY foxyproxy.proxy.passwords.nomatch.label "Hasła proxy nie zgadzają się; wprowadź je ponownie.">
-<!ENTITY foxyproxy.traininglogging.label "Training &amp; Logging">
-<!ENTITY foxyproxy.traininglogging.tooltip "Manage Training &amp; Logging Settings">
+<!ENTITY foxyproxy.traininglogging.label "Szkolenia i logowanie">
+<!ENTITY foxyproxy.traininglogging.tooltip "Zarządzanie ustawieniami szkolenia i logowania">
 <!ENTITY foxyproxy.traininglogging.accesskey "L">
-<!ENTITY foxyproxy.training.start "Start Training">
-<!ENTITY foxyproxy.training.stop "Stop Training">
-<!ENTITY foxyproxy.patternsforall.label "Create Patterns for All">
+<!ENTITY foxyproxy.training.start "Uruchom szkolenie">
+<!ENTITY foxyproxy.training.stop "Zatrzymaj szkolenie">
+<!ENTITY foxyproxy.patternsforall.label "Utwórz wzorce dla wszystkich">
 <!ENTITY foxyproxy.patternsforall.accesskey "A">
-<!ENTITY foxyproxy.patternsforall.tooltip "Create Patterns for All URLs">
-<!ENTITY foxyproxy.patternsforselected.label "Create Patterns for Selected">
-<!ENTITY foxyproxy.patternsforselected.accesskey "S">
-<!ENTITY foxyproxy.patternsforselected.tooltip "Create Patterns for Selected URLs">
-<!ENTITY foxyproxy.patterntoadd.label "Pattern to Add">
+<!ENTITY foxyproxy.patternsforall.tooltip "Utwórz wzorce dla wszystkich adresów URL">
+<!ENTITY foxyproxy.patternsforselected.label "Utwórz wzorce dla wybranych">
+<!ENTITY foxyproxy.patternsforselected.accesskey "b">
+<!ENTITY foxyproxy.patternsforselected.tooltip "Utwórz wzorce dla wybranych adresów URL">
+<!ENTITY foxyproxy.patterntoadd.label "Wzorzec do dodania">
 <!-- end foxyproxyplus -->

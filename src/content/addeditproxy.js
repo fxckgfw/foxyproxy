@@ -253,6 +253,42 @@ function onCopyURLPattern() {
   urlsTree.view.selection.select(urlsTree.view.rowCount-1);
 }
 
+function onExportURLPattern() {
+  let patternLength = proxy.matches.length;
+  if (patternLength === 0) {
+    return;
+  }
+  // Now we are constructing the pattern subscription...
+  let JSONString = '{"subscription":{"patterns":[';
+  for (let j = 0; j < patternLength; j++) {
+    JSONString = JSONString + proxy.matches[j].toJSON();
+    if (j < patternLength - 1) {
+      JSONString = JSONString + ",";
+    } else {
+      JSONString = JSONString + "]}}";
+    }
+  }
+  // Now, we export the JSON to file somewhere on the (local) disk...
+  let fp = CC["@mozilla.org/filepicker;1"].createInstance(CI.nsIFilePicker);  
+  fp.init(window, foxyproxy.getMessage("file.select"), 
+    CI.nsIFilePicker.modeSave);
+  fp.defaultString = "patterns.json";
+  fp.appendFilters(CI.nsIFilePicker.filterAll); 
+  fp.displayDirectory = foxyproxy.getSettingsURI(CI.nsIFile).parent; 
+  if (fp.show() !== CI.nsIFilePicker.returnCancel) { 
+    let fos = CC["@mozilla.org/network/file-output-stream;1"].
+      createInstance(CI.nsIFileOutputStream); 
+    fos.init(fp.file, 0x02 | 0x08 | 0x20, -1, 0); 
+    // Maybe we have non-Ascii text in our JSON string. Therefore, we use the
+    // ConverterOutputStream and UTF-8.
+    let os = CC["@mozilla.org/intl/converter-output-stream;1"].
+      createInstance(CI.nsIConverterOutputStream);	
+    os.init(fos, "UTF-8", 0, 0);
+    os.writeString(JSONString);
+    os.close();
+  }
+}
+
 function toggleMode(mode) {
   // Next line--buggy in FF 1.5.0.1--makes fields enabled but readonly
   // document.getElementById("disabled-broadcaster").setAttribute("disabled", mode == "auto" ? "true" : "false");

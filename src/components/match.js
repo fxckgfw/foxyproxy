@@ -33,6 +33,8 @@ Components.utils.import("resource://gre/modules/XPCOMUtils.jsm");
 function Match(enabled, name, pattern, temp, isRegEx, caseSensitive, isBlackList, isMultiLine, fromSubscription) {
   this.wrappedJSObject = this;
   this.init.apply(this, arguments);
+  Components.utils.import("resource://foxyproxy/patternSubscriptions.jsm", 
+    this); 
 }
 
 Match.prototype = {
@@ -164,6 +166,17 @@ Match.prototype = {
     if (includeTempPatterns)
       matchElem.setAttribute("temp", this.temp);
     return matchElem;
+  },
+
+  toJSON : function() {
+    let pattern = {};
+    pattern.name = this.name;
+    pattern.pattern = this._pattern;
+    pattern.type = this.isRegEx ? "RegEx" : "Wildcard";
+    pattern.caseSensitive = this._caseSensitive;
+    pattern.blackList = this.isBlackList;
+    pattern.multiLine = this._isMultiLine;
+    return this.patternSubscriptions.getJSONFromObject(pattern);
   },
   
   QueryInterface: XPCOMUtils.generateQI([CI.nsISupports]),

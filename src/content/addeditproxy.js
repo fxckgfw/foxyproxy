@@ -199,6 +199,10 @@ function getTextForCell(pat, col) {
 }
 
 function _updateView() {
+  // We disable and enable the JSON export button depending on available
+  // patterns.
+  document.getElementById("exportURLPatternCmd").setAttribute("disabled", 
+    proxy.matches.length === 0); 
   // Redraw the trees
   urlsTree.view = makeView();
 

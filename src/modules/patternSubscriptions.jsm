@@ -745,7 +745,8 @@ var patternSubscriptions = {
                       currentPat.patterns[j].pattern, false, currentPat.
                       patterns[j].type.toLowerCase() === "wildcard" ? false : 
                       true, currentPat.patterns[j].caseSensitive ? true : false,
-                      currentPat.patterns[j].whitelist ? true : false, false,
+                      currentPat.patterns[j].blackList ? true : false, 
+                      currentPat.patterns[j].multiLine ? true : false,
 		      true);
           proxyList[i].matches.push(pattern);
         }

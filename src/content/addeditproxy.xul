@@ -25,7 +25,7 @@
   xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
   persist="screenX screenY">
 
-<script src="addeditproxy.js"/>
+<script type="application/x-javascript;version=1.7" src="addeditproxy.js"/>
 <script src="colorvalidator.js"/> <!-- a simple color validator -->
 
 <vbox observes="torwiz-broadcaster" flex="1">
@@ -209,7 +209,9 @@
         <button id="foxyproxy-copy-url-pattern-button" command="copyURLPatternSelectionCmd" flex="1" class="uncram-btn"/>
         <button id="foxyproxy-delete-url-pattern-button" command="deleteURLPatternSelectionCmd" flex="1" class="uncram-btn"/>
         <button id="foxyproxy-help-url-pattern-button" command="helpURLPatternCmd" flex="1" class="uncram-btn"/>
-		    <button id="foxyproxy-wildcard-url-pattern-ref-button" command="wildcardURLPatternReferenceCmd" flex="1" class="uncram-btn"/>
+        <button id="foxyproxy-wildcard-url-pattern-ref-button" command="wildcardURLPatternReferenceCmd" flex="1" class="uncram-btn"/>
+        <button id="foxyproxy-export-url-pattern-button" 
+                command="exportURLPatternCmd" flex="1" class="uncram-btn"/>
       </hbox>
       <separator class="thin"/>
       <hbox flex="1">
@@ -245,7 +247,9 @@
     <button id="fpcupb" command="copyURLPatternSelectionCmd" flex="1" class="uncram-btn"/>
     <button id="fpdupb" command="deleteURLPatternSelectionCmd" flex="1" class="uncram-btn"/>
     <button id="fphupb" command="helpURLPatternCmd" flex="1" class="uncram-btn"/>
-	<button id="fpwupb" command="wildcardURLPatternReferenceCmd" flex="1" class="uncram-btn"/>
+    <button id="fpwupb" command="wildcardURLPatternReferenceCmd" flex="1" class="uncram-btn"/>
+    <button id="fpexupb" command="exportURLPatternCmd" flex="1" 
+            class="uncram-btn"/> 
   </hbox>
   <separator/>
   <hbox flex="1">
@@ -302,6 +306,7 @@
     <menuitem class="menuitem-non-iconic" command="editURLPatternSelectionCmd"/>
     <menuitem class="menuitem-non-iconic" command="copyURLPatternSelectionCmd"/>
     <menuitem class="menuitem-non-iconic" command="deleteURLPatternSelectionCmd"/>
+    <menuitem class="menuitem-non-iconic" command="exportURLPatternCmd"/>
     <menuseparator/>
     <menuitem class="menuitem-non-iconic" command="helpURLPatternCmd"/>
     <menuitem class="menuitem-non-iconic" command="closeCmd"/>
@@ -355,6 +360,11 @@
   tooltiptext="&foxyproxy.wildcard.reference.tooltip;"
   oncommand="onWildcardReference('wildcardURLPatternReferencePopup', 'foxyproxy-wildcard-url-pattern-ref-button');"/>
 
+<command id="exportURLPatternCmd"
+  label="&foxyproxy.export.pattern.label;"
+  accesskey="&foxyproxy.export.pattern.accesskey;"
+  tooltiptext="&foxyproxy.export.pattern.tooltip;"
+  oncommand="onExportURLPattern();"/>
 
 <command id="closeCmd"
   label="&foxyproxy.close.label;"

@@ -846,8 +846,9 @@
         <separator class="thin"/>
          <hbox flex="1">
            <tree id="logTree" align="stretch" enableColumnDrag="true"
-   					persist="sortDirection sortResource" sortDirection="ascending" sortResource="timestamp"
-             flex="1" style="width: 5em; height: 2em;" onselect="updateLogButtons();">
+             persist="sortDirection sortResource" sortDirection="ascending"
+             sortResource="timestamp" flex="1" class="treeStyling" 
+             onselect="updateLogButtons();">
              <treecols
                pickertooltiptext="&foxyproxy.tree.pickertooltiptext.label;">
                <treecol id="timestamp"

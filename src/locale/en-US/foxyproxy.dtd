@@ -50,6 +50,10 @@
 <!ENTITY foxyproxy.help.accesskey "H">
 <!ENTITY foxyproxy.help.tooltip "Show Help">
 
+<!ENTITY foxyproxy.export.pattern.label "Export as JSON">
+<!ENTITY foxyproxy.export.pattern.accesskey "J">
+<!ENTITY foxyproxy.export.pattern.tooltip "Export patterns as a JSON pattern subscription">
+
 <!ENTITY foxyproxy.close.label "Close">
 <!ENTITY foxyproxy.close.accesskey "C">
 <!ENTITY foxyproxy.close.tooltip "Close Window">
@@ -501,7 +505,7 @@
 <!ENTITY foxyproxy.temp.label "Temporary">
 <!ENTITY foxyproxy.temp.accesskey "T">
 <!ENTITY foxyproxy.temp.tooltip "Pattern is used only for this Firefox session">
-<!ENTITY foxyproxy.fromSubscription.label "Susbcribed">
+<!ENTITY foxyproxy.fromSubscription.label "Subscribed">
 <!ENTITY foxyproxy.define.label "Define">
 <!ENTITY foxyproxy.define.accesskey "D">
 <!ENTITY foxyproxy.define.tooltip "Define">

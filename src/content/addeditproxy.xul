@@ -331,6 +331,7 @@
   label="&foxyproxy.delete.selection.label;"
   accesskey="&foxyproxy.delete.selection.accesskey;"
   tooltiptext="&foxyproxy.delete.selection.tooltip;"
+  disabled="true"
   observes="urls-tree-row-selected"
   oncommand="onRemoveURLPattern();"/>
 
@@ -338,6 +339,7 @@
   label="&foxyproxy.edit.selection.label;"
   accesskey="&foxyproxy.edit.selection.accesskey;"
   tooltiptext="&foxyproxy.edit.selection.tooltip;"
+  disabled="true"
   observes="urls-tree-row-selected"
   oncommand="onAddEditURLPattern(false);"/>
 
@@ -345,6 +347,7 @@
   label="&foxyproxy.copy.selection.label;"
   accesskey="&foxyproxy.copy.selection.accesskey;"
   tooltiptext="&foxyproxy.copy.selection.tooltip;"
+  disabled="true"
   observes="urls-tree-row-selected"
   oncommand="onCopyURLPattern();"/>
 
@@ -364,6 +367,7 @@
   label="&foxyproxy.export.pattern.label;"
   accesskey="&foxyproxy.export.pattern.accesskey;"
   tooltiptext="&foxyproxy.export.pattern.tooltip;"
+  disabled="true"
   oncommand="onExportURLPattern();"/>
 
 <command id="closeCmd"

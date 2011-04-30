@@ -245,13 +245,18 @@
 	         <menuitem 
 		   label="&foxyproxy.pattern.subscriptions.addSubscription;"/>
 	         <menuitem 
-		   label="&foxyproxy.pattern.subscriptions.editSelection;"/>
+                   label="&foxyproxy.pattern.subscriptions.editSelection;"
+                   disabled="true" observes="patsubtree-row-selected"/>
+                   
 	         <menuitem 
-		   label="&foxyproxy.pattern.subscriptions.deleteSelections;"/>
+                   label="&foxyproxy.pattern.subscriptions.deleteSelections;"
+                   disabled="true" observes="patsubtree-row-selected"/>
 	         <menuitem 
-		   label="&foxyproxy.pattern.subscriptions.refreshSelections;"/>
+                   label="&foxyproxy.pattern.subscriptions.refreshSelections;"
+                   disabled="true" observes="patsubtree-row-selected"/>
 	         <menuitem 
-		   label="&foxyproxy.pattern.subscriptions.viewSubscription;"/>
+                   label="&foxyproxy.pattern.subscriptions.viewSubscription;"
+                   disabled="true" observes="patsubtree-row-selected"/>
 	       </menupopup>
 	     </menulist>
 	   </vbox>

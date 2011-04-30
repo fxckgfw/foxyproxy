@@ -1,13 +1,11 @@
 /**
-  FoxyProxy
-  Copyright (C) 2006-#%#% Eric H. Jung and LeahScape, Inc.
-  http://getfoxyproxy.org/
-  eric.jung@yahoo.com
-
-  This source code is released under the GPL license,
-  available in the LICENSE file at the root of this installation
-  and also online at http://www.gnu.org/licenses/gpl.txt
-**/
+ * FoxyProxy Copyright (C) 2006-#%#% Eric H. Jung and LeahScape, Inc.
+ * http://getfoxyproxy.org/ eric.jung@yahoo.com
+ * 
+ * This source code is released under the GPL license, available in the LICENSE
+ * file at the root of this installation and also online at
+ * http://www.gnu.org/licenses/gpl.txt
+ */
 
 "use strict";
 
@@ -77,7 +75,7 @@ var patternSubscriptions = {
       conStream.init(istream, "UTF-8", 0, 0);
       conStream.QueryInterface(Ci.nsIUnicharLineInputStream);
       do {
-        // Every subscription should just get its related error messages, 
+        // Every subscription should just get its related error messages,
         // therefore resetting errorMessages here.
 	errorMessages = [];
         hasmore = conStream.readLine(line);
@@ -96,7 +94,7 @@ var patternSubscriptions = {
             // As we cannot be sure that the JSON starts with "{"metadata""
             // (e.g. if the pattern subscription had not had one) we prepend one
             // "{" to our string to parse. We append one as well in order to be
-            // sure that our metadata string is valid JSON regardless where 
+            // sure that our metadata string is valid JSON regardless where
             // its position in the saved subscription is.
 	    parseString = "{" + line.value.slice(metaIdx, line.value.
               indexOf("}", metaIdx) + 1) + "}";
@@ -104,9 +102,9 @@ var patternSubscriptions = {
               errorMessages);
 	    if (loadedSubscription && loadedSubscription.length === undefined) {
               // At least we could parse the metadata. Now, we can show the
-              // subscription in the tree after setting the last status 
+              // subscription in the tree after setting the last status
               // properly. Afterwards we ask the user if she wants to refresh
-              // her subscription immediately in order to solve the issue 
+              // her subscription immediately in order to solve the issue
 	      // with the corrupt pattern part.
 	      errorMessages.push(this.fp.
                 getMessage("patternsubscription.error.patterns", 
@@ -159,7 +157,7 @@ var patternSubscriptions = {
       // We do need the following line of code. Otherwise we would get an error
       // that our JSON is not well formed if we load it from a local drive. See:
       // http://stackoverflow.com/questions/677902/not-well-formed-error-in-
-      // firefox-when-loading-json-file-with-xmlhttprequest 
+      // firefox-when-loading-json-file-with-xmlhttprequest
       req.overrideMimeType("application/json");
       req.send(null);
       subscriptionText = req.responseText;
@@ -174,16 +172,16 @@ var patternSubscriptions = {
         // Ugh, using a call to evalInSandbox() for Base64 checking! The reason
         // for this is that the atob() call fails silently if there is an error
         // within the Base64 response but we want to show this to the FoxyProxy
-        // users. 
+        // users.
 	try {
-	  //TODO: Why not using a chrome window?
+	  // TODO: Why not using a chrome window?
 	  var win = this.fpc.getMostRecentWindow();
 	  var mySandbox = Cu.Sandbox(win);
 	  mySandbox.window = win;
-	  // We need to replace newlines and other special characters here. As 
+	  // We need to replace newlines and other special characters here. As
 	  // there are lots of implementations that differ on this issue and the
           // issue whether there should/may be a specific line length (say 64 or
-          // 76 chars). 
+          // 76 chars).
 	  mySandbox.responseText = req.responseText.replace(/\s*/g, '');
           subscriptionText = Cu.evalInSandbox("window.atob(responseText);",
             mySandbox); 
@@ -194,7 +192,7 @@ var patternSubscriptions = {
 	}
         subscriptionJSON = this.getObjectFromJSON(subscriptionText, 
           errorMessages); 
-        // We do not need to process the subscription any further if we got 
+        // We do not need to process the subscription any further if we got
         // again no proper subscription object or if the user does not want
         // to import a Base64 encoded subscription (in case she selected "none"
         // as obfuscation).
@@ -208,15 +206,15 @@ var patternSubscriptions = {
             getMessage("patternsubscription.error.cancel64")); 
           return errorMessages; 
         }
-        // Now, we reuse the bBase64 flag to indicate whether "Base64" should 
-        // show up in the subscriptionsTree. Setting it to true, as we have a 
+        // Now, we reuse the bBase64 flag to indicate whether "Base64" should
+        // show up in the subscriptionsTree. Setting it to true, as we have a
         // Base64 encoded subscription.
         if (!bBase64) {
           bBase64 = true; 
         }
       } else {
-        // The subscription seems to have no Base64 format. Before 
-        // proceeding any further let's check whether the user had selected 
+        // The subscription seems to have no Base64 format. Before
+        // proceeding any further let's check whether the user had selected
         // Base64 as encoding and if so whether she wants to import the pattern
         // subscription though.
 	if (bBase64 && !this.fp.warnings.showWarningIfDesired(null, 
@@ -326,20 +324,20 @@ var patternSubscriptions = {
 	}
       }
       // We are quite permissive here. All we need is a checksum. If somebody
-      // forgot to add that the subscription is MD5 encoded (using the 
+      // forgot to add that the subscription is MD5 encoded (using the
       // algorithm property of the metadata object) we try that though. But we
-      // only check the subscription object for several reasons: 1) It is this 
-      // object that contains data that we want to have error free. The 
+      // only check the subscription object for several reasons: 1) It is this
+      // object that contains data that we want to have error free. The
       // metadata is not so important as the user can overwrite a lot of its
       // properties and it contains only additional information 2) We cannot
       // hash the whole a whole subscription as this would include hashing the
-      // hash itself, a thing that would not lead to the desired result 
+      // hash itself, a thing that would not lead to the desired result
       // without introducing other means of transporting this hash (e.g. using
       // a special HTTP header). But the latter would have drawbacks we want to
-      // avoid 3) To cope with 2) we could exclude the checksum property from 
+      // avoid 3) To cope with 2) we could exclude the checksum property from
       // getting hashed and hash just all the other parts of the subscription.
       // However, that would require a more sophisticated implementation which
-      // currently seems not worth the effort. Thus, sticking to a hashed 
+      // currently seems not worth the effort. Thus, sticking to a hashed
       // subscription object.
       if (aSubscription.metadata && aSubscription.metadata.checksum) {
         ok = this.checksumVerification(aSubscription.metadata.checksum, 
@@ -411,7 +409,7 @@ var patternSubscriptions = {
       if (aSubscription.metadata.refresh == 0) {
         aSubscription.metadata.timer.cancel();
         delete aSubscription.metadata.timer;
-        // There is no next update as refresh got set to zero. Therefore, 
+        // There is no next update as refresh got set to zero. Therefore,
         // deleting this property as well.
         delete aSubscription.metadata.nextUpdate;
         // Again, we need type coercion...
@@ -445,7 +443,7 @@ var patternSubscriptions = {
         return;
       }
     } else {
-      // TODO: Investigate whether there is an easy way to use 
+      // TODO: Investigate whether there is an easy way to use
       // metadata.lastUpdate here in order to calculate the next update time in
       // ms since 1969/01/01. By this we would not need metadata.nextUpdate.
       aSubscription.metadata.nextUpdate = d + aSubscription.metadata.
@@ -482,7 +480,7 @@ var patternSubscriptions = {
     if ((!file.exists() || !file.isFile())) {
       // Owners may do everthing with the file, the group and others are
       // only allowed to read it. 0x1E4 is the same as 0744 but we use it here
-      // as octal literals and escape sequences are deprecated and the 
+      // as octal literals and escape sequences are deprecated and the
       // respective constants are not available yet, see: bug 433295.
       file.create(Ci.nsIFile.NORMAL_FILE_TYPE, 0x1E4); 
     }
@@ -534,7 +532,7 @@ var patternSubscriptions = {
       if (patternElement) {
         this.fromDOM(patternElement);
       } else {
-	// Although it is not a preparation we set the flag to "true" as we 
+	// Although it is not a preparation we set the flag to "true" as we
 	// not not need to execute the respective if-path as there are no
 	// pattern susbcriptions to erase.
         bPreparation = true;
@@ -555,7 +553,7 @@ var patternSubscriptions = {
     // In foxyproxy.js is a call to gFP.toDOM() used instead of doc but that is
     // not available here as the patternSubscriptions are not written there.
     // The result is two missing newlines, one before and one after the DOCTYPE
-    // declaration. But that does not matter for parsing the settings. 
+    // declaration. But that does not matter for parsing the settings.
     Cc["@mozilla.org/xmlextras/xmlserializer;1"].
       createInstance(Ci.nsIDOMSerializer).serializeToStream(doc, foStream, "UTF-8");
       // foStream.write(str, str.length);
@@ -611,16 +609,16 @@ var patternSubscriptions = {
       meta = doc.createElement("metadata");
       sub2 = doc.createElement("patternSub");
       pat = doc.createElement("patterns");
-      for (a in this.subscriptionsList[i].metadata) {
-	meta.setAttribute(a, this.subscriptionsList[i].metadata[a])
+      for (var a in this.subscriptionsList[i].metadata) {
+        meta.setAttribute(a, this.subscriptionsList[i].metadata[a])
       }
       sub.appendChild(meta);
-      for (j = 0; j < patterns.length; j++) {
-	pat2 = doc.createElement("pattern");
-        for (a in patterns[j]) {
+      for (var j = 0; j < patterns.length; j++) {
+        pat2 = doc.createElement("pattern");
+        for (var a in patterns[j]) {
           pat2.setAttribute(a, patterns[j][a]);  
-	}
-	pat.appendChild(pat2);
+        }
+        pat.appendChild(pat2);
       }
       sub2.appendChild(pat);
       sub.appendChild(sub2);
@@ -632,7 +630,7 @@ var patternSubscriptions = {
   refreshSubscription: function(aSubscription, showResponse) {
     var errorText = "";
     // We are calculating the index in this method in order to be able to
-    // use it with the nsITimer instances as well. If we would get the 
+    // use it with the nsITimer instances as well. If we would get the
     // index from our caller it could happen that the index is wrong due
     // to changes in the subscription list while the timer was "sleeping".
     var aIndex = null, proxyList = [];
@@ -642,7 +640,7 @@ var patternSubscriptions = {
       }
     }
     if (aIndex === null) return;
-    // Estimating whether the user wants to have the subscription base64 
+    // Estimating whether the user wants to have the subscription base64
     // encoded. We use this as a parameter to show the proper dialog if there
     // is a mismatch between the users choice and the subscription's
     // encoding.
@@ -662,7 +660,7 @@ var patternSubscriptions = {
       // Making sure that they are shown in the lastStatus dialog.
       aSubscription.metadata.errorMessages = refreshedSubscription;
     } else {
-      // We do not want to loose our metadata here as the user just 
+      // We do not want to loose our metadata here as the user just
       // refreshed the subscription to get up-to-date patterns.
       aSubscription.subscription = refreshedSubscription.
         subscription;
@@ -687,7 +685,7 @@ var patternSubscriptions = {
     if (aSubscription.metadata.refresh > 0) {
       this.setSubscriptionTimer(aSubscription, true, false);
     }
-    // And it means above all refreshing the patterns... But first we generate 
+    // And it means above all refreshing the patterns... But first we generate
     // the proxy list.
     if (aSubscription.metadata.proxies.length > 0) {
       proxyList = this.fp.proxies.getProxiesFromId(aSubscription.metadata.
@@ -766,7 +764,7 @@ var patternSubscriptions = {
         // That loop does the following: Check the pattern j of the proxy i
         // whether it is from a subscription. If so, delete it (splice()-call)
         // raise k and start at the same position again (now being the next)
-        // pattern. If not, raise j (i.e. check the pattern at the next 
+        // pattern. If not, raise j (i.e. check the pattern at the next
         // position in the array at the next time running the loop) and k.
         // That goes until all the patterns are checked, i.e. until k equals
         // the patterns length.
@@ -796,12 +794,12 @@ var patternSubscriptions = {
   checksumVerification: function(aChecksum, aSubscription) {
     var result, data, ch, hash, finalHash, i;
     // First getting the subscription object in a proper stringified form.
-    // That means just to stringify the Object. JSON allows (additional) 
-    // whitespace (see: http://www.ietf.org/rfc/rfc4627.txt section 2) 
+    // That means just to stringify the Object. JSON allows (additional)
+    // whitespace (see: http://www.ietf.org/rfc/rfc4627.txt section 2)
     // but we got rid of it while creating the JSON object the first time.
     var subscriptionJSON = this.getJSONFromObject(aSubscription.subscription);
     
-    // Following https://developer.mozilla.org/En/NsICryptoHash 
+    // Following https://developer.mozilla.org/En/NsICryptoHash
     var converter = Cc["@mozilla.org/intl/scriptableunicodeconverter"].
                     createInstance(Ci.nsIScriptableUnicodeConverter);
     converter.charset = "UTF-8";
@@ -839,7 +837,7 @@ var patternSubscriptions = {
           case "subscriptionsUri" : return i.metadata.url;           
 	  // We are doing here a similar thing as in addeditsubscription.js
 	  // in the onLoad() function described: As we only saved the id's
-	  // and the id's are not really helpful for users, we just use them to 
+	  // and the id's are not really helpful for users, we just use them to
 	  // get the respective name of a proxy out of the proxies object
 	  // belonging to the foxyproxy service. These names are then displayed
 	  // in the subscriptions tree comma separated in the proxy column.

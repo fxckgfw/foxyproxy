@@ -36,9 +36,9 @@
 <!ENTITY foxyproxy.help.label "Hilfe">
 <!ENTITY foxyproxy.help.accesskey "H">
 <!ENTITY foxyproxy.help.tooltip "Hilfe anzeigen">
-<!ENTITY foxyproxy.export.pattern.label "Als JSON exportieren">
-<!ENTITY foxyproxy.export.pattern.accesskey "J">
-<!ENTITY foxyproxy.export.pattern.tooltip "Die Muster als Muster-Abonnement im JSON-Format exportieren">
+<!ENTITY foxyproxy.export.pattern.label "Exportieren">
+<!ENTITY foxyproxy.export.pattern.accesskey "X">
+<!ENTITY foxyproxy.export.pattern.tooltip "Die Muster als Muster-Abonnement exportieren">
 <!ENTITY foxyproxy.close.label "Schließen">
 <!ENTITY foxyproxy.close.accesskey "S">
 <!ENTITY foxyproxy.close.tooltip "Fenster schließen">

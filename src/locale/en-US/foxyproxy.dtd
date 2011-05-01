@@ -50,9 +50,9 @@
 <!ENTITY foxyproxy.help.accesskey "H">
 <!ENTITY foxyproxy.help.tooltip "Show Help">
 
-<!ENTITY foxyproxy.export.pattern.label "Export as JSON">
-<!ENTITY foxyproxy.export.pattern.accesskey "J">
-<!ENTITY foxyproxy.export.pattern.tooltip "Export patterns as a JSON pattern subscription">
+<!ENTITY foxyproxy.export.pattern.label "Export">
+<!ENTITY foxyproxy.export.pattern.accesskey "X">
+<!ENTITY foxyproxy.export.pattern.tooltip "Export patterns as a pattern subscription">
 
 <!ENTITY foxyproxy.close.label "Close">
 <!ENTITY foxyproxy.close.accesskey "C">

@@ -1,3 +1,5 @@
+* made the button behavior in the pattern Tree more coherent
+
 * Fixed http://foxyproxy.mozdev.org/drupal/content/logging-view-milliseconds-field-wrong
 * Fixed radio button overlayed with text in the mode menu
 * Fixed Torwizard issue (button text did not fit into the buttons)
@@ -11,4 +13,4 @@
 * Fixed Torwizard issues (custom ports were not saved; added port check)
 * Fixed crammed list-style-icons bug in URL patterns tab (addeditproxy.xul)
 * Fixed nsIFilePicker bug in options.js (rev754, rev758) and enhanced triquestions.xul and .js (rev755)
-* Fixed bug 143 
+* Fixed FoxyProxy's context menu bug (see: http://foxyproxy.mozdev.org/drupal/content/foxyproxys-context-menu-bug)

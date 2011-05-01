@@ -259,9 +259,6 @@ function onCopyURLPattern() {
 
 function onExportURLPattern() {
   let patternLength = proxy.matches.length;
-  if (patternLength === 0) {
-    return;
-  }
   // Now we are constructing the pattern subscription...
   let JSONString = '{"subscription":{"patterns":[';
   for (let j = 0; j < patternLength; j++) {

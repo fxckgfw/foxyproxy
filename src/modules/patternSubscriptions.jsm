@@ -741,8 +741,8 @@ var patternSubscriptions = {
                     wrappedJSObject; 
           pattern.init(currentSub.metadata.enabled, currentPat.patterns[j].name, 
                       currentPat.patterns[j].pattern, false, currentPat.
-                      patterns[j].type.toLowerCase() === "wildcard" ? false : 
-                      true, currentPat.patterns[j].caseSensitive ? true : false,
+                      patterns[j].isRegEx, currentPat.patterns[j].
+                      caseSensitive ? true : false,
                       currentPat.patterns[j].blackList ? true : false, 
                       currentPat.patterns[j].multiLine ? true : false,
 		      true);

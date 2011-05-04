@@ -153,7 +153,7 @@ var foxyproxy = {
       createInstance(Components.interfaces.nsITimer); 
     this.svgIcons.init();
     this.statusText = document.getElementById("foxyproxy-status-text");
-    setTimeout(this.findToolbarIcon, 100);
+    setTimeout(this.defaultToolbarIconFF4, 100);
     
     var obSvc = Components.classes["@mozilla.org/observer-service;1"].getService(Components.interfaces.nsIObserverService);
     for (var i in this.notes) {
@@ -299,6 +299,50 @@ end-foxyproxy-simple !*/
       foxyproxy.fp.proxies.push(p);
       foxyproxy.updateViews(true);
       foxyproxy.alert(owner, foxyproxy.fp.getMessage("torwiz.congratulations"));
+    }
+  },
+
+  defaultToolbarIconFF4: function() {
+    foxyproxy.findToolbarIcon(); 
+    let firstRun = foxyproxy.fp.getPrefsService("extensions.foxyproxy.").
+      getBoolPref("firstrun");
+    if (firstRun) {
+      foxyproxy.fp.getPrefsService("extensions.foxyproxy.").
+        setBoolPref("firstrun", false); 
+      // The Add-on Bar got intruced in FF 4.07b. As it is disabled by default
+      // we show the FoxyProxy toolbar icon on first start in the toolbar to
+      // give the user a hint about FoxyProxy's existence.
+      let vc = Components.classes["@mozilla.org/xpcom/version-comparator;1"].
+        getService(Components.interfaces.nsIVersionComparator); 
+      if (vc.compare(foxyproxy.fpc.appInfo.version, "4.0b7") < 0) {
+        return;
+      }
+      let navBar = document.getElementById("nav-bar"); 
+      if (navBar) {
+        let curSet = navBar.currentSet.split(",");
+        if (curSet.indexOf("foxyproxy-toolbar-icon") === -1) {
+          let pos = curSet.indexOf("urlbar-container") + 1 || curSet.length;
+          let set = curSet.slice(0, pos).concat("foxyproxy-toolbar-icon").
+            concat(curSet.slice(pos));
+          navBar.setAttribute("currentset", set.join(","));
+          navBar.currentSet = set.join(",");
+          document.persist(navBar.id, "currentset");
+           
+          try {
+            BrowserToolboxCustomizeDone(true);
+          } catch (e) {}
+          // We have to duplicate this code here as adding the icon via the
+          // above code does not trigger the customizeChange event in 
+          // findToolbarIcon(). Thus, we the proper color would not be applied
+          // to the toolbar icon.
+          foxyproxy.svgIcons.init();
+          if (document.getElementById("fp-toolbar-icon-3")) {
+            // Our toolbar icon was added. Apply the proper icon coloring 
+            // to the toolbar icon by setting the mode again 
+            foxyproxy.setMode(foxyproxy.fp.mode);
+          }
+        } 
+      }
     }
   },
 

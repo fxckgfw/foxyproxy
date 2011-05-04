@@ -15,7 +15,7 @@
 
 <overlay id="foxyproxy-overlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
-  <script src="overlay.js"/>
+  <script type="application/x-javascript;version=1.7" src="overlay.js"/>
   <script src="selection.js"/>
 
   <stringbundleset id="foxyproxy-strings">

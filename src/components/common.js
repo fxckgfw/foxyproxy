@@ -18,6 +18,7 @@ var fp;
 
 function Common() {
   this.wrappedJSObject = this;
+  this.appInfo = CC["@mozilla.org/xre/app-info;1"].getService(CI.nsIXULAppInfo);
   fp = CC["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;   
   let uuid = fp.isFoxyProxySimple() ? "foxyproxy-basic@eric.h.jung" : "foxyproxy@eric.h.jung";
   // Get installed version
@@ -266,7 +267,7 @@ Common.prototype = {
   }, 
   
   isThunderbird : function() {
-    return CC["@mozilla.org/xre/app-info;1"].getService(CI.nsIXULAppInfo).ID == "{3550f703-e582-4d05-9a08-453d09bdfdc6}";
+    return this.appInfo.ID == "{3550f703-e582-4d05-9a08-453d09bdfdc6}";
   },
   
   notify : function(msg, buttons, callback) {

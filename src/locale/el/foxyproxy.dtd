@@ -5,7 +5,7 @@
 <!ENTITY foxyproxy.options.label "Επιλογές">
 <!ENTITY foxyproxy.options.accesskey "Ε">
 <!ENTITY foxyproxy.options.tooltip "Άνοιγμα του διαλόγου επιλογών">
-<!ENTITY foxyproxy.tree.pickertooltiptext.label "Κάντε κλικ για να επιλέξετε ποιές στήλες θα εμφανίζονται">
+<!ENTITY foxyproxy.tree.pickertooltiptext.label "Κάντε κλικ για να επιλέξετε ποιες στήλες θα εμφανίζονται">
 <!ENTITY foxyproxy.proxy.name.label "Όνομα διαμεσολαβητή">
 <!ENTITY foxyproxy.proxy.name.accesskey "Ο">
 <!ENTITY foxyproxy.proxy.name.tooltip "Όνομα διαμεσολαβητή">
@@ -107,6 +107,7 @@
 <!ENTITY foxyproxy.menubar.help.tooltip "Άνοιγμα του μενού «Βοήθεια»">
 <!ENTITY foxyproxy.mode.accesskey "τ">
 <!ENTITY foxyproxy.mode.tooltip "Επιλέξτε πως θα ενεργοποιείται το FoxyProxy">
+<!ENTITY foxyproxy.proxy.label "Διαμεσολαβητής">
 <!ENTITY foxyproxy.tab.proxies.label "Διαμεσολαβητές">
 <!ENTITY foxyproxy.tab.proxies.accesskey "Δ">
 <!ENTITY foxyproxy.tab.proxies.tooltip "Διαχείριση διαμεσολαβητών">
@@ -390,6 +391,7 @@
 <!ENTITY foxyproxy.temp.label "Προσωρινό">
 <!ENTITY foxyproxy.temp.accesskey "ν">
 <!ENTITY foxyproxy.temp.tooltip "Το πρότυπο θα χρησιμοποιηθεί μόνο σ&apos; αυτή τη συνεδρία.">
+<!ENTITY foxyproxy.fromSubscription.label "Εγγεγραμμένος">
 <!ENTITY foxyproxy.define.label "Ορισμός">
 <!ENTITY foxyproxy.define.accesskey "Ο">
 <!ENTITY foxyproxy.define.tooltip "Ορισμός">
@@ -420,6 +422,7 @@
 <!ENTITY foxyproxy.server.subscriptions.label "Συνδρομές διακομιστών">
 <!ENTITY foxyproxy.server.subscriptions.tooltip "Διαχείριση συνδρομών διακομιστών">
 <!ENTITY foxyproxy.server.subscriptions.accesskey "δ">
+<!ENTITY foxyproxy.selectproxy.label "Επιλογή διαμεσολαβητή">
 <!ENTITY foxyproxy.pattern.subscriptions.label "Συνδρομές πρότυπων">
 <!ENTITY foxyproxy.pattern.subscriptions.tooltip "Διαχείριση συνδρομών πρότυπων">
 <!ENTITY foxyproxy.pattern.subscriptions.accesskey "σ">
@@ -433,6 +436,35 @@
 <!ENTITY foxyproxy.pattern.subscriptions.viewSubscription "Προβολή συνδρομής προτύπου">
 <!ENTITY foxyproxy.pattern.subscriptions.go.label "Μετάβαση">
 <!ENTITY foxyproxy.pattern.subscriptions.go.tooltip "Κάντε κλικ για εκτέλεση.">
+<!ENTITY foxyproxy.pattern.subscriptions.lastStatus.label "Τελευταία κατάσταση">
+<!ENTITY foxyproxy.pattern.subscriptions.addedit.title "Προσθήκη/επεξεργασία συνδρομής σε πρότυπο">
+<!ENTITY foxyproxy.pattern.subscriptions.name.label "Όνομα συνδρομής">
+<!ENTITY foxyproxy.pattern.subscriptions.name.tooltip "Όνομα συνδρομής">
+<!ENTITY foxyproxy.pattern.subscriptions.notes.label "Περιγραφή συνδρομής">
+<!ENTITY foxyproxy.pattern.subscriptions.notes.tooltip "Περιγραφή συνδρομής">
+<!ENTITY foxyproxy.pattern.subscriptions.url.label "URL συνδρομής">
+<!ENTITY foxyproxy.pattern.subscriptions.url.tooltip "URL συνδρομής">
+<!ENTITY foxyproxy.pattern.subscriptions.proxies.tooltip "Διαμεσολαβητές με συνδρομή σ' αυτή τη λίστα πρότυπων">
+<!ENTITY foxyproxy.pattern.subscriptions.addProxies.label "Προσθήκη διαμεσολαβητών">
+<!ENTITY foxyproxy.pattern.subscriptions.addProxies.tooltip "Προσθήκη διαμεσολαβητών που θα έχουν συνδρομή στη λίστα πρότυπων">
+<!ENTITY foxyproxy.pattern.subscriptions.removeProxies.label "Αφαίρεση επιλεγμένων">
+<!ENTITY foxyproxy.pattern.subscriptions.removeProxies.tooltip "Ακύρωση συνδρομής λίστα πρότυπων για τους επιλεγμένους διαμεσολαβητές">
+<!ENTITY foxyproxy.pattern.subscriptions.refresh.label "Ρυθμός ανανέωσης">
+<!ENTITY foxyproxy.pattern.subscriptions.refresh.tooltip "Ρυθμός ανανέωσης συνδρομής προτύπων σε λεπτά">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshNow.label "Ανανέωση τώρα">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshNow.tooltip "Ανανέωση συνδρομής προτύπων τώρα">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp1 "Ορίστε τον αριθμό των λεπτών μετά τα οποία θα ενημερώνεται η συνδρομή. Η ενημέρωση συνδρομής">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp2 "αφαιρεί όλα τα υπάρχοντα πρότυπα">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp3 "και εισάγει αυτά που υπάρχουν στο URL της συνδρομής. Διαβάστε περισσότερα εδώ">
+<!ENTITY foxyproxy.pattern.subscriptions.zeroRefresh "(Βάλτε 0 για να μην ανανεώνεται)">
+<!ENTITY foxyproxy.pattern.subscriptions.format.tooltip "Μορφή λίστας συνδρομής προτύπων">
+<!ENTITY foxyproxy.pattern.subscriptions.formatHelp "Ορίστε τη μορφή συγγραφής της συνδρομής. Κανονικά θα πρέπει να αναγνωρίζεται αυτόματα από το FoxyProxy. Διαβάστε περισσότερα">
+<!ENTITY foxyproxy.pattern.subscriptions.obfuscation.tooltip "Μορφή συσκότισης συνδρομής προτύπων">
+<!ENTITY foxyproxy.pattern.subscriptions.obfuscationHelp "Οι συνδρομές μπορούν προαιρετικά να συσκοτιστούν ώστε να μην επιτρέπουν το φιλτράρισμα περιεχομένου από υπολογιστές μεταξύ του υπολογιστή σας και του URL της συνδρομής. Κανονικά αυτό αναγνωρίζεται αυτόματα από το FoxyProxy. Διαβάστε περισσότερα.">
+<!ENTITY foxyproxy.pattern.subscriptions.copyLastStatus.label "Αντιγραφή πρόσφατης κατάστασης στο πρόχειρο">
+<!ENTITY foxyproxy.pattern.subscriptions.copyLastStatus.tooltip "Αντιγραφή της τελευταίας κατάστασης στο πρόχειρο">
+<!ENTITY foxyproxy.pattern.subscriptions.pattern.window.title "Συνδρομές πρότυπων">
+<!ENTITY foxyproxy.none.label "Κανένα">
 <!ENTITY foxyproxy.name.label "Όνομα">
 <!ENTITY foxyproxy.notes.label "Σημειώσεις">
 <!ENTITY foxyproxy.url.label "url">

@@ -107,6 +107,7 @@
 <!ENTITY foxyproxy.menubar.help.tooltip "Abre el menú ayuda">
 <!ENTITY foxyproxy.mode.accesskey "S">
 <!ENTITY foxyproxy.mode.tooltip "Seleccionar cómo habilitar FoxyProxy">
+<!ENTITY foxyproxy.proxy.label "Proxy">
 <!ENTITY foxyproxy.tab.proxies.label "Proxys">
 <!ENTITY foxyproxy.tab.proxies.accesskey "P">
 <!ENTITY foxyproxy.tab.proxies.tooltip "Administrar proxys">
@@ -390,6 +391,7 @@
 <!ENTITY foxyproxy.temp.label "Temporales">
 <!ENTITY foxyproxy.temp.accesskey "T">
 <!ENTITY foxyproxy.temp.tooltip "Los patrones se usarán sólamente en esta sesión de Firefox">
+<!ENTITY foxyproxy.fromSubscription.label "Suscrito">
 <!ENTITY foxyproxy.define.label "Definir">
 <!ENTITY foxyproxy.define.accesskey "D">
 <!ENTITY foxyproxy.define.tooltip "Definir">
@@ -420,6 +422,7 @@
 <!ENTITY foxyproxy.server.subscriptions.label "Server Subscriptions">
 <!ENTITY foxyproxy.server.subscriptions.tooltip "Manage Server Subscriptions">
 <!ENTITY foxyproxy.server.subscriptions.accesskey "S">
+<!ENTITY foxyproxy.selectproxy.label "Seleccionar proxy">
 <!ENTITY foxyproxy.pattern.subscriptions.label "Pattern Subscriptions">
 <!ENTITY foxyproxy.pattern.subscriptions.tooltip "Manage Pattern Subscriptions">
 <!ENTITY foxyproxy.pattern.subscriptions.accesskey "S">
@@ -433,6 +436,35 @@
 <!ENTITY foxyproxy.pattern.subscriptions.viewSubscription "Ver patrones de suscripción">
 <!ENTITY foxyproxy.pattern.subscriptions.go.label "Ir">
 <!ENTITY foxyproxy.pattern.subscriptions.go.tooltip "Pulse aquí para ejecutar su selección.">
+<!ENTITY foxyproxy.pattern.subscriptions.lastStatus.label "Último estado">
+<!ENTITY foxyproxy.pattern.subscriptions.addedit.title "Añadir/Editar patrón de suscripción">
+<!ENTITY foxyproxy.pattern.subscriptions.name.label "Nombre de la suscripción">
+<!ENTITY foxyproxy.pattern.subscriptions.name.tooltip "Nombre de la suscripción">
+<!ENTITY foxyproxy.pattern.subscriptions.notes.label "Descripción de la suscripción">
+<!ENTITY foxyproxy.pattern.subscriptions.notes.tooltip "Descripción de la suscripción">
+<!ENTITY foxyproxy.pattern.subscriptions.url.label "URL de la suscripción">
+<!ENTITY foxyproxy.pattern.subscriptions.url.tooltip "URL de la suscripción">
+<!ENTITY foxyproxy.pattern.subscriptions.proxies.tooltip "Proxys que tienen suscripción a esta lista de patrones">
+<!ENTITY foxyproxy.pattern.subscriptions.addProxies.label "Añadir proxys">
+<!ENTITY foxyproxy.pattern.subscriptions.addProxies.tooltip "Añadir proxys que se suscribirán a la lista de patrones">
+<!ENTITY foxyproxy.pattern.subscriptions.removeProxies.label "Borrar seleccionado">
+<!ENTITY foxyproxy.pattern.subscriptions.removeProxies.tooltip "Cancelar la suscripción a esta lista de patrones para los proxys seleccionados">
+<!ENTITY foxyproxy.pattern.subscriptions.refresh.label "Frecuencia de refresco">
+<!ENTITY foxyproxy.pattern.subscriptions.refresh.tooltip "Frecuencia de refresco de este patrón de suscripciones en minutos">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshNow.label "Refrescar ahora">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshNow.tooltip "Refrescar este patrón de suscripciones ahora">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp1 "Especifique el número de minutos tras el que las suscripciones se actualizan. Al actualizar las suscripciones">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp2 "se borran todos los patrones existentes">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp3 "y se inserta el nuevo encontrado en la URL de suscripción. Lea más aquí">
+<!ENTITY foxyproxy.pattern.subscriptions.zeroRefresh "(0 para no refrescar nunca)">
+<!ENTITY foxyproxy.pattern.subscriptions.format.tooltip "Formato de esta lista de patrón de suscripciones">
+<!ENTITY foxyproxy.pattern.subscriptions.formatHelp "Especifique el formato en que las suscripciones se escriben. Normalmente, es detectado automáticamente por FoxyProxy. Lea más">
+<!ENTITY foxyproxy.pattern.subscriptions.obfuscation.tooltip "Formato de ofuscación de este patrón de suscripciones">
+<!ENTITY foxyproxy.pattern.subscriptions.obfuscationHelp "Las suscripciones se ofuscan opcionalmente para prevenir el filtrado del contenido por máquinas entre la tuya y la URL de suscripción. Normalmente, esto se detecta automáticamente por FoxyProxy. Lea más">
+<!ENTITY foxyproxy.pattern.subscriptions.copyLastStatus.label "Copiar el último estado al portapapeles">
+<!ENTITY foxyproxy.pattern.subscriptions.copyLastStatus.tooltip "Copiar el último estado al portapapeles">
+<!ENTITY foxyproxy.pattern.subscriptions.pattern.window.title "Patrones de suscripción">
+<!ENTITY foxyproxy.none.label "Ninguno">
 <!ENTITY foxyproxy.name.label "Name">
 <!ENTITY foxyproxy.notes.label "Notes">
 <!ENTITY foxyproxy.url.label "url">

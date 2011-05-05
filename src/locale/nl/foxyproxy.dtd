@@ -107,6 +107,7 @@
 <!ENTITY foxyproxy.menubar.help.tooltip "Het menu Help openen">
 <!ENTITY foxyproxy.mode.accesskey "M">
 <!ENTITY foxyproxy.mode.tooltip "Selecteer hoe FoxyProxy moet worden ingeschakeld">
+<!ENTITY foxyproxy.proxy.label "Proxy">
 <!ENTITY foxyproxy.tab.proxies.label "Proxy’s">
 <!ENTITY foxyproxy.tab.proxies.accesskey "P">
 <!ENTITY foxyproxy.tab.proxies.tooltip "Proxy’s beheren">
@@ -390,6 +391,7 @@
 <!ENTITY foxyproxy.temp.label "Tijdelijk">
 <!ENTITY foxyproxy.temp.accesskey "T">
 <!ENTITY foxyproxy.temp.tooltip "Patroon wordt alleen tijdens deze Firefox-sessie gebruikt">
+<!ENTITY foxyproxy.fromSubscription.label "Geabonneerd">
 <!ENTITY foxyproxy.define.label "Definiëren">
 <!ENTITY foxyproxy.define.accesskey "D">
 <!ENTITY foxyproxy.define.tooltip "Definiëren">
@@ -420,6 +422,7 @@
 <!ENTITY foxyproxy.server.subscriptions.label "Serverabonnementen">
 <!ENTITY foxyproxy.server.subscriptions.tooltip "Serverabonnementen beheren">
 <!ENTITY foxyproxy.server.subscriptions.accesskey "S">
+<!ENTITY foxyproxy.selectproxy.label "Proxy selecteren">
 <!ENTITY foxyproxy.pattern.subscriptions.label "Patroonabonnementen">
 <!ENTITY foxyproxy.pattern.subscriptions.tooltip "Patroonabonnementen beheren">
 <!ENTITY foxyproxy.pattern.subscriptions.accesskey "P">
@@ -433,6 +436,35 @@
 <!ENTITY foxyproxy.pattern.subscriptions.viewSubscription "Patroonabonnement bekijken">
 <!ENTITY foxyproxy.pattern.subscriptions.go.label "Start">
 <!ENTITY foxyproxy.pattern.subscriptions.go.tooltip "Klik hier om uw selectie uit te voeren.">
+<!ENTITY foxyproxy.pattern.subscriptions.lastStatus.label "Laatste status">
+<!ENTITY foxyproxy.pattern.subscriptions.addedit.title "Patroonabonnement toevoegen/wijzigen">
+<!ENTITY foxyproxy.pattern.subscriptions.name.label "Abonnementsnaam">
+<!ENTITY foxyproxy.pattern.subscriptions.name.tooltip "Abonnementsnaam">
+<!ENTITY foxyproxy.pattern.subscriptions.notes.label "Abonnementsbeschrijving">
+<!ENTITY foxyproxy.pattern.subscriptions.notes.tooltip "Abonnementsbeschrijving">
+<!ENTITY foxyproxy.pattern.subscriptions.url.label "Abonnements-URL">
+<!ENTITY foxyproxy.pattern.subscriptions.url.tooltip "Abonnements-URL">
+<!ENTITY foxyproxy.pattern.subscriptions.proxies.tooltip "Proxies die zich hebben geabonneerd op deze patroonlijst">
+<!ENTITY foxyproxy.pattern.subscriptions.addProxies.label "Proxies toevoegen">
+<!ENTITY foxyproxy.pattern.subscriptions.addProxies.tooltip "Proxies toevoegen die zich zullen abonneren op deze patroonlijst">
+<!ENTITY foxyproxy.pattern.subscriptions.removeProxies.label "Selectie verwijderen">
+<!ENTITY foxyproxy.pattern.subscriptions.removeProxies.tooltip "Abonnement op deze patroonlijst voor geselecteerde proxies beëindigen">
+<!ENTITY foxyproxy.pattern.subscriptions.refresh.label "Verversingsfrequentie">
+<!ENTITY foxyproxy.pattern.subscriptions.refresh.tooltip "Verversingsfrequentie van dit patroonabonnement in minuten">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshNow.label "Nu verversen">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshNow.tooltip "Patroonabonnement nu verversen">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp1 "Geef het aantal minuten op waarna het abonnement wordt bijgewerkt. Het bijwerken van het abonnement">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp2 "verwijdert alle bestaande patronen">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp3 "en voegt vervolgens de patronen in die op de abonnements-URL worden gevonden. Lees meer hierover">
+<!ENTITY foxyproxy.pattern.subscriptions.zeroRefresh "{0 om nooit te verversen)">
+<!ENTITY foxyproxy.pattern.subscriptions.format.tooltip "Opmaak van deze patroonabonnementslijst">
+<!ENTITY foxyproxy.pattern.subscriptions.formatHelp "Geef de opmaak op waarin het abonnement is geschreven. Normaliter wordt dit automatisch gedetecteerd door FoxyProxy. Meer hierover">
+<!ENTITY foxyproxy.pattern.subscriptions.obfuscation.tooltip "Verdoezelingsopmaak van dit patroonabonnement">
+<!ENTITY foxyproxy.pattern.subscriptions.obfuscationHelp "Abonnementen wordt optioneel verdoezeld om filtering op inhoud door computers tussen u en de abonnements-URL te voorkomen. Normaliter wordt dit automatisch gedetecteerd door FoxyProxy. Meer hierover">
+<!ENTITY foxyproxy.pattern.subscriptions.copyLastStatus.label "Laatste status naar Klembord kopiëren">
+<!ENTITY foxyproxy.pattern.subscriptions.copyLastStatus.tooltip "Laatste status naar Klembord kopiëren">
+<!ENTITY foxyproxy.pattern.subscriptions.pattern.window.title "Abonnementspatronen">
+<!ENTITY foxyproxy.none.label "Geen">
 <!ENTITY foxyproxy.name.label "Naam">
 <!ENTITY foxyproxy.notes.label "Opmerkingen">
 <!ENTITY foxyproxy.url.label "URL">

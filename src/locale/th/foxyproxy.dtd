@@ -107,6 +107,7 @@
 <!ENTITY foxyproxy.menubar.help.tooltip "เปิดเมนูช่วยเหลือ">
 <!ENTITY foxyproxy.mode.accesskey "ม">
 <!ENTITY foxyproxy.mode.tooltip "เลือกการเปิดใช้ FoxyProxy">
+<!ENTITY foxyproxy.proxy.label "พรอกซี">
 <!ENTITY foxyproxy.tab.proxies.label "พร็อกซี">
 <!ENTITY foxyproxy.tab.proxies.accesskey "พ">
 <!ENTITY foxyproxy.tab.proxies.tooltip "จัดการพร็อกซี">
@@ -390,6 +391,7 @@
 <!ENTITY foxyproxy.temp.label "ชั่วคราว">
 <!ENTITY foxyproxy.temp.accesskey "ช">
 <!ENTITY foxyproxy.temp.tooltip "แบบรูปใช้เฉพาะการเปิดไฟร์ฟอกซ์ครั้งนี้">
+<!ENTITY foxyproxy.fromSubscription.label "รับข้อมูลแล้ว">
 <!ENTITY foxyproxy.define.label "กำหนด">
 <!ENTITY foxyproxy.define.accesskey "ก">
 <!ENTITY foxyproxy.define.tooltip "กำหนด">
@@ -420,6 +422,7 @@
 <!ENTITY foxyproxy.server.subscriptions.label "Server Subscriptions">
 <!ENTITY foxyproxy.server.subscriptions.tooltip "Manage Server Subscriptions">
 <!ENTITY foxyproxy.server.subscriptions.accesskey "S">
+<!ENTITY foxyproxy.selectproxy.label "เลือกพรอกซี">
 <!ENTITY foxyproxy.pattern.subscriptions.label "Pattern Subscriptions">
 <!ENTITY foxyproxy.pattern.subscriptions.tooltip "Manage Pattern Subscriptions">
 <!ENTITY foxyproxy.pattern.subscriptions.accesskey "S">
@@ -433,6 +436,35 @@
 <!ENTITY foxyproxy.pattern.subscriptions.viewSubscription "View Pattern Subscription">
 <!ENTITY foxyproxy.pattern.subscriptions.go.label "Go">
 <!ENTITY foxyproxy.pattern.subscriptions.go.tooltip "Click here to execute your selection.">
+<!ENTITY foxyproxy.pattern.subscriptions.lastStatus.label "สถานะล่าสุด">
+<!ENTITY foxyproxy.pattern.subscriptions.addedit.title "เพิ่ม/ลดรูปแบบการรับข้อมูล">
+<!ENTITY foxyproxy.pattern.subscriptions.name.label "ชื่อการรับข้อมูล">
+<!ENTITY foxyproxy.pattern.subscriptions.name.tooltip "ชื่อการรับข้อมูล">
+<!ENTITY foxyproxy.pattern.subscriptions.notes.label "คำอธิบายการรับข้อมูล">
+<!ENTITY foxyproxy.pattern.subscriptions.notes.tooltip "คำอธิบายการรับข้อมูล">
+<!ENTITY foxyproxy.pattern.subscriptions.url.label "ยูอาร์แอลการรับข้อมูล">
+<!ENTITY foxyproxy.pattern.subscriptions.url.tooltip "ยูอาร์แอลการรับข้อมูล">
+<!ENTITY foxyproxy.pattern.subscriptions.proxies.tooltip "พรอกซีที่รับข้อมูลไปยังรายชื่อรูปแบบนี้">
+<!ENTITY foxyproxy.pattern.subscriptions.addProxies.label "เพิ่มพรอกซี">
+<!ENTITY foxyproxy.pattern.subscriptions.addProxies.tooltip "เพิ่มพรอกซีที่จะรับข้อมูลไปยังรายชื่อรูปแบบนี้">
+<!ENTITY foxyproxy.pattern.subscriptions.removeProxies.label "ลบส่วนที่เลือก">
+<!ENTITY foxyproxy.pattern.subscriptions.removeProxies.tooltip "ยกเลิกการรับข้อมูลของรายชื่อรูปแบบจากพรอกซีที่เลือกไว้">
+<!ENTITY foxyproxy.pattern.subscriptions.refresh.label "อัตราการรีเฟรช">
+<!ENTITY foxyproxy.pattern.subscriptions.refresh.tooltip "อัตราการรีเฟรชของการรับข้อมูลรูปแบบในหน่วยนาที">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshNow.label "รีเฟรชทันที">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshNow.tooltip "รีเฟรชการรับข้อมูลรูปแบบนี้ทันที">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp1 "ระบุจำนวนนาทีหลังจากการรับข้อมูลอัปเดต อัปเดตการรับข้อมูล">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp2 "ลบรูปแบบที่มีทั้งหมด">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp3 "แล้วก็เพิ่มสิ่งที่เจอในยูอาร์แอลการรับข้อมูล อ่านเพิ่มเติมที่นี่">
+<!ENTITY foxyproxy.pattern.subscriptions.zeroRefresh "(0 ถึงไม่รีเฟรชเลย)">
+<!ENTITY foxyproxy.pattern.subscriptions.format.tooltip "รูปแบบของรายชื่อรูปแบบการรับข้อมูล">
+<!ENTITY foxyproxy.pattern.subscriptions.formatHelp "ระบุรูปแบบของการรับข้อมูบที่จะเขียน โดยปกติแล้ว FoxyProxy จะหาเอง อ่านเพิ่มเติม">
+<!ENTITY foxyproxy.pattern.subscriptions.obfuscation.tooltip "รูปแบบงงงวยของการรับข้อมูลรูปแบบนี้">
+<!ENTITY foxyproxy.pattern.subscriptions.obfuscationHelp "การรับข้อมูลสามารถทำให้งงงวยได้เพื่อป้องกันการกรอกข้อมูลของคอมพิวเตอร์ระหว่างคุณกับยูอาร์แอลการรับข้อมูล โดยปกติแล้ว FoxyProxy จะหาเอง อ่านเพิ่มเติม">
+<!ENTITY foxyproxy.pattern.subscriptions.copyLastStatus.label "คัดลอกสถานะล่าสุดไปยังคลิปบอร์ด">
+<!ENTITY foxyproxy.pattern.subscriptions.copyLastStatus.tooltip "คัดลอกสถานะล่าสุดไปยังคลิปบอร์ด">
+<!ENTITY foxyproxy.pattern.subscriptions.pattern.window.title "รูปแบบการรับข้อมูล">
+<!ENTITY foxyproxy.none.label "ไม่มี">
 <!ENTITY foxyproxy.name.label "Name">
 <!ENTITY foxyproxy.notes.label "Notes">
 <!ENTITY foxyproxy.url.label "url">

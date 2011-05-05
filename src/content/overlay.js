@@ -333,12 +333,12 @@ end-foxyproxy-simple !*/
           } catch (e) {}
           // We have to duplicate this code here as adding the icon via the
           // above code does not trigger the customizeChange event in 
-          // findToolbarIcon(). Thus, we the proper color would not be applied
+          // findToolbarIcon(). Thus, the proper color would not be applied
           // to the toolbar icon.
           foxyproxy.svgIcons.init();
           if (document.getElementById("fp-toolbar-icon-3")) {
             // Our toolbar icon was added. Apply the proper icon coloring 
-            // to the toolbar icon by setting the mode again 
+            // to the toolbar icon by setting the mode again.
             foxyproxy.setMode(foxyproxy.fp.mode);
           }
         } 

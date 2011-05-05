@@ -222,7 +222,7 @@ function onLastStatus() {
   var statusString = metadata.lastUpdate + "   " + metadata.lastStatus;
   if (!metadata.errorMessages) {
     statusString = statusString + "   " + window.arguments[0].inn.subscription.
-      subscription.patterns.length + " " +
+      patterns.length + " " +
       fp.getMessage("patternsubscription.successful.retrieved"); 
   } 
   var p = {

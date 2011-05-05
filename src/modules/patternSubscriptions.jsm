@@ -306,7 +306,7 @@ var patternSubscriptions = {
       var subProperty, ok;
       // Maybe someone cluttered the subscription in other ways...
       for (subProperty in aSubscription) {
-        if (subProperty !== "metadata" && subProperty !== "subscription") {
+        if (subProperty !== "metadata" && subProperty !== "patterns") {
           delete aSubscription[subProperty];
         }	  
       }
@@ -315,13 +315,6 @@ var patternSubscriptions = {
         if (!this.defaultMetaValues.hasOwnProperty(subProperty)) {
 	  delete aSubscription.metadata[subProperty];
         }
-      }
-      // Or did that concerning the subscription part.
-      for (subProperty in aSubscription.subscription) {
-	if (subProperty !== "patterns") {
-	  dump("We found: " + subProperty + " here!\n");
-	  delete aSubscription.subscription[subProperty];
-	}
       }
       // We are quite permissive here. All we need is a checksum. If somebody
       // forgot to add that the subscription is MD5 encoded (using the
@@ -513,7 +506,7 @@ var patternSubscriptions = {
   },
 
   handleImportExport: function(bImport, bPreparation) {
-    var patternElements;
+    var patternElement;
     var f = this.fp.getSettingsURI(Ci.nsIFile);
     var s = Cc["@mozilla.org/network/file-input-stream;1"].createInstance(Ci.
       nsIFileInputStream);
@@ -526,6 +519,9 @@ var patternSubscriptions = {
       doc.documentElement.appendChild(this.toDOM(doc));
     } 
     if (bImport) {
+      // Importing old settings means removing the current ones first including
+      // pattern subscriptions. Therefore...
+      this.subscriptionsList = [];
       // Convert the subscriptions (if there are any) to objects and put them
       // (back) to the susbcriptionsList.
       patternElement = doc.getElementsByTagName("patternSubscriptions").item(0);
@@ -561,7 +557,7 @@ var patternSubscriptions = {
   },
 
   fromDOM: function(patElem) {
-    var subscription, metaNode, subNode, attrib, patternsNode, patterns,
+    var subscription, metaNode, subNode, attrib, patterns,
       name, value;
     var subs = patElem.getElementsByTagName("subscription");
     for (var i = 0; i < subs.length; i++) {
@@ -576,21 +572,22 @@ var patternSubscriptions = {
           subscription.metadata[name] = value; 
         }	  
       }	
-      subNode = subs[i].getElementsByTagName("patternSub").item(0);
+      // The proxy id's are saved as a string but we need them as an array.
+      if (subscription.metadata.proxies) {
+        subscription.metadata.proxies = subscription.metadata.proxies.
+          split(",");
+      }
+      subNode = subs[i].getElementsByTagName("patterns").item(0);
       if (subNode) {
-        subscription.subscription = {};
-        patternsNode = subNode.getElementsByTagName("patterns").item(0);
-        if (patternsNode) {
-	  subscription.subscription.patterns = [];
-	  patterns = patternsNode.getElementsByTagName("pattern");
-	  for (var k = 0; k < patterns.length; k++) {
-            subscription.subscription.patterns[k] = {};
-	    attrib = patterns[k].attributes;
-	    for (var l = 0; l < attrib.length; l++) {
-	      name = attrib.item(l).nodeName; 
-	      value = attrib.item(l).nodeValue; 
-              subscription.subscription.patterns[k][name] = value; 
-            }
+        subscription.patterns = [];
+	patterns = subNode.getElementsByTagName("pattern");
+	for (var k = 0; k < patterns.length; k++) {
+          subscription.patterns[k] = {};
+	  attrib = patterns[k].attributes;
+	  for (var l = 0; l < attrib.length; l++) {
+	    name = attrib.item(l).nodeName; 
+	    value = attrib.item(l).nodeValue; 
+            subscription.patterns[k][name] = value; 
           }
         }
       }
@@ -604,10 +601,9 @@ var patternSubscriptions = {
     var sub, meta, sub2, pat, pat2, patterns;
     var e = doc.createElement("patternSubscriptions");
     for (var i = 0; i < this.subscriptionsList.length; i++) {
-      patterns = this.subscriptionsList[i].subscription.patterns;
+      patterns = this.subscriptionsList[i].patterns;
       sub = doc.createElement("subscription");
       meta = doc.createElement("metadata");
-      sub2 = doc.createElement("patternSub");
       pat = doc.createElement("patterns");
       for (var a in this.subscriptionsList[i].metadata) {
         meta.setAttribute(a, this.subscriptionsList[i].metadata[a])
@@ -620,8 +616,7 @@ var patternSubscriptions = {
         }
         pat.appendChild(pat2);
       }
-      sub2.appendChild(pat);
-      sub.appendChild(sub2);
+      sub.appendChild(pat);
       e.appendChild(sub);
     }
     return e;
@@ -662,8 +657,8 @@ var patternSubscriptions = {
     } else {
       // We do not want to loose our metadata here as the user just
       // refreshed the subscription to get up-to-date patterns.
-      aSubscription.subscription = refreshedSubscription.
-        subscription;
+      aSubscription.patterns = refreshedSubscription.
+        patterns;
       // Maybe the obfuscation changed. We should update this...
       aSubscription.metadata.obfuscation = refreshedSubscription.
         metadata.obfuscation;	
@@ -731,21 +726,18 @@ var patternSubscriptions = {
       currentSub = this.subscriptionsList[this.subscriptionsList.length - 1];
     }
     currentMet = currentSub.metadata;
-    currentPat = currentSub.subscription;
+    currentPat = currentSub.patterns;
     for (i = 0; i < proxyList.length; i++) {
       // TODO: Maybe we could find a way to blend an old subscription or
       // old patterns with a new one!?
-      if (currentPat && currentPat.patterns) {
-        for (j = 0; j < currentPat.patterns.length; j++) {
+      if (currentPat) {
+        for (j = 0; j < currentPat.length; j++) {
           pattern = Cc["@leahscape.org/foxyproxy/match;1"].createInstance().
                     wrappedJSObject; 
-          pattern.init(currentSub.metadata.enabled, currentPat.patterns[j].name, 
-                      currentPat.patterns[j].pattern, false, currentPat.
-                      patterns[j].isRegEx, currentPat.patterns[j].
-                      caseSensitive ? true : false,
-                      currentPat.patterns[j].blackList ? true : false, 
-                      currentPat.patterns[j].multiLine ? true : false,
-		      true);
+          pattern.init(currentSub.metadata.enabled, currentPat[j].name, 
+                      currentPat[j].pattern, false, currentPat[j].isRegEx, 
+                      currentPat[j].caseSensitive,currentPat[j].blackList, 
+                      currentPat[j].multiLine, true);
           proxyList[i].matches.push(pattern);
         }
       }
@@ -797,7 +789,7 @@ var patternSubscriptions = {
     // That means just to stringify the Object. JSON allows (additional)
     // whitespace (see: http://www.ietf.org/rfc/rfc4627.txt section 2)
     // but we got rid of it while creating the JSON object the first time.
-    var subscriptionJSON = this.getJSONFromObject(aSubscription.subscription);
+    var subscriptionJSON = this.getJSONFromObject(aSubscription.patterns);
     
     // Following https://developer.mozilla.org/En/NsICryptoHash
     var converter = Cc["@mozilla.org/intl/scriptableunicodeconverter"].

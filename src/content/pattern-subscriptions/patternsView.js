@@ -13,18 +13,18 @@
 
 function onLoad() {
   var patternsViewTree = document.getElementById("patternsViewTree");
-  var subscription = window.arguments[0].inn.subscription;
-  patternsViewTree.view = makePatternsViewTree(subscription);
+  var patterns = window.arguments[0].inn.patterns;
+  patternsViewTree.view = makePatternsViewTree(patterns);
 }
 
-function makePatternsViewTree(aSubscription) {
+function makePatternsViewTree(patterns) {
   return {
-      rowCount : aSubscription.patterns.length,
+      rowCount : patterns.length,
       getCellText : function(row, column) {
-        return getTextForCell(aSubscription.patterns[row], column.id ? column.id : column);
+        return getTextForCell(patterns[row], column.id ? column.id : column);
       },
-      setCellValue: function(row, col, val) {aSubscription.patterns[row].enabled = val;},
-      getCellValue: function(row, col) {return aSubscription.patterns[row].enabled;},
+      setCellValue: function(row, col, val) {patterns[row].enabled = val;},
+      getCellValue: function(row, col) {return patterns[row].enabled;},
       isSeparator: function(aIndex) { return false; },
       isSorted: function() { return false; },
       isEditable: function(row, col) { return false; },
@@ -46,12 +46,12 @@ function getTextForCell(pat, col) {
   switch (col) {
     case "name" : return pat.name;
     case "pattern" : return pat.pattern;
-    case "isRegEx" : return foxyproxy.getMessage(pat.type.toLowerCase() ===
-                            "wildcard" ? "foxyproxy.wildcard.label" : 
-                            "foxyproxy.regex.label");
-    case "isBlackList" : return foxyproxy.getMessage(pat.whitelist ? 
-                                "foxyproxy.whitelist.label" : 
-                                "foxyproxy.blacklist.label");
+    case "isRegEx" : return foxyproxy.getMessage(pat.isRegEx ? 
+                            "foxyproxy.regex.label" :
+                            "foxyproxy.wildcard.label");
+    case "isBlackList" : return foxyproxy.getMessage(pat.blackList ? 
+                                "foxyproxy.blacklist.label" :
+                                "foxyproxy.whitelist.label");
   };
 }
 

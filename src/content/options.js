@@ -494,7 +494,7 @@ function viewPatternSubscriptions() {
     subscriptionsList[subscriptionsTree.currentIndex];
   let params = {
         inn : {
-          subscription : selectedSubscription.subscription
+          patterns : selectedSubscription.patterns
         }
       };
   window.openDialog('chrome://foxyproxy/content/pattern-subscriptions/patternsView.xul', 
@@ -508,35 +508,15 @@ function onSubscriptionsAction() {
         addPatternSubscription();
         break;
       case 1: 
-        if (subscriptionsTree.currentIndex < 0) {
-	  foxyproxy.alert(this, 
-	    foxyproxy.getMessage("patternsubscription.none.selected"));  
-	  break;
-        }
         editPatternSubscription();
         break;
       case 2:
-        if (subscriptionsTree.currentIndex < 0) {
-          foxyproxy.alert(this, 
-            foxyproxy.getMessage("patternsubscription.none.selected"));  
-          break;
-        }
         deletePatternSubscriptions();
         break;
       case 3:
-        if (subscriptionsTree.currentIndex < 0) {
-	  foxyproxy.alert(this, 
-	    foxyproxy.getMessage("patternsubscription.none.selected"));  
-	  break;
-        } 
         refreshPatternSubscriptions();
         break;  
       case 4:
-        if (subscriptionsTree.currentIndex < 0) {
-	  foxyproxy.alert(this, 
-	    foxyproxy.getMessage("patternsubscription.none.selected"));  
-	  break;
-        } 
         viewPatternSubscriptions();
         break;
     } 

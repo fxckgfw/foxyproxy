@@ -260,16 +260,16 @@ function onCopyURLPattern() {
 function onExportURLPattern() {
   let patternLength = proxy.matches.length;
   // Now we are constructing the pattern subscription...
-  let JSONString = '{"subscription":{"patterns":[';
+  let JSONString = '{"patterns":[';
   for (let j = 0; j < patternLength; j++) {
     JSONString = JSONString + proxy.matches[j].toJSON();
     if (j < patternLength - 1) {
       JSONString = JSONString + ",";
     } else {
-      JSONString = JSONString + "]}}";
+      JSONString = JSONString + "]}";
     }
   }
-  // Now, we export the JSON to file somewhere on the (local) disk...
+  // Now, we export the JSON to a file somewhere on the (local) disk...
   let fp = CC["@mozilla.org/filepicker;1"].createInstance(CI.nsIFilePicker);  
   fp.init(window, foxyproxy.getMessage("file.select"), 
     CI.nsIFilePicker.modeSave);

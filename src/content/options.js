@@ -140,7 +140,7 @@ function _updateLogView(keepSelection) {
       var mp = foxyproxy.logg.item(row);
       if (!mp) return;
       if (column.id == "timestamp") return foxyproxy.logg.format(mp.timestamp);
-      return mp[column.id];
+      return mp[column.id] ? mp[column.id] : null;
     },
     isSeparator: function(aIndex) { return false; },
     isSorted: function() { return false; },

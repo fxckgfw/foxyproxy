@@ -36,9 +36,6 @@
 <!ENTITY foxyproxy.help.label "Hilfe">
 <!ENTITY foxyproxy.help.accesskey "H">
 <!ENTITY foxyproxy.help.tooltip "Hilfe anzeigen">
-<!ENTITY foxyproxy.export.pattern.label "Exportieren">
-<!ENTITY foxyproxy.export.pattern.accesskey "X">
-<!ENTITY foxyproxy.export.pattern.tooltip "Die Muster als Muster-Abonnement exportieren">
 <!ENTITY foxyproxy.close.label "Schließen">
 <!ENTITY foxyproxy.close.accesskey "S">
 <!ENTITY foxyproxy.close.tooltip "Fenster schließen">
@@ -456,14 +453,14 @@
 <!ENTITY foxyproxy.pattern.subscriptions.refresh.tooltip "Aktualisierungsintervall dieses Muster-Abonnements in Minuten">
 <!ENTITY foxyproxy.pattern.subscriptions.refreshNow.label "Jetzt aktualisieren">
 <!ENTITY foxyproxy.pattern.subscriptions.refreshNow.tooltip "Dieses Muster-Abonnement jetzt aktualisieren">
-<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp1 "Geben Sie die Anzahl der Minuten an, nach der das Abonnement aktualisiert werden soll. Die Aktualisierung des Abonnements ">
-<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp2 "entfernt alle vorhandenen Muster ">
-<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp3 "und fügt dann die unter der Abonnements-URL gefundenen ein. Lesen Sie mehr dazu ">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp1 "Geben Sie die Anzahl der Minuten an, nach der das Abonnement aktualisiert werden soll. Die Aktualisierung des Abonnements">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp2 "entfernt alle vorhandenen Muster">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp3 "und fügt dann die unter der Abonnements-URL gefundenen ein. Lesen Sie mehr dazu">
 <!ENTITY foxyproxy.pattern.subscriptions.zeroRefresh "(0, um nie zu aktualisieren)">
 <!ENTITY foxyproxy.pattern.subscriptions.format.tooltip "Format dieses Muster-Abonnements">
 <!ENTITY foxyproxy.pattern.subscriptions.formatHelp "Wählen Sie das Format aus, in dem das Abonnement geschrieben ist. Normalerweise wird das automatisch von FoxyProxy erkannt. Lesen Sie mehr dazu">
 <!ENTITY foxyproxy.pattern.subscriptions.obfuscation.tooltip "Verschleierungsformat dieses Muster-Abonnements">
-<!ENTITY foxyproxy.pattern.subscriptions.obfuscationHelp "Abonnements sind optional verschleiert um eine Inhaltsfilterung durch Computer zwischen Ihnen und der Abonnement-URL zu verhindern. Normalerweise wird dies automatisch von FoxyProxy erkannt. Lesen Sie mehr dazu ">
+<!ENTITY foxyproxy.pattern.subscriptions.obfuscationHelp "Abonnements sind optional verschleiert um eine Inhaltsfilterung durch Computer zwischen Ihnen und der Abonnement-URL zu verhindern. Normalerweise wird dies automatisch von FoxyProxy erkannt. Lesen Sie mehr dazu">
 <!ENTITY foxyproxy.pattern.subscriptions.copyLastStatus.label "Kopiere letzen Status in die Zwischenablage">
 <!ENTITY foxyproxy.pattern.subscriptions.copyLastStatus.tooltip "Kopiere letzen Status in die Zwischenablage">
 <!ENTITY foxyproxy.pattern.subscriptions.pattern.window.title "Abonnementmuster">

@@ -107,6 +107,7 @@
 <!ENTITY foxyproxy.menubar.help.tooltip "Ouvre le menu d'aide">
 <!ENTITY foxyproxy.mode.accesskey "m">
 <!ENTITY foxyproxy.mode.tooltip "Permet de choisir la manière avec laquelle FoxyProxy est activée">
+<!ENTITY foxyproxy.proxy.label "Proxy">
 <!ENTITY foxyproxy.tab.proxies.label "Proxies">
 <!ENTITY foxyproxy.tab.proxies.accesskey "P">
 <!ENTITY foxyproxy.tab.proxies.tooltip "Gère les proxies">
@@ -390,6 +391,7 @@
 <!ENTITY foxyproxy.temp.label "Temporaire">
 <!ENTITY foxyproxy.temp.accesskey "T">
 <!ENTITY foxyproxy.temp.tooltip "Le motif n&apos;est utilisé que pour cette session de Firefox">
+<!ENTITY foxyproxy.fromSubscription.label "Abonné">
 <!ENTITY foxyproxy.define.label "Définir">
 <!ENTITY foxyproxy.define.accesskey "D">
 <!ENTITY foxyproxy.define.tooltip "Définir">
@@ -420,6 +422,7 @@
 <!ENTITY foxyproxy.server.subscriptions.label "Server Subscriptions">
 <!ENTITY foxyproxy.server.subscriptions.tooltip "Manage Server Subscriptions">
 <!ENTITY foxyproxy.server.subscriptions.accesskey "S">
+<!ENTITY foxyproxy.selectproxy.label "Choisir un proxy">
 <!ENTITY foxyproxy.pattern.subscriptions.label "Pattern Subscriptions">
 <!ENTITY foxyproxy.pattern.subscriptions.tooltip "Manage Pattern Subscriptions">
 <!ENTITY foxyproxy.pattern.subscriptions.accesskey "S">
@@ -433,6 +436,35 @@
 <!ENTITY foxyproxy.pattern.subscriptions.viewSubscription "Afficher l'abonnement de motif">
 <!ENTITY foxyproxy.pattern.subscriptions.go.label "Go">
 <!ENTITY foxyproxy.pattern.subscriptions.go.tooltip "Cliquez ici pour exécuter votre sélection.">
+<!ENTITY foxyproxy.pattern.subscriptions.lastStatus.label "Dernier état">
+<!ENTITY foxyproxy.pattern.subscriptions.addedit.title "Ajouter/modifier un abonnement à un motif">
+<!ENTITY foxyproxy.pattern.subscriptions.name.label "Nom d'abonnement">
+<!ENTITY foxyproxy.pattern.subscriptions.name.tooltip "Nom d'abonnement">
+<!ENTITY foxyproxy.pattern.subscriptions.notes.label "Description de l'abonnement">
+<!ENTITY foxyproxy.pattern.subscriptions.notes.tooltip "Description de l'abonnement">
+<!ENTITY foxyproxy.pattern.subscriptions.url.label "URL de l'abonnement">
+<!ENTITY foxyproxy.pattern.subscriptions.url.tooltip "URL de l'abonnement">
+<!ENTITY foxyproxy.pattern.subscriptions.proxies.tooltip "Proxies abonnés à cette liste de motifs">
+<!ENTITY foxyproxy.pattern.subscriptions.addProxies.label "Ajouter des proxies">
+<!ENTITY foxyproxy.pattern.subscriptions.addProxies.tooltip "Ajouter les proxies qui s'abonneront à cette liste de motifs">
+<!ENTITY foxyproxy.pattern.subscriptions.removeProxies.label "Supprimer la sélection">
+<!ENTITY foxyproxy.pattern.subscriptions.removeProxies.tooltip "Annuler l'abonnement à cette liste de motifs pour les proxies sélectionnés">
+<!ENTITY foxyproxy.pattern.subscriptions.refresh.label "Délai d'actualisation">
+<!ENTITY foxyproxy.pattern.subscriptions.refresh.tooltip "Délai d'actualisation de cet abonnement de motif en minutes">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshNow.label "Actualiser maintenant">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshNow.tooltip "Actualiser cet abonnement de motif maintenant">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp1 "Spécifier le nombre de minutes après lesquelles l'abonnement est mis à jour. La mise à jour d'abonnement">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp2 "supprime tous les motifs existant">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp3 "puis insert ceux qui ont été trouvés à l'URL d'abonnement. En apprendre davantage ici">
+<!ENTITY foxyproxy.pattern.subscriptions.zeroRefresh "(0 pour ne jamais actualiser)">
+<!ENTITY foxyproxy.pattern.subscriptions.format.tooltip "Format de la liste d'abonnement de motifs">
+<!ENTITY foxyproxy.pattern.subscriptions.formatHelp "Spécifier le format dans lequel l'abonnement est écrit. Normalement, cela est détecté automatiquement par FoxyProxy. Infos supplémentaires">
+<!ENTITY foxyproxy.pattern.subscriptions.obfuscation.tooltip "Format d'obfuscation de cet abonnement de motifs">
+<!ENTITY foxyproxy.pattern.subscriptions.obfuscationHelp "Les abonnements sont facultativement abfusqués afin d'éviter le filtrage de contenu par les ordinateurs situés entre vous et l'URL d'abonnement. Normalement, cela est détecté automatiquement par FoxyProxy. Infos supplémentaires">
+<!ENTITY foxyproxy.pattern.subscriptions.copyLastStatus.label "Copier le dernier état vers le presse-papiers">
+<!ENTITY foxyproxy.pattern.subscriptions.copyLastStatus.tooltip "Copier le dernier état vers le presse-papiers">
+<!ENTITY foxyproxy.pattern.subscriptions.pattern.window.title "Motifs d'abonnement">
+<!ENTITY foxyproxy.none.label "Aucun">
 <!ENTITY foxyproxy.name.label "Nom">
 <!ENTITY foxyproxy.notes.label "Notes">
 <!ENTITY foxyproxy.url.label "url">

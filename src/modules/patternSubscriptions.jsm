@@ -834,17 +834,14 @@ var patternSubscriptions = {
 	  // belonging to the foxyproxy service. These names are then displayed
 	  // in the subscriptions tree comma separated in the proxy column.
           case "subscriptionsProxy":
-	    var proxyString = "";
-	    for (var j = 0; j < i.metadata.proxies.length; j++) {
-	      for (var k = 0; k < that.fp.proxies.length; k++) {
-		if (i.metadata.proxies[j] === that.fp.proxies.item(k).id) {
-                  proxyString = proxyString + that.fp.proxies.item(k).name;
-	          if (j < i.metadata.proxies.length - 1) {
-		    proxyString = proxyString + ", ";
-                  }
-		}
+	    let proxyString = "";
+            let proxies = that.fp.proxies.getProxiesFromId(i.metadata.proxies);
+	    for (let j = 0; j < proxies.length; j++) {
+              proxyString = proxyString + proxies[j].name;
+	      if (j < proxies.length - 1) {
+		proxyString = proxyString + ", ";
               }
-	    }
+            }
 	    return proxyString; 
           case "subscriptionsRefresh" : return i.metadata.refresh;
           case "subscriptionsStatus" : return i.metadata.lastStatus;

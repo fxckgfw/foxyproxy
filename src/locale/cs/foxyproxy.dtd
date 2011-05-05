@@ -107,6 +107,7 @@
 <!ENTITY foxyproxy.menubar.help.tooltip "Otevře nápovědu">
 <!ENTITY foxyproxy.mode.accesskey "R">
 <!ENTITY foxyproxy.mode.tooltip "Výběr režimu FoxyProxy">
+<!ENTITY foxyproxy.proxy.label "Proxy">
 <!ENTITY foxyproxy.tab.proxies.label "Proxy">
 <!ENTITY foxyproxy.tab.proxies.accesskey "P">
 <!ENTITY foxyproxy.tab.proxies.tooltip "úprava proxy">
@@ -390,6 +391,7 @@
 <!ENTITY foxyproxy.temp.label "Dočasný">
 <!ENTITY foxyproxy.temp.accesskey "D">
 <!ENTITY foxyproxy.temp.tooltip "Vzor bude použit pouze v tomto spuštění Firefoxu">
+<!ENTITY foxyproxy.fromSubscription.label "Předplaceno">
 <!ENTITY foxyproxy.define.label "Definovat">
 <!ENTITY foxyproxy.define.accesskey "D">
 <!ENTITY foxyproxy.define.tooltip "Definovat">
@@ -420,6 +422,7 @@
 <!ENTITY foxyproxy.server.subscriptions.label "Server Subscriptions">
 <!ENTITY foxyproxy.server.subscriptions.tooltip "Manage Server Subscriptions">
 <!ENTITY foxyproxy.server.subscriptions.accesskey "S">
+<!ENTITY foxyproxy.selectproxy.label "Zvolte Proxy">
 <!ENTITY foxyproxy.pattern.subscriptions.label "Pattern Subscriptions">
 <!ENTITY foxyproxy.pattern.subscriptions.tooltip "Manage Pattern Subscriptions">
 <!ENTITY foxyproxy.pattern.subscriptions.accesskey "S">
@@ -433,6 +436,35 @@
 <!ENTITY foxyproxy.pattern.subscriptions.viewSubscription "View Pattern Subscription">
 <!ENTITY foxyproxy.pattern.subscriptions.go.label "Go">
 <!ENTITY foxyproxy.pattern.subscriptions.go.tooltip "Click here to execute your selection.">
+<!ENTITY foxyproxy.pattern.subscriptions.lastStatus.label "Poslední stav">
+<!ENTITY foxyproxy.pattern.subscriptions.addedit.title "Přidat/upravit předplatné vzorů">
+<!ENTITY foxyproxy.pattern.subscriptions.name.label "Jméno předplatného">
+<!ENTITY foxyproxy.pattern.subscriptions.name.tooltip "Jméno předplatného">
+<!ENTITY foxyproxy.pattern.subscriptions.notes.label "Popis předplatného">
+<!ENTITY foxyproxy.pattern.subscriptions.notes.tooltip "Popis předplatného">
+<!ENTITY foxyproxy.pattern.subscriptions.url.label "URL předplatného">
+<!ENTITY foxyproxy.pattern.subscriptions.url.tooltip "URL předplatného">
+<!ENTITY foxyproxy.pattern.subscriptions.proxies.tooltip "Proxy které jsou přihlášeny k tomuto seznamu vzorů">
+<!ENTITY foxyproxy.pattern.subscriptions.addProxies.label "Přidat proxy">
+<!ENTITY foxyproxy.pattern.subscriptions.addProxies.tooltip "Přidat proxy servery které budou přidány do tohoto seznamu vzorů">
+<!ENTITY foxyproxy.pattern.subscriptions.removeProxies.label "Odstranit vybrané">
+<!ENTITY foxyproxy.pattern.subscriptions.removeProxies.tooltip "Zrušit členství těchto proxy v tomto seznamu vzorů">
+<!ENTITY foxyproxy.pattern.subscriptions.refresh.label "Obnovovací frekvence">
+<!ENTITY foxyproxy.pattern.subscriptions.refresh.tooltip "Obnovovací frekvence přihlášených vzorů v minutách">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshNow.label "Obnovit teď">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshNow.tooltip "Aktualizovat toto předplatné vzorů">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp1 "Určete počet minut, po kterém je aktualizováno přihlášení. Aktualizace přihlášení">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp2 "odstraní všechny stávající vzory">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp3 "pak vloží hodnoty z aktualizační adresy. Přečtěte si více">
+<!ENTITY foxyproxy.pattern.subscriptions.zeroRefresh "(0 pro neobnovování)">
+<!ENTITY foxyproxy.pattern.subscriptions.format.tooltip "Formát tohoto seznamu předplacených vzorů">
+<!ENTITY foxyproxy.pattern.subscriptions.formatHelp "Zadejte formát ve kterém je předplatné zapsáno. Obvykle je toto automaticky detekováné FoxyProxy. Číst víc">
+<!ENTITY foxyproxy.pattern.subscriptions.obfuscation.tooltip "Formát maskování tohoto předplatného vzorů">
+<!ENTITY foxyproxy.pattern.subscriptions.obfuscationHelp "Předplatné jsou volitelně maskovaná aby se zabránilo filtrování obsahu mezi vámi a internetem. Obvykle je toto automaticky nastaveno FoxyProxy. Číst víc.">
+<!ENTITY foxyproxy.pattern.subscriptions.copyLastStatus.label "Zkopírovat poslední stav do schránky">
+<!ENTITY foxyproxy.pattern.subscriptions.copyLastStatus.tooltip "Zkopírovat poslední stav do schránky">
+<!ENTITY foxyproxy.pattern.subscriptions.pattern.window.title "Vzory předplatného">
+<!ENTITY foxyproxy.none.label "Žádný">
 <!ENTITY foxyproxy.name.label "Name">
 <!ENTITY foxyproxy.notes.label "Notes">
 <!ENTITY foxyproxy.url.label "url">

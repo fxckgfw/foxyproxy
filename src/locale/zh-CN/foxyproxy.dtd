@@ -107,6 +107,7 @@
 <!ENTITY foxyproxy.menubar.help.tooltip "打开帮助菜单">
 <!ENTITY foxyproxy.mode.accesskey "M">
 <!ENTITY foxyproxy.mode.tooltip "选择如何启用 FoxyProxy">
+<!ENTITY foxyproxy.proxy.label "代理服务器">
 <!ENTITY foxyproxy.tab.proxies.label "代理服务器">
 <!ENTITY foxyproxy.tab.proxies.accesskey "P">
 <!ENTITY foxyproxy.tab.proxies.tooltip "管理代理服务器">
@@ -390,6 +391,7 @@
 <!ENTITY foxyproxy.temp.label "临时">
 <!ENTITY foxyproxy.temp.accesskey "T">
 <!ENTITY foxyproxy.temp.tooltip "模式仅用于当前 Firefox 会话">
+<!ENTITY foxyproxy.fromSubscription.label "已订阅">
 <!ENTITY foxyproxy.define.label "定义">
 <!ENTITY foxyproxy.define.accesskey "D">
 <!ENTITY foxyproxy.define.tooltip "定义">
@@ -420,6 +422,7 @@
 <!ENTITY foxyproxy.server.subscriptions.label "服务器订阅">
 <!ENTITY foxyproxy.server.subscriptions.tooltip "管理服务器订阅">
 <!ENTITY foxyproxy.server.subscriptions.accesskey "S">
+<!ENTITY foxyproxy.selectproxy.label "选择代理服务器">
 <!ENTITY foxyproxy.pattern.subscriptions.label "模式订阅">
 <!ENTITY foxyproxy.pattern.subscriptions.tooltip "管理模式订阅">
 <!ENTITY foxyproxy.pattern.subscriptions.accesskey "S">
@@ -433,6 +436,35 @@
 <!ENTITY foxyproxy.pattern.subscriptions.viewSubscription "View Pattern Subscription">
 <!ENTITY foxyproxy.pattern.subscriptions.go.label "Go">
 <!ENTITY foxyproxy.pattern.subscriptions.go.tooltip "Click here to execute your selection.">
+<!ENTITY foxyproxy.pattern.subscriptions.lastStatus.label "最近状态">
+<!ENTITY foxyproxy.pattern.subscriptions.addedit.title "添加/编辑模式订阅">
+<!ENTITY foxyproxy.pattern.subscriptions.name.label "订阅名称">
+<!ENTITY foxyproxy.pattern.subscriptions.name.tooltip "订阅名称">
+<!ENTITY foxyproxy.pattern.subscriptions.notes.label "订阅描述">
+<!ENTITY foxyproxy.pattern.subscriptions.notes.tooltip "订阅描述">
+<!ENTITY foxyproxy.pattern.subscriptions.url.label "订阅网址">
+<!ENTITY foxyproxy.pattern.subscriptions.url.tooltip "订阅网址">
+<!ENTITY foxyproxy.pattern.subscriptions.proxies.tooltip "已经订阅这个模式列表的代理服务器">
+<!ENTITY foxyproxy.pattern.subscriptions.addProxies.label "添加代理服务器">
+<!ENTITY foxyproxy.pattern.subscriptions.addProxies.tooltip "添加订阅这个模式列表的代理服务器">
+<!ENTITY foxyproxy.pattern.subscriptions.removeProxies.label "移除选定项目">
+<!ENTITY foxyproxy.pattern.subscriptions.removeProxies.tooltip "为选中的代理服务器取消这个模式列表的订阅">
+<!ENTITY foxyproxy.pattern.subscriptions.refresh.label "更新频率">
+<!ENTITY foxyproxy.pattern.subscriptions.refresh.tooltip "这个模式订阅的更新频率（分钟）">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshNow.label "现在更新">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshNow.tooltip "现在更新这个模式订阅">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp1 "指定每多少分钟更新这个订阅。正在更新订阅">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp2 "移除全部已有模式">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp3 "然后插入订阅网址中找到的。从这里了解更多">
+<!ENTITY foxyproxy.pattern.subscriptions.zeroRefresh "（0表示从不更新）">
+<!ENTITY foxyproxy.pattern.subscriptions.format.tooltip "这个模式订阅列表的格式">
+<!ENTITY foxyproxy.pattern.subscriptions.formatHelp "指定这个订阅的书写格式。一般来说，FoxyProxy 会自动检测格式。了解更多">
+<!ENTITY foxyproxy.pattern.subscriptions.obfuscation.tooltip "模式订阅的模糊格式">
+<!ENTITY foxyproxy.pattern.subscriptions.obfuscationHelp "订阅可以选择模糊方式以防范你和订阅网站之间的计算机内容过滤。一般来说，这由 FoxyProxy 自动检测。了解更多">
+<!ENTITY foxyproxy.pattern.subscriptions.copyLastStatus.label "复制最近状态到剪贴板">
+<!ENTITY foxyproxy.pattern.subscriptions.copyLastStatus.tooltip "复制最近状态到剪贴板">
+<!ENTITY foxyproxy.pattern.subscriptions.pattern.window.title "订阅模式">
+<!ENTITY foxyproxy.none.label "无">
 <!ENTITY foxyproxy.name.label "名字">
 <!ENTITY foxyproxy.notes.label "注释">
 <!ENTITY foxyproxy.url.label "网址">

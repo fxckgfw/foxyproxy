@@ -56,7 +56,7 @@
 <!ENTITY foxyproxy.auto.url.accesskey "A">
 <!ENTITY foxyproxy.auto.url.tooltip "輸入自動組態指命碼（PAC）的檔案網址">
 <!ENTITY foxyproxy.auto.url.note.label "http(s)://   ftp://   file://   relative://">
-<!ENTITY foxyproxy.auto.url.note.tooltip "點擊資訊圖示取得更多有關 relative:// 的資訊">
+<!ENTITY foxyproxy.auto.url.note.tooltip "點擊資訊圖示獲得更多有關 relative:// 的資訊">
 <!ENTITY foxyproxy.port.label "連接埠">
 <!ENTITY foxyproxy.port.accesskey "P">
 <!ENTITY foxyproxy.port.tooltip "連接埠">
@@ -107,15 +107,16 @@
 <!ENTITY foxyproxy.menubar.help.tooltip "開啟使用說明選單">
 <!ENTITY foxyproxy.mode.accesskey "M">
 <!ENTITY foxyproxy.mode.tooltip "選擇 FoxyProxy 啟用模式">
+<!ENTITY foxyproxy.proxy.label "代理伺服器">
 <!ENTITY foxyproxy.tab.proxies.label "代理伺服器">
 <!ENTITY foxyproxy.tab.proxies.accesskey "P">
 <!ENTITY foxyproxy.tab.proxies.tooltip "管理代理伺服器">
 <!ENTITY foxyproxy.tab.global.label "一般設定">
 <!ENTITY foxyproxy.tab.global.accesskey "G">
-<!ENTITY foxyproxy.tab.global.tooltip "管理一般設定">
+<!ENTITY foxyproxy.tab.global.tooltip "一般設定">
 <!ENTITY foxyproxy.tab.logging.label "記錄">
 <!ENTITY foxyproxy.tab.logging.accesskey "L">
-<!ENTITY foxyproxy.tab.logging.tooltip "管理記錄設定">
+<!ENTITY foxyproxy.tab.logging.tooltip "記錄設定">
 <!ENTITY foxyproxy.proxydns.label3 "透過此代理伺服器查詢網域名稱">
 <!ENTITY foxyproxy.proxydns.accesskey "U">
 <!ENTITY foxyproxy.proxydns.tooltip3 "如果啟用這個選項，使用此代理伺服器的網址也透過此代理伺服器查詢網域名稱">
@@ -202,10 +203,10 @@
 <!ENTITY foxyproxy.random.includedisabled.tooltip "使用隨機選用代理伺服器時，包含「停用」的代理伺器">
 <!ENTITY foxyproxy.random.settings.label "隨機選用代理伺服器">
 <!ENTITY foxyproxy.random.settings.accesskey "R">
-<!ENTITY foxyproxy.random.settings.tooltip "管理隨機選用代理伺服器的設定">
+<!ENTITY foxyproxy.random.settings.tooltip "隨機選用代理伺服器的設定">
 <!ENTITY foxyproxy.tab.autoadd.label "自動新增">
 <!ENTITY foxyproxy.tab.autoadd.accesskey "A">
-<!ENTITY foxyproxy.tab.autoadd.tooltip "管理自動新增設定">
+<!ENTITY foxyproxy.tab.autoadd.tooltip "自動新增設定">
 <!ENTITY foxyproxy.autoadd.description "請設定要阻擋網頁的樣式，當網頁符合此樣式時，該樣式會自動加到代理伺服器設定裏並重新載入。這可以避免你必須先識別所有要阻擋的網頁。">
 <!ENTITY foxyproxy.autoadd.pattern.label "要阻擋網頁的樣式">
 <!ENTITY foxyproxy.autoadd.pattern.accesskey "P">
@@ -259,7 +260,7 @@
 <!ENTITY foxyproxy.quickadd.desc2 " 擴充套件來設定 Alt+F2 快速鍵">
 <!ENTITY foxyproxy.quickadd.label "快速新增">
 <!ENTITY foxyproxy.quickadd.accesskey "Q">
-<!ENTITY foxyproxy.quickadd.tooltip "管理快速新增設定">
+<!ENTITY foxyproxy.quickadd.tooltip "快速新增設定">
 <!ENTITY foxyproxy.quickadd.notify.label "當「快速新增」啟動時通知我">
 <!ENTITY foxyproxy.quickadd.notify.accesskey "N">
 <!ENTITY foxyproxy.quickadd.notify.tooltip "當「快速新增」啟動時通知你">
@@ -390,6 +391,7 @@
 <!ENTITY foxyproxy.temp.label "臨時性樣式">
 <!ENTITY foxyproxy.temp.accesskey "T">
 <!ENTITY foxyproxy.temp.tooltip "樣式只在這次執行 Firefox 有效">
+<!ENTITY foxyproxy.fromSubscription.label "訂閱的">
 <!ENTITY foxyproxy.define.label "定義">
 <!ENTITY foxyproxy.define.accesskey "D">
 <!ENTITY foxyproxy.define.tooltip "定義">
@@ -418,29 +420,59 @@
 <!ENTITY foxyproxy.validcolor.label "有效的顏色">
 <!ENTITY foxyproxy.color.label "顏色">
 <!ENTITY foxyproxy.server.subscriptions.label "伺服器訂閱">
-<!ENTITY foxyproxy.server.subscriptions.tooltip "管理伺服器訂閱">
+<!ENTITY foxyproxy.server.subscriptions.tooltip "伺服器訂閱">
 <!ENTITY foxyproxy.server.subscriptions.accesskey "S">
+<!ENTITY foxyproxy.selectproxy.label "選擇代理伺服器">
 <!ENTITY foxyproxy.pattern.subscriptions.label "樣式訂閱">
-<!ENTITY foxyproxy.pattern.subscriptions.tooltip "管理樣式訂閱">
+<!ENTITY foxyproxy.pattern.subscriptions.tooltip "樣式訂閱">
 <!ENTITY foxyproxy.pattern.subscriptions.accesskey "S">
-<!ENTITY foxyproxy.pattern.subscriptions.wizard.label "Wizard">
-<!ENTITY foxyproxy.pattern.subscriptions.wizard.tooltip "Click here to start the pattern subscription wizard.">
-<!ENTITY foxyproxy.pattern.subscriptions.menulist.tooltip "Select what to do with pattern subscriptions.">
-<!ENTITY foxyproxy.pattern.subscriptions.addSubscription "Add New Pattern Subscription">
-<!ENTITY foxyproxy.pattern.subscriptions.editSelection "Edit Selection">
-<!ENTITY foxyproxy.pattern.subscriptions.deleteSelections "Delete Selections">
-<!ENTITY foxyproxy.pattern.subscriptions.refreshSelections "Refresh Selections">
-<!ENTITY foxyproxy.pattern.subscriptions.viewSubscription "View Pattern Subscription">
-<!ENTITY foxyproxy.pattern.subscriptions.go.label "Go">
-<!ENTITY foxyproxy.pattern.subscriptions.go.tooltip "Click here to execute your selection.">
+<!ENTITY foxyproxy.pattern.subscriptions.wizard.label "精靈">
+<!ENTITY foxyproxy.pattern.subscriptions.wizard.tooltip "點擊這裏來啟動樣式訂閱精靈。">
+<!ENTITY foxyproxy.pattern.subscriptions.menulist.tooltip "選擇要執行的樣式訂閱動作。">
+<!ENTITY foxyproxy.pattern.subscriptions.addSubscription "新增訂閱的樣式">
+<!ENTITY foxyproxy.pattern.subscriptions.editSelection "編輯選擇的項目">
+<!ENTITY foxyproxy.pattern.subscriptions.deleteSelections "刪除選擇的項目">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshSelections "更新選擇的項目">
+<!ENTITY foxyproxy.pattern.subscriptions.viewSubscription "檢視訂閱的樣式">
+<!ENTITY foxyproxy.pattern.subscriptions.go.label "執行">
+<!ENTITY foxyproxy.pattern.subscriptions.go.tooltip "點擊這裏執行你的選擇。">
+<!ENTITY foxyproxy.pattern.subscriptions.lastStatus.label "上一次的狀態">
+<!ENTITY foxyproxy.pattern.subscriptions.addedit.title "新增/編輯訂閱的樣式">
+<!ENTITY foxyproxy.pattern.subscriptions.name.label "訂閱名稱">
+<!ENTITY foxyproxy.pattern.subscriptions.name.tooltip "訂閱名稱">
+<!ENTITY foxyproxy.pattern.subscriptions.notes.label "訂閱的描述">
+<!ENTITY foxyproxy.pattern.subscriptions.notes.tooltip "訂閱的描述">
+<!ENTITY foxyproxy.pattern.subscriptions.url.label "訂閱的網址">
+<!ENTITY foxyproxy.pattern.subscriptions.url.tooltip "訂閱的網址">
+<!ENTITY foxyproxy.pattern.subscriptions.proxies.tooltip "訂閱此樣式清單的代理伺服器">
+<!ENTITY foxyproxy.pattern.subscriptions.addProxies.label "新增代理伺服器">
+<!ENTITY foxyproxy.pattern.subscriptions.addProxies.tooltip "新增要訂閱此樣式清單的代理伺服器">
+<!ENTITY foxyproxy.pattern.subscriptions.removeProxies.label "移除選擇的項目">
+<!ENTITY foxyproxy.pattern.subscriptions.removeProxies.tooltip "選擇的代理伺服器取消訂閱此樣式清單">
+<!ENTITY foxyproxy.pattern.subscriptions.refresh.label "更新頻率">
+<!ENTITY foxyproxy.pattern.subscriptions.refresh.tooltip "多少分鐘要更新此訂閱的樣式">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshNow.label "立刻更新">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshNow.tooltip "立刻更新此訂閱的樣式">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp1 "指定多少分鐘後要更新此訂閱的樣式，更新訂閱會">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp2 "移除目前所有的樣式">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp3 "然後插入訂閱網址上找到的樣式。若要獲得更多資訊，請點擊">
+<!ENTITY foxyproxy.pattern.subscriptions.zeroRefresh "（0 表示不更新）">
+<!ENTITY foxyproxy.pattern.subscriptions.format.tooltip "此訂閱的樣式清單的格式">
+<!ENTITY foxyproxy.pattern.subscriptions.formatHelp "指定訂閱樣式的撰寫格式，一般來說 FoxyProxy 會自動判斷格式。若要獲得更多資訊，請點擊">
+<!ENTITY foxyproxy.pattern.subscriptions.obfuscation.tooltip "此訂閱的樣式清單的編碼格式">
+<!ENTITY foxyproxy.pattern.subscriptions.obfuscationHelp "為了避免訂閱資料在由訂閱的網址傳送到你的電腦中被過濾掉，訂閱資料可以先行編碼後再傳輸，一般來說 FoxyProxy 會自動判斷編碼格式。若要獲得更多資訊，請點擊">
+<!ENTITY foxyproxy.pattern.subscriptions.copyLastStatus.label "複製上一次的狀態到剪貼簿">
+<!ENTITY foxyproxy.pattern.subscriptions.copyLastStatus.tooltip "複製上一次的狀態到剪貼簿">
+<!ENTITY foxyproxy.pattern.subscriptions.pattern.window.title "訂閱的樣式">
+<!ENTITY foxyproxy.none.label "無">
 <!ENTITY foxyproxy.name.label "名稱">
 <!ENTITY foxyproxy.notes.label "註釋">
 <!ENTITY foxyproxy.url.label "網址">
 <!ENTITY foxyproxy.lastupdate.label "上一次更新">
 <!ENTITY foxyproxy.updatefrequency.label "更新頻率">
-<!ENTITY foxyproxy.status.label "Status">
-<!ENTITY foxyproxy.format.label "Format">
-<!ENTITY foxyproxy.obfuscation.label "Obfuscation">
+<!ENTITY foxyproxy.status.label "狀態">
+<!ENTITY foxyproxy.format.label "格式">
+<!ENTITY foxyproxy.obfuscation.label "編碼格式">
 <!ENTITY foxyproxy.hosting.label1 "感謝 ">
 <!ENTITY foxyproxy.ocs.label "OCS">
 <!ENTITY foxyproxy.hosting.label2 " 提供 FoxyProxy 網站代管服務，如果你有網站代管服務需求，請考慮 OCS。">

@@ -81,7 +81,6 @@ var patternSubscriptions = {
         hasmore = conStream.readLine(line);
         loadedSubscription = this.getObjectFromJSON(line.value, errorMessages); 
 	if (loadedSubscription && loadedSubscription.length === undefined) {
-	  dump("Pushed the subscription!\n");
 	  this.subscriptionsList.push(loadedSubscription); 
 	} else {
           // Parsing the whole subscription failed but maybe we can parse at
@@ -132,7 +131,6 @@ var patternSubscriptions = {
           if (this.subscriptionsList[i].metadata && 
               this.subscriptionsList[i].metadata.refresh != 0) {
             delete this.subscriptionsList[i].metadata.timer;
-	    dump("Called Timer!\n");
             this.setSubscriptionTimer(this.subscriptionsList[i], false, true);
 	  } 
         } 
@@ -167,8 +165,6 @@ var patternSubscriptions = {
       subscriptionJSON = this.getObjectFromJSON(subscriptionText, 
         errorMessages);
       if (subscriptionJSON && !(subscriptionJSON.length === undefined)) {
-        dump("The response contained invalid JSON while assuming a plain " +
-              "text! We try Base64 decoding first...\n");
         // Ugh, using a call to evalInSandbox() for Base64 checking! The reason
         // for this is that the atob() call fails silently if there is an error
         // within the Base64 response but we want to show this to the FoxyProxy
@@ -250,7 +246,6 @@ var patternSubscriptions = {
         errorMessages.push(this.fp.
           getMessage("patternsubscription.error.network")); 
       } else {
-        dump("Error in loadSubscription(): " + e + "\n");
         errorMessages.push(this.fp.
           getMessage("patternsubscription.error.network.unspecified")); 
       }
@@ -277,7 +272,6 @@ var patternSubscriptions = {
         return json.decode(aString); 
       }
     } catch (e) {
-      dump("Error while parsing the JSON: " + e + "\n");
       errorMessages.push(this.fp.
             getMessage("patternsubscription.error.JSON"));
       return errorMessages; 
@@ -418,7 +412,6 @@ var patternSubscriptions = {
   },
 
   setSubscriptionTimer: function(aSubscription, bRefresh, bStartup) {
-    dump("Called setSubscriptionTimer!\n");
     var timer, d, that, event;
     // Now calculating the next time to refresh the subscription and setting
     // a respective timer just in case the user wants to have an automatic
@@ -447,7 +440,6 @@ var patternSubscriptions = {
       notify : function(timer) {
         that.refreshSubscription(aSubscription, false);
 	// We just need the notification to redraw the tree...
-	dump("Broadcasted tree update!\n");
 	that.fp.broadcast(null, "foxyproxy-tree-update", null); 
       }
     };
@@ -481,7 +473,6 @@ var patternSubscriptions = {
   }, 
 
   writeSubscriptions: function() {
-    dump("WriteSusbcriptions got called!\n");
     try {
       var subscriptionsData = "";
       var foStream;

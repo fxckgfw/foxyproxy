@@ -40,8 +40,8 @@ var patternSubscriptions = {
 
   // We save pattern subscriptions in this array which could only be loaded
   // partially after startup (or refresh) due to errors in the JSON. The idea
-  // is to show the user a respective dialog (see onLoad() i options.js)
-  // asking here to refresh the corrupted subscription immediately.
+  // is to show the user a respective dialog (see: showPatternLoadFailures() in
+  // options.js) asking here to refresh the corrupted subscription immediately.
   partialLoadFailure : [],
 
   init: function() {

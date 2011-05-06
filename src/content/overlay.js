@@ -145,12 +145,6 @@ var foxyproxy = {
   },
 
   onLoad : function() {
-    Components.utils.import("resource://foxyproxy/patternSubscriptions.jsm", 
-      this); 
-    var timer = Components.classes["@mozilla.org/timer;1"].
-      createInstance(Components.interfaces.nsITimer); 
-    var timer2 = Components.classes["@mozilla.org/timer;1"].
-      createInstance(Components.interfaces.nsITimer); 
     this.svgIcons.init();
     this.statusText = document.getElementById("foxyproxy-status-text");
     setTimeout(this.defaultToolbarIconFF4, 100);
@@ -177,44 +171,64 @@ end-foxyproxy-simple !*/
       document.getElementById("foxyproxyMenu").setAttribute("label", this.fp.getMessage("foxyproxy.standard.label"));
 /*! end-foxyproxy-standard !*/
     }
-    // Checking whether we had some pattern subscription load failures during
-    // startup (in the first case the whole subscription could not be loaded
-    // and in the second tne just the metadata was available). If so, we show
-    // the proper dialogs without blocking the UI using nsITimer.
-    // TODO: Do we really want to have two nsITimer here getting (in the worst
-    // case) multiple dialogs?
-    var that = this;
-    var failedOnStartup = {
+    let that = this; 
+    let showFailuresOnStartup = {
       notify: function(timer) {
-        that.fp.alert(null, that.fp.
-          getMessage("patternsubscription.error.saved", 
-          [that.patternSubscriptions.failureOnStartup])); 
+        that.showPatternLoadFailures(timer, that);
       }
     };
-    if (this.patternSubscriptions.failureOnStartup) {
-     timer.initWithCallback(failedOnStartup, 200, 
-	 Components.interfaces.nsITimer.TYPE_ONE_SHOT);
+    let timer = Components.classes["@mozilla.org/timer;1"].
+      createInstance(Components.interfaces.nsITimer); 
+    timer.initWithCallback(showFailuresOnStartup, 50, 
+      Components.interfaces.nsITimer.TYPE_ONE_SHOT); 
+  },
+
+  showPatternLoadFailures : function(timer, that) {
+    // We should show pattern subscription load failures only during startup
+    // and not every time a user opens a new top-level window. 
+    let winEnum = this.fpc.getEnumerator();
+    let winCount = 0;
+    while (winEnum.hasMoreElements()) {
+      winEnum.getNext();
+      winCount++;
     }
-    var failedPatternLoad = {
-      notify: function(timer) {
-        for (var i=0; i < failedSubs.length; i++) {
-          // We got susbcriptions where just the metadata could be loaded. 
-          // Asking the user if she wants to refresh the subscription now in 
-          // order to have a useable pattern subscription.
-          var refreshSubscription = that.ask(window, that.fp.
-            getMessage("patternsubscription.error.patterns.refresh", 
-	    [failedSubs[i].metadata.name]), null, null, null); 
-          if (refreshSubscription) {
-            that.patternSubscriptions.refreshSubscription(failedSubs[i], true); 
+    if (winCount === 1) {
+      Components.utils.import("resource://foxyproxy/patternSubscriptions.jsm", 
+        this); 
+      // Checking whether we had some pattern subscription load failures during
+      // startup (in the first case the whole subscription could not be loaded
+      // and in the second tne just the metadata was available). If so, we show
+      // the proper dialogs without blocking the UI using nsITimer.
+      // TODO: Do we really want to have another nsITimer here getting (in the 
+      // worst case) multiple dialogs?
+      if (this.patternSubscriptions.failureOnStartup) {
+        dump("Got failureOnStartup raised!\n");
+        this.fp.alert(null, this.fp.
+          getMessage("patternsubscription.error.saved", 
+          [this.patternSubscriptions.failureOnStartup]));   
+      }
+      let failedPatternLoad = {
+        notify: function(timer) {
+          for (let i=0; i < failedSubs.length; i++) {
+            // We got susbcriptions where just the metadata could be loaded. 
+            // Asking the user if she wants to refresh the subscription now in 
+            // order to have a useable pattern subscription.
+            let refreshSubscription = that.ask(window, that.fp.
+              getMessage("patternsubscription.error.patterns.refresh", 
+	      [failedSubs[i].metadata.name]), null, null, null); 
+            if (refreshSubscription) {
+              that.patternSubscriptions.refreshSubscription(failedSubs[i],
+                true); 
+            }
           }
         }
+      }; 
+      let failedSubs = this.patternSubscriptions.partialLoadFailure;
+      if (failedSubs.length > 0) {
+        timer.initWithCallback(failedPatternLoad, 500, 
+	  Components.interfaces.nsITimer.TYPE_ONE_SHOT); 
       }
-    }; 
-    var failedSubs = this.patternSubscriptions.partialLoadFailure;
-    if (failedSubs.length > 0) {
-      timer2.initWithCallback(failedPatternLoad, 500, 
-	 Components.interfaces.nsITimer.TYPE_ONE_SHOT); 
-    }
+    } 
   },
 
   toggleToolsMenu : function(e) {

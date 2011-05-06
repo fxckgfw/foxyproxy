@@ -148,8 +148,8 @@ var foxyproxy = {
     this.svgIcons.init();
     this.statusText = document.getElementById("foxyproxy-status-text");
     setTimeout(this.defaultToolbarIconFF4, 100);
-    
-    var obSvc = Components.classes["@mozilla.org/observer-service;1"].getService(Components.interfaces.nsIObserverService);
+    var obSvc = Components.classes["@mozilla.org/observer-service;1"].
+      getService(Components.interfaces.nsIObserverService);
     for (var i in this.notes) {
       obSvc.addObserver(this, this.notes[i], false);
     }
@@ -202,7 +202,6 @@ end-foxyproxy-simple !*/
       // TODO: Do we really want to have another nsITimer here getting (in the 
       // worst case) multiple dialogs?
       if (this.patternSubscriptions.failureOnStartup) {
-        dump("Got failureOnStartup raised!\n");
         this.fp.alert(null, this.fp.
           getMessage("patternsubscription.error.saved", 
           [this.patternSubscriptions.failureOnStartup]));   

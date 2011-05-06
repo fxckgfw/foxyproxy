@@ -332,8 +332,8 @@ function onDeleteSelection() {
     } 
     foxyproxy.proxies.remove(proxyTree.currentIndex);
     foxyproxy.broadcast(true /*write settings*/, "foxyproxy-proxy-change");
-	  // Reselect what was previously selected
-		proxyTree.view.selection.select(sel+1>proxyTree.view.rowCount ? 0:sel);    
+    // Reselect what was previously selected
+    proxyTree.view.selection.select(sel+1>proxyTree.view.rowCount ? 0:sel); 
   }  
 }
 

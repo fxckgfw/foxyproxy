@@ -751,7 +751,8 @@ var patternSubscriptions = {
         // position in the array at the next time running the loop) and k.
         // That goes until all the patterns are checked, i.e. until k equals
         // the patterns length.
-        if (aProxyList[i].matches[j].fromSubscription) {
+        let currentMatch = aProxyList[i].matches[j];
+        if (currentMatch && currentMatch.fromSubscription) {
             aProxyList[i].matches.splice(j, 1);
         } else {
           j++;	

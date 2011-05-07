@@ -646,7 +646,7 @@ var patternSubscriptions = {
       // Making sure that they are shown in the lastStatus dialog.
       aSubscription.metadata.errorMessages = refreshedSubscription;
     } else {
-      // We do not want to loose our metadata here as the user just
+      // We do not want to lose our metadata here as the user just
       // refreshed the subscription to get up-to-date patterns.
       aSubscription.patterns = refreshedSubscription.
         patterns;

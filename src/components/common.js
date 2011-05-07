@@ -273,7 +273,6 @@ Common.prototype = {
   notify : function(message, buttons, callback) {
     var wm = this.getMostRecentWindow(), nb = wm.gBrowser.getNotificationBox(),
       n = nb.getNotificationWithValue("foxyproxy-proxy-scheme");
-      //message = fp.getMessage(msg, ar);
     if (!buttons) {
       buttons = [
         { 

@@ -195,22 +195,31 @@ end-foxyproxy-simple !*/
               [that.patternSubscriptions.failureOnStartup]));   
           }
           let failedPatternLoad = {
-            notify: function(timer) {
+            notify: function() {
               for (let i=0; i < failedSubs.length; i++) {
+                // Ugly, but |i| is not preserved into the callback function of
+                // the button declaration in the notificationbox.
+                that.currentLoadFailure = i;
                 // We got susbcriptions where just the metadata could be loaded.
                 // Asking the user if she wants to refresh the subscription now
                 // in order to have a useable pattern subscription.
-                let refreshSubscription = that.ask(window, that.fp.
+                that.fpc.notify(that.fp.
                   getMessage("patternsubscription.error.patterns.refresh", 
-	          [failedSubs[i].metadata.name]), null, null, null); 
-                if (refreshSubscription) {
-                  that.patternSubscriptions.refreshSubscription(failedSubs[i],
-                    true); 
-                }
+	          [failedSubs[i].metadata.name]), 
+                  [{
+                      accessKey: null,
+                      callback: function() {
+                        that.patternSubscriptions.
+                          refreshSubscription(failedSubs[that.
+                          currentLoadFailure], true);
+                      },
+                      label: that.fp.getMessage("yes")
+                    }]
+                ); 
               }
             }
           }; 
-          let failedSubs = that.patternSubscriptions.partialLoadFailure;
+          var failedSubs = that.patternSubscriptions.partialLoadFailure;
           if (failedSubs.length > 0) {
             timer.initWithCallback(failedPatternLoad, 500, 
 	      Components.interfaces.nsITimer.TYPE_ONE_SHOT); 

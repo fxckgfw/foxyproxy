@@ -148,7 +148,7 @@ Protocol.prototype = {
     // user notification first
     var fpc = CC["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject
       fpph = this;
-    fpc.notify("proxy.scheme.warning.2", null, function() {fpph.processURI(aURI)});
+    fpc.notify(fp.getMessage("proxy.scheme.warning.2"), null, function() {fpph.processURI(aURI)});
     return new nsDummyChannel();
   },
 

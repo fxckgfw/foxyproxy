@@ -146,9 +146,9 @@ Protocol.prototype = {
     if (fp.ignoreProxyScheme) return new nsDummyChannel();
     
     // user notification first
-    var fpc = CC["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject
-      fpph = this;
-    fpc.notify(fp.getMessage("proxy.scheme.warning.2"), null, function() {fpph.processURI(aURI)});
+    var fpc = CC["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject,
+      self = this;
+    fpc.notify(fp.getMessage("proxy.scheme.warning.2"), null, function() {self.processURI(aURI)});
     return new nsDummyChannel();
   },
 

@@ -203,9 +203,8 @@ end-foxyproxy-simple !*/
                 // We got susbcriptions where just the metadata could be loaded.
                 // Asking the user if she wants to refresh the subscription now
                 // in order to have a useable pattern subscription.
-                that.fpc.notify(that.fp.
-                  getMessage("patternsubscription.error.patterns.refresh", 
-	          [failedSubs[i].metadata.name]), 
+                that.fpc.notify("patternsubscription.error.patterns.refresh",
+	          [failedSubs[i].metadata.name], 
                   [{
                       accessKey: null,
                       callback: function() {
@@ -214,8 +213,8 @@ end-foxyproxy-simple !*/
                           currentLoadFailure], true);
                       },
                       label: that.fp.getMessage("yes")
-                    }]
-                ); 
+                    }], 
+                  null, null, false); 
               }
             }
           }; 

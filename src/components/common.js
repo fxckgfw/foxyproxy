@@ -265,26 +265,46 @@ Common.prototype = {
     return this.appInfo.ID == "{3550f703-e582-4d05-9a08-453d09bdfdc6}";
   },
   
-  notify : function(message, buttons, callback) {
-    var wm = this.getMostRecentWindow(), nb = wm.gBrowser.getNotificationBox(),
-      n = nb.getNotificationWithValue("foxyproxy-proxy-scheme");
+  notify : function(msg, ar, buttons, priority, callback, getNotWithVal) {
+    let wm = this.getMostRecentWindow(), message = fp.getMessage(msg, ar), nb;
+    // First we check, whether we use Firefox or Seamonkey...
+    if (wm.gBrowser) {
+      nb = wm.gBrowser.getNotificationBox();
+    } else {
+      // We assume we are using Thunderbird now.
+      // TODO: We should optimize this a bit and should not use the main window
+      // notification if that method got called from proxy:// protocolhandler
+      // in Thunderbird.
+      nb = wm.document.getElementById("mail-notification-box");
+      // Should not happen but as a fallback we use a normal notification
+      // without buttons and are just showing the (error) message.
+      if (!nb) {
+        fp.notifier.alert(null, message);
+        return;
+      } 
+    }
+    if (getNotWithVal) {
+      getNotWithVal = nb.getNotificationWithValue("foxyproxy-notification");
+    }
     if (!buttons) {
       buttons = [
         { 
-          label: wm.gNavigatorBundle.getString("xpinstallPromptAllowButton"),
-          accessKey: wm.gNavigatorBundle.getString("xpinstallPromptAllowButton.accesskey"),
+          label: fp.getMessage("allow"),
+          accessKey: fp.getMessage("allow.accesskey"),
           popup: null, 
           callback: callback
         }                 
       ];  
     }
-    if (n) {
-      n.label = message;
+    if (!priority) {
+      priority = nb.PRIORITY_WARNING_MEDIUM;
+    } 
+    if (getNotWithVal) {
+      getNotWithVal.label = message;
     }
     else {
-      nb.appendNotification(message, "foxyproxy-proxy-scheme",
-          "chrome://foxyproxy/content/images/16x16.gif",
-          nb.PRIORITY_WARNING_MEDIUM, buttons);
+      nb.appendNotification(message, "foxyproxy-notification",
+          "chrome://foxyproxy/content/images/16x16.gif", priority, buttons);
     }
   },
   

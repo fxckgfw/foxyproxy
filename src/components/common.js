@@ -53,7 +53,7 @@ Common.prototype = {
     var wm = CC["@mozilla.org/appshell/window-mediator;1"].getService(CI.nsIWindowMediator);
     // The next line always returns an object, even if the enum has no elements, so we can't use it to determine between applications
     //var e = wm.getEnumerator("navigator:browser") || wm.getEnumerator("Songbird:Main")
-    return wm.getMostRecentWindow("navigator:browser") ? wm.getEnumerator("navigator:browser") : (wm.getEnumerator("Songbird:Main") ? wm.getEnumerator("Songbird:Main") : wm.getEnumerator("mail:3pane"));
+    return wm.getMostRecentWindow("navigator:browser") ? wm.getEnumerator("navigator:browser") : (wm.getMostRecentWindow("Songbird:Main") ? wm.getEnumerator("Songbird:Main") : wm.getEnumerator("mail:3pane"));
   },
 
   openAndReuseOneTabPerURL : function(aURL) {

@@ -188,11 +188,16 @@ end-foxyproxy-simple !*/
           // If so, we show the proper dialogs without blocking the UI using
           // nsITimer.
           // TODO: Do we really want to have another nsITimer here getting (in
-          // the worst case) multiple dialogs?
+          // the worst case) multiple warning types?
           if (that.patternSubscriptions.failureOnStartup) {
-            that.fp.notifier.alert(null, that.fp.
-              getMessage("patternsubscription.error.saved", 
-              [that.patternSubscriptions.failureOnStartup]));   
+            that.fpc.notify("patternsubscription.error.saved", 
+              [that.patternSubscriptions.failureOnStartup],
+              [{
+                 accessKey: that.fp.getMessage("okay.accesskey"),
+                 callback: function(){},
+                 label: that.fp.getMessage("okay")
+              }], 
+              null, null, false);   
           }
           let failedPatternLoad = {
             notify: function() {
@@ -206,14 +211,14 @@ end-foxyproxy-simple !*/
                 that.fpc.notify("patternsubscription.error.patterns.refresh",
 	          [failedSubs[i].metadata.name], 
                   [{
-                      accessKey: null,
-                      callback: function() {
-                        that.patternSubscriptions.
-                          refreshSubscription(failedSubs[that.
-                          currentLoadFailure], true);
-                      },
-                      label: that.fp.getMessage("yes")
-                    }], 
+                     accessKey: null,
+                     callback: function() {
+                       that.patternSubscriptions.
+                         refreshSubscription(failedSubs[that.
+                         currentLoadFailure], true);
+                     },
+                     label: that.fp.getMessage("yes")
+                  }], 
                   null, null, false); 
               }
             }

@@ -57,12 +57,7 @@ Common.prototype = {
   },
 
   openAndReuseOneTabPerURL : function(aURL) {
-    var wm = CC["@mozilla.org/appshell/window-mediator;1"].getService(CI.nsIWindowMediator);
-    var winEnum = wm.getEnumerator("navigator:browser");
-    if (!winEnum.hasMoreElements())
-      winEnum = wm.getEnumerator("Songbird:Main");
-    if (!winEnum.hasMoreElements())
-      winEnm = wm.getEnumerator("mail:3pane");
+    var winEnum = this.getEnumerator();
     while (winEnum.hasMoreElements()) {
       var win = winEnum.getNext();
       var browser = win.getBrowser();

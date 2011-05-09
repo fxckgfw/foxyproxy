@@ -1,5 +1,6 @@
 * pattern subscription feature
 
+* Fixed problem of getting wrong enumerator in common.js for Thunderbird
 * Fixed http://foxyproxy.mozdev.org/drupal/content/no-foxy-proxy-button-browser (a toolbar button is now shown in FF4 by default on first startup)
 * made the button behavior in the pattern Tree more coherent
 

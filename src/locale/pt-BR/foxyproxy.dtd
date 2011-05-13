@@ -36,6 +36,9 @@
 <!ENTITY foxyproxy.help.label "Conteúdo de Ajuda">
 <!ENTITY foxyproxy.help.accesskey "A">
 <!ENTITY foxyproxy.help.tooltip "Exibe a Ajuda">
+<!ENTITY foxyproxy.export.pattern.label "Export">
+<!ENTITY foxyproxy.export.pattern.accesskey "X">
+<!ENTITY foxyproxy.export.pattern.tooltip "Export patterns as a pattern subscription">
 <!ENTITY foxyproxy.close.label "Fechar">
 <!ENTITY foxyproxy.close.accesskey "F">
 <!ENTITY foxyproxy.close.tooltip "Fecha a Janela">

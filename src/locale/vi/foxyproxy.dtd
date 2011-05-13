@@ -36,6 +36,9 @@
 <!ENTITY foxyproxy.help.label "Nội dung Trợ giúp">
 <!ENTITY foxyproxy.help.accesskey "N">
 <!ENTITY foxyproxy.help.tooltip "Hiện trợ giúp">
+<!ENTITY foxyproxy.export.pattern.label "Export">
+<!ENTITY foxyproxy.export.pattern.accesskey "X">
+<!ENTITY foxyproxy.export.pattern.tooltip "Export patterns as a pattern subscription">
 <!ENTITY foxyproxy.close.label "Đóng">
 <!ENTITY foxyproxy.close.accesskey "g">
 <!ENTITY foxyproxy.close.tooltip "Đóng cửa sổ">

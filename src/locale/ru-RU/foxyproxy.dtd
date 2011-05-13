@@ -36,6 +36,9 @@
 <!ENTITY foxyproxy.help.label "Справка">
 <!ENTITY foxyproxy.help.accesskey "С">
 <!ENTITY foxyproxy.help.tooltip "Перейти на веб-страницу со справочной информацией">
+<!ENTITY foxyproxy.export.pattern.label "Export">
+<!ENTITY foxyproxy.export.pattern.accesskey "X">
+<!ENTITY foxyproxy.export.pattern.tooltip "Export patterns as a pattern subscription">
 <!ENTITY foxyproxy.close.label "Выйти">
 <!ENTITY foxyproxy.close.accesskey "В">
 <!ENTITY foxyproxy.close.tooltip "Закрыть окно">

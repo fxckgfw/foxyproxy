@@ -36,6 +36,9 @@
 <!ENTITY foxyproxy.help.label "Ohjeen Aiheet">
 <!ENTITY foxyproxy.help.accesskey "O">
 <!ENTITY foxyproxy.help.tooltip "Näytä Ohje">
+<!ENTITY foxyproxy.export.pattern.label "Export">
+<!ENTITY foxyproxy.export.pattern.accesskey "X">
+<!ENTITY foxyproxy.export.pattern.tooltip "Export patterns as a pattern subscription">
 <!ENTITY foxyproxy.close.label "Sulje">
 <!ENTITY foxyproxy.close.accesskey "S">
 <!ENTITY foxyproxy.close.tooltip "Sulje Ikkuna">

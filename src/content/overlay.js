@@ -171,6 +171,10 @@ end-foxyproxy-simple !*/
       document.getElementById("foxyproxyMenu").setAttribute("label", this.fp.getMessage("foxyproxy.standard.label"));
 /*! end-foxyproxy-standard !*/
     }
+    this.patternErrorNotification();
+  },
+
+  patternErrorNotification : function() {
     let that = this;
     let showFailuresOnStartup = {
       notify: function(timer) {
@@ -185,8 +189,8 @@ end-foxyproxy-simple !*/
           // Checking whether we had some pattern subscription load failures
           // during startup (in the first case the whole subscription could not
           // be loaded and in the second tne just the metadata was available).
-          // If so, we show the proper dialogs without blocking the UI using
-          // nsITimer.
+          // If so, we show the proper notification boxes without blocking the
+          // UI using nsITimer.
           // TODO: Do we really want to have another nsITimer here getting (in
           // the worst case) multiple warning types?
           if (that.patternSubscriptions.failureOnStartup) {
@@ -201,29 +205,18 @@ end-foxyproxy-simple !*/
           }
           let failedPatternLoad = {
             notify: function() {
-              for (let i=0; i < failedSubs.length; i++) {
-                // Ugly, but |i| is not preserved into the callback function of
-                // the button declaration in the notificationbox.
-                that.currentLoadFailure = i;
+              for (let i = 0; i < failedSubs.length; i++) {
                 // We got susbcriptions where just the metadata could be loaded.
                 // Asking the user if she wants to refresh the subscription now
                 // in order to have a useable pattern subscription.
-                that.fpc.notify("patternsubscription.error.patterns.refresh",
-	          [failedSubs[i].metadata.name], 
-                  [{
-                     accessKey: null,
-                     callback: function() {
-                       that.patternSubscriptions.
-                         refreshSubscription(failedSubs[that.
-                         currentLoadFailure], true);
-                     },
-                     label: that.fp.getMessage("yes")
-                  }], 
-                  null, null, false); 
+                // We have to do this in a separate method as the current |i|
+                // would otherwise not be preserved and we would always only
+                // refresh the last broken pattern subscription.
+                that.createNotification(that, failedSubs, i);
               }
             }
           }; 
-          var failedSubs = that.patternSubscriptions.partialLoadFailure;
+          let failedSubs = that.patternSubscriptions.partialLoadFailure;
           if (failedSubs.length > 0) {
             timer.initWithCallback(failedPatternLoad, 500, 
 	      Components.interfaces.nsITimer.TYPE_ONE_SHOT); 
@@ -235,6 +228,20 @@ end-foxyproxy-simple !*/
       createInstance(Components.interfaces.nsITimer). 
       initWithCallback(showFailuresOnStartup, 50, 
       Components.interfaces.nsITimer.TYPE_ONE_SHOT); 
+  },
+
+  createNotification : function(that, failedSubs, position) {
+    this.fpc.notify("patternsubscription.error.patterns.refresh",
+	          [failedSubs[position].metadata.name], 
+                  [{
+                     accessKey: null,
+                     callback: function() {
+                       that.patternSubscriptions.
+                         refreshSubscription(failedSubs[position], true);
+                     },
+                     label: this.fp.getMessage("yes")
+                  }], 
+                  null, null, false); 
   },
 
   toggleToolsMenu : function(e) {

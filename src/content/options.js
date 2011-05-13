@@ -371,9 +371,9 @@ function onMove(direction) {
 }
 
 function onSettings(isNew) {
-  var sel = proxyTree.currentIndex,
-    params = {inn:{proxy:isNew ?
-      CC["@leahscape.org/foxyproxy/proxy;1"].createInstance().wrappedJSObject : 
+  let sel = proxyTree.currentIndex, selSub = subscriptionsTree.currentIndex,
+    params = {inn:{proxy:isNew ? CC["@leahscape.org/foxyproxy/proxy;1"].
+      createInstance().wrappedJSObject :
       foxyproxy.proxies.item(proxyTree.currentIndex)}, out:null};
         
   window.openDialog("chrome://foxyproxy/content/addeditproxy.xul", "",
@@ -381,8 +381,11 @@ function onSettings(isNew) {
   if (params.out) {
     if (isNew) foxyproxy.proxies.push(params.out.proxy);
     foxyproxy.broadcast(true /*write settings*/, "foxyproxy-proxy-change");
-	  // Reselect what was previously selected or the new item
-		proxyTree.view.selection.select(isNew?proxyTree.view.rowCount-2:sel); 
+    // Reselect what was previously selected or the new item
+    proxyTree.view.selection.select(isNew?proxyTree.view.rowCount-2:sel); 
+    // We need to include this call here as well as the selection is not
+    // clearly visible anymore in the pattern subscription tree without it.
+    subscriptionsTree.view.selection.select(selSub);
   }
 }
 

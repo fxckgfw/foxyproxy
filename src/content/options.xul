@@ -183,8 +183,9 @@
 	  <!-- Do not specify row="" here (at least if you do not have enough
 	       pattern subscriptions to fill it); your computer would almost
 	       freeze in this case -->
-           <tree id="subscriptionsTree" align="stretch" enableColumnDrag="true"
-                 flex="1" seltype="single" onselect="onPatSubTreeSelected();">
+           <tree id="subscriptionsTree" class="treeStyling" align="stretch"
+                 enableColumnDrag="true" flex="1" seltype="single"
+                 onselect="onPatSubTreeSelected();">
              <treecols
                pickertooltiptext="&foxyproxy.tree.pickertooltiptext.label;">
 	       <treecol id="subscriptionsEnabled" 

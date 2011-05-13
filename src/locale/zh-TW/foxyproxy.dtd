@@ -36,6 +36,9 @@
 <!ENTITY foxyproxy.help.label "使用說明">
 <!ENTITY foxyproxy.help.accesskey "H">
 <!ENTITY foxyproxy.help.tooltip "顯示使用說明">
+<!ENTITY foxyproxy.export.pattern.label "匯出">
+<!ENTITY foxyproxy.export.pattern.accesskey "X">
+<!ENTITY foxyproxy.export.pattern.tooltip "將樣式匯出成訂閱的樣式格式">
 <!ENTITY foxyproxy.close.label "關閉">
 <!ENTITY foxyproxy.close.accesskey "C">
 <!ENTITY foxyproxy.close.tooltip "關閉視窗">

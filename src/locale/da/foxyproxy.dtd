@@ -36,6 +36,9 @@
 <!ENTITY foxyproxy.help.label "Hjælp indhold">
 <!ENTITY foxyproxy.help.accesskey "H">
 <!ENTITY foxyproxy.help.tooltip "Vis hjælp">
+<!ENTITY foxyproxy.export.pattern.label "Export">
+<!ENTITY foxyproxy.export.pattern.accesskey "X">
+<!ENTITY foxyproxy.export.pattern.tooltip "Export patterns as a pattern subscription">
 <!ENTITY foxyproxy.close.label "Luk">
 <!ENTITY foxyproxy.close.accesskey "L">
 <!ENTITY foxyproxy.close.tooltip "Luk vindue">

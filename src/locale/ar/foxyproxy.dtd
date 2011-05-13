@@ -36,6 +36,9 @@
 <!ENTITY foxyproxy.help.label "Help Contents">
 <!ENTITY foxyproxy.help.accesskey "ع">
 <!ENTITY foxyproxy.help.tooltip "اظهار المساعدة">
+<!ENTITY foxyproxy.export.pattern.label "Export">
+<!ENTITY foxyproxy.export.pattern.accesskey "X">
+<!ENTITY foxyproxy.export.pattern.tooltip "Export patterns as a pattern subscription">
 <!ENTITY foxyproxy.close.label "اغلاق">
 <!ENTITY foxyproxy.close.accesskey "غ">
 <!ENTITY foxyproxy.close.tooltip "اغلاق النافذة">

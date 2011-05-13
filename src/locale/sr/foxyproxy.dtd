@@ -36,6 +36,9 @@
 <!ENTITY foxyproxy.help.label "Садржај помоћи">
 <!ENTITY foxyproxy.help.accesskey "П">
 <!ENTITY foxyproxy.help.tooltip "Прикажи помоћ">
+<!ENTITY foxyproxy.export.pattern.label "Export">
+<!ENTITY foxyproxy.export.pattern.accesskey "X">
+<!ENTITY foxyproxy.export.pattern.tooltip "Export patterns as a pattern subscription">
 <!ENTITY foxyproxy.close.label "Затвори">
 <!ENTITY foxyproxy.close.accesskey "З">
 <!ENTITY foxyproxy.close.tooltip "Затвори прозор">

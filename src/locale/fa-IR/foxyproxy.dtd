@@ -36,6 +36,9 @@
 <!ENTITY foxyproxy.help.label "راهنما">
 <!ENTITY foxyproxy.help.accesskey "ا">
 <!ENTITY foxyproxy.help.tooltip "نمایش راهنما">
+<!ENTITY foxyproxy.export.pattern.label "Export">
+<!ENTITY foxyproxy.export.pattern.accesskey "X">
+<!ENTITY foxyproxy.export.pattern.tooltip "Export patterns as a pattern subscription">
 <!ENTITY foxyproxy.close.label "بستن">
 <!ENTITY foxyproxy.close.accesskey "ب">
 <!ENTITY foxyproxy.close.tooltip "بستن پنجره">

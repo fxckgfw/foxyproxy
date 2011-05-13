@@ -36,6 +36,9 @@
 <!ENTITY foxyproxy.help.label "Palīdzības saturs">
 <!ENTITY foxyproxy.help.accesskey "l">
 <!ENTITY foxyproxy.help.tooltip "Rādīt palīdzību">
+<!ENTITY foxyproxy.export.pattern.label "Export">
+<!ENTITY foxyproxy.export.pattern.accesskey "X">
+<!ENTITY foxyproxy.export.pattern.tooltip "Export patterns as a pattern subscription">
 <!ENTITY foxyproxy.close.label "Aizvērt">
 <!ENTITY foxyproxy.close.accesskey "a">
 <!ENTITY foxyproxy.close.tooltip "Aizvērt logu">

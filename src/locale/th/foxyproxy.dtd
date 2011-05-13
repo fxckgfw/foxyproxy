@@ -36,6 +36,9 @@
 <!ENTITY foxyproxy.help.label "ส่วนช่วยเหลือ">
 <!ENTITY foxyproxy.help.accesskey "ส">
 <!ENTITY foxyproxy.help.tooltip "แสดงช่วยเหลือ">
+<!ENTITY foxyproxy.export.pattern.label "Export">
+<!ENTITY foxyproxy.export.pattern.accesskey "X">
+<!ENTITY foxyproxy.export.pattern.tooltip "Export patterns as a pattern subscription">
 <!ENTITY foxyproxy.close.label "ปิด">
 <!ENTITY foxyproxy.close.accesskey "ป">
 <!ENTITY foxyproxy.close.tooltip "ปิดหน้าต่าง">

@@ -36,6 +36,9 @@
 <!ENTITY foxyproxy.help.label "Obsah Pomocníka">
 <!ENTITY foxyproxy.help.accesskey "O">
 <!ENTITY foxyproxy.help.tooltip "Zobrazí Pomocníka">
+<!ENTITY foxyproxy.export.pattern.label "Export">
+<!ENTITY foxyproxy.export.pattern.accesskey "X">
+<!ENTITY foxyproxy.export.pattern.tooltip "Export patterns as a pattern subscription">
 <!ENTITY foxyproxy.close.label "Zavrieť">
 <!ENTITY foxyproxy.close.accesskey "Z">
 <!ENTITY foxyproxy.close.tooltip "Zavrie okno">

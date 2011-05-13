@@ -36,6 +36,9 @@
 <!ENTITY foxyproxy.help.label "Περιεχόμενα βοήθειας">
 <!ENTITY foxyproxy.help.accesskey "Β">
 <!ENTITY foxyproxy.help.tooltip "Προβολή βοήθειας">
+<!ENTITY foxyproxy.export.pattern.label "Export">
+<!ENTITY foxyproxy.export.pattern.accesskey "X">
+<!ENTITY foxyproxy.export.pattern.tooltip "Export patterns as a pattern subscription">
 <!ENTITY foxyproxy.close.label "Κλείσιμο">
 <!ENTITY foxyproxy.close.accesskey "Κ">
 <!ENTITY foxyproxy.close.tooltip "Κλείσιμο παραθύρου">

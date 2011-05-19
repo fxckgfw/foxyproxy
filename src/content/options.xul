@@ -675,7 +675,7 @@
         <description style="width: 1em;">&foxyproxy.quickadd.desc1;
           <text value="&foxyproxy.keyconfig.label;" class="text-link"
             onclick="fpc.openAndReuseOneTabPerURL('http://forums.mozillazine.org/viewtopic.php?t=72994');" />
-          &foxyproxy.quickadd.desc2;.
+          &foxyproxy.quickadd.desc2;
         </description>
         <checkbox id="quickAddEnabled" 
           label="&foxyproxy.enabled.label;"

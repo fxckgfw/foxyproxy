@@ -170,8 +170,7 @@ nsDummyChannel.prototype = {
   loadGroup: null,
   notificationCallbacks: null,
   securityInfo: null,
-  open: this._open,
-  asyncOpen: this._open,
+  asyncOpen: function() {},
   asyncRead: function() {throw CR.NS_ERROR_NOT_IMPLEMENTED;},
   /* nsIRequest */
   isPending: function() {return true;},
@@ -179,12 +178,6 @@ nsDummyChannel.prototype = {
   cancel: function(status) {this.status = status;},
   suspend: this._suspres,
   resume: this._suspres,
-
-  _open: function() {
-    // We don't throw this (a number, not a real 'resultcode') because it
-    // upsets xpconnect if we do (error in the js console).
-    Components.returnCode = CR.NS_ERROR_NO_CONTENT;
-  },
 
   _suspres: function() {throw CR.NS_ERROR_NOT_IMPLEMENTED;}
 };

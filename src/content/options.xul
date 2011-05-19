@@ -45,7 +45,7 @@
             <!-- tooltiptext is necessary for tooltip, dunno why -->
             <menuseparator/>
             <menuitem command="closeCmd"
-              tooltiptext="&foxyproxy.close.tooltip;" />
+              tooltiptext="&foxyproxy.close.tooltip;" key="esc-key"/>
             <!-- tooltiptext is necessary for tooltip, dunno why -->
           </menupopup>
         </menu>

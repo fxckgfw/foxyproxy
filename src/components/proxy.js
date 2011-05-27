@@ -74,6 +74,19 @@ function Proxy(fp) {
   this.name = this.notes = "";
   this.manualconf = new ManualConf(this, this.fp);
   this.autoconf = new AutoConf(this, this.fp);
+  // An own object for the WPAD feature...
+  this.autodetect = new AutoConf(this, this.fp);
+  // We set a URL to the proxy file which cannot changed. The rationale for
+  // this is:
+  // "We diverge from the WPAD spec here in that we don't walk the
+  // hosts's FQDN, stripping components until we hit a TLD.  Doing so
+  // is dangerous in the face of an incomplete list of TLDs, and TLDs
+  // get added over time.  We could consider doing only a single
+  // substitution of the first component, if that proves to help
+  // compatibility." 
+  // See: http://mxr.mozilla.org/mozilla2.0/source/netwerk/base/src/
+  // nsProtocolProxyService.cpp#488 
+  this.autodetect.url = "http://wpad/wpad.dat";
   this._mode = "manual"; // manual, auto, direct, random
   this._enabled = true;
   this.selectedTabIndex = 1; /* default tab is the proxy details tab */
@@ -98,6 +111,7 @@ Proxy.prototype = {
     this.notes = node.getAttribute("notes");
     this._enabled = node.getAttribute("enabled") == "true";
     this.autoconf.fromDOM(node.getElementsByTagName("autoconf").item(0));
+    this.autodetect.fromDOM(node.getElementsByTagName("autoconf").item(1)); 
     this._proxyDNS = gGetSafeAttrB(node, "proxyDNS", true);
     this.manualconf.fromDOM(node.getElementsByTagName("manualconf").item(0));
     // 1.1 used "manual" instead of "mode" and was true/false only (for manual or auto)
@@ -148,6 +162,7 @@ Proxy.prototype = {
       if (!m.temp || (includeTempPatterns && m.temp)) matchesElem.appendChild(m.toDOM(doc, includeTempPatterns));
 
     e.appendChild(this.autoconf.toDOM(doc));
+    e.appendChild(this.autodetect.toDOM(doc)); 
     e.appendChild(this.manualconf.toDOM(doc));
     return e;
   },
@@ -304,49 +319,79 @@ Proxy.prototype = {
   set enabled(e) {
     if (this.lastresort && !e) return; // can't ever disable this guy
     this._enabled = e;
-		this.shouldLoadPAC() && this.autoconf.loadPAC();
+    if (this.shouldLoadPAC()) {
+      if (this._mode === "auto") {
+        this.autoconf.loadPAC();
+      } else {
+        this.autodetect.loadPAC();
+      }
+    } 
     this.handleTimer();
   },
 
   get enabled() {return this._enabled;},
 
-	shouldLoadPAC : function() {
-    if (this._mode == "auto" && this._enabled) {
+  shouldLoadPAC : function() {
+    if ((this._mode == "auto" || this._mode == "auto-detect") &&
+         this._enabled) {
       var m = this.fp.mode;
-      return m == this.id || m == "patterns" || m == "random" || m == "roundrobin";
+      return m == this.id || m == "patterns" || m == "random" ||
+        m == "roundrobin";
     }
-	},
+  },
 
   set mode(m) {
     this._mode = m;
-    this.shouldLoadPAC() && this.autoconf.loadPAC();
+    if (this.shouldLoadPAC()) {
+      if (this._mode === "auto") {
+        this.autoconf.loadPAC();
+      } else {
+        this.autodetect.loadPAC();
+      }
+    } 
     this.handleTimer();
   },
 
-	afterPropertiesSet : function() {
-	  // Load PAC if required. Note that loadPAC() is synchronous and if it fails, it changes our mode to "direct" or disables us.
-    this.shouldLoadPAC() && this.autoconf.loadPAC();
-
-   	// Some integrity maintenance: if this is a manual proxy and this.manualconf.proxy wasn't created during deserialization, disable us.
+  afterPropertiesSet : function() {
+    // Load PAC if required. Note that loadPAC() is synchronous and if it fails,
+    // it changes our mode to "direct" or disables us.
+    if (this.shouldLoadPAC()) {
+      if (this._mode === "auto") {
+        this.autoconf.loadPAC();
+      } else {
+        this.autodetect.loadPAC();
+      }
+    } 
+    // Some integrity maintenance: if this is a manual proxy and
+    // this.manualconf.proxy wasn't created during deserialization, disable us.
     if (this._enabled && this._mode == "manual" && !this.manualconf.proxy) {
       if (this.lastresort) {
-     	  // Switch lastresort to DIRECT since manualconf is corrupt--someone changed foxyproxy.xml manually, outside our GUI
-     	  this._mode = "direct";
+        // Switch lastresort to DIRECT since manualconf is corrupt--someone
+        // changed foxyproxy.xml manually, outside our GUI
+        this._mode = "direct";
+      } else {
+        this._enabled = false;
       }
-      else
-     	  this._enabled = false;
+      !this._enabled &&
+        // (proxy, isBeingDeleted, isBeingDisabled, isBecomingDIRECT)  
+        this.fp.proxies.maintainIntegrity(this, false, true, false); 
     }
-	  !this._enabled &&
-	 	  this.fp.proxies.maintainIntegrity(this, false, true, false); // (proxy, isBeingDeleted, isBeingDisabled, isBecomingDIRECT)
-	},
+  },
 
-	handleTimer : function() {
-		var ac = this.autoconf;
-		ac.timer.cancel(); // always always always cancel first before doing anything
-		if (this.shouldLoadPAC() && ac._autoReload) {
-			ac.timer.initWithCallback(ac, ac._reloadFreqMins*60000, CI.nsITimer.TYPE_REPEATING_SLACK);
-		}
-	},
+  handleTimer : function() {
+    let ac;
+    if (this._mode === "auto") {
+      ac = this.autoconf; 
+    } else {
+      ac = this.autodetect;
+    } 
+    // always always always cancel first before doing anything 
+    ac.timer.cancel();
+    if (this.shouldLoadPAC() && ac._autoReload) {
+      ac.timer.initWithCallback(ac, ac._reloadFreqMins*60000,
+        CI.nsITimer.TYPE_REPEATING_SLACK);
+    }
+  },
 
   get mode() {return this._mode;},
 

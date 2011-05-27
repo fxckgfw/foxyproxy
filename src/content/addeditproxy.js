@@ -35,12 +35,16 @@ function onLoad() {
   document.getElementById("tabs").selectedIndex = proxy.selectedTabIndex;
   document.getElementById("proxyenabled").checked = proxy.enabled;
   document.getElementById("mode").value = proxy.mode;
-  toggleMode(proxy.mode);
   document.getElementById("host").value = proxy.manualconf.host;
   document.getElementById("port").value = proxy.manualconf.port;
   document.getElementById("isSocks").checked = proxy.manualconf.isSocks;
   document.getElementById("socksversion").value = proxy.manualconf.socksversion;
+  toggleMode(proxy.mode); 
   document.getElementById("proxyDNS").checked = proxy.proxyDNS;
+  document.getElementById("WPADReloadEnabled").checked = proxy.autodetect.
+    autoReload;
+  document.getElementById("WPADReloadFreq").value = proxy.autodetect.
+    reloadFreqMins;
   autoconfurl.value = proxy.autoconf.url;
 
   if (proxy.lastresort) {
@@ -108,11 +112,15 @@ function onOK() {
   proxy.name = name;
   proxy.notes = document.getElementById("proxynotes").value;
   proxy.selectedTabIndex = document.getElementById("tabs").selectedIndex;
+  proxy.autodetect.autoReload = document.getElementById("WPADReloadEnabled").
+    checked;
+  proxy.autodetect.reloadFreqMins = document.getElementById("WPADReloadFreq").
+    value;
   proxy.autoconf.url = url;
   proxy.autoconf.loadNotification = document.getElementById("pacLoadNotificationEnabled").checked;
   proxy.autoconf.errorNotification = document.getElementById("pacErrorNotificationEnabled").checked;
-	proxy.autoconf.autoReload = document.getElementById("autoConfURLReloadEnabled").checked;
-	proxy.autoconf.reloadFreqMins = reloadfreq;
+  proxy.autoconf.autoReload = document.getElementById("autoConfURLReloadEnabled").checked;
+  proxy.autoconf.reloadFreqMins = reloadfreq;
 
   proxy.mode = mode; // set this first to control PAC loading
   proxy.enabled = enabled;
@@ -290,27 +298,68 @@ function onExportURLPattern() {
   }
 }
 
+function toggleSocks() {
+  let socksBC = document.getElementById("socks-broadcaster");
+  if (document.getElementById("isSocks").checked) {
+    socksBC.removeAttribute("disabled"); 
+  } else {
+    socksBC.setAttribute("disabled", "true");
+  }
+}
+
 function toggleMode(mode) {
   // Next line--buggy in FF 1.5.0.1--makes fields enabled but readonly
   // document.getElementById("disabled-broadcaster").setAttribute("disabled", mode == "auto" ? "true" : "false");
   // Call removeAttribute() instead of setAttribute("disabled", "false") or setAttribute("disabled", false);
   // Thanks, Andy McDonald.
   if (mode == "auto") {
-    document.getElementById("autoconf-broadcaster1").removeAttribute("disabled");
-		document.getElementById("disabled-broadcaster").setAttribute("disabled", "true");
-		document.getElementById("direct-broadcaster").removeAttribute("disabled");
-		document.getElementById("proxyDNS").hidden = false;
-		onAutoConfUrlInput();
-  }
-  else if (mode == "direct") {
-    document.getElementById("disabled-broadcaster").setAttribute("disabled", "true");
-		document.getElementById("autoconf-broadcaster1").setAttribute("disabled", "true");
-		document.getElementById("direct-broadcaster").setAttribute("disabled", "true");
-		document.getElementById("proxyDNS").hidden = true;
-  }
-  else {
+    document.getElementById("autoconf-broadcaster1").
+      removeAttribute("disabled");
+    document.getElementById("autoconf-broadcaster3").setAttribute("disabled",
+      "true");
+    document.getElementById("socks-broadcaster").setAttribute("disabled",
+      "true");
+    document.getElementById("disabled-broadcaster").setAttribute("disabled",
+      "true");
+    document.getElementById("direct-broadcaster").removeAttribute("disabled");
+    document.getElementById("proxyDNS").hidden = false;
+    onAutoConfUrlInput();
+  } else if (mode == "direct") {
+    document.getElementById("disabled-broadcaster").setAttribute("disabled",
+      "true");
+    document.getElementById("autoconf-broadcaster1").setAttribute("disabled",
+      "true");
+    document.getElementById("autoconf-broadcaster3").setAttribute("disabled",
+      "true"); 
+    document.getElementById("socks-broadcaster").setAttribute("disabled",
+      "true"); 
+    document.getElementById("direct-broadcaster").setAttribute("disabled",
+      "true");
+    document.getElementById("proxyDNS").hidden = true;
+  } else if (mode == "auto-detect") {
+    document.getElementById("disabled-broadcaster").setAttribute("disabled",
+      "true");
+    document.getElementById("autoconf-broadcaster1").setAttribute("disabled",
+      "true");
+    document.getElementById("autoconf-broadcaster3").
+      removeAttribute("disabled");
+    document.getElementById("socks-broadcaster").setAttribute("disabled",
+      "true"); 
+    document.getElementById("direct-broadcaster").removeAttribute("disabled")
+    document.getElementById("proxyDNS").hidden = false; 
+  
+  } else {
     document.getElementById("disabled-broadcaster").removeAttribute("disabled");
-    document.getElementById("autoconf-broadcaster1").setAttribute("disabled", "true");
+    document.getElementById("autoconf-broadcaster1").setAttribute("disabled",
+      "true");
+    document.getElementById("autoconf-broadcaster3").setAttribute("disabled",
+      "true"); 
+    if (document.getElementById("isSocks").checked) {
+      document.getElementById("socks-broadcaster").removeAttribute("disabled");
+    } else {
+      document.getElementById("socks-broadcaster").setAttribute("disabled",
+        "true"); 
+    }
     document.getElementById("direct-broadcaster").removeAttribute("disabled");
     document.getElementById("proxyDNS").hidden = false;
   }

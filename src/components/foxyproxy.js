@@ -243,7 +243,13 @@ foxyproxy.prototype = {
         proxy.enabled = true; // ensure it's enabled
       }
       proxy.handleTimer();  // Leave this after "proxy.enabled = true" !
-      proxy.shouldLoadPAC() && proxy.autoconf.loadPAC();
+      if (proxy.shouldLoadPAC()) {
+        if (proxy.mode === "auto") {
+          proxy.autoconf.loadPAC();
+        } else {
+          proxy.autodetect.loadPAC();
+        }
+      }
     }
     // Ensure the new mode is valid. If it's invalid, set mode to disabled for safety (what else should we do?) and spit out
     // a message. The only time an invalid mode could be specified is if (a) there's a coding error or (b) the user specified

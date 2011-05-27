@@ -216,7 +216,18 @@ Common.prototype = {
           case "hostCol":return i.manualconf.host;           
           case "isSocksCol":return i.manualconf.isSocks?fp.getMessage("yes"):fp.getMessage("no");        
           case "portCol":return i.manualconf.port;                   
-          case "socksverCol":return i.manualconf.socksversion == "5" ? "5" : "4/4a";                           
+          case "socksverCol":
+            if (i.manualconf.isSocks)
+              return i.manualconf.socksversion == "5" ? "5" : "4/4a";
+            else
+              // We only want to show the SOCKS version in the tree if it is
+              // really a SOCKS proxy.
+              return "";
+          case "autodetectCol":
+            if (i.mode === "auto-detect")
+              return fp.getMessage("yes");
+            else 
+              return fp.getMessage("no"); 
           case "autopacCol":return i.autoconf.url;   
           case "animatedIconsCol":return i.animatedIcons?fp.getMessage("yes"):fp.getMessage("no");
           case "cycleCol":return i.includeInCycle?fp.getMessage("yes"):fp.getMessage("no");

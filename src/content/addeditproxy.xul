@@ -15,7 +15,7 @@
 <?xul-overlay href="includes.xul"?>
 <!DOCTYPE overlay SYSTEM "chrome://foxyproxy/locale/foxyproxy.dtd">
 
-<dialog buttons="accept"
+<dialog buttons="accept, cancel"
   id="foxyproxyaddproxydlg2"
   ondialogaccept="return onOK();"
   onload="onLoad();"
@@ -117,16 +117,42 @@
               </hbox>
               <hbox align="center" class="indent">
                 <checkbox id="isSocks"
-									label="&foxyproxy.issocks.label;"
-	               	accesskey="&foxyproxy.issocks.accesskey;"
-	               	tooltiptext="&foxyproxy.issocks.tooltip;"
-	               	observes="disabled-broadcaster"/>
+                          label="&foxyproxy.issocks.label;"
+	               	  accesskey="&foxyproxy.issocks.accesskey;"
+	               	  tooltiptext="&foxyproxy.issocks.tooltip;"
+                          oncommand="toggleSocks();"
+	               	  observes="disabled-broadcaster"/>
                 <radiogroup id="socksversion" orient="horizontal">
-                  <radio id="socks4" value="4" label="&foxyproxy.socks.v4;" accesskey="4" observes="disabled-broadcaster"/>
-                  <radio id="socks5" value="5" label="&foxyproxy.socks.v5;" accesskey="5" observes="disabled-broadcaster"/>
+                  <radio id="socks4" value="4" label="&foxyproxy.socks.v4;" accesskey="4" observes="socks-broadcaster"/>
+                  <radio id="socks5" value="5" label="&foxyproxy.socks.v5;" accesskey="5" observes="socks-broadcaster"/>
                 </radiogroup>
               </hbox>
             </groupbox>
+          <separator class="thin"/>
+          <groupbox>
+            <hbox align="center">
+              <radio id="auto-detect"
+                value="auto-detect"
+                label="&foxyproxy.autodetect.label;"
+                oncommand="toggleMode('auto-detect');"
+                accesskey="&foxyproxy.autodetect.accesskey;"
+                tooltiptext="&foxyproxy.autodetect.tooltip;"/>
+            </hbox> 
+            <hbox align="center" class="indent">
+	      <checkbox id="WPADReloadEnabled"
+                        label="&foxyproxy.autodetect.reload.label;"
+                        accesskey="&foxyproxy.autodetect.reload.accesskey;"
+                        tooltiptext="&foxyproxy.autodetect.reload.tooltip;"
+                        observes="autoconf-broadcaster3"/>
+              <textbox id="WPADReloadFreq"
+                       size="3"
+                       observes="autoconf-broadcaster3"
+                       tooltiptext="&foxyproxy.autodetect.reload.tooltip;"
+                       oninput="if (/\D/.test(this.value)) this.value='';"/>
+              <label value="&foxyproxy.minutes.label;"
+                     tooltiptext="&foxyproxy.minutes.tooltip;"/>
+            </hbox> 
+          </groupbox>
           <separator class="thin"/>
           <groupbox>
             <hbox align="center">
@@ -395,10 +421,12 @@
 <broadcasterset>
   <broadcaster id="autoconf-broadcaster1" disabled="true"/>
   <broadcaster id="autoconf-broadcaster2" disabled="true"/>
+  <broadcaster id="autoconf-broadcaster3" disabled="true"/>
   <broadcaster id="urls-tree-row-selected" disabled="true"/>
   <broadcaster id="torwiz-broadcaster" hidden="false"/>
   <broadcaster id="not-torwiz-broadcaster" hidden="true"/>
   <broadcaster id="disabled-broadcaster" disabled="false"/>
+  <broadcaster id="socks-broadcaster" disabled="false"/>
   <broadcaster id="default-proxy-broadcaster" disabled="false"/>
   <broadcaster id="issocks-broadcaster" disabled="false"/>
   <broadcaster id="direct-broadcaster" disabled="false"/>

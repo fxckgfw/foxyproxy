@@ -298,7 +298,7 @@ function toggleMode(mode) {
   if (mode == "auto") {
     document.getElementById("autoconf-broadcaster1").removeAttribute("disabled");
 		document.getElementById("disabled-broadcaster").setAttribute("disabled", "true");
-		document.getElementById("direct-broadcaster").removeAttribute("disabled", "true");
+		document.getElementById("direct-broadcaster").removeAttribute("disabled");
 		document.getElementById("proxyDNS").hidden = false;
 		onAutoConfUrlInput();
   }

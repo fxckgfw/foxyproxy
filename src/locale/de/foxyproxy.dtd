@@ -270,7 +270,7 @@
 <!ENTITY foxyproxy.quickadd.desc2 "Erweiterung">
 <!ENTITY foxyproxy.quickadd.label "QuickAdd">
 <!ENTITY foxyproxy.quickadd.accesskey "Q">
-<!ENTITY foxyproxy.quickadd.tooltip "QuickAdd">
+<!ENTITY foxyproxy.quickadd.tooltip "Einstellungen für QuickAdd verwalten">
 <!ENTITY foxyproxy.quickadd.notify.label "Benachrichtigen, wenn QuickAdd ausgeführt wird">
 <!ENTITY foxyproxy.quickadd.notify.accesskey "B">
 <!ENTITY foxyproxy.quickadd.notify.tooltip "Zeigt ein Popup-Fenster an, wenn QuickAdd aktiviert wird">

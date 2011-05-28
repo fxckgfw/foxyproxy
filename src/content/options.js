@@ -385,7 +385,12 @@ function onSettings(isNew) {
     proxyTree.view.selection.select(isNew?proxyTree.view.rowCount-2:sel); 
     // We need to include this call here as well as the selection is not
     // clearly visible anymore in the pattern subscription tree without it.
-    subscriptionsTree.view.selection.select(selSub);
+    // But only redraw the tree if we have one item selected. Otherwise enabling
+    // just "Add New Pattern Subscription" if we have not selected a
+    // subscription does not work properly.
+    if (selSub > -1) {
+      subscriptionsTree.view.selection.select(selSub);
+    }
   }
 }
 

@@ -232,7 +232,7 @@
                <splitter class="tree-splitter" />
              </treecols>
 	     <treechildren id="subscriptionsTreeChildren" flex="1" 
-                           ondblclick="editPatternSubscription();" 
+                           ondblclick="onDblClickSubscriptionsTree();" 
                            context="patternSubTreeMenu" />
            </tree>
          </hbox> 

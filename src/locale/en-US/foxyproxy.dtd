@@ -80,7 +80,7 @@
 <!ENTITY foxyproxy.wpad.label "Auto-detect proxy settings for this network">
 <!ENTITY foxyproxy.wpad.accesskey "W">
 <!ENTITY foxyproxy.wpad.tooltip "Detect the proxy settings automatically using WPAD">
-<!ENTITY foxyproxy.wpad.relaod.label "Detect proxy settings automatically every">
+<!ENTITY foxyproxy.wpad.reload.label "Detect proxy settings automatically every">
 <!ENTITY foxyproxy.wpad.reload.accesskey "D">
 <!ENTITY foxyproxy.wpad.reload.tooltip "Auto-detect the proxy every specified period">
 <!ENTITY foxyproxy.wpad.tree.label "Auto-detect proxy">

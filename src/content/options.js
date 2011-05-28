@@ -403,15 +403,6 @@ function setButtons() {
   	(proxyTree.currentIndex+1 < foxyproxy.proxies.length && foxyproxy.proxies.item(proxyTree.currentIndex+1).lastresort));
 }
 
-// We need this extra step here. Otherwise the user may click on the empty tree
-// and the "edit-version" of the addeditsubscriptions.xul (Last Status and
-// Refresh not being diabled) would be opened.
-function onDblClickSubscriptionsTree() {
-  if (subscriptionsTree.currentIndex > -1) {
-    editPatternSubscription();
-  }
-}
-
 function addPatternSubscription() {
   let params = {
         inn : null,
@@ -430,6 +421,15 @@ function addPatternSubscription() {
     }
     subscriptionsTree.view = patternSubscriptions.makeSubscriptionsTreeView();
   } 
+}
+
+// We need this extra step here. Otherwise the user may click on the empty tree
+// and the "edit-version" of the addeditsubscriptions.xul (Last Status and
+// Refresh not being diabled) would be opened.
+function onDblClickSubscriptionsTree() {
+  if (subscriptionsTree.currentIndex > -1) {
+    editPatternSubscription();
+  }
 }
 
 function editPatternSubscription() {

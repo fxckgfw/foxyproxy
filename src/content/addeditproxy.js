@@ -41,10 +41,8 @@ function onLoad() {
   document.getElementById("socksversion").value = proxy.manualconf.socksversion;
   toggleMode(proxy.mode); 
   document.getElementById("proxyDNS").checked = proxy.proxyDNS;
-  document.getElementById("WPADReloadEnabled").checked = proxy.autodetect.
-    autoReload;
-  document.getElementById("WPADReloadFreq").value = proxy.autodetect.
-    reloadFreqMins;
+  document.getElementById("WPADReloadEnabled").checked = proxy.wpad.autoReload;
+  document.getElementById("WPADReloadFreq").value = proxy.wpad.reloadFreqMins;
   autoconfurl.value = proxy.autoconf.url;
 
   if (proxy.lastresort) {
@@ -112,10 +110,8 @@ function onOK() {
   proxy.name = name;
   proxy.notes = document.getElementById("proxynotes").value;
   proxy.selectedTabIndex = document.getElementById("tabs").selectedIndex;
-  proxy.autodetect.autoReload = document.getElementById("WPADReloadEnabled").
-    checked;
-  proxy.autodetect.reloadFreqMins = document.getElementById("WPADReloadFreq").
-    value;
+  proxy.wpad.autoReload = document.getElementById("WPADReloadEnabled").checked;
+  proxy.wpad.reloadFreqMins = document.getElementById("WPADReloadFreq").value;
   proxy.autoconf.url = url;
   proxy.autoconf.loadNotification = document.getElementById("pacLoadNotificationEnabled").checked;
   proxy.autoconf.errorNotification = document.getElementById("pacErrorNotificationEnabled").checked;
@@ -336,7 +332,7 @@ function toggleMode(mode) {
     document.getElementById("direct-broadcaster").setAttribute("disabled",
       "true");
     document.getElementById("proxyDNS").hidden = true;
-  } else if (mode == "auto-detect") {
+  } else if (mode == "wpad") {
     document.getElementById("disabled-broadcaster").setAttribute("disabled",
       "true");
     document.getElementById("autoconf-broadcaster1").setAttribute("disabled",

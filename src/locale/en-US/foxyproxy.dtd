@@ -77,13 +77,13 @@
 <!ENTITY foxyproxy.mode.label "Mode">
 
 <!--For translators: The following two strings are already included into Firefox and may be found in the Preferences panel -> Advanced -> Network Settings-->
-<!ENTITY foxyproxy.autodetect.label "Auto-detect proxy settings for this network">
-<!ENTITY foxyproxy.autodetect.accesskey "W">
-<!ENTITY foxyproxy.autodetect.tooltip "Detect the proxy settings automatically using WPAD">
-<!ENTITY foxyproxy.autodetect.relaod.label "Detect proxy settings automatically every">
-<!ENTITY foxyproxy.autodetect.reload.accesskey "D">
-<!ENTITY foxyproxy.autodetect.reload.tooltip "Auto-detect the proxy every specified period">
-<!ENTITY foxyproxy.autodetect.tree.label "Auto-detect proxy">
+<!ENTITY foxyproxy.wpad.label "Auto-detect proxy settings for this network">
+<!ENTITY foxyproxy.wpad.accesskey "W">
+<!ENTITY foxyproxy.wpad.tooltip "Detect the proxy settings automatically using WPAD">
+<!ENTITY foxyproxy.wpad.relaod.label "Detect proxy settings automatically every">
+<!ENTITY foxyproxy.wpad.reload.accesskey "D">
+<!ENTITY foxyproxy.wpad.reload.tooltip "Auto-detect the proxy every specified period">
+<!ENTITY foxyproxy.wpad.tree.label "Auto-detect proxy">
 <!ENTITY foxyproxy.auto.url.label "Automatic proxy configuration URL">
 <!ENTITY foxyproxy.auto.url.accesskey "A">
 <!ENTITY foxyproxy.auto.url.tooltip "Enter URL of the PAC file">

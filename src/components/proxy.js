@@ -75,7 +75,7 @@ function Proxy(fp) {
   this.manualconf = new ManualConf(this, this.fp);
   this.autoconf = new AutoConf(this, this.fp);
   // An own object for the WPAD feature...
-  this.autodetect = new AutoConf(this, this.fp);
+  this.wpad = new AutoConf(this, this.fp);
   // We set a URL to the proxy file which cannot changed. The rationale for
   // this is:
   // "We diverge from the WPAD spec here in that we don't walk the
@@ -86,7 +86,7 @@ function Proxy(fp) {
   // compatibility." 
   // See: http://mxr.mozilla.org/mozilla2.0/source/netwerk/base/src/
   // nsProtocolProxyService.cpp#488 
-  this.autodetect.url = "http://wpad/wpad.dat";
+  this.wpad.url = "http://wpad/wpad.dat";
   this._mode = "manual"; // manual, auto, direct, random
   this._enabled = true;
   this.selectedTabIndex = 1; /* default tab is the proxy details tab */
@@ -111,7 +111,7 @@ Proxy.prototype = {
     this.notes = node.getAttribute("notes");
     this._enabled = node.getAttribute("enabled") == "true";
     this.autoconf.fromDOM(node.getElementsByTagName("autoconf").item(0));
-    this.autodetect.fromDOM(node.getElementsByTagName("autoconf").item(1)); 
+    this.wpad.fromDOM(node.getElementsByTagName("autoconf").item(1)); 
     this._proxyDNS = gGetSafeAttrB(node, "proxyDNS", true);
     this.manualconf.fromDOM(node.getElementsByTagName("manualconf").item(0));
     // 1.1 used "manual" instead of "mode" and was true/false only (for manual or auto)
@@ -162,7 +162,7 @@ Proxy.prototype = {
       if (!m.temp || (includeTempPatterns && m.temp)) matchesElem.appendChild(m.toDOM(doc, includeTempPatterns));
 
     e.appendChild(this.autoconf.toDOM(doc));
-    e.appendChild(this.autodetect.toDOM(doc)); 
+    e.appendChild(this.wpad.toDOM(doc)); 
     e.appendChild(this.manualconf.toDOM(doc));
     return e;
   },
@@ -323,7 +323,7 @@ Proxy.prototype = {
       if (this._mode === "auto") {
         this.autoconf.loadPAC();
       } else {
-        this.autodetect.loadPAC();
+        this.wpad.loadPAC();
       }
     } 
     this.handleTimer();
@@ -332,7 +332,7 @@ Proxy.prototype = {
   get enabled() {return this._enabled;},
 
   shouldLoadPAC : function() {
-    if ((this._mode == "auto" || this._mode == "auto-detect") &&
+    if ((this._mode == "auto" || this._mode == "wpad") &&
          this._enabled) {
       var m = this.fp.mode;
       return m == this.id || m == "patterns" || m == "random" ||
@@ -346,7 +346,7 @@ Proxy.prototype = {
       if (this._mode === "auto") {
         this.autoconf.loadPAC();
       } else {
-        this.autodetect.loadPAC();
+        this.wpad.loadPAC();
       }
     } 
     this.handleTimer();
@@ -359,7 +359,7 @@ Proxy.prototype = {
       if (this._mode === "auto") {
         this.autoconf.loadPAC();
       } else {
-        this.autodetect.loadPAC();
+        this.wpad.loadPAC();
       }
     } 
     // Some integrity maintenance: if this is a manual proxy and
@@ -383,7 +383,7 @@ Proxy.prototype = {
     if (this._mode === "auto") {
       ac = this.autoconf; 
     } else {
-      ac = this.autodetect;
+      ac = this.wpad;
     } 
     // always always always cancel first before doing anything 
     ac.timer.cancel();

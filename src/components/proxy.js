@@ -111,7 +111,13 @@ Proxy.prototype = {
     this.notes = node.getAttribute("notes");
     this._enabled = node.getAttribute("enabled") == "true";
     this.autoconf.fromDOM(node.getElementsByTagName("autoconf").item(0));
-    this.wpad.fromDOM(node.getElementsByTagName("autoconf").item(1)); 
+    let wpadNode = node.getElementsByTagName("autoconf").item(1);
+    if (wpadNode) { 
+      this.wpad.fromDOM(wpadNode); 
+    } else {
+      this.wpad = new AutoConf(this, this.fp);
+      this.wpad.url = "http://wpad/wpad.dat";
+    }
     this._proxyDNS = gGetSafeAttrB(node, "proxyDNS", true);
     this.manualconf.fromDOM(node.getElementsByTagName("manualconf").item(0));
     // 1.1 used "manual" instead of "mode" and was true/false only (for manual or auto)

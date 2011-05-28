@@ -247,7 +247,7 @@ foxyproxy.prototype = {
         if (proxy.mode === "auto") {
           proxy.autoconf.loadPAC();
         } else {
-          proxy.autodetect.loadPAC();
+          proxy.wpad.loadPAC();
         }
       }
     }

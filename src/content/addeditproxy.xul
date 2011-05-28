@@ -131,23 +131,23 @@
           <separator class="thin"/>
           <groupbox>
             <hbox align="center">
-              <radio id="auto-detect"
-                value="auto-detect"
-                label="&foxyproxy.autodetect.label;"
-                oncommand="toggleMode('auto-detect');"
-                accesskey="&foxyproxy.autodetect.accesskey;"
-                tooltiptext="&foxyproxy.autodetect.tooltip;"/>
+              <radio id="wpad"
+                value="wpad"
+                label="&foxyproxy.wpad.label;"
+                oncommand="toggleMode('wpad');"
+                accesskey="&foxyproxy.wpad.accesskey;"
+                tooltiptext="&foxyproxy.wpad.tooltip;"/>
             </hbox> 
             <hbox align="center" class="indent">
 	      <checkbox id="WPADReloadEnabled"
-                        label="&foxyproxy.autodetect.reload.label;"
-                        accesskey="&foxyproxy.autodetect.reload.accesskey;"
-                        tooltiptext="&foxyproxy.autodetect.reload.tooltip;"
+                        label="&foxyproxy.wpad.reload.label;"
+                        accesskey="&foxyproxy.wpad.reload.accesskey;"
+                        tooltiptext="&foxyproxy.wpad.reload.tooltip;"
                         observes="autoconf-broadcaster3"/>
               <textbox id="WPADReloadFreq"
                        size="3"
                        observes="autoconf-broadcaster3"
-                       tooltiptext="&foxyproxy.autodetect.reload.tooltip;"
+                       tooltiptext="&foxyproxy.wpad.reload.tooltip;"
                        oninput="if (/\D/.test(this.value)) this.value='';"/>
               <label value="&foxyproxy.minutes.label;"
                      tooltiptext="&foxyproxy.minutes.tooltip;"/>

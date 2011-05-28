@@ -142,8 +142,8 @@
                 label="&foxyproxy.socks.version.label;" hidden="true"
                 flex="1" persist="width ordinal hidden" />
               <splitter class="tree-splitter" />
-              <treecol id="autodetectCol"
-                label="&foxyproxy.autodetect.tree.label;" hidden="true"
+              <treecol id="wpadCol"
+                label="&foxyproxy.wpad.tree.label;" hidden="true"
                 flex="1" persist="width ordinal hidden" />
               <splitter class="tree-splitter" /> 
               <treecol id="autopacCol"

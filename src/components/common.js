@@ -223,8 +223,8 @@ Common.prototype = {
               // We only want to show the SOCKS version in the tree if it is
               // really a SOCKS proxy.
               return "";
-          case "autodetectCol":
-            if (i.mode === "auto-detect")
+          case "wpadCol":
+            if (i.mode === "wpad")
               return fp.getMessage("yes");
             else 
               return fp.getMessage("no"); 

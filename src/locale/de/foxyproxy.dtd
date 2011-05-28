@@ -55,13 +55,13 @@
 <!ENTITY foxyproxy.copy.selection.accesskey "K">
 <!ENTITY foxyproxy.copy.selection.tooltip "Kopiert die aktuelle Auswahl">
 <!ENTITY foxyproxy.mode.label "Modus auswählen">
-<!ENTITY foxyproxy.autodetect.label "Die Proxy-Einstellungen für dieses Netzwerk automatisch erkennen">
-<!ENTITY foxyproxy.autodetect.accesskey "W">
-<!ENTITY foxyproxy.autodetect.tooltip "Proxy-Einstellungen mit WPAD automatisch erkennen">
-<!ENTITY foxyproxy.autodetect.reload.label "Erkenne Proxy-Einstellungen automatisch alle">
-<!ENTITY foxyproxy.autodetect.reload.accesskey "A">
-<!ENTITY foxyproxy.autodetect.reload.tooltip "Proxy jede angegebene Periode automatisch neu erkennen">
-<!ENTITY foxyproxy.autodetect.tree.label "Proxy automatisch erkennen">
+<!ENTITY foxyproxy.wpad.label "Die Proxy-Einstellungen für dieses Netzwerk automatisch erkennen">
+<!ENTITY foxyproxy.wpad.accesskey "W">
+<!ENTITY foxyproxy.wpad.tooltip "Proxy-Einstellungen mit WPAD automatisch erkennen">
+<!ENTITY foxyproxy.wpad.reload.label "Erkenne Proxy-Einstellungen automatisch alle">
+<!ENTITY foxyproxy.wpad.reload.accesskey "A">
+<!ENTITY foxyproxy.wpad.reload.tooltip "Proxy jede angegebene Periode automatisch neu erkennen">
+<!ENTITY foxyproxy.wpad.tree.label "Proxy automatisch erkennen">
 <!ENTITY foxyproxy.auto.url.label "Automatische Proxy-Konfigurations-URL">
 <!ENTITY foxyproxy.auto.url.accesskey "U">
 <!ENTITY foxyproxy.auto.url.tooltip "URL der PAC-Datei eingeben">

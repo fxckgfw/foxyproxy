@@ -123,8 +123,16 @@
                           oncommand="toggleSocks();"
 	               	  observes="disabled-broadcaster"/>
                 <radiogroup id="socksversion" orient="horizontal">
-                  <radio id="socks4" value="4" label="&foxyproxy.socks.v4;" accesskey="4" observes="socks-broadcaster"/>
-                  <radio id="socks5" value="5" label="&foxyproxy.socks.v5;" accesskey="5" observes="socks-broadcaster"/>
+                  <radio id="socks4"
+                         value="4"
+                         label="&foxyproxy.socks.v4;"
+                         accesskey="4"
+                         observes="socks-broadcaster"/>
+                  <radio id="socks5"
+                         value="5"
+                         label="&foxyproxy.socks.v5;"
+                         accesskey="5"
+                         observes="socks-broadcaster"/>
                 </radiogroup>
               </hbox>
             </groupbox>
@@ -132,11 +140,11 @@
           <groupbox>
             <hbox align="center">
               <radio id="wpad"
-                value="wpad"
-                label="&foxyproxy.wpad.label;"
-                oncommand="toggleMode('wpad');"
-                accesskey="&foxyproxy.wpad.accesskey;"
-                tooltiptext="&foxyproxy.wpad.tooltip;"/>
+                     value="wpad"
+                     label="&foxyproxy.wpad.label;"
+                     oncommand="toggleMode('wpad');"
+                     accesskey="&foxyproxy.wpad.accesskey;"
+                     tooltiptext="&foxyproxy.wpad.tooltip;"/>
             </hbox> 
             <hbox align="center" class="indent">
 	      <checkbox id="WPADReloadEnabled"

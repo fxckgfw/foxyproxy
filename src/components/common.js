@@ -214,8 +214,8 @@ Common.prototype = {
           case "nameCol":return i.name;
           case "descriptionCol":return i.notes;
           case "hostCol":return i.manualconf.host;           
+          case "portCol":return i.manualconf.port; 
           case "isSocksCol":return i.manualconf.isSocks?fp.getMessage("yes"):fp.getMessage("no");        
-          case "portCol":return i.manualconf.port;                   
           case "socksverCol":
             if (i.manualconf.isSocks)
               return i.manualconf.socksversion == "5" ? "5" : "4/4a";

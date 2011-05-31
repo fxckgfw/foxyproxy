@@ -225,8 +225,10 @@ foxyproxy.prototype = {
   
   get mode() { return this._mode; },
   setMode : function(mode, writeSettings, init) {
-    // Possible modes are: patterns, _proxy_id_ (for "Use proxy xyz for all URLs), random, roundrobin, disabled, previous.
-    // Note that "previous" isn't used anywhere but this method: it is translated into the previous mode then broadcasted.
+    // Possible modes are: patterns, _proxy_id_ (for "Use proxy xyz for all
+    // URLs), random, roundrobin, disabled, previous.
+    // Note that "previous" isn't used anywhere but this method: it is
+    // translated into the previous mode then broadcasted.
     if (mode == "previous") {
       if (this.mode == "disabled")
         mode = this.previousMode;
@@ -235,14 +237,16 @@ foxyproxy.prototype = {
     }
     this._previousMode = this._mode;
     this._mode = mode;
-    this._selectedProxy = null; // todo: really shouldn't do this in case something tries to load right after this instruction
+    this._selectedProxy = null; // todo: really shouldn't do this in case
+                                // something tries to load right after this
+                                // instruction
     for (var i=0,len=this.proxies.length; i<len; i++) {
       var proxy = this.proxies.item(i);
       if (mode == proxy.id) {
         this._selectedProxy = proxy;
         proxy.enabled = true; // ensure it's enabled
       }
-      proxy.handleTimer();  // Leave this after "proxy.enabled = true" !
+      proxy.handleTimer(); // Leave this after "proxy.enabled = true"!
       if (proxy.shouldLoadPAC()) {
         if (proxy.mode === "auto") {
           proxy.autoconf.loadPAC();
@@ -251,20 +255,26 @@ foxyproxy.prototype = {
         }
       }
     }
-    // Ensure the new mode is valid. If it's invalid, set mode to disabled for safety (what else should we do?) and spit out
-    // a message. The only time an invalid mode could be specified is if (a) there's a coding error or (b) the user specified
-    // an invalid mode on the command-line arguments
-    if (!this._selectedProxy && mode != "disabled" && mode != "patterns" && mode != "random" && mode != "roundrobin") {
+    // Ensure the new mode is valid. If it's invalid, set mode to disabled for
+    // safety (what else should we do?) and spit out a message. The only time
+    // an invalid mode could be specified is if (a) there's a coding error or
+    // (b) the user specified an invalid mode on the command-line arguments.
+    if (!this._selectedProxy && mode != "disabled" && mode != "patterns" &&
+        mode != "random" && mode != "roundrobin") {
       dump("FoxyProxy: unrecognized mode specified. Defaulting to \"disabled\".\n");
       this._mode = "disabled";
-      this.notifier.alert(this.getMessage("foxyproxy"), "Unrecognized mode specified: " + mode);
+      this.notifier.alert(this.getMessage("foxyproxy"),
+        "Unrecognized mode specified: " + mode);
     }
     
     this.toggleFilter(this._mode != "disabled");
-    // This line must come before the next one -- gBroadcast(...) Otherwise, AutoAdd and QuickAdd write their settings before
-    // they've been deserialized, resulting in them always getting written to disk as disabled (althogh the file itself is already
-    // in-memory, so they will be enabled until restart. Unless, of course, the user first does something to FoxyProxy which forces
-    // it to flush it's in-memory state to disk (e.g., switch FoxyProxy tabs, edit a proxy/pattern, etc)
+    // This line must come before the next one -- gBroadcast(...) Otherwise,
+    // AutoAdd and QuickAdd write their settings before they've been
+    // deserialized, resulting in them always getting written to disk as
+    // disabled (althogh the file itself is already in-memory, so they will be
+    // enabled until restart. Unless, of course, the user first does something
+    // to FoxyProxy which forces it to flush it's in-memory state to disk
+    // (e.g., switch FoxyProxy tabs, edit a proxy/pattern, etc).
     if (init) return;
     gBroadcast(this.autoadd._enabled, "foxyproxy-mode-change", this._mode);
     if (writeSettings)

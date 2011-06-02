@@ -394,7 +394,7 @@
 <!ENTITY foxyproxy.temp.label "Midlertidig">
 <!ENTITY foxyproxy.temp.accesskey "T">
 <!ENTITY foxyproxy.temp.tooltip "Møsteret bruges kun i denne Firefox-session.">
-<!ENTITY foxyproxy.fromSubscription.label "Susbcribed">
+<!ENTITY foxyproxy.fromSubscription.label "Subscribed">
 <!ENTITY foxyproxy.define.label "Definér">
 <!ENTITY foxyproxy.define.accesskey "D">
 <!ENTITY foxyproxy.define.tooltip "Definér">
@@ -457,13 +457,13 @@
 <!ENTITY foxyproxy.pattern.subscriptions.refreshNow.label "Refresh Now">
 <!ENTITY foxyproxy.pattern.subscriptions.refreshNow.tooltip "Refresh this pattern subscription now">
 <!ENTITY foxyproxy.pattern.subscriptions.refreshHelp1 "Specify the number of minutes after which the subscription is updated. Updating the subscription ">
-<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp2 "removes all existing patterns ">
-<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp3 "then inserts the ones found at the subscription URL. Read more here ">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp2 "removes all existing patterns">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp3 "then inserts the ones found at the subscription URL. Read more here">
 <!ENTITY foxyproxy.pattern.subscriptions.zeroRefresh "(0 to never refresh)">
 <!ENTITY foxyproxy.pattern.subscriptions.format.tooltip "Format of this pattern subscription list">
-<!ENTITY foxyproxy.pattern.subscriptions.formatHelp "Specify the format in which the subscription is written. Normally, this is automatically detected by FoxyProxy. Read more ">
+<!ENTITY foxyproxy.pattern.subscriptions.formatHelp "Specify the format in which the subscription is written. Normally, this is automatically detected by FoxyProxy. Read more">
 <!ENTITY foxyproxy.pattern.subscriptions.obfuscation.tooltip "Obfuscation format of this pattern subscription">
-<!ENTITY foxyproxy.pattern.subscriptions.obfuscationHelp "Subscriptions are optionally obfuscated in order to prevent content-filtering by computers between you and the subscription URL. Normally, this is automatically detected by FoxyProxy. Read more ">
+<!ENTITY foxyproxy.pattern.subscriptions.obfuscationHelp "Subscriptions are optionally obfuscated in order to prevent content-filtering by computers between you and the subscription URL. Normally, this is automatically detected by FoxyProxy. Read more">
 <!ENTITY foxyproxy.pattern.subscriptions.copyLastStatus.label "Copy last status to Clipboard">
 <!ENTITY foxyproxy.pattern.subscriptions.copyLastStatus.tooltip "Copy last status to Clipboard">
 <!ENTITY foxyproxy.pattern.subscriptions.pattern.window.title "Subscription Patterns">
@@ -541,3 +541,4 @@
 <!ENTITY foxyproxy.patternsforselected.tooltip "Opret mønstre for valgte URLer">
 <!ENTITY foxyproxy.patterntoadd.label "Mønster der skal tilføjes">
 <!-- end foxyproxyplus -->
+

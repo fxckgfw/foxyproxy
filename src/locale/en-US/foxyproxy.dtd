@@ -130,6 +130,9 @@
 
 <!ENTITY foxyproxy.add.title "Proxy Settings">
 <!ENTITY foxyproxy.pattern.description "Here you can specify when this proxy is and is not used.">
+<!ENTITY foxyproxy.pattern.nointernal.label "Do not use this proxy for internal IP addresses">
+<!ENTITY foxyproxy.pattern.nointernal.tooltip "This checkbox allows you to restrict the proxy to non-internal IP addresses">
+<!ENTITY foxyproxy.pattern.nointernal.accesskey "N">
 <!ENTITY foxyproxy.pattern.matchtype.label "Pattern Contains">
 <!ENTITY foxyproxy.pattern.whiteblack.label "URL Inclusion/Exclusion">
 

@@ -951,13 +951,13 @@ end-foxyproxy-simple !*/
              this.fp.getMessage("foxyproxy.refresh.tooltip"));
   
           itm =_createMenuItem(submenupopup,
-              this.fp.getMessage("foxyproxy.quickadd.label"),
-              "foxyproxy.onQuickAddDialog(event)",
-              this.fp.getMessage("foxyproxy.quickadd.accesskey"),
-              this.fp.getMessage("foxyproxy.quickadd.tooltip"));
-            itm.setAttribute("key", "key_foxyproxyquickadd");
-            itm.setAttribute("disabled", disableQuickAdd(this.fp));          
-  
+            this.fp.getMessage("foxyproxy.quickadd.label"),
+            "foxyproxy.onQuickAddDialog(event)",
+            this.fp.getMessage("foxyproxy.quickadd.accesskey"),
+            this.fp.getMessage("foxyproxy.quickadd.tooltip"));
+          itm.setAttribute("key", "key_foxyproxyquickadd");
+          itm.setAttribute("disabled", disableQuickAdd(this.fp));
+
           _createCheckMenuItem(logsubmenupopup,
             // no need to write settings because changing the attribute makes the fp service re-writes the settings
             "foxyproxy.onToggleNoURLs();",
@@ -975,17 +975,6 @@ end-foxyproxy-simple !*/
           this.fp.getMessage("foxyproxy.options.tooltip"));
         itm.setAttribute("key", "key_foxyproxyfocus");
 
-        if (!isFoxyProxySimple) {
-          // No quickadd for FoxyProxy Simple
-          itm =_createMenuItem(submenupopup,
-            this.fp.getMessage("foxyproxy.quickadd.label"),
-            "foxyproxy.onQuickAddDialog(event)",
-            this.fp.getMessage("foxyproxy.quickadd.accesskey"),
-            this.fp.getMessage("foxyproxy.quickadd.tooltip"));
-          itm.setAttribute("key", "key_foxyproxyquickadd");
-          itm.setAttribute("disabled", disableQuickAdd(this.fp));
-        }
-                  
         _createMenuItem(submenupopup,
           this.fp.getMessage("foxyproxy.help.label"),
           "foxyproxy.fpc.openAndReuseOneTabPerURL('http://getfoxyproxy.org/" + (isFoxyProxySimple ? "basic/" : "") + "help.html');",

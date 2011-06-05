@@ -19,6 +19,7 @@
   id="foxyproxyaddproxydlg2"
   ondialogaccept="return onOK();"
   onload="onLoad();"
+  oncancel="onCancel();"
   title="&foxyproxy.standard.label; - &foxyproxy.add.title;"
   windowtype="foxyproxy"
  	xmlns:html="http://www.w3.org/1999/xhtml"
@@ -233,9 +234,18 @@
         </radiogroup>
     </tabpanel>
 
- 		<tabpanel flex="1" orient="vertical" class="hide-if-foxyproxy-simple">
- 			<separator class="thin" />
+    <tabpanel flex="1" orient="vertical" class="hide-if-foxyproxy-simple">
+      <separator class="thin" />
       <description>&foxyproxy.pattern.description;</description>
+      <separator class="thin"/>
+      <hbox>
+        <checkbox id="noInternalIPPatterns" 
+                  checked="false"
+                  oncommand="noInternalIPPatterns();"
+                  label="&foxyproxy.pattern.nointernal.label;"
+                  tooltiptext="&foxyproxy.pattern.nointernal.tooltip;"
+                  accesskey="&foxyproxy.pattern.nointernal.accesskey;"/> 
+      </hbox>
       <separator class="thin"/>
       <hbox>
         <button id="foxyproxy-add-url-pattern-button" command="addURLPatternCmd" flex="1" class="uncram-btn"/>

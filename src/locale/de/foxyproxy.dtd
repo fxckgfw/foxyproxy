@@ -98,6 +98,9 @@
 <!ENTITY foxyproxy.tab.patterns.tooltip "URL-Muster verwalten">
 <!ENTITY foxyproxy.add.title "Proxy-Einstellungen">
 <!ENTITY foxyproxy.pattern.description "Hier wird festgelegt, wann dieser Proxy verwendet wird und wann nicht.">
+<!ENTITY foxyproxy.pattern.nointernal.label "Verwende diesen Proxy nicht für interne IP-Adressen">
+<!ENTITY foxyproxy.pattern.nointernal.tooltip "Diese Checkbox erlaubt Ihnen, den Proxy auf nicht-interne IP-Adressen zu beschränken.">
+<!ENTITY foxyproxy.pattern.nointernal.accesskey "N">
 <!ENTITY foxyproxy.pattern.matchtype.label "Muster enthält">
 <!ENTITY foxyproxy.pattern.whiteblack.label "Whitelist oder Blacklist">
 <!ENTITY foxyproxy.add.option.direct.label "Direkte Verbindung zum Internet (kein Proxy)">

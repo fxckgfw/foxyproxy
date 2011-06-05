@@ -9,7 +9,8 @@
   and also online at http://www.gnu.org/licenses/gpl.txt
 **/
 const CI = Components.interfaces, CC = Components.classes;
-var urlsTree, proxy, foxyproxy, autoconfurl, overlay, isWindows, fpc;
+var urlsTree, proxy, foxyproxy, autoconfurl, overlay, isWindows, fpc,
+  oldMatches = [];
 
 function onLoad() {
   isWindows = CC["@mozilla.org/xre/app-info;1"].getService(CI.nsIXULRuntime).OS == "WINNT";
@@ -55,9 +56,25 @@ function onLoad() {
   document.getElementById("pacErrorNotificationEnabled").checked = proxy.autoconf.errorNotification;
   document.getElementById("autoConfURLReloadEnabled").checked = proxy.autoconf.autoReload;
   document.getElementById("autoConfReloadFreq").value = proxy.autoconf.reloadFreqMins;
-
+  // We need to copy the matches array here in order to replace the modified
+  // one with the old one if the user does not press the OK button (e.g. using
+  // the Cancel button or just closing the window manually).
+  for (let i = 0, length = proxy.matches.length; i < length; i++) {
+    oldMatches[i] = proxy.matches[i].clone(); 
+  }
   _updateView();
   sizeToContent();
+}
+
+function onCancel() {
+  // First, we check the length of the old and the new matches array. If they
+  // are not the same we reset proxy.matches.
+  if (oldMatches.length !== proxy.matches.length) {
+    proxy.matches = oldMatches;
+  } else {
+    // But the arrays still can differ (e.g. if some attributes changed)
+  }
+  return;
 }
 
 function trim(s) {

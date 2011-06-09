@@ -278,6 +278,6 @@
        y="13.037503"/>
   </g>
 </svg>
-<label>&foxyproxy.pattern.subscriptions.label;</label>
+<label id="pattern-tab-label">&foxyproxy.pattern.subscriptions.label;</label>
 </tab>
 </overlay>

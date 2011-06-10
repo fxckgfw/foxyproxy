@@ -271,13 +271,13 @@ function removeProxy(e) {
 function contextHelp(type) {
   switch (type) {
     case "format":
-      fpc.openAndReuseOneTabPerURL('http://getfoxyproxy.org/patternsubscriptions/index.html#format'); 
+      fpc.openAndReuseOneTabPerURL('http://getfoxyproxy.org/patternsubscriptions/help.html#format'); 
       break;
     case "obfuscation":
-      fpc.openAndReuseOneTabPerURL('http://getfoxyproxy.org/patternsubscriptions/index.html#obfuscation'); 
+      fpc.openAndReuseOneTabPerURL('http://getfoxyproxy.org/patternsubscriptions/help.html#obfuscation'); 
       break;
     case "refresh":
-      fpc.openAndReuseOneTabPerURL('http://getfoxyproxy.org/patternsubscriptions/index.html#refresh-rate'); 
+      fpc.openAndReuseOneTabPerURL('http://getfoxyproxy.org/patternsubscriptions/help.html#refresh-rate'); 
       break;
     default:
       break;

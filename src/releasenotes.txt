@@ -7,4 +7,4 @@
   all
 * Removed OCS from about window
 * Closed help popups in the add/edit pattern subscription window when clicking
-  one of the links in the help popups
+  one of the links in the help popups (bugfix)

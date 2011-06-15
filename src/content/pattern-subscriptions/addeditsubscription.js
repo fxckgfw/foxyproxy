@@ -271,17 +271,18 @@ function removeProxy(e) {
 function contextHelp(type) {
   switch (type) {
     case "format":
-      fpc.openAndReuseOneTabPerURL('http://getfoxyproxy.org/patternsubscriptions/help.html#format'); 
+      fpc.openAndReuseOneTabPerURL('http://getfoxyproxy.org/patternsubscriptions/help.html#format');
       break;
     case "obfuscation":
       fpc.openAndReuseOneTabPerURL('http://getfoxyproxy.org/patternsubscriptions/help.html#obfuscation'); 
       break;
     case "refresh":
-      fpc.openAndReuseOneTabPerURL('http://getfoxyproxy.org/patternsubscriptions/help.html#refresh-rate'); 
+      fpc.openAndReuseOneTabPerURL('http://getfoxyproxy.org/patternsubscriptions/help.html#refresh-rate');
       break;
     default:
       break;
   }
+  document.getElementById(type + "Help").hidePopup(); // hide the help popup
 }
 
 function refreshSubscription(e) {

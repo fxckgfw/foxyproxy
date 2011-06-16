@@ -77,7 +77,7 @@
 	    </vbox>
           </hbox>
           <hbox style="margin-left: 1em;">
-            <label value="&foxyproxy.copyright; 2006-2010 LeahScape, Inc." />
+            <label value="&foxyproxy.copyright; 2006-2011 LeahScape, Inc." />
             <spacer />
           </hbox>
           <hbox style="margin-left: 1em;">

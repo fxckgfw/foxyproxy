@@ -3,8 +3,9 @@
 * added a cancel button to addeditproxy dialog
 * show SOCKS version in proxy tree only if a SOCKS proxy is selected in the
   proxy settings
-* show enable SOCKS version radio buttons only if a SOCKS proxy is selected at
+* enable SOCKS version radio buttons only if a SOCKS proxy is selected at
   all
-* Removed OCS from about window
-* Closed help popups in the add/edit pattern subscription window when clicking
-  one of the links in the help popups (bugfix)
+* fixed missing FoxyProxy labels in Thunderbird's and Seamonkey's tools menus
+* moved the FoxyProxy tools menu item in Firefox above the page info item to be
+  compatible with Firefox 6 (see: bug 653221 that caused the FoxyProxy icon to
+  get added to the end of the tools menu)

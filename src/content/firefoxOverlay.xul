@@ -24,16 +24,14 @@
   </stringbundleset>
   
   <!-- firefox tools menu -->
-  <menupopup id="menu_ToolsPopup">
-    <menu id="foxyproxyMenu"
-          insertbefore="menu_pageInfo"
-          accesskey="&foxyproxy.accesskey;"
-          class="menu-iconic menu-iconic-foxyproxy">
-      <menupopup id="foxyproxy-toolsmenu-popup"
-                 onpopupshowing="foxyproxy.onPopupShowing(this, event);"
-                 onpopuphiding="foxyproxy.onPopupHiding();"/>
-    </menu>
-  </menupopup>
+  <menu id="foxyproxyMenu"
+        insertbefore="menu_pageInfo"
+        accesskey="&foxyproxy.accesskey;"
+        class="menu-iconic menu-iconic-foxyproxy">
+    <menupopup id="foxyproxy-toolsmenu-popup"
+               onpopupshowing="foxyproxy.onPopupShowing(this, event);"
+               onpopuphiding="foxyproxy.onPopupHiding();"/>
+  </menu>
 
   <!-- seamonkey tools menu -->
   <menupopup id="taskPopup">

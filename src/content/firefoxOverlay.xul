@@ -28,7 +28,6 @@
     <menu id="foxyproxyMenu"
           insertbefore="menu_pageInfo"
           accesskey="&foxyproxy.accesskey;"
-          key="key_foxyproxyfocus"
           class="menu-iconic menu-iconic-foxyproxy">
       <menupopup id="foxyproxy-toolsmenu-popup"
                  onpopupshowing="foxyproxy.onPopupShowing(this, event);"

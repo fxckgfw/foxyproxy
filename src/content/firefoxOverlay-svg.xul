@@ -115,6 +115,7 @@
        child="5" />
      </g>
     </svg>
+    <label value="&foxyproxy.standard.label;"/> 
   </menu>  
 </overlay>
 

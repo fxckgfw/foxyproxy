@@ -92,6 +92,7 @@ function Proxy(fp) {
   this.selectedTabIndex = 1; /* default tab is the proxy details tab */
   this.lastresort = false;
   this.id = this.fp.proxies.uniqueRandom();
+  this.noInternalIPs = false;
 }
 
 Proxy.prototype = {
@@ -133,6 +134,8 @@ Proxy.prototype = {
     this.includeInCycle = node.hasAttribute("includeInCycle") ? node.getAttribute("includeInCycle") == "true" : !this.lastresort; // new for 2.5
     this.color = gGetSafeAttr(node, "color", DEFAULT_COLOR);    
     
+    this.noInternalIPs = node.hasAttribute("noInternalIPs") ?
+      node.getAttribute("noInternalIPs") : false;
     for (var i=0,temp=node.getElementsByTagName("match"); i<temp.length; i++) {
       var j = this.matches.length;
       this.matches[j] = new Match();
@@ -161,6 +164,7 @@ Proxy.prototype = {
     e.setAttribute("includeInCycle", this.includeInCycle);
     e.setAttribute("color", this._color);
     e.setAttribute("proxyDNS", this._proxyDNS);
+    e.setAttribute("noInternalIPs", this.noInternalIPs);
 
     var matchesElem = doc.createElement("matches");
     e.appendChild(matchesElem);

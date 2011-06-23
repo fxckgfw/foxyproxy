@@ -44,6 +44,12 @@ function onLoad() {
   document.getElementById("proxyDNS").checked = proxy.proxyDNS;
   document.getElementById("WPADReloadEnabled").checked = proxy.wpad.autoReload;
   document.getElementById("WPADReloadFreq").value = proxy.wpad.reloadFreqMins;
+  // .checked does not always give the desired results even if we explicitely
+  // set a checked attribute in addeditproxy.xul. Therefore, resorting to
+  // |setAttribute()| here.
+  // XXX Why? Probably due to difference of attributes and properties!? 
+  document.getElementById("noInternalIPs").setAttribute("checked", proxy.
+    noInternalIPs);
   autoconfurl.value = proxy.autoconf.url;
 
   if (proxy.lastresort) {
@@ -151,6 +157,7 @@ function onOK() {
     return false;
   }
   proxy.proxyDNS = document.getElementById("proxyDNS").checked;
+  proxy.noInternalIPs = document.getElementById("noInternalIPs").checked;
   proxy.afterPropertiesSet();
   window.arguments[0].out = {proxy:proxy};
   return true;
@@ -177,6 +184,35 @@ function _checkUri() {
   catch(e) {
     foxyproxy.alert(this, foxyproxy.getMessage("invalid.url"));
     return false;
+  }
+}
+
+function noInternalIPs() {
+  let noInternalIPsChecked = document.getElementById("noInternalIPs").checked;
+  if (noInternalIPsChecked) {
+    let helper = [];
+    let m = CC["@leahscape.org/foxyproxy/match;1"].createInstance().
+      wrappedJSObject; 
+    m.init(true, "Localhost",
+      "^https?://(?:[^:@/]+(?::[^@/]+)?@)?(?:localhost|127\.\d+\.\d+\.\d+)(?::\d+)?/.*",
+      false, true, false, true, false);
+    helper.push(m);
+    m = CC["@leahscape.org/foxyproxy/match;1"].createInstance().
+      wrappedJSObject; 
+    m.init(true, "Local Subnets", "^https?://(?:[^:@/]+(?::[^@/]+)?@)?(?:192\.168\.\d+\.\d+|10\.\d+\.\d+\.\d+|172\.(?:1[6789]|2[0-9]|3[12]))(?::\d+)?/.*",
+      false, true, false, true, false);
+    helper.push(m);
+    m = CC["@leahscape.org/foxyproxy/match;1"].createInstance().
+      wrappedJSObject; 
+    m.init(true, "Local Hostnames",
+      "^https?://(?:[^:@/]+(?::[^@/]+)?@)?[\w-]+(?::\d+)?/.*", false, true,
+      false, true, false);
+    helper.push(m);
+    proxy.matches = helper.concat(proxy.matches); 
+    _updateView();
+  } else {
+    proxy.matches = proxy.matches.slice(3);
+    _updateView();
   }
 }
 

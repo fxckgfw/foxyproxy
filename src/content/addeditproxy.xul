@@ -239,9 +239,8 @@
       <description>&foxyproxy.pattern.description;</description>
       <separator class="thin"/>
       <hbox>
-        <checkbox id="noInternalIPPatterns" 
-                  checked="false"
-                  oncommand="noInternalIPPatterns();"
+        <checkbox id="noInternalIPs" 
+                  oncommand="noInternalIPs();"
                   label="&foxyproxy.pattern.nointernal.label;"
                   tooltiptext="&foxyproxy.pattern.nointernal.tooltip;"
                   accesskey="&foxyproxy.pattern.nointernal.accesskey;"/> 

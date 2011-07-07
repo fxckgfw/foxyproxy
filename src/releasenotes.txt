@@ -10,3 +10,4 @@
   compatible with Firefox 6 (see: bug 653221 that caused the FoxyProxy icon to
   get added to the end of the tools menu)
 * removed animation of pattern subscription icon (see: http://forums.getfoxyproxy.org/viewtopic.php?f=4&t=93) 
+* added a button to share pattern subscriptions more easily

@@ -237,11 +237,8 @@
            </tree>
          </hbox> 
 	 <hbox>
-	   <!-- currently hidden as its functionality is not implemented yet -->
-	   <button id="subscriptionsWizard"  
-	     label="&foxyproxy.pattern.subscriptions.wizard.label;"
-	     tooltiptext="&foxyproxy.pattern.subscriptions.wizard.tooltip;"
-	     hidden="true"/>
+	   <button id="patternSharing"  
+	           command="shareYourPatterns"/>
            <spacer flex="1" />
 	   <vbox>
 	     <menulist id="actionList" pack="start"
@@ -1177,8 +1174,15 @@
 
   <command id="proxyServiceCmd" label="&foxyproxy.proxyservice.label;"
     accesskey="&foxyproxy.proxyservice.accesskey;"
-    tooltiptext="&foxyproxy.proxyservice.tooltip;" oncommand="fpc.openAndReuseOneTabPerURL('http://getfoxyproxy.org/proxyservice/');" />
+    tooltiptext="&foxyproxy.proxyservice.tooltip;"
+    oncommand="fpc.openAndReuseOneTabPerURL('http://getfoxyproxy.org/proxyservice/');" />
         
+  <command id="shareYourPatterns"
+    label="&foxyproxy.pattern.subscriptions.sharing.label;"
+    accesskey="&foxyproxy.pattern.subscriptions.sharing.accesskey;"
+    tooltiptext="&foxyproxy.pattern.subscriptions.sharing.tooltip;" 
+    oncommand="fpc.openAndReuseOneTabPerURL('http://getfoxyproxy.org/patternsubscriptions/share.html');"/>
+
   <broadcasterset>
     <broadcaster id="tree-row-selected" disabled="true" />
     <broadcaster id="logtree-row-selected" disabled="true" />

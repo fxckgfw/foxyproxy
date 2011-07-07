@@ -439,8 +439,9 @@
 <!ENTITY foxyproxy.pattern.subscriptions.label "Muster-Abonnements">
 <!ENTITY foxyproxy.pattern.subscriptions.tooltip "Muster-Abonnements verwalten">
 <!ENTITY foxyproxy.pattern.subscriptions.accesskey "A">
-<!ENTITY foxyproxy.pattern.subscriptions.wizard.label "Wizard">
-<!ENTITY foxyproxy.pattern.subscriptions.wizard.tooltip "Hier klicken, um den Wizard für Muster-Abonnements zu starten.">
+<!ENTITY foxyproxy.pattern.subscriptions.sharing.label "Muster teilen">
+<!ENTITY foxyproxy.pattern.subscriptions.sharing.accesskey "M">
+<!ENTITY foxyproxy.pattern.subscriptions.sharing.tooltip "Hier klicken, um Muster-Abonnements hochzuladen und mit Freunden zu teilen.">
 <!ENTITY foxyproxy.pattern.subscriptions.menulist.tooltip "Wählen Sie aus, was mit Muster-Abonnements geschehen soll.">
 <!ENTITY foxyproxy.pattern.subscriptions.addSubscription "Neues Muster-Abonnement hinzufügen">
 <!ENTITY foxyproxy.pattern.subscriptions.editSelection "Auswahl bearbeiten">

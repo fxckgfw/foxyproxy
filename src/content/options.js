@@ -10,7 +10,7 @@
 **/
 
 var foxyproxy, proxyTree, subscriptionsTree, logTree, overlay, saveLogCmd, 
-  clearLogCmd, noURLsCmd, fpc, patternsIcon, patternsIconTimerId;
+  clearLogCmd, noURLsCmd, fpc, patternsIcon; 
 const CI = Components.interfaces, CC = Components.classes, CU = Components.utils;
 
 CU.import("resource://foxyproxy/patternSubscriptions.jsm");
@@ -34,11 +34,10 @@ function onLoad() {
   sizeToContent();
   let svgDoc = document.getElementById("patterns-svg");
   patternsIcon = svgDoc.getElementsByTagName("rect");
-  startPatternsIconAnimation();
+  createPatternsIcon();
 }
 
 function onOK() {
-  clearInterval(patternsIconTimerId);
   var obs = CC["@mozilla.org/observer-service;1"].getService(CI.nsIObserverService);
   obs.removeObserver(observer, "foxyproxy-mode-change");
   obs.removeObserver(observer, "foxyproxy-proxy-change");
@@ -858,17 +857,17 @@ function copyLogURLToClipboard() {
   CC["@mozilla.org/widget/clipboardhelper;1"].getService(CI.nsIClipboardHelper).copyString(txt);
 }
 
-function startPatternsIconAnimation() {
-  patternsIconTimerId = setInterval(function() {
-    for (let i = 0; i < patternsIcon.length; i++) {
-      let color = Math.round(0xffffff * Math.random()).toString(16); 
-      if (color.length < 6) {
-        do {
-          color = "0" + color;
-        } while (color.length < 6)
-      }
-      patternsIcon[i].setAttribute("style", "fill: " + ("#" + color)
-        + ";fill-opacity:1;fill-rule:nonzero;stroke:none");
+// We are not animating the icon anmyore due to user complaints but are
+// creating a new icon on every dialog load. Seems to be a good trade-off.
+function createPatternsIcon() {
+  for (let i = 0; i < patternsIcon.length; i++) {
+    let color = Math.round(0xffffff * Math.random()).toString(16); 
+    if (color.length < 6) {
+      do {
+        color = "0" + color;
+      } while (color.length < 6)
     }
-  }, 200);
+    patternsIcon[i].setAttribute("style", "fill: " + ("#" + color)
+      + ";fill-opacity:1;fill-rule:nonzero;stroke:none");
+  }
 }

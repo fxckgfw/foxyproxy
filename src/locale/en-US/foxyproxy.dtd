@@ -36,9 +36,12 @@
 <!ENTITY foxyproxy.help.label "Help Contents">
 <!ENTITY foxyproxy.help.accesskey "H">
 <!ENTITY foxyproxy.help.tooltip "Show Help">
+<!ENTITY foxyproxy.import.pattern.label "Import">
+<!ENTITY foxyproxy.import.pattern.accesskey "I">
+<!ENTITY foxyproxy.import.pattern.tooltip "Import patterns"> 
 <!ENTITY foxyproxy.export.pattern.label "Export">
 <!ENTITY foxyproxy.export.pattern.accesskey "X">
-<!ENTITY foxyproxy.export.pattern.tooltip "Export patterns as a pattern subscription">
+<!ENTITY foxyproxy.export.pattern.tooltip2 "Export all patterns">
 <!ENTITY foxyproxy.close.label "Close">
 <!ENTITY foxyproxy.close.accesskey "C">
 <!ENTITY foxyproxy.close.tooltip "Close Window">
@@ -441,8 +444,6 @@
 <!ENTITY foxyproxy.pattern.subscriptions.tooltip "Manage Pattern Subscriptions">
 <!ENTITY foxyproxy.pattern.subscriptions.accesskey "S">
 <!ENTITY foxyproxy.pattern.subscriptions.sharing.label "Share Your Patterns">
-<!ENTITY foxyproxy.pattern.subscriptions.sharing.accesskey "S">
-<!ENTITY foxyproxy.pattern.subscriptions.sharing.tooltip "Click here to upload your pattern subscriptions and share them with friends.">
 <!ENTITY foxyproxy.pattern.subscriptions.menulist.tooltip "Select what to do with pattern subscriptions.">
 <!ENTITY foxyproxy.pattern.subscriptions.addSubscription "Add New Pattern Subscription">
 <!ENTITY foxyproxy.pattern.subscriptions.editSelection "Edit Selection">

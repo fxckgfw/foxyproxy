@@ -170,6 +170,7 @@ Match.prototype = {
 
   toJSON : function() {
     let pattern = {};
+    pattern.enabled = this.enabled;
     pattern.name = this.name;
     pattern.pattern = this._pattern;
     pattern.isRegEx = this.isRegEx;

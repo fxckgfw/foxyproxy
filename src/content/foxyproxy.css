@@ -172,7 +172,8 @@ tab[id^="foxyproxy-"] /* selectall tabs whose id have the prefix "foxyproxy-" */
 #foxyproxy-wildcard-url-pattern-ref-button,#fpwupb {
   list-style-image: url("chrome://foxyproxy/content/images/dialog-information.png");
 }
-#foxyproxy-export-url-pattern-button,#fpexupb {
+#foxyproxy-export-url-pattern-button,#fpexupb,
+#foxyproxy-import-url-pattern-button,#fpimupb  {
   list-style-image: url("chrome://foxyproxy/content/images/json-icon.png");
 }
 /* end addedit.xul button button icons */

@@ -17,7 +17,8 @@
 <window id="foxyproxyoptions2" windowtype="foxyproxy-options"
   title="&foxyproxy.standard.label;"
   xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-  xmlns:html="http://www.w3.org/1999/xhtml" persist="screenX screenY"
+  xmlns:html="http://www.w3.org/1999/xhtml"
+  persist="screenX screenY width height"
   onload="onLoad();" onunload="onOK();" context="mainPopup">
 
   <script type="application/x-javascript;version=1.7" src="options.js" />
@@ -237,8 +238,11 @@
            </tree>
          </hbox> 
 	 <hbox>
-	   <button id="patternSharing"  
-	           command="shareYourPatterns"/>
+           <hbox align="center" style="padding-left: 5px;">
+             <html:a class="link" 
+                     onclick="fpc.openAndReuseOneTabPerURL('http://getfoxyproxy.org/patternsubscriptions/share.html');">
+               &foxyproxy.pattern.subscriptions.sharing.label;</html:a> 
+           </hbox>
            <spacer flex="1" />
 	   <vbox>
 	     <menulist id="actionList" pack="start"
@@ -1177,12 +1181,6 @@
     tooltiptext="&foxyproxy.proxyservice.tooltip;"
     oncommand="fpc.openAndReuseOneTabPerURL('http://getfoxyproxy.org/proxyservice/');" />
         
-  <command id="shareYourPatterns"
-    label="&foxyproxy.pattern.subscriptions.sharing.label;"
-    accesskey="&foxyproxy.pattern.subscriptions.sharing.accesskey;"
-    tooltiptext="&foxyproxy.pattern.subscriptions.sharing.tooltip;" 
-    oncommand="fpc.openAndReuseOneTabPerURL('http://getfoxyproxy.org/patternsubscriptions/share.html');"/>
-
   <broadcasterset>
     <broadcaster id="tree-row-selected" disabled="true" />
     <broadcaster id="logtree-row-selected" disabled="true" />

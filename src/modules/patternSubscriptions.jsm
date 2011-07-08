@@ -727,7 +727,7 @@ var patternSubscriptions = {
                     wrappedJSObject; 
           pattern.init(currentSub.metadata.enabled, currentPat[j].name, 
                       currentPat[j].pattern, false, currentPat[j].isRegEx, 
-                      currentPat[j].caseSensitive,currentPat[j].blackList, 
+                      currentPat[j].caseSensitive, currentPat[j].blackList, 
                       currentPat[j].multiLine, true);
           proxyList[i].matches.push(pattern);
         }

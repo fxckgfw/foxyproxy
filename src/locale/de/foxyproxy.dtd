@@ -36,9 +36,12 @@
 <!ENTITY foxyproxy.help.label "Hilfe">
 <!ENTITY foxyproxy.help.accesskey "H">
 <!ENTITY foxyproxy.help.tooltip "Hilfe anzeigen">
+<!ENTITY foxyproxy.import.pattern.label "Importieren">
+<!ENTITY foxyproxy.import.pattern.accesskey "I">
+<!ENTITY foxyproxy.import.pattern.tooltip "Muster importieren">
 <!ENTITY foxyproxy.export.pattern.label "Exportieren">
 <!ENTITY foxyproxy.export.pattern.accesskey "x">
-<!ENTITY foxyproxy.export.pattern.tooltip "Muster als Muster-Abonnement exportieren">
+<!ENTITY foxyproxy.export.pattern.tooltip2 "Alle Muster exportieren">
 <!ENTITY foxyproxy.close.label "Schließen">
 <!ENTITY foxyproxy.close.accesskey "S">
 <!ENTITY foxyproxy.close.tooltip "Fenster schließen">
@@ -440,8 +443,6 @@
 <!ENTITY foxyproxy.pattern.subscriptions.tooltip "Muster-Abonnements verwalten">
 <!ENTITY foxyproxy.pattern.subscriptions.accesskey "A">
 <!ENTITY foxyproxy.pattern.subscriptions.sharing.label "Muster teilen">
-<!ENTITY foxyproxy.pattern.subscriptions.sharing.accesskey "M">
-<!ENTITY foxyproxy.pattern.subscriptions.sharing.tooltip "Hier klicken, um Muster-Abonnements hochzuladen und mit Freunden zu teilen.">
 <!ENTITY foxyproxy.pattern.subscriptions.menulist.tooltip "Wählen Sie aus, was mit Muster-Abonnements geschehen soll.">
 <!ENTITY foxyproxy.pattern.subscriptions.addSubscription "Neues Muster-Abonnement hinzufügen">
 <!ENTITY foxyproxy.pattern.subscriptions.editSelection "Auswahl bearbeiten">

@@ -9,5 +9,11 @@
 * moved the FoxyProxy tools menu item in Firefox above the page info item to be
   compatible with Firefox 6 (see: bug 653221 that caused the FoxyProxy icon to
   get added to the end of the tools menu)
-* removed animation of pattern subscription icon (see: http://forums.getfoxyproxy.org/viewtopic.php?f=4&t=93) 
-* added a button to share pattern subscriptions more easily
+* removed animation of pattern subscription icon (see:
+  http://forums.getfoxyproxy.org/viewtopic.php?f=4&t=93) 
+* added a link to share pattern subscriptions more easily (directing user to:
+  http://getfoxyproxy.org/patternsubscriptions/share.html)
+* added import button to pattern tab in order to allow sharing single patterns
+  between proxies/users
+* saving height/width after resizing of proxy and options dialog (for the
+  latter see: http://forums.getfoxyproxy.org/viewtopic.php?f=4&t=101)  

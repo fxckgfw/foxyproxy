@@ -314,9 +314,57 @@ function onCopyURLPattern() {
   urlsTree.view.selection.select(urlsTree.view.rowCount-1);
 }
 
+function onImportURLPattern() {
+  //Getting the file first.
+  let fp = CC["@mozilla.org/filepicker;1"].createInstance(CI.nsIFilePicker);  
+  fp.init(window, foxyproxy.getMessage("file.select.patterns.import"), 
+    CI.nsIFilePicker.modeOpen);
+  fp.appendFilters(CI.nsIFilePicker.filterAll); 
+  fp.displayDirectory = foxyproxy.getSettingsURI(CI.nsIFile).parent; 
+  if (fp.show() !== CI.nsIFilePicker.returnCancel) { 
+    let patterns = [];
+    let fis = CC["@mozilla.org/network/file-input-stream;1"].
+      createInstance(CI.nsIFileInputStream);
+    fis.init(fp.file, 0x01, -1, 0);
+    let conStream = CC["@mozilla.org/intl/converter-input-stream;1"].
+      createInstance(CI.nsIConverterInputStream);
+      conStream.init(fis, "UTF-8", 0, 0);
+      conStream.QueryInterface(CI.nsIUnicharLineInputStream); 
+    // read lines into one single string
+    let line = {}, lines = "", hasmore;
+    try {
+      do {
+        hasmore = conStream.readLine(line);
+        lines = lines + line.value;
+      } while(hasmore);
+      conStream.close();
+      patterns = window.opener.patternSubscriptions.getObjectFromJSON(lines).
+        patterns;
+    } catch (e) {
+      dump("Error while reading the patterns!" + e + "\n");
+    } 
+    try {
+      if (patterns) {
+        for (let i = 0, patLength = patterns.length; i < patLength; i++) {
+          pattern = CC["@leahscape.org/foxyproxy/match;1"].createInstance().
+                    wrappedJSObject; 
+          pattern.init(patterns[i].enabled, patterns[i].name, 
+                    patterns[i].pattern, false, patterns[i].isRegEx, 
+                    patterns[i].caseSensitive, patterns[i].blackList, 
+                    patterns[i].multiLine, false);
+          proxy.matches.push(pattern);
+        }
+      }
+    } catch (ex) {
+      dump("Error while adding the patterns!" + ex + "\n");
+    }
+  }
+  _updateView();
+}
+
 function onExportURLPattern() {
   let patternLength = proxy.matches.length;
-  // Now we are constructing the pattern subscription...
+  // Now we are constructing the pattern JSON
   let JSONString = '{"patterns":[';
   for (let j = 0; j < patternLength; j++) {
     JSONString = JSONString + proxy.matches[j].toJSON();
@@ -328,7 +376,7 @@ function onExportURLPattern() {
   }
   // Now, we export the JSON to a file somewhere on the (local) disk...
   let fp = CC["@mozilla.org/filepicker;1"].createInstance(CI.nsIFilePicker);  
-  fp.init(window, foxyproxy.getMessage("file.select"), 
+  fp.init(window, foxyproxy.getMessage("file.select.patterns.export"), 
     CI.nsIFilePicker.modeSave);
   fp.defaultString = "patterns.json";
   fp.appendFilters(CI.nsIFilePicker.filterAll); 

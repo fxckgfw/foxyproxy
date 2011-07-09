@@ -193,18 +193,21 @@ function noInternalIPs() {
     let helper = [];
     let m = CC["@leahscape.org/foxyproxy/match;1"].createInstance().
       wrappedJSObject; 
-    m.init(true, "Localhost",
+    m.init(true, foxyproxy.getMessage("localhost") +
+      foxyproxy.getMessage("localhost.patterns.message"),
       "^https?://(?:[^:@/]+(?::[^@/]+)?@)?(?:localhost|127\.\d+\.\d+\.\d+)(?::\d+)?/.*",
       false, true, false, true, false);
     helper.push(m);
     m = CC["@leahscape.org/foxyproxy/match;1"].createInstance().
       wrappedJSObject; 
-    m.init(true, "Local Subnets", "^https?://(?:[^:@/]+(?::[^@/]+)?@)?(?:192\.168\.\d+\.\d+|10\.\d+\.\d+\.\d+|172\.(?:1[6789]|2[0-9]|3[12]))(?::\d+)?/.*",
+    m.init(true, foxyproxy.getMessage("localsubnets") +
+      foxyproxy.getMessage("localhost.patterns.message"), "^https?://(?:[^:@/]+(?::[^@/]+)?@)?(?:192\.168\.\d+\.\d+|10\.\d+\.\d+\.\d+|172\.(?:1[6789]|2[0-9]|3[12]))(?::\d+)?/.*",
       false, true, false, true, false);
     helper.push(m);
     m = CC["@leahscape.org/foxyproxy/match;1"].createInstance().
       wrappedJSObject; 
-    m.init(true, "Local Hostnames",
+    m.init(true, foxyproxy.getMessage("localhostnames") +
+      foxyproxy.getMessage("localhost.patterns.message"),
       "^https?://(?:[^:@/]+(?::[^@/]+)?@)?[\w-]+(?::\d+)?/.*", false, true,
       false, true, false);
     helper.push(m);

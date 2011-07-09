@@ -73,14 +73,14 @@ function onLoad() {
 }
 
 function onCancel() {
-  // First, we check the length of the old and the new matches array. If they
-  // are not the same we reset proxy.matches.
-  if (oldMatches.length !== proxy.matches.length) {
-    proxy.matches = oldMatches;
-  } else {
-    // But the arrays still can differ (e.g. if some attributes changed)
-  }
-  return;
+  // We just overwrite the new array with the old one. Checking whether any
+  // pattern really changed before overwriting the new array seems not worth
+  // the effort. 
+  proxy.matches = [];
+  for (let i = 0, length = oldMatches.length; i < length; i++) {
+    proxy.matches.push(oldMatches[i]);
+  } 
+  return true;
 }
 
 function trim(s) {

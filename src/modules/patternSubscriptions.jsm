@@ -264,12 +264,14 @@ var patternSubscriptions = {
       }
       // As FoxyProxy shall be usable with FF < 3.5 we use nsIJSON. But
       // Thunderbird does not support nsIJSON. Thus, we check for the proper
-      // method to use here.
-      if (typeof Ci.nsIJSON === "undefined") {
-	return JSON.parse(aString);
-      } else {
+      // method to use here. Checking for nsIJSON is not enough here due to bug
+      // 645922.
+      if (typeof Ci.nsIJSON !== "undefined" && typeof Ci.nsIJSON.decode ===
+          "function") {
         json = Cc["@mozilla.org/dom/json;1"].createInstance(Ci.nsIJSON);
         return json.decode(aString); 
+      } else {
+        return JSON.parse(aString);    
       }
     } catch (e) {
       errorMessages.push(this.fp.
@@ -283,12 +285,14 @@ var patternSubscriptions = {
     try {
       // As FoxyProxy shall be usable with FF < 3.5 we use nsIJSON. But
       // Thunderbird does not support nsIJSON. Thus, we check for the proper
-      // method to use here.
-      if (typeof Ci.nsIJSON === "undefined") {
-	return JSON.stringify(aObject);
-      } else {
+      // method to use here. Checking for nsIJSON is not enough here due to bug
+      // 645922. 
+      if (typeof Ci.nsIJSON !== "undefined" && typeof Ci.nsIJSON.encode ===
+          "function") {
         json = Cc["@mozilla.org/dom/json;1"].createInstance(Ci.nsIJSON);
         return json.encode(aObject); 
+      } else {
+        return JSON.stringify(aObject);    
       }
     } catch (e) {
       dump("Error while parsing the JSON: " + e + "\n");

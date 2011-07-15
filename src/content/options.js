@@ -637,7 +637,7 @@ function importSettings() {
   }
   catch (e) {
     dump(e + "\n");
-    overlay.alert(this, foxyproxy.getMessage("copy.error", [f1.path, picker.file.path]));
+    overlay.alert(this, foxyproxy.getMessage("copy.error", [picker.file.path, f1.path]));
     return;
   }  
 }

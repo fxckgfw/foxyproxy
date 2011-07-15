@@ -240,10 +240,7 @@
       <separator class="thin"/>
       <hbox>
         <checkbox id="noInternalIPs" 
-                  oncommand="noInternalIPs();"
-                  label="&foxyproxy.pattern.nointernal.label;"
-                  tooltiptext="&foxyproxy.pattern.nointernal.tooltip;"
-                  accesskey="&foxyproxy.pattern.nointernal.accesskey;"/> 
+                  command="noInternalIPsCmd"/> 
       </hbox>
       <separator class="thin"/>
       <hbox>
@@ -287,6 +284,11 @@
   <iframe class="foxyproxy-border" src="chrome://foxyproxy/content/torwizhelp.xhtml" flex="1"/>
   <separator/>
   <description>&foxyproxy.pattern.description;</description>
+  <separator class="thin"/>
+  <hbox>
+    <checkbox id="fpniip" 
+              command="noInternalIPsCmd"/> 
+  </hbox> 
   <separator class="thin"/>
   <hbox>
     <button id="fpaupb" command="addURLPatternCmd" flex="1" class="uncram-btn"/>
@@ -364,6 +366,12 @@
   </menupopup>
 
 </popupset>
+
+<command id="noInternalIPsCmd"
+  oncommand="noInternalIPs();"
+  label="&foxyproxy.pattern.nointernal.label;"
+  tooltiptext="&foxyproxy.pattern.nointernal.tooltip;"
+  accesskey="&foxyproxy.pattern.nointernal.accesskey;"/>
 
 <command id="toggleURLPatternEnabledCmd"
   label="&foxyproxy.enabled.label;"

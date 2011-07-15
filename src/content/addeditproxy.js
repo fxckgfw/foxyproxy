@@ -18,15 +18,22 @@ function onLoad() {
   overlay = fpc.getMostRecentWindow().foxyproxy;
   autoconfurl = document.getElementById("autoconfurl");
   foxyproxy = CC["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;
+  proxy = window.arguments[0].inn.proxy; 
   if (window.arguments[0].inn.torwiz) {
     document.getElementById("torwiz-broadcaster").hidden = true;
     document.getElementById("not-torwiz-broadcaster").hidden = false;
     urlsTree = document.getElementById("torWizUrlsTree");
   }
-  else
+  else {
     urlsTree = document.getElementById("urlsTree");
+    // .checked does not always give the desired results even if we explicitely
+    // set a checked attribute in addeditproxy.xul. Therefore, resorting to
+    // |setAttribute()| here.
+    // XXX Why? Probably due to difference of attributes and properties!? 
+    document.getElementById("noInternalIPs").setAttribute("checked", proxy.
+      noInternalIPs); 
+  }
 
-  proxy = window.arguments[0].inn.proxy;
   document.getElementById("proxyname").value = proxy.name;
   document.getElementById("proxynotes").value = proxy.notes;
   document.getElementById("animatedIcons").checked = proxy.animatedIcons;
@@ -44,12 +51,6 @@ function onLoad() {
   document.getElementById("proxyDNS").checked = proxy.proxyDNS;
   document.getElementById("WPADReloadEnabled").checked = proxy.wpad.autoReload;
   document.getElementById("WPADReloadFreq").value = proxy.wpad.reloadFreqMins;
-  // .checked does not always give the desired results even if we explicitely
-  // set a checked attribute in addeditproxy.xul. Therefore, resorting to
-  // |setAttribute()| here.
-  // XXX Why? Probably due to difference of attributes and properties!? 
-  document.getElementById("noInternalIPs").setAttribute("checked", proxy.
-    noInternalIPs);
   autoconfurl.value = proxy.autoconf.url;
 
   if (proxy.lastresort) {
@@ -157,7 +158,11 @@ function onOK() {
     return false;
   }
   proxy.proxyDNS = document.getElementById("proxyDNS").checked;
-  proxy.noInternalIPs = document.getElementById("noInternalIPs").checked;
+  if (window.arguments[0].inn.torwiz) {
+    proxy.noInternalIPs = document.getElementById("fpniip").checked;
+  } else {
+    proxy.noInternalIPs = document.getElementById("noInternalIPs").checked;
+  }
   proxy.afterPropertiesSet();
   window.arguments[0].out = {proxy:proxy};
   return true;
@@ -188,7 +193,12 @@ function _checkUri() {
 }
 
 function noInternalIPs() {
-  let noInternalIPsChecked = document.getElementById("noInternalIPs").checked;
+  let noInternalIPsChecked;
+  if (window.arguments[0].inn.torwiz) {
+    noInternalIPsChecked = document.getElementById("fpniip").checked;
+  } else {
+    noInternalIPsChecked = document.getElementById("noInternalIPs").checked;
+  }
   if (noInternalIPsChecked) {
     let helper = [];
     let m = CC["@leahscape.org/foxyproxy/match;1"].createInstance().

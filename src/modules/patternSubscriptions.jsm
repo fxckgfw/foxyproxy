@@ -561,7 +561,7 @@ var patternSubscriptions = {
       if (metaNode) {
         subscription.metadata = {};
         attrib = metaNode.attributes;
-        for (j = 0; j < attrib.length; j++) {
+        for (var j = 0; j < attrib.length; j++) {
           name = attrib.item(j).nodeName; 
 	  value = attrib.item(j).nodeValue; 
           subscription.metadata[name] = value; 

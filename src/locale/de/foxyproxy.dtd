@@ -440,6 +440,7 @@
 <!ENTITY foxyproxy.server.subscriptions.accesskey "A">
 <!ENTITY foxyproxy.selectproxy.label "Proxy auswählen">
 <!ENTITY foxyproxy.pattern.subscriptions.label "Muster-Abonnements">
+<!ENTITY foxyproxy.pattern.subscriptions.description "Abonnieren Sie die Muster, die andere veröffentlicht haben. Teilen Sie Ihre Muster mit anderen mit nur wenigen Klicks.">
 <!ENTITY foxyproxy.pattern.subscriptions.tooltip "Muster-Abonnements verwalten">
 <!ENTITY foxyproxy.pattern.subscriptions.accesskey "A">
 <!ENTITY foxyproxy.pattern.subscriptions.sharing.label "Muster teilen">

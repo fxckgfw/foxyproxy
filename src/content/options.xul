@@ -183,6 +183,9 @@
 
       <!-- pattern subscriptions -->
       <tabpanel flex="1" orient="vertical">
+        <description style="width: 1em;">
+          &foxyproxy.pattern.subscriptions.description;
+        </description> 
         <separator class="thin" />
         <hbox flex="1">
 	  <!-- Do not specify row="" here (at least if you do not have enough

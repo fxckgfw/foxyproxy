@@ -461,7 +461,7 @@ Proxy.prototype = {
 	    for (var i=0; i<tokens.length; i++) {
 	      var components = this.autoconf.parser.exec(tokens[i]);
 	      if (!components) continue;
-	      var tmp = this._proxyDNS && this._isSocks ? 
+	      var tmp = this._proxyDNS && components[1].indexOf("socks") === 0 ?
                 CI.nsIProxyInfo.TRANSPARENT_PROXY_RESOLVES_HOST : 0;
 	      switch (components[1]) {
 	        case "proxy":

@@ -445,67 +445,82 @@ Proxy.prototype = {
     this.matches = this.matches.filter(function(e) {return e != removeMe;});
   },
   
-	resolve : function(spec, host, mp) {
-	  function _notifyUserOfError(spec) {
-			/*this.autoconf.errorNotification &&*/ this.fp.notifier.alert(this.fp.getMessage("foxyproxy"), this.fp.getMessage("proxy.error.for.url", [spec]));
-			return null;
-		}
-	  // See http://wp.netscape.com/eng/mozilla/2.0/relnotes/demo/proxy-live.html
-	  var str = mp.pacResult = this.autoconf._resolver.getProxyForURI(spec, host);
-	  if (str && str != "") {
-	    str = str.toLowerCase();
-	    var tokens = str.split(/\s*;\s*/), // Trim and split
-      	proxies = [];
-	    if (tokens[tokens.length-1] == "") // In case final token ends with semi-colon
-	      tokens.length--;
-	    for (var i=0; i<tokens.length; i++) {
-	      var components = this.autoconf.parser.exec(tokens[i]);
-	      if (!components) continue;
-	      var tmp = this._proxyDNS && components[1].indexOf("socks") === 0 ?
-                CI.nsIProxyInfo.TRANSPARENT_PROXY_RESOLVES_HOST : 0;
-	      switch (components[1]) {
-	        case "proxy":
-	          proxies.push(proxyService.newProxyInfo("http", components[2], components[3], tmp, 0, null));
-	          break;
-	        case "socks":
-	        case "socks5":
-	          proxies.push(proxyService.newProxyInfo("socks", components[2], components[3], tmp, 0, null));
-	          break;
-	        case "socks4":
-	          proxies.push(proxyService.newProxyInfo("socks4", components[2], components[3], tmp, 0, null));
-	          break;
-	        case "direct":
-	          proxies.push(this.direct);
-	          break;
-	        default:
-	          return _notifyUserOfError(spec);
-	      }
-	    }
-	    // Build a proxy list for proxy for failover support
-	    for (var i=1; i<=proxies.length-1; i++) {
-	      proxies[i-1].failoverTimeout = 1800;
-	      proxies[i-1].failoverProxy = proxies[i];
-	    }
-	    if (proxies[0] == null) {
-		    return _notifyUserOfError(spec);
-		  }
-		  else if (proxies[1]) {
-			  proxies[0].failoverTimeout = 1800;
-			  proxies[0].failoverProxy = proxies[1];
-		  }
-	    return proxies[0];
-	  }
-	  else {
-	    // Resolver did not find a proxy, but this isn't an error condition
-	    return null;
-	  }
-	},
+  resolve : function(spec, host, mp, isWPAD) {
+    function _notifyUserOfError(spec) {
+      /*this.autoconf.errorNotification &&*/
+      this.fp.notifier.alert(this.fp.getMessage("foxyproxy"),
+        this.fp.getMessage("proxy.error.for.url", [spec]));
+      return null;
+    }
+    // See http://wp.netscape.com/eng/mozilla/2.0/relnotes/demo/proxy-live.html
+    if (isWPAD) {
+      var str = mp.pacResult = this.wpad._resolver.getProxyForURI(spec, host);
+    } else {
+      var str = mp.pacResult = this.autoconf._resolver.getProxyForURI(spec,
+        host);
+    }
+    if (str && str != "") {
+      str = str.toLowerCase();
+      var tokens = str.split(/\s*;\s*/), // Trim and split
+      proxies = [];
+      // In case final token ends with semi-colon 
+      if (tokens[tokens.length-1] == "")
+        tokens.length--;
+      for (var i=0; i<tokens.length; i++) {
+        if (isWPAD) {
+          var components = this.wpad.parser.exec(tokens[i]);
+        } else {
+          var components = this.autoconf.parser.exec(tokens[i]); 
+        }
+        if (!components) continue;
+        var tmp = this._proxyDNS && components[1].indexOf("socks") === 0 ?
+          CI.nsIProxyInfo.TRANSPARENT_PROXY_RESOLVES_HOST : 0;
+        switch (components[1]) {
+          case "proxy":
+            proxies.push(proxyService.newProxyInfo("http", components[2],
+              components[3], tmp, 0, null));
+            break;
+          case "socks":
+          case "socks5":
+            proxies.push(proxyService.newProxyInfo("socks", components[2],
+              components[3], tmp, 0, null));
+            break;
+          case "socks4":
+            proxies.push(proxyService.newProxyInfo("socks4", components[2],
+              components[3], tmp, 0, null));
+            break;
+          case "direct":
+            proxies.push(this.direct);
+           break;
+          default:
+            return _notifyUserOfError(spec);
+        }
+      }
+      // Build a proxy list for proxy for failover support
+      for (var i=1; i<=proxies.length-1; i++) {
+        proxies[i-1].failoverTimeout = 1800;
+        proxies[i-1].failoverProxy = proxies[i];
+      }
+      if (proxies[0] == null) {
+        return _notifyUserOfError(spec);
+      }
+      else if (proxies[1]) {
+        proxies[0].failoverTimeout = 1800;
+        proxies[0].failoverProxy = proxies[1];
+      }
+      return proxies[0];
+    } else {
+      // Resolver did not find a proxy, but this isn't an error condition
+      return null;
+    }
+  },
 
   getProxy : function(spec, host, mp) {
     switch (this._mode) {
       case "manual":return this.manualconf.proxy;
-      case "auto":return this.resolve(spec, host, mp);
-	    case "direct":return this.direct;
+      case "wpad":return this.resolve(spec, host, mp, true);
+      case "auto":return this.resolve(spec, host, mp, false);
+      case "direct":return this.direct;
     }
   },
   

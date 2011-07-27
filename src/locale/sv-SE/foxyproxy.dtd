@@ -36,9 +36,12 @@
 <!ENTITY foxyproxy.help.label "Hjälpinnehåll">
 <!ENTITY foxyproxy.help.accesskey "H">
 <!ENTITY foxyproxy.help.tooltip "Visa hjälp">
+<!ENTITY foxyproxy.import.pattern.label "Importera">
+<!ENTITY foxyproxy.import.pattern.accesskey "I">
+<!ENTITY foxyproxy.import.pattern.tooltip "Importera mönster">
 <!ENTITY foxyproxy.export.pattern.label "Exportera">
 <!ENTITY foxyproxy.export.pattern.accesskey "x">
-<!ENTITY foxyproxy.export.pattern.tooltip "Exportera mönster som en mönsterprenumeration">
+<!ENTITY foxyproxy.export.pattern.tooltip2 "Exportera alla mönster">
 <!ENTITY foxyproxy.close.label "Stäng">
 <!ENTITY foxyproxy.close.accesskey "S">
 <!ENTITY foxyproxy.close.tooltip "Stäng fönster">
@@ -55,6 +58,14 @@
 <!ENTITY foxyproxy.copy.selection.accesskey "o">
 <!ENTITY foxyproxy.copy.selection.tooltip "Kopierar markerade">
 <!ENTITY foxyproxy.mode.label "Välj läge">
+<!-- begin foxyproxyplus -->
+<!ENTITY foxyproxy.wpad.label "Identifiera proxyinställningar automatiskt för detta nätverk">
+<!ENTITY foxyproxy.wpad.accesskey "W">
+<!ENTITY foxyproxy.wpad.tooltip "Identifiera proxyinställningarna automatiskt m.h.a. WPAD">
+<!ENTITY foxyproxy.wpad.reload.label "Identifiera proxyinställningar automatiskt var">
+<!ENTITY foxyproxy.wpad.reload.accesskey "d">
+<!ENTITY foxyproxy.wpad.reload.tooltip "Identifiera proxyinställningar automatiskt med intervallet">
+<!ENTITY foxyproxy.wpad.tree.label "Identifiera proxy automatiskt">
 <!ENTITY foxyproxy.auto.url.label "URL för automatisk proxykonfiguration">
 <!ENTITY foxyproxy.auto.url.accesskey "u">
 <!ENTITY foxyproxy.auto.url.tooltip "Ange URL för PAC-filen">
@@ -91,6 +102,9 @@
 <!ENTITY foxyproxy.tab.patterns.tooltip "Hantera URL-mönster">
 <!ENTITY foxyproxy.add.title "Proxyinställningar">
 <!ENTITY foxyproxy.pattern.description "Här kan du ange om och när en proxy skall användas eller inte.">
+<!ENTITY foxyproxy.pattern.nointernal.label "Använd inte denna proxy för interna IP-adresser">
+<!ENTITY foxyproxy.pattern.nointernal.tooltip "Denna kryssruta låter dig begränsa proxyn till externa IP-adresser">
+<!ENTITY foxyproxy.pattern.nointernal.accesskey "n">
 <!ENTITY foxyproxy.pattern.matchtype.label "Mönster innehåller">
 <!ENTITY foxyproxy.pattern.whiteblack.label "Inkludera/undanta URL">
 <!ENTITY foxyproxy.add.option.direct.label "Direkt Internetanslutning (ingen proxy)">
@@ -427,10 +441,10 @@
 <!ENTITY foxyproxy.server.subscriptions.accesskey "H">
 <!ENTITY foxyproxy.selectproxy.label "Välj proxy">
 <!ENTITY foxyproxy.pattern.subscriptions.label "Mönsterprenumerationer">
+<!ENTITY foxyproxy.pattern.subscriptions.description "Prenumerera på mönster publicerade av andra. Dela dina mönster med andra med bara ett par klick.">
 <!ENTITY foxyproxy.pattern.subscriptions.tooltip "Hantera mönsterprenumerationer">
 <!ENTITY foxyproxy.pattern.subscriptions.accesskey "H">
-<!ENTITY foxyproxy.pattern.subscriptions.wizard.label "Guide">
-<!ENTITY foxyproxy.pattern.subscriptions.wizard.tooltip "Klicka här för att starta Mönsterprenumerationsguiden.">
+<!ENTITY foxyproxy.pattern.subscriptions.sharing.label "Dela dina mönster">
 <!ENTITY foxyproxy.pattern.subscriptions.menulist.tooltip "Välj hur mönsterprenumerationer skall hanteras.">
 <!ENTITY foxyproxy.pattern.subscriptions.addSubscription "Lägg till ny mönsterprenumeration">
 <!ENTITY foxyproxy.pattern.subscriptions.editSelection "Redigera markerade">
@@ -479,7 +493,7 @@
 <!ENTITY foxyproxy.hosting.label1 "Tack till ">
 <!ENTITY foxyproxy.ocs.label "OCS">
 <!ENTITY foxyproxy.hosting.label2 " för värdskapet av FoxyProxys webbplats. Om du behöver en webbvärdtjänst, ta gärna en titt på OCS.">
-<!-- begin foxyproxyplus -->
+<!-- end foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Lägg till/Redigera lokala IP-adressmönster">
 <!ENTITY foxyproxy.tempip.popup.label "Temporära mönster gör att du kan skapa mönster för lokala IP-adresser som du inte använder så ofta. Temporära mönster sparas inte till disk utan behålls bara i minnet så länge Firefox är igång.">
 <!ENTITY foxyproxy.ip.pattern.label "Lokalt IP-adressmönster">

@@ -36,9 +36,12 @@
 <!ENTITY foxyproxy.help.label "帮助内容">
 <!ENTITY foxyproxy.help.accesskey "H">
 <!ENTITY foxyproxy.help.tooltip "显示帮助">
+<!ENTITY foxyproxy.import.pattern.label "导入">
+<!ENTITY foxyproxy.import.pattern.accesskey "I">
+<!ENTITY foxyproxy.import.pattern.tooltip "导入模式">
 <!ENTITY foxyproxy.export.pattern.label "Export">
 <!ENTITY foxyproxy.export.pattern.accesskey "X">
-<!ENTITY foxyproxy.export.pattern.tooltip "Export patterns as a pattern subscription">
+<!ENTITY foxyproxy.export.pattern.tooltip2 "导出全部模式">
 <!ENTITY foxyproxy.close.label "关闭">
 <!ENTITY foxyproxy.close.accesskey "C">
 <!ENTITY foxyproxy.close.tooltip "关闭窗口">
@@ -55,6 +58,14 @@
 <!ENTITY foxyproxy.copy.selection.accesskey "C">
 <!ENTITY foxyproxy.copy.selection.tooltip "复制选中项目">
 <!ENTITY foxyproxy.mode.label "选择工作模式">
+<!-- begin foxyproxyplus -->
+<!ENTITY foxyproxy.wpad.label "为这个网络自动检测代理设置">
+<!ENTITY foxyproxy.wpad.accesskey "W">
+<!ENTITY foxyproxy.wpad.tooltip "自动使用 WPAD 检测代理设置">
+<!ENTITY foxyproxy.wpad.reload.label "每次自动检测代理设置">
+<!ENTITY foxyproxy.wpad.reload.accesskey "D">
+<!ENTITY foxyproxy.wpad.reload.tooltip "每个指定的周期内自动检测代理">
+<!ENTITY foxyproxy.wpad.tree.label "自动检测代理">
 <!ENTITY foxyproxy.auto.url.label "自动配置代理服务器 URL">
 <!ENTITY foxyproxy.auto.url.accesskey "A">
 <!ENTITY foxyproxy.auto.url.tooltip "输入 PAC 文件的 URL">
@@ -91,6 +102,9 @@
 <!ENTITY foxyproxy.tab.patterns.tooltip "管理 URL 模板">
 <!ENTITY foxyproxy.add.title "代理设置">
 <!ENTITY foxyproxy.pattern.description "在这里您可以添加或删除要使用该代理服务器的 URLs">
+<!ENTITY foxyproxy.pattern.nointernal.label "不要对内部网络 IP 地址使用这个代理">
+<!ENTITY foxyproxy.pattern.nointernal.tooltip "这个复选框让你可以限制代理只能用于非内部网络 IP 地址">
+<!ENTITY foxyproxy.pattern.nointernal.accesskey "N">
 <!ENTITY foxyproxy.pattern.matchtype.label "模板包含">
 <!ENTITY foxyproxy.pattern.whiteblack.label "包含或排除的 URL">
 <!ENTITY foxyproxy.add.option.direct.label "直接连接到互联网">
@@ -427,10 +441,10 @@
 <!ENTITY foxyproxy.server.subscriptions.accesskey "S">
 <!ENTITY foxyproxy.selectproxy.label "选择代理服务器">
 <!ENTITY foxyproxy.pattern.subscriptions.label "模式订阅">
+<!ENTITY foxyproxy.pattern.subscriptions.description "订阅其他人发布的模式。几次鼠标点击即可同他人分享你的模式。">
 <!ENTITY foxyproxy.pattern.subscriptions.tooltip "管理模式订阅">
 <!ENTITY foxyproxy.pattern.subscriptions.accesskey "S">
-<!ENTITY foxyproxy.pattern.subscriptions.wizard.label "Wizard">
-<!ENTITY foxyproxy.pattern.subscriptions.wizard.tooltip "Click here to start the pattern subscription wizard.">
+<!ENTITY foxyproxy.pattern.subscriptions.sharing.label "分享你的模式">
 <!ENTITY foxyproxy.pattern.subscriptions.menulist.tooltip "Select what to do with pattern subscriptions.">
 <!ENTITY foxyproxy.pattern.subscriptions.addSubscription "Add New Pattern Subscription">
 <!ENTITY foxyproxy.pattern.subscriptions.editSelection "Edit Selection">
@@ -479,7 +493,7 @@
 <!ENTITY foxyproxy.hosting.label1 "感谢">
 <!ENTITY foxyproxy.ocs.label "OCS">
 <!ENTITY foxyproxy.hosting.label2 "为了存放 FoxyProxy 的网站。如果你需要存放，请联系 OCS。">
-<!-- begin foxyproxyplus -->
+<!-- end foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "添加/编辑本地IP地址模式">
 <!ENTITY foxyproxy.tempip.popup.label "临时模式让你可以为不常用的本地IP地址建立模式，以免扰乱代理服务器的IP地址模式列表。临时模式不会保存到磁盘。他们只是保存在内存中供当前 Firefox 会话使用。">
 <!ENTITY foxyproxy.ip.pattern.label "本地IP地址模式">

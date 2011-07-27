@@ -16,7 +16,7 @@ locale  foxyproxy fr locale/fr/
 locale  foxyproxy gl-ES locale/gl-ES/
 locale  foxyproxy hr-HR locale/hr-HR/
 locale  foxyproxy hu-HU locale/hu-HU/
-locale  foxyproxy it-IT locale/it-IT/
+locale  foxyproxy it locale/it/
 locale  foxyproxy ja-JP locale/ja-JP/
 locale  foxyproxy lv-LV locale/lv-LV/
 locale  foxyproxy nl locale/nl/

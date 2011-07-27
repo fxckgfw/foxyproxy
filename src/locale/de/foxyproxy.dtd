@@ -58,6 +58,7 @@
 <!ENTITY foxyproxy.copy.selection.accesskey "K">
 <!ENTITY foxyproxy.copy.selection.tooltip "Kopiert die aktuelle Auswahl">
 <!ENTITY foxyproxy.mode.label "Modus auswählen">
+<!-- begin foxyproxyplus -->
 <!ENTITY foxyproxy.wpad.label "Die Proxy-Einstellungen für dieses Netzwerk automatisch erkennen">
 <!ENTITY foxyproxy.wpad.accesskey "W">
 <!ENTITY foxyproxy.wpad.tooltip "Proxy-Einstellungen mit WPAD automatisch erkennen">
@@ -492,7 +493,7 @@
 <!ENTITY foxyproxy.hosting.label1 "Danke an">
 <!ENTITY foxyproxy.ocs.label "OCS">
 <!ENTITY foxyproxy.hosting.label2 "für das Hosten der FoxyProxy Website. Bitte berücksichtigen Sie OCS bei der Auswahl ihres Hosters.">
-<!-- begin foxyproxyplus -->
+<!-- end foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Lokales IP-Adressmuster hinzufügen/ändern">
 <!ENTITY foxyproxy.tempip.popup.label "Temporäre Muster erlauben es Ihnen, Muster für selten genutzte lokale IP-Adressen zu erzeugen, ohne dass diese die Liste der IP-Adressmuster eines Proxies überladen. Temporäre Muster werden nicht auf Platte abgelegt. Sie werden im Speicher gehalten und nur für diese Firefox-Sitzung benutzt.">
 <!ENTITY foxyproxy.ip.pattern.label "Lokales IP-Adressmuster">

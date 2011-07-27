@@ -38,7 +38,7 @@
 <!ENTITY foxyproxy.help.tooltip "Show Help">
 <!ENTITY foxyproxy.import.pattern.label "Import">
 <!ENTITY foxyproxy.import.pattern.accesskey "I">
-<!ENTITY foxyproxy.import.pattern.tooltip "Import patterns"> 
+<!ENTITY foxyproxy.import.pattern.tooltip "Import patterns">
 <!ENTITY foxyproxy.export.pattern.label "Export">
 <!ENTITY foxyproxy.export.pattern.accesskey "X">
 <!ENTITY foxyproxy.export.pattern.tooltip2 "Export all patterns">

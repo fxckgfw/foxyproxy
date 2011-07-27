@@ -36,9 +36,12 @@
 <!ENTITY foxyproxy.help.label "Contenidos de la ayuda">
 <!ENTITY foxyproxy.help.accesskey "u">
 <!ENTITY foxyproxy.help.tooltip "Mostrar ayuda">
+<!ENTITY foxyproxy.import.pattern.label "Importar">
+<!ENTITY foxyproxy.import.pattern.accesskey "I">
+<!ENTITY foxyproxy.import.pattern.tooltip "Importar patrones">
 <!ENTITY foxyproxy.export.pattern.label "Export">
 <!ENTITY foxyproxy.export.pattern.accesskey "X">
-<!ENTITY foxyproxy.export.pattern.tooltip "Export patterns as a pattern subscription">
+<!ENTITY foxyproxy.export.pattern.tooltip2 "Exportar todos los patrones">
 <!ENTITY foxyproxy.close.label "Cerrar">
 <!ENTITY foxyproxy.close.accesskey "C">
 <!ENTITY foxyproxy.close.tooltip "Cerrar ventana">
@@ -55,6 +58,14 @@
 <!ENTITY foxyproxy.copy.selection.accesskey "C">
 <!ENTITY foxyproxy.copy.selection.tooltip "Copia la selección">
 <!ENTITY foxyproxy.mode.label "Seleccionar modo">
+<!-- begin foxyproxyplus -->
+<!ENTITY foxyproxy.wpad.label "Autodetectar configuración del proxy para esta red">
+<!ENTITY foxyproxy.wpad.accesskey "W">
+<!ENTITY foxyproxy.wpad.tooltip "Detectar automáticamente la configuración del proxy usando WPAD">
+<!ENTITY foxyproxy.wpad.reload.label "Detectar automáticamente la configuración del proxy cada">
+<!ENTITY foxyproxy.wpad.reload.accesskey "D">
+<!ENTITY foxyproxy.wpad.reload.tooltip "Autodetectar el proxy en el periodo especificado">
+<!ENTITY foxyproxy.wpad.tree.label "Autodetectar proxy">
 <!ENTITY foxyproxy.auto.url.label "Dirección de configuración automática del proxy">
 <!ENTITY foxyproxy.auto.url.accesskey "A">
 <!ENTITY foxyproxy.auto.url.tooltip "Introduzca la dirección del archivo PAC">
@@ -91,6 +102,9 @@
 <!ENTITY foxyproxy.tab.patterns.tooltip "Administrar patrones de direcciones">
 <!ENTITY foxyproxy.add.title "Opciones del proxy">
 <!ENTITY foxyproxy.pattern.description "Aquí puede añadir o eliminar las direcciones para las que se usará el proxy.">
+<!ENTITY foxyproxy.pattern.nointernal.label "No usar el proxy para direcciones IP internas">
+<!ENTITY foxyproxy.pattern.nointernal.tooltip "Esta opción te permite restringir el proxy a las direcciones IP externas">
+<!ENTITY foxyproxy.pattern.nointernal.accesskey "N">
 <!ENTITY foxyproxy.pattern.matchtype.label "El patrón contiene">
 <!ENTITY foxyproxy.pattern.whiteblack.label "Inclusión/Exclusión de direcciones">
 <!ENTITY foxyproxy.add.option.direct.label "Conexión directa a internet (sin proxy)">
@@ -427,10 +441,10 @@
 <!ENTITY foxyproxy.server.subscriptions.accesskey "S">
 <!ENTITY foxyproxy.selectproxy.label "Seleccionar proxy">
 <!ENTITY foxyproxy.pattern.subscriptions.label "Pattern Subscriptions">
+<!ENTITY foxyproxy.pattern.subscriptions.description "Suscríbase a los patrones publicados por otros. Comparta sus patrones en unos pocos clicks.">
 <!ENTITY foxyproxy.pattern.subscriptions.tooltip "Manage Pattern Subscriptions">
 <!ENTITY foxyproxy.pattern.subscriptions.accesskey "S">
-<!ENTITY foxyproxy.pattern.subscriptions.wizard.label "Asistente">
-<!ENTITY foxyproxy.pattern.subscriptions.wizard.tooltip "Pulse aquí para iniciar el asistente de suscripción de patrones.">
+<!ENTITY foxyproxy.pattern.subscriptions.sharing.label "Comparta sus patrones">
 <!ENTITY foxyproxy.pattern.subscriptions.menulist.tooltip "Seleccione qué hacer con los patrones de suscripciones.">
 <!ENTITY foxyproxy.pattern.subscriptions.addSubscription "Añadir nuevo patrón de suscripción">
 <!ENTITY foxyproxy.pattern.subscriptions.editSelection "Editar selección">
@@ -479,7 +493,7 @@
 <!ENTITY foxyproxy.hosting.label1 "Agradecimientos a">
 <!ENTITY foxyproxy.ocs.label "OCS">
 <!ENTITY foxyproxy.hosting.label2 "Por el hosting de la web de FoxyProxy. Si necesita hosting, tenga en cuenta OCS.">
-<!-- begin foxyproxyplus -->
+<!-- end foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Añadir/Editar patrón de direcciones IP locales">
 <!ENTITY foxyproxy.tempip.popup.label "Los patrones temporales le permiten crear patrones para direcciones IP locales que no use con frecuencia sin interferir en la lista de patrones de un proxy. Los patrones temporales no se guardan en el disco. Se mantienen en memoria sólo durante la sesión actual de Firefox.">
 <!ENTITY foxyproxy.ip.pattern.label "Patrón de dirección IP local">

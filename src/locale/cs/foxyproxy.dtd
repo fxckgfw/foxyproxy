@@ -36,9 +36,12 @@
 <!ENTITY foxyproxy.help.label "Obsah nápovědy">
 <!ENTITY foxyproxy.help.accesskey "O">
 <!ENTITY foxyproxy.help.tooltip "Zobrazení nápovědy">
+<!ENTITY foxyproxy.import.pattern.label "Import">
+<!ENTITY foxyproxy.import.pattern.accesskey "I">
+<!ENTITY foxyproxy.import.pattern.tooltip "Importovat vzory">
 <!ENTITY foxyproxy.export.pattern.label "Export">
 <!ENTITY foxyproxy.export.pattern.accesskey "X">
-<!ENTITY foxyproxy.export.pattern.tooltip "Export patterns as a pattern subscription">
+<!ENTITY foxyproxy.export.pattern.tooltip2 "Exportovat všechny vzory">
 <!ENTITY foxyproxy.close.label "Zavřít">
 <!ENTITY foxyproxy.close.accesskey "Z">
 <!ENTITY foxyproxy.close.tooltip "Zavřít okno">
@@ -55,6 +58,14 @@
 <!ENTITY foxyproxy.copy.selection.accesskey "K">
 <!ENTITY foxyproxy.copy.selection.tooltip "Zkopíruje aktuálně vybranou položku">
 <!ENTITY foxyproxy.mode.label "Výběr režimu">
+<!-- begin foxyproxyplus -->
+<!ENTITY foxyproxy.wpad.label "Automaticky rozpoznat nastavení proxy na této síti">
+<!ENTITY foxyproxy.wpad.accesskey "w">
+<!ENTITY foxyproxy.wpad.tooltip "Automaticky rozpoznat nastavení proxy pomocí WPAD">
+<!ENTITY foxyproxy.wpad.reload.label "Zjišťovat nastavení proxy automaticky každých">
+<!ENTITY foxyproxy.wpad.reload.accesskey "D">
+<!ENTITY foxyproxy.wpad.reload.tooltip "Automaticky zjišťovat proxy po zadaném čase">
+<!ENTITY foxyproxy.wpad.tree.label "Automatické nastavení proxy">
 <!ENTITY foxyproxy.auto.url.label "URL pro automatické nastavení proxy serveru">
 <!ENTITY foxyproxy.auto.url.accesskey "a">
 <!ENTITY foxyproxy.auto.url.tooltip "Zadání URL PAC souboru">
@@ -91,6 +102,9 @@
 <!ENTITY foxyproxy.tab.patterns.tooltip "úprava vzorů URL">
 <!ENTITY foxyproxy.add.title "Nastavení Proxy">
 <!ENTITY foxyproxy.pattern.description "Zde můžete přidat anebo odstranit URL pro které je tato proxy používaná">
+<!ENTITY foxyproxy.pattern.nointernal.label "Nepoužívat proxy pro IP adresy v místní síti">
+<!ENTITY foxyproxy.pattern.nointernal.tooltip "Tato volba vám umožní vypnou proxy pro místní síť">
+<!ENTITY foxyproxy.pattern.nointernal.accesskey "N">
 <!ENTITY foxyproxy.pattern.matchtype.label "Vzor obsahuje">
 <!ENTITY foxyproxy.pattern.whiteblack.label "Zahrnuté/vyloučené URL">
 <!ENTITY foxyproxy.add.option.direct.label "Přímé připojení k síti">
@@ -427,10 +441,10 @@
 <!ENTITY foxyproxy.server.subscriptions.accesskey "S">
 <!ENTITY foxyproxy.selectproxy.label "Zvolte Proxy">
 <!ENTITY foxyproxy.pattern.subscriptions.label "Pattern Subscriptions">
+<!ENTITY foxyproxy.pattern.subscriptions.description "Přihlásit se k vzorům, které zveřejňují ostatní uživatelé. Sdílejte vaše vzory s ostatními na pár kliknutí.">
 <!ENTITY foxyproxy.pattern.subscriptions.tooltip "Manage Pattern Subscriptions">
 <!ENTITY foxyproxy.pattern.subscriptions.accesskey "S">
-<!ENTITY foxyproxy.pattern.subscriptions.wizard.label "Wizard">
-<!ENTITY foxyproxy.pattern.subscriptions.wizard.tooltip "Click here to start the pattern subscription wizard.">
+<!ENTITY foxyproxy.pattern.subscriptions.sharing.label "Sdílet vzory">
 <!ENTITY foxyproxy.pattern.subscriptions.menulist.tooltip "Select what to do with pattern subscriptions.">
 <!ENTITY foxyproxy.pattern.subscriptions.addSubscription "Add New Pattern Subscription">
 <!ENTITY foxyproxy.pattern.subscriptions.editSelection "Edit Selection">
@@ -479,7 +493,7 @@
 <!ENTITY foxyproxy.hosting.label1 "Díky">
 <!ENTITY foxyproxy.ocs.label "OCS">
 <!ENTITY foxyproxy.hosting.label2 "za hostování stránek FoxyProxy. Když potřebujete hosting, zkuste OCS.">
-<!-- begin foxyproxyplus -->
+<!-- end foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Přidat/upravit vzor pro místní IP adresu">
 <!ENTITY foxyproxy.tempip.popup.label "Dočasné vzory Vám umožní vytvářet pravidla pro místní IP adresy které používáte pouze příležitostně. Dočasné vzory se neukládají na disk. Jsou uloženy v paměti jen po dobu spuštění Firefoxu.">
 <!ENTITY foxyproxy.ip.pattern.label "Vzor pro místní IP adresu">

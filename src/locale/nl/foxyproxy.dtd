@@ -36,9 +36,12 @@
 <!ENTITY foxyproxy.help.label "Helpinhoud">
 <!ENTITY foxyproxy.help.accesskey "H">
 <!ENTITY foxyproxy.help.tooltip "Hulpbestand tonen">
+<!ENTITY foxyproxy.import.pattern.label "Import">
+<!ENTITY foxyproxy.import.pattern.accesskey "I">
+<!ENTITY foxyproxy.import.pattern.tooltip "Import patterns">
 <!ENTITY foxyproxy.export.pattern.label "Export">
 <!ENTITY foxyproxy.export.pattern.accesskey "X">
-<!ENTITY foxyproxy.export.pattern.tooltip "Export patterns as a pattern subscription">
+<!ENTITY foxyproxy.export.pattern.tooltip2 "Export all patterns">
 <!ENTITY foxyproxy.close.label "Sluiten">
 <!ENTITY foxyproxy.close.accesskey "S">
 <!ENTITY foxyproxy.close.tooltip "Venster sluiten">
@@ -55,6 +58,14 @@
 <!ENTITY foxyproxy.copy.selection.accesskey "K">
 <!ENTITY foxyproxy.copy.selection.tooltip "Kopieert selectie">
 <!ENTITY foxyproxy.mode.label "Modus selecteren">
+<!-- begin foxyproxyplus -->
+<!ENTITY foxyproxy.wpad.label "Auto-detect proxy settings for this network">
+<!ENTITY foxyproxy.wpad.accesskey "W">
+<!ENTITY foxyproxy.wpad.tooltip "Detect the proxy settings automatically using WPAD">
+<!ENTITY foxyproxy.wpad.reload.label "Detect proxy settings automatically every">
+<!ENTITY foxyproxy.wpad.reload.accesskey "D">
+<!ENTITY foxyproxy.wpad.reload.tooltip "Auto-detect the proxy every specified period">
+<!ENTITY foxyproxy.wpad.tree.label "Auto-detect proxy">
 <!ENTITY foxyproxy.auto.url.label "Automatische proxyconfiguratie-URL">
 <!ENTITY foxyproxy.auto.url.accesskey "A">
 <!ENTITY foxyproxy.auto.url.tooltip "Voer de URL van het PAC-bestand in">
@@ -91,6 +102,9 @@
 <!ENTITY foxyproxy.tab.patterns.tooltip "URL-patronen beheren">
 <!ENTITY foxyproxy.add.title "Proxy-instellingen">
 <!ENTITY foxyproxy.pattern.description "Hier kunt u specificeren wanneer deze proxy wel of niet wordt gebruikt.">
+<!ENTITY foxyproxy.pattern.nointernal.label "Do not use this proxy for internal IP addresses">
+<!ENTITY foxyproxy.pattern.nointernal.tooltip "This checkbox allows you to restrict the proxy to non-internal IP addresses">
+<!ENTITY foxyproxy.pattern.nointernal.accesskey "N">
 <!ENTITY foxyproxy.pattern.matchtype.label "Patroon bevat">
 <!ENTITY foxyproxy.pattern.whiteblack.label "URL-opname/uitsluiting">
 <!ENTITY foxyproxy.add.option.direct.label "Directe verbinding met internet (geen proxy)">
@@ -427,10 +441,10 @@
 <!ENTITY foxyproxy.server.subscriptions.accesskey "S">
 <!ENTITY foxyproxy.selectproxy.label "Proxy selecteren">
 <!ENTITY foxyproxy.pattern.subscriptions.label "Patroonabonnementen">
+<!ENTITY foxyproxy.pattern.subscriptions.description "Subscribe to patterns published by others. Share your patterns with others in just a few clicks.">
 <!ENTITY foxyproxy.pattern.subscriptions.tooltip "Patroonabonnementen beheren">
 <!ENTITY foxyproxy.pattern.subscriptions.accesskey "P">
-<!ENTITY foxyproxy.pattern.subscriptions.wizard.label "Wizard">
-<!ENTITY foxyproxy.pattern.subscriptions.wizard.tooltip "Klik hier om de patroonabonnementswizard te starten.">
+<!ENTITY foxyproxy.pattern.subscriptions.sharing.label "Share Your Patterns">
 <!ENTITY foxyproxy.pattern.subscriptions.menulist.tooltip "Selecteer wat u wilt doen met patroonabonnementen.">
 <!ENTITY foxyproxy.pattern.subscriptions.addSubscription "Nieuw patroonabonnement toevoegen">
 <!ENTITY foxyproxy.pattern.subscriptions.editSelection "Selectie bewerken">
@@ -479,7 +493,7 @@
 <!ENTITY foxyproxy.hosting.label1 "Met dank aan">
 <!ENTITY foxyproxy.ocs.label "OCS">
 <!ENTITY foxyproxy.hosting.label2 "voor het hosten van de website van FoxyProxy. Als u hosting nodig heeft, overweeg dan OCS.">
-<!-- begin foxyproxyplus -->
+<!-- end foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Lokaal IP-adrespatroon toevoegen/bewerken">
 <!ENTITY foxyproxy.tempip.popup.label "Met tijdelijke patronen kunt u patronen voor lokale IP-adressen  die u niet vaak gebruikt creëren zonder dat de IP-adressenpatroonlijst voor een proxy wordt vervuild. Tijdelijke patronen wordne niet opgeslagen. Ze worden alleen tijdens deze Firefoxsessie in het geheugen bewaard.">
 <!ENTITY foxyproxy.ip.pattern.label "Lokaal IP-adrespatroon">

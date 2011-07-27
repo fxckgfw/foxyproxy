@@ -36,9 +36,12 @@
 <!ENTITY foxyproxy.help.label "Зміст Допомоги">
 <!ENTITY foxyproxy.help.accesskey "З">
 <!ENTITY foxyproxy.help.tooltip "Показати Допомогу">
+<!ENTITY foxyproxy.import.pattern.label "Import">
+<!ENTITY foxyproxy.import.pattern.accesskey "I">
+<!ENTITY foxyproxy.import.pattern.tooltip "Import patterns">
 <!ENTITY foxyproxy.export.pattern.label "Export">
 <!ENTITY foxyproxy.export.pattern.accesskey "X">
-<!ENTITY foxyproxy.export.pattern.tooltip "Export patterns as a pattern subscription">
+<!ENTITY foxyproxy.export.pattern.tooltip2 "Export all patterns">
 <!ENTITY foxyproxy.close.label "Закрити">
 <!ENTITY foxyproxy.close.accesskey "к">
 <!ENTITY foxyproxy.close.tooltip "Закрити Вікно">
@@ -55,6 +58,14 @@
 <!ENTITY foxyproxy.copy.selection.accesskey "К">
 <!ENTITY foxyproxy.copy.selection.tooltip "Скопіювати Вибране">
 <!ENTITY foxyproxy.mode.label "Режим Вибору">
+<!-- begin foxyproxyplus -->
+<!ENTITY foxyproxy.wpad.label "Auto-detect proxy settings for this network">
+<!ENTITY foxyproxy.wpad.accesskey "W">
+<!ENTITY foxyproxy.wpad.tooltip "Detect the proxy settings automatically using WPAD">
+<!ENTITY foxyproxy.wpad.reload.label "Detect proxy settings automatically every">
+<!ENTITY foxyproxy.wpad.reload.accesskey "D">
+<!ENTITY foxyproxy.wpad.reload.tooltip "Auto-detect the proxy every specified period">
+<!ENTITY foxyproxy.wpad.tree.label "Auto-detect proxy">
 <!ENTITY foxyproxy.auto.url.label "URL-адреса автоматичної конфігурації проксі  ">
 <!ENTITY foxyproxy.auto.url.accesskey "а">
 <!ENTITY foxyproxy.auto.url.tooltip "Введіть URL або ім&apos;я PAC файлу">
@@ -91,6 +102,9 @@
 <!ENTITY foxyproxy.tab.patterns.tooltip "Налаштувати Зразки URL-адрес ">
 <!ENTITY foxyproxy.add.title "Налаштування Проксі">
 <!ENTITY foxyproxy.pattern.description "Тут ви можете вказати, коли цей проксі використовується і не використовується.">
+<!ENTITY foxyproxy.pattern.nointernal.label "Do not use this proxy for internal IP addresses">
+<!ENTITY foxyproxy.pattern.nointernal.tooltip "This checkbox allows you to restrict the proxy to non-internal IP addresses">
+<!ENTITY foxyproxy.pattern.nointernal.accesskey "N">
 <!ENTITY foxyproxy.pattern.matchtype.label "Зразок Містить">
 <!ENTITY foxyproxy.pattern.whiteblack.label "URL-адреса Включення/Виключення">
 <!ENTITY foxyproxy.add.option.direct.label "Пряме інтернет-з&apos;єднання">
@@ -427,10 +441,10 @@
 <!ENTITY foxyproxy.server.subscriptions.accesskey "S">
 <!ENTITY foxyproxy.selectproxy.label "Select Proxy">
 <!ENTITY foxyproxy.pattern.subscriptions.label "Pattern Subscriptions">
+<!ENTITY foxyproxy.pattern.subscriptions.description "Subscribe to patterns published by others. Share your patterns with others in just a few clicks.">
 <!ENTITY foxyproxy.pattern.subscriptions.tooltip "Manage Pattern Subscriptions">
 <!ENTITY foxyproxy.pattern.subscriptions.accesskey "S">
-<!ENTITY foxyproxy.pattern.subscriptions.wizard.label "Wizard">
-<!ENTITY foxyproxy.pattern.subscriptions.wizard.tooltip "Click here to start the pattern subscription wizard.">
+<!ENTITY foxyproxy.pattern.subscriptions.sharing.label "Share Your Patterns">
 <!ENTITY foxyproxy.pattern.subscriptions.menulist.tooltip "Select what to do with pattern subscriptions.">
 <!ENTITY foxyproxy.pattern.subscriptions.addSubscription "Add New Pattern Subscription">
 <!ENTITY foxyproxy.pattern.subscriptions.editSelection "Edit Selection">
@@ -479,7 +493,7 @@
 <!ENTITY foxyproxy.hosting.label1 "Thanks to ">
 <!ENTITY foxyproxy.ocs.label "OCS">
 <!ENTITY foxyproxy.hosting.label2 " for hosting FoxyProxy's website. If you need hosting, please consider OCS.">
-<!-- begin foxyproxyplus -->
+<!-- end foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Add/Edit Local IP Address Pattern">
 <!ENTITY foxyproxy.tempip.popup.label "Temporary patterns allow you to create patterns for local IP addresses that you don&apos;t use often without cluttering the IP address pattern list for a proxy. Temporary patterns are not saved to disk. They are kept in-memory and used for this Firefox session only.">
 <!ENTITY foxyproxy.ip.pattern.label "Local IP address pattern">

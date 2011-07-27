@@ -36,9 +36,12 @@
 <!ENTITY foxyproxy.help.label "使用說明">
 <!ENTITY foxyproxy.help.accesskey "H">
 <!ENTITY foxyproxy.help.tooltip "顯示使用說明">
+<!ENTITY foxyproxy.import.pattern.label "匯入">
+<!ENTITY foxyproxy.import.pattern.accesskey "I">
+<!ENTITY foxyproxy.import.pattern.tooltip "匯入樣式">
 <!ENTITY foxyproxy.export.pattern.label "匯出">
 <!ENTITY foxyproxy.export.pattern.accesskey "X">
-<!ENTITY foxyproxy.export.pattern.tooltip "將樣式匯出成訂閱的樣式格式">
+<!ENTITY foxyproxy.export.pattern.tooltip2 "匯出所有樣式">
 <!ENTITY foxyproxy.close.label "關閉">
 <!ENTITY foxyproxy.close.accesskey "C">
 <!ENTITY foxyproxy.close.tooltip "關閉視窗">
@@ -55,6 +58,14 @@
 <!ENTITY foxyproxy.copy.selection.accesskey "C">
 <!ENTITY foxyproxy.copy.selection.tooltip "複製選擇的項目">
 <!ENTITY foxyproxy.mode.label "選擇模式">
+<!-- begin foxyproxyplus -->
+<!ENTITY foxyproxy.wpad.label "此網路自動偵測代理伺服器設定">
+<!ENTITY foxyproxy.wpad.accesskey "W">
+<!ENTITY foxyproxy.wpad.tooltip "使用 WPAD 自動偵測代理伺服器設定">
+<!ENTITY foxyproxy.wpad.reload.label "自動偵測代理伺服器設定，間隔每">
+<!ENTITY foxyproxy.wpad.reload.accesskey "D">
+<!ENTITY foxyproxy.wpad.reload.tooltip "每隔指定的時間執行自動偵測代理伺服器設定">
+<!ENTITY foxyproxy.wpad.tree.label "自動偵測代理伺服器">
 <!ENTITY foxyproxy.auto.url.label "使用自動組態指命碼">
 <!ENTITY foxyproxy.auto.url.accesskey "A">
 <!ENTITY foxyproxy.auto.url.tooltip "輸入自動組態指命碼（PAC）的檔案網址">
@@ -91,6 +102,9 @@
 <!ENTITY foxyproxy.tab.patterns.tooltip "網址樣式設定">
 <!ENTITY foxyproxy.add.title "代理伺服器設定">
 <!ENTITY foxyproxy.pattern.description "你可以在這裏指定是否使用此代理伺服器。">
+<!ENTITY foxyproxy.pattern.nointernal.label "內部 IP 位址不使用此代理伺服器">
+<!ENTITY foxyproxy.pattern.nointernal.tooltip "啟用此設定來限制代理伺服器只使用在非內部 IP 位址">
+<!ENTITY foxyproxy.pattern.nointernal.accesskey "N">
 <!ENTITY foxyproxy.pattern.matchtype.label "樣式內容">
 <!ENTITY foxyproxy.pattern.whiteblack.label "網址白名單/黑名單">
 <!ENTITY foxyproxy.add.option.direct.label "直接連線（不使用代理伺服器）">
@@ -427,10 +441,10 @@
 <!ENTITY foxyproxy.server.subscriptions.accesskey "S">
 <!ENTITY foxyproxy.selectproxy.label "選擇代理伺服器">
 <!ENTITY foxyproxy.pattern.subscriptions.label "樣式訂閱">
+<!ENTITY foxyproxy.pattern.subscriptions.description "訂閱其它人發表的樣式，透過簡單的點選就可以和別人分享你的樣式。">
 <!ENTITY foxyproxy.pattern.subscriptions.tooltip "樣式訂閱">
 <!ENTITY foxyproxy.pattern.subscriptions.accesskey "S">
-<!ENTITY foxyproxy.pattern.subscriptions.wizard.label "精靈">
-<!ENTITY foxyproxy.pattern.subscriptions.wizard.tooltip "點擊這裏來啟動樣式訂閱精靈。">
+<!ENTITY foxyproxy.pattern.subscriptions.sharing.label "分享你的樣式">
 <!ENTITY foxyproxy.pattern.subscriptions.menulist.tooltip "選擇要執行的樣式訂閱動作。">
 <!ENTITY foxyproxy.pattern.subscriptions.addSubscription "新增訂閱的樣式">
 <!ENTITY foxyproxy.pattern.subscriptions.editSelection "編輯選擇的項目">
@@ -479,7 +493,7 @@
 <!ENTITY foxyproxy.hosting.label1 "感謝 ">
 <!ENTITY foxyproxy.ocs.label "OCS">
 <!ENTITY foxyproxy.hosting.label2 " 提供 FoxyProxy 網站代管服務，如果你有網站代管服務需求，請考慮 OCS。">
-<!-- begin foxyproxyplus -->
+<!-- end foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "新增/編輯 本機 IP 位址樣式">
 <!ENTITY foxyproxy.tempip.popup.label "臨時性樣式讓你建立不常使用的本機 IP 位址樣式，這些樣式不會儲存到設定檔中造成樣式清單紊亂，而是保留在記憶體中，只在這次執行 Firefox 有效。">
 <!ENTITY foxyproxy.ip.pattern.label "本機 IP 位址樣式">

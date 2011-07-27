@@ -36,9 +36,12 @@
 <!ENTITY foxyproxy.help.label "Contenu de l'aide">
 <!ENTITY foxyproxy.help.accesskey "a">
 <!ENTITY foxyproxy.help.tooltip "Affiche l'aide">
+<!ENTITY foxyproxy.import.pattern.label "Importer">
+<!ENTITY foxyproxy.import.pattern.accesskey "I">
+<!ENTITY foxyproxy.import.pattern.tooltip "Importer des motifs">
 <!ENTITY foxyproxy.export.pattern.label "Export">
 <!ENTITY foxyproxy.export.pattern.accesskey "X">
-<!ENTITY foxyproxy.export.pattern.tooltip "Export patterns as a pattern subscription">
+<!ENTITY foxyproxy.export.pattern.tooltip2 "Exporter tous les motifs">
 <!ENTITY foxyproxy.close.label "Fermer">
 <!ENTITY foxyproxy.close.accesskey "F">
 <!ENTITY foxyproxy.close.tooltip "Ferme la fenêtre">
@@ -55,6 +58,14 @@
 <!ENTITY foxyproxy.copy.selection.accesskey "C">
 <!ENTITY foxyproxy.copy.selection.tooltip "Copie la sélection">
 <!ENTITY foxyproxy.mode.label "Sélectionner le mode">
+<!-- begin foxyproxyplus -->
+<!ENTITY foxyproxy.wpad.label "Détecter automatiquement les paramètres du proxy pour ce réseau">
+<!ENTITY foxyproxy.wpad.accesskey "r">
+<!ENTITY foxyproxy.wpad.tooltip "Détecter automatiquement les paramètres du proxy en utilisant WPAD">
+<!ENTITY foxyproxy.wpad.reload.label "Détecter automatiquement les paramètres du proxy toutes les">
+<!ENTITY foxyproxy.wpad.reload.accesskey "D">
+<!ENTITY foxyproxy.wpad.reload.tooltip "Détecter automatiquement le proxy à intervalle spécifié">
+<!ENTITY foxyproxy.wpad.tree.label "Détecter automatiquement le proxy">
 <!ENTITY foxyproxy.auto.url.label "Adresse de configuration automatique du proxy">
 <!ENTITY foxyproxy.auto.url.accesskey "d">
 <!ENTITY foxyproxy.auto.url.tooltip "Entrer l&apos;URL du fichier PAC">
@@ -91,6 +102,9 @@
 <!ENTITY foxyproxy.tab.patterns.tooltip "Gestion des motifs de correspondance">
 <!ENTITY foxyproxy.add.title "Paramètres du proxy">
 <!ENTITY foxyproxy.pattern.description "Vous pouvez ici ajouter ou retirer les URL pour lesquelles ce proxy est utilisé">
+<!ENTITY foxyproxy.pattern.nointernal.label "Ne pas utiliser ce proxy pour des adresses IP internes">
+<!ENTITY foxyproxy.pattern.nointernal.tooltip "Cette case à cocher vous permet de limiter le proxy aux adresses IP non-internes">
+<!ENTITY foxyproxy.pattern.nointernal.accesskey "n">
 <!ENTITY foxyproxy.pattern.matchtype.label "Format du motif">
 <!ENTITY foxyproxy.pattern.whiteblack.label "URL autorisées/exclues">
 <!ENTITY foxyproxy.add.option.direct.label "Connexion Internet directe (sans proxy)">
@@ -427,10 +441,10 @@
 <!ENTITY foxyproxy.server.subscriptions.accesskey "S">
 <!ENTITY foxyproxy.selectproxy.label "Choisir un proxy">
 <!ENTITY foxyproxy.pattern.subscriptions.label "Pattern Subscriptions">
+<!ENTITY foxyproxy.pattern.subscriptions.description "S'abonner aux motifs publiés par d'autres. Partagez vos motifs juste en quelques clics.">
 <!ENTITY foxyproxy.pattern.subscriptions.tooltip "Manage Pattern Subscriptions">
 <!ENTITY foxyproxy.pattern.subscriptions.accesskey "S">
-<!ENTITY foxyproxy.pattern.subscriptions.wizard.label "Assistant">
-<!ENTITY foxyproxy.pattern.subscriptions.wizard.tooltip "Cliquez ici pour lancer l'assistant d'abonnement de motif.">
+<!ENTITY foxyproxy.pattern.subscriptions.sharing.label "Partager vos motifs">
 <!ENTITY foxyproxy.pattern.subscriptions.menulist.tooltip "Choisissez ce qu'il faut fiare avec les abonnements de motif.">
 <!ENTITY foxyproxy.pattern.subscriptions.addSubscription "Ajouter le nouvel abonnement de motif">
 <!ENTITY foxyproxy.pattern.subscriptions.editSelection "Éditer la sélection">
@@ -479,7 +493,7 @@
 <!ENTITY foxyproxy.hosting.label1 "Merci à">
 <!ENTITY foxyproxy.ocs.label "OCS">
 <!ENTITY foxyproxy.hosting.label2 "pour héberger le site Web de FoxyProxy. Si vous avez besoin d'un hébergement, veuillez prendre en considération OCS.">
-<!-- begin foxyproxyplus -->
+<!-- end foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Ajouter / éditer un motif d&apos;adresse IP Locale">
 <!ENTITY foxyproxy.tempip.popup.label "Les motifs temporaires vous permettent de créer des motifs  que vous n&apos;utilisez pas souvent afin d&apos;éviter de surcharger la liste des motifs d&apos;adresse IP pour un proxy. Les motifs temporaires ne sont pas enregistrés sur le disque. Ils sont conservés en mémoire et ne sont utilisés que dans cette session Firefox.">
 <!ENTITY foxyproxy.ip.pattern.label "Motif d&apos;adresse IP locale">

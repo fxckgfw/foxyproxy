@@ -36,9 +36,12 @@
 <!ENTITY foxyproxy.help.label "ส่วนช่วยเหลือ">
 <!ENTITY foxyproxy.help.accesskey "ส">
 <!ENTITY foxyproxy.help.tooltip "แสดงช่วยเหลือ">
+<!ENTITY foxyproxy.import.pattern.label "นำเข้า">
+<!ENTITY foxyproxy.import.pattern.accesskey "น">
+<!ENTITY foxyproxy.import.pattern.tooltip "นำเข้ารูปแบบ">
 <!ENTITY foxyproxy.export.pattern.label "Export">
 <!ENTITY foxyproxy.export.pattern.accesskey "X">
-<!ENTITY foxyproxy.export.pattern.tooltip "Export patterns as a pattern subscription">
+<!ENTITY foxyproxy.export.pattern.tooltip2 "ส่งออกรูปแบบทั้งหมด">
 <!ENTITY foxyproxy.close.label "ปิด">
 <!ENTITY foxyproxy.close.accesskey "ป">
 <!ENTITY foxyproxy.close.tooltip "ปิดหน้าต่าง">
@@ -55,6 +58,14 @@
 <!ENTITY foxyproxy.copy.selection.accesskey "ค">
 <!ENTITY foxyproxy.copy.selection.tooltip "คัดลอกสิ่งที่เลือก">
 <!ENTITY foxyproxy.mode.label "โหมดเลือก">
+<!-- begin foxyproxyplus -->
+<!ENTITY foxyproxy.wpad.label "ค้นหาการตั้งค่าพร็อกซีสำหรับเครือข่ายโดยอัตโนมัติ">
+<!ENTITY foxyproxy.wpad.accesskey "ข">
+<!ENTITY foxyproxy.wpad.tooltip "ค้นหาการตั้งค่าพร็อกซีโดยอัตโนมัติโดยใช้ WPAD">
+<!ENTITY foxyproxy.wpad.reload.label "ค้นหาการตั้งค่าพร็อกซีโดยอัตโนมัติทุกๆ">
+<!ENTITY foxyproxy.wpad.reload.accesskey "ค">
+<!ENTITY foxyproxy.wpad.reload.tooltip "ค้นหาการตั้งค่าพร็อกซีโดยอัตโนมัติทุกๆระยะเวลาที่กำหนด">
+<!ENTITY foxyproxy.wpad.tree.label "ค้นหาการตั้งค่าพร็อกซีโดยอัตโนมัติ">
 <!ENTITY foxyproxy.auto.url.label "พร็อกซียูอาร์แอลปรับแต่งอัตโนมัติ">
 <!ENTITY foxyproxy.auto.url.accesskey "อ">
 <!ENTITY foxyproxy.auto.url.tooltip "กรอกยูอาร์แอลหรือแฟ้ม PAC">
@@ -91,6 +102,9 @@
 <!ENTITY foxyproxy.tab.patterns.tooltip "จัดการแบบรูปยูอาร์แอล">
 <!ENTITY foxyproxy.add.title "การตั้งค่าพร็อกซี">
 <!ENTITY foxyproxy.pattern.description "ที่นี่คุณสามารถกำหนดเมื่อพร็อกซีนี้ไม่ถูกใช้">
+<!ENTITY foxyproxy.pattern.nointernal.label "ไม่ใช้พร็อกซีนี้กับที่อยู่ไอพีภายใน">
+<!ENTITY foxyproxy.pattern.nointernal.tooltip "กล่องเครื่องหมายนี้อนุญาตให้คุณปิดกั้นพร็อกซีต่อที่อยู่ไอพีภายนอก">
+<!ENTITY foxyproxy.pattern.nointernal.accesskey "ภ">
 <!ENTITY foxyproxy.pattern.matchtype.label "แบบรูป">
 <!ENTITY foxyproxy.pattern.whiteblack.label "ผนวก/แยกยูอาร์แอล">
 <!ENTITY foxyproxy.add.option.direct.label "การเชื่อมต่ออินเทอร์เน็ตโดยตรง (ไม่ใช้พร็อกซี)">
@@ -427,10 +441,10 @@
 <!ENTITY foxyproxy.server.subscriptions.accesskey "S">
 <!ENTITY foxyproxy.selectproxy.label "เลือกพรอกซี">
 <!ENTITY foxyproxy.pattern.subscriptions.label "Pattern Subscriptions">
+<!ENTITY foxyproxy.pattern.subscriptions.description "ลงชื่อติดตามรูปแบบของผู้ใช้คนอื่น แบ่งปันรูปแบบของคุณให้คนอื่นได้ง่ายๆ">
 <!ENTITY foxyproxy.pattern.subscriptions.tooltip "Manage Pattern Subscriptions">
 <!ENTITY foxyproxy.pattern.subscriptions.accesskey "S">
-<!ENTITY foxyproxy.pattern.subscriptions.wizard.label "Wizard">
-<!ENTITY foxyproxy.pattern.subscriptions.wizard.tooltip "Click here to start the pattern subscription wizard.">
+<!ENTITY foxyproxy.pattern.subscriptions.sharing.label "แบ่งปันรูปแบบ">
 <!ENTITY foxyproxy.pattern.subscriptions.menulist.tooltip "Select what to do with pattern subscriptions.">
 <!ENTITY foxyproxy.pattern.subscriptions.addSubscription "Add New Pattern Subscription">
 <!ENTITY foxyproxy.pattern.subscriptions.editSelection "Edit Selection">
@@ -479,7 +493,7 @@
 <!ENTITY foxyproxy.hosting.label1 "ขอขอบคุณ">
 <!ENTITY foxyproxy.ocs.label "OCS">
 <!ENTITY foxyproxy.hosting.label2 "สำหรับการโฮสต์เว็บไซต์ FoxyProxy ถ้าคุณต้องการโฮสต์กรุณาติดต่อ OCS">
-<!-- begin foxyproxyplus -->
+<!-- end foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Add/Edit Local IP Address Pattern">
 <!ENTITY foxyproxy.tempip.popup.label "Temporary patterns allow you to create patterns for local IP addresses that you don&apos;t use often without cluttering the IP address pattern list for a proxy. Temporary patterns are not saved to disk. They are kept in-memory and used for this Firefox session only.">
 <!ENTITY foxyproxy.ip.pattern.label "Local IP address pattern">

@@ -36,9 +36,12 @@
 <!ENTITY foxyproxy.help.label "Contenuti guida">
 <!ENTITY foxyproxy.help.accesskey "o">
 <!ENTITY foxyproxy.help.tooltip "Accesso ai contenuti guida">
+<!ENTITY foxyproxy.import.pattern.label "Importa…">
+<!ENTITY foxyproxy.import.pattern.accesskey "I">
+<!ENTITY foxyproxy.import.pattern.tooltip "Importa i modelli">
 <!ENTITY foxyproxy.export.pattern.label "Esporta…">
 <!ENTITY foxyproxy.export.pattern.accesskey "s">
-<!ENTITY foxyproxy.export.pattern.tooltip "Esporta tutti i modelli come sottoscrizione di modelli">
+<!ENTITY foxyproxy.export.pattern.tooltip2 "Esporta tutti i modelli">
 <!ENTITY foxyproxy.close.label "Chiudi">
 <!ENTITY foxyproxy.close.accesskey "h">
 <!ENTITY foxyproxy.close.tooltip "Chiudi la finestra">
@@ -55,6 +58,14 @@
 <!ENTITY foxyproxy.copy.selection.accesskey "C">
 <!ENTITY foxyproxy.copy.selection.tooltip "Copia la selezione">
 <!ENTITY foxyproxy.mode.label "Utilizzo">
+<!--For translators: The following two strings are already included into Firefox and may be found in the Preferences panel -> Advanced -> Network Settings-->
+<!ENTITY foxyproxy.wpad.label "Individua automaticamente le impostazioni dei proxy per questa rete">
+<!ENTITY foxyproxy.wpad.accesskey "x">
+<!ENTITY foxyproxy.wpad.tooltip "Individua automaticaticamente le impostazioni dei proxy con il protocollo WPAD">
+<!ENTITY foxyproxy.wpad.reload.label "Individua ogni">
+<!ENTITY foxyproxy.wpad.reload.accesskey "o">
+<!ENTITY foxyproxy.wpad.reload.tooltip "Individua automaticamente le impostazioni dei proxy nell'intervallo specificato">
+<!ENTITY foxyproxy.wpad.tree.label "Individua automaticamente il proxy">
 <!ENTITY foxyproxy.auto.url.label "Configurazione automatica dei proxy (URL):">
 <!ENTITY foxyproxy.auto.url.accesskey "u">
 <!ENTITY foxyproxy.auto.url.tooltip "Specificare l&apos;URL del file PAC">
@@ -91,6 +102,9 @@
 <!ENTITY foxyproxy.tab.patterns.tooltip "Gestione dei modelli URL">
 <!ENTITY foxyproxy.add.title "Impostazioni dei proxy">
 <!ENTITY foxyproxy.pattern.description "Qui si possono aggiungere o eliminare URL per cui viene usato questo proxy">
+<!ENTITY foxyproxy.pattern.nointernal.label "Non utilizzare questo proxy per gli indirizzi IP locali">
+<!ENTITY foxyproxy.pattern.nointernal.tooltip "Selezionare questa opzione per non utilizzare il proxy con gli indirizzi IP locali">
+<!ENTITY foxyproxy.pattern.nointernal.accesskey "N">
 <!ENTITY foxyproxy.pattern.matchtype.label "Elementi contenuti nel modello">
 <!ENTITY foxyproxy.pattern.whiteblack.label "Modelli permessi/non permessi">
 <!ENTITY foxyproxy.add.option.direct.label "Connessione diretta ad internet">
@@ -427,10 +441,10 @@
 <!ENTITY foxyproxy.server.subscriptions.accesskey "y">
 <!ENTITY foxyproxy.selectproxy.label "Selezione del proxy">
 <!ENTITY foxyproxy.pattern.subscriptions.label "Sottoscrizioni modelli">
+<!ENTITY foxyproxy.pattern.subscriptions.description "Facendo clic sul link 'Condividi le sottoscrizioni di modelli' è possibile condividere facilmente le proprie sottoscrizioni di modelli e ottenere informazioni su come utilizzare quelle pubblicate da altri utenti">
 <!ENTITY foxyproxy.pattern.subscriptions.tooltip "Gestione delle sottoscrizioni di modelli">
 <!ENTITY foxyproxy.pattern.subscriptions.accesskey "l">
-<!ENTITY foxyproxy.pattern.subscriptions.wizard.label "Configurazione guidata…">
-<!ENTITY foxyproxy.pattern.subscriptions.wizard.tooltip "Avvia la configurazione guidata per la sottoscrizione di modelli">
+<!ENTITY foxyproxy.pattern.subscriptions.sharing.label "Condividi le sottoscrizioni di modelli">
 <!ENTITY foxyproxy.pattern.subscriptions.menulist.tooltip "Azione da effettuare per le sottoscrizioni di modelli">
 <!ENTITY foxyproxy.pattern.subscriptions.addSubscription "Aggiungi sottoscrizione">
 <!ENTITY foxyproxy.pattern.subscriptions.editSelection "Modifica sottoscrizione selezionata">

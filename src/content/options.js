@@ -31,7 +31,7 @@ function onLoad() {
   obs.addObserver(observer,"foxyproxy-mode-change", false);
   obs.addObserver(observer,"foxyproxy-proxy-change", false);
   obs.addObserver(observer,"foxyproxy-tree-update", false);
-  sizeToContent();
+  //sizeToContent();
   let svgDoc = document.getElementById("patterns-svg");
   patternsIcon = svgDoc.getElementsByTagName("rect");
   createPatternsIcon();
@@ -75,7 +75,7 @@ function _initSettings() {
 function updateSettingsInfo() {
   document.getElementById("settingsURL").value = foxyproxy.getSettingsURI("uri-string");
   document.getElementById("notDefaultSettingsBroadcaster").hidden = foxyproxy.usingDefaultSettingsURI();
-  sizeToContent(); // because .hidden above can change the size of controls
+  //sizeToContent(); // because .hidden above can change the size of controls
 }
 
 function sortlog(columnId) {

@@ -7,6 +7,35 @@
  * http://www.gnu.org/licenses/gpl.txt
  */
 
+// The code in the methods isAutoProxySubscription() and
+// generateAutoProxyChecksum() as well as the first part of
+// processAutoProxySubscription() is released in AdBlock Plus using the
+// following license:
+
+/* ***** BEGIN LICENSE BLOCK *****
+ * Version: MPL 1.1
+ *
+ * The contents of this file are subject to the Mozilla Public License Version
+ * 1.1 (the "License"); you may not use this file except in compliance with
+ * the License. You may obtain a copy of the License at
+ * http://www.mozilla.org/MPL/
+ *
+ * Software distributed under the License is distributed on an "AS IS" basis,
+ * WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
+ * for the specific language governing rights and limitations under the
+ * License.
+ *
+ * The Original Code is Adblock Plus.
+ *
+ * The Initial Developer of the Original Code is
+ * Wladimir Palant.
+ * Portions created by the Initial Developer are Copyright (C) 2006-2009
+ * the Initial Developer. All Rights Reserved.
+ *
+ * Contributor(s):
+ *
+ * ***** END LICENSE BLOCK ***** */
+
 "use strict";
 
 var Ci = Components.interfaces, Cu = Components.utils, Cc = Components.classes;
@@ -174,18 +203,35 @@ var patternSubscriptions = {
 	  var win = this.fpc.getMostRecentWindow();
 	  var mySandbox = Cu.Sandbox(win);
 	  mySandbox.window = win;
-	  // We need to replace newlines and other special characters here. As
-	  // there are lots of implementations that differ on this issue and the
+          // We needed to replace newlines and other special characters here. As
+          // there are lots of implementations that differ on this issue and the
           // issue whether there should/may be a specific line length (say 64 or
           // 76 chars).
-	  mySandbox.responseText = req.responseText.replace(/\s*/g, '');
+	  mySandbox.responseText = subscriptionText.replace(/\s*/g, '');
           subscriptionText = Cu.evalInSandbox("window.atob(responseText);",
             mySandbox); 
 	} catch (e) {
           errorMessages.push(this.fp.
               getMessage("patternsubscription.error.base64"));
+          // Checking for a AutoProxy subscription here. Maybe it is not Base64
+          // encoded.
+          let lines = this.isAutoProxySubscription(subscriptionText);
+          if (lines) {
+            parsedSubscription = this.processAutoProxySubscription(lines,
+              errorMessages);
+            // Could be as well an array of error messages here...
+            return parsedSubscription;
+          } 
           return errorMessages;
 	}
+        // Checking for AutoProxy...
+        let lines = this.isAutoProxySubscription(subscriptionText);
+        if (lines) {
+          parsedSubscription = this.processAutoProxySubscription(lines,
+            errorMessages);
+          // Could be as well an array of error messages here...
+          return parsedSubscription;
+        } 
         subscriptionJSON = this.getObjectFromJSON(subscriptionText, 
           errorMessages); 
         // We do not need to process the subscription any further if we got
@@ -810,6 +856,60 @@ var patternSubscriptions = {
 
   toHexString: function(charCode) {
     return ("0" + charCode.toString(16)).slice(-2);
+  },
+
+  isAutoProxySubscription: function(text) {
+    let lines = text.split(/[\r\n]+/);
+    if (/\[AutoProxy(?:\s+\d\.\d\.\d)?\]/i.test(lines[0])) {
+      return lines;
+    }
+    return false;
+  },
+
+  processAutoProxySubscription: function(lines, errorMessages) {
+    // Checking the checksum first, if there is any at all...
+    for (let i = 0, length = lines.length; i < length; i++) {
+      if (/!\s*checksum[\s\-:]+([\w\+\/]+)/i.test(lines[i])) {
+        lines.splice(i, 1);
+        let checksumExpected = RegExp.$1;
+        let checksum = this.generateAutoProxyChecksum(lines);
+        if (checksum && checksum != checksumExpected) {
+          if (!this.fp.warnings.showWarningIfDesired(null, 
+            ["patternsubscription.warning.md5"], "md5Warning")) {
+	    errorMessages.push(this.fp.
+            getMessage("patternsubscription.error.cancel5")); 
+            return errorMessages;
+          } 
+        }
+        break;
+      }
+    } 
+    // Now, after checking the MD5 sum let's convert the subscription into
+    // FoxyProxy format.
+    let parsedSubscription;
+    return parsedSubscription;
+  }, 
+
+  generateAutoProxyChecksum: function(lines) {
+    let stream = null;
+    try {
+      // Checksum is an MD5 checksum (base64-encoded without the trailing "=")
+      // of all lines in UTF-8 without the checksum line, joined with "\n".
+      let converter = Cc["@mozilla.org/intl/scriptableunicodeconverter"].
+        createInstance(Ci.nsIScriptableUnicodeConverter);
+      converter.charset = "UTF-8";
+      stream = converter.convertToInputStream(lines.join("\n"));
+      let hashEngine = Cc["@mozilla.org/security/hash;1"].
+        createInstance(Ci.nsICryptoHash);
+      hashEngine.init(hashEngine.MD5);
+      hashEngine.updateFromStream(stream, stream.available());
+      return hashEngine.finish(true).replace(/=+$/, "");
+    } catch (e) {
+      return null;
+    } finally {
+      if (stream)
+        stream.close();
+    } 
   },
 
   makeSubscriptionsTreeView: function() {

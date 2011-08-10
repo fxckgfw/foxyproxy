@@ -1,0 +1,1 @@
+* rermoved Flock support as it is not actively developed anymore (see: http://flock.com/) 

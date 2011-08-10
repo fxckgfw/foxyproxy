@@ -18,7 +18,7 @@
 <!-- begin-foxyproxy-standard -->
         <em:id>foxyproxy@eric.h.jung</em:id>
         <em:name>FoxyProxy Standard</em:name>
-        <em:version>3.2a1</em:version>
+        <em:version>3.2b1</em:version>
 <!-- end-foxyproxy-standard -->
 <!-- begin-foxyproxy-simple
         <em:id>foxyproxy-basic@eric.h.jung</em:id>
@@ -45,14 +45,6 @@ end-foxyproxy-simple -->
                 <em:minVersion>3.1b3</em:minVersion>
                 <em:maxVersion>8.0a1</em:maxVersion>
             </Description>
-        </em:targetApplication>
-        <!-- Flock -->
-        <em:targetApplication>
-         <Description>
-            <em:id>{a463f10c-3994-11da-9945-000d60ca027b}</em:id>
-            <em:minVersion>0.7</em:minVersion>
-            <em:maxVersion>2.0.*</em:maxVersion>
-          </Description>
         </em:targetApplication>
         <!-- SeaMonkey -->
         <em:targetApplication>

@@ -36,12 +36,12 @@
 <!ENTITY foxyproxy.help.label "Справка">
 <!ENTITY foxyproxy.help.accesskey "С">
 <!ENTITY foxyproxy.help.tooltip "Перейти на веб-страницу со справочной информацией">
-<!ENTITY foxyproxy.import.pattern.label "Import">
-<!ENTITY foxyproxy.import.pattern.accesskey "I">
-<!ENTITY foxyproxy.import.pattern.tooltip "Import patterns">
+<!ENTITY foxyproxy.import.pattern.label "Импорт">
+<!ENTITY foxyproxy.import.pattern.accesskey "И">
+<!ENTITY foxyproxy.import.pattern.tooltip "Импорт шаблонов">
 <!ENTITY foxyproxy.export.pattern.label "Export">
 <!ENTITY foxyproxy.export.pattern.accesskey "X">
-<!ENTITY foxyproxy.export.pattern.tooltip2 "Export all patterns">
+<!ENTITY foxyproxy.export.pattern.tooltip2 "Экспорт всех шаблонов">
 <!ENTITY foxyproxy.close.label "Выйти">
 <!ENTITY foxyproxy.close.accesskey "В">
 <!ENTITY foxyproxy.close.tooltip "Закрыть окно">
@@ -59,13 +59,13 @@
 <!ENTITY foxyproxy.copy.selection.tooltip "Скопировать отмеченный элемент">
 <!ENTITY foxyproxy.mode.label "Выбран режим">
 <!-- begin foxyproxyplus -->
-<!ENTITY foxyproxy.wpad.label "Auto-detect proxy settings for this network">
+<!ENTITY foxyproxy.wpad.label "Автоопределение настроек прокси для данной сети">
 <!ENTITY foxyproxy.wpad.accesskey "W">
-<!ENTITY foxyproxy.wpad.tooltip "Detect the proxy settings automatically using WPAD">
-<!ENTITY foxyproxy.wpad.reload.label "Detect proxy settings automatically every">
-<!ENTITY foxyproxy.wpad.reload.accesskey "D">
-<!ENTITY foxyproxy.wpad.reload.tooltip "Auto-detect the proxy every specified period">
-<!ENTITY foxyproxy.wpad.tree.label "Auto-detect proxy">
+<!ENTITY foxyproxy.wpad.tooltip "Определение настроек прокси автоматически с использованием WPAD">
+<!ENTITY foxyproxy.wpad.reload.label "Определение параметров прокси-сервера автоматически каждые">
+<!ENTITY foxyproxy.wpad.reload.accesskey "О">
+<!ENTITY foxyproxy.wpad.reload.tooltip "Автоматическое обнаружение прокси за определенный период">
+<!ENTITY foxyproxy.wpad.tree.label "Автоматическое обнаружение прокси">
 <!ENTITY foxyproxy.auto.url.label "URL автоматической настройки прокси">
 <!ENTITY foxyproxy.auto.url.accesskey "а">
 <!ENTITY foxyproxy.auto.url.tooltip "Ввести URL-адрес PAC-файла">
@@ -102,9 +102,9 @@
 <!ENTITY foxyproxy.tab.patterns.tooltip "Управление шаблонами URL-адресов">
 <!ENTITY foxyproxy.add.title "Параметры прокси">
 <!ENTITY foxyproxy.pattern.description "Здесь определяется когда использовать этот прокси, а когда нет.">
-<!ENTITY foxyproxy.pattern.nointernal.label "Do not use this proxy for internal IP addresses">
-<!ENTITY foxyproxy.pattern.nointernal.tooltip "This checkbox allows you to restrict the proxy to non-internal IP addresses">
-<!ENTITY foxyproxy.pattern.nointernal.accesskey "N">
+<!ENTITY foxyproxy.pattern.nointernal.label "Не используйте этот прокси-сервер для внутренних IP-адресов">
+<!ENTITY foxyproxy.pattern.nointernal.tooltip "Этот флажок позволяет ограничить прокси для не внутренних IP-адресов">
+<!ENTITY foxyproxy.pattern.nointernal.accesskey "Н">
 <!ENTITY foxyproxy.pattern.matchtype.label "Шаблон содержит">
 <!ENTITY foxyproxy.pattern.whiteblack.label "URL соответствия/исключения">
 <!ENTITY foxyproxy.add.option.direct.label "Прямое подключение в Интернет (без прокси)">
@@ -441,23 +441,23 @@
 <!ENTITY foxyproxy.server.subscriptions.accesskey "S">
 <!ENTITY foxyproxy.selectproxy.label "Select Proxy">
 <!ENTITY foxyproxy.pattern.subscriptions.label "Образец подписок">
-<!ENTITY foxyproxy.pattern.subscriptions.description "Subscribe to patterns published by others. Share your patterns with others in just a few clicks.">
-<!ENTITY foxyproxy.pattern.subscriptions.tooltip "Управление образцами подписок">
-<!ENTITY foxyproxy.pattern.subscriptions.accesskey "S">
-<!ENTITY foxyproxy.pattern.subscriptions.sharing.label "Share Your Patterns">
-<!ENTITY foxyproxy.pattern.subscriptions.menulist.tooltip "Select what to do with pattern subscriptions.">
-<!ENTITY foxyproxy.pattern.subscriptions.addSubscription "Add New Pattern Subscription">
-<!ENTITY foxyproxy.pattern.subscriptions.editSelection "Edit Selection">
-<!ENTITY foxyproxy.pattern.subscriptions.deleteSelections "Delete Selections">
-<!ENTITY foxyproxy.pattern.subscriptions.refreshSelections "Refresh Selections">
-<!ENTITY foxyproxy.pattern.subscriptions.viewSubscription "View Pattern Subscription">
-<!ENTITY foxyproxy.pattern.subscriptions.go.label "Go">
-<!ENTITY foxyproxy.pattern.subscriptions.go.tooltip "Click here to execute your selection.">
-<!ENTITY foxyproxy.pattern.subscriptions.lastStatus.label "Last Status">
-<!ENTITY foxyproxy.pattern.subscriptions.addedit.title "Add/Edit Pattern Subscription">
-<!ENTITY foxyproxy.pattern.subscriptions.name.label "Subscription Name">
-<!ENTITY foxyproxy.pattern.subscriptions.name.tooltip "Subscription Name">
-<!ENTITY foxyproxy.pattern.subscriptions.notes.label "Subscription Description">
+<!ENTITY foxyproxy.pattern.subscriptions.description "Подписаться на шаблоны опубликованые другими. Поделитесь своими шаблонами с другими всего за несколько кликов.">
+<!ENTITY foxyproxy.pattern.subscriptions.tooltip "Управление подписками на шаблоны">
+<!ENTITY foxyproxy.pattern.subscriptions.accesskey "п">
+<!ENTITY foxyproxy.pattern.subscriptions.sharing.label "Поделитесь своими шаблонами">
+<!ENTITY foxyproxy.pattern.subscriptions.menulist.tooltip "Выберите, что делать с подписками на шаблоны.">
+<!ENTITY foxyproxy.pattern.subscriptions.addSubscription "Добавить новую подписку на шаблоны">
+<!ENTITY foxyproxy.pattern.subscriptions.editSelection "Изменить выбор">
+<!ENTITY foxyproxy.pattern.subscriptions.deleteSelections "Удалить выбранное">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshSelections "Обновить выбранное">
+<!ENTITY foxyproxy.pattern.subscriptions.viewSubscription "Показать подписку на шаблоны">
+<!ENTITY foxyproxy.pattern.subscriptions.go.label "Вперёд">
+<!ENTITY foxyproxy.pattern.subscriptions.go.tooltip "Нажмите сюда, чтобы выполнить выбранное.">
+<!ENTITY foxyproxy.pattern.subscriptions.lastStatus.label "Последний статус">
+<!ENTITY foxyproxy.pattern.subscriptions.addedit.title "Добавить / Изменить подписку на шаблоны">
+<!ENTITY foxyproxy.pattern.subscriptions.name.label "Имя подписки">
+<!ENTITY foxyproxy.pattern.subscriptions.name.tooltip "Имя подписки">
+<!ENTITY foxyproxy.pattern.subscriptions.notes.label "Описание подписки">
 <!ENTITY foxyproxy.pattern.subscriptions.notes.tooltip "Subscription Description">
 <!ENTITY foxyproxy.pattern.subscriptions.url.label "Subscription URL">
 <!ENTITY foxyproxy.pattern.subscriptions.url.tooltip "Subscription URL">
@@ -470,14 +470,14 @@
 <!ENTITY foxyproxy.pattern.subscriptions.refresh.tooltip "Refresh rate of this pattern subscription in minutes">
 <!ENTITY foxyproxy.pattern.subscriptions.refreshNow.label "Refresh Now">
 <!ENTITY foxyproxy.pattern.subscriptions.refreshNow.tooltip "Refresh this pattern subscription now">
-<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp1 "Specify the number of minutes after which the subscription is updated. Updating the subscription ">
-<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp2 "removes all existing patterns ">
-<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp3 "then inserts the ones found at the subscription URL. Read more here ">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp1 "Specify the number of minutes after which the subscription is updated. Updating the subscription">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp2 "removes all existing patterns">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp3 "then inserts the ones found at the subscription URL. Read more here">
 <!ENTITY foxyproxy.pattern.subscriptions.zeroRefresh "(0 to never refresh)">
 <!ENTITY foxyproxy.pattern.subscriptions.format.tooltip "Format of this pattern subscription list">
-<!ENTITY foxyproxy.pattern.subscriptions.formatHelp "Specify the format in which the subscription is written. Normally, this is automatically detected by FoxyProxy. Read more ">
+<!ENTITY foxyproxy.pattern.subscriptions.formatHelp "Specify the format in which the subscription is written. Normally, this is automatically detected by FoxyProxy. Read more">
 <!ENTITY foxyproxy.pattern.subscriptions.obfuscation.tooltip "Obfuscation format of this pattern subscription">
-<!ENTITY foxyproxy.pattern.subscriptions.obfuscationHelp "Subscriptions are optionally obfuscated in order to prevent content-filtering by computers between you and the subscription URL. Normally, this is automatically detected by FoxyProxy. Read more ">
+<!ENTITY foxyproxy.pattern.subscriptions.obfuscationHelp "Subscriptions are optionally obfuscated in order to prevent content-filtering by computers between you and the subscription URL. Normally, this is automatically detected by FoxyProxy. Read more">
 <!ENTITY foxyproxy.pattern.subscriptions.copyLastStatus.label "Copy last status to Clipboard">
 <!ENTITY foxyproxy.pattern.subscriptions.copyLastStatus.tooltip "Copy last status to Clipboard">
 <!ENTITY foxyproxy.pattern.subscriptions.pattern.window.title "Subscription Patterns">
@@ -490,9 +490,9 @@
 <!ENTITY foxyproxy.status.label "Status">
 <!ENTITY foxyproxy.format.label "Format">
 <!ENTITY foxyproxy.obfuscation.label "Obfuscation">
-<!ENTITY foxyproxy.hosting.label1 "Благодарности ">
+<!ENTITY foxyproxy.hosting.label1 "Благодарности">
 <!ENTITY foxyproxy.ocs.label "OCS">
-<!ENTITY foxyproxy.hosting.label2 " за хостинг вебсайта проекта FoxyProxy. Если вам нужен хостинг рассмотрите OCS.">
+<!ENTITY foxyproxy.hosting.label2 "за хостинг вебсайта проекта FoxyProxy. Если вам нужен хостинг рассмотрите OCS.">
 <!-- end foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Добавить/Изменить локальный шаблон IP-адресов">
 <!ENTITY foxyproxy.tempip.popup.label "Temporary patterns allow you to create patterns for local IP addresses that you don't use often without cluttering the IP address pattern list for a proxy. Temporary patterns are not saved to disk. They are kept in-memory and used for this Firefox session only.">

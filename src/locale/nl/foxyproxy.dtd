@@ -36,12 +36,12 @@
 <!ENTITY foxyproxy.help.label "Helpinhoud">
 <!ENTITY foxyproxy.help.accesskey "H">
 <!ENTITY foxyproxy.help.tooltip "Hulpbestand tonen">
-<!ENTITY foxyproxy.import.pattern.label "Import">
+<!ENTITY foxyproxy.import.pattern.label "Importeren">
 <!ENTITY foxyproxy.import.pattern.accesskey "I">
-<!ENTITY foxyproxy.import.pattern.tooltip "Import patterns">
+<!ENTITY foxyproxy.import.pattern.tooltip "Patronen importeren">
 <!ENTITY foxyproxy.export.pattern.label "Export">
 <!ENTITY foxyproxy.export.pattern.accesskey "X">
-<!ENTITY foxyproxy.export.pattern.tooltip2 "Export all patterns">
+<!ENTITY foxyproxy.export.pattern.tooltip2 "Alle patronen exporteren">
 <!ENTITY foxyproxy.close.label "Sluiten">
 <!ENTITY foxyproxy.close.accesskey "S">
 <!ENTITY foxyproxy.close.tooltip "Venster sluiten">
@@ -59,13 +59,13 @@
 <!ENTITY foxyproxy.copy.selection.tooltip "Kopieert selectie">
 <!ENTITY foxyproxy.mode.label "Modus selecteren">
 <!-- begin foxyproxyplus -->
-<!ENTITY foxyproxy.wpad.label "Auto-detect proxy settings for this network">
-<!ENTITY foxyproxy.wpad.accesskey "W">
-<!ENTITY foxyproxy.wpad.tooltip "Detect the proxy settings automatically using WPAD">
-<!ENTITY foxyproxy.wpad.reload.label "Detect proxy settings automatically every">
+<!ENTITY foxyproxy.wpad.label "Proxyinstellingen voor dit netwerk automatisch detecteren">
+<!ENTITY foxyproxy.wpad.accesskey "w">
+<!ENTITY foxyproxy.wpad.tooltip "Proxyinstellingen automatisch detecteren met WPAD">
+<!ENTITY foxyproxy.wpad.reload.label "Proxyinstellingen automatisch detecteren elke">
 <!ENTITY foxyproxy.wpad.reload.accesskey "D">
-<!ENTITY foxyproxy.wpad.reload.tooltip "Auto-detect the proxy every specified period">
-<!ENTITY foxyproxy.wpad.tree.label "Auto-detect proxy">
+<!ENTITY foxyproxy.wpad.reload.tooltip "De proxy na elke opgegeven periode automatisch detecteren">
+<!ENTITY foxyproxy.wpad.tree.label "Proxy automatisch detecteren">
 <!ENTITY foxyproxy.auto.url.label "Automatische proxyconfiguratie-URL">
 <!ENTITY foxyproxy.auto.url.accesskey "A">
 <!ENTITY foxyproxy.auto.url.tooltip "Voer de URL van het PAC-bestand in">
@@ -102,8 +102,8 @@
 <!ENTITY foxyproxy.tab.patterns.tooltip "URL-patronen beheren">
 <!ENTITY foxyproxy.add.title "Proxy-instellingen">
 <!ENTITY foxyproxy.pattern.description "Hier kunt u specificeren wanneer deze proxy wel of niet wordt gebruikt.">
-<!ENTITY foxyproxy.pattern.nointernal.label "Do not use this proxy for internal IP addresses">
-<!ENTITY foxyproxy.pattern.nointernal.tooltip "This checkbox allows you to restrict the proxy to non-internal IP addresses">
+<!ENTITY foxyproxy.pattern.nointernal.label "Deze proxy niet gebruiken voor interne IP-adressen">
+<!ENTITY foxyproxy.pattern.nointernal.tooltip "Middels dit aanvinkveld kunt u de proxy beperken tot niet-interne IP-adressen">
 <!ENTITY foxyproxy.pattern.nointernal.accesskey "N">
 <!ENTITY foxyproxy.pattern.matchtype.label "Patroon bevat">
 <!ENTITY foxyproxy.pattern.whiteblack.label "URL-opname/uitsluiting">
@@ -441,10 +441,10 @@
 <!ENTITY foxyproxy.server.subscriptions.accesskey "S">
 <!ENTITY foxyproxy.selectproxy.label "Proxy selecteren">
 <!ENTITY foxyproxy.pattern.subscriptions.label "Patroonabonnementen">
-<!ENTITY foxyproxy.pattern.subscriptions.description "Subscribe to patterns published by others. Share your patterns with others in just a few clicks.">
+<!ENTITY foxyproxy.pattern.subscriptions.description "Abonneren op door anderen gepubliceerde patronen. Deel u patronen met anderen in een paar muisklikken.">
 <!ENTITY foxyproxy.pattern.subscriptions.tooltip "Patroonabonnementen beheren">
 <!ENTITY foxyproxy.pattern.subscriptions.accesskey "P">
-<!ENTITY foxyproxy.pattern.subscriptions.sharing.label "Share Your Patterns">
+<!ENTITY foxyproxy.pattern.subscriptions.sharing.label "Uw patronen delen">
 <!ENTITY foxyproxy.pattern.subscriptions.menulist.tooltip "Selecteer wat u wilt doen met patroonabonnementen.">
 <!ENTITY foxyproxy.pattern.subscriptions.addSubscription "Nieuw patroonabonnement toevoegen">
 <!ENTITY foxyproxy.pattern.subscriptions.editSelection "Selectie bewerken">

@@ -115,23 +115,25 @@ Match.prototype = {
     var pat = this._pattern;
     if (!this._isRegEx) {
       // Wildcards
-      pat = pat.replace(/[$.+()^]/g, "\\$&"); /* $& replaces with the string found, but with that string escaped (like the .lastMatch property) */
+      // $& replaces with the string found, but with that string escaped (like
+      // the .lastMatch property)
+      pat = pat.replace(/[$.+()^]/g, "\\$&"); 
       pat = pat.replace(/\*/g, ".*");
       pat = pat.replace(/\?/g, ".");
     }
-    if (!this._isMultiLine) {
-	    pat[0] != "^" && (pat = "^" + pat);
-  	  pat[pat.length-1] != "$" && (pat = pat + "$");
-  	}
-  	try {
-	 	  this.regex = this._caseSensitive ? new RegExp(pat) : new RegExp(pat, "i");
-	 	}
-	 	catch(e){
-	 		// ignore--we might be in a state where the regexp is invalid because
-	 		// _isRegEx hasn't been changed to false yet, so we executed the wildcard
-	 		// replace() calls. however, this code is about to re-run because we'll be
-	 		// changed to a wildcard and re-calculate the regex correctly.
-	 	}
+    //if (!this._isMultiLine) {
+      //pat[0] != "^" && (pat = "^" + pat); 
+      //pat[pat.length-1] != "$" && (pat = pat + "$");
+    //}
+    try {
+      this.regex = this._caseSensitive ? new RegExp(pat) : new RegExp(pat, "i");
+    }
+    catch(e) {
+      // ignore--we might be in a state where the regexp is invalid because
+      // _isRegEx hasn't been changed to false yet, so we executed the wildcard
+      // replace() calls. however, this code is about to re-run because we'll be
+      // changed to a wildcard and re-calculate the regex correctly.
+    }
   },
 
   fromDOM : function(n, includeTempPatterns) {

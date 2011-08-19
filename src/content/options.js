@@ -31,7 +31,7 @@ function onLoad() {
   obs.addObserver(observer,"foxyproxy-mode-change", false);
   obs.addObserver(observer,"foxyproxy-proxy-change", false);
   obs.addObserver(observer,"foxyproxy-tree-update", false);
-  //sizeToContent();
+  sizeToContent();
   let svgDoc = document.getElementById("patterns-svg");
   patternsIcon = svgDoc.getElementsByTagName("rect");
   createPatternsIcon();
@@ -75,7 +75,7 @@ function _initSettings() {
 function updateSettingsInfo() {
   document.getElementById("settingsURL").value = foxyproxy.getSettingsURI("uri-string");
   document.getElementById("notDefaultSettingsBroadcaster").hidden = foxyproxy.usingDefaultSettingsURI();
-  //sizeToContent(); // because .hidden above can change the size of controls
+  sizeToContent(); // because .hidden above can change the size of controls
 }
 
 function sortlog(columnId) {
@@ -753,7 +753,7 @@ function onQuickAddEnabled(cb) {
     document.getElementById("quickAddBroadcaster").hidden = true;
     foxyproxy.quickadd.enabled = false;
   }
-  //sizeToContent();
+  sizeToContent();
 }
 
 function onAutoAddEnabled(cb) {
@@ -762,7 +762,7 @@ function onAutoAddEnabled(cb) {
       foxyproxy.autoadd.enabled = true;
       document.getElementById("autoAddBroadcaster").hidden = false;     
       foxyproxy.autoadd.updateProxyMenu(document.getElementById("autoAddProxyMenu"), document);
-      //sizeToContent(); // call this before the alert() otherwise user can see unsized dialog in background
+      sizeToContent(); // call this before the alert() otherwise user can see unsized dialog in background
       overlay.alert(this, foxyproxy.getMessage("autoadd.notice"));
     }
     else {
@@ -773,7 +773,7 @@ function onAutoAddEnabled(cb) {
   else {
     document.getElementById("autoAddBroadcaster").hidden = true;
     foxyproxy.autoadd.enabled = false;
-    //sizeToContent();
+    sizeToContent();
   }
 }
 

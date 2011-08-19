@@ -46,6 +46,8 @@ var patternSubscriptions = {
  
   subscriptionsList : [],
 
+  // TODO: Where do we need the specific values? Wouldn't it not be enough to
+  // have just the properties in an array?
   defaultMetaValues :  {
     formatVersion : 1,
     checksum : "",
@@ -172,7 +174,7 @@ var patternSubscriptions = {
     }
   },
 
-  loadSubscription: function(aURLString, bBase64) {
+  loadSubscription: function(aURLString, bBase64, bFoxyProxy) {
     try {
       var errorMessages = [];
       var subscriptionText;
@@ -188,6 +190,11 @@ var patternSubscriptions = {
       req.overrideMimeType("application/json");
       req.send(null);
       subscriptionText = req.responseText;
+      if (bFoxyProxy) {
+
+      } else {
+
+      }
       // First we guess we have a plain text subscription and if this
       // is not working we assume a Base64 encoded response. If the last thing
       // is not working either the subscription parsing and import fails.
@@ -219,6 +226,7 @@ var patternSubscriptions = {
           if (lines) {
             parsedSubscription = this.processAutoProxySubscription(lines,
               errorMessages);
+            // TODO: Base64 stuff test is missing returning here. 
             // Could be as well an array of error messages here...
             return parsedSubscription;
           } 
@@ -230,6 +238,7 @@ var patternSubscriptions = {
           parsedSubscription = this.processAutoProxySubscription(lines,
             errorMessages);
           // Could be as well an array of error messages here...
+          // TODO: Base64 stuff test is missing returning here.
           return parsedSubscription;
         } 
         subscriptionJSON = this.getObjectFromJSON(subscriptionText, 
@@ -867,10 +876,13 @@ var patternSubscriptions = {
   },
 
   processAutoProxySubscription: function(lines, errorMessages) {
+    try {
     // Checking the checksum first, if there is any at all...
-    for (let i = 0, length = lines.length; i < length; i++) {
+    let length = lines.length;
+    for (let i = 0; i < length; i++) {
       if (/!\s*checksum[\s\-:]+([\w\+\/]+)/i.test(lines[i])) {
         lines.splice(i, 1);
+        length = length - 1;
         let checksumExpected = RegExp.$1;
         let checksum = this.generateAutoProxyChecksum(lines);
         if (checksum && checksum != checksumExpected) {
@@ -885,9 +897,66 @@ var patternSubscriptions = {
       }
     } 
     // Now, after checking the MD5 sum let's convert the subscription into
-    // FoxyProxy format.
-    let parsedSubscription;
+    // FoxyProxy format. First, we remove the AutoProxy identifier as we do not
+    // need it.
+    lines.splice(0, 1);
+    length = length - 1;
+    let parsedSubscription = {};
+    parsedSubscription.metadata = {};
+    parsedSubscription.metadata.format = "AutoProxy";
+    parsedSubscription.patterns = [];
+    // We need a different counter here as the lines in the AutoProxy
+    // subscription may still be comments or empty lines. We would have them
+    // in the FoxyProxy format then as well, a thing we do not want.
+    let j = 0;
+    for (let i = 0; i < length; i++) {
+      // Do we have text and no comments at all?
+      if (/\S/.test(lines[i]) && lines[i].indexOf("!") !== 0) {
+        parsedSubscription.patterns[j] = {};
+        // First, we convert all filters to RegExes. Therefore, we can already
+        // safely set the related property.
+        parsedSubscription.patterns[j].isRegEx = true;
+        if (lines[i].indexOf("@@") === 0) {
+          // We have a blacklist item.
+          lines[i] = lines[i].substr(2); 
+          parsedSubscription.patterns[j].blackList = true;
+        } else {
+          parsedSubscription.patterns[j].blackList = false;
+        }
+        // As the patterns in the AutoProxy format do not have names only the
+        // pattern itself is missing yet.
+        if (lines[i][0] === "/" && lines[i][lines[i].length - 1] === "/") {
+          // We found already a RegEx
+          parsedSubscription.patterns[j].pattern = lines[i].substr(1,
+            lines[i].length - 2);
+        } else {
+          if (lines[i].indexOf("http:") === 0) {
+            lines[i] = "|" + lines[i];
+          } else if (lines[i][0] !== "|") {
+            lines[i] = "|http:*" + lines[i];  
+          }
+          parsedSubscription.patterns[j].pattern =
+            lines[i].replace(/\*+/g, "*")    // remove multiple wildcards
+                 .replace(/\^\|$/, "^")  // remove anchors following separator placeholder
+                 .replace(/(\W)/g, "\\$1")    // escape special symbols
+                 .replace(/\\\*/g, ".*")      // replace wildcards by .*
+                 .replace(/\\\^/g, "(?:[^\\w\\-.%\\u0080-\\uFFFF]|$)")            // process separator placeholders
+                 .replace(/^\\\|\\\|/, "^[\\w\\-]+:\\/+(?!\\/)(?:[^\\/]+\\.)?") // process extended anchor at expression start
+                 .replace(/^\\\|/, "^")       // process anchor at expression start
+                 .replace(/\\\|$/, "$")       // process anchor at expression end
+                 .replace(/^(\.\*)/,"")       // remove leading wildcards
+                 .replace(/(\.\*)$/,"");      // remove trailing wildcards 
+          if (parsedSubscription.patterns[j].pattern === "") {
+            parsedSubscription.patterns[j].pattern = ".*"
+          }
+        }
+        j = j + 1;
+      }
+    }
     return parsedSubscription;
+    } catch (e) {
+      dump("Error while parsing the AutoProxy list: " + e);
+    }
   }, 
 
   generateAutoProxyChecksum: function(lines) {

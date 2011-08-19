@@ -158,7 +158,7 @@
             <menulist id="subscriptionFormat">
 	      <menupopup>
                 <menuitem label="FoxyProxy"/>
-		<!--<menuitem label="AutoProxy"/>-->
+		<menuitem label="AutoProxy"/>
               </menupopup>
 	    </menulist>
 	    <toolbarbutton class="foxyproxy-ref" popup="formatHelp"

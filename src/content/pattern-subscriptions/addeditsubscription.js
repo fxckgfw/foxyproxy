@@ -105,7 +105,7 @@ function onOK() {
     userValues.proxies = [];
     var proxyFound;
     var newProxies = [];
-    var parsedSubscription, base64Encoded
+    var parsedSubscription, base64Encoded, foxyproxyFormat;
     var errorText = "";
     var url = document.getElementById("subscriptionUrl").value;
     // ToDo: Do we want to check whether it is really a URL here?
@@ -138,8 +138,9 @@ function onOK() {
       selectedItem.label.toLowerCase();
     if (window.arguments[0].inn === null) {
       base64Encoded = userValues.obfuscation === "base64";
+      foxyproxyFormat = userValues.format === "FoxyProxy";
       parsedSubscription = patternSubscriptions.
-	loadSubscription(userValues.url, base64Encoded);
+	loadSubscription(userValues.url, base64Encoded, foxyproxyFormat);
       // The following is kind of a trivial array test. We need that to check
       // whether we got an array of error Messages back or a subscription
       // object. Iff the latter is the case we add a new subscription. As we

@@ -1,5 +1,9 @@
-* rermoved Flock support as it is not actively developed anymore (see: http://flock.com/) 
+* removed Flock support as it is not actively developed anymore (see: http://flock.com/) 
 * fix bug in handling regular expressions ("^" and "$" was always added to
   single line regular expressions)
 * removed height/width persistence in dialogs where sizeToContent() is
   called solving the issue of growing dialogs finally
+* improved handling of context menus if one right-clicks on the statusbar icon/
+  text or toolbar icon
+* made "Reload all tabs in all browsers" option (in Global Settings -> 
+  Toolbar Activation/Statusbar Activation) working again

@@ -85,21 +85,27 @@
                onpopupshowing="foxyproxy.onPopupShowing(this, event);"
                onpopuphiding="foxyproxy.onPopupHiding();"/>
     <!-- mousethrough is for SB. See http://www.songbirdnest.com/node/2547 -->
+    <!-- We declare the context attribute but have no id as argument in order
+         to avoid the mess with getting the default context menu shown. -->
     <statusbarpanel id="foxyproxy-status-text"
       onclick="foxyproxy.onSBTBClick(event, foxyproxy.fp.statusbar);"
-      mode="patterns" persist="mode hidden" hidden="true" mousethrough="never"/>
+      mode="patterns" persist="mode hidden" hidden="true"
+      context="" mousethrough="never"/>
     <!-- mousethrough is for SB. See http://www.songbirdnest.com/node/2547 -->
+    <!-- We declare the context attribute but have no id as argument in order
+         to avoid the mess with getting the default context menu shown. --> 
     <statusbarpanel id="foxyproxy-statusbar-icon"
       onclick="foxyproxy.onSBTBClick(event, foxyproxy.fp.statusbar);"
-      hidden="true" mousethrough="never"/>
+      hidden="true" context="" mousethrough="never"/>
   </statusbar>
 
-  <!--  toolbar -->
+  <!-- Toolbar -->
+  <!-- We declare the context attribute but have no id as argument in order
+       to avoid the mess with getting the default context menu shown. --> 
   <toolbarpalette id="BrowserToolbarPalette">
-    <toolbarbutton id="foxyproxy-toolbar-icon" label="&foxyproxy.standard.label;"
-      type="menu" orient="horizontal" mode="patterns" persist="mode"
-      context="foxyproxy-toolbarbutton-popup"
-      onclick="foxyproxy.onSBTBClick(event, foxyproxy.fp.toolbar);">
+    <toolbarbutton id="foxyproxy-toolbar-icon" type="menu" orient="horizontal"
+      label="&foxyproxy.standard.label;" mode="patterns" persist="mode"
+      context="" onclick="foxyproxy.onSBTBClick(event, foxyproxy.fp.toolbar);">
     </toolbarbutton>
   </toolbarpalette>
 

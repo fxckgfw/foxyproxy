@@ -718,7 +718,8 @@ end-foxyproxy-simple !*/
             popupElement = document.
               getElementById("foxyproxy-statusbar-popup"); 
           } 
-          popupElement.showPopup(e.target, -1, -1, "popup", "bottomleft", "topleft");
+          popupElement.showPopup(e.target, -1, -1, "popup", "bottomleft",
+            "topleft");
           break;
         case "reloadcurtab":
           gBrowser.reloadTab(gBrowser.mCurrentTab);
@@ -728,13 +729,14 @@ end-foxyproxy-simple !*/
           break;
         case "reloadtabsinallbrowsers":
           for (var b, e = foxyproxy.fpc.getEnumerator();
-                  e.hasMoreElements();
-                  (b = e.getNext().getBrowser()) && b.reloadAllTabs());
+            e.hasMoreElements();
+            (b = e.getNext().getBrowser()) && b.reloadAllTabs());
           break;
         case "removeallcookies":
           Components.classes["@mozilla.org/cookiemanager;1"].
             getService(Components.interfaces.nsICookieManager).removeAll();
-          fp.notifier.alert(fp.getMessage("foxyproxy"), fp.getMessage("cookies.allremoved"));
+          fp.notifier.alert(fp.getMessage("foxyproxy"),
+            fp.getMessage("cookies.allremoved"));
           break;
         case "toggle":
           // Toggle between current mode and disabled

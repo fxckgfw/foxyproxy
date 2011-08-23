@@ -690,7 +690,6 @@ end-foxyproxy-simple !*/
   _popupShowing : 0,
 
   onSBTBClick : function(e, o) {
-    e.preventDefault(); // required in Firefox 4 to prevent default context-menu from appearing
     if (e.button==0) {
       _act(o.leftClick, e);
     }
@@ -711,6 +710,7 @@ end-foxyproxy-simple !*/
           break;
         case "contextmenu":
           this._popupShowing = 0;
+          let popupElement;
 	  if (e.target.id === "foxyproxy-toolbar-icon") {
             popupElement = document.
               getElementById("foxyproxy-toolbarbutton-popup");
@@ -727,7 +727,7 @@ end-foxyproxy-simple !*/
           gBrowser.reloadAllTabs();
           break;
         case "reloadtabsinallbrowsers":
-          for (var b, e = this.fpc.getEnumerator();
+          for (var b, e = foxyproxy.fpc.getEnumerator();
                   e.hasMoreElements();
                   (b = e.getNext().getBrowser()) && b.reloadAllTabs());
           break;

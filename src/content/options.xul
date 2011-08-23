@@ -14,6 +14,7 @@
 <?xul-overlay href="includes.xul"?>
 <?xul-overlay href="chrome://foxyproxy/content/optionsOverlay-svg.xul"?>
 <!DOCTYPE overlay SYSTEM "chrome://foxyproxy/locale/foxyproxy.dtd">
+<!--DO NOT ADD HEIGHT AND WIDTH PERSISTANCE HERE AS SIZETOCONTENT IS CALLED! -->
 <window id="foxyproxyoptions2" windowtype="foxyproxy-options"
   title="&foxyproxy.standard.label;"
   xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"

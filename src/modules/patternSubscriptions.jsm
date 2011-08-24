@@ -174,8 +174,11 @@ var patternSubscriptions = {
     }
   },
 
-  loadSubscription: function(aURLString, bBase64, bFoxyProxy) {
+  loadSubscription: function(aURLString, bBase64) {
     try {
+      // See: http://stackoverflow.com/questions/475074/regex-to-parse-or-validate-base64-data
+      let base64RegExp =
+        /^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4})$/;
       var errorMessages = [];
       var subscriptionText;
       var parsedSubscription;
@@ -190,110 +193,54 @@ var patternSubscriptions = {
       req.overrideMimeType("application/json");
       req.send(null);
       subscriptionText = req.responseText;
-      if (bFoxyProxy) {
-
-      } else {
-
-      }
-      // First we guess we have a plain text subscription and if this
-      // is not working we assume a Base64 encoded response. If the last thing
-      // is not working either the subscription parsing and import fails.
-      subscriptionJSON = this.getObjectFromJSON(subscriptionText, 
+      // Stripping of all unnecessary whitespaces and newlines etc. before
+      // testing.
+      let base64TestString = subscriptionText.replace(/\s*/g, '');
+      let isBase64 = base64RegExp.test(base64TestString);
+      if (isBase64) {
+        // Decoding the Base64.
+        subscriptionText = atob(base64TestString);
+      } 
+      // No Base64 (anymore), thus we guess we have a plain FoxyProxy
+      // subscription first. If that is not true we check the AutoProxy format.
+      // And if that fails as well we give up.
+      subscriptionJSON = this.getObjectFromJSON(subscriptionText,
         errorMessages);
       if (subscriptionJSON && !(subscriptionJSON.length === undefined)) {
-        // Ugh, using a call to evalInSandbox() for Base64 checking! The reason
-        // for this is that the atob() call fails silently if there is an error
-        // within the Base64 response but we want to show this to the FoxyProxy
-        // users.
-	try {
-	  // TODO: Why not using a chrome window?
-	  var win = this.fpc.getMostRecentWindow();
-	  var mySandbox = Cu.Sandbox(win);
-	  mySandbox.window = win;
-          // We needed to replace newlines and other special characters here. As
-          // there are lots of implementations that differ on this issue and the
-          // issue whether there should/may be a specific line length (say 64 or
-          // 76 chars).
-	  mySandbox.responseText = subscriptionText.replace(/\s*/g, '');
-          subscriptionText = Cu.evalInSandbox("window.atob(responseText);",
-            mySandbox); 
-	} catch (e) {
-          errorMessages.push(this.fp.
-              getMessage("patternsubscription.error.base64"));
-          // Checking for a AutoProxy subscription here. Maybe it is not Base64
-          // encoded.
-          let lines = this.isAutoProxySubscription(subscriptionText);
-          if (lines) {
-            parsedSubscription = this.processAutoProxySubscription(lines,
-              errorMessages);
-            // TODO: Base64 stuff test is missing returning here. 
-            // Could be as well an array of error messages here...
-            return parsedSubscription;
-          } 
-          return errorMessages;
-	}
-        // Checking for AutoProxy...
         let lines = this.isAutoProxySubscription(subscriptionText);
         if (lines) {
           parsedSubscription = this.processAutoProxySubscription(lines,
             errorMessages);
-          // Could be as well an array of error messages here...
-          // TODO: Base64 stuff test is missing returning here.
-          return parsedSubscription;
-        } 
-        subscriptionJSON = this.getObjectFromJSON(subscriptionText, 
-          errorMessages); 
-        // We do not need to process the subscription any further if we got
-        // again no proper subscription object or if the user does not want
-        // to import a Base64 encoded subscription (in case she selected "none"
-        // as obfuscation).
-        if (subscriptionJSON && !(subscriptionJSON.length === undefined)) {
-          errorMessages.splice(errorMessages.length -1, 1, this.fp.
-           getMessage("patternsubscription.error.JSON2"));
+        } else {
+          // No AutoProxy either.
           return errorMessages;
-        } else if (!bBase64 && !this.fp.warnings.showWarningIfDesired(null, 
-          ["patternsubscription.warning.base64"], "noneEncodingWarning")) { 
-          errorMessages.push(this.fp.
-            getMessage("patternsubscription.error.cancel64")); 
-          return errorMessages; 
-        }
-        // Now, we reuse the bBase64 flag to indicate whether "Base64" should
-        // show up in the subscriptionsTree. Setting it to true, as we have a
-        // Base64 encoded subscription.
-        if (!bBase64) {
-          bBase64 = true; 
-        }
+        } 
       } else {
-        // The subscription seems to have no Base64 format. Before
-        // proceeding any further let's check whether the user had selected
-        // Base64 as encoding and if so whether she wants to import the pattern
-        // subscription though.
-	if (bBase64 && !this.fp.warnings.showWarningIfDesired(null, 
-            ["patternsubscription.warning.not.base64"], "base64Warning")) {
-          errorMessages.push(this.fp.
-            getMessage("patternsubscription.error.cancel64")); 
-          return errorMessages;  
-        }
-        // bBase64 reuse...
-        if (bBase64) {
-          bBase64 = false;
-        }
-      } 
-      parsedSubscription = this.
-        parseSubscription(subscriptionJSON, aURLString, errorMessages);
-      if (parsedSubscription && parsedSubscription.length === undefined) {
-	if (!parsedSubscription.metadata) {
+        parsedSubscription = this.
+          parseSubscription(subscriptionJSON, aURLString, errorMessages);
+        if (!parsedSubscription.metadata) {
 	  parsedSubscription.metadata = {};
-        }
-        if (bBase64) {
+        } 
+        // We've got a FoxyProxy subscription...
+        parsedSubscription.metadata.format = "FoxyProxy";
+      }
+      if (bBase64 && !isBase64 && !this.fp.warnings.showWarningIfDesired(null,
+        ["patternsubscription.warning.not.base64"], "noneEncodingWarning")) {
+        errorMessages.push(this.fp.
+          getMessage("patternsubscription.error.cancel64"));
+        return errorMessages;
+      } else if (!bBase64 && isBase64 &&
+          !this.fp.warnings.showWarningIfDesired(null,
+          ["patternsubscription.warning.base64"], "noneEncodingWarning")) {
+          errorMessages.push(this.fp.
+            getMessage("patternsubscription.error.cancel64"));
+          return errorMessages; 
+      } else {
+        if (isBase64) {
           parsedSubscription.metadata.obfuscation = "Base64";
 	} else {
           parsedSubscription.metadata.obfuscation = this.fp.getMessage("none");
         }
-        return parsedSubscription;
-      } else {
-        // Got back error messages and making sure that they are shown in the
-	// lastStatus dialog
         return parsedSubscription;
       }
     } catch (e) {
@@ -418,8 +365,12 @@ var patternSubscriptions = {
     // metadata properties. If we would not do this the default values that
     // may be delivered with the subscription itself (i.e. its metadate) would
     // overwrite the users' choices.
+    // We exlucde obfuscation and format as these are already detected while
+    // loading the subscription. The user may nevertheless change them later on
+    // if she wants that but at least after the initial import these values are
+    // correct.
     for (userValue in userValues) {
-      if (userValue !== "obfuscation") {
+      if (userValue !== "obfuscation" && userValue !== "format") {
         aSubscription.metadata[userValue] = userValues[userValue];
       }
     } 

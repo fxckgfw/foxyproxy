@@ -81,8 +81,8 @@ function onLoad() {
         formatList.selectedIndex = 1;
       } 
       // And assuming that we only have 'None' and 'Base64' so far as 
-      // obfusctaion methods...
-      if (metadata.obfuscation === "base64") {
+      // obfuscation methods...
+      if (metadata.obfuscation === "Base64") {
         obfuscationList.selectedIndex = 1;
       } else {
         obfuscationList.selectedIndex = 0;
@@ -140,7 +140,7 @@ function onOK() {
       base64Encoded = userValues.obfuscation === "base64";
       foxyproxyFormat = userValues.format === "FoxyProxy";
       parsedSubscription = patternSubscriptions.
-	loadSubscription(userValues.url, base64Encoded, foxyproxyFormat);
+	loadSubscription(userValues.url, base64Encoded);
       // The following is kind of a trivial array test. We need that to check
       // whether we got an array of error Messages back or a subscription
       // object. Iff the latter is the case we add a new subscription. As we

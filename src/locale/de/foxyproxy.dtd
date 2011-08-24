@@ -356,8 +356,8 @@
 <!ENTITY foxyproxy.animatedicons.tooltip "Animiere Icon in der Statuszeile, wenn Proxies verwendet werden">
 <!ENTITY foxyproxy.statusbaractivation.label "Aktivierung über die Statuszeile">
 <!ENTITY foxyproxy.statusbaractivation.tooltip "Einstellungen für die Aktivierung über die Statuszeile">
-<!ENTITY foxyproxy.toolbaractivation.label "Aktivierung über Werkzeugleiste">
-<!ENTITY foxyproxy.toolbaractivation.tooltip "Einstellungen für die Aktivierung über Werkzeugleiste">
+<!ENTITY foxyproxy.toolbaractivation.label "Aktivierung über die Werkzeugleiste">
+<!ENTITY foxyproxy.toolbaractivation.tooltip "Einstellungen für die Aktivierung über die Werkzeugleiste">
 <!ENTITY foxyproxy.leftclicksb.label "Linksklick">
 <!ENTITY foxyproxy.leftclicksb.accesskey "L">
 <!ENTITY foxyproxy.leftclicksb.tooltip "Aktion bei Linksklick auf FoxyProxy in der Statuszeile">

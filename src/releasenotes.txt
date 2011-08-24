@@ -1,3 +1,4 @@
+* included option to import pattern subscriptions in AutoProxy format
 * removed Flock support as it is not actively developed anymore (see: http://flock.com/) 
 * fix bug in handling regular expressions ("^" and "$" was always added to
   single line regular expressions)

@@ -13,6 +13,10 @@
 <!DOCTYPE overlay SYSTEM "chrome://foxyproxy/locale/foxyproxy.dtd">
 
 <root>
+  <i18n id="foxyproxy.toolbaricon.label" value="&foxyproxy.toolbaricon.label;"/>
+  <i18n id="foxyproxy.toolbaricon.accesskey" value="&foxyproxy.toolbaricon.accesskey;"/>
+  <i18n id="foxyproxy.toolbaricon.tooltip" value="&foxyproxy.toolbaricon.tooltip;"/> 
+
   <i18n id="foxyproxy.showstatusbaricon.label" value="&foxyproxy.showstatusbaricon.label;"/>
   <i18n id="foxyproxy.showstatusbaricon.accesskey" value="&foxyproxy.showstatusbaricon.accesskey;"/>
   <i18n id="foxyproxy.showstatusbaricon.tooltip" value="&foxyproxy.showstatusbaricon.tooltip;"/>
@@ -21,9 +25,9 @@
   <i18n id="foxyproxy.showstatusbarmode.accesskey" value="&foxyproxy.showstatusbarmode.accesskey;"/>
   <i18n id="foxyproxy.showstatusbarmode.tooltip" value="&foxyproxy.showstatusbarmode.tooltip;"/>
 
-  <i18n id="foxyproxy.toolsmenu.label" value="&foxyproxy.toolsmenu.label;"/>
+  <i18n id="foxyproxy.toolsmenu.label2" value="&foxyproxy.toolsmenu.label2;"/>
   <i18n id="foxyproxy.toolsmenu.accesskey" value="&foxyproxy.toolsmenu.accesskey;"/>
-  <i18n id="foxyproxy.toolsmenu.tooltip" value="&foxyproxy.toolsmenu.tooltip;"/>
+  <i18n id="foxyproxy.toolsmenu.tooltip2" value="&foxyproxy.toolsmenu.tooltip2;"/>
   
   <i18n id="foxyproxy.contextmenu.label" value="&foxyproxy.contextmenu.label;"/>
   <i18n id="foxyproxy.contextmenu.accesskey" value="&foxyproxy.contextmenu.accesskey;"/>

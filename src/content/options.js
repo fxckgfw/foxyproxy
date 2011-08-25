@@ -269,6 +269,7 @@ function _updateView(writeSettings, updateLogView) {
   _updateSuperAdd(foxyproxy.quickadd, "quickAdd");
   document.getElementById("quickAddNotifyWhenCanceled").checked = foxyproxy.quickadd.notifyWhenCanceled; // only exists for QuickAdd
   
+  document.getElementById("toolbarEnabled").checked = foxyproxy.toolbarIcon;
   document.getElementById("toolsMenuEnabled").checked = foxyproxy.toolsMenu;
   document.getElementById("contextMenuEnabled").checked = foxyproxy.contextMenu;
   document.getElementById("statusbarIconEnabled").checked = foxyproxy.statusbar.iconEnabled;

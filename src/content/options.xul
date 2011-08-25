@@ -292,6 +292,13 @@
                 <caption label="&foxyproxy.indicators.label;"
                   tooltiptext="&foxyproxy.indicators.tooltip;" />
                 <hbox align="center">
+                  <checkbox id="toolbarEnabled"
+                    label="&foxyproxy.toolbaricon.label;"
+                    accesskey="&foxyproxy.toolbaricon.accesskey;"
+                    tooltiptext="&foxyproxy.toolbaricon.tooltip;"
+                    oncommand="foxyproxy.toolbarIcon = this.checked;" />
+                </hbox> 
+                <hbox align="center">
                   <checkbox id="statusbarIconEnabled"
                     label="&foxyproxy.showstatusbaricon.label;"
                     accesskey="&foxyproxy.showstatusbaricon.accesskey;"
@@ -321,9 +328,9 @@
                 </hbox>
                 <hbox align="center">
                   <checkbox id="toolsMenuEnabled"
-                    label="&foxyproxy.toolsmenu.label;"
+                    label="&foxyproxy.toolsmenu.label2;"
                     accesskey="&foxyproxy.toolsmenu.accesskey;"
-                    tooltiptext="&foxyproxy.toolsmenu.tooltip;"
+                    tooltiptext="&foxyproxy.toolsmenu.tooltip2;"
                     oncommand="foxyproxy.toolsMenu = this.checked;" />
                 </hbox>
                 <hbox align="center">

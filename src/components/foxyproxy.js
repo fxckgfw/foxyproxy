@@ -110,6 +110,7 @@ foxyproxy.prototype = {
   _mode : "disabled",
   _selectedProxy : null, /* remains null unless all URLs are set to load through a proxy */
   _selectedTabIndex : 0,
+  _toolbarIcon : true,
   _toolsMenu : true,
   _contextMenu : true,
   _advancedMenus : false,
@@ -561,6 +562,13 @@ foxyproxy.prototype = {
     this.writeSettings();
   },
 
+  get toolbarIcon() { return this._toolbarIcon; },
+  set toolbarIcon(e) {
+    this._toolbarIcon = e;
+    gBroadcast(e, "foxyproxy-toolbarIcon");
+    this.writeSettings();
+  }, 
+
   get toolsMenu() { return this._toolsMenu; },
   set toolsMenu(e) {
     this._toolsMenu = e;
@@ -617,6 +625,7 @@ foxyproxy.prototype = {
     this.statusbar.fromDOM(doc);
     this.toolbar.fromDOM(doc);
     this.logg.fromDOM(doc);
+    this._toolbarIcon = gGetSafeAttrB(node, "toolbaricon", true); // new for 3.2
     this._toolsMenu = gGetSafeAttrB(node, "toolsMenu", true); // new for 2.0
     this._contextMenu = gGetSafeAttrB(node, "contextMenu", true); // new for 2.0
     this._advancedMenus = gGetSafeAttrB(node, "advancedMenus", false); // new for 2.3--default to false if it doesn't exist
@@ -648,6 +657,7 @@ foxyproxy.prototype = {
     var e = doc.createElement("foxyproxy");
     e.setAttribute("mode", this._mode);
     e.setAttribute("selectedTabIndex", this._selectedTabIndex);
+    e.setAttribute("toolbaricon", this._toolbarIcon);
     e.setAttribute("toolsMenu", this._toolsMenu);
     e.setAttribute("contextMenu", this._contextMenu);
     e.setAttribute("advancedMenus", this._advancedMenus);

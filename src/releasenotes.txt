@@ -8,3 +8,6 @@
   text or toolbar icon
 * made "Reload all tabs in all browsers" option (in Global Settings -> 
   Toolbar Activation/Statusbar Activation) working again
+* added checkbox (in Global Settings) to hide (and show) the toolbar button
+  easily
+* updated language files

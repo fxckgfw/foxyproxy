@@ -257,9 +257,14 @@
 <!ENTITY foxyproxy.pacerrornotification.label "Benachrichtigen bei Fehlern in PAC-Dateien">
 <!ENTITY foxyproxy.pacerrornotification.accesskey "F">
 <!ENTITY foxyproxy.pacerrornotification.tooltip "Zeigt ein Popup-Fenster an bei Fehlern in einer PAC-Datei">
+<!ENTITY foxyproxy.toolbaricon.label "Icon in der Werkzeugleiste anzeigen">
+<!ENTITY foxyproxy.toolbaricon.accesskey "W">
+<!ENTITY foxyproxy.toolbaricon.tooltip "Zeige Icon in der Werkzeugleiste an">
 <!ENTITY foxyproxy.toolsmenu.label "FoxyProxy im Firefox Extras-Menü anzeigen">
+<!ENTITY foxyproxy.toolsmenu.label2 "Icon im Extras-Menü anzeigen">
 <!ENTITY foxyproxy.toolsmenu.accesskey "E">
-<!ENTITY foxyproxy.toolsmenu.tooltip "Zeige FoxyProxy im Firefox Extras-Menü">
+<!ENTITY foxyproxy.toolsmenu.tooltip "Zeige Icon im Firefox Extras-Menü">
+<!ENTITY foxyproxy.toolsmenu.tooltip2 "Zeige FoxyProxy im Extras-Menü">
 <!ENTITY foxyproxy.tip.label "Tip">
 <!ENTITY foxyproxy.pactip1.label "Verwenden Sie das file://-Schema für PAC-Dateien, die auf der lokalen Festplatte gespeichert sind. Beispiele: file://c:/path/proxy.pac unter Windows oder file://home/users/joe/proxy.pac unter Unix/Linux/Mac.">
 <!ENTITY foxyproxy.pactip2.label "Verwenden Sie das ftp://-Schema für PAC-Dateien auf einem FTP-Server. Beispiel: ftp://leahscape.com/path/proxy.pac">
@@ -269,9 +274,9 @@
 <!ENTITY foxyproxy.pactip6.label "dokumentiert. Bestimmte reservierte Ausdrücke in der angegebenen relative://-URL werden durch ihre zugeordneten Werte ersetzt. Beispielsweise referenziert &quot;relative://ProfD/pacs/proxy3.pac&quot; die Datei &quot;proxy3.pac&quot; im Unterverzeichnis &quot;pacs/&quot; des">
 <!ENTITY foxyproxy.pactip7.label "Firefox-Profilverzeichnisses">
 <!ENTITY foxyproxy.pactip8.label ". Mit Portable Firefox auf Windows wird für das Firefox-Profilverzeichnis grundsätzlich ein relativer Pfad verwendet, da der Laufwerksbuchstabe sich für jeden Computer unterscheiden kann. Bitte beachten Sie die Groß-/Kleinschreibung bei reservierten Ausdrücken (ProfD, Home, TempD, etc.).">
-<!ENTITY foxyproxy.contextmenu.label "FoxyProxy im Kontextmenü anzeigen">
+<!ENTITY foxyproxy.contextmenu.label "Icon im Kontextmenü anzeigen">
 <!ENTITY foxyproxy.contextmenu.accesskey "K">
-<!ENTITY foxyproxy.contextmenu.tooltip "Zeige FoxyProxy im Kontextmenü">
+<!ENTITY foxyproxy.contextmenu.tooltip "Zeige Icon im Kontextmenü">
 <!ENTITY foxyproxy.quickadd.desc1 "QuickAdd fügt per Alt-F2 ein dynamisches URL-Muster einem Proxy hinzu. Dies ist eine praktische Alternative zu AutoAdd. Konfigurieren Sie die Alt-F2-Tastenkombination mit der">
 <!ENTITY foxyproxy.keyconfig.label "KeyConfig">
 <!ENTITY foxyproxy.quickadd.desc2 "Erweiterung">

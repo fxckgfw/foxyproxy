@@ -158,7 +158,7 @@ var foxyproxy = {
     for (var i in this.notes) {
       obSvc.addObserver(this, this.notes[i], false);
     }
-    this.toggleToolbarIcon(this.fp.toolbar);
+    this.toggleToolbarIcon(this.fp.toolbarIcon);
     this.toggleToolsMenu(this.fp.toolsMenu);
     this.toggleContextMenu(this.fp.contextMenu);
     this.checkPageLoad();
@@ -251,6 +251,8 @@ end-foxyproxy-simple !*/
   },
 
   toggleToolbarIcon : function(e) {
+    // The code below throws if the icon is not on the toolbar at all. We
+    // therefore catch exceptions.
     try {
       document.getElementById("foxyproxy-toolbar-icon").hidden= !e; 
     } catch(e) {}

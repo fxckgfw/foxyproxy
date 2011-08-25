@@ -357,7 +357,7 @@
 <!ENTITY foxyproxy.statusbaractivation.label "Aktivierung über die Statuszeile">
 <!ENTITY foxyproxy.statusbaractivation.tooltip "Einstellungen für die Aktivierung über die Statuszeile">
 <!ENTITY foxyproxy.toolbaractivation.label "Aktivierung über die Werkzeugleiste">
-<!ENTITY foxyproxy.toolbaractivation.tooltip "Einstellungen für die Aktivierung über die Werkzeugleiste">
+<!ENTITY foxyproxy.toolbaractivation.tooltip "Einstellungen für die Aktivierung über die Werkzeugleistedie">
 <!ENTITY foxyproxy.leftclicksb.label "Linksklick">
 <!ENTITY foxyproxy.leftclicksb.accesskey "L">
 <!ENTITY foxyproxy.leftclicksb.tooltip "Aktion bei Linksklick auf FoxyProxy in der Statuszeile">
@@ -372,10 +372,10 @@
 <!ENTITY foxyproxy.leftclicktb.tooltip "Aktion bei Linksklick auf FoxyProxy in der Werkzeugleiste">
 <!ENTITY foxyproxy.middleclicktb.label "Mittelklick">
 <!ENTITY foxyproxy.middleclicktb.accesskey "M">
-<!ENTITY foxyproxy.middleclicktb.tooltip "Aktion bei Mittelklick auf FoxyProxy in der Toolbar">
+<!ENTITY foxyproxy.middleclicktb.tooltip "Aktion bei Mittelklick auf FoxyProxy in der Werkzeugleiste">
 <!ENTITY foxyproxy.rightclicktb.label "Rechtsklick">
 <!ENTITY foxyproxy.rightclicktb.accesskey "R">
-<!ENTITY foxyproxy.rightclicktb.tooltip "Aktion bei Rechtsklick auf FoxyProxy in der Toolbar">
+<!ENTITY foxyproxy.rightclicktb.tooltip "Aktion bei Rechtsklick auf FoxyProxy in der Werkzeugleiste">
 <!ENTITY foxyproxy.click.options "Zeigt den Optionsdialog">
 <!ENTITY foxyproxy.click.cycle "Zyklischer Wechsel durch die Modi">
 <!ENTITY foxyproxy.click.contextmenu "Zeigt das Kontextmenü">
@@ -384,9 +384,9 @@
 <!ENTITY foxyproxy.click.reloadtabsinallbrowsers "Alle Tabs in allen Fenstern neu laden">
 <!ENTITY foxyproxy.click.removeallcookies "Entferne alle Cookies">
 <!ENTITY foxyproxy.click.toggle "Schalte zwischen aktuellem Modus und deaktiviert um">
-<!ENTITY foxyproxy.includeincycle.label "Schließe diesen Proxy beim zyklischen Wechsel per Klick auf Statuszeile oder Toolbar ein (Globale Einstellungen-&gt;Aktivierung über Statuszeile/Toolbar-&gt;Zyklischer Wechsel durch Modi muss ausgewählt sein)">
+<!ENTITY foxyproxy.includeincycle.label "Schließe diesen Proxy beim zyklischen Wechsel per Klick auf die Statuszeile oder Werkzeugleiste ein (Globale Einstellungen-&gt;Aktivierung über Statuszeile/Werkzeugleiste-&gt;Zyklischer Wechsel durch Modi muss ausgewählt sein)">
 <!ENTITY foxyproxy.includeincycle.accesskey "W">
-<!ENTITY foxyproxy.includeincycle.tooltip "Schließe diesen Proxy beim Klick auf Statuszeile/Toolbar ein">
+<!ENTITY foxyproxy.includeincycle.tooltip "Schließe diesen Proxy beim Klick auf die Statuszeile/Werkzeugleiste ein">
 <!ENTITY foxyproxy.changes.msg1 "Hilfe! Wo sind die Einstellungen für HTTP, SSL, FTP, Gopher und SOCKS?">
 <!ENTITY foxyproxy.newGUI.popup.height "280px">
 <!ENTITY foxyproxy.newGUI.popup.width "400px">
@@ -554,4 +554,3 @@
 <!ENTITY foxyproxy.patternsforselected.accesskey "S">
 <!ENTITY foxyproxy.patternsforselected.tooltip "Erstelle Muster für ausgewählte URLs">
 <!ENTITY foxyproxy.patterntoadd.label "Hinzuzufügendes Muster">
-<!-- end foxyproxyplus -->

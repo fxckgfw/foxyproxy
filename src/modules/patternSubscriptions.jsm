@@ -17,6 +17,9 @@ var patternSubscriptions = {
  
   fp: null,
 
+  // See: http://stackoverflow.com/questions/475074/regex-to-parse-or-validate-base64-data
+  base64RegExp: /^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4})$/,
+
   subscriptionsList : [],
 
   // TODO: Where do we need the specific values? Wouldn't it not be enough to
@@ -151,9 +154,6 @@ var patternSubscriptions = {
 
   loadSubscription: function(aURLString, bBase64) {
     try {
-      // See: http://stackoverflow.com/questions/475074/regex-to-parse-or-validate-base64-data
-      let base64RegExp =
-        /^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4})$/;
       var errorMessages = [];
       var subscriptionText;
       var parsedSubscription;
@@ -171,7 +171,7 @@ var patternSubscriptions = {
       // Stripping of all unnecessary whitespaces and newlines etc. before
       // testing.
       let base64TestString = subscriptionText.replace(/\s*/g, '');
-      let isBase64 = base64RegExp.test(base64TestString);
+      let isBase64 = this.base64RegExp.test(base64TestString);
       if (isBase64) {
         // Decoding the Base64.
         subscriptionText = atob(base64TestString);
@@ -212,7 +212,7 @@ var patternSubscriptions = {
           return errorMessages; 
       } else {
         if (isBase64) {
-          parsedSubscription.metadata.obfuscation = "base64";
+          parsedSubscription.metadata.obfuscation = "Base64";
 	} else {
           parsedSubscription.metadata.obfuscation = this.fp.getMessage("none");
         }
@@ -336,7 +336,7 @@ var patternSubscriptions = {
 
   addSubscription: function(aSubscription, userValues) {
     var userValue, d, subLength;
-    // We need this do respect the user's wishes concerning the name and other
+    // We need this to respect the user's wishes concerning the name and other
     // metadata properties. If we would not do this the default values that
     // may be delivered with the subscription itself (i.e. its metadate) would
     // overwrite the users' choices.

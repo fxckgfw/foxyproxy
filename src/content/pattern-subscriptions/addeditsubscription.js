@@ -80,9 +80,9 @@ function onLoad() {
       } else {
         formatList.selectedIndex = 1;
       } 
-      // And assuming that we only have 'none' and 'base64' so far as 
+      // And assuming that we only have 'None' and 'Base64' so far as 
       // obfuscation methods...
-      if (metadata.obfuscation.toLowerCase() === "base64") {
+      if (metadata.obfuscation === "Base64") {
         obfuscationList.selectedIndex = 1;
       } else {
         obfuscationList.selectedIndex = 0;
@@ -135,9 +135,9 @@ function onOK() {
     userValues.format = document.getElementById("subscriptionFormat").
       selectedItem.label;
     userValues.obfuscation = document.getElementById("subscriptionObfuscation").
-      selectedItem.label.toLowerCase();
+      selectedItem.label;
     if (window.arguments[0].inn === null) {
-      base64Encoded = userValues.obfuscation === "base64";
+      base64Encoded = userValues.obfuscation === "Base64";
       foxyproxyFormat = userValues.format === "FoxyProxy";
       parsedSubscription = patternSubscriptions.
 	loadSubscription(userValues.url, base64Encoded);

@@ -27,6 +27,7 @@ var EXPORTED_SYMBOLS = ["autoproxy"];
 var autoproxy = {
 
   fp: null,
+  checksum: /!\s*checksum[\s\-:]+([\w\+\/]+)/i,  
 
   init: function() {
     this.fp = Components.classes["@leahscape.org/foxyproxy/service;1"].
@@ -46,7 +47,7 @@ var autoproxy = {
     // Checking the checksum first, if there is any at all...
     let length = lines.length;
     for (let i = 0; i < length; i++) {
-      if (/!\s*checksum[\s\-:]+([\w\+\/]+)/i.test(lines[i])) {
+      if (this.checksum.test(lines[i])) {
         lines.splice(i, 1);
         length = length - 1;
         let checksumExpected = RegExp.$1;
@@ -75,9 +76,10 @@ var autoproxy = {
     // subscription may still be comments or empty lines. We would have them
     // in the FoxyProxy format then as well, a thing we do not want.
     let j = 0;
+    let noWhitespace = /\S/;
     for (let i = 0; i < length; i++) {
       // Do we have text and no comments at all?
-      if (/\S/.test(lines[i]) && lines[i].indexOf("!") !== 0) {
+      if (noWhitespace.test(lines[i]) && lines[i].indexOf("!") !== 0) {
         parsedSubscription.patterns[j] = {};
         // First, we convert all filters to RegExes. Therefore, we can already
         // safely set the related property.

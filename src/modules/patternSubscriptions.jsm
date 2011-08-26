@@ -212,7 +212,7 @@ var patternSubscriptions = {
           return errorMessages; 
       } else {
         if (isBase64) {
-          parsedSubscription.metadata.obfuscation = "Base64";
+          parsedSubscription.metadata.obfuscation = "base64";
 	} else {
           parsedSubscription.metadata.obfuscation = this.fp.getMessage("none");
         }

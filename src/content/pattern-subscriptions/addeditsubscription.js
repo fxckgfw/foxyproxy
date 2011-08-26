@@ -80,9 +80,9 @@ function onLoad() {
       } else {
         formatList.selectedIndex = 1;
       } 
-      // And assuming that we only have 'None' and 'Base64' so far as 
+      // And assuming that we only have 'none' and 'base64' so far as 
       // obfuscation methods...
-      if (metadata.obfuscation === "Base64") {
+      if (metadata.obfuscation.toLowerCase() === "base64") {
         obfuscationList.selectedIndex = 1;
       } else {
         obfuscationList.selectedIndex = 0;

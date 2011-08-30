@@ -26,12 +26,7 @@ function onLoad() {
   }
   else {
     urlsTree = document.getElementById("urlsTree");
-    // .checked does not always give the desired results even if we explicitely
-    // set a checked attribute in addeditproxy.xul. Therefore, resorting to
-    // |setAttribute()| here.
-    // XXX Why? Probably due to difference of attributes and properties!? 
-    document.getElementById("noInternalIPs").setAttribute("checked", proxy.
-      noInternalIPs); 
+    document.getElementById("noInternalIPs").checked = proxy.noInternalIPs;
   }
 
   document.getElementById("proxyname").value = proxy.name;

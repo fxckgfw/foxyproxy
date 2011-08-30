@@ -87,6 +87,12 @@
             <label value="&foxyproxy.released;" />
           </hbox>
           <separator />
+          <hbox style="margin-left: 1em;" pack="center">
+            <button image="chrome://foxyproxy/content/images/ABP-button.png"
+              onclick="fpc.openAndReuseOneTabPerURL('http://adblockplus.org/');"
+              tooltiptext="http://adblockplus.org" />
+          </hbox>
+          <separator />
           <hbox style="margin-left: 1em;">
             <label value="&foxyproxy.home;" class="text-link" onclick="fpc.openAndReuseOneTabPerURL('http://getfoxyproxy.org/');" tooltiptext="http://getfoxyproxy.org" />
             <label value="&foxyproxy.support;" class="text-link" onclick="fpc.openAndReuseOneTabPerURL('http://forums.getfoxyproxy.org/');" tooltiptext="forums.getfoxyproxy.org/" />

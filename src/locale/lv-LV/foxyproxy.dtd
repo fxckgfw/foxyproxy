@@ -243,9 +243,7 @@
 <!ENTITY foxyproxy.pacerrornotification.label "Informēt par kļūdām automātiskās konfigurācijas failā">
 <!ENTITY foxyproxy.pacerrornotification.accesskey "F">
 <!ENTITY foxyproxy.pacerrornotification.tooltip "Rādīt uznirstošo paziņojumu, ja atrastas kļūdas PAC failā">
-<!ENTITY foxyproxy.toolsmenu.label "Rādīt ikonu Firefox rīku izvēlnē">
 <!ENTITY foxyproxy.toolsmenu.accesskey "T">
-<!ENTITY foxyproxy.toolsmenu.tooltip "Rādīt ikonu Firefox rīku izvēlnē">
 <!ENTITY foxyproxy.tip.label "Padoms">
 <!ENTITY foxyproxy.pactip1.label "Lokālajā datorā saglabātiem PAC failiem jūs varat izmanto file:// adreses. Piemēram, file://c:/cels/proxy.pac Windows datoros vai file:///home/users/joe/proxy.pac Unix/Linux/Mac datoros.">
 <!ENTITY foxyproxy.pactip2.label "Priekš PAC failiem, kas glabājas uz FTP servera izmantojiet ftp:// adreses. Piemēram, ftp://leahscape.com/path/proxy.pac">

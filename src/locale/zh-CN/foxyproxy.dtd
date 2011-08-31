@@ -257,9 +257,12 @@
 <!ENTITY foxyproxy.pacerrornotification.label "PAC 文件错误时提示我">
 <!ENTITY foxyproxy.pacerrornotification.accesskey "E">
 <!ENTITY foxyproxy.pacerrornotification.tooltip "PAC 文件错误时显示弹出菜单">
-<!ENTITY foxyproxy.toolsmenu.label "在 Firefox 工具菜单显示 FoxyProxy">
+<!ENTITY foxyproxy.toolbaricon.label "在工具栏上显示图标">
+<!ENTITY foxyproxy.toolbaricon.accesskey "O">
+<!ENTITY foxyproxy.toolbaricon.tooltip "在工具栏上显示图标">
+<!ENTITY foxyproxy.toolsmenu.label2 "在工具菜单里显示图标">
 <!ENTITY foxyproxy.toolsmenu.accesskey "T">
-<!ENTITY foxyproxy.toolsmenu.tooltip "在 Firefox 工具菜单显示 FoxyProxy">
+<!ENTITY foxyproxy.toolsmenu.tooltip2 "在工具菜单里显示图标">
 <!ENTITY foxyproxy.tip.label "提示">
 <!ENTITY foxyproxy.pactip1.label "对于存放在本地硬盘上的 PAC 文件，使用 file:// 格式。例如在 Windows 上使用 file://c:/path/proxy.pac ，在 Unix/Linux/Mac 使用 file:///home/users/joe/proxy.pac 。">
 <!ENTITY foxyproxy.pactip2.label "对于 ftp 服务器上的 PAC 文件，请使用 ftp:// 格式。例如，ftp://leahscape.com/path/proxy.pac">
@@ -542,3 +545,15 @@
 <!ENTITY foxyproxy.proxydomain.label "域（可选 - 仅NTML）">
 <!ENTITY foxyproxy.proxydomain.tooltip "仅使用 NTLM 验证">
 <!ENTITY foxyproxy.proxy.passwords.nomatch.label "代理服务器密码不匹配；请重新输入。">
+<!ENTITY foxyproxy.traininglogging.label "训练和记录">
+<!ENTITY foxyproxy.traininglogging.tooltip "管理训练和记录设置">
+<!ENTITY foxyproxy.traininglogging.accesskey "L">
+<!ENTITY foxyproxy.training.start "开始训练">
+<!ENTITY foxyproxy.training.stop "停止训练">
+<!ENTITY foxyproxy.patternsforall.label "创建全部适用的模式">
+<!ENTITY foxyproxy.patternsforall.accesskey "A">
+<!ENTITY foxyproxy.patternsforall.tooltip "创建适用于全部网址的模式">
+<!ENTITY foxyproxy.patternsforselected.label "创建适用于选中项的模式">
+<!ENTITY foxyproxy.patternsforselected.accesskey "S">
+<!ENTITY foxyproxy.patternsforselected.tooltip "创建适用于选定网址的模式">
+<!ENTITY foxyproxy.patterntoadd.label "要添加的模式">

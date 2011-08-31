@@ -257,9 +257,12 @@
 <!ENTITY foxyproxy.pacerrornotification.label "Meddela mig om fel vid inläsning av proxyns autokonfigurationsfil">
 <!ENTITY foxyproxy.pacerrornotification.accesskey "f">
 <!ENTITY foxyproxy.pacerrornotification.tooltip "Visa en popup-ruta när ett fel uppstår vid inläsning av en PAC-fil">
-<!ENTITY foxyproxy.toolsmenu.label "Visa ikon i Firefox Verktyg-meny">
+<!ENTITY foxyproxy.toolbaricon.label "Visa ikon i verktygsfältet">
+<!ENTITY foxyproxy.toolbaricon.accesskey "O">
+<!ENTITY foxyproxy.toolbaricon.tooltip "Visa en ikon i verktygsfältet">
+<!ENTITY foxyproxy.toolsmenu.label2 "Visa ikon i Verktyg-menyn">
 <!ENTITY foxyproxy.toolsmenu.accesskey "x">
-<!ENTITY foxyproxy.toolsmenu.tooltip "Visa en ikon i Firefox Verktyg-meny">
+<!ENTITY foxyproxy.toolsmenu.tooltip2 "Visa en ikon i Verktyg-menyn">
 <!ENTITY foxyproxy.tip.label "Tips">
 <!ENTITY foxyproxy.pactip1.label "Använd file:// för PAC-filer lagrade på en lokal enhet. Exempel: &quot;file://c:/path/proxy.pac&quot; i Windows eller &quot;file:///home/users/joe/proxy.pac&quot; på Unix/Linux/Mac.">
 <!ENTITY foxyproxy.pactip2.label "Använd ftp:// för PAC-filer lagrade på en FTP-server. Exempel: &quot;ftp://leahscape.com/path/proxy.pac&quot;.">

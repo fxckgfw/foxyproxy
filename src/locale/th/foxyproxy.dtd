@@ -257,9 +257,12 @@
 <!ENTITY foxyproxy.pacerrornotification.label "เตือนเมื่อแฟ้มการปรับแต่งพร็อกซีอัตโนมัติขัดข้อง">
 <!ENTITY foxyproxy.pacerrornotification.accesskey "ข">
 <!ENTITY foxyproxy.pacerrornotification.tooltip "แสดงพ็อปอัปเมื่อแฟ้ม PAC ขัดข้อง">
-<!ENTITY foxyproxy.toolsmenu.label "แสดง FoxyProxy ในเมนูเครื่องมือของไฟร์ฟอกซ์">
+<!ENTITY foxyproxy.toolbaricon.label "แสดงไอคอนในแถบเครื่องมือ">
+<!ENTITY foxyproxy.toolbaricon.accesskey "ใ">
+<!ENTITY foxyproxy.toolbaricon.tooltip "แสดงไอคอนในแถบเครื่องมือ">
+<!ENTITY foxyproxy.toolsmenu.label2 "แสดงไอคอนในเมนูเครื่องมือ">
 <!ENTITY foxyproxy.toolsmenu.accesskey "ค">
-<!ENTITY foxyproxy.toolsmenu.tooltip "แสดง FoxyProxy ในเมนูเครื่องมือของไฟร์ฟอกซ์">
+<!ENTITY foxyproxy.toolsmenu.tooltip2 "แสดงไอคอนในเมนูเครื่องมือ">
 <!ENTITY foxyproxy.tip.label "เคล็ดลับ">
 <!ENTITY foxyproxy.pactip1.label "ถ้าแฟ้ม PAC อยู่ในโลคอลฮาร์ดไดรฟ์ให้ใช้ file:// เช่น file://c:/path/proxy.pac ในวินโดวส์หรือ file:///home/users/joe/proxy.pac ใน Unix/Linux/Mac">
 <!ENTITY foxyproxy.pactip2.label "ถ้าแฟ้ม PAC อยู่ในเซิร์ฟเวอร์เอฟทีพี ให้ใช้ ftp:// เช่น ftp://leahscape.com/path/proxy.pac">

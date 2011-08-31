@@ -243,9 +243,7 @@
 <!ENTITY foxyproxy.pacerrornotification.label "Informovať ma o chybách súborov automatického nastavenia proxy servera">
 <!ENTITY foxyproxy.pacerrornotification.accesskey "e">
 <!ENTITY foxyproxy.pacerrornotification.tooltip "Zobrazí vyskakovacie okno, keď nastanú chyby v PAC súbore">
-<!ENTITY foxyproxy.toolsmenu.label "Zobraziť FoxyProxy v ponuke Nástroje">
 <!ENTITY foxyproxy.toolsmenu.accesskey "N">
-<!ENTITY foxyproxy.toolsmenu.tooltip "Zobrazí FoxyProxy v ponuke Nástroje">
 <!ENTITY foxyproxy.tip.label "Tip">
 <!ENTITY foxyproxy.pactip1.label "Ak chcete použiť súbory PAC uložené na disku počítača, použite predponu file://. Na príklad file://c:/path/proxy.pac pre Windows alebo file:///home/users/joe/proxy.pac pre Unix/Linux/Mac.">
 <!ENTITY foxyproxy.pactip2.label "Ak chcete použiť súbory PAC uložené na ftp serveri, použite predponu ftp://. Napríklad ftp://leahscape.com/path/proxy.pac.">

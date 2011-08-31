@@ -257,9 +257,12 @@
 <!ENTITY foxyproxy.pacerrornotification.label "Ειδοποίηση για σφάλματα αρχείων αυτόματων ρυθμίσεων διαμεσολαβητή">
 <!ENTITY foxyproxy.pacerrornotification.accesskey "ι">
 <!ENTITY foxyproxy.pacerrornotification.tooltip "Προβολή αναδυόμενου όταν παρουσιάζονται σφάλματα αρχείων PAC">
-<!ENTITY foxyproxy.toolsmenu.label "Προβολή εικονιδίου στο μενού εργαλείων">
+<!ENTITY foxyproxy.toolbaricon.label "Προβολή εικονιδίου στην εργαλειοθήκη">
+<!ENTITY foxyproxy.toolbaricon.accesskey "ο">
+<!ENTITY foxyproxy.toolbaricon.tooltip "Προβολή εικονιδίου σε μια εργαλειοθήκη">
+<!ENTITY foxyproxy.toolsmenu.label2 "Προβολή εικονιδίου στο μενού εργαλείων">
 <!ENTITY foxyproxy.toolsmenu.accesskey "Ε">
-<!ENTITY foxyproxy.toolsmenu.tooltip "Προβολή εικονιδίου στο μενού εργαλείων του Firefox">
+<!ENTITY foxyproxy.toolsmenu.tooltip2 "Προβολή εικονιδίου στο μενού εργαλείων">
 <!ENTITY foxyproxy.tip.label "Οδηγίες">
 <!ENTITY foxyproxy.pactip1.label "Για αρχεία PAC που υπάρχουν στο δίσκο σας, χρησιμοποιήστε το πρωτόκολλο file://. Για παράδειγμα, file://c:/path/proxy.pac στα Windows ή file:///home/users/joe/proxy.pac σε Unix/Linux/Mac.">
 <!ENTITY foxyproxy.pactip2.label "Για αρχεία PAC που υπάρχουν σε διακομιστή ftp, χρησιμοποιήστε το πρωτόκολλο ftp://. Για παράδειγμα, ftp://leahscape.com/path/proxy.pac">

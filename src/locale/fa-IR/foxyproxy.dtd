@@ -243,9 +243,7 @@
 <!ENTITY foxyproxy.pacerrornotification.label "هنگام خطای فایل تنظیمات خودکار به من اطلاع بده">
 <!ENTITY foxyproxy.pacerrornotification.accesskey "ا">
 <!ENTITY foxyproxy.pacerrornotification.tooltip "نمایش پنجره popup هنگام هنگام برخورد با خطای فایل های PAC">
-<!ENTITY foxyproxy.toolsmenu.label "نمایش FoxyProxy در منوی ابزارها">
 <!ENTITY foxyproxy.toolsmenu.accesskey "ا">
-<!ENTITY foxyproxy.toolsmenu.tooltip "نمایش FoxyProxy در منوی ابزارها">
 <!ENTITY foxyproxy.tip.label "نکته">
 <!ENTITY foxyproxy.pactip1.label "For PAC files stored on a local hard drive, use the file:// scheme. For example, file://c:/path/proxy.pac on Windows or file:///home/users/joe/proxy.pac on Unix/Linux/Mac.">
 <!ENTITY foxyproxy.pactip2.label "For PAC files on an ftp server, use the ftp:// scheme. For example, ftp://leahscape.com/path/proxy.pac">

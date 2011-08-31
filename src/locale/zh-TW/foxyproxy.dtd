@@ -257,9 +257,12 @@
 <!ENTITY foxyproxy.pacerrornotification.label "當自動組態指命碼（PAC）檔案有錯誤時通知我">
 <!ENTITY foxyproxy.pacerrornotification.accesskey "E">
 <!ENTITY foxyproxy.pacerrornotification.tooltip "當自動組態指命碼（PAC）檔案有錯誤時顯示通知視窗">
-<!ENTITY foxyproxy.toolsmenu.label "在 Firefox 工具選單上顯示圖示">
+<!ENTITY foxyproxy.toolbaricon.label "在工具列上顯示圖示">
+<!ENTITY foxyproxy.toolbaricon.accesskey "O">
+<!ENTITY foxyproxy.toolbaricon.tooltip "在工具列上顯示圖示">
+<!ENTITY foxyproxy.toolsmenu.label2 "在工具選單上顯示圖示">
 <!ENTITY foxyproxy.toolsmenu.accesskey "T">
-<!ENTITY foxyproxy.toolsmenu.tooltip "在 Firefox 工具選單上顯示圖示">
+<!ENTITY foxyproxy.toolsmenu.tooltip2 "在工具選單上顯示圖示">
 <!ENTITY foxyproxy.tip.label "小技巧">
 <!ENTITY foxyproxy.pactip1.label "自動組態指命碼（PAC）檔案在本機上，請使用 file:// 格式。例如：file://c:/path/proxy.pac（Windows）或 file:///home/users/joe/proxy.pac（Unix/Linux/Mac）。">
 <!ENTITY foxyproxy.pactip2.label "自動組態指命碼（PAC）檔案在 FTP 伺服器上，請使用 ftp:// 格式。例如：ftp://leahscape.com/path/proxy.pac">

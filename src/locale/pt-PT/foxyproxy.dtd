@@ -243,9 +243,7 @@
 <!ENTITY foxyproxy.pacerrornotification.label "Notifique-me acerca de erros no ficheiro de auto-configuração do proxy">
 <!ENTITY foxyproxy.pacerrornotification.accesskey "E">
 <!ENTITY foxyproxy.pacerrornotification.tooltip "Mostrar um aviso quando encontrar erros no ficheiro PAC">
-<!ENTITY foxyproxy.toolsmenu.label "Mostrar o FoxyProxy no menu de ferramentas do Firefox">
 <!ENTITY foxyproxy.toolsmenu.accesskey "T">
-<!ENTITY foxyproxy.toolsmenu.tooltip "Mostrar o FoxyProxy no menu de ferramentas do Firefox">
 <!ENTITY foxyproxy.tip.label "Dica">
 <!ENTITY foxyproxy.pactip1.label "Para ficheiros PAC guardados no disco duro local, use file:// como esquema. Por exemplo, file://c:/path/proxy.pac em Windows ou file:///home/users/joe/proxy.pac em Unix/Linux/Mac.">
 <!ENTITY foxyproxy.pactip2.label "Para ficheiros PAC num servidor FTP, use ftp:// como esquema. Por exemplo, ftp://leahscape.com/path/proxy.pac">

@@ -243,9 +243,7 @@
 <!ENTITY foxyproxy.pacerrornotification.label "プロキシ自動設定ファイルのエラーについて通知する">
 <!ENTITY foxyproxy.pacerrornotification.accesskey "E">
 <!ENTITY foxyproxy.pacerrornotification.tooltip "PAC ファイルのエラーに直面したらポップアップ表示します">
-<!ENTITY foxyproxy.toolsmenu.label "Firefox のツールメニューにアイコンを表示する">
 <!ENTITY foxyproxy.toolsmenu.accesskey "T">
-<!ENTITY foxyproxy.toolsmenu.tooltip "Firefox のツールメニューにアイコンを表示します">
 <!ENTITY foxyproxy.tip.label "ヒント">
 <!ENTITY foxyproxy.pactip1.label "ローカルハードドライブの PAC ファイルには file// スキームを使います。例えば Windows では file://C:/path/proxy.pac または Unix/Linux/Mac では file:///home/users/joe/proxy.pac">
 <!ENTITY foxyproxy.pactip2.label "FTP サーバ上の PAC ファイルには ftp:// スキームを使います。例えば ftp://leahscape.com/path/proxy.pac">

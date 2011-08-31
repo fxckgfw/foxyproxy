@@ -243,9 +243,7 @@
 <!ENTITY foxyproxy.pacerrornotification.label "Obavijesti me o greškama datoteke automatske konfiguracije proxy-a">
 <!ENTITY foxyproxy.pacerrornotification.accesskey "e">
 <!ENTITY foxyproxy.pacerrornotification.tooltip "Prikazuje skočni prozor prilikom nailaženja na greške PAC datoteke">
-<!ENTITY foxyproxy.toolsmenu.label "Prikaži ikonu u Firefoxovom alatnom izborniku.">
 <!ENTITY foxyproxy.toolsmenu.accesskey "a">
-<!ENTITY foxyproxy.toolsmenu.tooltip "Prikaži ikonu u Firefoxovom alatnom izborniku.">
 <!ENTITY foxyproxy.tip.label "Savjet">
 <!ENTITY foxyproxy.pactip1.label "Za PAC datoteke spremljene na lokalnom čvrstom disku koristite file:// shemu. Naprimjer, file://c:/putanja/proxy.pac  na Windowsima ili file:///home/users/joe/proxy.pac na Unixu/Linuxu/Macu.">
 <!ENTITY foxyproxy.pactip2.label "Za PAC datoteke na fto poslužitelju koristite ftp:// shemu. Naprimjer ftp://leahscape.com/path/proxy.pac">

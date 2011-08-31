@@ -260,10 +260,8 @@
 <!ENTITY foxyproxy.toolbaricon.label "Icon in der Werkzeugleiste anzeigen">
 <!ENTITY foxyproxy.toolbaricon.accesskey "W">
 <!ENTITY foxyproxy.toolbaricon.tooltip "Zeige Icon in der Werkzeugleiste an">
-<!ENTITY foxyproxy.toolsmenu.label "FoxyProxy im Firefox Extras-Menü anzeigen">
 <!ENTITY foxyproxy.toolsmenu.label2 "Icon im Extras-Menü anzeigen">
 <!ENTITY foxyproxy.toolsmenu.accesskey "E">
-<!ENTITY foxyproxy.toolsmenu.tooltip "Zeige Icon im Firefox Extras-Menü">
 <!ENTITY foxyproxy.toolsmenu.tooltip2 "Zeige FoxyProxy im Extras-Menü">
 <!ENTITY foxyproxy.tip.label "Tip">
 <!ENTITY foxyproxy.pactip1.label "Verwenden Sie das file://-Schema für PAC-Dateien, die auf der lokalen Festplatte gespeichert sind. Beispiele: file://c:/path/proxy.pac unter Windows oder file://home/users/joe/proxy.pac unter Unix/Linux/Mac.">

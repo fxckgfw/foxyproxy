@@ -243,9 +243,7 @@
 <!ENTITY foxyproxy.pacerrornotification.label "Báo tôi khi tập tin cấu hình tự động bị lỗi">
 <!ENTITY foxyproxy.pacerrornotification.accesskey "t">
 <!ENTITY foxyproxy.pacerrornotification.tooltip "Hiển thị một popup khi một tập tin PAC bị lỗi">
-<!ENTITY foxyproxy.toolsmenu.label "Hiện biểu tượng trong trình đơn công cụ Firefox">
 <!ENTITY foxyproxy.toolsmenu.accesskey "F">
-<!ENTITY foxyproxy.toolsmenu.tooltip "Hiện biểu tượng trong trình đơn công cụ Firefox">
 <!ENTITY foxyproxy.tip.label "Mẹo">
 <!ENTITY foxyproxy.pactip1.label "Đối với tập tin PAC lưu trữ trên ổ đĩa cứng, dùng dạng file://. Ví dụ, file://c:/path/proxy.pac trên Windows hoặc file:///home/users/joe/proxy.pac trên Unix/Linux/Mac.">
 <!ENTITY foxyproxy.pactip2.label "Đối với tập tin PAC trên máy chủ ftp, dùng dạng ftp://. Ví dụ, ftp://leahscape.com/path/proxy.pac">

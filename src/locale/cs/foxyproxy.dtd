@@ -257,9 +257,7 @@
 <!ENTITY foxyproxy.pacerrornotification.label "Informovat mě při chybě v souboru automatického nastavení proxy">
 <!ENTITY foxyproxy.pacerrornotification.accesskey "E">
 <!ENTITY foxyproxy.pacerrornotification.tooltip "Zobrazí vyskakovací okno pokud dojde k chybě při načítání PAC souboru">
-<!ENTITY foxyproxy.toolsmenu.label "Zobrazit FoxyProxy v nabídce Nástroje">
 <!ENTITY foxyproxy.toolsmenu.accesskey "N">
-<!ENTITY foxyproxy.toolsmenu.tooltip "Zobrazí FoxyProxy v nabídce Nástroje">
 <!ENTITY foxyproxy.tip.label "Tip">
 <!ENTITY foxyproxy.pactip1.label "Pro PAC soubory uložené na disku Vašeho počítače použijte zápis: file://. Například: file://c:/cesta/proxy.pac pokud pokud používáte Windows nebo file:///home/pek/proxy.pac v Unixu, Linuxu nebo MacOS.">
 <!ENTITY foxyproxy.pactip2.label "Pro PAC soubory uložené na ftp serveru použijte zápis ftp://. Například: ftp://nekde.cz/cesta/proxy.pac">

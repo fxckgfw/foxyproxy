@@ -257,9 +257,12 @@
 <!ENTITY foxyproxy.pacerrornotification.label "Powiadamiaj o błędach pliku *.pac">
 <!ENTITY foxyproxy.pacerrornotification.accesskey "D">
 <!ENTITY foxyproxy.pacerrornotification.tooltip "Będzie wyświetlane powiadomienie o błędach automatycznej konfiguracji proxy">
-<!ENTITY foxyproxy.toolsmenu.label "Wyświetl element „FoxyProxy” w menu „Narzędzia”">
+<!ENTITY foxyproxy.toolbaricon.label "Wyświetlaj ikonę na pasku narzędzi">
+<!ENTITY foxyproxy.toolbaricon.accesskey "R">
+<!ENTITY foxyproxy.toolbaricon.tooltip "Wyświetlaj ikonę na pasku narzędzi">
+<!ENTITY foxyproxy.toolsmenu.label2 "Wyświetlaj ikonę w menu Narzędzia">
 <!ENTITY foxyproxy.toolsmenu.accesskey "E">
-<!ENTITY foxyproxy.toolsmenu.tooltip "Wyświetla element „FoxyProxy” w menu „Narzędzia”">
+<!ENTITY foxyproxy.toolsmenu.tooltip2 "Wyświetlaj ikonę w menu Narzędzia">
 <!ENTITY foxyproxy.tip.label "Podpowiedź">
 <!ENTITY foxyproxy.pactip1.label "Dla plików *.pac zapisanych na dysku lokalnym proszę używać następującego schematu: file://schemat. Np. file://c:/path/proxy.pac dla systemu Windows lubfile:///home/users/joe/proxy.pac dla systemów Unix/Linux/Mac.">
 <!ENTITY foxyproxy.pactip2.label "Dla plików *.pac zapisanych na serwerze FTP proszę używać następującego schematu: file://schemat. Np. ftp://leahscape.com/path/proxy.pac">

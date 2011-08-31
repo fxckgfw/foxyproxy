@@ -243,9 +243,7 @@
 <!ENTITY foxyproxy.pacerrornotification.label "Gør mig opmærksom på proxy auto-konfiguration fil-fejl">
 <!ENTITY foxyproxy.pacerrornotification.accesskey "f">
 <!ENTITY foxyproxy.pacerrornotification.tooltip "Viser en popup om PAC fil-fejl">
-<!ENTITY foxyproxy.toolsmenu.label "Vis FoxyProxy i Firefox Funktioner-menuen">
 <!ENTITY foxyproxy.toolsmenu.accesskey "t">
-<!ENTITY foxyproxy.toolsmenu.tooltip "Viser FoxyProxy i Firefox Funktioner-menuen">
 <!ENTITY foxyproxy.tip.label "Tip">
 <!ENTITY foxyproxy.pactip1.label "For PAC-filer gemt på en lokal harddisk, brug file:// metoden. For eksempel, file://c:/path/proxy.pac på Windows eller file:///home/users/joe/proxy.pac på Unix/Linux/Mac.">
 <!ENTITY foxyproxy.pactip2.label "For PAC-filer på en ftp-server, brug ftp:// metoden. For eksempel, ftp://leahscape.com/path/proxy.pac">

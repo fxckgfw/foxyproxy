@@ -257,9 +257,12 @@
 <!ENTITY foxyproxy.pacerrornotification.label "Bericht geven over fouten van het proxy auto-configuratiebestand">
 <!ENTITY foxyproxy.pacerrornotification.accesskey "F">
 <!ENTITY foxyproxy.pacerrornotification.tooltip "Een pop-upvenster weergeven wanneer PAC-bestandsfouten worden gevonden">
-<!ENTITY foxyproxy.toolsmenu.label "Pictogram weergeven in het menu Extra">
+<!ENTITY foxyproxy.toolbaricon.label "Pictogram op werkbalk weergeven">
+<!ENTITY foxyproxy.toolbaricon.accesskey "v">
+<!ENTITY foxyproxy.toolbaricon.tooltip "Pictogram op werkbalk weergeven">
+<!ENTITY foxyproxy.toolsmenu.label2 "Pictogram in menu Extra weergeven">
 <!ENTITY foxyproxy.toolsmenu.accesskey "E">
-<!ENTITY foxyproxy.toolsmenu.tooltip "Pictogram weergeven in het menu Extra">
+<!ENTITY foxyproxy.toolsmenu.tooltip2 "Pictogram in menu Extra weergeven">
 <!ENTITY foxyproxy.tip.label "Tip">
 <!ENTITY foxyproxy.pactip1.label "Gebruik voor op de lokale harde schijf opgeslagen PAC-bestanden de file:// methode. Bijvoorbeeld: file://c:/path/proxy.pac op Windows of file:///home/users/joe/proxy.pac op Unix/Linux/Mac.">
 <!ENTITY foxyproxy.pactip2.label "Gebruik voor PAC-bestanden op een FTP-server de ftp:// methode. Bijvoorbeeld: ftp://leahscape.com/path/proxy.pac">

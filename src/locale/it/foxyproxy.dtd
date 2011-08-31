@@ -138,12 +138,12 @@
 <!ENTITY foxyproxy.proxydns.accesskey "D">
 <!ENTITY foxyproxy.proxydns.tooltip3 "Selezionando questa opzione verrà effettuata la risoluzione dei nomi dei server degli URL caricati attraverso questo proxy">
 <!ENTITY foxyproxy.proxydns.label4 "Proxy DNS">
-<!ENTITY foxyproxy.showstatusbaricon.label "Mostra icona nella barra di stato">
+<!ENTITY foxyproxy.showstatusbaricon.label "Mostra icona nella barra di stato/dei componenti aggiuntivi">
 <!ENTITY foxyproxy.showstatusbaricon.accesskey "o">
-<!ENTITY foxyproxy.showstatusbaricon.tooltip "L&apos;icona di FoxyProxy verrà visualizzata nella barra di stato">
-<!ENTITY foxyproxy.showstatusbarmode.label "Mostra modalità testo nella barra di stato">
+<!ENTITY foxyproxy.showstatusbaricon.tooltip "L&apos;icona di FoxyProxy verrà visualizzata nella barra di stato/dei componenti aggiuntivi">
+<!ENTITY foxyproxy.showstatusbarmode.label "Mostra modalità testo nella barra di stato/dei componenti aggiuntivi">
 <!ENTITY foxyproxy.showstatusbarmode.accesskey "S">
-<!ENTITY foxyproxy.showstatusbarmode.tooltip "La modalità testo di FoxyProxy verrà mostrata nella barra di stato">
+<!ENTITY foxyproxy.showstatusbarmode.tooltip "La modalità testo di FoxyProxy verrà mostrata nella barra di stato/dei componenti aggiuntivi">
 <!ENTITY foxyproxy.storagelocation.label.2 "File .xml delle impostazioni">
 <!ENTITY foxyproxy.storagelocation.accesskey "x">
 <!ENTITY foxyproxy.storagelocation.tooltip "File .xml dove verranno salvate le impostazioni di FoxyProxy">
@@ -257,9 +257,12 @@
 <!ENTITY foxyproxy.pacerrornotification.label "Notifica quando il file di configurazione automatica del proxy restituisce errori">
 <!ENTITY foxyproxy.pacerrornotification.accesskey "E">
 <!ENTITY foxyproxy.pacerrornotification.tooltip "Un pop-up verrà visualizzato quando il file PAC restituirà errori">
-<!ENTITY foxyproxy.toolsmenu.label "Mostra &apos;FoxyProxy&apos; nel menu &quot;Strumenti&quot; di Firefox">
+<!ENTITY foxyproxy.toolbaricon.label "Mostra icona nella barra degli strumenti">
+<!ENTITY foxyproxy.toolbaricon.accesskey "b">
+<!ENTITY foxyproxy.toolbaricon.tooltip "L&apos;icona di FoxyProxy verrà visualizzata nella barra degli strumenti">
+<!ENTITY foxyproxy.toolsmenu.label2 "Mostra &apos;FoxyProxy&apos; nel menu &quot;Strumenti&quot;">
 <!ENTITY foxyproxy.toolsmenu.accesskey "F">
-<!ENTITY foxyproxy.toolsmenu.tooltip "L&apos;elemento di menu &apos;FoxyProxy&apos; verrà mostrato nel menu &quot;Strumenti&quot; di Firefox">
+<!ENTITY foxyproxy.toolsmenu.tooltip2 "L&apos;elemento di menu &apos;FoxyProxy&apos; verrà mostrato nel menu &quot;Strumenti&quot;">
 <!ENTITY foxyproxy.tip.label "Contenuti guida">
 <!ENTITY foxyproxy.pactip1.label "Per un file PAC memorizzato su un disco locale utilizzare lo schema file://. Esempio: file://c:/path/proxy.pac con Windows o file:///home/users/joe/proxy.pac con Unix/Linux/Mac">
 <!ENTITY foxyproxy.pactip2.label "Per un file PAC presente su un server ftp utilizzare lo schema ftp://. Esempio: ftp://leahscape.com/path/proxy.pac">
@@ -269,7 +272,7 @@
 <!ENTITY foxyproxy.pactip6.label ". Le stringhe speciali presenti nell&apos;URL relative:// verranno sostituite con i valori corrispondenti. Ad esempio, relative://ProfD/pacs/proxy3.pac si riferirà al file proxy3.pac nella sottocartella della">
 <!ENTITY foxyproxy.pactip7.label "cartella del profilo di Firefox">
 <!ENTITY foxyproxy.pactip8.label "denominata pacs/. Utilizzando Portable Firefox su Windows, la cartella del profilo è riferita sempre ad un percorso relativo perché la lettera del disco rigido può variare da un computer all&apos;altro. Prestare attenzione alla differenza fra maiuscole e minuscole per le stringhe speciali (ProfD, Home, TempD, ecc.)">
-<!ENTITY foxyproxy.contextmenu.label "Mostra FoxyProxy nel menu contestuale">
+<!ENTITY foxyproxy.contextmenu.label "Mostra &apos;FoxyProxy&apos; nel menu contestuale">
 <!ENTITY foxyproxy.contextmenu.accesskey "u">
 <!ENTITY foxyproxy.contextmenu.tooltip "L&apos;elemento di menu &apos;FoxyProxy&apos; verrà mostrato nel menu contestuale">
 <!ENTITY foxyproxy.quickadd.desc1 "L&apos;aggiunta rapida aggiunge un modello di URL dinamico ad un proxy alla pressione dei tasti Alt+F2. È una pratica alternativa all&apos;aggiunta automatica. È possibile personalizzare tale scorciatoia da tastiera tramite l&apos;estensione">
@@ -351,11 +354,11 @@
 <!ENTITY foxyproxy.indicators.tooltip "Gestione delle opzioni degli indicatori">
 <!ENTITY foxyproxy.misc.label "Varie">
 <!ENTITY foxyproxy.misc.tooltip "Gestione di opzioni varie">
-<!ENTITY foxyproxy.animatedicons.label "Anima l&apos;icona nella barra di stato quando si utilizzano i proxy">
+<!ENTITY foxyproxy.animatedicons.label "Anima l&apos;icona nella barra di stato/dei componenti aggiuntivi quando si utilizzano i proxy">
 <!ENTITY foxyproxy.animatedicons.accesskey "A">
-<!ENTITY foxyproxy.animatedicons.tooltip "L&apos;icona nella barra di stato si animerà quando si utilizzeranno i proxy">
-<!ENTITY foxyproxy.statusbaractivation.label "Azioni da associare a clic del mouse sull&apos;icona nella barra di stato">
-<!ENTITY foxyproxy.statusbaractivation.tooltip "Azioni da associare a clic del mouse sull&apos;icona di FoxyProxy nella barra di stato">
+<!ENTITY foxyproxy.animatedicons.tooltip "L&apos;icona nella barra di stato/dei componenti aggiuntivi si animerà quando si utilizzeranno i proxy">
+<!ENTITY foxyproxy.statusbaractivation.label "Azioni da associare a clic del mouse sull&apos;icona nella barra di stato/dei componenti aggiuntivi">
+<!ENTITY foxyproxy.statusbaractivation.tooltip "Azioni da associare a clic del mouse sull&apos;icona di FoxyProxy nella barra di stato/dei componenti aggiuntivi">
 <!ENTITY foxyproxy.toolbaractivation.label "Azioni da associare a clic del mouse sull&apos;icona nella barra degli strumenti">
 <!ENTITY foxyproxy.toolbaractivation.tooltip "Azioni da associare a clic del mouse sull&apos;icona di FoxyProxy nella barra degli strumenti">
 <!ENTITY foxyproxy.leftclicksb.label "Con clic con tasto sinistro:">
@@ -384,9 +387,9 @@
 <!ENTITY foxyproxy.click.reloadtabsinallbrowsers "ricarica tutte le schede in tutte le finestre">
 <!ENTITY foxyproxy.click.removeallcookies "elimina tutti i cookie">
 <!ENTITY foxyproxy.click.toggle "attiva/disattiva la modalità attuale">
-<!ENTITY foxyproxy.includeincycle.label "Includi proxy alternandoli quando si fa clic nella barra di stato/degli strumenti">
+<!ENTITY foxyproxy.includeincycle.label "Includi proxy alternandoli quando si fa clic nella barra di stato/dei componenti aggiuntivi/degli strumenti">
 <!ENTITY foxyproxy.includeincycle.accesskey "I">
-<!ENTITY foxyproxy.includeincycle.tooltip "I proxy verranno inclusi quando alternati tramite clic nella barra di stato/degli strumenti (l&apos;opzione &apos;alterna i proxy&apos; deve essere selezionata)">
+<!ENTITY foxyproxy.includeincycle.tooltip "I proxy verranno inclusi quando alternati tramite clic nella barra di stato/dei componenti aggiuntivi/degli strumenti (l&apos;opzione &apos;alterna i proxy&apos; deve essere selezionata)">
 <!ENTITY foxyproxy.changes.msg1 "Contenuti guida delle impostazioni per HTTP, SSL, FTP, Gopher e SOCKS">
 <!ENTITY foxyproxy.newGUI.popup.height "270px">
 <!ENTITY foxyproxy.newGUI.popup.width "400px">
@@ -401,7 +404,7 @@
 <!ENTITY foxyproxy.casesensitive.tooltip "Presta/non presta attenzione a maiuscole/minuscole per la corrispondenza degli URL">
 <!ENTITY foxyproxy.statusbarwidth.label "Larghezza in pixel:">
 <!ENTITY foxyproxy.statusbarwidth.accesskey "L">
-<!ENTITY foxyproxy.statusbarwidth.tooltip "Larghezza dell&apos;area nella barra di stato dove verrà mostrato il testo">
+<!ENTITY foxyproxy.statusbarwidth.tooltip "Larghezza dell&apos;area nella barra di stato/dei componenti aggiuntivi dove verrà mostrato il testo">
 <!ENTITY foxyproxy.pixels " ">
 <!ENTITY foxyproxy.unlimited.label "(0: il testo verrà mostrato per intero) ">
 <!ENTITY foxyproxy.temp.popup.label "I modelli temporanei permettono di creare modelli di URL per indirizzi che non vengono visitati spesso, senza interessare le liste di modelli dei proxy. Tali modelli non vengono salvati sul disco rigido, ma mantenuti in memoria ed eliminati alla chiusura della sessione di Firefox">

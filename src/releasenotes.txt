@@ -1,0 +1,2 @@
+* fixed bugs in Regular Expressions for no localhost pattern feature (see:
+  http://forums.getfoxyproxy.org/viewtopic.php?f=4&t=148)

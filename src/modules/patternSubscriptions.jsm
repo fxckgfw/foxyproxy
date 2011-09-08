@@ -742,7 +742,7 @@ var patternSubscriptions = {
         } else {
           j++;	
         }
-          k++;
+        k++;
       } while (k < matchesLength);  
     } 
     this.fp.writeSettings(); 

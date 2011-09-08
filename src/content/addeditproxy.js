@@ -11,6 +11,9 @@
 const CI = Components.interfaces, CC = Components.classes;
 var urlsTree, proxy, foxyproxy, autoconfurl, overlay, isWindows, fpc,
   oldMatches = [];
+let localHostRegEx = "^https?://(?:[^:@/]+(?::[^@/]+)?@)?(?:localhost|127\\.\\d+\\.\\d+\\.\\d+)(?::\\d+)?/.*";
+  let localSubRegEx = "^https?://(?:[^:@/]+(?::[^@/]+)?@)?(?:192\\.168\\.\\d+\\.\\d+|10\\.\\d+\\.\\d+\\.\\d+|172\\.(?:1[6789]|2[0-9]|3[01])\\.\\d+\\.\\d+)(?::\\d+)?/.*"; 
+  let localHostNameRegEx = "^https?://(?:[^:@/]+(?::[^@/]+)?@)?[\\w-]+(?::\\d+)?/.*";
 
 function onLoad() {
   isWindows = CC["@mozilla.org/xre/app-info;1"].getService(CI.nsIXULRuntime).OS == "WINNT";
@@ -189,9 +192,6 @@ function _checkUri() {
 
 function noInternalIPs() {
   let noInternalIPsChecked;
-  let localHostRegEx = "^https?://(?:[^:@/]+(?::[^@/]+)?@)?(?:localhost|127\\.\\d+\\.\\d+\\.\\d+)(?::\\d+)?/.*";
-  let localSubRegEx = "^https?://(?:[^:@/]+(?::[^@/]+)?@)?(?:192\\.168\\.\\d+\\.\\d+|10\\.\\d+\\.\\d+\\.\\d+|172\\.(?:1[6789]|2[0-9]|3[01])\\.\\d+\\.\\d+)(?::\\d+)?/.*"; 
-  let localHostNameRegEx = "^https?://(?:[^:@/]+(?::[^@/]+)?@)?[\\w-]+(?::\\d+)?/.*"; 
   if (window.arguments[0].inn.torwiz) {
     noInternalIPsChecked = document.getElementById("fpniip").checked;
   } else {
@@ -220,7 +220,21 @@ function noInternalIPs() {
     proxy.matches = helper.concat(proxy.matches); 
     _updateView();
   } else {
-    proxy.matches = proxy.matches.slice(3);
+    // We want to delete these three patterns properly even if the user somehow
+    // sorted the tree. Therefore, we have to walk through all pattern and if we
+    // find a match we removed it from the array.
+    let i = j = 0;
+    let matchesLength = proxy.matches.length;
+    do {
+      let proxyPattern = proxy.matches[i].pattern;
+      if (proxyPattern === localHostRegEx || proxyPattern === localSubRegEx ||
+          proxyPattern === localHostNameRegEx) {
+        proxy.matches.splice(i, 1);
+      } else {
+        i++;
+      }
+      j++  
+    } while  (j < matchesLength);
     _updateView();
   }
 }

@@ -189,6 +189,9 @@ function _checkUri() {
 
 function noInternalIPs() {
   let noInternalIPsChecked;
+  let localHostRegEx = "^https?://(?:[^:@/]+(?::[^@/]+)?@)?(?:localhost|127\\.\\d+\\.\\d+\\.\\d+)(?::\\d+)?(?:/.*)?";
+  let localSubRegEx = "^https?://(?:[^:@/]+(?::[^@/]+)?@)?(?:192\\.168\\.\\d+\\.\\d+|10\\.\\d+\\.\\d+\\.\\d+|172\\.(?:1[6789]|2[0-9]|3[12]))(?::\\d+)?(?:/.*)?"; 
+  let localHostNameRegEx = "^https?://(?:[^:@/]+(?::[^@/]+)?@)?[\\w-]+(?::\\d+)?(?:/.*)?"; 
   if (window.arguments[0].inn.torwiz) {
     noInternalIPsChecked = document.getElementById("fpniip").checked;
   } else {
@@ -199,22 +202,20 @@ function noInternalIPs() {
     let m = CC["@leahscape.org/foxyproxy/match;1"].createInstance().
       wrappedJSObject; 
     m.init(true, foxyproxy.getMessage("localhost2") +
-      foxyproxy.getMessage("localhost.patterns.message"),
-      "^https?://(?:[^:@/]+(?::[^@/]+)?@)?(?:localhost|127\.\d+\.\d+\.\d+)(?::\d+)?/.*",
+      foxyproxy.getMessage("localhost.patterns.message"), localHostRegEx,
       false, true, false, true, false);
     helper.push(m);
     m = CC["@leahscape.org/foxyproxy/match;1"].createInstance().
       wrappedJSObject; 
     m.init(true, foxyproxy.getMessage("localsubnets2") +
-      foxyproxy.getMessage("localhost.patterns.message"), "^https?://(?:[^:@/]+(?::[^@/]+)?@)?(?:192\.168\.\d+\.\d+|10\.\d+\.\d+\.\d+|172\.(?:1[6789]|2[0-9]|3[12]))(?::\d+)?/.*",
-      false, true, false, true, false);
+      foxyproxy.getMessage("localhost.patterns.message"), localSubRegEx, false,
+      true, false, true, false);
     helper.push(m);
     m = CC["@leahscape.org/foxyproxy/match;1"].createInstance().
       wrappedJSObject; 
     m.init(true, foxyproxy.getMessage("localhostnames2") +
-      foxyproxy.getMessage("localhost.patterns.message"),
-      "^https?://(?:[^:@/]+(?::[^@/]+)?@)?[\w-]+(?::\d+)?/.*", false, true,
-      false, true, false);
+      foxyproxy.getMessage("localhost.patterns.message"), localHostNameRegEx,
+      false, true, false, true, false);
     helper.push(m);
     proxy.matches = helper.concat(proxy.matches); 
     _updateView();

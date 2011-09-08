@@ -13,6 +13,9 @@
  * Contributor(s): Georg Koppen
  */
 
+/* The modified code owes some inspiration from AutoProxy itself (version
+   0.4b2.2011041023) */
+
 var EXPORTED_SYMBOLS = ["autoproxy"];
 
 var autoproxy = {

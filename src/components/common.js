@@ -102,7 +102,7 @@ Common.prototype = {
     }
     if (isRegEx) {
       try {
-        new RegExp((p[0]=="^"?"":"^") + p + (p[p.length-1]=="$"?"":"$"));
+        new RegExp(p);
       }
       catch(e) {
         fp.alert(win, fp.getMessage("pattern.invalid.regex", [origPat]));

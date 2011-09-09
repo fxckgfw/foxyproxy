@@ -36,8 +36,12 @@
 <!ENTITY foxyproxy.help.label "Help Contents">
 <!ENTITY foxyproxy.help.accesskey "H">
 <!ENTITY foxyproxy.help.tooltip "Show Help">
+<!ENTITY foxyproxy.import.pattern.label "Import">
+<!ENTITY foxyproxy.import.pattern.accesskey "I">
+<!ENTITY foxyproxy.import.pattern.tooltip "Importă șabloane">
 <!ENTITY foxyproxy.export.pattern.label "Export">
 <!ENTITY foxyproxy.export.pattern.accesskey "X">
+<!ENTITY foxyproxy.export.pattern.tooltip2 "Exportă toate șabloanele">
 <!ENTITY foxyproxy.close.label "Close">
 <!ENTITY foxyproxy.close.accesskey "C">
 <!ENTITY foxyproxy.close.tooltip "Close Window">
@@ -55,6 +59,13 @@
 <!ENTITY foxyproxy.copy.selection.tooltip "Copies selection">
 <!ENTITY foxyproxy.mode.label "Select Mode">
 <!-- begin foxyproxyplus -->
+<!ENTITY foxyproxy.wpad.label "Detectează automat setările proxy pentru această rețea">
+<!ENTITY foxyproxy.wpad.accesskey "D">
+<!ENTITY foxyproxy.wpad.tooltip "Detectează automat setările proxy folosind protocolul WPAD">
+<!ENTITY foxyproxy.wpad.reload.label "Detectează automat setările proxy la fiecare">
+<!ENTITY foxyproxy.wpad.reload.accesskey "e">
+<!ENTITY foxyproxy.wpad.reload.tooltip "Detectează automat setările proxy la intervale regulate de timp">
+<!ENTITY foxyproxy.wpad.tree.label "Detectează automat serverul proxy">
 <!ENTITY foxyproxy.auto.url.label "Automatic proxy configuration URL">
 <!ENTITY foxyproxy.auto.url.accesskey "A">
 <!ENTITY foxyproxy.auto.url.tooltip "Enter URL of the PAC file">
@@ -91,6 +102,9 @@
 <!ENTITY foxyproxy.tab.patterns.tooltip "Manage URL Patterns">
 <!ENTITY foxyproxy.add.title "Proxy Settings">
 <!ENTITY foxyproxy.pattern.description "Here you can specify when this proxy is and is not used.">
+<!ENTITY foxyproxy.pattern.nointernal.label "Evită acest server proxy pentru adresele IP locale">
+<!ENTITY foxyproxy.pattern.nointernal.tooltip "Restricționează utilizarea serverului proxy numai la adresele IP externe">
+<!ENTITY foxyproxy.pattern.nointernal.accesskey "R">
 <!ENTITY foxyproxy.pattern.matchtype.label "Pattern Contains">
 <!ENTITY foxyproxy.pattern.whiteblack.label "URL Inclusion/Exclusion">
 <!ENTITY foxyproxy.add.option.direct.label "Direct internet connection (no proxy)">
@@ -243,7 +257,12 @@
 <!ENTITY foxyproxy.pacerrornotification.label "Notify me about proxy auto-configuration file errors">
 <!ENTITY foxyproxy.pacerrornotification.accesskey "E">
 <!ENTITY foxyproxy.pacerrornotification.tooltip "Display a popup when encountering PAC file errors">
+<!ENTITY foxyproxy.toolbaricon.label "Afișează pictograma în bara de unelte">
+<!ENTITY foxyproxy.toolbaricon.accesskey "u">
+<!ENTITY foxyproxy.toolbaricon.tooltip "Afișează pictograma FoxyProxy în bara de unelte">
+<!ENTITY foxyproxy.toolsmenu.label2 "Afișează pictograma în meniul „Unelte”">
 <!ENTITY foxyproxy.toolsmenu.accesskey "T">
+<!ENTITY foxyproxy.toolsmenu.tooltip2 "Afișează pictograma FoxyProxy în meniul „Unelte”">
 <!ENTITY foxyproxy.tip.label "Tip">
 <!ENTITY foxyproxy.pactip1.label "For PAC files stored on a local hard drive, use the file:// scheme. For example, file://c:/path/proxy.pac on Windows or file:///home/users/joe/proxy.pac on Unix/Linux/Mac.">
 <!ENTITY foxyproxy.pactip2.label "For PAC files on an ftp server, use the ftp:// scheme. For example, ftp://leahscape.com/path/proxy.pac">
@@ -425,8 +444,10 @@
 <!ENTITY foxyproxy.server.subscriptions.accesskey "S">
 <!ENTITY foxyproxy.selectproxy.label "Select Proxy">
 <!ENTITY foxyproxy.pattern.subscriptions.label "Pattern Subscriptions">
+<!ENTITY foxyproxy.pattern.subscriptions.description "Abonați-vă la șabloanele publicate de alții. Distribuiți șabloanele dumneavoastră și altora cu doar câteva clicuri.">
 <!ENTITY foxyproxy.pattern.subscriptions.tooltip "Manage Pattern Subscriptions">
 <!ENTITY foxyproxy.pattern.subscriptions.accesskey "S">
+<!ENTITY foxyproxy.pattern.subscriptions.sharing.label "Distribuie șabloanele personale">
 <!ENTITY foxyproxy.pattern.subscriptions.menulist.tooltip "Select what to do with pattern subscriptions.">
 <!ENTITY foxyproxy.pattern.subscriptions.addSubscription "Add New Pattern Subscription">
 <!ENTITY foxyproxy.pattern.subscriptions.editSelection "Edit Selection">

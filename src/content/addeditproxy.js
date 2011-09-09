@@ -218,7 +218,6 @@ function noInternalIPs() {
       false, true, false, true, false);
     helper.push(m);
     proxy.matches = helper.concat(proxy.matches); 
-    _updateView();
   } else {
     // We want to delete these three patterns properly even if the user somehow
     // sorted the tree. Therefore, we have to walk through all pattern and if we
@@ -235,8 +234,8 @@ function noInternalIPs() {
       }
       j++  
     } while  (j < matchesLength);
-    _updateView();
   }
+  _updateView(); 
 }
 
 function onAddEditURLPattern(isNew) {
@@ -283,6 +282,7 @@ function _updateView() {
   // patterns.
   document.getElementById("exportURLPatternCmd").setAttribute("disabled", 
     proxy.matches.length === 0); 
+  //document.getElementById("noInternalIPs").checked = proxy.noInteralIPs;
   // Redraw the trees
   urlsTree.view = makeView();
 

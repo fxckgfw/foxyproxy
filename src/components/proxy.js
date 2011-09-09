@@ -92,13 +92,13 @@ function Proxy(fp) {
   this.selectedTabIndex = 1; /* default tab is the proxy details tab */
   this.lastresort = false;
   this.id = this.fp.proxies.uniqueRandom();
-  this.noInternalIPs = false;
 }
 
 Proxy.prototype = {
   direct: proxyService.newProxyInfo("direct", "", -1, 0, 0, null),
   animatedIcons: true,
   includeInCycle: true,
+  noInternalIPs: false,
   _color: DEFAULT_COLOR,
   colorString: "nmbado",
   _proxyDNS: true,
@@ -135,7 +135,7 @@ Proxy.prototype = {
     this.color = gGetSafeAttr(node, "color", DEFAULT_COLOR);    
     
     this.noInternalIPs = node.hasAttribute("noInternalIPs") ?
-      node.getAttribute("noInternalIPs") : false;
+      node.getAttribute("noInternalIPs") == "true" : false;
     for (var i=0,temp=node.getElementsByTagName("match"); i<temp.length; i++) {
       var j = this.matches.length;
       this.matches[j] = new Match();

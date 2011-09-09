@@ -2,3 +2,5 @@
   http://forums.getfoxyproxy.org/viewtopic.php?f=4&t=148)
 * the "no localhost pattern" are now properly removed if the pattern tree gets
   sorted
+* fixed regression that the localhost pattern checkbox was always checked after
+  Firefox startup

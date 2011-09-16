@@ -178,6 +178,11 @@ end-foxyproxy-simple !*/
 /*! end-foxyproxy-standard !*/
     }
     this.patternErrorNotification();
+    gBrowser.addEventListener("DOMContentLoaded", foxyproxy.errorPageCheck, false);
+  },
+
+  errorPageCheck : function(e) {
+
   },
 
   patternErrorNotification : function() {
@@ -1123,6 +1128,7 @@ end-foxyproxy-simple !*/
 window.addEventListener("load", function(e) { foxyproxy.onLoad(e); }, false);
 window.addEventListener("unload", function(e) {
   document.getElementById("appcontent") && document.getElementById("appcontent").removeEventListener("load", this.onPageLoad, true);
+  gBrowser.removeEventListener("DOMContentLoaded", foxyproxy.errorPageCheck, false);
   var obSvc = Components.classes["@mozilla.org/observer-service;1"].getService(Components.interfaces.nsIObserverService);
   for (var i in foxyproxy.notes) {
     obSvc.removeObserver(foxyproxy, foxyproxy.notes[i]);

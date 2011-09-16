@@ -75,21 +75,22 @@ var autoproxy = {
       // Do we have text and no comments at all?
       if (noWhitespace.test(lines[i]) && lines[i].indexOf("!") !== 0) {
         parsedSubscription.patterns[j] = {};
+        let currentPat = parsedSubscription.patterns[j];
         // First, we convert all filters to RegExes. Therefore, we can already
         // safely set the related property.
-        parsedSubscription.patterns[j].isRegEx = true;
+        currentPat.isRegEx = true;
         if (lines[i].indexOf("@@") === 0) {
           // We have a blacklist item.
           lines[i] = lines[i].substr(2);
-          parsedSubscription.patterns[j].blackList = true;
+          currentPat.blackList = true;
         } else {
-          parsedSubscription.patterns[j].blackList = false;
+          currentPat.blackList = false;
         }
         // As the patterns in the AutoProxy format do not have names only the
         // pattern itself is missing yet.
         if (lines[i][0] === "/" && lines[i][lines[i].length - 1] === "/") {
           // We found already a RegEx
-          parsedSubscription.patterns[j].pattern = lines[i].substr(1,
+          currentPat.pattern = lines[i].substr(1,
             lines[i].length - 2);
         } else {
           if (lines[i].indexOf("http:") === 0) {
@@ -97,7 +98,7 @@ var autoproxy = {
           } else if (lines[i][0] !== "|") {
             lines[i] = "|http:*" + lines[i];
           }
-          parsedSubscription.patterns[j].pattern =
+          currentPat.pattern =
             // remove multiple wildcards
             lines[i].replace(/\*+/g, "*").
               // remove anchors following separator placeholder
@@ -118,10 +119,14 @@ var autoproxy = {
               replace(/^(\.\*)/,"").
               // remove trailing wildcards
               replace(/(\.\*)$/,"");
-          if (parsedSubscription.patterns[j].pattern === "") {
-            parsedSubscription.patterns[j].pattern = ".*"
+          if (currentPat.pattern === "") {
+            currentPat.pattern = ".*"
           }
         }
+        // Setting the other properties to their proper values.
+        currentPat.multiLine = false;
+        currentPat.caseSensitive = false;
+        currentPat.name = "";
         j = j + 1;
       }
     }

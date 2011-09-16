@@ -189,9 +189,9 @@ function _checkUri() {
 
 function noInternalIPs() {
   let noInternalIPsChecked;
-  let localHostRegEx = "^https?://(?:[^:@/]+(?::[^@/]+)?@)?(?:localhost|127\\.\\d+\\.\\d+\\.\\d+)(?::\\d+)?/.*";
-  let localSubRegEx = "^https?://(?:[^:@/]+(?::[^@/]+)?@)?(?:192\\.168\\.\\d+\\.\\d+|10\\.\\d+\\.\\d+\\.\\d+|172\\.(?:1[6789]|2[0-9]|3[01])\\.\\d+\\.\\d+)(?::\\d+)?/.*"; 
-  let localHostNameRegEx = "^https?://(?:[^:@/]+(?::[^@/]+)?@)?[\\w-]+(?::\\d+)?/.*"; 
+  let localhostRegEx = "^https?://(?:[^:@/]+(?::[^@/]+)?@)?(?:localhost|127\\.\\d+\\.\\d+\\.\\d+)(?::\\d+)?/.*";
+  let localSubRegEx = "^https?://(?:[^:@/]+(?::[^@/]+)?@)?(?:192\\.168\\.\\d+\\.\\d+|10\\.\\d+\\.\\d+\\.\\d+|172\\.(?:1[6789]|2[0-9]|3[01])\\.\\d+\\.\\d+)(?::\\d+)?/.*";
+  let localHostnameRegEx = "^https?://(?:[^:@/]+(?::[^@/]+)?@)?[\\w-]+(?::\\d+)?/.*";
   if (window.arguments[0].inn.torwiz) {
     noInternalIPsChecked = document.getElementById("fpniip").checked;
   } else {
@@ -200,42 +200,42 @@ function noInternalIPs() {
   if (noInternalIPsChecked) {
     let helper = [];
     let m = CC["@leahscape.org/foxyproxy/match;1"].createInstance().
-      wrappedJSObject; 
+      wrappedJSObject;
     m.init(true, foxyproxy.getMessage("localhost2") +
-      foxyproxy.getMessage("localhost.patterns.message"), localHostRegEx,
-      false, true, false, true, false);
+      foxyproxy.getMessage("localhost.patterns.message"), localhostRegEx, false,
+      true, false, true, false);
     helper.push(m);
     m = CC["@leahscape.org/foxyproxy/match;1"].createInstance().
-      wrappedJSObject; 
+      wrappedJSObject;
     m.init(true, foxyproxy.getMessage("localsubnets2") +
       foxyproxy.getMessage("localhost.patterns.message"), localSubRegEx, false,
       true, false, true, false);
     helper.push(m);
     m = CC["@leahscape.org/foxyproxy/match;1"].createInstance().
-      wrappedJSObject; 
+      wrappedJSObject;
     m.init(true, foxyproxy.getMessage("localhostnames2") +
-      foxyproxy.getMessage("localhost.patterns.message"), localHostNameRegEx,
+      foxyproxy.getMessage("localhost.patterns.message"), localHostnameRegEx,
       false, true, false, true, false);
     helper.push(m);
-    proxy.matches = helper.concat(proxy.matches); 
+    proxy.matches = helper.concat(proxy.matches);
   } else {
     // We want to delete these three patterns properly even if the user somehow
-    // sorted the tree. Therefore, we have to walk through all pattern and if we
-    // find a match we removed it from the array.
+    // sorted the tree. Therefore, we have to walk through all patterns and if
+    // we find a match we remove it from the array.
     let i = j = 0;
     let matchesLength = proxy.matches.length;
     do {
       let proxyPattern = proxy.matches[i].pattern;
-      if (proxyPattern === localHostRegEx || proxyPattern === localSubRegEx ||
-          proxyPattern === localHostNameRegEx) {
+      if (proxyPattern === localhostRegEx || proxyPattern === localSubRegEx ||
+          proxyPattern === localHostnameRegEx) {
         proxy.matches.splice(i, 1);
       } else {
         i++;
       }
-      j++  
+      j++;
     } while  (j < matchesLength);
   }
-  _updateView(); 
+  _updateView();
 }
 
 function onAddEditURLPattern(isNew) {

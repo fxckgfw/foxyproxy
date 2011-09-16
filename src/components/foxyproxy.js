@@ -122,6 +122,7 @@ foxyproxy.prototype = {
   excludePatternsFromCycling : false,
   excludeDisabledFromCycling : false,
   ignoreProxyScheme : false,
+  writeSettingsTimer : null,
   
   broadcast : function(subj, topic, data) {
     gBroadcast(subj, topic, data);
@@ -129,6 +130,8 @@ foxyproxy.prototype = {
 
   init : function() {
     try {
+      this.writeSettingsTimer = CC["@mozilla.org/timer;1"].
+        createInstance(Components.interfaces.nsITimer); 
       this.autoadd = new AutoAdd(this.getMessage("autoadd.pattern.label"));
       this.quickadd = new QuickAdd(this.getMessage("quickadd.pattern.label"));
       LoggEntry.prototype.init();
@@ -516,26 +519,43 @@ foxyproxy.prototype = {
   },
 
   writeSettings : function(o) {
+    // As we often call writeSettings (for instance it can happen several times
+    // if we change the proxy mode in the options dialog) it is important to
+    // have just a single timer responsible for writing the settings and cancel
+    // an already scheduled one. 20 ms delay should be enough to get all timer
+    // intialization cancelled before the actual writing happens.
+    // Obviously, that does not hold for the last call to writeSettings() in a
+    // series of such calls. Thus, the settings get written only once instead
+    // of several times as intended.
+    this.writeSettingsTimer.cancel();
+    let writeSettingsThread = {
+      notify: function() {
+        try {
+          let o2 = o ? gFP.transformer(o, CI.nsIFile) :
+            gFP.getSettingsURI(CI.nsIFile);
+          let foStream = CC["@mozilla.org/network/file-output-stream;1"].
+            createInstance(CI.nsIFileOutputStream);
+          // write, create, truncate 
+          foStream.init(o2, 0x02 | 0x08 | 0x20, 0664, 0); 
+          foStream.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n", 39);
+          CC["@mozilla.org/xmlextras/xmlserializer;1"].createInstance(CI.
+            nsIDOMSerializer).serializeToStream(gFP.toDOM(), foStream, "UTF-8");
+          foStream.close();
+        } catch(ex) {
+          dumpp(ex);
+          that.alert(null, that.getMessage("settings.error.3",
+            o instanceof CI.nsIFile ? [o.path] : [o]));
+        } 
+      }
+    };
     // try {
       // dump("*** writeSettings\n");
       // throw new Error("e");
     // }
     // catch (e) {catch (e) {dump("*** " + e + " \n\n\n");dump ("\n" + e.stack + "\n");} }
-    try {
-      var o2 = o ? gFP.transformer(o, CI.nsIFile) : gFP.getSettingsURI(CI.nsIFile);
-      var foStream = CC["@mozilla.org/network/file-output-stream;1"].
-        createInstance(CI.nsIFileOutputStream);
-      foStream.init(o2, 0x02 | 0x08 | 0x20, 0664, 0); // write, create, truncate
-      foStream.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n", 39);
-      CC["@mozilla.org/xmlextras/xmlserializer;1"].createInstance(CI.nsIDOMSerializer)
-        .serializeToStream(gFP.toDOM(), foStream, "UTF-8");
-      // foStream.write(str, str.length);
-      foStream.close();
-    }
-    catch(ex) {
-      dumpp(ex);
-      this.alert(null, this.getMessage("settings.error.3", o instanceof CI.nsIFile ? [o.path] : [o]));
-    }
+    let that = this;
+    this.writeSettingsTimer.initWithCallback(writeSettingsThread, 20, 
+      Components.interfaces.nsITimer.TYPE_ONE_SHOT); 
   },
 
   get resetIconColors() { return this._resetIconColors; },

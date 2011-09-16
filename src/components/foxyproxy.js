@@ -131,16 +131,16 @@ foxyproxy.prototype = {
   init : function() {
     try {
       this.writeSettingsTimer = CC["@mozilla.org/timer;1"].
-        createInstance(Components.interfaces.nsITimer); 
+        createInstance(CI.nsITimer);
       this.autoadd = new AutoAdd(this.getMessage("autoadd.pattern.label"));
       this.quickadd = new QuickAdd(this.getMessage("quickadd.pattern.label"));
       LoggEntry.prototype.init();
     }
     catch (e) {
       dumpp(e);
-    }     
+    }
   },
-  
+
   observe: function(subj, topic, data) {
       switch(topic) {
         case "profile-after-change":
@@ -414,7 +414,9 @@ foxyproxy.prototype = {
     var file = this.transformer(o, CI.nsIFile);
     // Does it exist?
     if (!file.exists())
-      this.writeSettings(file);
+      // We are calling this method directly as we do not want to write the
+      // settings in a separate thread due to race conditions.
+      this.writeSettingsInternal(file);
     return (typeof(type) == "object" && "equals" in type && type.equals(CI.nsIFile)) ? file : this.transformer(o, type);
   },
 
@@ -426,7 +428,9 @@ foxyproxy.prototype = {
     }
     var o2 = this.transformer(o, "uri-string");
     try {
-      this.writeSettings(o2);
+      // We want to have a synchronous writing of the settings here as we want
+      // to update the settings pref only if it succeeded.
+      this.writeSettingsInternal(o2);
       // Only update the preference if writeSettings() succeeded
       this.getPrefsService("extensions.foxyproxy.").setCharPref("settings", o2);
     }
@@ -530,32 +534,37 @@ foxyproxy.prototype = {
     this.writeSettingsTimer.cancel();
     let writeSettingsThread = {
       notify: function() {
-        try {
-          let o2 = o ? gFP.transformer(o, CI.nsIFile) :
-            gFP.getSettingsURI(CI.nsIFile);
-          let foStream = CC["@mozilla.org/network/file-output-stream;1"].
-            createInstance(CI.nsIFileOutputStream);
-          // write, create, truncate 
-          foStream.init(o2, 0x02 | 0x08 | 0x20, 0664, 0); 
-          foStream.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n", 39);
-          CC["@mozilla.org/xmlextras/xmlserializer;1"].createInstance(CI.
-            nsIDOMSerializer).serializeToStream(gFP.toDOM(), foStream, "UTF-8");
-          foStream.close();
-        } catch(ex) {
-          dumpp(ex);
-          that.alert(null, that.getMessage("settings.error.3",
-            o instanceof CI.nsIFile ? [o.path] : [o]));
-        } 
+        that.writeSettingsInternal(o);
       }
     };
     // try {
       // dump("*** writeSettings\n");
       // throw new Error("e");
     // }
-    // catch (e) {catch (e) {dump("*** " + e + " \n\n\n");dump ("\n" + e.stack + "\n");} }
+    // catch (e) {catch (e) {dump("*** " + e + " \n\n\n");
+    // dump ("\n" + e.stack + "\n");} }
     let that = this;
-    this.writeSettingsTimer.initWithCallback(writeSettingsThread, 20, 
-      Components.interfaces.nsITimer.TYPE_ONE_SHOT); 
+    this.writeSettingsTimer.initWithCallback(writeSettingsThread, 20,
+      CI.nsITimer.TYPE_ONE_SHOT);
+  },
+
+  writeSettingsInternal : function(o) {
+    try {
+      let o2 = o ? gFP.transformer(o, CI.nsIFile) :
+        gFP.getSettingsURI(CI.nsIFile);
+      let foStream = CC["@mozilla.org/network/file-output-stream;1"].
+        createInstance(CI.nsIFileOutputStream);
+      // write, create, truncate
+      foStream.init(o2, 0x02 | 0x08 | 0x20, 0664, 0);
+      foStream.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n", 39);
+      CC["@mozilla.org/xmlextras/xmlserializer;1"].createInstance(CI.
+        nsIDOMSerializer).serializeToStream(gFP.toDOM(), foStream, "UTF-8");
+      foStream.close();
+    } catch(ex) {
+      dumpp(ex);
+      this.alert(null, this.getMessage("settings.error.3",
+        o instanceof CI.nsIFile ? [o.path] : [o]));
+    }
   },
 
   get resetIconColors() { return this._resetIconColors; },

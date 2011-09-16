@@ -1,6 +1,8 @@
+* fixed UI sluggishness due to import of large amount of patterns
 * fixed bugs in Regular Expressions for no localhost pattern feature (see:
   http://forums.getfoxyproxy.org/viewtopic.php?f=4&t=148)
-* the "no localhost pattern" are now properly removed if the pattern tree gets
+* the "no localhost patterns" are now properly removed if the pattern tree gets
   sorted
-* fixed regression that the localhost pattern checkbox was always checked after
-  Firefox startup
+* fixed regression (the localhost pattern checkbox was always checked after
+  Firefox startup)
+* improved parsing of AutoProxy patterns

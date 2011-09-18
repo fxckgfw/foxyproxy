@@ -99,7 +99,7 @@ Protocol.prototype = {
           fp.broadcast(null, "foxyproxy-proxy-change");
           break;
       }
-      fp.writeSettings(); // Save to disk
+      fp.writeSettingsAsync(); // Save to disk
     }
     
     // If foxyProxyMode was specified as "this", translate that to something that fp.setMode() understands.

@@ -61,7 +61,7 @@ foxyproxy.selection = {
           }      
           gBrowser.reloadTab(gBrowser.mCurrentTab);
         }
-        fp.writeSettings();        
+        fp.writeSettingsAsync();        
       }
     }
     else if (sel.reason == 1)

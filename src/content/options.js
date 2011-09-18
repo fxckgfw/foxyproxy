@@ -304,7 +304,7 @@ function _updateView(writeSettings, updateLogView) {
   subscriptionsTree.view = patternSubscriptions.makeSubscriptionsTreeView();
   
   if (writeSettings)
-    foxyproxy.writeSettings();
+    foxyproxy.writeSettingsAsync();
   setButtons();
   if (updateLogView)
     _updateLogView(true);
@@ -802,7 +802,7 @@ function onBlockedPagePattern() {
     m.pattern = params.pattern;
     m.isRegEx = params.isRegEx;
     m.caseSensitive = params.caseSensitive;
-    foxyproxy.writeSettings();
+    foxyproxy.writeSettingsAsync();
   }    
 }
 

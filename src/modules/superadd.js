@@ -100,26 +100,26 @@ SuperAdd.prototype = {
   get enabled() { return this._enabled; },
   set enabled(e) {
     this._enabled = e;
-    this.fp.writeSettings();
+    this.fp.writeSettingsAsync();
     this.elemName == "autoadd" && gBroadcast(e, "foxyproxy-autoadd-toggle");
   },
 
   get temp() { return this._temp; },
   set temp(t) {
     this._temp = t;
-    this.fp.writeSettings();
+    this.fp.writeSettingsAsync();
   },
 
   get reload() { return this._reload; },
   set reload(e) {
     this._reload = e;
-    this.fp.writeSettings();
+    this.fp.writeSettingsAsync();
   },
 
   get proxy() { return this._proxy; },
   set proxy(p) {
     this._proxy = p;
-    this.fp.writeSettings();
+    this.fp.writeSettingsAsync();
   },
 
   set proxyById(id) {
@@ -130,19 +130,19 @@ SuperAdd.prototype = {
   get notify() { return this._notify; },
   set notify(n) {
     this._notify = n;
-    this.fp.writeSettings();
+    this.fp.writeSettingsAsync();
   },
 
   get notifyWhenCanceled() { return this._notifyWhenCanceled; },
   set notifyWhenCanceled(n) {
     this._notifyWhenCanceled = n;
-    this.fp.writeSettings();
+    this.fp.writeSettingsAsync();
   },
 
   get prompt() { return this._prompt; },
   set prompt(n) {
     this._prompt = n;
-    this.fp.writeSettings();
+    this.fp.writeSettingsAsync();
   },
 
   get match() {
@@ -163,7 +163,7 @@ SuperAdd.prototype = {
     // Also, SuperAdd.match objects are always enabled (doesn't make sense to add a disabled Match).
     this._temp = m.temp; /* save to this.temp instead; see notes above as to why */
     this._match.buildRegEx();
-    this.fp.writeSettings();
+    this.fp.writeSettingsAsync();
   },
 
   /**
@@ -275,7 +275,7 @@ SuperAdd.prototype = {
    */
   addPattern : function(m, loc) {
     this._proxy.matches.push(m);
-    this.fp.writeSettings();
+    this.fp.writeSettingsAsync();
     this._notify && this.fp.notifier.alert(this.fp.getMessage(this.notificationTitle),
       fp.getMessage("superadd.url.added", [m.pattern, this._proxy.name]));
     this._reload && loc.reload(); // reload page. TODO: don't call onAutoAdd() on the reloaded page!
@@ -352,7 +352,7 @@ AutoAdd.prototype = new SuperAdd();
 AutoAdd.prototype.__defineGetter__("blockedPageMatch", function() { return this._blockedPageMatch; });
 AutoAdd.prototype.__defineSetter__("blockedPageMatch", function(m) {
   this._blockedPageMatch = m;
-  this.fp.writeSettings();
+  this.fp.writeSettingsAsync();
 });
 AutoAdd.prototype.toDOM = function(doc) {
   var e = SuperAdd.prototype.toDOM.apply(this, arguments);

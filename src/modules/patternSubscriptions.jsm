@@ -745,7 +745,7 @@ var patternSubscriptions = {
         k++;
       } while (k < matchesLength);  
     } 
-    this.fp.writeSettings(); 
+    this.fp.writeSettingsAsync(); 
   },
 
   changeSubStatus: function(aProxyList, bNewStatus) {

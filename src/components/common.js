@@ -200,7 +200,7 @@ Common.prototype = {
       superadd.prompt = p.prompt;
       superadd.notifyWhenCanceled = p.notifyWhenCanceled;
       superadd.proxy = fp.proxies.getProxyById(p.proxyId);
-      fp.writeSettings();
+      fp.writeSettingsAsync();
       return p.match;
     }
   },

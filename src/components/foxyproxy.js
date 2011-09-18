@@ -282,7 +282,7 @@ foxyproxy.prototype = {
     if (init) return;
     gBroadcast(this.autoadd._enabled, "foxyproxy-mode-change", this._mode);
     if (writeSettings)
-      this.writeSettings();
+      this.writeSettingsAsync();
   },
 
   /**
@@ -416,7 +416,7 @@ foxyproxy.prototype = {
     if (!file.exists())
       // We are calling this method directly as we do not want to write the
       // settings in a separate thread due to race conditions.
-      this.writeSettingsInternal(file);
+      this.writeSettings(file);
     return (typeof(type) == "object" && "equals" in type && type.equals(CI.nsIFile)) ? file : this.transformer(o, type);
   },
 
@@ -430,7 +430,7 @@ foxyproxy.prototype = {
     try {
       // We want to have a synchronous writing of the settings here as we want
       // to update the settings pref only if it succeeded.
-      this.writeSettingsInternal(o2);
+      this.writeSettings(o2);
       // Only update the preference if writeSettings() succeeded
       this.getPrefsService("extensions.foxyproxy.").setCharPref("settings", o2);
     }
@@ -522,19 +522,19 @@ foxyproxy.prototype = {
     return f;
   },
 
-  writeSettings : function(o) {
+  writeSettingsAsync : function(o) {
     // As we often call writeSettings (for instance it can happen several times
     // if we change the proxy mode in the options dialog) it is important to
     // have just a single timer responsible for writing the settings and cancel
     // an already scheduled one. 20 ms delay should be enough to get all timer
     // intialization cancelled before the actual writing happens.
-    // Obviously, that does not hold for the last call to writeSettings() in a
-    // series of such calls. Thus, the settings get written only once instead
-    // of several times as intended.
+    // Obviously, that does not hold for the last call to writeSettingsAsync()
+    // in a series of such calls. Thus, the settings get written only once
+    // instead of several times as intended.
     this.writeSettingsTimer.cancel();
     let writeSettingsThread = {
       notify: function() {
-        that.writeSettingsInternal(o);
+        that.writeSettings(o);
       }
     };
     // try {
@@ -548,7 +548,7 @@ foxyproxy.prototype = {
       CI.nsITimer.TYPE_ONE_SHOT);
   },
 
-  writeSettingsInternal : function(o) {
+  writeSettings : function(o) {
     try {
       let o2 = o ? gFP.transformer(o, CI.nsIFile) :
         gFP.getSettingsURI(CI.nsIFile);
@@ -570,58 +570,58 @@ foxyproxy.prototype = {
   get resetIconColors() { return this._resetIconColors; },
   set resetIconColors(p) {
     this._resetIconColors = p;
-    this.writeSettings();
+    this.writeSettingsAsync();
   },
 
   get useStatusBarPrefix() { return this._useStatusBarPrefix; },
   set useStatusBarPrefix(p) {
     this._useStatusBarPrefix = p;
-    this.writeSettings();
+    this.writeSettingsAsync();
   },
   
   get selectedTabIndex() { return this._selectedTabIndex; },
   set selectedTabIndex(i) {
     this._selectedTabIndex = i;
-    this.writeSettings();
+    this.writeSettingsAsync();
   },
 
   get logging() { return this.logg.enabled; },
   set logging(e) {
     this.logg.enabled = e;
-    this.writeSettings();
+    this.writeSettingsAsync();
   },
 
   get toolbarIcon() { return this._toolbarIcon; },
   set toolbarIcon(e) {
     this._toolbarIcon = e;
     gBroadcast(e, "foxyproxy-toolbarIcon");
-    this.writeSettings();
+    this.writeSettingsAsync();
   }, 
 
   get toolsMenu() { return this._toolsMenu; },
   set toolsMenu(e) {
     this._toolsMenu = e;
     gBroadcast(e, "foxyproxy-toolsmenu");
-    this.writeSettings();
+    this.writeSettingsAsync();
   },
 
   get contextMenu() { return this._contextMenu; },
   set contextMenu(e) {
     this._contextMenu = e;
     gBroadcast(e, "foxyproxy-contextmenu");
-    this.writeSettings();
+    this.writeSettingsAsync();
   },
 
   get advancedMenus() { return this._advancedMenus; },
   set advancedMenus(i) {
     this._advancedMenus = i;
-    this.writeSettings();
+    this.writeSettingsAsync();
   },
 
   get previousMode() { return this._previousMode; },
   set previousMode(p) {
     this._previousMode = p;
-    this.writeSettings();
+    this.writeSettingsAsync();
   },
 
   /**
@@ -867,7 +867,7 @@ foxyproxy.prototype = {
       var p = gFP.getPrefsService("network.dns.");
       this.origPrefetch = p.prefHasUserValue("disablePrefetch") ?
           (p.getBoolPref("disablePrefetch") ? this.TRUE : this.FALSE) : this.CLEARED;
-      gFP.writeSettings();
+      gFP.writeSettingsAsync();
     },
     
     // Set our desired values for the prefs; may or may not be the same as the originals
@@ -899,13 +899,13 @@ foxyproxy.prototype = {
     get includeeDirect() { return this._includeDirect; },
     set includeeDirect(e) {
       this._includeDirect = e;
-      gFP.writeSettings();
+      gFP.writeSettingsAsync();
     },
 
     get includeDisabled() { return this._includeDisabled; },
     set includeDisabled(e) {
       this._includeDisabled = e;
-      gFP.writeSettings();
+      gFP.writeSettingsAsync();
     },
 
     toDOM : function(doc) {
@@ -1095,7 +1095,7 @@ foxyproxy.prototype = {
         last.selectedTabIndex = 0;
         last.animatedIcons = false;
         this.list.push(last); // ensures it really IS last
-        gFP.writeSettings();
+        gFP.writeSettingsAsync();
       }
       this.lastresort = last;    
     },
@@ -1368,7 +1368,7 @@ foxyproxy.prototype = {
     set maxSize(m) {
       this._maxSize = m;
       this.clear();
-      gFP.writeSettings();
+      gFP.writeSettingsAsync();
     },
 
     get noURLs() {
@@ -1377,7 +1377,7 @@ foxyproxy.prototype = {
 
     set noURLs(m) {
       this._noURLs = m;
-      gFP.writeSettings();
+      gFP.writeSettingsAsync();
     },
 
     get templateHeader() {
@@ -1386,7 +1386,7 @@ foxyproxy.prototype = {
 
     set templateHeader(t) {
       this._templateHeader = t;
-      gFP.writeSettings();
+      gFP.writeSettingsAsync();
     },
 
     get templateFooter() {
@@ -1395,7 +1395,7 @@ foxyproxy.prototype = {
 
     set templateFooter(t) {
       this._templateFooter = t;
-      gFP.writeSettings();
+      gFP.writeSettingsAsync();
     },
 
     get templateRow() {
@@ -1404,7 +1404,7 @@ foxyproxy.prototype = {
 
     set templateRow(t) {
       this._templateRow = t;
-      gFP.writeSettings();
+      gFP.writeSettingsAsync();
     },
 
     clear : function() {
@@ -1593,7 +1593,7 @@ foxyproxy.prototype = {
     get iconEnabled() { return this._iconEnabled; },
     set iconEnabled(e) {
       this._iconEnabled = e;
-      gFP.writeSettings();
+      gFP.writeSettingsAsync();
       gBroadcast(e, "foxyproxy-statusbar-icon");
       e && gFP.setMode(gFP.mode, false, false); // todo: why is this here? can it be removed? it forces PAC to reload
     },
@@ -1601,7 +1601,7 @@ foxyproxy.prototype = {
     get textEnabled() { return this._textEnabled; },
     set textEnabled(e) {
       this._textEnabled = e;
-      gFP.writeSettings();
+      gFP.writeSettingsAsync();
       gBroadcast(e, "foxyproxy-statusbar-text");
       e && gFP.setMode(gFP.mode, false, false);  // todo: why is this here? can it be removed? it forces PAC to reload
     },
@@ -1609,19 +1609,19 @@ foxyproxy.prototype = {
     get leftClick() { return this._leftClick; },
     set leftClick(e) {
       this._leftClick = e;
-      gFP.writeSettings();
+      gFP.writeSettingsAsync();
     },
 
     get middleClick() { return this._middleClick; },
     set middleClick(e) {
       this._middleClick = e;
-      gFP.writeSettings();
+      gFP.writeSettingsAsync();
     },
 
     get rightClick() { return this._rightClick; },
     set rightClick(e) {
       this._rightClick = e;
-      gFP.writeSettings();
+      gFP.writeSettingsAsync();
     },
     
     get width() { return this._width; },
@@ -1629,7 +1629,7 @@ foxyproxy.prototype = {
       e = parseInt(e);
       if (isNaN(e)) e = 0;
       this._width = e;
-      gFP.writeSettings();
+      gFP.writeSettingsAsync();
       gBroadcast(e, "foxyproxy-statusbar-width");
     }
   },
@@ -1658,19 +1658,19 @@ foxyproxy.prototype = {
     get leftClick() { return this._leftClick; },
     set leftClick(e) {
       this._leftClick = e;
-      gFP.writeSettings();
+      gFP.writeSettingsAsync();
     },
 
     get middleClick() { return this._middleClick; },
     set middleClick(e) {
       this._middleClick = e;
-      gFP.writeSettings();
+      gFP.writeSettingsAsync();
     },
 
     get rightClick() { return this._rightClick; },
     set rightClick(e) {
       this._rightClick = e;
-      gFP.writeSettings();
+      gFP.writeSettingsAsync();
     }
   },
 
@@ -1745,7 +1745,7 @@ foxyproxy.prototype = {
             .confirmCheck(win, gFP.getMessage("foxyproxy"), l10nMessage,
                 gFP.getMessage("message.stop"), cb);
         this._warnings[name] = !cb.value; /* note we save the inverse of user's selection because the way the question is phrased */
-        gFP.writeSettings();
+        gFP.writeSettingsAsync();
         return ret;
       }
       return true;
@@ -1761,7 +1761,7 @@ foxyproxy.prototype = {
     /* sets the |name|d warning to never show again */
     setWarning : function(name, bool) {
       this._warnings[name] = bool;
-      gFP.writeSettings();
+      gFP.writeSettingsAsync();
     },
     
     toDOM : function(doc) {

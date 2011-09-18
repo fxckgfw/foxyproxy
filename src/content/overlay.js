@@ -444,7 +444,7 @@ end-foxyproxy-simple !*/
     // Update view if it's open
     var optionsDlg = foxyproxy._getOptionsDlg();
     optionsDlg && optionsDlg._updateView(false, updateLogView); // don't write settings here because optionsDlg mayn't be open
-    writeSettings && this.fp.writeSettings();
+    writeSettings && this.fp.writeSettingsAsync();
   },
 
   _getOptionsDlg : function() {
@@ -842,7 +842,7 @@ end-foxyproxy-simple !*/
               var m = this.fp.proxies.item(i).matches[j];
               var curMatch = curProxy + "matches[" + j + "].";
               _createCheckMenuItem(pmp,
-                curMatch + "enabled=!" + curMatch + "enabled;foxyproxy.fp.writeSettings();",
+                curMatch + "enabled=!" + curMatch + "enabled;foxyproxy.fp.writeSettingsAsync();",
                 m.enabled,
                 m.pattern.substring(0, 1),
                 m.pattern,

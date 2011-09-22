@@ -178,10 +178,37 @@ end-foxyproxy-simple !*/
 /*! end-foxyproxy-standard !*/
     }
     this.patternErrorNotification();
-    gBrowser.addEventListener("DOMContentLoaded", foxyproxy.errorPageCheck, false);
+    gBrowser.addEventListener("DOMContentLoaded", foxyproxy.errorPageCheck,
+      false);
+  },
+
+  parseHTML : function(doc, html) {
+    return Components.classes["@mozilla.org/feed-unescapehtml;1"].
+      getService(Components.interfaces.nsIScriptableUnescapeHTML).
+      parseFragment(html, false, null, doc.documentElement); 
   },
 
   errorPageCheck : function(e) {
+    var contDoc = window.content.document;
+    if (contDoc.documentURI.indexOf("about:neterror?e=proxyConnectFailure") ===
+      0) {
+      // Creating our additional list entry. We have to take this road here as
+      // creating the <li> element and assigning the content via innerHTML is
+      // not recommended. Furthermore, we cannot construct and append the <li>
+      // element ourselves properly due to i18n issues. Thus, we resort to
+      // parseFragment().
+      let liText = foxyproxy.fp.getMessage("foxyproxy.proxyservice");
+      contDoc.getElementById("errorLongDesc").firstChild.nextSibling.
+        appendChild(foxyproxy.parseHTML(contDoc, liText));
+      // We want to be the first to get the event in order to be able to delete
+      // it if the user does click on the link but does not want to connect
+      // directly to our website though.
+      contDoc.getElementById("proxyService").addEventListener("click",
+        foxyproxy.checkProxyServiceLoad, true);
+    }
+  },
+
+  checkProxyServiceLoad : function() {
 
   },
 

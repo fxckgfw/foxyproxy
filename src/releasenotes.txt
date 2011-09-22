@@ -6,3 +6,4 @@
 * fixed regression (the localhost pattern checkbox was always checked after
   Firefox startup)
 * improved parsing of AutoProxy patterns
+* add pattern itself as name to a created pattern if its name is missing

@@ -126,7 +126,9 @@ var autoproxy = {
         // Setting the other properties to their proper values.
         currentPat.multiLine = false;
         currentPat.caseSensitive = false;
-        currentPat.name = "";
+        // As the AutoProxy format does not have names for its patterns we and
+        // we prefer one to "" we use the pattern itself here.
+        currentPat.name = currentPat.pattern;
         j = j + 1;
       }
     }

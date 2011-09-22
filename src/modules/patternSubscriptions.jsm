@@ -181,7 +181,7 @@ var patternSubscriptions = {
       // And if that fails as well we give up.
       subscriptionJSON = this.getObjectFromJSON(subscriptionText,
         errorMessages);
-      if (subscriptionJSON && !(subscriptionJSON.length === undefined)) {
+      if (subscriptionJSON && subscriptionJSON.length !== undefined) {
         let lines = this.autoproxy.isAutoProxySubscription(subscriptionText);
         if (lines) {
           parsedSubscription = this.autoproxy.
@@ -193,11 +193,23 @@ var patternSubscriptions = {
       } else {
         parsedSubscription = this.
           parseSubscription(subscriptionJSON, aURLString, errorMessages);
+        // Did we get the errorMessages back? If so return them immediately.
+        if (parsedSubscription.length !== undefined) {
+          return parsedSubscription;
+        }
         if (!parsedSubscription.metadata) {
 	  parsedSubscription.metadata = {};
         } 
         // We've got a FoxyProxy subscription...
         parsedSubscription.metadata.format = "FoxyProxy";
+        // Setting the name of the patterns if there is none set yet.
+        let pats = parsedSubscription.patterns;
+        for (let i = 0, length = pats.length; i < length; i++) {
+          let pat = pats[i];
+          if (!pat.name || pat.name === "") {
+            pat.name = pat.pattern;
+          }
+        }
       }
       if (bBase64 && !isBase64 && !this.fp.warnings.showWarningIfDesired(null,
         ["patternsubscription.warning.not.base64"], "noneEncodingWarning")) {

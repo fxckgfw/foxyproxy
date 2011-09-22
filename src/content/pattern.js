@@ -8,9 +8,15 @@
   available in the LICENSE file at the root of this installation
   and also online at http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 **/
-var exampleURL, pattern, generatedPattern, caseSensitive, fpc, isSuperAdd;
+var exampleURL, pattern, generatedPattern, caseSensitive, fpc, isSuperAdd,
+  isNew;
 function onLoad() {
   var m = window.arguments[0].inn.pattern;
+  if (m.pattern !== "") {
+    isNew = false;
+  } else {
+    isNew = true;
+  }
   document.getElementById("enabled").checked = m.enabled;
   document.getElementById("name").value = m.name;
   document.getElementById("pattern").value = m.pattern;
@@ -43,6 +49,13 @@ function onOK() {
       .wrappedJSObject.validatePattern(window, r, generatedPattern.value);
   if (p) {
     var ret = Components.classes["@leahscape.org/foxyproxy/match;1"].createInstance().wrappedJSObject;
+    // We want to add tha pattern itself as its name iff the user created a new
+    // pattern but did not specify a name herself.
+    // TODO: Assigning the return value of a getElementId()-call to a variable
+    // destroys the layout in pattern.xul [sic!].
+    if (isNew && document.getElementById("name").value === "") {
+      document.getElementById("name").value = pattern.value;
+    }
     //order is (enabled, name, pattern, temp, isRegEx, caseSensitive, isBlackList, isMultiLine)
     ret.init(document.getElementById("enabled").checked,
       document.getElementById("name").value, pattern.value,

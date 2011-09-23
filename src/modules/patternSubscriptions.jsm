@@ -206,7 +206,7 @@ var patternSubscriptions = {
         let pats = parsedSubscription.patterns;
         for (let i = 0, length = pats.length; i < length; i++) {
           let pat = pats[i];
-          if (!pat.name || pat.name === "") {
+          if (!pat.name) {
             pat.name = pat.pattern;
           }
         }

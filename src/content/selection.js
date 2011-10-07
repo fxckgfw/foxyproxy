@@ -52,10 +52,10 @@ foxyproxy.selection = {
                 modeAsText = fp.getMessage("foxyproxy.add.option.direct.label");
                 break;
               case "auto" :
-                modeAsText = fp.getMessage("foxyproxy.auto.url.label");
+                modeAsText = fp.getMessage("foxyproxy.automatic.label");
                 break;
             }
-            var q = foxyproxy.ask(window, fp.getMessage("switch.proxy.mode", [p.proxy.name, modeAsText, sel.hostPort]));
+            var q = foxyproxy.ask(window, fp.getMessage("switch.proxy.mode2", [p.proxy.name, modeAsText, sel.hostPort]));
             if (q)
               p.proxy.mode = "manual";
           }      

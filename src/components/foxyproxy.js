@@ -250,12 +250,15 @@ foxyproxy.prototype = {
         this._selectedProxy = proxy;
         proxy.enabled = true; // ensure it's enabled
       }
+      //TODO: Why do we need this? Setting enabled above does already the same?
       proxy.handleTimer(); // Leave this after "proxy.enabled = true"!
       if (proxy.shouldLoadPAC()) {
         if (proxy.mode === "auto") {
-          proxy.autoconf.loadPAC();
-        } else {
-          proxy.wpad.loadPAC();
+          if (proxy.autoconfMode === "pac") {
+            proxy.autoconf.loadPAC();
+          } else if (proxy.autoconfMode === "wpad") {
+            proxy.wpad.loadPAC();
+          }
         }
       }
     }
@@ -1116,8 +1119,14 @@ foxyproxy.prototype = {
       this.maintainIntegrity(this.list[idx], true, false, false);
       for (var i=0, temp=[]; i<this.list.length; i++) {
         if (i == idx) {
-          if (this.list[i].mode == "auto") // cancel any refresh timers
-            this.list[i].autoconf.cancelTimer();
+          // cancel any refresh timers 
+          if (this.list[i].mode === "auto") {
+            if (this.list[i].autoconfMode === "pac") {
+              this.list[i].autoconf.cancelTimer();
+            } else if (this.list[i].autoconfMode === "wpad") {
+              this.list[i].wpad.cancelTimer(); 
+            }
+          }
         }
         else
           temp[temp.length] = this.list[i];

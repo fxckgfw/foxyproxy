@@ -180,16 +180,29 @@ SuperAdd.prototype = {
         //popup.appendChild(this.fpc.createMenuItem({idVal:"disabled", labelId:"mode.disabled.label"}));
       }
     }
-    // Select the appropriate one or, if none was previously selected, select the first
-    if (this._proxy) {
+    // Select the appropriate one or, if none was previously selected, select
+    // the first or show a disabled note if there is not valid proxy left.
+    let dialogType = "";
+    if (menu.id.indexOf("autoAdd") === 0) {
+      dialogType = this.fp.getMessage("foxyproxy.autoadd.label");
+    } else if (menu.id.indexOf("quickAdd") === 0) {
+      dialogType = this.fp.getMessage("foxyproxy.quickadd.label"); 
+    }
+    if (this._proxy ) {
       menu.value = this.proxy.id;
-      // Selected proxy no longer exists; select the first one
-      if (menu.selectedIndex == -1)
-        this.proxyById = menu.value = popup.firstChild.id;
+      if (menu.selectedIndex == -1) {
+        if (popup.firstChild) {
+          this.proxyById = menu.value = popup.firstChild.id;
+        } else {
+            this.fp.alert(null, this.fp.getMessage("superadd.disabled",
+              [dialogType])); 
+        }
+      }
     }
     else {
-      // Select the first one
-      this.proxyById = menu.value = popup.firstChild.id;
+      if (popup.firstChild) {
+        this.proxyById = menu.value = popup.firstChild.id;
+      } 
     }
   },
 
@@ -288,19 +301,19 @@ SuperAdd.prototype = {
     return false;
   },
 
-	// Disable superadd if our proxy is being deleted/disabled
-	maintainIntegrity : function(proxyId, isBeingDeleted) {
-		if (this._proxy && this._proxy.id == proxyId) {
-		  // Turn it off
-		  this.enabled && (this.enabled = false);
-		  if (isBeingDeleted) {
-		  	// Clear it
-		    this.proxy = null;
-		  }
-		  return true;
-		}
-		return false;
-	},
+  // Disable superadd if our proxy is being deleted/disabled
+  maintainIntegrity : function(proxyId, isBeingDeleted) {
+    if (this._proxy && this._proxy.id == proxyId) {
+      // Turn it off
+      this.enabled && (this.enabled = false);
+      if (isBeingDeleted) {
+        // Clear it
+        this.proxy = null;
+      }
+      return true;
+    }
+    return false;
+  },
 
   toDOM : function(doc) {
     var e = doc.createElement(this.elemName);

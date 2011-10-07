@@ -88,6 +88,7 @@ function Proxy(fp) {
   // nsProtocolProxyService.cpp#488 
   this.wpad.url = "http://wpad/wpad.dat";
   this._mode = "manual"; // manual, auto, direct, random
+  this._autoconfMode = "pac";
   this._enabled = true;
   this.selectedTabIndex = 1; /* default tab is the proxy details tab */
   this.lastresort = false;
@@ -123,9 +124,20 @@ Proxy.prototype = {
     this.manualconf.fromDOM(node.getElementsByTagName("manualconf").item(0));
     // 1.1 used "manual" instead of "mode" and was true/false only (for manual or auto)
     this._mode = node.hasAttribute("manual") ?
-  	  (node.getAttribute("manual") == "true" ? "manual" : "auto") :
-    	node.getAttribute("mode");
-	  this._mode = this._mode || "manual";
+      (node.getAttribute("manual") == "true" ? "manual" : "auto") :
+      node.getAttribute("mode");
+    this._mode = this._mode || "manual";
+    // New for 3.3. If the proxy had "wpad" as its mode select "wpad" as
+    // autoconfMode otherwise the default, "pac", is used.
+    if (this._mode !== "wpad") {
+      this._autoconfMode = gGetSafeAttr(node, "autoconfMode", "pac");
+    } else {
+      // The mode was WPAD but that is not available anymore starting with 3.3.
+      // There is only "auto" as proxy mode (we choose it) and two autoconf
+      // modes, "wpad" and "pac", now (we choose former). 
+      this._mode = "auto";
+      this._autoconfMode = gGetSafeAttr(node, "autoconfMode", "wpad"); 
+    }
     this.selectedTabIndex = node.getAttribute("selectedTabIndex") || "0";
     if (this.fp.isFoxyProxySimple() && this.selectedTabIndex > 1)
       this.selectedTabIndex = 1; /* FoxyProxy Simple only has 2 tabs */
@@ -165,6 +177,7 @@ Proxy.prototype = {
     e.setAttribute("color", this._color);
     e.setAttribute("proxyDNS", this._proxyDNS);
     e.setAttribute("noInternalIPs", this.noInternalIPs);
+    e.setAttribute("autoconfMode", this._autoconfMode);
 
     var matchesElem = doc.createElement("matches");
     e.appendChild(matchesElem);
@@ -292,6 +305,14 @@ Proxy.prototype = {
     }
     this.fromDOM(proxyElem, true);
   },  
+
+  set autoconfMode(e) {
+    this._autoconfMode = e;
+  },
+
+  get autoconfMode() {
+    return this._autoconfMode;
+  },
   
   set proxyDNS(e) {
     this._proxyDNS = e;
@@ -331,9 +352,11 @@ Proxy.prototype = {
     this._enabled = e;
     if (this.shouldLoadPAC()) {
       if (this._mode === "auto") {
-        this.autoconf.loadPAC();
-      } else {
-        this.wpad.loadPAC();
+        if (this._autoconfMode === "pac") {
+          this.autoconf.loadPAC();
+        } else if (this._autoconfMode === "wpad") {
+          this.wpad.loadPAC();
+        }
       }
     } 
     this.handleTimer();
@@ -342,8 +365,7 @@ Proxy.prototype = {
   get enabled() {return this._enabled;},
 
   shouldLoadPAC : function() {
-    if ((this._mode == "auto" || this._mode == "wpad") &&
-         this._enabled) {
+    if (this._mode == "auto" && this._enabled) {
       var m = this.fp.mode;
       return m == this.id || m == "patterns" || m == "random" ||
         m == "roundrobin";
@@ -354,9 +376,11 @@ Proxy.prototype = {
     this._mode = m;
     if (this.shouldLoadPAC()) {
       if (this._mode === "auto") {
-        this.autoconf.loadPAC();
-      } else {
-        this.wpad.loadPAC();
+        if (this._autoconfMode === "pac") {
+          this.autoconf.loadPAC();
+        } else if (this._autoconfMode === "wpad") {
+          this.wpad.loadPAC();
+        }
       }
     } 
     this.handleTimer();
@@ -367,9 +391,11 @@ Proxy.prototype = {
     // it changes our mode to "direct" or disables us.
     if (this.shouldLoadPAC()) {
       if (this._mode === "auto") {
-        this.autoconf.loadPAC();
-      } else {
-        this.wpad.loadPAC();
+        if (this._autoconfMode === "pac") {
+          this.autoconf.loadPAC();
+        } else if (this._autoconfMode === "wpad") {
+          this.wpad.loadPAC();
+        }
       }
     } 
     // Some integrity maintenance: if this is a manual proxy and
@@ -390,14 +416,20 @@ Proxy.prototype = {
 
   handleTimer : function() {
     let ac;
-    if (this._mode === "auto") {
+    if (this._autoconfMode === "pac") {
       ac = this.autoconf; 
-    } else {
+    } else if (this._autoconfMode === "wpad") {
       ac = this.wpad;
     } 
     // always always always cancel first before doing anything 
-    ac.timer.cancel();
+    if (ac) {
+      dump(this.name + "\n");
+      dump("First we cancel the timer...\n");
+      ac.timer.cancel();
+    }
+    dump("AutoReload is: " + ac._autoReload + "\n"); 
     if (this.shouldLoadPAC() && ac._autoReload) {
+      dump("And now we set it to " + ac._reloadFreqMins + "\n");
       ac.timer.initWithCallback(ac, ac._reloadFreqMins*60000,
         CI.nsITimer.TYPE_REPEATING_SLACK);
     }
@@ -518,8 +550,13 @@ Proxy.prototype = {
   getProxy : function(spec, host, mp) {
     switch (this._mode) {
       case "manual":return this.manualconf.proxy;
-      case "wpad":return this.resolve(spec, host, mp, true);
-      case "auto":return this.resolve(spec, host, mp, false);
+      case "auto":
+        if (this._autoconfMode === "pac") {
+          return this.resolve(spec, host, mp, false);
+        } else {
+          // WPAD
+          return this.resolve(spec, host, mp, true);
+        }
       case "direct":return this.direct;
     }
   },

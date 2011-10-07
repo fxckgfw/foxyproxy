@@ -224,7 +224,7 @@ Common.prototype = {
               // really a SOCKS proxy.
               return "";
           case "wpadCol":
-            if (i.mode === "wpad")
+            if (i.autoconfMode === "wpad")
               return fp.getMessage("yes");
             else 
               return fp.getMessage("no"); 

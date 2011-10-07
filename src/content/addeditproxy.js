@@ -9,15 +9,23 @@
   and also online at http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 **/
 const CI = Components.interfaces, CC = Components.classes;
-var urlsTree, proxy, foxyproxy, autoconfurl, overlay, isWindows, fpc,
+var urlsTree, proxy, foxyproxy, autoconfUrl, overlay, isWindows, fpc,
+  autoconfMode, reloadFreq, loadNotification, errorNotification, autoReload,
   oldMatches = [];
 
 function onLoad() {
-  isWindows = CC["@mozilla.org/xre/app-info;1"].getService(CI.nsIXULRuntime).OS == "WINNT";
+  isWindows = CC["@mozilla.org/xre/app-info;1"].
+    getService(CI.nsIXULRuntime).OS == "WINNT";
   fpc = CC["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject;
   overlay = fpc.getMostRecentWindow().foxyproxy;
-  autoconfurl = document.getElementById("autoconfurl");
-  foxyproxy = CC["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;
+  foxyproxy = CC["@leahscape.org/foxyproxy/service;1"].
+    getService().wrappedJSObject; 
+  autoconfUrl = document.getElementById("autoconfUrl");
+  autoconfMode = document.getElementById("autoconfMode");
+  reloadFreq = document.getElementById("autoConfReloadFreq");
+  loadNotification = document.getElementById("pacLoadNotificationEnabled");
+  errorNotification = document.getElementById("pacErrorNotificationEnabled");
+  autoReload = document.getElementById("autoConfURLReloadEnabled");
   proxy = window.arguments[0].inn.proxy; 
   if (window.arguments[0].inn.torwiz) {
     document.getElementById("torwiz-broadcaster").hidden = true;
@@ -42,22 +50,33 @@ function onLoad() {
   document.getElementById("port").value = proxy.manualconf.port;
   document.getElementById("isSocks").checked = proxy.manualconf.isSocks;
   document.getElementById("socksversion").value = proxy.manualconf.socksversion;
+  document.getElementById("proxyDNS").checked = proxy.proxyDNS; 
+  autoconfMode.value = proxy.autoconfMode;
+
+  if (proxy.autoconfMode === "pac") {
+    toggleMode("pac");
+    loadNotification.checked = proxy.autoconf.loadNotification;
+    errorNotification.checked = proxy.autoconf.errorNotification;
+    autoReload.checked = proxy.autoconf.autoReload;
+    reloadFreq.value = proxy.autoconf.reloadFreqMins; 
+  } else if (proxy.autoconfMode === "wpad") {
+    toggleMode("wpad");
+    loadNotification.checked = proxy.wpad.loadNotification;
+    errorNotification.checked = proxy.wpad.errorNotification;
+    autoReload.checked = proxy.wpad.autoReload;
+    reloadFreq.value = proxy.wpad.reloadFreqMins;    
+  } 
+  dump("Proxy mode is: " + proxy.mode + "\nAnd autoconfMode is: " + proxy.
+      autoconfMode + "\n");
   toggleMode(proxy.mode); 
-  document.getElementById("proxyDNS").checked = proxy.proxyDNS;
-  document.getElementById("WPADReloadEnabled").checked = proxy.wpad.autoReload;
-  document.getElementById("WPADReloadFreq").value = proxy.wpad.reloadFreqMins;
-  autoconfurl.value = proxy.autoconf.url;
 
   if (proxy.lastresort) {
-    document.getElementById("default-proxy-broadcaster").setAttribute("disabled", "true");
-	  document.getElementById("proxyname").disabled =
-	  	document.getElementById("proxynotes").disabled = true;
-      document.getElementById("foxyproxy-urlpatterns-tab").hidden = true;
+    document.getElementById("default-proxy-broadcaster").
+      setAttribute("disabled", "true");
+    document.getElementById("proxyname").disabled = document.
+      getElementById("proxynotes").disabled = true;
+    document.getElementById("foxyproxy-urlpatterns-tab").hidden = true;
   }
-  document.getElementById("pacLoadNotificationEnabled").checked = proxy.autoconf.loadNotification;
-  document.getElementById("pacErrorNotificationEnabled").checked = proxy.autoconf.errorNotification;
-  document.getElementById("autoConfURLReloadEnabled").checked = proxy.autoconf.autoReload;
-  document.getElementById("autoConfReloadFreq").value = proxy.autoconf.reloadFreqMins;
   // We need to copy the matches array here in order to replace the modified
   // one with the old one if the user does not press the OK button (e.g. using
   // the Cancel button or just closing the window manually).
@@ -80,7 +99,7 @@ function onCancel() {
 }
 
 function trim(s) {
-	return s.replace(/^\s*|\s*$/g, "");
+  return s.replace(/^\s*|\s*$/g, "");
 }
 
 function onOK() {
@@ -90,53 +109,64 @@ function onOK() {
   if (!name)
     name = host ? (host + ":" + port) : foxyproxy.getMessage("new.proxy");
   var enabled = document.getElementById("proxyenabled").checked,    
-    url = trim(autoconfurl.value),
-    reloadfreq = document.getElementById("autoConfReloadFreq").value;
+    url = trim(autoconfUrl.value);
   var mode = document.getElementById("mode").value;
   if (enabled) {
-    if (mode == "auto") {
-	    if (!_checkUri())
-	    	return false;
+    if (mode === "auto") {
+      if (autoconfMode.value === "pac") {
+        if (!_checkUri())
+          return false;
+      }
+    } else if (mode === "manual") {
+      if (!host) {
+        if (!port) {
+          foxyproxy.alert(this, foxyproxy.getMessage("nohostport.3"));
+          return false;
+        }
+        foxyproxy.alert(this, foxyproxy.getMessage("nohost.3"));
+        return false;
+      } else if (!port) {
+        foxyproxy.alert(this, foxyproxy.getMessage("noport.3"));
+        return false;
+      }
     }
-    else if (mode == "manual") {
-    	if (!host) {
-    		if (!port) {
-			    foxyproxy.alert(this, foxyproxy.getMessage("nohostport.3"));
-			    return false;
-    		}
-		    foxyproxy.alert(this, foxyproxy.getMessage("nohost.3"));
-		    return false;
-    	}
-    	else if (!port) {
-		    foxyproxy.alert(this, foxyproxy.getMessage("noport.3"));
-		    return false;
-		  }
-		}
   }
 
   if (!foxyproxy.isFoxyProxySimple()) {
     // Don't do this for FoxyProxy Basic
-  	if (!hasWhite() && !foxyproxy.warnings.showWarningIfDesired(window, [window.arguments[0].inn.torwiz ?
-        "torwiz.nopatterns.3" : "no.white.patterns.3", name], "white-patterns"))
-  	  return false;
+    if (!hasWhite() && !foxyproxy.warnings.showWarningIfDesired(window,
+        [window.arguments[0].inn.torwiz ? "torwiz.nopatterns.3" :
+        "no.white.patterns.3", name], "white-patterns"))
+      return false;
   }
   
-	var isSocks = document.getElementById("isSocks").checked;
-	
-	if (fpc.isThunderbird() && !isSocks && mode == "manual" && !foxyproxy.warnings.showWarningIfDesired(window, ["socksWarning"], "socks"))
-	  return false;
+  var isSocks = document.getElementById("isSocks").checked;
+
+  if (fpc.isThunderbird() && !isSocks && mode == "manual" &&
+      !foxyproxy.warnings.showWarningIfDesired(window, ["socksWarning"],
+      "socks"))
+    return false;
 
   proxy.name = name;
   proxy.notes = document.getElementById("proxynotes").value;
   proxy.selectedTabIndex = document.getElementById("tabs").selectedIndex;
-  proxy.wpad.autoReload = document.getElementById("WPADReloadEnabled").checked;
-  proxy.wpad.reloadFreqMins = document.getElementById("WPADReloadFreq").value;
-  proxy.autoconf.url = url;
-  proxy.autoconf.loadNotification = document.getElementById("pacLoadNotificationEnabled").checked;
-  proxy.autoconf.errorNotification = document.getElementById("pacErrorNotificationEnabled").checked;
-  proxy.autoconf.autoReload = document.getElementById("autoConfURLReloadEnabled").checked;
-  proxy.autoconf.reloadFreqMins = reloadfreq;
 
+  // We assign these settings here in order to have them before PAC's are
+  // loaded.
+  if (autoconfMode.value === "pac") {
+    proxy.autoconfMode = "pac";
+    proxy.autoconf.url = url;
+    proxy.autoconf.loadNotification = loadNotification.checked;
+    proxy.autoconf.errorNotification = errorNotification.checked;
+    proxy.autoconf.autoReload = autoReload.checked;
+    proxy.autoconf.reloadFreqMins = reloadFreq.value; 
+  } else {
+    proxy.autoconfMode = "wpad";
+    proxy.wpad.loadNotification = loadNotification.checked;
+    proxy.wpad.errorNotification = errorNotification.checked;
+    proxy.wpad.autoReload = autoReload.checked;
+    proxy.wpad.reloadFreqMins = reloadFreq.value; 
+  }
   proxy.mode = mode; // set this first to control PAC loading
   proxy.enabled = enabled;
   proxy.manualconf.host = host;
@@ -168,15 +198,19 @@ function hasWhite() {
 }
 
 function _checkUri() {
-	var url = trim(autoconfurl.value);
-	if (url.indexOf("://") == -1) {
-		// User didn't specify a scheme, so assume he means file:///
-		url = url.replace(/\\/g,"/"); // replaces backslashes with forward slashes; probably not strictly necessary
-		if (url[0] != "\\" && url[0] != "/") url="/"+url; // prepend a leading slash if necessary
-		url="file:///" + (isWindows?"C:":"") + url;
-		autoconfurl.value = url; // copy back to the UI
-	}
-	try {
+  var url = trim(autoconfUrl.value);
+  if (url.indexOf("://") == -1) {
+    // User didn't specify a scheme, so assume he means file:///
+
+    // Replaces backslashes with forward slashes; probably not strictly
+    // necessary.
+    url = url.replace(/\\/g,"/");
+    // prepend a leading slash if necessary 
+    if (url[0] != "\\" && url[0] != "/") url="/"+url;
+    url="file:///" + (isWindows?"C:":"") + url;
+    autoconfUrl.value = url; // copy back to the UI
+  }
+  try {
     //return foxyproxy.newURI(url);
     return CC["@mozilla.org/network/io-service;1"]
       .getService(CI.nsIIOService).newURI(url, "UTF-8", null);
@@ -435,8 +469,6 @@ function toggleMode(mode) {
   if (mode == "auto") {
     document.getElementById("autoconf-broadcaster1").
       removeAttribute("disabled");
-    document.getElementById("autoconf-broadcaster3").setAttribute("disabled",
-      "true");
     document.getElementById("socks-broadcaster").setAttribute("disabled",
       "true");
     document.getElementById("disabled-broadcaster").setAttribute("disabled",
@@ -449,6 +481,8 @@ function toggleMode(mode) {
       "true");
     document.getElementById("autoconf-broadcaster1").setAttribute("disabled",
       "true");
+    document.getElementById("autoconf-broadcaster2").setAttribute("disabled",
+      "true");
     document.getElementById("autoconf-broadcaster3").setAttribute("disabled",
       "true"); 
     document.getElementById("socks-broadcaster").setAttribute("disabled",
@@ -457,21 +491,27 @@ function toggleMode(mode) {
       "true");
     document.getElementById("proxyDNS").hidden = true;
   } else if (mode == "wpad") {
-    document.getElementById("disabled-broadcaster").setAttribute("disabled",
-      "true");
-    document.getElementById("autoconf-broadcaster1").setAttribute("disabled",
-      "true");
-    document.getElementById("autoconf-broadcaster3").
-      removeAttribute("disabled");
-    document.getElementById("socks-broadcaster").setAttribute("disabled",
+    autoconfUrl.value = proxy.wpad.url;
+    autoconfUrl.setAttribute("readonly", true);
+    // We always have a URL here, thus we can remove the attribute directly.
+    document.getElementById("autoconf-broadcaster2").
+      removeAttribute("disabled"); 
+    // We do not need the file picker either.
+    document.getElementById("autoconf-broadcaster3").setAttribute("disabled",
       "true"); 
-    document.getElementById("direct-broadcaster").removeAttribute("disabled")
-    document.getElementById("proxyDNS").hidden = false; 
-  
+  } else if (mode == "pac") {
+    autoconfUrl.value = proxy.autoconf.url;
+    autoconfUrl.removeAttribute("readonly");
+    // If we clicked on WPAD first we have to enable the file picker again.
+    document.getElementById("autoconf-broadcaster3").
+      removeAttribute("disabled"); 
+    onAutoConfUrlInput();
   } else {
     document.getElementById("disabled-broadcaster").removeAttribute("disabled");
     document.getElementById("autoconf-broadcaster1").setAttribute("disabled",
       "true");
+    document.getElementById("autoconf-broadcaster2").setAttribute("disabled",
+      "true"); 
     document.getElementById("autoconf-broadcaster3").setAttribute("disabled",
       "true"); 
     if (document.getElementById("isSocks").checked) {
@@ -501,23 +541,34 @@ function onViewAutoConf() {
 }
 
 function onTestAutoConf() {
-	if (_checkUri()) {
-	  try {
-		  CC["@leahscape.org/foxyproxy/autoconf;1"].createInstance().wrappedJSObject.testPAC(autoconfurl.value);
-      foxyproxy.alert(this, foxyproxy.getMessage("autoconfurl.test.success"));
-	  }
-	  catch (e) {
-	    foxyproxy.alert(this, foxyproxy.getMessage("autoconfurl.test.fail2", [e.message]));
-	  }
-	}
+  if (_checkUri()) {
+    let autoconfMessage = "";
+    try {
+      CC["@leahscape.org/foxyproxy/autoconf;1"].createInstance().
+        wrappedJSObject.testPAC(autoconfUrl.value);
+      if (autoconfMode.value === "pac") {
+        autoconfMessage = "autoconfurl.test.success";
+      } else {
+        autoconfMessage = "wpadurl.test.success";
+      }
+      foxyproxy.alert(this, foxyproxy.getMessage(autoconfMessage));
+    } catch (e) {
+      if (autoconfMode.value === "pac") {
+        autoconfMessage = "autoconfurl.test.fail2";
+      } else {
+        autoconfMessage = "wpadurl.test.fail";
+      } 
+      foxyproxy.alert(this, foxyproxy.getMessage(autoconfMessage, [e.message]));
+    }
+  }
 }
 
 function onAutoConfUrlInput() {
   // setAttribute("disabled", true) buggy in FF 1.5.0.4 for the way i've setup the cmd
   // so must use removeAttribute()
-	var b = document.getElementById("autoconf-broadcaster2");
-  if (autoconfurl.value.length > 0)
-    b.removeAttribute("disabled");
+  var b = document.getElementById("autoconf-broadcaster2");
+  if (autoconfUrl.value.length > 0)
+    b.setAttribute("disabled", "false");
   else
     b.setAttribute("disabled", "true");
 }
@@ -530,7 +581,7 @@ function onSelectAutoConf() {
   p.appendFilter(foxyproxy.getMessage("pac.files"), "*.pac");
   p.defaultExtension = "pac";
   if (p.show() != nsIFilePicker.returnCancel) {
-  	autoconfurl.value = foxyproxy.transformer(p.file, "uri-string");
+  	autoconfUrl.value = foxyproxy.transformer(p.file, "uri-string");
   	onAutoConfUrlInput();
   }
 }

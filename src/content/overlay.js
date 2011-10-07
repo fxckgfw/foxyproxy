@@ -178,8 +178,13 @@ end-foxyproxy-simple !*/
 /*! end-foxyproxy-standard !*/
     }
     this.patternErrorNotification();
-    gBrowser.addEventListener("DOMContentLoaded", foxyproxy.errorPageCheck,
-      false);
+    // TODO: Make that compatible with Thunderbird
+    try { 
+      if (gBrowser) {
+        gBrowser.addEventListener("DOMContentLoaded", foxyproxy.errorPageCheck,
+          false);
+      }
+    } catch(e) {}
   },
 
   parseHTML : function(doc, html) {
@@ -200,16 +205,7 @@ end-foxyproxy-simple !*/
       let liText = foxyproxy.fp.getMessage("foxyproxy.proxyservice");
       contDoc.getElementById("errorLongDesc").firstChild.nextSibling.
         appendChild(foxyproxy.parseHTML(contDoc, liText));
-      // We want to be the first to get the event in order to be able to delete
-      // it if the user does click on the link but does not want to connect
-      // directly to our website though.
-      contDoc.getElementById("proxyService").addEventListener("click",
-        foxyproxy.checkProxyServiceLoad, true);
     }
-  },
-
-  checkProxyServiceLoad : function() {
-
   },
 
   patternErrorNotification : function() {
@@ -541,16 +537,17 @@ end-foxyproxy-simple !*/
     var listen = this.fp.mode != "disabled" && this.fp.autoadd.enabled;
     var appcontent = document.getElementById("appcontent");
     if (appcontent) {
-      appcontent.removeEventListener("load", this.onPageLoad, true); // safety
+      // Safety. We use here and in the following |foxyproxy| and not |this| as
+      // this makes it easier to remove the event listener on unload again.
+      appcontent.removeEventListener("load", foxyproxy.onPageLoad, true); 
       if (listen) {
-        appcontent.addEventListener("load", this.onPageLoad, true);
+        appcontent.addEventListener("load", foxyproxy.onPageLoad, true);
       }
       else {
-        appcontent.removeEventListener("load", this.onPageLoad, true);
+        appcontent.removeEventListener("load", foxyproxy.onPageLoad, true);
       }
     }
   },
-    
 
   ///////////////// icons \\\\\\\\\\\\\\\\\\\\\
   svgIcons : {
@@ -1154,9 +1151,17 @@ end-foxyproxy-simple !*/
 
 window.addEventListener("load", function(e) { foxyproxy.onLoad(e); }, false);
 window.addEventListener("unload", function(e) {
-  document.getElementById("appcontent") && document.getElementById("appcontent").removeEventListener("load", this.onPageLoad, true);
-  gBrowser.removeEventListener("DOMContentLoaded", foxyproxy.errorPageCheck, false);
-  var obSvc = Components.classes["@mozilla.org/observer-service;1"].getService(Components.interfaces.nsIObserverService);
+  document.getElementById("appcontent") &&
+    document.getElementById("appcontent").removeEventListener("load", foxyproxy.
+    onPageLoad, true);
+  try {
+    if (gBrowser) {
+      gBrowser.removeEventListener("DOMContentLoaded", foxyproxy.errorPageCheck,
+        false);
+    }
+  } catch(e) {}
+  var obSvc = Components.classes["@mozilla.org/observer-service;1"].
+    getService(Components.interfaces.nsIObserverService);
   for (var i in foxyproxy.notes) {
     obSvc.removeObserver(foxyproxy, foxyproxy.notes[i]);
   }

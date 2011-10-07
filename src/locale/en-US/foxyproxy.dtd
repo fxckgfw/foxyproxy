@@ -58,8 +58,8 @@
 <!ENTITY foxyproxy.copy.selection.accesskey "C">
 <!ENTITY foxyproxy.copy.selection.tooltip "Copies selection">
 <!ENTITY foxyproxy.mode.label "Select Mode">
+<!ENTITY foxyproxy.wpad.label1 "by WPAD">
 <!--For translators: The following two strings are already included into Firefox and may be found in the Preferences panel -> Advanced -> Network Settings-->
-<!ENTITY foxyproxy.wpad.label "Auto-detect proxy settings for this network">
 <!ENTITY foxyproxy.wpad.accesskey "W">
 <!ENTITY foxyproxy.wpad.tooltip "Detect the proxy settings automatically using WPAD">
 <!ENTITY foxyproxy.wpad.reload.label "Detect proxy settings automatically every">
@@ -67,7 +67,6 @@
 <!ENTITY foxyproxy.wpad.reload.tooltip "Auto-detect the proxy every specified period">
 <!ENTITY foxyproxy.wpad.tree.label "Auto-detect proxy">
 <!ENTITY foxyproxy.auto.url.label "Automatic proxy configuration URL">
-<!ENTITY foxyproxy.auto.url.accesskey "A">
 <!ENTITY foxyproxy.auto.url.tooltip "Enter URL of the PAC file">
 <!ENTITY foxyproxy.auto.url.note.label "http(s)://   ftp://   file://   relative://">
 <!ENTITY foxyproxy.auto.url.note.tooltip "Click the info icon for information on relative://">
@@ -192,6 +191,12 @@
 <!ENTITY foxyproxy.movedown.label "Move Down">
 <!ENTITY foxyproxy.movedown.tooltip "Decrease priority of current selection">
 <!ENTITY foxyproxy.movedown.accesskey "D">
+<!ENTITY foxyproxy.automatic.label "Automatic Proxy Configuration">
+<!ENTITY foxyproxy.automatic.accesskey "A">
+<!ENTITY foxyproxy.automatic.tooltip "Get a proxy configuration automatically">
+<!ENTITY foxyproxy.pac.label "by PAC">
+<!ENTITY foxyproxy.pac.accesskey "P">
+<!ENTITY foxyproxy.pac.tooltip "Get the proxy settings using a PAC file">
 <!ENTITY foxyproxy.autoconfurl.view.label "View">
 <!ENTITY foxyproxy.autoconfurl.view.accesskey "V">
 <!ENTITY foxyproxy.autoconfurl.view.tooltip "View the auto-configuration file">

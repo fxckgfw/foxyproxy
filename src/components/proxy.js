@@ -423,13 +423,9 @@ Proxy.prototype = {
     } 
     // always always always cancel first before doing anything 
     if (ac) {
-      dump(this.name + "\n");
-      dump("First we cancel the timer...\n");
       ac.timer.cancel();
     }
-    dump("AutoReload is: " + ac._autoReload + "\n"); 
     if (this.shouldLoadPAC() && ac._autoReload) {
-      dump("And now we set it to " + ac._reloadFreqMins + "\n");
       ac.timer.initWithCallback(ac, ac._reloadFreqMins*60000,
         CI.nsITimer.TYPE_REPEATING_SLACK);
     }

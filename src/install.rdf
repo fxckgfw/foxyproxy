@@ -25,7 +25,7 @@
         <em:name>FoxyProxy Basic</em:name>
         <em:version>2.2</em:version>
 end-foxyproxy-simple -->
-        <em:creator>LeahScape, Inc.</em:creator>
+        <em:creator>FoxyProxy, Inc.</em:creator>
         <em:description>Premier proxy management for Firefox</em:description>
         <em:homepageURL>http://getfoxyproxy.org</em:homepageURL>
         <em:aboutURL>chrome://foxyproxy/content/about.xul</em:aboutURL>

@@ -54,20 +54,25 @@ function onLoad() {
   autoconfMode.value = proxy.autoconfMode;
 
   if (proxy.autoconfMode === "pac") {
-    toggleMode("pac");
+    // toggleMode("auto") is called below and it includes already a call of
+    // toggleMode("pac") (or toggleMode("wpad")). We therefore omitting it here
+    // and below in the wpad code path if the proxy mode is "auto".
+    if (proxy.mode !== "auto") {
+      toggleMode("pac");
+    }
     loadNotification.checked = proxy.autoconf.loadNotification;
     errorNotification.checked = proxy.autoconf.errorNotification;
     autoReload.checked = proxy.autoconf.autoReload;
     reloadFreq.value = proxy.autoconf.reloadFreqMins; 
   } else if (proxy.autoconfMode === "wpad") {
-    toggleMode("wpad");
+    if (proxy.mode !== "auto") {
+      toggleMode("wpad");
+    }
     loadNotification.checked = proxy.wpad.loadNotification;
     errorNotification.checked = proxy.wpad.errorNotification;
     autoReload.checked = proxy.wpad.autoReload;
     reloadFreq.value = proxy.wpad.reloadFreqMins;    
-  } 
-  dump("Proxy mode is: " + proxy.mode + "\nAnd autoconfMode is: " + proxy.
-      autoconfMode + "\n");
+  }
   toggleMode(proxy.mode); 
 
   if (proxy.lastresort) {
@@ -475,6 +480,13 @@ function toggleMode(mode) {
       "true");
     document.getElementById("direct-broadcaster").removeAttribute("disabled");
     document.getElementById("proxyDNS").hidden = false;
+    // We need that here to trigger the broadcaster related code in the wpad
+    // and pac codepath below in all possible cases.
+    if (document.getElementById("autoconfMode").value === "wpad") {
+      toggleMode("wpad");
+    } else {
+      toggleMode("pac"); 
+    }
     onAutoConfUrlInput();
   } else if (mode == "direct") {
     document.getElementById("disabled-broadcaster").setAttribute("disabled",
@@ -503,9 +515,9 @@ function toggleMode(mode) {
     autoconfUrl.value = proxy.autoconf.url;
     autoconfUrl.removeAttribute("readonly");
     // If we clicked on WPAD first we have to enable the file picker again.
-    document.getElementById("autoconf-broadcaster3").
-      removeAttribute("disabled"); 
-    onAutoConfUrlInput();
+    //document.getElementById("autoconf-broadcaster3").
+     // removeAttribute("disabled"); 
+    //onAutoConfUrlInput();
   } else {
     document.getElementById("disabled-broadcaster").removeAttribute("disabled");
     document.getElementById("autoconf-broadcaster1").setAttribute("disabled",
@@ -567,7 +579,11 @@ function onAutoConfUrlInput() {
   // setAttribute("disabled", true) buggy in FF 1.5.0.4 for the way i've setup the cmd
   // so must use removeAttribute()
   var b = document.getElementById("autoconf-broadcaster2");
-  if (autoconfUrl.value.length > 0)
+  // TODO: For some reason we need the second condition in order to disable the
+  // view and test button iff the dialog gets loaded AND the proxy mode is not
+  // "auto".
+  if (autoconfUrl.value.length > 0 && document.getElementById("mode").value ===
+    "auto")
     b.setAttribute("disabled", "false");
   else
     b.setAttribute("disabled", "true");

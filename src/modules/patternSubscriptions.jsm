@@ -1,5 +1,5 @@
 /**
- * FoxyProxy Copyright (C) 2006-#%#% Eric H. Jung and LeahScape, Inc.
+ * FoxyProxy Copyright (C) 2006-#%#% Eric H. Jung and FoxyProxy, Inc.
  * http://getfoxyproxy.org/ eric.jung@yahoo.com
  * 
  * This source code is released under the GPL license, available in the LICENSE

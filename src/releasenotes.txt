@@ -1,6 +1,6 @@
 * enhanced UI for WPAD and PAC feature
 * fixed UI sluggishness due to import of large amount of patterns
-* fixed bugs in Regular Expressions for no localhost pattern feature (see:
+* fixed bugs in regular expressions for no localhost pattern feature (see:
   http://forums.getfoxyproxy.org/viewtopic.php?f=4&t=148)
 * the "no localhost patterns" are now properly removed if the pattern tree gets
   sorted
@@ -9,4 +9,6 @@
 * improved parsing of AutoProxy patterns
 * add pattern itself as name to a created pattern if its name is missing
 * added icons to context menus
+* proxy enabled/disabled and animation settings are now saved in context menus
+  as well
 * changed copyright holder from LeahScape, Inc. to FoxyProxy, Inc. 

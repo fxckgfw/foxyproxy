@@ -830,14 +830,16 @@ end-foxyproxy-simple !*/
           // Enable/disable checkbox for each proxy.
           // Don't provide enable/disable to lastresort proxy.
           !p.lastresort && _createCheckMenuItem(sbm,
-            curProxy + "enabled=!" + curProxy + "enabled;",
+            curProxy + "enabled=!" + curProxy +
+            "enabled;foxyproxy.fp.writeSettingsAsync();",
             p.enabled,
             this.fp.getMessage("foxyproxy.enabled.accesskey"),
             this.fp.getMessage("foxyproxy.enabled.label"),
             this.fp.getMessage("foxyproxy.enabled.tooltip"));
 
           _createCheckMenuItem(sbm,
-            curProxy + "animatedIcons=!" + curProxy + "animatedIcons;",
+            curProxy + "animatedIcons=!" + curProxy +
+            "animatedIcons;foxyproxy.fp.writeSettingsAsync();",
             p.animatedIcons,
             this.fp.getMessage("foxyproxy.animatedicons.accesskey"),
             this.fp.getMessage("foxyproxy.animatedicons.label"),

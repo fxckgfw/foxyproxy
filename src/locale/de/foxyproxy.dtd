@@ -58,8 +58,8 @@
 <!ENTITY foxyproxy.copy.selection.accesskey "K">
 <!ENTITY foxyproxy.copy.selection.tooltip "Kopiert die aktuelle Auswahl">
 <!ENTITY foxyproxy.mode.label "Modus auswählen">
-<!-- begin foxyproxyplus -->
-<!ENTITY foxyproxy.wpad.label "Die Proxy-Einstellungen für dieses Netzwerk automatisch erkennen">
+
+<!ENTITY foxyproxy.wpad.label1 "mittels WPAD">
 <!ENTITY foxyproxy.wpad.accesskey "W">
 <!ENTITY foxyproxy.wpad.tooltip "Proxy-Einstellungen mit WPAD automatisch erkennen">
 <!ENTITY foxyproxy.wpad.reload.label "Erkenne Proxy-Einstellungen automatisch alle">
@@ -192,6 +192,12 @@
 <!ENTITY foxyproxy.movedown.label "Abwärts">
 <!ENTITY foxyproxy.movedown.tooltip "Priorität der aktuellen Auswahl verringern">
 <!ENTITY foxyproxy.movedown.accesskey "B">
+<!ENTITY foxyproxy.automatic.label "Automatische Proxy-Konfiguration">
+<!ENTITY foxyproxy.automatic.accesskey "A">
+<!ENTITY foxyproxy.automatic.tooltip "Die Proxy-Konfiguration automatisch ermitteln">
+<!ENTITY foxyproxy.pac.label "mittels PAC">
+<!ENTITY foxyproxy.pac.accesskey "P">
+<!ENTITY foxyproxy.pac.tooltip "Proxy-Einstellungen mittels PAC ermitteln">
 <!ENTITY foxyproxy.autoconfurl.view.label "Ansicht">
 <!ENTITY foxyproxy.autoconfurl.view.accesskey "A">
 <!ENTITY foxyproxy.autoconfurl.view.tooltip "Auto-Konfigurationsdatei ansehen">
@@ -496,7 +502,7 @@
 <!ENTITY foxyproxy.hosting.label1 "Danke an">
 <!ENTITY foxyproxy.ocs.label "OCS">
 <!ENTITY foxyproxy.hosting.label2 "für das Hosten der FoxyProxy Website. Bitte berücksichtigen Sie OCS bei der Auswahl ihres Hosters.">
-<!-- end foxyproxyplus -->
+<!-- begin foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Lokales IP-Adressmuster hinzufügen/ändern">
 <!ENTITY foxyproxy.tempip.popup.label "Temporäre Muster erlauben es Ihnen, Muster für selten genutzte lokale IP-Adressen zu erzeugen, ohne dass diese die Liste der IP-Adressmuster eines Proxies überladen. Temporäre Muster werden nicht auf Platte abgelegt. Sie werden im Speicher gehalten und nur für diese Firefox-Sitzung benutzt.">
 <!ENTITY foxyproxy.ip.pattern.label "Lokales IP-Adressmuster">
@@ -557,3 +563,4 @@
 <!ENTITY foxyproxy.patternsforselected.accesskey "S">
 <!ENTITY foxyproxy.patternsforselected.tooltip "Erstelle Muster für ausgewählte URLs">
 <!ENTITY foxyproxy.patterntoadd.label "Hinzuzufügendes Muster">
+<!-- end foxyproxyplus -->

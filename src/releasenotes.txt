@@ -8,4 +8,5 @@
   Firefox startup)
 * improved parsing of AutoProxy patterns
 * add pattern itself as name to a created pattern if its name is missing
+* added icons to context menus
 * changed copyright holder from LeahScape, Inc. to FoxyProxy, Inc. 

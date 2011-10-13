@@ -165,9 +165,9 @@ AutoConf.prototype = {
     }
     else {
       if (autoconfMode === "pac") {
-        autoconfMessage = "pac.status.loadFailure2"; 
+        autoconfMessage = "pac.status.loadfailure2"; 
       } else {
-        autoconfMessage = "wpad.status.loadFailure";
+        autoconfMessage = "wpad.status.loadfailure";
       } 
       this.badPAC(autoconfMessage,
         new Error(fp.getMessage("http.error", [req.status])));

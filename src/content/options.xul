@@ -31,7 +31,8 @@
           accesskey="&foxyproxy.menubar.file.accesskey;"
           tooltiptext="&foxyproxy.menubar.file.tooltip;">
           <menupopup id="file-popup">
-            <menuitem command="createProxyCmd"
+            <menuitem id="createProxyFile" class="menuitem-iconic" 
+              command="createProxyCmd"
               tooltiptext="&foxyproxy.addnewproxy.tooltip;" />
             <!-- tooltiptext is necessary for tooltip, dunno why -->
             <menuseparator />
@@ -46,7 +47,8 @@
             <!-- <menuitem command="importListCmd" tooltiptext="&foxyproxy.importlist.tooltip;"/> -->
             <!-- tooltiptext is necessary for tooltip, dunno why -->
             <menuseparator/>
-            <menuitem command="closeCmd"
+            <menuitem class="menuitem-iconic"
+              image="" command="closeCmd"
               tooltiptext="&foxyproxy.close.tooltip;" key="esc-key"/>
             <!-- tooltiptext is necessary for tooltip, dunno why -->
           </menupopup>
@@ -55,8 +57,8 @@
           accesskey="&foxyproxy.menubar.help.accesskey;"
           tooltiptext="&foxyproxy.menubar.help.tooltip;">
           <menupopup id="edit-popup">
-            <menuitem command="helpCmd"
-              tooltiptext="&foxyproxy.help.tooltip;" />
+            <menuitem id="helpFileMenu" class="menuitem-iconic"
+              command="helpCmd" tooltiptext="&foxyproxy.help.tooltip;" />
             <!-- tooltiptext is necessary for tooltip, dunno why -->
             <menuitem command="onlineCmd"
               tooltiptext="&foxyproxy.online.tooltip;" />           
@@ -952,54 +954,64 @@
       <menuitem id="enabledPopUpMenuItem" command="toggleEnabledCmd"
         type="checkbox" />
       <menuseparator id="menuSeperator" />
-      <menuitem class="menuitem-non-iconic" command="useForAllURLsCmd" />
+      <menuitem command="useForAllURLsCmd" />
       <menuseparator id="menuSeperator" />      
-      <menuitem class="menuitem-non-iconic" command="createProxyCmd" />
+      <menuitem id="createProxyTree" class="menuitem-iconic"
+        command="createProxyCmd" />
       <menuseparator />
-      <menuitem class="menuitem-non-iconic" command="settingsCmd" />
-      <menuitem class="menuitem-non-iconic" command="copySelectionCmd" />
-      <menuitem class="menuitem-non-iconic"
+      <menuitem id="editSettingsProxyTree" class="menuitem-iconic"
+        command="settingsCmd" />
+      <menuitem id="copySettingsProxyTree" class="menuitem-iconic"
+        command="copySelectionCmd" />
+      <menuitem id="deleteSettingsProxyTree" class="menuitem-iconic"
         command="deleteSelectionCmd" />
-      <menuitem class="menuitem-non-iconic" command="moveUpCmd"
-        label="&foxyproxy.moveup.label;" />
-      <menuitem class="menuitem-non-iconic" command="moveDownCmd"
-        label="&foxyproxy.movedown.label;" />
+      <menuitem id="moveUpProxyTree" class="menuitem-iconic"
+        command="moveUpCmd" label="&foxyproxy.moveup.label;" />
+      <menuitem id="moveDownProxyTree" class="menuitem-iconic"
+        command="moveDownCmd" label="&foxyproxy.movedown.label;" />
       <menuseparator />
-      <menuitem class="menuitem-non-iconic" command="torWizardCmd" />
+      <menuitem command="torWizardCmd" />
       <menuseparator />
-      <menuitem class="menuitem-non-iconic" command="importSettingsCmd"/>
-        <menuitem class="menuitem-non-iconic" command="exportSettingsCmd"/>
+      <menuitem command="importSettingsCmd"/>
+        <menuitem command="exportSettingsCmd"/>
         <!-- <menuitem class="menuitem-non-iconic" command="importListCmd"/> -->
         <menuseparator/>
-      <menuitem class="menuitem-non-iconic" command="helpCmd" />
-      <menuitem class="menuitem-non-iconic" command="closeCmd" />
+      <menuitem id="helpProxyTree" class="menuitem-iconic" command="helpCmd" />
+      <menuitem command="closeCmd" />
     </menupopup>
 
     <menupopup id="mainPopup">
-      <menuitem class="menuitem-non-iconic" command="createProxyCmd" />
+      <menuitem id="createMainContext" class="menuitem-iconic"
+        command="createProxyCmd" />
       <menuseparator />
-      <menuitem class="menuitem-non-iconic" command="torWizardCmd" />
+      <menuitem command="torWizardCmd" />
       <menuseparator />
-      <menuitem class="menuitem-non-iconic" command="helpCmd" />
-      <menuitem class="menuitem-non-iconic" command="closeCmd" />
+      <menuitem id="helpMainContext" class="menuitem-iconic"
+        command="helpCmd" />
+      <menuitem command="closeCmd" />
     </menupopup>
 
     <menupopup id="logTreeMenu">
-      <menuitem class="menuitem-non-iconic" command="clearLogCmd" />
-      <menuitem class="menuitem-non-iconic" command="refreshLogCmd" />
-      <menuitem class="menuitem-non-iconic" command="saveLogCmd" />
-			<menuseparator />
-			<menuitem class="menuitem-non-iconic" command="openLogURLInNewTabCmd" />
-      <menuitem class="menuitem-non-iconic" command="copyLogURLToClipboardCmd" />
-      <menuitem class="menuitem-non-iconic" command="deleteLogEntryCmd" />
+      <menuitem id="clearLogTree" class="menuitem-iconic"
+        command="clearLogCmd" />
+      <menuitem id="refreshLogTree" class="menuitem-iconic"
+        command="refreshLogCmd" />
+      <menuitem id="saveLogTree" class="menuitem-iconic" command="saveLogCmd" />
+    <menuseparator />
+      <menuitem id="openURLLogTree" class="menuitem-iconic"
+        command="openLogURLInNewTabCmd" />
+      <menuitem id="copyURLLogTree" class="menuitem-iconic"
+        command="copyLogURLToClipboardCmd" />
+      <menuitem id="deleteLogTree" class="menuitem-iconic"
+        command="deleteLogEntryCmd" />
     </menupopup>
 
     <menupopup id="patternSubTreeMenu">
-      <menuitem class="menuitem-non-iconic" command="addPatSubCmd" />
-      <menuitem class="menuitem-non-iconic" command="editPatSubCmd" /> 
-      <menuitem class="menuitem-non-iconic" command="deletePatSubCmd" />
-      <menuitem class="menuitem-non-iconic" command="refreshPatSubCmd" /> 
-      <menuitem class="menuitem-non-iconic" command="viewPatSubCmd" /> 
+      <menuitem command="addPatSubCmd" />
+      <menuitem command="editPatSubCmd" /> 
+      <menuitem command="deletePatSubCmd" />
+      <menuitem command="refreshPatSubCmd" /> 
+      <menuitem command="viewPatSubCmd" /> 
     </menupopup>
   </popupset>
 

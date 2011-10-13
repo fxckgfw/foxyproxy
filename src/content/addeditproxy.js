@@ -515,9 +515,9 @@ function toggleMode(mode) {
     autoconfUrl.value = proxy.autoconf.url;
     autoconfUrl.removeAttribute("readonly");
     // If we clicked on WPAD first we have to enable the file picker again.
-    //document.getElementById("autoconf-broadcaster3").
-     // removeAttribute("disabled"); 
-    //onAutoConfUrlInput();
+    document.getElementById("autoconf-broadcaster3").
+      removeAttribute("disabled"); 
+    onAutoConfUrlInput();
   } else {
     document.getElementById("disabled-broadcaster").removeAttribute("disabled");
     document.getElementById("autoconf-broadcaster1").setAttribute("disabled",

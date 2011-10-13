@@ -363,15 +363,22 @@
   <menupopup id="urlsTreeContext" onpopupshowing="onTreeMenuPopupShowing(this.firstChild, proxy.matches, urlsTree);">
 		<menuitem id="enabledPopUpMenuItem" command="toggleURLPatternEnabledCmd" type="checkbox"/>
     <menuseparator/>
-    <menuitem class="menuitem-non-iconic" command="addURLPatternCmd"/>
-    <menuitem class="menuitem-non-iconic" command="editURLPatternSelectionCmd"/>
-    <menuitem class="menuitem-non-iconic" command="copyURLPatternSelectionCmd"/>
-    <menuitem class="menuitem-non-iconic" command="deleteURLPatternSelectionCmd"/>
-    <menuitem class="menuitem-non-iconic" command="importURLPatternCmd"/>
-    <menuitem class="menuitem-non-iconic" command="exportURLPatternCmd"/>
+    <menuitem id="addURLTree" class="menuitem-iconic"
+      command="addURLPatternCmd"/>
+    <menuitem id="editURLTree" class="menuitem-iconic"
+      command="editURLPatternSelectionCmd"/>
+    <menuitem id="copyURLTree" class="menuitem-iconic"
+      command="copyURLPatternSelectionCmd"/>
+    <menuitem id="deleteURLTree" class="menuitem-iconic"
+      command="deleteURLPatternSelectionCmd"/>
+    <menuitem id="importURLTree" class="menuitem-iconic"
+      command="importURLPatternCmd"/>
+    <menuitem id="exportURLTree" class="menuitem-iconic"
+      command="exportURLPatternCmd"/>
     <menuseparator/>
-    <menuitem class="menuitem-non-iconic" command="helpURLPatternCmd"/>
-    <menuitem class="menuitem-non-iconic" command="closeCmd"/>
+    <menuitem id="helpURLTree" class="menuitem-iconic"
+      command="helpURLPatternCmd"/>
+    <menuitem command="closeCmd"/>
   </menupopup>
 
 </popupset>

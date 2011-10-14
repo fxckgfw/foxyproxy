@@ -177,27 +177,35 @@ function _updateLogView(keepSelection) {
 }
 
 function _updateModeMenu() {
-	var menu = document.getElementById("modeMenu");	
-	var popup=menu.firstChild;
-	fpc.removeChildren(popup);
+  var menu = document.getElementById("modeMenu");	
+  var popup=menu.firstChild;
+  fpc.removeChildren(popup);
 	
-	if (!foxyproxy.isFoxyProxySimple())
-	  popup.appendChild(fpc.createMenuItem({idVal:"patterns", labelId:"mode.patterns.label", document:document}));
+  if (!foxyproxy.isFoxyProxySimple())
+    popup.appendChild(fpc.createMenuItem({idVal:"patterns",
+     labelId:"mode.patterns.label", labelArgs:"", name:"", document:document}));
   
-  for (var i=0,p; i<foxyproxy.proxies.length && ((p=foxyproxy.proxies.item(i)) || 1); i++)
-    popup.appendChild(fpc.createMenuItem({idVal:p.id, labelId:"mode.custom.label", labelArgs:[p.name], name:"foxyproxy-enabled-type", document:document}));
-    //popup.appendChild(fpc.createMenuItem({idVal["random", labelId:"mode.random.label", document:document}));
-  popup.appendChild(fpc.createMenuItem({idVal:"disabled", labelId:"mode.disabled.label", document:document}));
+  for (var i=0,p; i<foxyproxy.proxies.length &&
+       ((p=foxyproxy.proxies.item(i)) || 1); i++)
+    popup.appendChild(fpc.createMenuItem({idVal:p.id, labelId:
+      "mode.custom.label", labelArgs:[p.name], name:"foxyproxy-enabled-type",
+      document:document}));
+    //popup.appendChild(fpc.createMenuItem({idVal["random",
+    //labelId:"mode.random.label", document:document}));
+  popup.appendChild(fpc.createMenuItem({idVal:"disabled", labelId:
+    "mode.disabled.label", labelArgs:"", name:"", document:document}));
   menu.value = foxyproxy.mode;
-  if (foxyproxy.mode != "patterns" && foxyproxy.mode != "disabled" &&	foxyproxy.mode != "random") {
-    // subtract 1 because first element, patterns, is not in the proxies array for FoxyProxy Simple.
-    // FP Simple has no "patterns" mode
-    var selIdx = foxyproxy.isFoxyProxySimple() ? menu.selectedIndex : menu.selectedIndex-1; 
-	  if (!foxyproxy.proxies.item(selIdx).enabled) {
-  	  // User disabled or deleted the proxy; select default setting.
-    	foxyproxy.setMode("disabled", true);
-	    menu.value = "disabled";
-  	}
+  if (foxyproxy.mode != "patterns" && foxyproxy.mode != "disabled" &&
+      foxyproxy.mode != "random") {
+    // subtract 1 because first element, patterns, is not in the proxies array
+    // for FoxyProxy Simple. FP Simple has no "patterns" mode.
+    var selIdx = foxyproxy.isFoxyProxySimple() ? menu.selectedIndex :
+      menu.selectedIndex-1; 
+    if (!foxyproxy.proxies.item(selIdx).enabled) {
+      // User disabled or deleted the proxy; select default setting.
+      foxyproxy.setMode("disabled", true);
+      menu.value = "disabled";
+    }
   }
 }
 

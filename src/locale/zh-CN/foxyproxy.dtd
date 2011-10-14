@@ -58,8 +58,8 @@
 <!ENTITY foxyproxy.copy.selection.accesskey "C">
 <!ENTITY foxyproxy.copy.selection.tooltip "复制选中项目">
 <!ENTITY foxyproxy.mode.label "选择工作模式">
+<!ENTITY foxyproxy.wpad.label1 "由 WPAD">
 <!-- begin foxyproxyplus -->
-<!ENTITY foxyproxy.wpad.label "为这个网络自动检测代理设置">
 <!ENTITY foxyproxy.wpad.accesskey "W">
 <!ENTITY foxyproxy.wpad.tooltip "自动使用 WPAD 检测代理设置">
 <!ENTITY foxyproxy.wpad.reload.label "每次自动检测代理设置">
@@ -67,7 +67,6 @@
 <!ENTITY foxyproxy.wpad.reload.tooltip "每个指定的周期内自动检测代理">
 <!ENTITY foxyproxy.wpad.tree.label "自动检测代理">
 <!ENTITY foxyproxy.auto.url.label "自动配置代理服务器 URL">
-<!ENTITY foxyproxy.auto.url.accesskey "A">
 <!ENTITY foxyproxy.auto.url.tooltip "输入 PAC 文件的 URL">
 <!ENTITY foxyproxy.auto.url.note.label "http(s):// ftp:// file:// relative://">
 <!ENTITY foxyproxy.auto.url.note.tooltip "单击info按钮获取relative://的信息">
@@ -192,6 +191,12 @@
 <!ENTITY foxyproxy.movedown.label "下移">
 <!ENTITY foxyproxy.movedown.tooltip "降低当前选中项的优先级">
 <!ENTITY foxyproxy.movedown.accesskey "D">
+<!ENTITY foxyproxy.automatic.label "自动代理服务器配置">
+<!ENTITY foxyproxy.automatic.accesskey "A">
+<!ENTITY foxyproxy.automatic.tooltip "自动获取代理服务器配置">
+<!ENTITY foxyproxy.pac.label "由 PAC">
+<!ENTITY foxyproxy.pac.accesskey "P">
+<!ENTITY foxyproxy.pac.tooltip "使用一个 PAC 文件获得代理服务器设置">
 <!ENTITY foxyproxy.autoconfurl.view.label "查看">
 <!ENTITY foxyproxy.autoconfurl.view.accesskey "V">
 <!ENTITY foxyproxy.autoconfurl.view.tooltip "查看自动配置文件">
@@ -557,3 +562,4 @@
 <!ENTITY foxyproxy.patternsforselected.accesskey "S">
 <!ENTITY foxyproxy.patternsforselected.tooltip "创建适用于选定网址的模式">
 <!ENTITY foxyproxy.patterntoadd.label "要添加的模式">
+<!-- end foxyproxyplus -->

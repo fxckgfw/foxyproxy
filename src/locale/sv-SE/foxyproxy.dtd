@@ -58,8 +58,8 @@
 <!ENTITY foxyproxy.copy.selection.accesskey "o">
 <!ENTITY foxyproxy.copy.selection.tooltip "Kopierar markerade">
 <!ENTITY foxyproxy.mode.label "Välj läge">
+<!ENTITY foxyproxy.wpad.label1 "via WPAD">
 <!-- begin foxyproxyplus -->
-<!ENTITY foxyproxy.wpad.label "Identifiera proxyinställningar automatiskt för detta nätverk">
 <!ENTITY foxyproxy.wpad.accesskey "W">
 <!ENTITY foxyproxy.wpad.tooltip "Identifiera proxyinställningarna automatiskt m.h.a. WPAD">
 <!ENTITY foxyproxy.wpad.reload.label "Identifiera proxyinställningar automatiskt var">
@@ -67,7 +67,6 @@
 <!ENTITY foxyproxy.wpad.reload.tooltip "Identifiera proxyinställningar automatiskt med intervallet">
 <!ENTITY foxyproxy.wpad.tree.label "Identifiera proxy automatiskt">
 <!ENTITY foxyproxy.auto.url.label "URL för automatisk proxykonfiguration">
-<!ENTITY foxyproxy.auto.url.accesskey "u">
 <!ENTITY foxyproxy.auto.url.tooltip "Ange URL för PAC-filen">
 <!ENTITY foxyproxy.auto.url.note.label "http(s)://   ftp://   file://   relative://">
 <!ENTITY foxyproxy.auto.url.note.tooltip "Klicka på info-ikonen för information om  relative://">
@@ -192,6 +191,12 @@
 <!ENTITY foxyproxy.movedown.label "Flytta ned">
 <!ENTITY foxyproxy.movedown.tooltip "Minska prioriteten för markerat objekt">
 <!ENTITY foxyproxy.movedown.accesskey "n">
+<!ENTITY foxyproxy.automatic.label "Automatisk proxykonfiguration">
+<!ENTITY foxyproxy.automatic.accesskey "A">
+<!ENTITY foxyproxy.automatic.tooltip "Hämta en proxykonfiguration automatiskt">
+<!ENTITY foxyproxy.pac.label "via PAC">
+<!ENTITY foxyproxy.pac.accesskey "P">
+<!ENTITY foxyproxy.pac.tooltip "Hämta proxyinställningarna m.h.a. en PAC-fil">
 <!ENTITY foxyproxy.autoconfurl.view.label "Visa">
 <!ENTITY foxyproxy.autoconfurl.view.accesskey "V">
 <!ENTITY foxyproxy.autoconfurl.view.tooltip "Granska autokonfigurationsfilen">
@@ -557,3 +562,4 @@
 <!ENTITY foxyproxy.patternsforselected.accesskey "S">
 <!ENTITY foxyproxy.patternsforselected.tooltip "Skapa mönster för markerade URL:er">
 <!ENTITY foxyproxy.patterntoadd.label "Mönster att lägga till">
+<!-- end foxyproxyplus -->

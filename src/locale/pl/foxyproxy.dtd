@@ -58,8 +58,8 @@
 <!ENTITY foxyproxy.copy.selection.accesskey "K">
 <!ENTITY foxyproxy.copy.selection.tooltip "Kopiuje zaznaczone elementy">
 <!ENTITY foxyproxy.mode.label "Wybierz tryb">
+<!ENTITY foxyproxy.wpad.label1 "przez WPAD">
 <!-- begin foxyproxyplus -->
-<!ENTITY foxyproxy.wpad.label "Automatycznie wykrywaj ustawienia serwerów proxy dla tej sieci">
 <!ENTITY foxyproxy.wpad.accesskey "W">
 <!ENTITY foxyproxy.wpad.tooltip "Automatycznie wykrywa ustawienia proxy używając WPAD">
 <!ENTITY foxyproxy.wpad.reload.label "Automatycznie wykrywaj ustawienia proxy co">
@@ -67,7 +67,6 @@
 <!ENTITY foxyproxy.wpad.reload.tooltip "Automatycznie wykrywa ustawienia proxy z określoną częstotliwością">
 <!ENTITY foxyproxy.wpad.tree.label "Wykrywaj automatycznie proxy">
 <!ENTITY foxyproxy.auto.url.label "Adres pliku automatycznej konfiguracji proxy">
-<!ENTITY foxyproxy.auto.url.accesskey "A">
 <!ENTITY foxyproxy.auto.url.tooltip "Wprowadź adres URL pliku *.pac">
 <!ENTITY foxyproxy.auto.url.note.label "http(s)://   ftp://   file://   relative://">
 <!ENTITY foxyproxy.auto.url.note.tooltip "Kliknij ikonę Info, aby uzyskać odpowiednie informacje://">
@@ -192,6 +191,12 @@
 <!ENTITY foxyproxy.movedown.label "W dół">
 <!ENTITY foxyproxy.movedown.tooltip "Zmniejsza priorytet tego elementu">
 <!ENTITY foxyproxy.movedown.accesskey "D">
+<!ENTITY foxyproxy.automatic.label "Automatyczna konfiguracja proxy">
+<!ENTITY foxyproxy.automatic.accesskey "A">
+<!ENTITY foxyproxy.automatic.tooltip "Pobierz konfigurację serwera proxy automatycznie">
+<!ENTITY foxyproxy.pac.label "przez PAC">
+<!ENTITY foxyproxy.pac.accesskey "P">
+<!ENTITY foxyproxy.pac.tooltip "Pobierz konfigurację serwera proxy, używając pliku PAC">
 <!ENTITY foxyproxy.autoconfurl.view.label "Zobacz">
 <!ENTITY foxyproxy.autoconfurl.view.accesskey "Z">
 <!ENTITY foxyproxy.autoconfurl.view.tooltip "Wyświetla plik automatycznej konfiguracji">

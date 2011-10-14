@@ -58,8 +58,8 @@
 <!ENTITY foxyproxy.copy.selection.accesskey "ค">
 <!ENTITY foxyproxy.copy.selection.tooltip "คัดลอกสิ่งที่เลือก">
 <!ENTITY foxyproxy.mode.label "โหมดเลือก">
+<!ENTITY foxyproxy.wpad.label1 "โดย WPAD">
 <!-- begin foxyproxyplus -->
-<!ENTITY foxyproxy.wpad.label "ค้นหาการตั้งค่าพร็อกซีสำหรับเครือข่ายโดยอัตโนมัติ">
 <!ENTITY foxyproxy.wpad.accesskey "ข">
 <!ENTITY foxyproxy.wpad.tooltip "ค้นหาการตั้งค่าพร็อกซีโดยอัตโนมัติโดยใช้ WPAD">
 <!ENTITY foxyproxy.wpad.reload.label "ค้นหาการตั้งค่าพร็อกซีโดยอัตโนมัติทุกๆ">
@@ -67,7 +67,6 @@
 <!ENTITY foxyproxy.wpad.reload.tooltip "ค้นหาการตั้งค่าพร็อกซีโดยอัตโนมัติทุกๆระยะเวลาที่กำหนด">
 <!ENTITY foxyproxy.wpad.tree.label "ค้นหาการตั้งค่าพร็อกซีโดยอัตโนมัติ">
 <!ENTITY foxyproxy.auto.url.label "พร็อกซียูอาร์แอลปรับแต่งอัตโนมัติ">
-<!ENTITY foxyproxy.auto.url.accesskey "อ">
 <!ENTITY foxyproxy.auto.url.tooltip "กรอกยูอาร์แอลหรือแฟ้ม PAC">
 <!ENTITY foxyproxy.auto.url.note.label "http(s)://   ftp://   file://   relative://">
 <!ENTITY foxyproxy.auto.url.note.tooltip "คลิกไอคอนข้อมูลสำหรับข้อมูลที่สัมพันธ์://">
@@ -192,6 +191,12 @@
 <!ENTITY foxyproxy.movedown.label "เลื่อนลง">
 <!ENTITY foxyproxy.movedown.tooltip "ลดความสำคัญให้สิ่งที่เลือก">
 <!ENTITY foxyproxy.movedown.accesskey "ล">
+<!ENTITY foxyproxy.automatic.label "การปรับแต่งพร็อกซีอัตโนมัติ">
+<!ENTITY foxyproxy.automatic.accesskey "ก">
+<!ENTITY foxyproxy.automatic.tooltip "รับการปรับแต่งพร็อกซีโดยอัตโนมัติ">
+<!ENTITY foxyproxy.pac.label "โดย PAC">
+<!ENTITY foxyproxy.pac.accesskey "P">
+<!ENTITY foxyproxy.pac.tooltip "รับการตั้งค่าพร็อกซีโดยใช้แฟ้ม PAC">
 <!ENTITY foxyproxy.autoconfurl.view.label "ดู">
 <!ENTITY foxyproxy.autoconfurl.view.accesskey "ด">
 <!ENTITY foxyproxy.autoconfurl.view.tooltip "ดูแฟ้มการปรับแต่งอัตโนมัติ">
@@ -557,3 +562,4 @@
 <!ENTITY foxyproxy.patternsforselected.accesskey "S">
 <!ENTITY foxyproxy.patternsforselected.tooltip "Create Patterns for Selected URLs">
 <!ENTITY foxyproxy.patterntoadd.label "Pattern to Add">
+<!-- end foxyproxyplus -->

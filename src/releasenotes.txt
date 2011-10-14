@@ -11,4 +11,6 @@
 * added icons to context menus
 * proxy enabled/disabled and animation settings are now saved in context menus
   as well
+* made the "Do not use this proxy for internal IP addresses" checkbox more
+  visible
 * changed copyright holder from LeahScape, Inc. to FoxyProxy, Inc. 

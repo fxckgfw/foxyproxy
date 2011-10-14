@@ -158,7 +158,7 @@ tab[id^="foxyproxy-"] /* selectall tabs whose id have the prefix "foxyproxy-" */
 }
 /* end other stylings in options.xul */
 
-/* begin addedit.xul button icons */
+/* begin addeditproxy.xul button icons */
 #foxyproxy-add-url-pattern-button, #fpaupb, #addURLTree{
   list-style-image: url("chrome://foxyproxy/content/images/page_add.png");
 }
@@ -182,7 +182,14 @@ tab[id^="foxyproxy-"] /* selectall tabs whose id have the prefix "foxyproxy-" */
 #foxyproxy-import-url-pattern-button, #fpimupb  {
   list-style-image: url("chrome://foxyproxy/content/images/json-icon.png");
 }
-/* end addedit.xul button button icons */
+/* end addeditproxy.xul button icons */
+
+/* begin other stylings in addeditproxy.xul */
+#noInternalIPs {
+  font-weight: bold;
+}
+
+/* end other stylings in addeditproxy.xul */
 
 /* begin addeditsubscription.xul CSS */
 #foxyproxySubscriptions {

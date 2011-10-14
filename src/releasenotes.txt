@@ -14,3 +14,4 @@
 * made the "Do not use this proxy for internal IP addresses" checkbox more
   visible
 * changed copyright holder from LeahScape, Inc. to FoxyProxy, Inc. 
+* upated locales

@@ -58,8 +58,8 @@
 <!ENTITY foxyproxy.copy.selection.accesskey "K">
 <!ENTITY foxyproxy.copy.selection.tooltip "Zkopíruje aktuálně vybranou položku">
 <!ENTITY foxyproxy.mode.label "Výběr režimu">
+<!ENTITY foxyproxy.wpad.label1 "ze souboru WPAD">
 <!-- begin foxyproxyplus -->
-<!ENTITY foxyproxy.wpad.label "Automaticky rozpoznat nastavení proxy na této síti">
 <!ENTITY foxyproxy.wpad.accesskey "w">
 <!ENTITY foxyproxy.wpad.tooltip "Automaticky rozpoznat nastavení proxy pomocí WPAD">
 <!ENTITY foxyproxy.wpad.reload.label "Zjišťovat nastavení proxy automaticky každých">
@@ -67,7 +67,6 @@
 <!ENTITY foxyproxy.wpad.reload.tooltip "Automaticky zjišťovat proxy po zadaném čase">
 <!ENTITY foxyproxy.wpad.tree.label "Automatické nastavení proxy">
 <!ENTITY foxyproxy.auto.url.label "URL pro automatické nastavení proxy serveru">
-<!ENTITY foxyproxy.auto.url.accesskey "a">
 <!ENTITY foxyproxy.auto.url.tooltip "Zadání URL PAC souboru">
 <!ENTITY foxyproxy.auto.url.note.label "http(s)://   ftp://   file://   relative://">
 <!ENTITY foxyproxy.auto.url.note.tooltip "Klikněte na ikonku pro více informací o ://">
@@ -192,6 +191,12 @@
 <!ENTITY foxyproxy.movedown.label "Posunout dolu">
 <!ENTITY foxyproxy.movedown.tooltip "Sníží prioritu výběru">
 <!ENTITY foxyproxy.movedown.accesskey "d">
+<!ENTITY foxyproxy.automatic.label "Automatické nastavení proxy">
+<!ENTITY foxyproxy.automatic.accesskey "A">
+<!ENTITY foxyproxy.automatic.tooltip "Získat nastavení proxy automaticky">
+<!ENTITY foxyproxy.pac.label "ze souboru PAC">
+<!ENTITY foxyproxy.pac.accesskey "P">
+<!ENTITY foxyproxy.pac.tooltip "Získat nastavení proxy z PAC souboru">
 <!ENTITY foxyproxy.autoconfurl.view.label "Zobrazit">
 <!ENTITY foxyproxy.autoconfurl.view.accesskey "Z">
 <!ENTITY foxyproxy.autoconfurl.view.tooltip "Zobrazí soubor automatického nastavení">
@@ -257,7 +262,12 @@
 <!ENTITY foxyproxy.pacerrornotification.label "Informovat mě při chybě v souboru automatického nastavení proxy">
 <!ENTITY foxyproxy.pacerrornotification.accesskey "E">
 <!ENTITY foxyproxy.pacerrornotification.tooltip "Zobrazí vyskakovací okno pokud dojde k chybě při načítání PAC souboru">
+<!ENTITY foxyproxy.toolbaricon.label "Zobrazit ikonu v liště nástrojů">
+<!ENTITY foxyproxy.toolbaricon.accesskey "O">
+<!ENTITY foxyproxy.toolbaricon.tooltip "Zobrazovat ikonu v liště nástrojů">
+<!ENTITY foxyproxy.toolsmenu.label2 "Zobrazovat ikonu v menu nástrojů">
 <!ENTITY foxyproxy.toolsmenu.accesskey "N">
+<!ENTITY foxyproxy.toolsmenu.tooltip2 "Zobrazovat ikonu v menu nástrojů">
 <!ENTITY foxyproxy.tip.label "Tip">
 <!ENTITY foxyproxy.pactip1.label "Pro PAC soubory uložené na disku Vašeho počítače použijte zápis: file://. Například: file://c:/cesta/proxy.pac pokud pokud používáte Windows nebo file:///home/pek/proxy.pac v Unixu, Linuxu nebo MacOS.">
 <!ENTITY foxyproxy.pactip2.label "Pro PAC soubory uložené na ftp serveru použijte zápis ftp://. Například: ftp://nekde.cz/cesta/proxy.pac">
@@ -552,3 +562,4 @@
 <!ENTITY foxyproxy.patternsforselected.accesskey "S">
 <!ENTITY foxyproxy.patternsforselected.tooltip "Create Patterns for Selected URLs">
 <!ENTITY foxyproxy.patterntoadd.label "Pattern to Add">
+<!-- end foxyproxyplus -->

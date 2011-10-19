@@ -1,0 +1,146 @@
+This file describes and comprises the changes to AutoProxy code we use for
+supporting the AutoProxy format as format for FoxyProxy's pattern
+subscriptions. It contains three parts. Each part first lists the relevant
+AutoProxy code and thereafter the modifications we did. The AutoProxy code is
+taken from version 0.4b2.2011041023. 
+
+
+PART 1:
+-------
+
+in chrome/content/synchronizer.js, lines 118:
+=============================================
+
+for (let i = 0; i < lines.length; i++)
+{
+  if (/!\s*checksum[\s\-:]+([\w\+\/]+)/i.test(lines[i]))
+  {
+    lines.splice(i, 1);
+    let checksumExpected = RegExp.$1;
+    let checksum = generateChecksum(lines);
+
+    if (checksum && checksum != checksumExpected)
+    {
+      this.setError(subscription, "synchronize_checksum_mismatch");
+      return null;
+    }
+
+    break;
+  }
+}
+
+in modules/autoproxy.jsm:
+=========================
+
+let length = lines.length;
+for (let i = 0; i < length; i++) {
+  if (this.checksum.test(lines[i])) {
+    lines.splice(i, 1);
+    length = length - 1;
+    let checksumExpected = RegExp.$1;
+    let checksum = this.generateAutoProxyChecksum(lines);
+    if (checksum && checksum != checksumExpected) {
+      if (!this.fp.warnings.showWarningIfDesired(null,
+        ["patternsubscription.warning.md5"], "md5Warning")) {
+        errorMessages.push(this.fp.
+        getMessage("patternsubscription.error.cancel5"));
+        return errorMessages;
+      }
+    }
+    break;
+  }
+}
+
+
+Part 2:
+-------
+
+in chrome/content/utils.js:
+===========================
+
+generateChecksum(lines)
+
+
+in modules/autoproxy.jsm:
+=========================
+
+generateAutoProxyChecksum(lines) is the same function just slightly differently
+formatted. E.g. curly brackets are always on a new line and alone in AutoProxy
+code. "Components.classes" is abbreviated with "Cc" and
+"Components.interfaces" with "Ci". Additionally, one blank line available after
+the comment in generateChecksum(lines) is omitted.
+
+
+Part 3:
+-------
+
+in chrome/content/filterClasses.js, lines 438ff.:
+=================================================
+
+let regexp;
+  if (text[0] == "/" && text[text.length - 1] == "/")   // filter is a regexp already
+  {
+    regexp = text.substr(1, text.length - 2);
+  }
+  else
+  {
+    // Issue 126: Strictly mapping to keyword blocking,
+    // rule "example.com" should not match "httpS://example.com/"
+    //
+    // (trivial) bug here:
+    //   "p://" will match almost nothing contrast to almost anything
+    //   "http://abc" will not match http://example.com/?http://abc
+    if (text.indexOf("http:") == 0) text = "|" + text;
+    else if (text[0] != "|") text = "|http:*" + text;
+
+    regexp = text.replace(/\*+/g, "*")        // remove multiple wildcards
+                 .replace(/\^\|$/, "^")       // remove anchors following separator placeholder
+                 .replace(/(\W)/g, "\\$1")    // escape special symbols
+                 .replace(/\\\*/g, ".*")      // replace wildcards by .*
+                 .replace(/\\\^/g, "(?:[^\\w\\-.%\\u0080-\\uFFFF]|$)")            // process separator placeholders
+                 .replace(/^\\\|\\\|/, "^[\\w\\-]+:\\/+(?!\\/)(?:[^\\/]+\\.)?") // process extended anchor at expression start
+                 .replace(/^\\\|/, "^")       // process anchor at expression start
+                 .replace(/\\\|$/, "$")       // process anchor at expression end
+                 .replace(/^(\.\*)/,"")       // remove leading wildcards
+                 .replace(/(\.\*)$/,"");      // remove trailing wildcards 
+  }
+  if (regexp == "")
+    regexp = ".*";
+
+in modules/autoproxy.jsm:
+=========================
+
+if (lines[i][0] === "/" && lines[i][lines[i].length - 1] === "/") {
+  // We found already a RegEx
+  currentPat.pattern = lines[i].substr(1,
+    lines[i].length - 2);
+} else {
+  if (lines[i].indexOf("http:") === 0) {
+    lines[i] = "|" + lines[i];
+  } else if (lines[i][0] !== "|") {
+    lines[i] = "|http:*" + lines[i];
+  }
+  currentPat.pattern =
+    // remove multiple wildcards
+    lines[i].replace(/\*+/g, "*").
+      // remove anchors following separator placeholder
+      replace(/\^\|$/, "^").
+      // escape special symbols
+      replace(/(\W)/g, "\\$1").
+      // replace wildcards by .*
+      replace(/\\\*/g, ".*").
+      // process separator placeholders
+      replace(/\\\^/g, "(?:[^\\w\\-.%\\u0080-\\uFFFF]|$)").
+      // process extended anchor at expression start
+      replace(/^\\\|\\\|/, "^[\\w\\-]+:\\/+(?!\\/)(?:[^\\/]+\\.)?").
+      // process anchor at expression start
+      replace(/^\\\|/, "^").
+      // process anchor at expression end
+      replace(/\\\|$/, "$").
+      // remove leading wildcards
+      replace(/^(\.\*)/,"").
+      // remove trailing wildcards
+      replace(/(\.\*)$/,"");
+  if (currentPat.pattern === "") {
+    currentPat.pattern = ".*"
+  }

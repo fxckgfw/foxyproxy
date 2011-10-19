@@ -1,17 +1,2 @@
-* enhanced UI for WPAD and PAC feature
-* fixed UI sluggishness due to import of large amount of patterns
-* fixed bugs in regular expressions for no localhost pattern feature (see:
-  http://forums.getfoxyproxy.org/viewtopic.php?f=4&t=148)
-* the "no localhost patterns" are now properly removed if the pattern tree gets
-  sorted
-* fixed regression (the localhost pattern checkbox was always checked after
-  Firefox startup)
-* improved parsing of AutoProxy patterns
-* add pattern itself as name to a created pattern if its name is missing
-* added icons to context menus
-* proxy enabled/disabled and animation settings are now saved in context menus
-  as well
-* made the "Do not use this proxy for internal IP addresses" checkbox more
-  visible
-* changed copyright holder from LeahScape, Inc. to FoxyProxy, Inc. 
-* upated locales
+* added file documenting the code changes done to AutoProxy code we use for
+  supporting its pattern subscription format

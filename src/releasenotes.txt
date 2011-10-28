@@ -1,2 +1,0 @@
-* added file documenting the code changes done to AutoProxy code we use for
-  supporting its pattern subscription format

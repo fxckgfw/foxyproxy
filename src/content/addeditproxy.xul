@@ -100,8 +100,8 @@
               value="&foxyproxy.invalidcolor.label;"/>
             <label id="colortrue" class="validcolor"
               value="&foxyproxy.validcolor.label;"/>
-          </hbox>          
-        </vbox> 
+          </hbox>
+        </vbox>
       </tabpanel>
       <tabpanel flex="1" orient="vertical">
         <separator class="thin" />
@@ -154,12 +154,19 @@
           </groupbox>
           <separator class="thin"/>
           <groupbox>
+            <radio id="system" value="system" label="&foxyproxy.system.label;"
+              oncommand="toggleMode('system');"
+              accesskey="&foxyproxy.system.accesskey;"
+              tooltiptext="&foxyproxy.system.tooltip;"/>
+          </groupbox>
+          <separator class="thin"/>
+          <groupbox>
             <radio id="auto" value="auto"
               label="&foxyproxy.automatic.label;"
               oncommand="toggleMode('auto');"
               accesskey="&foxyproxy.automatic.accesskey;"
               tooltiptext="&foxyproxy.automatic.tooltip;"/>
-            <hbox align="center" class="indent"> 
+            <hbox align="center" class="indent">
               <radiogroup id="autoconfMode" orient="horizontal">
                 <radio id="wpad" value="wpad" label="&foxyproxy.wpad.label1;"
                   oncommand="toggleMode('wpad');"

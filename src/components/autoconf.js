@@ -148,11 +148,11 @@ AutoConf.prototype = {
       }
       let autoconfMessageHelper = "";
       if (autoconfMode === "pac") {
-          autoconfMessage = "pac.status"; 
-          autoconfMessageHelper = "pac.status.success2";
+        autoconfMessage = "pac.status"; 
+        autoconfMessageHelper = "pac.status.success2";
       } else {
-          autoconfMessage = "wpad.status";
-          autoconfMessageHelper = "wpad.status.success";
+        autoconfMessage = "wpad.status";
+        autoconfMessageHelper = "wpad.status.success";
       } 
       this.loadNotification && fp.notifier.alert(fp.getMessage(autoconfMessage),
         fp.getMessage(autoconfMessageHelper, [this.owner.name]));
@@ -162,13 +162,12 @@ AutoConf.prototype = {
         //this.disabledDueToBadPAC = false; /* reset */
         //this.owner.fp.writeSettings();
       //}
-    }
-    else {
+    } else {
       if (autoconfMode === "pac") {
-        autoconfMessage = "pac.status.loadfailure2"; 
+        autoconfMessage = "pac.status.loadfailure2";
       } else {
         autoconfMessage = "wpad.status.loadfailure";
-      } 
+      }
       this.badPAC(autoconfMessage,
         new Error(fp.getMessage("http.error", [req.status])));
     }
@@ -238,7 +237,7 @@ fpProxyAutoConfig.prototype = {
       if (pacURI == "" || pacText == "") {
         dump("FoxyProxy: init(), pacURI or pacText empty\n");    
         if (this.owner.owner.autoconfMode  === "pac") {
-          autoconfMessage = "pac.empty"; 
+          autoconfMessage = "pac.empty";
         } else {
           autoconfMessage = "wpad.empty";
         } 
@@ -266,7 +265,7 @@ fpProxyAutoConfig.prototype = {
       if (!("FindProxyForURL" in this.sandbox)) {
         dump("FoxyProxy: init(), FindProxyForURL not found\n");
         if (this.owner.owner.autoconfMode === "pac") {
-          autoconfMessage = "pac.fcn.notfound2"; 
+          autoconfMessage = "pac.fcn.notfound2";
         } else {
           autoconfMessage = "wpad.fcn.notfound";
         } 

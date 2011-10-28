@@ -192,6 +192,9 @@
 <!ENTITY foxyproxy.movedown.label "Abwärts">
 <!ENTITY foxyproxy.movedown.tooltip "Priorität der aktuellen Auswahl verringern">
 <!ENTITY foxyproxy.movedown.accesskey "B">
+<!ENTITY foxyproxy.system.label "Proxy-Einstellungen des Systems verwenden">
+<!ENTITY foxyproxy.system.accesskey "Y">
+<!ENTITY foxyproxy.system.tooltip "Die Proxy-Konfiguration aus den Einstellungen des Betriebssystems ermitteln">
 <!ENTITY foxyproxy.automatic.label "Automatische Proxy-Konfiguration">
 <!ENTITY foxyproxy.automatic.accesskey "A">
 <!ENTITY foxyproxy.automatic.tooltip "Die Proxy-Konfiguration automatisch ermitteln">

@@ -191,6 +191,9 @@
 <!ENTITY foxyproxy.movedown.label "Move Down">
 <!ENTITY foxyproxy.movedown.tooltip "Decrease priority of current selection">
 <!ENTITY foxyproxy.movedown.accesskey "D">
+<!ENTITY foxyproxy.system.label "Use System Proxy Settings">
+<!ENTITY foxyproxy.system.accesskey "Y">
+<!ENTITY foxyproxy.system.tooltip "Get the proxy configuration set in your system settings">
 <!ENTITY foxyproxy.automatic.label "Automatic Proxy Configuration">
 <!ENTITY foxyproxy.automatic.accesskey "A">
 <!ENTITY foxyproxy.automatic.tooltip "Get a proxy configuration automatically">

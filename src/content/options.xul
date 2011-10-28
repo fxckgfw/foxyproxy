@@ -47,8 +47,7 @@
             <!-- <menuitem command="importListCmd" tooltiptext="&foxyproxy.importlist.tooltip;"/> -->
             <!-- tooltiptext is necessary for tooltip, dunno why -->
             <menuseparator/>
-            <menuitem class="menuitem-iconic"
-              image="" command="closeCmd"
+            <menuitem class="menuitem-iconic" image="" command="closeCmd"
               tooltiptext="&foxyproxy.close.tooltip;" key="esc-key"/>
             <!-- tooltiptext is necessary for tooltip, dunno why -->
           </menupopup>
@@ -973,9 +972,9 @@
       <menuitem command="torWizardCmd" />
       <menuseparator />
       <menuitem command="importSettingsCmd"/>
-        <menuitem command="exportSettingsCmd"/>
-        <!-- <menuitem class="menuitem-non-iconic" command="importListCmd"/> -->
-        <menuseparator/>
+      <menuitem command="exportSettingsCmd"/>
+      <!-- <menuitem class="menuitem-non-iconic" command="importListCmd"/> -->
+      <menuseparator/>
       <menuitem id="helpProxyTree" class="menuitem-iconic" command="helpCmd" />
       <menuitem command="closeCmd" />
     </menupopup>

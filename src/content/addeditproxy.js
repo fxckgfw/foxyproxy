@@ -26,13 +26,12 @@ function onLoad() {
   loadNotification = document.getElementById("pacLoadNotificationEnabled");
   errorNotification = document.getElementById("pacErrorNotificationEnabled");
   autoReload = document.getElementById("autoConfURLReloadEnabled");
-  proxy = window.arguments[0].inn.proxy; 
+  proxy = window.arguments[0].inn.proxy;
   if (window.arguments[0].inn.torwiz) {
     document.getElementById("torwiz-broadcaster").hidden = true;
     document.getElementById("not-torwiz-broadcaster").hidden = false;
     urlsTree = document.getElementById("torWizUrlsTree");
-  }
-  else {
+  } else {
     urlsTree = document.getElementById("urlsTree");
     document.getElementById("noInternalIPs").checked = proxy.noInternalIPs;
   }
@@ -50,7 +49,7 @@ function onLoad() {
   document.getElementById("port").value = proxy.manualconf.port;
   document.getElementById("isSocks").checked = proxy.manualconf.isSocks;
   document.getElementById("socksversion").value = proxy.manualconf.socksversion;
-  document.getElementById("proxyDNS").checked = proxy.proxyDNS; 
+  document.getElementById("proxyDNS").checked = proxy.proxyDNS;
   autoconfMode.value = proxy.autoconfMode;
 
   if (proxy.autoconfMode === "pac") {
@@ -63,7 +62,7 @@ function onLoad() {
     loadNotification.checked = proxy.autoconf.loadNotification;
     errorNotification.checked = proxy.autoconf.errorNotification;
     autoReload.checked = proxy.autoconf.autoReload;
-    reloadFreq.value = proxy.autoconf.reloadFreqMins; 
+    reloadFreq.value = proxy.autoconf.reloadFreqMins;
   } else if (proxy.autoconfMode === "wpad") {
     if (proxy.mode !== "auto") {
       toggleMode("wpad");
@@ -71,9 +70,9 @@ function onLoad() {
     loadNotification.checked = proxy.wpad.loadNotification;
     errorNotification.checked = proxy.wpad.errorNotification;
     autoReload.checked = proxy.wpad.autoReload;
-    reloadFreq.value = proxy.wpad.reloadFreqMins;    
+    reloadFreq.value = proxy.wpad.reloadFreqMins;
   }
-  toggleMode(proxy.mode); 
+  toggleMode(proxy.mode);
 
   if (proxy.lastresort) {
     document.getElementById("default-proxy-broadcaster").
@@ -86,7 +85,7 @@ function onLoad() {
   // one with the old one if the user does not press the OK button (e.g. using
   // the Cancel button or just closing the window manually).
   for (let i = 0, length = proxy.matches.length; i < length; i++) {
-    oldMatches[i] = proxy.matches[i].clone(); 
+    oldMatches[i] = proxy.matches[i].clone();
   }
   _updateView();
   sizeToContent();
@@ -156,7 +155,7 @@ function onOK() {
   proxy.notes = document.getElementById("proxynotes").value;
   proxy.selectedTabIndex = document.getElementById("tabs").selectedIndex;
 
-  // We assign these settings here in order to have them before PAC's are
+  // We assign these settings here in order to have them before PACs are
   // loaded.
   if (autoconfMode.value === "pac") {
     proxy.autoconfMode = "pac";
@@ -488,7 +487,7 @@ function toggleMode(mode) {
       toggleMode("pac"); 
     }
     onAutoConfUrlInput();
-  } else if (mode == "direct") {
+  } else if (mode == "direct" || mode == "system") {
     document.getElementById("disabled-broadcaster").setAttribute("disabled",
       "true");
     document.getElementById("autoconf-broadcaster1").setAttribute("disabled",
@@ -499,9 +498,13 @@ function toggleMode(mode) {
       "true"); 
     document.getElementById("socks-broadcaster").setAttribute("disabled",
       "true"); 
-    document.getElementById("direct-broadcaster").setAttribute("disabled",
-      "true");
-    document.getElementById("proxyDNS").hidden = true;
+    if (mode == "direct") {
+      document.getElementById("proxyDNS").hidden = true;
+      document.getElementById("direct-broadcaster").setAttribute("disabled",
+      "true"); 
+    } else {
+      document.getElementById("direct-broadcaster").removeAttribute("disabled");
+    }
   } else if (mode == "wpad") {
     autoconfUrl.value = proxy.wpad.url;
     autoconfUrl.setAttribute("readonly", true);
@@ -576,8 +579,8 @@ function onTestAutoConf() {
 }
 
 function onAutoConfUrlInput() {
-  // setAttribute("disabled", true) buggy in FF 1.5.0.4 for the way i've setup the cmd
-  // so must use removeAttribute()
+  // setAttribute("disabled", true) buggy in FF 1.5.0.4 for the way i've setup
+  // the cmd so must use removeAttribute()
   var b = document.getElementById("autoconf-broadcaster2");
   // TODO: For some reason we need the second condition in order to disable the
   // view and test button iff the dialog gets loaded AND the proxy mode is not
@@ -597,8 +600,8 @@ function onSelectAutoConf() {
   p.appendFilter(foxyproxy.getMessage("pac.files"), "*.pac");
   p.defaultExtension = "pac";
   if (p.show() != nsIFilePicker.returnCancel) {
-  	autoconfUrl.value = foxyproxy.transformer(p.file, "uri-string");
-  	onAutoConfUrlInput();
+    autoconfUrl.value = foxyproxy.transformer(p.file, "uri-string");
+    onAutoConfUrlInput();
   }
 }
 

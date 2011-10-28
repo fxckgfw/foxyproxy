@@ -48,7 +48,7 @@ treechildren::-moz-tree-checkbox(checked) {
 #createProxyTree {
   list-style-image: url("chrome://foxyproxy/content/images/monitor_add.png");
 }
-#foxyproxy-settings-button, #editSettingsProxyTree  {
+#foxyproxy-settings-button, #editSettingsProxyTree {
   list-style-image: url("chrome://foxyproxy/content/images/monitor_edit.png");
 }
 #foxyproxy-settings-button[disabled="true"],

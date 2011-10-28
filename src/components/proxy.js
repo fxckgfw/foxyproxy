@@ -69,7 +69,12 @@ var proxyService = CC["@mozilla.org/network/protocol-proxy-service;1"].getServic
 ///////////////////////////// Proxy class ///////////////////////
 function Proxy(fp) {
   this.wrappedJSObject = this;
-  this.fp = fp || CC["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;
+  this.fp = fp || CC["@leahscape.org/foxyproxy/service;1"].getService().
+    wrappedJSObject;
+  this.sysProxyService = CC["@mozilla.org/system-proxy-settings;1"].
+    getService(CI.nsISystemProxySettings);
+  this.iOService = CC["@mozilla.org/network/io-service;1"].
+    getService(CI.nsIIOService);
   this.matches = [];
   this.name = this.notes = "";
   this.manualconf = new ManualConf(this, this.fp);
@@ -89,6 +94,7 @@ function Proxy(fp) {
   this.wpad.url = "http://wpad/wpad.dat";
   this._mode = "manual"; // manual, auto, direct, random
   this._autoconfMode = "pac";
+  this._systemProxyPACFile = "";
   this._enabled = true;
   this.selectedTabIndex = 1; /* default tab is the proxy details tab */
   this.lastresort = false;
@@ -313,6 +319,14 @@ Proxy.prototype = {
   get autoconfMode() {
     return this._autoconfMode;
   },
+
+  set systemProxyPACFile(e) {
+    this._systemProxyPACFile = e;
+  },
+
+  get systemProxyPACFile() {
+    return this._systemProxyPACFile;
+  },
   
   set proxyDNS(e) {
     this._proxyDNS = e;
@@ -417,7 +431,7 @@ Proxy.prototype = {
   handleTimer : function() {
     let ac;
     if (this._autoconfMode === "pac") {
-      ac = this.autoconf; 
+      ac = this.autoconf;
     } else if (this._autoconfMode === "wpad") {
       ac = this.wpad;
     } 
@@ -543,9 +557,57 @@ Proxy.prototype = {
     }
   },
 
+  createProxyInfo: function(aProxyString) {
+    let proxyInfo = aProxyString.slice(6).split(":");
+    if (aProxyString.indexOf("PROXY") === 0) {
+      return proxyService.newProxyInfo("http", proxyInfo[0], proxyInfo[1], 0,
+        0, null);
+    } else if (aProxyString.indexOf("SOCKS") === 0) {
+      let remoteResolve;
+      if (this._proxyDNS) {
+        remoteResolve = CI.nsIProxyInfo.TRANSPARENT_PROXY_RESOLVES_HOST;
+      } else {
+        remoteResolve = 0;
+      }
+      return proxyService.newProxyInfo("socks", proxyInfo[0], proxyInfo[1],
+        remoteResolve, 0, null); 
+    } else {
+      dump("Unknown proxy type!\n");
+      return this.direct; 
+    }
+  },
+
+  getSystemProxy: function(spec, host, mp) {
+    // If system proxy settings are not supported on the system we give
+    // "direct" back.
+    if (!this.sysProxyService) {
+      return this.direct;
+    } else {
+      let pacURI = this.sysProxyService.PACURI;
+      if (pacURI) {
+        // The user wants to use a PAC file. Let's check what we have to do.
+        if (this.systemProxyPACFile === "") {
+          // This case means the settings are changed from non-PAC mode to
+          // PAC mode for the first time in this session.
+        }
+        return this.direct;
+      } else {
+        let uri = this.iOService.newURI(spec, null, null);
+        let proxyString = this.sysProxyService.getProxyForURI(uri);
+        if (proxyString === "DIRECT") {
+          return this.direct;
+        } else {
+          // We have to contruct a proxyInfo object out of the manual settings
+          // we got back.
+          return this.createProxyInfo(proxyString);
+        }
+      }
+    }
+  },
+
   getProxy : function(spec, host, mp) {
     switch (this._mode) {
-      case "manual":return this.manualconf.proxy;
+      case "manual": return this.manualconf.proxy;
       case "auto":
         if (this._autoconfMode === "pac") {
           return this.resolve(spec, host, mp, false);
@@ -553,7 +615,8 @@ Proxy.prototype = {
           // WPAD
           return this.resolve(spec, host, mp, true);
         }
-      case "direct":return this.direct;
+      case "system": return this.getSystemProxy(spec, host, mp); 
+      case "direct": return this.direct;
     }
   },
   

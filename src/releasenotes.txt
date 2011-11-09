@@ -1,0 +1,1 @@
+* improved handling of proxy server promotion link in error page

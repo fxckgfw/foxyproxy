@@ -110,6 +110,11 @@ Proxy.prototype = {
   colorString: "nmbado",
   _proxyDNS: true,
   fp: null,
+  iOService: null,
+  sysProxyService: null,
+  // Eventually, we need one object to store the PAC settings of the proxy
+  // specified in the system settings.
+  systemProxyPAC: null,
   readOnlyProperties : ["lastresort", "fp", "wrappedJSObject", "matches", /* from ManualConf */ "owner",
                         /* from AutoConf */ "timer", /* from AutoConf */  "_resolver"],
 
@@ -371,6 +376,8 @@ Proxy.prototype = {
         } else if (this._autoconfMode === "wpad") {
           this.wpad.loadPAC();
         }
+      } else if (this._mode === "system") {
+        // Here systemProxyPAC has to get populated!?
       }
     } 
     this.handleTimer();
@@ -379,7 +386,9 @@ Proxy.prototype = {
   get enabled() {return this._enabled;},
 
   shouldLoadPAC : function() {
-    if (this._mode == "auto" && this._enabled) {
+    if ((this._mode == "auto" || (this._mode == "system" &&
+         this.sysProxyService && this.sysProxyService.PACURI)) &&
+         this._enabled) {
       var m = this.fp.mode;
       return m == this.id || m == "patterns" || m == "random" ||
         m == "roundrobin";
@@ -487,7 +496,7 @@ Proxy.prototype = {
     this.matches = this.matches.filter(function(e) {return e != removeMe;});
   },
   
-  resolve : function(spec, host, mp, isWPAD) {
+  resolve : function(spec, host, mp, mode) {
     function _notifyUserOfError(spec) {
       /*this.autoconf.errorNotification &&*/
       this.fp.notifier.alert(this.fp.getMessage("foxyproxy"),
@@ -495,11 +504,13 @@ Proxy.prototype = {
       return null;
     }
     // See http://wp.netscape.com/eng/mozilla/2.0/relnotes/demo/proxy-live.html
-    if (isWPAD) {
+    if (mode === "wpad") {
       var str = mp.pacResult = this.wpad._resolver.getProxyForURI(spec, host);
-    } else {
+    } else if (mode === "pac") {
       var str = mp.pacResult = this.autoconf._resolver.getProxyForURI(spec,
         host);
+    } else {
+      // mode is "system"
     }
     if (str && str != "") {
       str = str.toLowerCase();
@@ -588,7 +599,15 @@ Proxy.prototype = {
         // The user wants to use a PAC file. Let's check what we have to do.
         if (this.systemProxyPACFile === "") {
           // This case means the settings are changed from non-PAC mode to
-          // PAC mode for the first time in this session.
+          // PAC mode for the first time in this session. We'll have to load
+          // the PAC here.
+        } else if (this.systemProxyPACFile !== pacURI) {
+          // The PAC-URI changed meanwhile. For instance because the user
+          // entered a different PAC URI in the system proxy settings while
+          // still having the proxy in use.
+        } else if (this.systemProxyPACFile === pacURI) {
+          // The easiest case: We just take the already loaded PAC
+          this.resolve(spec, host, mp, "system"); 
         }
         return this.direct;
       } else {
@@ -597,7 +616,7 @@ Proxy.prototype = {
         if (proxyString === "DIRECT") {
           return this.direct;
         } else {
-          // We have to contruct a proxyInfo object out of the manual settings
+          // We have to construct a proxyInfo object out of the manual settings
           // we got back.
           return this.createProxyInfo(proxyString);
         }
@@ -610,10 +629,10 @@ Proxy.prototype = {
       case "manual": return this.manualconf.proxy;
       case "auto":
         if (this._autoconfMode === "pac") {
-          return this.resolve(spec, host, mp, false);
+          return this.resolve(spec, host, mp, "pac");
         } else {
           // WPAD
-          return this.resolve(spec, host, mp, true);
+          return this.resolve(spec, host, mp, "wpad");
         }
       case "system": return this.getSystemProxy(spec, host, mp); 
       case "direct": return this.direct;

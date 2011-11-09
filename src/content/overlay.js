@@ -202,7 +202,11 @@ end-foxyproxy-simple !*/
       // not recommended. Furthermore, we cannot construct and append the <li>
       // element ourselves properly due to i18n issues. Thus, we resort to
       // parseFragment().
-      let liText = foxyproxy.fp.getMessage("foxyproxy.proxyservice");
+      let liText = "<li>" + foxyproxy.fp.getMessage("foxyproxy.proxyservice2",
+        ['<a id=proxyService ' + 
+        'title="https://getfoxyproxy.org/proxyservice/index.html" ' +
+        'href="https://getfoxyproxy.org/proxyservice/index.html">FoxyProxy</a>',
+        "<b>", "</b>"]) + "</li>"; 
       contDoc.getElementById("errorLongDesc").firstChild.nextSibling.
         appendChild(foxyproxy.parseHTML(contDoc, liText));
     }

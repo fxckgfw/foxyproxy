@@ -197,6 +197,12 @@ end-foxyproxy-simple !*/
     var contDoc = window.content.document;
     if (contDoc.documentURI.indexOf("about:neterror?e=proxyConnectFailure") ===
       0) {
+      // As we do not have a separate listener for each tab we check manually
+      // whether the list element got already injected. If so we do not need to
+      // add another one.
+      if (contDoc.getElementById("proxyService")) {
+        return;
+      }
       // Creating our additional list entry. We have to take this road here as
       // creating the <li> element and assigning the content via innerHTML is
       // not recommended. Furthermore, we cannot construct and append the <li>

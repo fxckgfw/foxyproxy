@@ -16,7 +16,7 @@ function onLoad() {
   document.getElementById("ver").value += " " + fpc.getVersion();
 	sizeToContent();  
 	iconRotater = document.getElementById("fp-statusbar-icon-rotater");
-	intervalId = window.setInterval(animate, 10);
+	intervalId = window.setInterval(function() {animate()}, 10);
 }
 
 function animate() {

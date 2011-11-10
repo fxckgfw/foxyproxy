@@ -152,7 +152,7 @@ var foxyproxy = {
   onLoad : function() {
     this.svgIcons.init();
     this.statusText = document.getElementById("foxyproxy-status-text");
-    setTimeout(this.defaultToolbarIconFF4, 100);
+    setTimeout(function() {foxyproxy.defaultToolbarIconFF4()}, 100);
     var obSvc = Components.classes["@mozilla.org/observer-service;1"].
       getService(Components.interfaces.nsIObserverService);
     for (var i in this.notes) {
@@ -203,7 +203,7 @@ end-foxyproxy-simple !*/
       // element ourselves properly due to i18n issues. Thus, we resort to
       // parseFragment().
       let liText = "<li>" + foxyproxy.fp.getMessage("foxyproxy.proxyservice2",
-        ['<a id=proxyService ' + 
+        ["<a id=proxyService " + 
         'title="https://getfoxyproxy.org/proxyservice/index.html" ' +
         'href="https://getfoxyproxy.org/proxyservice/index.html">FoxyProxy</a>',
         "<b>", "</b>"]) + "</li>"; 
@@ -385,6 +385,7 @@ end-foxyproxy-simple !*/
       // give the user a hint about FoxyProxy's existence.
       let vc = Components.classes["@mozilla.org/xpcom/version-comparator;1"].
         getService(Components.interfaces.nsIVersionComparator); 
+      // TODO: This is FF specific atm.
       if (vc.compare(foxyproxy.fpc.appInfo.version, "4.0b7") < 0) {
         return;
       }
@@ -392,7 +393,8 @@ end-foxyproxy-simple !*/
       if (navBar) {
         let curSet = navBar.currentSet.split(",");
         if (curSet.indexOf("foxyproxy-toolbar-icon") === -1) {
-          let pos = curSet.indexOf("urlbar-container") + 1 || curSet.length;
+          // TODO: Works only for FF atm.
+          let pos = curSet.indexOf("search-container") || curSet.length;
           let set = curSet.slice(0, pos).concat("foxyproxy-toolbar-icon").
             concat(curSet.slice(pos));
           navBar.setAttribute("currentset", set.join(","));
@@ -605,7 +607,7 @@ end-foxyproxy-simple !*/
         }
         return;
       }
-      window.setTimeout("foxyproxy.svgIcons.animate_runner()", 10);
+      window.setTimeout(function() {foxyproxy.svgIcons.animate_runner()}, 10);
     },
 
     throb : function(mp) {
@@ -615,7 +617,7 @@ end-foxyproxy-simple !*/
       if (mp.wrappedJSObject.animatedIcons)
         this.animate();
       foxyproxy.setStatusText(mp.wrappedJSObject.name);
-      setTimeout(this.unthrob, 800, mp);
+      setTimeout(function() {foxyproxy.svgIcons.unthrob(mp)}, 800);
     },
     
     resetIconColors : function(modeAsText) {

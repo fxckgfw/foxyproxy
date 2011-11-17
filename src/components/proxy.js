@@ -94,7 +94,6 @@ function Proxy(fp) {
   this.wpad.url = "http://wpad/wpad.dat";
   this._mode = "manual"; // manual, auto, direct, random
   this._autoconfMode = "pac";
-  this._systemProxyPACFile = "";
   this._enabled = true;
   this.selectedTabIndex = 1; /* default tab is the proxy details tab */
   this.lastresort = false;
@@ -325,12 +324,12 @@ Proxy.prototype = {
     return this._autoconfMode;
   },
 
-  set systemProxyPACFile(e) {
-    this._systemProxyPACFile = e;
+  set systemProxyPACURL(e) {
+    this._systemProxyPACURL = e;
   },
 
-  get systemProxyPACFile() {
-    return this._systemProxyPACFile;
+  get systemProxyPACURL() {
+    return this._systemProxyPACURL;
   },
   
   set proxyDNS(e) {
@@ -368,6 +367,12 @@ Proxy.prototype = {
 
   set enabled(e) {
     if (this.lastresort && !e) return; // can't ever disable this guy
+    // We create the autoconf object here and not in the getSystemProxy() method
+    // in order to not call the next lines of code with every request if the
+    // user has the system proxy option chosen.
+    if (this._mode === "system" && this.systemProxyPAC === null) {
+      this.systemProxyPAC = new AutoConf(this, this.fp);
+    }
     this._enabled = e;
     if (this.shouldLoadPAC()) {
       if (this._mode === "auto") {
@@ -376,19 +381,30 @@ Proxy.prototype = {
         } else if (this._autoconfMode === "wpad") {
           this.wpad.loadPAC();
         }
+        this.handleTimer();
       } else if (this._mode === "system") {
-        // Here systemProxyPAC has to get populated!?
+        this.systemProxyPAC.url = this.sysProxyService.PACURI;
+        this.systemProxyPAC.loadPAC();
       }
     } 
-    this.handleTimer();
   },
 
   get enabled() {return this._enabled;},
 
   shouldLoadPAC : function() {
+    let pacURI; 
+    if (this._mode === "system") {
+      // We need the try-catch block here as on Mac OS X an exception is thrown
+      // if no PACURI is available. On Unix an empty string is given back.
+      try {
+        pacURI = this.sysProxyService.PACURI;
+      } catch (e) {
+        pacURI = null;
+      }
+    }
+         
     if ((this._mode == "auto" || (this._mode == "system" &&
-         this.sysProxyService && this.sysProxyService.PACURI)) &&
-         this._enabled) {
+         this.sysProxyService && pacURI)) && this._enabled) {
       var m = this.fp.mode;
       return m == this.id || m == "patterns" || m == "random" ||
         m == "roundrobin";
@@ -404,9 +420,12 @@ Proxy.prototype = {
         } else if (this._autoconfMode === "wpad") {
           this.wpad.loadPAC();
         }
+        this.handleTimer();
+      } else if (this._mode === "system") {
+        this.systemProxyPAC.url = this.sysProxyService.PACURI;
+        this.systemProxyPAC.loadPAC();
       }
     } 
-    this.handleTimer();
   },
 
   afterPropertiesSet : function() {
@@ -510,7 +529,9 @@ Proxy.prototype = {
       var str = mp.pacResult = this.autoconf._resolver.getProxyForURI(spec,
         host);
     } else {
-      // mode is "system"
+      // we have the system proxy settings here
+      var str = mp.pacResult = this.systemProxyPAC._resolver.
+        getProxyForURI(spec, host); 
     }
     if (str && str != "") {
       str = str.toLowerCase();
@@ -520,10 +541,12 @@ Proxy.prototype = {
       if (tokens[tokens.length-1] == "")
         tokens.length--;
       for (var i=0; i<tokens.length; i++) {
-        if (isWPAD) {
+        if (mode === "wpad") {
           var components = this.wpad.parser.exec(tokens[i]);
-        } else {
+        } else if (mode === "pac") {
           var components = this.autoconf.parser.exec(tokens[i]); 
+        } else {
+          var components = this.systemProxyPAC.parser.exec(tokens[i]);
         }
         if (!components) continue;
         var tmp = this._proxyDNS && components[1].indexOf("socks") === 0 ?
@@ -594,20 +617,29 @@ Proxy.prototype = {
     if (!this.sysProxyService) {
       return this.direct;
     } else {
-      let pacURI = this.sysProxyService.PACURI;
+      // We need the try-catch block here as on Mac OS X an exception is thrown
+      // if no PACURI is available. On Unix an empty string is given back.
+      let pacURI;
+      try {
+        pacURI = this.sysProxyService.PACURI;
+      } catch (e) {
+        pacURI = null;
+      }
       if (pacURI) {
         // The user wants to use a PAC file. Let's check what we have to do.
-        if (this.systemProxyPACFile === "") {
-          // This case means the settings are changed from non-PAC mode to
-          // PAC mode for the first time in this session. We'll have to load
-          // the PAC here.
-        } else if (this.systemProxyPACFile !== pacURI) {
-          // The PAC-URI changed meanwhile. For instance because the user
-          // entered a different PAC URI in the system proxy settings while
-          // still having the proxy in use.
-        } else if (this.systemProxyPACFile === pacURI) {
+        if (this.systemProxyPAC.url === "" ||
+            this.systemProxyPAC.url !== pacURI) {
+          // This case means the user ether changed the system proxy settings
+          // from direct or manual proxy to PAC mode for the first time in the
+          // session. Or the PAC URI changes meanwhile in the system proxy
+          // settings while still having the proxy in use. In both cases we
+          // have to reload the PAC.
+          this.systemProxyPAC.url = pacURI;
+          this.systemProxyPAC.loadPAC();
+          return this.resolve(spec, host, mp, "system");
+        } else if (this.systemProxyPAC.url === pacURI) {
           // The easiest case: We just take the already loaded PAC
-          this.resolve(spec, host, mp, "system"); 
+          return this.resolve(spec, host, mp, "system"); 
         }
         return this.direct;
       } else {

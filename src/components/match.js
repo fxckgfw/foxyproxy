@@ -120,6 +120,10 @@ Match.prototype = {
       pat = pat.replace(/[$.+()^]/g, "\\$&"); 
       pat = pat.replace(/\*/g, ".*");
       pat = pat.replace(/\?/g, ".");
+      if (!this._isMultiLine) {
+        pat[0] != "^" && (pat = "^" + pat);
+        pat[pat.length-1] != "$" && (pat = pat + "$");
+      } 
     }
     try {
       this.regex = this._caseSensitive ? new RegExp(pat) : new RegExp(pat, "i");
@@ -134,13 +138,14 @@ Match.prototype = {
 
   fromDOM : function(n, includeTempPatterns) {
     var notes = gGetSafeAttr(n, "notes", "");  // name was called notes in v1.0
-	  this.name = gGetSafeAttr(n, "name", notes);
-	  this._isRegEx = gGetSafeAttrB(n, "isRegEx", false);
-	  this._pattern = gGetSafeAttr(n, "pattern", "");
-	  this.isBlackList = gGetSafeAttrB(n, "isBlackList", false);
-	  this.enabled = gGetSafeAttrB(n, "enabled", true);
-	  this._isMultiLine = gGetSafeAttrB(n, "isMultiLine", false);
-    // Set this.caseSensitive instead of this._caseSensitive because the latter creates the regexp.
+    this.name = gGetSafeAttr(n, "name", notes);
+    this._isRegEx = gGetSafeAttrB(n, "isRegEx", false);
+    this._pattern = gGetSafeAttr(n, "pattern", "");
+    this.isBlackList = gGetSafeAttrB(n, "isBlackList", false);
+    this.enabled = gGetSafeAttrB(n, "enabled", true);
+    this._isMultiLine = gGetSafeAttrB(n, "isMultiLine", false);
+    // Set this.caseSensitive instead of this._caseSensitive because the former
+    // creates the regexp.
     this.caseSensitive = gGetSafeAttrB(n, "caseSensitive", false);
     this._fromSubscription = gGetSafeAttrB(n, "fromSubscription", false);
     // We don't deserialize this.temp because it's not serialized

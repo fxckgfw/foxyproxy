@@ -469,7 +469,7 @@ function deletePatternSubscriptions() {
   // We save the current index to select the proper row after the
   // subscription got deleted.
   let selIndex = subscriptionsTree.currentIndex; 
-  // Currently, we have seltype=single that's why "selectecSubscription" is
+  // Currently, we have seltype=single that's why "selectedSubscription" is
   // in singular but it is planned to allow the user to delete more than one
   // subscription at once. That's why "deletePatternSubscriptions" is in 
   // plural. The same reasoning holds for the two following functions.

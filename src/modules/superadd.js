@@ -58,7 +58,7 @@ function QuickAdd(mName) {
 }
 function AutoAdd(mName) {
   SuperAdd.apply(this, arguments);
-  this._blockedPageMatch = new Match(true, "", this.fp.getMessage("not.authorized"), false, false, false, false, true);
+  this._blockedPageMatch = new Match(true, "", this.fp.getMessage("not.authorized"), false, false, false, false, true, false);
   this.notificationTitle = "foxyproxy.tab.autoadd.label";
   this.elemName = "autoadd";
   this.elemNameCamelCase = "AutoAdd";
@@ -156,11 +156,13 @@ SuperAdd.prototype = {
     this._match.caseSensitive = m.caseSensitive;
     this._match.isBlackList = m.isBlackList;
     this._match.isMultiLine = m.isMultiLine;
-    // Note: we're not copying m.temp and m.enabled.
-    // SuperAdd.match acts as a template for creating Match objects through QuickAdd/AutoAdd.
-    // SuperAdd match objects are never temporary; temp value is stored in SuperAdd.temp instead because
-    // Superadd._match.temp must be false else it isn't written to disk.
-    // Also, SuperAdd.match objects are always enabled (doesn't make sense to add a disabled Match).
+    // Note: we're not copying m.temp, m.enabled and m.fromSubscription.
+    // SuperAdd.match acts as a template for creating Match objects through
+    // QuickAdd/AutoAdd. SuperAdd match objects are never temporary or from a
+    // subscription; temp value is stored in SuperAdd.temp instead because
+    // Superadd._match.temp must be false else it isn't written to disk. Also,
+    // SuperAdd.match objects are always enabled (doesn't make sense to add a
+    // disabled Match).
     this._temp = m.temp; /* save to this.temp instead; see notes above as to why */
     this._match.buildRegEx();
     this.fp.writeSettingsAsync();

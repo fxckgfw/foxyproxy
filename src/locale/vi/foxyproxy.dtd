@@ -449,15 +449,10 @@
 <!ENTITY foxyproxy.enteremail.label "Nhập địa chỉ email">
 <!ENTITY foxyproxy.licenseinfo.label "Thông tin Giấy phép">
 <!ENTITY foxyproxy.licensevalid.label "Giấy phép hợp lệ. Cảm ơn bạn đã mua FoxyProxy Cộng.">
-<!ENTITY foxyproxy.subexpired.label "License valid, but your update subscription expired. You are not receiving FoxyProxy Plus updates.">
 <!ENTITY foxyproxy.licenseinvalid.label "Giấy phép không hợp lệ. Bạn sẽ không nhận được cập nhật cho FoxyProxy Cộng. Vui lòng mua FoxyProxy Cộng.">
 <!ENTITY foxyproxy.buynow.label "Mua ngay">
 <!ENTITY foxyproxy.checklicense.label "Kiểm tra Giấy phép">
 <!ENTITY foxyproxy.checkinglicense.label "Đang kiểm tra... vui lòng đợi">
-<!ENTITY foxyproxy.yourversion.label "Your Version ">
-<!ENTITY foxyproxy.latestversion.label "Newest Version ">
-<!ENTITY foxyproxy.routetoleahscape.label.1 "Please make sure Firefox can reach">
-<!ENTITY foxyproxy.routetoleahscape.label.2 "either with or without a proxy. You can configure patterns for this URL in FoxyProxy Plus if necessary.">
 <!ENTITY foxyproxy.everything.label "Mọi thứ">
 <!ENTITY foxyproxy.nothing.label "Không">
 <!ENTITY foxyproxy.ippatterndeletefinal.label "Đây là mẫu địa chỉ IP nội bộ cuối cùng. Nếu bạn xóa nó, proxy này không còn có thể được dùng nữa. Vẫn tiếp tục?">

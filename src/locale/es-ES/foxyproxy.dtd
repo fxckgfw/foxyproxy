@@ -58,8 +58,8 @@
 <!ENTITY foxyproxy.copy.selection.accesskey "C">
 <!ENTITY foxyproxy.copy.selection.tooltip "Copia la selección">
 <!ENTITY foxyproxy.mode.label "Seleccionar modo">
+<!ENTITY foxyproxy.wpad.label1 "por WPAD">
 <!-- begin foxyproxyplus -->
-<!ENTITY foxyproxy.wpad.label "Autodetectar configuración del proxy para esta red">
 <!ENTITY foxyproxy.wpad.accesskey "W">
 <!ENTITY foxyproxy.wpad.tooltip "Detectar automáticamente la configuración del proxy usando WPAD">
 <!ENTITY foxyproxy.wpad.reload.label "Detectar automáticamente la configuración del proxy cada">
@@ -67,7 +67,6 @@
 <!ENTITY foxyproxy.wpad.reload.tooltip "Autodetectar el proxy en el periodo especificado">
 <!ENTITY foxyproxy.wpad.tree.label "Autodetectar proxy">
 <!ENTITY foxyproxy.auto.url.label "Dirección de configuración automática del proxy">
-<!ENTITY foxyproxy.auto.url.accesskey "A">
 <!ENTITY foxyproxy.auto.url.tooltip "Introduzca la dirección del archivo PAC">
 <!ENTITY foxyproxy.auto.url.note.label "http(s)://   ftp://   file://   relative://">
 <!ENTITY foxyproxy.auto.url.note.tooltip "Pulse el icono para tener información sobre relative://">
@@ -192,6 +191,15 @@
 <!ENTITY foxyproxy.movedown.label "Mover abajo">
 <!ENTITY foxyproxy.movedown.tooltip "Baja la prioridad de la selección actual">
 <!ENTITY foxyproxy.movedown.accesskey "b">
+<!ENTITY foxyproxy.system.label "Usando las opciones del sistema">
+<!ENTITY foxyproxy.system.accesskey "Y">
+<!ENTITY foxyproxy.system.tooltip "Obtener la configuración del proxy de las opciones del sistema">
+<!ENTITY foxyproxy.automatic.label "Configuración automática">
+<!ENTITY foxyproxy.automatic.accesskey "a">
+<!ENTITY foxyproxy.automatic.tooltip "Obtener la configuración automáticamente">
+<!ENTITY foxyproxy.pac.label "por PAC">
+<!ENTITY foxyproxy.pac.accesskey "P">
+<!ENTITY foxyproxy.pac.tooltip "Obtener la configuración usando un archivo PAC">
 <!ENTITY foxyproxy.autoconfurl.view.label "Ver">
 <!ENTITY foxyproxy.autoconfurl.view.accesskey "V">
 <!ENTITY foxyproxy.autoconfurl.view.tooltip "Ver archivo de autoconfiguración">
@@ -545,15 +553,3 @@
 <!ENTITY foxyproxy.proxydomain.label "Dominio (opcional - sólo NTLM)">
 <!ENTITY foxyproxy.proxydomain.tooltip "Autenticación NTLM sólo">
 <!ENTITY foxyproxy.proxy.passwords.nomatch.label "Las contraseñas no coinciden; por favor, vuelva a introducirlas.">
-<!ENTITY foxyproxy.traininglogging.label "Training &amp; Logging">
-<!ENTITY foxyproxy.traininglogging.tooltip "Manage Training &amp; Logging Settings">
-<!ENTITY foxyproxy.traininglogging.accesskey "L">
-<!ENTITY foxyproxy.training.start "Start Training">
-<!ENTITY foxyproxy.training.stop "Stop Training">
-<!ENTITY foxyproxy.patternsforall.label "Create Patterns for All">
-<!ENTITY foxyproxy.patternsforall.accesskey "A">
-<!ENTITY foxyproxy.patternsforall.tooltip "Create Patterns for All URLs">
-<!ENTITY foxyproxy.patternsforselected.label "Create Patterns for Selected">
-<!ENTITY foxyproxy.patternsforselected.accesskey "S">
-<!ENTITY foxyproxy.patternsforselected.tooltip "Create Patterns for Selected URLs">
-<!ENTITY foxyproxy.patterntoadd.label "Pattern to Add">

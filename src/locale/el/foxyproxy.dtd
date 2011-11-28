@@ -191,6 +191,9 @@
 <!ENTITY foxyproxy.movedown.label "Μετακίνηση κάτω">
 <!ENTITY foxyproxy.movedown.tooltip "Μειώνει την προτεραιότητα της τρέχουσας επιλογής">
 <!ENTITY foxyproxy.movedown.accesskey "Κ">
+<!ENTITY foxyproxy.system.label "Χρήση ρυθμίσεων διαμεσολαβητή του συστήματος">
+<!ENTITY foxyproxy.system.accesskey "σ">
+<!ENTITY foxyproxy.system.tooltip "Χρησιμοποιήστε τις ρυθμίσεις διαμεσολαβητών του συστήματος σας.">
 <!ENTITY foxyproxy.automatic.label "Αυτόματη ρύθμιση διαμεσολαβητή">
 <!ENTITY foxyproxy.automatic.accesskey "υ">
 <!ENTITY foxyproxy.automatic.tooltip "Αυτόματη λήψη ρυθμίσεων διαμεσολαβητή">

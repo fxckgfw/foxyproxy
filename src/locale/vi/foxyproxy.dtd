@@ -56,7 +56,6 @@
 <!ENTITY foxyproxy.mode.label "Chọn chế độ">
 <!-- begin foxyproxyplus -->
 <!ENTITY foxyproxy.auto.url.label "URL cấu hình proxy tự động">
-<!ENTITY foxyproxy.auto.url.accesskey "U">
 <!ENTITY foxyproxy.auto.url.tooltip "Nhập URL của tập tin PAC">
 <!ENTITY foxyproxy.auto.url.note.label "http(s)://   ftp://   file://   relative://">
 <!ENTITY foxyproxy.auto.url.note.tooltip "Nhấn lên nút thông tin để biết thêm thông tin về relative://">

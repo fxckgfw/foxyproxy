@@ -56,7 +56,6 @@
 <!ENTITY foxyproxy.mode.label "Vyberte režim">
 <!-- begin foxyproxyplus -->
 <!ENTITY foxyproxy.auto.url.label "URL pre automatické nastavenie proxy serverov">
-<!ENTITY foxyproxy.auto.url.accesskey "a">
 <!ENTITY foxyproxy.auto.url.tooltip "Zadajte adresu URL PAC súboru">
 <!ENTITY foxyproxy.auto.url.note.label "http(s):// ftp:// file:// relative://">
 <!ENTITY foxyproxy.auto.url.note.tooltip "Click the info icon for information on relative://">

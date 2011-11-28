@@ -58,7 +58,6 @@
 <!ENTITY foxyproxy.mode.label "Изаберите начин">
 <!-- begin foxyproxyplus -->
 <!ENTITY foxyproxy.auto.url.label "URL аутоматског подешавања проксија">
-<!ENTITY foxyproxy.auto.url.accesskey "А">
 <!ENTITY foxyproxy.auto.url.tooltip "Унесите URL датотеке PAC">
 <!ENTITY foxyproxy.auto.url.note.label "http(s)://   ftp://   file://   relative://">
 <!ENTITY foxyproxy.auto.url.note.tooltip "Кликните на икону да бисте добили више информација за relative://">

@@ -157,7 +157,7 @@
             <radio id="system" value="system" label="&foxyproxy.system.label;"
               oncommand="toggleMode('system');"
               accesskey="&foxyproxy.system.accesskey;"
-              tooltiptext="&foxyproxy.system.tooltip;"/>
+              tooltiptext="&foxyproxy.system.tooltip2;"/>
           </groupbox>
           <separator class="thin"/>
           <groupbox>

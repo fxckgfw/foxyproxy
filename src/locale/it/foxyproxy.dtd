@@ -58,16 +58,15 @@
 <!ENTITY foxyproxy.copy.selection.accesskey "C">
 <!ENTITY foxyproxy.copy.selection.tooltip "Copia la selezione">
 <!ENTITY foxyproxy.mode.label "Utilizzo">
+<!ENTITY foxyproxy.wpad.label1 "Utilizza WPAD">
 <!--For translators: The following two strings are already included into Firefox and may be found in the Preferences panel -> Advanced -> Network Settings-->
-<!ENTITY foxyproxy.wpad.label "Individua automaticamente le impostazioni dei proxy per questa rete">
-<!ENTITY foxyproxy.wpad.accesskey "x">
-<!ENTITY foxyproxy.wpad.tooltip "Individua automaticaticamente le impostazioni dei proxy con il protocollo WPAD">
-<!ENTITY foxyproxy.wpad.reload.label "Individua ogni">
+<!ENTITY foxyproxy.wpad.accesskey "z">
+<!ENTITY foxyproxy.wpad.tooltip "Le impostazioni dei proxy verranno individuate automaticamente utilizzando il protocollo WPAD">
+<!ENTITY foxyproxy.wpad.reload.label "Ricarica ogni">
 <!ENTITY foxyproxy.wpad.reload.accesskey "o">
-<!ENTITY foxyproxy.wpad.reload.tooltip "Individua automaticamente le impostazioni dei proxy nell'intervallo specificato">
+<!ENTITY foxyproxy.wpad.reload.tooltip "Le impostazioni dei proxy verranno ricaricate automaticamente nell'intervallo specificato">
 <!ENTITY foxyproxy.wpad.tree.label "Individua automaticamente il proxy">
-<!ENTITY foxyproxy.auto.url.label "Configurazione automatica dei proxy (URL):">
-<!ENTITY foxyproxy.auto.url.accesskey "u">
+<!ENTITY foxyproxy.auto.url.label "URL di configurazione automatica dei proxy:">
 <!ENTITY foxyproxy.auto.url.tooltip "Specificare l&apos;URL del file PAC">
 <!ENTITY foxyproxy.auto.url.note.label "http(s)://   ftp://   file://   relative://">
 <!ENTITY foxyproxy.auto.url.note.tooltip "Fare clic sull&apos;icona dei contenuti guida per informazioni sullo schema relative://">
@@ -192,6 +191,15 @@
 <!ENTITY foxyproxy.movedown.label "Sposta giù">
 <!ENTITY foxyproxy.movedown.tooltip "Diminuisci la priorità della selezione attuale">
 <!ENTITY foxyproxy.movedown.accesskey "g">
+<!ENTITY foxyproxy.system.label "Utilizza le impostazioni proxy del sistema">
+<!ENTITY foxyproxy.system.accesskey "U">
+<!ENTITY foxyproxy.system.tooltip "Utilizza le impostazioni dei proxy configurate nel sistema">
+<!ENTITY foxyproxy.automatic.label "Configurazione automatica dei proxy">
+<!ENTITY foxyproxy.automatic.accesskey "x">
+<!ENTITY foxyproxy.automatic.tooltip "Definizione automatica della configurazione dei proxy">
+<!ENTITY foxyproxy.pac.label "Utilizza PAC">
+<!ENTITY foxyproxy.pac.accesskey "a">
+<!ENTITY foxyproxy.pac.tooltip "Le impostazioni dei proxy verranno caricate da un file PAC">
 <!ENTITY foxyproxy.autoconfurl.view.label "Visualizza">
 <!ENTITY foxyproxy.autoconfurl.view.accesskey "V">
 <!ENTITY foxyproxy.autoconfurl.view.tooltip "Visualizza il file di autoconfigurazione">
@@ -253,10 +261,10 @@
 <!ENTITY foxyproxy.autoadd.notify.tooltip2 "Un pop-up verrà visualizzato quando verrà attivata l&apos;aggiunta automatica">
 <!ENTITY foxyproxy.pacloadnotification.label "Notifica quando il file di configurazione automatica del proxy viene caricato">
 <!ENTITY foxyproxy.pacloadnotification.accesskey "C">
-<!ENTITY foxyproxy.pacloadnotification.tooltip "Un pop-up verrà visualizzato quando il file PAC verrà caricato">
+<!ENTITY foxyproxy.pacloadnotification.tooltip "Un pop-up verrà visualizzato quando il file PAC/WPAD verrà caricato">
 <!ENTITY foxyproxy.pacerrornotification.label "Notifica quando il file di configurazione automatica del proxy restituisce errori">
 <!ENTITY foxyproxy.pacerrornotification.accesskey "E">
-<!ENTITY foxyproxy.pacerrornotification.tooltip "Un pop-up verrà visualizzato quando il file PAC restituirà errori">
+<!ENTITY foxyproxy.pacerrornotification.tooltip "Un pop-up verrà visualizzato quando il file PAC/WPAD restituirà errori">
 <!ENTITY foxyproxy.toolbaricon.label "Mostra icona nella barra degli strumenti">
 <!ENTITY foxyproxy.toolbaricon.accesskey "b">
 <!ENTITY foxyproxy.toolbaricon.tooltip "L&apos;icona di FoxyProxy verrà visualizzata nella barra degli strumenti">

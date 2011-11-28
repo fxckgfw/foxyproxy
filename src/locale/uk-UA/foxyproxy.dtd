@@ -47,7 +47,6 @@
 <!ENTITY foxyproxy.mode.label "Режим Вибору">
 <!-- begin foxyproxyplus -->
 <!ENTITY foxyproxy.auto.url.label "URL-адреса автоматичної конфігурації проксі  ">
-<!ENTITY foxyproxy.auto.url.accesskey "а">
 <!ENTITY foxyproxy.auto.url.tooltip "Введіть URL або ім&apos;я PAC файлу">
 <!ENTITY foxyproxy.auto.url.note.label "http(s)://   ftp://   file://   relative://">
 <!ENTITY foxyproxy.port.label "Порт">

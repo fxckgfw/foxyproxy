@@ -86,7 +86,6 @@
 <!ENTITY foxyproxy.regex.example.label "Exemple : https?://.*\.mail\.yahoo\.com/.*">
 <!ENTITY foxyproxy.version "Version">
 <!ENTITY foxyproxy.createdBy "Créée par :">
-<!ENTITY foxyproxy.contributionsBy "Contributions :">
 <!ENTITY foxyproxy.copyright "Copyright">
 <!ENTITY foxyproxy.rights "Tous droits réservés">
 <!ENTITY foxyproxy.released "Publiée sous licence GPL.">
@@ -191,6 +190,9 @@
 <!ENTITY foxyproxy.movedown.label "Descendre">
 <!ENTITY foxyproxy.movedown.tooltip "Descendre afin de réduire la priorité de la sélection courante">
 <!ENTITY foxyproxy.movedown.accesskey "D">
+<!ENTITY foxyproxy.system.label "Utiliser les paramètres systèmes de proxy">
+<!ENTITY foxyproxy.system.accesskey "Y">
+<!ENTITY foxyproxy.system.tooltip "Obtenir la configuration du proxy définie dans les paramètres de votre système">
 <!ENTITY foxyproxy.automatic.label "Configuration automatique de proxy">
 <!ENTITY foxyproxy.automatic.accesskey "A">
 <!ENTITY foxyproxy.automatic.tooltip "Obtenir la configuration d'un proxy automatiquement">
@@ -443,14 +445,9 @@
 <!ENTITY foxyproxy.aboutproxyservice.label "Finalement, le bouton de service proxy vous envoie vers notre site Web de service proxy où vous pouvez acheter un service proxy fiable et avec haute bande passante dans plusieurs pays à des prix raisonnables.">
 <!ENTITY foxyproxy.invalidcolor.label "Couleur invalide">
 <!ENTITY foxyproxy.validcolor.label "Couleur valide">
-<!ENTITY foxyproxy.color.label "Color">
-<!ENTITY foxyproxy.server.subscriptions.label "Server Subscriptions">
-<!ENTITY foxyproxy.server.subscriptions.tooltip "Manage Server Subscriptions">
 <!ENTITY foxyproxy.server.subscriptions.accesskey "S">
 <!ENTITY foxyproxy.selectproxy.label "Choisir un proxy">
-<!ENTITY foxyproxy.pattern.subscriptions.label "Pattern Subscriptions">
 <!ENTITY foxyproxy.pattern.subscriptions.description "S'abonner aux motifs publiés par d'autres. Partagez vos motifs juste en quelques clics.">
-<!ENTITY foxyproxy.pattern.subscriptions.tooltip "Manage Pattern Subscriptions">
 <!ENTITY foxyproxy.pattern.subscriptions.accesskey "S">
 <!ENTITY foxyproxy.pattern.subscriptions.sharing.label "Partager vos motifs">
 <!ENTITY foxyproxy.pattern.subscriptions.menulist.tooltip "Choisissez ce qu'il faut fiare avec les abonnements de motif.">
@@ -530,15 +527,12 @@
 <!ENTITY foxyproxy.enteremail.label "Indiquer l&apos;adresse électronique">
 <!ENTITY foxyproxy.licenseinfo.label "Info sur la licence">
 <!ENTITY foxyproxy.licensevalid.label "Licence valide. Merci d&apos;avoir acheté FoxyProxy Plus.">
-<!ENTITY foxyproxy.subexpired.label "License valid, but your update subscription expired. You are not receiving FoxyProxy Plus updates.">
 <!ENTITY foxyproxy.licenseinvalid.label "Licence invalide. Vous n&apos;obtiendrez pas de mises à jour de FoxyProxy Plus. Veuillez acheter FoxyProxy Plus.">
 <!ENTITY foxyproxy.buynow.label "Acheter maintenant">
 <!ENTITY foxyproxy.checklicense.label "Vérifier la licence">
 <!ENTITY foxyproxy.checkinglicense.label "Vérification en cours…veuillez patienter">
 <!ENTITY foxyproxy.yourversion.label "Votre version">
 <!ENTITY foxyproxy.latestversion.label "Dernière version">
-<!ENTITY foxyproxy.routetoleahscape.label.1 "Please make sure Firefox can reach">
-<!ENTITY foxyproxy.routetoleahscape.label.2 "either with or without a proxy. You can configure patterns for this URL in FoxyProxy Plus if necessary.">
 <!ENTITY foxyproxy.everything.label "Tout">
 <!ENTITY foxyproxy.nothing.label "Rien">
 <!ENTITY foxyproxy.ippatterndeletefinal.label "Ceci est le dernier motif d&apos;adresse IP locale. Si vous le supprimez, ce proxy ne pourra pas être utilisé. Continuer tout de même ?">
@@ -550,16 +544,4 @@
 <!ENTITY foxyproxy.proxydomain.label "Domaine (facultatif - uniquement NTML)">
 <!ENTITY foxyproxy.proxydomain.tooltip "Uniquement pour authentification NTML">
 <!ENTITY foxyproxy.proxy.passwords.nomatch.label "Les mots de passe de proxy ne coïncident pas, veuillez réessayer.">
-<!ENTITY foxyproxy.traininglogging.label "Training &amp; Logging">
-<!ENTITY foxyproxy.traininglogging.tooltip "Manage Training &amp; Logging Settings">
-<!ENTITY foxyproxy.traininglogging.accesskey "L">
-<!ENTITY foxyproxy.training.start "Start Training">
-<!ENTITY foxyproxy.training.stop "Stop Training">
-<!ENTITY foxyproxy.patternsforall.label "Create Patterns for All">
-<!ENTITY foxyproxy.patternsforall.accesskey "A">
-<!ENTITY foxyproxy.patternsforall.tooltip "Create Patterns for All URLs">
-<!ENTITY foxyproxy.patternsforselected.label "Create Patterns for Selected">
-<!ENTITY foxyproxy.patternsforselected.accesskey "S">
-<!ENTITY foxyproxy.patternsforselected.tooltip "Create Patterns for Selected URLs">
-<!ENTITY foxyproxy.patterntoadd.label "Pattern to Add">
 <!-- end foxyproxyplus -->

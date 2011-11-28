@@ -56,7 +56,6 @@
 <!ENTITY foxyproxy.mode.label "Select Mode">
 <!-- begin foxyproxyplus -->
 <!ENTITY foxyproxy.auto.url.label "Automatic proxy configuration URL">
-<!ENTITY foxyproxy.auto.url.accesskey "A">
 <!ENTITY foxyproxy.auto.url.tooltip "Enter URL of the PAC file">
 <!ENTITY foxyproxy.auto.url.note.label "http(s)://   ftp://   file://   relative://">
 <!ENTITY foxyproxy.auto.url.note.tooltip "Click the info icon for information on relative://">

@@ -191,6 +191,9 @@
 <!ENTITY foxyproxy.movedown.label "Flytta ned">
 <!ENTITY foxyproxy.movedown.tooltip "Minska prioriteten för markerat objekt">
 <!ENTITY foxyproxy.movedown.accesskey "n">
+<!ENTITY foxyproxy.system.label "Använd datorns proxyinställningar">
+<!ENTITY foxyproxy.system.accesskey "Y">
+<!ENTITY foxyproxy.system.tooltip "Hämta proxykonfigurationsuppsättningen i dina systeminställningar">
 <!ENTITY foxyproxy.automatic.label "Automatisk proxykonfiguration">
 <!ENTITY foxyproxy.automatic.accesskey "A">
 <!ENTITY foxyproxy.automatic.tooltip "Hämta en proxykonfiguration automatiskt">

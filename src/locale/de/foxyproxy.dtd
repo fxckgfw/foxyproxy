@@ -194,7 +194,7 @@
 <!ENTITY foxyproxy.movedown.accesskey "B">
 <!ENTITY foxyproxy.system.label "Proxy-Einstellungen des Systems verwenden">
 <!ENTITY foxyproxy.system.accesskey "Y">
-<!ENTITY foxyproxy.system.tooltip "Die Proxy-Konfiguration aus den Einstellungen des Betriebssystems ermitteln">
+<!ENTITY foxyproxy.system.tooltip2 "Benutzen Sie die Proxy-Konfiguration aus den Einstellungen des Betriebssystems">
 <!ENTITY foxyproxy.automatic.label "Automatische Proxy-Konfiguration">
 <!ENTITY foxyproxy.automatic.accesskey "A">
 <!ENTITY foxyproxy.automatic.tooltip "Die Proxy-Konfiguration automatisch ermitteln">

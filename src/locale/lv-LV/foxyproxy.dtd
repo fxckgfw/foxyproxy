@@ -56,7 +56,6 @@
 <!ENTITY foxyproxy.mode.label "Iezīmēšanas režīms">
 <!-- begin foxyproxyplus -->
 <!ENTITY foxyproxy.auto.url.label "Automātiskās starpniekservera konfigurēšanas adrese">
-<!ENTITY foxyproxy.auto.url.accesskey "A">
 <!ENTITY foxyproxy.auto.url.tooltip "Ievadiet PAC faila adresi">
 <!ENTITY foxyproxy.auto.url.note.label "http(s)://   ftp://   file://   relative://">
 <!ENTITY foxyproxy.auto.url.note.tooltip "Klikšķiniet uz informācijas ikonas ,lai iegūtu papildus informāciju par relative://">

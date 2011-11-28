@@ -56,7 +56,6 @@
 <!ENTITY foxyproxy.mode.label "Vælg tilstand">
 <!-- begin foxyproxyplus -->
 <!ENTITY foxyproxy.auto.url.label "Automatisk proxy-konfiguration URL">
-<!ENTITY foxyproxy.auto.url.accesskey "A">
 <!ENTITY foxyproxy.auto.url.tooltip "Indtast URL for PAC-filen">
 <!ENTITY foxyproxy.auto.url.note.label "http(s)://   ftp://   file://   relative://">
 <!ENTITY foxyproxy.auto.url.note.tooltip "Klik på info-ikonet for information om relativ://">

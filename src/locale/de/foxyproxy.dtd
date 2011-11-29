@@ -84,7 +84,7 @@
 <!ENTITY foxyproxy.regex.label "Regulärer Ausdruck">
 <!ENTITY foxyproxy.regex.accesskey "R">
 <!ENTITY foxyproxy.regex.tooltip "Die URL oder das URL-Muster ist ein regulärer Ausdruck">
-<!ENTITY foxyproxy.regex.example.label "Beispiel: http.?://.*\.mail\.yahoo\.com/.*">
+<!ENTITY foxyproxy.regex.example.label2 "Beispiel: ^https?://.*\.mail\.yahoo\.com/.*$">
 <!ENTITY foxyproxy.version "Version">
 <!ENTITY foxyproxy.createdBy "Erstellt von">
 <!ENTITY foxyproxy.contributionsBy "Beiträge von">

@@ -34,7 +34,7 @@
 <!ENTITY foxyproxy.pattern.nointernal.accesskey "R">
 <!ENTITY foxyproxy.system.label "Folosește configurația proxy a sistemului">
 <!ENTITY foxyproxy.system.accesskey "c">
-<!ENTITY foxyproxy.system.tooltip "Folosește configurația proxy curentă a sistemului">
+<!ENTITY foxyproxy.system.tooltip2 "Folosește configurația proxy din sistemul dvs.">
 <!ENTITY foxyproxy.automatic.label "Detectează automat configurația proxy">
 <!ENTITY foxyproxy.automatic.accesskey "a">
 <!ENTITY foxyproxy.automatic.tooltip "Obține automat configurația proxy pentru rețeaua folosită">

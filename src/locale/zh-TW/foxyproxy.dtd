@@ -58,16 +58,16 @@
 <!ENTITY foxyproxy.copy.selection.accesskey "C">
 <!ENTITY foxyproxy.copy.selection.tooltip "複製選擇的項目">
 <!ENTITY foxyproxy.mode.label "選擇模式">
+<!ENTITY foxyproxy.wpad.label1 "使用 WPAD">
 <!-- begin foxyproxyplus -->
-<!ENTITY foxyproxy.wpad.label "此網路自動偵測代理伺服器設定">
 <!ENTITY foxyproxy.wpad.accesskey "W">
 <!ENTITY foxyproxy.wpad.tooltip "使用 WPAD 自動偵測代理伺服器設定">
 <!ENTITY foxyproxy.wpad.reload.label "自動偵測代理伺服器設定，間隔每">
 <!ENTITY foxyproxy.wpad.reload.accesskey "D">
 <!ENTITY foxyproxy.wpad.reload.tooltip "每隔指定的時間執行自動偵測代理伺服器設定">
 <!ENTITY foxyproxy.wpad.tree.label "自動偵測代理伺服器">
-<!ENTITY foxyproxy.auto.url.label "使用自動組態指命碼">
-<!ENTITY foxyproxy.auto.url.tooltip "輸入自動組態指命碼（PAC）的檔案網址">
+<!ENTITY foxyproxy.auto.url.label "使用自動組態指令碼">
+<!ENTITY foxyproxy.auto.url.tooltip "輸入自動組態指令碼（PAC）的檔案網址">
 <!ENTITY foxyproxy.auto.url.note.label "http(s)://   ftp://   file://   relative://">
 <!ENTITY foxyproxy.auto.url.note.tooltip "點擊資訊圖示獲得更多有關 relative:// 的資訊">
 <!ENTITY foxyproxy.port.label "連接埠">
@@ -181,7 +181,7 @@
 <!ENTITY foxyproxy.blacklist.description.label "『不』透過此代理伺服器存取符合此樣式的網址">
 <!ENTITY foxyproxy.whiteblack.description.label "黑名單比白名單有更高的優先權，如果同一網址同時符合黑/白名單的樣式，則『不』透過此代理伺服器存取這個網址。">
 <!ENTITY foxyproxy.socks.version.label "SOCKS 版本">
-<!ENTITY foxyproxy.autopacurl.label "自動組態指命碼（PAC）的檔案網址">
+<!ENTITY foxyproxy.autopacurl.label "自動組態指令碼（PAC）的檔案網址">
 <!ENTITY foxyproxy.issocks.label "SOCKS 代理伺服器？">
 <!ENTITY foxyproxy.issocks.accesskey "S">
 <!ENTITY foxyproxy.issocks.tooltip "這是 HTTP 還是 SOCKS 代理伺服器？">
@@ -191,15 +191,24 @@
 <!ENTITY foxyproxy.movedown.label "向下移動">
 <!ENTITY foxyproxy.movedown.tooltip "降低選擇項目的優先權">
 <!ENTITY foxyproxy.movedown.accesskey "D">
+<!ENTITY foxyproxy.system.label "使用系統的代理伺服器設定">
+<!ENTITY foxyproxy.system.accesskey "Y">
+<!ENTITY foxyproxy.system.tooltip2 "使用系統設定中的代理伺服器設定">
+<!ENTITY foxyproxy.automatic.label "自動設定代理伺服器">
+<!ENTITY foxyproxy.automatic.accesskey "A">
+<!ENTITY foxyproxy.automatic.tooltip "自動取得代理伺服器的設定">
+<!ENTITY foxyproxy.pac.label "使用自動組態指令碼（PAC）">
+<!ENTITY foxyproxy.pac.accesskey "P">
+<!ENTITY foxyproxy.pac.tooltip "使用自動組態指令碼（PAC）檔案取得代理伺服器的設定">
 <!ENTITY foxyproxy.autoconfurl.view.label "檢視">
 <!ENTITY foxyproxy.autoconfurl.view.accesskey "V">
-<!ENTITY foxyproxy.autoconfurl.view.tooltip "檢視自動組態指命碼（PAC）檔案">
+<!ENTITY foxyproxy.autoconfurl.view.tooltip "檢視自動組態指令碼（PAC）檔案">
 <!ENTITY foxyproxy.autoconfurl.test.label "測試">
 <!ENTITY foxyproxy.autoconfurl.test.accesskey "T">
-<!ENTITY foxyproxy.autoconfurl.test.tooltip "測試自動組態指命碼（PAC）檔案">
-<!ENTITY foxyproxy.autoconfurl.reload.label "重新載入自動組態指命碼（PAC）檔案，每">
+<!ENTITY foxyproxy.autoconfurl.test.tooltip "測試自動組態指令碼（PAC）檔案">
+<!ENTITY foxyproxy.autoconfurl.reload.label "重新載入自動組態指令碼（PAC）檔案，每">
 <!ENTITY foxyproxy.autoconfurl.reload.accesskey "R">
-<!ENTITY foxyproxy.autoconfurl.reload.tooltip "每隔一段時間自動重新載入自動組態指命碼（PAC）檔案">
+<!ENTITY foxyproxy.autoconfurl.reload.tooltip "每隔一段時間自動重新載入自動組態指令碼（PAC）檔案">
 <!ENTITY foxyproxy.minutes.label "分鐘">
 <!ENTITY foxyproxy.minutes.tooltip "分鐘">
 <!ENTITY foxyproxy.logging.maxsize.label "記錄檔最大的記錄項目">
@@ -250,12 +259,12 @@
 <!ENTITY foxyproxy.autoadd.notify.accesskey "N">
 <!ENTITY foxyproxy.autoadd.notify.tooltip "當網頁被阻擋且樣式被加入代理伺服器時通知你">
 <!ENTITY foxyproxy.autoadd.notify.tooltip2 "當「自動新增」啟動時顯示通知視窗">
-<!ENTITY foxyproxy.pacloadnotification.label "當自動組態指命碼（PAC）檔案載入時通知我">
+<!ENTITY foxyproxy.pacloadnotification.label "當自動組態指令碼（PAC）檔案載入時通知我">
 <!ENTITY foxyproxy.pacloadnotification.accesskey "L">
-<!ENTITY foxyproxy.pacloadnotification.tooltip "當自動組態指命碼（PAC）檔案載入時顯示通知視窗">
-<!ENTITY foxyproxy.pacerrornotification.label "當自動組態指命碼（PAC）檔案有錯誤時通知我">
+<!ENTITY foxyproxy.pacloadnotification.tooltip "當自動組態指令碼（PAC）檔案載入時顯示通知視窗">
+<!ENTITY foxyproxy.pacerrornotification.label "當自動組態指令碼（PAC）檔案有錯誤時通知我">
 <!ENTITY foxyproxy.pacerrornotification.accesskey "E">
-<!ENTITY foxyproxy.pacerrornotification.tooltip "當自動組態指命碼（PAC）檔案有錯誤時顯示通知視窗">
+<!ENTITY foxyproxy.pacerrornotification.tooltip "當自動組態指令碼（PAC）檔案有錯誤時顯示通知視窗">
 <!ENTITY foxyproxy.toolbaricon.label "在工具列上顯示圖示">
 <!ENTITY foxyproxy.toolbaricon.accesskey "O">
 <!ENTITY foxyproxy.toolbaricon.tooltip "在工具列上顯示圖示">
@@ -263,10 +272,10 @@
 <!ENTITY foxyproxy.toolsmenu.accesskey "T">
 <!ENTITY foxyproxy.toolsmenu.tooltip2 "在工具選單上顯示圖示">
 <!ENTITY foxyproxy.tip.label "小技巧">
-<!ENTITY foxyproxy.pactip1.label "自動組態指命碼（PAC）檔案在本機上，請使用 file:// 格式。例如：file://c:/path/proxy.pac（Windows）或 file:///home/users/joe/proxy.pac（Unix/Linux/Mac）。">
-<!ENTITY foxyproxy.pactip2.label "自動組態指命碼（PAC）檔案在 FTP 伺服器上，請使用 ftp:// 格式。例如：ftp://leahscape.com/path/proxy.pac">
+<!ENTITY foxyproxy.pactip1.label "自動組態指令碼（PAC）檔案在本機上，請使用 file:// 格式。例如：file://c:/path/proxy.pac（Windows）或 file:///home/users/joe/proxy.pac（Unix/Linux/Mac）。">
+<!ENTITY foxyproxy.pactip2.label "自動組態指令碼（PAC）檔案在 FTP 伺服器上，請使用 ftp:// 格式。例如：ftp://leahscape.com/path/proxy.pac">
 <!ENTITY foxyproxy.pactip3.label "你也可以使用 http://、https://、及其它支援的格式。">
-<!ENTITY foxyproxy.pactip4.label "最後，如果你需要在本機上使用相對路徑去指定自動組態指命碼（PAC）檔案，你可以使用 FoxyProxy 的特殊 relative:// 格式，這在自動組態指命碼（PAC）檔案位於行動碟上時非常有用。目前支援的相對路徑文件在">
+<!ENTITY foxyproxy.pactip4.label "最後，如果你需要在本機上使用相對路徑去指定自動組態指令碼（PAC）檔案，你可以使用 FoxyProxy 的特殊 relative:// 格式，這在自動組態指令碼（PAC）檔案位於行動碟上時非常有用。目前支援的相對路徑文件在">
 <!ENTITY foxyproxy.pactip5.label "這裏">
 <!ENTITY foxyproxy.pactip6.label "。你在 relative:// 裏所指定的特殊字串，會被取代為對應的值。例如 relative://ProfD/pacs/proxy3.pac 指到位於">
 <!ENTITY foxyproxy.pactip7.label "Firefox 設定檔資料夾">
@@ -396,7 +405,7 @@
 <!ENTITY foxyproxy.newGUI2.label "因為 FoxyProxy 已經使用「萬用字元」及「正規表示法」來處理，所以不需要列出協定清單，在 2.5 版時，FoxyProxy 就已經刪掉代理伺服器設定畫面裏的協定清單，這並不會減少 FoxyProxy 的功能，反而讓使用者介面更簡潔。如果你想根據不同協定來處理，你必須小心的設定白名單及黑名單樣式上的協定格式，（例如：ftp://*.yahoo.com/*，*://leahscape.com/*，等等…）">
 <!ENTITY foxyproxy.newGUI4.label "點擊這裏獲得更多資訊。">
 <!ENTITY foxyproxy.error.msg.label "錯誤訊息">
-<!ENTITY foxyproxy.pac.result.label "自動組態指命碼（PAC）結果">
+<!ENTITY foxyproxy.pac.result.label "自動組態指令碼（PAC）結果">
 <!ENTITY foxyproxy.torwiz.height "375">
 <!ENTITY foxyproxy.casesensitive.label "符合大小寫">
 <!ENTITY foxyproxy.casesensitive.accesskey "C">

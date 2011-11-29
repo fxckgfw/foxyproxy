@@ -324,14 +324,6 @@ Proxy.prototype = {
     return this._autoconfMode;
   },
 
-  set systemProxyPACURL(e) {
-    this._systemProxyPACURL = e;
-  },
-
-  get systemProxyPACURL() {
-    return this._systemProxyPACURL;
-  },
-  
   set proxyDNS(e) {
     this._proxyDNS = e;
     this.manualconf._makeProxy();
@@ -367,25 +359,9 @@ Proxy.prototype = {
 
   set enabled(e) {
     if (this.lastresort && !e) return; // can't ever disable this guy
-    // We create the autoconf object here and not in the getSystemProxy() method
-    // in order to not call the next lines of code with every request if the
-    // user has the system proxy option chosen.
-    if (this._mode === "system" && this.systemProxyPAC === null) {
-      this.systemProxyPAC = new AutoConf(this, this.fp);
-    }
     this._enabled = e;
     if (this.shouldLoadPAC()) {
-      if (this._mode === "auto") {
-        if (this._autoconfMode === "pac") {
-          this.autoconf.loadPAC();
-        } else if (this._autoconfMode === "wpad") {
-          this.wpad.loadPAC();
-        }
-        this.handleTimer();
-      } else if (this._mode === "system") {
-        this.systemProxyPAC.url = this.sysProxyService.PACURI;
-        this.systemProxyPAC.loadPAC();
-      }
+      this.preparePACLoading();
     } 
   },
 
@@ -414,32 +390,28 @@ Proxy.prototype = {
   set mode(m) {
     this._mode = m;
     if (this.shouldLoadPAC()) {
-      if (this._mode === "auto") {
-        if (this._autoconfMode === "pac") {
-          this.autoconf.loadPAC();
-        } else if (this._autoconfMode === "wpad") {
-          this.wpad.loadPAC();
-        }
-        this.handleTimer();
-      } else if (this._mode === "system") {
-        this.systemProxyPAC.url = this.sysProxyService.PACURI;
-        this.systemProxyPAC.loadPAC();
+      this.preparePACLoading();
+    }
+  },
+
+  preparePACLoading: function() {
+    if (this._mode === "auto") {
+      if (this._autoconfMode === "pac") {
+        this.autoconf.loadPAC();
+      } else if (this._autoconfMode === "wpad") {
+        this.wpad.loadPAC();
       }
-    } 
+      this.handleTimer();
+    } else if (this._mode === "system") {
+      if (this.systemProxyPAC === null) {
+        this.systemProxyPAC = new AutoConf(this, this.fp);
+      }
+      this.systemProxyPAC.url = this.sysProxyService.PACURI;
+      this.systemProxyPAC.loadPAC(); 
+    }
   },
 
   afterPropertiesSet : function() {
-    // Load PAC if required. Note that loadPAC() is synchronous and if it fails,
-    // it changes our mode to "direct" or disables us.
-    if (this.shouldLoadPAC()) {
-      if (this._mode === "auto") {
-        if (this._autoconfMode === "pac") {
-          this.autoconf.loadPAC();
-        } else if (this._autoconfMode === "wpad") {
-          this.wpad.loadPAC();
-        }
-      }
-    } 
     // Some integrity maintenance: if this is a manual proxy and
     // this.manualconf.proxy wasn't created during deserialization, disable us.
     if (this._enabled && this._mode == "manual" && !this.manualconf.proxy) {
@@ -466,8 +438,11 @@ Proxy.prototype = {
     // always always always cancel first before doing anything 
     if (ac) {
       ac.timer.cancel();
+    } else {
+      // We should never reach this code path.
+      return;
     }
-    if (this.shouldLoadPAC() && ac._autoReload) {
+    if (ac._autoReload) {
       ac.timer.initWithCallback(ac, ac._reloadFreqMins*60000,
         CI.nsITimer.TYPE_REPEATING_SLACK);
     }

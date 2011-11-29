@@ -333,7 +333,7 @@
           class="text-link"
           onclick="fpclocal.openAndReuseOneTabPerURL('http://getfoxyproxy.org/patterns.html#regex');"
           tooltiptext="&foxyproxy.regex.tooltip;"/> 
-        <label id="regexExample" value="&foxyproxy.regex.example.label;"/>       
+        <label id="regexExample" value="&foxyproxy.regex.example.label2;"/>       
         <spacer/>      
       </row>
     </rows>

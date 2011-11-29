@@ -250,16 +250,8 @@ foxyproxy.prototype = {
         this._selectedProxy = proxy;
         proxy.enabled = true; // ensure it's enabled
       }
-      //TODO: Why do we need this? Setting enabled above does already the same?
-      proxy.handleTimer(); // Leave this after "proxy.enabled = true"!
       if (proxy.shouldLoadPAC()) {
-        if (proxy.mode === "auto") {
-          if (proxy.autoconfMode === "pac") {
-            proxy.autoconf.loadPAC();
-          } else if (proxy.autoconfMode === "wpad") {
-            proxy.wpad.loadPAC();
-          }
-        }
+        proxy.preparePACLoading();
       }
     }
     // Ensure the new mode is valid. If it's invalid, set mode to disabled for

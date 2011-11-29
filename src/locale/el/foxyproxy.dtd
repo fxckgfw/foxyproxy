@@ -193,7 +193,7 @@
 <!ENTITY foxyproxy.movedown.accesskey "Κ">
 <!ENTITY foxyproxy.system.label "Χρήση ρυθμίσεων διαμεσολαβητή του συστήματος">
 <!ENTITY foxyproxy.system.accesskey "σ">
-<!ENTITY foxyproxy.system.tooltip "Χρησιμοποιήστε τις ρυθμίσεις διαμεσολαβητών του συστήματος σας.">
+<!ENTITY foxyproxy.system.tooltip2 "Χρησιμοποιήστε τις ρυθμίσεις διαμεσολαβητών του συστήματος σας.">
 <!ENTITY foxyproxy.automatic.label "Αυτόματη ρύθμιση διαμεσολαβητή">
 <!ENTITY foxyproxy.automatic.accesskey "υ">
 <!ENTITY foxyproxy.automatic.tooltip "Αυτόματη λήψη ρυθμίσεων διαμεσολαβητή">

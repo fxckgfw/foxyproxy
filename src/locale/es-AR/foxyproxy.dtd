@@ -193,7 +193,7 @@
 <!ENTITY foxyproxy.movedown.accesskey "D">
 <!ENTITY foxyproxy.system.label "Usar la configuración del Proxy del sistema">
 <!ENTITY foxyproxy.system.accesskey "Y">
-<!ENTITY foxyproxy.system.tooltip "Obtener la configuración del proxy de la configuración del sistema">
+<!ENTITY foxyproxy.system.tooltip2 "Use la configuración del proxy de la configuración del sistema">
 <!ENTITY foxyproxy.automatic.label "Configuración automática de proxy">
 <!ENTITY foxyproxy.automatic.accesskey "A">
 <!ENTITY foxyproxy.automatic.tooltip "Obtener una configuración de proxy de forma automática">
@@ -553,3 +553,15 @@
 <!ENTITY foxyproxy.proxydomain.label "Dominio (Opcional - Solamente NTLM)">
 <!ENTITY foxyproxy.proxydomain.tooltip "Autenticación NTLM solamente">
 <!ENTITY foxyproxy.proxy.passwords.nomatch.label "Las contraseñas de Proxy ingresadas no coinciden;por favor debe re-ingresarlas">
+<!ENTITY foxyproxy.traininglogging.label "Entrenamiento y Registro">
+<!ENTITY foxyproxy.traininglogging.tooltip "Administrar la configuración de Entrenamiento y Registro">
+<!ENTITY foxyproxy.traininglogging.accesskey "L">
+<!ENTITY foxyproxy.training.start "Comenzar el Entrenamiento">
+<!ENTITY foxyproxy.training.stop "Detener el Entrenamiento">
+<!ENTITY foxyproxy.patternsforall.label "Crear patrones para Todos">
+<!ENTITY foxyproxy.patternsforall.accesskey "A">
+<!ENTITY foxyproxy.patternsforall.tooltip "Crear patrones para todas las URLs">
+<!ENTITY foxyproxy.patternsforselected.label "Crear Patrones para la Selección">
+<!ENTITY foxyproxy.patternsforselected.accesskey "S">
+<!ENTITY foxyproxy.patternsforselected.tooltip "Crear Patrones para las URLs Seleccionadas">
+<!ENTITY foxyproxy.patterntoadd.label "Patrón a Agregar">

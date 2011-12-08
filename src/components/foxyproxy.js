@@ -1714,7 +1714,7 @@ foxyproxy.prototype = {
         req.send(null);
         for (var i=0,e=req.responseXML.getElementsByTagName("i18n"); i<e.length; i++)  {
           var attrs = e.item(i).attributes;
-          this._entities[attrs.getNamedItem("id").nodeValue] = attrs.getNamedItem("value").nodeValue;
+          this._entities[attrs.getNamedItem("id").value] = attrs.getNamedItem("value").value;
         }
       }
     }
@@ -1775,7 +1775,7 @@ foxyproxy.prototype = {
     fromDOM : function(doc) {
       var n = doc.getElementsByTagName("warnings").item(0);
       for (var i=0,sz=n.attributes.length; i<sz; i++)
-        this._warnings[n.attributes[i].nodeName] = n.attributes[i].nodeValue == "true";
+        this._warnings[n.attributes[i].name] = n.attributes[i].value == "true";
     }
   },
 

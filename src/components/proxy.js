@@ -588,7 +588,7 @@ Proxy.prototype = {
 
   getSystemProxy: function(spec, host, mp) {
     // If system proxy settings are not supported on the system we give
-    // "direct" back.
+    // "direct" back as Mozilla does.
     if (!this.sysProxyService) {
       return this.direct;
     } else {
@@ -602,8 +602,7 @@ Proxy.prototype = {
       }
       if (pacURI) {
         // The user wants to use a PAC file. Let's check what we have to do.
-        if (this.systemProxyPAC.url === "" ||
-            this.systemProxyPAC.url !== pacURI) {
+        if (!this.systemProxyPAC.url || this.systemProxyPAC.url !== pacURI) {
           // This case means the user ether changed the system proxy settings
           // from direct or manual proxy to PAC mode for the first time in the
           // session. Or the PAC URI changes meanwhile in the system proxy
@@ -641,6 +640,11 @@ Proxy.prototype = {
           // WPAD
           return this.resolve(spec, host, mp, "wpad");
         }
+      // TODO: We should consider using a timer to periodically re-call
+      // getSystemProxy(). But the main problem is that we could miss changes in
+      // the global blacklist as this one is considered while determining the
+      // proxy for every request. That could be especially painful for users in
+      // China or other restrictive countries, a thing we may want to avoid.
       case "system": return this.getSystemProxy(spec, host, mp); 
       case "direct": return this.direct;
     }

@@ -3,3 +3,4 @@
   http://forums.getfoxyproxy.org/viewtopic.php?f=4&t=257
 * improved handling of whildcard and regular expression patterns; fixes
   http://forums.getfoxyproxy.org/viewtopic.php?f=3&t=310
+* updated locales

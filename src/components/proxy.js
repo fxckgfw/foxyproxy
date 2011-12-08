@@ -407,7 +407,7 @@ Proxy.prototype = {
         this.systemProxyPAC = new AutoConf(this, this.fp);
       }
       this.systemProxyPAC.url = this.sysProxyService.PACURI;
-      this.systemProxyPAC.loadPAC(); 
+      this.systemProxyPAC.loadPAC();
     }
   },
 
@@ -645,7 +645,7 @@ Proxy.prototype = {
       // the global blacklist as this one is considered while determining the
       // proxy for every request. That could be especially painful for users in
       // China or other restrictive countries, a thing we may want to avoid.
-      case "system": return this.getSystemProxy(spec, host, mp); 
+      case "system": return this.getSystemProxy(spec, host, mp);
       case "direct": return this.direct;
     }
   },

@@ -243,11 +243,14 @@
            </tree>
          </hbox> 
 	 <hbox>
-           <hbox align="center" style="padding-left: 5px;">
+           <!-- No hbox here as there will be a warning in the error console
+                about it due to the fact that hboxes won't work well with
+                inlined html tags -->
+           <description style="padding-top: 5px;">
              <html:a class="link" 
                      onclick="fpc.openAndReuseOneTabPerURL('http://getfoxyproxy.org/patternsubscriptions/share.html');">
                &foxyproxy.pattern.subscriptions.sharing.label;</html:a> 
-           </hbox>
+           </description>
            <spacer flex="1" />
 	   <vbox>
 	     <menulist id="actionList" pack="start"

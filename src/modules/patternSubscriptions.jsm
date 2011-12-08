@@ -555,8 +555,8 @@ var patternSubscriptions = {
         subscription.metadata = {};
         attrib = metaNode.attributes;
         for (var j = 0; j < attrib.length; j++) {
-          name = attrib.item(j).nodeName; 
-	  value = attrib.item(j).nodeValue; 
+          name = attrib.item(j).name; 
+	  value = attrib.item(j).value; 
           subscription.metadata[name] = value; 
         }	  
       }	
@@ -573,8 +573,8 @@ var patternSubscriptions = {
           subscription.patterns[k] = {};
 	  attrib = patterns[k].attributes;
 	  for (var l = 0; l < attrib.length; l++) {
-	    name = attrib.item(l).nodeName; 
-	    value = attrib.item(l).nodeValue; 
+	    name = attrib.item(l).name; 
+	    value = attrib.item(l).value; 
             subscription.patterns[k][name] = value; 
           }
         }

@@ -193,7 +193,7 @@
 <!ENTITY foxyproxy.movedown.accesskey "L">
 <!ENTITY foxyproxy.system.label "Proxy-instellingen systeem gebruiken">
 <!ENTITY foxyproxy.system.accesskey "Y">
-<!ENTITY foxyproxy.system.tooltip "Proxyconfiguratie in uw systeeminstellingen gebruiken">
+<!ENTITY foxyproxy.system.tooltip2 "Proxyconfiguratie in uw systeeminstellingen gebruiken">
 <!ENTITY foxyproxy.automatic.label "Automatische proxyconfiguratie">
 <!ENTITY foxyproxy.automatic.accesskey "A">
 <!ENTITY foxyproxy.automatic.tooltip "Automatisch proxyconfiguratie ophalen">

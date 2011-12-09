@@ -565,3 +565,4 @@
 <!ENTITY foxyproxy.patternsforselected.accesskey "S">
 <!ENTITY foxyproxy.patternsforselected.tooltip "Crear Patrones para las URLs Seleccionadas">
 <!ENTITY foxyproxy.patterntoadd.label "Patrón a Agregar">
+<!-- end foxyproxyplus -->

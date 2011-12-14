@@ -83,7 +83,6 @@
 <!ENTITY foxyproxy.regex.label "Regulární výraz">
 <!ENTITY foxyproxy.regex.accesskey "R">
 <!ENTITY foxyproxy.regex.tooltip "Udává, že URL anebo vzor URL je regulární výraz">
-<!ENTITY foxyproxy.regex.example.label "Příklad: https?://.*\.mail\.yahoo\.com/.*">
 <!ENTITY foxyproxy.version "Verze">
 <!ENTITY foxyproxy.createdBy "Vytvořil:">
 <!ENTITY foxyproxy.contributionsBy "Přispěvatelé:">
@@ -453,17 +452,8 @@
 <!ENTITY foxyproxy.selectproxy.label "Zvolte Proxy">
 <!ENTITY foxyproxy.pattern.subscriptions.label "Pattern Subscriptions">
 <!ENTITY foxyproxy.pattern.subscriptions.description "Přihlásit se k vzorům, které zveřejňují ostatní uživatelé. Sdílejte vaše vzory s ostatními na pár kliknutí.">
-<!ENTITY foxyproxy.pattern.subscriptions.tooltip "Manage Pattern Subscriptions">
 <!ENTITY foxyproxy.pattern.subscriptions.accesskey "S">
 <!ENTITY foxyproxy.pattern.subscriptions.sharing.label "Sdílet vzory">
-<!ENTITY foxyproxy.pattern.subscriptions.menulist.tooltip "Select what to do with pattern subscriptions.">
-<!ENTITY foxyproxy.pattern.subscriptions.addSubscription "Add New Pattern Subscription">
-<!ENTITY foxyproxy.pattern.subscriptions.editSelection "Edit Selection">
-<!ENTITY foxyproxy.pattern.subscriptions.deleteSelections "Delete Selections">
-<!ENTITY foxyproxy.pattern.subscriptions.refreshSelections "Refresh Selections">
-<!ENTITY foxyproxy.pattern.subscriptions.viewSubscription "View Pattern Subscription">
-<!ENTITY foxyproxy.pattern.subscriptions.go.label "Go">
-<!ENTITY foxyproxy.pattern.subscriptions.go.tooltip "Click here to execute your selection.">
 <!ENTITY foxyproxy.pattern.subscriptions.lastStatus.label "Poslední stav">
 <!ENTITY foxyproxy.pattern.subscriptions.addedit.title "Přidat/upravit předplatné vzorů">
 <!ENTITY foxyproxy.pattern.subscriptions.name.label "Jméno předplatného">
@@ -493,14 +483,6 @@
 <!ENTITY foxyproxy.pattern.subscriptions.copyLastStatus.tooltip "Zkopírovat poslední stav do schránky">
 <!ENTITY foxyproxy.pattern.subscriptions.pattern.window.title "Vzory předplatného">
 <!ENTITY foxyproxy.none.label "Žádný">
-<!ENTITY foxyproxy.name.label "Name">
-<!ENTITY foxyproxy.notes.label "Notes">
-<!ENTITY foxyproxy.url.label "url">
-<!ENTITY foxyproxy.lastupdate.label "Last Update">
-<!ENTITY foxyproxy.updatefrequency.label "Update Frequency">
-<!ENTITY foxyproxy.status.label "Status">
-<!ENTITY foxyproxy.format.label "Format">
-<!ENTITY foxyproxy.obfuscation.label "Obfuscation">
 <!ENTITY foxyproxy.hosting.label1 "Díky">
 <!ENTITY foxyproxy.ocs.label "OCS">
 <!ENTITY foxyproxy.hosting.label2 "za hostování stránek FoxyProxy. Když potřebujete hosting, zkuste OCS.">
@@ -538,10 +520,6 @@
 <!ENTITY foxyproxy.buynow.label "Koupit">
 <!ENTITY foxyproxy.checklicense.label "Zkontrolovat licenci">
 <!ENTITY foxyproxy.checkinglicense.label "Kontroluji...prosím čekejte">
-<!ENTITY foxyproxy.yourversion.label "Your Version ">
-<!ENTITY foxyproxy.latestversion.label "Newest Version ">
-<!ENTITY foxyproxy.routetoleahscape.label.1 "Please make sure Firefox can reach">
-<!ENTITY foxyproxy.routetoleahscape.label.2 "either with or without a proxy. You can configure patterns for this URL in FoxyProxy Plus if necessary.">
 <!ENTITY foxyproxy.everything.label "Všechno">
 <!ENTITY foxyproxy.nothing.label "Nic">
 <!ENTITY foxyproxy.ippatterndeletefinal.label "Toto je poslední vzor pro místní IP adresu. Když ho smažete, proxy server nebude používán. Přesto pokračovat?">
@@ -553,4 +531,16 @@
 <!ENTITY foxyproxy.proxydomain.label "Doména (volitelné - pouze NTLM)">
 <!ENTITY foxyproxy.proxydomain.tooltip "Pouze NTLM autentizace">
 <!ENTITY foxyproxy.proxy.passwords.nomatch.label "Hesla k proxy se neshodují; prosím zadejte je znova.">
+<!ENTITY foxyproxy.traininglogging.label "Učení &amp; záznamy">
+<!ENTITY foxyproxy.traininglogging.tooltip "Nastavit učení a zaznamenávání">
+<!ENTITY foxyproxy.traininglogging.accesskey "L">
+<!ENTITY foxyproxy.training.start "Spustit učení">
+<!ENTITY foxyproxy.training.stop "Zastavit učení">
+<!ENTITY foxyproxy.patternsforall.label "Vytvořit vzory pro vše">
+<!ENTITY foxyproxy.patternsforall.accesskey "A">
+<!ENTITY foxyproxy.patternsforall.tooltip "Vytvořit vzory pro všechna URL">
+<!ENTITY foxyproxy.patternsforselected.label "Vytvořit vzory pro vybrané položky">
+<!ENTITY foxyproxy.patternsforselected.accesskey "S">
+<!ENTITY foxyproxy.patternsforselected.tooltip "Vytvořit vzory pro vybrané URL">
+<!ENTITY foxyproxy.patterntoadd.label "Vzory pro přidání">
 <!-- end foxyproxyplus -->

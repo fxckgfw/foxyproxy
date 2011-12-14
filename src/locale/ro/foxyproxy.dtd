@@ -29,6 +29,7 @@
 <!ENTITY foxyproxy.wpad.reload.tooltip "Detectează automat setările proxy la intervale regulate de timp">
 <!ENTITY foxyproxy.wpad.tree.label "Detectează automat serverul proxy">
 <!ENTITY foxyproxy.auto.url.note.label "http(s)://   ftp://   file://   relative://">
+<!ENTITY foxyproxy.regex.example.label2 "Exemplu: ^https?://.*\.mail\.yahoo\\.com/.*$">
 <!ENTITY foxyproxy.pattern.nointernal.label "Evită acest server proxy pentru adresele IP locale">
 <!ENTITY foxyproxy.pattern.nointernal.tooltip "Restricționează utilizarea serverului proxy numai la adresele IP externe">
 <!ENTITY foxyproxy.pattern.nointernal.accesskey "R">

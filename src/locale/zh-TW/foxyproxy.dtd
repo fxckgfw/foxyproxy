@@ -83,7 +83,7 @@
 <!ENTITY foxyproxy.regex.label "正規表示法">
 <!ENTITY foxyproxy.regex.accesskey "R">
 <!ENTITY foxyproxy.regex.tooltip "輸入使用正規表示法的網址樣式">
-<!ENTITY foxyproxy.regex.example.label "範例：https?://.*\.mail\.yahoo\.com/.*">
+<!ENTITY foxyproxy.regex.example.label2 "範例：^https?://.*\.mail\.yahoo\.com/.*$">
 <!ENTITY foxyproxy.version "版本">
 <!ENTITY foxyproxy.createdBy "作者">
 <!ENTITY foxyproxy.contributionsBy "貢獻者">

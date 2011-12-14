@@ -72,7 +72,6 @@
 <!ENTITY foxyproxy.regex.label "Biểu thức Chính quy">
 <!ENTITY foxyproxy.regex.accesskey "B">
 <!ENTITY foxyproxy.regex.tooltip "Chỉ định rằng mẫu URL là một biểu thức chính quy">
-<!ENTITY foxyproxy.regex.example.label "Ví dụ: https?://.*\.mail\.yahoo\.com/.*">
 <!ENTITY foxyproxy.version "Phiên bản">
 <!ENTITY foxyproxy.createdBy "Tạo bởi">
 <!ENTITY foxyproxy.contributionsBy "Đóng góp bởi">

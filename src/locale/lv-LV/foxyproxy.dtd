@@ -72,7 +72,6 @@
 <!ENTITY foxyproxy.regex.label "Regulārā izteiksme">
 <!ENTITY foxyproxy.regex.accesskey "R">
 <!ENTITY foxyproxy.regex.tooltip "Norāda, ka adreses šablons izmanto regulāro izteiksmi">
-<!ENTITY foxyproxy.regex.example.label "Piemērs: https?://.*\.mail\.yahoo\.com/.*">
 <!ENTITY foxyproxy.version "Versija">
 <!ENTITY foxyproxy.createdBy "Autors">
 <!ENTITY foxyproxy.contributionsBy "Izstrādē piedalījušies">

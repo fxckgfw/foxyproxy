@@ -83,7 +83,6 @@
 <!ENTITY foxyproxy.regex.label "การแสดงออกทั่วไป">
 <!ENTITY foxyproxy.regex.accesskey "ป">
 <!ENTITY foxyproxy.regex.tooltip "กำหนดว่าแบบรูปยูอาร์แอลเป็นการแสดงออกทั่วไป">
-<!ENTITY foxyproxy.regex.example.label "ตัวอย่าง: https?://.*\.mail\.yahoo\.com/.*">
 <!ENTITY foxyproxy.version "รุ่น">
 <!ENTITY foxyproxy.createdBy "สร้างโดย:">
 <!ENTITY foxyproxy.contributionsBy "คุโณปการโดย">

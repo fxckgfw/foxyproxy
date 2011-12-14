@@ -72,7 +72,6 @@
 <!ENTITY foxyproxy.regex.label "Säännöllinen Lauseke">
 <!ENTITY foxyproxy.regex.accesskey "S">
 <!ENTITY foxyproxy.regex.tooltip "Valitsee, että URL-kuvio on säännöllinen lauseke">
-<!ENTITY foxyproxy.regex.example.label "Esimerkki: https?://.*\.mail\.yahoo\.com/.*">
 <!ENTITY foxyproxy.version "Versio">
 <!ENTITY foxyproxy.createdBy "Tekijä">
 <!ENTITY foxyproxy.contributionsBy "Contributions By">

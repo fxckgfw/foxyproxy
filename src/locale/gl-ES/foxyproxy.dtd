@@ -72,7 +72,6 @@
 <!ENTITY foxyproxy.regex.label "Expresións Regulares">
 <!ENTITY foxyproxy.regex.accesskey "R">
 <!ENTITY foxyproxy.regex.tooltip "Especifica que o patrón de URL é unha expresión regular">
-<!ENTITY foxyproxy.regex.example.label "Exemplo: https?://.*\.mail\.yahoo\.com/.*">
 <!ENTITY foxyproxy.version "Versión">
 <!ENTITY foxyproxy.createdBy "Creada por">
 <!ENTITY foxyproxy.contributionsBy "Contribucións de">

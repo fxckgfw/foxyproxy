@@ -83,7 +83,7 @@
 <!ENTITY foxyproxy.regex.label "Expresión regular">
 <!ENTITY foxyproxy.regex.accesskey "R">
 <!ENTITY foxyproxy.regex.tooltip "Indica que el patrón de la dirección es una expresión regular">
-<!ENTITY foxyproxy.regex.example.label "Ejemplo: https?://.*\.mail\.yahoo\.es/.*">
+<!ENTITY foxyproxy.regex.example.label2 "Ejemplo: ^https?://.*\.mail\.yahoo\.com/.*$">
 <!ENTITY foxyproxy.version "Versión">
 <!ENTITY foxyproxy.createdBy "Creada por">
 <!ENTITY foxyproxy.contributionsBy "Colaboraciones de">
@@ -193,7 +193,7 @@
 <!ENTITY foxyproxy.movedown.accesskey "b">
 <!ENTITY foxyproxy.system.label "Usando las opciones del sistema">
 <!ENTITY foxyproxy.system.accesskey "Y">
-<!ENTITY foxyproxy.system.tooltip "Obtener la configuración del proxy de las opciones del sistema">
+<!ENTITY foxyproxy.system.tooltip2 "Usar la configuración de proxy de las opciones del sistema">
 <!ENTITY foxyproxy.automatic.label "Configuración automática">
 <!ENTITY foxyproxy.automatic.accesskey "a">
 <!ENTITY foxyproxy.automatic.tooltip "Obtener la configuración automáticamente">
@@ -553,3 +553,15 @@
 <!ENTITY foxyproxy.proxydomain.label "Dominio (opcional - sólo NTLM)">
 <!ENTITY foxyproxy.proxydomain.tooltip "Autenticación NTLM sólo">
 <!ENTITY foxyproxy.proxy.passwords.nomatch.label "Las contraseñas no coinciden; por favor, vuelva a introducirlas.">
+<!ENTITY foxyproxy.traininglogging.label "Entrenamiento y registro">
+<!ENTITY foxyproxy.traininglogging.tooltip "Administrar opciones de entrenamiento y registro">
+<!ENTITY foxyproxy.traininglogging.accesskey "e">
+<!ENTITY foxyproxy.training.start "Comenzar entrenamiento">
+<!ENTITY foxyproxy.training.stop "Parar entrenamiento">
+<!ENTITY foxyproxy.patternsforall.label "Crear patrones para todo">
+<!ENTITY foxyproxy.patternsforall.accesskey "t">
+<!ENTITY foxyproxy.patternsforall.tooltip "Crear patrones para todas las URL">
+<!ENTITY foxyproxy.patternsforselected.label "Crear patrones para la selección">
+<!ENTITY foxyproxy.patternsforselected.accesskey "S">
+<!ENTITY foxyproxy.patternsforselected.tooltip "Crear patrones para las URL seleccionadas">
+<!ENTITY foxyproxy.patterntoadd.label "Patrón a añadir">

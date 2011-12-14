@@ -74,7 +74,6 @@
 <!ENTITY foxyproxy.regex.label "Регуларни изрази">
 <!ENTITY foxyproxy.regex.accesskey "Р">
 <!ENTITY foxyproxy.regex.tooltip "Одређивање да URL шаблон користи регуларни израз">
-<!ENTITY foxyproxy.regex.example.label "нпр. https?://.*\.mail\.yahoo\.com/.*">
 <!ENTITY foxyproxy.version "верзија">
 <!ENTITY foxyproxy.createdBy "Аутор">
 <!ENTITY foxyproxy.contributionsBy "Помоћници">

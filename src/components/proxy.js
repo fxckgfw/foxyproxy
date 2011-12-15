@@ -95,6 +95,13 @@ function Proxy(fp) {
   // See: http://mxr.mozilla.org/mozilla2.0/source/netwerk/base/src/
   // nsProtocolProxyService.cpp#488 
   this.wpad.url = "http://wpad/wpad.dat";
+  // If we would not create an AutoConf object for the system proxy during proxy
+  // creation it could happen that the system proxy feature is not working
+  // properly. E.g. if one would create the proxy using system proxy settings
+  // that point not to a PAC/WPAD file but would switch later on these settings
+  // so that a PAC/WPAD file would get used then it would not work as
+  // this.systemProxyPAC would still be null.
+  this.systemProxyPAC = new AutoConf(this, this.fp);
   this._mode = "manual"; // manual, auto, direct, random
   this._autoconfMode = "pac";
   this._enabled = true;
@@ -415,6 +422,13 @@ Proxy.prototype = {
   },
 
   afterPropertiesSet : function() {
+    // This is probably a good compromise between startup performance and
+    // avoiding another speed penalty while getting the system proxy. We do
+    // not need to store the system proxy settings. Thus, they won't get loaded
+    // from foxyproxy.xml. Nevertheless, we must get sure that systemProxyPAC
+    // is not null after startup. Otherwise there would exist corner cases in
+    // which the system proxy feature would not work properly.
+    this.systemProxyPAC = new AutoConf(this, this.fp); 
     // Some integrity maintenance: if this is a manual proxy and
     // this.manualconf.proxy wasn't created during deserialization, disable us.
     if (this._enabled && this._mode == "manual" && !this.manualconf.proxy) {

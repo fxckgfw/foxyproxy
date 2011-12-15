@@ -36,7 +36,6 @@ function onLoad() {
     document.getElementById("noInternalIPs").checked = proxy.noInternalIPs;
   }
 
-  document.getElementById("proxyDNS").checked = proxy.proxyDNS;
   // System proxy settings are only implemented from Gecko 1.9.1 (FF 3.5)
   // onwards. Thus, we disable this option in older versions and if a user came
   // from a version supporting this we set the mode to direct to keep FoxyProxy
@@ -62,6 +61,7 @@ function onLoad() {
   document.getElementById("port").value = proxy.manualconf.port;
   document.getElementById("isSocks").checked = proxy.manualconf.isSocks;
   document.getElementById("socksversion").value = proxy.manualconf.socksversion;
+  document.getElementById("proxyDNS").checked = proxy.proxyDNS;
   autoconfMode.value = proxy.autoconfMode;
 
   if (proxy.autoconfMode === "pac") {

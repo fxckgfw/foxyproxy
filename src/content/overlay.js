@@ -31,11 +31,10 @@ var foxyproxy = {
     usingObserver : true,
     check : function() {
       const CC = Components.classes, CI = Components.interfaces;
-      var vc = CC["@mozilla.org/xpcom/version-comparator;1"].getService(CI.nsIVersionComparator),
-        lastVer, curVer = CC["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject.getVersion();
+      var lastVer, curVer = CC["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject.getVersion();
       try {
         lastVer = foxyproxy.fp.getPrefsService("extensions.foxyproxy.").getCharPref("last-version");
-        if (vc.compare(curVer, lastVer) > 0)
+        if (foxyproxy.fpc.vc.compare(curVer, lastVer) > 0)
           p(this);
       }
       catch(e) {
@@ -43,8 +42,7 @@ var foxyproxy = {
         p(this);
       }
       function p(o) {
-        var appInfo = CC["@mozilla.org/xre/app-info;1"].getService(CI.nsIXULAppInfo);
-        if(vc.compare(appInfo.version, "3.0") < 0) {
+        if (foxyproxy.fpc.vc.compare(foxyproxy.fpc.appInfo.version, "3.0") < 0) {
           // sessionstore-windows-restored notification not supported; just do it now
           o.usingObserver = false;
           o.installTimer();
@@ -386,13 +384,11 @@ end-foxyproxy-simple !*/
     let firstRun = foxyproxy.fp.getPrefsService("extensions.foxyproxy.").
       getBoolPref("firstrun");
     if (firstRun) {
-      // The Add-on Bar got intruced in FF 4.07b. As it is disabled by default
+      // The Add-on Bar got introduced in FF 4.07b. As it is disabled by default
       // we show the FoxyProxy toolbar icon on first start in the toolbar to
       // give the user a hint about FoxyProxy's existence.
-      let vc = Components.classes["@mozilla.org/xpcom/version-comparator;1"].
-        getService(Components.interfaces.nsIVersionComparator); 
       // TODO: This is FF specific atm.
-      if (vc.compare(foxyproxy.fpc.appInfo.version, "4.0b7") < 0) {
+      if (foxyproxy.fpc.vc.compare(foxyproxy.fpc.appInfo.version, "4.0b7") < 0) {
         return;
       }
       let navBar = document.getElementById("nav-bar"); 

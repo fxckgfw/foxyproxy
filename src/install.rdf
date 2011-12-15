@@ -18,12 +18,12 @@
 <!-- begin-foxyproxy-standard -->
         <em:id>foxyproxy@eric.h.jung</em:id>
         <em:name>FoxyProxy Standard</em:name>
-        <em:version>3.4</em:version>
+        <em:version>3.5a1</em:version>
 <!-- end-foxyproxy-standard -->
 <!-- begin-foxyproxy-simple
         <em:id>foxyproxy-basic@eric.h.jung</em:id>
         <em:name>FoxyProxy Basic</em:name>
-        <em:version>2.4</em:version>
+        <em:version>2.5</em:version>
 end-foxyproxy-simple -->
         <em:creator>FoxyProxy, Inc.</em:creator>
         <em:description>Premier proxy management for Firefox</em:description>

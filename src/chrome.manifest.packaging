@@ -40,7 +40,7 @@ locale  foxyproxy sk chrome/locale/sk/
 locale  foxyproxy sr chrome/locale/sr/
 locale  foxyproxy sv-SE chrome/locale/sv-SE/
 locale  foxyproxy th chrome/locale/th/
-locale  foxyproxy tr-TR chrome/locale/tr-TR/
+locale  foxyproxy tr chrome/locale/tr/
 locale  foxyproxy uk-UA chrome/locale/uk-UA/
 locale  foxyproxy vi chrome/locale/vi/
 locale  foxyproxy zh-CN chrome/locale/zh-CN/

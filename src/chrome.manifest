@@ -40,7 +40,7 @@ locale  foxyproxy sk  locale/sk/
 locale  foxyproxy sr locale/sr/
 locale  foxyproxy sv-SE locale/sv-SE/
 locale  foxyproxy th locale/th/
-locale  foxyproxy tr-TR locale/tr-TR/
+locale  foxyproxy tr locale/tr/
 locale  foxyproxy uk-UA locale/uk-UA/
 locale  foxyproxy vi locale/vi/
 locale  foxyproxy zh-CN locale/zh-CN/

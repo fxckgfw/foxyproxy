@@ -19,6 +19,8 @@ var fp;
 function Common() {
   this.wrappedJSObject = this;
   this.appInfo = CC["@mozilla.org/xre/app-info;1"].getService(CI.nsIXULAppInfo);
+  this.vc = CC["@mozilla.org/xpcom/version-comparator;1"].getService(CI.
+    nsIVersionComparator); 
   fp = CC["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;   
   let uuid = fp.isFoxyProxySimple() ? "foxyproxy-basic@eric.h.jung" : "foxyproxy@eric.h.jung";
   // Get installed version

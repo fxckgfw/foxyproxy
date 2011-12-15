@@ -22,8 +22,6 @@
 <!ENTITY foxyproxy.help.label "Yardım İçeriği">
 <!ENTITY foxyproxy.help.accesskey "H">
 <!ENTITY foxyproxy.help.tooltip "Yardımı Göster">
-<!ENTITY foxyproxy.export.pattern.label "Export">
-<!ENTITY foxyproxy.export.pattern.accesskey "X">
 <!ENTITY foxyproxy.close.label "Kapat">
 <!ENTITY foxyproxy.close.accesskey "C">
 <!ENTITY foxyproxy.close.tooltip "Pencereyi Kapat">
@@ -42,10 +40,8 @@
 <!ENTITY foxyproxy.mode.label "Seçim Modu">
 <!-- begin foxyproxyplus -->
 <!ENTITY foxyproxy.auto.url.label "Otomatik vekil ayarlama URL&apos;si">
-<!ENTITY foxyproxy.auto.url.accesskey "A">
 <!ENTITY foxyproxy.auto.url.tooltip "PAC(Otomatik vekil ayarlama) dosyasının URL&apos;sini giriniz">
 <!ENTITY foxyproxy.auto.url.note.label "http(s)://   ftp://   file://   relative://">
-<!ENTITY foxyproxy.auto.url.note.tooltip "Click the info icon for information on relative://">
 <!ENTITY foxyproxy.port.label "Port">
 <!ENTITY foxyproxy.port.accesskey "P">
 <!ENTITY foxyproxy.port.tooltip "Port">
@@ -55,13 +51,11 @@
 <!ENTITY foxyproxy.wildcard.label "Joker Semboller">
 <!ENTITY foxyproxy.wildcard.accesskey "W">
 <!ENTITY foxyproxy.wildcard.tooltip "URL ya da URL şablonunun joker sembolleri kullanacağını ve normal bir ifade olmayacağını belirtir.">
-<!ENTITY foxyproxy.wildcard.example.label "Example: *mail.yahoo.com/*">
 <!ENTITY foxyproxy.regex.label "Normal İfade">
 <!ENTITY foxyproxy.regex.accesskey "R">
 <!ENTITY foxyproxy.regex.tooltip "URL ya da URL şablonunun normal ifade olduğunu belirtir.">
 <!ENTITY foxyproxy.version "Sürüm">
 <!ENTITY foxyproxy.createdBy "Oluşturan:">
-<!ENTITY foxyproxy.contributionsBy "Contributions By">
 <!ENTITY foxyproxy.copyright "Telif Hakkı">
 <!ENTITY foxyproxy.rights "Tüm Hakları Mahfuzdur.">
 <!ENTITY foxyproxy.released "Bu ürün">
@@ -96,6 +90,7 @@
 <!ENTITY foxyproxy.tab.logging.label "Kayıt Kütüğü">
 <!ENTITY foxyproxy.tab.logging.accesskey "K">
 <!ENTITY foxyproxy.tab.logging.tooltip "Kayıt Kütüğü Ayarların Yönet">
+<!ENTITY foxyproxy.storagelocation.tooltip "FoxyProxy&apos;nin ayarlarının saklanacağı yer">
 <!ENTITY foxyproxy.tab.logging.timestamp.label "Tarih Bilgisi">
 <!ENTITY foxyproxy.tab.logging.url.label "URL">
 <!ENTITY foxyproxy.clear.label "Temizle">

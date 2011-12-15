@@ -83,6 +83,7 @@
 <!ENTITY foxyproxy.regex.label "Κανονική έκφραση">
 <!ENTITY foxyproxy.regex.accesskey "Κ">
 <!ENTITY foxyproxy.regex.tooltip "Διευκρινίζει ότι το πρότυπο URL είναι κανονική έκφραση">
+<!ENTITY foxyproxy.regex.example.label2 "Παράδειγμα: ^https?://.*\.mail\.yahoo\.com/.*$">
 <!ENTITY foxyproxy.version "Έκδοση">
 <!ENTITY foxyproxy.createdBy "Δημιουργήθηκε από:">
 <!ENTITY foxyproxy.contributionsBy "Συνεισφορές από:">
@@ -471,7 +472,7 @@
 <!ENTITY foxyproxy.pattern.subscriptions.notes.tooltip "Περιγραφή συνδρομής">
 <!ENTITY foxyproxy.pattern.subscriptions.url.label "URL συνδρομής">
 <!ENTITY foxyproxy.pattern.subscriptions.url.tooltip "URL συνδρομής">
-<!ENTITY foxyproxy.pattern.subscriptions.proxies.tooltip "Διαμεσολαβητές με συνδρομή σ' αυτή τη λίστα πρότυπων">
+<!ENTITY foxyproxy.pattern.subscriptions.proxies.tooltip "Διαμεσολαβητές με συνδρομή σ\' αυτή τη λίστα πρότυπων">
 <!ENTITY foxyproxy.pattern.subscriptions.addProxies.label "Προσθήκη διαμεσολαβητών">
 <!ENTITY foxyproxy.pattern.subscriptions.addProxies.tooltip "Προσθήκη διαμεσολαβητών που θα έχουν συνδρομή στη λίστα πρότυπων">
 <!ENTITY foxyproxy.pattern.subscriptions.removeProxies.label "Αφαίρεση επιλεγμένων">
@@ -540,7 +541,7 @@
 <!ENTITY foxyproxy.yourversion.label "Η έκδοση σας">
 <!ENTITY foxyproxy.latestversion.label "Νεότερη έκδοση">
 <!ENTITY foxyproxy.routetoleahscape.label.1 "Παρακαλούμε βεβαιωθείτε ότι ο Firefox έχει πρόσβαση στο">
-<!ENTITY foxyproxy.routetoleahscape.label.2 "είτε χωρίς, είτε μέσω διαμεσολαβητή. Μπορείτε να ορίσετε πρότυπα γι' αυτό το URL στο FoxyProxy Plus αν χρειάζεται.">
+<!ENTITY foxyproxy.routetoleahscape.label.2 "είτε χωρίς, είτε μέσω διαμεσολαβητή. Μπορείτε να ορίσετε πρότυπα γι\' αυτό το URL στο FoxyProxy Plus αν χρειάζεται.">
 <!ENTITY foxyproxy.everything.label "Όλα">
 <!ENTITY foxyproxy.nothing.label "Κανένα">
 <!ENTITY foxyproxy.ippatterndeletefinal.label "Αυτό είναι το τελευταίο τοπικό πρότυπο διεύθυνσης IP. Αν το διαγράψετε, αυτός ο διαμεσολαβητής δεν θα χρησιμοποιείται πότε. Συνέχεια;">

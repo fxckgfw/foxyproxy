@@ -71,8 +71,11 @@ function Proxy(fp) {
   this.wrappedJSObject = this;
   this.fp = fp || CC["@leahscape.org/foxyproxy/service;1"].getService().
     wrappedJSObject;
-  this.sysProxyService = CC["@mozilla.org/system-proxy-settings;1"].
-    getService(CI.nsISystemProxySettings);
+  // Maybe the user deploys a version without system proxy feature...
+  try {
+    this.sysProxyService = CC["@mozilla.org/system-proxy-settings;1"].
+      getService(CI.nsISystemProxySettings);
+  } catch (e) {}
   this.iOService = CC["@mozilla.org/network/io-service;1"].
     getService(CI.nsIIOService);
   this.matches = [];
@@ -602,7 +605,7 @@ Proxy.prototype = {
       }
       if (pacURI) {
         // The user wants to use a PAC file. Let's check what we have to do.
-        if (!this.systemProxyPAC.url || this.systemProxyPAC.url !== pacURI) {
+        if (!this.systemProxyPAC.url || this.systemProxyPAC.url != pacURI) {
           // This case means the user ether changed the system proxy settings
           // from direct or manual proxy to PAC mode for the first time in the
           // session. Or the PAC URI changes meanwhile in the system proxy
@@ -611,7 +614,7 @@ Proxy.prototype = {
           this.systemProxyPAC.url = pacURI;
           this.systemProxyPAC.loadPAC();
           return this.resolve(spec, host, mp, "system");
-        } else if (this.systemProxyPAC.url === pacURI) {
+        } else if (this.systemProxyPAC.url == pacURI) {
           // The easiest case: We just take the already loaded PAC
           return this.resolve(spec, host, mp, "system"); 
         }
@@ -619,7 +622,7 @@ Proxy.prototype = {
       } else {
         let uri = this.iOService.newURI(spec, null, null);
         let proxyString = this.sysProxyService.getProxyForURI(uri);
-        if (proxyString === "DIRECT") {
+        if (proxyString == "DIRECT") {
           return this.direct;
         } else {
           // We have to construct a proxyInfo object out of the manual settings

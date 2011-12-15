@@ -42,6 +42,9 @@ var foxyproxy = {
         p(this);
       }
       function p(o) {
+        // TODO: FF specific? If so, we do not need it as we do not support
+        // these versions anymore. And Seamonkey should support that
+        // notification meanwhile.
         if (foxyproxy.fpc.vc.compare(foxyproxy.fpc.appInfo.version, "3.0") < 0) {
           // sessionstore-windows-restored notification not supported; just do it now
           o.usingObserver = false;

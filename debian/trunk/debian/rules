@@ -4,7 +4,7 @@
 	dh $@ --with xul-ext
 
 # Adapted from http://wiki.debian.org/SandroTosi/Svn_get-orig-source
-PACKAGE = foxyproxy 
+PACKAGE = foxyproxy
 SRC_VERSION := $(shell dpkg-parsechangelog | sed -ne 's/^Version: \(\([0-9]\+\):\)\?\(.*\)-.*/\3/p')
 TARBALL = $(PACKAGE)_$(SRC_VERSION).orig.tar.gz
 REPO_URL = https://svn.getfoxyproxy.org/basic_and_standard/gecko/tags/

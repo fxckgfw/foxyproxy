@@ -14,9 +14,8 @@ get-orig-source:
 	mkdir get-orig-source
 	svn export $(REPO_URL)/$(SRC_VERSION) \
         get-orig-source/$(PACKAGE)-$(SRC_VERSION).orig
-	GZIP='--best --no-name' tar --exclude="*.svn" --exclude="debian" -czf $(TARBALL) -C get-orig-source $(PACKAGE)-$(SRC_VERSION).orig
+	GZIP='--best --no-name' tar --exclude="*.svn" --exclude="debian" czf $(TARBALL) -C get-orig-source $(PACKAGE)-$(SRC_VERSION).orig
 	rm -rf get-orig-source
-	echo "  "$(TARBALL)" created; move it to the right destination to build the package" 
 
 override_dh_auto_build:
 	cd src; ant build-foxyproxy-standard 

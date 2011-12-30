@@ -7,14 +7,14 @@
 PACKAGE = foxyproxy
 SRC_VERSION := $(shell dpkg-parsechangelog | sed -ne 's/^Version: \(\([0-9]\+\):\)\?\(.*\)-.*/\3/p')
 TARBALL = $(PACKAGE)_$(SRC_VERSION).orig.tar.gz
-REPO_URL = https://svn.getfoxyproxy.org/basic_and_standard/gecko/tags/
+REPO_URL = https://svn.getfoxyproxy.org/basic_and_standard/gecko/tags
 
 get-orig-source:
 	rm -rf get-orig-source $(TARBALL)
 	mkdir get-orig-source
 	svn export $(REPO_URL)/$(SRC_VERSION) \
         get-orig-source/$(PACKAGE)-$(SRC_VERSION).orig
-	GZIP='--best --no-name' tar --exclude="*.svn" --exclude="debian" czf $(TARBALL) -C get-orig-source $(PACKAGE)-$(SRC_VERSION).orig
+	GZIP='--best --no-name' tar --exclude="*.svn" --exclude="debian" -czf $(TARBALL) -C get-orig-source $(PACKAGE)-$(SRC_VERSION).orig
 	rm -rf get-orig-source
 	echo "  "$(TARBALL)" created; move it to the right destination to build the package" 
 

@@ -3,6 +3,7 @@ foxyproxy (3.4-1) unstable; urgency=low
   * New upstream release
   * debian/control -- added Vcs* entries pointing to upstream SVN repository
   * debian/control -- added missing Conflicts entry
+  * debian/rules -- added get-orig-source target
   * removed debian/watch as packaging is done by upstream itself
 
  -- Georg Koppen <georg@getfoxyproxy.org>  Fri, 30 Dec 2011 12:06:08 +0100

@@ -1,0 +1,188 @@
+foxyproxy (3.4-1) unstable; urgency=low
+
+  * New upstream release
+  * debian/control -- added Vcs* entries pointing to upstream SVN repository
+  * debian/control -- added missing Conflicts entry
+  * removed debian/watch as packaging is done by upstream itself
+
+ -- Georg Koppen <georg@getfoxyproxy.org>  Fri, 30 Dec 2011 12:06:08 +0100
+
+foxyproxy (3.3-2) unstable; urgency=low
+
+  * cleaned up source package (removed .svn directories and .xpi files) 
+
+ -- Georg Koppen <georg@getfoxyproxy.org>  Fri, 18 Nov 2011 11:12:37 +0100
+
+foxyproxy (3.3-1) UNRELEASED; urgency=low
+
+  * New upstream release
+  * debian/rules -- using debhelper 7 and mozilla-devscripts now putting the
+    extension files in the correct path (Closes: #638484, #594984)
+  * new binary package xul-ext-foxyproxy-standard that replaces foxyproxy
+  * debian/control -- removed Vcs* entries
+
+ -- Georg Koppen <georg@getfoxyproxy.org>  Fri, 11 Nov 2011 12:47:04 +0200
+
+foxyproxy (3.2-1) unstable; urgency=low
+
+  * New upstream release (Closes: #634071)
+  * debian/control -- changed maintainer to Georg Koppen
+  * debian/control -- added former maintainer as uploader
+  * debian/copyright -- added license information for new icon in upstream
+    release
+  * debian/rules -- minor update to correct lintian warnings 
+  * Boosted policy to 3.9.2 (no changes)
+
+ -- Georg Koppen <georg@getfoxyproxy.org>  Thu, 15 Sep 2011 15:08:46 +0200
+
+foxyproxy (2.22.6-1) unstable; urgency=low
+
+  * New upstream bugfix release
+    - Should fix firefox/iceweasel 4.0 compatibility (Closes: #604029)
+  * debian/copyright -- updated copyright years
+
+ -- Yaroslav Halchenko <debian@onerussian.com>  Mon, 25 Apr 2011 09:41:06 -0400
+
+foxyproxy (2.22.2-1) experimental; urgency=low
+
+  * New upstream bugfix release
+  * Boosted policy to 3.9.1 (no changes)
+
+ -- Yaroslav Halchenko <debian@onerussian.com>  Sun, 12 Dec 2010 17:51:59 -0500
+
+foxyproxy (2.22.1-1) experimental; urgency=low
+
+  * New upstream 2.22.1 bugfix release
+  * Adding ant-optional as build-dependency (introduced in 2.22)
+
+ -- Yaroslav Halchenko <debian@onerussian.com>  Mon, 30 Aug 2010 21:43:52 -0400
+
+foxyproxy (2.22-1) UNRELEASED; urgency=low
+
+  * New upstream 2.22
+
+ -- Yaroslav Halchenko <debian@onerussian.com>  Thu, 26 Aug 2010 23:35:59 -0400
+
+foxyproxy (2.21-1) unstable; urgency=low
+
+  * New upstream release (thanks Eric for the buzz).
+
+ -- Yaroslav Halchenko <debian@onerussian.com>  Sun, 06 Jun 2010 20:59:30 -0400
+
+foxyproxy (2.19.1-1) unstable; urgency=low
+
+  * New upstream release with a security fix on top of 2.19.
+
+ -- Yaroslav Halchenko <debian@onerussian.com>  Mon, 22 Feb 2010 08:34:53 -0500
+
+foxyproxy (2.18.1-1) unstable; urgency=low
+
+  * debian/copyright: copyright/licenses for borrowed icons + year update
+  * debian/control: Standards version boosted to 3.8.4 -- no changes.
+
+ -- Yaroslav Halchenko <debian@onerussian.com>  Tue, 02 Feb 2010 19:52:52 -0500
+
+foxyproxy (2.16.1-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Yaroslav Halchenko <debian@onerussian.com>  Mon, 11 Jan 2010 21:45:00 -0500
+
+foxyproxy (2.14+svn453-1) unstable; urgency=low
+
+  * New upstream release 2.14 with additional commit to boost compatibility
+    version with firefox (closes: #485859)
+  * Policy version boosted to 3.8.3 (no changes)
+
+ -- Yaroslav Halchenko <debian@onerussian.com>  Thu, 05 Nov 2009 10:37:35 -0500
+
+foxyproxy (2.13-1) unstable; urgency=low
+
+  * New upstream release (closes: #508836, #485859).
+    It is possible that this release also fixes
+    #518288, but testing is needed.
+  * Debian packaging changes:
+    - Updated debian/watch to point to a new location of SVN
+    - Policy version boosted to 3.8.2 (no changes)
+    - Added Vcs- fields pointing to git repository
+    - Addditional Build-Depends on unzip. Ant moved into Build-Depends
+      since now used in clean action
+    - Debhelper compatibility boosted to 5
+
+ -- Yaroslav Halchenko <debian@onerussian.com>  Mon, 20 Jul 2009 12:05:09 -0400
+
+foxyproxy (2.7.5~dfsg.1-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Yaroslav Halchenko <debian@onerussian.com>  Sun, 15 Jun 2008 22:00:50 -0400
+
+foxyproxy (2.7.4~dfsg.1-3) unstable; urgency=low
+
+  * Made version checking Iceweasel 3.0 friendly (Closes: #485859)
+
+ -- Yaroslav Halchenko <debian@onerussian.com>  Thu, 12 Jun 2008 10:19:08 -0400
+
+foxyproxy (2.7.4~dfsg.1-2) unstable; urgency=low
+
+  * Actually installing upstream changelog. Now with original naming
+    releasenotes.html.
+
+ -- Yaroslav Halchenko <debian@onerussian.com>  Mon, 05 May 2008 13:46:51 -0400
+
+foxyproxy (2.7.4~dfsg.1-1) unstable; urgency=low
+
+  * New upstream release
+  * Added automatical fetching of release notes into changelog file
+
+ -- Yaroslav Halchenko <debian@onerussian.com>  Mon, 05 May 2008 12:10:30 -0400
+
+foxyproxy (2.7.3~dfsg.1-1) UNRELEASED; urgency=low
+
+  * (NOT RELEASED YET) New upstream release
+
+ -- Yaroslav Halchenko <debian@onerussian.com>  Sun, 04 May 2008 22:18:37 -0400
+
+foxyproxy (2.7.2~dfsg.1-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Yaroslav Halchenko <debian@onerussian.com>  Tue, 01 Apr 2008 16:44:18 -0400
+
+foxyproxy (2.7.1~dfsg.1-2) unstable; urgency=low
+
+  * Lintian-happy update:
+    - ant is in Build-Depends-Indep
+    - policy version boosted to 3.7.3 (no changes)
+    - dpatch system discarded since not used
+    - Homepage is a field now in debian/control
+  * Adjusted copyright years within debian/copyright
+
+ -- Yaroslav Halchenko <debian@onerussian.com>  Fri, 21 Mar 2008 13:16:37 -0400
+
+foxyproxy (2.7.1~dfsg.1-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Yaroslav Halchenko <debian@onerussian.com>  Mon, 03 Mar 2008 19:52:10 -0500
+
+foxyproxy (2.7~dfsg.1-1) UNRELEASED; urgency=low
+
+  * New upstream release
+
+ -- Yaroslav Halchenko <debian@onerussian.com>  Mon, 03 Mar 2008 19:14:27 -0500
+
+foxyproxy (2.6.2~dfsg.1-1) unstable; urgency=low
+
+  * New upstream release:
+    - Foxyproxy is disabled by default. This should resolve the issue reported in
+	  #455206
+
+ -- Yaroslav Halchenko <debian@onerussian.com>  Wed, 26 Dec 2007 10:10:12 -0500
+
+foxyproxy (2.5.3~dfsg.1-1) unstable; urgency=low
+
+  * Initial release. (Closes: #402650)
+
+ -- Yaroslav Halchenko <debian@onerussian.com>  Sat, 14 Jul 2007 13:13:19 -0400
+

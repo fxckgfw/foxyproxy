@@ -1,0 +1,69 @@
+This package was Debianized by Yaroslav Halchenko
+<debian@onerussian.com> on  Mon, 11 Dec 2006 21:48:12 -0500
+
+Originally .xpi file downloaded from
+ https://addons.mozilla.org/addon.php?id=2464 and is wrapped inside
+.tar.gz using dh_wraporig script, which allows automatic 'upgrades'.
+Since .xpi sources had all formatting removed, they could not be
+considered "original source" in terms of GPLv2 license.
+In july 2007 Eric made sources available from public SVN repository,
+and since then foxyproxy became available in Debian.
+See README.Debian-source for more information about sources of
+foxyproxy available within Debian.
+
+Upstream author: Eric H. Jung <eric.jung@yahoo.com>
+
+Copyright (C) 2006-2011 Eric H. Jung and LeahScape, Inc.
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301,
+USA.
+
+On Debian systems, the complete text of the GNU General Public
+License, version 2, can be found in /usr/share/common-licenses/GPL-2.
+
+------------------------------------------------------------------------
+
+/usr/share/mozilla-extensions/foxyproxy/chrome/content/images :
+
+Following icons
+
+  arrow_refresh.png delete.png disk.png lightning_add.png monitor.png
+  monitor_add.png monitor_delete.png monitor_edit.png monitor_go.png
+  monitor_link.png page.png page_add.png page_delete.png page_edit.png
+  page_white_copy.png tab_go.png text_align_justify.png tick.png
+  wand.png world.png
+
+are from the famfamfam Silk icon set version 1.3.  They are
+released under the Creative Commons Attribution 3.0 License per
+http://www.famfamfam.com/lab/icons/silk and are copyrighted by Mark
+James.
+
+Following icons
+
+  emblem-favorite.png internet-web-browser.png help-browser.png
+  go-down.png edit-clear.png go-up.png dialog-information.png
+  preferences-system.png
+
+are from http://tango.freedesktop.org/Tango_Desktop_Project who
+released them into "public domain".
+
+The json-icon.png is licensed under the Creative Commons Attribution 3.0
+License per 
+http://www.iconarchive.com/show/fugue-icons-by-yusuke-kamiyamane/json-icon.html
+
+------------------------------------------------------------------------
+
+The Debian packaging is (C) 2006-2011 Yaroslav Halchenko
+<debian@onerussian.com> and is licensed under the GPL, see above.

@@ -18,6 +18,7 @@
 <!ENTITY foxyproxy.proxy.wizard.description "Dieser Dialog hilft Ihnen, Ihren abonnierten Proxy automatisch zu konfigurieren. Geben Sie bitte dazu unten Ihre Abonnement-ID an.">
 <!ENTITY foxyproxy.proxy.wizard.subscriptionID.label "Abonnement-ID">
 <!ENTITY foxyproxy.proxy.wizard.subscriptionID.tooltip "Geben Sie Ihre Abonnement-ID ein">
+<!ENTITY foxyproxy.proxy.wizard.loading.label "Laden der Proxy-Details...">
 <!ENTITY foxyproxy.pattern.label "Muster">
 <!ENTITY foxyproxy.urlpatterns.label "URL-Muster">
 <!ENTITY foxyproxy.urlpatterns.accesskey "M">

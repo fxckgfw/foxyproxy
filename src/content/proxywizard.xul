@@ -28,7 +28,8 @@
         tooltiptext="&foxyproxy.proxy.wizard.subscriptionID.tooltip;"/>
       <textbox id="subscriptionID" flex="1"/> 
       <separator class="thin"/>
-      <label value="Loading..." collapsed="true" id="loadHint"/>
+      <label value="&foxyproxy.proxy.wizard.loading.label;" collapsed="true"
+        id="loadHint"/>
     </vbox>
   </vbox>
 </dialog>

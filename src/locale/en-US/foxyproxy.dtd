@@ -18,6 +18,7 @@
 <!ENTITY foxyproxy.proxy.wizard.description "This wizard helps you to set up your subscribed proxy automatically. In order to do so please enter your subscription ID below.">
 <!ENTITY foxyproxy.proxy.wizard.subscriptionID.label "Subscription ID">
 <!ENTITY foxyproxy.proxy.wizard.subscriptionID.tooltip "Enter your proxy subscription ID">
+<!ENTITY foxyproxy.proxy.wizard.loading.label "Retrieving proxy details...">
 <!ENTITY foxyproxy.pattern.label "Pattern">
 <!ENTITY foxyproxy.urlpatterns.label "URL Patterns">
 <!ENTITY foxyproxy.urlpatterns.accesskey "P">

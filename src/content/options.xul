@@ -36,6 +36,8 @@
               tooltiptext="&foxyproxy.addnewproxy.tooltip;" />
             <!-- tooltiptext is necessary for tooltip, dunno why -->
             <menuseparator />
+            <menuitem command="proxyWizardCmd"
+              tooltiptext="&foxyproxy.proxy.wizard.tooltip;" />
             <menuitem command="torWizardCmd"
               tooltiptext="&foxyproxy.tor.tooltip;" />
             <!-- tooltiptext is necessary for tooltip, dunno why -->
@@ -972,6 +974,7 @@
       <menuitem id="moveDownProxyTree" class="menuitem-iconic"
         command="moveDownCmd" label="&foxyproxy.movedown.label;" />
       <menuseparator />
+      <menuitem command="proxyWizardCmd" />
       <menuitem command="torWizardCmd" />
       <menuseparator />
       <menuitem command="importSettingsCmd"/>
@@ -986,6 +989,7 @@
       <menuitem id="createMainContext" class="menuitem-iconic"
         command="createProxyCmd" />
       <menuseparator />
+      <menuitem command="proxyWizardCmd" /> 
       <menuitem command="torWizardCmd" />
       <menuseparator />
       <menuitem id="helpMainContext" class="menuitem-iconic"
@@ -1147,38 +1151,36 @@
   <command id="importSettingsCmd"
     label="&foxyproxy.importsettings.label2;"
     accesskey="&foxyproxy.importsettings.accesskey;"
-    tooltiptext="&foxyproxy.importsettings.tooltip;"
     oncommand="importSettings();" />
 
   <command id="exportSettingsCmd"
     label="&foxyproxy.exportsettings.label2;"
     accesskey="&foxyproxy.exportsettings.accesskey;"
-    tooltiptext="&foxyproxy.exportsettings.tooltip;"
     oncommand="exportSettings();" />
 
-  <command id="importListCmd" label="&foxyproxy.importlist.label;"
+  <!--<command id="importListCmd" label="&foxyproxy.importlist.label;"
     accesskey="&foxyproxy.importlist.accesskey;"
     tooltiptext="&foxyproxy.importlist.tooltip;"
-    oncommand="importProxyList();" />
+    oncommand="importProxyList();" />-->
 
   <command id="aboutCmd" label="&foxyproxy.about.label;"
     accesskey="&foxyproxy.about.accesskey;"
-    tooltiptext="&foxyproxy.about.tooltip;"
     oncommand="window.openDialog('chrome://foxyproxy/content/about.xul', '', 'chrome, dialog, resizable=no, modal, centerscreen', {inn:{overlay:overlay}}).focus();" />
 
   <command id="onlineCmd" label="&foxyproxy.online.label;"
     accesskey="&foxyproxy.online.accesskey;"
-    tooltiptext="&foxyproxy.online.tooltip;"
     oncommand="fpc.openAndReuseOneTabPerURL('http://getfoxyproxy.org/');" />
 
   <command id="helpCmd" label="&foxyproxy.help.label;"
     accesskey="&foxyproxy.help.accesskey;"
-    tooltiptext="&foxyproxy.help.tooltip;"
     oncommand="fpc.openAndReuseOneTabPerURL('http://getfoxyproxy.org/' + (foxyproxy.isFoxyProxySimple() ? 'basic/' : '') + 'help.html');" />
+
+  <command id="proxyWizardCmd" label="&foxyproxy.proxy.wizard.label;"
+    accesskey="&foxyproxy.proxy.wizard.accesskey;"
+    oncommand="proxyWizard();" />
 
   <command id="torWizardCmd" label="&foxyproxy.tor.label;"
     accesskey="&foxyproxy.tor.accesskey;"
-    tooltiptext="&foxyproxy.tor.tooltip;"
     oncommand="overlay.torWizard();" />
 
   <command id="autoAddPatternCmd" label="&foxyproxy.define.label;"

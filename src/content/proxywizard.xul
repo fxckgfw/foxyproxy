@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  FoxyProxy
+  Copyright (C) 2006-#%#% Eric H. Jung and FoxyProxy, Inc.
+  http://getfoxyproxy.org/
+  eric.jung@yahoo.com
+  
+  This source code is released under the GPL license,
+  available in the LICENSE file at the root of this installation
+  and also online at http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+-->
+<?xml-stylesheet href="foxyproxy.css" type="text/css"?>
+<!DOCTYPE overlay SYSTEM "chrome://foxyproxy/locale/foxyproxy.dtd">
+
+<dialog id="proxywizard" buttons="accept, cancel" ondialogaccept="onOK();"
+  ondialogcancel="return true;" windowtype="foxyproxy"
+  title="&foxyproxy.proxy.wizard.label; - &foxyproxy.standard.label;"
+  xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+  persist="screenX screenY">
+
+  <script type="application/x-javascript;version=1.7" src="proxywizard.js" />
+  <vbox>
+    <description width="600">&foxyproxy.proxy.wizard.description;</description>
+    <separator class="thin"/>
+    <vbox>
+      <label value="&foxyproxy.proxy.wizard.subscriptionID.label;"
+        control="subscriptionID"
+        tooltiptext="&foxyproxy.proxy.wizard.subscriptionID.tooltip;"/>
+      <textbox id="subscriptionID" flex="1"/> 
+      <separator class="thin"/>
+      <label value="Loading..." collapsed="true" id="loadHint"/>
+    </vbox>
+  </vbox>
+</dialog>

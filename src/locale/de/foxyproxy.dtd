@@ -12,6 +12,12 @@
 <!ENTITY foxyproxy.proxy.notes.label "Proxy-Beschreibung">
 <!ENTITY foxyproxy.proxy.notes.accesskey "B">
 <!ENTITY foxyproxy.proxy.notes.tooltip "Proxy-Beschreibung">
+<!ENTITY foxyproxy.proxy.wizard.label "Proxy Wizard">
+<!ENTITY foxyproxy.proxy.wizard.accesskey "P">
+<!ENTITY foxyproxy.proxy.wizard.tooltip "Erstelle einen Proxy von einem Proxy-Abonnement">
+<!ENTITY foxyproxy.proxy.wizard.description "Dieser Dialog hilft Ihnen, Ihren abonnierten Proxy automatisch zu konfigurieren. Geben Sie bitte dazu unten Ihre Abonnement-ID an.">
+<!ENTITY foxyproxy.proxy.wizard.subscriptionID.label "Abonnement-ID">
+<!ENTITY foxyproxy.proxy.wizard.subscriptionID.tooltip "Geben Sie Ihre Abonnement-ID ein">
 <!ENTITY foxyproxy.pattern.label "Muster">
 <!ENTITY foxyproxy.urlpatterns.label "URL-Muster">
 <!ENTITY foxyproxy.urlpatterns.accesskey "M">

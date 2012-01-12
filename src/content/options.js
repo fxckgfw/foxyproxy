@@ -698,8 +698,8 @@ function exportSettings() {
   }
 }
 
-function importProxyList() {
-}
+// function importProxyList() {
+// }
 
 function onProxyTreeSelected() {	
 	setButtons();
@@ -879,4 +879,9 @@ function createPatternsIcon() {
     patternsIcon[i].setAttribute("style", "fill: " + ("#" + color)
       + ";fill-opacity:1;fill-rule:nonzero;stroke:none");
   }
+}
+
+function proxyWizard() {
+  window.openDialog('chrome://foxyproxy/content/proxywizard.xul', '',
+    'modal, centerscreen').focus();
 }

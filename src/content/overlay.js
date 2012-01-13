@@ -186,6 +186,11 @@ end-foxyproxy-simple !*/
           false);
       }
     } catch(e) {}
+    // We are registering an event listener for our custom event fired if a
+    // user bought a proxy subscription. FoxyProxy should automatically
+    // configure the new proxy according to the values transmitted.
+    document.addEventListener("proxysubscription",
+      foxyproxy.createSubscribedProxy, false, true);
   },
 
   parseHTML : function(doc, html) {
@@ -194,7 +199,7 @@ end-foxyproxy-simple !*/
       parseFragment(html, false, null, doc.documentElement); 
   },
 
-  errorPageCheck : function(e) {
+  errorPageCheck : function() {
     var contDoc = window.content.document;
     if (contDoc.documentURI.indexOf("about:neterror?e=proxyConnectFailure") ===
       0) {
@@ -216,6 +221,23 @@ end-foxyproxy-simple !*/
         "<b>", "</b>"]) + "</li>"; 
       contDoc.getElementById("errorLongDesc").firstChild.nextSibling.
         appendChild(foxyproxy.parseHTML(contDoc, liText));
+    }
+  },
+
+  createSubscribedProxy: function(e) {
+    if (e.target.ownerDocument.location ===
+      "https://getfoxyproxy.org/proxyservice/") {
+      let proxyURI;
+      let proxyDetails = e.target.getAttribute("proxySubscription");
+      try {
+        proxyURI = foxyproxy.fpc._ios.newURI(proxyDetails, null, null);
+      } catch(e) {
+        // We could not generate a URI. Thus, parsing of the proxy details
+        // will fail...
+        foxyproxy.alert(null, foxyproxy.fp.getMessage("proxywiz.parse.failure"));
+        return;
+      }
+      foxyproxy.fpc.processProxyURI(proxyURI);
     }
   },
 
@@ -1164,6 +1186,8 @@ end-foxyproxy-simple !*/
 
 window.addEventListener("load", function(e) { foxyproxy.onLoad(e); }, false);
 window.addEventListener("unload", function(e) {
+  document.removeEventListener("proxysubscription",
+      foxyproxy.createSubscribedProxy, false, true); 
   document.getElementById("appcontent") &&
     document.getElementById("appcontent").removeEventListener("load", foxyproxy.
     onPageLoad, true);

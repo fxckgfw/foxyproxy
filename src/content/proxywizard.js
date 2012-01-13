@@ -14,15 +14,16 @@ function onOK() {
       sizeToContent();
       if (req.status === 200) {
         // We got something back. Let's try to create a proxy-URL and parse it.
-        let ios = Components.classes["@mozilla.org/network/io-service;1"]
-                .getService(Components.interfaces.nsIIOService);
-        try {
-          proxyURI = ios.newURI(req.responseText, null, null);
-        } catch(e) {
-          fp.alert(null, fp.getMessage("proxywiz.parse.failure"));
-        }
         let fpc = Components.classes["@leahscape.org/foxyproxy/common;1"].
           getService().wrappedJSObject;
+        try {
+          proxyURI = fpc._ios.newURI(req.responseText, null, null);
+        } catch(e) {
+          // We could not generate a URI. Thus, parsing of the proxy details
+          // will fail...
+          fp.alert(null, fp.getMessage("proxywiz.parse.failure"));
+          return;
+        }
         fpc.processProxyURI(proxyURI);
       } else {
         fp.alert(null, fp.getMessage("proxywiz.load.failure"));     

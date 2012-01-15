@@ -328,11 +328,12 @@ Common.prototype = {
     uri = uri.substring(uri.indexOf(":") + 1, uri.length);
     // and, optionally, leading // as in proxy://
     if (uri.indexOf("//") == 0)
-      uri = uri.substring(2);    
+      uri = uri.substring(2);
     uri = decodeURI(uri);
     // e.g. proxy:ip=xx.xx.xx.xx&port=yyyyy
     // Parse query params into nameValuePairs array
-    var count = 0, nameValuePairs = [], queryParams = uri.split('&'), foundSomeInput;
+    var count = 0, nameValuePairs = [], queryParams = uri.split('&'),
+      foundSomeInput;
     for (var i in queryParams) {
       var pair = queryParams[i].split('=');
       if (pair.length == 2) {
@@ -341,15 +342,17 @@ Common.prototype = {
       }
     }
     if (!foundSomeInput) return;
-    var proxy = CC["@leahscape.org/foxyproxy/proxy;1"].createInstance().wrappedJSObject;
+    var proxy = CC["@leahscape.org/foxyproxy/proxy;1"].createInstance().
+      wrappedJSObject;
     proxy.fromAssociateArray(nameValuePairs);
     // We accept URIs like this:
     //   proxy:foxyProxyMode=disabled
     // with no other parameters. In cases like that, we must skip the
-    // create/update/delete proxy code otherwise we'll create an empty/useless proxy
-    // Note: |uri| has been stripped of its scheme at this point.
+    // create/update/delete proxy code otherwise we'll create an empty/useless
+    // proxy. Note: |uri| has been stripped of its scheme at this point.
     if (!(/^foxyProxyMode=[^&]*$/.test(uri))) {
-      // Are we adding a new proxy, or deleting or updating an existing one? Default is to updateOrAdd.
+      // Are we adding a new proxy, or deleting or updating an existing one?
+      // Default is to updateOrAdd.
       if (!nameValuePairs["action"]) { /* no action was specified */
           nameValuePairs["action"] = "updateOrAdd";
       }
@@ -386,31 +389,37 @@ Common.prototype = {
       fp.writeSettingsAsync(); // Save to disk
     }
     
-    // If foxyProxyMode was specified as "this", translate that to something that fp.setMode() understands.
-    // Can't set mode to "this" if you're deleting.
+    // If foxyProxyMode was specified as "this", translate that to something
+    // that fp.setMode() understands. Can't set mode to "this" if you're
+    // deleting.
     if (nameValuePairs["foxyProxyMode"] == "this") {
-      nameValuePairs["foxyProxyMode"] = 
-        nameValuePairs["action"] == "delete" || nameValuePairs["action"] == "deleteOne" || nameValuePairs["action"] == "deleteMultiple" ?
-        null :
-        proxy.id;
+      nameValuePairs["foxyProxyMode"] = nameValuePairs["action"] == "delete" ||
+        nameValuePairs["action"] == "deleteOne" ||
+        nameValuePairs["action"] == "deleteMultiple" ? null : proxy.id;
     }
-    // If a proxy name was specifed, get its ID and use that for new foxyproxy mode.
-    else if (nameValuePairs["foxyProxyMode"] != "patterns" && nameValuePairs["foxyProxyMode"] != "disabled" &&
-        nameValuePairs["foxyProxyMode"] != "random" && nameValuePairs["foxyProxyMode"] != "previous" && 
-        nameValuePairs["foxyProxyMode"] != "roundrobin" && !fp.proxies.getProxyById(nameValuePairs["foxyProxyMode"])) {
+    // If a proxy name was specifed, get its ID and use that for new foxyproxy
+    // mode.
+    else if (nameValuePairs["foxyProxyMode"] != "patterns" &&
+             nameValuePairs["foxyProxyMode"] != "disabled" &&
+             nameValuePairs["foxyProxyMode"] != "random" &&
+             nameValuePairs["foxyProxyMode"] != "previous" &&
+             nameValuePairs["foxyProxyMode"] != "roundrobin" &&
+             !fp.proxies.getProxyById(nameValuePairs["foxyProxyMode"])) {
       var proxy = fp.proxies.getProxyByName(nameValuePairs["foxyProxyMode"]);
       if (proxy)
         nameValuePairs["foxyProxyMode"] = proxy.id;
-    }     
-    
-    // Set mode last in case user is setting mode to the proxy we just configured.
-    // (In that case, setting mode earlier will result in the proxy not being found)
+    }
+
+    // Set mode last in case user is setting mode to the proxy we just
+    // configured. (In that case, setting mode earlier will result in the proxy
+    // not being found)
     if (nameValuePairs["foxyProxyMode"])
       fp.setMode(nameValuePairs["foxyProxyMode"], true);
     
     // User-feedback?
     if (nameValuePairs["confirmation"] == "popup") {
-      fp.notifier.alert(fp.getMessage("foxyproxy"), fp.getMessage("proxy.configured", [nameValuePairs["name"]]));
+      fp.notifier.alert(fp.getMessage("foxyproxy"),
+        fp.getMessage("proxy.configured", [nameValuePairs["name"]]));
       return;
     }
     else if (nameValuePairs["confirmation"]) {
@@ -420,7 +429,7 @@ Common.prototype = {
       }
       catch(e) {/* not a valid URL */ return; }
       this.openTab(nameValuePairs["confirmation"]);
-    }   
+    }
   },
   
   classDescription: "FoxyProxy Common Utils",

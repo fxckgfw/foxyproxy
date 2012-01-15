@@ -225,8 +225,10 @@ end-foxyproxy-simple !*/
   },
 
   createSubscribedProxy: function(e) {
-    if (e.target.ownerDocument.location ===
-      "https://getfoxyproxy.org/proxyservice/") {
+    let location = e.target.ownerDocument.location;
+    // We only accept data if it is coming from TLS secured getfoxyproxy.org.
+    if (location.protocol === "https:" && location.hostname ===
+        "getfoxyproxy.org") {
       let proxyURI;
       let proxyDetails = e.target.getAttribute("proxySubscription");
       try {
@@ -234,7 +236,8 @@ end-foxyproxy-simple !*/
       } catch(e) {
         // We could not generate a URI. Thus, parsing of the proxy details
         // will fail...
-        foxyproxy.alert(null, foxyproxy.fp.getMessage("proxywiz.parse.failure"));
+        foxyproxy.alert(null, foxyproxy.fp.
+          getMessage("proxywiz.parse.failure"));
         return;
       }
       foxyproxy.fpc.processProxyURI(proxyURI);

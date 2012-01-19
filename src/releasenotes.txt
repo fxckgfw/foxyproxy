@@ -1,4 +1,4 @@
 * fix for corner cases in the system proxy feature (fixes 
   http://forums.getfoxyproxy.org/viewtopic.php?f=4&t=548)
-* implemented fallback for Firefox without System Proxy Settings (e.g. FF < 3.5)
+* implemented fallback for missing system proxy settings (e.g. in FF < 3.5)
 * updated locales

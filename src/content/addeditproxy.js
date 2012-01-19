@@ -37,12 +37,12 @@ function onLoad() {
   }
 
   // System proxy settings are only implemented from Gecko 1.9.1 (FF 3.5)
-  // onwards. Thus, we disable this option in older versions and if a user came
-  // from a version supporting this we set the mode to direct to keep FoxyProxy
-  // working. Note: This does not affect our Thunderbird or Seamonkey support.
-  // TODO: Check Songbird compatibility of system proxy feature.
-  if (fpc.appInfo.ID === "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}" &&
-      fpc.vc.compare(fpc.appInfo.version, "3.5") < 0) {
+  // onwards and only for Windows, MacOS and Linux. Thus, we disable this
+  // option in older versions or on other OSes (like eComStation - OS/2). If a
+  // user came from a version/OS supporting this we set the mode to direct to
+  // keep FoxyProxy working. Checking the default proxy seems to be the best
+  // option as it is always and across platforms available.
+  if (!foxyproxy.proxies.list[foxyproxy.proxies.length - 1].sysProxyService) {
     if (proxy.mode === "system") {
       proxy.mode = "direct";
     }

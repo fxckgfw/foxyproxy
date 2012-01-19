@@ -71,7 +71,9 @@ function Proxy(fp) {
   this.wrappedJSObject = this;
   this.fp = fp || CC["@leahscape.org/foxyproxy/service;1"].getService().
     wrappedJSObject;
-  // Maybe the user deploys a version without system proxy feature...
+  // Maybe the user deploys an OS without Mozilla's system proxy feature
+  // being available (e.g. eComStation - OS/2 [sic!]) or uses an older Gecko
+  // version (< 1.9.1).
   try {
     this.sysProxyService = CC["@mozilla.org/system-proxy-settings;1"].
       getService(CI.nsISystemProxySettings);
@@ -102,7 +104,7 @@ function Proxy(fp) {
   // so that a PAC/WPAD file would get used then it would not work as
   // this.systemProxyPAC would still be null.
   this.systemProxyPAC = new AutoConf(this, this.fp);
-  this._mode = "manual"; // manual, auto, direct, random
+  this._mode = "manual"; // manual, auto, system, direct, random
   this._autoconfMode = "pac";
   this._enabled = true;
   this.selectedTabIndex = 1; /* default tab is the proxy details tab */

@@ -1,11 +1,13 @@
 /**
- * FoxyProxy Copyright (C) 2006-#%#% Eric H. Jung and FoxyProxy, Inc.
- * http://getfoxyproxy.org/ eric.jung@yahoo.com
- * 
- * This source code is released under the GPL license, available in the LICENSE
- * file at the root of this installation and also online at
- * http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
- */
+  FoxyProxy
+  Copyright (C) 2006-#%#% Eric H. Jung and FoxyProxy, Inc.
+  http://getfoxyproxy.org/
+  eric.jung@yahoo.com
+
+  This source code is released under the GPL license, available in the LICENSE
+  file at the root of this installation and also online at
+  http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+**/
 
 "use strict";
 
@@ -48,7 +50,7 @@ var patternSubscriptions = {
   // We save pattern subscriptions in this array which could only be loaded
   // partially after startup (or refresh) due to errors in the JSON. The idea
   // is to show the user a respective dialog (see: showPatternLoadFailures() in
-  // options.js) asking here to refresh the corrupted subscription immediately.
+  // options.js) asking her to refresh the corrupted subscription immediately.
   partialLoadFailure : [],
 
   init: function() {

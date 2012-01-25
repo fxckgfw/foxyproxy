@@ -542,8 +542,7 @@ var patternSubscriptions = {
     // declaration. But that does not matter for parsing the settings.
     Cc["@mozilla.org/xmlextras/xmlserializer;1"].
       createInstance(Ci.nsIDOMSerializer).serializeToStream(doc, foStream, "UTF-8");
-      // foStream.write(str, str.length);
-      foStream.close() 
+    foStream.close();
   },
 
   fromDOM: function(patElem) {

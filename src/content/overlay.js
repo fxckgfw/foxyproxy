@@ -189,7 +189,7 @@ end-foxyproxy-simple !*/
     // We are registering an event listener for our custom event fired if a
     // user bought a proxy subscription. FoxyProxy should automatically
     // configure the new proxy according to the values transmitted.
-    document.addEventListener("proxysubscription",
+    document.addEventListener("new",
       foxyproxy.createSubscribedProxy, false, true);
   },
 
@@ -230,7 +230,7 @@ end-foxyproxy-simple !*/
     if (location.protocol === "https:" && location.hostname ===
         "getfoxyproxy.org") {
       let proxyURI;
-      let proxyDetails = e.target.getAttribute("proxySubscription");
+      let proxyDetails = e.target.getAttribute("uri");
       try {
         proxyURI = foxyproxy.fpc._ios.newURI(proxyDetails, null, null);
       } catch(e) {
@@ -1189,7 +1189,7 @@ end-foxyproxy-simple !*/
 
 window.addEventListener("load", function(e) { foxyproxy.onLoad(e); }, false);
 window.addEventListener("unload", function(e) {
-  document.removeEventListener("proxysubscription",
+  document.removeEventListener("new",
       foxyproxy.createSubscribedProxy, false, true); 
   document.getElementById("appcontent") &&
     document.getElementById("appcontent").removeEventListener("load", foxyproxy.

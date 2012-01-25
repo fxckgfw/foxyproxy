@@ -12,8 +12,8 @@
 <?xml-stylesheet href="foxyproxy.css" type="text/css"?>
 <!DOCTYPE overlay SYSTEM "chrome://foxyproxy/locale/foxyproxy.dtd">
 
-<dialog id="proxywizard" buttons="accept, cancel" ondialogaccept="onOK();"
-  ondialogcancel="return true;" windowtype="foxyproxy"
+<dialog windowtype="foxyproxy" id="proxywizard" buttons="accept, cancel"
+  ondialogaccept="return onOK();" ondialogcancel="return true;"
   title="&foxyproxy.proxy.wizard.label; - &foxyproxy.standard.label;"
   xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
   persist="screenX screenY">

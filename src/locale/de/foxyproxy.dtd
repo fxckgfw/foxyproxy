@@ -491,7 +491,7 @@
 <!ENTITY foxyproxy.pattern.subscriptions.refreshNow.tooltip "Dieses Muster-Abonnement jetzt aktualisieren">
 <!ENTITY foxyproxy.pattern.subscriptions.refreshHelp1 "Geben Sie die Anzahl der Minuten an, nach der das Abonnement aktualisiert werden soll. Die Aktualisierung des Abonnements">
 <!ENTITY foxyproxy.pattern.subscriptions.refreshHelp2 "entfernt alle vorhandenen Muster">
-<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp3 "und fügt dann die unter der Abonnements-URL gefundenen ein. Lesen Sie mehr dazu">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp4 "und fügt dann die unter der Abonnements-URL gefundenen ein. Lesen Sie mehr dazu">
 <!ENTITY foxyproxy.pattern.subscriptions.zeroRefresh "(0, um nie zu aktualisieren)">
 <!ENTITY foxyproxy.pattern.subscriptions.format.tooltip "Format dieses Muster-Abonnements">
 <!ENTITY foxyproxy.pattern.subscriptions.formatHelp "Wählen Sie das Format aus, in dem das Abonnement geschrieben ist. Normalerweise wird das automatisch von FoxyProxy erkannt. Lesen Sie mehr dazu">

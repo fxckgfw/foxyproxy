@@ -1,4 +1,6 @@
-* fix for corner cases in the system proxy feature (fixes 
+* fix for corner cases in the system proxy feature (fixes
   http://forums.getfoxyproxy.org/viewtopic.php?f=4&t=548)
 * implemented fallback for missing system proxy settings (e.g. in FF < 3.5)
+* menulist is set always back to "Add New Subscription" after the last pattern
+  subscription got deleted
 * updated locales

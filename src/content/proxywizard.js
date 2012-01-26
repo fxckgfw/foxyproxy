@@ -42,6 +42,7 @@ function onOK() {
           } catch(e) {
             // We could not generate a URI. Thus, parsing of the proxy details
             // will fail...
+            fp.alert(null, fp.getMessage("proxywiz.parse.failure"));
           }
           fpc.processProxyURI(proxyURI);
         } else {

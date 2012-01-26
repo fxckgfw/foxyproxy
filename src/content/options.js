@@ -489,15 +489,18 @@ function deletePatternSubscriptions() {
     patternSubscriptions.subscriptionsList.splice(selIndex, 1);
     patternSubscriptions.writeSubscriptions();
     subscriptionsTree.view = patternSubscriptions.makeSubscriptionsTreeView(); 
-    // Deleting the subscription file if it is empty in order avoid errors
+    // Deleting the subscription file if it is empty in order to avoid errors
     // during startup.
     if (patternSubscriptions.subscriptionsList.length === 0) {
       dump("Deleting the subscriptions file...\n");
       patternSubscriptions.getSubscriptionsFile().remove(false);
-      // We need that here otherwise are all options in the context menu still
+      // We need that here otherwise all options in the context menu are still
       // selected even if no subscription exists anymore.
       document.getElementById("patsubtree-row-selected").
         setAttribute("disabled", true);
+      // The item on our action list is not automatically reset to "Add New
+      // Subscription". Thus, we do it "manually".
+      document.getElementById("actionList").selectedIndex = 0;
     } else {
       // Easy as we currently have seltype=single
       if (selIndex === subscriptionsTree.view.rowCount) {

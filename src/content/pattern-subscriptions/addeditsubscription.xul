@@ -24,8 +24,7 @@
 	ondialogextra2="onLastStatus();" 
 	xmlns:html="http://www.w3.org/1999/xhtml" 
         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-	persist="screenX screenY"
-	>
+	persist="screenX screenY">
 
   <script src="addeditsubscription.js" />
 
@@ -184,17 +183,18 @@
   <popupset>
     <menupopup id="refreshHelp">
       <vbox class="foxyproxy-border foxyproxy-tooltip foxyproxy-help">
-	<description>
-	  &foxyproxy.pattern.subscriptions.refreshHelp1; 
-	  <!--Maybe there is a better solution to get the bold text inlcuded-->
-	  <html:span style="font-weight: bold;">
-	    &foxyproxy.pattern.subscriptions.refreshHelp2;</html:span> 
-          &foxyproxy.pattern.subscriptions.refreshHelp3; 
-	  <html:a class="link"        
-	          onclick="contextHelp('refresh');">
-		  &foxyproxy.pactip5.label;</html:a>.
-	</description>
-      </vbox>  
+        <description>
+          &foxyproxy.pattern.subscriptions.refreshHelp1;
+          <!--Maybe there is a better solution to get the bold text included-->
+          <html:span style="font-weight: bold;">
+            &foxyproxy.pattern.subscriptions.refreshHelp2;
+          </html:span>
+          &foxyproxy.pattern.subscriptions.refreshHelp4;
+          <html:a class="link" onclick="contextHelp('refresh');">
+            &foxyproxy.pactip5.label;
+          </html:a>.
+        </description>
+      </vbox>
     </menupopup>
     <menupopup id="formatHelp">
       <vbox class="foxyproxy-border foxyproxy-tooltip foxyproxy-help">

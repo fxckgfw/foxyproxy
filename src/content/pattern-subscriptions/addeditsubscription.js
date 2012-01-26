@@ -89,7 +89,7 @@ function onLoad() {
       }
     } else {
       // As the user is adding a new subscription there is nothing to refresh
-      // yet. There is no last status either. Therefore, we disabling these
+      // yet. There is no last status either. Therefore, we are disabling these
       // buttons.
       document.getElementById("refreshButton").disabled = true;
       document.documentElement.getButton("extra2").disabled = true;

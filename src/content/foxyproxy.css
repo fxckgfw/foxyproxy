@@ -191,9 +191,8 @@ tab[id^="foxyproxy-"] /* selectall tabs whose id have the prefix "foxyproxy-" */
 
 /* end other stylings in addeditproxy.xul */
 
-/* begin addeditsubscription.xul CSS */
-#foxyproxySubscriptions {
-  height: 500px;
+/* begin addeditsubscription.xul (patterns) CSS */
+#foxyproxyPatternSubscriptions {
   width: 700px;
 }
 #addeditSubscriptionTitle, #lastStatusTitle {
@@ -215,7 +214,15 @@ tab[id^="foxyproxy-"] /* selectall tabs whose id have the prefix "foxyproxy-" */
   width: 20em;
 }
 
-/* end addeditsubscription.xul CSS */
+/* end addeditsubscription.xul (patterns) CSS */
+
+/* begin addeditsubscription.xul (proxies) CSS */
+
+#foxyproxyProxySubscriptions {
+  width: 700px;
+}
+
+/* end addeditsubcription.xul (proxies) CSS */
 
 .heading {text-decoration: underline; font-weight:bold;}
 

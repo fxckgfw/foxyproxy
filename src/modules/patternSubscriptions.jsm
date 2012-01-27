@@ -15,51 +15,38 @@ var Ci = Components.interfaces, Cu = Components.utils, Cc = Components.classes;
 
 var EXPORTED_SYMBOLS = ["patternSubscriptions"];
 
-var patternSubscriptions = {
- 
-  fp: null,
-
+function Subscriptions() {
   // See: http://stackoverflow.com/questions/475074/regex-to-parse-or-validate-base64-data
-  base64RegExp: /^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4})$/,
+  this.base64RegExp = /^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4})$/; 
+}
 
+Subscriptions.prototype = {
+  fp : null,
+  fpc : null,
+  base64RegExp : null,
   subscriptionsList : [],
-
-  // TODO: Where do we need the specific values? Wouldn't it not be enough to
-  // have just the properties in an array?
-  defaultMetaValues :  {
-    formatVersion : 1,
-    checksum : "",
-    algorithm : "",
-    url : "",
-    format : "FoxyProxy",
-    obfuscation : "none",
-    name : "",
-    notes : "",
-    enabled : true,
-    refresh : 60,
-    nextUpdate : 0,
-    timer : null
-  },
-
   subscriptionsTree : null,
 
   // We count here the amount of load failures during startup in order to
   // show a dialog with the proper amount in overlay.js
   failureOnStartup : 0,
 
-  // We save pattern subscriptions in this array which could only be loaded
-  // partially after startup (or refresh) due to errors in the JSON. The idea
-  // is to show the user a respective dialog (see: showPatternLoadFailures() in
-  // options.js) asking her to refresh the corrupted subscription immediately.
+  // We save subscriptions in this array which could only be loaded partially
+  // after startup (or refresh) due to errors in the JSON. The idea is to show
+  // the user a respective dialog (see: showPatternLoadFailures() in options.js)
+  // asking her to refresh the corrupted subscription immediately.
+  // (TODO: Change 'showPatternLoadFailures()' to something like
+  // 'showSubscriptionLoadFailures()'.
   partialLoadFailure : [],
 
   init: function() {
-    Cu.import("resource://foxyproxy/autoproxy.jsm", this);
-    this.autoproxy.init();
     this.fp = Cc["@leahscape.org/foxyproxy/service;1"].getService().
       wrappedJSObject;
     this.fpc = Cc["@leahscape.org/foxyproxy/common;1"].getService().
       wrappedJSObject; 
+    // TODO: Needs to be only in PatternSubscriptions()!
+    Cu.import("resource://foxyproxy/autoproxy.jsm", this);
+    this.autoproxy.init();
   },
 
   // TODO: Find a way to load the file efficiently using our XmlHTTPRequest
@@ -861,5 +848,56 @@ var patternSubscriptions = {
     };
     return ret;
   }
+}
+
+function PatternSubscriptions() {
+  /*this.init = function() {
+    dump("Importing autoproxy!\n");
+    Cu.import("resource://foxyproxy/autoproxy.jsm", this);
+    this.autoproxy.init(); 
+    dump("Just called it!\n"); 
+    dump(this.fp + "\n");
+  } */
+}
+
+PatternSubscriptions.prototype = new Subscriptions();
+
+// TODO: Where do we need the specific values? Wouldn't it not be enough to
+// have just the properties in an array?
+PatternSubscriptions.defaultMetaValues = {
+  formatVersion : 1,
+  checksum : "",
+  algorithm : "",
+  url : "",
+  format : "FoxyProxy",
+  obfuscation : "none",
+  name : "",
+  notes : "",
+  enabled : true,
+  refresh : 60,
+  nextUpdate : 0,
+  timer : null
+};
+
+var patternSubscriptions = new PatternSubscriptions();
+
+function ProxySubscription() {
 
 }
+
+ProxySubscription.prototype = new Subscriptions();
+
+/*var patternSubscriptionss = {
+ 
+  fp: null,
+
+  // See: http://stackoverflow.com/questions/475074/regex-to-parse-or-validate-base64-data
+  base64RegExp: /^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4})$/,
+
+  init: function() {
+    this.fp = Cc["@leahscape.org/foxyproxy/service;1"].getService().
+      wrappedJSObject;
+    this.fpc = Cc["@leahscape.org/foxyproxy/common;1"].getService().
+      wrappedJSObject; 
+  },
+}*/

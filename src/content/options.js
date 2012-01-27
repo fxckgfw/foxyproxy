@@ -9,25 +9,29 @@
   and also online at http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 **/
 
-var foxyproxy, proxyTree, subscriptionsTree, logTree, overlay, saveLogCmd, 
-  clearLogCmd, noURLsCmd, fpc, patternsIcon; 
+var foxyproxy, proxyTree, patternSubscriptionsTree, proxySubscriptionsTree,
+  logTree, overlay, saveLogCmd, clearLogCmd, noURLsCmd, fpc, patternsIcon;
 const CI = Components.interfaces, CC = Components.classes, CU = Components.utils;
 
 CU.import("resource://foxyproxy/patternSubscriptions.jsm");
 
 function onLoad() {
-  foxyproxy = CC["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;  
+  foxyproxy = CC["@leahscape.org/foxyproxy/service;1"].getService().
+    wrappedJSObject;
   fpc = CC["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject;
   document.getElementById("maxSize").value = foxyproxy.logg.maxSize;
   overlay = fpc.getMostRecentWindow().foxyproxy;
   proxyTree = document.getElementById("proxyTree");
-  subscriptionsTree = document.getElementById("subscriptionsTree");
+  patternSubscriptionsTree = document.
+    getElementById("patternSubscriptionsTree");
+  proxySubscriptionsTree = document.getElementById("proxySubscriptionsTree");
   logTree = document.getElementById("logTree");
   saveLogCmd = document.getElementById("saveLogCmd");
   clearLogCmd = document.getElementById("clearLogCmd");  
   noURLsCmd = document.getElementById("noURLsCmd");
   _initSettings();
-  var obs = CC["@mozilla.org/observer-service;1"].getService(CI.nsIObserverService);
+  var obs = CC["@mozilla.org/observer-service;1"].
+    getService(CI.nsIObserverService);
   obs.addObserver(observer,"foxyproxy-mode-change", false);
   obs.addObserver(observer,"foxyproxy-proxy-change", false);
   obs.addObserver(observer,"foxyproxy-tree-update", false);
@@ -57,7 +61,7 @@ var observer = {
         _updateView(e);
         break;
       case "foxyproxy-tree-update":
-        subscriptionsTree.view = patternSubscriptions.
+        patternSubscriptionsTree.view = patternSubscriptions.
           makeSubscriptionsTreeView();
         break;
      }
@@ -309,7 +313,8 @@ function _updateView(writeSettings, updateLogView) {
   }
   
   proxyTree.view = fpc.makeProxyTreeView(foxyproxy.proxies, document);
-  subscriptionsTree.view = patternSubscriptions.makeSubscriptionsTreeView();
+  patternSubscriptionsTree.view = patternSubscriptions.
+    makeSubscriptionsTreeView();
   
   if (writeSettings)
     foxyproxy.writeSettingsAsync();
@@ -379,7 +384,8 @@ function onMove(direction) {
 }
 
 function onSettings(isNew) {
-  let sel = proxyTree.currentIndex, selSub = subscriptionsTree.currentIndex,
+  let sel = proxyTree.currentIndex,
+    selSub = patternSubscriptionsTree.currentIndex,
     params = {inn:{proxy:isNew ? CC["@leahscape.org/foxyproxy/proxy;1"].
       createInstance().wrappedJSObject :
       foxyproxy.proxies.item(proxyTree.currentIndex)}, out:null};
@@ -397,7 +403,7 @@ function onSettings(isNew) {
     // just "Add New Pattern Subscription" if we have not selected a
     // subscription does not work properly.
     if (selSub > -1) {
-      subscriptionsTree.view.selection.select(selSub);
+      patternSubscriptionsTree.view.selection.select(selSub);
     }
   }
 }
@@ -411,13 +417,18 @@ function setButtons() {
   	(proxyTree.currentIndex+1 < foxyproxy.proxies.length && foxyproxy.proxies.item(proxyTree.currentIndex+1).lastresort));
 }
 
-function addPatternSubscription() {
+function addSubscription(type) {
   let params = {
         inn : null,
         out : null
       };	
+  if (type === "pattern") {
   window.openDialog('chrome://foxyproxy/content/pattern-subscriptions/addeditsubscription.xul', 
-    '', 'modal, resizable=yes', params).focus(); 
+    '', 'modal, resizable=yes', params).focus();
+  } else {
+    window.openDialog('chrome://foxyproxy/content/proxy-subscriptions/addeditsubscription.xul',
+    '', 'modal, resizable=yes', params).focus();
+  }
   if (params.out) {
     patternSubscriptions.addSubscription(params.out.subscription, 
       params.out.userValues); 
@@ -427,48 +438,52 @@ function addPatternSubscription() {
     if (proxyList.length !== 0) {
       patternSubscriptions.addPatterns(null, proxyList);
     }
-    subscriptionsTree.view = patternSubscriptions.makeSubscriptionsTreeView();
+    patternSubscriptionsTree.view = patternSubscriptions.
+      makeSubscriptionsTreeView();
   } 
 }
 
 // We need this extra step here. Otherwise the user may click on the empty tree
-// and the "edit-version" of the addeditsubscriptions.xul (Last Status and
-// Refresh not being disabled) would be opened.
-function onDblClickSubscriptionsTree() {
-  if (subscriptionsTree.currentIndex > -1) {
-    editPatternSubscription();
+// and the "edit-version" of the subscription dialog (Last Status and Refresh
+// not being disabled) would be opened.
+function onDblClickSubscriptionsTree(type) {
+  if (type === "pattern" && patternSubscriptionsTree.currentIndex > -1) {
+    editSubscription("pattern");
+  } else if (type === "proxy" && proxySubscriptionsTree.currentIndex > -1 ) {
+    editSubscription("proxy");
   }
 }
 
-function editPatternSubscription() {
+function editSubscription(type) {
   let selectedSubscription = patternSubscriptions.
-    subscriptionsList[subscriptionsTree.currentIndex];
+    subscriptionsList[patternSubscriptionsTree.currentIndex];
   let params = {
         inn : {
           subscription : selectedSubscription,
-          index : subscriptionsTree.currentIndex
+          index : patternSubscriptionsTree.currentIndex
         }
       };
   window.openDialog('chrome://foxyproxy/content/pattern-subscriptions/addeditsubscription.xul', 
     '', 'modal, resizable=yes', params).focus(); 
   if (params.out) {
     patternSubscriptions.editSubscription(selectedSubscription, params.
-      out.userValues, subscriptionsTree.currentIndex);
+      out.userValues, patternSubscriptionsTree.currentIndex);
     // If new proxies were added we should add the patterns to them as
     // well but only to them!
     let proxyList = params.out.proxies; 
     if (proxyList.length !== 0) {
-      patternSubscriptions.addPatterns(subscriptionsTree.currentIndex,
+      patternSubscriptions.addPatterns(patternSubscriptionsTree.currentIndex,
         proxyList);
     } 
-    subscriptionsTree.view = patternSubscriptions.makeSubscriptionsTreeView(); 
+    patternSubscriptionsTree.view = patternSubscriptions.
+      makeSubscriptionsTreeView();
   }
 }
 
-function deletePatternSubscriptions() {
+function deleteSubscriptions(type) {
   // We save the current index to select the proper row after the
   // subscription got deleted.
-  let selIndex = subscriptionsTree.currentIndex; 
+  let selIndex = patternSubscriptionsTree.currentIndex; 
   // Currently, we have seltype=single that's why "selectedSubscription" is
   // in singular but it is planned to allow the user to delete more than one
   // subscription at once. That's why "deletePatternSubscriptions" is in 
@@ -488,7 +503,8 @@ function deletePatternSubscriptions() {
     }
     patternSubscriptions.subscriptionsList.splice(selIndex, 1);
     patternSubscriptions.writeSubscriptions();
-    subscriptionsTree.view = patternSubscriptions.makeSubscriptionsTreeView(); 
+    patternSubscriptionsTree.view = patternSubscriptions.
+      makeSubscriptionsTreeView(); 
     // Deleting the subscription file if it is empty in order to avoid errors
     // during startup.
     if (patternSubscriptions.subscriptionsList.length === 0) {
@@ -496,30 +512,31 @@ function deletePatternSubscriptions() {
       patternSubscriptions.getSubscriptionsFile().remove(false);
       // We need that here otherwise all options in the context menu are still
       // selected even if no subscription exists anymore.
-      document.getElementById("patsubtree-row-selected").
+      document.getElementById(type + "subtree-row-selected").
         setAttribute("disabled", true);
       // The item on our action list is not automatically reset to "Add New
       // Subscription". Thus, we do it "manually".
-      document.getElementById("actionList").selectedIndex = 0;
+      document.getElementById(type + "ActionList").selectedIndex = 0;
     } else {
       // Easy as we currently have seltype=single
-      if (selIndex === subscriptionsTree.view.rowCount) {
+      if (selIndex === patternSubscriptionsTree.view.rowCount) {
         selIndex = selIndex - 1;
       }
-      subscriptionsTree.view.selection.select(selIndex);  
+      patternSubscriptionsTree.view.selection.select(selIndex);  
     }
   }
 }
 
-function refreshPatternSubscriptions() {
+function refreshSubscriptions(type) {
   patternSubscriptions.refreshSubscription(patternSubscriptions.
-    subscriptionsList[subscriptionsTree.currentIndex], true);
-  subscriptionsTree.view = patternSubscriptions.makeSubscriptionsTreeView();
+    subscriptionsList[patternSubscriptionsTree.currentIndex], true);
+  patternSubscriptionsTree.view = patternSubscriptions.
+    makeSubscriptionsTreeView();
 }
 
-function viewPatternSubscriptions() {
+function viewSubscriptions(type) {
   let selectedSubscription = patternSubscriptions.
-    subscriptionsList[subscriptionsTree.currentIndex];
+    subscriptionsList[patternSubscriptionsTree.currentIndex];
   let params = {
         inn : {
           patterns : selectedSubscription.patterns
@@ -529,29 +546,34 @@ function viewPatternSubscriptions() {
     '', 'modal, resizable=yes', params).focus();
 }
 
-function onSubscriptionsAction() {
+function onSubscriptionsAction(type) {
   try {
-    switch (document.getElementById("actionList").selectedIndex) {
+    switch (document.getElementById(type + "ActionList").selectedIndex) {
       case 0:  
-        addPatternSubscription();
+        addSubscription(type);
         break;
       case 1: 
-        editPatternSubscription();
+        editSubscription(type);
         break;
       case 2:
-        deletePatternSubscriptions();
+        deleteSubscriptions(type);
         break;
       case 3:
-        refreshPatternSubscriptions();
+        refreshSubscriptions(type);
         break;  
       case 4:
-        viewPatternSubscriptions();
+        viewSubscriptions(type);
         break;
     } 
   } catch (e) {
     dump("There went something wrong in the Treeselection: " + e);
 
   }
+}
+
+function openSubscriptionsURL(type) {
+  fpc.openAndReuseOneTabPerURL("http://getfoxyproxy.org/" + type + 
+    "subscriptions/share.html");
 }
 
 function onMaxSize() {
@@ -708,10 +730,15 @@ function onProxyTreeSelected() {
 	setButtons();
 }
 
-function onPatSubTreeSelected() {
-  let selLength = _getSelectedIndices(subscriptionsTree).length; 
-  document.getElementById("patsubtree-row-selected").setAttribute("disabled", 
-    selLength === 0);
+function onSubTreeSelected(type) {
+  let selLength;
+  if (type === "pattern") {
+    selLength = _getSelectedIndices(patternSubscriptionsTree).length; 
+  } else {
+    setLength = _getSelectedIndices(proxySubscriptionsTree).length;
+  }
+  document.getElementById(type + "subtree-row-selected").
+    setAttribute("disabled", selLength === 0);
 }
 
 function updateLogButtons() {

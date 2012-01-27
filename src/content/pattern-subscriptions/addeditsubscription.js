@@ -40,13 +40,15 @@ var helperProxies = [];
 
 Cu.import("resource://foxyproxy/patternSubscriptions.jsm");
 
-function onLoad() {
+function onLoad(type) {
   try {
     var metadata;
     var proxyArray;
     var formatList = document.getElementById("subscriptionFormat");
     var obfuscationList = document.getElementById("subscriptionObfuscation");
-    proxyTree = document.getElementById("subscriptionProxyTree"); 
+    if (type === "pattern") {
+      proxyTree = document.getElementById("subscriptionProxyTree"); 
+    }
     if (window.arguments[0].inn !== null) {
       metadata = window.arguments[0].inn.subscription.metadata;
       document.getElementById("subscriptionEnabled").checked = metadata.enabled;
@@ -99,7 +101,7 @@ function onLoad() {
   }
 }
 
-function onOK() {
+function onOK(type) {
   try {
     var userValues = {};
     userValues.proxies = [];
@@ -110,24 +112,26 @@ function onOK() {
     var url = document.getElementById("subscriptionUrl").value;
     // ToDo: Do we want to check whether it is really a URL here?
     if (url === null || url === "") {
-      fp.alert(this, fp.getMessage("patternsubscription.invalid.url")); 
+      fp.alert(this, fp.getMessage(type + "subscription.invalid.url")); 
       return false;
     }
     userValues.enabled = document.getElementById("subscriptionEnabled").checked;
-    userValues.name = document.getElementById("subscriptionName").value;  
-    userValues.notes = document.getElementById("subscriptionNotes").value; 
+    userValues.name = document.getElementById("subscriptionName").value;
+    userValues.notes = document.getElementById("subscriptionNotes").value;
     userValues.url = url;
-    for (var i = 0; i < proxies.list.length; i++) {
-      // Let's check first whether the user has added the same proxy more than
-      // once to the subscription. We do not allow that.
-      for (var j = i + 1; j < proxies.list.length; j++) {
-        if (proxies.list[i].id === proxies.list[j].id) {
-          fp.alert(null, fp.getMessage("patternsubscription.warning.dupProxy", 
-            [proxies.list[i].name]));
-          return false;
-	}
+    if (type === "pattern") {
+      for (var i = 0; i < proxies.list.length; i++) {
+        // Let's check first whether the user has added the same proxy more than
+        // once to the subscription. We do not allow that.
+        for (var j = i + 1; j < proxies.list.length; j++) {
+          if (proxies.list[i].id === proxies.list[j].id) {
+            fp.alert(null, fp.getMessage("patternsubscription.warning.dupProxy",
+              [proxies.list[i].name]));
+            return false;
+	  }
+        }
       }
-      // Creating the array of proxy id's for saving to disk and rebuilding 
+      // Creating the array of proxy id's for saving to disk and rebuilding
       // the proxy list on startup.
       userValues.proxies.push(proxies.item(i).id);
     }
@@ -269,21 +273,23 @@ function removeProxy(e) {
   }
 }
 
-function contextHelp(type) {
+function contextHelp(type, subscription) {
   switch (type) {
     case "format":
-      fpc.openAndReuseOneTabPerURL('http://getfoxyproxy.org/patternsubscriptions/help.html#format');
+      fpc.openAndReuseOneTabPerURL('http://getfoxyproxy.org/' + subscription +
+        'subscriptions/help.html#format');
       break;
     case "obfuscation":
-      fpc.openAndReuseOneTabPerURL('http://getfoxyproxy.org/patternsubscriptions/help.html#obfuscation'); 
+      fpc.openAndReuseOneTabPerURL('http://getfoxyproxy.org/' + subscription + 'subscriptions/help.html#obfuscation');
       break;
     case "refresh":
-      fpc.openAndReuseOneTabPerURL('http://getfoxyproxy.org/patternsubscriptions/help.html#refresh-rate');
+      fpc.openAndReuseOneTabPerURL('http://getfoxyproxy.org/' + subscription + 'subscriptions/help.html#refresh-rate');
       break;
     default:
       break;
   }
-  document.getElementById(type + "Help").hidePopup(); // hide the help popup
+  // hide the help popup
+  document.getElementById(type + subscription + "Help").hidePopup();
 }
 
 function refreshSubscription(e) {

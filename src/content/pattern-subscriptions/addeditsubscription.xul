@@ -10,19 +10,19 @@
   and also online at http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 -->
 
-<?xml-stylesheet href="chrome://foxyproxy/content/foxyproxy.css" 
+<?xml-stylesheet href="chrome://foxyproxy/content/foxyproxy.css"
                  type="text/css"?>
 <!DOCTYPE overlay SYSTEM "chrome://foxyproxy/locale/foxyproxy.dtd">
 
 
-<dialog id="foxyproxySubscriptions" windowtype="foxyproxy"
-        title="&foxyproxy.standard.label; - 
-	       &foxyproxy.pattern.subscriptions.addedit.title;" 
+<dialog id="foxyproxyPatternSubscriptions" windowtype="foxyproxy"
+        title="&foxyproxy.standard.label; -
+	       &foxyproxy.pattern.subscriptions.addedit.title;"
 	buttons="accept,cancel,extra2"
-	buttonlabelextra2="&foxyproxy.pattern.subscriptions.lastStatus.label;" 
-	onload="onLoad();" ondialogaccept="return onOK();" 
-	ondialogextra2="onLastStatus();" 
-	xmlns:html="http://www.w3.org/1999/xhtml" 
+	buttonlabelextra2="&foxyproxy.pattern.subscriptions.lastStatus.label;"
+        onload="onLoad('pattern');" ondialogaccept="return onOK('pattern');"
+	ondialogextra2="onLastStatus();"
+	xmlns:html="http://www.w3.org/1999/xhtml"
         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
 	persist="screenX screenY">
 
@@ -139,7 +139,7 @@
 	  <hbox align="center">
 	    <textbox id="refresh" type="number" size="4"/>
 	    <label value="&foxyproxy.minutes.label;" control="refresh"/>
-	    <toolbarbutton class="foxyproxy-ref" popup="refreshHelp"
+            <toolbarbutton class="foxyproxy-ref" popup="refreshpatternHelp"
                            tooltiptext="&foxyproxy.whatsthis;"/>  
             <button id="refreshButton" onclick="refreshSubscription(event);" 
               label="&foxyproxy.pattern.subscriptions.refreshNow.label;"
@@ -160,7 +160,7 @@
 		<menuitem label="AutoProxy"/>
               </menupopup>
 	    </menulist>
-	    <toolbarbutton class="foxyproxy-ref" popup="formatHelp"
+	    <toolbarbutton class="foxyproxy-ref" popup="formatpatternHelp"
                            tooltiptext="&foxyproxy.whatsthis;"/> 
             <spacer flex="1"/>
             <label value="&foxyproxy.obfuscation.label;"
@@ -171,17 +171,17 @@
 		<menuitem label="Base64"/>
               </menupopup>
 	    </menulist>
-	    <toolbarbutton class="foxyproxy-ref" popup="obfuscationHelp"
+            <toolbarbutton class="foxyproxy-ref" popup="obfuscationpatternHelp"
                            tooltiptext="&foxyproxy.whatsthis;"/> 
             <spacer flex="1"/>
 	  </hbox>
 	</row>
       </rows>
     </grid> 
-  </vbox>  
+  </vbox>
 
   <popupset>
-    <menupopup id="refreshHelp">
+    <menupopup id="refreshpatternHelp">
       <vbox class="foxyproxy-border foxyproxy-tooltip foxyproxy-help">
         <description>
           &foxyproxy.pattern.subscriptions.refreshHelp1;
@@ -196,22 +196,22 @@
         </description>
       </vbox>
     </menupopup>
-    <menupopup id="formatHelp">
+    <menupopup id="formatpatternHelp">
       <vbox class="foxyproxy-border foxyproxy-tooltip foxyproxy-help">
 	<description>
 	  &foxyproxy.pattern.subscriptions.formatHelp;
 	  <html:a class="link"        
-	          onclick="contextHelp('format');">
+	          onclick="contextHelp('format', 'pattern');">
 		  &foxyproxy.pactip5.label;</html:a>.
 	</description>
       </vbox>
     </menupopup>
-    <menupopup id="obfuscationHelp">
+    <menupopup id="obfuscationpatternHelp">
       <vbox class="foxyproxy-border foxyproxy-tooltip foxyproxy-help">
 	<description>
 	  &foxyproxy.pattern.subscriptions.obfuscationHelp;
 	  <html:a class="link"        
-	          onclick="contextHelp('obfuscation');">
+	          onclick="contextHelp('obfuscation', 'pattern');">
 		  &foxyproxy.pactip5.label;</html:a>.
 	</description>
       </vbox> 

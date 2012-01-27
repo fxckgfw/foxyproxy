@@ -77,6 +77,7 @@
 <!ENTITY foxyproxy.auto.url.tooltip "Enter URL of the PAC file">
 <!ENTITY foxyproxy.auto.url.note.label "http(s)://   ftp://   file://   relative://">
 <!ENTITY foxyproxy.auto.url.note.tooltip "Click the info icon for information on relative://">
+<!ENTITY foxyproxy.ip.address.label "IP address">
 <!ENTITY foxyproxy.port.label "Port">
 <!ENTITY foxyproxy.port.accesskey "P">
 <!ENTITY foxyproxy.port.tooltip "Port">
@@ -458,6 +459,16 @@
 <!ENTITY foxyproxy.server.subscriptions.tooltip "Manage Server Subscriptions">
 <!ENTITY foxyproxy.server.subscriptions.accesskey "S">
 <!ENTITY foxyproxy.selectproxy.label "Select Proxy">
+<!ENTITY foxyproxy.proxy.subscriptions.label "Proxy Subscriptions">
+<!ENTITY foxyproxy.proxy.subscriptions.accesskey "X">
+<!ENTITY foxyproxy.proxy.subscriptions.tooltip "Manage Proxy Subscriptions">
+<!ENTITY foxyproxy.proxy.subscriptions.description "Subscribe to proxies published by others. Share your proxies with others in just a few clicks.">
+<!ENTITY foxyproxy.proxy.subscriptions.sharing.label "Share Your Proxies">
+<!ENTITY foxyproxy.proxy.subscriptions.menulist.tooltip "Select what to do with proxy subscriptions.">
+<!ENTITY foxyproxy.proxy.subscriptions.addSubscription "Add New Proxy Subscription">
+<!ENTITY foxyproxy.proxy.subscriptions.viewSubscription "View Proxy Subscription">
+<!ENTITY foxyproxy.proxy.subscriptions.addedit.title "Add/Edit Proxy Subscription">
+<!ENTITY foxyproxy.proxy.subscriptions.refreshHelp "removes all existing subscribed proxies">
 <!ENTITY foxyproxy.pattern.subscriptions.label "Pattern Subscriptions">
 <!ENTITY foxyproxy.pattern.subscriptions.description "Subscribe to patterns published by others. Share your patterns with others in just a few clicks.">
 <!ENTITY foxyproxy.pattern.subscriptions.tooltip "Manage Pattern Subscriptions">

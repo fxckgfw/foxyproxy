@@ -130,10 +130,10 @@ function onOK(type) {
             return false;
 	  }
         }
-      }
-      // Creating the array of proxy id's for saving to disk and rebuilding
-      // the proxy list on startup.
-      userValues.proxies.push(proxies.item(i).id);
+        // Creating the array of proxy id's for saving to disk and rebuilding
+        // the proxy list on startup.
+        userValues.proxies.push(proxies.item(i).id);
+      } 
     }
     userValues.refresh = document.getElementById("refresh").value;
     userValues.format = document.getElementById("subscriptionFormat").

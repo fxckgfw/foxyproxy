@@ -13,17 +13,25 @@
 
 var Ci = Components.interfaces, Cu = Components.utils, Cc = Components.classes;
 
-var EXPORTED_SYMBOLS = ["patternSubscriptions"];
+var EXPORTED_SYMBOLS = ["patternSubscriptions", "proxySubscriptions"];
 
-function Subscriptions() {
-  // See: http://stackoverflow.com/questions/475074/regex-to-parse-or-validate-base64-data
-  this.base64RegExp = /^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4})$/; 
+// Object create is only available starting with ECMAScript 5 but we want to
+// use parts of its functionality already in earlier ones.
+if (typeof Object.create !== 'function') {
+  Object.create = function (o) {
+    function F() {}
+    F.prototype = o;
+    return new F();
+  };
 }
 
-Subscriptions.prototype = {
+var subscriptions = {
   fp : null,
   fpc : null,
-  base64RegExp : null,
+
+  // See: http://stackoverflow.com/questions/475074/regex-to-parse-or-validate-base64-data
+  base64RegExp : /^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4})$/,
+
   subscriptionsList : [],
   subscriptionsTree : null,
 
@@ -44,14 +52,14 @@ Subscriptions.prototype = {
       wrappedJSObject;
     this.fpc = Cc["@leahscape.org/foxyproxy/common;1"].getService().
       wrappedJSObject; 
-    // TODO: Needs to be only in PatternSubscriptions()!
-    Cu.import("resource://foxyproxy/autoproxy.jsm", this);
-    this.autoproxy.init();
+    if (this.type === "pattern") {
+      this.autoproxy.init();
+    }
   },
 
   // TODO: Find a way to load the file efficiently using our XmlHTTPRequest
   // method below...
-  loadSavedSubscriptions: function(savedPatternsFile) {
+  loadSavedSubscriptions: function(savedSubscriptionsFile) {
     try {
       var line = {};
       var i;
@@ -60,14 +68,14 @@ Subscriptions.prototype = {
       var loadedSubscription;
       var metaIdx;
       var parseString;
-      if (!savedPatternsFile) {
+      if (!saveSubscriptionsFile) {
         // We do not have saved Patterns yet, thus returning...
 	return;
       }
       var istream = Cc["@mozilla.org/network/file-input-stream;1"].
                   createInstance(Ci.nsIFileInputStream);
       // -1 has the same effect as 0444.
-      istream.init(savedPatternsFile, 0x01, -1, 0);
+      istream.init(saveSubscriptionsFile, 0x01, -1, 0);
       var conStream = Cc["@mozilla.org/intl/converter-input-stream;1"].
                 createInstance(Ci.nsIConverterInputStream);
       conStream.init(istream, "UTF-8", 0, 0);
@@ -146,15 +154,18 @@ Subscriptions.prototype = {
       var errorMessages = [];
       var subscriptionText;
       var parsedSubscription;
-      var subscriptionJSON = null;
+      var subscriptionContent = null;
       var req = Cc["@mozilla.org/xmlextras/xmlhttprequest;1"].
         createInstance(Ci.nsIXMLHttpRequest);
       req.open("GET", aURLString, false);
-      // We do need the following line of code. Otherwise we would get an error
-      // that our JSON is not well formed if we load it from a local drive. See:
-      // http://stackoverflow.com/questions/677902/not-well-formed-error-in-
-      // firefox-when-loading-json-file-with-xmlhttprequest
-      req.overrideMimeType("application/json");
+      if (this.type === "pattern") {
+        // We do need the following line of code. Otherwise we would get
+        // an error that our JSON is not well formed if we load it from a local
+        // drive. See:
+        // http://stackoverflow.com/questions/677902/not-well-formed-error-in-
+        // firefox-when-loading-json-file-with-xmlhttprequest
+        req.overrideMimeType("application/json");
+      }
       req.send(null);
       subscriptionText = req.responseText;
       // Stripping of all unnecessary whitespaces and newlines etc. before
@@ -165,175 +176,17 @@ Subscriptions.prototype = {
         // Decoding the Base64.
         subscriptionText = atob(base64TestString);
       } 
-      // No Base64 (anymore), thus we guess we have a plain FoxyProxy
-      // subscription first. If that is not true we check the AutoProxy format.
-      // And if that fails as well we give up.
-      subscriptionJSON = this.getObjectFromJSON(subscriptionText,
-        errorMessages);
-      if (subscriptionJSON && subscriptionJSON.length !== undefined) {
-        let lines = this.autoproxy.isAutoProxySubscription(subscriptionText);
-        if (lines) {
-          parsedSubscription = this.autoproxy.
-            processAutoProxySubscription(lines, errorMessages);
-        } else {
-          // No AutoProxy either.
-          return errorMessages;
-        } 
-      } else {
-        parsedSubscription = this.
-          parseSubscription(subscriptionJSON, aURLString, errorMessages);
-        // Did we get the errorMessages back? If so return them immediately.
-        if (parsedSubscription.length !== undefined) {
-          return parsedSubscription;
-        }
-        if (!parsedSubscription.metadata) {
-	  parsedSubscription.metadata = {};
-        } 
-        // We've got a FoxyProxy subscription...
-        parsedSubscription.metadata.format = "FoxyProxy";
-        // Setting the name of the patterns if there is none set yet.
-        let pats = parsedSubscription.patterns;
-        for (let i = 0, length = pats.length; i < length; i++) {
-          let pat = pats[i];
-          if (!pat.name) {
-            pat.name = pat.pattern;
-          }
-        }
-      }
-      if (bBase64 && !isBase64 && !this.fp.warnings.showWarningIfDesired(null,
-        ["patternsubscription.warning.not.base64"], "noneEncodingWarning")) {
-        errorMessages.push(this.fp.
-          getMessage("patternsubscription.error.cancel64"));
-        return errorMessages;
-      } else if (!bBase64 && isBase64 &&
-          !this.fp.warnings.showWarningIfDesired(null,
-          ["patternsubscription.warning.base64"], "noneEncodingWarning")) {
-          errorMessages.push(this.fp.
-            getMessage("patternsubscription.error.cancel64"));
-          return errorMessages; 
-      } else {
-        if (isBase64) {
-          parsedSubscription.metadata.obfuscation = "Base64";
-	} else {
-          parsedSubscription.metadata.obfuscation = this.fp.getMessage("none");
-        }
-        return parsedSubscription;
-      }
-    } catch (e) {
+      return this.parseSubscription(subscriptionText, errorMessages, aURLString,
+        isBase64, bBase64);
+    } catch(e) {
       if (e.name === "NS_ERROR_FILE_NOT_FOUND") {
         errorMessages.push(this.fp.
           getMessage("patternsubscription.error.network")); 
       } else {
-        errorMessages.push(this.fp.
-          getMessage("patternsubscription.error.network.unspecified")); 
+        dump("Error while loading the subscription: " + e + "\n");
       }
-      return errorMessages;
     }
-  },
-
-  getObjectFromJSON: function(aString, errorMessages) {
-    var json;
-    try {
-      // Should never happen...
-      if (!aString) {
-	errorMessages.push(this.fp.
-          getMessage("patternsubscription.error.JSONString"));
-	return errorMessages;
-      }
-      // As FoxyProxy shall be usable with FF < 3.5 we use nsIJSON. But
-      // Thunderbird does not support nsIJSON. Thus, we check for the proper
-      // method to use here. Checking for nsIJSON is not enough here due to bug
-      // 645922.
-      if (typeof Ci.nsIJSON !== "undefined" && typeof Ci.nsIJSON.decode ===
-          "function") {
-        json = Cc["@mozilla.org/dom/json;1"].createInstance(Ci.nsIJSON);
-        return json.decode(aString); 
-      } else {
-        return JSON.parse(aString);    
-      }
-    } catch (e) {
-      errorMessages.push(this.fp.
-            getMessage("patternsubscription.error.JSON"));
-      return errorMessages; 
-    }
-  },
-
-   getJSONFromObject: function(aObject) {
-    var json;
-    try {
-      // As FoxyProxy shall be usable with FF < 3.5 we use nsIJSON. But
-      // Thunderbird does not support nsIJSON. Thus, we check for the proper
-      // method to use here. Checking for nsIJSON is not enough here due to bug
-      // 645922. 
-      if (typeof Ci.nsIJSON !== "undefined" && typeof Ci.nsIJSON.encode ===
-          "function") {
-        json = Cc["@mozilla.org/dom/json;1"].createInstance(Ci.nsIJSON);
-        return json.encode(aObject); 
-      } else {
-        return JSON.stringify(aObject);    
-      }
-    } catch (e) {
-      dump("Error while parsing the JSON: " + e + "\n");
-    }
-  },
- 
-  parseSubscription: function(aSubscription, aURLString, errorMessages) {
-    try {
-      var subProperty, ok;
-      // Maybe someone cluttered the subscription in other ways...
-      for (subProperty in aSubscription) {
-        if (subProperty !== "metadata" && subProperty !== "patterns") {
-          delete aSubscription[subProperty];
-        }	  
-      }
-      // And maybe someone cluttered the metadata or mistyped a property...
-      for (subProperty in aSubscription.metadata) {
-        if (!this.defaultMetaValues.hasOwnProperty(subProperty)) {
-	  delete aSubscription.metadata[subProperty];
-        }
-      }
-      // We are quite permissive here. All we need is a checksum. If somebody
-      // forgot to add that the subscription is MD5 encoded (using the
-      // algorithm property of the metadata object) we try that though. But we
-      // only check the subscription object for several reasons: 1) It is this
-      // object that contains data that we want to have error free. The
-      // metadata is not so important as the user can overwrite a lot of its
-      // properties and it contains only additional information 2) We cannot
-      // hash the whole a whole subscription as this would include hashing the
-      // hash itself, a thing that would not lead to the desired result
-      // without introducing other means of transporting this hash (e.g. using
-      // a special HTTP header). But the latter would have drawbacks we want to
-      // avoid 3) To cope with 2) we could exclude the checksum property from
-      // getting hashed and hash just all the other parts of the subscription.
-      // However, that would require a more sophisticated implementation which
-      // currently seems not worth the effort. Thus, sticking to a hashed
-      // subscription object.
-      if (aSubscription.metadata && aSubscription.metadata.checksum) {
-        ok = this.checksumVerification(aSubscription.metadata.checksum, 
-          aSubscription);
-        if (!ok) {
-          if (!this.fp.warnings.showWarningIfDesired(null, 
-            ["patternsubscription.warning.md5"], "md5Warning")) {
-	    errorMessages.push(this.fp.
-            getMessage("patternsubscription.error.cancel5")); 
-            return errorMessages;
-          }
-        } else {
-          // Getting the metadata right...
-          if (!aSubscription.metadata.algorithm.toLowerCase() !== "md5") {
-            aSubscription.metadata.algorithm = "md5";
-          }
-        }
-      }
-      return aSubscription; 
-    } catch(e) {
-      this.fp.alert(null, this.fp.
-        getMessage("patternsubscription.error.parse"));        
-        errorMessages.push(this.fp.
-          getMessage("patternsubscription.error.parse")); 
-      return errorMessages;
-    }
-  },
+  },  
 
   addSubscription: function(aSubscription, userValues) {
     var userValue, d, subLength;
@@ -766,14 +619,14 @@ Subscriptions.prototype = {
     // That means just to stringify the Object. JSON allows (additional)
     // whitespace (see: http://www.ietf.org/rfc/rfc4627.txt section 2)
     // but we got rid of it while creating the JSON object the first time.
-    var subscriptionJSON = this.getJSONFromObject(aSubscription.patterns);
+    var subscriptionContent = this.getJSONFromObject(aSubscription.patterns);
     
     // Following https://developer.mozilla.org/En/NsICryptoHash
     var converter = Cc["@mozilla.org/intl/scriptableunicodeconverter"].
                     createInstance(Ci.nsIScriptableUnicodeConverter);
     converter.charset = "UTF-8";
     var result = {};
-    data  = converter.convertToByteArray(subscriptionJSON, result);
+    data  = converter.convertToByteArray(subscriptionContent, result);
     ch = Cc["@mozilla.org/security/hash;1"].createInstance(Ci.nsICryptoHash);
     // We just have the checksum here (maybe the user forgot to specify MD5) in
     // the metadata. But we can safely assume MD5 as we are currently
@@ -848,23 +701,15 @@ Subscriptions.prototype = {
     };
     return ret;
   }
-}
+};
 
-function PatternSubscriptions() {
-  /*this.init = function() {
-    dump("Importing autoproxy!\n");
-    Cu.import("resource://foxyproxy/autoproxy.jsm", this);
-    this.autoproxy.init(); 
-    dump("Just called it!\n"); 
-    dump(this.fp + "\n");
-  } */
-}
-
-PatternSubscriptions.prototype = new Subscriptions();
-
+var patternSubscriptions = Object.create(subscriptions);
+patternSubscriptions.type = "pattern";
 // TODO: Where do we need the specific values? Wouldn't it not be enough to
 // have just the properties in an array?
-PatternSubscriptions.defaultMetaValues = {
+// TODO: If we use it put it in the constructor directly or better try to 
+// reuse it in ProxySubscriptions and put it therefore into subproto.
+patternSubscriptions.defaultMetaValues = {
   formatVersion : 1,
   checksum : "",
   algorithm : "",
@@ -879,25 +724,175 @@ PatternSubscriptions.defaultMetaValues = {
   timer : null
 };
 
-var patternSubscriptions = new PatternSubscriptions();
+patternSubscriptions.parseSubscription = function(subscriptionText,
+  errorMessages, aURLString, isBase64, userBase64) {
+  try {
+    // No Base64 (anymore), thus we guess we have a plain FoxyProxy
+    // subscription first. If that is not true we check the AutoProxy format.
+    // And if that fails as well we give up.
+    let parsedSubscription;
+    let subscriptionContent = this.getObjectFromJSON(subscriptionText,
+      errorMessages);
+    if (subscriptionContent && subscriptionContent.length !== undefined) {
+      let lines = this.autoproxy.isAutoProxySubscription(subscriptionText);
+      if (lines) {
+        parsedSubscription = this.autoproxy.processAutoProxySubscription(lines,
+          errorMessages);
+      } else {
+        // No AutoProxy either.
+        return errorMessages;
+      } 
+    } else {
+      parsedSubscription = this.parseSubscriptionDetails(subscriptionContent,
+        aURLString, errorMessages);
+      // Did we get the errorMessages back? If so return them immediately.
+      if (parsedSubscription.length !== undefined) {
+        return parsedSubscription;
+      }
+      if (!parsedSubscription.metadata) {
+        parsedSubscription.metadata = {};
+      } 
+      // We've got a FoxyProxy subscription...
+      parsedSubscription.metadata.format = "FoxyProxy";
+      // Setting the name of the patterns if there is none set yet.
+      let pats = parsedSubscription.patterns;
+      for (let i = 0, length = pats.length; i < length; i++) {
+        let pat = pats[i];
+        if (!pat.name) {
+          pat.name = pat.pattern;
+        }
+      }
+    }
+    if (isBase64 && !userBase64 && !this.fp.warnings.showWarningIfDesired(null,
+        ["patternsubscription.warning.not.base64"], "noneEncodingWarning")) {
+      errorMessages.push(this.fp.
+        getMessage("patternsubscription.error.cancel64"));
+      return errorMessages;
+    } else if (!isBase64 && userBase64 && !this.fp.warnings.
+        showWarningIfDesired(null, ["patternsubscription.warning.base64"],
+        "noneEncodingWarning")) {
+      errorMessages.push(this.fp.
+        getMessage("patternsubscription.error.cancel64"));
+      return errorMessages;
+    } else {
+      if (isBase64) {
+        parsedSubscription.metadata.obfuscation = "Base64";
+      } else {
+        parsedSubscription.metadata.obfuscation = this.fp.getMessage("none");
+      }
+      return parsedSubscription;
+    }
+  } catch (e) {
+    // TODO: Recheck proper error messages after rewriting the module!
+    errorMessages.push(this.fp.
+      getMessage("patternsubscription.error.network.unspecified")); 
+    return errorMessages;
+  }
+};
 
-function ProxySubscription() {
+patternSubscriptions.getObjectFromJSON = function(aString, errorMessages) {
+  try {
+    let json;
+    // Should never happen...
+    if (!aString) {
+      errorMessages.push(this.fp.
+        getMessage("patternsubscription.error.JSONString"));
+      return errorMessages;
+    }
+    // As FoxyProxy shall be usable with FF < 3.5 we use nsIJSON. But
+    // Thunderbird does not support nsIJSON. Thus, we check for the proper
+    // method to use here. Checking for nsIJSON is not enough here due to bug
+    // 645922.
+    if (typeof Ci.nsIJSON !== "undefined" && typeof Ci.nsIJSON.decode ===
+        "function") {
+      json = Cc["@mozilla.org/dom/json;1"].createInstance(Ci.nsIJSON);
+      return json.decode(aString); 
+    } else {
+      return JSON.parse(aString);    
+    }
+  } catch (e) {
+    errorMessages.push(this.fp.getMessage("patternsubscription.error.JSON"));
+    return errorMessages; 
+  }
+};
 
-}
-
-ProxySubscription.prototype = new Subscriptions();
-
-/*var patternSubscriptionss = {
+patternSubscriptions.getJSONFromObject = function(aObject) {
+  try {
+    let json;
+    // As FoxyProxy shall be usable with FF < 3.5 we use nsIJSON. But
+    // Thunderbird does not support nsIJSON. Thus, we check for the proper
+    // method to use here. Checking for nsIJSON is not enough here due to bug
+    // 645922. 
+    if (typeof Ci.nsIJSON !== "undefined" && typeof Ci.nsIJSON.encode ===
+        "function") {
+      json = Cc["@mozilla.org/dom/json;1"].createInstance(Ci.nsIJSON);
+      return json.encode(aObject); 
+    } else {
+      return JSON.stringify(aObject);    
+    }
+  } catch (e) {
+    dump("Error while parsing the JSON: " + e + "\n");
+  }
+};
  
-  fp: null,
+patternSubscriptions.parseSubscriptionDetails = function(aSubscription,
+  aURLString, errorMessages) {
+  try {
+    let subProperty, ok;
+    // Maybe someone cluttered the subscription in other ways...
+    for (subProperty in aSubscription) {
+      if (subProperty !== "metadata" && subProperty !== "patterns") {
+        delete aSubscription[subProperty];
+      }	  
+    }
+    // And maybe someone cluttered the metadata or mistyped a property...
+    for (subProperty in aSubscription.metadata) {
+      if (!this.defaultMetaValues.hasOwnProperty(subProperty)) {
+        delete aSubscription.metadata[subProperty];
+      }
+    }
+    // We are quite permissive here. All we need is a checksum. If somebody
+    // forgot to add that the subscription is MD5 encoded (using the
+    // algorithm property of the metadata object) we try that though. But we
+    // only check the subscription object for several reasons: 1) It is this
+    // object that contains data that we want to have error free. The
+    // metadata is not so important as the user can overwrite a lot of its
+    // properties and it contains only additional information 2) We cannot
+    // hash the whole a whole subscription as this would include hashing the
+    // hash itself, a thing that would not lead to the desired result
+    // without introducing other means of transporting this hash (e.g. using
+    // a special HTTP header). But the latter would have drawbacks we want to
+    // avoid 3) To cope with 2) we could exclude the checksum property from
+    // getting hashed and hash just all the other parts of the subscription.
+    // However, that would require a more sophisticated implementation which
+    // currently seems not worth the effort. Thus, sticking to a hashed
+    // subscription object.
+    if (aSubscription.metadata && aSubscription.metadata.checksum) {
+      ok = this.checksumVerification(aSubscription.metadata.checksum,
+        aSubscription);
+      if (!ok) {
+        if (!this.fp.warnings.showWarningIfDesired(null,
+            ["patternsubscription.warning.md5"], "md5Warning")) {
+          errorMessages.push(this.fp.
+            getMessage("patternsubscription.error.cancel5"));
+          return errorMessages;
+        }
+      } else {
+        // Getting the metadata right...
+        if (!aSubscription.metadata.algorithm.toLowerCase() !== "md5") {
+          aSubscription.metadata.algorithm = "md5";
+        }
+      }
+    }
+    return aSubscription; 
+  } catch(e) {
+    this.fp.alert(null, this.fp.getMessage("patternsubscription.error.parse"));
+    errorMessages.push(this.fp.getMessage("patternsubscription.error.parse"));
+    return errorMessages;
+  }
+};
 
-  // See: http://stackoverflow.com/questions/475074/regex-to-parse-or-validate-base64-data
-  base64RegExp: /^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4})$/,
+Cu.import("resource://foxyproxy/autoproxy.jsm", patternSubscriptions);
 
-  init: function() {
-    this.fp = Cc["@leahscape.org/foxyproxy/service;1"].getService().
-      wrappedJSObject;
-    this.fpc = Cc["@leahscape.org/foxyproxy/common;1"].getService().
-      wrappedJSObject; 
-  },
-}*/
+var proxySubscriptions = Object.create(subscriptions);
+proxySubscriptions.type = "proxy";

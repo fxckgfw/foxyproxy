@@ -15,8 +15,8 @@ var Ci = Components.interfaces, Cu = Components.utils, Cc = Components.classes;
 
 var EXPORTED_SYMBOLS = ["patternSubscriptions", "proxySubscriptions"];
 
-// Object create is only available starting with ECMAScript 5 but we want to
-// use parts of its functionality already in earlier ones.
+// Object.create() is only available starting with ECMAScript 5 but we want to
+// use parts of its functionality already in earlier versions.
 if (typeof Object.create !== 'function') {
   Object.create = function (o) {
     function F() {}
@@ -59,7 +59,7 @@ var subscriptions = {
 
   // TODO: Find a way to load the file efficiently using our XmlHTTPRequest
   // method below...
-  loadSavedSubscriptions: function(savedSubscriptionsFile) {
+  loadSavedSubscriptions: function(saveSubscriptionsFile) {
     try {
       var line = {};
       var i;
@@ -192,9 +192,9 @@ var subscriptions = {
     var userValue, d, subLength;
     // We need this to respect the user's wishes concerning the name and other
     // metadata properties. If we would not do this the default values that
-    // may be delivered with the subscription itself (i.e. its metadate) would
+    // may be delivered with the subscription itself (i.e. its metadata) would
     // overwrite the users' choices.
-    // We exlucde obfuscation and format as these are already detected while
+    // We exclude obfuscation and format as these are already detected while
     // loading the subscription. The user may nevertheless change them later on
     // if she wants that but at least after the initial import these values are
     // correct.
@@ -215,7 +215,7 @@ var subscriptions = {
     }
     this.subscriptionsList.push(aSubscription);
     this.fp.alert(null, this.fp.
-      getMessage("patternsubscription.initial.import.success"));
+      getMessage(this.type + "subscription.initial.import.success"));
     this.writeSubscriptions();
   }, 
 
@@ -300,7 +300,7 @@ var subscriptions = {
     var file = Cc["@mozilla.org/file/local;1"].createInstance(Ci.nsILocalFile);
     var subDir = this.fp.getSettingsURI(Ci.nsIFile).parent;
     file.initWithPath(subDir.path);
-    file.appendRelativePath("patternSubscriptions.json");
+    file.appendRelativePath(this.subscriptionsFile);
     if ((!file.exists() || !file.isFile())) {
       // Owners may do everthing with the file, the group and others are
       // only allowed to read it. 0x1E4 is the same as 0744 but we use it here
@@ -332,6 +332,25 @@ var subscriptions = {
       converter.close(); 
     } catch (e) {
       dump("Error while writing the subscriptions to disc: " + e + "\n");
+    }
+  },
+
+  getJSONFromObject: function(aObject) {
+    try {
+      let json;
+      // As FoxyProxy shall be usable with FF < 3.5 we use nsIJSON. But
+      // Thunderbird does not support nsIJSON. Thus, we check for the proper
+      // method to use here. Checking for nsIJSON is not enough here due to bug
+      // 645922.
+      if (typeof Ci.nsIJSON !== "undefined" && typeof Ci.nsIJSON.encode ===
+          "function") {
+        json = Cc["@mozilla.org/dom/json;1"].createInstance(Ci.nsIJSON);
+        return json.encode(aObject);
+      } else {
+        return JSON.stringify(aObject);
+      }
+    } catch (e) {
+      dump("Error while parsing the JSON: " + e + "\n");
     }
   },
 
@@ -573,34 +592,6 @@ var subscriptions = {
     } 
   },
 
-  deletePatterns: function(aProxyList) {
-    // This method deletes all the patterns belonging to a subscription.
-    // That holds for all proxies that were tied to it and are contained in
-    // the aProxyList argument.
-    var i,j,k,matchesLength; 
-    for (i = 0; i < aProxyList.length; i++) {
-      matchesLength = aProxyList[i].matches.length; 
-      j = k = 0;
-      do {
-        // That loop does the following: Check the pattern j of the proxy i
-        // whether it is from a subscription. If so, delete it (splice()-call)
-        // raise k and start at the same position again (now being the next)
-        // pattern. If not, raise j (i.e. check the pattern at the next
-        // position in the array at the next time running the loop) and k.
-        // That goes until all the patterns are checked, i.e. until k equals
-        // the patterns length.
-        let currentMatch = aProxyList[i].matches[j];
-        if (currentMatch && currentMatch.fromSubscription) {
-            aProxyList[i].matches.splice(j, 1);
-        } else {
-          j++;	
-        }
-        k++;
-      } while (k < matchesLength);  
-    } 
-    this.fp.writeSettingsAsync(); 
-  },
-
   changeSubStatus: function(aProxyList, bNewStatus) {
     for (var i = 0; i < aProxyList.length; i++) {
       for (var j = 0; j < aProxyList[i].matches.length; j++) {
@@ -705,6 +696,8 @@ var subscriptions = {
 
 var patternSubscriptions = Object.create(subscriptions);
 patternSubscriptions.type = "pattern";
+patternSubscriptions.subscriptionsFile = "patternSubscriptions.json";
+
 // TODO: Where do we need the specific values? Wouldn't it not be enough to
 // have just the properties in an array?
 // TODO: If we use it put it in the constructor directly or better try to 
@@ -816,25 +809,6 @@ patternSubscriptions.getObjectFromJSON = function(aString, errorMessages) {
   }
 };
 
-patternSubscriptions.getJSONFromObject = function(aObject) {
-  try {
-    let json;
-    // As FoxyProxy shall be usable with FF < 3.5 we use nsIJSON. But
-    // Thunderbird does not support nsIJSON. Thus, we check for the proper
-    // method to use here. Checking for nsIJSON is not enough here due to bug
-    // 645922. 
-    if (typeof Ci.nsIJSON !== "undefined" && typeof Ci.nsIJSON.encode ===
-        "function") {
-      json = Cc["@mozilla.org/dom/json;1"].createInstance(Ci.nsIJSON);
-      return json.encode(aObject); 
-    } else {
-      return JSON.stringify(aObject);    
-    }
-  } catch (e) {
-    dump("Error while parsing the JSON: " + e + "\n");
-  }
-};
- 
 patternSubscriptions.parseSubscriptionDetails = function(aSubscription,
   aURLString, errorMessages) {
   try {
@@ -892,7 +866,36 @@ patternSubscriptions.parseSubscriptionDetails = function(aSubscription,
   }
 };
 
+patternSubscriptions.deletePatterns = function(aProxyList) {
+  // This method deletes all the patterns belonging to a subscription.
+  // That holds for all proxies that were tied to it and are contained in
+  // the aProxyList argument.
+  let i,j,k,matchesLength; 
+  for (i = 0; i < aProxyList.length; i++) {
+    matchesLength = aProxyList[i].matches.length; 
+    j = k = 0;
+    do {
+      // That loop does the following: Check the pattern j of the proxy i
+      // whether it is from a subscription. If so, delete it (splice()-call)
+      // raise k and start at the same position again (now being the next)
+      // pattern. If not, raise j (i.e. check the pattern at the next
+      // position in the array at the next time running the loop) and k.
+      // That goes until all the patterns are checked, i.e. until k equals
+      // the patterns length.
+      let currentMatch = aProxyList[i].matches[j];
+      if (currentMatch && currentMatch.fromSubscription) {
+          aProxyList[i].matches.splice(j, 1);
+      } else {
+        j++;	
+      }
+      k++;
+    } while (k < matchesLength);  
+  } 
+  this.fp.writeSettingsAsync(); 
+};
+
 Cu.import("resource://foxyproxy/autoproxy.jsm", patternSubscriptions);
 
 var proxySubscriptions = Object.create(subscriptions);
 proxySubscriptions.type = "proxy";
+proxySubscriptions.subscriptionsFile = "proxySubscriptions.json";

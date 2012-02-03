@@ -912,6 +912,11 @@ function createPatternsIcon() {
 }
 
 function proxyWizard() {
+  let params = {};
   window.openDialog('chrome://foxyproxy/content/proxywizard.xul', '',
-    'modal, centerscreen').focus();
+    'modal, centerscreen', params).focus();
+  if (params.success) {
+    window.openDialog('chrome://foxyproxy/content/proxywizardcongrat.xul', '',
+      'resizable=yes').focus();
+  }
 }

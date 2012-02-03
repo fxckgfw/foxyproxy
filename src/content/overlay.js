@@ -240,7 +240,10 @@ end-foxyproxy-simple !*/
           getMessage("proxywiz.parse.failure"));
         return;
       }
-      foxyproxy.fpc.processProxyURI(proxyURI);
+      if (foxyproxy.fpc.processProxyURI(proxyURI)) {
+        window.openDialog('chrome://foxyproxy/content/proxywizardcongrat.xul',
+    '', 'resizable=yes').focus(); 
+      }
     }
   },
 

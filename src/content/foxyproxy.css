@@ -185,7 +185,7 @@ tab[id^="foxyproxy-"] /* selectall tabs whose id have the prefix "foxyproxy-" */
 /* end addeditproxy.xul button icons */
 
 /* begin other stylings in addeditproxy.xul */
-#noInternalIPs {
+#noInternalIPs, #fpniip {
   font-weight: bold;
 }
 

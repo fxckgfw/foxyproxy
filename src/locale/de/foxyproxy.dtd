@@ -19,6 +19,8 @@
 <!ENTITY foxyproxy.proxy.wizard.subscriptionID.label "Abonnement-ID">
 <!ENTITY foxyproxy.proxy.wizard.subscriptionID.tooltip "Geben Sie Ihre Abonnement-ID ein">
 <!ENTITY foxyproxy.proxy.wizard.loading.label "Laden der Proxy-Details...">
+<!ENTITY foxyproxy.proxy.wizard.congratulation "Herzlichen Glückwunsch! Ihr Proxy wurde erfolgreich konfiguriert.">
+<!ENTITY foxyproxy.proxy.wizard.whatsmyip.label "Wo befinde ich mich?">
 <!ENTITY foxyproxy.pattern.label "Muster">
 <!ENTITY foxyproxy.urlpatterns.label "URL-Muster">
 <!ENTITY foxyproxy.urlpatterns.accesskey "M">

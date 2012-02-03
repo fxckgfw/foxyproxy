@@ -341,7 +341,7 @@ Common.prototype = {
         foundSomeInput = true;
       }
     }
-    if (!foundSomeInput) return;
+    if (!foundSomeInput) return false;
     var proxy = CC["@leahscape.org/foxyproxy/proxy;1"].createInstance().
       wrappedJSObject;
     proxy.fromAssociateArray(nameValuePairs);
@@ -420,16 +420,17 @@ Common.prototype = {
     if (nameValuePairs["confirmation"] == "popup") {
       fp.notifier.alert(fp.getMessage("foxyproxy"),
         fp.getMessage("proxy.configured", [nameValuePairs["name"]]));
-      return;
+      return true;
     }
     else if (nameValuePairs["confirmation"]) {
       // Is it a valid URL?
       try {
         this._ios.newURI(nameValuePairs["confirmation"], "UTF-8", null);
       }
-      catch(e) {/* not a valid URL */ return; }
+      catch(e) {/* not a valid URL */ return true; }
       this.openTab(nameValuePairs["confirmation"]);
     }
+    return true;
   },
   
   classDescription: "FoxyProxy Common Utils",

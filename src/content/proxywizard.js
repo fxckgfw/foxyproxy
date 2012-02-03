@@ -16,12 +16,15 @@ function onOK() {
   let url = "https://getfoxyproxy.org/proxyservice/get-details-fp.php?subscription="
   let subscriptionID = document.getElementById("subscriptionID").value; 
   let req = new XMLHttpRequest();
-  // We want to be able to let the dialog opened it the user just had a typo in
+  // We want to be able to let the dialog opened if the user just had a typo in
   // her entered ID. Unfortunately that does not work with a simple "return
   // false;" statement from within the onreadystatechange function. That's
   // why we use a new property, set it to false if needed and return its value
   // instead.
   req.retValue = true;  
+  // We need to signal the parent dialog whether the proxy got successfully
+  // configured.
+  req.success = false;
   req.onreadystatechange = function (oEvent) {
     if (req.readyState === 1) {
       // Let's show the user that we are fetching her proxy details.
@@ -44,7 +47,7 @@ function onOK() {
             // will fail...
             fp.alert(null, fp.getMessage("proxywiz.parse.failure"));
           }
-          fpc.processProxyURI(proxyURI);
+          req.success = fpc.processProxyURI(proxyURI);
         } else {
           // The user entered an invalid subscription id
           fp.alert(null, fp.getMessage("proxywiz.id.failure"));
@@ -58,5 +61,6 @@ function onOK() {
   }
   req.open("GET", url + subscriptionID, false);
   req.send(null);
+  window.arguments[0].success = req.success;
   return req.retValue;
 }

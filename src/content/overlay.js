@@ -189,7 +189,7 @@ end-foxyproxy-simple !*/
     // We are registering an event listener for our custom event fired if a
     // user bought a proxy subscription. FoxyProxy should automatically
     // configure the new proxy according to the values transmitted.
-    document.addEventListener("new",
+    document.addEventListener("new-proxy",
       foxyproxy.createSubscribedProxy, false, true);
   },
 
@@ -225,7 +225,7 @@ end-foxyproxy-simple !*/
   },
 
   createSubscribedProxy: function(e) {
-    let location = e.target.ownerDocument.location;
+    let doc = e.target.ownerDocument, location = doc.location;
     // We only accept data if it is coming from TLS secured getfoxyproxy.org.
     if (location.protocol === "https:" && location.hostname ===
         "getfoxyproxy.org") {
@@ -240,9 +240,15 @@ end-foxyproxy-simple !*/
           getMessage("proxywiz.parse.failure"));
         return;
       }
+
       if (foxyproxy.fpc.processProxyURI(proxyURI)) {
+        let params = {inn:{
+          country: doc.getElementById("proxy").getAttribute("country"),
+          username: doc.getElementById("proxy").getAttribute("username"),
+          password: doc.getElementById("proxy").getAttribute("password")},
+          out:null};
         window.openDialog('chrome://foxyproxy/content/proxywizardcongrat.xul',
-    '', 'resizable=yes').focus(); 
+          '', 'resizable=yes', params).focus(); 
       }
     }
   },

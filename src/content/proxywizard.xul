@@ -14,13 +14,17 @@
 
 <dialog windowtype="foxyproxy" id="proxywizard" buttons="accept, cancel"
   ondialogaccept="return onOK();" ondialogcancel="return true;"
-  title="&foxyproxy.proxy.wizard.label; - &foxyproxy.standard.label;"
+  title="&foxyproxy.standard.label; - &foxyproxy.proxy.wizard.label;"
   xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-  persist="screenX screenY">
+  xmlns:html="http://www.w3.org/1999/xhtml"
+  persist="screenX screenY" onload="onLoad();">
 
-  <script type="application/x-javascript;version=1.7" src="proxywizard.js" />
+  <script type="text/javascript" src="proxywizard.js" />
   <vbox>
     <description width="600">&foxyproxy.proxy.wizard.description;</description>
+    <html:a class="link" onclick="openLocationURL();">
+      https://getfoxyproxy.org/proxyservice
+    </html:a>
     <separator class="thin"/>
     <vbox>
       <label value="&foxyproxy.proxy.wizard.subscriptionID.label;"

@@ -916,7 +916,12 @@ function proxyWizard() {
   window.openDialog('chrome://foxyproxy/content/proxywizard.xul', '',
     'modal, centerscreen', params).focus();
   if (params.success) {
+    let params2 = {inn:{
+    country: doc.getElementById("proxy").getAttribute("country"),
+    username: doc.getElementById("proxy").getAttribute("username"),
+    password: doc.getElementById("proxy").getAttribute("password")},
+    out:null};
     window.openDialog('chrome://foxyproxy/content/proxywizardcongrat.xul', '',
-      'resizable=yes').focus();
+      'resizable=yes', params2).focus();
   }
 }

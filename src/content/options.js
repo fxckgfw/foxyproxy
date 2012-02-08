@@ -916,11 +916,14 @@ function proxyWizard() {
   window.openDialog('chrome://foxyproxy/content/proxywizard.xul', '',
     'modal, centerscreen', params).focus();
   if (params.success) {
-    let params2 = {inn:{
-    country: doc.getElementById("proxy").getAttribute("country"),
-    username: doc.getElementById("proxy").getAttribute("username"),
-    password: doc.getElementById("proxy").getAttribute("password")},
-    out:null};
+    let params2 = {};
+    if (document.getElementById("proxy")) {
+      params2.inn = {
+        country: document.getElementById("proxy").getAttribute("country"),
+        username: document.getElementById("proxy").getAttribute("username"),
+        password: document.getElementById("proxy").getAttribute("password")
+      };
+    }
     window.openDialog('chrome://foxyproxy/content/proxywizardcongrat.xul', '',
       'resizable=yes', params2).focus();
   }

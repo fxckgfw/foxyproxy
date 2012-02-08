@@ -3,7 +3,7 @@
   Copyright (C) 2006-#%#% Eric H. Jung and FoxyProxy, Inc.
   http://getfoxyproxy.org/
   eric.jung@yahoo.com
-.
+
   This source code is released under the GPL license,
   available in the LICENSE file at the root of this installation
   and also online at http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
@@ -25,13 +25,13 @@ function onLoad() {
     var msg = fp.getMessage("proxy.wizard.getfoxyproxy", [inn.country, inn.
       username, inn.password]);
   else
-    var msg = fp.getMessage("proxy.wizard.congratulation", ["?", "?", "?"]);
+    var msg = fp.getMessage("proxy.wizard.getfoxyproxy", ["?", "?", "?"]);
   let msg2 = document.createTextNode(msg);
   document.getElementById("msg").appendChild(msg2);
   document.documentElement.getButton("accept").focus();
-	sizeToContent();
-	iconRotater = document.getElementById("fp-statusbar-icon-rotater");
-	intervalId = window.setInterval(function() {animate()}, 10);
+  sizeToContent();
+  iconRotater = document.getElementById("fp-statusbar-icon-rotater");
+  intervalId = window.setInterval(function() {animate()}, 10);
 }
 
 function animate() {

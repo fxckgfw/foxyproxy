@@ -242,13 +242,15 @@ end-foxyproxy-simple !*/
       }
 
       if (foxyproxy.fpc.processProxyURI(proxyURI)) {
-        let params = {inn:{
-          country: doc.getElementById("proxy").getAttribute("country"),
-          username: doc.getElementById("proxy").getAttribute("username"),
-          password: doc.getElementById("proxy").getAttribute("password")},
-          out:null};
+        let params = {
+          inn : {
+            country: doc.getElementById("proxy").getAttribute("country"),
+            username: doc.getElementById("proxy").getAttribute("username"),
+            password: doc.getElementById("proxy").getAttribute("password")
+          }
+        };
         window.openDialog('chrome://foxyproxy/content/proxywizardcongrat.xul',
-          '', 'resizable=yes', params).focus(); 
+          '', 'resizable=yes', params).focus();
       }
     }
   },

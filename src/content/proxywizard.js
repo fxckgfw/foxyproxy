@@ -12,11 +12,13 @@
 function onLoad() {
   sizeToContent();
 }
+
 function openLocationURL() {
   Components.classes["@leahscape.org/foxyproxy/common;1"].getService().
     wrappedJSObject.openAndReuseOneTabPerURL("https://getfoxyproxy.org/" +
     "proxyservice/");
 }
+
 function onOK() {
   let proxyURI;
   let fp = Components.classes["@leahscape.org/foxyproxy/service;1"].getService().

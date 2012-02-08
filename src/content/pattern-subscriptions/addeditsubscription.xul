@@ -191,8 +191,7 @@
           </html:span>
           &foxyproxy.pattern.subscriptions.refreshHelp4;
           <html:a class="link" onclick="contextHelp('refresh');">
-            &foxyproxy.pactip5.label;
-          </html:a>.
+            &foxyproxy.pactip5.label;</html:a>.
         </description>
       </vbox>
     </menupopup>

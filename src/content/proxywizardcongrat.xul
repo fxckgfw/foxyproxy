@@ -60,12 +60,11 @@
       </g>
     </svg>
     <vbox style="margin-top: 3em;">
-      <description id="msg"/>
+      <description id="msg" width="400"/>
       <separator class="thin"/>
         <description style="width: 1em;">
           <html:a class="link" onclick="openLocationURL();">
-             &foxyproxy.proxy.wizard.whatsmyip.label;
-           </html:a>
+             &foxyproxy.proxy.wizard.whatsmyip.label;</html:a>.
         </description>
     </vbox>
 </hbox>

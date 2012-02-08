@@ -21,10 +21,11 @@
 
   <script type="text/javascript" src="proxywizard.js" />
   <vbox>
-    <description width="600">&foxyproxy.proxy.wizard.description;</description>
-    <html:a class="link" onclick="openLocationURL();">
-      https://getfoxyproxy.org/proxyservice
-    </html:a>
+    <description width="600">
+      &foxyproxy.proxy.wizard.description1;
+      <html:a class="link" onclick="openLocationURL();">
+        &foxyproxy.proxy.wizard.description2;</html:a>.
+    </description> 
     <separator class="thin"/>
     <vbox>
       <label value="&foxyproxy.proxy.wizard.subscriptionID.label;"

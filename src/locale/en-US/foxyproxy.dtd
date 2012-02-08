@@ -15,12 +15,13 @@
 <!ENTITY foxyproxy.proxy.wizard.label "Proxy Wizard">
 <!ENTITY foxyproxy.proxy.wizard.accesskey "P">
 <!ENTITY foxyproxy.proxy.wizard.tooltip "Create a proxy from a proxy subscription">
-<!ENTITY foxyproxy.proxy.wizard.description "This wizard configures your paid proxy automatically. Please enter your subscription ID below. If you do not have a subscription ID, you can purchase one at ">
+<!ENTITY foxyproxy.proxy.wizard.description1 "This wizard configures your paid proxy automatically. Please enter your subscription ID below. If you do not have a subscription ID, ">
+<!ENTITY foxyproxy.proxy.wizard.description2 "you can purchase one">
 <!ENTITY foxyproxy.proxy.wizard.subscriptionID.label "Subscription ID">
 <!ENTITY foxyproxy.proxy.wizard.subscriptionID.tooltip "Enter your proxy subscription ID">
 <!ENTITY foxyproxy.proxy.wizard.loading.label "Retrieving proxy details...">
 <!ENTITY foxyproxy.proxy.wizard.congratulation "Congratulations. FoxyProxy is configured.">
-<!ENTITY foxyproxy.proxy.wizard.whatsmyip.label "Check my location.">
+<!ENTITY foxyproxy.proxy.wizard.whatsmyip.label "Check my location">
 <!ENTITY foxyproxy.pattern.label "Pattern">
 <!ENTITY foxyproxy.urlpatterns.label "URL Patterns">
 <!ENTITY foxyproxy.urlpatterns.accesskey "P">

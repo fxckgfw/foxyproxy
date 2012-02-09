@@ -367,7 +367,11 @@ Common.prototype = {
           }
           break;
         case "add":
-          fp.proxies.insertAt(nameValuePairs["position"], proxy);
+          let position = null;
+          if (nameValuePairs["position"]) {
+            position = nameValuePairs["position"];
+          }
+          fp.proxies.insertAt(position, proxy); 
           fp.broadcast(null, "foxyproxy-proxy-change");
           break;
         case "delete": /* deliberate fall-through */
@@ -383,8 +387,13 @@ Common.prototype = {
           var p = fp.proxies.mergeByName(proxy, nameValuePairs);
           if (p)
             proxy = p;
-          else
-            fp.proxies.insertAt(nameValuePairs["position"], proxy);
+          else {
+            let position = null;
+            if (nameValuePairs["position"]) {
+              position = nameValuePairs["position"];
+            }
+            fp.proxies.insertAt(position, proxy);
+          }
           fp.broadcast(null, "foxyproxy-proxy-change");
           break;
       }

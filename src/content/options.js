@@ -919,7 +919,8 @@ function proxyWizard() {
     let params2 = {};
     params2.inn = {
       country: params.proxy["name"],
-      username: params.proxy["username"]
+      username: params.proxy["username"],
+      password: params.proxy["password"]
     };
     window.openDialog('chrome://foxyproxy/content/proxywizardcongrat.xul', '',
       'resizable=yes', params2).focus();

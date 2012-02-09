@@ -9,7 +9,7 @@
   and also online at http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 **/
 
-var req, aborted = false;
+var req;
 function onLoad() {
   sizeToContent();
 }
@@ -24,8 +24,8 @@ function onOK() {
   // Cancel any outstanding XHR calls to prevent memory leaks;
   // We don't want any references to the XHR callback functions
   // when this dialog closes.
-  req.abort();
-  aborted = true;
+  if (req)
+    req.abort();
   return true;
 }
 
@@ -66,7 +66,6 @@ function onCheck() {
           fp.alert(null, fp.getMessage("proxywiz.id.failure"));
         }
       } else {
-        if (!aborted)
           fp.alert(null, fp.getMessage("proxywiz.load.failure"));
       }
     } else { } 
@@ -90,13 +89,4 @@ function unWait() {
   // Show the OK btn
   document.documentElement.getButton("accept").hidden = false;
   sizeToContent();
-}
-
-function onCancel() {
-  // Cancel any outstanding XHR calls to prevent memory leaks;
-  // We don't want any references to the XHR callback functions
-  // when this dialog closes.
-  req.abort();
-  aborted = true;
-  return true;
 }

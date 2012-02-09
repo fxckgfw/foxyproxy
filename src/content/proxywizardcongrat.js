@@ -23,9 +23,9 @@ function onLoad() {
       .wrappedJSObject;
   if (inn && inn.country)
     var msg = fp.getMessage("proxy.wizard.getfoxyproxy", [inn.country, inn.
-      username, inn.password]);
+      username]);
   else
-    var msg = fp.getMessage("proxy.wizard.getfoxyproxy", ["?", "?", "?"]);
+    var msg = fp.getMessage("proxy.wizard.getfoxyproxy", ["?", "?"]);
   let msg2 = document.createTextNode(msg);
   document.getElementById("msg").appendChild(msg2);
   document.documentElement.getButton("accept").focus();

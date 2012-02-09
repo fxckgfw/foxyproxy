@@ -330,6 +330,8 @@ Common.prototype = {
     if (uri.indexOf("//") == 0)
       uri = uri.substring(2);
     uri = decodeURI(uri);
+    // decodeURI doesn't convert &amp; entity to &
+    uri = uri.replace(new RegExp("&amp;", "g"), "&");
     // e.g. proxy:ip=xx.xx.xx.xx&port=yyyyy
     // Parse query params into nameValuePairs array
     var count = 0, nameValuePairs = [], queryParams = uri.split('&'),
@@ -405,8 +407,8 @@ Common.prototype = {
              nameValuePairs["foxyProxyMode"] != "previous" &&
              nameValuePairs["foxyProxyMode"] != "roundrobin" &&
              !fp.proxies.getProxyById(nameValuePairs["foxyProxyMode"])) {
-      var proxy = fp.proxies.getProxyByName(nameValuePairs["foxyProxyMode"]);
-      if (proxy)
+      var proxy2 = fp.proxies.getProxyByName(nameValuePairs["foxyProxyMode"]);
+      if (proxy2)
         nameValuePairs["foxyProxyMode"] = proxy.id;
     }
 
@@ -420,7 +422,7 @@ Common.prototype = {
     if (nameValuePairs["confirmation"] == "popup") {
       fp.notifier.alert(fp.getMessage("foxyproxy"),
         fp.getMessage("proxy.configured", [nameValuePairs["name"]]));
-      return true;
+      return nameValuePairs;
     }
     else if (nameValuePairs["confirmation"]) {
       // Is it a valid URL?
@@ -430,7 +432,7 @@ Common.prototype = {
       catch(e) {/* not a valid URL */ return true; }
       this.openTab(nameValuePairs["confirmation"]);
     }
-    return true;
+    return nameValuePairs;
   },
   
   classDescription: "FoxyProxy Common Utils",

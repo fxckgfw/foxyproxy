@@ -1200,7 +1200,7 @@ end-foxyproxy-simple !*/
 
 window.addEventListener("load", function(e) { foxyproxy.onLoad(e); }, false);
 window.addEventListener("unload", function(e) {
-  document.removeEventListener("new",
+  document.removeEventListener("new-proxy",
       foxyproxy.createSubscribedProxy, false, true); 
   document.getElementById("appcontent") &&
     document.getElementById("appcontent").removeEventListener("load", foxyproxy.

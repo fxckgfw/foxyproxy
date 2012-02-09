@@ -10,6 +10,7 @@
 **/
 
 var req;
+
 function onLoad() {
   sizeToContent();
 }
@@ -20,25 +21,25 @@ function openLocationURL() {
     "proxyservice/");
 }
 
-function onOK() {
+function onCancel() {
   // Cancel any outstanding XHR calls to prevent memory leaks;
   // We don't want any references to the XHR callback functions
   // when this dialog closes.
-  if (req)
+  if (req) {
+    // Do not show the load failure alert if the user presses the cancel button.
+    req.cancel = true;
     req.abort();
+  }
   return true;
 }
 
-function onCheck() {
+function onOK() {
   let proxyURI;
   let fp = Components.classes["@leahscape.org/foxyproxy/service;1"].getService().
     wrappedJSObject;
   let url = "https://getfoxyproxy.org/proxyservice/get-details-fp.php?subscription="
   let subscriptionID = document.getElementById("subscriptionID").value; 
   req = new XMLHttpRequest();
-  // We need to signal the parent dialog whether the proxy got successfully
-  // configured.
-  req.success = false;
   req.onreadystatechange = function (oEvent) {
     if (req.readyState === 1) {
       // Let's show the user that we are fetching her proxy details.
@@ -58,35 +59,39 @@ function onCheck() {
             // We could not generate a URI. Thus, parsing of the proxy details
             // will fail...
             fp.alert(null, fp.getMessage("proxywiz.parse.failure"));
+            window.close();
           }
           window.arguments[0].proxy = fpc.processProxyURI(proxyURI);
-          window.document.documentElement.acceptDialog();
+          window.close();
         } else {
           // The user entered an invalid subscription id
           fp.alert(null, fp.getMessage("proxywiz.id.failure"));
         }
       } else {
+        if (!req.cancel) {
           fp.alert(null, fp.getMessage("proxywiz.load.failure"));
+          window.close();
+        }
       }
-    } else { } 
+    }
   }
   req.open("GET", url + subscriptionID, true);
   req.send(null);
+  // We want to have the option to let the dialog open (e.g. if the user
+  // entered a wrong subscription ID).
   return false;
 }
 
 function wait() {
   document.getElementById("loadHint").collapsed = false;
-  document.getElementById("checkBtn").disabled = true;
-  // Hide the OK btn
-  document.documentElement.getButton("accept").hidden = true;
+  // Deactivate the OK btn
+  document.documentElement.getButton("accept").disabled = true;
   sizeToContent();
 }
 
 function unWait() {
   document.getElementById("loadHint").collapsed = true;
-  document.getElementById("checkBtn").disabled = false;
-  // Show the OK btn
-  document.documentElement.getButton("accept").hidden = false;
+  // Activate the OK btn
+  document.documentElement.getButton("accept").disabled = false;
   sizeToContent();
 }

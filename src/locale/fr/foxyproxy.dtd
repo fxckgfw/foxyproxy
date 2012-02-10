@@ -12,6 +12,16 @@
 <!ENTITY foxyproxy.proxy.notes.label "Notes sur le proxy">
 <!ENTITY foxyproxy.proxy.notes.accesskey "t">
 <!ENTITY foxyproxy.proxy.notes.tooltip "Notes concernant le proxy">
+<!ENTITY foxyproxy.proxy.wizard.label "Assistant proxy">
+<!ENTITY foxyproxy.proxy.wizard.accesskey "P">
+<!ENTITY foxyproxy.proxy.wizard.tooltip "Créer un proxy à partir d'un abonnement de proxy">
+<!ENTITY foxyproxy.proxy.wizard.description1 "Cet assistant configure votre proxy acheté automatiquement. Veuillez indiquer votre ID d'abonnement ci-dessous. Si vous n'avez pas d'ID d’abonnement,">
+<!ENTITY foxyproxy.proxy.wizard.description2 "vous pouvez en acheter une">
+<!ENTITY foxyproxy.proxy.wizard.subscriptionID.label "ID d'abonnement">
+<!ENTITY foxyproxy.proxy.wizard.subscriptionID.tooltip "Indiquez votre ID d'abonnement de proxy">
+<!ENTITY foxyproxy.proxy.wizard.loading.label "Recherche des infos proxy…">
+<!ENTITY foxyproxy.proxy.wizard.congratulation "Félicitations. FoxyProxy est configurée.">
+<!ENTITY foxyproxy.proxy.wizard.whatsmyip.label "Vérifier mon emplacement">
 <!ENTITY foxyproxy.pattern.label "Motif de correspondance">
 <!ENTITY foxyproxy.urlpatterns.label "Motifs d'URL">
 <!ENTITY foxyproxy.urlpatterns.accesskey "M">
@@ -483,7 +493,7 @@
 <!ENTITY foxyproxy.pattern.subscriptions.refreshNow.tooltip "Actualiser cet abonnement de motif maintenant">
 <!ENTITY foxyproxy.pattern.subscriptions.refreshHelp1 "Spécifier le nombre de minutes après lesquelles l'abonnement est mis à jour. La mise à jour d'abonnement">
 <!ENTITY foxyproxy.pattern.subscriptions.refreshHelp2 "supprime tous les motifs existant">
-<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp3 "puis insert ceux qui ont été trouvés à l'URL d'abonnement. En apprendre davantage ici">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp4 "ensuite insère ceux qui ont été trouvés à l'URL d'abonnement. En apprendre davantage">
 <!ENTITY foxyproxy.pattern.subscriptions.zeroRefresh "(0 pour ne jamais actualiser)">
 <!ENTITY foxyproxy.pattern.subscriptions.format.tooltip "Format de la liste d'abonnement de motifs">
 <!ENTITY foxyproxy.pattern.subscriptions.formatHelp "Spécifier le format dans lequel l'abonnement est écrit. Normalement, cela est détecté automatiquement par FoxyProxy. Infos supplémentaires">

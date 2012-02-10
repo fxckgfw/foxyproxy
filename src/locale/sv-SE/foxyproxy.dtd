@@ -12,6 +12,16 @@
 <!ENTITY foxyproxy.proxy.notes.label "Proxyanteckningar">
 <!ENTITY foxyproxy.proxy.notes.accesskey "n">
 <!ENTITY foxyproxy.proxy.notes.tooltip "Proxyanteckningar">
+<!ENTITY foxyproxy.proxy.wizard.label "Proxyguiden">
+<!ENTITY foxyproxy.proxy.wizard.accesskey "P">
+<!ENTITY foxyproxy.proxy.wizard.tooltip "Skapa en proxy utifrån en proxyprenumeration">
+<!ENTITY foxyproxy.proxy.wizard.description1 "Denna guide konfigurerar din betalproxytjänst automatiskt. Ange ditt prenumerations-ID nedan. Om du inte har något prenumerations-ID,">
+<!ENTITY foxyproxy.proxy.wizard.description2 "så kan du köpa ett">
+<!ENTITY foxyproxy.proxy.wizard.subscriptionID.label "Prenumerations-ID">
+<!ENTITY foxyproxy.proxy.wizard.subscriptionID.tooltip "Ange ditt proxyprenumerations-ID">
+<!ENTITY foxyproxy.proxy.wizard.loading.label "Hämtar proxyinformation…">
+<!ENTITY foxyproxy.proxy.wizard.congratulation "Gratulerar! FoxyProxy har konfigurerats.">
+<!ENTITY foxyproxy.proxy.wizard.whatsmyip.label "Kontrollera mitt IP-nummer">
 <!ENTITY foxyproxy.pattern.label "Mönster">
 <!ENTITY foxyproxy.urlpatterns.label "URL-mönster">
 <!ENTITY foxyproxy.urlpatterns.accesskey "ö">
@@ -481,12 +491,12 @@
 <!ENTITY foxyproxy.pattern.subscriptions.refresh.tooltip "Uppdateringsintervall för denna mönsterprenumeration (minuter)">
 <!ENTITY foxyproxy.pattern.subscriptions.refreshNow.label "Uppdatera nu">
 <!ENTITY foxyproxy.pattern.subscriptions.refreshNow.tooltip "Uppdatera denna mönsterprenumeration nu">
-<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp1 "Ange det antal minuter efter vilket prenumerationen uppdateras. Uppdatering av prenumerationen ">
-<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp2 "tar bort alla befintliga mönster ">
-<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp3 "och infogar sedan de som hittats på prenumerations-URL:en. Läs mer här ">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp1 "Ange det antal minuter efter vilket prenumerationen uppdateras. Uppdatering av prenumerationen">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp2 "tar bort alla befintliga mönster">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp4 "infogar därefter de mönster som återfinns på prenumerationsadressen. Läs mer">
 <!ENTITY foxyproxy.pattern.subscriptions.zeroRefresh "(0: Uppdatera aldrig)">
 <!ENTITY foxyproxy.pattern.subscriptions.format.tooltip "Format för denna mönsterprenumerationslista">
-<!ENTITY foxyproxy.pattern.subscriptions.formatHelp "Ange formatet i vilket prenumerationen skrivs. Normalt sett identifieras detta automatiskt av FoxyProxy. Läs mer ">
+<!ENTITY foxyproxy.pattern.subscriptions.formatHelp "Ange formatet i vilket prenumerationen skrivs. Normalt sett identifieras detta automatiskt av FoxyProxy. Läs mer">
 <!ENTITY foxyproxy.pattern.subscriptions.obfuscation.tooltip "Obfuskationsformat för denna mönsterprenumeration">
 <!ENTITY foxyproxy.pattern.subscriptions.obfuscationHelp "Prenumerationer kan, om du så önskar, obfuskeras (fördunklas) för att förhindra att innehållet filtreras av datorer mellan dig och prenumerations-URL:en. Normalt sett identifieras detta automatiskt av FoxyProxy. Läs mer ">
 <!ENTITY foxyproxy.pattern.subscriptions.copyLastStatus.label "Kopiera senaste status till Urklipp">

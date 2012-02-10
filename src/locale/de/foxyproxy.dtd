@@ -15,13 +15,13 @@
 <!ENTITY foxyproxy.proxy.wizard.label "Proxy Wizard">
 <!ENTITY foxyproxy.proxy.wizard.accesskey "P">
 <!ENTITY foxyproxy.proxy.wizard.tooltip "Erstelle einen Proxy von einem Proxy-Abonnement">
-<!ENTITY foxyproxy.proxy.wizard.description1 "Dieser Dialog konfiguriert Ohren bezahlten Proxy automatisch. Geben Sie bitte dazu unten Ihre Abonnement-ID an. Wenn Sie keine haben, ">
-<!ENTITY foxyproxy.proxy.wizard.description2 "können Sie einen kaufen">
+<!ENTITY foxyproxy.proxy.wizard.description1 "Dieser Dialog konfiguriert Ihren bezahlten Proxy automatisch. Geben Sie bitte dazu unten Ihre Abonnement-ID an. Wenn Sie keine haben, ">
+<!ENTITY foxyproxy.proxy.wizard.description2 "können Sie eine kaufen">
 <!ENTITY foxyproxy.proxy.wizard.subscriptionID.label "Abonnement-ID">
 <!ENTITY foxyproxy.proxy.wizard.subscriptionID.tooltip "Geben Sie Ihre Abonnement-ID ein">
 <!ENTITY foxyproxy.proxy.wizard.loading.label "Laden der Proxy-Details...">
 <!ENTITY foxyproxy.proxy.wizard.congratulation "Herzlichen Glückwunsch. FoxyProxy ist konfiguriert.">
-<!ENTITY foxyproxy.proxy.wizard.whatsmyip.label "Zeig meinen Standort.">
+<!ENTITY foxyproxy.proxy.wizard.whatsmyip.label "Zeig meinen Standort">
 <!ENTITY foxyproxy.pattern.label "Muster">
 <!ENTITY foxyproxy.urlpatterns.label "URL-Muster">
 <!ENTITY foxyproxy.urlpatterns.accesskey "M">

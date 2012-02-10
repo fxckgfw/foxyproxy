@@ -12,6 +12,16 @@
 <!ENTITY foxyproxy.proxy.notes.label "Σημειώσεις διαμεσολαβητή">
 <!ENTITY foxyproxy.proxy.notes.accesskey "Σ">
 <!ENTITY foxyproxy.proxy.notes.tooltip "Σημειώσεις διαμεσολαβητή">
+<!ENTITY foxyproxy.proxy.wizard.label "Βοηθός διαμεσολαβητή">
+<!ENTITY foxyproxy.proxy.wizard.accesskey "θ">
+<!ENTITY foxyproxy.proxy.wizard.tooltip "Ρύθμιση διαμεσολαβητή από συνδρομή σε διαμεσολαβητή">
+<!ENTITY foxyproxy.proxy.wizard.description1 "Αυτός ο βοηθός ρυθμίζει αυτόματα διαμεσολαβητές που έχετε ήδη πληρώσει συνδρομή. Παρακαλούμε δώστε το αναγνωριστικό (ID) της συνδρομής σας παρακάτω. Αν δεν έχετε ID,">
+<!ENTITY foxyproxy.proxy.wizard.description2 "μπορείτε να αγοράσετε ένα">
+<!ENTITY foxyproxy.proxy.wizard.subscriptionID.label "ID συνδρομής">
+<!ENTITY foxyproxy.proxy.wizard.subscriptionID.tooltip "Εισάγετε το ID της συνδρομής σας">
+<!ENTITY foxyproxy.proxy.wizard.loading.label "Ανάκτηση πληροφοριών διαμεσολαβητή...">
+<!ENTITY foxyproxy.proxy.wizard.congratulation "Συγχαρητήρια. Το FoxyProxy ρυθμίστηκε.">
+<!ENTITY foxyproxy.proxy.wizard.whatsmyip.label "Έλεγχος για την τοποθεσία μου">
 <!ENTITY foxyproxy.pattern.label "Πρότυπο">
 <!ENTITY foxyproxy.urlpatterns.label "Πρότυπα URL">
 <!ENTITY foxyproxy.urlpatterns.accesskey "Π">
@@ -483,7 +493,7 @@
 <!ENTITY foxyproxy.pattern.subscriptions.refreshNow.tooltip "Ανανέωση συνδρομής προτύπων τώρα">
 <!ENTITY foxyproxy.pattern.subscriptions.refreshHelp1 "Ορίστε τον αριθμό των λεπτών μετά τα οποία θα ενημερώνεται η συνδρομή. Η ενημέρωση συνδρομής">
 <!ENTITY foxyproxy.pattern.subscriptions.refreshHelp2 "αφαιρεί όλα τα υπάρχοντα πρότυπα">
-<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp3 "και εισάγει αυτά που υπάρχουν στο URL της συνδρομής. Διαβάστε περισσότερα εδώ">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp4 "μετά εισάγει πληροφορίες από το URL της συνδρομής σας. Διαβάστε περισσότερα">
 <!ENTITY foxyproxy.pattern.subscriptions.zeroRefresh "(Βάλτε 0 για να μην ανανεώνεται)">
 <!ENTITY foxyproxy.pattern.subscriptions.format.tooltip "Μορφή λίστας συνδρομής προτύπων">
 <!ENTITY foxyproxy.pattern.subscriptions.formatHelp "Ορίστε τη μορφή συγγραφής της συνδρομής. Κανονικά θα πρέπει να αναγνωρίζεται αυτόματα από το FoxyProxy. Διαβάστε περισσότερα">

@@ -18,17 +18,17 @@ function openLocationURL() {
 }
 
 function onLoad() {
-  let inn = window.arguments[0].inn,
+  let msg, inn = window.arguments[0].inn,
     fp = Components.classes["@leahscape.org/foxyproxy/service;1"].getService()
       .wrappedJSObject;
   if (inn && inn.country) {
-    let msg = fp.getMessage("proxy.wizard.getfoxyproxy", [inn.country, inn.
+    msg = fp.getMessage("proxy.wizard.getfoxyproxy", [inn.country, inn.
       username,
       // The password may not be present. If not, use empty string. Otherwise,
       // use e.g., "(secret)"
       inn.password ? ("(" + inn.password + ")") : ""]);
   } else {
-    let msg = fp.getMessage("proxy.wizard.getfoxyproxy", ["?", "?", "?"]);
+    msg = fp.getMessage("proxy.wizard.getfoxyproxy", ["?", "?", "?"]);
   }
   let msg2 = document.createTextNode(msg);
   document.getElementById("msg").appendChild(msg2);

@@ -9,7 +9,7 @@
   and also online at http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 **/
 
-var intervalId, angle = 4, iconRotater, inn;
+let intervalId, angle = 4, iconRotater, inn;
 
 function openLocationURL() {
   Components.classes["@leahscape.org/foxyproxy/common;1"].getService().
@@ -21,14 +21,15 @@ function onLoad() {
   let inn = window.arguments[0].inn,
     fp = Components.classes["@leahscape.org/foxyproxy/service;1"].getService()
       .wrappedJSObject;
-  if (inn && inn.country)
-    var msg = fp.getMessage("proxy.wizard.getfoxyproxy", [inn.country, inn.
+  if (inn && inn.country) {
+    let msg = fp.getMessage("proxy.wizard.getfoxyproxy", [inn.country, inn.
       username,
       // The password may not be present. If not, use empty string. Otherwise,
       // use e.g., "(secret)"
       inn.password ? ("(" + inn.password + ")") : ""]);
-  else
-    var msg = fp.getMessage("proxy.wizard.getfoxyproxy", ["?", "?", "?"]);
+  } else {
+    let msg = fp.getMessage("proxy.wizard.getfoxyproxy", ["?", "?", "?"]);
+  }
   let msg2 = document.createTextNode(msg);
   document.getElementById("msg").appendChild(msg2);
   document.documentElement.getButton("accept").focus();

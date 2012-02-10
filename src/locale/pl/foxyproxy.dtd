@@ -12,6 +12,16 @@
 <!ENTITY foxyproxy.proxy.notes.label "Uwagi">
 <!ENTITY foxyproxy.proxy.notes.accesskey "U">
 <!ENTITY foxyproxy.proxy.notes.tooltip "Uwagi o proxy">
+<!ENTITY foxyproxy.proxy.wizard.label "Kreator proxy">
+<!ENTITY foxyproxy.proxy.wizard.accesskey "K">
+<!ENTITY foxyproxy.proxy.wizard.tooltip "Tworzy proxy z subskrypcji">
+<!ENTITY foxyproxy.proxy.wizard.description1 "Kreator konfiguruje twoje zakupione proxy automatycznie. Poniżej podaj identyfikator swojej subskrypcji. Jeśli nie masz identyfikatora subskrypcji,">
+<!ENTITY foxyproxy.proxy.wizard.description2 "możesz ją wykupić.">
+<!ENTITY foxyproxy.proxy.wizard.subscriptionID.label "ID subskrypcji">
+<!ENTITY foxyproxy.proxy.wizard.subscriptionID.tooltip "Podaj ID subskrypcji proxy">
+<!ENTITY foxyproxy.proxy.wizard.loading.label "Pobieranie szczegółów proxy">
+<!ENTITY foxyproxy.proxy.wizard.congratulation "Gratulacje. FoxyProxy jest skonfigurowane.">
+<!ENTITY foxyproxy.proxy.wizard.whatsmyip.label "Sprawdź moje położenie">
 <!ENTITY foxyproxy.pattern.label "Wzorzec">
 <!ENTITY foxyproxy.urlpatterns.label "Adresy URL wzorców">
 <!ENTITY foxyproxy.urlpatterns.accesskey "U">
@@ -483,7 +493,7 @@
 <!ENTITY foxyproxy.pattern.subscriptions.refreshNow.tooltip "Odśwież tę subskrypcję wzorca teraz">
 <!ENTITY foxyproxy.pattern.subscriptions.refreshHelp1 "Określ liczbę minut po jakiej subskrypcja będzie aktualizowana. Aktualizacja subskrypcji spowoduje ">
 <!ENTITY foxyproxy.pattern.subscriptions.refreshHelp2 "usunięcie wszystkich istniejących wzorców i ">
-<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp3 "wstawienie znalezionych pod adresem URL subskrypcji. Dowiedz się więcej tutaj ">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp4 "następnie wstawia znalezione pod adresem URL subskrypcji. Dowiedz się więcej">
 <!ENTITY foxyproxy.pattern.subscriptions.zeroRefresh "(0 brak odświeżania)">
 <!ENTITY foxyproxy.pattern.subscriptions.format.tooltip "Format tej listy subskrypcji wzorca">
 <!ENTITY foxyproxy.pattern.subscriptions.formatHelp "Określ format, w jakim subskrypcja będzie zapisywana. Zwykle jest to automatycznie wykrywane przez FoxyProxy. Dowiedz się więcej ">

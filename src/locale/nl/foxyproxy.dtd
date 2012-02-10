@@ -12,6 +12,16 @@
 <!ENTITY foxyproxy.proxy.notes.label "Opmerkingen bij de proxy">
 <!ENTITY foxyproxy.proxy.notes.accesskey "O">
 <!ENTITY foxyproxy.proxy.notes.tooltip "Opmerkingen bij de proxy">
+<!ENTITY foxyproxy.proxy.wizard.label "Proxywizard">
+<!ENTITY foxyproxy.proxy.wizard.accesskey "P">
+<!ENTITY foxyproxy.proxy.wizard.tooltip "Maak een proxy aan uit een proxy-abonnement">
+<!ENTITY foxyproxy.proxy.wizard.description1 "Deze wizard configureert uw betaalde proxy automatisch. Voer hieronder uw abonnements-ID in. Als u geen abonnements-ID hebt,">
+<!ENTITY foxyproxy.proxy.wizard.description2 "kunt u er één kopen">
+<!ENTITY foxyproxy.proxy.wizard.subscriptionID.label "Abonnements-ID">
+<!ENTITY foxyproxy.proxy.wizard.subscriptionID.tooltip "Voer uw abonnements-ID in">
+<!ENTITY foxyproxy.proxy.wizard.loading.label "Proxydetails ophalen…">
+<!ENTITY foxyproxy.proxy.wizard.congratulation "Gefeliciteerd. FoxyProxy is geconfigureerd.">
+<!ENTITY foxyproxy.proxy.wizard.whatsmyip.label "Controleert mijn locatie">
 <!ENTITY foxyproxy.pattern.label "Patroon">
 <!ENTITY foxyproxy.urlpatterns.label "URL-patronen">
 <!ENTITY foxyproxy.urlpatterns.accesskey "P">
@@ -483,7 +493,7 @@
 <!ENTITY foxyproxy.pattern.subscriptions.refreshNow.tooltip "Patroonabonnement nu verversen">
 <!ENTITY foxyproxy.pattern.subscriptions.refreshHelp1 "Geef het aantal minuten op waarna het abonnement wordt bijgewerkt. Het bijwerken van het abonnement">
 <!ENTITY foxyproxy.pattern.subscriptions.refreshHelp2 "verwijdert alle bestaande patronen">
-<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp3 "en voegt vervolgens de patronen in die op de abonnements-URL worden gevonden. Lees meer hierover">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp4 "en voegt de gevonden locatie(s) in de abonnements-URL in. Lees meer">
 <!ENTITY foxyproxy.pattern.subscriptions.zeroRefresh "{0 om nooit te verversen)">
 <!ENTITY foxyproxy.pattern.subscriptions.format.tooltip "Opmaak van deze patroonabonnementslijst">
 <!ENTITY foxyproxy.pattern.subscriptions.formatHelp "Geef de opmaak op waarin het abonnement is geschreven. Normaliter wordt dit automatisch gedetecteerd door FoxyProxy. Meer hierover">

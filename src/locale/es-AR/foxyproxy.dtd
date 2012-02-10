@@ -12,6 +12,16 @@
 <!ENTITY foxyproxy.proxy.notes.label "Notas del Proxy">
 <!ENTITY foxyproxy.proxy.notes.accesskey "N">
 <!ENTITY foxyproxy.proxy.notes.tooltip "Notas del Proxy">
+<!ENTITY foxyproxy.proxy.wizard.label "Asistente del Proxy">
+<!ENTITY foxyproxy.proxy.wizard.accesskey "P">
+<!ENTITY foxyproxy.proxy.wizard.tooltip "Crear un proxy desde una suscripción de proxy">
+<!ENTITY foxyproxy.proxy.wizard.description1 "Este asistente configura el proxy de pago de forma automática. Por favor, introduzca su ID de suscripción deabajo. Si usted no tiene un identificador de suscripción,">
+<!ENTITY foxyproxy.proxy.wizard.description2 "usted puede adquirir uno.">
+<!ENTITY foxyproxy.proxy.wizard.subscriptionID.label "ID de suscripción">
+<!ENTITY foxyproxy.proxy.wizard.subscriptionID.tooltip "Ingrese su ID de suscripción al proxy">
+<!ENTITY foxyproxy.proxy.wizard.loading.label "Recuperando la información del proxy ...">
+<!ENTITY foxyproxy.proxy.wizard.congratulation "Felicitaciones. FoxyProxy se ha configurado.">
+<!ENTITY foxyproxy.proxy.wizard.whatsmyip.label "Comprobar mi ubicación">
 <!ENTITY foxyproxy.pattern.label "Patrón">
 <!ENTITY foxyproxy.urlpatterns.label "Patrones de URL">
 <!ENTITY foxyproxy.urlpatterns.accesskey "P">
@@ -83,6 +93,7 @@
 <!ENTITY foxyproxy.regex.label "Expresión Regular">
 <!ENTITY foxyproxy.regex.accesskey "R">
 <!ENTITY foxyproxy.regex.tooltip "Especifica que la URL o el patrón de URL es una expresión regular">
+<!ENTITY foxyproxy.regex.example.label2 "Ejemplo: ^https?://.*\.mail\.yahoo\.com/.*$">
 <!ENTITY foxyproxy.version "Versión">
 <!ENTITY foxyproxy.createdBy "Creado Por">
 <!ENTITY foxyproxy.contributionsBy "Contribuyeron">
@@ -482,7 +493,7 @@
 <!ENTITY foxyproxy.pattern.subscriptions.refreshNow.tooltip "Actualizar esta suscripción patrones de ahora">
 <!ENTITY foxyproxy.pattern.subscriptions.refreshHelp1 "Especifique el número de minutos en que la suscripción será actualizada. Actualizando la suscripción">
 <!ENTITY foxyproxy.pattern.subscriptions.refreshHelp2 "eliminar todos los patrones existentes">
-<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp3 "a continuación, insertar los que se encuentran en la dirección URL de suscripción. Más información aquí">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp4 "a continuación, inserta los que se encuentran en la URL de suscripción. Leer más">
 <!ENTITY foxyproxy.pattern.subscriptions.zeroRefresh "(0 para no refrescar nunca)">
 <!ENTITY foxyproxy.pattern.subscriptions.format.tooltip "Formato de esta lista de suscripción patrones">
 <!ENTITY foxyproxy.pattern.subscriptions.formatHelp "Especifique el formato en el que está escrita la suscripción . Normalmente, esto es detectado automáticamente por FoxyProxy. Leer más">

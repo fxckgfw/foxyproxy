@@ -19,19 +19,20 @@
   xmlns:html="http://www.w3.org/1999/xhtml"
   persist="screenX screenY" onload="onLoad();">
 
-  <script type="text/javascript" src="proxywizard.js" />
+  <script type="application/x-javascript;version=1.7" src="proxywizard.js"/>
+
   <vbox>
     <description width="600">
       &foxyproxy.proxy.wizard.description1;
       <html:a class="link" onclick="openLocationURL();">
         &foxyproxy.proxy.wizard.description2;</html:a>.
-    </description> 
+    </description>
     <separator class="thin"/>
     <vbox>
       <label value="&foxyproxy.proxy.wizard.subscriptionID.label;"
         control="subscriptionID"
         tooltiptext="&foxyproxy.proxy.wizard.subscriptionID.tooltip;"/>
-      <textbox id="subscriptionID" flex="1"/> 
+      <textbox id="subscriptionID" flex="1"/>
       <separator class="thin"/>
       <label value="&foxyproxy.proxy.wizard.loading.label;" collapsed="true"
         id="loadHint"/>

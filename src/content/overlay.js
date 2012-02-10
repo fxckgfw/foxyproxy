@@ -189,8 +189,8 @@ end-foxyproxy-simple !*/
     // We are registering an event listener for our custom event fired if a
     // user bought a proxy subscription. FoxyProxy should automatically
     // configure the new proxy according to the values transmitted.
-    document.addEventListener("new-proxy",
-      foxyproxy.createSubscribedProxy, false, true);
+    document.addEventListener("new-proxy", foxyproxy.createSubscribedProxy,
+      false, true);
   },
 
   parseHTML : function(doc, html) {
@@ -1200,8 +1200,8 @@ end-foxyproxy-simple !*/
 
 window.addEventListener("load", function(e) { foxyproxy.onLoad(e); }, false);
 window.addEventListener("unload", function(e) {
-  document.removeEventListener("new-proxy",
-      foxyproxy.createSubscribedProxy, false, true); 
+  document.removeEventListener("new-proxy", foxyproxy.createSubscribedProxy,
+    false, true);
   document.getElementById("appcontent") &&
     document.getElementById("appcontent").removeEventListener("load", foxyproxy.
     onPageLoad, true);

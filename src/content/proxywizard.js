@@ -9,7 +9,7 @@
   and also online at http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 **/
 
-var req;
+let req;
 
 function onLoad() {
   sizeToContent();
@@ -38,7 +38,7 @@ function onOK() {
   let fp = Components.classes["@leahscape.org/foxyproxy/service;1"].getService().
     wrappedJSObject;
   let url = "https://getfoxyproxy.org/proxyservice/get-details-fp.php?subscription="
-  let subscriptionID = document.getElementById("subscriptionID").value; 
+  let subscriptionID = document.getElementById("subscriptionID").value;
   req = new XMLHttpRequest();
   req.onreadystatechange = function (oEvent) {
     if (req.readyState === 1) {

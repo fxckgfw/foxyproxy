@@ -22,8 +22,7 @@ function onLoad() {
     fp = Components.classes["@leahscape.org/foxyproxy/service;1"].getService()
       .wrappedJSObject;
   if (inn && inn.country) {
-    msg = fp.getMessage("proxy.wizard.getfoxyproxy", [inn.country, inn.
-      username,
+    msg = fp.getMessage("proxy.wizard.getfoxyproxy", [inn.country, inn.username,
       // The password may not be present. If not, use empty string. Otherwise,
       // use e.g., "(secret)"
       inn.password ? ("(" + inn.password + ")") : ""]);

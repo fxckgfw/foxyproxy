@@ -675,8 +675,15 @@ foxyproxy.prototype = {
     this.autoadd.fromDOM(doc);    
     this.warnings.fromDOM(doc);
     this.defaultPrefs.fromDOM(doc);
+    // We'd like to delegate the state of disableApi to api.js, but that requires
+    // the api to expose a fromDOM() method, or similar, to the general public
+    // (the wrappedJSObject trick does not work for api.js because it exposes a
+    // real interface). Exposing fromDOM() to webpages is not something we should
+    // do since it is really an internal function. Therefore, foxyproxy.js
+    // maintains this state. If we start maintaining a lot of state for the API,
+    // we should create an API object within foxyproxy.js to handle it.
     let disableApi = gGetSafeAttrB(node, "disableApi", false);
-    //CC["@leahscape.org/foxyproxy/api;1"].getService(CI.fpApi).setDisableApi(disableApi);
+    CC["@leahscape.org/foxyproxy/api;1"].getService(CI.fpApi).setDisableApi(disableApi);
   },
 
   toDOM : function() {
@@ -694,6 +701,14 @@ foxyproxy.prototype = {
     e.setAttribute("excludePatternsFromCycling", this.excludePatternsFromCycling);
     e.setAttribute("excludeDisabledFromCycling", this.excludeDisabledFromCycling);
     e.setAttribute("ignoreProxyScheme", this.ignoreProxyScheme);
+    // We'd like to delegate the state of disableApi to api.js, but that requires
+    // the api to expose a fromDOM() method, or similar, to the general public
+    // (the wrappedJSObject trick does not work for api.js because it exposes a
+    // real interface). Exposing fromDOM() to webpages is not something we should
+    // do since it is really an internal function. Therefore, foxyproxy.js
+    // maintains this state. If we start maintaining a lot of state for the API,
+    // we should create an API object within foxyproxy.js to handle it.
+    e.setAttribute("disableApi", CC["@leahscape.org/foxyproxy/api;1"].getService(CI.fpApi).getDisableApi());
     e.appendChild(this.random.toDOM(doc));
     e.appendChild(this.statusbar.toDOM(doc));
     e.appendChild(this.toolbar.toDOM(doc));

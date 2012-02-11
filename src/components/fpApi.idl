@@ -13,5 +13,6 @@ interface fpApi : nsISupports {
   void changeAllSettings(in nsIDOMNode foxyProxyNode, [optional] in fpNotification callback);
   void setMode(in AString newMode, [optional] in fpNotification callback);
   void setDisableApi(in boolean b);
+  boolean getDisableApi();
   AString getVersionInfo();
 };

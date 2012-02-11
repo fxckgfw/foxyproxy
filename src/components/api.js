@@ -13,7 +13,6 @@ var console = CC["@mozilla.org/consoleservice;1"].getService(CI.nsIConsoleServic
 function api() {
   this.fp = CC["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;
   this.fpc = CC["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject;
-  this.wrappedJSObject = this; // So internal code can call non-public (API) functions
 };
 
 api.prototype = {
@@ -29,7 +28,7 @@ api.prototype = {
    * since that is the vernacular with web developers.
    */
   changeAllSettings : function(node, callback) {
-    if (this.ignoreApi) return;
+    if (this.disableApi) return;
 
     // nodeName is always capitalized by Gecko so no need for case-insensitive check
     if (node.nodeName != "FOXYPROXY") {
@@ -38,15 +37,23 @@ api.prototype = {
       return;
     } 
 
-    // User notification first
-    let that = this;
-    this.fpc.notify("proxy.scheme.warning.2", null, null, null, function() {
-        that.fp.proxies.deleteAll(); // Delete all first. TODO: consider a merge algorithm instead
-        that.fp.fromDOM(node, node);
-        // TODO: update GUI because changes won't display if its already open
-      },
-    true);
+    this._promptUser(function(not, btn) {
+      let that = btn.callbackArgs;
+      that.fp.proxies.deleteAll(); // Delete all first. TODO: consider a merge algorithm instead
+      that.fp.fromDOM(node, node);
+      // TODO: update GUI because changes won't display if its already open
+    });
   },
+
+  /**
+   * Ask user
+   */
+   _promptUser: function(callback) {
+      // User notification first
+      let that = this;
+      this.fpc.notify("proxy.scheme.warning.2", null, null, null, callback,
+        true, that);
+   },
 
   /**
    * Change the mode to the one specified.
@@ -54,12 +61,15 @@ api.prototype = {
    * UNTESTED
    */
   setMode: function(newMode, callback) {
-    if (this.ignoreApi) return;
-    this.fp.setMode(newMode, false, true);
-    if (this.fp.mode == newMode)
-      this._successCallback(callback);
-    else
-      this._errorCallback(callback, "Unrecognized mode specified. Defaulting to \"disabled\"");
+    if (this.disableApi) return;
+    this._promptUser(function(not, btn) {
+      let that = btn.callbackArgs;
+      that.fp.setMode(newMode, true, false);
+      if (that.fp.mode == newMode)
+        that._successCallback(callback);
+      else
+        that._errorCallback(callback, "Unrecognized mode specified. Defaulting to \"disabled\"");
+    });
   },
 
   /**
@@ -68,6 +78,13 @@ api.prototype = {
    */
   setDisableApi: function(b) {
     this.disableApi = b;
+  },
+
+  /**
+   * Returns true if we ignore API calls; false if we act on them.
+   */
+  getDisableApi: function() {
+    return this.disableApi;
   },
 
   /**
@@ -111,6 +128,15 @@ api.prototype = {
   /** nsIClassInfo **/
   classInfo: XPCOMUtils.generateCI({ interfaces: ["fpApi"], classID: Components.ID("{26e128d0-542c-11e1-b86c-0800200c9a66}"),
     contractID: "@leahscape.org/foxyproxy/api;1", classDescription: "FoxyProxy Content API", flags: CI.nsIClassInfo.SINGLETON|CI.nsIClassInfo.DOM_OBJECT}),
-  QueryInterface: XPCOMUtils.generateQI([CI.fpApi, CI.nsIClassInfo])
+  QueryInterface: XPCOMUtils.generateQI([CI.fpApi, CI.nsIClassInfo]),
+
+  _xpcom_factory: {
+    singleton: null,
+    createInstance: function (aOuter, aIID) {
+      if (aOuter) throw CR.NS_ERROR_NO_AGGREGATION;
+      if (!this.singleton) this.singleton = new api();
+      return this.singleton.QueryInterface(aIID);
+    }
+  }
 };
 var NSGetFactory = XPCOMUtils.generateNSGetFactory([api]);

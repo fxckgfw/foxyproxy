@@ -278,7 +278,7 @@ Common.prototype = {
     return this.appInfo.ID == "{3550f703-e582-4d05-9a08-453d09bdfdc6}";
   },
   
-  notify : function(msg, ar, buttons, priority, callback, getNotWithVal) {
+  notify : function(msg, ar, buttons, priority, callback, getNotWithVal, callbackArgs) {
     let wm = this.getMostRecentWindow(), message = fp.getMessage(msg, ar), nb;
     // First we check, whether we use Firefox or Seamonkey...
     if (wm.gBrowser) {
@@ -305,7 +305,8 @@ Common.prototype = {
           label: fp.getMessage("allow"),
           accessKey: fp.getMessage("allow.accesskey"),
           popup: null, 
-          callback: callback
+          callback: callback,
+          callbackArgs: callbackArgs
         }                 
       ];  
     }

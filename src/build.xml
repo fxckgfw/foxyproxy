@@ -34,7 +34,8 @@
     </zip>
   </target>
 
-  <!-- create foxyproxy-x.y.z.xpi in the current dir using install.rdf in the current dir-->
+  <!-- create foxyproxy-x.y.z.xpi in the current dir using install.rdf in the current dir
+-->
   <target name="build">
     <copy file="chrome.manifest.packaging" tofile="${temp-path}/chrome.manifest" />
     <!-- set the copyright date in license header blocks --> 
@@ -68,7 +69,7 @@
 
   <target name="build-foxyproxy-standard" depends="init">
     <property name="edition" value="standard" />
-    <property name="version" value="3.6a1" />
+    <property name="version" value="3.7a1" />
     <property name="src-path" value="${temp-path}"/>
     <antcall>
       <target name="copy"/>

@@ -62,8 +62,35 @@ api.prototype = {
       this._errorCallback(callback, "Unrecognized mode specified. Defaulting to \"disabled\"");
   },
 
+  /**
+   * If true, all API function calls are ignored. If false, all calls are
+   * invoked as normal. Default is true.
+   */
   setDisableApi: function(b) {
     this.disableApi = b;
+  },
+
+  /**
+   * Returns a JSON object with two properties: name and version.
+   * |name| is the name of the addon installed, one of:
+   * "FoxyProxyBasic", "FoxyProxyStandard", or "FoxyProxyPlus"
+   * |version| is the version of the installed addon.
+   */ 
+  getVersionInfo: function() {
+    var name;
+    if (this.fp.isFoxyProxySimple())
+      name = "FoxyProxyBasic";
+    else {
+      // Are we Standard or Plus?
+      try {
+        CC["@leahscape.com/foxyproxyplus/licenseresolver;1"].getService().wrappedJSObject;
+        name = "FoxyProxyPlus"; // Note: untested so far
+      }
+      catch (e) {
+        name = "FoxyProxyStandard";
+      }      
+    }
+    return '{"version": "' + this.fpc.getVersion() + '", "name": "' + name + '"}';
   },
 
   _successCallback: function(n) {

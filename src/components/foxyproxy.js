@@ -256,8 +256,9 @@ foxyproxy.prototype = {
     }
     // Ensure the new mode is valid. If it's invalid, set mode to disabled for
     // safety (what else should we do?) and spit out a message. The only time
-    // an invalid mode could be specified is if (a) there's a coding error or
-    // (b) the user specified an invalid mode on the command-line arguments.
+    // an invalid mode could be specified is if (a) there's a coding error,
+    // (b) the user specified an invalid mode on the command-line arguments,
+    // (c) the content-facing API specified an invalid mode.
     if (!this._selectedProxy && mode != "disabled" && mode != "patterns" &&
         mode != "random" && mode != "roundrobin") {
       dump("FoxyProxy: unrecognized mode specified. Defaulting to \"disabled\".\n");
@@ -674,6 +675,8 @@ foxyproxy.prototype = {
     this.autoadd.fromDOM(doc);    
     this.warnings.fromDOM(doc);
     this.defaultPrefs.fromDOM(doc);
+    let disableApi = gGetSafeAttrB(node, "disableApi", false);
+    //CC["@leahscape.org/foxyproxy/api;1"].getService(CI.fpApi).setDisableApi(disableApi);
   },
 
   toDOM : function() {
@@ -1061,6 +1064,11 @@ foxyproxy.prototype = {
       }
     },
 
+    deleteAll : function() {
+      this.list.length = 0;
+      this.lastresort = null;
+    },
+
     fromDOM : function(mode, doc) {
       var last = null;
       for (var i=0,proxyElems=doc.getElementsByTagName("proxy"); i<proxyElems.length; i++) {
@@ -1069,9 +1077,9 @@ foxyproxy.prototype = {
         var p = new Proxy(gFP);
         p.fromDOM(n, mode);  
         if (!last && n.getAttribute("lastresort") == "true")
-          last = p;
+          last = p; // Save for later so we can enforce it's last in the list
         else
-          this.list.push(p);
+          this.list.push(p); // Note: Using native push, not this.push()
       }
       if (last) {
         this.list.push(last); // ensures it really IS last

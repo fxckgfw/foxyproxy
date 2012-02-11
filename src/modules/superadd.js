@@ -377,8 +377,22 @@ AutoAdd.prototype.toDOM = function(doc) {
 AutoAdd.prototype.fromDOM = function(doc) {
   SuperAdd.prototype.fromDOM.apply(this, arguments);
 
+  var n = doc.getElementsByTagName("autoadd")[0];
+  if (n) {
+    n = n.getElementsByTagName("match")[1] // 0-indexed, so this is the 2nd node
+  }
+  if (n) {
+    try {
+      this._blockedPageMatch.fromDOM(n);
+    }
+    catch (e) {dump(e+"\n");}
+  }
+  else {
+    dump("Cannot find autoadd/match[1] node.\n");
+  }
+   
   // Note XPath expression array index is 1-based
-  var n = getBlockedPageMatch("/foxyproxy/autoadd/match[2]");
+  /*var n = getBlockedPageMatch("foxyproxy/autoadd/match[2]");
   if (n) {
     try {
       this._blockedPageMatch.fromDOM(n);
@@ -386,7 +400,7 @@ AutoAdd.prototype.fromDOM = function(doc) {
     catch (e) {dump(e+"\n");}
   }
   else
-    this._blockedPageMatch.fromDOM(getBlockedPageMatch("/foxyproxy/autoadd/match[1]"));
+    this._blockedPageMatch.fromDOM(getBlockedPageMatch("foxyproxy/autoadd/match[1]"));
 
   function getBlockedPageMatch(exp) {
     // doc.createNSResolver(doc) fails on FF2 (not FF3), so we use an instance of nsIDOMXPathEvaluator instead
@@ -399,5 +413,5 @@ AutoAdd.prototype.fromDOM = function(doc) {
     var n = xpe.evaluate(exp, doc, xpe.createNSResolver(doc), xpe.FIRST_ORDERED_NODE_TYPE, null);
     n.QueryInterface(CI.nsIDOMXPathResult); // not necessary in FF3, only 2.x and possibly earlier
     return n.iterateNext();
-  }
+  }*/
 };

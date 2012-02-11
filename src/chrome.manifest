@@ -46,8 +46,11 @@ locale  foxyproxy vi locale/vi/
 locale  foxyproxy zh-CN locale/zh-CN/
 locale  foxyproxy zh-TW locale/zh-TW/
 
+interfaces components/fpApi.xpt
+
 category profile-after-change foxyproxy @leahscape.org/foxyproxy/service;1
 category command-line-handler CmdLineHandler @mozilla.org/commandlinehandler/general-startup;1?type=foxyproxy
+category JavaScript-global-property foxyproxy @leahscape.org/foxyproxy/api;1
 
 component {54382370-f194-11da-8ad9-0800200c9a66} components/autoconf.js
 contract @leahscape.org/foxyproxy/autoconf;1 {54382370-f194-11da-8ad9-0800200c9a66}
@@ -72,6 +75,9 @@ contract @leahscape.org/foxyproxy/proxy;1 {51b469a0-edc1-11da-8ad9-0800200c9a66}
 
 component {22ed2962-a8ec-11dc-8314-0800200c9a66} components/relativeprotocolhandler.js
 contract @mozilla.org/network/protocol;1?name=relative {22ed2962-a8ec-11dc-8314-0800200c9a66}
+
+component {26e128d0-542c-11e1-b86c-0800200c9a66} components/api.js
+contract @leahscape.org/foxyproxy/api;1 {26e128d0-542c-11e1-b86c-0800200c9a66}
 
 #Firefox
 skin    foxyproxy classic/1.0 skin/ application={ec8030f7-c20a-464f-9b0e-13a3a9e97384}

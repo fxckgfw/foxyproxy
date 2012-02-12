@@ -1,2 +1,4 @@
+* added an API for web pages to control FoxyProxy! (link: TBD)
+* removed more Flock-related cruft and locale cruft
 * removed fixed height for add/edit pattern subscription dialog
 * updated locales

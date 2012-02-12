@@ -1,17 +1,16 @@
 #include "nsISupports.idl"
 #include "nsIDOMNode.idl"
-#include "nsIException.idl"
 
 [scriptable, uuid(26e128d0-542c-11e1-b86c-0800200c9a69)]
-interface fpNotification : nsISupports {
+interface notification : nsISupports {
   void success();
   void error(in AString msg);
 };
 
 [scriptable, uuid(26e128d0-542c-11e1-b86c-0800200c9a66)]
-interface fpApi : nsISupports {
-  void changeAllSettings(in nsIDOMNode foxyProxyNode, [optional] in fpNotification callback);
-  void setMode(in AString newMode, [optional] in fpNotification callback);
+interface api : nsISupports {
+  void changeAllSettings(in nsIDOMNode foxyProxyNode, [optional] in notification callback);
+  void setMode(in AString newMode, [optional] in notification callback);
   void setDisableApi(in boolean b);
   boolean getDisableApi();
   AString getVersionInfo();

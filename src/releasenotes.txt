@@ -1,4 +1,6 @@
 * added an API for web pages to control FoxyProxy! (link: TBD)
+* Default proxy can now be configured to perform DNS lookups remotely when using
+  a SOCKS proxy as the Default
 * removed more Flock-related cruft and locale cruft
 * removed fixed height for add/edit pattern subscription dialog
 * updated locales

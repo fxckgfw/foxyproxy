@@ -46,7 +46,7 @@ locale  foxyproxy vi locale/vi/
 locale  foxyproxy zh-CN locale/zh-CN/
 locale  foxyproxy zh-TW locale/zh-TW/
 
-interfaces components/fpApi.xpt
+interfaces components/api.xpt
 
 category profile-after-change foxyproxy @leahscape.org/foxyproxy/service;1
 category command-line-handler CmdLineHandler @mozilla.org/commandlinehandler/general-startup;1?type=foxyproxy

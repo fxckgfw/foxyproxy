@@ -52,6 +52,7 @@ function onLoad() {
   document.getElementById("proxynotes").value = proxy.notes;
   document.getElementById("animatedIcons").checked = proxy.animatedIcons;
   document.getElementById("cycleEnabled").checked = proxy.includeInCycle;
+  document.getElementById("clearCacheBeforeUse").checked = proxy.clearCacheBeforeUse;
   document.getElementById("colorpicker").color = proxy.color;
   pickcolor(proxy.color); // NEW SVG
   document.getElementById("tabs").selectedIndex = proxy.selectedTabIndex;
@@ -204,6 +205,7 @@ function onOK() {
   } else {
     proxy.noInternalIPs = document.getElementById("noInternalIPs").checked;
   }
+  proxy.clearCacheBeforeUse = document.getElementById("clearCacheBeforeUse").checked;
   proxy.afterPropertiesSet();
   window.arguments[0].out = {proxy:proxy};
   return true;

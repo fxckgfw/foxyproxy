@@ -46,6 +46,8 @@ locale  foxyproxy vi chrome/locale/vi/
 locale  foxyproxy zh-CN chrome/locale/zh-CN/
 locale  foxyproxy zh-TW chrome/locale/zh-TW/
 
+interfaces components/api.xpt
+
 category profile-after-change foxyproxy @leahscape.org/foxyproxy/service;1
 category command-line-handler CmdLineHandler @mozilla.org/commandlinehandler/general-startup;1?type=foxyproxy
 category JavaScript-global-property foxyproxy @leahscape.org/foxyproxy/api;1

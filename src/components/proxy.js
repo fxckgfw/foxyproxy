@@ -126,6 +126,7 @@ Proxy.prototype = {
   // Eventually, we need one object to store the PAC settings of the proxy
   // specified in the system settings.
   systemProxyPAC: null,
+  clearCacheBeforeUse: false,
   readOnlyProperties : ["lastresort", "fp", "wrappedJSObject", "matches", /* from ManualConf */ "owner",
                         /* from AutoConf */ "timer", /* from AutoConf */  "_resolver"],
 
@@ -167,7 +168,8 @@ Proxy.prototype = {
     this.animatedIcons = node.hasAttribute("animatedIcons") ? node.getAttribute("animatedIcons") == "true" : !this.lastresort; // new for 2.4
     this.includeInCycle = node.hasAttribute("includeInCycle") ? node.getAttribute("includeInCycle") == "true" : !this.lastresort; // new for 2.5
     this.color = gGetSafeAttr(node, "color", DEFAULT_COLOR);    
-    
+    this.clearCacheBeforeUse = gGetSafeAttrB(node, "clearCacheBeforeUse", true);
+
     this.noInternalIPs = node.hasAttribute("noInternalIPs") ?
       node.getAttribute("noInternalIPs") == "true" : false;
     for (var i=0,temp=node.getElementsByTagName("match"); i<temp.length; i++) {

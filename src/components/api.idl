@@ -8,7 +8,7 @@ interface notification : nsISupports {
 };
 
 [scriptable, uuid(26e128d0-542c-11e1-b86c-0800200c9a66)]
-interface api : nsISupports {
+interface foxyProxyApi : nsISupports {
   void changeAllSettings(in nsIDOMNode foxyProxyNode, [optional] in notification callback);
   void setMode(in AString newMode, [optional] in notification callback);
   void setDisableApi(in boolean b);

@@ -95,6 +95,7 @@ var componentDir = self.parent; // the directory this file is in
 var loader = CC["@mozilla.org/moz/jssubscript-loader;1"].getService(CI["mozIJSSubScriptLoader"]);
 loadComponentScript("proxy.js");
 loadComponentScript("match.js");
+loadComponentScript("defaultprefs.js");
 loadModuleScript("superadd.js");
 
 // l is for lulu...
@@ -152,7 +153,7 @@ foxyproxy.prototype = {
             this.patternSubscriptions.init();
             // Initialize defaultPrefs before initial call to this.setMode().
             // setMode() is called from this.loadSettings()->this.fromDOM(), but also from commandlinehandler.js.
-            this.defaultPrefs.init();        
+            defaultPrefs.init(this);        
             this.loadSettings();
           }
           catch (e) {
@@ -174,7 +175,7 @@ foxyproxy.prototype = {
         gObsSvc.removeObserver(this, "quit-application");
         gObsSvc.removeObserver(this, "domwindowclosed");
         gObsSvc.removeObserver(this, "domwindowopened");
-        this.defaultPrefs.uninit();
+        defaultPrefs.uninit();
         break;
       case "domwindowopened":
         this.strings.load();
@@ -268,6 +269,10 @@ foxyproxy.prototype = {
     }
     
     this.toggleFilter(this._mode != "disabled");
+
+    if (this._selectedProxy.clearCacheBeforeUse)
+      this.clearCache();
+
     // This line must come before the next one -- gBroadcast(...) Otherwise,
     // AutoAdd and QuickAdd write their settings before they've been
     // deserialized, resulting in them always getting written to disk as
@@ -279,6 +284,18 @@ foxyproxy.prototype = {
     gBroadcast(this.autoadd._enabled, "foxyproxy-mode-change", this._mode);
     if (writeSettings)
       this.writeSettingsAsync();
+  },
+
+  clearCache : function() {
+    try {
+  	  let cs = CC["@mozilla.org/network/cache-service;1"].getService(CI.nsICacheService);  	  
+  	  cs.evictEntries(CI.nsICache.STORE_ON_DISK);
+  	  cs.evictEntries(CI.nsICache.STORE_IN_MEMORY);
+    }
+    catch(e) {
+      this.notifier.alert(this.getMessage("foxyproxy"),
+        this.getMessage("clearcache.error", [e]));
+    }	 
   },
 
   /**
@@ -674,16 +691,16 @@ foxyproxy.prototype = {
     this.quickadd.fromDOM(doc); // KEEP THIS BEFORE this.autoadd.fromDOM() else fromDOM() is overwritten!?
     this.autoadd.fromDOM(doc);    
     this.warnings.fromDOM(doc);
-    this.defaultPrefs.fromDOM(doc);
-    // We'd like to delegate the state of disableApi to api.js, but that requires
+    defaultPrefs.fromDOM(doc);
+    // We'd like to delegate the writing of disableApi to api.js, but that requires
     // the api to expose a fromDOM() method, or similar, to the general public
     // (the wrappedJSObject trick does not work for api.js because it exposes a
     // real interface). Exposing fromDOM() to webpages is not something we should
     // do since it is really an internal function. Therefore, foxyproxy.js
-    // maintains this state. If we start maintaining a lot of state for the API,
+    // maintains writes it. If we start writing a lot of state for the API,
     // we should create an API object within foxyproxy.js to handle it.
     let disableApi = gGetSafeAttrB(node, "disableApi", false);
-    CC["@leahscape.org/foxyproxy/api;1"].getService(CI.fpApi).setDisableApi(disableApi);
+    CC["@leahscape.org/foxyproxy/api;1"].getService(CI.foxyProxyApi).setDisableApi(disableApi);
   },
 
   toDOM : function() {
@@ -701,14 +718,14 @@ foxyproxy.prototype = {
     e.setAttribute("excludePatternsFromCycling", this.excludePatternsFromCycling);
     e.setAttribute("excludeDisabledFromCycling", this.excludeDisabledFromCycling);
     e.setAttribute("ignoreProxyScheme", this.ignoreProxyScheme);
-    // We'd like to delegate the state of disableApi to api.js, but that requires
+    // We'd like to delegate the writing of disableApi to api.js, but that requires
     // the api to expose a fromDOM() method, or similar, to the general public
     // (the wrappedJSObject trick does not work for api.js because it exposes a
     // real interface). Exposing fromDOM() to webpages is not something we should
     // do since it is really an internal function. Therefore, foxyproxy.js
-    // maintains this state. If we start maintaining a lot of state for the API,
+    // maintains writes it. If we start writing a lot of state for the API,
     // we should create an API object within foxyproxy.js to handle it.
-    e.setAttribute("disableApi", CC["@leahscape.org/foxyproxy/api;1"].getService(CI.fpApi).getDisableApi());
+    e.setAttribute("disableApi", CC["@leahscape.org/foxyproxy/api;1"].getService(CI.foxyProxyApi).getDisableApi());
     e.appendChild(this.random.toDOM(doc));
     e.appendChild(this.statusbar.toDOM(doc));
     e.appendChild(this.toolbar.toDOM(doc));
@@ -716,191 +733,9 @@ foxyproxy.prototype = {
     e.appendChild(this.warnings.toDOM(doc));
     e.appendChild(this.autoadd.toDOM(doc));
     e.appendChild(this.quickadd.toDOM(doc));
-    e.appendChild(this.defaultPrefs.toDOM(doc));
+    e.appendChild(defaultPrefs.toDOM(doc));
     e.appendChild(this.proxies.toDOM(doc));
     return e;
-  },
-
-  // Manages the saving of original pref values on installation
-  // and their restoration when FoxyProxy is disabled/uninstalled through the EM.
-  // Also forces our values to remain in effect even if the user or
-  // another extension changes them. Restores values to original
-  // when FoxyProxy is in disabled mode.
-  defaultPrefs : {
-    FALSE : 0x10,
-    TRUE : 0x11,    
-    CLEARED : 0x12,
-    origPrefetch : null,
-    //network.dns.disablePrefetchFromHTTPS
-    networkPrefsObserver : null, /* We save this instance because we must call removeObserver method on the same nsIPrefBranch2 instance on which we called addObserver method in order to remove an observer */
-    beingUninstalled : false, /* flag per https://developer.mozilla.org/en/Code_snippets/Miscellaneous#Receiving_notification_before_an_extension_is_disabled_and.2for_uninstalled */
-    QueryInterface: XPCOMUtils.generateQI([CI.nsISupports, CI.nsIObserver]),
-    
-    // Install observers
-    init : function() {
-      this.addPrefsObserver();
-      for each (let i in ["foxyproxy-mode-change", "foxyproxy-proxy-change", "em-action-requested",
-          "quit-application"])
-        gObsSvc.addObserver(this, i, false);
-    },
-    
-    addPrefsObserver : function() {
-      if (!this.networkPrefsObserver) {
-        this.networkPrefsObserver = gFP.getPrefsService("network.dns.");
-        this.networkPrefsObserver.QueryInterface(CI.nsIPrefBranch2).addObserver("", this, false);        
-      }
-    },
-    
-    removePrefsObserver : function() {
-      if (!this.networkPrefsObserver) // we're not initialized and calling gObsSvc.removeObserver() will throw
-        return;
-      this.networkPrefsObserver.removeObserver("", this);
-      this.networkPrefsObserver = null;
-    },
-    
-    // Uninstall observers
-    uninit : function() {
-      this.removePrefsObserver();
-      for each (let i in ["foxyproxy-mode-change", "foxyproxy-proxy-change", "em-action-requested",
-          "quit-application"])
-        gObsSvc.removeObserver(this, i);
-    },
-  
-    observe : function(subj, topic, data) {
-      try {
-        if (topic == "nsPref:changed" && data == "disablePrefetch") {
-          if (this.shouldDisableDNSPrefetch())
-            this.disablePrefetch();
-          // Don't restore originals if shouldDisableDNSPrefetch == false -- let the user do what he wants with the setting
-        }
-        else if (topic == "em-action-requested")
-          this.restoreOnExit(data, subj.QueryInterface(CI.nsIUpdateItem));
-        else if (topic == "quit-application" && this.beingUninstalled)
-          this.restoreOriginals(false);
-        else if (topic == "foxyproxy-mode-change") {
-        	if (gFP._mode=="disabled") {
-        	  this.restoreOriginals(true);
-        	  // Stop listening for pref changes
-        	  this.removePrefsObserver();
-        	  return;
-        	}
-        	if (gFP._previousMode=="disabled") // We're coming out of disabled mode
-        	  this.saveOriginals();
-        	setOrUnsetPrefetch(this);
-        	this.addPrefsObserver(); // Start listening for pref changes if we aren't already
-        }
-        else if (topic == "foxyproxy-proxy-change") {
-          if (gFP._mode=="disabled") return;
-          setOrUnsetPrefetch(this);
-        }
-      }
-      catch (e) { dumpp(e); }
-      function setOrUnsetPrefetch(self) {
-        if (self.shouldDisableDNSPrefetch())
-          self.disablePrefetch();
-        else
-          self.restoreOriginals(true);
-      }
-    },
-    
-    shouldDisableDNSPrefetch : function() {
-      if (gFP._mode=="disabled") return false;
-      // Is mode "Use proxy xyz for all URLs". Does the selected proxy require dns prefetch disabling?
-      if (gFP._selectedProxy)
-        return gFP._selectedProxy.shouldDisableDNSPrefetch()
-      // Mode is patterns, random, or roundrobin
-      return gFP.proxies.requiresRemoteDNSLookups();
-    },
-    
-    // FoxyProxy being disabled/uninstalled. Should we restore the original pre-FoxyProxy values?
-    restoreOnExit : function(d, updateItem) {
-      var guid = updateItem.id;
-      if (guid == "foxyproxy-basic@eric.h.jung" || guid == "foxyproxy@eric.h.jung" || guid == "foxyproxyplus@leahscape.com") {
-        if (d == "item-cancel-action")
-          this.beingUninstalled = false;
-        else if (d == "item-uninstalled" || d == "item-disabled")
-          this.beingUninstalled = true;
-        else if (d == "item-enabled")
-          this.beingUninstalled = false;
-      }
-    },
-    
-    // Restore the original pre-FoxyProxy values and stop observing changes
-    restoreOriginals : function(contObserving) {
-      var p = gFP.getPrefsService("network.dns.");
-      this.uninit(); // stop observing the prefs while we change them
-      if (this.origPrefetch == this.TRUE)
-        p.setBoolPref("disablePrefetch", true);
-      else if (this.origPrefetch == this.FALSE)
-        p.setBoolPref("disablePrefetch", false);
-      else if (this.origPrefetch == this.CLEARED) {
-        try {
-          if (p.prefHasUserValue("disablePrefetch"))
-            p.clearUserPref("disablePrefetch");
-        }
-        catch (e) { /* i don't think this is necessary since p.prefHasUserValue() is called before clearing */
-          dumpp(e);
-        }
-      }
-
-      // If Firefox is configured to use a PAC file, we need to force that PAC file to load.
-      // Firefox won't load it automatically except on startup and after
-      // network.proxy.autoconfig_retry_* seconds. Rather than make the user wait for that,
-      // we load the PAC file now by flipping network.proxy.type (Firefox is observing that pref)
-      var networkPrefs = gFP.getPrefsService("network.proxy."), type;
-      try {
-        type = networkPrefs.getIntPref("type");
-      }
-      catch(e) {
-        dump("FoxyProxy: network.proxy.type doesn't exist or can't be read\n");
-        dumpp(e);
-      }
-      if (type == 2) { /* isn't there a const for this? */ 
-        // network.proxy.type is set to use a PAC file.    
-        // Don't use nsPIProtocolProxyService to load the PAC. From its comments: "[nsPIProtocolProxyService] exists purely as a
-        // hack to support the configureFromPAC method used by the preference panels in the various apps. Those
-        // apps need to be taught to just use the preferences API to "reload" the PAC file. Then, at that point,
-        // we can eliminate this interface completely."
-
-        // var pacURL = networkPrefs.getCharPref("autoconfig_url");
-        // var pps = CC["@mozilla.org/network/protocol-proxy-service;1"]
-          // .getService(Components.interfaces.nsPIProtocolProxyService);
-        // pps.configureFromPAC(pacURL);
-
-        // Instead, change the prefs--the proxy service is observing and will reload the PAC
-        networkPrefs.setIntPref("type", 1);
-        networkPrefs.setIntPref("type", 2);
-      }
-      if (contObserving)
-        this.init(); // Add our observers again
-    },
-    
-    // Save the original prefs for restoring when FoxyProxy is disabled/uninstalled
-    saveOriginals : function() {
-      var p = gFP.getPrefsService("network.dns.");
-      this.origPrefetch = p.prefHasUserValue("disablePrefetch") ?
-          (p.getBoolPref("disablePrefetch") ? this.TRUE : this.FALSE) : this.CLEARED;
-      gFP.writeSettingsAsync();
-    },
-    
-    // Set our desired values for the prefs; may or may not be the same as the originals
-    disablePrefetch : function() {
-      this.uninit(); // stop observing the prefs while we change them
-      gFP.getPrefsService("network.dns.").setBoolPref("disablePrefetch", true);
-      this.init(); // start observing the prefs again
-    },
-    
-    fromDOM : function(doc) {
-      var n = doc.getElementsByTagName("defaultPrefs").item(0);
-      if (!n) return; // for pre-2.17 foxyproxy.xml files that don't have this node
-      this.origPrefetch = gGetSafeAttr(n, "origPrefetch", null);      
-    },
-    
-    toDOM : function(doc) {
-      var e = doc.createElement("defaultPrefs");
-      e.setAttribute("origPrefetch", this.origPrefetch);
-      return e;
-    }
   },
 
   ///////////////// random \\\\\\\\\\\\\\\\\\\\\\

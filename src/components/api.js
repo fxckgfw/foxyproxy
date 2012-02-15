@@ -126,9 +126,9 @@ api.prototype = {
   classID: Components.ID("{26e128d0-542c-11e1-b86c-0800200c9a66}"),  // uuid from IDL
  
   /** nsIClassInfo **/
-  classInfo: XPCOMUtils.generateCI({ interfaces: ["fpApi"], classID: Components.ID("{26e128d0-542c-11e1-b86c-0800200c9a66}"),
+  classInfo: XPCOMUtils.generateCI({ interfaces: ["foxyProxyApi"], classID: Components.ID("{26e128d0-542c-11e1-b86c-0800200c9a66}"),
     contractID: "@leahscape.org/foxyproxy/api;1", classDescription: "FoxyProxy Content API", flags: CI.nsIClassInfo.SINGLETON|CI.nsIClassInfo.DOM_OBJECT}),
-  QueryInterface: XPCOMUtils.generateQI([CI.fpApi, CI.nsIClassInfo]),
+  QueryInterface: XPCOMUtils.generateQI([CI.foxyProxyApi, CI.nsIClassInfo]),
 
   _xpcom_factory: {
     singleton: null,

@@ -85,10 +85,14 @@
           label="&foxyproxy.includeincycle.label;" style="width: 20em;"
           accesskey="&foxyproxy.includeincycle.accesskey;"
           tooltiptext="&foxyproxy.includeincycle.tooltip;"/>
-        <checkbox id="proxyDNS" class="indent" observes="direct-broadcaster"
+        <checkbox id="proxyDNS" class="indent"
           label="&foxyproxy.proxydns.label3;"
           accesskey="&foxyproxy.proxydns.accesskey;"
           tooltiptext="&foxyproxy.proxydns.tooltip3;"/>
+        <checkbox id="clearCacheBeforeUse" class="indent"
+          label="&foxyproxy.clearcache.label;"
+          accesskey="&foxyproxy.clearcache.accesskey;"
+          tooltiptext="&foxyproxy.clearcache.tooltip;"/>
         <separator class="thin"/>
         <vbox>
           <hbox align="center">

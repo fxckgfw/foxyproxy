@@ -270,7 +270,7 @@ foxyproxy.prototype = {
     
     this.toggleFilter(this._mode != "disabled");
 
-    if (this._selectedProxy.clearCacheBeforeUse)
+    if (this._selectedProxy && this._selectedProxy.clearCacheBeforeUse)
       this.clearCache();
 
     // This line must come before the next one -- gBroadcast(...) Otherwise,

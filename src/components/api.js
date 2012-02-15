@@ -42,6 +42,7 @@ api.prototype = {
       that.fp.proxies.deleteAll(); // Delete all first. TODO: consider a merge algorithm instead
       that.fp.fromDOM(node, node);
       // TODO: update GUI because changes won't display if its already open
+      that._successCallback(callback);
     });
   },
 

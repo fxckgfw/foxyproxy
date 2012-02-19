@@ -14,6 +14,7 @@ var foxyproxy, proxyTree, patternSubscriptionsTree, proxySubscriptionsTree,
 const CI = Components.interfaces, CC = Components.classes, CU = Components.utils;
 
 CU.import("resource://foxyproxy/patternSubscriptions.jsm");
+CU.import("resource://foxyproxy/utils.jsm");
 
 function onLoad() {
   foxyproxy = CC["@leahscape.org/foxyproxy/service;1"].getService().
@@ -344,7 +345,7 @@ function onDeleteSelection() {
       patternSubscriptions.removeDeletedProxies(proxyId);
     } 
     foxyproxy.proxies.remove(proxyTree.currentIndex);
-    foxyproxy.broadcast(true /*write settings*/, "foxyproxy-proxy-change");
+    utils.broadcast(true /*write settings*/, "foxyproxy-proxy-change");
     // Reselect what was previously selected
     proxyTree.view.selection.select(sel+1>proxyTree.view.rowCount ? 0:sel); 
   }  
@@ -362,7 +363,7 @@ function onCopySelection() {
 	  p.fromDOM(dom, true);
 	  p.id = foxyproxy.proxies.uniqueRandom(); // give it its own id 
 	  foxyproxy.proxies.push(p);
-	  foxyproxy.broadcast(true /*write settings*/, "foxyproxy-proxy-change");
+	  utils.broadcast(true /*write settings*/, "foxyproxy-proxy-change");
 	  // Reselect what was previously selected
 		proxyTree.view.selection.select(sel);    	  
 	}
@@ -394,7 +395,7 @@ function onSettings(isNew) {
     "chrome, dialog, modal, resizable=yes", params).focus();
   if (params.out) {
     if (isNew) foxyproxy.proxies.push(params.out.proxy);
-    foxyproxy.broadcast(true /*write settings*/, "foxyproxy-proxy-change");
+    utils.broadcast(true /*write settings*/, "foxyproxy-proxy-change");
     // Reselect what was previously selected or the new item
     proxyTree.view.selection.select(isNew?proxyTree.view.rowCount-2:sel); 
     // We need to include this call here as well as the selection is not
@@ -754,7 +755,7 @@ function onProxyTreeMenuPopupShowing() {
 function toggleEnabled() {
 	var p = foxyproxy.proxies.item(proxyTree.currentIndex);
 	p.enabled = !p.enabled;
-	foxyproxy.broadcast(true /*write settings*/, "foxyproxy-proxy-change");
+	utils.broadcast(true /*write settings*/, "foxyproxy-proxy-change");
 }
 
 function _isDefaultProxySelected() {

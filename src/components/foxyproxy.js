@@ -10,7 +10,7 @@
 **/
 
 // Don't const the next line anymore because of the generic reg code
-// dump("foxyproxy.js\n");
+//dump("foxyproxy.js\n");
 var CI = Components.interfaces, CC = Components.classes, CR = Components.results, CU = Components.utils, gFP;
 CU.import("resource://gre/modules/XPCOMUtils.jsm");
 var dumpp = function(e) {
@@ -94,10 +94,10 @@ else {
 var componentDir = self.parent; // the directory this file is in
 var loader = CC["@mozilla.org/moz/jssubscript-loader;1"].getService(CI["mozIJSSubScriptLoader"]);
 loadComponentScript("proxy.js");
-loadComponentScript("match.js");
-loadComponentScript("defaultprefs.js");
+loadComponentScript("match.js");  
+CU.import("resource://foxyproxy/defaultprefs.jsm");
 loadModuleScript("superadd.js");
-
+CU.import("resource://foxyproxy/cookiesAndCache.jsm");
 // l is for lulu...
 function foxyproxy() {
   SuperAdd.prototype.fp = gFP = this.wrappedJSObject = this;
@@ -153,7 +153,8 @@ foxyproxy.prototype = {
             this.patternSubscriptions.init();
             // Initialize defaultPrefs before initial call to this.setMode().
             // setMode() is called from this.loadSettings()->this.fromDOM(), but also from commandlinehandler.js.
-            defaultPrefs.init(this);        
+            dump("in profile-after-change\n");
+            defaultPrefs.init(gFP);        
             this.loadSettings();
           }
           catch (e) {
@@ -270,9 +271,6 @@ foxyproxy.prototype = {
     
     this.toggleFilter(this._mode != "disabled");
 
-    if (this._selectedProxy && this._selectedProxy.clearCacheBeforeUse)
-      this.clearCache();
-
     // This line must come before the next one -- gBroadcast(...) Otherwise,
     // AutoAdd and QuickAdd write their settings before they've been
     // deserialized, resulting in them always getting written to disk as
@@ -286,16 +284,23 @@ foxyproxy.prototype = {
       this.writeSettingsAsync();
   },
 
-  clearCache : function() {
-    try {
-  	  let cs = CC["@mozilla.org/network/cache-service;1"].getService(CI.nsICacheService);  	  
-  	  cs.evictEntries(CI.nsICache.STORE_ON_DISK);
-  	  cs.evictEntries(CI.nsICache.STORE_IN_MEMORY);
+  handleCookiesAndCache : function(proxy, previousProxy) {
+    // TODO: performance enhancement. this only needs to be handled if the
+    // previous proxy has different settings than |proxy|
+    if (proxy) {
+      // Cache. If there is no |previousProxy| (i.e.,we just started up), then use the |proxy| settings.
+      // Otherwise, if the |previousProxy| has the same settings as |proxy|, then do not continue.
+      if (proxy.clearCacheBeforeUse && (!previousProxy || (previousProxy && !previousProxy.clearCacheBeforeUse)))
+        cacheMgr.clearCache();
+      if (proxy.disableCache && (!previousProxy || (previousProxy && !previousProxy.disableCache)))
+        cacheMgr.disableCache();
+      // Cookies. If there is no |previousProxy| (i.e.,we just started up), then use the |proxy| settings.
+      // Otherwise, if the |previousProxy| has the same settings as |proxy|, then do not continue.
+      if (proxy.clearCookiesBeforeUse && (!previousProxy || (previousProxy && !previousProxy.clearCookiesBeforeUse)))
+        cookieMgr.clearCookies();
+      if (proxy.rejectCookies && (!previousProxy || (previousProxy && !previousProxy.rejectCookies)))
+        cookieMgr.rejectCookies();
     }
-    catch(e) {
-      this.notifier.alert(this.getMessage("foxyproxy"),
-        this.getMessage("clearcache.error", [e]));
-    }	 
   },
 
   /**
@@ -346,6 +351,7 @@ foxyproxy.prototype = {
     enabled && ps.registerFilter(this, 0);
   },
 
+  mp : null,
   applyFilter : function(ps, uri, proxy) {
     function _err(fp, info, extInfo) {
       var def = fp.proxies.item(fp.proxies.length-1);
@@ -357,17 +363,21 @@ foxyproxy.prototype = {
     try {
       var s = uri.scheme;
       if (s == "feed" || s == "sacore" || s == "dssrequest") return; /* feed schemes handled internally by browser. ignore Mcafee site advisor (http://foxyproxy.mozdev.org/drupal/content/foxyproxy-latest-mcafee-site-advisor) */
-      var spec = uri.spec;
-      var mp = this.applyMode(spec);
-      var ret = mp.proxy.getProxy(spec, uri.host, mp);
-      return ret ? ret : _err(this, this.getMessage("route.error"));
+      var spec = uri.spec, previousProxy = this.mp ? this.mp.proxy : null;
+      this.mp = this.applyMode(spec);
+      var ret = this.mp.proxy.getProxy(spec, uri.host, this.mp);
+      if (ret) {
+        this.handleCookiesAndCache(this.mp.proxy, previousProxy);
+        return ret;
+      }
+      return _err(this, this.getMessage("route.error"));
     }
     catch (e) {
       dump("applyFilter: " + e + "\n" + e.stack + "\nwith url " + uri.spec + "\n");
       return _err(this, this.getMessage("route.exception", [""]), this.getMessage("route.exception", [": " + e]));
     }
     finally {
-      gObsSvc.notifyObservers(mp.proxy, "foxyproxy-throb", null);
+      gObsSvc.notifyObservers(this.mp.proxy, "foxyproxy-throb", null);
       this.logg.add(mp);
     }
   },

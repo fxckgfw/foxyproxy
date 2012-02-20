@@ -82,7 +82,10 @@ api.prototype = {
   },
 
   /**
-   * Returns true if we ignore API calls; false if we act on them.
+   * Returns true if we ignore API calls; false if we act on them. Note: this
+   * is the only function which we expose regardless of the value of |disableApi|.
+   * In this way, webpages can determine if they can successfully instrument
+   * foxyproxy and possibly inform the user if they cannot.
    */
   getDisableApi: function() {
     return this.disableApi;
@@ -95,6 +98,7 @@ api.prototype = {
    * |version| is the version of the installed addon.
    */ 
   getVersionInfo: function() {
+    if (this.disableApi) return;
     var name;
     if (this.fp.isFoxyProxySimple())
       name = "FoxyProxyBasic";

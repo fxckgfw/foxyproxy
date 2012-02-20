@@ -1,6 +1,15 @@
-* added an API for web pages to control FoxyProxy! (link: TBD)
+* added an API for web pages to control FoxyProxy
+  (http://getfoxyproxy.org/developers/api.html)
 * Default proxy can now be configured to perform DNS lookups remotely when using
   a SOCKS proxy as the Default
 * removed more Flock-related cruft and locale cruft
 * removed fixed height for add/edit pattern subscription dialog
-* updated locales
+* New per-proxy setting: "Clear cache before use" -- clears the browser cache
+  before the proxy is used
+* New per-proxy setting: "Disable cache" -- disables all use of browser cache
+  while this proxy is in use
+* New per-proxy setting: "Clear cookies before use" -- deletes all cookies
+  before the proxy is used
+* New per-proxy setting: "Reject cookies" -- rejects all cookies while this
+  proxy is in use
+

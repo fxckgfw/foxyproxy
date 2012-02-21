@@ -97,7 +97,7 @@ api.prototype = {
    * "FoxyProxyBasic", "FoxyProxyStandard", or "FoxyProxyPlus"
    * |version| is the version of the installed addon.
    */ 
-  getVersionInfo: function() {
+  get version() {
     if (this.disableApi) return;
     var name;
     if (this.fp.isFoxyProxySimple())

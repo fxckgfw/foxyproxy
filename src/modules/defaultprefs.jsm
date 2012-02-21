@@ -139,7 +139,7 @@ var defaultPrefs = {
   // Restore the original pre-FoxyProxy values and stop observing changes
   restoreOriginals : function(contObserving) {
 
-    function restoreOriginal(branch, pref, value) {
+    function restoreOriginalBool(branch, pref, value) {
       let p = utils.getPrefsService(branch);
       if (value == this.TRUE)
         p.setBoolPref(pref, true);
@@ -187,13 +187,13 @@ var defaultPrefs = {
     }
 
     this.uninit(); // stop observing the prefs while we change them
-    restoreOriginal("network.dns.", "disablePrefetch", this.origPrefetch);
+    restoreOriginalBool("network.dns.", "disablePrefetch", this.origPrefetch);
     forcePACReload();
-    restoreOriginal("browser.cache.disk.", "enable", this.origDiskCache);
-    restoreOriginal("browser.cache.memory.", "enable", this.origMemCache);
-    restoreOriginal("browser.offline.", "enable", this.origOfflineCache);
-    restoreOriginal("browser.cache.disk_cache_ssl.", "enable", this.origSSLCache);
-    restoreOriginal("network.cookie.", "cookieBehavior", this.origCookieBehavior);
+    restoreOriginalBool("browser.cache.disk.", "enable", this.origDiskCache);
+    restoreOriginalBool("browser.cache.memory.", "enable", this.origMemCache);
+    restoreOriginalBool("browser.offline.", "enable", this.origOfflineCache);
+    restoreOriginalBool("browser.cache.disk_cache_ssl.", "enable", this.origSSLCache);
+    utils.getPrefsService("network.cookie.").setIntPref("cookieBehavior", this.origCookieBehavior);
     if (contObserving)
       this.init(this.fp); // Add our observers again
   },
@@ -207,7 +207,7 @@ var defaultPrefs = {
     this.origMemCache= utils.getPrefsService("browser.cache.memory.").getBoolPref("enable");
     this.origOfflineCache = utils.getPrefsService("browser.offline.").getBoolPref("enable");
     this.origSSLCache = utils.getPrefsService("browser.cache.disk_cache_ssl.").getBoolPref("enable");
-    this.origCookieBehavior = utils.getPrefsService("network.cookie.").getBoolPref("cookieBehavior");
+    this.origCookieBehavior = utils.getPrefsService("network.cookie.").getIntPref("cookieBehavior");
     this.fp.writeSettingsAsync();
   },
   

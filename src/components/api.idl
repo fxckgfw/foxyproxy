@@ -1,10 +1,21 @@
 #include "nsISupports.idl"
 #include "nsIDOMNode.idl"
+#include "nsISimpleEnumerator.idl"
 
 [scriptable, uuid(26e128d0-542c-11e1-b86c-0800200c9a69)]
 interface notification : nsISupports {
   void success();
   void error(in AString msg);
+};
+
+[scriptable, uuid(26e128d0-542c-11e1-b86c-0800200c9a29)]
+interface proxy : nsISupports {
+
+};
+
+[scriptable, uuid(26e128d0-542c-11e1-b86c-0800200c9e69)]
+interface proxies : nsISimpleEnumerator, nsISupports {
+
 };
 
 [scriptable, uuid(26e128d0-542c-11e1-b86c-0800200c9a66)]
@@ -14,4 +25,6 @@ interface foxyProxyApi : nsISupports {
   attribute AString mode;
   attribute boolean apiDisabled;
   attribute AString version;
+
+  attribute proxies proxies;
 };

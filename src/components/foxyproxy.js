@@ -378,7 +378,7 @@ foxyproxy.prototype = {
     }
     finally {
       gObsSvc.notifyObservers(this.mp.proxy, "foxyproxy-throb", null);
-      this.logg.add(mp);
+      this.logg.add(this.mp);
     }
   },
 

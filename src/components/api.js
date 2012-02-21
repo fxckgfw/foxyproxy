@@ -13,6 +13,9 @@ var console = CC["@mozilla.org/consoleservice;1"].getService(CI.nsIConsoleServic
 function api() {
   this.fp = CC["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;
   this.fpc = CC["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject;
+  // We let |fp| manage |disableApi| serialization. Note we do not want to
+  // expose a setter for this variable, just a getter. If we exposed a setter,
+  // websites could enable the API when it is disabled.
   this.disableApi = this.fp.disableApi;
 };
 

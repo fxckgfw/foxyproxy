@@ -207,7 +207,7 @@ var defaultPrefs = {
     this.origMemCache= utils.getPrefsService("browser.cache.memory.").getBoolPref("enable");
     this.origOfflineCache = utils.getPrefsService("browser.offline.").getBoolPref("enable");
     this.origSSLCache = utils.getPrefsService("browser.cache.disk_cache_ssl.").getBoolPref("enable");
-    this.origSSLCache = utils.getPrefsService("network.cookie.").getBoolPref("cookieBehavior");
+    this.origCookieBehavior = utils.getPrefsService("network.cookie.").getBoolPref("cookieBehavior");
     this.fp.writeSettingsAsync();
   },
   

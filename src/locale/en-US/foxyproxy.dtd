@@ -150,7 +150,7 @@
 <!ENTITY foxyproxy.proxydns.label4 "Proxy DNS">
 <!ENTITY foxyproxy.cache.label "Cache">
 <!ENTITY foxyproxy.clearcache.label "Clear application cache before using this proxy">
-<!ENTITY foxyproxy.clearcache.accesskey "C">
+<!ENTITY foxyproxy.clearcache.accesskey "H">
 <!ENTITY foxyproxy.clearcache.tooltip "If checked, clear cache before using this proxy">
 <!ENTITY foxyproxy.disablecache.label "Do not cache while using this proxy">
 <!ENTITY foxyproxy.disablecache.accesskey "D">

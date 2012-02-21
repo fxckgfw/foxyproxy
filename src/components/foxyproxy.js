@@ -94,10 +94,10 @@ else {
 var componentDir = self.parent; // the directory this file is in
 var loader = CC["@mozilla.org/moz/jssubscript-loader;1"].getService(CI["mozIJSSubScriptLoader"]);
 loadComponentScript("proxy.js");
-loadComponentScript("match.js");  
+loadComponentScript("match.js");
 CU.import("resource://foxyproxy/defaultprefs.jsm");
 loadModuleScript("superadd.js");
-CU.import("resource://foxyproxy/cookiesAndCache.jsm");
+
 // l is for lulu...
 function foxyproxy() {
   SuperAdd.prototype.fp = gFP = this.wrappedJSObject = this;
@@ -105,6 +105,7 @@ function foxyproxy() {
   // https://developer.mozilla.org/en/JavaScript/Code_modules/Using section
   // "Custom modules and XPCOM components" 
   CU.import("resource://foxyproxy/patternSubscriptions.jsm", this);
+  CU.import("resource://foxyproxy/cookiesAndCache.jsm", this);
 };
 foxyproxy.prototype = {
   PFF : " ",
@@ -284,22 +285,28 @@ foxyproxy.prototype = {
       this.writeSettingsAsync();
   },
 
-  handleCookiesAndCache : function(proxy, previousProxy) {
+  handleCacheAndCookies : function(proxy, previousProxy) {
     // TODO: performance enhancement. this only needs to be handled if the
     // previous proxy has different settings than |proxy|
     if (proxy) {
-      // Cache. If there is no |previousProxy| (i.e.,we just started up), then use the |proxy| settings.
-      // Otherwise, if the |previousProxy| has the same settings as |proxy|, then do not continue.
-      if (proxy.clearCacheBeforeUse && (!previousProxy || (previousProxy && !previousProxy.clearCacheBeforeUse)))
-        cacheMgr.clearCache();
-      if (proxy.disableCache && (!previousProxy || (previousProxy && !previousProxy.disableCache)))
-        cacheMgr.disableCache();
-      // Cookies. If there is no |previousProxy| (i.e.,we just started up), then use the |proxy| settings.
-      // Otherwise, if the |previousProxy| has the same settings as |proxy|, then do not continue.
-      if (proxy.clearCookiesBeforeUse && (!previousProxy || (previousProxy && !previousProxy.clearCookiesBeforeUse)))
-        cookieMgr.clearCookies();
-      if (proxy.rejectCookies && (!previousProxy || (previousProxy && !previousProxy.rejectCookies)))
-        cookieMgr.rejectCookies();
+      // Cache. If there is no |previousProxy| (i.e.,we just started up), then
+      // use the |proxy| settings. Otherwise, if the |previousProxy| has the
+      // same settings as |proxy|, then do not continue.
+      if (proxy.clearCacheBeforeUse && (!previousProxy || (previousProxy &&
+          !previousProxy.clearCacheBeforeUse)))
+        this.cacheMgr.clearCache();
+      if (proxy.disableCache && (!previousProxy || (previousProxy &&
+          !previousProxy.disableCache)))
+        this.cacheMgr.disableCache();
+      // Cookies. If there is no |previousProxy| (i.e.,we just started up), then
+      // use the |proxy| settings. Otherwise, if the |previousProxy| has the
+      // same settings as |proxy|, then do not continue.
+      if (proxy.clearCookiesBeforeUse && (!previousProxy || (previousProxy &&
+          !previousProxy.clearCookiesBeforeUse)))
+        this.cookieMgr.clearCookies();
+      if (proxy.rejectCookies && (!previousProxy || (previousProxy &&
+          !previousProxy.rejectCookies)))
+        this.cookieMgr.rejectCookies();
     }
   },
 
@@ -367,7 +374,7 @@ foxyproxy.prototype = {
       this.mp = this.applyMode(spec);
       var ret = this.mp.proxy.getProxy(spec, uri.host, this.mp);
       if (ret) {
-        this.handleCookiesAndCache(this.mp.proxy, previousProxy);
+        this.handleCacheAndCookies(this.mp.proxy, previousProxy);
         return ret;
       }
       return _err(this, this.getMessage("route.error"));

@@ -89,7 +89,7 @@ api.prototype = {
     this._promptUser(function(not, btn) {
       let that = btn.callbackArgs;
       that.fp.setMode(newMode, true, false);
-    };
+    });
   },
 
   /**
@@ -148,11 +148,27 @@ api.prototype = {
     }      
   },
 
-  classID: Components.ID("{26e128d0-542c-11e1-b86c-0800200c9a66}"),  // uuid from IDL
  
-  /** nsIClassInfo **/
-  classInfo: XPCOMUtils.generateCI({ interfaces: ["foxyProxyApi"], classID: Components.ID("{26e128d0-542c-11e1-b86c-0800200c9a66}"),
-    contractID: "@leahscape.org/foxyproxy/api;1", classDescription: "FoxyProxy Content API", flags: CI.nsIClassInfo.SINGLETON|CI.nsIClassInfo.DOM_OBJECT}),
+  // nsIClassInfo
+  /*
+    Gecko 2.x only (doesn't work with Firefox 3.6.x)
+      classInfo: generateCI({ interfaces: ["foxyProxyApi"], classID: Components.ID("{26e128d0-542c-11e1-b86c-0800200c9a66}"),
+      contractID: "@leahscape.org/foxyproxy/api;1",
+      classDescription: "FoxyProxy Content API", flags: CI.nsIClassInfo.SINGLETON|CI.nsIClassInfo.DOM_OBJECT}),
+  */
+
+  flags: CI.nsIClassInfo.SINGLETON|CI.nsIClassInfo.DOM_OBJECT,
+  implementationLanguage: CI.nsIProgrammingLanguage.JAVASCRIPT,
+  getHelperForLanguage: function(language) null,
+  getInterfaces: function(count) {
+    let interfaces = [CI.foxyProxyApi];
+    count.value = interfaces.length;
+    return interfaces;
+  },
+  classDescription: "FoxyProxy Content API",
+  contractID: "@leahscape.org/foxyproxy/api;1",
+  classID: Components.ID("{26e128d0-542c-11e1-b86c-0800200c9a66}"), // uuid from IDL
+
   QueryInterface: XPCOMUtils.generateQI([CI.foxyProxyApi, CI.nsIClassInfo]),
 
   _xpcom_factory: {
@@ -164,4 +180,11 @@ api.prototype = {
     }
   }
 };
-var NSGetFactory = XPCOMUtils.generateNSGetFactory([api]);
+/**
+ * XPCOMUtils.generateNSGetFactory was introduced in Mozilla 2 (Firefox 4)
+ * XPCOMUtils.generateNSGetModule is for Mozilla 1.9.2 and earlier (Firefox 3.6)
+ */
+if (XPCOMUtils.generateNSGetFactory)
+  var NSGetFactory = XPCOMUtils.generateNSGetFactory([api]);
+else
+  var NSGetModule = XPCOMUtils.generateNSGetModule([api]);

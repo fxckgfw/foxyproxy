@@ -823,8 +823,7 @@ end-foxyproxy-simple !*/
             (b = e.getNext().getBrowser()) && b.reloadAllTabs());
           break;
         case "removeallcookies":
-          Components.classes["@mozilla.org/cookiemanager;1"].
-            getService(Components.interfaces.nsICookieManager).removeAll();
+          foxyproxy.cookieMgr.clearCookies();
           fp.notifier.alert(fp.getMessage("foxyproxy"),
             fp.getMessage("cookies.allremoved"));
           break;
@@ -1197,6 +1196,7 @@ end-foxyproxy-simple !*/
 };
 
 ///////////////////////////////////////////////////////
+Components.utils.import("resource://foxyproxy/cookiesAndCache.jsm", foxyproxy);
 
 window.addEventListener("load", function(e) { foxyproxy.onLoad(e); }, false);
 window.addEventListener("unload", function(e) {

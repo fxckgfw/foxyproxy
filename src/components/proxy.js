@@ -170,10 +170,12 @@ Proxy.prototype = {
 	  this.lastresort = node.hasAttribute("lastresort") ? node.getAttribute("lastresort") == "true" : false; // new for 2.0
     this.animatedIcons = node.hasAttribute("animatedIcons") ? node.getAttribute("animatedIcons") == "true" : !this.lastresort; // new for 2.4
     this.includeInCycle = node.hasAttribute("includeInCycle") ? node.getAttribute("includeInCycle") == "true" : !this.lastresort; // new for 2.5
-    this.color = gGetSafeAttr(node, "color", DEFAULT_COLOR);    
-    this.clearCacheBeforeUse = gGetSafeAttrB(node, "clearCacheBeforeUse", false);
+    this.color = gGetSafeAttr(node, "color", DEFAULT_COLOR);
+    this.clearCacheBeforeUse = gGetSafeAttrB(node, "clearCacheBeforeUse",
+      false);
     this.disableCache = gGetSafeAttrB(node, "disableCache", false);
-    this.clearCookiesBeforeUse = gGetSafeAttrB(node, "clearCookiesBeforeUse", false);
+    this.clearCookiesBeforeUse = gGetSafeAttrB(node, "clearCookiesBeforeUse",
+      false);
     this.rejectCookies = gGetSafeAttrB(node, "rejectCookies", false);
     this.noInternalIPs = node.hasAttribute("noInternalIPs") ?
       node.getAttribute("noInternalIPs") == "true" : false;

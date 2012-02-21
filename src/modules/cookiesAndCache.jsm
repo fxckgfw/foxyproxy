@@ -11,18 +11,21 @@
 
 "use strict";
 
-var CI = Components.interfaces, CC = Components.classes, CU = Components.utils,
-  cachService = CC["@mozilla.org/network/cache-service;1"].getService(CI.nsICacheService),
-  cookieService = CC["@mozilla.org/cookiemanager;1"].getService(CI.nsICookieManager);
+let CI = Components.interfaces, CC = Components.classes, CU = Components.utils,
+  cachService = CC["@mozilla.org/network/cache-service;1"].
+    getService(CI.nsICacheService),
+  cookieService = CC["@mozilla.org/cookiemanager;1"].
+    getService(CI.nsICookieManager);
 
 CU.import("resource://foxyproxy/utils.jsm");
 
-var cookiePrefs = utils.getPrefsService("network.cookie."),
+let cookiePrefs = utils.getPrefsService("network.cookie."),
   networkHttpPrefs = utils.getPrefsService("network.http."),
   diskCachePrefs = utils.getPrefsService("browser.cache.disk."),
   memCachPrefs = utils.getPrefsService("browser.cache.memory."),
   offlineCachePrefs = utils.getPrefsService("browser.offline."),
   sslCachePrefs = utils.getPrefsService("browser.cache.disk_cache_ssl."),
+
   EXPORTED_SYMBOLS = ["cacheMgr", "cookieMgr"],
   
   cacheMgr = {
@@ -33,7 +36,8 @@ var cookiePrefs = utils.getPrefsService("network.cookie."),
     	  cachService.evictEntries(CI.nsICache.STORE_IN_MEMORY);
       }
       catch(e) {
-        fp = CC["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;
+        let fp = CC["@leahscape.org/foxyproxy/service;1"].getService().
+          wrappedJSObject;
         fp.notifier.alert(fp.getMessage("foxyproxy"),
           fp.getMessage("clearcache.error", [e]));
       }	 
@@ -56,7 +60,8 @@ var cookiePrefs = utils.getPrefsService("network.cookie."),
     },
 
     rejectCookies : function() {
-      dump("rejecting cookies\n");    
+      dump("rejecting cookies\n");
       cookiePrefs.setIntPref("cookieBehavior", 2);
     }
-};
+  };
+

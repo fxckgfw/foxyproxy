@@ -125,6 +125,7 @@ foxyproxy.prototype = {
   excludeDisabledFromCycling : false,
   ignoreProxyScheme : false,
   writeSettingsTimer : null,
+  disableApi : false,
   
   broadcast : function(subj, topic, data) {
     gBroadcast(subj, topic, data);
@@ -716,8 +717,7 @@ foxyproxy.prototype = {
     // do since it is really an internal function. Therefore, foxyproxy.js
     // maintains writes it. If we start writing a lot of state for the API,
     // we should create an API object within foxyproxy.js to handle it.
-    let disableApi = gGetSafeAttrB(node, "disableApi", false);
-    CC["@leahscape.org/foxyproxy/api;1"].getService(CI.foxyProxyApi).setDisableApi(disableApi);
+    this.disableApi = gGetSafeAttrB(node, "disableApi", false);
   },
 
   toDOM : function() {

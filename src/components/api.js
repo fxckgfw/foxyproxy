@@ -13,6 +13,7 @@ var console = CC["@mozilla.org/consoleservice;1"].getService(CI.nsIConsoleServic
 function api() {
   this.fp = CC["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;
   this.fpc = CC["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject;
+  this.disableApi = this.fp.disableApi;
 };
 
 api.prototype = {
@@ -59,7 +60,8 @@ api.prototype = {
   /**
    * Change the mode to the one specified.
    * See foxyproxy.setMode() for acceptable mode values.
-   * UNTESTED
+   * This version allows caller to provide a callback function, unlike
+   * the |mode| property setter
    */
   setMode: function(newMode, callback) {
     if (this.disableApi) return;
@@ -74,11 +76,26 @@ api.prototype = {
   },
 
   /**
-   * If true, all API function calls are ignored. If false, all calls are
-   * invoked as normal. Default is true.
+   * Change the mode to the one specified.
+   * See foxyproxy.setMode() for acceptable mode values.
+   * This version does not allow caller to provide a callback function, unlike
+   * the setMode() function.
    */
-  setDisableApi: function(b) {
-    this.disableApi = b;
+  set mode(newMode) {
+    if (this.disableApi) return;
+    this._promptUser(function(not, btn) {
+      let that = btn.callbackArgs;
+      that.fp.setMode(newMode, true, false);
+    };
+  },
+
+  /**
+   * Get the current foxyproxy mode.
+   * See foxyproxy.setMode() for possible values.
+   */
+  get mode() {
+    if (this.disableApi) return;
+    return this.fp.mode;
   },
 
   /**
@@ -87,7 +104,7 @@ api.prototype = {
    * In this way, webpages can determine if they can successfully instrument
    * foxyproxy and possibly inform the user if they cannot.
    */
-  getDisableApi: function() {
+  get apiDisabled() {
     return this.disableApi;
   },
 

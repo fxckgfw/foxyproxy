@@ -11,7 +11,7 @@ interface notification : nsISupports {
 interface foxyProxyApi : nsISupports {
   void changeAllSettings(in nsIDOMNode foxyProxyNode, [optional] in notification callback);
   void setMode(in AString newMode, [optional] in notification callback);
-  void setDisableApi(in boolean b);
-  boolean getDisableApi();
+  attribute AString mode;
+  attribute boolean apiDisabled;
   attribute AString version;
 };

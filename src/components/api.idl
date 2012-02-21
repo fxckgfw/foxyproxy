@@ -8,16 +8,6 @@ interface notification : nsISupports {
   void error(in AString msg);
 };
 
-[scriptable, uuid(26e128d0-542c-11e1-b86c-0800200c9a29)]
-interface proxy : nsISupports {
-
-};
-
-[scriptable, uuid(26e128d0-542c-11e1-b86c-0800200c9e69)]
-interface proxies : nsISimpleEnumerator, nsISupports {
-
-};
-
 [scriptable, uuid(26e128d0-542c-11e1-b86c-0800200c9a66)]
 interface foxyProxyApi : nsISupports {
   void changeAllSettings(in nsIDOMNode foxyProxyNode, [optional] in notification callback);
@@ -25,6 +15,4 @@ interface foxyProxyApi : nsISupports {
   attribute AString mode;
   attribute boolean apiDisabled;
   attribute AString version;
-
-  attribute proxies proxies;
 };

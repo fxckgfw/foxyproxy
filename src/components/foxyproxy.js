@@ -295,6 +295,8 @@ foxyproxy.prototype = {
       if (this.cacheAndCookiesChecked) {
         return;
       } else {
+        // This is called as well on start-up as cacheAndCookiesChecked is
+        // false then.
         if (proxy.clearCacheBeforeUse)
           this.cacheMgr.clearCache();
         if (proxy.disableCache) 

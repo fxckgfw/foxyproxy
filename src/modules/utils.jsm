@@ -28,8 +28,15 @@ let CI = Components.interfaces, CC = Components.classes, gObsSvc =
         }
         catch (e) {out(e);}
       }
-      function out(e) {dump("FoxyProxy Error: " + e + " \n\nCall Stack:\n" +
-        e.stack + "\n");}
+      function out(e) {
+        // We do not always have a stack property...
+        let stack = null;
+        if (e.stack) {
+          stack = e.stack;
+        }
+        dump("FoxyProxy Error: " + e + " \n\nCall Stack:\n" +
+          stack + "\n");
+      }
     },
 
     // Get attribute from node if it exists, otherwise return |def|.

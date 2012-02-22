@@ -126,6 +126,7 @@ foxyproxy.prototype = {
   ignoreProxyScheme : false,
   writeSettingsTimer : null,
   disableApi : false,
+  cacheAndCookiesChecked : false,
   
   broadcast : function(subj, topic, data) {
     gBroadcast(subj, topic, data);
@@ -287,27 +288,24 @@ foxyproxy.prototype = {
   },
 
   handleCacheAndCookies : function(proxy, previousProxy) {
-    // TODO: performance enhancement. this only needs to be handled if the
-    // previous proxy has different settings than |proxy|
     if (proxy) {
-      // Cache. If there is no |previousProxy| (i.e.,we just started up), then
-      // use the |proxy| settings. Otherwise, if the |previousProxy| has the
-      // same settings as |proxy|, then do not continue.
-      if (proxy.clearCacheBeforeUse && (!previousProxy || (previousProxy &&
-          !previousProxy.clearCacheBeforeUse)))
-        this.cacheMgr.clearCache();
-      if (proxy.disableCache && (!previousProxy || (previousProxy &&
-          !previousProxy.disableCache)))
-        this.cacheMgr.disableCache();
-      // Cookies. If there is no |previousProxy| (i.e.,we just started up), then
-      // use the |proxy| settings. Otherwise, if the |previousProxy| has the
-      // same settings as |proxy|, then do not continue.
-      if (proxy.clearCookiesBeforeUse && (!previousProxy || (previousProxy &&
-          !previousProxy.clearCookiesBeforeUse)))
-        this.cookieMgr.clearCookies();
-      if (proxy.rejectCookies && (!previousProxy || (previousProxy &&
-          !previousProxy.rejectCookies)))
-        this.cookieMgr.rejectCookies();
+      if (previousProxy && previousProxy.id !== proxy.id) {
+        this.cacheAndCookiesChecked = false;
+      }
+      if (this.cacheAndCookiesChecked) {
+        return;
+      } else {
+        if (proxy.clearCacheBeforeUse)
+          this.cacheMgr.clearCache();
+        if (proxy.disableCache) 
+          this.cacheMgr.disableCache();
+        if (proxy.clearCookiesBeforeUse)
+          this.cookieMgr.clearCookies();
+        if (proxy.rejectCookies)
+          this.cookieMgr.rejectCookies();
+        // We obviously checked the cache and cookie settings...
+        this.cacheAndCookiesChecked = true;
+      }
     }
   },
 
@@ -654,6 +652,8 @@ foxyproxy.prototype = {
     this._previousMode = p;
     this.writeSettingsAsync();
   },
+
+  get selectedProxy() { return this._selectedProxy; },
 
   /**
    * Return a LoggEntry instance.

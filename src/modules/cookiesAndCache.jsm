@@ -22,7 +22,7 @@ CU.import("resource://foxyproxy/utils.jsm");
 let cookiePrefs = utils.getPrefsService("network.cookie."),
   networkHttpPrefs = utils.getPrefsService("network.http."),
   cachePrefs = utils.getPrefsService("browser.cache."),
-  securityPrefs = utils.getPrefsService("security"),
+  securityPrefs = utils.getPrefsService("security."),
 
   EXPORTED_SYMBOLS = ["cacheMgr", "cookieMgr"],
   
@@ -32,7 +32,7 @@ let cookiePrefs = utils.getPrefsService("network.cookie."),
         dump("clearing cache\n");
     	  cachService.evictEntries(CI.nsICache.STORE_ON_DISK);
     	  cachService.evictEntries(CI.nsICache.STORE_IN_MEMORY);
-        // Thanks, torbutton
+        // Thanks, Torbutton
         try {
           // This exists in FF 3.6.x. Perhaps we can drop the catch block and
           // the "old method".
@@ -46,10 +46,10 @@ let cookiePrefs = utils.getPrefsService("network.cookie."),
           // See https://bugzilla.mozilla.org/show_bug.cgi?id=448747 and
           // http://mxr.mozilla.org/security/source/security/manager/ssl/src/nsNSSComponent.cpp#2134
           // This results in clearSessionCache being set to true temporarily.
-          securityPrefs.setBoolPref("security.enable_ssl3",
-            !securityPrefs.getBoolPref("security.enable_ssl3"));
-          securityPrefs.setBoolPref("security.enable_ssl3",
-            !securityPrefs.getBoolPref("security.enable_ssl3"));     
+          securityPrefs.setBoolPref("enable_ssl3",
+            !securityPrefs.getBoolPref("enable_ssl3"));
+          securityPrefs.setBoolPref("enable_ssl3",
+            !securityPrefs.getBoolPref("enable_ssl3"));     
         }
       }
       catch(e) {

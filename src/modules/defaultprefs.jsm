@@ -38,11 +38,8 @@ var defaultPrefs = {
   // same nsIPrefBranch2 instance on which we called addObserver method in order
   // to remove an observer.
   networkDNSPrefsObserver : null,
-  diskCacheObserver : null, // see above comment
-  memCacheObserver : null, // see above comment
-  offlineCacheObserver : null, // see above comment
+  cacheObserver : null, // see above comment
   networkCookieObserver : null, // see above comment
-  sslCacheObserver : null, // see above comment
   beingUninstalled : false, /* flag per https://developer.mozilla.org/en/Code_snippets/Miscellaneous#Receiving_notification_before_an_extension_is_disabled_and.2for_uninstalled */
   fp : null,
   
@@ -65,10 +62,7 @@ var defaultPrefs = {
       }
     } 
     addPrefsObserver(this.networkDNSPrefsObserver, "network.dns.");
-    addPrefsObserver(this.diskCacheObserver, "browser.cache.disk.");
-    addPrefsObserver(this.memCacheObserver, "browser.cache.memory");
-    addPrefsObserver(this.offlineCacheObserver, "browser.cache.offline.");
-    //addPrefsObserver(this.sslCacheObserver, "browser.cache.disk_cache_ssl.");
+    addPrefsObserver(this.cacheObserver, "browser.cache.");
     addPrefsObserver(this.networkCookieObserver, "network.cookie.");
   },
   
@@ -77,14 +71,10 @@ var defaultPrefs = {
     if (!this.networkDNSPrefsObservers)
       return;
     this.networkDNSPrefsObserver.removeObserver("", this);
-    this.diskCacheObserver.removeObserver("", this);
-    this.memCacheObserver.removeObserver("", this);
-    this.offlineCacheObserver.removeObserver("", this);
-    //this.sslCacheObserver.removeObserver("", this);
+    this.cacheObserver.removeObserver("", this);
     this.networkCookieObserver.removeObserver("", this);
-    this.networkCookieObserver = this.sslCacheObserver =
-      this.offlineCacheObserver = this.memCacheObserver =
-      this.diskCacheObserver = this.networkDNSPrefsObserver = null;
+    this.networkCookieObserver = this.cacheObserver =
+      this.networkDNSPrefsObserver = null;
   },
   
   // Uninstall observers
@@ -215,10 +205,10 @@ var defaultPrefs = {
     this.uninit(); // stop observing the prefs while we change them
     restoreOriginalBool("network.dns.", "disablePrefetch", this.origPrefetch);
     forcePACReload();
-    restoreOriginalBool("browser.cache.disk.", "enable", this.origDiskCache);
-    restoreOriginalBool("browser.cache.memory.", "enable", this.origMemCache);
-    restoreOriginalBool("browser.cache.offline.", "enable", this.origOfflineCache);
-    //restoreOriginalBool("browser.cache.disk_cache_ssl.", "enable", this.origSSLCache);
+    restoreOriginalBool("browser.cache.", "disk.enable", this.origDiskCache);
+    restoreOriginalBool("browser.cache.", "memory.enable", this.origMemCache);
+    restoreOriginalBool("browser.cache.", "offline.enable", this.origOfflineCache);
+    restoreOriginalBool("browser.cache.", "disk_cache_ssl", this.origSSLCache);
     this.utils.getPrefsService("network.cookie.").setIntPref("cookieBehavior", this.origCookieBehavior);
     if (contObserving)
       this.init(this.fp); // Add our observers again
@@ -230,10 +220,10 @@ var defaultPrefs = {
     let p = this.utils.getPrefsService("network.dns.");
     this.origPrefetch = p.prefHasUserValue("disablePrefetch") ?
         (p.getBoolPref("disablePrefetch") ? this.TRUE : this.FALSE) : this.CLEARED;
-    this.origDiskCache = this.utils.getPrefsService("browser.cache.disk.").getBoolPref("enable");
-    this.origMemCache= this.utils.getPrefsService("browser.cache.memory.").getBoolPref("enable");
-    this.origOfflineCache = this.utils.getPrefsService("browser.cache.offline.").getBoolPref("enable");
-    //this.origSSLCache = this.utils.getPrefsService("browser.cache.disk_cache_ssl.").getBoolPref("enable");
+    this.origDiskCache = this.utils.getPrefsService("browser.cache.").getBoolPref("disk.enable");
+    this.origMemCache= this.utils.getPrefsService("browser.cache.").getBoolPref("memory.enable");
+    this.origOfflineCache = this.utils.getPrefsService("browser.cache.").getBoolPref("offline.enable");
+    this.origSSLCache = this.utils.getPrefsService("browser.cache.").getBoolPref("disk_cache_ssl");
     this.origCookieBehavior = this.utils.getPrefsService("network.cookie.").getIntPref("cookieBehavior");
     this.fp.writeSettingsAsync();
   },

@@ -21,10 +21,7 @@ CU.import("resource://foxyproxy/utils.jsm");
 
 let cookiePrefs = utils.getPrefsService("network.cookie."),
   networkHttpPrefs = utils.getPrefsService("network.http."),
-  diskCachePrefs = utils.getPrefsService("browser.cache.disk."),
-  memCachPrefs = utils.getPrefsService("browser.cache.memory."),
-  offlineCachePrefs = utils.getPrefsService("browser.cache.offline."),
-  sslCachePrefs = utils.getPrefsService("browser.cache.disk_cache_ssl."),
+  cachePrefs = utils.getPrefsService("browser.cache."),
 
   EXPORTED_SYMBOLS = ["cacheMgr", "cookieMgr"],
   
@@ -46,10 +43,10 @@ let cookiePrefs = utils.getPrefsService("network.cookie."),
     disableCache : function() {
       dump("disabling cache\n");    
       networkHttpPrefs.setBoolPref("use-cache", false); // this might be enough
-      diskCachePrefs.setBoolPref("enable", false); // but let's be safe
-      memCachPrefs.setBoolPref("enable", false); // but let's be safe
-      offlineCachePrefs.setBoolPref("enable", false); // but let's be safe
-      sslCachePrefs.setBoolPref("enable", false); // but let's be safe
+      cachePrefs.setBoolPref("disk.enable", false); // but let's be safe
+      cachePrefs.setBoolPref("memory.enable", false); // but let's be safe
+      cachePrefs.setBoolPref("offline.enable", false); // but let's be safe
+      cachePrefs.setBoolPref("disk_cache_ssl", false); // but let's be safe
     }
   },
   

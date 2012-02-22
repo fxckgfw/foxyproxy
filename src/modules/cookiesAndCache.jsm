@@ -23,7 +23,7 @@ let cookiePrefs = utils.getPrefsService("network.cookie."),
   networkHttpPrefs = utils.getPrefsService("network.http."),
   diskCachePrefs = utils.getPrefsService("browser.cache.disk."),
   memCachPrefs = utils.getPrefsService("browser.cache.memory."),
-  offlineCachePrefs = utils.getPrefsService("browser.offline."),
+  offlineCachePrefs = utils.getPrefsService("browser.cache.offline."),
   sslCachePrefs = utils.getPrefsService("browser.cache.disk_cache_ssl."),
 
   EXPORTED_SYMBOLS = ["cacheMgr", "cookieMgr"],

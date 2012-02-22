@@ -22,6 +22,7 @@ CU.import("resource://foxyproxy/utils.jsm");
 let cookiePrefs = utils.getPrefsService("network.cookie."),
   networkHttpPrefs = utils.getPrefsService("network.http."),
   cachePrefs = utils.getPrefsService("browser.cache."),
+  securityPrefs = utils.getPrefsService("security"),
 
   EXPORTED_SYMBOLS = ["cacheMgr", "cookieMgr"],
   
@@ -31,13 +32,32 @@ let cookiePrefs = utils.getPrefsService("network.cookie."),
         dump("clearing cache\n");
     	  cachService.evictEntries(CI.nsICache.STORE_ON_DISK);
     	  cachService.evictEntries(CI.nsICache.STORE_IN_MEMORY);
+        // Thanks, torbutton
+        try {
+          // This exists in FF 3.6.x. Perhaps we can drop the catch block and
+          // the "old method".
+          CC["@mozilla.org/security/crypto;1"].getService(CI.nsIDOMCrypto).
+            logout();
+        }
+        catch(e) {
+          // Failed to use nsIDOMCrypto to clear SSL Session ids.
+          // Falling back to old method.
+          // This clears the SSL Identifier Cache.
+          // See https://bugzilla.mozilla.org/show_bug.cgi?id=448747 and
+          // http://mxr.mozilla.org/security/source/security/manager/ssl/src/nsNSSComponent.cpp#2134
+          // This results in clearSessionCache being set to true temporarily.
+          securityPrefs.setBoolPref("security.enable_ssl3",
+            !securityPrefs.getBoolPref("security.enable_ssl3"));
+          securityPrefs.setBoolPref("security.enable_ssl3",
+            !securityPrefs.getBoolPref("security.enable_ssl3"));     
+        }
       }
       catch(e) {
         let fp = CC["@leahscape.org/foxyproxy/service;1"].getService().
           wrappedJSObject;
         fp.notifier.alert(fp.getMessage("foxyproxy"),
           fp.getMessage("clearcache.error", [e]));
-      }	 
+      }
     },
 
     disableCache : function() {

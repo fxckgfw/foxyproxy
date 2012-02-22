@@ -49,8 +49,8 @@ var defaultPrefs = {
   // Install observers
   init : function(fp) {
     CU.import("resource://foxyproxy/utils.jsm", this);
-    defaultPrefs.fp = fp;
-    defaultPrefs.addPrefsObservers();
+    this.fp = fp;
+    this.addPrefsObservers();
     for each (let i in ["foxyproxy-mode-change", "foxyproxy-proxy-change",
               "em-action-requested", "quit-application"])
       gObsSvc.addObserver(this, i, false);
@@ -68,7 +68,7 @@ var defaultPrefs = {
     addPrefsObserver(this.diskCacheObserver, "browser.cache.disk.");
     addPrefsObserver(this.memCacheObserver, "browser.cache.memory");
     addPrefsObserver(this.offlineCacheObserver, "browser.cache.offline.");
-    addPrefsObserver(this.sslCacheObserver, "browser.cache.disk_cache_ssl.");
+    //addPrefsObserver(this.sslCacheObserver, "browser.cache.disk_cache_ssl.");
     addPrefsObserver(this.networkCookieObserver, "network.cookie.");
   },
   
@@ -80,7 +80,7 @@ var defaultPrefs = {
     this.diskCacheObserver.removeObserver("", this);
     this.memCacheObserver.removeObserver("", this);
     this.offlineCacheObserver.removeObserver("", this);
-    this.sslCacheObserver.removeObserver("", this);
+    //this.sslCacheObserver.removeObserver("", this);
     this.networkCookieObserver.removeObserver("", this);
     this.networkCookieObserver = this.sslCacheObserver =
       this.offlineCacheObserver = this.memCacheObserver =
@@ -96,44 +96,45 @@ var defaultPrefs = {
   },
 
   observe : function(subj, topic, data) {
+    let that = this;
     try {
       if (topic == "nsPref:changed" && data == "disablePrefetch") {
-        if (defaultPrefs.shouldDisableDNSPrefetch())
-          defaultPrefs.disablePrefetch();
+        if (this.shouldDisableDNSPrefetch())
+          this.disablePrefetch();
         // Don't restore originals if shouldDisableDNSPrefetch == false -- let
         // the user do what he wants with the setting
       }
       else if (topic == "em-action-requested")
-        defaultPrefs.restoreOnExit(data, subj.QueryInterface(CI.nsIUpdateItem));
+        this.restoreOnExit(data, subj.QueryInterface(CI.nsIUpdateItem));
       else if (topic == "quit-application" && this.beingUninstalled)
-        defaultPrefs.restoreOriginals(false);
+        this.restoreOriginals(false);
       else if (topic == "foxyproxy-mode-change") {
-      	if (defaultPrefs.fp._mode == "disabled") {
+      	if (this.fp._mode == "disabled") {
           // We're being disabled.
-      	  defaultPrefs.restoreOriginals(true);
+      	  this.restoreOriginals(true);
       	  // Stop listening for pref changes
-      	  defaultPrefs.removePrefsObservers();
+      	  this.removePrefsObservers();
       	  return;
       	}
-      	if (defaultPrefs.fp._previousMode == "disabled") {
+      	if (this.fp._previousMode == "disabled") {
           // We're coming out of disabled mode
-      	  defaultPrefs.saveOriginals();
+      	  this.saveOriginals();
         }
       	setOrUnsetPrefetch();
          // Start listening for pref changes if we aren't already
-      	defaultPrefs.addPrefsObservers();
+      	this.addPrefsObservers();
       }
       else if (topic == "foxyproxy-proxy-change") {
-        if (defaultPrefs.fp._mode=="disabled") return;
+        if (this.fp._mode == "disabled") return;
         setOrUnsetPrefetch();
       }
     }
     catch (e) { this.utils.dumpp(e); }
     function setOrUnsetPrefetch() {
-      if (defaultPrefs.shouldDisableDNSPrefetch())
-        defaultPrefs.disablePrefetch();
+      if (that.shouldDisableDNSPrefetch())
+        that.disablePrefetch();
       else
-        defaultPrefs.restoreOriginals(true);
+        that.restoreOriginals(true);
     }
   },
   
@@ -217,7 +218,7 @@ var defaultPrefs = {
     restoreOriginalBool("browser.cache.disk.", "enable", this.origDiskCache);
     restoreOriginalBool("browser.cache.memory.", "enable", this.origMemCache);
     restoreOriginalBool("browser.cache.offline.", "enable", this.origOfflineCache);
-    restoreOriginalBool("browser.cache.disk_cache_ssl.", "enable", this.origSSLCache);
+    //restoreOriginalBool("browser.cache.disk_cache_ssl.", "enable", this.origSSLCache);
     this.utils.getPrefsService("network.cookie.").setIntPref("cookieBehavior", this.origCookieBehavior);
     if (contObserving)
       this.init(this.fp); // Add our observers again
@@ -232,9 +233,8 @@ var defaultPrefs = {
     this.origDiskCache = this.utils.getPrefsService("browser.cache.disk.").getBoolPref("enable");
     this.origMemCache= this.utils.getPrefsService("browser.cache.memory.").getBoolPref("enable");
     this.origOfflineCache = this.utils.getPrefsService("browser.cache.offline.").getBoolPref("enable");
-    this.origSSLCache = this.utils.getPrefsService("browser.cache.disk_cache_ssl.").getBoolPref("enable");
+    //this.origSSLCache = this.utils.getPrefsService("browser.cache.disk_cache_ssl.").getBoolPref("enable");
     this.origCookieBehavior = this.utils.getPrefsService("network.cookie.").getIntPref("cookieBehavior");
-    dump("Cookieverhalten ist: " + this.origCookieBehavior + "\n"); 
     this.fp.writeSettingsAsync();
   },
   

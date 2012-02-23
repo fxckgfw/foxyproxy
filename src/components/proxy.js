@@ -133,6 +133,8 @@ Proxy.prototype = {
   readOnlyProperties : ["lastresort", "fp", "wrappedJSObject", "matches", /* from ManualConf */ "owner",
                         /* from AutoConf */ "timer", /* from AutoConf */  "_resolver"],
 
+  __exposedProps__ : {rejectCookies: "rw"},
+ 
   fromDOM : function(node, includeTempPatterns) {
     this.name = node.getAttribute("name");
     this.id = node.getAttribute("id") || this.fp.proxies.uniqueRandom();

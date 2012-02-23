@@ -861,15 +861,15 @@ end-foxyproxy-simple !*/
           this._cmd,
           this.fp.getMessage("mode.patterns.accesskey"),
           this.fp.getMessage("mode.patterns.label"),
-          this.fp.getMessage("mode.patterns.tooltip"));
-        itm.setAttribute("class", "orange");
+          this.fp.getMessage("mode.patterns.tooltip"),
+          null, "orange");
         checkOne.push(itm);
       }
       for (var i=0; i<this.fp.proxies.length; i++) {
         var p = this.fp.proxies.item(i);
         var pName = p.name;
         // Set the submenu based on advancedMenus enabled/disabled
-        var sbm = this.fp.advancedMenus ? _createMenu(menupopup, pName, pName.substring(0, 1), p.notes) : menupopup;
+        var sbm = this.fp.advancedMenus ? _createMenu(menupopup, pName, pName.substring(0, 1), p.notes, "color:" + p.color) : menupopup;
         var curProxy = "foxyproxy.fp.proxies.item(" + i + ").";
 
         if (this.fp.advancedMenus) {
@@ -896,8 +896,7 @@ end-foxyproxy-simple !*/
           p.id,
           this._cmd,
           pName.substring(0, 1),
-          this.fp.getMessage("mode.custom.label", [pName]), p.notes);
-        itm.setAttribute("style", "color: " + p.color);
+          this.fp.getMessage("mode.custom.label", [pName]), p.notes, "color:" + p.color);
         checkOne.push(itm);
 
         if (this.fp.advancedMenus) {
@@ -938,8 +937,7 @@ end-foxyproxy-simple !*/
         this._cmd,
         this.fp.getMessage("mode.disabled.accesskey"),
         this.fp.getMessage("mode.disabled.label"),
-        this.fp.getMessage("mode.disabled.tooltip"));
-      itm.setAttribute("style", "color: red;");
+        this.fp.getMessage("mode.disabled.tooltip"), null, "red");
       checkOne.push(itm);
 
       // Check the appropriate one
@@ -1135,17 +1133,23 @@ end-foxyproxy-simple !*/
       return fp.mode == "disabled" || !fp.quickadd.enabled;
     }
 
-    function _createMenu(menupopup, label, accesskey, tooltip) {
+    // @TODO: move all of the menu/menuitem/radio helpers,
+    // including common.js's createMenuItem(), into its own JSM.
+    function _createMenu(menupopup, label, accesskey, tooltip, style, clazz) {
       var submenu = document.createElement("menu");
       submenu.setAttribute("label", label);
       submenu.setAttribute("accesskey", accesskey);
       submenu.setAttribute("tooltiptext", tooltip);
+      if (clazz)
+        submenu.setAttribute("class", clazz);
+      if (style)
+        submenu.setAttribute("style", style);
       var submenupopup = document.createElement("menupopup");
       submenu.appendChild(submenupopup);
       menupopup.appendChild(submenu);
       return submenupopup;
     }
-
+    
     function _createMenuItem(menupopup, label, cmd, accesskey, tooltip) {
       var e = document.createElement("menuitem");
       e.setAttribute("label", label);
@@ -1156,7 +1160,7 @@ end-foxyproxy-simple !*/
       return e;
     }
 
-    function _createRadioMenuItem(menupopup, id, cmd, accesskey, label, tooltip) {
+    function _createRadioMenuItem(menupopup, id, cmd, accesskey, label, tooltip, style, clazz) {
       var e = document.createElement("menuitem");
       e.setAttribute("label", label);
       e.setAttribute("id", id);
@@ -1166,6 +1170,10 @@ end-foxyproxy-simple !*/
       e.setAttribute("tooltiptext", tooltip);
       e.setAttribute("oncommand", cmd);
       e.setAttribute("accesskey", accesskey);
+      if (style)
+        e.setAttribute("style", style);
+      if (clazz)
+        e.setAttribute("class", clazz);
       menupopup.appendChild(e);
       return e;
     }

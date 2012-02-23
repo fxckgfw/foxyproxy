@@ -124,7 +124,7 @@ var defaultPrefs = {
       if (that.shouldDisableDNSPrefetch())
         that.disablePrefetch();
       else
-        that.restoreOriginals(true);
+        that.restoreOriginalPreFetch(true);
     }
   },
   
@@ -151,26 +151,41 @@ var defaultPrefs = {
         this.beingUninstalled = false;
     }
   },
-  
-  // Restore the original pre-FoxyProxy values and stop observing changes
+
+  // Restore the original pre-FoxyProxy values.
   restoreOriginals : function(contObserving) {
-    let that = this;
-    function restoreOriginalBool(branch, pref, value) {
-      let p = that.utils.getPrefsService(branch);
-      if (value == that.TRUE)
-        p.setBoolPref(pref, true);
-      else if (value == that.FALSE)
-        p.setBoolPref(pref, false);
-      else if (value == that.CLEARED) {
-        try {
-          if (p.prefHasUserValue(pref))
-            p.clearUserPref(pref);
-        }
-        catch (e) { /* i don't think this is necessary since p.prefHasUserValue() is called before clearing */
-          that.utils.dumpp(e);
-        }
+    this.uninit(); // stop observing the prefs while we change them
+    this.restoreOriginalBool("browser.cache.", "disk.enable", this.origDiskCache);
+    this.restoreOriginalBool("browser.cache.", "memory.enable", this.origMemCache);
+    this.restoreOriginalBool("browser.cache.", "offline.enable", this.origOfflineCache);
+    this.restoreOriginalBool("browser.cache.", "disk_cache_ssl", this.origSSLCache);
+    this.utils.getPrefsService("network.cookie.").setIntPref("cookieBehavior", this.origCookieBehavior);
+    if (contObserving)
+      this.init(this.fp); // Add our observers again
+    this.restoreOriginalPreFetch(contObserving);
+  },
+
+  restoreOriginalBool : function(branch, pref, value) {
+    let p = this.utils.getPrefsService(branch);
+    if (value == this.TRUE)
+      p.setBoolPref(pref, true);
+    else if (value == this.FALSE)
+      p.setBoolPref(pref, false);
+    else if (value == this.CLEARED) {
+      try {
+        if (p.prefHasUserValue(pref))
+          p.clearUserPref(pref);
+      }
+      catch (e) { /* i don't think this is necessary since p.prefHasUserValue() is called before clearing */
+        this.utils.dumpp(e);
       }
     }
+  },
+  
+  // Restore the original pre-FoxyProxy dnsPrefetch value and
+  // optionally stop observing changes
+  restoreOriginalPreFetch : function(contObserving) {
+    let that = this;
     function forcePACReload() {
       // If Firefox is configured to use a PAC file, we need to force that PAC file to load.
       // Firefox won't load it automatically except on startup and after
@@ -203,13 +218,8 @@ var defaultPrefs = {
     }
 
     this.uninit(); // stop observing the prefs while we change them
-    restoreOriginalBool("network.dns.", "disablePrefetch", this.origPrefetch);
+    this.restoreOriginalBool("network.dns.", "disablePrefetch", this.origPrefetch);
     forcePACReload();
-    restoreOriginalBool("browser.cache.", "disk.enable", this.origDiskCache);
-    restoreOriginalBool("browser.cache.", "memory.enable", this.origMemCache);
-    restoreOriginalBool("browser.cache.", "offline.enable", this.origOfflineCache);
-    restoreOriginalBool("browser.cache.", "disk_cache_ssl", this.origSSLCache);
-    this.utils.getPrefsService("network.cookie.").setIntPref("cookieBehavior", this.origCookieBehavior);
     if (contObserving)
       this.init(this.fp); // Add our observers again
   },

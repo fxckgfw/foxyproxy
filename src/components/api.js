@@ -31,8 +31,8 @@ api.prototype = {
    * use the terminology "tag" instead of "node/element" in error messages
    * since that is the vernacular with web developers.
    */
-  changeAllSettings : function(node, callback) {
-    if (this.disableApi) return;
+  setSettings : function(node, callback) {
+    if (this.disableApi) return null;
 
     // nodeName is always capitalized by Gecko so no need for case-insensitive check
     if (node.nodeName != "FOXYPROXY") {
@@ -48,17 +48,17 @@ api.prototype = {
       // TODO: update GUI because changes won't display if its already open
       that._successCallback(callback);
     });
+    return this;
   },
 
-  /**
-   * Ask user
-   */
-   _promptUser: function(callback) {
-      // User notification first
-      let that = this;
-      this.fpc.notify("proxy.scheme.warning.2", null, null, null, callback,
-        true, that);
-   },
+  set settings(node) {
+    return this.setSettings(node);
+  },
+
+  get settings() {
+    if (this.disableApi) return;
+    return this.fp.toDOM();
+  },
 
   /**
    * Change the mode to the one specified.
@@ -76,6 +76,7 @@ api.prototype = {
       else
         that._errorCallback(callback, "Unrecognized mode specified. Defaulting to \"disabled\"");
     });
+    return this;
   },
 
   /**
@@ -85,11 +86,7 @@ api.prototype = {
    * the setMode() function.
    */
   set mode(newMode) {
-    if (this.disableApi) return;
-    this._promptUser(function(not, btn) {
-      let that = btn.callbackArgs;
-      that.fp.setMode(newMode, true, false);
-    });
+    return this.setMode(newMode);
   },
 
   /**
@@ -147,6 +144,16 @@ api.prototype = {
       n.error(msg);
     }      
   },
+
+  /**
+   * Ask user
+   */
+   _promptUser: function(callback) {
+      // User notification first
+      let that = this;
+      this.fpc.notify("proxy.scheme.warning.2", null, null, null, callback,
+        true, that);
+   },
 
  
   // nsIClassInfo

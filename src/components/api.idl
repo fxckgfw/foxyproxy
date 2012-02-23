@@ -10,9 +10,22 @@ interface notification : nsISupports {
 
 [scriptable, uuid(26e128d0-542c-11e1-b86c-0800200c9a66)]
 interface foxyProxyApi : nsISupports {
-  void changeAllSettings(in nsIDOMNode foxyProxyNode, [optional] in notification callback);
-  void setMode(in AString newMode, [optional] in notification callback);
+
+  // Setter without callback
+  attribute AString settings;
+
+  // Setter that allows for callback
+  void setSettings(in nsIDOMNode foxyProxyNode, [optional] in notification callback);
+
+  // Setter without callback
   attribute AString mode;
+
+  // Setter that allows for callback
+  void setMode(in AString newMode, [optional] in notification callback);
+
+  // This is a getter only
   attribute boolean apiDisabled;
+
+  // This is a getter only
   attribute AString version;
 };

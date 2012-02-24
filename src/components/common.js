@@ -135,12 +135,6 @@ Common.prototype = {
     e.setAttribute("value", args["idVal"]);
     args["type"] && e.setAttribute("type", args["type"]);
     args["name"] && e.setAttribute("name", args["name"]);
-    if (args.style) {
-      e.setAttribute("style", args.style);
-    }
-    if (args.class) {
-      e.setAttribute("class", args.class);
-    }
     return e;
   },
   

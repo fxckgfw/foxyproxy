@@ -1133,8 +1133,6 @@ end-foxyproxy-simple !*/
       return fp.mode == "disabled" || !fp.quickadd.enabled;
     }
 
-    // @TODO: move all of the menu/menuitem/radio helpers,
-    // including common.js's createMenuItem(), into its own JSM.
     function _createMenu(menupopup, label, accesskey, tooltip, style) {
       var submenu = document.createElement("menu");
       submenu.setAttribute("label", label);
@@ -1147,7 +1145,7 @@ end-foxyproxy-simple !*/
       menupopup.appendChild(submenu);
       return submenupopup;
     }
-    
+
     function _createMenuItem(menupopup, label, cmd, accesskey, tooltip) {
       var e = document.createElement("menuitem");
       e.setAttribute("label", label);

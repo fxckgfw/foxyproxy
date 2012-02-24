@@ -10,7 +10,8 @@
   before the proxy is used
 * New per-proxy setting: "Reject cookies" -- rejects all cookies while this
   proxy is in use
-* the proxy color is used for proxy names in FoxyProxy menus  
+* the proxy color is used for proxy names in FoxyProxy menus (see:
+    http://forums.getfoxyproxy.org/viewtopic.php?f=1&t=592)
 * removed more Flock-related cruft and locale cruft
 * removed fixed height for add/edit pattern subscription dialog
 * updated locales

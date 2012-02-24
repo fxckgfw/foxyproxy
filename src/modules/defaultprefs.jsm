@@ -15,7 +15,7 @@
 // another extension changes them. Restores values to original
 // when FoxyProxy is in disabled mode.
 
-//"use strict";
+"use strict";
 
 let CI = Components.interfaces, CC = Components.classes, CU = Components.utils,
   gObsSvc = CC["@mozilla.org/observer-service;1"].
@@ -23,7 +23,7 @@ let CI = Components.interfaces, CC = Components.classes, CU = Components.utils,
    
   EXPORTED_SYMBOLS = ["defaultPrefs"];
 
-var defaultPrefs = {
+let defaultPrefs = {
   FALSE : 0x10,
   TRUE : 0x11,    
   CLEARED : 0x12,
@@ -48,11 +48,9 @@ var defaultPrefs = {
     CU.import("resource://foxyproxy/utils.jsm", this);
     this.fp = fp;
     this.addPrefsObservers();
-    for each (let i in ["foxyproxy-mode-change", "foxyproxy-proxy-change",
-              "em-action-requested", "quit-application"])
-      gObsSvc.addObserver(this, i, false);
+    this.addGeneralObservers();
   },
-  
+
   addPrefsObservers : function() {
     let that = this;
     function addPrefsObserver(obs, branch) {
@@ -65,6 +63,12 @@ var defaultPrefs = {
     addPrefsObserver(this.cacheObserver, "browser.cache.");
     addPrefsObserver(this.networkCookieObserver, "network.cookie.");
   },
+
+  addGeneralObservers : function() {
+    for each (let i in ["foxyproxy-mode-change", "foxyproxy-proxy-change",
+              "em-action-requested", "quit-application"])
+      gObsSvc.addObserver(this, i, false);
+  },
   
   removePrefsObservers : function() {
     // we're not initialized and calling .removeObserver() will throw
@@ -76,13 +80,20 @@ var defaultPrefs = {
     this.networkCookieObserver = this.cacheObserver =
       this.networkDNSPrefsObserver = null;
   },
+
+  removeGeneralObservers : function() {
+    // Getting the exception in case we already removed these observers
+    try {
+      for each (let i in ["foxyproxy-mode-change", "foxyproxy-proxy-change",
+                "em-action-requested", "quit-application"])
+        gObsSvc.removeObserver(this, i);
+    } catch(e) {} 
+  },
   
   // Uninstall observers
   uninit : function() {
     this.removePrefsObservers();
-    for each (let i in ["foxyproxy-mode-change", "foxyproxy-proxy-change",
-      "em-action-requested", "quit-application"])
-      gObsSvc.removeObserver(this, i);
+    this.removeGeneralObservers();
   },
 
   observe : function(subj, topic, data) {
@@ -96,14 +107,22 @@ var defaultPrefs = {
       }
       else if (topic == "em-action-requested")
         this.restoreOnExit(data, subj.QueryInterface(CI.nsIUpdateItem));
-      else if (topic == "quit-application" && this.beingUninstalled)
-        this.restoreOriginals(false);
+      else if (topic == "quit-application") {
+        // We do not need to remove our observers here if the if-branch is
+        // taken as all observers are removed by calling restoreOriginals()
+        // with "false" as parameter.
+        if (this.beingUninstalled) {
+          this.restoreOriginals(false);
+        } else {
+          // Removing all of our observers on shutdown 
+          this.uninit();
+        }
+      }
       else if (topic == "foxyproxy-mode-change") {
       	if (this.fp._mode == "disabled") {
-          // We're being disabled.
+          // We're being disabled. But we still want to have our general
+          // observers.
       	  this.restoreOriginals(true);
-      	  // Stop listening for pref changes
-      	  this.removePrefsObservers();
       	  return;
       	}
       	if (this.fp._previousMode == "disabled") {
@@ -129,8 +148,9 @@ var defaultPrefs = {
   },
   
   shouldDisableDNSPrefetch : function() {
-    if (this.fp._mode=="disabled") return false;
-    // Is mode "Use proxy xyz for all URLs". Does the selected proxy require dns prefetch disabling?
+    if (this.fp._mode == "disabled") return false;
+    // Is mode "Use proxy xyz for all URLs"? Does the selected proxy require dns
+    // prefetch disabling?
     if (this.fp._selectedProxy)
       return this.fp._selectedProxy.shouldDisableDNSPrefetch()
     // Mode is patterns, random, or roundrobin. If any of the proxies require
@@ -138,11 +158,24 @@ var defaultPrefs = {
     // as proxies are switched across URLs/IPs.
     return this.fp.proxies.requiresRemoteDNSLookups();
   },
+
+  // Set our desired values for the prefs; may or may not be the same as the
+  // originals
+  disablePrefetch : function() {
+    // stop observing the prefs while we change them
+    this.removePrefsObservers();
+    this.utils.getPrefsService("network.dns.").setBoolPref("disablePrefetch",
+      true);
+    // start observing the prefs again
+    this.addPrefsObservers();
+  },
   
-  // FoxyProxy being disabled/uninstalled. Should we restore the original pre-FoxyProxy values?
+  // FoxyProxy being disabled/uninstalled. Should we restore the original
+  // pre-FoxyProxy values?
   restoreOnExit : function(d, updateItem) {
-    var guid = updateItem.id;
-    if (guid == "foxyproxy-basic@eric.h.jung" || guid == "foxyproxy@eric.h.jung" || guid == "foxyproxyplus@leahscape.com") {
+    let guid = updateItem.id;
+    if (guid == "foxyproxy-basic@eric.h.jung" || guid ==
+        "foxyproxy@eric.h.jung" || guid == "foxyproxyplus@leahscape.com") {
       if (d == "item-cancel-action")
         this.beingUninstalled = false;
       else if (d == "item-uninstalled" || d == "item-disabled")
@@ -154,14 +187,18 @@ var defaultPrefs = {
 
   // Restore the original pre-FoxyProxy values.
   restoreOriginals : function(contObserving) {
-    this.uninit(); // stop observing the prefs while we change them
-    this.restoreOriginalBool("browser.cache.", "disk.enable", this.origDiskCache);
-    this.restoreOriginalBool("browser.cache.", "memory.enable", this.origMemCache);
-    this.restoreOriginalBool("browser.cache.", "offline.enable", this.origOfflineCache);
-    this.restoreOriginalBool("browser.cache.", "disk_cache_ssl", this.origSSLCache);
-    this.utils.getPrefsService("network.cookie.").setIntPref("cookieBehavior", this.origCookieBehavior);
-    if (contObserving)
-      this.init(this.fp); // Add our observers again
+    // stop observing the prefs while we change them
+    this.removePrefsObservers();
+    this.restoreOriginalBool("browser.cache.", "disk.enable",
+      this.origDiskCache);
+    this.restoreOriginalBool("browser.cache.", "memory.enable",
+      this.origMemCache);
+    this.restoreOriginalBool("browser.cache.", "offline.enable",
+      this.origOfflineCache);
+    this.restoreOriginalBool("browser.cache.", "disk_cache_ssl",
+      this.origSSLCache);
+    this.utils.getPrefsService("network.cookie.").setIntPref("cookieBehavior",
+      this.origCookieBehavior);
     this.restoreOriginalPreFetch(contObserving);
   },
 
@@ -176,7 +213,9 @@ var defaultPrefs = {
         if (p.prefHasUserValue(pref))
           p.clearUserPref(pref);
       }
-      catch (e) { /* i don't think this is necessary since p.prefHasUserValue() is called before clearing */
+      catch (e) {
+        // I don't think this is necessary since p.prefHasUserValue() is called
+        // before clearing
         this.utils.dumpp(e);
       }
     }
@@ -187,11 +226,12 @@ var defaultPrefs = {
   restoreOriginalPreFetch : function(contObserving) {
     let that = this;
     function forcePACReload() {
-      // If Firefox is configured to use a PAC file, we need to force that PAC file to load.
-      // Firefox won't load it automatically except on startup and after
-      // network.proxy.autoconfig_retry_* seconds. Rather than make the user wait for that,
-      // we load the PAC file now by flipping network.proxy.type (Firefox is observing that pref)
-      var networkPrefs = that.utils.getPrefsService("network.proxy."), type;
+      // If Firefox is configured to use a PAC file, we need to force that PAC
+      // file to load. Firefox won't load it automatically except on startup
+      // and after network.proxy.autoconfig_retry_* seconds. Rather than make
+      // the user wait for that, we load the PAC file now by flipping
+      // network.proxy.type (Firefox is observing that pref)
+      let networkPrefs = that.utils.getPrefsService("network.proxy."), type;
       try {
         type = networkPrefs.getIntPref("type");
       }
@@ -199,29 +239,35 @@ var defaultPrefs = {
         dump("FoxyProxy: network.proxy.type doesn't exist or can't be read\n");
         that.utils.dumpp(e);
       }
-      if (type == 2) { /* isn't there a const for this? */ 
-        // network.proxy.type is set to use a PAC file.    
-        // Don't use nsPIProtocolProxyService to load the PAC. From its comments: "[nsPIProtocolProxyService] exists purely as a
-        // hack to support the configureFromPAC method used by the preference panels in the various apps. Those
-        // apps need to be taught to just use the preferences API to "reload" the PAC file. Then, at that point,
-        // we can eliminate this interface completely."
+      // Isn't there a const for this?
+      if (type == 2) {
+        // network.proxy.type is set to use a PAC file. Don't use
+        // nsPIProtocolProxyService to load the PAC. From its comments:
+        // "[nsPIProtocolProxyService] exists purely as a hack to support the
+        // configureFromPAC method used by the preference panels in the various
+        // apps. Those apps need to be taught to just use the preferences API
+        // to "reload" the PAC file. Then, at that point, we can eliminate this
+        // interface completely."
 
         // var pacURL = networkPrefs.getCharPref("autoconfig_url");
         // var pps = CC["@mozilla.org/network/protocol-proxy-service;1"]
-          // .getService(Components.interfaces.nsPIProtocolProxyService);
+        // .getService(Components.interfaces.nsPIProtocolProxyService);
         // pps.configureFromPAC(pacURL);
 
-        // Instead, change the prefs--the proxy service is observing and will reload the PAC
+        // Instead, change the prefs--the proxy service is observing and will
+        // reload the PAC.
         networkPrefs.setIntPref("type", 1);
         networkPrefs.setIntPref("type", 2);
       }
     }
 
-    this.uninit(); // stop observing the prefs while we change them
-    this.restoreOriginalBool("network.dns.", "disablePrefetch", this.origPrefetch);
+    // Stop observing the prefs while we change them.
+    this.removePrefsObservers();
+    this.restoreOriginalBool("network.dns.", "disablePrefetch",
+      this.origPrefetch);
     forcePACReload();
-    if (contObserving)
-      this.init(this.fp); // Add our observers again
+    if (!contObserving)
+      this.removeGeneralObservers();
   },
   
   // Save the original prefs for restoring when FoxyProxy is disabled or
@@ -229,35 +275,41 @@ var defaultPrefs = {
   saveOriginals : function() {
     let p = this.utils.getPrefsService("network.dns.");
     this.origPrefetch = p.prefHasUserValue("disablePrefetch") ?
-        (p.getBoolPref("disablePrefetch") ? this.TRUE : this.FALSE) : this.CLEARED;
-    this.origDiskCache = this.utils.getPrefsService("browser.cache.").getBoolPref("disk.enable");
-    this.origMemCache= this.utils.getPrefsService("browser.cache.").getBoolPref("memory.enable");
-    this.origOfflineCache = this.utils.getPrefsService("browser.cache.").getBoolPref("offline.enable");
-    this.origSSLCache = this.utils.getPrefsService("browser.cache.").getBoolPref("disk_cache_ssl");
-    this.origCookieBehavior = this.utils.getPrefsService("network.cookie.").getIntPref("cookieBehavior");
+      (p.getBoolPref("disablePrefetch") ? this.TRUE : this.FALSE) :
+      this.CLEARED;
+    this.origDiskCache = this.utils.getPrefsService("browser.cache.").
+      getBoolPref("disk.enable");
+    this.origMemCache= this.utils.getPrefsService("browser.cache.").
+      getBoolPref("memory.enable");
+    this.origOfflineCache = this.utils.getPrefsService("browser.cache.").
+      getBoolPref("offline.enable");
+    this.origSSLCache = this.utils.getPrefsService("browser.cache.").
+      getBoolPref("disk_cache_ssl");
+    this.origCookieBehavior = this.utils.getPrefsService("network.cookie.").
+      getIntPref("cookieBehavior");
     this.fp.writeSettingsAsync();
   },
   
-  // Set our desired values for the prefs; may or may not be the same as the originals
-  disablePrefetch : function() {
-    this.uninit(); // stop observing the prefs while we change them
-    this.utils.getPrefsService("network.dns.").setBoolPref("disablePrefetch", true);
-    this.init(this.fp); // start observing the prefs again
-  },
-  
   fromDOM : function(doc) {
-    var n = doc.getElementsByTagName("defaultPrefs").item(0);
-    if (!n) return; // for pre-2.17 foxyproxy.xml files that don't have this node
-    this.origPrefetch = this.utils.getSafeAttr(n, "origPrefetch", null);   // Default: does not exist   
-    this.origDiskCache = this.utils.getSafeAttrB(n, "origDiskCache", true); // Default: true
-    this.origMemCache = this.utils.getSafeAttrB(n, "origMemCache", true);    
-    this.origOfflineCache = this.utils.getSafeAttrB(n, "origOfflineCache", true);
-    this.origSSLCache = this.utils.getSafeAttrB(n, "origSSLCache", false); // Default: false
-    this.origCookieBehavior = this.utils.getSafeAttr(n, "origCookieBehavior", 0); // Default: 0
+    let n = doc.getElementsByTagName("defaultPrefs").item(0);
+    // for pre-2.17 foxyproxy.xml files that don't have this node
+    if (!n) return;
+    // Default: does not exist
+    this.origPrefetch = this.utils.getSafeAttr(n, "origPrefetch", null);
+    // Default: true
+    this.origDiskCache = this.utils.getSafeAttrB(n, "origDiskCache", true);
+    this.origMemCache = this.utils.getSafeAttrB(n, "origMemCache", true);
+    this.origOfflineCache = this.utils.getSafeAttrB(n, "origOfflineCache",
+      true);
+    // Default: false
+    this.origSSLCache = this.utils.getSafeAttrB(n, "origSSLCache", false);
+    // Default: 0
+    this.origCookieBehavior = this.utils.getSafeAttr(n, "origCookieBehavior",
+      0);
   },
   
   toDOM : function(doc) {
-    var e = doc.createElement("defaultPrefs");
+    let e = doc.createElement("defaultPrefs");
     e.setAttribute("origPrefetch", this.origPrefetch);
     e.setAttribute("origDiskCache", this.origDiskCache);
     e.setAttribute("origMemCache", this.origMemCache);

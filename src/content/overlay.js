@@ -1135,13 +1135,11 @@ end-foxyproxy-simple !*/
 
     // @TODO: move all of the menu/menuitem/radio helpers,
     // including common.js's createMenuItem(), into its own JSM.
-    function _createMenu(menupopup, label, accesskey, tooltip, style, clazz) {
+    function _createMenu(menupopup, label, accesskey, tooltip, style) {
       var submenu = document.createElement("menu");
       submenu.setAttribute("label", label);
       submenu.setAttribute("accesskey", accesskey);
       submenu.setAttribute("tooltiptext", tooltip);
-      if (clazz)
-        submenu.setAttribute("class", clazz);
       if (style)
         submenu.setAttribute("style", style);
       var submenupopup = document.createElement("menupopup");

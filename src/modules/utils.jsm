@@ -11,7 +11,8 @@
 
 "use strict";
 
-/** TODO: Move all of components/common.js here **/
+/** TODO: Move all of components/common.js here, import Services.jsm and replace
+ *  all calls to services declared there in FoxyProxy.**/
 
 let CI = Components.interfaces, CC = Components.classes, gObsSvc =
   CC["@mozilla.org/observer-service;1"].getService(CI.nsIObserverService),

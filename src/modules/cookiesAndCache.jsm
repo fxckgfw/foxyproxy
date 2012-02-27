@@ -20,7 +20,6 @@ let CI = Components.interfaces, CC = Components.classes, CU = Components.utils,
 CU.import("resource://foxyproxy/utils.jsm");
 
 let cookiePrefs = utils.getPrefsService("network.cookie."),
-  networkHttpPrefs = utils.getPrefsService("network.http."),
   cachePrefs = utils.getPrefsService("browser.cache."),
   securityPrefs = utils.getPrefsService("security."),
 
@@ -61,12 +60,12 @@ let cookiePrefs = utils.getPrefsService("network.cookie."),
     },
 
     disableCache : function() {
+      // TODO: Should we remove/add prefs observer here as well?
       dump("disabling cache\n");    
-      networkHttpPrefs.setBoolPref("use-cache", false); // this might be enough
-      cachePrefs.setBoolPref("disk.enable", false); // but let's be safe
-      cachePrefs.setBoolPref("memory.enable", false); // but let's be safe
-      cachePrefs.setBoolPref("offline.enable", false); // but let's be safe
-      cachePrefs.setBoolPref("disk_cache_ssl", false); // but let's be safe
+      cachePrefs.setBoolPref("disk.enable", false);
+      cachePrefs.setBoolPref("memory.enable", false);
+      cachePrefs.setBoolPref("offline.enable", false);
+      cachePrefs.setBoolPref("disk_cache_ssl", false);
     }
   },
   
@@ -77,6 +76,7 @@ let cookiePrefs = utils.getPrefsService("network.cookie."),
     },
 
     rejectCookies : function() {
+      // TODO: Should we remove/add pref observer here as well?
       dump("rejecting cookies\n");
       cookiePrefs.setIntPref("cookieBehavior", 2);
     }

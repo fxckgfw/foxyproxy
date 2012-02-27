@@ -27,6 +27,8 @@ let defaultPrefs = {
   FALSE : 0x10,
   TRUE : 0x11,    
   CLEARED : 0x12,
+  // These values are just reasonable defaults. The user-specific original
+  // values will be read in saveOriginals().
   origPrefetch : null,
   //network.dns.disablePrefetchFromHTTPS
   origDiskCache : true,
@@ -112,7 +114,7 @@ let defaultPrefs = {
         // taken as all observers are removed by calling restoreOriginals()
         // with "false" as parameter.
         if (this.beingUninstalled) {
-          this.restoreOriginals(false);
+          this.restoreOriginals("all", false);
         } else {
           // Removing all of our observers on shutdown 
           this.uninit();
@@ -120,9 +122,12 @@ let defaultPrefs = {
       }
       else if (topic == "foxyproxy-mode-change") {
       	if (this.fp._mode == "disabled") {
+          // We need to reset this value in order to not miss changes while
+          // disabling FoxyProxy and enabling the same proxy again.
+          this.fp.cacheAndCookiesChecked = false;
           // We're being disabled. But we still want to have our general
           // observers.
-      	  this.restoreOriginals(true);
+      	  this.restoreOriginals("all", true);
       	  return;
       	}
       	if (this.fp._previousMode == "disabled") {
@@ -186,20 +191,30 @@ let defaultPrefs = {
   },
 
   // Restore the original pre-FoxyProxy values.
-  restoreOriginals : function(contObserving) {
+  // |type| can be "cache", "cookies", or "all"
+  restoreOriginals : function(type, contObserving) {
     // stop observing the prefs while we change them
     this.removePrefsObservers();
-    this.restoreOriginalBool("browser.cache.", "disk.enable",
-      this.origDiskCache);
-    this.restoreOriginalBool("browser.cache.", "memory.enable",
-      this.origMemCache);
-    this.restoreOriginalBool("browser.cache.", "offline.enable",
-      this.origOfflineCache);
-    this.restoreOriginalBool("browser.cache.", "disk_cache_ssl",
-      this.origSSLCache);
-    this.utils.getPrefsService("network.cookie.").setIntPref("cookieBehavior",
-      this.origCookieBehavior);
-    this.restoreOriginalPreFetch(contObserving);
+    if (type === "cache" || type === "all") {
+      this.utils.getPrefsService("browser.cache.").setBoolPref("disk.enable",
+        this.origDiskCache);
+      this.utils.getPrefsService("browser.cache.").setBoolPref("memory.enable",
+        this.origMemCache);
+      this.utils.getPrefsService("browser.cache.").setBoolPref("offline.enable",
+        this.origOfflineCache);
+      this.utils.getPrefsService("browser.cache.").setBoolPref("disk_cache_ssl",
+        this.origSSLCache);
+    }
+    if (type === "cookies" || type === "all") {
+      this.utils.getPrefsService("network.cookie.").setIntPref("cookieBehavior",
+        this.origCookieBehavior);
+    }
+    // We need this call as the user may only have changed cache/cookie settings
+    // without triggering the addPrefsObervser()-call in foxyproxy-mode-change.
+    this.addPrefsObservers();
+    if (type === "all") {
+      this.restoreOriginalPreFetch(contObserving);
+    }
   },
 
   restoreOriginalBool : function(branch, pref, value) {

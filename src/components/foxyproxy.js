@@ -10,7 +10,7 @@
 **/
 
 // Don't const the next line anymore because of the generic reg code
-//dump("foxyproxy.js\n");
+// dump("foxyproxy.js\n");
 var CI = Components.interfaces, CC = Components.classes, CR = Components.results, CU = Components.utils, gFP;
 CU.import("resource://gre/modules/XPCOMUtils.jsm");
 var dumpp = function(e) {
@@ -95,7 +95,6 @@ var componentDir = self.parent; // the directory this file is in
 var loader = CC["@mozilla.org/moz/jssubscript-loader;1"].getService(CI["mozIJSSubScriptLoader"]);
 loadComponentScript("proxy.js");
 loadComponentScript("match.js");
-CU.import("resource://foxyproxy/defaultprefs.jsm");
 loadModuleScript("superadd.js");
 
 // l is for lulu...
@@ -105,6 +104,7 @@ function foxyproxy() {
   // https://developer.mozilla.org/en/JavaScript/Code_modules/Using section
   // "Custom modules and XPCOM components" 
   CU.import("resource://foxyproxy/patternSubscriptions.jsm", this);
+  CU.import("resource://foxyproxy/defaultprefs.jsm", this);
   CU.import("resource://foxyproxy/cookiesAndCache.jsm", this);
 };
 foxyproxy.prototype = {
@@ -155,9 +155,9 @@ foxyproxy.prototype = {
             this.init();
             this.patternSubscriptions.init();
             // Initialize defaultPrefs before initial call to this.setMode().
-            // setMode() is called from this.loadSettings()->this.fromDOM(), but also from commandlinehandler.js.
-            dump("in profile-after-change\n");
-            defaultPrefs.init(gFP);        
+            // setMode() is called from this.loadSettings()->this.fromDOM(), but
+            // also from commandlinehandler.js.
+            this.defaultPrefs.init(gFP);        
             this.loadSettings();
           }
           catch (e) {
@@ -179,7 +179,7 @@ foxyproxy.prototype = {
         gObsSvc.removeObserver(this, "quit-application");
         gObsSvc.removeObserver(this, "domwindowclosed");
         gObsSvc.removeObserver(this, "domwindowopened");
-        defaultPrefs.uninit();
+        this.defaultPrefs.uninit();
         break;
       case "domwindowopened":
         this.strings.load();
@@ -289,7 +289,8 @@ foxyproxy.prototype = {
 
   handleCacheAndCookies : function(proxy, previousProxy) {
     if (proxy) {
-      if (previousProxy && previousProxy.id !== proxy.id) {
+      if (previousProxy && previousProxy.id !== proxy.id &&
+          !this.cacheAndCookiesChecked) {
         this.cacheAndCookiesChecked = false;
       }
       if (this.cacheAndCookiesChecked) {
@@ -299,12 +300,16 @@ foxyproxy.prototype = {
         // false then.
         if (proxy.clearCacheBeforeUse)
           this.cacheMgr.clearCache();
-        if (proxy.disableCache) 
+        if (proxy.disableCache)
           this.cacheMgr.disableCache();
+        else
+          this.defaultPrefs.restoreOriginals("cache");
         if (proxy.clearCookiesBeforeUse)
           this.cookieMgr.clearCookies();
         if (proxy.rejectCookies)
           this.cookieMgr.rejectCookies();
+        else
+          this.defaultPrefs.restoreOriginals("cookies");
         // We obviously checked the cache and cookie settings...
         this.cacheAndCookiesChecked = true;
       }
@@ -655,8 +660,6 @@ foxyproxy.prototype = {
     this.writeSettingsAsync();
   },
 
-  get selectedProxy() { return this._selectedProxy; },
-
   /**
    * Return a LoggEntry instance.
    */
@@ -711,7 +714,7 @@ foxyproxy.prototype = {
     this.quickadd.fromDOM(doc); // KEEP THIS BEFORE this.autoadd.fromDOM() else fromDOM() is overwritten!?
     this.autoadd.fromDOM(doc);    
     this.warnings.fromDOM(doc);
-    defaultPrefs.fromDOM(doc);
+    this.defaultPrefs.fromDOM(doc);
     // We'd like to delegate the writing of disableApi to api.js, but that requires
     // the api to expose a fromDOM() method, or similar, to the general public
     // (the wrappedJSObject trick does not work for api.js because it exposes a
@@ -752,7 +755,7 @@ foxyproxy.prototype = {
     e.appendChild(this.warnings.toDOM(doc));
     e.appendChild(this.autoadd.toDOM(doc));
     e.appendChild(this.quickadd.toDOM(doc));
-    e.appendChild(defaultPrefs.toDOM(doc));
+    e.appendChild(this.defaultPrefs.toDOM(doc));
     e.appendChild(this.proxies.toDOM(doc));
     return e;
   },
@@ -851,11 +854,15 @@ foxyproxy.prototype = {
       return a?a[0]:null;
     },
 
+    isSelected : function(p) {
+      return p.id === foxyproxy._selectedProxy.id;
+    },
+
     requiresRemoteDNSLookups : function() {
       return this.list.some(function(e) {return e.shouldDisableDNSPrefetch();});
     },
 
-    getProxiesFromId: function(aIdArray) {
+    getProxiesFromId : function(aIdArray) {
       let proxyArray = [];
       for (let i = 0; i < aIdArray.length; i++) {
         let proxy = this.getProxyById(aIdArray[i]);

@@ -126,6 +126,7 @@ foxyproxy.prototype = {
   ignoreProxyScheme : false,
   writeSettingsTimer : null,
   disableApi : false,
+  cacheOrCookiesChanged : false,
   cacheAndCookiesChecked : false,
   
   broadcast : function(subj, topic, data) {
@@ -273,7 +274,6 @@ foxyproxy.prototype = {
     }
     
     this.toggleFilter(this._mode != "disabled");
-
     // This line must come before the next one -- gBroadcast(...) Otherwise,
     // AutoAdd and QuickAdd write their settings before they've been
     // deserialized, resulting in them always getting written to disk as
@@ -290,26 +290,64 @@ foxyproxy.prototype = {
   handleCacheAndCookies : function(proxy, previousProxy) {
     if (proxy) {
       if (previousProxy && previousProxy.id !== proxy.id &&
-          !this.cacheAndCookiesChecked) {
+          this.cacheAndCookiesChecked) {
         this.cacheAndCookiesChecked = false;
       }
-      if (this.cacheAndCookiesChecked) {
+      if (this.cacheAndCookiesChecked && !this.cacheOrCookiesChanged) {
         return;
+      } else if (this.cacheAndCookiesChecked && this.cacheOrCookiesChanged) {
+        // The user just changed values in the addeditproxy dialog.
+        if (proxy.clearCacheBeforeUse !== proxy.clearCacheBeforeUseOld) {
+          if (proxy.clearCacheBeforeUse) {
+            this.cacheMgr.clearCache();
+          }
+        }
+        if (proxy.disableCache !== proxy.disableCacheOld) {
+          if (proxy.disableCache) {
+            this.cacheMgr.disableCache();
+          } else {
+            this.defaultPrefs.restoreOriginals("cache");
+          }
+        }
+        if (proxy.clearCookiesBeforeUse !== proxy.clearCookiesBeforeUseOld) {
+          if (proxy.clearCookiesBeforeUse) {
+            this.cookieMgr.clearCookies();
+          }
+        }
+        if (proxy.rejectCookies !== proxy.rejectCookiesOld) {
+          if (proxy.rejectCookies) {
+            this.cookieMgr.rejectCookies();
+          } else {
+            this.defaultPrefs.restoreOriginals("cookies");
+          }
+        }
+        // We are just changing the cacheOrCookiesChanged flag and not the
+        // *Old flags as the latter are only important if the former is set to
+        // true. And when that flag is set to true the *Old flags are getting
+        // their proper values as well. Thus, we do not need to adjust them
+        // here.
+        this.cacheOrCookiesChanged = false;
       } else {
-        // This is called as well on start-up as cacheAndCookiesChecked is
-        // false then.
-        if (proxy.clearCacheBeforeUse)
+        // This is called even if the user changed settings in the addeditproxy
+        // dialog before handleCacheAndCookies() is called for the first time
+        // with the current proxy. It is called on start-up as well as
+        // cacheAndCookiesChecked is false then.
+        if (proxy.clearCacheBeforeUse) {
           this.cacheMgr.clearCache();
-        if (proxy.disableCache)
+        }
+        if (proxy.disableCache) {
           this.cacheMgr.disableCache();
-        else
+        } else {
           this.defaultPrefs.restoreOriginals("cache");
-        if (proxy.clearCookiesBeforeUse)
+        }
+        if (proxy.clearCookiesBeforeUse) {
           this.cookieMgr.clearCookies();
-        if (proxy.rejectCookies)
+        }
+        if (proxy.rejectCookies) {
           this.cookieMgr.rejectCookies();
-        else
+        } else {
           this.defaultPrefs.restoreOriginals("cookies");
+        }
         // We obviously checked the cache and cookie settings...
         this.cacheAndCookiesChecked = true;
       }
@@ -660,6 +698,14 @@ foxyproxy.prototype = {
     this.writeSettingsAsync();
   },
 
+  isSelected : function(p) {
+    if (this._selectedProxy) {
+      return p.id === this._selectedProxy.id;
+    } else {
+      return false;
+    }
+  },
+
   /**
    * Return a LoggEntry instance.
    */
@@ -852,10 +898,6 @@ foxyproxy.prototype = {
     getProxyById : function(id) {
       var a = this.list.filter(function(e) {return e.id == this;}, id);
       return a?a[0]:null;
-    },
-
-    isSelected : function(p) {
-      return p.id === foxyproxy._selectedProxy.id;
     },
 
     requiresRemoteDNSLookups : function() {

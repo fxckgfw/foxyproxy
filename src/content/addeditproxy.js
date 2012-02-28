@@ -212,18 +212,19 @@ function onOK() {
     return false;
   }
   proxy.proxyDNS = document.getElementById("proxyDNS").checked;
-  // We only test and reset cacheAndCookiesChecked if the current proxy is the
-  // selected proxy AND some checkbox got checked.
-  if (foxyproxy.selectedProxy && foxyproxy.proxies.isSelected(proxy)) {
-    if (clearCache && proxy.clearCacheBeforeUse !== clearCache ||
-        disableCache && proxy.disableCache !== disableCache ||
-        clearCookies && proxy.clearCookiesBeforeUse !== clearCookies ||
-        rejectCookies && proxy.rejectCookies !== rejectCookies) {
-      // The user checked one option. Make sure handleCacheAndCookies() does
-      // the right thing...
-      foxyproxy.cacheAndCookiesChecked = false;
+  // We only test and reset cacheOrCookiesChanged if the current proxy is the
+  // selected proxy AND some checkbox got checked/unchecked.
+  if (foxyproxy.isSelected(proxy)) {
+    if (proxy.clearCacheBeforeUse !== clearCache || proxy.disableCache !==
+        disableCache || proxy.clearCookiesBeforeUse !== clearCookies ||
+        proxy.rejectCookies !== rejectCookies) {
+      foxyproxy.cacheOrCookiesChanged = true;
     }
   }
+  proxy.clearCacheBeforeUseOld = proxy.clearCacheBeforeUse;
+  proxy.disableCacheOld = proxy.disableCache;
+  proxy.clearCookiesBeforeUseOld = proxy.clearCookiesBeforeUse;
+  proxy.rejectCookiesOld = proxy.rejectCookies;
   proxy.clearCacheBeforeUse = clearCache;
   proxy.disableCache = disableCache;
   proxy.clearCookiesBeforeUse = clearCookies;

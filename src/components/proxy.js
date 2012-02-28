@@ -130,6 +130,10 @@ Proxy.prototype = {
   disableCache: false,
   clearCookiesBeforeUse: false,
   rejectCookies: false,
+  clearCacheBeforeUseOld: false,
+  disableCacheOld: false,
+  clearCookiesBeforeUseOld: false,
+  rejectCookiesOld: false,
   readOnlyProperties : ["lastresort", "fp", "wrappedJSObject", "matches", /* from ManualConf */ "owner",
                         /* from AutoConf */ "timer", /* from AutoConf */  "_resolver"],
 
@@ -179,6 +183,11 @@ Proxy.prototype = {
     this.clearCookiesBeforeUse = gGetSafeAttrB(node, "clearCookiesBeforeUse",
       false);
     this.rejectCookies = gGetSafeAttrB(node, "rejectCookies", false);
+    // Setting the old cache and cookie values...
+    this.clearCacheBeforeUseOld = this.clearCacheBeforeUse;
+    this.disableCacheOld = this.disableCache;
+    this.clearCookiesBeforeUseOld = this.clearCookiesBeforeUse;
+    this.rejectCookiesOld = this.rejectCookies;
     this.noInternalIPs = node.hasAttribute("noInternalIPs") ?
       node.getAttribute("noInternalIPs") == "true" : false;
     for (var i=0,temp=node.getElementsByTagName("match"); i<temp.length; i++) {

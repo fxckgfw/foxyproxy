@@ -79,6 +79,9 @@ contract @mozilla.org/network/protocol;1?name=relative {22ed2962-a8ec-11dc-8314-
 component {26e128d0-542c-11e1-b86c-0800200c9a66} components/api.js
 contract @leahscape.org/foxyproxy/api;1 {26e128d0-542c-11e1-b86c-0800200c9a66}
 
+component {c5a3caf1-d6bf-43be-8de6-e508ad02ca36} components/proxyConfig.js
+contract @leahscape.org/foxyproxy/proxyconfig;1 {c5a3caf1-d6bf-43be-8de6-e508ad02ca36}
+
 #Firefox
 skin    foxyproxy classic/1.0 chrome/skin/  application={ec8030f7-c20a-464f-9b0e-13a3a9e97384}
 overlay chrome://browser/content/browser.xul  chrome://foxyproxy/content/firefoxOverlay.xul application={ec8030f7-c20a-464f-9b0e-13a3a9e97384}

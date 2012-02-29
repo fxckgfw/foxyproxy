@@ -1,11 +1,30 @@
 #include "nsISupports.idl"
 #include "nsIDOMNode.idl"
-#include "nsISimpleEnumerator.idl"
 
-[scriptable, uuid(26e128d0-542c-11e1-b86c-0800200c9a69)]
+[scriptable, uuid(4c11f923-45be-4350-a9f2-17685b7bab3d)]
 interface notification : nsISupports {
   void success();
   void error(in AString msg);
+};
+
+[scriptable, uuid(c5a3caf1-d6bf-43be-8de6-e508ad02ca36)]
+interface foxyProxyProxyConfig : nsISupports {
+  attribute long id;  // read-only
+  attribute AString name;
+  attribute AString notes;
+  attribute AString color;
+  attribute AString mode;
+  attribute boolean enabled;
+  attribute long selectedTabIndex;
+  attribute boolean animatedIcons;
+  attribute boolean includeInCycle;
+  attribute boolean clearCacheBeforeUse;
+  attribute boolean disableCache;
+  attribute boolean clearCookiesBeforeUse;
+  attribute boolean rejectCookies;
+  attribute boolean proxyDNS;
+  attribute jsval manualConfig;
+  attribute jsval autoConfig;
 };
 
 [scriptable, uuid(26e128d0-542c-11e1-b86c-0800200c9a66)]
@@ -28,4 +47,13 @@ interface foxyProxyApi : nsISupports {
 
   // This is a getter only
   attribute AString version;
+
+  // Create and return a new ProxyConfig with smart defaults.
+  // Use |addProxyConfig()| to add it to the current list of proxies.
+  foxyProxyProxyConfig createProxyConfig();
+
+  // Add and return the specified ProxyConfig. If |index| is not specified,
+  // its added to the top/front of the list; otherwise, at the specified zero-
+  // based index.
+  foxyProxyProxyConfig addProxyConfig(in foxyProxyProxyConfig p, [optional] in long index);
 };

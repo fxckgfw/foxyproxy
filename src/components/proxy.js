@@ -136,8 +136,6 @@ Proxy.prototype = {
   rejectCookiesOld: false,
   readOnlyProperties : ["lastresort", "fp", "wrappedJSObject", "matches", /* from ManualConf */ "owner",
                         /* from AutoConf */ "timer", /* from AutoConf */  "_resolver"],
-
-  __exposedProps__ : {rejectCookies: "rw"},
  
   fromDOM : function(node, includeTempPatterns) {
     this.name = node.getAttribute("name");
@@ -200,6 +198,65 @@ Proxy.prototype = {
       //this._enabled = true;
     //}
     this.afterPropertiesSet();
+  },
+
+  fromProxyConfig : function(pc) {
+    this.wrappedJSObject = this;
+    this.fp = CC["@leahscape.org/foxyproxy/service;1"].getService().
+      wrappedJSObject;
+    // Maybe the user deploys an OS without Mozilla's system proxy feature
+    // being available (e.g. eComStation - OS/2 [sic!]) or uses an older Gecko
+    // version (< 1.9.1).
+    try {
+      this.sysProxyService = CC["@mozilla.org/system-proxy-settings;1"].
+        getService(CI.nsISystemProxySettings);
+    } catch (e) {}
+    this.iOService = CC["@mozilla.org/network/io-service;1"].
+      getService(CI.nsIIOService);
+    this.matches = []; // TODO: implement copy from |pc.patterns|
+    this.name = pc.name;
+    this.notes = pc.notes;
+    this.color = pc.color;
+    this.animatedIcons = pc.animatedIcons;
+    this.includeInCycle = pc.includeInCycle;
+    this.clearCacheBeforeUse = pc.clearCacheBeforeUse;
+    this.disableCache = pc.disableCache;
+    this.clearCookiesBeforeUse = pc.clearCookiesBeforeUse;
+    this.rejectCookies = pc.rejectCookies;
+    this._proxyDNS = pc.proxyDNS;
+
+    this.manualconf = new ManualConf(this, this.fp);
+    this.manualconf.fromProxyConfig(pc.manualConfig);
+    this.autoconf = new AutoConf(this, this.fp);
+    this.autoconf.fromProxyConfig(pc.autoConfig); 
+
+    // An own object for the WPAD feature...
+    this.wpad = new AutoConf(this, this.fp);
+    // We set a URL to the proxy file which cannot changed. The rationale for
+    // this is:
+    // "We diverge from the WPAD spec here in that we don't walk the
+    // hosts's FQDN, stripping components until we hit a TLD.  Doing so
+    // is dangerous in the face of an incomplete list of TLDs, and TLDs
+    // get added over time.  We could consider doing only a single
+    // substitution of the first component, if that proves to help
+    // compatibility." 
+    // See: http://mxr.mozilla.org/mozilla2.0/source/netwerk/base/src/
+    // nsProtocolProxyService.cpp#488 
+    this.wpad.url = "http://wpad/wpad.dat";
+    // If we would not create an AutoConf object for the system proxy during proxy
+    // creation it could happen that the system proxy feature is not working
+    // properly. E.g. if one would create the proxy using system proxy settings
+    // that point not to a PAC/WPAD file but would switch later on these settings
+    // so that a PAC/WPAD file would get used then it would not work as
+    // this.systemProxyPAC would still be null.
+    this.systemProxyPAC = new AutoConf(this, this.fp);
+    this.mode = pc.mode; // manual, auto, system, direct, random
+    this._autoconfMode = pc.autoConfig.mode; // pac, wpad, etc.
+    this.enabled = pc.enabled;
+    this.selectedTabIndex = pc.selectedTabIndex;
+    this.lastresort = false;
+    //this.afterPropertiesSet();// is this necessay?
+    return this;
   },
   
   /**
@@ -740,6 +797,14 @@ ManualConf.prototype = {
       n.getAttribute("gopher") ? false:
       n.getAttribute("socks") ? true : false; // new for 2.5
 
+    this._makeProxy();
+  },
+
+  fromProxyConfig : function(mc) {
+    this._host = mc.host;
+    this._port = mc.port;
+    this._socksversion = mc.socksversion;
+    this._isSocks = mc.socks;
     this._makeProxy();
   },
 

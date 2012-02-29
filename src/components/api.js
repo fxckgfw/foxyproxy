@@ -67,7 +67,7 @@ api.prototype = {
    * the |mode| property setter
    */
   setMode: function(newMode, callback) {
-    if (this.disableApi) return;
+    if (this.disableApi) return null;
     this._promptUser(function(not, btn) {
       let that = btn.callbackArgs;
       that.fp.setMode(newMode, true, false);
@@ -94,7 +94,7 @@ api.prototype = {
    * See foxyproxy.setMode() for possible values.
    */
   get mode() {
-    if (this.disableApi) return;
+    if (this.disableApi) return null;
     return this.fp.mode;
   },
 
@@ -115,7 +115,7 @@ api.prototype = {
    * |version| is the version of the installed addon.
    */ 
   get version() {
-    if (this.disableApi) return;
+    if (this.disableApi) return null;
     var name;
     if (this.fp.isFoxyProxySimple())
       name = "FoxyProxyBasic";
@@ -130,6 +130,21 @@ api.prototype = {
       }      
     }
     return '{"version": "' + this.fpc.getVersion() + '", "name": "' + name + '"}';
+  },
+
+  createProxyConfig : function() {
+    if (this.disableApi) return null;
+    return CC["@leahscape.org/foxyproxy/proxyconfig;1"].createInstance(CI.foxyProxyProxyConfig);
+  },
+
+  addProxyConfig : function(pc, idx) {
+    if (this.disableApi) return null;
+    // Convert proxyConfig object to a Proxy object
+    let p = CC["@leahscape.org/foxyproxy/proxy;1"].
+      createInstance().wrappedJSObject;
+    p.fromProxyConfig(pc);
+    this.fp.proxies.insertAt(idx, p.wrappedJSObject);
+    return pc;
   },
 
   _successCallback: function(n) {

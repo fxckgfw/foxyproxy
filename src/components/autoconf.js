@@ -80,6 +80,15 @@ AutoConf.prototype = {
     this.disableOnBadPAC = gGetSafeAttrB(n, "disableOnBadPAC", true);
   },
 
+  fromProxyConfig : function(a) {
+    this.url = a.url;
+    this.loadNotification = a.loadNotification;
+    this.errorNotification = a.errorNotification;
+    this.autoReload = a.autoReload;
+    this.reloadFreqMins = a.reloadFrequencyMins;
+    this.loadNotification = a.disableOnBadPAC;
+  },
+
   toDOM : function(doc) {
     var e = doc.createElement("autoconf");
     e.setAttribute("url", this.url);

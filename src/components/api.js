@@ -164,11 +164,14 @@ api.prototype = {
   addProxyConfig : function(pc, idx) {
     if (this.disableApi) return null;
     // Convert proxyConfig object to a Proxy object
-    let p = CC["@leahscape.org/foxyproxy/proxy;1"].createInstance().
-      wrappedJSObject;
-    p.fromProxyConfig(pc);
-    this.fp.proxies.insertAt(idx, p.wrappedJSObject);
-    return pc;
+    return this._promptUser(function(not, btn) {
+      let that = btn.callbackArgs;
+      let p = CC["@leahscape.org/foxyproxy/proxy;1"].
+        createInstance().wrappedJSObject;
+      p.fromProxyConfig(pc);
+      that.fp.proxies.insertAt(idx, p.wrappedJSObject);
+      return pc;
+    });
   },
 
   _successCallback: function(n) {

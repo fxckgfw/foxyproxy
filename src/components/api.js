@@ -30,6 +30,8 @@ function api() {
   // expose a setter for this variable, just a getter. If we exposed a setter,
   // websites could enable the API when it is disabled.
   this.disableApi = this.fp.disableApi;
+
+  CU.import("resource://foxyproxy/utils.jsm", this);
 };
 
 api.prototype = {
@@ -89,7 +91,7 @@ api.prototype = {
       let that = btn.callbackArgs;
       that.fp.setMode(newMode, true, false);
       if (that.fp.mode == newMode)
-        that._successCallback(callback);
+        that._successCallback(callback, newMode);
       else
         that._errorCallback(callback,
           "Unrecognized mode specified. Defaulting to \"disabled\"");
@@ -155,28 +157,18 @@ api.prototype = {
       '"}';
   },
 
-  createProxyConfig : function() {
+  getProxyConfigs : function(callback) {
     if (this.disableApi) return null;
-    return CC["@leahscape.org/foxyproxy/proxyconfig;1"].createInstance(CI.
-      foxyProxyProxyConfig);
-  },
-
-  addProxyConfig : function(pc, idx) {
-    if (this.disableApi) return null;
-    // Convert proxyConfig object to a Proxy object
-    return this._promptUser(function(not, btn) {
+    this._promptUser(function(not, btn) {
       let that = btn.callbackArgs;
-      let p = CC["@leahscape.org/foxyproxy/proxy;1"].
-        createInstance().wrappedJSObject;
-      p.fromProxyConfig(pc);
-      that.fp.proxies.insertAt(idx, p.wrappedJSObject);
-      return pc;
+      that._successCallback(callback, CC["@leahscape.org/foxyproxy/proxyconfigs;1"].
+        getService(CI.foxyProxyConfigs));
     });
   },
 
-  _successCallback: function(n) {
+  _successCallback: function(n, data) {
     if (n && n.success) {
-      n.success();
+      n.success(data);
     }
   },
 
@@ -207,7 +199,7 @@ api.prototype = {
 
   flags: CI.nsIClassInfo.SINGLETON|CI.nsIClassInfo.DOM_OBJECT,
   implementationLanguage: CI.nsIProgrammingLanguage.JAVASCRIPT,
-  getHelperForLanguage: function(language) null,
+  getHelperForLanguage: function(l) null,
   getInterfaces: function(count) {
     let interfaces = [CI.foxyProxyApi];
     count.value = interfaces.length;
@@ -216,9 +208,8 @@ api.prototype = {
   classDescription: "FoxyProxy Content API",
   contractID: "@leahscape.org/foxyproxy/api;1",
   classID: Components.ID("{26e128d0-542c-11e1-b86c-0800200c9a66}"), // uuid from IDL
-
   QueryInterface: XPCOMUtils.generateQI([CI.foxyProxyApi, CI.nsIClassInfo]),
-
+  _xpcom_categories: /* this var for for pre gecko-2.0 */ [{category:"JavaScript global property"}],  
   _xpcom_factory: {
     singleton: null,
     createInstance: function (aOuter, aIID) {

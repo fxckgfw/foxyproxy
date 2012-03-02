@@ -25,76 +25,292 @@ var CC = Components.classes,
 
 CU.import("resource://gre/modules/XPCOMUtils.jsm");
 
-// TODO: move this to utils.jsm. I tried but ran into strange problems that will
-// take a long time to debug.
-var self, loader = CC["@mozilla.org/moz/jssubscript-loader;1"].getService(CI["mozIJSSubScriptLoader"]),  
-  fileProtocolHandler = CC["@mozilla.org/network/protocol;1?name=file"].getService(CI.nsIFileProtocolHandler);
-
-if ("undefined" != typeof(__LOCATION__)) {
-  // preferred way
-  self = __LOCATION__;
-}
-else {
-  self = fileProtocolHandler.getFileFromURLSpec(Components.Exception().filename);
-}
-let rootDir = self.parent, // directory of this file
-  loadComponentScript = function(filename) {
-    try {
-      let filePath = rootDir.clone();
-      filePath.append(filename);
-      loader.loadSubScript(fileProtocolHandler.getURLSpecFromFile(filePath));
-    }
-    catch (e) {
-      dump("Error loading component " + filename + ": " + e + "\n" + e.stack + "\n");
-      throw(e);
-    }
-}
-loadComponentScript("proxy.js"); // so we can reference DEFAULT_COLOR
 /**
- * FoxyProxy Api - ProxyConfig
+ * FoxyProxy Api - Non-singleton ProxyConfig instances
  */
-function ProxyConfig() {
-  this._id = CC["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject.
-    proxies.uniqueRandom();
+function ProxyConfig(wrappedProxy) {
+  this._wrappedProxy = wrappedProxy || Proxy.fromProxyConfig(this);
+  this.manualConfig.owner = this.autoConfig.owner = this;
 };
 
 ProxyConfig.prototype = {
-  _id: -1, // Consumer cannot set this; only get it.
-  name: "",
-  notes: "",
-  color: DEFAULT_COLOR, // same as DEFAULT_COLOR in proxy.js
-  mode: "manual",
-  enabled: true,
-  selectedTabIndex: 1,
-  animatedIcons: true,
-  includeInCycle: true,
-  clearCacheBeforeUse: false,
-  disableCache: false,
-  clearCookiesBeforeUse: false,
-  rejectCookies: false,
-  proxyDNS: true,
+  _wrappedProxy: null,
+
+  // getter only for |id| -- no setter
   get id() {
-    return this._id;
+    return this._wrappedProxy.id;
   },
+
+  _name: "",
+
+  get name() {
+    return this._wrappedProxy.name;
+  },
+
+  set name(e) {
+    if (this._wrappedProxy.lastresort) return null; // cannot change Default name
+    this._wrappedProxy.name = e;
+  },
+
+  _notes: "",
+
+  get notes() {
+    return this._wrappedProxy.notes;
+  },
+
+  set notes(e) {
+    if (this._wrappedProxy.lastresort) return null; // cannot change Default notes    
+    this._wrappedProxy.notes = e;
+  },
+
+  _color: "#0055E5", // same as DEFAULT_COLOR in proxy.js
+
+  get color() {
+    return this._wrappedProxy.color;
+  },
+
+  set color(e) {
+    this._wrappedProxy.color = e;
+  },
+
+  _mode: "manual",
+
+  get mode() {
+    return this._wrappedProxy.mode;
+  },
+
+  set mode(e) {
+    this._wrappedProxy.mode = e;
+  },
+
+  _enabled: true,
+
+  get enabled() {
+    return this._wrappedProxy.enabled;
+  },
+
+  set enabled(e) {
+    if (this._wrappedProxy.lastresort) return null; // cannot disable Default
+    this._wrappedProxy.enabled = e;
+  },
+
+  _selectedTabIndex: 1,
+
+  get selectedTabIndex() {
+    return this._wrappedProxy.selectedTabIndex;
+  },
+
+  set selectedTabIndex(e) {
+    this._wrappedProxy.selectedTabIndex = e;
+  },
+
+  _animatedIcons: true,
+
+  get animatedIcons() {
+    return this._wrappedProxy.animatedIcons;
+  },
+
+  set animatedIcons(e) {
+    this._wrappedProxy.animatedIcons = e;
+  },
+
+  _includeInCycle: true,
+
+  get includeInCycle() {
+    return this._wrappedProxy.animatedIcons;
+  },
+
+  set includeInCycle(e) {
+   this._wrappedProxy.includeInCycle = e;
+  },
+
+  _clearCacheBeforeUse: false,
+
+  get clearCacheBeforeUse() {
+    return this._wrappedProxy.clearCacheBeforeUse;
+  },
+
+  set clearCacheBeforeUse(e) {
+    this._wrappedProxy.clearCacheBeforeUse = e;
+  },
+
+  _disableCache: false,
+
+  get disableCache() {
+    return this._wrappedProxy.disableCache;
+  },
+
+  set disableCache(e) {
+    this._wrappedProxy.disableCache = e;
+  },
+
+  _clearCookiesBeforeUse: false,
+
+  get clearCookiesBeforeUse() {
+    return this._wrappedProxy.clearCookiesBeforeUse;
+  },
+
+  set clearCookiesBeforeUse(e) {
+    this._wrappedProxy.clearCookiesBeforeUse = e;
+  },
+
+  _rejectCookies: false,
+
+  get rejectCookies() {
+    return this._wrappedProxy.rejectCookies;
+  },
+
+  set rejectCookies(e) {
+    this._wrappedProxy.rejectCookies = e;
+  },
+
+  _proxyDNS: true,
+
+  get proxyDNS() {
+    return this._wrappedProxy.proxyDNS;
+  },
+
+  set proxyDNS(e) {
+    this._wrappedProxy.proxyDNS = e;
+  },
+
   manualConfig: {
-    host: "",
-    port: "",
-    socks: false,
-    socksVersion: 5,
+    owner: null,
+    _host: "",
+
+    get host() {
+      return this.owner._wrappedProxy.manualconf.host;
+    },
+
+    set host(e) {
+      this.owner._wrappedProxy.manualconf.host = e;
+    },
+
+    _port: "",
+
+    get port() {
+      return this.owner._wrappedProxy.manualconf.port;
+    },
+
+    set port(e) {
+      this.owner._wrappedProxy.manualconf.port = e;
+    },
+
+    _socks: false,
+
+    get socks() {
+      return this.owner._wrappedProxy.manualconf.isSocks;
+    },
+
+    set socks(e) {
+      this.owner._wrappedProxy.manualconf.isSocks = e;
+    },
+
+    _socksVersion: 5,
+
+    get socksversion() {
+      return this.owner._wrappedProxy.manualconf.socksversion;
+    },
+
+    set socksversion(e) {
+      this.owner._wrappedProxy.manualconf.socksversion = e;
+    }
   },
+
   autoConfig: {
-    loadNotification: true,
-    errorNotification: true,
-    url: "",
-    autoReload: false,
-    reloadFrequencyMins: 60,
-    disableOnBadPAC: true,
-    mode: "pac",
+    owner: null,
+    _loadNotification: true,
+
+    get loadNotification() {
+      return this.owner._wrappedProxy.autoconf.loadNotification;
+    },
+
+    set loadNotification(e) {
+      this.owner._wrappedProxy.autoconf.loadNotification = e;
+    },
+
+    _errorNotification: true,
+
+    get errorNotification() {
+      return this.owner._wrappedProxy.autoconf.errorNotification;
+    },
+
+    set errorNotification(e) {
+      this.owner._wrappedProxy.autoconf.errorNotification = e;
+    },
+
+    _url: "",
+
+    get url() {
+      return this.owner._wrappedProxy.autoconf.url;
+    },
+
+    set url(e) {
+      this.owner._wrappedProxy.autoconf.url = e;
+    },
+
+    _autoReload: false,
+
+    get autoReload() {
+      return this.owner._wrappedProxy.autoconf.autoReload;
+    },
+
+    set autoReload(e) {
+      this.owner._wrappedProxy.autoconf.autoReload = e;
+    },
+
+    _reloadFrequencyMins: 60,
+
+    get reloadFrequencyMins() {
+      return this.owner._wrappedProxy.autoconf.reloadFrequencyMins;
+    },
+
+    set reloadFrequencyMins(e) {
+      this.owner._wrappedProxy.autoconf.reloadFrequencyMins = e;
+    },
+
+    _disableOnBadPAC: true,
+
+    get disableOnBadPAC() {
+      return this.owner._wrappedProxy.autoconf.disableOnBadPAC;
+    },
+
+    set disableOnBadPAC(e) {
+      this.owner._wrappedProxy.autoconf.disableOnBadPAC = e;
+    },
+
+    _mode: "pac",
+
+    get mode() {
+      return this.owner._wrappedProxy.autoconf.mode;
+    },
+
+    set mode(e) {
+      this.owner._wrappedProxy.autoconf.mode = e;
+    }
   },
+
+  // nsIClassInfo
+  /*
+    Gecko 2.x only (doesn't work with Firefox 3.6.x)
+      classInfo: generateCI({ interfaces: ["foxyProxyConfig"], classID: Components.ID("{c5a3caf1-d6bf-43be-8de6-e508ad02ca36}"),
+      contractID: "@leahscape.org/foxyproxy/proxyconfig;1",
+      classDescription: "FoxyProxy API ProxyConfig", flags: CI.nsIClassInfo.DOM_OBJECT}),
+  */
+
+  flags: CI.nsIClassInfo.DOM_OBJECT,
+  implementationLanguage: CI.nsIProgrammingLanguage.JAVASCRIPT,
+  getHelperForLanguage: function(l) null,
+  getInterfaces: function(count) {
+    let interfaces = [CI.foxyProxyConfig];
+    count.value = interfaces.length;
+    return interfaces;
+  },
+
   classDescription: "FoxyProxy API ProxyConfig",
   contractID: "@leahscape.org/foxyproxy/proxyconfig;1",
   classID: Components.ID("{c5a3caf1-d6bf-43be-8de6-e508ad02ca36}"), // uuid from IDL
-  QueryInterface: XPCOMUtils.generateQI([CI.nsISupports, CI.foxyProxyProxyConfig]),
+  QueryInterface: XPCOMUtils.generateQI([CI.nsISupports, CI.foxyProxyConfig, CI.nsIClassInfo]),
 };
 /**
  * XPCOMUtils.generateNSGetFactory was introduced in Mozilla 2 (Firefox 4)

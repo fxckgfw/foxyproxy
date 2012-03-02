@@ -202,6 +202,7 @@ Proxy.prototype = {
 
   fromProxyConfig : function(pc) {
     this.wrappedJSObject = this;
+    this.id = pc.id;
     this.fp = CC["@leahscape.org/foxyproxy/service;1"].getService().
       wrappedJSObject;
     // Maybe the user deploys an OS without Mozilla's system proxy feature
@@ -256,7 +257,6 @@ Proxy.prototype = {
     this.selectedTabIndex = pc.selectedTabIndex;
     this.lastresort = false;
     //this.afterPropertiesSet();// is this necessay?
-    return this;
   },
   
   /**
@@ -291,6 +291,33 @@ Proxy.prototype = {
     e.appendChild(this.wpad.toDOM(doc)); 
     e.appendChild(this.manualconf.toDOM(doc));
     return e;
+  },
+
+  // Used by the FoxyProxy API to create read-only 
+  toProxyConfig : function() {
+    let pc = CC["@leahscape.org/foxyproxy/proxyconfig;1"].createInstance(CI.
+      foxyProxyProxyConfig);
+    pc.id = this.id;
+    pc.name = this.name;
+    return pc;
+/*
+    attribute long id;  // read-only
+    attribute AString name;
+    attribute AString notes;
+    attribute AString color;
+    attribute AString mode;
+    attribute boolean enabled;
+    attribute long selectedTabIndex;
+    attribute boolean animatedIcons;
+    attribute boolean includeInCycle;
+    attribute boolean clearCacheBeforeUse;
+    attribute boolean disableCache;
+    attribute boolean clearCookiesBeforeUse;
+    attribute boolean rejectCookies;
+    attribute boolean proxyDNS;
+    attribute jsval manualConfig;
+    attribute jsval autoConfig;
+  */
   },
   
   /**
@@ -803,7 +830,7 @@ ManualConf.prototype = {
   fromProxyConfig : function(mc) {
     this._host = mc.host;
     this._port = mc.port;
-    this._socksversion = mc.socksversion;
+    this._socksversion = mc.socksVersion;
     this._isSocks = mc.socks;
     this._makeProxy();
   },

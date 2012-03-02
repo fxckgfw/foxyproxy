@@ -32,7 +32,7 @@ function ProxyConfigs() {
   this.fp = CC["@leahscape.org/foxyproxy/service;1"].getService().
     wrappedJSObject;
   CU.import("resource://foxyproxy/utils.jsm", this);
-  this.utils.loadComponentScript("proxyConfig.js", this);
+  this.utils.loadComponentScript("api/proxyConfig.js", this);
 };
 
 ProxyConfigs.prototype = {

@@ -23,8 +23,6 @@ function api() {
     wrappedJSObject;
   this.fpc = CC["@leahscape.org/foxyproxy/common;1"].getService().
     wrappedJSObject;
-  this.console = CC["@mozilla.org/consoleservice;1"].getService(CI.
-    nsIConsoleService);
  
   // We let |fp| manage |disableApi| serialization. Note we do not want to
   // expose a setter for this variable, just a getter. If we exposed a setter,
@@ -37,36 +35,39 @@ function api() {
 api.prototype = {
   fp: null,
   fpc: null,
-  console: null,
   disableApi: false,
 
   /**
-   * Load settings from contents of a webpage or other DOM source. We use
-   * nsIConsoleService instead of our typical dump() for error messages. That
-   * makes it easier for web developers to debug their web pages. We also
-   * use the terminology "tag" instead of "node/element" in error messages
-   * since that is the vernacular with web developers.
+   * Load settings from contents of a webpage or other DOM source. We use the
+   * terminology "tag" instead of "node/element" in error messages since that is
+   * the vernacular with web developers.
    */
-  setSettings : function(node, callback) {
+  setSettings : function(node, callbackObj) {
     if (this.disableApi) return null;
+    callbackObj = callbackObj || {}; // Minimizes null checks
 
     // nodeName is always capitalized by Gecko so no need for case-insensitive
     // check
     if (node.nodeName != "FOXYPROXY") {
-      let msg = "Root tag must be named foxyproxy instead of '" +
-        node.nodeName + "'";
-      this._errorCallback(callback, msg);
+      if (callbackObj.error) {
+        let msg = "Root tag must be named foxyproxy instead of '" +
+          node.nodeName + "'";
+        callbackObj.error(msg);
+      }
       return;
-    } 
+    }
 
-    this._promptUser(function(not, btn) {
-      let that = btn.callbackArgs;
-      // Delete all first. TODO: consider a merge algorithm instead
-      that.fp.proxies.deleteAll();
-      that.fp.fromDOM(node, node);
-      // TODO: update GUI because changes won't display if its already open
-      that._successCallback(callback);
-    });
+    let that = this, metaCallback = {
+      callbackObj : callbackObj,
+      // Code to run if user allows this request
+      onAllow: function() {
+        // Delete all first. TODO: consider a merge algorithm instead
+        that.fp.proxies.deleteAll();
+        that.fp.fromDOM(node, node);
+        // TODO: update GUI because changes won't display if its already open
+      },
+    };
+    this.notify(metaCallback);
     return this;
   },
 
@@ -85,17 +86,17 @@ api.prototype = {
    * This version allows caller to provide a callback function, unlike
    * the |mode| property setter
    */
-  setMode: function(newMode, callback) {
+  setMode: function(newMode, callbackObj) {
     if (this.disableApi) return null;
-    this._promptUser(function(not, btn) {
-      let that = btn.callbackArgs;
-      that.fp.setMode(newMode, true, false);
-      if (that.fp.mode == newMode)
-        that._successCallback(callback, newMode);
-      else
-        that._errorCallback(callback,
-          "Unrecognized mode specified. Defaulting to \"disabled\"");
-    });
+    let that = this;
+    let metaCallback = {
+      callbackObj : callbackObj,
+      onAllow: function() { that.fp.setMode(newMode, true, false); },
+      successArgs: newMode,
+      successTest : function() {return that.fp.mode == newMode;},
+      errorArgs : "Unrecognized mode"
+    };
+    this.notify(metaCallback);
     return this;
   },
 
@@ -157,37 +158,97 @@ api.prototype = {
       '"}';
   },
 
-  getProxyConfigs : function(callback) {
+  getProxyConfigs : function(callbackObj) {
     if (this.disableApi) return null;
-    this._promptUser(function(not, btn) {
-      let that = btn.callbackArgs;
-      that._successCallback(callback, CC["@leahscape.org/foxyproxy/proxyconfigs;1"].
-        getService(CI.foxyProxyConfigs));
-    });
-  },
-
-  _successCallback: function(n, data) {
-    if (n && n.success) {
-      n.success(data);
-    }
-  },
-
-  _errorCallback: function(n, msg) {
-    this.console.logStringMessage("FoxyProxy: " + msg);
-    if (n && n.error) {
-      n.error(msg);
-    }      
+    let metaCallback = {
+      callbackObj: callbackObj,
+      successArgs: CC["@leahscape.org/foxyproxy/proxyconfigs;1"].
+        getService(CI.foxyProxyConfigs)
+    };
+    this.notify(metaCallback);
   },
 
   /**
-   * Ask user
+   * Similar to common.js notify() but understands when "Allow" vs "x" (close
+   * btn) is clicked.
    */
-   _promptUser: function(callback) {
-      // User notification first
-      let that = this;
-      this.fpc.notify("proxy.scheme.warning.2", null, null, null, callback,
-        true, that);
-   },
+  notify : function(metaCallback) {
+    let callbackObj = metaCallback.callbackObj || {}; // to eliminate some null checks
+    let calledBack = false;
+
+    function callbackHook() {
+      if (!calledBack) {
+        calledBack = true;
+        // User accepted the request - run the request if code is required
+        if (metaCallback.onAllow)
+          metaCallback.onAllow();
+        // Did the request succeed?
+        if (metaCallback.successTest) {
+          if (metaCallback.successTest()) {
+            // It did -- inform content
+            if (callbackObj.success) 
+              callbackObj.success(metaCallback.successArgs);
+          }
+          else {
+            // It did not -- call error() to inform content
+            if (callbackObj.error)
+              callbackObj.error(metaCallback.errorArgs);
+          }
+        }
+        else {
+          // There is no success test -- just inform content
+          if (callbackObj.success)
+            callbackObj.success(metaCallback.successArgs);
+        }
+      }
+    }
+
+    function nbEventCallback(e) {
+      if (e == "removed") {
+        // nbox is closing because user clicked "x" or "Allow", we don't know
+        // which.
+        if (!calledBack) {
+          // "Allow" wasn't clicked. If it had been, callbackHook() would have
+          // already been called. User rejected the request; notify content.
+          calledBack = true;
+          if (callbackObj.rejected)
+            callbackObj.rejected();
+        }
+      }
+    }
+
+    let wm = this.fpc.getMostRecentWindow(), message =
+      this.fp.getMessage("proxy.scheme.warning.2", null), nb;
+
+    // First we check, whether we use Firefox or Seamonkey...
+    if (wm.gBrowser) {
+      nb = wm.gBrowser.getNotificationBox();
+    } else {
+      // We assume we are using Thunderbird now.
+      // TODO: We should optimize this a bit and should not use the main window
+      // notification if that method got called from proxy:// protocolhandler
+      // in Thunderbird.
+      nb = wm.document.getElementById("mail-notification-box");
+      // Should not happen but as a fallback we use a normal notification
+      // without buttons and are just showing the (error) message.
+      if (!nb) {
+        this.fp.notifier.alert(null, message);
+        return;
+      } 
+    }
+    let buttons = [
+      { 
+        label: this.fp.getMessage("allow"),
+        accessKey: this.fp.getMessage("allow.accesskey"),
+        popup: null, 
+        callback: callbackHook,
+        callbackArgs: null
+      }                 
+    ];
+    nb.appendNotification(message, "foxyproxy-notification",
+        "chrome://foxyproxy/content/images/16x16.gif", nb.PRIORITY_WARNING_MEDIUM,
+        buttons, nbEventCallback);    
+  },
 
   // nsIClassInfo
   /*

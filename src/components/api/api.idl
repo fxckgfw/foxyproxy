@@ -1,21 +1,31 @@
 #include "nsISupports.idl"
 #include "nsIDOMNode.idl"
 
+/**
+ * A callback interface to notify content of the status of its calls
+ */
 [scriptable, uuid(4c11f923-45be-4350-a9f2-17685b7bab3d)]
 interface foxyProxyNotification : nsISupports {
+
+  // The request succeeded. Data specific to the call is in |data|
   void success(in jsval data);
+
+  // The request failed; error message in |msg|
   void error(in AString msg);
+
+  // User rejected the request
+  void rejected();
 };
 
 [scriptable, uuid(c5a3caf1-d6bf-43be-8de6-e508ad02ca36)]
 interface foxyProxyConfig : nsISupports {
-  attribute unsigned short id;  // read-only
+  attribute long id;  // read-only
   attribute AString name;
   attribute AString notes;
   attribute AString color;
   attribute AString mode;
   attribute boolean enabled;
-  attribute unsigned short selectedTabIndex;
+  attribute long selectedTabIndex;
   attribute boolean animatedIcons;
   attribute boolean includeInCycle;
   attribute boolean clearCacheBeforeUse;
@@ -39,17 +49,17 @@ interface foxyProxyConfigs : nsISupports {
   // based index. An "empty" ProxyConfig can be created using
   // |createProxyConfig()|. Manipulate its properties, then call this function
   // to add it to the list of ProxyConfigs.
-  foxyProxyConfig addProxyConfig(in foxyProxyConfig p, [optional] in unsigned short index);
-  attribute unsigned short length;
+  foxyProxyConfig addProxyConfig(in foxyProxyConfig p, [optional] in long index);
+  attribute long length;
   jsval getAll();
-  foxyProxyConfig getById(in unsigned short id);
+  foxyProxyConfig getById(in long id);
   foxyProxyConfig getByName(in AString name);
-  foxyProxyConfig getByIndex(in unsigned short index);
-  boolean deleteById(in unsigned short id);
+  foxyProxyConfig getByIndex(in long index);
+  boolean deleteById(in long id);
 
   // TODO: implement
-  //boolean deleteByIndex(in unsigned short index);
-  //unsigned short deleteFirstWithName(in AString name);
+  //boolean deleteByIndex(in long index);
+  //long deleteFirstWithName(in AString name);
   //jsval deleteAllWithName(in AString name);
 };
 
@@ -59,15 +69,15 @@ interface foxyProxyApi : nsISupports {
   // Setter without callback
   attribute AString settings;
 
-  // Setter that allows for callback
-  void setSettings(in nsIDOMNode foxyProxyNode, [optional] in
-    foxyProxyNotification callback);
+  // Setter with callback
+  void setSettings(in nsIDOMNode foxyProxyNode, in foxyProxyNotification
+    callback);
 
   // Setter without callback
   attribute AString mode;
 
-  // Setter that allows for callback
-  void setMode(in AString newMode, [optional] in foxyProxyNotification callback);
+  // Setter with callback
+  void setMode(in AString newMode, in foxyProxyNotification callback);
 
   // This is a getter only
   attribute boolean apiDisabled;

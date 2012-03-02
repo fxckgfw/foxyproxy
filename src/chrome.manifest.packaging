@@ -46,7 +46,7 @@ locale  foxyproxy vi chrome/locale/vi/
 locale  foxyproxy zh-CN chrome/locale/zh-CN/
 locale  foxyproxy zh-TW chrome/locale/zh-TW/
 
-interfaces components/api.xpt
+interfaces components/api/api.xpt
 
 category profile-after-change foxyproxy @leahscape.org/foxyproxy/service;1
 category command-line-handler CmdLineHandler @mozilla.org/commandlinehandler/general-startup;1?type=foxyproxy
@@ -76,13 +76,13 @@ contract @leahscape.org/foxyproxy/proxy;1 {51b469a0-edc1-11da-8ad9-0800200c9a66}
 component {22ed2962-a8ec-11dc-8314-0800200c9a66} components/relativeprotocolhandler.js
 contract @mozilla.org/network/protocol;1?name=relative {22ed2962-a8ec-11dc-8314-0800200c9a66}
 
-component {26e128d0-542c-11e1-b86c-0800200c9a66} components/api.js
+component {26e128d0-542c-11e1-b86c-0800200c9a66} components/api/api.js
 contract @leahscape.org/foxyproxy/api;1 {26e128d0-542c-11e1-b86c-0800200c9a66}
 
-component {c5a3caf1-d6bf-43be-8de6-e508ad02ca36} components/proxyConfig.js
+component {c5a3caf1-d6bf-43be-8de6-e508ad02ca36} components/api/proxyConfig.js
 contract @leahscape.org/foxyproxy/proxyconfig;1 {c5a3caf1-d6bf-43be-8de6-e508ad02ca36}
 
-component {40c327cd-c8d4-4753-9441-6c60fe6ea461} components/proxyConfigs.js
+component {40c327cd-c8d4-4753-9441-6c60fe6ea461} components/api/proxyConfigs.js
 contract @leahscape.org/foxyproxy/proxyconfigs;1 {40c327cd-c8d4-4753-9441-6c60fe6ea461}
 
 #Firefox

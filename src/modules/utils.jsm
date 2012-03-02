@@ -80,6 +80,11 @@ let CI = Components.interfaces, CC = Components.classes, gObsSvc =
       gObsSvc.notifyObservers(bool, topic, d);
     },
 
+    /**
+     * Load a script in the /components directory or subdirectory. If a subdir,
+     * use linux-style directory delimiters (forward-slash) even when executing
+     * on Windows. For example: api/proxyConfig.js not api\proxyConfig.js.
+     */
     loadComponentScript : function(filename, target) {
       // load js files
       let self;
@@ -96,7 +101,14 @@ let CI = Components.interfaces, CC = Components.classes, gObsSvc =
       try {
         let filePath = rootDir.clone();
         filePath.append("components");
-        filePath.append(filename);
+
+        // In case |filename| has a relative path, split the path and append one at a time.
+        // Appending, for example, "api/proxyConfig.js" all at once throws an exception.
+        let tmp = filename.split('/'); // split() never returns null
+        for (let i=0, len=tmp.length; i++; i<len) {        
+          if (tmp[i] != "") // tmp[i] can be "" if, for example, filePath is "/foo.js"
+            filePath.append(tmp[i]);
+        }
         loader.loadSubScript(fileProtocolHandler.getURLSpecFromFile(filePath), target);
       }
       catch (e) {

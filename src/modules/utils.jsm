@@ -78,5 +78,30 @@ let CI = Components.interfaces, CC = Components.classes, gObsSvc =
           d = data.QueryInterface(CI.nsISupports);
       }
       gObsSvc.notifyObservers(bool, topic, d);
+    },
+
+    loadComponentScript : function(filename, target) {
+      // load js files
+      let self;
+      let fileProtocolHandler = CC["@mozilla.org/network/protocol;1?name=file"].getService(CI["nsIFileProtocolHandler"]);
+      if ("undefined" != typeof(__LOCATION__)) {
+        // preferred way
+        self = __LOCATION__;
+      }
+      else {
+        self = fileProtocolHandler.getFileFromURLSpec(Components.Exception().filename);
+      }
+      let rootDir = self.parent.parent; // our root dir
+      var loader = CC["@mozilla.org/moz/jssubscript-loader;1"].getService(CI["mozIJSSubScriptLoader"]);
+      try {
+        let filePath = rootDir.clone();
+        filePath.append("components");
+        filePath.append(filename);
+        loader.loadSubScript(fileProtocolHandler.getURLSpecFromFile(filePath), target);
+      }
+      catch (e) {
+        dump("Error loading component " + filename + ": " + e + "\n" + e.stack + "\n");
+        throw(e);
+      }
     }
   };

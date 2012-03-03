@@ -125,7 +125,7 @@ foxyproxy.prototype = {
   excludeDisabledFromCycling : false,
   ignoreProxyScheme : false,
   writeSettingsTimer : null,
-  disableApi : false,
+  apiDisabled : false,
   cacheOrCookiesChanged : false,
   cacheAndCookiesChecked : false,
   
@@ -754,14 +754,14 @@ foxyproxy.prototype = {
     this.excludePatternsFromCycling = gGetSafeAttrB(node, "excludePatternsFromCycling", false);
     this.excludeDisabledFromCycling = gGetSafeAttrB(node, "excludeDisabledFromCycling", false);
     this.ignoreProxyScheme = gGetSafeAttrB(node, "ignoreProxyScheme", false);
-    // We'd like to delegate the reading of disableApi to api.js, but that
+    // We'd like to delegate the reading of apiDisabled to api.js, but that
     // requires the api to expose a fromDOM() method, or similar, to the
     // general public (the wrappedJSObject trick does not work for api.js
     // because it exposes a real interface). Exposing fromDOM() to webpages is
     // not something we should do since it is really an internal function.
     // Therefore, foxyproxy.js reads it. If we start reading a lot of state for
     // the API, we should create an API object within foxyproxy.js to handle it.
-    this.disableApi = gGetSafeAttrB(node, "disableApi", false);
+    this.apiDisabled = gGetSafeAttrB(node, "apiDisabled", false);
     this.proxies.fromDOM(mode, doc);
     this.setMode(mode, false, true);
     this.random.fromDOM(doc);
@@ -786,15 +786,15 @@ foxyproxy.prototype = {
     e.setAttribute("excludePatternsFromCycling", this.excludePatternsFromCycling);
     e.setAttribute("excludeDisabledFromCycling", this.excludeDisabledFromCycling);
     e.setAttribute("ignoreProxyScheme", this.ignoreProxyScheme);
-    // We'd like to delegate the writing of disableApi to api.js, but that
+    // We'd like to delegate the writing of apiDisabled to api.js, but that
     // requires the api to expose a toDOM() method, or similar, to the general
     // public (the wrappedJSObject trick does not work for api.js because it
     // exposes a real interface). Exposing fromDOM() to webpages is not
     // something we should do since it is really an internal function.
     // Therefore, foxyproxy.js writes it. If we start writing a lot of state for
     // the API, we should create an API object within foxyproxy.js to handle it.
-    e.setAttribute("disableApi", CC["@leahscape.org/foxyproxy/api;1"].
-      getService().disableApi);
+    e.setAttribute("apiDisabled", CC["@leahscape.org/foxyproxy/api;1"].
+      getService().apiDisabled);
     e.appendChild(this.random.toDOM(doc));
     e.appendChild(this.statusbar.toDOM(doc));
     e.appendChild(this.toolbar.toDOM(doc));

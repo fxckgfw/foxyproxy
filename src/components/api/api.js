@@ -24,10 +24,10 @@ function api() {
   this.fpc = CC["@leahscape.org/foxyproxy/common;1"].getService().
     wrappedJSObject;
  
-  // We let |fp| manage |disableApi| serialization. Note we do not want to
+  // We let |fp| manage |apiDisabled| serialization. Note we do not want to
   // expose a setter for this variable, just a getter. If we exposed a setter,
   // websites could enable the API when it is disabled.
-  this.disableApi = this.fp.disableApi;
+  this.apiDisabled = this.fp.apiDisabled;
 
   CU.import("resource://foxyproxy/utils.jsm", this);
 };
@@ -35,7 +35,7 @@ function api() {
 api.prototype = {
   fp: null,
   fpc: null,
-  disableApi: false,
+  apiDisabled: false,
 
   /**
    * Load settings from contents of a webpage or other DOM source. We use the
@@ -43,7 +43,7 @@ api.prototype = {
    * the vernacular with web developers.
    */
   setSettings : function(node, callbackObj) {
-    if (this.disableApi) return null;
+    if (this.apiDisabled) return null;
     callbackObj = callbackObj || {}; // Minimizes null checks
 
     // nodeName is always capitalized by Gecko so no need for case-insensitive
@@ -76,7 +76,7 @@ api.prototype = {
   },
 
   get settings() {
-    if (this.disableApi) return null;
+    if (this.apiDisabled) return null;
     return this.fp.toDOM();
   },
 
@@ -87,7 +87,7 @@ api.prototype = {
    * the |mode| property setter
    */
   setMode: function(newMode, callbackObj) {
-    if (this.disableApi) return null;
+    if (this.apiDisabled) return null;
     let that = this;
     let metaCallback = {
       callbackObj : callbackObj,
@@ -115,19 +115,19 @@ api.prototype = {
    * See foxyproxy.setMode() for possible values.
    */
   get mode() {
-    if (this.disableApi) return null;
+    if (this.apiDisabled) return null;
     return this.fp.mode;
   },
 
   /**
    * Returns true if we ignore API calls; false if we act on them. Note: this
    * is the only function which we expose regardless of the value of
-   * |disableApi|.
+   * |apiDisabled|.
    * In this way, webpages can determine if they can successfully instrument
    * foxyproxy and possibly inform the user if they cannot.
    */
   get apiDisabled() {
-    return this.disableApi;
+    return this.apiDisabled;
   },
 
   /**
@@ -137,7 +137,7 @@ api.prototype = {
    * |version| is the version of the installed addon.
    */ 
   get version() {
-    if (this.disableApi) return null;
+    if (this.apiDisabled) return null;
     let name;
     if (this.fp.isFoxyProxySimple())
       name = "FoxyProxyBasic";
@@ -159,7 +159,7 @@ api.prototype = {
   },
 
   getProxyConfigs : function(callbackObj) {
-    if (this.disableApi) return null;
+    if (this.apiDisabled) return null;
     let metaCallback = {
       callbackObj: callbackObj,
       successArgs: CC["@leahscape.org/foxyproxy/proxyconfigs;1"].

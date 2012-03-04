@@ -44,12 +44,12 @@ interface foxyProxyConfigs : nsISupports {
   // Use |addProxyConfig()| to add it to the current list of proxies.
   foxyProxyConfig createProxyConfig();
 
-  // Add and return the specified ProxyConfig. If |index| is not specified,
+  // Adds the specified ProxyConfig. If |index| is not specified,
   // its added to the top/front of the list; otherwise, at the specified zero-
   // based index. An "empty" ProxyConfig can be created using
   // |createProxyConfig()|. Manipulate its properties, then call this function
   // to add it to the list of ProxyConfigs.
-  foxyProxyConfig addProxyConfig(in foxyProxyConfig p, [optional] in long index);
+  boolean addProxyConfig(in foxyProxyConfig p, [optional] in long index);
   attribute long length;
   jsval getAll();
   foxyProxyConfig getById(in long id);

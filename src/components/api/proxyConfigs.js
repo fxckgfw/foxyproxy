@@ -46,7 +46,7 @@ ProxyConfigs.prototype = {
       createInstance().wrappedJSObject);
   },
 
-  // Add and return the specified ProxyConfig. If |index| is not specified,
+  // Adds the specified ProxyConfig. If |index| is not specified,
   // its added to the top/front of the list; otherwise, at the specified zero-
   // based index. An "empty" ProxyConfig can be created using
   // |createProxyConfig()|. Manipulate its properties, then call this function
@@ -56,9 +56,9 @@ ProxyConfigs.prototype = {
     let  p = CC["@leahscape.org/foxyproxy/proxy;1"].createInstance()
       .wrappedJSObject;
     p.fromProxyConfig(pc);
-    this.fp.proxies.insertAt(idx, p);
+    let ret = this.fp.proxies.insertAt(idx, p);
     this.fp.broadcast(null, "foxyproxy-proxy-change"); // TODO: move this into insertAt()
-    return pc;    
+    return ret;    
   },
 
   get length() {

@@ -870,7 +870,7 @@ foxyproxy.prototype = {
       if (!isNaN(parseInt(idx))) {
         // Number - a specific position was specified
         idx = parseInt(idx);
-        if (idx < 0 || idx > this.list.length-1) return; /* Prevent inserts at or after lastResort */
+        if (idx < 0 || idx > this.list.length-1) return false; /* Prevent inserts at or after lastResort */
         if (this.list.length == 0) // Shouldn't really ever happen since we'll always have a lastResort
           this.list[0] = p; 
         else {
@@ -890,6 +890,7 @@ foxyproxy.prototype = {
           default: this.insertAt(this.list.length-1, p); break;               
         }
       }
+      return true;
     },
 
     get length() {

@@ -56,7 +56,7 @@ api.prototype = {
           node.nodeName + "'";
         callbackObj.error(msg);
       }
-      return;
+      return this;
     }
 
     let that = this, metaCallback = {
@@ -168,6 +168,7 @@ api.prototype = {
         getService(CI.foxyProxyConfigs)
     };
     this.notify(metaCallback);
+    return this;
   },
 
   /**

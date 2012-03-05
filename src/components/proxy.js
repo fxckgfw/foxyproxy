@@ -233,8 +233,8 @@ Proxy.prototype = {
 
     // An own object for the WPAD feature...
     this.wpad = new AutoConf(this, this.fp);
-    // We set a URL to the proxy file which cannot changed. The rationale for
-    // this is:
+    // We set a URL to the proxy file which cannot get changed. The rationale
+    // for this is:
     // "We diverge from the WPAD spec here in that we don't walk the
     // hosts's FQDN, stripping components until we hit a TLD.  Doing so
     // is dangerous in the face of an incomplete list of TLDs, and TLDs

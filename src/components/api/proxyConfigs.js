@@ -17,11 +17,12 @@
    data/properties, no code.
 */
 
+"use strict";
+
 // Constants
-var CC = Components.classes,
+let CC = Components.classes,
   CI = Components.interfaces,
-  CU = Components.utils,
-  CR = Components.results;
+  CU = Components.utils;
 
 CU.import("resource://gre/modules/XPCOMUtils.jsm");
 
@@ -46,18 +47,19 @@ ProxyConfigs.prototype = {
       createInstance().wrappedJSObject);
   },
 
-  // Adds the specified ProxyConfig. If |index| is not specified,
-  // its added to the top/front of the list; otherwise, at the specified zero-
-  // based index. An "empty" ProxyConfig can be created using
-  // |createProxyConfig()|. Manipulate its properties, then call this function
-  // to add it to the list of ProxyConfigs.
+  // Adds the specified ProxyConfig. If |idx| is not specified, its added to the
+  // top/front of the list; otherwise, at the specified zero-based index. An
+  // "empty" ProxyConfig can be created using |createProxyConfig()|. Manipulate
+  // its properties, then call this function to add it to the list of
+  // ProxyConfigs.
   addProxyConfig : function(pc, idx) {
     // Convert ProxyConfig object to a Proxy object
     let  p = CC["@leahscape.org/foxyproxy/proxy;1"].createInstance()
       .wrappedJSObject;
     p.fromProxyConfig(pc);
     let ret = this.fp.proxies.insertAt(idx, p);
-    this.fp.broadcast(null, "foxyproxy-proxy-change"); // TODO: move this into insertAt()
+    // TODO: move this into insertAt()
+    this.fp.broadcast(null, "foxyproxy-proxy-change");
     return ret;    
   },
 
@@ -108,8 +110,10 @@ ProxyConfigs.prototype = {
 
   classDescription: "FoxyProxy API ProxyConfigs",
   contractID: "@leahscape.org/foxyproxy/proxyconfigs;1",
-  classID: Components.ID("{40c327cd-c8d4-4753-9441-6c60fe6ea461}"), // uuid from IDL
-  QueryInterface: XPCOMUtils.generateQI([CI.nsISupports, CI.foxyProxyConfigs, CI.nsIClassInfo]),
+  // uuid from IDL
+  classID: Components.ID("{40c327cd-c8d4-4753-9441-6c60fe6ea461}"),
+  QueryInterface: XPCOMUtils.generateQI([CI.nsISupports, CI.foxyProxyConfigs,
+    CI.nsIClassInfo]),
 };
 /**
  * XPCOMUtils.generateNSGetFactory was introduced in Mozilla 2 (Firefox 4)

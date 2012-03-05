@@ -50,7 +50,7 @@ interfaces components/api/api.xpt
 
 category profile-after-change foxyproxy @leahscape.org/foxyproxy/service;1
 category command-line-handler CmdLineHandler @mozilla.org/commandlinehandler/general-startup;1?type=foxyproxy
-category JavaScript-global-property foxyproxy @leahscape.org/foxyproxy/api;1 appversion>=4.0
+category JavaScript-global-property FoxyProxy @leahscape.org/foxyproxy/api;1
 
 component {54382370-f194-11da-8ad9-0800200c9a66} components/autoconf.js
 contract @leahscape.org/foxyproxy/autoconf;1 {54382370-f194-11da-8ad9-0800200c9a66}

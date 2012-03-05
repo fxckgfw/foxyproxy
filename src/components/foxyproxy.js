@@ -793,8 +793,13 @@ foxyproxy.prototype = {
     // something we should do since it is really an internal function.
     // Therefore, foxyproxy.js writes it. If we start writing a lot of state for
     // the API, we should create an API object within foxyproxy.js to handle it.
+    try {
     e.setAttribute("apiDisabled", CC["@leahscape.org/foxyproxy/api;1"].
       getService().apiDisabled);
+    }
+    catch(e) {
+      dumpp(e);
+    }
     e.appendChild(this.random.toDOM(doc));
     e.appendChild(this.statusbar.toDOM(doc));
     e.appendChild(this.toolbar.toDOM(doc));

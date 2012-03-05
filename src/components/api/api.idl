@@ -1,25 +1,9 @@
 #include "nsISupports.idl"
 #include "nsIDOMNode.idl"
 
-/**
- * A callback interface to notify content of the status of its calls
- */
-[scriptable, uuid(4c11f923-45be-4350-a9f2-17685b7bab3d)]
-interface foxyProxyNotification : nsISupports {
-
-  // The request succeeded. Data specific to the call is in |data|
-  void success(in jsval data);
-
-  // The request failed; error message in |msg|
-  void error(in AString msg);
-
-  // User rejected the request
-  void rejected();
-};
-
 [scriptable, uuid(c5a3caf1-d6bf-43be-8de6-e508ad02ca36)]
 interface foxyProxyConfig : nsISupports {
-  attribute long id;  // read-only
+  readonly attribute long id;
   attribute AString name;
   attribute AString notes;
   attribute AString color;
@@ -50,7 +34,7 @@ interface foxyProxyConfigs : nsISupports {
   // |createProxyConfig()|. Manipulate its properties, then call this function
   // to add it to the list of ProxyConfigs.
   boolean addProxyConfig(in foxyProxyConfig p, [optional] in long index);
-  attribute long length;
+  readonly attribute long length;
   jsval getAll();
   foxyProxyConfig getById(in long id);
   foxyProxyConfig getByName(in AString name);
@@ -70,22 +54,21 @@ interface foxyProxyApi : nsISupports {
   attribute AString settings;
 
   // Setter with callback
-  void setSettings(in nsIDOMNode foxyProxyNode, in foxyProxyNotification
-    callback);
+  foxyProxyApi setSettings(in nsIDOMNode foxyProxyNode, in jsval callback);
 
   // Setter without callback
   attribute AString mode;
 
   // Setter with callback
-  void setMode(in AString newMode, in foxyProxyNotification callback);
+  foxyProxyApi setMode(in AString newMode, in jsval callback);
 
   // This is a getter only
-  attribute boolean apiDisabled;
+  readonly attribute boolean apiDisabled;
 
   // This is a getter only
-  attribute AString version;
+  readonly attribute AString version;
 
   // Get the proxyConfigs object in order to add, edit, delete proxyConfigs
-  void getProxyConfigs(in foxyProxyNotification callback);
+  foxyProxyApi getProxyConfigs(in jsval callback);
 };
 

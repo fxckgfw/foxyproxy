@@ -256,7 +256,6 @@ Proxy.prototype = {
     this.enabled = pc.enabled;
     this.selectedTabIndex = pc.selectedTabIndex;
     this.lastresort = false;
-    //this.afterPropertiesSet();// is this necessay?
   },
   
   /**

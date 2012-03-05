@@ -17,11 +17,12 @@
    data/properties, no code.
 */
 
+"use strict";
+
 // Constants
-var CC = Components.classes,
+let CC = Components.classes,
   CI = Components.interfaces,
-  CU = Components.utils,
-  CR = Components.results;
+  CU = Components.utils;
 
 CU.import("resource://gre/modules/XPCOMUtils.jsm");
 
@@ -48,7 +49,8 @@ ProxyConfig.prototype = {
   },
 
   set name(e) {
-    if (this._wrappedProxy.lastresort) return null; // cannot change Default name
+    // cannot change Default name
+    if (this._wrappedProxy.lastresort) return null;
     this._wrappedProxy.name = e;
   },
 
@@ -59,11 +61,13 @@ ProxyConfig.prototype = {
   },
 
   set notes(e) {
-    if (this._wrappedProxy.lastresort) return null; // cannot change Default notes    
+    // cannot change Default notes
+    if (this._wrappedProxy.lastresort) return null;
     this._wrappedProxy.notes = e;
   },
 
-  _color: "#0055E5", // same as DEFAULT_COLOR in proxy.js
+  // same as DEFAULT_COLOR in proxy.js
+  _color: "#0055E5",
 
   get color() {
     return this._wrappedProxy.color;
@@ -90,7 +94,8 @@ ProxyConfig.prototype = {
   },
 
   set enabled(e) {
-    if (this._wrappedProxy.lastresort) return null; // cannot disable Default
+    // cannot disable Default
+    if (this._wrappedProxy.lastresort) return null;
     this._wrappedProxy.enabled = e;
   },
 
@@ -309,8 +314,10 @@ ProxyConfig.prototype = {
 
   classDescription: "FoxyProxy API ProxyConfig",
   contractID: "@leahscape.org/foxyproxy/proxyconfig;1",
-  classID: Components.ID("{c5a3caf1-d6bf-43be-8de6-e508ad02ca36}"), // uuid from IDL
-  QueryInterface: XPCOMUtils.generateQI([CI.nsISupports, CI.foxyProxyConfig, CI.nsIClassInfo]),
+  // uuid from IDL
+  classID: Components.ID("{c5a3caf1-d6bf-43be-8de6-e508ad02ca36}"),
+  QueryInterface: XPCOMUtils.generateQI([CI.nsISupports, CI.foxyProxyConfig,
+    CI.nsIClassInfo]),
 };
 /**
  * XPCOMUtils.generateNSGetFactory was introduced in Mozilla 2 (Firefox 4)

@@ -60,7 +60,6 @@ let cookiePrefs = utils.getPrefsService("network.cookie."),
     },
 
     disableCache : function() {
-      // TODO: Should we remove/add prefs observer here as well?
       dump("disabling cache\n");    
       cachePrefs.setBoolPref("disk.enable", false);
       cachePrefs.setBoolPref("memory.enable", false);
@@ -76,7 +75,6 @@ let cookiePrefs = utils.getPrefsService("network.cookie."),
     },
 
     rejectCookies : function() {
-      // TODO: Should we remove/add pref observer here as well?
       dump("rejecting cookies\n");
       cookiePrefs.setIntPref("cookieBehavior", 2);
     }

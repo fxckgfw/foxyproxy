@@ -9,6 +9,8 @@
   and also online at http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 **/
 
+"use strict";
+
 // Constants
 let CC = Components.classes, CI = Components.interfaces, CU = Components.utils,
   CR = Components.results;
@@ -27,7 +29,7 @@ function api() {
   // We let |fp| manage |apiDisabled| serialization. Note we do not want to
   // expose a setter for this variable, just a getter. If we exposed a setter,
   // websites could enable the API when it is disabled.
-  this.apiDisabled = this.fp.apiDisabled;
+  this._apiDisabled = this.fp.apiDisabled;
 
   CU.import("resource://foxyproxy/utils.jsm", this);
 };
@@ -35,7 +37,7 @@ function api() {
 api.prototype = {
   fp: null,
   fpc: null,
-  apiDisabled: false,
+  _apiDisabled: false,
 
   /**
    * Load settings from contents of a webpage or other DOM source. We use the
@@ -127,7 +129,7 @@ api.prototype = {
    * foxyproxy and possibly inform the user if they cannot.
    */
   get apiDisabled() {
-    return this.apiDisabled;
+    return this._apiDisabled;
   },
 
   /**
@@ -268,9 +270,11 @@ api.prototype = {
   },
   classDescription: "FoxyProxy Content API",
   contractID: "@leahscape.org/foxyproxy/api;1",
-  classID: Components.ID("{26e128d0-542c-11e1-b86c-0800200c9a66}"), // uuid from IDL
+  // uuid from IDL
+  classID: Components.ID("{26e128d0-542c-11e1-b86c-0800200c9a66}"),
   QueryInterface: XPCOMUtils.generateQI([CI.foxyProxyApi, CI.nsIClassInfo]),
-  _xpcom_categories: /* this var for for pre gecko-2.0 */ [{category:"JavaScript global property"}],  
+  // this var for for pre gecko-2.0
+  _xpcom_categories: [{category:"JavaScript global property"}],
   _xpcom_factory: {
     singleton: null,
     createInstance: function (aOuter, aIID) {

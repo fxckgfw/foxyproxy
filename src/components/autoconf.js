@@ -85,8 +85,8 @@ AutoConf.prototype = {
     this.loadNotification = a.loadNotification;
     this.errorNotification = a.errorNotification;
     this.autoReload = a.autoReload;
-    this.reloadFreqMins = a.reloadFrequencyMins;
-    this.loadNotification = a.disableOnBadPAC;
+    this.reloadFreqMins = a.reloadFreqMins;
+    this.disableOnBadPAC = a.disableOnBadPAC;
   },
 
   toDOM : function(doc) {

@@ -108,10 +108,11 @@ let CI = Components.interfaces, CC = Components.classes, gObsSvc =
         // at a time. Appending, for example, "api/proxyConfig.js" all at once
         // throws an exception.
         let tmp = filename.split('/'); // split() never returns null
-        for (let i=0, len=tmp.length; i++; i<len) {
+        for (let i=0, len=tmp.length; i<len; i++) {
           // tmp[i] can be "" if, for example, filePath is "/foo.js"
-          if (tmp[i] != "")
+          if (tmp[i] != "") {
             filePath.append(tmp[i]);
+          }
         }
         loader.loadSubScript(fileProtocolHandler.getURLSpecFromFile(filePath),
           target);

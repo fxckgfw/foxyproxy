@@ -50,8 +50,8 @@ ProxyConfig.prototype = {
 
   set name(e) {
     // cannot change Default name
-    if (this._wrappedProxy.lastresort) return null;
-    this._wrappedProxy.name = e;
+    if (!this._wrappedProxy.lastresort)
+      this._wrappedProxy.name = e;
   },
 
   _notes: "",
@@ -62,8 +62,8 @@ ProxyConfig.prototype = {
 
   set notes(e) {
     // cannot change Default notes
-    if (this._wrappedProxy.lastresort) return null;
-    this._wrappedProxy.notes = e;
+    if (!this._wrappedProxy.lastresort)
+      this._wrappedProxy.notes = e;
   },
 
   // same as DEFAULT_COLOR in proxy.js
@@ -95,8 +95,8 @@ ProxyConfig.prototype = {
 
   set enabled(e) {
     // cannot disable Default
-    if (this._wrappedProxy.lastresort) return null;
-    this._wrappedProxy.enabled = e;
+    if (!this._wrappedProxy.lastresort)
+      this._wrappedProxy.enabled = e;
   },
 
   _selectedTabIndex: 1,
@@ -266,12 +266,12 @@ ProxyConfig.prototype = {
 
     _reloadFrequencyMins: 60,
 
-    get reloadFrequencyMins() {
-      return this.owner._wrappedProxy.autoconf.reloadFrequencyMins;
+    get reloadFreqMins() {
+      return this.owner._wrappedProxy.autoconf.reloadFreqMins;
     },
 
-    set reloadFrequencyMins(e) {
-      this.owner._wrappedProxy.autoconf.reloadFrequencyMins = e;
+    set reloadFreqMins(e) {
+      this.owner._wrappedProxy.autoconf.reloadFreqMins = e;
     },
 
     _disableOnBadPAC: true,

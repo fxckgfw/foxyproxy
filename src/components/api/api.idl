@@ -69,6 +69,6 @@ interface foxyProxyApi : nsISupports {
   readonly attribute AString version;
 
   // Get the proxyConfigs object in order to add, edit, delete proxyConfigs
-  foxyProxyApi getProxyConfigs(in jsval callback);
+  void getProxyConfigs(in jsval callback);
 };
 

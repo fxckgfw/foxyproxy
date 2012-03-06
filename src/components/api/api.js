@@ -168,7 +168,7 @@ api.prototype = {
         getService(CI.foxyProxyConfigs)
     };
     this.notify(metaCallback);
-    return this;
+    return null;
   },
 
   /**

@@ -193,8 +193,6 @@ let defaultPrefs = {
   // Restore the original pre-FoxyProxy values.
   // |type| can be "cache", "cookies", or "all"
   restoreOriginals : function(type, contObserving) {
-    // stop observing the prefs while we change them
-    this.removePrefsObservers();
     if (type === "cache" || type === "all") {
       this.utils.getPrefsService("browser.cache.").setBoolPref("disk.enable",
         this.origDiskCache);
@@ -209,9 +207,6 @@ let defaultPrefs = {
       this.utils.getPrefsService("network.cookie.").setIntPref("cookieBehavior",
         this.origCookieBehavior);
     }
-    // We need this call as the user may only have changed cache/cookie settings
-    // without triggering the addPrefsObervser()-call in foxyproxy-mode-change.
-    this.addPrefsObservers();
     if (type === "all") {
       this.restoreOriginalPreFetch(contObserving);
     }
@@ -276,7 +271,7 @@ let defaultPrefs = {
       }
     }
 
-    // Stop observing the prefs while we change them.
+    // Stop observing the prefs while we change disablePrefetch.
     this.removePrefsObservers();
     this.restoreOriginalBool("network.dns.", "disablePrefetch",
       this.origPrefetch);

@@ -51,16 +51,16 @@ interface foxyProxyConfigs : nsISupports {
 interface foxyProxyApi : nsISupports {
 
   // Setter without callback
-  attribute AString settings;
+  attribute nsIDOMNode settings;
 
   // Setter with callback
-  foxyProxyApi setSettings(in nsIDOMNode foxyProxyNode, in jsval callback);
+  void setSettings(in nsIDOMNode foxyProxyNode, in jsval callback);
 
   // Setter without callback
   attribute AString mode;
 
   // Setter with callback
-  foxyProxyApi setMode(in AString newMode, in jsval callback);
+  void setMode(in AString newMode, in jsval callback);
 
   // This is a getter only
   readonly attribute boolean apiDisabled;

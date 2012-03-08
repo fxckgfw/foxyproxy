@@ -56,7 +56,6 @@ api.prototype = {
           node.nodeName + "'";
         callbackObj.error(msg);
       }
-      return this;
     }
 
     let that = this, metaCallback = {
@@ -70,11 +69,10 @@ api.prototype = {
       },
     };
     this.notify(metaCallback);
-    return this;
   },
 
   set settings(node) {
-    return this.setSettings(node);
+    this.setSettings(node);
   },
 
   get settings() {
@@ -99,7 +97,6 @@ api.prototype = {
       errorArgs : "Unrecognized mode"
     };
     this.notify(metaCallback);
-    return this;
   },
 
   /**
@@ -109,7 +106,7 @@ api.prototype = {
    * unlike the setMode() function.
    */
   set mode(newMode) {
-    return this.setMode(newMode);
+    this.setMode(newMode);
   },
 
   /**

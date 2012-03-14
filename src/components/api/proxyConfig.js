@@ -32,6 +32,7 @@ CU.import("resource://gre/modules/XPCOMUtils.jsm");
 function ProxyConfig(wrappedProxy) {
   this._wrappedProxy = wrappedProxy || Proxy.fromProxyConfig(this);
   this.manualConfig.owner = this.autoConfig.owner = this;
+  CU.import("resource://foxyproxy/utils.jsm", this);
 };
 
 ProxyConfig.prototype = {
@@ -50,8 +51,10 @@ ProxyConfig.prototype = {
 
   set name(e) {
     // cannot change Default name
-    if (!this._wrappedProxy.lastresort)
+    if (!this._wrappedProxy.lastresort) {
       this._wrappedProxy.name = e;
+      this.utils.broadcast(null, "foxyproxy-proxy-change");
+    }
   },
 
   _notes: "",
@@ -62,8 +65,10 @@ ProxyConfig.prototype = {
 
   set notes(e) {
     // cannot change Default notes
-    if (!this._wrappedProxy.lastresort)
+    if (!this._wrappedProxy.lastresort) {
       this._wrappedProxy.notes = e;
+      this.utils.broadcast(null, "foxyproxy-proxy-change");
+    }
   },
 
   // same as DEFAULT_COLOR in proxy.js
@@ -75,6 +80,7 @@ ProxyConfig.prototype = {
 
   set color(e) {
     this._wrappedProxy.color = e;
+    this.utils.broadcast(null, "foxyproxy-proxy-change");
   },
 
   _mode: "manual",
@@ -85,6 +91,7 @@ ProxyConfig.prototype = {
 
   set mode(e) {
     this._wrappedProxy.mode = e;
+    this.utils.broadcast(null, "foxyproxy-proxy-change");
   },
 
   _enabled: true,
@@ -95,8 +102,10 @@ ProxyConfig.prototype = {
 
   set enabled(e) {
     // cannot disable Default
-    if (!this._wrappedProxy.lastresort)
+    if (!this._wrappedProxy.lastresort) {
       this._wrappedProxy.enabled = e;
+      this.utils.broadcast(null, "foxyproxy-proxy-change");
+    }
   },
 
   _selectedTabIndex: 1,
@@ -107,6 +116,7 @@ ProxyConfig.prototype = {
 
   set selectedTabIndex(e) {
     this._wrappedProxy.selectedTabIndex = e;
+    this.utils.broadcast(null, "foxyproxy-proxy-change");
   },
 
   _animatedIcons: true,
@@ -117,6 +127,7 @@ ProxyConfig.prototype = {
 
   set animatedIcons(e) {
     this._wrappedProxy.animatedIcons = e;
+    this.utils.broadcast(null, "foxyproxy-proxy-change");
   },
 
   _includeInCycle: true,
@@ -127,6 +138,7 @@ ProxyConfig.prototype = {
 
   set includeInCycle(e) {
    this._wrappedProxy.includeInCycle = e;
+    this.utils.broadcast(null, "foxyproxy-proxy-change");
   },
 
   _clearCacheBeforeUse: false,
@@ -137,6 +149,7 @@ ProxyConfig.prototype = {
 
   set clearCacheBeforeUse(e) {
     this._wrappedProxy.clearCacheBeforeUse = e;
+    this.utils.broadcast(null, "foxyproxy-proxy-change");
   },
 
   _disableCache: false,
@@ -147,6 +160,7 @@ ProxyConfig.prototype = {
 
   set disableCache(e) {
     this._wrappedProxy.disableCache = e;
+    this.utils.broadcast(null, "foxyproxy-proxy-change");
   },
 
   _clearCookiesBeforeUse: false,
@@ -157,6 +171,7 @@ ProxyConfig.prototype = {
 
   set clearCookiesBeforeUse(e) {
     this._wrappedProxy.clearCookiesBeforeUse = e;
+    this.utils.broadcast(null, "foxyproxy-proxy-change");
   },
 
   _rejectCookies: false,
@@ -167,6 +182,7 @@ ProxyConfig.prototype = {
 
   set rejectCookies(e) {
     this._wrappedProxy.rejectCookies = e;
+    this.utils.broadcast(null, "foxyproxy-proxy-change");
   },
 
   _proxyDNS: true,
@@ -177,6 +193,7 @@ ProxyConfig.prototype = {
 
   set proxyDNS(e) {
     this._wrappedProxy.proxyDNS = e;
+    this.utils.broadcast(null, "foxyproxy-proxy-change");
   },
 
   manualConfig: {
@@ -189,6 +206,7 @@ ProxyConfig.prototype = {
 
     set host(e) {
       this.owner._wrappedProxy.manualconf.host = e;
+      this.owner.utils.broadcast(null, "foxyproxy-proxy-change");
     },
 
     _port: "",
@@ -199,6 +217,7 @@ ProxyConfig.prototype = {
 
     set port(e) {
       this.owner._wrappedProxy.manualconf.port = e;
+      this.owner.utils.broadcast(null, "foxyproxy-proxy-change");
     },
 
     _socks: false,
@@ -209,6 +228,7 @@ ProxyConfig.prototype = {
 
     set socks(e) {
       this.owner._wrappedProxy.manualconf.isSocks = e;
+      this.owner.utils.broadcast(null, "foxyproxy-proxy-change");
     },
 
     _socksVersion: 5,
@@ -219,6 +239,7 @@ ProxyConfig.prototype = {
 
     set socksversion(e) {
       this.owner._wrappedProxy.manualconf.socksversion = e;
+      this.owner.utils.broadcast(null, "foxyproxy-proxy-change");
     }
   },
 
@@ -232,6 +253,7 @@ ProxyConfig.prototype = {
 
     set loadNotification(e) {
       this.owner._wrappedProxy.autoconf.loadNotification = e;
+      this.owner.utils.broadcast(null, "foxyproxy-proxy-change");
     },
 
     _errorNotification: true,
@@ -242,6 +264,7 @@ ProxyConfig.prototype = {
 
     set errorNotification(e) {
       this.owner._wrappedProxy.autoconf.errorNotification = e;
+      this.owner.utils.broadcast(null, "foxyproxy-proxy-change");
     },
 
     _url: "",
@@ -252,6 +275,7 @@ ProxyConfig.prototype = {
 
     set url(e) {
       this.owner._wrappedProxy.autoconf.url = e;
+      this.owner.utils.broadcast(null, "foxyproxy-proxy-change");
     },
 
     _autoReload: false,
@@ -262,6 +286,7 @@ ProxyConfig.prototype = {
 
     set autoReload(e) {
       this.owner._wrappedProxy.autoconf.autoReload = e;
+      this.owner.utils.broadcast(null, "foxyproxy-proxy-change");
     },
 
     _reloadFrequencyMins: 60,
@@ -272,6 +297,7 @@ ProxyConfig.prototype = {
 
     set reloadFreqMins(e) {
       this.owner._wrappedProxy.autoconf.reloadFreqMins = e;
+      this.owner.utils.broadcast(null, "foxyproxy-proxy-change");
     },
 
     _disableOnBadPAC: true,
@@ -282,6 +308,7 @@ ProxyConfig.prototype = {
 
     set disableOnBadPAC(e) {
       this.owner._wrappedProxy.autoconf.disableOnBadPAC = e;
+      this.owner.utils.broadcast(null, "foxyproxy-proxy-change");
     },
 
     _mode: "pac",
@@ -292,6 +319,7 @@ ProxyConfig.prototype = {
 
     set mode(e) {
       this.owner._wrappedProxy.autoconf.mode = e;
+      this.owner.utils.broadcast(null, "foxyproxy-proxy-change");
     }
   },
 

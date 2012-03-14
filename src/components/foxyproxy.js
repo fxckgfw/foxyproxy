@@ -863,7 +863,7 @@ foxyproxy.prototype = {
     },
     
     /**
-     *  Prevent inserts beyond the last item since
+     * Prevent inserts beyond the last item since
      * the last item must always remain our |lastResort|.
      * 
      * idx: "last", "first" (same as 0), "random", or an integer between 0 (inclusive) and this.length()-1 (inclusive)

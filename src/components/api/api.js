@@ -65,7 +65,6 @@ api.prototype = {
         // Delete all first. TODO: consider a merge algorithm instead
         that.fp.proxies.deleteAll();
         that.fp.fromDOM(node, node);
-        // TODO: update GUI because changes won't display if its already open
       },
     };
     this.notify(metaCallback);
@@ -173,6 +172,9 @@ api.prototype = {
    * btn) is clicked.
    */
   notify : function(metaCallback) {
+    // First notify options.xul, addeditproxy.xul, etc (if they are open)
+    this.utils.broadcast(null, "foxyproxy-proxy-change");
+
     let callbackObj = metaCallback.callbackObj || {}; // to eliminate some null checks
     let calledBack = false;
 

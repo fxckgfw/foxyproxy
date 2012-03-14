@@ -78,14 +78,16 @@ ProxyConfigs.prototype = {
   },
 
   getById : function(id) {
-    return new this.ProxyConfig(this.fp.proxies.getProxyById(id));
+    let tmp = this.fp.proxies.getProxyById(id);
+    return tmp ? new this.ProxyConfig(tmp) : null;
   },
 
   getByName : function(name) {
   },
 
   getByIndex : function(idx) {
-    return new this.ProxyConfig(this.fp.proxies.item(idx));
+    let tmp = this.fp.proxies.item(idx);
+    return tmp ? new this.ProxyConfig(tmp) : null;
   },
 
   deleteById : function(id) {

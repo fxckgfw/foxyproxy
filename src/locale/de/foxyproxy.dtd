@@ -149,7 +149,7 @@
 <!ENTITY foxyproxy.proxydns.tooltip3 "Falls ausgewählt, werden die Host-Namen von URLs, die durch diesen Proxy geladen werden, auch über diesen Proxy aufgelöst.">
 <!ENTITY foxyproxy.proxydns.label4 "Proxy DNS">
 <!ENTITY foxyproxy.cache.label "Cache">
-<!ENTITY foxyproxy.clearcache.label "Cache löschen, bevor dieser Proxy benutzt wird.">
+<!ENTITY foxyproxy.clearcache.label "Cache löschen, bevor dieser Proxy benutzt wird">
 <!ENTITY foxyproxy.clearcache.accesskey "H">
 <!ENTITY foxyproxy.clearcache.tooltip "Wenn die Option ausgewählt ist, wird der Cache vor dem Benutzen des Proxies gelöscht">
 <!ENTITY foxyproxy.disablecache.label "Cache abschalten, während dieser Proxy genutzt wird">
@@ -158,10 +158,10 @@
 <!ENTITY foxyproxy.cookies.label "Cookies">
 <!ENTITY foxyproxy.clearcookies.label "Alle Cookies entfernen, bevor dieser Proxy genutzt wird">
 <!ENTITY foxyproxy.clearcookies.accesskey "C">
-<!ENTITY foxyproxy.clearcookies.tooltip "Wenn die Option ausgewählt ist, werden alle Cookies entfernt, bevor dieser Proxy benutzt wird.">
-<!ENTITY foxyproxy.rejectcookies.label "Alle Cookies blockieren, wenn dieser Proxy benutzt wird.">
+<!ENTITY foxyproxy.clearcookies.tooltip "Wenn die Option ausgewählt ist, werden alle Cookies entfernt, bevor dieser Proxy benutzt wird">
+<!ENTITY foxyproxy.rejectcookies.label "Alle Cookies blockieren, wenn dieser Proxy benutzt wird">
 <!ENTITY foxyproxy.rejectcookies.accesskey "B">
-<!ENTITY foxyproxy.rejectcookies.tooltip "Wenn diese Option ausgewählt ist, werden alle Cookies vom Browser blockiert, während dieser Proxy benutzt wird.">
+<!ENTITY foxyproxy.rejectcookies.tooltip "Wenn diese Option ausgewählt ist, werden alle Cookies vom Browser blockiert, während dieser Proxy benutzt wird">
 <!ENTITY foxyproxy.showstatusbaricon.label "Icon in der Statuszeile anzeigen">
 <!ENTITY foxyproxy.showstatusbaricon.accesskey "I">
 <!ENTITY foxyproxy.showstatusbaricon.tooltip "FoxyProxy Icon wird in der Statuszeile angezeigt">

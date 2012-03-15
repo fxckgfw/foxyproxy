@@ -12,6 +12,16 @@
 <!ENTITY foxyproxy.proxy.notes.label "代理伺服器註釋">
 <!ENTITY foxyproxy.proxy.notes.accesskey "N">
 <!ENTITY foxyproxy.proxy.notes.tooltip "代理伺服器註釋">
+<!ENTITY foxyproxy.proxy.wizard.label "代理伺服器精靈">
+<!ENTITY foxyproxy.proxy.wizard.accesskey "P">
+<!ENTITY foxyproxy.proxy.wizard.tooltip "由伺服器訂閱建立代理伺服器">
+<!ENTITY foxyproxy.proxy.wizard.description1 "此精靈自動設定你購買的代理伺服器。請在下方輸入你的識別碼，如果你沒有訂閱識別碼，">
+<!ENTITY foxyproxy.proxy.wizard.description2 "可以購買你的識別碼">
+<!ENTITY foxyproxy.proxy.wizard.subscriptionID.label "訂閱識別碼">
+<!ENTITY foxyproxy.proxy.wizard.subscriptionID.tooltip "輸入你的伺服器訂閱識別碼">
+<!ENTITY foxyproxy.proxy.wizard.loading.label "取得代理伺服器詳細資料中…">
+<!ENTITY foxyproxy.proxy.wizard.congratulation "恭喜！FoxyProxy 已設定成功。">
+<!ENTITY foxyproxy.proxy.wizard.whatsmyip.label "檢查我的位置">
 <!ENTITY foxyproxy.pattern.label "樣式">
 <!ENTITY foxyproxy.urlpatterns.label "網址樣式">
 <!ENTITY foxyproxy.urlpatterns.accesskey "P">
@@ -431,14 +441,16 @@
 <!ENTITY foxyproxy.please.donate.label "請捐助">
 <!ENTITY foxyproxy.please.donate.accesskey "D">
 <!ENTITY foxyproxy.importantnote.label "閱讀重要說明">
-<!ENTITY foxyproxy.resetlocation.label "重設位置">
+<!ENTITY foxyproxy.resetlocation.label "重設儲存資料夾">
 <!ENTITY foxyproxy.resetlocation.accesskey "R">
-<!ENTITY foxyproxy.resetlocation.tooltip "將設定儲存在 Firefox 設定檔內">
+<!ENTITY foxyproxy.resetlocation.tooltip "將設定儲存在 Firefox 設定檔資料夾內">
 <!ENTITY foxyproxy.settings.not.default "設定並未儲存在預設資料夾中">
 <!ENTITY foxyproxy.change.host.reload "設定新的「主機：連接埠」然後重新載入目前頁面">
 <!ENTITY foxyproxy.proxyservice.label "購買代理伺服器服務">
 <!ENTITY foxyproxy.proxyservice.accesskey "P">
 <!ENTITY foxyproxy.proxyservice.tooltip "註冊代理伺服器服務">
+<!ENTITY foxyproxy.getdntp.label "取得 Do Not Track Plus">
+<!ENTITY foxyproxy.getdntp.tooltip "取得 Do Not Track Plus">
 <!ENTITY foxyproxy.proxyservice2.label "需要在美國、英國或其它國家使用高速且可靠的代理伺服器嗎？">
 <!ENTITY foxyproxy.getfoxyproxyplus.label "取得 FoxyProxy 進階版">
 <!ENTITY foxyproxy.aboutdonate.label "按下「捐助」鈕會連線到 PayPal 網頁，你可以對 FoxyProxy 專案捐助來鼓勵並支持軟體開發，如果你定期的使用 FoxyProxy，請你考慮捐助。">
@@ -483,7 +495,7 @@
 <!ENTITY foxyproxy.pattern.subscriptions.refreshNow.tooltip "立刻更新此訂閱的樣式">
 <!ENTITY foxyproxy.pattern.subscriptions.refreshHelp1 "指定多少分鐘後要更新此訂閱的樣式，更新訂閱會">
 <!ENTITY foxyproxy.pattern.subscriptions.refreshHelp2 "移除目前所有的樣式">
-<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp3 "然後插入訂閱網址上找到的樣式。若要獲得更多資訊，請點擊">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp4 "然後插入訂閱網址上找到的樣式。若要獲得更多資訊，請點擊">
 <!ENTITY foxyproxy.pattern.subscriptions.zeroRefresh "（0 表示不更新）">
 <!ENTITY foxyproxy.pattern.subscriptions.format.tooltip "此訂閱的樣式清單的格式">
 <!ENTITY foxyproxy.pattern.subscriptions.formatHelp "指定訂閱樣式的撰寫格式，一般來說 FoxyProxy 會自動判斷格式。若要獲得更多資訊，請點擊">

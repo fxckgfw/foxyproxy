@@ -186,11 +186,6 @@ end-foxyproxy-simple !*/
           false);
       }
     } catch(e) {}
-    // We are registering an event listener for our custom event fired if a
-    // user bought a proxy subscription. FoxyProxy should automatically
-    // configure the new proxy according to the values transmitted.
-    document.addEventListener("new-proxy", foxyproxy.createSubscribedProxy,
-      false, true);
   },
 
   parseHTML : function(doc, html) {
@@ -221,37 +216,6 @@ end-foxyproxy-simple !*/
         "<b>", "</b>"]) + "</li>"; 
       contDoc.getElementById("errorLongDesc").firstChild.nextSibling.
         appendChild(foxyproxy.parseHTML(contDoc, liText));
-    }
-  },
-
-  createSubscribedProxy: function(e) {
-    let doc = e.target.ownerDocument, location = doc.location;
-    // We only accept data if it is coming from TLS secured getfoxyproxy.org.
-    if (location.protocol === "https:" && location.hostname ===
-        "getfoxyproxy.org") {
-      let proxyURI;
-      let proxyDetails = e.target.getAttribute("uri");
-      try {
-        proxyURI = foxyproxy.fpc._ios.newURI(proxyDetails, null, null);
-      } catch(e) {
-        // We could not generate a URI. Thus, parsing of the proxy details
-        // will fail...
-        foxyproxy.alert(null, foxyproxy.fp.
-          getMessage("proxywiz.parse.failure"));
-        return;
-      }
-
-      if (foxyproxy.fpc.processProxyURI(proxyURI)) {
-        let params = {
-          inn : {
-            country: doc.getElementById("proxy").getAttribute("country"),
-            username: doc.getElementById("proxy").getAttribute("username"),
-            password: doc.getElementById("proxy").getAttribute("password")
-          }
-        };
-        window.openDialog('chrome://foxyproxy/content/proxywizardcongrat.xul',
-          '', 'resizable=yes', params).focus();
-      }
     }
   },
 
@@ -1204,8 +1168,6 @@ Components.utils.import("resource://foxyproxy/cookiesAndCache.jsm", foxyproxy);
 
 window.addEventListener("load", function(e) { foxyproxy.onLoad(e); }, false);
 window.addEventListener("unload", function(e) {
-  document.removeEventListener("new-proxy", foxyproxy.createSubscribedProxy,
-    false, true);
   document.getElementById("appcontent") &&
     document.getElementById("appcontent").removeEventListener("load", foxyproxy.
     onPageLoad, true);

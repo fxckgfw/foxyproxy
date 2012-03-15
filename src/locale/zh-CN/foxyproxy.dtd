@@ -12,6 +12,16 @@
 <!ENTITY foxyproxy.proxy.notes.label "代理备注">
 <!ENTITY foxyproxy.proxy.notes.accesskey "N">
 <!ENTITY foxyproxy.proxy.notes.tooltip "代理备注">
+<!ENTITY foxyproxy.proxy.wizard.label "代理向导">
+<!ENTITY foxyproxy.proxy.wizard.accesskey "P">
+<!ENTITY foxyproxy.proxy.wizard.tooltip "从一个代理订购创建代理">
+<!ENTITY foxyproxy.proxy.wizard.description1 "这个向导自动配置你的付费代理。请在下面输入你的订购 ID。如果你没有订购 ID，">
+<!ENTITY foxyproxy.proxy.wizard.description2 "你可以购买一个">
+<!ENTITY foxyproxy.proxy.wizard.subscriptionID.label "订购 ID">
+<!ENTITY foxyproxy.proxy.wizard.subscriptionID.tooltip "输入你的代理订购 ID">
+<!ENTITY foxyproxy.proxy.wizard.loading.label "正在接收代理详细信息...">
+<!ENTITY foxyproxy.proxy.wizard.congratulation "祝贺你。FoxyProxy 已经配置完毕。">
+<!ENTITY foxyproxy.proxy.wizard.whatsmyip.label "查看我的位置">
 <!ENTITY foxyproxy.pattern.label "匹配模板">
 <!ENTITY foxyproxy.urlpatterns.label "URL模式">
 <!ENTITY foxyproxy.urlpatterns.accesskey "P">
@@ -83,6 +93,7 @@
 <!ENTITY foxyproxy.regex.label "正则表达式">
 <!ENTITY foxyproxy.regex.accesskey "R">
 <!ENTITY foxyproxy.regex.tooltip "使用正则表达式来确定 URL 或 URL 模板。">
+<!ENTITY foxyproxy.regex.example.label2 "举例：^https?://.*\.mail\.yahoo\.com/.*$">
 <!ENTITY foxyproxy.version "版本">
 <!ENTITY foxyproxy.createdBy "创建者">
 <!ENTITY foxyproxy.contributionsBy "贡献者">
@@ -190,6 +201,9 @@
 <!ENTITY foxyproxy.movedown.label "下移">
 <!ENTITY foxyproxy.movedown.tooltip "降低当前选中项的优先级">
 <!ENTITY foxyproxy.movedown.accesskey "D">
+<!ENTITY foxyproxy.system.label "使用系统代理设置">
+<!ENTITY foxyproxy.system.accesskey "Y">
+<!ENTITY foxyproxy.system.tooltip2 "使用你的系统设置中的代理配置">
 <!ENTITY foxyproxy.automatic.label "自动代理服务器配置">
 <!ENTITY foxyproxy.automatic.accesskey "A">
 <!ENTITY foxyproxy.automatic.tooltip "自动获取代理服务器配置">
@@ -435,6 +449,8 @@
 <!ENTITY foxyproxy.proxyservice.label "购买代理服务">
 <!ENTITY foxyproxy.proxyservice.accesskey "P">
 <!ENTITY foxyproxy.proxyservice.tooltip "登录代理服务">
+<!ENTITY foxyproxy.getdntp.label "获取 Do Not Track Plus">
+<!ENTITY foxyproxy.getdntp.tooltip "获取 Do Not Track Plus">
 <!ENTITY foxyproxy.proxyservice2.label "需要美国，英国或者其他国家的快速、可靠的代理服务？">
 <!ENTITY foxyproxy.getfoxyproxyplus.label "获取 FoxyProxy Plus">
 <!ENTITY foxyproxy.aboutdonate.label "捐助按钮使你可以通过 PayPal 想 FoxyProxy 项目提供捐助以支持开发活动。">
@@ -479,7 +495,7 @@
 <!ENTITY foxyproxy.pattern.subscriptions.refreshNow.tooltip "现在更新这个模式订阅">
 <!ENTITY foxyproxy.pattern.subscriptions.refreshHelp1 "指定每多少分钟更新这个订阅。正在更新订阅">
 <!ENTITY foxyproxy.pattern.subscriptions.refreshHelp2 "移除全部已有模式">
-<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp3 "然后插入订阅网址中找到的。从这里了解更多">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp4 "然后插入在订购网址中找到的。了解更多">
 <!ENTITY foxyproxy.pattern.subscriptions.zeroRefresh "（0表示从不更新）">
 <!ENTITY foxyproxy.pattern.subscriptions.format.tooltip "这个模式订阅列表的格式">
 <!ENTITY foxyproxy.pattern.subscriptions.formatHelp "指定这个订阅的书写格式。一般来说，FoxyProxy 会自动检测格式。了解更多">

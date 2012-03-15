@@ -291,11 +291,11 @@ ProxyConfig.prototype = {
 
     _reloadFrequencyMins: 60,
 
-    get reloadFreqMins() {
+    get reloadFrequencyMins() {
       return this.owner._wrappedProxy.autoconf.reloadFreqMins;
     },
 
-    set reloadFreqMins(e) {
+    set reloadFrequencyMins(e) {
       this.owner._wrappedProxy.autoconf.reloadFreqMins = e;
       this.owner.utils.broadcast(null, "foxyproxy-proxy-change");
     },

@@ -91,9 +91,10 @@
           tooltiptext="&foxyproxy.proxydns.tooltip3;"/>
         <vbox>
           <hbox align="center">
-            <description class="indent">&foxyproxy.color.description;</description>
-            <textbox id="color"
-              oninput="customcolor(this.value);"/>
+            <description class="indent">
+              &foxyproxy.color.description;
+            </description>
+            <textbox id="color" oninput="customcolor(this.value);"/>
             <colorpicker2 id="colorpicker" type="button"
               onchange="pickcolor(this.color);"/>
             <label id="colorfalse" hidden="true" class="invalidcolor"

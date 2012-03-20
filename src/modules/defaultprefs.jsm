@@ -121,22 +121,22 @@ let defaultPrefs = {
         }
       }
       else if (topic == "foxyproxy-mode-change") {
-      	if (this.fp._mode == "disabled") {
+        if (this.fp._mode == "disabled") {
           // We need to reset this value in order to not miss changes while
           // disabling FoxyProxy and enabling the same proxy again.
           this.fp.cacheAndCookiesChecked = false;
           // We're being disabled. But we still want to have our general
           // observers.
-      	  this.restoreOriginals("all", true);
-      	  return;
-      	}
-      	if (this.fp._previousMode == "disabled") {
-          // We're coming out of disabled mode
-      	  this.saveOriginals();
+          this.restoreOriginals("all", true);
+          return;
         }
-      	setOrUnsetPrefetch();
-         // Start listening for pref changes if we aren't already
-      	this.addPrefsObservers();
+        if (this.fp._previousMode == "disabled") {
+          // We're coming out of disabled mode
+          this.saveOriginals();
+        }
+        setOrUnsetPrefetch();
+        // Start listening for pref changes if we aren't already
+        this.addPrefsObservers();
       }
       else if (topic == "foxyproxy-proxy-change") {
         if (this.fp._mode == "disabled") return;
@@ -306,16 +306,24 @@ let defaultPrefs = {
     if (!n) return;
     // Default: does not exist
     this.origPrefetch = this.utils.getSafeAttr(n, "origPrefetch", null);
-    // Default: true
-    this.origDiskCache = this.utils.getSafeAttrB(n, "origDiskCache", true);
-    this.origMemCache = this.utils.getSafeAttrB(n, "origMemCache", true);
-    this.origOfflineCache = this.utils.getSafeAttrB(n, "origOfflineCache",
-      true);
-    // Default: false
-    this.origSSLCache = this.utils.getSafeAttrB(n, "origSSLCache", false);
-    // Default: 0
-    this.origCookieBehavior = this.utils.getSafeAttr(n, "origCookieBehavior",
-      0);
+    if (n.QueryInterface(CI.nsIDOMElement).hasAttribute("origDiskCache")) {
+      // The values are already saved, just load them.
+      this.origDiskCache = n.getAttribute("origDiskCache");
+      this.origMemCache = n.getAttribute("origMemCache");
+      this.origOfflineCache = n.getAttribute("origOfflineCache");
+      this.origSSLCache = n.getAttribute("origSSLCache");
+      this.origCookieBehavior = n.getAttribute("origCookieBehavior");
+    } else {
+      // The original values are not saved yet. Maybe we upgraded or FoxyProxy
+      // just got installed.
+      let prefs = this.utils.getPrefsService("");
+      this.origDiskCache = prefs.getBoolPref("browser.cache.disk.enable");
+      this.origMemCache = prefs.getBoolPref("browser.cache.memory.enable");
+      this.origOfflineCache = prefs.getBoolPref("browser.cache.offline.enable");
+      this.origSSLCache = prefs.getBoolPref("browser.cache.disk_cache_ssl"); 
+      this.origCookieBehavior = prefs.
+        getIntPref("network.cookie.cookieBehavior");
+    }
   },
   
   toDOM : function(doc) {

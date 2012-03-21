@@ -320,7 +320,7 @@ let defaultPrefs = {
       this.origDiskCache = prefs.getBoolPref("browser.cache.disk.enable");
       this.origMemCache = prefs.getBoolPref("browser.cache.memory.enable");
       this.origOfflineCache = prefs.getBoolPref("browser.cache.offline.enable");
-      this.origSSLCache = prefs.getBoolPref("browser.cache.disk_cache_ssl"); 
+      this.origSSLCache = prefs.getBoolPref("browser.cache.disk_cache_ssl");
       this.origCookieBehavior = prefs.
         getIntPref("network.cookie.cookieBehavior");
     }

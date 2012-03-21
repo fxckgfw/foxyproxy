@@ -273,8 +273,6 @@ api.prototype = {
   // uuid from IDL
   classID: Components.ID("{26e128d0-542c-11e1-b86c-0800200c9a66}"),
   QueryInterface: XPCOMUtils.generateQI([CI.foxyProxyApi, CI.nsIClassInfo]),
-  // this var for for pre gecko-2.0
-  _xpcom_categories: [{category:"JavaScript global property", entry:"FoxyProxy"}],
   _xpcom_factory: {
     singleton: null,
     createInstance: function (aOuter, aIID) {

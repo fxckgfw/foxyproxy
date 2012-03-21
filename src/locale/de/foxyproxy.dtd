@@ -68,7 +68,6 @@
 <!ENTITY foxyproxy.copy.selection.accesskey "K">
 <!ENTITY foxyproxy.copy.selection.tooltip "Kopiert die aktuelle Auswahl">
 <!ENTITY foxyproxy.mode.label "Modus auswählen">
-
 <!ENTITY foxyproxy.wpad.label1 "mittels WPAD">
 <!ENTITY foxyproxy.wpad.accesskey "W">
 <!ENTITY foxyproxy.wpad.tooltip "Proxy-Einstellungen mit WPAD automatisch erkennen">
@@ -77,7 +76,6 @@
 <!ENTITY foxyproxy.wpad.reload.tooltip "Proxy jede angegebene Periode automatisch neu erkennen">
 <!ENTITY foxyproxy.wpad.tree.label "Proxy automatisch erkennen">
 <!ENTITY foxyproxy.auto.url.label "Automatische Proxy-Konfigurations-URL">
-<!ENTITY foxyproxy.auto.url.accesskey "U">
 <!ENTITY foxyproxy.auto.url.tooltip "URL der PAC-Datei eingeben">
 <!ENTITY foxyproxy.auto.url.note.label "http(s)://   ftp://   file://   relative://">
 <!ENTITY foxyproxy.auto.url.note.tooltip "Klicken Sie auf das Info-Icon für Informationen über relative://">

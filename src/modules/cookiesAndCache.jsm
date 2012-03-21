@@ -28,9 +28,8 @@ let cookiePrefs = utils.getPrefsService("network.cookie."),
   cacheMgr = {
     clearCache : function() {
       try {
-        dump("clearing cache\n");
-    	  cachService.evictEntries(CI.nsICache.STORE_ON_DISK);
-    	  cachService.evictEntries(CI.nsICache.STORE_IN_MEMORY);
+        cachService.evictEntries(CI.nsICache.STORE_ON_DISK);
+        cachService.evictEntries(CI.nsICache.STORE_IN_MEMORY);
         // Thanks, Torbutton
         try {
           // This exists in FF 3.6.x. Perhaps we can drop the catch block and
@@ -60,7 +59,6 @@ let cookiePrefs = utils.getPrefsService("network.cookie."),
     },
 
     disableCache : function() {
-      dump("disabling cache\n");    
       cachePrefs.setBoolPref("disk.enable", false);
       cachePrefs.setBoolPref("memory.enable", false);
       cachePrefs.setBoolPref("offline.enable", false);
@@ -70,13 +68,10 @@ let cookiePrefs = utils.getPrefsService("network.cookie."),
   
   cookieMgr = {
     clearCookies : function() {
-      dump("clearing cookies\n");
       cookieService.removeAll();
     },
 
     rejectCookies : function() {
-      dump("rejecting cookies\n");
       cookiePrefs.setIntPref("cookieBehavior", 2);
     }
   };
-

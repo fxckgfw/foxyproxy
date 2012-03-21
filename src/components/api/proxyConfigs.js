@@ -82,12 +82,12 @@ ProxyConfigs.prototype = {
     return tmp ? new this.ProxyConfig(tmp) : null;
   },
 
-  getByName : function(name) {
-  },
-
   getByIndex : function(idx) {
     let tmp = this.fp.proxies.item(idx);
     return tmp ? new this.ProxyConfig(tmp) : null;
+  },
+
+  getByName : function(name) {
   },
 
   deleteById : function(id) {

@@ -24,6 +24,8 @@ interface foxyProxyConfig : nsISupports {
 [scriptable, uuid(40c327cd-c8d4-4753-9441-6c60fe6ea461)]
 interface foxyProxyConfigs : nsISupports {
 
+  readonly attribute long length; 
+
   // Create and return a new ProxyConfig with smart defaults.
   // Use |addProxyConfig()| to add it to the current list of proxies.
   foxyProxyConfig createProxyConfig();
@@ -34,11 +36,10 @@ interface foxyProxyConfigs : nsISupports {
   // |createProxyConfig()|. Manipulate its properties, then call this function
   // to add it to the list of ProxyConfigs.
   boolean addProxyConfig(in foxyProxyConfig p, [optional] in long index);
-  readonly attribute long length;
   jsval getAll();
   foxyProxyConfig getById(in long id);
-  foxyProxyConfig getByName(in AString name);
   foxyProxyConfig getByIndex(in long index);
+  foxyProxyConfig getByName(in AString name);
   boolean deleteById(in long id);
 
   // TODO: implement

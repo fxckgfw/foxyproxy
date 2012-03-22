@@ -314,11 +314,11 @@ ProxyConfig.prototype = {
     _mode: "pac",
 
     get mode() {
-      return this.owner._wrappedProxy.autoconf.mode;
+      return this.owner._wrappedProxy.autoconfMode;
     },
 
     set mode(e) {
-      this.owner._wrappedProxy.autoconf.mode = e;
+      this.owner._wrappedProxy.autoconfMode = e;
       this.owner.utils.broadcast(null, "foxyproxy-proxy-change");
     }
   },

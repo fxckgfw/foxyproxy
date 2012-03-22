@@ -118,6 +118,9 @@ let defaultPrefs = {
         } else {
           // Removing all of our observers on shutdown 
           this.uninit();
+          // Save the original values just in case a user changed them while
+          // FoxyProxy being active.
+          this.saveOriginals();
         }
       }
       else if (topic == "foxyproxy-mode-change") {
@@ -281,7 +284,7 @@ let defaultPrefs = {
   },
   
   // Save the original prefs for restoring when FoxyProxy is disabled or
-  // uninstalled.
+  // uninstalled or restarted.
   saveOriginals : function() {
     let p = this.utils.getPrefsService("network.dns.");
     this.origPrefetch = p.prefHasUserValue("disablePrefetch") ?

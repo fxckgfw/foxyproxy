@@ -519,13 +519,11 @@ foxyproxy.prototype = {
   },
 
   getDefaultPath : function() {
-    var file = CC["@mozilla.org/file/local;1"].createInstance(CI.nsILocalFile);
     /* Always use ProfD by default in order to support application-wide installations.
        http://foxyproxy.mozdev.org/drupal/content/tries-use-usrlibfirefox-304foxyproxyxml-linux#comment-974 */
-    var dir = CC["@mozilla.org/file/directory_service;1"].getService(CI.nsIProperties).get("ProfD", CI.nsILocalFile);
-    file.initWithPath(dir.path);
-    file.appendRelativePath("foxyproxy.xml");
-    return file;
+    let dir = CC["@mozilla.org/file/directory_service;1"].getService(CI.nsIProperties).get("ProfD", CI.nsILocalFile);
+    dir.appendRelativePath("foxyproxy.xml");
+    return dir;
   },
 
   // Convert |o| from:

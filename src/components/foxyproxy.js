@@ -289,6 +289,9 @@ foxyproxy.prototype = {
 
   handleCacheAndCookies : function(proxy, previousProxy) {
     if (proxy) {
+      dump(proxy.id + " " + this.cacheAndCookiesChecked + " " + this.
+        cacheOrCookiesChanged + "\n");
+      if (previousProxy) dump("Previous: " + previousProxy.id + "\n");
       if (previousProxy && previousProxy.id !== proxy.id &&
           this.cacheAndCookiesChecked) {
         this.cacheAndCookiesChecked = false;
@@ -304,7 +307,11 @@ foxyproxy.prototype = {
         }
         if (proxy.disableCache !== proxy.disableCacheOld) {
           if (proxy.disableCache) {
+            // Disabling and enabling the pref observer in order to not save
+            // new default cache values.
+            this.defaultPrefs.removeCacheObservers();
             this.cacheMgr.disableCache();
+            this.defaultPrefs.addCacheObservers();
           } else {
             this.defaultPrefs.restoreOriginals("cache");
           }
@@ -316,7 +323,11 @@ foxyproxy.prototype = {
         }
         if (proxy.rejectCookies !== proxy.rejectCookiesOld) {
           if (proxy.rejectCookies) {
+            // Disabling and enabling the pref observer in order to not save
+            // new default cookie values.
+            this.defaultPrefs.removeCookieObserver();
             this.cookieMgr.rejectCookies();
+            this.defaultPrefs.addCookieObserver();
           } else {
             this.defaultPrefs.restoreOriginals("cookies");
           }

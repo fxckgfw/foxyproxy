@@ -782,9 +782,9 @@ end-foxyproxy-simple !*/
           gBrowser.reloadAllTabs();
           break;
         case "reloadtabsinallbrowsers":
-          for (var b, e = foxyproxy.fpc.getEnumerator();
-            e.hasMoreElements();
-            (b = e.getNext().getBrowser()) && b.reloadAllTabs());
+          for (var b, el = foxyproxy.fpc.getEnumerator();
+            el.hasMoreElements();
+            (b = el.getNext().getBrowser()) && b.reloadAllTabs());
           break;
         case "removeallcookies":
           foxyproxy.cookieMgr.clearCookies();

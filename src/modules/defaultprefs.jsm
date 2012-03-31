@@ -108,11 +108,7 @@ let defaultPrefs = {
       this.networkDNSPrefs = this.utils.getPrefsService("network.dns.").
         QueryInterface(CI.nsIPrefBranch2);
       this.networkDNSPrefs.addObserver("", this, false);
-      this.cachePrefs = this.utils.getPrefsService("browser.cache.").
-        QueryInterface(CI.nsIPrefBranch2);
-      this.cachePrefs.addObserver("", this, false);
-      this.networkCookiePrefs = this.utils.getPrefsService("network.cookie.").
-        QueryInterface(CI.nsIPrefBranch2);
+      this.addCacheObserver();
       this.addCookieObserver();
     }
   },
@@ -128,8 +124,8 @@ let defaultPrefs = {
     if (!this.networkDNSPrefs)
       return;
     this.networkDNSPrefs.removeObserver("", this);
-    this.cachePrefs.removeObserver("", this);
-    this.networkCookiePrefs.removeObserver("", this);
+    this.removeCacheObserver();
+    this.removeCookieObserver();
     this.networkCookiePrefs = this.cachePrefs = this.networkDNSPrefs = null;
   },
 
@@ -143,19 +139,33 @@ let defaultPrefs = {
   },
 
   addCookieObserver : function() {
-     
+    if (!this.networkCookiePrefs) {
+      this.networkCookiePrefs = this.utils.getPrefsService("network.cookie.").
+        QueryInterface(CI.nsIPrefBranch2);
+    }
+    // TODO: Can it happen that we have added an observer already?
+    this.networkCookiePrefs.addObserver("", this, false);
   },
 
   removeCookieObserver : function() {
-
+    try {
+      this.networkCookiePrefs.removeObserver("", this);
+    } catch (e) {dump("There was no cookie observer\n");}
   },
 
-  addCacheObservers : function() {
-
+  addCacheObserver : function() {
+    if (!this.cachePrefs) {
+      this.cachePrefs = this.utils.getPrefsService("browser.cache.").
+        QueryInterface(CI.nsIPrefBranch2);
+    }
+    // TODO: Can it happen that we have added an observer already?
+    this.cachePrefs.addObserver("", this, false);
   },
 
-  removeCacheObservers : function() {
-
+  removeCacheObserver : function() {
+    try {
+      this.cachePrefs.removeObserver("", this);
+    } catch (e) {dump("There was no cache observer!\n");}
   },
 
   // Uninstall observers
@@ -229,7 +239,7 @@ let defaultPrefs = {
           this.fp.cacheAndCookiesChecked = false;
           // We're being disabled. But we still want to have our general
           // observers.
-          //this.restoreOriginals("all", true);
+          this.restoreOriginals("all", true);
           return;
         }
         if (this.fp._previousMode == "disabled") {
@@ -244,6 +254,8 @@ let defaultPrefs = {
         dump("Proxy Change!\n");
         if (this.fp._mode == "disabled") return;
         setOrUnsetPrefetch();
+        // Start listening for pref changes if we aren't already
+        this.addPrefsObservers();
       }
     }
     catch (e) { this.utils.dumpp(e); }

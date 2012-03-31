@@ -309,9 +309,9 @@ foxyproxy.prototype = {
           if (proxy.disableCache) {
             // Disabling and enabling the pref observer in order to not save
             // new default cache values.
-            this.defaultPrefs.removeCacheObservers();
+            this.defaultPrefs.removeCacheObserver();
             this.cacheMgr.disableCache();
-            this.defaultPrefs.addCacheObservers();
+            this.defaultPrefs.addCacheObserver();
           } else {
             this.defaultPrefs.restoreOriginals("cache");
           }
@@ -347,7 +347,11 @@ foxyproxy.prototype = {
           this.cacheMgr.clearCache();
         }
         if (proxy.disableCache) {
+          // Disabling and enabling the pref observer in order to not save
+          // new default cache values.
+          this.defaultPrefs.removeCacheObserver();
           this.cacheMgr.disableCache();
+          this.defaultPrefs.addCacheObserver();
         } else {
           this.defaultPrefs.restoreOriginals("cache");
         }
@@ -355,7 +359,11 @@ foxyproxy.prototype = {
           this.cookieMgr.clearCookies();
         }
         if (proxy.rejectCookies) {
+          // Disabling and enabling the pref observer in order to not save
+          // new default cookie values.
+          this.defaultPrefs.removeCookieObserver();
           this.cookieMgr.rejectCookies();
+          this.defaultPrefs.addCookieObserver();
         } else {
           this.defaultPrefs.restoreOriginals("cookies");
         }

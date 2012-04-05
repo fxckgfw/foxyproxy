@@ -15,7 +15,7 @@
 // another extension changes them. Restores values to original
 // when FoxyProxy is in disabled mode.
 
-//"use strict";
+"use strict";
 
 let CI = Components.interfaces, CC = Components.classes, CU = Components.utils,
   gObsSvc = CC["@mozilla.org/observer-service;1"].
@@ -38,7 +38,6 @@ let defaultPrefs = {
   networkCookiePrefs : null, // see above comment
   beingUninstalled : false, /* flag per https://developer.mozilla.org/en/Code_snippets/Miscellaneous#Receiving_notification_before_an_extension_is_disabled_and.2for_uninstalled */
   beingDisabled : false,
-  beingEnabled : false,
   fp : null,
   ps : null,
   prefs : null,
@@ -64,20 +63,13 @@ let defaultPrefs = {
 
   addExtensionListener : function() {
     let that = this;
+    try {
     let extensionListener = {
       onUninstalling: function(addon, needsRestart) {
         if (addon.id === "foxyproxy-basic@eric.h.jung" ||
             addon.id === "foxyproxy@eric.h.jung" ||
             addon.id === "foxyproxyplus@leahscape.com") {
           that.beingUninstalled = true;
-        }
-      },
-
-      onEnabling: function(addon, needsRestart) {
-        if (addon.id === "foxyproxy-basic@eric.h.jung" ||
-            addon.id === "foxyproxy@eric.h.jung" ||
-            addon.id === "foxyproxyplus@leahscape.com") {
-          that.beingEnabled = true;
         }
       },
 
@@ -95,12 +87,12 @@ let defaultPrefs = {
             addon.id === "foxyproxyplus@leahscape.com") {
           that.beingUninstalled = false;
           that.beingDisabled = false;
-          that.beingEnabled = false;
         }
       }
     }; 
 
     this.AddonManager.addAddonListener(extensionListener); 
+    } catch (e) {dump(e + "\n")}
   },
 
   addPrefsObservers : function() {
@@ -175,7 +167,6 @@ let defaultPrefs = {
   },
 
   observe : function(subj, topic, data) {
-    let that = this;
     try {
       if (topic == "nsPref:changed") {
         if (data == "disablePrefetch") {
@@ -220,8 +211,18 @@ let defaultPrefs = {
             // options to re-read the original values easily if FoxyProxy gets
             // installed again.
             this.ps.deleteBranch("");
+          } else {
+            // We got disabled. We do not know how long we will be disabled and
+            // whether the user will change her default cookie/cache settings
+            // meanwhile. Therefore, we just delete the
+            // extensions.foxyproxy.cache.memory.enable preference which causes
+            // a re-saving of the cache/cookie prefs if we get enabled again.
+            if (this.ps.prefHasUserValue("cache.memory.enable")) {
+              this.ps.clearUserPref("cache.memory.enable");
+            }
           }
         } else if (this.beingEnabled) {
+          dump("We got enabled, saving the original values...\n");
           // We do not know how long we have been disabled and whether the user
           // changed her default cookie/cache settings meanwhile. Therefore, we
           // save them again.
@@ -246,26 +247,27 @@ let defaultPrefs = {
           // We're coming out of disabled mode
           this.saveOriginals();
         }
-        setOrUnsetPrefetch();
+        this.setOrUnsetPrefetch();
         // Start listening for pref changes if we aren't already
         this.addPrefsObservers();
       }
       else if (topic == "foxyproxy-proxy-change") {
         dump("Proxy Change!\n");
         if (this.fp._mode == "disabled") return;
-        setOrUnsetPrefetch();
+        this.setOrUnsetPrefetch();
         // Start listening for pref changes if we aren't already
         this.addPrefsObservers();
       }
     }
     catch (e) { this.utils.dumpp(e); }
-    function setOrUnsetPrefetch() {
-      if (that.shouldDisableDNSPrefetch())
-        that.disablePrefetch();
-      else
-        that.restoreOriginalPreFetch(true);
-    }
   },
+
+  setOrUnsetPrefetch : function() {
+    if (this.shouldDisableDNSPrefetch())
+      this.disablePrefetch();
+    else
+      this.restoreOriginalPreFetch(true);
+  }, 
   
   shouldDisableDNSPrefetch : function() {
     if (this.fp._mode == "disabled") return false;
@@ -299,12 +301,9 @@ let defaultPrefs = {
       if (d === "item-cancel-action") {
         this.beingUninstalled = false;
         this.beingDisabled = false;
-        this.beingEnabled = true;
       }
       else if (d === "item-uninstalled")
         this.beingUninstalled = true;
-      else if (d === "item-enabled")
-        this.beingEnabled = true;
       else if (d === "item-disabled")
         this.beingDisabled = true;
     }

@@ -107,7 +107,7 @@ var foxyproxy = {
         this.toggleStatusBarText(e);
         break;
       case "foxyproxy-statusbar-width":
-        this.toggleStatusBarWidth(e);
+        this.toggleStatusBarWidth();
         break;
       case "foxyproxy-autoadd-toggle":
         this.checkPageLoad();
@@ -165,7 +165,7 @@ var foxyproxy = {
     this.checkPageLoad();
     this.toggleStatusBarIcon(this.fp.statusbar.iconEnabled);
     this.toggleStatusBarText(this.fp.statusbar.textEnabled);    
-    this.toggleStatusBarWidth(this.fp.statusbar.width);
+    this.toggleStatusBarWidth();
     this.setMode(this.fp.mode);
     this.updateCheck.check();
     // if os/x add label to FoxyProxy Tools menu.
@@ -680,7 +680,7 @@ end-foxyproxy-simple !*/
     s && (s.hidden = !e);
   },
   
-  toggleStatusBarWidth : function(w) {
+  toggleStatusBarWidth : function() {
     var s=document.getElementById("foxyproxy-status-text");
     // Statusbars don't exist on all windows (e.g,. View Source) so check for existence first,
     // otherwise we get a JS error.

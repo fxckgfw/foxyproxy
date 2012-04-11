@@ -235,6 +235,24 @@ foxyproxy.prototype = {
   
   get mode() { return this._mode; },
   setMode : function(mode, writeSettings, init) {
+    if (mode === "patterns") {
+      let cookieSettingsDiff = false;
+      // reference values 
+      let clearCookies = this.proxies.item(0).clearCookiesBeforeUse;
+      let rejectCookies = this.proxies.item(0).rejectCookies;
+      for (let i=1, len=this.proxies.length; i<len; i++) { 
+        let proxy = this.proxies.item(i);
+        if (proxy.clearCookiesBeforeUse !== clearCookies ||
+            proxy.rejectCookies !== rejectCookies) {
+          cookieSettingsDiff = true;
+          break;
+        }
+      }
+      if (cookieSettingsDiff && !this.warnings.showWarningIfDesired(null,
+          ["patternmode.cookie.warning"], "patternModeCookieWarning")) {
+        return;
+      }
+    }
     // Possible modes are: patterns, _proxy_id_ (for "Use proxy xyz for all
     // URLs), random, roundrobin, disabled, previous.
     // Note that "previous" isn't used anywhere but this method: it is
@@ -289,9 +307,6 @@ foxyproxy.prototype = {
 
   handleCacheAndCookies : function(proxy, previousProxy) {
     if (proxy) {
-      dump(proxy.id + " " + this.cacheAndCookiesChecked + " " + this.
-        cacheOrCookiesChanged + "\n");
-      if (previousProxy) dump("Previous: " + previousProxy.id + "\n");
       if (previousProxy && previousProxy.id !== proxy.id &&
           this.cacheAndCookiesChecked) {
         this.cacheAndCookiesChecked = false;

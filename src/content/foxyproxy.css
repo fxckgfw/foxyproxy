@@ -133,6 +133,9 @@ tab[id^="foxyproxy-"] /* selectall tabs whose id have the prefix "foxyproxy-" */
 #foxyproxy-proxy-tab {
   list-style-image: url("chrome://foxyproxy/content/images/monitor.png");
 }
+#foxyproxy-proxy-subscriptions-tab {
+  list-style-image: url("chrome://foxyproxy/content/images/computer_link.png");
+}
 #foxyproxy-global-tab {
   list-style-image: url("chrome://foxyproxy/content/images/world.png");
 }

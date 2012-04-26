@@ -49,8 +49,6 @@ ProxyConfig.prototype = {
     return this._wrappedProxy.id;
   },
 
-  _name: "",
-
   get name() {
     return this._wrappedProxy.name;
   },
@@ -63,8 +61,6 @@ ProxyConfig.prototype = {
       this.fp.writeSettingsAsync();
     }
   },
-
-  _notes: "",
 
   get notes() {
     return this._wrappedProxy.notes;
@@ -79,9 +75,6 @@ ProxyConfig.prototype = {
     }
   },
 
-  // same as DEFAULT_COLOR in proxy.js
-  _color: "#0055E5",
-
   get color() {
     return this._wrappedProxy.color;
   },
@@ -92,8 +85,6 @@ ProxyConfig.prototype = {
     this.fp.writeSettingsAsync();
   },
 
-  _mode: "manual",
-
   get mode() {
     return this._wrappedProxy.mode;
   },
@@ -103,8 +94,6 @@ ProxyConfig.prototype = {
     this.utils.broadcast(null, "foxyproxy-proxy-change");
     this.fp.writeSettingsAsync();
   },
-
-  _enabled: true,
 
   get enabled() {
     return this._wrappedProxy.enabled;
@@ -119,8 +108,6 @@ ProxyConfig.prototype = {
     }
   },
 
-  _selectedTabIndex: 1,
-
   get selectedTabIndex() {
     return this._wrappedProxy.selectedTabIndex;
   },
@@ -130,8 +117,6 @@ ProxyConfig.prototype = {
     this.utils.broadcast(null, "foxyproxy-proxy-change");
     this.fp.writeSettingsAsync();
   },
-
-  _animatedIcons: true,
 
   get animatedIcons() {
     return this._wrappedProxy.animatedIcons;
@@ -143,8 +128,6 @@ ProxyConfig.prototype = {
     this.fp.writeSettingsAsync();
   },
 
-  _includeInCycle: true,
-
   get includeInCycle() {
     return this._wrappedProxy.animatedIcons;
   },
@@ -154,8 +137,6 @@ ProxyConfig.prototype = {
     this.utils.broadcast(null, "foxyproxy-proxy-change");
     this.fp.writeSettingsAsync();
   },
-
-  _clearCacheBeforeUse: false,
 
   get clearCacheBeforeUse() {
     return this._wrappedProxy.clearCacheBeforeUse;
@@ -167,8 +148,6 @@ ProxyConfig.prototype = {
     this.fp.writeSettingsAsync();
   },
 
-  _disableCache: false,
-
   get disableCache() {
     return this._wrappedProxy.disableCache;
   },
@@ -178,8 +157,6 @@ ProxyConfig.prototype = {
     this.utils.broadcast(null, "foxyproxy-proxy-change");
     this.fp.writeSettingsAsync();
   },
-
-  _clearCookiesBeforeUse: false,
 
   get clearCookiesBeforeUse() {
     return this._wrappedProxy.clearCookiesBeforeUse;
@@ -191,8 +168,6 @@ ProxyConfig.prototype = {
     this.fp.writeSettingsAsync();
   },
 
-  _rejectCookies: false,
-
   get rejectCookies() {
     return this._wrappedProxy.rejectCookies;
   },
@@ -202,8 +177,6 @@ ProxyConfig.prototype = {
     this.utils.broadcast(null, "foxyproxy-proxy-change");
     this.fp.writeSettingsAsync();
   },
-
-  _proxyDNS: true,
 
   get proxyDNS() {
     return this._wrappedProxy.proxyDNS;
@@ -217,7 +190,6 @@ ProxyConfig.prototype = {
 
   manualConfig: {
     owner: null,
-    _host: "",
 
     get host() {
       return this.owner._wrappedProxy.manualconf.host;
@@ -229,8 +201,6 @@ ProxyConfig.prototype = {
       this.owner.fp.writeSettingsAsync();
     },
 
-    _port: "",
-
     get port() {
       return this.owner._wrappedProxy.manualconf.port;
     },
@@ -241,8 +211,6 @@ ProxyConfig.prototype = {
       this.owner.fp.writeSettingsAsync();
     },
 
-    _socks: false,
-
     get socks() {
       return this.owner._wrappedProxy.manualconf.isSocks;
     },
@@ -252,8 +220,6 @@ ProxyConfig.prototype = {
       this.owner.utils.broadcast(null, "foxyproxy-proxy-change");
       this.owner.fp.writeSettingsAsync();
     },
-
-    _socksVersion: 5,
 
     get socksversion() {
       return this.owner._wrappedProxy.manualconf.socksversion;
@@ -269,7 +235,6 @@ ProxyConfig.prototype = {
   autoConfig: {
     owner: null,
     autoConfObj: null,
-    _loadNotification: true,
 
     get loadNotification() {
       return this.autoConfObj.loadNotification;
@@ -281,8 +246,6 @@ ProxyConfig.prototype = {
       this.owner.fp.writeSettingsAsync();
     },
 
-    _errorNotification: true,
-
     get errorNotification() {
       return this.autoConfObj.errorNotification;
     },
@@ -292,8 +255,6 @@ ProxyConfig.prototype = {
       this.owner.utils.broadcast(null, "foxyproxy-proxy-change");
       this.owner.fp.writeSettingsAsync();
     },
-
-    _url: "",
 
     get url() {
       return this.autoConfObj.url;
@@ -305,8 +266,6 @@ ProxyConfig.prototype = {
       this.owner.fp.writeSettingsAsync();
     },
 
-    _autoReload: false,
-
     get autoReload() {
       return this.autoConfObj.autoReload;
     },
@@ -316,8 +275,6 @@ ProxyConfig.prototype = {
       this.owner.utils.broadcast(null, "foxyproxy-proxy-change");
       this.owner.fp.writeSettingsAsync();
     },
-
-    _reloadFrequencyMins: 60,
 
     get reloadFrequencyMins() {
       return this.autoConfObj.reloadFreqMins;
@@ -329,8 +286,6 @@ ProxyConfig.prototype = {
       this.owner.fp.writeSettingsAsync();
     },
 
-    _disableOnBadPAC: true,
-
     get disableOnBadPAC() {
       return this.autoConfObj.disableOnBadPAC;
     },
@@ -340,8 +295,6 @@ ProxyConfig.prototype = {
       this.owner.utils.broadcast(null, "foxyproxy-proxy-change");
       this.owner.fp.writeSettingsAsync();
     },
-
-    _mode: "pac",
 
     get mode() {
       return this.owner._wrappedProxy.autoconfMode;

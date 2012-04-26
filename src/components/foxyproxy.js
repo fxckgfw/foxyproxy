@@ -661,7 +661,8 @@ foxyproxy.prototype = {
       let foStream = CC["@mozilla.org/network/file-output-stream;1"].
         createInstance(CI.nsIFileOutputStream);
       // write, create, truncate
-      foStream.init(o2, 0x02 | 0x08 | 0x20, 0664, 0);
+      // Octal values (as 0664) are deprecated; "-1" does the job here as well.
+      foStream.init(o2, 0x02 | 0x08 | 0x20, -1, 0);
       foStream.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n", 39);
       CC["@mozilla.org/xmlextras/xmlserializer;1"].createInstance(CI.
         nsIDOMSerializer).serializeToStream(gFP.toDOM(), foStream, "UTF-8");

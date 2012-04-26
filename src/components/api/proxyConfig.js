@@ -30,6 +30,8 @@ CU.import("resource://gre/modules/XPCOMUtils.jsm");
  * FoxyProxy Api - Non-singleton ProxyConfig instances
  */
 function ProxyConfig(wrappedProxy) {
+  this.fp = CC["@leahscape.org/foxyproxy/service;1"].getService().
+    wrappedJSObject; 
   this._wrappedProxy = wrappedProxy || Proxy.fromProxyConfig(this);
   this.manualConfig.owner = this.autoConfig.owner = this;
   // We need this here to get a good default value for autoConfObj (i.e. the
@@ -39,6 +41,7 @@ function ProxyConfig(wrappedProxy) {
 };
 
 ProxyConfig.prototype = {
+  fp: null,
   _wrappedProxy: null,
 
   // getter only for |id| -- no setter
@@ -57,6 +60,7 @@ ProxyConfig.prototype = {
     if (!this._wrappedProxy.lastresort) {
       this._wrappedProxy.name = e;
       this.utils.broadcast(null, "foxyproxy-proxy-change");
+      this.fp.writeSettingsAsync();
     }
   },
 
@@ -71,6 +75,7 @@ ProxyConfig.prototype = {
     if (!this._wrappedProxy.lastresort) {
       this._wrappedProxy.notes = e;
       this.utils.broadcast(null, "foxyproxy-proxy-change");
+      this.fp.writeSettingsAsync();
     }
   },
 
@@ -84,6 +89,7 @@ ProxyConfig.prototype = {
   set color(e) {
     this._wrappedProxy.color = e;
     this.utils.broadcast(null, "foxyproxy-proxy-change");
+    this.fp.writeSettingsAsync();
   },
 
   _mode: "manual",
@@ -95,6 +101,7 @@ ProxyConfig.prototype = {
   set mode(e) {
     this._wrappedProxy.mode = e;
     this.utils.broadcast(null, "foxyproxy-proxy-change");
+    this.fp.writeSettingsAsync();
   },
 
   _enabled: true,
@@ -108,6 +115,7 @@ ProxyConfig.prototype = {
     if (!this._wrappedProxy.lastresort) {
       this._wrappedProxy.enabled = e;
       this.utils.broadcast(null, "foxyproxy-proxy-change");
+      this.fp.writeSettingsAsync();
     }
   },
 
@@ -120,6 +128,7 @@ ProxyConfig.prototype = {
   set selectedTabIndex(e) {
     this._wrappedProxy.selectedTabIndex = e;
     this.utils.broadcast(null, "foxyproxy-proxy-change");
+    this.fp.writeSettingsAsync();
   },
 
   _animatedIcons: true,
@@ -131,6 +140,7 @@ ProxyConfig.prototype = {
   set animatedIcons(e) {
     this._wrappedProxy.animatedIcons = e;
     this.utils.broadcast(null, "foxyproxy-proxy-change");
+    this.fp.writeSettingsAsync();
   },
 
   _includeInCycle: true,
@@ -142,6 +152,7 @@ ProxyConfig.prototype = {
   set includeInCycle(e) {
    this._wrappedProxy.includeInCycle = e;
     this.utils.broadcast(null, "foxyproxy-proxy-change");
+    this.fp.writeSettingsAsync();
   },
 
   _clearCacheBeforeUse: false,
@@ -153,6 +164,7 @@ ProxyConfig.prototype = {
   set clearCacheBeforeUse(e) {
     this._wrappedProxy.clearCacheBeforeUse = e;
     this.utils.broadcast(null, "foxyproxy-proxy-change");
+    this.fp.writeSettingsAsync();
   },
 
   _disableCache: false,
@@ -164,6 +176,7 @@ ProxyConfig.prototype = {
   set disableCache(e) {
     this._wrappedProxy.disableCache = e;
     this.utils.broadcast(null, "foxyproxy-proxy-change");
+    this.fp.writeSettingsAsync();
   },
 
   _clearCookiesBeforeUse: false,
@@ -175,6 +188,7 @@ ProxyConfig.prototype = {
   set clearCookiesBeforeUse(e) {
     this._wrappedProxy.clearCookiesBeforeUse = e;
     this.utils.broadcast(null, "foxyproxy-proxy-change");
+    this.fp.writeSettingsAsync();
   },
 
   _rejectCookies: false,
@@ -186,6 +200,7 @@ ProxyConfig.prototype = {
   set rejectCookies(e) {
     this._wrappedProxy.rejectCookies = e;
     this.utils.broadcast(null, "foxyproxy-proxy-change");
+    this.fp.writeSettingsAsync();
   },
 
   _proxyDNS: true,
@@ -197,6 +212,7 @@ ProxyConfig.prototype = {
   set proxyDNS(e) {
     this._wrappedProxy.proxyDNS = e;
     this.utils.broadcast(null, "foxyproxy-proxy-change");
+    this.fp.writeSettingsAsync();
   },
 
   manualConfig: {
@@ -210,6 +226,7 @@ ProxyConfig.prototype = {
     set host(e) {
       this.owner._wrappedProxy.manualconf.host = e;
       this.owner.utils.broadcast(null, "foxyproxy-proxy-change");
+      this.owner.fp.writeSettingsAsync();
     },
 
     _port: "",
@@ -221,6 +238,7 @@ ProxyConfig.prototype = {
     set port(e) {
       this.owner._wrappedProxy.manualconf.port = e;
       this.owner.utils.broadcast(null, "foxyproxy-proxy-change");
+      this.owner.fp.writeSettingsAsync();
     },
 
     _socks: false,
@@ -232,6 +250,7 @@ ProxyConfig.prototype = {
     set socks(e) {
       this.owner._wrappedProxy.manualconf.isSocks = e;
       this.owner.utils.broadcast(null, "foxyproxy-proxy-change");
+      this.owner.fp.writeSettingsAsync();
     },
 
     _socksVersion: 5,
@@ -243,6 +262,7 @@ ProxyConfig.prototype = {
     set socksversion(e) {
       this.owner._wrappedProxy.manualconf.socksversion = e;
       this.owner.utils.broadcast(null, "foxyproxy-proxy-change");
+      this.owner.fp.writeSettingsAsync();
     }
   },
 
@@ -258,6 +278,7 @@ ProxyConfig.prototype = {
     set loadNotification(e) {
       this.autoConfObj.loadNotification = e;
       this.owner.utils.broadcast(null, "foxyproxy-proxy-change");
+      this.owner.fp.writeSettingsAsync();
     },
 
     _errorNotification: true,
@@ -269,6 +290,7 @@ ProxyConfig.prototype = {
     set errorNotification(e) {
       this.autoConfObj.errorNotification = e;
       this.owner.utils.broadcast(null, "foxyproxy-proxy-change");
+      this.owner.fp.writeSettingsAsync();
     },
 
     _url: "",
@@ -280,6 +302,7 @@ ProxyConfig.prototype = {
     set url(e) {
       this.autoConfObj.url = e;
       this.owner.utils.broadcast(null, "foxyproxy-proxy-change");
+      this.owner.fp.writeSettingsAsync();
     },
 
     _autoReload: false,
@@ -291,6 +314,7 @@ ProxyConfig.prototype = {
     set autoReload(e) {
       this.autoConfObj.autoReload = e;
       this.owner.utils.broadcast(null, "foxyproxy-proxy-change");
+      this.owner.fp.writeSettingsAsync();
     },
 
     _reloadFrequencyMins: 60,
@@ -302,6 +326,7 @@ ProxyConfig.prototype = {
     set reloadFrequencyMins(e) {
       this.autoConfObj.reloadFreqMins = e;
       this.owner.utils.broadcast(null, "foxyproxy-proxy-change");
+      this.owner.fp.writeSettingsAsync();
     },
 
     _disableOnBadPAC: true,
@@ -313,6 +338,7 @@ ProxyConfig.prototype = {
     set disableOnBadPAC(e) {
       this.autoConfObj.disableOnBadPAC = e;
       this.owner.utils.broadcast(null, "foxyproxy-proxy-change");
+      this.owner.fp.writeSettingsAsync();
     },
 
     _mode: "pac",
@@ -336,6 +362,7 @@ ProxyConfig.prototype = {
         this.autoConfObj = null;
       }
       this.owner.utils.broadcast(null, "foxyproxy-proxy-change");
+      this.owner.fp.writeSettingsAsync();
     }
   },
 

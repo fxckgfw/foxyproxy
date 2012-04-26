@@ -252,7 +252,6 @@ let defaultPrefs = {
         this.addPrefsObservers();
       }
       else if (topic == "foxyproxy-proxy-change") {
-        dump("Proxy Change!\n");
         if (this.fp._mode == "disabled") return;
         this.setOrUnsetPrefetch();
         // Start listening for pref changes if we aren't already

@@ -60,6 +60,7 @@ ProxyConfigs.prototype = {
     let ret = this.fp.proxies.insertAt(idx, p);
     // TODO: move this into insertAt()
     this.fp.broadcast(null, "foxyproxy-proxy-change");
+    this.fp.writeSettingsAsync();
     return ret;    
   },
 

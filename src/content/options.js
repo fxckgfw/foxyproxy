@@ -622,7 +622,8 @@ function saveLog() {
 	
 	var os = CC["@mozilla.org/intl/converter-output-stream;1"].createInstance(CI.nsIConverterOutputStream);	
 	var fos = CC["@mozilla.org/network/file-output-stream;1"].createInstance(CI.nsIFileOutputStream); // create the output stream
-	fos.init(fp.file, 0x02 | 0x08 | 0x20 /*write | create | truncate*/, 0664, 0);
+        // -1 leads to 0664 (the latter is deprecated, though)
+	fos.init(fp.file, 0x02 | 0x08 | 0x20 /*write | create | truncate*/, -1, 0);
 	os.init(fos, "UTF-8", 0, 0x0000);
 	os.writeString(foxyproxy.logg.toHTML());
 	os.close();

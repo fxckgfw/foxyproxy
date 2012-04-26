@@ -32,6 +32,9 @@ CU.import("resource://gre/modules/XPCOMUtils.jsm");
 function ProxyConfig(wrappedProxy) {
   this._wrappedProxy = wrappedProxy || Proxy.fromProxyConfig(this);
   this.manualConfig.owner = this.autoConfig.owner = this;
+  // We need this here to get a good default value for autoConfObj (i.e. the
+  // PAC-AutoConf object)
+  this.autoConfig.autoConfObj = this._wrappedProxy.autoconf;
   CU.import("resource://foxyproxy/utils.jsm", this);
 };
 
@@ -245,69 +248,70 @@ ProxyConfig.prototype = {
 
   autoConfig: {
     owner: null,
+    autoConfObj: null,
     _loadNotification: true,
 
     get loadNotification() {
-      return this.owner._wrappedProxy.autoconf.loadNotification;
+      return this.autoConfObj.loadNotification;
     },
 
     set loadNotification(e) {
-      this.owner._wrappedProxy.autoconf.loadNotification = e;
+      this.autoConfObj.loadNotification = e;
       this.owner.utils.broadcast(null, "foxyproxy-proxy-change");
     },
 
     _errorNotification: true,
 
     get errorNotification() {
-      return this.owner._wrappedProxy.autoconf.errorNotification;
+      return this.autoConfObj.errorNotification;
     },
 
     set errorNotification(e) {
-      this.owner._wrappedProxy.autoconf.errorNotification = e;
+      this.autoConfObj.errorNotification = e;
       this.owner.utils.broadcast(null, "foxyproxy-proxy-change");
     },
 
     _url: "",
 
     get url() {
-      return this.owner._wrappedProxy.autoconf.url;
+      return this.autoConfObj.url;
     },
 
     set url(e) {
-      this.owner._wrappedProxy.autoconf.url = e;
+      this.autoConfObj.url = e;
       this.owner.utils.broadcast(null, "foxyproxy-proxy-change");
     },
 
     _autoReload: false,
 
     get autoReload() {
-      return this.owner._wrappedProxy.autoconf.autoReload;
+      return this.autoConfObj.autoReload;
     },
 
     set autoReload(e) {
-      this.owner._wrappedProxy.autoconf.autoReload = e;
+      this.autoConfObj.autoReload = e;
       this.owner.utils.broadcast(null, "foxyproxy-proxy-change");
     },
 
     _reloadFrequencyMins: 60,
 
     get reloadFrequencyMins() {
-      return this.owner._wrappedProxy.autoconf.reloadFreqMins;
+      return this.autoConfObj.reloadFreqMins;
     },
 
     set reloadFrequencyMins(e) {
-      this.owner._wrappedProxy.autoconf.reloadFreqMins = e;
+      this.autoConfObj.reloadFreqMins = e;
       this.owner.utils.broadcast(null, "foxyproxy-proxy-change");
     },
 
     _disableOnBadPAC: true,
 
     get disableOnBadPAC() {
-      return this.owner._wrappedProxy.autoconf.disableOnBadPAC;
+      return this.autoConfObj.disableOnBadPAC;
     },
 
     set disableOnBadPAC(e) {
-      this.owner._wrappedProxy.autoconf.disableOnBadPAC = e;
+      this.autoConfObj.disableOnBadPAC = e;
       this.owner.utils.broadcast(null, "foxyproxy-proxy-change");
     },
 
@@ -319,6 +323,18 @@ ProxyConfig.prototype = {
 
     set mode(e) {
       this.owner._wrappedProxy.autoconfMode = e;
+      // Should the PAC object or the WPAD object get changed?
+      if (e === "pac") {
+        // The webdev wants to change the PAC object...
+        this.autoConfObj = this.owner._wrappedProxy.autoconf;
+      } else if (e === "wpad") {
+        // The webdev wants to change the WPAD object...
+        this.autoConfObj = this.owner._wrappedProxy.wpad;
+      } else {
+        // Wrong mode. Setting autoConfObj to null to avoid overwriting existing
+        // values (accidentally).
+        this.autoConfObj = null;
+      }
       this.owner.utils.broadcast(null, "foxyproxy-proxy-change");
     }
   },

@@ -294,33 +294,6 @@ Proxy.prototype = {
     return e;
   },
 
-  // Used by the FoxyProxy API to create read-only 
-  toProxyConfig : function() {
-    let pc = CC["@leahscape.org/foxyproxy/proxyconfig;1"].createInstance(CI.
-      foxyProxyProxyConfig);
-    pc.id = this.id;
-    pc.name = this.name;
-    return pc;
-/*
-    attribute long id;  // read-only
-    attribute AString name;
-    attribute AString notes;
-    attribute AString color;
-    attribute AString mode;
-    attribute boolean enabled;
-    attribute long selectedTabIndex;
-    attribute boolean animatedIcons;
-    attribute boolean includeInCycle;
-    attribute boolean clearCacheBeforeUse;
-    attribute boolean disableCache;
-    attribute boolean clearCookiesBeforeUse;
-    attribute boolean rejectCookies;
-    attribute boolean proxyDNS;
-    attribute jsval manualConfig;
-    attribute jsval autoConfig;
-  */
-  },
-  
   /**
    * If this proxy requires network.dns.disablePrefetch to be false,
    * return true. network.dns.disablePrefetch must be false when the

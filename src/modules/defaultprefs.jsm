@@ -222,7 +222,6 @@ let defaultPrefs = {
             }
           }
         } else if (this.beingEnabled) {
-          dump("We got enabled, saving the original values...\n");
           // We do not know how long we have been disabled and whether the user
           // changed her default cookie/cache settings meanwhile. Therefore, we
           // save them again.
@@ -232,8 +231,6 @@ let defaultPrefs = {
         }
       }
       else if (topic == "foxyproxy-mode-change") {
-        dump("Mode change! Now: " + this.fp._mode + " Previous: " + this.fp.
-          _previousMode + "\n");
         if (this.fp._mode == "disabled") {
           // We need to reset this value in order to not miss changes while
           // disabling FoxyProxy and enabling the same proxy again.

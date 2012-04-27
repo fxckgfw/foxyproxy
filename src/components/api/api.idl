@@ -3,7 +3,7 @@
 
 [scriptable, uuid(c5a3caf1-d6bf-43be-8de6-e508ad02ca36)]
 interface foxyProxyConfig : nsISupports {
-  readonly attribute long id;
+  readonly attribute unsigned long id;
   attribute AString name;
   attribute AString notes;
   attribute AString color;

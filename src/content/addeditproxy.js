@@ -108,7 +108,20 @@ function onLoad() {
   }
   _updateView();
   sizeToContent();
+  CC["@mozilla.org/observer-service;1"].
+    getService(CI.nsIObserverService).
+    addObserver(observer,"foxyproxy-proxy-change", false);
 }
+
+let observer = {
+  observe : function(subj, topic, str) {
+    switch (topic) {
+      case "foxyproxy-proxy-change":
+        onLoad();
+        break;
+     }
+   }
+};
 
 function onCancel() {
   // We just overwrite the new array with the old one. Checking whether any
@@ -236,6 +249,8 @@ function onOK() {
   }
   proxy.afterPropertiesSet();
   window.arguments[0].out = {proxy:proxy};
+  CC["@mozilla.org/observer-service;1"].getService(CI.nsIObserverService).
+    removeObserver(observer, "foxyproxy-proxy-change");
   return true;
 }
 

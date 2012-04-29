@@ -237,10 +237,10 @@ foxyproxy.prototype = {
   setMode : function(mode, writeSettings, init) {
     if (mode === "patterns") {
       let cookieSettingsDiff = false;
-      // reference values 
+      // reference values
       let clearCookies = this.proxies.item(0).clearCookiesBeforeUse;
       let rejectCookies = this.proxies.item(0).rejectCookies;
-      for (let i=1, len=this.proxies.length; i<len; i++) { 
+      for (let i=1, len=this.proxies.length; i<len; i++) {
         let proxy = this.proxies.item(i);
         if (proxy.clearCookiesBeforeUse !== clearCookies ||
             proxy.rejectCookies !== rejectCookies) {

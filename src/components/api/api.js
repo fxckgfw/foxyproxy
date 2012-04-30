@@ -133,7 +133,7 @@ api.prototype = {
    * |name| is the name of the addon installed, one of:
    * "FoxyProxyBasic", "FoxyProxyStandard", or "FoxyProxyPlus"
    * |version| is the version of the installed addon.
-   */ 
+   */
   get version() {
     if (this.apiDisabled) return null;
     let name;
@@ -144,9 +144,7 @@ api.prototype = {
       try {
         CC["@leahscape.com/foxyproxyplus/licenseresolver;1"].getService().
           wrappedJSObject;
-        name = "FoxyProxyPlus"; // Note: untested so far + we should avoid the
-                                // warning in the error console if the service
-                                // was not found.
+        name = "FoxyProxyPlus";
       }
       catch (e) {
         name = "FoxyProxyStandard";
@@ -175,7 +173,8 @@ api.prototype = {
     // First notify options.xul, addeditproxy.xul, etc (if they are open)
     this.utils.broadcast(null, "foxyproxy-proxy-change");
 
-    let callbackObj = metaCallback.callbackObj || {}; // to eliminate some null checks
+    // to eliminate some null checks
+    let callbackObj = metaCallback.callbackObj || {};
     let calledBack = false;
 
     function callbackHook() {
@@ -188,7 +187,7 @@ api.prototype = {
         if (metaCallback.successTest) {
           if (metaCallback.successTest()) {
             // It did -- inform content
-            if (callbackObj.success) 
+            if (callbackObj.success)
               callbackObj.success(metaCallback.successArgs);
           }
           else {
@@ -236,20 +235,20 @@ api.prototype = {
       if (!nb) {
         this.fp.notifier.alert(null, message);
         return;
-      } 
+      }
     }
     let buttons = [
-      { 
+      {
         label: this.fp.getMessage("allow"),
         accessKey: this.fp.getMessage("allow.accesskey"),
-        popup: null, 
+        popup: null,
         callback: callbackHook,
         callbackArgs: null
-      }                 
+      }
     ];
     nb.appendNotification(message, "foxyproxy-notification",
-        "chrome://foxyproxy/content/images/16x16.gif", nb.PRIORITY_WARNING_MEDIUM,
-        buttons, nbEventCallback);    
+      "chrome://foxyproxy/content/images/16x16.gif", nb.PRIORITY_WARNING_MEDIUM,
+      buttons, nbEventCallback);
   },
 
   // nsIClassInfo

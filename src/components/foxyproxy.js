@@ -236,6 +236,7 @@ foxyproxy.prototype = {
   get mode() { return this._mode; },
   setMode : function(mode, writeSettings, init) {
     if (mode === "patterns") {
+      // Should we display the warning about problematic cookie behavior?
       let cookieSettingsDiff = false;
       // reference values
       let clearCookies = this.proxies.item(0).clearCookiesBeforeUse;

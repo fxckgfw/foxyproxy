@@ -103,9 +103,10 @@
   <!-- We declare the context attribute but have no id as argument in order
        to avoid the mess with getting the default context menu shown. --> 
   <toolbarpalette id="BrowserToolbarPalette">
-    <toolbarbutton id="foxyproxy-toolbar-icon" type="menu" orient="horizontal"
-      label="&foxyproxy.standard.label;" mode="patterns" persist="mode"
-      context="" onclick="foxyproxy.onSBTBClick(event, foxyproxy.fp.toolbar);">
+    <toolbarbutton id="foxyproxy-toolbar-icon" class="toolbarbutton-1"
+      type="menu" orient="horizontal" label="&foxyproxy.standard.label;"
+      mode="patterns" persist="mode" context=""
+      onclick="foxyproxy.onSBTBClick(event, foxyproxy.fp.toolbar);">
     </toolbarbutton>
   </toolbarpalette>
 

@@ -122,5 +122,32 @@ let CI = Components.interfaces, CC = Components.classes, gObsSvc =
           "\n");
         throw(e);
       }
+    },
+
+    /**
+     * Returns true if user is OK with the cookie warning and wants to proceed.
+     * Returns false if user does not want to proceed.
+     */
+    displayCookieWarning : function(mode, fp) {
+      if (mode === "patterns") {
+        // Should we display the warning about problematic cookie behavior?
+        let cookieSettingsDiff = false;
+        // reference values
+        let clearCookies = fp.proxies.item(0).clearCookiesBeforeUse;
+        let rejectCookies = fp.proxies.item(0).rejectCookies;
+        for (let i=1, len=fp.proxies.length; i<len; i++) {
+          let proxy = fp.proxies.item(i);
+          if (proxy.clearCookiesBeforeUse !== clearCookies ||
+              proxy.rejectCookies !== rejectCookies) {
+            cookieSettingsDiff = true;
+            break;
+          }
+        }
+        if (cookieSettingsDiff && !fp.warnings.showWarningIfDesired(null,
+            ["patternmode.cookie.warning"], "patternModeCookieWarning")) {
+          return false;
+        }
+      }
+      return true;
     }
   };

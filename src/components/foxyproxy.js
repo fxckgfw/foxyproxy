@@ -236,9 +236,9 @@ foxyproxy.prototype = {
   
   get mode() { return this._mode; },
   setMode : function(mode, writeSettings, init) {
-    if (!this.utils.displayCookieWarning(mode, this)) {
-      return;
-    }
+    // If the user is about to enter pattern mode AND has different cookie
+    // related settings in her proxies we show a warning.
+    this.utils.displayPatternCookieWarning(mode, this);
     // Possible modes are: patterns, _proxy_id_ (for "Use proxy xyz for all
     // URLs), random, roundrobin, disabled, previous.
     // Note that "previous" isn't used anywhere but this method: it is

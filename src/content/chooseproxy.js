@@ -10,6 +10,7 @@
 **/
 var proxyTree, fp, fpc, inn;
 const CC = Components.classes, CI = Components.interfaces;
+Components.utils.import("resource://foxyproxy/utils.jsm");
 
 function onLoad() {
   proxyTree = document.getElementById("proxyTree");
@@ -62,6 +63,7 @@ function onSettings() {
     "chrome, dialog, modal, resizable=yes", params).focus();
   if (params.out) {
     fp.proxies.push(params.out.proxy);
+    utils.displayPatternCookieWarning(fp.mode, fp);
     proxyTree.view = fpc.makeProxyTreeView(fp.proxies, document); /* reset the view to show the new entry */
     fp.writeSettingsAsync();
   }

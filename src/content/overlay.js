@@ -151,6 +151,7 @@ var foxyproxy = {
   },
 
   onLoad : function() {
+    Components.utils.import("resource://foxyproxy/utils.jsm", this);
     this.svgIcons.init();
     this.statusText = document.getElementById("foxyproxy-status-text");
     setTimeout(function() {foxyproxy.defaultToolbarIconFF4()}, 100);
@@ -368,10 +369,12 @@ end-foxyproxy-simple !*/
         var params = {inn:{isNew:true, proxy:p, torwiz:true}, out:null}, win = owner?owner:window;
         win.openDialog("chrome://foxyproxy/content/addeditproxy.xul", "",
           "chrome,dialog,modal,resizable=yes,center", params).focus();
-        if (params.out)
+        if (params.out) {
           _congrats(params.out.proxy);
-        else
+          this.utils.displayPatternCookieWarning(this.fp.mode, this.fp);
+        } else {
           ok = false;
+        }
       }
     }
     !ok && foxyproxy.alert(owner, this.fp.getMessage("torwiz.cancelled"));

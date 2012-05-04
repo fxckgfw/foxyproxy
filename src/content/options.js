@@ -395,6 +395,7 @@ function onSettings(isNew) {
     "chrome, dialog, modal, resizable=yes", params).focus();
   if (params.out) {
     if (isNew) foxyproxy.proxies.push(params.out.proxy);
+    this.utils.displayPatternCookieWarning(foxyproxy.mode, foxyproxy);
     utils.broadcast(true /*write settings*/, "foxyproxy-proxy-change");
     // Reselect what was previously selected or the new item
     proxyTree.view.selection.select(isNew?proxyTree.view.rowCount-2:sel); 

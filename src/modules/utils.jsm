@@ -125,10 +125,10 @@ let CI = Components.interfaces, CC = Components.classes, gObsSvc =
     },
 
     /**
-     * Returns true if user is OK with the cookie warning and wants to proceed.
-     * Returns false if user does not want to proceed.
+     * Displays a warning if the user is about to enter/in pattern mode and 
+     * the cookie related settings of her proxies differ.
      */
-    displayCookieWarning : function(mode, fp) {
+    displayPatternCookieWarning : function(mode, fp) {
       if (mode === "patterns") {
         // Should we display the warning about problematic cookie behavior?
         let cookieSettingsDiff = false;
@@ -143,11 +143,27 @@ let CI = Components.interfaces, CC = Components.classes, gObsSvc =
             break;
           }
         }
-        if (cookieSettingsDiff && !fp.warnings.showWarningIfDesired(null,
-            ["patternmode.cookie.warning"], "patternModeCookieWarning")) {
-          return false;
+        if (cookieSettingsDiff) {
+          this.showCookieWarningIfDesired(null, ["patternmode.cookie.warning2"],
+            "patternModeCookieWarning", fp);
         }
       }
-      return true;
+    },
+
+    // TODO: Merge showWarningIfDesired().
+    showCookieWarningIfDesired : function(win, msg, name, fp) {
+      if (fp.warnings._warnings[name] === undefined ||
+          fp.warnings._warnings[name]) {
+        let l10nMessage = fp.getMessage(msg[0], msg.slice(1)),
+          cb = {value: false};
+        CC["@mozilla.org/embedcomp/prompt-service;1"].
+          getService(CI.nsIPromptService).alertCheck(win,
+            fp.getMessage("foxyproxy"), l10nMessage,
+            fp.getMessage("message.stop"), cb);
+        // Note we save the inverse of user's selection because the way the
+        // question is phrased.
+        fp.warnings._warnings[name] = !cb.value;
+        fp.writeSettingsAsync();
+      }
     }
   };

@@ -106,6 +106,7 @@ function foxyproxy() {
   CU.import("resource://foxyproxy/patternSubscriptions.jsm", this);
   CU.import("resource://foxyproxy/defaultprefs.jsm", this);
   CU.import("resource://foxyproxy/cookiesAndCache.jsm", this);
+  CU.import("resource://foxyproxy/utils.jsm", this);
 };
 foxyproxy.prototype = {
   PFF : " ",
@@ -235,24 +236,8 @@ foxyproxy.prototype = {
   
   get mode() { return this._mode; },
   setMode : function(mode, writeSettings, init) {
-    if (mode === "patterns") {
-      // Should we display the warning about problematic cookie behavior?
-      let cookieSettingsDiff = false;
-      // reference values
-      let clearCookies = this.proxies.item(0).clearCookiesBeforeUse;
-      let rejectCookies = this.proxies.item(0).rejectCookies;
-      for (let i=1, len=this.proxies.length; i<len; i++) {
-        let proxy = this.proxies.item(i);
-        if (proxy.clearCookiesBeforeUse !== clearCookies ||
-            proxy.rejectCookies !== rejectCookies) {
-          cookieSettingsDiff = true;
-          break;
-        }
-      }
-      if (cookieSettingsDiff && !this.warnings.showWarningIfDesired(null,
-          ["patternmode.cookie.warning"], "patternModeCookieWarning")) {
-        return;
-      }
+    if (!this.utils.displayCookieWarning(mode, this)) {
+      return;
     }
     // Possible modes are: patterns, _proxy_id_ (for "Use proxy xyz for all
     // URLs), random, roundrobin, disabled, previous.

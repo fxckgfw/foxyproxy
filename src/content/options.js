@@ -188,17 +188,19 @@ function _updateModeMenu() {
 	
   if (!foxyproxy.isFoxyProxySimple())
     popup.appendChild(fpc.createMenuItem({idVal:"patterns",
-     labelId:"mode.patterns.label", labelArgs:"", name:"", document:document}));
+     labelId:"mode.patterns.label", labelArgs:"", name:"", document:document,
+     class:"orange"}));
   
   for (var i=0,p; i<foxyproxy.proxies.length &&
        ((p=foxyproxy.proxies.item(i)) || 1); i++)
     popup.appendChild(fpc.createMenuItem({idVal:p.id, labelId:
       "mode.custom.label", labelArgs:[p.name], name:"foxyproxy-enabled-type",
-      document:document}));
+      document:document, style:"color: " + p.color}));
     //popup.appendChild(fpc.createMenuItem({idVal["random",
     //labelId:"mode.random.label", document:document}));
   popup.appendChild(fpc.createMenuItem({idVal:"disabled", labelId:
-    "mode.disabled.label", labelArgs:"", name:"", document:document}));
+    "mode.disabled.label", labelArgs:"", name:"", document:document,
+    class:"red"}));
   menu.value = foxyproxy.mode;
   if (foxyproxy.mode != "patterns" && foxyproxy.mode != "disabled" &&
       foxyproxy.mode != "random") {
@@ -212,6 +214,24 @@ function _updateModeMenu() {
       menu.value = "disabled";
     }
   }
+/* Set color of selected menu item. All of this works except 'case "default"'
+  switch (foxyproxy.mode) {
+    case "patterns":
+      menu.setAttribute("class", "orange");
+      break;
+    case "disabled":
+      menu.setAttribute("class", "red");
+    case "random":
+      break; // not yet supported
+    case "roundrobin":
+      break; // not yet supported
+    case "default":      
+      dump("color: " + foxyproxy._selectedProxy.color + "\n");
+      // Why isn't next line working?!?!
+      menu.setAttribute("style", "color:" + foxyproxy._selectedProxy.color);
+      break;
+  }
+*/
 }
 
 function onSettingsURLBtn() {
@@ -333,21 +353,22 @@ function onDeleteSelection() {
   if (_isDefaultProxySelected())
     overlay.alert(this, foxyproxy.getMessage("delete.proxy.default"));
   else if (foxyproxy.warnings.showWarningIfDesired(window, ["delete.proxy.confirm"], "confirmDeleteProxy")) {
-    // Store cur selection
-    var sel = proxyTree.currentIndex;  
+    // Store cur selections
+    let sel = _getSelectedIndices(proxyTree);
     // We have to delete the proxy from the subscription as well. Otherwise
     // there occur errors later on while loading/removing the subscription as
     // the proxy is still saved in the subscription but not found anymore. We
     // do this before we delete the proxy itself in order to get the necessary
     // information (i.e. its id).
-    if (patternSubscriptions.subscriptionsList.length > 0) {
-      let proxyId = foxyproxy.proxies.list[sel].id;
-      patternSubscriptions.removeDeletedProxies(proxyId);
-    } 
-    foxyproxy.proxies.remove(proxyTree.currentIndex);
+    // Delete in reverse order so we don't mess up the index as we delete multiple items
+    for (let i=sel.length-1; i>=0; i--) {
+      if (patternSubscriptions.subscriptionsList.length > 0) {
+        let proxyId = foxyproxy.proxies.item[sel[i]].id;
+        patternSubscriptions.removeDeletedProxies(proxyId);
+      }
+      foxyproxy.proxies.remove(sel[i]);
+    }
     utils.broadcast(true /*write settings*/, "foxyproxy-proxy-change");
-    // Reselect what was previously selected
-    proxyTree.view.selection.select(sel+1>proxyTree.view.rowCount ? 0:sel); 
   }  
 }
 
@@ -377,11 +398,25 @@ function useSelectedForAllURLs() {
 }
 
 function onMove(direction) {
-  // Store cur selection
-  var sel = proxyTree.currentIndex;
-  foxyproxy.proxies.move(proxyTree.currentIndex, direction) && _updateView(true);  
-  // Reselect what was previously selected
-	proxyTree.view.selection.select(sel + (direction=="up"?-1:1));
+  // Store current selections
+  let sel = _getSelectedIndices(proxyTree);
+
+  if (direction=="up") {
+    for (let i=0; i<sel.length; i++)
+      foxyproxy.proxies.move(sel[i], direction);
+  }
+  else {
+    for (let i=sel.length-1; i>=0; i--)
+      foxyproxy.proxies.move(sel[i], direction);
+  }
+
+  _updateView(true);  
+  // Clear selections then reselect the moved items
+  proxyTree.view.selection.clearSelection();
+  for (let i=0; i<sel.length; i++) {
+    let tmp = sel[i] + (direction=="up"?-1:1);
+	  proxyTree.view.selection.rangedSelect(tmp, tmp, true);
+  }
 }
 
 function onSettings(isNew) {
@@ -411,12 +446,34 @@ function onSettings(isNew) {
 }
 
 function setButtons() {
-  document.getElementById("tree-row-selected").setAttribute("disabled", proxyTree.currentIndex == -1);
+  let selItems = _getSelectedIndices(proxyTree),
+    numSelected = selItems.length,
+    isDefaultSelected = _isDefaultProxySelected();
+
+//  document.getElementById("tree-row-selected").setAttribute("disabled", numSelected == 0);
+
+  // If none selected, default proxy selected, or top-most proxy selected
+  // (idx 0), disable moveUpCmd
   document.getElementById("moveUpCmd").setAttribute("disabled", 
-  	proxyTree.currentIndex == -1 || proxyTree.currentIndex == 0 || _isDefaultProxySelected());
+  	numSelected == 0 || isDefaultSelected || selItems.indexOf(0) > -1);
+
+  // If none selected, default proxy selected, bottom-most, or 2nd-bottom-most
+  // proxy selected (it can't take priority over Default Proxy), disable
+  // moveDownCmd
   document.getElementById("moveDownCmd").setAttribute("disabled", 
-  	proxyTree.currentIndex == -1 || proxyTree.currentIndex == foxyproxy.proxies.length-1 ||
-  	(proxyTree.currentIndex+1 < foxyproxy.proxies.length && foxyproxy.proxies.item(proxyTree.currentIndex+1).lastresort));
+  	numSelected == 0 || isDefaultSelected || selItems.indexOf(foxyproxy.proxies.length-1) > -1 ||
+    selItems.indexOf(foxyproxy.proxies.length-2) > -1);
+
+  // If none selected or default selected, disable delete
+  document.getElementById("deleteSelectionCmd").setAttribute("disabled", numSelected == 0 ||
+    isDefaultSelected);
+
+  // If multiple selected, disable edit
+  document.getElementById("settingsCmd").setAttribute("disabled", numSelected > 1 ||
+    numSelected == 0);
+
+  document.getElementById("copySelectionCmd").setAttribute("disabled", numSelected > 1 ||
+    numSelected == 0 || isDefaultSelected);
 }
 
 function addSubscription(type) {
@@ -761,7 +818,11 @@ function toggleEnabled() {
 }
 
 function _isDefaultProxySelected() {
-	return foxyproxy.proxies.item(proxyTree.currentIndex).lastresort;
+  for each (let i in _getSelectedIndices(proxyTree)) {
+    if (foxyproxy.proxies.item(i).lastresort)
+      return true;
+  }
+  return false;
 }
 
 function onToggleStatusBarText(checked) {
@@ -853,13 +914,13 @@ function onBlockedPagePattern() {
 function _getSelectedIndices(tree) {
   if (!tree.view) return []; /* handle empty tree views for FoxyProxy Basic */
   
-  var start = {}, end = {}, numRanges = tree.view.selection.getRangeCount(),
+  let start = {}, end = {}, numRanges = tree.view.selection.getRangeCount(),
     selectedIndices = [];
 
-  for (var t = 0; t < numRanges; t++){
+  for (let t = 0; t < numRanges; t++){
     tree.view.selection.getRangeAt(t, start, end);
-    for (var v = start.value; v <= end.value; v++)
-      selectedIndices.push(v)
+    for (let v = start.value; v <= end.value; v++)
+      selectedIndices.push(v);
   }
   return selectedIndices;
 }

@@ -253,8 +253,7 @@ function addProxy(e) {
         "modal, centerscreen, resizable", p).focus(); 
     if (p.out) {
       proxies.push(p.out.proxy);
-      document.getElementById("subscriptionProxyTree").view = fpc.
-        makeProxyTreeView(proxyTree, proxies, document); 
+      fpc.makeProxyTreeView(proxyTree, proxies, document); 
     }
   }
 }

@@ -215,7 +215,7 @@ Common.prototype = {
 
   makeProxyTreeView : function(tree, proxies, document) {
     // Save scroll position so we can restore it after making the new view
-    let visibleRow = tree.boxObject.getFirstVisibleRow();
+    let visibleRow = tree.treeBoxObject.getFirstVisibleRow();
 
     tree.view = {
       rowCount : proxies.length,
@@ -271,7 +271,7 @@ Common.prototype = {
     };
 
     // Restore scroll position - peng likes to complain that this feature was missing
-    tree.boxObject.scrollToRow(visibleRow);    
+    tree.treeBoxObject.scrollToRow(visibleRow);    
     
     /* Set the color column dynamically. Note that "x" in the CSS class
        treechildren::-moz-tree-cell(x) must contain only letters. No numbers or symbols,

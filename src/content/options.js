@@ -136,7 +136,7 @@ function _updateLogView(keepSelection) {
   noURLsCmd.setAttribute("checked", foxyproxy.logg.noURLs); 
   var selectedIndices;
   
-  if (keepSelection) selectedIndices =_getSelectedIndices(logTree);
+  if (keepSelection) selectedIndices =utils.getSelectedIndices(logTree);
   
   logTree.view = {
     rowCount : foxyproxy.logg.length,
@@ -354,7 +354,7 @@ function onDeleteSelection() {
     overlay.alert(this, foxyproxy.getMessage("delete.proxy.default"));
   else if (foxyproxy.warnings.showWarningIfDesired(window, ["delete.proxy.confirm"], "confirmDeleteProxy")) {
     // Store cur selections
-    let sel = _getSelectedIndices(proxyTree);
+    let sel = utils.getSelectedIndices(proxyTree);
     // We have to delete the proxy from the subscription as well. Otherwise
     // there occur errors later on while loading/removing the subscription as
     // the proxy is still saved in the subscription but not found anymore. We
@@ -369,6 +369,10 @@ function onDeleteSelection() {
       foxyproxy.proxies.remove(sel[i]);
     }
     utils.broadcast(true /*write settings*/, "foxyproxy-proxy-change");
+    // If only one item was deleted, select its neighbor as convenience.
+    // We don't bother with this when multiple items were selected.
+    if (sel.length == 1)
+  		proxyTree.view.selection.select(sel[0]);    	  
   }  
 }
 
@@ -399,7 +403,7 @@ function useSelectedForAllURLs() {
 
 function onMove(direction) {
   // Store current selections
-  let sel = _getSelectedIndices(proxyTree);
+  let sel = utils.getSelectedIndices(proxyTree);
 
   if (direction=="up") {
     for (let i=0; i<sel.length; i++)
@@ -446,7 +450,7 @@ function onSettings(isNew) {
 }
 
 function setButtons() {
-  let selItems = _getSelectedIndices(proxyTree),
+  let selItems = utils.getSelectedIndices(proxyTree),
     numSelected = selItems.length,
     isDefaultSelected = _isDefaultProxySelected();
 
@@ -793,16 +797,16 @@ function onProxyTreeSelected() {
 function onSubTreeSelected(type) {
   let selLength;
   if (type === "pattern") {
-    selLength = _getSelectedIndices(patternSubscriptionsTree).length; 
+    selLength = utils.getSelectedIndices(patternSubscriptionsTree).length; 
   } else {
-    setLength = _getSelectedIndices(proxySubscriptionsTree).length;
+    setLength = utils.getSelectedIndices(proxySubscriptionsTree).length;
   }
   document.getElementById(type + "subtree-row-selected").
     setAttribute("disabled", selLength === 0);
 }
 
 function updateLogButtons() {
-  document.getElementById("logtree-row-selected").setAttribute("disabled", _getSelectedIndices(logTree).length == 0);
+  document.getElementById("logtree-row-selected").setAttribute("disabled", utils.getSelectedIndices(logTree).length == 0);
 }
 
 function onProxyTreeMenuPopupShowing() {
@@ -818,7 +822,7 @@ function toggleEnabled() {
 }
 
 function _isDefaultProxySelected() {
-  for each (let i in _getSelectedIndices(proxyTree)) {
+  for each (let i in utils.getSelectedIndices(proxyTree)) {
     if (foxyproxy.proxies.item(i).lastresort)
       return true;
   }
@@ -908,25 +912,8 @@ function onBlockedPagePattern() {
   }    
 }
 
-/**
- * Get the selected indices of a multiselect tree as an integer array
- */
-function _getSelectedIndices(tree) {
-  if (!tree.view) return []; /* handle empty tree views for FoxyProxy Basic */
-  
-  let start = {}, end = {}, numRanges = tree.view.selection.getRangeCount(),
-    selectedIndices = [];
-
-  for (let t = 0; t < numRanges; t++){
-    tree.view.selection.getRangeAt(t, start, end);
-    for (let v = start.value; v <= end.value; v++)
-      selectedIndices.push(v);
-  }
-  return selectedIndices;
-}
-
 function openLogURLInNewTab() {
-  var selectedIndices = _getSelectedIndices(logTree);
+  var selectedIndices = utils.getSelectedIndices(logTree);
   
   // If more than 3 selected, ask user if he's sure he wants to open that many tabs
   if (selectedIndices.length > 4 &&
@@ -943,13 +930,13 @@ function openLogURLInNewTab() {
 }
 
 function deleteLogEntry() {
-  foxyproxy.logg.del(_getSelectedIndices(logTree));
+  foxyproxy.logg.del(utils.getSelectedIndices(logTree));
   // Refresh the log view for the user
   _updateLogView(false);  
 }
 
 function copyLogURLToClipboard() {
-  var selectedIndices = _getSelectedIndices(logTree);
+  var selectedIndices = utils.getSelectedIndices(logTree);
   
   // Copy the URLs to the cliboard, separated by spaces if there's more than one selection
   var txt = "";

@@ -165,5 +165,22 @@ let CI = Components.interfaces, CC = Components.classes, gObsSvc =
         fp.warnings._warnings[name] = !cb.value;
         fp.writeSettingsAsync();
       }
+    },
+
+    /**
+     * Get the selected indices of a multiselect tree as an integer array
+     */
+    getSelectedIndices : function(tree) {
+      if (!tree.view) return []; /* handle empty tree views for FoxyProxy Basic */
+      
+      let start = {}, end = {}, numRanges = tree.view.selection.getRangeCount(),
+        selectedIndices = [];
+
+      for (let t = 0; t < numRanges; t++){
+        tree.view.selection.getRangeAt(t, start, end);
+        for (let v = start.value; v <= end.value; v++)
+          selectedIndices.push(v);
+      }
+      return selectedIndices;
     }
   };

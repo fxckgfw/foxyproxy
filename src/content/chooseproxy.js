@@ -30,7 +30,7 @@ function onLoad() {
   var title = document.getElementById("title");
   title.appendChild(document.createTextNode(inn.title));
   
-  proxyTree.view = fpc.makeProxyTreeView(fp.proxies, document);
+  fpc.makeProxyTreeView(proxyTree, fp.proxies, document);
   proxyTree.view.selection.select(0); /* select the first entry */
   if (!inn.pattern) {
     document.getElementById("reloadcurtab").checked = inn.reloadcurtab;
@@ -64,7 +64,7 @@ function onSettings() {
   if (params.out) {
     fp.proxies.push(params.out.proxy);
     utils.displayPatternCookieWarning(fp.mode, fp);
-    proxyTree.view = fpc.makeProxyTreeView(fp.proxies, document); /* reset the view to show the new entry */
+    fpc.makeProxyTreeView(proxyTree, fp.proxies, document); /* reset the view to show the new entry */
     fp.writeSettingsAsync();
   }
 

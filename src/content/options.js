@@ -182,7 +182,8 @@ function _updateLogView(keepSelection) {
       logTree.view.selection.rangedSelect(selectedIndices[i], selectedIndices[i], true);
   }
 
-  // Restore scroll position - peng likes to complain that this feature was missing
+  // Restore scroll position - peng likes to complain that this feature was
+  // missing.
   logTree.boxObject.scrollToRow(visibleRow);    
   updateLogButtons();
 }
@@ -220,24 +221,20 @@ function _updateModeMenu() {
       menu.value = "disabled";
     }
   }
-/* Set color of selected menu item. All of this works except 'case "default"'
+  // Set color of selected menu item. All of this works except 'case "default"'
   switch (foxyproxy.mode) {
     case "patterns":
-      menu.setAttribute("class", "orange");
+      menu.setAttribute("style", "color:orange");
       break;
     case "disabled":
-      menu.setAttribute("class", "red");
+      menu.setAttribute("style", "color:red");
     case "random":
       break; // not yet supported
     case "roundrobin":
       break; // not yet supported
-    case "default":      
-      dump("color: " + foxyproxy._selectedProxy.color + "\n");
-      // Why isn't next line working?!?!
+    default:      
       menu.setAttribute("style", "color:" + foxyproxy._selectedProxy.color);
-      break;
   }
-*/
 }
 
 function onSettingsURLBtn() {
@@ -366,7 +363,8 @@ function onDeleteSelection() {
     // the proxy is still saved in the subscription but not found anymore. We
     // do this before we delete the proxy itself in order to get the necessary
     // information (i.e. its id).
-    // Delete in reverse order so we don't mess up the index as we delete multiple items
+    // Delete in reverse order so we don't mess up the index as we delete
+    // multiple items.
     for (let i=sel.length-1; i>=0; i--) {
       if (patternSubscriptions.subscriptionsList.length > 0) {
         let proxyId = foxyproxy.proxies.item[sel[i]].id;
@@ -378,7 +376,7 @@ function onDeleteSelection() {
     // If only one item was deleted, select its neighbor as convenience.
     // We don't bother with this when multiple items were selected.
     if (sel.length == 1)
-  		proxyTree.view.selection.select(sel[0]);    	  
+      proxyTree.view.selection.select(sel[0]);
   }  
 }
 
@@ -414,18 +412,17 @@ function onMove(direction) {
   if (direction=="up") {
     for (let i=0; i<sel.length; i++)
       foxyproxy.proxies.move(sel[i], direction);
-  }
-  else {
+  } else {
     for (let i=sel.length-1; i>=0; i--)
       foxyproxy.proxies.move(sel[i], direction);
   }
 
-  _updateView(true);  
+  _updateView(true);
   // Clear selections then reselect the moved items
   proxyTree.view.selection.clearSelection();
   for (let i=0; i<sel.length; i++) {
     let tmp = sel[i] + (direction=="up"?-1:1);
-	  proxyTree.view.selection.rangedSelect(tmp, tmp, true);
+    proxyTree.view.selection.rangedSelect(tmp, tmp, true);
   }
 }
 
@@ -440,7 +437,7 @@ function onSettings(isNew) {
     "chrome, dialog, modal, resizable=yes", params).focus();
   if (params.out) {
     if (isNew) foxyproxy.proxies.push(params.out.proxy);
-    this.utils.displayPatternCookieWarning(foxyproxy.mode, foxyproxy);
+    utils.displayPatternCookieWarning(foxyproxy.mode, foxyproxy);
     utils.broadcast(true /*write settings*/, "foxyproxy-proxy-change");
     // Reselect what was previously selected or the new item
     proxyTree.view.selection.select(isNew?proxyTree.view.rowCount-2:sel); 
@@ -465,25 +462,26 @@ function setButtons() {
   // If none selected, default proxy selected, or top-most proxy selected
   // (idx 0), disable moveUpCmd
   document.getElementById("moveUpCmd").setAttribute("disabled", 
-  	numSelected == 0 || isDefaultSelected || selItems.indexOf(0) > -1);
+    numSelected == 0 || isDefaultSelected || selItems.indexOf(0) > -1);
 
   // If none selected, default proxy selected, bottom-most, or 2nd-bottom-most
   // proxy selected (it can't take priority over Default Proxy), disable
   // moveDownCmd
-  document.getElementById("moveDownCmd").setAttribute("disabled", 
-  	numSelected == 0 || isDefaultSelected || selItems.indexOf(foxyproxy.proxies.length-1) > -1 ||
+  document.getElementById("moveDownCmd").setAttribute("disabled",
+    numSelected == 0 || isDefaultSelected ||
+    selItems.indexOf(foxyproxy.proxies.length-1) > -1 ||
     selItems.indexOf(foxyproxy.proxies.length-2) > -1);
 
   // If none selected or default selected, disable delete
-  document.getElementById("deleteSelectionCmd").setAttribute("disabled", numSelected == 0 ||
-    isDefaultSelected);
+  document.getElementById("deleteSelectionCmd").setAttribute("disabled",
+    numSelected == 0 || isDefaultSelected);
 
   // If multiple selected, disable edit
-  document.getElementById("settingsCmd").setAttribute("disabled", numSelected > 1 ||
-    numSelected == 0);
+  document.getElementById("settingsCmd").setAttribute("disabled",
+    numSelected > 1 || numSelected == 0);
 
-  document.getElementById("copySelectionCmd").setAttribute("disabled", numSelected > 1 ||
-    numSelected == 0 || isDefaultSelected);
+  document.getElementById("copySelectionCmd").setAttribute("disabled",
+    numSelected > 1 || numSelected == 0 || isDefaultSelected);
 }
 
 function addSubscription(type) {
@@ -812,7 +810,8 @@ function onSubTreeSelected(type) {
 }
 
 function updateLogButtons() {
-  document.getElementById("logtree-row-selected").setAttribute("disabled", utils.getSelectedIndices(logTree).length == 0);
+  document.getElementById("logtree-row-selected").setAttribute("disabled",
+    utils.getSelectedIndices(logTree).length == 0);
 }
 
 function onProxyTreeMenuPopupShowing() {

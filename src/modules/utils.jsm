@@ -171,8 +171,9 @@ let CI = Components.interfaces, CC = Components.classes, gObsSvc =
      * Get the selected indices of a multiselect tree as an integer array
      */
     getSelectedIndices : function(tree) {
-      if (!tree.view) return []; /* handle empty tree views for FoxyProxy Basic */
-      
+      // handle empty tree views for FoxyProxy Basic
+      if (!tree.view) return [];
+
       let start = {}, end = {}, numRanges = tree.view.selection.getRangeCount(),
         selectedIndices = [];
 

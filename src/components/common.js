@@ -213,8 +213,11 @@ Common.prototype = {
     }
   },
 
-  makeProxyTreeView : function(proxies, document) {    
-    var ret = {
+  makeProxyTreeView : function(tree, proxies, document) {
+    // Save scroll position so we can restore it after making the new view
+    let visibleRow = tree.boxObject.getFirstVisibleRow();
+
+    tree.view = {
       rowCount : proxies.length,
       getCellText : function(row, column) {
         var i = proxies.item(row);    
@@ -266,6 +269,9 @@ Common.prototype = {
       },
       getLevel: function(row){ return 0; }
     };
+
+    // Restore scroll position - peng likes to complain that this feature was missing
+    tree.boxObject.scrollToRow(visibleRow);    
     
     /* Set the color column dynamically. Note that "x" in the CSS class
        treechildren::-moz-tree-cell(x) must contain only letters. No numbers or symbols,
@@ -277,7 +283,6 @@ Common.prototype = {
       var p = proxies.item(i);
       styleSheet.insertRule("treechildren::-moz-tree-cell(" + p.colorString + "){border: 1px solid black;background-color:" + p.color + "}", styleSheet.cssRules.length);
     }
-    return ret;
   }, 
   
   isThunderbird : function() {

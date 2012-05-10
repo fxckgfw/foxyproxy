@@ -136,8 +136,11 @@ function _updateLogView(keepSelection) {
   noURLsCmd.setAttribute("checked", foxyproxy.logg.noURLs); 
   var selectedIndices;
   
-  if (keepSelection) selectedIndices =utils.getSelectedIndices(logTree);
-  
+  if (keepSelection) selectedIndices = utils.getSelectedIndices(logTree);
+
+  // Save scroll position so we can restore it after making the new view
+  let visibleRow = logTree.boxObject.getFirstVisibleRow();
+
   logTree.view = {
     rowCount : foxyproxy.logg.length,
     getCellText : function(row, column) {
@@ -178,6 +181,9 @@ function _updateLogView(keepSelection) {
     for (var i = 0, sz=selectedIndices.length; i<sz; i++)
       logTree.view.selection.rangedSelect(selectedIndices[i], selectedIndices[i], true);
   }
+
+  // Restore scroll position - peng likes to complain that this feature was missing
+  logTree.boxObject.scrollToRow(visibleRow);    
   updateLogButtons();
 }
 
@@ -333,7 +339,7 @@ function _updateView(writeSettings, updateLogView) {
     onQuickAddEnabled(false);
   }
   
-  proxyTree.view = fpc.makeProxyTreeView(foxyproxy.proxies, document);
+  fpc.makeProxyTreeView(proxyTree, foxyproxy.proxies, document);
   patternSubscriptionsTree.view = patternSubscriptions.
     makeSubscriptionsTreeView();
   

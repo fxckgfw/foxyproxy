@@ -72,7 +72,7 @@ function onLoad(type) {
           // we would have to write some array copy code we only need here.
           oldProxies.push(proxyArray[i]);
         }
-        proxyTree.view = fpc.makeProxyTreeView(proxies, document);
+        fpc.makeProxyTreeView(proxyTree, proxies, document);
       }
 
       document.getElementById("refresh").value = metadata.refresh;
@@ -254,7 +254,7 @@ function addProxy(e) {
     if (p.out) {
       proxies.push(p.out.proxy);
       document.getElementById("subscriptionProxyTree").view = fpc.
-        makeProxyTreeView(proxies, document); 
+        makeProxyTreeView(proxyTree, proxies, document); 
     }
   }
 }
@@ -269,7 +269,7 @@ function removeProxy(e) {
     // splice(proxyTree.currentIndex,1)) not work?
     helperProxies.push(proxies.list[proxyTree.currentIndex]);
     proxies.list.splice(proxyTree.currentIndex, 1);
-    proxyTree.view = fpc.makeProxyTreeView(proxies, document); 
+    fpc.makeProxyTreeView(proxyTree, proxies, document); 
   }
 }
 

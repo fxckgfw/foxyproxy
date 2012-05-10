@@ -1081,6 +1081,7 @@ foxyproxy.prototype = {
       }
     },
 
+    /** better name: swap() */
     move : function(idx, direction) {
       var newIdx = idx + (direction=="up"?-1:1);
       if (newIdx < 0 || newIdx > this.list.length-1) return false;

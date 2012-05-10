@@ -127,7 +127,7 @@
 
         <hbox flex="1">
           <tree id="proxyTree" align="stretch" enableColumnDrag="true"
-            flex="1" class="treeStyling" seltype="single"
+            flex="1" class="treeStyling"
             onselect="onProxyTreeSelected();"
             onclick="overlay.onTreeClick(event, this);">
             <treecols
@@ -1352,7 +1352,7 @@
     accesskey="&foxyproxy.proxyservice.accesskey;"
     tooltiptext="&foxyproxy.proxyservice.tooltip;"
     oncommand="fpc.openAndReuseOneTabPerURL('http://getfoxyproxy.org/proxyservice/');"/>
-        
+
   <broadcasterset>
     <broadcaster id="tree-row-selected" disabled="true"/>
     <broadcaster id="logtree-row-selected" disabled="true"/>

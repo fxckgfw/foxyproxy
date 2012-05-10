@@ -133,8 +133,14 @@ Common.prototype = {
     e.setAttribute("id", args["idVal"]);
     e.setAttribute("label", args["labelId"]?fp.getMessage(args["labelId"], args["labelArgs"]) : args["labelVal"]);
     e.setAttribute("value", args["idVal"]);
-    args["type"] && e.setAttribute("type", args["type"]);
-    args["name"] && e.setAttribute("name", args["name"]);
+    if (args["type"])
+      e.setAttribute("type", args["type"]);
+    if (args["name"])
+      e.setAttribute("name", args["name"]);
+    if (args["class"])
+      e.setAttribute("class", args["class"]);
+    if (args["style"])
+      e.setAttribute("style", args["style"]);
     return e;
   },
   

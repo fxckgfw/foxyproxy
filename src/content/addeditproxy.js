@@ -349,12 +349,16 @@ function onAddEditURLPattern(isNew) {
 /** Sets the buttons on the URL Patterns tab */
 function setButtons(observerId, tree) {
   // Disable Edit, Copy, Delete if no treeitem is selected
-  document.getElementById(observerId).setAttribute("disabled", tree.currentIndex == -1);
+  document.getElementById(observerId).setAttribute("disabled",
+    tree.currentIndex == -1);
 
   // Disable Edit & Copy if no item or multiple tree items selected
-  let selIndices = utils.getSelectedIndices(tree), disable = selIndices.length == 0 || selIndices.length > 1;
-  document.getElementById("editURLPatternSelectionCmd").setAttribute("disabled", disable);
-  document.getElementById("copyURLPatternSelectionCmd").setAttribute("disabled", disable);
+  let selIndices = utils.getSelectedIndices(tree),
+    disable = selIndices.length == 0 || selIndices.length > 1;
+  document.getElementById("editURLPatternSelectionCmd").
+    setAttribute("disabled", disable);
+  document.getElementById("copyURLPatternSelectionCmd").
+    setAttribute("disabled", disable);
 
   onAutoConfUrlInput();
 }
@@ -385,7 +389,8 @@ function _updateView() {
   // Redraw the tree
   urlsTree.view = makeView();
 
-  // Restore scroll position - peng likes to complain that this feature was missing
+  // Restore scroll position - peng likes to complain that this feature was
+  // missing.
   urlsTree.treeBoxObject.scrollToRow(visibleRow);
 
   function makeView() {
@@ -426,7 +431,8 @@ function onRemoveURLPattern() {
   // Store cur selections
   let sel = utils.getSelectedIndices(urlsTree);
 
-  // Delete in reverse order so we don't mess up the index as we delete multiple items
+  // Delete in reverse order so we don't mess up the index as we delete multiple
+  // items.
   for (let i=sel.length-1; i>=0; i--) {
     proxy.removeURLPattern(proxy.matches[sel[i]]);
   }
@@ -435,7 +441,7 @@ function onRemoveURLPattern() {
   // If only one item was deleted, select its neighbor as convenience.
   // We don't bother with this when multiple items were selected.
   if (sel.length == 1 && sel[0] < urlsTree.view.rowCount-1)
-		urlsTree.view.selection.select(sel[0]);
+    urlsTree.view.selection.select(sel[0]);
 }  
 
 

@@ -380,13 +380,13 @@ function _updateView() {
   //document.getElementById("noInternalIPs").checked = proxy.noInteralIPs;
 
   // Save scroll position so we can restore it after making the new view
-  let visibleRow = urlsTree.boxObject.getFirstVisibleRow();
+  let visibleRow = urlsTree.treeBoxObject.getFirstVisibleRow();
 
   // Redraw the tree
   urlsTree.view = makeView();
 
   // Restore scroll position - peng likes to complain that this feature was missing
-  urlsTree.boxObject.scrollToRow(visibleRow);
+  urlsTree.treeBoxObject.scrollToRow(visibleRow);
 
   function makeView() {
     return {

@@ -14,6 +14,8 @@ var urlsTree, proxy, foxyproxy, autoconfUrl, overlay, isWindows, fpc,
   autoconfMode, reloadFreq, loadNotification, errorNotification, autoReload,
   oldMatches = [];
 
+Components.utils.import("resource://foxyproxy/utils.jsm");
+
 function onLoad() {
   isWindows = CC["@mozilla.org/xre/app-info;1"].
     getService(CI.nsIXULRuntime).OS == "WINNT";
@@ -344,8 +346,16 @@ function onAddEditURLPattern(isNew) {
   }
 }
 
+/** Sets the buttons on the URL Patterns tab */
 function setButtons(observerId, tree) {
+  // Disable Edit, Copy, Delete if no treeitem is selected
   document.getElementById(observerId).setAttribute("disabled", tree.currentIndex == -1);
+
+  // Disable Edit & Copy if no item or multiple tree items selected
+  let selIndices = utils.getSelectedIndices(tree), disable = selIndices.length == 0 || selIndices.length > 1;
+  document.getElementById("editURLPatternSelectionCmd").setAttribute("disabled", disable);
+  document.getElementById("copyURLPatternSelectionCmd").setAttribute("disabled", disable);
+
   onAutoConfUrlInput();
 }
 
@@ -368,8 +378,15 @@ function _updateView() {
   document.getElementById("exportURLPatternCmd").setAttribute("disabled", 
     proxy.matches.length === 0); 
   //document.getElementById("noInternalIPs").checked = proxy.noInteralIPs;
-  // Redraw the trees
+
+  // Save scroll position so we can restore it after making the new view
+  let visibleRow = urlsTree.boxObject.getFirstVisibleRow();
+
+  // Redraw the tree
   urlsTree.view = makeView();
+
+  // Restore scroll position - peng likes to complain that this feature was missing
+  urlsTree.boxObject.scrollToRow(visibleRow);
 
   function makeView() {
     return {
@@ -399,12 +416,28 @@ function _updateView() {
 
 function onRemoveURLPattern() {
   // Store cur selection
+/*
   var sel = urlsTree.currentIndex;
   proxy.removeURLPattern(proxy.matches[sel]);
   _updateView();
   // Reselect the next appropriate item
 	urlsTree.view.selection.select(sel+1>urlsTree.view.rowCount ? urlsTree.view.rowCount-1:sel);
-}
+*/
+  // Store cur selections
+  let sel = utils.getSelectedIndices(urlsTree);
+
+  // Delete in reverse order so we don't mess up the index as we delete multiple items
+  for (let i=sel.length-1; i>=0; i--) {
+    proxy.removeURLPattern(proxy.matches[sel[i]]);
+  }
+  _updateView();
+
+  // If only one item was deleted, select its neighbor as convenience.
+  // We don't bother with this when multiple items were selected.
+  if (sel.length == 1 && sel[0] < urlsTree.view.rowCount-1)
+		urlsTree.view.selection.select(sel[0]);
+}  
+
 
 function onCopyURLPattern() {
   // Get current selection

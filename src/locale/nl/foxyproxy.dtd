@@ -147,6 +147,20 @@
 <!ENTITY foxyproxy.proxydns.accesskey "D">
 <!ENTITY foxyproxy.proxydns.tooltip3 "Indien aangevinkt worden URL’s die via deze proxy laden ook gezocht via deze proxy">
 <!ENTITY foxyproxy.proxydns.label4 "Proxy-DNS">
+<!ENTITY foxyproxy.cache.label "Cache">
+<!ENTITY foxyproxy.clearcache.label "Toepassingcache leegmaken voor gebruik van deze proxy">
+<!ENTITY foxyproxy.clearcache.accesskey "h">
+<!ENTITY foxyproxy.clearcache.tooltip "Indien aangevinkt: cache leegmaken voor gebruik van deze proxy">
+<!ENTITY foxyproxy.disablecache.label "Geen cache aanleggen bij gebruik van deze proxy">
+<!ENTITY foxyproxy.disablecache.accesskey "G">
+<!ENTITY foxyproxy.disablecache.tooltip "Indien aangevinkt legt de toepassing in de toekomst geen cache aan">
+<!ENTITY foxyproxy.cookies.label "Cookies">
+<!ENTITY foxyproxy.clearcookies.label "Alle cookies verwijderen voor gebruik van deze proxy">
+<!ENTITY foxyproxy.clearcookies.accesskey "C">
+<!ENTITY foxyproxy.clearcookies.tooltip "Indien aangevinkt: alle cookies verwijderen voor gebruik van deze proxy">
+<!ENTITY foxyproxy.rejectcookies.label "Alle cookies blokkeren bij gebruik van deze proxy">
+<!ENTITY foxyproxy.rejectcookies.accesskey "B">
+<!ENTITY foxyproxy.rejectcookies.tooltip "Indien aangevinkt zal de browser alle cookies afwijzen bij gebruik van deze proxy">
 <!ENTITY foxyproxy.showstatusbaricon.label "Pictogram op statusbalk weergeven">
 <!ENTITY foxyproxy.showstatusbaricon.accesskey "W">
 <!ENTITY foxyproxy.showstatusbaricon.tooltip "Indien aangevinkt zal het FoxyProxypictogram in de statusbalk worden weergegeven">
@@ -457,6 +471,7 @@
 <!ENTITY foxyproxy.invalidcolor.label "Ongeldige kleur">
 <!ENTITY foxyproxy.validcolor.label "Geldige kleur">
 <!ENTITY foxyproxy.color.label "Kleur">
+<!ENTITY foxyproxy.color.description "Pictogramkleur wanneer proxy wordt gebruikt">
 <!ENTITY foxyproxy.server.subscriptions.label "Serverabonnementen">
 <!ENTITY foxyproxy.server.subscriptions.tooltip "Serverabonnementen beheren">
 <!ENTITY foxyproxy.server.subscriptions.accesskey "S">
@@ -511,9 +526,6 @@
 <!ENTITY foxyproxy.status.label "Status">
 <!ENTITY foxyproxy.format.label "Opmaak">
 <!ENTITY foxyproxy.obfuscation.label "Versluiering">
-<!ENTITY foxyproxy.hosting.label1 "Met dank aan">
-<!ENTITY foxyproxy.ocs.label "OCS">
-<!ENTITY foxyproxy.hosting.label2 "voor het hosten van de website van FoxyProxy. Als u hosting nodig heeft, overweeg dan OCS.">
 <!-- end foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Lokaal IP-adrespatroon toevoegen/bewerken">
 <!ENTITY foxyproxy.tempip.popup.label "Met tijdelijke patronen kunt u patronen voor lokale IP-adressen  die u niet vaak gebruikt creëren zonder dat de IP-adressenpatroonlijst voor een proxy wordt vervuild. Tijdelijke patronen wordne niet opgeslagen. Ze worden alleen tijdens deze Firefoxsessie in het geheugen bewaard.">
@@ -575,3 +587,4 @@
 <!ENTITY foxyproxy.patternsforselected.accesskey "S">
 <!ENTITY foxyproxy.patternsforselected.tooltip "Patronen voor geselecteerde URL’s maken">
 <!ENTITY foxyproxy.patterntoadd.label "Toe te voegen patroon">
+<!-- end foxyproxyplus -->

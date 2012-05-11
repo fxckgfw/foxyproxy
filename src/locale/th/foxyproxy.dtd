@@ -419,7 +419,6 @@
 <!ENTITY foxyproxy.pattern.subscriptions.refreshNow.tooltip "รีเฟรชการรับข้อมูลรูปแบบนี้ทันที">
 <!ENTITY foxyproxy.pattern.subscriptions.refreshHelp1 "ระบุจำนวนนาทีหลังจากการรับข้อมูลอัปเดต อัปเดตการรับข้อมูล">
 <!ENTITY foxyproxy.pattern.subscriptions.refreshHelp2 "ลบรูปแบบที่มีทั้งหมด">
-<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp3 "แล้วก็เพิ่มสิ่งที่เจอในยูอาร์แอลการรับข้อมูล อ่านเพิ่มเติมที่นี่">
 <!ENTITY foxyproxy.pattern.subscriptions.zeroRefresh "(0 ถึงไม่รีเฟรชเลย)">
 <!ENTITY foxyproxy.pattern.subscriptions.format.tooltip "รูปแบบของรายชื่อรูปแบบการรับข้อมูล">
 <!ENTITY foxyproxy.pattern.subscriptions.formatHelp "ระบุรูปแบบของการรับข้อมูบที่จะเขียน โดยปกติแล้ว FoxyProxy จะหาเอง อ่านเพิ่มเติม">
@@ -429,9 +428,6 @@
 <!ENTITY foxyproxy.pattern.subscriptions.copyLastStatus.tooltip "คัดลอกสถานะล่าสุดไปยังคลิปบอร์ด">
 <!ENTITY foxyproxy.pattern.subscriptions.pattern.window.title "รูปแบบการรับข้อมูล">
 <!ENTITY foxyproxy.none.label "ไม่มี">
-<!ENTITY foxyproxy.hosting.label1 "ขอขอบคุณ">
-<!ENTITY foxyproxy.ocs.label "OCS">
-<!ENTITY foxyproxy.hosting.label2 "สำหรับการโฮสต์เว็บไซต์ FoxyProxy ถ้าคุณต้องการโฮสต์กรุณาติดต่อ OCS">
 <!ENTITY foxyproxy.authentication.label "การตรวจสอบ">
 <!ENTITY foxyproxy.proxyusername.label "ชื่อผู้ใช้">
 <!ENTITY foxyproxy.proxypassword.label "รหัสผ่าน">

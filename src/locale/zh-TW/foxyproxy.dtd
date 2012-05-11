@@ -147,6 +147,20 @@
 <!ENTITY foxyproxy.proxydns.accesskey "U">
 <!ENTITY foxyproxy.proxydns.tooltip3 "如果啟用這個選項，使用此代理伺服器的網址也透過此代理伺服器查詢網域名稱">
 <!ENTITY foxyproxy.proxydns.label4 "代理伺服器 DNS">
+<!ENTITY foxyproxy.cache.label "快取">
+<!ENTITY foxyproxy.clearcache.label "使用此代理伺服器前清除快取">
+<!ENTITY foxyproxy.clearcache.accesskey "H">
+<!ENTITY foxyproxy.clearcache.tooltip "如果啟用這個選項，使用此代理伺服器前會清除快取">
+<!ENTITY foxyproxy.disablecache.label "使用此代理伺服器時不儲存快取">
+<!ENTITY foxyproxy.disablecache.accesskey "D">
+<!ENTITY foxyproxy.disablecache.tooltip "如果啟用這個選項，使用此代理伺服器時不儲存任何快取資料">
+<!ENTITY foxyproxy.cookies.label "Cookies">
+<!ENTITY foxyproxy.clearcookies.label "使用此代理伺服器前刪除所有 cookies">
+<!ENTITY foxyproxy.clearcookies.accesskey "C">
+<!ENTITY foxyproxy.clearcookies.tooltip "如果啟用這個選項，使用此代理伺服器前會刪除所有 cookies">
+<!ENTITY foxyproxy.rejectcookies.label "使用此代理伺服器時封鎖所有 cookies">
+<!ENTITY foxyproxy.rejectcookies.accesskey "B">
+<!ENTITY foxyproxy.rejectcookies.tooltip "如果啟用這個選項，使用此代理伺服器時會拒絕所有 cookies">
 <!ENTITY foxyproxy.showstatusbaricon.label "在狀態列顯示小圖示">
 <!ENTITY foxyproxy.showstatusbaricon.accesskey "S">
 <!ENTITY foxyproxy.showstatusbaricon.tooltip "如果啟用這個選項，在狀態列會顯示 FoxyProxy 小圖示">
@@ -242,10 +256,10 @@
 <!ENTITY foxyproxy.tab.autoadd.label "自動新增">
 <!ENTITY foxyproxy.tab.autoadd.accesskey "A">
 <!ENTITY foxyproxy.tab.autoadd.tooltip "自動新增設定">
-<!ENTITY foxyproxy.autoadd.description "請設定要阻擋網頁的樣式，當網頁符合此樣式時，該樣式會自動加到代理伺服器設定裏並重新載入。這可以避免你必須先識別所有要阻擋的網頁。">
-<!ENTITY foxyproxy.autoadd.pattern.label "要阻擋網頁的樣式">
+<!ENTITY foxyproxy.autoadd.description "請設定要封鎖網頁的樣式，當網頁符合此樣式時，該樣式會自動加到代理伺服器設定裏並重新載入。這可以避免你必須先識別所有要封鎖的網頁。">
+<!ENTITY foxyproxy.autoadd.pattern.label "要封鎖網頁的樣式">
 <!ENTITY foxyproxy.autoadd.pattern.accesskey "P">
-<!ENTITY foxyproxy.autoadd.pattern.tooltip "要阻擋網頁的樣式">
+<!ENTITY foxyproxy.autoadd.pattern.tooltip "要封鎖網頁的樣式">
 <!ENTITY foxyproxy.autoadd.wildcard.example.label "範例：*You are not authorized to view this page*">
 <!ENTITY foxyproxy.autoadd.regex.example.label "範例：.*Site.*has been blocked.*">
 <!ENTITY foxyproxy.autoadd.proxy.label "自動新增樣式的代理伺服器">
@@ -267,7 +281,7 @@
 <!ENTITY foxyproxy.autoadd.reload.tooltip "樣式加入代理伺服器設定後自動重新載入目前網頁">
 <!ENTITY foxyproxy.autoadd.notify.label "當「自動新增」啟動時通知我">
 <!ENTITY foxyproxy.autoadd.notify.accesskey "N">
-<!ENTITY foxyproxy.autoadd.notify.tooltip "當網頁被阻擋且樣式被加入代理伺服器時通知你">
+<!ENTITY foxyproxy.autoadd.notify.tooltip "當網頁被封鎖且樣式被加入代理伺服器時通知你">
 <!ENTITY foxyproxy.autoadd.notify.tooltip2 "當「自動新增」啟動時顯示通知視窗">
 <!ENTITY foxyproxy.pacloadnotification.label "當自動組態指令碼（PAC）檔案載入時通知我">
 <!ENTITY foxyproxy.pacloadnotification.accesskey "L">
@@ -449,8 +463,6 @@
 <!ENTITY foxyproxy.proxyservice.label "購買代理伺服器服務">
 <!ENTITY foxyproxy.proxyservice.accesskey "P">
 <!ENTITY foxyproxy.proxyservice.tooltip "註冊代理伺服器服務">
-<!ENTITY foxyproxy.getdntp.label "取得 Do Not Track Plus">
-<!ENTITY foxyproxy.getdntp.tooltip "取得 Do Not Track Plus">
 <!ENTITY foxyproxy.proxyservice2.label "需要在美國、英國或其它國家使用高速且可靠的代理伺服器嗎？">
 <!ENTITY foxyproxy.getfoxyproxyplus.label "取得 FoxyProxy 進階版">
 <!ENTITY foxyproxy.aboutdonate.label "按下「捐助」鈕會連線到 PayPal 網頁，你可以對 FoxyProxy 專案捐助來鼓勵並支持軟體開發，如果你定期的使用 FoxyProxy，請你考慮捐助。">
@@ -459,6 +471,7 @@
 <!ENTITY foxyproxy.invalidcolor.label "無效的顏色">
 <!ENTITY foxyproxy.validcolor.label "有效的顏色">
 <!ENTITY foxyproxy.color.label "顏色">
+<!ENTITY foxyproxy.color.description "使用此代理伺服器時的圖示顏色">
 <!ENTITY foxyproxy.server.subscriptions.label "伺服器訂閱">
 <!ENTITY foxyproxy.server.subscriptions.tooltip "伺服器訂閱">
 <!ENTITY foxyproxy.server.subscriptions.accesskey "S">
@@ -513,9 +526,6 @@
 <!ENTITY foxyproxy.status.label "狀態">
 <!ENTITY foxyproxy.format.label "格式">
 <!ENTITY foxyproxy.obfuscation.label "編碼格式">
-<!ENTITY foxyproxy.hosting.label1 "感謝 ">
-<!ENTITY foxyproxy.ocs.label "OCS">
-<!ENTITY foxyproxy.hosting.label2 " 提供 FoxyProxy 網站代管服務，如果你有網站代管服務需求，請考慮 OCS。">
 <!-- end foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "新增/編輯 本機 IP 位址樣式">
 <!ENTITY foxyproxy.tempip.popup.label "臨時性樣式讓你建立不常使用的本機 IP 位址樣式，這些樣式不會儲存到設定檔中造成樣式清單紊亂，而是保留在記憶體中，只在這次執行 Firefox 有效。">

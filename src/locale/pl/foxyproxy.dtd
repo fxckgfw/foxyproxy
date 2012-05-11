@@ -147,6 +147,20 @@
 <!ENTITY foxyproxy.proxydns.accesskey "U">
 <!ENTITY foxyproxy.proxydns.tooltip3 "Po zaznaczeniu tej opcji nazwy serwerów adresów URL wczytywane przez to proxy będą także analizowane przez to proxy">
 <!ENTITY foxyproxy.proxydns.label4 "Proxy DNS">
+<!ENTITY foxyproxy.cache.label "Bufor">
+<!ENTITY foxyproxy.clearcache.label "Przed użyciem tego proxy wyczyść bufor aplikacji">
+<!ENTITY foxyproxy.clearcache.accesskey "X">
+<!ENTITY foxyproxy.clearcache.tooltip "Jeśli funkcja jest zaznaczona, przed użyciem tego proxy będzie czyszczony bufor aplikacji.">
+<!ENTITY foxyproxy.disablecache.label "Nie buforuj podczas używania tego proxy">
+<!ENTITY foxyproxy.disablecache.accesskey "B">
+<!ENTITY foxyproxy.disablecache.tooltip "Jeśli funkcja jest zaznaczona, aplikacja nie będzie wykonywała buforowania">
+<!ENTITY foxyproxy.cookies.label "Ciasteczka">
+<!ENTITY foxyproxy.clearcookies.label "Przed użyciem tego proxy usuń wszystkie ciasteczka">
+<!ENTITY foxyproxy.clearcookies.accesskey "C">
+<!ENTITY foxyproxy.clearcookies.tooltip "Jeśli funkcja jest zaznaczona, przed użyciem tego proxy będą usuwane wszystkie ciasteczka.">
+<!ENTITY foxyproxy.rejectcookies.label "Blokuj wszystkie ciasteczka podczas używania tego proxy">
+<!ENTITY foxyproxy.rejectcookies.accesskey "B">
+<!ENTITY foxyproxy.rejectcookies.tooltip "Jeśli funkcja jest zaznaczona, przeglądarka będzie odrzucała wszystkie ciasteczka podczas używania tego proxy.">
 <!ENTITY foxyproxy.showstatusbaricon.label "Wyświetl ikonę na pasku stanu">
 <!ENTITY foxyproxy.showstatusbaricon.accesskey "Y">
 <!ENTITY foxyproxy.showstatusbaricon.tooltip "Po zaznaczeniu tej opcji ikona FoxyProxy będzie wyświetlana na pasku stanu">
@@ -457,6 +471,7 @@
 <!ENTITY foxyproxy.invalidcolor.label "Nieprawidłowy kolor">
 <!ENTITY foxyproxy.validcolor.label "Prawidłowy kolor">
 <!ENTITY foxyproxy.color.label "Kolor">
+<!ENTITY foxyproxy.color.description "Kolor ikony, gdy proxy jest używane">
 <!ENTITY foxyproxy.server.subscriptions.label "Serwer subskrypcji">
 <!ENTITY foxyproxy.server.subscriptions.tooltip "Zarządzaj serwerem subskrypcji">
 <!ENTITY foxyproxy.server.subscriptions.accesskey "S">
@@ -511,9 +526,6 @@
 <!ENTITY foxyproxy.status.label "Status">
 <!ENTITY foxyproxy.format.label "Format">
 <!ENTITY foxyproxy.obfuscation.label "Zaciemnianie">
-<!ENTITY foxyproxy.hosting.label1 "Podziękowania dla">
-<!ENTITY foxyproxy.ocs.label "OCS">
-<!ENTITY foxyproxy.hosting.label2 "za hosting witryny FoxyProxy. Jeśli potrzebujesz hostingu, rozważ OCS.">
 <!-- end foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Dodaj/edytuj wzorzec lokalnego adresu IP">
 <!ENTITY foxyproxy.tempip.popup.label "Wzorce tymczasowe umożliwiają tworzenie wzorców lokalnego adresu IP nie używanych często. Dzięki temu lista wzorców nie jest niepotrzebnie przeładowywana. Wzorce tymczasowe nie są zapisywane na dysku. Są one trzymane w pamięci i używane tylko w aktualnej sesji Firefoksa.">

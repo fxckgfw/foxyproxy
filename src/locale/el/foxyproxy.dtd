@@ -147,6 +147,20 @@
 <!ENTITY foxyproxy.proxydns.accesskey "Ν">
 <!ENTITY foxyproxy.proxydns.tooltip3 "Αν επιλεχθεί, τα ονόματα κεντρικών υπολογιστών που βρίσκονται πίσω από τα URL και φορτώνονται από αυτό τον διαμεσολαβητή, θα ανιχνεύονται επίσης από αυτό τον διαμεσολαβητή">
 <!ENTITY foxyproxy.proxydns.label4 "DNS διαμεσολαβητή">
+<!ENTITY foxyproxy.cache.label "Λανθάνουσα μνήμα">
+<!ENTITY foxyproxy.clearcache.label "Εκκαθάριση της λανθάνουσας μνήμης πριν τη χρήση του διαμεσολαβητή">
+<!ENTITY foxyproxy.clearcache.accesskey "χ">
+<!ENTITY foxyproxy.clearcache.tooltip "Αν ενεργοποιηθεί, εκκαθαρίζει τη λανθάνουσα μνήμη πριν χρησιμοποιηθεί αυτός ο διαμεσολαβητής.">
+<!ENTITY foxyproxy.disablecache.label "Να μην επιτρέπεται η χρήση λανθάνουσας κατά τη χρήση του διαμεσολαβητή">
+<!ENTITY foxyproxy.disablecache.accesskey "θ">
+<!ENTITY foxyproxy.disablecache.tooltip "Αν ενεργοποιηθεί, η εφαρμογή σας δεν θα χρησιμοποιεί λανθάνουσα μνήμη στο μέλλον">
+<!ENTITY foxyproxy.cookies.label "Cookies">
+<!ENTITY foxyproxy.clearcookies.label "Διαγραφή όλων των cookie πριν τη χρήση του διαμεσολαβητή">
+<!ENTITY foxyproxy.clearcookies.accesskey "φ">
+<!ENTITY foxyproxy.clearcookies.tooltip "Αν ενεργοποιηθεί, θα αφαιρεθούν όλα τα cookie πριν χρησιμοποιηθεί ο διαμεσολαβητής">
+<!ENTITY foxyproxy.rejectcookies.label "Να απαγορεύονται όλα τα cookie κατά τη χρήση του διαμεσολαβητή">
+<!ENTITY foxyproxy.rejectcookies.accesskey "α">
+<!ENTITY foxyproxy.rejectcookies.tooltip "Αν ενεργοποιηθεί, ο περιηγητής θα απορρίπτει όλα τα cookie όταν χρησιμοποιείται ο διαμεσολαβητής">
 <!ENTITY foxyproxy.showstatusbaricon.label "Προβολή εικονιδίου στη γραμμή κατάστασης">
 <!ENTITY foxyproxy.showstatusbaricon.accesskey "γ">
 <!ENTITY foxyproxy.showstatusbaricon.tooltip "Αν επιλεγεί, θα εμφανίζεται το εικονίδιο του FoxyProxy στη γραμμή κατάστασης">
@@ -457,6 +471,7 @@
 <!ENTITY foxyproxy.invalidcolor.label "Μη έγκυρο χρώμα">
 <!ENTITY foxyproxy.validcolor.label "Έγκυρο χρώμα">
 <!ENTITY foxyproxy.color.label "Color">
+<!ENTITY foxyproxy.color.description "Χρώμα εικονιδίου όταν χρησιμοποιείται ο διαμεσολαβητής">
 <!ENTITY foxyproxy.server.subscriptions.label "Συνδρομές διακομιστών">
 <!ENTITY foxyproxy.server.subscriptions.tooltip "Διαχείριση συνδρομών διακομιστών">
 <!ENTITY foxyproxy.server.subscriptions.accesskey "δ">
@@ -511,9 +526,6 @@
 <!ENTITY foxyproxy.status.label "Κατάσταση">
 <!ENTITY foxyproxy.format.label "Μορφή">
 <!ENTITY foxyproxy.obfuscation.label "Απόκρυψη">
-<!ENTITY foxyproxy.hosting.label1 "Ευχαριστούμε την">
-<!ENTITY foxyproxy.ocs.label "OCS">
-<!ENTITY foxyproxy.hosting.label2 "για την φιλοξενία του ιστότοπου του FoxyProxy. Αν ψάχνετε για το που θα ανεβάσετε τις σελίδες σας, έχετε την OCS υπόψιν.">
 <!-- end foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Προσθήκη/επεξεργασία τοπικού πρότυπου διεύθυνσης IP">
 <!ENTITY foxyproxy.tempip.popup.label "Τα προσωρινά πρότυπα σας επιτρέπουν να δημιουργήσετε τοπικά πρότυπα για διευθύνσεις IP που δεν χρησιμοποιείτε συχνά, χωρίς να αυξάνετε την πολυπλοκότητα της λίστας πρότυπων κάποιου διαμεσολαβητή. Τα προσωρινά πρότυπα δεν αποθηκεύονται στο δίσκο, διατηρούνται μόνο στη μνήμη και χρησιμοποιούνται για την τρέχουσα συνεδρία του Firefox.">

@@ -147,6 +147,20 @@
 <!ENTITY foxyproxy.proxydns.accesskey "U">
 <!ENTITY foxyproxy.proxydns.tooltip3 "Om markerat kommer värdnamn för URL:er som läses in via denna proxy också att matchas av denna proxy">
 <!ENTITY foxyproxy.proxydns.label4 "Proxy-DNS">
+<!ENTITY foxyproxy.cache.label "Cache">
+<!ENTITY foxyproxy.clearcache.label "Rensa programmets cache innan denna proxy används">
+<!ENTITY foxyproxy.clearcache.accesskey "h">
+<!ENTITY foxyproxy.clearcache.tooltip "Om alternativet är markerat rensas cachen innan denna proxy används">
+<!ENTITY foxyproxy.disablecache.label "Använd inte cachelagring när denna proxy används">
+<!ENTITY foxyproxy.disablecache.accesskey "d">
+<!ENTITY foxyproxy.disablecache.tooltip "Om alternativet är markerat kommer inre programmet att använda cachelagring i framtiden">
+<!ENTITY foxyproxy.cookies.label "Kakor">
+<!ENTITY foxyproxy.clearcookies.label "Ta bort alla kakor innan denna proxy används">
+<!ENTITY foxyproxy.clearcookies.accesskey "k">
+<!ENTITY foxyproxy.clearcookies.tooltip "Om alternativet är markerat tas alla kakor bort innan denna proxy används">
+<!ENTITY foxyproxy.rejectcookies.label "Blockera alla kakor när denna proxy används">
+<!ENTITY foxyproxy.rejectcookies.accesskey "B">
+<!ENTITY foxyproxy.rejectcookies.tooltip "Om alternativet är markerat kommer webbläsaren att avvisa alla kakor när denna proxy används">
 <!ENTITY foxyproxy.showstatusbaricon.label "Visa ikon i statusfältet">
 <!ENTITY foxyproxy.showstatusbaricon.accesskey "k">
 <!ENTITY foxyproxy.showstatusbaricon.tooltip "Om markerat kommer en ikon att visas i statusfältet">
@@ -457,6 +471,7 @@
 <!ENTITY foxyproxy.invalidcolor.label "Ogiltig färg">
 <!ENTITY foxyproxy.validcolor.label "Giltig färg">
 <!ENTITY foxyproxy.color.label "Färg">
+<!ENTITY foxyproxy.color.description "Ikonfärg när proxy används">
 <!ENTITY foxyproxy.server.subscriptions.label "Serverprenumerationer">
 <!ENTITY foxyproxy.server.subscriptions.tooltip "Hantera serverprenumerationer">
 <!ENTITY foxyproxy.server.subscriptions.accesskey "H">
@@ -511,9 +526,6 @@
 <!ENTITY foxyproxy.status.label "Status">
 <!ENTITY foxyproxy.format.label "Format">
 <!ENTITY foxyproxy.obfuscation.label "Obfuskation">
-<!ENTITY foxyproxy.hosting.label1 "Tack till ">
-<!ENTITY foxyproxy.ocs.label "OCS">
-<!ENTITY foxyproxy.hosting.label2 " för värdskapet av FoxyProxys webbplats. Om du behöver en webbvärdtjänst, ta gärna en titt på OCS.">
 <!-- end foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Lägg till/Redigera lokala IP-adressmönster">
 <!ENTITY foxyproxy.tempip.popup.label "Temporära mönster gör att du kan skapa mönster för lokala IP-adresser som du inte använder så ofta. Temporära mönster sparas inte till disk utan behålls bara i minnet så länge Firefox är igång.">

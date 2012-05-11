@@ -452,7 +452,6 @@
 <!ENTITY foxyproxy.pattern.subscriptions.refreshNow.tooltip "Refresh this pattern subscription now">
 <!ENTITY foxyproxy.pattern.subscriptions.refreshHelp1 "Specify the number of minutes after which the subscription is updated. Updating the subscription ">
 <!ENTITY foxyproxy.pattern.subscriptions.refreshHelp2 "removes all existing patterns ">
-<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp3 "then inserts the ones found at the subscription URL. Read more here ">
 <!ENTITY foxyproxy.pattern.subscriptions.zeroRefresh "(0 to never refresh)">
 <!ENTITY foxyproxy.pattern.subscriptions.format.tooltip "Format of this pattern subscription list">
 <!ENTITY foxyproxy.pattern.subscriptions.formatHelp "Specify the format in which the subscription is written. Normally, this is automatically detected by FoxyProxy. Read more ">
@@ -470,9 +469,6 @@
 <!ENTITY foxyproxy.status.label "Status">
 <!ENTITY foxyproxy.format.label "Format">
 <!ENTITY foxyproxy.obfuscation.label "Obfuscation">
-<!ENTITY foxyproxy.hosting.label1 "Grazas a">
-<!ENTITY foxyproxy.ocs.label "OCS">
-<!ENTITY foxyproxy.hosting.label2 "para aloxamento do sitio web de FoxyProxy. Se precisa aloxamento, por favor considere OCS.">
 <!-- end foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Engadir/editar Patrón de Enderezos IP Locais">
 <!ENTITY foxyproxy.tempip.popup.label "Os patróns temporais lle permiten crear patróns para enderezos IP locais que non usa con frecuencia sen conxestionar a lista de patróns de enderezos IP dun proxy. Os patróns temporais non se gardan no disco. Son mantidos na memoria e utilizados soamente para esta sesión do Firefox.">

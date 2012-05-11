@@ -147,6 +147,20 @@
 <!ENTITY foxyproxy.proxydns.accesskey "D">
 <!ENTITY foxyproxy.proxydns.tooltip3 "Selezionando questa opzione verrà effettuata la risoluzione dei nomi dei server degli URL caricati attraverso questo proxy">
 <!ENTITY foxyproxy.proxydns.label4 "Proxy DNS">
+<!ENTITY foxyproxy.cache.label "Cache">
+<!ENTITY foxyproxy.clearcache.label "Elimina i dati nella cache prima di utilizzare il proxy">
+<!ENTITY foxyproxy.clearcache.accesskey "E">
+<!ENTITY foxyproxy.clearcache.tooltip "Selezionando questa opzione i dati presenti nella cache verranno eliminati prima di utilizzare il proxy">
+<!ENTITY foxyproxy.disablecache.label "Non utilizzare la cache quando si utilizza il proxy">
+<!ENTITY foxyproxy.disablecache.accesskey "u">
+<!ENTITY foxyproxy.disablecache.tooltip "Selezionando questa opzione i dati non verranno memorizzati nella cache quando si utilizza il proxy">
+<!ENTITY foxyproxy.cookies.label "Cookie">
+<!ENTITY foxyproxy.clearcookies.label "Elimina i cookie prima di utilizzare il proxy">
+<!ENTITY foxyproxy.clearcookies.accesskey "m">
+<!ENTITY foxyproxy.clearcookies.tooltip "Selezionando questa opzione tutti i cookie verranno eliminati prima di utilizzare il proxy">
+<!ENTITY foxyproxy.rejectcookies.label "Blocca i cookie quando si utilizza il proxy">
+<!ENTITY foxyproxy.rejectcookies.accesskey "B">
+<!ENTITY foxyproxy.rejectcookies.tooltip "Selezionando questa opzione i cookie non verranno memorizzati quando si utilizza il proxy">
 <!ENTITY foxyproxy.showstatusbaricon.label "Mostra icona nella barra di stato/dei componenti aggiuntivi">
 <!ENTITY foxyproxy.showstatusbaricon.accesskey "o">
 <!ENTITY foxyproxy.showstatusbaricon.tooltip "L&apos;icona di FoxyProxy verrà visualizzata nella barra di stato/dei componenti aggiuntivi">
@@ -449,8 +463,6 @@
 <!ENTITY foxyproxy.proxyservice.label "Proxy a pagamento">
 <!ENTITY foxyproxy.proxyservice.accesskey "n">
 <!ENTITY foxyproxy.proxyservice.tooltip "Fare clic qui per iscriversi ad un servizio di proxy a pagamento">
-<!ENTITY foxyproxy.getdntp.label "Ottieni Do Not Track Plus">
-<!ENTITY foxyproxy.getdntp.tooltip "Ottieni Do Not Track Plus">
 <!ENTITY foxyproxy.proxyservice2.label "Iscrizione ad un servizio di proxy sicuri americani, inglesi o di altre nazioni a pagamento">
 <!ENTITY foxyproxy.getfoxyproxyplus.label "Ottieni FoxyProxy Plus">
 <!ENTITY foxyproxy.aboutdonate.label "Facendo clic sul pulsante 'Effettua una donazione' è possibile incoraggiare e sostenere lo sviluppo di FoxyProxy effettuando una donazione tramite PayPal">
@@ -459,6 +471,7 @@
 <!ENTITY foxyproxy.invalidcolor.label "Il codice del colore non è valido">
 <!ENTITY foxyproxy.validcolor.label "Il codice del colore è valido">
 <!ENTITY foxyproxy.color.label "Colore">
+<!ENTITY foxyproxy.color.description "Colore associato al proxy e alla relativa icona">
 <!ENTITY foxyproxy.server.subscriptions.label "Proxy sottoscritti">
 <!ENTITY foxyproxy.server.subscriptions.tooltip "Gestione dei proxy sottoscritti">
 <!ENTITY foxyproxy.server.subscriptions.accesskey "y">
@@ -513,9 +526,6 @@
 <!ENTITY foxyproxy.status.label "Stato">
 <!ENTITY foxyproxy.format.label "Formato">
 <!ENTITY foxyproxy.obfuscation.label "Offuscamento">
-<!ENTITY foxyproxy.hosting.label1 "Ringraziamenti a ">
-<!ENTITY foxyproxy.ocs.label "OCS">
-<!ENTITY foxyproxy.hosting.label2 " per la fornitura di spazio web per il sito di FoxyProxy">
 <!-- begin foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Aggiunta/modifica di modelli di indirizzi IP locali">
 <!ENTITY foxyproxy.tempip.popup.label "I modelli temporanei permettono di creare modelli di indirizzi IP locali che non vengono utilizzati spesso, senza interessare le liste di modelli di indirizzi IP dei proxy. Tali modelli non vengono salvati sul disco rigido, ma mantenuti in memoria ed eliminati alla chiusura della sessione di Firefox">

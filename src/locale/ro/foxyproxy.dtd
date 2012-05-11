@@ -6,22 +6,33 @@
 <!ENTITY foxyproxy.options.accesskey "O">
 <!ENTITY foxyproxy.options.tooltip "Deschide caseta de opțiuni">
 <!ENTITY foxyproxy.tree.pickertooltiptext.label "Click to select which columns to display">
-<!ENTITY foxyproxy.proxy.name.label "Denumire proxy">
+<!ENTITY foxyproxy.proxy.name.label "Denumire">
 <!ENTITY foxyproxy.proxy.name.accesskey "D">
 <!ENTITY foxyproxy.proxy.name.tooltip "Denumire configurație proxy">
-<!ENTITY foxyproxy.proxy.notes.label "Note proxy">
-<!ENTITY foxyproxy.proxy.notes.accesskey "N">
-<!ENTITY foxyproxy.proxy.notes.tooltip "Note despre serverul proxy">
+<!ENTITY foxyproxy.proxy.notes.label "Explicații">
+<!ENTITY foxyproxy.proxy.notes.accesskey "E">
+<!ENTITY foxyproxy.proxy.notes.tooltip "Explicații pentru configurația proxy">
 <!ENTITY foxyproxy.pattern.label "Șablon">
 <!ENTITY foxyproxy.urlpatterns.label "Șabloane adresă">
+<!ENTITY foxyproxy.delete.selection.label "Șterge">
+<!ENTITY foxyproxy.delete.selection.accesskey "t">
+<!ENTITY foxyproxy.delete.selection.tooltip "Șterge elementul selectat">
+<!ENTITY foxyproxy.edit.selection.label "Editează">
+<!ENTITY foxyproxy.edit.selection.accesskey "E">
+<!ENTITY foxyproxy.edit.selection.tooltip "Editează elementul selectat">
 <!ENTITY foxyproxy.import.pattern.label "Import">
 <!ENTITY foxyproxy.import.pattern.accesskey "I">
 <!ENTITY foxyproxy.import.pattern.tooltip "Importă șabloane">
 <!ENTITY foxyproxy.export.pattern.label "Export">
 <!ENTITY foxyproxy.export.pattern.accesskey "X">
 <!ENTITY foxyproxy.export.pattern.tooltip2 "Exportă toate șabloanele">
+<!ENTITY foxyproxy.close.label "Închide">
+<!ENTITY foxyproxy.close.accesskey "h">
+<!ENTITY foxyproxy.copy.selection.label "Copiază">
+<!ENTITY foxyproxy.copy.selection.accesskey "C">
+<!ENTITY foxyproxy.copy.selection.tooltip "Copiază elemetul selectat">
+<!ENTITY foxyproxy.mode.label "Mod">
 <!ENTITY foxyproxy.wpad.label1 "prin WPAD (Web Proxy Autodiscovery Protocol)">
-<!-- begin foxyproxyplus -->
 <!ENTITY foxyproxy.wpad.accesskey "D">
 <!ENTITY foxyproxy.wpad.tooltip "Detectează automat setările proxy folosind protocolul WPAD">
 <!ENTITY foxyproxy.wpad.reload.label "Detectează automat setările proxy la fiecare">
@@ -33,6 +44,21 @@
 <!ENTITY foxyproxy.pattern.nointernal.label "Evită acest server proxy pentru adresele IP locale">
 <!ENTITY foxyproxy.pattern.nointernal.tooltip "Restricționează utilizarea serverului proxy numai la adresele IP externe">
 <!ENTITY foxyproxy.pattern.nointernal.accesskey "R">
+<!ENTITY foxyproxy.tab.proxies.label "Configurații">
+<!ENTITY foxyproxy.tab.proxies.accesskey "C">
+<!ENTITY foxyproxy.tab.global.label "Opțiuni globale">
+<!ENTITY foxyproxy.tab.global.accesskey "g">
+<!ENTITY foxyproxy.tab.logging.label "Jurnal">
+<!ENTITY foxyproxy.tab.logging.accesskey "u">
+<!ENTITY foxyproxy.addnewproxy.label "Adaugă">
+<!ENTITY foxyproxy.addnewproxy.accesskey "A">
+<!ENTITY foxyproxy.addnewproxy.tooltip "Adaugă un server proxy nou">
+<!ENTITY foxyproxy.moveup.label "Mută în sus">
+<!ENTITY foxyproxy.moveup.tooltip "Crește prioritatea elementului curent">
+<!ENTITY foxyproxy.moveup.accesskey "s">
+<!ENTITY foxyproxy.movedown.label "Mută în jos">
+<!ENTITY foxyproxy.movedown.tooltip "Descrește prioritatea elementului curent">
+<!ENTITY foxyproxy.movedown.accesskey "o">
 <!ENTITY foxyproxy.system.label "Folosește configurația proxy a sistemului">
 <!ENTITY foxyproxy.system.accesskey "c">
 <!ENTITY foxyproxy.system.tooltip2 "Folosește configurația proxy din sistemul dvs.">
@@ -42,12 +68,22 @@
 <!ENTITY foxyproxy.pac.label "prin PAC (proxy auto-config)">
 <!ENTITY foxyproxy.pac.accesskey "P">
 <!ENTITY foxyproxy.pac.tooltip "Obține configurația proxy folosind fișierul PAC">
+<!ENTITY foxyproxy.tab.autoadd.label "Adăugare automată">
+<!ENTITY foxyproxy.tab.autoadd.accesskey "m">
 <!ENTITY foxyproxy.toolbaricon.label "Afișează pictograma în bara de unelte">
 <!ENTITY foxyproxy.toolbaricon.accesskey "u">
 <!ENTITY foxyproxy.toolbaricon.tooltip "Afișează pictograma FoxyProxy în bara de unelte">
 <!ENTITY foxyproxy.toolsmenu.label2 "Afișează pictograma în meniul „Unelte”">
 <!ENTITY foxyproxy.toolsmenu.accesskey "T">
 <!ENTITY foxyproxy.toolsmenu.tooltip2 "Afișează pictograma FoxyProxy în meniul „Unelte”">
+<!ENTITY foxyproxy.quickadd.label "Adăugare rapidă">
+<!ENTITY foxyproxy.quickadd.accesskey "d">
+<!ENTITY foxyproxy.proxyservice.label "Cumpărați servicii Proxy">
+<!ENTITY foxyproxy.proxyservice.accesskey "s">
+<!ENTITY foxyproxy.getfoxyproxyplus.label "Obțineți FoxyProxy Plus">
 <!ENTITY foxyproxy.pattern.subscriptions.description "Abonați-vă la șabloanele publicate de alții. Distribuiți șabloanele dumneavoastră și altora cu doar câteva clicuri.">
 <!ENTITY foxyproxy.pattern.subscriptions.accesskey "S">
 <!ENTITY foxyproxy.pattern.subscriptions.sharing.label "Distribuie șabloanele personale">
+<!ENTITY foxyproxy.pattern.subscriptions.editSelection "Editează">
+<!ENTITY foxyproxy.pattern.subscriptions.deleteSelections "Șterge">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshSelections "Reîmprospătează">

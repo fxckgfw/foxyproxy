@@ -69,6 +69,7 @@
 <!ENTITY foxyproxy.copy.selection.tooltip "Kopiert die aktuelle Auswahl">
 <!ENTITY foxyproxy.mode.label "Modus auswählen">
 <!ENTITY foxyproxy.wpad.label1 "mittels WPAD">
+<!-- begin foxyproxyplus -->
 <!ENTITY foxyproxy.wpad.accesskey "W">
 <!ENTITY foxyproxy.wpad.tooltip "Proxy-Einstellungen mit WPAD automatisch erkennen">
 <!ENTITY foxyproxy.wpad.reload.label "Erkenne Proxy-Einstellungen automatisch alle">
@@ -476,6 +477,16 @@
 <!ENTITY foxyproxy.server.subscriptions.tooltip "Server-Abonnements verwalten">
 <!ENTITY foxyproxy.server.subscriptions.accesskey "A">
 <!ENTITY foxyproxy.selectproxy.label "Proxy auswählen">
+<!ENTITY foxyproxy.proxy.subscriptions.label "Proxy-Abonnements">
+<!ENTITY foxyproxy.proxy.subscriptions.accesskey "x">
+<!ENTITY foxyproxy.proxy.subscriptions.tooltip "Proxy-Abonnements verwalten">
+<!ENTITY foxyproxy.proxy.subscriptions.description "Abonnieren Sie die Proxies, die andere veröffentlicht haben. Teilen Sie Ihre Proxies mit anderen mit nur wenigen Klicks.">
+<!ENTITY foxyproxy.proxy.subscriptions.sharing.label "Proxies teilen">
+<!ENTITY foxyproxy.proxy.subscriptions.menulist.tooltip "Wählen Sie aus, was mit Proxy-Abonnements geschehen soll.">
+<!ENTITY foxyproxy.proxy.subscriptions.addSubscription "Neues Proxy-Abonnement hinzufügen">
+<!ENTITY foxyproxy.proxy.subscriptions.viewSubscription "Proxy-Abonnement ansehen">
+<!ENTITY foxyproxy.proxy.subscriptions.addedit.title "Proxy-Abonnement hinzufügen/bearbeiten">
+<!ENTITY foxyproxy.proxy.subscriptions.refreshHelp "entfernt alle vorhandenen, abonnierten Proxies">
 <!ENTITY foxyproxy.pattern.subscriptions.label "Muster-Abonnements">
 <!ENTITY foxyproxy.pattern.subscriptions.description "Abonnieren Sie die Muster, die andere veröffentlicht haben. Teilen Sie Ihre Muster mit anderen mit nur wenigen Klicks.">
 <!ENTITY foxyproxy.pattern.subscriptions.tooltip "Muster-Abonnements verwalten">
@@ -526,7 +537,7 @@
 <!ENTITY foxyproxy.status.label "Status">
 <!ENTITY foxyproxy.format.label "Format">
 <!ENTITY foxyproxy.obfuscation.label "Verschleierung">
-<!-- begin foxyproxyplus -->
+<!-- end foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Lokales IP-Adressmuster hinzufügen/ändern">
 <!ENTITY foxyproxy.tempip.popup.label "Temporäre Muster erlauben es Ihnen, Muster für selten genutzte lokale IP-Adressen zu erzeugen, ohne dass diese die Liste der IP-Adressmuster eines Proxies überladen. Temporäre Muster werden nicht auf Platte abgelegt. Sie werden im Speicher gehalten und nur für diese Firefox-Sitzung benutzt.">
 <!ENTITY foxyproxy.ip.pattern.label "Lokales IP-Adressmuster">

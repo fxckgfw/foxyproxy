@@ -449,9 +449,6 @@
 <!ENTITY foxyproxy.notes.label "Примечания">
 <!ENTITY foxyproxy.lastupdate.label "Последнее обновление">
 <!ENTITY foxyproxy.updatefrequency.label "Частота обновлений">
-<!ENTITY foxyproxy.hosting.label1 "Благодарности">
-<!ENTITY foxyproxy.ocs.label "OCS">
-<!ENTITY foxyproxy.hosting.label2 "за хостинг вебсайта проекта FoxyProxy. Если вам нужен хостинг рассмотрите OCS.">
 <!-- end foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Добавить/Изменить локальный шаблон IP-адресов">
 <!ENTITY foxyproxy.ip.pattern.label "Локальный шаблон IP-адресов">

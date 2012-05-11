@@ -449,8 +449,6 @@
 <!ENTITY foxyproxy.proxyservice.label "购买代理服务">
 <!ENTITY foxyproxy.proxyservice.accesskey "P">
 <!ENTITY foxyproxy.proxyservice.tooltip "登录代理服务">
-<!ENTITY foxyproxy.getdntp.label "获取 Do Not Track Plus">
-<!ENTITY foxyproxy.getdntp.tooltip "获取 Do Not Track Plus">
 <!ENTITY foxyproxy.proxyservice2.label "需要美国，英国或者其他国家的快速、可靠的代理服务？">
 <!ENTITY foxyproxy.getfoxyproxyplus.label "获取 FoxyProxy Plus">
 <!ENTITY foxyproxy.aboutdonate.label "捐助按钮使你可以通过 PayPal 想 FoxyProxy 项目提供捐助以支持开发活动。">
@@ -468,14 +466,6 @@
 <!ENTITY foxyproxy.pattern.subscriptions.tooltip "管理模式订阅">
 <!ENTITY foxyproxy.pattern.subscriptions.accesskey "S">
 <!ENTITY foxyproxy.pattern.subscriptions.sharing.label "分享你的模式">
-<!ENTITY foxyproxy.pattern.subscriptions.menulist.tooltip "Select what to do with pattern subscriptions.">
-<!ENTITY foxyproxy.pattern.subscriptions.addSubscription "Add New Pattern Subscription">
-<!ENTITY foxyproxy.pattern.subscriptions.editSelection "Edit Selection">
-<!ENTITY foxyproxy.pattern.subscriptions.deleteSelections "Delete Selections">
-<!ENTITY foxyproxy.pattern.subscriptions.refreshSelections "Refresh Selections">
-<!ENTITY foxyproxy.pattern.subscriptions.viewSubscription "View Pattern Subscription">
-<!ENTITY foxyproxy.pattern.subscriptions.go.label "Go">
-<!ENTITY foxyproxy.pattern.subscriptions.go.tooltip "Click here to execute your selection.">
 <!ENTITY foxyproxy.pattern.subscriptions.lastStatus.label "最近状态">
 <!ENTITY foxyproxy.pattern.subscriptions.addedit.title "添加/编辑模式订阅">
 <!ENTITY foxyproxy.pattern.subscriptions.name.label "订阅名称">
@@ -513,9 +503,6 @@
 <!ENTITY foxyproxy.status.label "Status">
 <!ENTITY foxyproxy.format.label "Format">
 <!ENTITY foxyproxy.obfuscation.label "Obfuscation">
-<!ENTITY foxyproxy.hosting.label1 "感谢">
-<!ENTITY foxyproxy.ocs.label "OCS">
-<!ENTITY foxyproxy.hosting.label2 "为了存放 FoxyProxy 的网站。如果你需要存放，请联系 OCS。">
 <!-- end foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "添加/编辑本地IP地址模式">
 <!ENTITY foxyproxy.tempip.popup.label "临时模式让你可以为不常用的本地IP地址建立模式，以免扰乱代理服务器的IP地址模式列表。临时模式不会保存到磁盘。他们只是保存在内存中供当前 Firefox 会话使用。">

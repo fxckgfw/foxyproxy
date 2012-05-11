@@ -12,6 +12,16 @@
 <!ENTITY foxyproxy.proxy.notes.label "Poznámky k proxy serveru">
 <!ENTITY foxyproxy.proxy.notes.accesskey "P">
 <!ENTITY foxyproxy.proxy.notes.tooltip "Poznámky k proxy serveru">
+<!ENTITY foxyproxy.proxy.wizard.label "Proxy průvodce">
+<!ENTITY foxyproxy.proxy.wizard.accesskey "P">
+<!ENTITY foxyproxy.proxy.wizard.tooltip "Vytvořit proxy z popisu.">
+<!ENTITY foxyproxy.proxy.wizard.description1 "Tento průvodce automaticky nastaví Vaší zaplacenou proxy. Prosím, zadejte číslo ID vašeho předplatného. Pokud nemáte ID předplatného,">
+<!ENTITY foxyproxy.proxy.wizard.description2 "můžete si ho pořídit">
+<!ENTITY foxyproxy.proxy.wizard.subscriptionID.label "ID předplatného">
+<!ENTITY foxyproxy.proxy.wizard.subscriptionID.tooltip "Zadejte ID číslo vašeho předplatného">
+<!ENTITY foxyproxy.proxy.wizard.loading.label "Získávám informace o proxy...">
+<!ENTITY foxyproxy.proxy.wizard.congratulation "Gratulace. FoxyProxy je nastaveno.">
+<!ENTITY foxyproxy.proxy.wizard.whatsmyip.label "Zkontrolovat mojí pozici">
 <!ENTITY foxyproxy.pattern.label "Vzor">
 <!ENTITY foxyproxy.urlpatterns.label "URL vzory">
 <!ENTITY foxyproxy.urlpatterns.accesskey "U">
@@ -83,6 +93,7 @@
 <!ENTITY foxyproxy.regex.label "Regulární výraz">
 <!ENTITY foxyproxy.regex.accesskey "R">
 <!ENTITY foxyproxy.regex.tooltip "Udává, že URL anebo vzor URL je regulární výraz">
+<!ENTITY foxyproxy.regex.example.label2 "Příklad: ^https?://.*\.mail\.seznam\.cz/.*$">
 <!ENTITY foxyproxy.version "Verze">
 <!ENTITY foxyproxy.createdBy "Vytvořil:">
 <!ENTITY foxyproxy.contributionsBy "Přispěvatelé:">
@@ -136,6 +147,20 @@
 <!ENTITY foxyproxy.proxydns.accesskey "P">
 <!ENTITY foxyproxy.proxydns.tooltip3 "Při zapnutí jsou domény z URL nahrávaných přes tuto proxy vyhledávány pomocí této proxy.">
 <!ENTITY foxyproxy.proxydns.label4 "DNS proxy">
+<!ENTITY foxyproxy.cache.label "Vyrovnávací paměť">
+<!ENTITY foxyproxy.clearcache.label "Vymazat vyrovnávací paměť aplikace před použitím této proxy">
+<!ENTITY foxyproxy.clearcache.accesskey "H">
+<!ENTITY foxyproxy.clearcache.tooltip "Při zaškrtnutí vymaže vyrovnávací paměť před použitím této proxy">
+<!ENTITY foxyproxy.disablecache.label "Nepoužívat vyrovnávací paměť s touto proxy">
+<!ENTITY foxyproxy.disablecache.accesskey "D">
+<!ENTITY foxyproxy.disablecache.tooltip "Při zaškrtnutí nebude aplikace používat vyrovnávací paměť">
+<!ENTITY foxyproxy.cookies.label "Cookies">
+<!ENTITY foxyproxy.clearcookies.label "Odstranit všechny cookies před použitím této proxy">
+<!ENTITY foxyproxy.clearcookies.accesskey "C">
+<!ENTITY foxyproxy.clearcookies.tooltip "Při zaškrtnutí, smaže všechny cookies před použitím této proxy">
+<!ENTITY foxyproxy.rejectcookies.label "Blokovat všechny cookies při použití této proxy">
+<!ENTITY foxyproxy.rejectcookies.accesskey "B">
+<!ENTITY foxyproxy.rejectcookies.tooltip "Při zaškrtnutí prohlížeč nebude používat cookies.">
 <!ENTITY foxyproxy.showstatusbaricon.label "Zobrazit ikonu ve stavovém řádku">
 <!ENTITY foxyproxy.showstatusbaricon.accesskey "S">
 <!ENTITY foxyproxy.showstatusbaricon.tooltip "Pokud je zaškrtnuto, tak se zobrazuje ve stavovém řádku ikona FoxyProxy">
@@ -446,14 +471,24 @@
 <!ENTITY foxyproxy.invalidcolor.label "Špatná barva">
 <!ENTITY foxyproxy.validcolor.label "Správná barva">
 <!ENTITY foxyproxy.color.label "Color">
+<!ENTITY foxyproxy.color.description "Barva ikonky při použití této proxy">
 <!ENTITY foxyproxy.server.subscriptions.label "Server Subscriptions">
 <!ENTITY foxyproxy.server.subscriptions.tooltip "Manage Server Subscriptions">
 <!ENTITY foxyproxy.server.subscriptions.accesskey "S">
 <!ENTITY foxyproxy.selectproxy.label "Zvolte Proxy">
 <!ENTITY foxyproxy.pattern.subscriptions.label "Pattern Subscriptions">
 <!ENTITY foxyproxy.pattern.subscriptions.description "Přihlásit se k vzorům, které zveřejňují ostatní uživatelé. Sdílejte vaše vzory s ostatními na pár kliknutí.">
+<!ENTITY foxyproxy.pattern.subscriptions.tooltip "Upravit předplatné vzorů">
 <!ENTITY foxyproxy.pattern.subscriptions.accesskey "S">
 <!ENTITY foxyproxy.pattern.subscriptions.sharing.label "Sdílet vzory">
+<!ENTITY foxyproxy.pattern.subscriptions.menulist.tooltip "Vyberte co dělat s předplatným vzorů.">
+<!ENTITY foxyproxy.pattern.subscriptions.addSubscription "Přidat nové předplatné vzorů.">
+<!ENTITY foxyproxy.pattern.subscriptions.editSelection "Upravit výběr">
+<!ENTITY foxyproxy.pattern.subscriptions.deleteSelections "Smazat výběry">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshSelections "Aktualizovat výběry">
+<!ENTITY foxyproxy.pattern.subscriptions.viewSubscription "Zobrazit předplatné vzorů">
+<!ENTITY foxyproxy.pattern.subscriptions.go.label "Přejít">
+<!ENTITY foxyproxy.pattern.subscriptions.go.tooltip "Klikněte pro spuštění výběru.">
 <!ENTITY foxyproxy.pattern.subscriptions.lastStatus.label "Poslední stav">
 <!ENTITY foxyproxy.pattern.subscriptions.addedit.title "Přidat/upravit předplatné vzorů">
 <!ENTITY foxyproxy.pattern.subscriptions.name.label "Jméno předplatného">
@@ -473,7 +508,7 @@
 <!ENTITY foxyproxy.pattern.subscriptions.refreshNow.tooltip "Aktualizovat toto předplatné vzorů">
 <!ENTITY foxyproxy.pattern.subscriptions.refreshHelp1 "Určete počet minut, po kterém je aktualizováno přihlášení. Aktualizace přihlášení">
 <!ENTITY foxyproxy.pattern.subscriptions.refreshHelp2 "odstraní všechny stávající vzory">
-<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp3 "pak vloží hodnoty z aktualizační adresy. Přečtěte si více">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp4 "poté vložte URL nalezené v předplatném. Dozvědět se víc">
 <!ENTITY foxyproxy.pattern.subscriptions.zeroRefresh "(0 pro neobnovování)">
 <!ENTITY foxyproxy.pattern.subscriptions.format.tooltip "Formát tohoto seznamu předplacených vzorů">
 <!ENTITY foxyproxy.pattern.subscriptions.formatHelp "Zadejte formát ve kterém je předplatné zapsáno. Obvykle je toto automaticky detekováné FoxyProxy. Číst víc">
@@ -483,9 +518,14 @@
 <!ENTITY foxyproxy.pattern.subscriptions.copyLastStatus.tooltip "Zkopírovat poslední stav do schránky">
 <!ENTITY foxyproxy.pattern.subscriptions.pattern.window.title "Vzory předplatného">
 <!ENTITY foxyproxy.none.label "Žádný">
-<!ENTITY foxyproxy.hosting.label1 "Díky">
-<!ENTITY foxyproxy.ocs.label "OCS">
-<!ENTITY foxyproxy.hosting.label2 "za hostování stránek FoxyProxy. Když potřebujete hosting, zkuste OCS.">
+<!ENTITY foxyproxy.name.label "Jméno">
+<!ENTITY foxyproxy.notes.label "Poznámky">
+<!ENTITY foxyproxy.url.label "url">
+<!ENTITY foxyproxy.lastupdate.label "Poslední aktualizace">
+<!ENTITY foxyproxy.updatefrequency.label "Frekvence aktualizací">
+<!ENTITY foxyproxy.status.label "Stav">
+<!ENTITY foxyproxy.format.label "Formát">
+<!ENTITY foxyproxy.obfuscation.label "Maskování">
 <!-- end foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Přidat/upravit vzor pro místní IP adresu">
 <!ENTITY foxyproxy.tempip.popup.label "Dočasné vzory Vám umožní vytvářet pravidla pro místní IP adresy které používáte pouze příležitostně. Dočasné vzory se neukládají na disk. Jsou uloženy v paměti jen po dobu spuštění Firefoxu.">
@@ -520,6 +560,10 @@
 <!ENTITY foxyproxy.buynow.label "Koupit">
 <!ENTITY foxyproxy.checklicense.label "Zkontrolovat licenci">
 <!ENTITY foxyproxy.checkinglicense.label "Kontroluji...prosím čekejte">
+<!ENTITY foxyproxy.yourversion.label "Vaše verze">
+<!ENTITY foxyproxy.latestversion.label "Nejnovější verze">
+<!ENTITY foxyproxy.routetoleahscape.label.1 "Prosím, ověřte, že Firefox má spojení">
+<!ENTITY foxyproxy.routetoleahscape.label.2 "s nebo bez proxy. Vzory pro tuto URL můžete nastavit ve FoxyProxy Plus.">
 <!ENTITY foxyproxy.everything.label "Všechno">
 <!ENTITY foxyproxy.nothing.label "Nic">
 <!ENTITY foxyproxy.ippatterndeletefinal.label "Toto je poslední vzor pro místní IP adresu. Když ho smažete, proxy server nebude používán. Přesto pokračovat?">

@@ -483,7 +483,6 @@
 <!ENTITY foxyproxy.pattern.subscriptions.refreshNow.tooltip "Refrescar este patrón de suscripciones ahora">
 <!ENTITY foxyproxy.pattern.subscriptions.refreshHelp1 "Especifique el número de minutos tras el que las suscripciones se actualizan. Al actualizar las suscripciones">
 <!ENTITY foxyproxy.pattern.subscriptions.refreshHelp2 "se borran todos los patrones existentes">
-<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp3 "y se inserta el nuevo encontrado en la URL de suscripción. Lea más aquí">
 <!ENTITY foxyproxy.pattern.subscriptions.zeroRefresh "(0 para no refrescar nunca)">
 <!ENTITY foxyproxy.pattern.subscriptions.format.tooltip "Formato de esta lista de patrón de suscripciones">
 <!ENTITY foxyproxy.pattern.subscriptions.formatHelp "Especifique el formato en que las suscripciones se escriben. Normalmente, es detectado automáticamente por FoxyProxy. Lea más">
@@ -501,9 +500,6 @@
 <!ENTITY foxyproxy.status.label "Estado">
 <!ENTITY foxyproxy.format.label "Formato">
 <!ENTITY foxyproxy.obfuscation.label "Ofuscación">
-<!ENTITY foxyproxy.hosting.label1 "Agradecimientos a">
-<!ENTITY foxyproxy.ocs.label "OCS">
-<!ENTITY foxyproxy.hosting.label2 "Por el hosting de la web de FoxyProxy. Si necesita hosting, tenga en cuenta OCS.">
 <!-- end foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Añadir/Editar patrón de direcciones IP locales">
 <!ENTITY foxyproxy.tempip.popup.label "Los patrones temporales le permiten crear patrones para direcciones IP locales que no use con frecuencia sin interferir en la lista de patrones de un proxy. Los patrones temporales no se guardan en el disco. Se mantienen en memoria sólo durante la sesión actual de Firefox.">

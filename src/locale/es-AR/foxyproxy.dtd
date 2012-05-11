@@ -147,6 +147,20 @@
 <!ENTITY foxyproxy.proxydns.accesskey "U">
 <!ENTITY foxyproxy.proxydns.tooltip3 "Si se marca, los nombres de host de las URL cargadas a través de este proxy también serán resueltas por este proxy">
 <!ENTITY foxyproxy.proxydns.label4 "Proxy DNS">
+<!ENTITY foxyproxy.cache.label "Caché">
+<!ENTITY foxyproxy.clearcache.label "Borrar caché de la aplicación antes de utilizar este proxy">
+<!ENTITY foxyproxy.clearcache.accesskey "H">
+<!ENTITY foxyproxy.clearcache.tooltip "Si se activa, borra la memoria caché antes de usar este proxy">
+<!ENTITY foxyproxy.disablecache.label "No almacenar en caché durante el uso de este proxy">
+<!ENTITY foxyproxy.disablecache.accesskey "D">
+<!ENTITY foxyproxy.disablecache.tooltip "Si está activada, la aplicación no va a almacenar en caché en el futuro">
+<!ENTITY foxyproxy.cookies.label "Cookies">
+<!ENTITY foxyproxy.clearcookies.label "Eliminar todas las cookies antes de usar este proxy">
+<!ENTITY foxyproxy.clearcookies.accesskey "C">
+<!ENTITY foxyproxy.clearcookies.tooltip "Si está activada, elimina todas las cookies antes de usar este proxy">
+<!ENTITY foxyproxy.rejectcookies.label "Bloquear todas las cookies cuando se utiliza este proxy">
+<!ENTITY foxyproxy.rejectcookies.accesskey "B">
+<!ENTITY foxyproxy.rejectcookies.tooltip "Si está activada, el navegador va a rechazar todas las cookies cuando se utiliza este proxy">
 <!ENTITY foxyproxy.showstatusbaricon.label "Mostrar el ícono en la barra de estado">
 <!ENTITY foxyproxy.showstatusbaricon.accesskey "S">
 <!ENTITY foxyproxy.showstatusbaricon.tooltip "Si está marcado, el ícono de FoxyProxy se mostrará en la barra de estado">
@@ -457,6 +471,7 @@
 <!ENTITY foxyproxy.invalidcolor.label "Color inválido">
 <!ENTITY foxyproxy.validcolor.label "Color válido">
 <!ENTITY foxyproxy.color.label "Color">
+<!ENTITY foxyproxy.color.description "Icono de color cuando el proxy está en uso">
 <!ENTITY foxyproxy.server.subscriptions.label "Server Subscriptions">
 <!ENTITY foxyproxy.server.subscriptions.tooltip "Manage Server Subscriptions">
 <!ENTITY foxyproxy.server.subscriptions.accesskey "S">
@@ -511,9 +526,6 @@
 <!ENTITY foxyproxy.status.label "Status">
 <!ENTITY foxyproxy.format.label "Format">
 <!ENTITY foxyproxy.obfuscation.label "Obfuscation">
-<!ENTITY foxyproxy.hosting.label1 "Gracias a">
-<!ENTITY foxyproxy.ocs.label "OCS">
-<!ENTITY foxyproxy.hosting.label2 "para el alojamiento del sitio web de FoxyProxy. Si necesitas alojamiento, por favor considere OCS.">
 <!-- end foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Agregar/Editar los Patrones de Direcciones IP Locales">
 <!ENTITY foxyproxy.tempip.popup.label "Los patrones temporales le permiten crear patrones para las direcciones IP locales que no utilice a menudo sin engrosar la lista de patrones de direcciones IP locales del proxy . Los patrones temporales no se guardan en el disco. Ellos se mantienen en memoria y en uso para la sesión Firefox en curso solamente.">

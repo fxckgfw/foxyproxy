@@ -1,1 +1,3 @@
+* proxy color is shown in FoxyProxy's mode menu
+* added support for selecting multiple proxies
 * replaced deprecated octal file permissions

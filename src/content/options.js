@@ -367,7 +367,7 @@ function onDeleteSelection() {
     // multiple items.
     for (let i=sel.length-1; i>=0; i--) {
       if (patternSubscriptions.subscriptionsList.length > 0) {
-        let proxyId = foxyproxy.proxies.item[sel[i]].id;
+        let proxyId = foxyproxy.proxies.item(sel[i]).id;
         patternSubscriptions.removeDeletedProxies(proxyId);
       }
       foxyproxy.proxies.remove(sel[i]);

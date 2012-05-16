@@ -80,6 +80,7 @@
 <!ENTITY foxyproxy.auto.url.tooltip "Ange URL för PAC-filen">
 <!ENTITY foxyproxy.auto.url.note.label "http(s)://   ftp://   file://   relative://">
 <!ENTITY foxyproxy.auto.url.note.tooltip "Klicka på info-ikonen för information om  relative://">
+<!ENTITY foxyproxy.ip.address.label "IP-adress">
 <!ENTITY foxyproxy.port.label "Port">
 <!ENTITY foxyproxy.port.accesskey "P">
 <!ENTITY foxyproxy.port.tooltip "Port">
@@ -476,6 +477,16 @@
 <!ENTITY foxyproxy.server.subscriptions.tooltip "Hantera serverprenumerationer">
 <!ENTITY foxyproxy.server.subscriptions.accesskey "H">
 <!ENTITY foxyproxy.selectproxy.label "Välj proxy">
+<!ENTITY foxyproxy.proxy.subscriptions.label "Proxyprenumerationer">
+<!ENTITY foxyproxy.proxy.subscriptions.accesskey "x">
+<!ENTITY foxyproxy.proxy.subscriptions.tooltip "Hantera proxyprenumerationer">
+<!ENTITY foxyproxy.proxy.subscriptions.description "Prenumerera på proxyservrar som publiceras av andra. Dela dina proxyservrar med andra med bara ett par klick.">
+<!ENTITY foxyproxy.proxy.subscriptions.sharing.label "Dela dina proxyservrar">
+<!ENTITY foxyproxy.proxy.subscriptions.menulist.tooltip "Välj vad som skall göras med proxyprenumerationer">
+<!ENTITY foxyproxy.proxy.subscriptions.addSubscription "Lägg till ny proxyprenumeration">
+<!ENTITY foxyproxy.proxy.subscriptions.viewSubscription "Granska proxyprenumeration">
+<!ENTITY foxyproxy.proxy.subscriptions.addedit.title "Lägg till/redigera proxyprenumeration">
+<!ENTITY foxyproxy.proxy.subscriptions.refreshHelp "tar bort alla befintliga proxyprenumerationer">
 <!ENTITY foxyproxy.pattern.subscriptions.label "Mönsterprenumerationer">
 <!ENTITY foxyproxy.pattern.subscriptions.description "Prenumerera på mönster publicerade av andra. Dela dina mönster med andra med bara ett par klick.">
 <!ENTITY foxyproxy.pattern.subscriptions.tooltip "Hantera mönsterprenumerationer">

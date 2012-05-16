@@ -80,6 +80,7 @@
 <!ENTITY foxyproxy.auto.url.tooltip "Specificare l&apos;URL del file PAC">
 <!ENTITY foxyproxy.auto.url.note.label "http(s)://   ftp://   file://   relative://">
 <!ENTITY foxyproxy.auto.url.note.tooltip "Fare clic sull&apos;icona dei contenuti guida per informazioni sullo schema relative://">
+<!ENTITY foxyproxy.ip.address.label "Indirizzo IP">
 <!ENTITY foxyproxy.port.label "Porta">
 <!ENTITY foxyproxy.port.accesskey "P">
 <!ENTITY foxyproxy.port.tooltip "Porta da utilizzare">
@@ -476,6 +477,16 @@
 <!ENTITY foxyproxy.server.subscriptions.tooltip "Gestione dei proxy sottoscritti">
 <!ENTITY foxyproxy.server.subscriptions.accesskey "y">
 <!ENTITY foxyproxy.selectproxy.label "Selezione del proxy">
+<!ENTITY foxyproxy.proxy.subscriptions.label "Sottoscrizioni proxy">
+<!ENTITY foxyproxy.proxy.subscriptions.accesskey "o">
+<!ENTITY foxyproxy.proxy.subscriptions.tooltip "Gestione delle sottoscrizioni di proxy">
+<!ENTITY foxyproxy.proxy.subscriptions.description "Facendo clic sul link 'Condividi le sottoscrizioni di proxy' è possibile condividere facilmente le proprie sottoscrizioni di proxy e ottenere informazioni su come utilizzare quelle pubblicate da altri utenti">
+<!ENTITY foxyproxy.proxy.subscriptions.sharing.label "Condividi le sottoscrizioni di proxy">
+<!ENTITY foxyproxy.proxy.subscriptions.menulist.tooltip "Azione da effettuare per le sottoscrizioni di proxy">
+<!ENTITY foxyproxy.proxy.subscriptions.addSubscription "Aggiungi sottoscrizione">
+<!ENTITY foxyproxy.proxy.subscriptions.viewSubscription "Visualizza proprietà della sottoscrizione selezionata">
+<!ENTITY foxyproxy.proxy.subscriptions.addedit.title "Aggiunta/modifica di una sottoscrizione di proxy">
+<!ENTITY foxyproxy.proxy.subscriptions.refreshHelp "eliminerà tutti i proxy esistenti">
 <!ENTITY foxyproxy.pattern.subscriptions.label "Sottoscrizioni modelli">
 <!ENTITY foxyproxy.pattern.subscriptions.description "Facendo clic sul link 'Condividi le sottoscrizioni di modelli' è possibile condividere facilmente le proprie sottoscrizioni di modelli e ottenere informazioni su come utilizzare quelle pubblicate da altri utenti">
 <!ENTITY foxyproxy.pattern.subscriptions.tooltip "Gestione delle sottoscrizioni di modelli">

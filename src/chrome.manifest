@@ -22,13 +22,14 @@ locale  foxyproxy en-US locale/en-US/
 locale  foxyproxy es-AR locale/es-AR/
 locale  foxyproxy es-ES locale/es-ES/
 locale  foxyproxy fa-IR locale/fa-IR/
-locale  foxyproxy fi-FI locale/fi-FI/
+locale  foxyproxy fi locale/fi/
 locale  foxyproxy fr locale/fr/
 locale  foxyproxy gl-ES locale/gl-ES/
 locale  foxyproxy hr-HR locale/hr-HR/
 locale  foxyproxy hu-HU locale/hu-HU/
 locale  foxyproxy it locale/it/
 locale  foxyproxy ja-JP locale/ja-JP/
+locale  foxyproxy ko-KR locale/ko-KR/
 locale  foxyproxy lv-LV locale/lv-LV/
 locale  foxyproxy nl locale/nl/
 locale  foxyproxy pl locale/pl/

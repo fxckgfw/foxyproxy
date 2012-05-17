@@ -270,7 +270,8 @@ Common.prototype = {
       getLevel: function(row){ return 0; }
     };
 
-    // Restore scroll position - peng likes to complain that this feature was missing
+    // Restore scroll position - peng likes to complain that this feature was
+    // missing
     tree.treeBoxObject.scrollToRow(visibleRow);    
     
     /* Set the color column dynamically. Note that "x" in the CSS class

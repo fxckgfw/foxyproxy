@@ -232,7 +232,7 @@ function _updateModeMenu() {
       break; // not yet supported
     case "roundrobin":
       break; // not yet supported
-    default:      
+    default:
       menu.setAttribute("style", "color:" + foxyproxy._selectedProxy.color);
   }
 }
@@ -377,7 +377,7 @@ function onDeleteSelection() {
     // We don't bother with this when multiple items were selected.
     if (sel.length == 1)
       proxyTree.view.selection.select(sel[0]);
-  }  
+  }
 }
 
 function onCopySelection() {
@@ -457,8 +457,6 @@ function setButtons() {
     numSelected = selItems.length,
     isDefaultSelected = _isDefaultProxySelected();
 
-//  document.getElementById("tree-row-selected").setAttribute("disabled", numSelected == 0);
-
   // If none selected, default proxy selected, or top-most proxy selected
   // (idx 0), disable moveUpCmd
   document.getElementById("moveUpCmd").setAttribute("disabled", 
@@ -476,10 +474,11 @@ function setButtons() {
   document.getElementById("deleteSelectionCmd").setAttribute("disabled",
     numSelected == 0 || isDefaultSelected);
 
-  // If multiple selected, disable edit
+  // If multiple selected or non selected, disable edit
   document.getElementById("settingsCmd").setAttribute("disabled",
     numSelected > 1 || numSelected == 0);
 
+  // If multiple selected or non selected or default selected, disable copy
   document.getElementById("copySelectionCmd").setAttribute("disabled",
     numSelected > 1 || numSelected == 0 || isDefaultSelected);
 }
@@ -918,7 +917,7 @@ function onBlockedPagePattern() {
 }
 
 function openLogURLInNewTab() {
-  var selectedIndices = utils.getSelectedIndices(logTree);
+  let selectedIndices = utils.getSelectedIndices(logTree);
   
   // If more than 3 selected, ask user if he's sure he wants to open that many tabs
   if (selectedIndices.length > 4 &&
@@ -941,7 +940,7 @@ function deleteLogEntry() {
 }
 
 function copyLogURLToClipboard() {
-  var selectedIndices = utils.getSelectedIndices(logTree);
+  let selectedIndices = utils.getSelectedIndices(logTree);
   
   // Copy the URLs to the cliboard, separated by spaces if there's more than one selection
   var txt = "";

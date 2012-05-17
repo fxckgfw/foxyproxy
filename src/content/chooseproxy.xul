@@ -21,7 +21,7 @@
   xmlns:html="http://www.w3.org/1999/xhtml" persist="screenX screenY"
   onload="onLoad();" ondialogaccept="return onOK();">
 
-  <script src="chooseproxy.js" />
+  <script type="application/x-javascript;version=1.7" src="chooseproxy.js"/>
   
   <separator class="thin"/>
   <description id="title" style="width: 1em;font-weight:bold;"/>

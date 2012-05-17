@@ -420,14 +420,6 @@ function _updateView() {
 }
 
 function onRemoveURLPattern() {
-  // Store cur selection
-/*
-  var sel = urlsTree.currentIndex;
-  proxy.removeURLPattern(proxy.matches[sel]);
-  _updateView();
-  // Reselect the next appropriate item
-	urlsTree.view.selection.select(sel+1>urlsTree.view.rowCount ? urlsTree.view.rowCount-1:sel);
-*/
   // Store cur selections
   let sel = utils.getSelectedIndices(urlsTree);
 
@@ -492,6 +484,7 @@ function onImportURLPattern() {
     } 
     try {
       if (patterns) {
+        let pattern;
         for (let i = 0, patLength = patterns.length; i < patLength; i++) {
           pattern = CC["@leahscape.org/foxyproxy/match;1"].createInstance().
                     wrappedJSObject; 

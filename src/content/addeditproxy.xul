@@ -309,8 +309,10 @@
       </hbox>
       <separator class="thin"/>
       <hbox flex="1">
-        <tree id="urlsTree" flex="1" align="stretch" enableColumnDrag="true" onselect="setButtons('urls-tree-row-selected', this);"
-	        	onclick="overlay.onTreeClick(event, this);" persist="sortDirection sortResource" sortDirection="ascending" sortResource="name">
+        <tree id="urlsTree" flex="1" align="stretch" enableColumnDrag="true"
+          onselect="setButtons('urls-tree-row-selected', this);"
+          onclick="overlay.onTreeClick(event, this);" sortDirection="ascending"
+          sortResource="name" persist="sortDirection sortResource">
           <treecols onclick="sort(this.id)" pickertooltiptext="&foxyproxy.tree.pickertooltiptext.label;">
             <treecol id="enabled" onclick="sort(this.id)" label="&foxyproxy.enabled.label;" type="checkbox" flex="1" persist="width ordinal hidden"/><splitter class="tree-splitter"/>
             <treecol id="name" onclick="sort(this.id)" label="&foxyproxy.pattern.name.label;" flex="1" persist="width ordinal hidden"/><splitter class="tree-splitter"/>
@@ -482,6 +484,7 @@
 <command id="importURLPatternCmd"
   label="&foxyproxy.import.pattern.label;"
   accesskey="&foxyproxy.import.pattern.accesskey;"
+  tooltiptext="&foxyproxy.import.pattern.tooltip;"
   disabled="false"
   oncommand="onImportURLPattern();"/>
 

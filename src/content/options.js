@@ -13,7 +13,7 @@ var foxyproxy, proxyTree, patternSubscriptionsTree, proxySubscriptionsTree,
   logTree, overlay, saveLogCmd, clearLogCmd, noURLsCmd, fpc, patternsIcon;
 const CI = Components.interfaces, CC = Components.classes, CU = Components.utils;
 
-CU.import("resource://foxyproxy/patternSubscriptions.jsm");
+CU.import("resource://foxyproxy/subscriptions.jsm");
 CU.import("resource://foxyproxy/utils.jsm");
 
 function onLoad() {

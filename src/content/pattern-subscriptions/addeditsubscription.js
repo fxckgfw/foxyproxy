@@ -38,7 +38,7 @@ var oldProxies = [];
 // Helper Array for proxy handling current subscription.
 var helperProxies = [];
 
-Cu.import("resource://foxyproxy/patternSubscriptions.jsm");
+Cu.import("resource://foxyproxy/subscriptions.jsm");
 
 function onLoad(type) {
   try {

@@ -231,7 +231,7 @@ end-foxyproxy-simple !*/
           winCount++);     
         if (winCount === 1) {
           Components.utils.
-            import("resource://foxyproxy/patternSubscriptions.jsm", that); 
+            import("resource://foxyproxy/subscriptions.jsm", that); 
           // Checking whether we had some pattern subscription load failures
           // during startup (in the first case the whole subscription could not
           // be loaded and in the second tne just the metadata was available).

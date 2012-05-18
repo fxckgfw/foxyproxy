@@ -33,8 +33,7 @@ Components.utils.import("resource://gre/modules/XPCOMUtils.jsm");
 function Match(enabled, name, pattern, temp, isRegEx, caseSensitive, isBlackList, isMultiLine, fromSubscription) {
   this.wrappedJSObject = this;
   this.init.apply(this, arguments);
-  Components.utils.import("resource://foxyproxy/patternSubscriptions.jsm", 
-    this); 
+  Components.utils.import("resource://foxyproxy/subscriptions.jsm", this);
 }
 
 Match.prototype = {

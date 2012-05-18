@@ -221,19 +221,21 @@ function _updateModeMenu() {
       menu.value = "disabled";
     }
   }
-  // Set color of selected menu item. All of this works except 'case "default"'
+  // Set color of selected menu item.
   switch (foxyproxy.mode) {
     case "patterns":
       menu.setAttribute("style", "color:orange");
       break;
     case "disabled":
       menu.setAttribute("style", "color:red");
+      break;
     case "random":
       break; // not yet supported
     case "roundrobin":
       break; // not yet supported
     default:
       menu.setAttribute("style", "color:" + foxyproxy._selectedProxy.color);
+      break;
   }
 }
 

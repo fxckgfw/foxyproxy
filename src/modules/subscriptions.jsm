@@ -757,12 +757,12 @@ patternSubscriptions.parseSubscription = function(subscriptionText,
       }
     }
     if (isBase64 && !userBase64 && !this.fp.warnings.showWarningIfDesired(null,
-        ["patternsubscription.warning.not.base64"], "noneEncodingWarning")) {
+        ["patternsubscription.warning.base64"], "noneEncodingWarning")) {
       errorMessages.push(this.fp.
         getMessage("patternsubscription.error.cancel64"));
       return errorMessages;
     } else if (!isBase64 && userBase64 && !this.fp.warnings.
-        showWarningIfDesired(null, ["patternsubscription.warning.base64"],
+        showWarningIfDesired(null, ["patternsubscription.warning.not.base64"],
         "noneEncodingWarning")) {
       errorMessages.push(this.fp.
         getMessage("patternsubscription.error.cancel64"));
@@ -899,3 +899,16 @@ Cu.import("resource://foxyproxy/autoproxy.jsm", patternSubscriptions);
 var proxySubscriptions = Object.create(subscriptions);
 proxySubscriptions.type = "proxy";
 proxySubscriptions.subscriptionsFile = "proxySubscriptions.json";
+
+proxySubscriptions.parseSubscription = function(subscriptionText,
+  errorMessages, aURLString, isBase64, userBase64) {
+  let parsedSubscription;
+  let subscriptionContent = this.getProxiesFromText(subscriptionText,
+      errorMessages);
+  dump();
+}
+
+proxySubscriptions.getProxiesFromText = function(subscriptionText,
+  errorMessages) {
+
+}

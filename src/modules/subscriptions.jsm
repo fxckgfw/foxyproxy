@@ -217,7 +217,7 @@ var subscriptions = {
     this.fp.alert(null, this.fp.
       getMessage(this.type + "subscription.initial.import.success"));
     this.writeSubscriptions();
-  }, 
+  },
 
   editSubscription: function(aSubscription, userValues, index) {
     // TODO: What shall we do if the user changed the URL?
@@ -225,11 +225,11 @@ var subscriptions = {
     var oldRefresh = aSubscription.metadata.refresh;
     for (userValue in userValues) {
       aSubscription.metadata[userValue] = userValues[userValue];
-    } 
+    }
     // If the name is empty take the URL.
     if (aSubscription.metadata.name === "") {
       aSubscription.metadata.name = aSubscription.metadata.url;
-    } 
+    }
     if (oldRefresh !== aSubscription.metadata.refresh) {
       // We need type coercion here, hence "==" instead of "===".
       if (aSubscription.metadata.refresh == 0) {
@@ -242,11 +242,83 @@ var subscriptions = {
       } else if (oldRefresh == 0) {
         this.setSubscriptionTimer(aSubscription, false, false);
       } else {
-	// We already had a timer just resetting it to the new refresh value.
+        // We already had a timer just resetting it to the new refresh value.
         this.setSubscriptionTimer(aSubscription, true, false);
       }
-    } 
+    }
     this.subscriptionsList[index] = aSubscription;
+    this.writeSubscriptions();
+  },
+
+  refreshSubscription: function(aSubscription, showResponse) {
+    var errorText = "";
+    // We are calculating the index in this method in order to be able to
+    // use it with the nsITimer instances as well. If we would get the
+    // index from our caller it could happen that the index is wrong due
+    // to changes in the subscription list while the timer was "sleeping".
+    var aIndex = null, proxyList = [];
+    for (var i = 0; i < this.subscriptionsList.length; i++) {
+      if (this.subscriptionsList[i] === aSubscription) {
+	aIndex = i;
+      }
+    }
+    if (aIndex === null) return;
+    // Estimating whether the user wants to have the subscription base64
+    // encoded. We use this as a parameter to show the proper dialog if there
+    // is a mismatch between the users choice and the subscription's
+    // encoding.
+    var base64Encoded = aSubscription.metadata.obfuscation === "base64";
+    var refreshedSubscription = this.loadSubscription(aSubscription.
+      metadata.url, base64Encoded);
+    // Our "array test" we deployed in addeditsubscription.js as well.
+    if (refreshedSubscription && !(refreshedSubscription.length ===
+          undefined)) {
+      for (var i = 0; i < refreshedSubscription.length; i++) {
+        errorText = errorText + "\n" + refreshedSubscription[i];
+      }
+      this.fp.alert(null, this.fp.
+        getMessage("patternsubscription.update.failure") + "\n" + errorText);
+      aSubscription.metadata.lastStatus = this.fp.getMessage("error");
+      // So, we really did not get a proper subscription but error messages.
+      // Making sure that they are shown in the lastStatus dialog.
+      aSubscription.metadata.errorMessages = refreshedSubscription;
+    } else {
+      // We do not want to lose our metadata here as the user just
+      // refreshed the subscription to get up-to-date patterns.
+      aSubscription.patterns = refreshedSubscription.
+        patterns;
+      // Maybe the obfuscation changed. We should update this...
+      aSubscription.metadata.obfuscation = refreshedSubscription.
+        metadata.obfuscation;
+      aSubscription.metadata.lastStatus = this.fp.getMessage("okay");
+      // We did not get any errors. Therefore, resetting the errorMessages
+      // array to null.
+      aSubscription.metadata.errorMessages = null;
+      // If we have a timer-based update of subscriptions we deactive the
+      // success popup as it can be quite annoying to get such kinds of popups
+      // while surfing. TODO: Think about doing the same for failed updates.
+      if (showResponse) {
+        this.fp.alert(null, this.fp.
+          getMessage("patternsubscription.update.success"));
+      }
+    }
+    aSubscription.metadata.lastUpdate = this.fp.logg.format(Date.now());
+    // Refreshing a subscription means refreshing the timer as well if there
+    // is any...
+    if (aSubscription.metadata.refresh > 0) {
+      this.setSubscriptionTimer(aSubscription, true, false);
+    }
+    // And it means above all refreshing the patterns... But first we generate
+    // the proxy list.
+    if (aSubscription.metadata.proxies.length > 0) {
+      proxyList = this.fp.proxies.getProxiesFromId(aSubscription.metadata.
+        proxies);
+      // First, deleting the old subscription patterns.
+      this.deletePatterns(proxyList, aSubscription.metadata.enabled);
+      // Now, we add the refreshed ones...
+      this.addPatterns(aIndex, proxyList);
+    }
+    this.subscriptionsList[aIndex] = aSubscription;
     this.writeSubscriptions();
   },
 
@@ -470,128 +542,6 @@ var subscriptions = {
     return e;
   },
 
-  refreshSubscription: function(aSubscription, showResponse) {
-    var errorText = "";
-    // We are calculating the index in this method in order to be able to
-    // use it with the nsITimer instances as well. If we would get the
-    // index from our caller it could happen that the index is wrong due
-    // to changes in the subscription list while the timer was "sleeping".
-    var aIndex = null, proxyList = [];
-    for (var i = 0; i < this.subscriptionsList.length; i++) {
-      if (this.subscriptionsList[i] === aSubscription) {
-	aIndex = i;
-      }
-    }
-    if (aIndex === null) return;
-    // Estimating whether the user wants to have the subscription base64
-    // encoded. We use this as a parameter to show the proper dialog if there
-    // is a mismatch between the users choice and the subscription's
-    // encoding.
-    var base64Encoded = aSubscription.metadata.obfuscation === "base64";
-    var refreshedSubscription = this.loadSubscription(aSubscription.
-      metadata.url, base64Encoded); 
-    // Our "array test" we deployed in addeditsubscription.js as well.
-    if (refreshedSubscription && !(refreshedSubscription.length === 
-          undefined)) {
-      for (var i = 0; i < refreshedSubscription.length; i++) {
-        errorText = errorText + "\n" + refreshedSubscription[i];
-      }
-      this.fp.alert(null, this.fp.
-        getMessage("patternsubscription.update.failure") + "\n" + errorText); 
-      aSubscription.metadata.lastStatus = this.fp.getMessage("error"); 
-      // So, we really did not get a proper subscription but error messages.
-      // Making sure that they are shown in the lastStatus dialog.
-      aSubscription.metadata.errorMessages = refreshedSubscription;
-    } else {
-      // We do not want to lose our metadata here as the user just
-      // refreshed the subscription to get up-to-date patterns.
-      aSubscription.patterns = refreshedSubscription.
-        patterns;
-      // Maybe the obfuscation changed. We should update this...
-      aSubscription.metadata.obfuscation = refreshedSubscription.
-        metadata.obfuscation;	
-      aSubscription.metadata.lastStatus = this.fp.getMessage("okay");
-      // We did not get any errors. Therefore, resetting the errorMessages
-      // array to null.
-      aSubscription.metadata.errorMessages = null;
-      // If we have a timer-based update of subscriptions we deactive the
-      // success popup as it can be quite annoying to get such kinds of popups
-      // while surfing. TODO: Think about doing the same for failed updates.
-      if (showResponse) {
-        this.fp.alert(null, this.fp.
-          getMessage("patternsubscription.update.success")); 
-      }
-    }
-    aSubscription.metadata.lastUpdate = this.fp.logg.format(Date.now()); 
-    // Refreshing a subscription means refreshing the timer as well if there
-    // is any...
-    if (aSubscription.metadata.refresh > 0) {
-      this.setSubscriptionTimer(aSubscription, true, false);
-    }
-    // And it means above all refreshing the patterns... But first we generate
-    // the proxy list.
-    if (aSubscription.metadata.proxies.length > 0) {
-      proxyList = this.fp.proxies.getProxiesFromId(aSubscription.metadata.
-        proxies);
-      // First, deleting the old subscription patterns.
-      this.deletePatterns(proxyList, aSubscription.metadata.enabled);
-      // Now, we add the refreshed ones...
-      this.addPatterns(aIndex, proxyList); 
-    } 
-    this.subscriptionsList[aIndex] = aSubscription;	
-    this.writeSubscriptions(); 
-  },
-
-  removeDeletedProxies: function(aProxyId) {
-    for (let i = 0, sz = this.subscriptionsList.length; i < sz; i++) {
-      let proxyList = this.subscriptionsList[i].metadata.proxies;
-      for (let j = 0, psz = proxyList.length; j < psz; j++) {
-        if (proxyList[j] === aProxyId) {
-          proxyList.splice(j, 1);
-          // As we know there is just one instance of a proxy tied to the
-          // subscription we can leave the innermost for loop now.
-          break;
-        }
-      } 
-    }
-  },
-
-  addPatterns: function(currentSubIndex, proxyList) {
-    // Now are we going to implement the crucial part of the pattern
-    // subscription feature: Adding the patterns to the proxies.
-    // We probably need no valiatePattern()-call as in pattern.js as the user
-    // is not entering a custom pattern itself but imports a list assuming
-    // the latter is less error prone.
-    var currentSub;
-    var currentMet;
-    var currentPat;
-    var pattern;
-    var i,j; 
-    if (currentSubIndex) {
-      currentSub = this.subscriptionsList[currentSubIndex];
-    } else {
-      // Adding patterns to a subscription just added to the subscripions list.
-      currentSub = this.subscriptionsList[this.subscriptionsList.length - 1];
-    }
-    currentMet = currentSub.metadata;
-    currentPat = currentSub.patterns;
-    for (i = 0; i < proxyList.length; i++) {
-      // TODO: Maybe we could find a way to blend an old subscription or
-      // old patterns with a new one!?
-      if (currentPat) {
-        for (j = 0; j < currentPat.length; j++) {
-          pattern = Cc["@leahscape.org/foxyproxy/match;1"].createInstance().
-                    wrappedJSObject; 
-          pattern.init(currentSub.metadata.enabled, currentPat[j].name, 
-                      currentPat[j].pattern, false, currentPat[j].isRegEx, 
-                      currentPat[j].caseSensitive, currentPat[j].blackList, 
-                      currentPat[j].multiLine, true);
-          proxyList[i].matches.push(pattern);
-        }
-      }
-    } 
-  },
-
   changeSubStatus: function(aProxyList, bNewStatus) {
     for (var i = 0; i < aProxyList.length; i++) {
       for (var j = 0; j < aProxyList[i].matches.length; j++) {
@@ -602,39 +552,6 @@ var subscriptions = {
         }
       }
     }
-  },
-
-  checksumVerification: function(aChecksum, aSubscription) {
-    var result, data, ch, hash, finalHash, i;
-    // First getting the subscription object in a proper stringified form.
-    // That means just to stringify the Object. JSON allows (additional)
-    // whitespace (see: http://www.ietf.org/rfc/rfc4627.txt section 2)
-    // but we got rid of it while creating the JSON object the first time.
-    var subscriptionContent = this.getJSONFromObject(aSubscription.patterns);
-    
-    // Following https://developer.mozilla.org/En/NsICryptoHash
-    var converter = Cc["@mozilla.org/intl/scriptableunicodeconverter"].
-                    createInstance(Ci.nsIScriptableUnicodeConverter);
-    converter.charset = "UTF-8";
-    var result = {};
-    data  = converter.convertToByteArray(subscriptionContent, result);
-    ch = Cc["@mozilla.org/security/hash;1"].createInstance(Ci.nsICryptoHash);
-    // We just have the checksum here (maybe the user forgot to specify MD5) in
-    // the metadata. But we can safely assume MD5 as we are currently
-    // supporting just this hash algorithm.
-    ch.init(ch.MD5);
-    ch.update(data, data.length); 
-    hash = ch.finish(false);
-    finalHash = [this.toHexString(hash.charCodeAt(i)) for (i in hash)].
-      join("");
-    if (finalHash === aChecksum) {
-      return true;
-    }
-    return false;
-  },
-
-  toHexString: function(charCode) {
-    return ("0" + charCode.toString(16)).slice(-2);
   },
 
   makeSubscriptionsTreeView: function() {
@@ -870,9 +787,9 @@ patternSubscriptions.deletePatterns = function(aProxyList) {
   // This method deletes all the patterns belonging to a subscription.
   // That holds for all proxies that were tied to it and are contained in
   // the aProxyList argument.
-  let i,j,k,matchesLength; 
+  let i,j,k,matchesLength;
   for (i = 0; i < aProxyList.length; i++) {
-    matchesLength = aProxyList[i].matches.length; 
+    matchesLength = aProxyList[i].matches.length;
     j = k = 0;
     do {
       // That loop does the following: Check the pattern j of the proxy i
@@ -886,12 +803,95 @@ patternSubscriptions.deletePatterns = function(aProxyList) {
       if (currentMatch && currentMatch.fromSubscription) {
           aProxyList[i].matches.splice(j, 1);
       } else {
-        j++;	
+        j++;
       }
       k++;
-    } while (k < matchesLength);  
-  } 
-  this.fp.writeSettingsAsync(); 
+    } while (k < matchesLength);
+  }
+  this.fp.writeSettingsAsync();
+};
+
+patternSubscriptions.removeDeletedProxies = function(aProxyId) {
+  for (let i = 0, sz = this.subscriptionsList.length; i < sz; i++) {
+    let proxyList = this.subscriptionsList[i].metadata.proxies;
+    for (let j = 0, psz = proxyList.length; j < psz; j++) {
+      if (proxyList[j] === aProxyId) {
+        proxyList.splice(j, 1);
+        // As we know there is just one instance of a proxy tied to the
+        // subscription we can leave the innermost for loop now.
+        break;
+      }
+    }
+  }
+};
+
+patternSubscriptions.addPatterns = function(currentSubIndex, proxyList) {
+  // Now are we going to implement the crucial part of the pattern
+  // subscription feature: Adding the patterns to the proxies.
+  // We probably need no valiatePattern()-call as in pattern.js as the user
+  // is not entering a custom pattern itself but imports a list assuming
+  // the latter is less error prone.
+  var currentSub;
+  var currentMet;
+  var currentPat;
+  var pattern;
+  if (currentSubIndex) {
+    currentSub = this.subscriptionsList[currentSubIndex];
+  } else {
+    // Adding patterns to a subscription just added to the subscripions list.
+    currentSub = this.subscriptionsList[this.subscriptionsList.length - 1];
+  }
+  currentMet = currentSub.metadata;
+  currentPat = currentSub.patterns;
+  for (let i = 0; i < proxyList.length; i++) {
+    // TODO: Maybe we could find a way to blend an old subscription or
+    // old patterns with a new one!?
+    if (currentPat) {
+      let patLength;
+      for (let j = 0, patLength = currentPat.length; j < patLength; j++) {
+        pattern = Cc["@leahscape.org/foxyproxy/match;1"].createInstance().
+                  wrappedJSObject;
+        pattern.init(currentSub.metadata.enabled, currentPat[j].name,
+                     currentPat[j].pattern, false, currentPat[j].isRegEx,
+                     currentPat[j].caseSensitive, currentPat[j].blackList, 
+                     currentPat[j].multiLine, true);
+        proxyList[i].matches.push(pattern);
+      }
+    }
+  }
+};
+
+patternSubscriptions.checksumVerification = function(aChecksum, aSubscription) {
+  var result, data, ch, hash, finalHash, i;
+  // First getting the subscription object in a proper stringified form.
+  // That means just to stringify the Object. JSON allows (additional)
+  // whitespace (see: http://www.ietf.org/rfc/rfc4627.txt section 2)
+  // but we got rid of it while creating the JSON object the first time.
+  var subscriptionContent = this.getJSONFromObject(aSubscription.patterns);
+
+  // Following https://developer.mozilla.org/En/NsICryptoHash
+  var converter = Cc["@mozilla.org/intl/scriptableunicodeconverter"].
+    createInstance(Ci.nsIScriptableUnicodeConverter);
+  converter.charset = "UTF-8";
+  var result = {};
+  data  = converter.convertToByteArray(subscriptionContent, result);
+  ch = Cc["@mozilla.org/security/hash;1"].createInstance(Ci.nsICryptoHash);
+  // We just have the checksum here (maybe the user forgot to specify MD5) in
+  // the metadata. But we can safely assume MD5 as we are currently
+  // supporting just this hash algorithm.
+  ch.init(ch.MD5);
+  ch.update(data, data.length);
+  hash = ch.finish(false);
+  finalHash = [this.toHexString(hash.charCodeAt(i)) for (i in hash)].
+    join("");
+  if (finalHash === aChecksum) {
+    return true;
+  }
+  return false;
+};
+
+patternSubscriptions.toHexString = function(charCode) {
+  return ("0" + charCode.toString(16)).slice(-2);
 };
 
 Cu.import("resource://foxyproxy/autoproxy.jsm", patternSubscriptions);

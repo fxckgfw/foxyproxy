@@ -30,9 +30,8 @@ if (!CI) {
 Components.utils.import("resource://gre/modules/XPCOMUtils.jsm");
 
 ///////////////////////////// Match class///////////////////////
-function Match(enabled, name, pattern, temp, isRegEx, caseSensitive, isBlackList, isMultiLine, fromSubscription) {
+function Match() {
   this.wrappedJSObject = this;
-  this.init.apply(this, arguments);
   Components.utils.import("resource://foxyproxy/subscriptions.jsm", this);
 }
 
@@ -48,11 +47,15 @@ Match.prototype = {
   _fromSubscription : false,
 
   clone : function() {
-    return new Match(this.enabled, this.name, this._pattern, this.temp, this.isRegEx, this.caseSensitive,
-      this.isBlackList, this._isMultiLine, this._fromSubscription);
+    let newPattern = new Match();
+    newPattern.init(this.enabled, this.name, this._pattern, this.temp,
+      this.isRegEx, this.caseSensitive, this.isBlackList, this._isMultiLine,
+      this._fromSubscription);
+    return newPattern;
   },
 
-  init : function(enabled, name, pattern, temp, isRegEx, caseSensitive, isBlackList, isMultiLine) {
+  init : function(enabled, name, pattern, temp, isRegEx, caseSensitive,
+    isBlackList, isMultiLine, fromSubscription) {
     this.enabled = arguments.length > 0 ? arguments[0] : true;
     this.name = name || "";
     this._pattern = pattern || "";

@@ -36,7 +36,8 @@ blockedPageMatch - a Match object specific to AutoAdd only. Only four of the pro
 //dump("superadd.js\n");
 const DEF_PATTERN = "*://${3}${6}/*";
 function SuperAdd(mName) {
-  this._match = new Match(true, mName, DEF_PATTERN);
+  this._match = new Match();
+  this._match.init(true, mName, DEF_PATTERN);
   this._match.clone = function() {
     // does a clone of this._match and copies this.temp into the cloned object
     var ret = Match.prototype.clone.apply(this, arguments); // call super
@@ -58,7 +59,9 @@ function QuickAdd(mName) {
 }
 function AutoAdd(mName) {
   SuperAdd.apply(this, arguments);
-  this._blockedPageMatch = new Match(true, "", this.fp.getMessage("not.authorized"), false, false, false, false, true, false);
+  this._blockedPageMatch = new Match()
+  this._blockedPageMatch.init(true, "", this.fp.getMessage("not.authorized"),
+    false, false, false, false, true, false);
   this.notificationTitle = "foxyproxy.tab.autoadd.label";
   this.elemName = "autoadd";
   this.elemNameCamelCase = "AutoAdd";

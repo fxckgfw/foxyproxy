@@ -48,23 +48,23 @@ Match.prototype = {
 
   clone : function() {
     let newPattern = new Match();
-    newPattern.init(this.enabled, this.name, this._pattern, this.temp,
-      this.isRegEx, this.caseSensitive, this.isBlackList, this._isMultiLine,
-      this._fromSubscription);
+    newPattern.init({enabled: this.enabled, name: this.name, pattern:
+      this._pattern, temp: this.temp, isRegEx: this.isRegEx, caseSensitive:
+      this.caseSensitive, isBlackList: this.isBlackList, isMultiLine:
+      this._isMultiLine, fromSubscription: this._fromSubscription});
     return newPattern;
   },
 
-  init : function(enabled, name, pattern, temp, isRegEx, caseSensitive,
-    isBlackList, isMultiLine, fromSubscription) {
-    this.enabled = arguments.length > 0 ? arguments[0] : true;
-    this.name = name || "";
-    this._pattern = pattern || "";
-    this.temp = arguments.length > 3 ? arguments[3] : false; // doesn't calculate the regex
-    this._isRegEx = arguments.length > 4 ? arguments[4] : false;
-    this._caseSensitive = arguments.length > 5 ? arguments[5] : false;
-    this.isBlackList = arguments.length > 6 ? arguments[6] : false;
-    this._isMultiLine = arguments.length > 7 ? arguments[7] : false;
-    this._fromSubscription = arguments.length > 8 ? arguments[8] : false;
+  init : function(options) {
+    this.enabled = options.enabled || true;
+    this.name = options.name || "";
+    this._pattern = options.pattern || "";
+    this.temp = options.temp || false; // doesn't calculate the regex
+    this._isRegEx = options.isRegEx || false;
+    this._caseSensitive = options.caseSensitive || false;
+    this.isBlackList = options.isBlackList || false;
+    this._isMultiLine = options.isMultiLine || false;
+    this._fromSubscription = options.fromSubscription || false;
     this.buildRegEx();
   },
 
@@ -151,7 +151,7 @@ Match.prototype = {
     this.caseSensitive = gGetSafeAttrB(n, "caseSensitive", false);
     this._fromSubscription = gGetSafeAttrB(n, "fromSubscription", false);
     // We don't deserialize this.temp because it's not serialized
-    // exception: use is copying these patterns (including temporary ones)
+    // exception: user is copying these patterns (including temporary ones)
     // to a new proxy
     if (includeTempPatterns)
       this.temp = gGetSafeAttrB(n, "temp", false);

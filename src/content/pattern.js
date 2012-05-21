@@ -56,11 +56,11 @@ function onOK() {
     if (isNew && document.getElementById("name").value === "") {
       document.getElementById("name").value = pattern.value;
     }
-    //order is (enabled, name, pattern, temp, isRegEx, caseSensitive, isBlackList, isMultiLine)
-    ret.init(document.getElementById("enabled").checked,
-      document.getElementById("name").value, pattern.value,
-      document.getElementById("temp").checked, r,
-      caseSensitive.checked, document.getElementById("whiteblacktype").value == "b", false);
+    ret.init({enabled: document.getElementById("enabled").checked, name:
+      document.getElementById("name").value, pattern: pattern.value, temp:
+      document.getElementById("temp").checked, isRegEx: r, caseSensitive:
+      caseSensitive.checked, isBlackList: document.
+      getElementById("whiteblacktype").value == "b"});
     window.arguments[0].out = {pattern:ret};
     return true;
   }

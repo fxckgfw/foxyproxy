@@ -288,21 +288,21 @@ function noInternalIPs() {
     let helper = [];
     let m = CC["@leahscape.org/foxyproxy/match;1"].createInstance().
       wrappedJSObject;
-    m.init(true, foxyproxy.getMessage("localhost2") +
-      foxyproxy.getMessage("localhost.patterns.message"), localhostRegEx, false,
-      true, false, true, false);
+    m.init({enabled: true, name: foxyproxy.getMessage("localhost2") +
+      foxyproxy.getMessage("localhost.patterns.message"), pattern:
+      localhostRegEx, isRegEx: true, isMultiLine: true});
     helper.push(m);
     m = CC["@leahscape.org/foxyproxy/match;1"].createInstance().
       wrappedJSObject;
-    m.init(true, foxyproxy.getMessage("localsubnets2") +
-      foxyproxy.getMessage("localhost.patterns.message"), localSubRegEx, false,
-      true, false, true, false);
+    m.init({enabled: true, name: foxyproxy.getMessage("localsubnets2") +
+      foxyproxy.getMessage("localhost.patterns.message"), pattern:
+      localhostRegEx, isRegEx: true, isMultiLine: true}); 
     helper.push(m);
     m = CC["@leahscape.org/foxyproxy/match;1"].createInstance().
       wrappedJSObject;
-    m.init(true, foxyproxy.getMessage("localhostnames2") +
-      foxyproxy.getMessage("localhost.patterns.message"), localHostnameRegEx,
-      false, true, false, true, false);
+    m.init({enabled: true, name: foxyproxy.getMessage("localhostnames2") +
+      foxyproxy.getMessage("localhost.patterns.message"), pattern:
+      localhostRegEx, isRegEx: true, isMultiLine: true});
     helper.push(m);
     proxy.matches = helper.concat(proxy.matches);
   } else {

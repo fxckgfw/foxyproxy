@@ -80,6 +80,7 @@
 <!ENTITY foxyproxy.auto.url.tooltip "输入 PAC 文件的 URL">
 <!ENTITY foxyproxy.auto.url.note.label "http(s):// ftp:// file:// relative://">
 <!ENTITY foxyproxy.auto.url.note.tooltip "单击info按钮获取relative://的信息">
+<!ENTITY foxyproxy.ip.address.label "IP 地址">
 <!ENTITY foxyproxy.port.label "端口">
 <!ENTITY foxyproxy.port.accesskey "P">
 <!ENTITY foxyproxy.port.tooltip "端口">
@@ -147,6 +148,20 @@
 <!ENTITY foxyproxy.proxydns.accesskey "U">
 <!ENTITY foxyproxy.proxydns.tooltip3 "如果选中，通过这个代理服务器载入的 URL 的主机名，也由这个代理服务器解析">
 <!ENTITY foxyproxy.proxydns.label4 "DNS 代理">
+<!ENTITY foxyproxy.cache.label "缓存">
+<!ENTITY foxyproxy.clearcache.label "使用此代理前清空应用程序缓存">
+<!ENTITY foxyproxy.clearcache.accesskey "H">
+<!ENTITY foxyproxy.clearcache.tooltip "如果选中，使用此代理前会清空缓存">
+<!ENTITY foxyproxy.disablecache.label "使用此代理时不要启用缓存">
+<!ENTITY foxyproxy.disablecache.accesskey "D">
+<!ENTITY foxyproxy.disablecache.tooltip "如果选中，应用程序将不会使用缓存">
+<!ENTITY foxyproxy.cookies.label "Cookies">
+<!ENTITY foxyproxy.clearcookies.label "使用此代理时移除全部 cookies">
+<!ENTITY foxyproxy.clearcookies.accesskey "C">
+<!ENTITY foxyproxy.clearcookies.tooltip "如果选中，使用此代理前将移除全部 cookies">
+<!ENTITY foxyproxy.rejectcookies.label "使用此代理时将阻止全部 cookies">
+<!ENTITY foxyproxy.rejectcookies.accesskey "B">
+<!ENTITY foxyproxy.rejectcookies.tooltip "如果选中，使用此代理时浏览器将会拒绝全部 cookies">
 <!ENTITY foxyproxy.showstatusbaricon.label "在状态栏显示图标">
 <!ENTITY foxyproxy.showstatusbaricon.accesskey "S">
 <!ENTITY foxyproxy.showstatusbaricon.tooltip "如果勾选，FoxyProxy 图标将显示在状态栏">
@@ -457,15 +472,34 @@
 <!ENTITY foxyproxy.invalidcolor.label "无效颜色">
 <!ENTITY foxyproxy.validcolor.label "有效颜色">
 <!ENTITY foxyproxy.color.label "Color">
+<!ENTITY foxyproxy.color.description "使用此代理时的图标颜色">
 <!ENTITY foxyproxy.server.subscriptions.label "服务器订阅">
 <!ENTITY foxyproxy.server.subscriptions.tooltip "管理服务器订阅">
 <!ENTITY foxyproxy.server.subscriptions.accesskey "S">
 <!ENTITY foxyproxy.selectproxy.label "选择代理服务器">
+<!ENTITY foxyproxy.proxy.subscriptions.label "代理服务器订阅">
+<!ENTITY foxyproxy.proxy.subscriptions.accesskey "X">
+<!ENTITY foxyproxy.proxy.subscriptions.tooltip "管理代理服务器订阅">
+<!ENTITY foxyproxy.proxy.subscriptions.description "订阅其他人发布的代理服务器。只需几次点击即可与其他人分享你的代理服务器。">
+<!ENTITY foxyproxy.proxy.subscriptions.sharing.label "分享你的代理服务器">
+<!ENTITY foxyproxy.proxy.subscriptions.menulist.tooltip "选择你要对代理服务器订阅进行的操作">
+<!ENTITY foxyproxy.proxy.subscriptions.addSubscription "添加新的代理服务器订阅">
+<!ENTITY foxyproxy.proxy.subscriptions.viewSubscription "查看代理服务器订阅">
+<!ENTITY foxyproxy.proxy.subscriptions.addedit.title "添加/编辑代理服务器订阅">
+<!ENTITY foxyproxy.proxy.subscriptions.refreshHelp "移除全部现有的代理服务器订阅">
 <!ENTITY foxyproxy.pattern.subscriptions.label "模式订阅">
 <!ENTITY foxyproxy.pattern.subscriptions.description "订阅其他人发布的模式。几次鼠标点击即可同他人分享你的模式。">
 <!ENTITY foxyproxy.pattern.subscriptions.tooltip "管理模式订阅">
 <!ENTITY foxyproxy.pattern.subscriptions.accesskey "S">
 <!ENTITY foxyproxy.pattern.subscriptions.sharing.label "分享你的模式">
+<!ENTITY foxyproxy.pattern.subscriptions.menulist.tooltip "选择要对订阅模式进行的操作">
+<!ENTITY foxyproxy.pattern.subscriptions.addSubscription "添加新的模式订阅">
+<!ENTITY foxyproxy.pattern.subscriptions.editSelection "编辑选中项">
+<!ENTITY foxyproxy.pattern.subscriptions.deleteSelections "删除选中项">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshSelections "刷新选择">
+<!ENTITY foxyproxy.pattern.subscriptions.viewSubscription "查看模式订阅">
+<!ENTITY foxyproxy.pattern.subscriptions.go.label "转到">
+<!ENTITY foxyproxy.pattern.subscriptions.go.tooltip "点击这里执行你的选择">
 <!ENTITY foxyproxy.pattern.subscriptions.lastStatus.label "最近状态">
 <!ENTITY foxyproxy.pattern.subscriptions.addedit.title "添加/编辑模式订阅">
 <!ENTITY foxyproxy.pattern.subscriptions.name.label "订阅名称">

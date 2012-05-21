@@ -851,10 +851,11 @@ patternSubscriptions.addPatterns = function(currentSubIndex, proxyList) {
       for (let j = 0, patLength = currentPat.length; j < patLength; j++) {
         pattern = Cc["@leahscape.org/foxyproxy/match;1"].createInstance().
                   wrappedJSObject;
-        pattern.init(currentSub.metadata.enabled, currentPat[j].name,
-                     currentPat[j].pattern, false, currentPat[j].isRegEx,
-                     currentPat[j].caseSensitive, currentPat[j].blackList, 
-                     currentPat[j].multiLine, true);
+        pattern.init({enabled: currentSub.metadata.enabled, name:
+          currentPat[j].name, pattern: currentPat[j].pattern, isRegEx:
+          currentPat[j].isRegEx, caseSensitive: currentPat[j].caseSensitive,
+          isBlackList: currentPat[j].blackList, isMultiLine:
+          currentPat[j].multiLine, fromSubscription: true});
         proxyList[i].matches.push(pattern);
       }
     }

@@ -540,9 +540,8 @@ function editSubscription(type) {
     // well but only to them!
     let proxyList = params.out.proxies; 
     if (proxyList.length !== 0) {
-      patternSubscriptions.addPatterns(patternSubscriptionsTree.currentIndex,
-        proxyList);
-    } 
+      patternSubscriptions.addPatterns(selectedSubscription, proxyList);
+    }
     patternSubscriptionsTree.view = patternSubscriptions.
       makeSubscriptionsTreeView();
   }

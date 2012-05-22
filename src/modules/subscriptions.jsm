@@ -825,7 +825,7 @@ patternSubscriptions.removeDeletedProxies = function(aProxyId) {
   }
 };
 
-patternSubscriptions.addPatterns = function(currentSubIndex, proxyList) {
+patternSubscriptions.addPatterns = function(selectedSubscription, proxyList) {
   // Now are we going to implement the crucial part of the pattern
   // subscription feature: Adding the patterns to the proxies.
   // We probably need no valiatePattern()-call as in pattern.js as the user
@@ -835,14 +835,15 @@ patternSubscriptions.addPatterns = function(currentSubIndex, proxyList) {
   var currentMet;
   var currentPat;
   var pattern;
-  if (currentSubIndex) {
-    currentSub = this.subscriptionsList[currentSubIndex];
+  if (selectedSubscription) {
+    currentMet = selectedSubscription.metadata;
+    currentPat = selectedSubscription.patterns;
   } else {
     // Adding patterns to a subscription just added to the subscripions list.
     currentSub = this.subscriptionsList[this.subscriptionsList.length - 1];
+    currentMet = currentSub.metadata;
+    currentPat = currentSub.patterns;
   }
-  currentMet = currentSub.metadata;
-  currentPat = currentSub.patterns;
   for (let i = 0; i < proxyList.length; i++) {
     // TODO: Maybe we could find a way to blend an old subscription or
     // old patterns with a new one!?
@@ -851,11 +852,11 @@ patternSubscriptions.addPatterns = function(currentSubIndex, proxyList) {
       for (let j = 0, patLength = currentPat.length; j < patLength; j++) {
         pattern = Cc["@leahscape.org/foxyproxy/match;1"].createInstance().
                   wrappedJSObject;
-        pattern.init({enabled: currentSub.metadata.enabled, name:
-          currentPat[j].name, pattern: currentPat[j].pattern, isRegEx:
-          currentPat[j].isRegEx, caseSensitive: currentPat[j].caseSensitive,
-          isBlackList: currentPat[j].blackList, isMultiLine:
-          currentPat[j].multiLine, fromSubscription: true});
+        pattern.init({enabled: currentMet.enabled, name: currentPat[j].name,
+          pattern: currentPat[j].pattern, isRegEx: currentPat[j].isRegEx,
+          caseSensitive: currentPat[j].caseSensitive, isBlackList:
+          currentPat[j].blackList, isMultiLine: currentPat[j].multiLine,
+          fromSubscription: true});
         proxyList[i].matches.push(pattern);
       }
     }

@@ -57,6 +57,7 @@ function QuickAdd(mName) {
   this.elemNameCamelCase = "QuickAdd";
   this.setFPC();
 }
+
 function AutoAdd(mName) {
   SuperAdd.apply(this, arguments);
   this._blockedPageMatch = new Match()

@@ -32,7 +32,6 @@ var subscriptions = {
   // See: http://stackoverflow.com/questions/475074/regex-to-parse-or-validate-base64-data
   base64RegExp : /^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4})$/,
 
-  subscriptionsList : [],
   subscriptionsTree : null,
 
   // We count here the amount of load failures during startup in order to
@@ -51,7 +50,7 @@ var subscriptions = {
     this.fp = Cc["@leahscape.org/foxyproxy/service;1"].getService().
       wrappedJSObject;
     this.fpc = Cc["@leahscape.org/foxyproxy/common;1"].getService().
-      wrappedJSObject; 
+      wrappedJSObject;
     if (this.type === "pattern") {
       this.autoproxy.init();
     }
@@ -59,7 +58,7 @@ var subscriptions = {
 
   // TODO: Find a way to load the file efficiently using our XmlHTTPRequest
   // method below...
-  loadSavedSubscriptions: function(saveSubscriptionsFile) {
+  loadSavedSubscriptions: function(savedSubscriptionsFile) {
     try {
       var line = {};
       var i;
@@ -68,16 +67,12 @@ var subscriptions = {
       var loadedSubscription;
       var metaIdx;
       var parseString;
-      if (!saveSubscriptionsFile) {
-        // We do not have saved Patterns yet, thus returning...
-	return;
-      }
       var istream = Cc["@mozilla.org/network/file-input-stream;1"].
-                  createInstance(Ci.nsIFileInputStream);
-      // -1 has the same effect as 0444.
-      istream.init(saveSubscriptionsFile, 0x01, -1, 0);
+        createInstance(Ci.nsIFileInputStream);
+      // -1 has the same effect as 0664.
+      istream.init(savedSubscriptionsFile, 0x01, -1, 0);
       var conStream = Cc["@mozilla.org/intl/converter-input-stream;1"].
-                createInstance(Ci.nsIConverterInputStream);
+        createInstance(Ci.nsIConverterInputStream);
       conStream.init(istream, "UTF-8", 0, 0);
       conStream.QueryInterface(Ci.nsIUnicharLineInputStream);
       do {
@@ -85,9 +80,12 @@ var subscriptions = {
         // therefore resetting errorMessages here.
 	errorMessages = [];
         hasmore = conStream.readLine(line);
-        loadedSubscription = this.getObjectFromJSON(line.value, errorMessages); 
+        // Proxy subscriptions are already saved into JSON even though they
+        // are in a IP:Port format originally. Thus, we need no special method
+        // if we load an already saved one.
+        loadedSubscription = this.getObjectFromJSON(line.value, errorMessages);
 	if (loadedSubscription && loadedSubscription.length === undefined) {
-	  this.subscriptionsList.push(loadedSubscription); 
+	  this.subscriptionsList.push(loadedSubscription);
 	} else {
           // Parsing the whole subscription failed but maybe we can parse at
           // least the metadata to show the user the problematic subscription
@@ -103,28 +101,28 @@ var subscriptions = {
             // its position in the saved subscription is.
 	    parseString = "{" + line.value.slice(metaIdx, line.value.
               indexOf("}", metaIdx) + 1) + "}";
-            loadedSubscription = this.getObjectFromJSON(parseString, 
+            loadedSubscription = this.getObjectFromJSON(parseString,
               errorMessages);
 	    if (loadedSubscription && loadedSubscription.length === undefined) {
               // At least we could parse the metadata. Now, we can show the
               // subscription in the tree after setting the last status
               // properly. Afterwards we ask the user if she wants to refresh
               // her subscription immediately in order to solve the issue
-	      // with the corrupt pattern part.
+	      // with the corrupt subscription part.
 	      errorMessages.push(this.fp.
-                getMessage("patternsubscription.error.patterns", 
-                [loadedSubscription.metadata.name])); 
+                getMessage(this.type + "subscription.error.content",
+                [loadedSubscription.metadata.name]));
 	      loadedSubscription.metadata.lastStatus = this.fp.
-                getMessage("error"); 
+                getMessage("error");
 	      loadedSubscription.metadata.errorMessages = errorMessages;
-	      this.subscriptionsList.push(loadedSubscription); 
+	      this.subscriptionsList.push(loadedSubscription);
 	      this.partialLoadFailure.push(loadedSubscription);
             } else {
 	      this.failureOnStartup++;
             }
 	  } else {
 	    this.failureOnStartup++;
-	  } 
+	  }
 	}
       } while(hasmore);
       try {
@@ -134,18 +132,20 @@ var subscriptions = {
         // of the other subscriptions as the subscriptions list would not be
         // populated with them yet.
         for (i = 0; i < this.subscriptionsList.length; i++) {
-          if (this.subscriptionsList[i].metadata && 
+          if (this.subscriptionsList[i].metadata &&
               this.subscriptionsList[i].metadata.refresh != 0) {
             delete this.subscriptionsList[i].metadata.timer;
             this.setSubscriptionTimer(this.subscriptionsList[i], false, true);
-	  } 
-        } 
+	  }
+        }
       } catch (ex) {
-        dump("Error while resetting the subscription timer: " + ex + "\n");
+        dump("Error while resetting the " + this.type + "subscription timer: " +
+          ex + "\n");
       }
-      conStream.close(); 
+      conStream.close();
     } catch (e) {
-      dump("Error while loading the saved subscriptions: " + e + "\n");
+      dump("Error while loading the saved " + this.type + "subscriptions: " + e
+        + "\n");
     }
   },
 
@@ -188,6 +188,7 @@ var subscriptions = {
     }
   },  
 
+  // TODO: subscription differentiation!
   addSubscription: function(aSubscription, userValues) {
     var userValue, d, subLength;
     // We need this to respect the user's wishes concerning the name and other
@@ -219,6 +220,7 @@ var subscriptions = {
     this.writeSubscriptions();
   },
 
+  // TODO: subscription differentiation                   
   editSubscription: function(aSubscription, userValues, index) {
     // TODO: What shall we do if the user changed the URL?
     var userValue;
@@ -267,7 +269,7 @@ var subscriptions = {
     // encoded. We use this as a parameter to show the proper dialog if there
     // is a mismatch between the users choice and the subscription's
     // encoding.
-    var base64Encoded = aSubscription.metadata.obfuscation === "base64";
+    var base64Encoded = aSubscription.metadata.obfuscation === "Base64";
     var refreshedSubscription = this.loadSubscription(aSubscription.
       metadata.url, base64Encoded);
     // Our "array test" we deployed in addeditsubscription.js as well.
@@ -310,6 +312,8 @@ var subscriptions = {
     }
     // And it means above all refreshing the patterns... But first we generate
     // the proxy list.
+    // TODO: One branch handling the pattern subscriptions and one handling the
+    // proxy subscriptions!?
     if (aSubscription.metadata.proxies.length > 0) {
       proxyList = this.fp.proxies.getProxiesFromId(aSubscription.metadata.
         proxies);
@@ -378,7 +382,7 @@ var subscriptions = {
       // only allowed to read it. 0x1E4 is the same as 0744 but we use it here
       // as octal literals and escape sequences are deprecated and the
       // respective constants are not available yet, see: bug 433295.
-      file.create(Ci.nsIFile.NORMAL_FILE_TYPE, 0x1E4); 
+      file.create(Ci.nsIFile.NORMAL_FILE_TYPE, 0x1E4);
     }
     return file;
   }, 
@@ -388,25 +392,52 @@ var subscriptions = {
       var subscriptionsData = "";
       var foStream;
       var converter;
-      var subFile = this.getSubscriptionsFile();	
+      var subFile = this.getSubscriptionsFile();
       for (var i = 0; i < this.subscriptionsList.length; i++) {
         subscriptionsData = subscriptionsData + this.getJSONFromObject(this.
 	  subscriptionsList[i]) + "\n";
       }
       foStream = Cc["@mozilla.org/network/file-output-stream;1"].
-                   createInstance(Ci.nsIFileOutputStream);
+        createInstance(Ci.nsIFileOutputStream);
       // We should set it to the hex equivalent of 0644
       foStream.init(subFile, 0x02 | 0x08 | 0x20, -1, 0);
       converter = Cc["@mozilla.org/intl/converter-output-stream;1"].
-                   createInstance(Ci.nsIConverterOutputStream);
+        createInstance(Ci.nsIConverterOutputStream);
       converter.init(foStream, "UTF-8", 0, 0);
       converter.writeString(subscriptionsData);
-      converter.close(); 
+      converter.close();
     } catch (e) {
-      dump("Error while writing the subscriptions to disc: " + e + "\n");
+      dump("Error while writing the " + this.type + " subscriptions to disc: " +
+        e + "\n");
     }
   },
 
+  getObjectFromJSON : function(aString, errorMessages) {
+    try {
+      let json;
+      // Should never happen...
+      if (!aString) {
+        errorMessages.push(this.fp.
+          getMessage("patternsubscription.error.JSONString"));
+        return errorMessages;
+      }
+      // As FoxyProxy shall be usable with FF < 3.5 we use nsIJSON. But
+      // Thunderbird does not support nsIJSON. Thus, we check for the proper
+      // method to use here. Checking for nsIJSON is not enough here due to bug
+      // 645922.
+      if (typeof Ci.nsIJSON !== "undefined" && typeof Ci.nsIJSON.decode ===
+          "function") {
+        json = Cc["@mozilla.org/dom/json;1"].createInstance(Ci.nsIJSON);
+        return json.decode(aString); 
+      } else {
+        return JSON.parse(aString);    
+      }
+    } catch (e) {
+      errorMessages.push(this.fp.getMessage("patternsubscription.error.JSON"));
+      return errorMessages; 
+    }
+  },
+ 
   getJSONFromObject: function(aObject) {
     try {
       let json;
@@ -560,32 +591,34 @@ var subscriptions = {
       rowCount : that.subscriptionsList.length,
       getCellText : function(row, column) {
         var i = that.subscriptionsList[row];
+        var type = that.type;
         switch(column.id) {
-          case "subscriptionsEnabled" : return i.metadata.enabled;
-	  case "subscriptionsName" : return i.metadata.name;
-          case "subscriptionsNotes" : return i.metadata.notes;
-          case "subscriptionsUri" : return i.metadata.url;           
+          case type + "SubscriptionsEnabled" : return i.metadata.enabled;
+	  case type + "SubscriptionsName" : return i.metadata.name;
+          case type + "SubscriptionsNotes" : return i.metadata.notes;
+          case type + "SubscriptionsUri" : return i.metadata.url;           
 	  // We are doing here a similar thing as in addeditsubscription.js
 	  // in the onLoad() function described: As we only saved the id's
 	  // and the id's are not really helpful for users, we just use them to
 	  // get the respective name of a proxy out of the proxies object
 	  // belonging to the foxyproxy service. These names are then displayed
 	  // in the subscriptions tree comma separated in the proxy column.
-          case "subscriptionsProxy":
+          case type + "SubscriptionsProxy":
 	    let proxyString = "";
             let proxies = that.fp.proxies.getProxiesFromId(i.metadata.proxies);
 	    for (let j = 0; j < proxies.length; j++) {
               proxyString = proxyString + proxies[j].name;
 	      if (j < proxies.length - 1) {
-		proxyString = proxyString + ", ";
+                proxyString = proxyString + ", ";
               }
             }
 	    return proxyString; 
-          case "subscriptionsRefresh" : return i.metadata.refresh;
-          case "subscriptionsStatus" : return i.metadata.lastStatus;
-          case "subscriptionsLastUpdate" : return i.metadata.lastUpdate;   
-          case "subscriptionsFormat" : return i.metadata.format;
-          case "subscriptionsObfuscation" : return i.metadata.obfuscation;
+          case type + "SubscriptionsRefresh" : return i.metadata.refresh;
+          case type + "SubscriptionsStatus" : return i.metadata.lastStatus;
+          case type + "SubscriptionsLastUpdate" : return i.metadata.lastUpdate;
+          case type + "SubscriptionsFormat" : return i.metadata.format;
+          case type + "SubscriptionsObfuscation" : return i.metadata.
+            obfuscation;
         }
       },
       setCellValue: function(row, col, val) {
@@ -613,6 +646,7 @@ var subscriptions = {
 
 var patternSubscriptions = Object.create(subscriptions);
 patternSubscriptions.type = "pattern";
+patternSubscriptions.subscriptionsList = [];
 patternSubscriptions.subscriptionsFile = "patternSubscriptions.json";
 
 // TODO: Where do we need the specific values? Wouldn't it not be enough to
@@ -697,32 +731,6 @@ patternSubscriptions.parseSubscription = function(subscriptionText,
     errorMessages.push(this.fp.
       getMessage("patternsubscription.error.network.unspecified")); 
     return errorMessages;
-  }
-};
-
-patternSubscriptions.getObjectFromJSON = function(aString, errorMessages) {
-  try {
-    let json;
-    // Should never happen...
-    if (!aString) {
-      errorMessages.push(this.fp.
-        getMessage("patternsubscription.error.JSONString"));
-      return errorMessages;
-    }
-    // As FoxyProxy shall be usable with FF < 3.5 we use nsIJSON. But
-    // Thunderbird does not support nsIJSON. Thus, we check for the proper
-    // method to use here. Checking for nsIJSON is not enough here due to bug
-    // 645922.
-    if (typeof Ci.nsIJSON !== "undefined" && typeof Ci.nsIJSON.decode ===
-        "function") {
-      json = Cc["@mozilla.org/dom/json;1"].createInstance(Ci.nsIJSON);
-      return json.decode(aString); 
-    } else {
-      return JSON.parse(aString);    
-    }
-  } catch (e) {
-    errorMessages.push(this.fp.getMessage("patternsubscription.error.JSON"));
-    return errorMessages; 
   }
 };
 
@@ -900,6 +908,7 @@ Cu.import("resource://foxyproxy/autoproxy.jsm", patternSubscriptions);
 
 var proxySubscriptions = Object.create(subscriptions);
 proxySubscriptions.type = "proxy";
+proxySubscriptions.subscriptionsList = [];
 proxySubscriptions.subscriptionsFile = "proxySubscriptions.json";
 
 proxySubscriptions.parseSubscription = function(subscriptionText,

@@ -64,6 +64,8 @@ var observer = {
       case "foxyproxy-tree-update":
         patternSubscriptionsTree.view = patternSubscriptions.
           makeSubscriptionsTreeView();
+        proxySubscriptionsTree.view = proxySubscriptions.
+          makeSubscriptionsTreeView();
         break;
      }
    }
@@ -341,6 +343,8 @@ function _updateView(writeSettings, updateLogView) {
   fpc.makeProxyTreeView(proxyTree, foxyproxy.proxies, document);
   patternSubscriptionsTree.view = patternSubscriptions.
     makeSubscriptionsTreeView();
+  proxySubscriptionsTree.view = proxySubscriptions.
+    makeSubscriptionsTreeView();
   
   if (writeSettings)
     foxyproxy.writeSettingsAsync();
@@ -485,6 +489,18 @@ function setButtons() {
     numSelected > 1 || numSelected == 0 || isDefaultSelected);
 }
 
+function getSelectedSubscription(type) {
+  let selectedSubscription;
+  if (type === "pattern") {
+    selectedSubscription = patternSubscriptions.
+      subscriptionsList[patternSubscriptionsTree.currentIndex];
+  } else {
+    selectedSubscription = proxySubscriptions.
+      subscriptionsList[proxySubscriptionsTree.currentIndex];
+  }
+  return selectedSubscription;
+}
+
 function addSubscription(type) {
   let params = {
         inn : null,
@@ -548,35 +564,45 @@ function editSubscription(type) {
 }
 
 function deleteSubscriptions(type) {
+  let subscriptions;
+  let subscriptionsTree;
+  if (type === "pattern") {
+    subscriptions = patternSubscriptions;
+    subscriptionsTree = patternSubscriptionsTree;
+  } else {
+    subscriptions = proxySubscriptions;
+    subscriptionsTree = proxySubscriptionsTree;
+  }
   // We save the current index to select the proper row after the
   // subscription got deleted.
-  let selIndex = patternSubscriptionsTree.currentIndex; 
+  let selIndex = subscriptionsTree.currentIndex; 
   // Currently, we have seltype=single that's why "selectedSubscription" is
   // in singular but it is planned to allow the user to delete more than one
   // subscription at once. That's why "deletePatternSubscriptions" is in 
   // plural. The same reasoning holds for the two following functions.
-  let selectedSubscription = patternSubscriptions.subscriptionsList[selIndex];
+  let selectedSubscription = getSelectedSubscription(type);
   if (foxyproxy.warnings.showWarningIfDesired(window, 
-      ["patternsubscription.del.subscription"], "patSubDelete")) {
+      [type + "subscription.del.subscription"], type +"SubDelete")) {
     if (selectedSubscription.timer) {
       selectedSubscription.timer.cancel();
     }
-    // Deleting the patterns as well if we have proxies following them...
-    let selSubProxies = selectedSubscription.metadata.proxies;
-    if (selSubProxies.length > 0) {
-      selSubProxies = foxyproxy.proxies.getProxiesFromId(selSubProxies);
-      patternSubscriptions.deletePatterns(selSubProxies, 
-        selectedSubscription.metadata.enabled);
+    if (type === "patterns") {
+      // Deleting the patterns as well if we have proxies following them...
+      let selSubProxies = selectedSubscription.metadata.proxies;
+      if (selSubProxies.length > 0) {
+        selSubProxies = foxyproxy.proxies.getProxiesFromId(selSubProxies);
+        subscriptions.deletePatterns(selSubProxies, selectedSubscription.
+          metadata.enabled);
+      }
     }
-    patternSubscriptions.subscriptionsList.splice(selIndex, 1);
-    patternSubscriptions.writeSubscriptions();
-    patternSubscriptionsTree.view = patternSubscriptions.
-      makeSubscriptionsTreeView(); 
+    subscriptions.subscriptionsList.splice(selIndex, 1);
+    subscriptions.writeSubscriptions();
+    subscriptionsTree.view = subscriptions.makeSubscriptionsTreeView(); 
     // Deleting the subscription file if it is empty in order to avoid errors
     // during startup.
-    if (patternSubscriptions.subscriptionsList.length === 0) {
-      dump("Deleting the subscriptions file...\n");
-      patternSubscriptions.getSubscriptionsFile().remove(false);
+    if (subscriptions.subscriptionsList.length === 0) {
+      dump("Deleting the " + type + " subscriptions file...\n");
+      subscriptions.getSubscriptionsFile().remove(false);
       // We need that here otherwise all options in the context menu are still
       // selected even if no subscription exists anymore.
       document.getElementById(type + "subtree-row-selected").
@@ -586,10 +612,10 @@ function deleteSubscriptions(type) {
       document.getElementById(type + "ActionList").selectedIndex = 0;
     } else {
       // Easy as we currently have seltype=single
-      if (selIndex === patternSubscriptionsTree.view.rowCount) {
+      if (selIndex === subscriptionsTree.view.rowCount) {
         selIndex = selIndex - 1;
       }
-      patternSubscriptionsTree.view.selection.select(selIndex);  
+      subscriptionsTree.view.selection.select(selIndex);  
     }
   }
 }
@@ -602,15 +628,25 @@ function refreshSubscriptions(type) {
 }
 
 function viewSubscriptions(type) {
-  let selectedSubscription = patternSubscriptions.
-    subscriptionsList[patternSubscriptionsTree.currentIndex];
-  let params = {
-        inn : {
-          patterns : selectedSubscription.patterns
-        }
-      };
-  window.openDialog('chrome://foxyproxy/content/pattern-subscriptions/patternsView.xul', 
+  let selectedSubscription = getSelectedSubscription(type);
+  let params;
+  if (type === "pattern") {
+    params = {
+      inn : {
+        patterns : selectedSubscription.patterns
+      }
+    };
+    window.openDialog('chrome://foxyproxy/content/pattern-subscriptions/patternsView.xul',
     '', 'modal, resizable=yes', params).focus();
+  } else {
+    params = {
+      inn : {
+        proxies : selectedSubscription.proxies
+      }
+    };
+    window.openDialog('chrome://foxyproxy/content/proxy-subscriptions/proxiesView.xul',
+    '', 'modal, resizable=yes', params).focus();
+  }
 }
 
 function onSubscriptionsAction(type) {
@@ -633,7 +669,7 @@ function onSubscriptionsAction(type) {
         break;
     } 
   } catch (e) {
-    dump("There went something wrong in the Treeselection: " + e);
+    dump("There went something wrong in the " + type + " tree selection: " + e);
 
   }
 }

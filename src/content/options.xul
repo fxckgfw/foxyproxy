@@ -309,42 +309,48 @@
              onselect="onSubTreeSelected('pattern');">
              <treecols
                pickertooltiptext="&foxyproxy.tree.pickertooltiptext.label;">
-               <treecol id="subscriptionsEnabled"
+               <treecol id="patternSubscriptionsEnabled"
                  label="&foxyproxy.enabled.label;" flex="1"
                  persist="width ordinal hidden" type="checkbox"/>
                <splitter class="tree-splitter"/>
-               <treecol id="subscriptionsName" label="&foxyproxy.name.label;"
-                 primary="true" flex="1" persist="width ordinal hidden"/>
+               <treecol id="patternSubscriptionsName" primary="true"
+                 label="&foxyproxy.name.label;" flex="1"
+                 persist="width ordinal hidden"/>
                <splitter class="tree-splitter"/>
-               <treecol id="subscriptionsNotes" label="&foxyproxy.notes.label;"
+               <treecol id="patternSubscriptionsNotes"
+                 label="&foxyproxy.notes.label;" flex="1"
+                 persist="width ordinal hidden"/>
+               <splitter class="tree-splitter"/>
+               <treecol id="patternSubscriptionsUri" flex="1"
+                 persist="width ordinal hidden"
+                 label="&foxyproxy.tab.logging.url.label;"/>
+               <splitter class="tree-splitter"/>
+               <treecol id="patternSubscriptionsProxy" hidden="true"
+                 label="&foxyproxy.proxy.label;"
                  flex="1" persist="width ordinal hidden"/>
                <splitter class="tree-splitter"/>
-               <treecol id="subscriptionsUri" persist="width ordinal hidden"
-                 label="&foxyproxy.tab.logging.url.label;" flex="1"/>
-               <splitter class="tree-splitter"/>
-               <treecol id="subscriptionsProxy" label="&foxyproxy.proxy.label;"
-                 flex="1" persist="width ordinal hidden" hidden="true"/>
-               <splitter class="tree-splitter"/>
-               <treecol id="subscriptionsRefresh" pack="center"
+               <treecol id="patternSubscriptionsRefresh" pack="center"
                  label="&foxyproxy.updatefrequency.label;" flex="1"
                  persist="width ordinal hidden"/>
                <splitter class="tree-splitter"/>
-               <treecol id="subscriptionsStatus" persist="width ordinal hidden"
-                 label="&foxyproxy.status.label;" flex="1"/>
+               <treecol id="patternSubscriptionsStatus" flex="1"
+                 persist="width ordinal hidden"
+                 label="&foxyproxy.status.label;"/>
                <splitter class="tree-splitter"/>
-               <treecol id="subscriptionsLastUpdate"
+               <treecol id="patternSubscriptionsLastUpdate" hidden="true"
                  label="&foxyproxy.lastupdate.label;" flex="1"
-                 persist="width ordinal hidden" hidden="true"/>
+                 persist="width ordinal hidden"/>
                <splitter class="tree-splitter"/>
-               <treecol id="subscriptionsFormat" persist="width ordinal hidden"
-                 label="&foxyproxy.format.label;" flex="1" hidden="true"/>
+               <treecol id="patternSubscriptionsFormat" hidden="true"
+                 persist="width ordinal hidden" flex="1"
+                 label="&foxyproxy.format.label;"/>
                <splitter class="tree-splitter"/>
-               <treecol id="subscriptionsObfuscation"
+               <treecol id="patternSubscriptionsObfuscation" hidden="true"
                  label="&foxyproxy.obfuscation.label;" flex="1"
-                 persist="width ordinal hidden" hidden="true"/>
+                 persist="width ordinal hidden"/>
                <splitter class="tree-splitter"/>
              </treecols>
-             <treechildren id="subscriptionsTreeChildren" flex="1"
+             <treechildren id="patternSubscriptionsTreeChildren" flex="1"
                ondblclick="onDblClickSubscriptionsTree('pattern');"
                context="patternSubTreeMenu"/>
            </tree>

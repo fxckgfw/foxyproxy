@@ -156,6 +156,7 @@ foxyproxy.prototype = {
           try {
             this.init();
             this.patternSubscriptions.init();
+            this.proxySubscriptions.init();
             // Initialize defaultPrefs before initial call to this.setMode().
             // setMode() is called from this.loadSettings()->this.fromDOM(), but
             // also from commandlinehandler.js.
@@ -210,12 +211,20 @@ foxyproxy.prototype = {
       this.fromDOM(doc, doc.documentElement);
     }
     // Now we load the pattern subscriptions as well if there are any.
-    var subFile = f.parent.clone();
-    subFile.append("patternSubscriptions.json");
+    var patternSubFile = f.parent.clone();
+    patternSubFile.append("patternSubscriptions.json");
     // If we do not have a file yet we do not do anything here concerning the
     // pattern subscriptions. Maybe the user does not need that feature at all.
-    if (subFile.exists() && subFile.isFile()) {
-      this.patternSubscriptions.loadSavedSubscriptions(subFile);
+    if (patternSubFile.exists() && patternSubFile.isFile()) {
+      this.patternSubscriptions.loadSavedSubscriptions(patternSubFile);
+    }
+    // Now the proxy subscriptions if there are any.
+    var proxySubFile =  f.parent.clone();
+    proxySubFile.append("proxySubscriptions.json");
+    // If we do not have a file yet we do not do anything here concerning the
+    // proxy subscriptions. Maybe the user does not need that feature at all.
+    if (proxySubFile.exists() && proxySubFile.isFile()) {
+      this.proxySubscriptions.loadSavedSubscriptions(proxySubFile);
     }
   },
 

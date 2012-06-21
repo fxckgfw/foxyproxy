@@ -515,8 +515,8 @@ function addSubscription(type) {
   }
   if (params.out) {
     if (type === "pattern") {
-      patternSubscriptions.addSubscription(params.out.subscription, 
-        params.out.userValues); 
+      patternSubscriptions.addSubscription(params.out.subscription, params.out.
+        userValues); 
       // Now adding the patterns to the proxies provided the user has added
       // at least one proxy in the addeditsubscription dialog.
       let proxyList = params.out.proxies; 
@@ -525,7 +525,11 @@ function addSubscription(type) {
       }
       patternSubscriptionsTree.view = patternSubscriptions.
         makeSubscriptionsTreeView();
-    } 
+    } else {
+      // TODO: Do we need different branches here already?
+      proxySubscriptions.addSubscription(params.out.subscription, params.out.
+        userValues);
+    }
   }
 }
 

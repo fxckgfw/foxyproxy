@@ -143,10 +143,15 @@ function onOK(type) {
     if (window.arguments[0].inn === null) {
       base64Encoded = userValues.obfuscation === "Base64";
       foxyproxyFormat = userValues.format === "FoxyProxy";
-      parsedSubscription = patternSubscriptions.
-	loadSubscription(userValues.url, base64Encoded);
+      if (type === "pattern") {
+        parsedSubscription = patternSubscriptions.
+	  loadSubscription(userValues.url, base64Encoded);
+      } else {
+        parsedSubscription = proxySubscriptions.
+	  loadSubscription(userValues.url, base64Encoded);
+      }
       // The following is kind of a trivial array test. We need that to check
-      // whether we got an array of error Messages back or a subscription
+      // whether we got an array of error messages back or a subscription
       // object. Iff the latter is the case we add a new subscription. As we
       // do not have any subscription yet if we got an array back, we show
       // an import error message and just return false.
@@ -236,7 +241,7 @@ function onLastStatus() {
       errorMessages: metadata.errorMessages 
     }
   };
-  window.openDialog('chrome://foxyproxy/content/pattern-subscriptions/laststatus.xul', '', 'modal, centerscreen, resizable', p).focus();
+  window.openDialog('chrome://foxyproxy/content/subscriptions/lastStatus.xul', '', 'modal, centerscreen, resizable', p).focus();
 }
 
 function addProxy(e) {

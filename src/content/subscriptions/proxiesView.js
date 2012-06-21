@@ -25,10 +25,10 @@ function makeProxiesViewTree(proxies) {
     },
     setCellValue: function(row, col, val) {proxies[row].enabled = val;},
     getCellValue: function(row, col) {return proxies[row].enabled;},
-    isSeparator: function(aIndex) { return false; },
-    isSorted: function() { return false; },
-    isEditable: function(row, col) { return false; },
-    isContainer: function(aIndex) { return false; },
+    isSeparator: function(aIndex) {return false;},
+    isSorted: function() {return false;},
+    isEditable: function(row, col) {return false;},
+    isContainer: function(aIndex) {return false;},
     setTree: function(aTree){},
     getImageSrc: function(aRow, aColumn) {return null;},
     getProgressMode: function(aRow, aColumn) {},
@@ -36,7 +36,7 @@ function makeProxiesViewTree(proxies) {
     getRowProperties: function(aRow, aColumn, aProperty) {},
     getColumnProperties: function(aColumn, aColumnElement, aProperty) {},
     getCellProperties: function(aRow, aProperty) {},
-    getLevel: function(row){ return 0; }
+    getLevel: function(row){return 0;}
   };
 }
 

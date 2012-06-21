@@ -507,24 +507,26 @@ function addSubscription(type) {
         out : null
       };	
   if (type === "pattern") {
-  window.openDialog('chrome://foxyproxy/content/pattern-subscriptions/addeditsubscription.xul', 
+  window.openDialog('chrome://foxyproxy/content/subscriptions/addEditPatternSubscription.xul', 
     '', 'modal, resizable=yes', params).focus();
   } else {
-    window.openDialog('chrome://foxyproxy/content/proxy-subscriptions/addeditsubscription.xul',
+    window.openDialog('chrome://foxyproxy/content/subscriptions/addEditProxySubscription.xul',
     '', 'modal, resizable=yes', params).focus();
   }
   if (params.out) {
-    patternSubscriptions.addSubscription(params.out.subscription, 
-      params.out.userValues); 
-    // Now adding the patterns to the proxies provided the user has added
-    // at least one proxy in the addeditsubscription dialog.
-    let proxyList = params.out.proxies; 
-    if (proxyList.length !== 0) {
-      patternSubscriptions.addPatterns(null, proxyList);
-    }
-    patternSubscriptionsTree.view = patternSubscriptions.
-      makeSubscriptionsTreeView();
-  } 
+    if (type === "pattern") {
+      patternSubscriptions.addSubscription(params.out.subscription, 
+        params.out.userValues); 
+      // Now adding the patterns to the proxies provided the user has added
+      // at least one proxy in the addeditsubscription dialog.
+      let proxyList = params.out.proxies; 
+      if (proxyList.length !== 0) {
+        patternSubscriptions.addPatterns(null, proxyList);
+      }
+      patternSubscriptionsTree.view = patternSubscriptions.
+        makeSubscriptionsTreeView();
+    } 
+  }
 }
 
 // We need this extra step here. Otherwise the user may click on the empty tree
@@ -547,7 +549,7 @@ function editSubscription(type) {
           index : patternSubscriptionsTree.currentIndex
         }
       };
-  window.openDialog('chrome://foxyproxy/content/pattern-subscriptions/addeditsubscription.xul', 
+  window.openDialog('chrome://foxyproxy/content/subscriptions/addEditPatternSubscription.xul', 
     '', 'modal, resizable=yes', params).focus(); 
   if (params.out) {
     patternSubscriptions.editSubscription(selectedSubscription, params.
@@ -636,7 +638,7 @@ function viewSubscriptions(type) {
         patterns : selectedSubscription.patterns
       }
     };
-    window.openDialog('chrome://foxyproxy/content/pattern-subscriptions/patternsView.xul',
+    window.openDialog('chrome://foxyproxy/content/subscriptions/patternsView.xul',
     '', 'modal, resizable=yes', params).focus();
   } else {
     params = {
@@ -644,7 +646,7 @@ function viewSubscriptions(type) {
         proxies : selectedSubscription.proxies
       }
     };
-    window.openDialog('chrome://foxyproxy/content/proxy-subscriptions/proxiesView.xul',
+    window.openDialog('chrome://foxyproxy/content/subscriptions/proxiesView.xul',
     '', 'modal, resizable=yes', params).focus();
   }
 }
@@ -839,7 +841,7 @@ function onSubTreeSelected(type) {
   if (type === "pattern") {
     selLength = utils.getSelectedIndices(patternSubscriptionsTree).length; 
   } else {
-    setLength = utils.getSelectedIndices(proxySubscriptionsTree).length;
+    selLength = utils.getSelectedIndices(proxySubscriptionsTree).length;
   }
   document.getElementById(type + "subtree-row-selected").
     setAttribute("disabled", selLength === 0);

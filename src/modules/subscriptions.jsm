@@ -186,7 +186,30 @@ var subscriptions = {
         dump("Error while loading the subscription: " + e + "\n");
       }
     }
-  },  
+  },
+
+  base64Match: function(type, isBase64, userBase64, errorMessages,
+    parsedSubscription) {
+    if (isBase64 && !userBase64 && !this.fp.warnings.showWarningIfDesired(null,
+        [type + "subscription.warning.base64"], type + "EncodingWarning")) {
+      errorMessages.push(this.fp.
+        getMessage(type + "subscription.error.cancel64"));
+      return errorMessages;
+    } else if (!isBase64 && userBase64 && !this.fp.warnings.
+        showWarningIfDesired(null, [type + "subscription.warning.not.base64"],
+        type + "EncodingWarning")) {
+      errorMessages.push(this.fp.getMessage(type +
+        "subscription.error.cancel64"));
+      return errorMessages;
+    } else {
+      if (isBase64) {
+        parsedSubscription.metadata.obfuscation = "Base64";
+      } else {
+        parsedSubscription.metadata.obfuscation = this.fp.getMessage("none");
+      }
+      return parsedSubscription;
+    } 
+  },
 
   // TODO: subscription differentiation!
   addSubscription: function(aSubscription, userValues) {
@@ -707,25 +730,8 @@ patternSubscriptions.parseSubscription = function(subscriptionText,
         }
       }
     }
-    if (isBase64 && !userBase64 && !this.fp.warnings.showWarningIfDesired(null,
-        ["patternsubscription.warning.base64"], "noneEncodingWarning")) {
-      errorMessages.push(this.fp.
-        getMessage("patternsubscription.error.cancel64"));
-      return errorMessages;
-    } else if (!isBase64 && userBase64 && !this.fp.warnings.
-        showWarningIfDesired(null, ["patternsubscription.warning.not.base64"],
-        "noneEncodingWarning")) {
-      errorMessages.push(this.fp.
-        getMessage("patternsubscription.error.cancel64"));
-      return errorMessages;
-    } else {
-      if (isBase64) {
-        parsedSubscription.metadata.obfuscation = "Base64";
-      } else {
-        parsedSubscription.metadata.obfuscation = this.fp.getMessage("none");
-      }
-      return parsedSubscription;
-    }
+    return this.base64Match(this.type, isBase64, userBase64, errorMessages,
+      parsedSubscription);
   } catch (e) {
     // TODO: Recheck proper error messages after rewriting the module!
     errorMessages.push(this.fp.
@@ -913,13 +919,54 @@ proxySubscriptions.subscriptionsFile = "proxySubscriptions.json";
 
 proxySubscriptions.parseSubscription = function(subscriptionText,
   errorMessages, aURLString, isBase64, userBase64) {
-  let parsedSubscription;
-  let subscriptionContent = this.getProxiesFromText(subscriptionText,
-      errorMessages);
-  dump();
-}
+  try {
+    let parsedSubscription = this.getObjectFromText(subscriptionText,
+      errorMessages); 
+    // Did we get the errorMessages back? If so return them immediately.
+    if (parsedSubscription.length !== undefined) {
+      return parsedSubscription;
+    }
+    if (!parsedSubscription.metadata) {
+      parsedSubscription.metadata = {};
+    } 
+    // We've got a normal proxy subscription...
+    parsedSubscription.metadata.format = "IP:Port";
+    // Setting the name of the proxies if there is none set yet.
+    let proxies = parsedSubscription.proxies;
+    for (let i = 0, length = proxies.length; i < length; i++) {
+      let proxy = proxies[i];
+      if (!proxy.name) {
+        proxy.name = proxy.ip + ":" + proxy.port;
+      }
+    }
+    return this.base64Match(this.type, isBase64, userBase64, errorMessages,
+      parsedSubscription);
+  } catch (e) {
+    // TODO: Recheck proper error messages after rewriting the module!
+    errorMessages.push(this.fp.
+      getMessage("proxysubscription.error.network.unspecified")); 
+    return errorMessages;
+  }
+}; 
 
-proxySubscriptions.getProxiesFromText = function(subscriptionText,
+proxySubscriptions.getObjectFromText = function(subscriptionText,
   errorMessages) {
-
+  try {
+    let ipPort;
+    let proxySubscription = {};
+    let proxyArray = proxySubscription.proxies = [];
+    let proxies = subscriptionText.split("\n");
+    for (let i = 0, length = proxies.length; i < length; ++i) {
+      proxyArray[i] = {};
+      ipPort = proxies[i].split(":");
+      // We do the trimming here as we never know whether we have patterns like
+      // "123.123.123.123 : 456" as well.
+      proxyArray[i].ip = ipPort[0].replace(/^\s*|\s*$/g,"");
+      proxyArray[i].port = ipPort[1].replace(/^\s*|\s*$/g,"");
+    }
+    return proxySubscription;
+  } catch (e) {
+    errorMessages.push(this.fp.getMessage("proxysubscription.error.txt"));
+    return errorMessages;
+  }
 }

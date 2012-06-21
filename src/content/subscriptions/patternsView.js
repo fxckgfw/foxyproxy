@@ -24,19 +24,19 @@ function makePatternsViewTree(patterns) {
       return getTextForCell(patterns[row], column.id ? column.id : column);
     },
     setCellValue: function(row, col, val) {patterns[row].enabled = val;},
-    getCellValue: function(row, col) { return patterns[row].enabled; },
-    isSeparator: function(aIndex) { return false; },
-    isSorted: function() { return false; },
-    isEditable: function(row, col) { return false; },
-    isContainer: function(aIndex) { return false; },
+    getCellValue: function(row, col) {return patterns[row].enabled;},
+    isSeparator: function(aIndex) {return false;},
+    isSorted: function() {return false;},
+    isEditable: function(row, col) {return false;},
+    isContainer: function(aIndex) {return false;},
     setTree: function(aTree){},
-    getImageSrc: function(aRow, aColumn) { return null; },
+    getImageSrc: function(aRow, aColumn) {return null;},
     getProgressMode: function(aRow, aColumn) {},
     cycleHeader: function(aColId, aElt) {},
     getRowProperties: function(aRow, aColumn, aProperty) {},
     getColumnProperties: function(aColumn, aColumnElement, aProperty) {},
     getCellProperties: function(aRow, aProperty) {},
-    getLevel: function(row){ return 0; }
+    getLevel: function(row){return 0;}
   };
 }
 

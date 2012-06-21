@@ -26,9 +26,7 @@
         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
 	persist="screenX screenY">
 
-        <!-- TODO: We should put the js file in the content dir if it gets used
-          by other XUL files as well. -->
-        <script src="chrome://foxyproxy/content/pattern-subscriptions/addeditsubscription.js" />
+        <script src="addEditSubscription.js" />
 
   <vbox>
     <separator class="thin"/>

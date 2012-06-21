@@ -25,7 +25,7 @@
 	ondialogaccept="onOK();"
 	context="lastStatusPopup">
 
-  <script src="laststatus.js" />
+  <script src="lastStatus.js" />
 
   <vbox>
     <separator class="thin"/>

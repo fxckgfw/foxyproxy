@@ -766,7 +766,7 @@ end-foxyproxy-simple !*/
           fp.cycleMode();
           break;
         case "contextmenu":
-          this._popupShowing = 0;
+          foxyproxy._popupShowing = 0;
           let popupElement;
 	  if (e.target.id === "foxyproxy-toolbar-icon") {
             popupElement = document.

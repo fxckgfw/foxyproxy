@@ -22,7 +22,7 @@
   windowtype="foxyproxy"
   xmlns:html="http://www.w3.org/1999/xhtml"
   xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-  height="500" width="300"
+  height="300" width="600"
   persist="screenX screenY width height">
 
   <script src="patternsView.js"/>

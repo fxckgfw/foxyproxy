@@ -526,9 +526,10 @@ function addSubscription(type) {
       patternSubscriptionsTree.view = patternSubscriptions.
         makeSubscriptionsTreeView();
     } else {
-      // TODO: Do we need different branches here already?
       proxySubscriptions.addSubscription(params.out.subscription, params.out.
         userValues);
+      proxySubscriptionsTree.view = proxySubscriptions.
+        makeSubscriptionsTreeView();
     }
   }
 }
@@ -545,27 +546,39 @@ function onDblClickSubscriptionsTree(type) {
 }
 
 function editSubscription(type) {
-  let selectedSubscription = patternSubscriptions.
-    subscriptionsList[patternSubscriptionsTree.currentIndex];
+  let selectedSubscription = getSelectedSubscription(type);
   let params = {
         inn : {
           subscription : selectedSubscription,
-          index : patternSubscriptionsTree.currentIndex
+          index : type === "pattern" ? patternSubscriptionsTree.currentIndex :
+            proxySubscriptionsTree.currentIndex
         }
       };
-  window.openDialog('chrome://foxyproxy/content/subscriptions/addEditPatternSubscription.xul', 
+  if (type === "pattern") {
+    window.openDialog('chrome://foxyproxy/content/subscriptions/addEditPatternSubscription.xul', 
     '', 'modal, resizable=yes', params).focus(); 
+  } else {
+     window.openDialog('chrome://foxyproxy/content/subscriptions/addEditProxySubscription.xul',
+    '', 'modal, resizable=yes', params).focus();
+  }
   if (params.out) {
-    patternSubscriptions.editSubscription(selectedSubscription, params.
-      out.userValues, patternSubscriptionsTree.currentIndex);
-    // If new proxies were added we should add the patterns to them as
-    // well but only to them!
-    let proxyList = params.out.proxies; 
-    if (proxyList.length !== 0) {
-      patternSubscriptions.addPatterns(selectedSubscription, proxyList);
+    if (type === "pattern") {
+      patternSubscriptions.editSubscription(selectedSubscription, params.
+        out.userValues, patternSubscriptionsTree.currentIndex);
+      // If new proxies were added we should add the patterns to them as
+      // well but only to them!
+      let proxyList = params.out.proxies; 
+      if (proxyList.length !== 0) {
+        patternSubscriptions.addPatterns(selectedSubscription, proxyList);
+      }
+      patternSubscriptionsTree.view = patternSubscriptions.
+        makeSubscriptionsTreeView();
+    } else {
+      proxySubscriptions.editSubscription(selectedSubscription, params.
+        out.userValues, proxySubscriptionsTree.currentIndex);
+      proxySubscriptionsTree.view = proxySubscriptions.
+        makeSubscriptionsTreeView();
     }
-    patternSubscriptionsTree.view = patternSubscriptions.
-      makeSubscriptionsTreeView();
   }
 }
 
@@ -627,10 +640,17 @@ function deleteSubscriptions(type) {
 }
 
 function refreshSubscriptions(type) {
-  patternSubscriptions.refreshSubscription(patternSubscriptions.
-    subscriptionsList[patternSubscriptionsTree.currentIndex], true);
-  patternSubscriptionsTree.view = patternSubscriptions.
-    makeSubscriptionsTreeView();
+  if (type === "pattern") {
+    patternSubscriptions.refreshSubscription(patternSubscriptions.
+      subscriptionsList[patternSubscriptionsTree.currentIndex], true);
+    patternSubscriptionsTree.view = patternSubscriptions.
+      makeSubscriptionsTreeView();
+  } else {
+    proxySubscriptions.refreshSubscription(proxySubscriptions.
+      subscriptionsList[proxySubscriptionsTree.currentIndex], true);
+    proxySubscriptionsTree.view = proxySubscriptions.
+      makeSubscriptionsTreeView();
+  }
 }
 
 function viewSubscriptions(type) {

@@ -1736,8 +1736,15 @@ foxyproxy.prototype = {
 
     fromDOM : function(doc) {
       var n = doc.getElementsByTagName("warnings").item(0);
-      for (var i=0,sz=n.attributes.length; i<sz; i++)
-        this._warnings[n.attributes[i].name] = n.attributes[i].value == "true";
+      let name;
+      for (var i=0,sz=n.attributes.length; i<sz; i++) {
+        name = n.attributes[i].name;
+        // The name of the warning changed in FP Standard 3.7
+        if (name === "noneEncodingWarning") {
+          name = "patternEncodingWarning";
+        }
+        this._warnings[name] = n.attributes[i].value == "true";
+      }
     }
   },
 

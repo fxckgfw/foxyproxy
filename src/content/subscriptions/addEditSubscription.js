@@ -167,8 +167,8 @@ function onOK(type) {
         for (i = 0; i < parsedSubscription.length; i++) {
 	  errorText = errorText + "\n" + parsedSubscription[i];
         }
-        fp.alert(null, fp.getMessage(
-          "patternsubscription.initial.import.failure") + "\n" + errorText);
+        fp.alert(null, fp.getMessage(type +
+          "subscription.initial.import.failure") + "\n" + errorText);
       }
     } else {
       // The user has edited the pattern subscription. Maybe she removed a proxy
@@ -227,13 +227,18 @@ function onOK(type) {
   }
 }
 
-function onLastStatus() {
+function onLastStatus(type) {
   var metadata = window.arguments[0].inn.subscription.metadata;
   var statusString = metadata.lastUpdate + "   " + metadata.lastStatus;
+  var contentLength;
+  if (type === "pattern") {
+    contentLength = window.arguments[0].inn.subscription.patterns.length;
+  } else {
+    contentLength = window.arguments[0].inn.subscription.proxies.length;
+  }
   if (!metadata.errorMessages) {
-    statusString = statusString + "   " + window.arguments[0].inn.subscription.
-      patterns.length + " " +
-      fp.getMessage("patternsubscription.successful.retrieved"); 
+    statusString = statusString + "   " + contentLength + " " + fp.
+      getMessage(type + "subscription.successful.retrieved"); 
   } 
   var p = {
     inn: {
@@ -296,9 +301,14 @@ function contextHelp(type, subscription) {
   document.getElementById(type + subscription + "Help").hidePopup();
 }
 
-function refreshSubscription(e) {
+function refreshSubscription(type, e) {
   if (e.type === "click" && e.button === 0) {
-    patternSubscriptions.refreshSubscription(window.arguments[0].inn.
-      subscription, true);
+    if (type === "pattern") {
+      patternSubscriptions.refreshSubscription(window.arguments[0].inn.
+        subscription, true);
+    } else {
+      proxySubscriptions.refreshSubscription(window.arguments[0].inn.
+        subscription, true);
+    }
   }
 }

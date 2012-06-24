@@ -21,7 +21,7 @@
          &foxyproxy.proxy.subscriptions.proxy.window.title;"
   windowtype="foxyproxy"
   xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-  height="500" width="200"
+  height="300" width="500"
   persist="screenX screenY width height">
 
   <script src="proxiesView.js"/>

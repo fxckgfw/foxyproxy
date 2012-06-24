@@ -824,7 +824,7 @@ end-foxyproxy-simple !*/
       var checkOne = [];
       if (!isFoxyProxySimple) {
         var itm = _createRadioMenuItem(menupopup,
-          "patterns",
+          "foxyproxy-patterns",
           this._cmd,
           this.fp.getMessage("mode.patterns.accesskey"),
           this.fp.getMessage("mode.patterns.label"),
@@ -860,7 +860,7 @@ end-foxyproxy-simple !*/
         }
 
         itm = _createRadioMenuItem(sbm,
-          p.id,
+          "foxyproxy-" + p.id,
           this._cmd,
           pName.substring(0, 1),
           this.fp.getMessage("mode.custom.label", [pName]), p.notes, "color:" + p.color);
@@ -900,7 +900,7 @@ end-foxyproxy-simple !*/
       checkOne.push(itm); */
 
       itm = _createRadioMenuItem(menupopup,
-        "disabled",
+        "foxyproxy-disabled",
         this._cmd,
         this.fp.getMessage("mode.disabled.accesskey"),
         this.fp.getMessage("mode.disabled.label"),

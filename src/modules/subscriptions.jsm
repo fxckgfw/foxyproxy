@@ -165,6 +165,9 @@ var subscriptions = {
         // http://stackoverflow.com/questions/677902/not-well-formed-error-in-
         // firefox-when-loading-json-file-with-xmlhttprequest
         req.overrideMimeType("application/json");
+      } else {
+        // To avoid a syntax error in the Error Console...
+        req.overrideMimeType("text/plain");
       }
       req.send(null);
       subscriptionText = req.responseText;
@@ -211,7 +214,6 @@ var subscriptions = {
     } 
   },
 
-  // TODO: subscription differentiation!
   addSubscription: function(aSubscription, userValues) {
     var userValue, d, subLength;
     // We need this to respect the user's wishes concerning the name and other
@@ -241,9 +243,13 @@ var subscriptions = {
     this.fp.alert(null, this.fp.
       getMessage(this.type + "subscription.initial.import.success"));
     this.writeSubscriptions();
+    // Importing patterns does not mean someone wants to get added them to a
+    // proxy automatically. That does not hold for importing a proxy list.
+    if (this.type === "proxy") {
+      this.addProxies(aSubscription);
+    }
   },
 
-  // TODO: subscription differentiation                   
   editSubscription: function(aSubscription, userValues, index) {
     // TODO: What shall we do if the user changed the URL?
     var userValue;
@@ -256,6 +262,7 @@ var subscriptions = {
       aSubscription.metadata.name = aSubscription.metadata.url;
     }
     if (oldRefresh !== aSubscription.metadata.refresh) {
+      // TODO: We should not use type coercion here, rather just "!".
       // We need type coercion here, hence "==" instead of "===".
       if (aSubscription.metadata.refresh == 0) {
         aSubscription.metadata.timer.cancel();
@@ -301,17 +308,31 @@ var subscriptions = {
       for (var i = 0; i < refreshedSubscription.length; i++) {
         errorText = errorText + "\n" + refreshedSubscription[i];
       }
-      this.fp.alert(null, this.fp.
-        getMessage("patternsubscription.update.failure") + "\n" + errorText);
+      this.fp.alert(null, this.fp.getMessage(this.type +
+        "subscription.update.failure") + "\n" + errorText);
       aSubscription.metadata.lastStatus = this.fp.getMessage("error");
       // So, we really did not get a proper subscription but error messages.
       // Making sure that they are shown in the lastStatus dialog.
       aSubscription.metadata.errorMessages = refreshedSubscription;
     } else {
       // We do not want to lose our metadata here as the user just
-      // refreshed the subscription to get up-to-date patterns.
-      aSubscription.patterns = refreshedSubscription.
-        patterns;
+      // refreshed the subscription to get up-to-date patterns/proxies.
+      if (this.type === "pattern") {
+        aSubscription.patterns = refreshedSubscription.patterns;
+        // And it means above all refreshing the patterns... But first we
+        // generate the proxy list.
+        if (aSubscription.metadata.proxies.length > 0) {
+          proxyList = this.fp.proxies.getProxiesFromId(aSubscription.metadata.
+            proxies);
+          // First, deleting the old subscription patterns.
+          this.deletePatterns(proxyList, aSubscription.metadata.enabled);
+          // Now, we add the refreshed ones...
+          this.addPatterns(aIndex, proxyList);
+        }
+      } else {
+        aSubscription.proxies = refreshedSubscription.proxies;
+        //TODO: Deleting the old proxies and adding the new ones.
+      }
       // Maybe the obfuscation changed. We should update this...
       aSubscription.metadata.obfuscation = refreshedSubscription.
         metadata.obfuscation;
@@ -323,8 +344,8 @@ var subscriptions = {
       // success popup as it can be quite annoying to get such kinds of popups
       // while surfing. TODO: Think about doing the same for failed updates.
       if (showResponse) {
-        this.fp.alert(null, this.fp.
-          getMessage("patternsubscription.update.success"));
+        this.fp.alert(null, this.fp.getMessage(this.type +
+          "subscription.update.success"));
       }
     }
     aSubscription.metadata.lastUpdate = this.fp.logg.format(Date.now());
@@ -332,18 +353,6 @@ var subscriptions = {
     // is any...
     if (aSubscription.metadata.refresh > 0) {
       this.setSubscriptionTimer(aSubscription, true, false);
-    }
-    // And it means above all refreshing the patterns... But first we generate
-    // the proxy list.
-    // TODO: One branch handling the pattern subscriptions and one handling the
-    // proxy subscriptions!?
-    if (aSubscription.metadata.proxies.length > 0) {
-      proxyList = this.fp.proxies.getProxiesFromId(aSubscription.metadata.
-        proxies);
-      // First, deleting the old subscription patterns.
-      this.deletePatterns(proxyList, aSubscription.metadata.enabled);
-      // Now, we add the refreshed ones...
-      this.addPatterns(aIndex, proxyList);
     }
     this.subscriptionsList[aIndex] = aSubscription;
     this.writeSubscriptions();
@@ -952,21 +961,37 @@ proxySubscriptions.parseSubscription = function(subscriptionText,
 proxySubscriptions.getObjectFromText = function(subscriptionText,
   errorMessages) {
   try {
-    let ipPort;
+    let ipPort = [];
     let proxySubscription = {};
     let proxyArray = proxySubscription.proxies = [];
-    let proxies = subscriptionText.split("\n");
+    let proxies = subscriptionText.split(/\n/);
     for (let i = 0, length = proxies.length; i < length; ++i) {
-      proxyArray[i] = {};
-      ipPort = proxies[i].split(":");
-      // We do the trimming here as we never know whether we have patterns like
-      // "123.123.123.123 : 456" as well.
-      proxyArray[i].ip = ipPort[0].replace(/^\s*|\s*$/g,"");
-      proxyArray[i].port = ipPort[1].replace(/^\s*|\s*$/g,"");
+      // TODO: Think about more tests to make sure we have an IP:Port format!?
+      // Empty lines are useless. We do not add them to the proxy array.
+      if (proxies[i]) {
+        proxyArray[i] = {};
+        ipPort = proxies[i].split(":");
+        // We do the trimming here as we never know whether we have patterns
+        // like "123.123.123.123 : 456" as well.
+        proxyArray[i].ip = ipPort[0].replace(/^\s*|\s*$/g, "");
+        proxyArray[i].port = ipPort[1].replace(/^\s*|\s*$/g, "");
+      }
     }
     return proxySubscription;
   } catch (e) {
     errorMessages.push(this.fp.getMessage("proxysubscription.error.txt"));
     return errorMessages;
   }
-}
+};
+
+proxySubscriptions.addProxies = function(aSubscription) {
+  /*let proxy;
+  let proxies = aSubscription.proxies;
+  for (let i = 0, length = proxies.length; i < length; ++i) {
+    
+  }*/
+};
+
+proxySubscriptions.deleteProxies = function(aSubscription) {
+
+};

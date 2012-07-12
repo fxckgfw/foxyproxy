@@ -122,6 +122,7 @@ Proxy.prototype = {
   _color: DEFAULT_COLOR,
   colorString: "nmbado",
   _proxyDNS: true,
+  _fromSubscription: false,
   fp: null,
   iOService: null,
   sysProxyService: null,
@@ -143,6 +144,7 @@ Proxy.prototype = {
     this.name = node.getAttribute("name");
     this.id = node.getAttribute("id") || this.fp.proxies.uniqueRandom();
     this.notes = node.getAttribute("notes");
+    this._fromSubscription = gGetSafeAttrB(node, "fromSubscription", false); 
     this._enabled = node.getAttribute("enabled") == "true";
     this.autoconf.fromDOM(node.getElementsByTagName("autoconf").item(0));
     let wpadNode = node.getElementsByTagName("autoconf").item(1);
@@ -227,6 +229,8 @@ Proxy.prototype = {
     this.clearCookiesBeforeUse = pc.clearCookiesBeforeUse;
     this.rejectCookies = pc.rejectCookies;
     this._proxyDNS = pc.proxyDNS;
+    // A proxy set by a website is per definitionem not from a subscription.
+    this.fromSubscription = false;
 
     this.manualconf = new ManualConf(this, this.fp);
     this.manualconf.fromProxyConfig(pc.manualConfig);
@@ -268,6 +272,7 @@ Proxy.prototype = {
     e.setAttribute("name", this.name);
     e.setAttribute("id", this.id);
     e.setAttribute("notes", this.notes);
+    e.setAttribute("fromSubscription", this.fromSubscription);
     e.setAttribute("enabled", this.enabled);
     e.setAttribute("mode", this.mode);
     e.setAttribute("selectedTabIndex", this.selectedTabIndex);
@@ -449,6 +454,14 @@ Proxy.prototype = {
   
   get color() {
     return this._color;
+  },
+
+  set fromSubscription(e) {
+    this._fromSubscription = e;
+  },
+
+  get fromSubscription() {
+    return this._fromSubscription;
   },
 
   set enabled(e) {

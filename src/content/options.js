@@ -64,8 +64,12 @@ var observer = {
       case "foxyproxy-tree-update":
         patternSubscriptionsTree.view = patternSubscriptions.
           makeSubscriptionsTreeView();
+        // We need to call that function in order to be sure we get the actual
+        // selection state after the tree got redrawn.
+        onSubTreeSelected('pattern');
         proxySubscriptionsTree.view = proxySubscriptions.
           makeSubscriptionsTreeView();
+        onSubTreeSelected('proxy');
         break;
      }
    }

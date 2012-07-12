@@ -534,6 +534,8 @@ function addSubscription(type) {
         userValues);
       proxySubscriptionsTree.view = proxySubscriptions.
         makeSubscriptionsTreeView();
+      // Redrawing the proxy tree as well as we probably added new proxies.
+      utils.broadcast(true /*write settings*/, "foxyproxy-proxy-change");
     }
   }
 }
@@ -609,7 +611,7 @@ function deleteSubscriptions(type) {
     if (selectedSubscription.timer) {
       selectedSubscription.timer.cancel();
     }
-    if (type === "patterns") {
+    if (type === "pattern") {
       // Deleting the patterns as well if we have proxies following them...
       let selSubProxies = selectedSubscription.metadata.proxies;
       if (selSubProxies.length > 0) {
@@ -617,6 +619,10 @@ function deleteSubscriptions(type) {
         subscriptions.deletePatterns(selSubProxies, selectedSubscription.
           metadata.enabled);
       }
+    } else {
+      // TODO: What about pattern subscriptions attached to it?
+      subscriptions.deleteProxies(foxyproxy.proxies);
+      utils.broadcast(true /*write settings*/, "foxyproxy-proxy-change"); 
     }
     subscriptions.subscriptionsList.splice(selIndex, 1);
     subscriptions.writeSubscriptions();

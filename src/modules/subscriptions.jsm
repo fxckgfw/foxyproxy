@@ -185,6 +185,7 @@ var subscriptions = {
       if (e.name === "NS_ERROR_FILE_NOT_FOUND") {
         errorMessages.push(this.fp.
           getMessage("patternsubscription.error.network")); 
+        return errorMessages;
       } else {
         dump("Error while loading the subscription: " + e + "\n");
       }
@@ -246,7 +247,7 @@ var subscriptions = {
     // Importing patterns does not mean someone wants to get added them to a
     // proxy automatically. That does not hold for importing a proxy list.
     if (this.type === "proxy") {
-      this.addProxies(aSubscription);
+      this.addProxies(aSubscription.proxies);
     }
   },
 
@@ -330,8 +331,10 @@ var subscriptions = {
           this.addPatterns(aIndex, proxyList);
         }
       } else {
-        aSubscription.proxies = refreshedSubscription.proxies;
-        //TODO: Deleting the old proxies and adding the new ones.
+        // TODO: Adding the proxy/proxies back to the pattern subscription if
+        // it/they was/were.
+        this.deleteProxies(this.fp.proxies);
+        this.addProxies(refreshedSubscription.proxies);
       }
       // Maybe the obfuscation changed. We should update this...
       aSubscription.metadata.obfuscation = refreshedSubscription.
@@ -930,14 +933,14 @@ proxySubscriptions.parseSubscription = function(subscriptionText,
   errorMessages, aURLString, isBase64, userBase64) {
   try {
     let parsedSubscription = this.getObjectFromText(subscriptionText,
-      errorMessages); 
+      errorMessages);
     // Did we get the errorMessages back? If so return them immediately.
     if (parsedSubscription.length !== undefined) {
       return parsedSubscription;
     }
     if (!parsedSubscription.metadata) {
       parsedSubscription.metadata = {};
-    } 
+    }
     // We've got a normal proxy subscription...
     parsedSubscription.metadata.format = "IP:Port";
     // Setting the name of the proxies if there is none set yet.
@@ -953,10 +956,10 @@ proxySubscriptions.parseSubscription = function(subscriptionText,
   } catch (e) {
     // TODO: Recheck proper error messages after rewriting the module!
     errorMessages.push(this.fp.
-      getMessage("proxysubscription.error.network.unspecified")); 
+      getMessage("proxysubscription.error.network.unspecified"));
     return errorMessages;
   }
-}; 
+};
 
 proxySubscriptions.getObjectFromText = function(subscriptionText,
   errorMessages) {
@@ -984,14 +987,35 @@ proxySubscriptions.getObjectFromText = function(subscriptionText,
   }
 };
 
-proxySubscriptions.addProxies = function(aSubscription) {
-  /*let proxy;
-  let proxies = aSubscription.proxies;
+proxySubscriptions.addProxies = function(proxies) {
+  let proxy;
   for (let i = 0, length = proxies.length; i < length; ++i) {
-    
-  }*/
+    proxy = Cc["@leahscape.org/foxyproxy/proxy;1"].createInstance().
+      wrappedJSObject;
+    proxy.name = proxies[i].ip + ":" + proxies[i].port;
+    proxy.mode = "manual";
+    proxy.manualconf.host = proxies[i].ip;
+    proxy.manualconf.port = proxies[i].port;
+    // If we do not have port 80 or 443 assume a SOCKS proxy.
+    if (proxies[i].port !== "80" && proxies[i].port !== "443") {
+      proxy.manualconf.isSocks = true;
+      proxy.socksversion = "5";
+    }
+    proxy.fromSubscription = true;
+    this.fp.proxies.push(proxy);
+  }
 };
 
-proxySubscriptions.deleteProxies = function(aSubscription) {
-
+proxySubscriptions.deleteProxies = function(proxies) {
+  for (let i = proxies.length - 1; i >= 0; i--) {
+    let proxy = proxies.item(i);
+    if (proxy.fromSubscription) {
+      // If a proxy from a proxy subscription got added to a pattern
+      // subscription metadata remove it from there as well.
+      if (patternSubscriptions.subscriptionsList.length > 0) {
+        patternSubscriptions.removeDeletedProxies(proxy.id);
+      }
+      this.fp.proxies.remove(i);
+    }
+  }
 };

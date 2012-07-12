@@ -246,6 +246,8 @@ Common.prototype = {
             if (i.mode == "direct") return fp.getMessage("not.applicable");
             else
               return i.proxyDNS ? fp.getMessage("yes"):fp.getMessage("no");
+          case "fromSubscriptionCol":
+            return fp.getMessage(i.fromSubscription ? "yes" : "no");
         }
       },
       setCellValue: function(row, col, val) {proxies.item(row).enabled = val;},

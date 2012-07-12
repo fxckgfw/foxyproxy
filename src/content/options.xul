@@ -178,6 +178,9 @@
                 label="&foxyproxy.proxydns.label4;" hidden="true"
                 flex="1" persist="width ordinal hidden" />
               <splitter class="tree-splitter" />
+              <treecol id="fromSubscriptionCol" hidden="true"
+                label="&foxyproxy.fromSubscription.label;"
+                flex="1" persist="width ordinal hidden"/>
             </treecols>
             <treechildren id="proxyTreeChildren" flex="1"
               ondblclick="onSettings(false);" context="proxyTreeMenu" />

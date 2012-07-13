@@ -56,7 +56,7 @@ var subscriptions = {
     }
   },
 
-  // TODO: Find a way to load the file efficiently using our XmlHTTPRequest
+  // TODO: Find a way to load the file efficiently using our XMLHttpRequest
   // method below...
   loadSavedSubscriptions: function(savedSubscriptionsFile) {
     try {
@@ -179,8 +179,8 @@ var subscriptions = {
         // Decoding the Base64.
         subscriptionText = atob(base64TestString);
       } 
-      return this.parseSubscription(subscriptionText, errorMessages, aURLString,
-        isBase64, bBase64);
+      return this.parseSubscription(subscriptionText, errorMessages, isBase64,
+        bBase64);
     } catch(e) {
       if (e.name === "NS_ERROR_FILE_NOT_FOUND") {
         errorMessages.push(this.fp.
@@ -325,14 +325,22 @@ var subscriptions = {
         if (aSubscription.metadata.proxies.length > 0) {
           proxyList = this.fp.proxies.getProxiesFromId(aSubscription.metadata.
             proxies);
+          // TODO: We are not distinguishing between different pattern
+          // subsciptions yet. Thus, if we refresh one all patterns get deleted
+          // and only the new ones get added afterwards.
           // First, deleting the old subscription patterns.
-          this.deletePatterns(proxyList, aSubscription.metadata.enabled);
+          this.deletePatterns(proxyList);
           // Now, we add the refreshed ones...
-          this.addPatterns(aIndex, proxyList);
+          this.addPatterns(null, proxyList, aIndex);
         }
       } else {
         // TODO: Adding the proxy/proxies back to the pattern subscription if
-        // it/they was/were.
+        // it/they was/were. How do we know we have the same proxies after a
+        // refresh? -> IP:Port! But we need to cycle through all subscriptions,
+        // right? And safe not only the IP:Port but the pattern subscriptions
+        // that had the proxy/proxies attached to it as well in order to add
+        // both the proxy/proxies to them AND add the patterns of the
+        // subscription to the former as well. Duh.
         this.deleteProxies(this.fp.proxies);
         this.addProxies(refreshedSubscription.proxies);
       }
@@ -515,9 +523,9 @@ var subscriptions = {
       if (patternElement) {
         this.fromDOM(patternElement);
       } else {
-	// Although it is not a preparation we set the flag to "true" as we
-	// not not need to execute the respective if-path as there are no
-	// pattern susbcriptions to erase.
+        // Although it is not a preparation we set the flag to "true" as we do
+        // not need to execute the respective if-path as there are no pattern
+        // susbcriptions to erase.
         bPreparation = true;
       }
     } 
@@ -704,7 +712,7 @@ patternSubscriptions.defaultMetaValues = {
 };
 
 patternSubscriptions.parseSubscription = function(subscriptionText,
-  errorMessages, aURLString, isBase64, userBase64) {
+  errorMessages, isBase64, userBase64) {
   try {
     // No Base64 (anymore), thus we guess we have a plain FoxyProxy
     // subscription first. If that is not true we check the AutoProxy format.
@@ -723,7 +731,7 @@ patternSubscriptions.parseSubscription = function(subscriptionText,
       } 
     } else {
       parsedSubscription = this.parseSubscriptionDetails(subscriptionContent,
-        aURLString, errorMessages);
+        errorMessages);
       // Did we get the errorMessages back? If so return them immediately.
       if (parsedSubscription.length !== undefined) {
         return parsedSubscription;
@@ -753,7 +761,7 @@ patternSubscriptions.parseSubscription = function(subscriptionText,
 };
 
 patternSubscriptions.parseSubscriptionDetails = function(aSubscription,
-  aURLString, errorMessages) {
+  errorMessages) {
   try {
     let subProperty, ok;
     // Maybe someone cluttered the subscription in other ways...
@@ -851,7 +859,8 @@ patternSubscriptions.removeDeletedProxies = function(aProxyId) {
   }
 };
 
-patternSubscriptions.addPatterns = function(selectedSubscription, proxyList) {
+patternSubscriptions.addPatterns = function(selectedSubscription, proxyList,
+  aIndex) {
   // Now are we going to implement the crucial part of the pattern
   // subscription feature: Adding the patterns to the proxies.
   // We probably need no valiatePattern()-call as in pattern.js as the user
@@ -865,8 +874,12 @@ patternSubscriptions.addPatterns = function(selectedSubscription, proxyList) {
     currentMet = selectedSubscription.metadata;
     currentPat = selectedSubscription.patterns;
   } else {
-    // Adding patterns to a subscription just added to the subscripions list.
-    currentSub = this.subscriptionsList[this.subscriptionsList.length - 1];
+    if (aIndex) {
+      currentSub = this.subscriptionsList[aIndex];
+    } else {
+      // Adding patterns to a subscription just added to the subscripions list.
+      currentSub = this.subscriptionsList[this.subscriptionsList.length - 1];
+    }
     currentMet = currentSub.metadata;
     currentPat = currentSub.patterns;
   }
@@ -930,7 +943,7 @@ proxySubscriptions.subscriptionsList = [];
 proxySubscriptions.subscriptionsFile = "proxySubscriptions.json";
 
 proxySubscriptions.parseSubscription = function(subscriptionText,
-  errorMessages, aURLString, isBase64, userBase64) {
+  errorMessages, isBase64, userBase64) {
   try {
     let parsedSubscription = this.getObjectFromText(subscriptionText,
       errorMessages);

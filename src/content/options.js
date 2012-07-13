@@ -525,7 +525,7 @@ function addSubscription(type) {
       // at least one proxy in the addeditsubscription dialog.
       let proxyList = params.out.proxies; 
       if (proxyList.length !== 0) {
-        patternSubscriptions.addPatterns(null, proxyList);
+        patternSubscriptions.addPatterns(null, proxyList, null);
       }
       patternSubscriptionsTree.view = patternSubscriptions.
         makeSubscriptionsTreeView();
@@ -575,7 +575,7 @@ function editSubscription(type) {
       // well but only to them!
       let proxyList = params.out.proxies; 
       if (proxyList.length !== 0) {
-        patternSubscriptions.addPatterns(selectedSubscription, proxyList);
+        patternSubscriptions.addPatterns(selectedSubscription, proxyList, null);
       }
       patternSubscriptionsTree.view = patternSubscriptions.
         makeSubscriptionsTreeView();
@@ -802,7 +802,7 @@ function importSettings() {
       getMessage("import.success", [picker.file.path]))) {
       // We have to handle the import and export of pattern subscriptions a bit 
       // differently here as they are in JSON and not in XML. See as well the 
-      // comment in exportSettings(). "True" and "false" as arguments mean that
+      // comment in exportSettings(). "True" and "false" as arguments means that
       // we have an import (probably of pattern subscriptions as well) and they 
       // should be removed from the normal FoxyProxy settings file afterwards.
       patternSubscriptions.handleImportExport(true, false);

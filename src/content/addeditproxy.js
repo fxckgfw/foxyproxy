@@ -309,7 +309,7 @@ function noInternalIPs() {
     // We want to delete these three patterns properly even if the user somehow
     // sorted the tree. Therefore, we have to walk through all patterns and if
     // we find a match we remove it from the array.
-    let i = j = 0;
+    let i = 0, j = 0;
     let matchesLength = proxy.matches.length;
     do {
       let proxyPattern = proxy.matches[i].pattern;

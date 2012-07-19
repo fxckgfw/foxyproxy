@@ -116,7 +116,8 @@ Common.prototype = {
       return false;
     // Check for parenthesis without backslash
     if (new RegExp("[^\\\\]\\(|[^\\\\]\\)", "g").test(p) &&
-        !fp.warnings.showWarningIfDesired(win, ["no.parentheses"], "parentheses")) {
+        !fp.warnings.showWarningIfDesired(win, ["no.parentheses2"],
+          "parentheses")) {
       return false;
     }
     return p;

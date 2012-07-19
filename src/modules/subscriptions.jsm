@@ -341,8 +341,37 @@ var subscriptions = {
         // that had the proxy/proxies attached to it as well in order to add
         // both the proxy/proxies to them AND add the patterns of the
         // subscription to the former as well. Duh.
+        let length = patternSubscriptions.subscriptionsList.length;
+        let savedProxies = [];
+        let patSub, patProxyList, patProxy, proxySub;
+        for (let i = 0; i < length; ++i) {
+          patSub = patternSubscriptions.subscriptionsList[i];
+          if (patSub.metadata.proxies.length > 0) {
+            // Okay that particular pattern subscription is indeed used by at
+            // least one proxy. Let's check whether it is one from a proxy
+            // subscription.
+            patProxyList = this.fp.proxies.getProxiesFromId(patSub.metadata.
+              proxies);
+            for (let j = 0, pLength = patProxyList.length; j < pLength; ++j) {
+              patProxy = patProxyList[j];
+              if (patProxy.fromSubscription) {
+                // We know that this proxy is from a proxy list, save it
+                // together with its subscription.
+                proxySub = [];
+                proxySub.push(patProxy.manualconf.host + ":" + patProxy.
+                  manualconf.port);
+                proxySub.push(patSub);
+                savedProxies.push(proxySub);
+              }
+            }
+          }
+        }
         this.deleteProxies(this.fp.proxies);
-        this.addProxies(refreshedSubscription.proxies);
+        let addedProxies = this.addProxies(refreshedSubscription.proxies);
+        // Let's add the proxies back to the respective pattern subscriptions
+        // and then the patterns of the latter back to them. But only if the old
+        // proxies are among the refreshed ones.
+        this.addProxiesBack(savedProxies, addedProxies);
       }
       // Maybe the obfuscation changed. We should update this...
       aSubscription.metadata.obfuscation = refreshedSubscription.
@@ -1002,6 +1031,7 @@ proxySubscriptions.getObjectFromText = function(subscriptionText,
 
 proxySubscriptions.addProxies = function(proxies) {
   let proxy;
+  let addedProxies = [];
   for (let i = 0, length = proxies.length; i < length; ++i) {
     proxy = Cc["@leahscape.org/foxyproxy/proxy;1"].createInstance().
       wrappedJSObject;
@@ -1016,7 +1046,9 @@ proxySubscriptions.addProxies = function(proxies) {
     }
     proxy.fromSubscription = true;
     this.fp.proxies.push(proxy);
+    addedProxies.push(proxy);
   }
+  return addedProxies;
 };
 
 proxySubscriptions.deleteProxies = function(proxies) {
@@ -1030,5 +1062,37 @@ proxySubscriptions.deleteProxies = function(proxies) {
       }
       this.fp.proxies.remove(i);
     }
+  }
+};
+
+// TODO: Think about that whole adding back logic again. I am not happy with it
+// but I don't know why :-). I'd like to have it simpler... somehow...
+proxySubscriptions.addProxiesBack = function(savedProxies, newProxies) {
+  let newProxyIPPort, newProxy;
+  let proxyAdded = false;
+  for (let i = 0, length = newProxies.length; i < length; ++i) {
+    newProxy = newProxies[i];
+    newProxyIPPort = newProxy.manualconf.host + ":" + newProxy.manualconf.port;
+    for (let j = 0, sLength = savedProxies.length; j < sLength; ++j) {
+      if (newProxyIPPort === savedProxies[j][0]) {
+        // We use the addPatterns() method to add the patterns of the
+        // subscription the proxy belonged to before the refresh. aIndex as
+        // paramter is not needed. We omit it therefore.
+        // TODO: Optimize and call addPattern only once or only so many times as
+        // different subscriptions involved!?
+        // TODO: Can we avoid the slice() call and use newProxy instead somehow?
+        patternSubscriptions.addPatterns(savedProxies[j][1], newProxies.
+          slice(i, i + 1));
+        savedProxies[j][1].metadata.proxies.push(newProxy.id);
+        if (!proxyAdded) {
+          proxyAdded = true;
+        }
+      }
+    }
+  }
+  if (proxyAdded) {
+    // Subscribed proxies got added back to the pattern subscription(s). Thus,
+    // we need to save the latter as well.
+    patternSubscriptions.writeSubscriptions();
   }
 };

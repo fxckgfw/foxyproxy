@@ -529,8 +529,8 @@ var subscriptions = {
     }
   },
 
-  handleImportExport: function(bImport, bPreparation) {
-    var patternElement;
+  handleImportExport: function(aType, bImport, bPreparation) {
+    var subElement;
     var f = this.fp.getSettingsURI(Ci.nsIFile);
     var s = Cc["@mozilla.org/network/file-input-stream;1"].createInstance(Ci.
       nsIFileInputStream);
@@ -539,21 +539,21 @@ var subscriptions = {
       nsIDOMParser);
     var doc = p.parseFromStream(s, null, f.fileSize, "text/xml"); 
     if (bPreparation) {
-      // Now we are adding the pattern subscriptions.
-      doc.documentElement.appendChild(this.toDOM(doc));
+      // Now we are adding the subscriptions.
+      doc.documentElement.appendChild(this.toDOM(aType, doc));
     } 
     if (bImport) {
       // Importing old settings means removing the current ones first including
-      // pattern subscriptions. Therefore...
+      // subscriptions. Therefore...
       this.subscriptionsList = [];
       // Convert the subscriptions (if there are any) to objects and put them
       // (back) to the susbcriptionsList.
-      patternElement = doc.getElementsByTagName("patternSubscriptions").item(0);
-      if (patternElement) {
-        this.fromDOM(patternElement);
+      subElement = doc.getElementsByTagName(aType + "Subscriptions").item(0);
+      if (subElement) {
+        this.fromDOM(aType, subElement);
       } else {
         // Although it is not a preparation we set the flag to "true" as we do
-        // not need to execute the respective if-path as there are no pattern
+        // not need to execute the respective if-path as there are no
         // susbcriptions to erase.
         bPreparation = true;
       }
@@ -563,9 +563,9 @@ var subscriptions = {
       // to store them locally, we remove them after the file was exported in
       // order to avoid messing unnecessarily with the settings file.
       // The same holds for the import case.
-      patternElement = doc.getElementsByTagName("patternSubscriptions").
+      subElement = doc.getElementsByTagName(aType + "Subscriptions").
         item(0);
-      doc.documentElement.removeChild(patternElement);
+      doc.documentElement.removeChild(subElement);
     }
     var foStream = Cc["@mozilla.org/network/file-output-stream;1"].
         createInstance(Ci.nsIFileOutputStream);
@@ -579,9 +579,8 @@ var subscriptions = {
     foStream.close();
   },
 
-  fromDOM: function(patElem) {
-    var subscription, metaNode, subNode, attrib, patterns,
-      name, value;
+  fromDOM: function(aType, patElem) {
+    var subscription, metaNode, subNode, attrib, name, value;
     var subs = patElem.getElementsByTagName("subscription");
     for (var i = 0; i < subs.length; i++) {
       subscription = {};
@@ -600,18 +599,28 @@ var subscriptions = {
         subscription.metadata.proxies = subscription.metadata.proxies.
           split(",");
       }
-      subNode = subs[i].getElementsByTagName("patterns").item(0);
+      let subNode;
+      if (aType === "pattern") {
+        subNode = subs[i].getElementsByTagName("patterns").item(0);
+      } else {
+        subNode = subs[i].getElementsByTagName("proxies").item(0);
+      }
       if (subNode) {
-        subscription.patterns = [];
-	patterns = subNode.getElementsByTagName("pattern");
-	for (var k = 0; k < patterns.length; k++) {
-          subscription.patterns[k] = {};
-	  attrib = patterns[k].attributes;
+        let helper = [];
+	let content = subNode.getElementsByTagName(aType);
+	for (var k = 0; k < content.length; k++) {
+          helper[k] = {};
+	  attrib = content[k].attributes;
 	  for (var l = 0; l < attrib.length; l++) {
 	    name = attrib.item(l).name; 
 	    value = attrib.item(l).value; 
-            subscription.patterns[k][name] = value; 
+            helper[k][name] = value; 
           }
+        }
+        if (aType === "pattern") {
+          subscription.patterns = helper;
+        } else {
+          subscription.proxies = helper;
         }
       }
       this.subscriptionsList.push(subscription);
@@ -620,26 +629,31 @@ var subscriptions = {
     this.writeSubscriptions();
   },
 
-  toDOM: function(doc) {
-    var sub, meta, sub2, pat, pat2, patterns;
-    var e = doc.createElement("patternSubscriptions");
+  toDOM: function(aType, doc) {
+    var sub, meta, sub2, pat2, content, contents;
+    var e = doc.createElement(aType + "Subscriptions");
     for (var i = 0; i < this.subscriptionsList.length; i++) {
-      patterns = this.subscriptionsList[i].patterns;
+      if (aType === "pattern") {
+        contents = this.subscriptionsList[i].patterns;
+        content = doc.createElement("patterns");
+      } else {
+        contents = this.subscriptionsList[i].proxies;
+        content = doc.createElement("proxies");
+      }
       sub = doc.createElement("subscription");
       meta = doc.createElement("metadata");
-      pat = doc.createElement("patterns");
       for (var a in this.subscriptionsList[i].metadata) {
         meta.setAttribute(a, this.subscriptionsList[i].metadata[a])
       }
       sub.appendChild(meta);
-      for (var j = 0; j < patterns.length; j++) {
-        pat2 = doc.createElement("pattern");
-        for (var a in patterns[j]) {
-          pat2.setAttribute(a, patterns[j][a]);  
+      for (var j = 0; j < contents.length; j++) {
+        pat2 = doc.createElement(aType);
+        for (var a in contents[j]) {
+          pat2.setAttribute(a, contents[j][a]);  
         }
-        pat.appendChild(pat2);
+        content.appendChild(pat2);
       }
-      sub.appendChild(pat);
+      sub.appendChild(content);
       e.appendChild(sub);
     }
     return e;

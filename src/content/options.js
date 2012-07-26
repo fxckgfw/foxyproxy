@@ -805,7 +805,8 @@ function importSettings() {
       // comment in exportSettings(). "True" and "false" as arguments means that
       // we have an import (probably of pattern subscriptions as well) and they 
       // should be removed from the normal FoxyProxy settings file afterwards.
-      patternSubscriptions.handleImportExport(true, false);
+      patternSubscriptions.handleImportExport("pattern", true, false);
+      proxySubscriptions.handleImportExport("proxy", true, false);
       foxyproxy.restart();
     }
   }
@@ -829,16 +830,19 @@ function importExportPrompt(isExport) {
 function exportSettings() {
   var picker = importExportPrompt(true);
   if (!picker) return;
-  // We have the pattern subscriptions and the other FoxyProxy settings in
-  // differernt files in order to reduce the necessary disk I/O while running
-  // FoxyProxy. But we need the pattern subscriptions as well if a user wants
-  // to export her settings. Therefore, handleImportExport() prepares the 
-  // settings file before exporting (i.e. the pattern subscriptions are added) 
-  // if "false" and "true" are passed as parameters. We use "false" and "false" 
-  // as parameters in order to remove the subscriptions from the settings file 
-  // again after it got exported in order not to clutter it unnecessarily.
+  // We have the subscriptions and the other FoxyProxy settings in differernt
+  // files in order to reduce the necessary disk I/O while running FoxyProxy.
+  // But we need the subscriptions as well if a user wants to export her
+  // settings. Therefore, handleImportExport() prepares the settings file before
+  // exporting (i.e. the pattern subscriptions are added) if "false" and "true"
+  // are passed as parameters. We use "false" and "false" as parameters in
+  // order to remove the subscriptions from the settings file again after it got
+  // exported in order not to clutter it unnecessarily.
   if (patternSubscriptions.subscriptionsList.length > 0) {
-    patternSubscriptions.handleImportExport(false, true);
+    patternSubscriptions.handleImportExport("pattern", false, true);
+  }
+  if (proxySubscriptions.subscriptionsList.length > 0) {
+    proxySubscriptions.handleImportExport("proxy", false, true);
   }
   var f2 = CC["@mozilla.org/file/local;1"].createInstance(CI.nsILocalFile),
     settingsFile = foxyproxy.getSettingsURI(CI.nsIFile);
@@ -858,8 +862,11 @@ function exportSettings() {
   }
   finally {
     if (patternSubscriptions.subscriptionsList.length > 0) {
-      patternSubscriptions.handleImportExport(false, false);
-    } 
+      patternSubscriptions.handleImportExport("pattern", false, false);
+    }
+    if (proxySubscriptions.subscriptionsList.length > 0) {
+      proxySubscriptions.handleImportExport("proxy", false, false);
+    }
   }
 }
 

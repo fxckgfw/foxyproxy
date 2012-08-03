@@ -80,6 +80,7 @@
 <!ENTITY foxyproxy.auto.url.tooltip "Voer de URL van het PAC-bestand in">
 <!ENTITY foxyproxy.auto.url.note.label "http(s)://   ftp://   file://   relative://">
 <!ENTITY foxyproxy.auto.url.note.tooltip "Klik op het informatiepictogram voor informatie over relative://">
+<!ENTITY foxyproxy.ip.address.label "IP-adres">
 <!ENTITY foxyproxy.port.label "Poort">
 <!ENTITY foxyproxy.port.accesskey "P">
 <!ENTITY foxyproxy.port.tooltip "Poort">
@@ -476,6 +477,16 @@
 <!ENTITY foxyproxy.server.subscriptions.tooltip "Serverabonnementen beheren">
 <!ENTITY foxyproxy.server.subscriptions.accesskey "S">
 <!ENTITY foxyproxy.selectproxy.label "Proxy selecteren">
+<!ENTITY foxyproxy.proxy.subscriptions.label "Proxy-abonnementen">
+<!ENTITY foxyproxy.proxy.subscriptions.accesskey "x">
+<!ENTITY foxyproxy.proxy.subscriptions.tooltip "Proxy-abonnementen beheren">
+<!ENTITY foxyproxy.proxy.subscriptions.description "Abonneer u op door anderen gepubliceerde proxy’s. Deel uw proxy’s met anderen in een paar muisklikken.">
+<!ENTITY foxyproxy.proxy.subscriptions.sharing.label "Uw proxy’s delen">
+<!ENTITY foxyproxy.proxy.subscriptions.menulist.tooltip "Selecteer wat u wilt doen met proxy-abonnementen.">
+<!ENTITY foxyproxy.proxy.subscriptions.addSubscription "Nieuw proxy-abonnement toevoegen">
+<!ENTITY foxyproxy.proxy.subscriptions.viewSubscription "Proxy-abonnement bekijken">
+<!ENTITY foxyproxy.proxy.subscriptions.addedit.title "Proxy-abonnement toevoegen/bewerken">
+<!ENTITY foxyproxy.proxy.subscriptions.refreshHelp "verwijdert alle bestaande proxy-abonnementen">
 <!ENTITY foxyproxy.pattern.subscriptions.label "Patroonabonnementen">
 <!ENTITY foxyproxy.pattern.subscriptions.description "Abonneren op door anderen gepubliceerde patronen. Deel u patronen met anderen in een paar muisklikken.">
 <!ENTITY foxyproxy.pattern.subscriptions.tooltip "Patroonabonnementen beheren">

@@ -79,6 +79,7 @@
 <!ENTITY foxyproxy.auto.url.tooltip "PAC 파일 URL 입력">
 <!ENTITY foxyproxy.auto.url.note.label "http(s)://   ftp://   file://   relative://">
 <!ENTITY foxyproxy.auto.url.note.tooltip "relative://에 대한 정보를 보려면 정보 아이콘을 클릭">
+<!ENTITY foxyproxy.ip.address.label "IP 주소">
 <!ENTITY foxyproxy.port.label "포트">
 <!ENTITY foxyproxy.port.accesskey "P">
 <!ENTITY foxyproxy.port.tooltip "포트">
@@ -290,6 +291,7 @@
 <!ENTITY foxyproxy.toolsmenu.accesskey "T">
 <!ENTITY foxyproxy.toolsmenu.tooltip2 "도구 메뉴 안에 아이콘을 표시합니다">
 <!ENTITY foxyproxy.tip.label "팁">
+<!ENTITY foxyproxy.pactip3.label "당신은 http://, https://, 및 다른 지원 계획 역시 사용 할 수 있습니다.">
 <!ENTITY foxyproxy.pactip7.label "Firefox 프로파일 디렉토리">
 <!ENTITY foxyproxy.contextmenu.label "문맥메뉴 내 아이콘 표시">
 <!ENTITY foxyproxy.contextmenu.accesskey "C">
@@ -324,9 +326,53 @@
 <!ENTITY foxyproxy.wildcard.reference.goal2.label "지역 PC와 일치">
 <!ENTITY foxyproxy.wildcard.reference.goal3.label "abc.com의 모든 서브 도메인과 페이지와 일치">
 <!ENTITY foxyproxy.wildcard.reference.goal4.label "a.foo.com 도메인 내 모든 페이지와 일치하지만 b.foo.com와는 불일치">
+<!ENTITY foxyproxy.logging.noURLs.accesskey "U">
+<!ENTITY foxyproxy.pattern.template.reference.label "패턴 템플릿 참조">
+<!ENTITY foxyproxy.pattern.template.reference.tooltip "패턴 템플릿 참조">
+<!ENTITY foxyproxy.pattern.template.reference.example.label "예제">
+<!ENTITY foxyproxy.pattern.template.reference.scheme.label "프로토콜">
+<!ENTITY foxyproxy.pattern.template.reference.username.label "사용자명">
+<!ENTITY foxyproxy.pattern.template.reference.password.label "암호">
+<!ENTITY foxyproxy.pattern.template.reference.userpass.label "&quot;:&quot; &amp; &quot;@&quot;를 포함하는 사용자명 &amp; 암호">
+<!ENTITY foxyproxy.pattern.template.reference.host.label "호스트">
+<!ENTITY foxyproxy.pattern.template.reference.port.label "포트">
+<!ENTITY foxyproxy.pattern.template.reference.hostport.label "&quot;:&quot;를 포함하는 호스트 및 포트">
+<!ENTITY foxyproxy.pattern.template.reference.path.label "경로(파일명 포함)">
+<!ENTITY foxyproxy.pattern.template.reference.directory.label "디렉토리">
+<!ENTITY foxyproxy.pattern.template.reference.filebasename.label "파일 기본명">
+<!ENTITY foxyproxy.pattern.template.reference.fileextension.label "파일 확장자">
+<!ENTITY foxyproxy.notifications.label "통지">
+<!ENTITY foxyproxy.notifications.tooltip "통지 설정">
+<!ENTITY foxyproxy.indicators.label "지시기">
+<!ENTITY foxyproxy.indicators.tooltip "지시기 설정">
+<!ENTITY foxyproxy.misc.label "기타">
+<!ENTITY foxyproxy.misc.tooltip "기타 설정">
+<!ENTITY foxyproxy.animatedicons.label "이 프록시를 사용중일 때 아이콘 움직임">
+<!ENTITY foxyproxy.animatedicons.accesskey "A">
+<!ENTITY foxyproxy.animatedicons.tooltip "이 프록시를 사용중일 때 아이콘이 움직입니다(전역 설정 -&gt; 애니메이션 역시 반드시 선택하세요)">
+<!ENTITY foxyproxy.statusbaractivation.label "상태막대 활성화">
+<!ENTITY foxyproxy.statusbaractivation.tooltip "상태막대 활성화 설정">
+<!ENTITY foxyproxy.toolbaractivation.label "도구막대 활성화">
+<!ENTITY foxyproxy.toolbaractivation.tooltip "도구막대 활성화 설정">
+<!ENTITY foxyproxy.leftclicksb.label "왼쪽 클릭">
+<!ENTITY foxyproxy.leftclicksb.accesskey "L">
+<!ENTITY foxyproxy.middleclicksb.label "가운데 클릭">
+<!ENTITY foxyproxy.middleclicksb.accesskey "M">
+<!ENTITY foxyproxy.rightclicksb.label "오른쪽 클릭">
 <!ENTITY foxyproxy.pattern.subscriptions.addProxies.label "프록시 추가">
 <!ENTITY foxyproxy.pattern.subscriptions.removeProxies.label "선택항목 삭제">
 <!ENTITY foxyproxy.pattern.subscriptions.refresh.label "재갱신 주기">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp2 "모든 존재하는 패턴 삭제">
+<!ENTITY foxyproxy.pattern.subscriptions.format.tooltip "이 패턴 구독 목록의 형식">
+<!ENTITY foxyproxy.pattern.subscriptions.obfuscation.tooltip "이 패턴 구독의">
+<!ENTITY foxyproxy.ip.pattern.addedit.title "지역 IP 주소 패턴 추가/편집">
+<!ENTITY foxyproxy.ip.pattern.label "지역 IP 주소 패턴">
+<!ENTITY foxyproxy.ip.pattern.accesskey "I">
+<!ENTITY foxyproxy.ip.pattern.tooltip "지역 IP 주소 패턴">
+<!ENTITY foxyproxy.ip.patterns.label "지역 IP 주소 패턴">
+<!ENTITY foxyproxy.ip.patterns.accesskey "I">
+<!ENTITY foxyproxy.ip.patterns.tooltip "지역 IP 주소 패턴">
+<!ENTITY foxyproxy.ip.whiteblack.label "포함/제외">
 <!ENTITY foxyproxy.ip.current.local.label "현재 지역 IP 주소">
 <!ENTITY foxyproxy.copyip.label "패턴에 복사">
 <!ENTITY foxyproxy.copyip.tooltip "패턴에 주소를 복사합니다">

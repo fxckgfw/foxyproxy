@@ -69,7 +69,6 @@
 <!ENTITY foxyproxy.copy.selection.tooltip "Copia a seleção">
 <!ENTITY foxyproxy.mode.label "Seleciona Modo">
 <!ENTITY foxyproxy.wpad.label1 "por WPAD">
-<!--For translators: The following two strings are already included into Firefox and may be found in the Preferences panel -> Advanced -> Network Settings-->
 <!ENTITY foxyproxy.wpad.accesskey "W">
 <!ENTITY foxyproxy.wpad.tooltip "Detectar as configurações de proxy automaticamente usando WPAD">
 <!ENTITY foxyproxy.wpad.reload.label "Detectar todas as configurações de proxy automaticamente">
@@ -537,7 +536,6 @@
 <!ENTITY foxyproxy.status.label "Estado">
 <!ENTITY foxyproxy.format.label "Formato">
 <!ENTITY foxyproxy.obfuscation.label "Ofuscação">
-<!-- begin foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Adicionar/Editar local do endereço IP padrão">
 <!ENTITY foxyproxy.tempip.popup.label "Padrões temporários permitem criar padrões para endereços IP locais que você não usa com freqüência sem encher a lista de endereços IPpadrão para um proxy. Padrões temporários não são salvas em disco. Eles são mantidos na memória e utilizada somente nesta sessão de Firefox.">
 <!ENTITY foxyproxy.ip.pattern.label "Padrão de endereço IP local">
@@ -598,4 +596,3 @@
 <!ENTITY foxyproxy.patternsforselected.accesskey "S">
 <!ENTITY foxyproxy.patternsforselected.tooltip "Criar padrões para URL's selecionadas">
 <!ENTITY foxyproxy.patterntoadd.label "Padrão para adicionar">
-<!-- end foxyproxyplus -->

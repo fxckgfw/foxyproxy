@@ -224,11 +224,11 @@ end-foxyproxy-simple !*/
     let that = this;
     let showFailuresOnStartup = {
       notify: function(timer) {
-        // We show pattern subscription load failures her but only during
-        // startup and not every time a user opens a new top-level window.
+        // We show subscription load failures here but only during startup
+        // and not every time a user opens a new top-level window.
         let winEnum = that.fpc.getEnumerator();
         for (var winCount = 0; winEnum.hasMoreElements() && winEnum.getNext();
-          winCount++);     
+          winCount++);
         if (winCount === 1) {
           Components.utils.
             import("resource://foxyproxy/subscriptions.jsm", that); 
@@ -252,7 +252,7 @@ end-foxyproxy-simple !*/
           let failedPatternLoad = {
             notify: function() {
               for (let i = 0; i < failedSubs.length; i++) {
-                // We got susbcriptions where just the metadata could be loaded.
+                // We got subscriptions where just the metadata could be loaded.
                 // Asking the user if she wants to refresh the subscription now
                 // in order to have a useable pattern subscription.
                 // We have to do this in a separate method as the current |i|

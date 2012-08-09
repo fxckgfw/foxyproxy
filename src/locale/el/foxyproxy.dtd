@@ -80,6 +80,7 @@
 <!ENTITY foxyproxy.auto.url.tooltip "Εισάγετε το URL του αρχείου PAC">
 <!ENTITY foxyproxy.auto.url.note.label "http(s)://   ftp://   file://   relative://">
 <!ENTITY foxyproxy.auto.url.note.tooltip "Κάντε κλικ στο εικονίδιο πληροφοριών για το σχετικό ://">
+<!ENTITY foxyproxy.ip.address.label "Διεύθυνση IP">
 <!ENTITY foxyproxy.port.label "Θύρα">
 <!ENTITY foxyproxy.port.accesskey "Θ">
 <!ENTITY foxyproxy.port.tooltip "Θύρα">
@@ -476,6 +477,17 @@
 <!ENTITY foxyproxy.server.subscriptions.tooltip "Διαχείριση συνδρομών διακομιστών">
 <!ENTITY foxyproxy.server.subscriptions.accesskey "δ">
 <!ENTITY foxyproxy.selectproxy.label "Επιλογή διαμεσολαβητή">
+<!ENTITY foxyproxy.proxy.subscriptions.label "Συνδρομές διαμεσολαβητών">
+<!ENTITY foxyproxy.proxy.subscriptions.accesskey "υ">
+<!ENTITY foxyproxy.proxy.subscriptions.tooltip "Διαχείριση συνδρομών διαμεσολαβητών">
+<!ENTITY foxyproxy.proxy.subscriptions.description "Γραφτείτε συνδρομητές σε διαμεσολαβητές άλλων ή μοιραστείτε τους δικούς σας με λίγα κλικ.">
+<!ENTITY foxyproxy.proxy.subscriptions.sharing.label "Μοιραστείτε τους διαμεσολαβητές σας">
+<!ENTITY foxyproxy.proxy.subscriptions.menulist.tooltip "Επιλογή ενέργειας για συνδρομές διαμεσολαβητών.">
+<!ENTITY foxyproxy.proxy.subscriptions.addSubscription "Προσθήκη νέας συνδρομής διαμεσολαβητή">
+<!ENTITY foxyproxy.proxy.subscriptions.viewSubscription "Προβολή συνδρομής διαμεσολαβητή">
+<!ENTITY foxyproxy.proxy.subscriptions.addedit.title "Προσθήκη/επεξεργασία συνδρομής διαμεσολαβητή">
+<!ENTITY foxyproxy.proxy.subscriptions.refreshHelp "αφαιρεί όλες τις υπάρχουσες συνδρομές σε διαμεσολαβητές">
+<!ENTITY foxyproxy.proxy.subscriptions.proxy.window.title "Συνδρομές διαμεσολαβητών">
 <!ENTITY foxyproxy.pattern.subscriptions.label "Συνδρομές πρότυπων">
 <!ENTITY foxyproxy.pattern.subscriptions.description "Γραφτείτε συνδρομητές σε λίστες προτύπων που δημοσιεύουν άλλοι. Μοιραστείτε τα πρότυπα σας με άλλους με μερικά μόνο κλικ.">
 <!ENTITY foxyproxy.pattern.subscriptions.tooltip "Διαχείριση συνδρομών πρότυπων">

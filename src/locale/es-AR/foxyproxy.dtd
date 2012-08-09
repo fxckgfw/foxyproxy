@@ -80,6 +80,7 @@
 <!ENTITY foxyproxy.auto.url.tooltip "Ingrese la URL del archivo PAC">
 <!ENTITY foxyproxy.auto.url.note.label "http(s)://   ftp://   file://   relative://">
 <!ENTITY foxyproxy.auto.url.note.tooltip "Hacer click en el ícono de información para obtener información en relative://">
+<!ENTITY foxyproxy.ip.address.label "Dirección IP">
 <!ENTITY foxyproxy.port.label "Puerto">
 <!ENTITY foxyproxy.port.accesskey "P">
 <!ENTITY foxyproxy.port.tooltip "Puerto">
@@ -476,19 +477,20 @@
 <!ENTITY foxyproxy.server.subscriptions.tooltip "Manage Server Subscriptions">
 <!ENTITY foxyproxy.server.subscriptions.accesskey "S">
 <!ENTITY foxyproxy.selectproxy.label "Seleccione Proxy">
-<!ENTITY foxyproxy.pattern.subscriptions.label "Pattern Subscriptions">
+<!ENTITY foxyproxy.proxy.subscriptions.label "Suscripciones Proxy">
+<!ENTITY foxyproxy.proxy.subscriptions.accesskey "X">
+<!ENTITY foxyproxy.proxy.subscriptions.tooltip "Administrar las Suscripciones Proxy">
+<!ENTITY foxyproxy.proxy.subscriptions.description "Suscríbase a los proxies publicados por otros. Comparta sus proxies con los demás en unos pocos clics.">
+<!ENTITY foxyproxy.proxy.subscriptions.sharing.label "Comparta Sus Proxies">
+<!ENTITY foxyproxy.proxy.subscriptions.menulist.tooltip "Elija qué hacer con las suscripciones de proxy.">
+<!ENTITY foxyproxy.proxy.subscriptions.addSubscription "Agregue Nueva Suscripción Proxy">
+<!ENTITY foxyproxy.proxy.subscriptions.viewSubscription "Ver Suscripción Proxy">
+<!ENTITY foxyproxy.proxy.subscriptions.addedit.title "Agregar / Editar Suscripción Proxy">
+<!ENTITY foxyproxy.proxy.subscriptions.refreshHelp "elimina todos los proxies existentes suscritos">
+<!ENTITY foxyproxy.proxy.subscriptions.proxy.window.title "Suscripción de Proxies">
 <!ENTITY foxyproxy.pattern.subscriptions.description "Suscríbete a los patrones publicados por otros. Comparta sus patrones con los demás en tan sólo unos pocos clics.">
-<!ENTITY foxyproxy.pattern.subscriptions.tooltip "Manage Pattern Subscriptions">
 <!ENTITY foxyproxy.pattern.subscriptions.accesskey "S">
 <!ENTITY foxyproxy.pattern.subscriptions.sharing.label "Comparta sus patrones">
-<!ENTITY foxyproxy.pattern.subscriptions.menulist.tooltip "Select what to do with pattern subscriptions.">
-<!ENTITY foxyproxy.pattern.subscriptions.addSubscription "Add New Pattern Subscription">
-<!ENTITY foxyproxy.pattern.subscriptions.editSelection "Edit Selection">
-<!ENTITY foxyproxy.pattern.subscriptions.deleteSelections "Delete Selections">
-<!ENTITY foxyproxy.pattern.subscriptions.refreshSelections "Refresh Selections">
-<!ENTITY foxyproxy.pattern.subscriptions.viewSubscription "View Pattern Subscription">
-<!ENTITY foxyproxy.pattern.subscriptions.go.label "Go">
-<!ENTITY foxyproxy.pattern.subscriptions.go.tooltip "Click here to execute your selection.">
 <!ENTITY foxyproxy.pattern.subscriptions.lastStatus.label "Último estado">
 <!ENTITY foxyproxy.pattern.subscriptions.addedit.title "Agregar / Editar Patrón de suscripción">
 <!ENTITY foxyproxy.pattern.subscriptions.name.label "Nombre de la Suscripción">
@@ -518,14 +520,8 @@
 <!ENTITY foxyproxy.pattern.subscriptions.copyLastStatus.tooltip "Copia el último estado al portapapeles">
 <!ENTITY foxyproxy.pattern.subscriptions.pattern.window.title "Patrones de suscripción">
 <!ENTITY foxyproxy.none.label "Ninguno">
-<!ENTITY foxyproxy.name.label "Name">
-<!ENTITY foxyproxy.notes.label "Notes">
 <!ENTITY foxyproxy.url.label "url">
 <!ENTITY foxyproxy.lastupdate.label "Last Update">
-<!ENTITY foxyproxy.updatefrequency.label "Update Frequency">
-<!ENTITY foxyproxy.status.label "Status">
-<!ENTITY foxyproxy.format.label "Format">
-<!ENTITY foxyproxy.obfuscation.label "Obfuscation">
 <!-- end foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Agregar/Editar los Patrones de Direcciones IP Locales">
 <!ENTITY foxyproxy.tempip.popup.label "Los patrones temporales le permiten crear patrones para las direcciones IP locales que no utilice a menudo sin engrosar la lista de patrones de direcciones IP locales del proxy . Los patrones temporales no se guardan en el disco. Ellos se mantienen en memoria y en uso para la sesión Firefox en curso solamente.">
@@ -560,10 +556,6 @@
 <!ENTITY foxyproxy.buynow.label "Comprar Ahora">
 <!ENTITY foxyproxy.checklicense.label "Verificar Licencia">
 <!ENTITY foxyproxy.checkinglicense.label "Verificando...por favor aguarde">
-<!ENTITY foxyproxy.yourversion.label "Your Version ">
-<!ENTITY foxyproxy.latestversion.label "Newest Version ">
-<!ENTITY foxyproxy.routetoleahscape.label.1 "Please make sure Firefox can reach">
-<!ENTITY foxyproxy.routetoleahscape.label.2 "either with or without a proxy. You can configure patterns for this URL in FoxyProxy Plus if necessary.">
 <!ENTITY foxyproxy.everything.label "Todo">
 <!ENTITY foxyproxy.nothing.label "Nada">
 <!ENTITY foxyproxy.ippatterndeletefinal.label "Este es el último patrón de direcciones IP local. Si lo borra, este proxy no podrá ser utilizado. Continúa de todos modos?">

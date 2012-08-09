@@ -487,6 +487,7 @@
 <!ENTITY foxyproxy.proxy.subscriptions.viewSubscription "Proxy-Abonnement ansehen">
 <!ENTITY foxyproxy.proxy.subscriptions.addedit.title "Proxy-Abonnement hinzufügen/bearbeiten">
 <!ENTITY foxyproxy.proxy.subscriptions.refreshHelp "entfernt alle vorhandenen, abonnierten Proxies">
+<!ENTITY foxyproxy.proxy.subscriptions.proxy.window.title "Abonnement-Proxies">
 <!ENTITY foxyproxy.pattern.subscriptions.label "Muster-Abonnements">
 <!ENTITY foxyproxy.pattern.subscriptions.description "Abonnieren Sie die Muster, die andere veröffentlicht haben. Teilen Sie Ihre Muster mit anderen mit nur wenigen Klicks.">
 <!ENTITY foxyproxy.pattern.subscriptions.tooltip "Muster-Abonnements verwalten">
@@ -527,7 +528,7 @@
 <!ENTITY foxyproxy.pattern.subscriptions.obfuscationHelp "Abonnements sind optional verschleiert um eine Inhaltsfilterung durch Computer zwischen Ihnen und der Abonnement-URL zu verhindern. Normalerweise wird dies automatisch von FoxyProxy erkannt. Lesen Sie mehr dazu">
 <!ENTITY foxyproxy.pattern.subscriptions.copyLastStatus.label "Kopiere letzen Status in die Zwischenablage">
 <!ENTITY foxyproxy.pattern.subscriptions.copyLastStatus.tooltip "Kopiere letzen Status in die Zwischenablage">
-<!ENTITY foxyproxy.pattern.subscriptions.pattern.window.title "Abonnementmuster">
+<!ENTITY foxyproxy.pattern.subscriptions.pattern.window.title "Abonnement-Muster">
 <!ENTITY foxyproxy.none.label "Keine">
 <!ENTITY foxyproxy.name.label "Name">
 <!ENTITY foxyproxy.notes.label "Notizen">

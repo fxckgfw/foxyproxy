@@ -179,7 +179,7 @@ end-foxyproxy-simple !*/
       document.getElementById("foxyproxyMenu").setAttribute("label", this.fp.getMessage("foxyproxy.standard.label"));
 /*! end-foxyproxy-standard !*/
     }
-    this.patternErrorNotification();
+    this.subscriptionErrorNotification();
     // TODO: Make that compatible with Thunderbird
     try { 
       if (gBrowser) {
@@ -220,7 +220,7 @@ end-foxyproxy-simple !*/
     }
   },
 
-  patternErrorNotification : function() {
+  subscriptionErrorNotification : function() {
     let that = this;
     let showFailuresOnStartup = {
       notify: function(timer) {
@@ -232,9 +232,9 @@ end-foxyproxy-simple !*/
         if (winCount === 1) {
           Components.utils.
             import("resource://foxyproxy/subscriptions.jsm", that); 
-          // Checking whether we had some pattern subscription load failures
-          // during startup (in the first case the whole subscription could not
-          // be loaded and in the second tne just the metadata was available).
+          // Checking whether we had some subscription load failures during
+          // startup (in the first case the whole subscription could not
+          // be loaded and in the second one just the metadata was available).
           // If so, we show the proper notification boxes without blocking the
           // UI using nsITimer.
           // TODO: Do we really want to have another nsITimer here getting (in
@@ -249,22 +249,37 @@ end-foxyproxy-simple !*/
               }], 
               null, null, false);   
           }
-          let failedPatternLoad = {
+          // TODO: Find a way to merge that efficiently with the notify() call
+          // above.
+          if (that.proxySubscriptions.failureOnStartup) {
+            that.fpc.notify("proxysubscription.error.saved", 
+              [that.proxySubscriptions.failureOnStartup],
+              [{
+                 accessKey: that.fp.getMessage("okay.accesskey"),
+                 callback: function(){},
+                 label: that.fp.getMessage("okay")
+              }],
+              null, null, false);
+          }
+          let failedContentLoad = {
             notify: function() {
-              for (let i = 0; i < failedSubs.length; i++) {
-                // We got subscriptions where just the metadata could be loaded.
-                // Asking the user if she wants to refresh the subscription now
-                // in order to have a useable pattern subscription.
-                // We have to do this in a separate method as the current |i|
-                // would otherwise not be preserved and we would always only
-                // refresh the last broken pattern subscription.
-                that.createNotification(that, failedSubs, i);
+              // We got subscriptions where just the metadata could be loaded.
+              // Asking the user if she wants to refresh the subscription now
+              // in order to have a useable pattern/proxy subscription.
+              for (let i = 0; i < failedSubs.patSubs.length; i++) {
+                that.createNotification(that, failedSubs.patSubs[i], "pattern");
+              }
+              for (let i = 0; i < failedSubs.proxySubs.length; i++) {
+                that.createNotification(that, failedSubs.proxySubs[i], "proxy");
               }
             }
-          }; 
-          let failedSubs = that.patternSubscriptions.partialLoadFailure;
-          if (failedSubs.length > 0) {
-            timer.initWithCallback(failedPatternLoad, 500, 
+          };
+          let failedSubs = {};
+          failedSubs.patSubs = that.patternSubscriptions.partialLoadFailure;
+          failedSubs.proxySubs = that.proxySubscriptions.partialLoadFailure;
+          if (failedSubs.patSubs.length > 0 ||
+              failedSubs.proxySubs.length > 0) {
+            timer.initWithCallback(failedContentLoad, 500, 
 	      Components.interfaces.nsITimer.TYPE_ONE_SHOT); 
           }
         }  
@@ -276,18 +291,23 @@ end-foxyproxy-simple !*/
       Components.interfaces.nsITimer.TYPE_ONE_SHOT); 
   },
 
-  createNotification : function(that, failedSubs, position) {
-    this.fpc.notify("patternsubscription.error.patterns.refresh",
-	          [failedSubs[position].metadata.name], 
-                  [{
-                     accessKey: null,
-                     callback: function() {
-                       that.patternSubscriptions.
-                         refreshSubscription(failedSubs[position], true);
-                     },
-                     label: this.fp.getMessage("yes")
-                  }], 
-                  null, null, false); 
+  createNotification : function(that, failedSub, type) {
+    this.fpc.notify(type + "subscription.error.content.refresh",
+	            [failedSub.metadata.name],
+                    [{
+                      accessKey: null,
+                      callback: function() {
+                        if (type === "pattern") {
+                          that.patternSubscriptions.
+                            refreshSubscription(failedSub, true);
+                        } else {
+                          that.proxySubscriptions.
+                            refreshSubscription(failedSub, true);
+                        }
+                      },
+                      label: this.fp.getMessage("yes")
+                    }],
+                    null, null, false);
   },
 
   toggleToolbarIcon : function(e) {

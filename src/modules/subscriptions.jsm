@@ -44,7 +44,7 @@ var subscriptions = {
   // asking her to refresh the corrupted subscription immediately.
   // (TODO: Change 'showPatternLoadFailures()' to something like
   // 'showSubscriptionLoadFailures()'.
-  partialLoadFailure : [],
+  //partialLoadFailure : [],
 
   init: function() {
     this.fp = Cc["@leahscape.org/foxyproxy/service;1"].getService().
@@ -334,13 +334,14 @@ var subscriptions = {
           this.addPatterns(null, proxyList, aIndex);
         }
       } else {
-        // TODO: Adding the proxy/proxies back to the pattern subscription if
-        // it/they was/were. How do we know we have the same proxies after a
-        // refresh? -> IP:Port! But we need to cycle through all subscriptions,
-        // right? And safe not only the IP:Port but the pattern subscriptions
-        // that had the proxy/proxies attached to it as well in order to add
-        // both the proxy/proxies to them AND add the patterns of the
-        // subscription to the former as well. Duh.
+        aSubscription.proxies = refreshedSubscription.proxies;
+        // Adding the proxy/proxies back to the pattern subscription if it/they
+        // was/were. How do we know we have the same proxies after a refresh?
+        // -> IP:Port! But we need to cycle through all subscriptions, right?
+        // And safe not only the IP:Port but the pattern subscriptions that had
+        // the proxy/proxies attached to it as well in order to add both the
+        // proxy/proxies to them AND add the patterns of the subscription to the
+        // former as well. Duh.
         let length = patternSubscriptions.subscriptionsList.length;
         let savedProxies = [];
         let patSub, patProxyList, patProxy, proxySub;
@@ -732,6 +733,7 @@ var subscriptions = {
 
 var patternSubscriptions = Object.create(subscriptions);
 patternSubscriptions.type = "pattern";
+patternSubscriptions.partialLoadFailure = [];
 patternSubscriptions.subscriptionsList = [];
 patternSubscriptions.subscriptionsFile = "patternSubscriptions.json";
 
@@ -982,6 +984,7 @@ Cu.import("resource://foxyproxy/autoproxy.jsm", patternSubscriptions);
 
 var proxySubscriptions = Object.create(subscriptions);
 proxySubscriptions.type = "proxy";
+proxySubscriptions.partialLoadFailure = [];
 proxySubscriptions.subscriptionsList = [];
 proxySubscriptions.subscriptionsFile = "proxySubscriptions.json";
 

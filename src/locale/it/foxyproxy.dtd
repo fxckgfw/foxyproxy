@@ -487,6 +487,7 @@
 <!ENTITY foxyproxy.proxy.subscriptions.viewSubscription "Visualizza proprietà della sottoscrizione selezionata">
 <!ENTITY foxyproxy.proxy.subscriptions.addedit.title "Aggiunta/modifica di una sottoscrizione di proxy">
 <!ENTITY foxyproxy.proxy.subscriptions.refreshHelp "eliminerà tutti i proxy esistenti">
+<!ENTITY foxyproxy.proxy.subscriptions.proxy.window.title "Proprietà della sottoscrizione di proxy">
 <!ENTITY foxyproxy.pattern.subscriptions.label "Sottoscrizioni modelli">
 <!ENTITY foxyproxy.pattern.subscriptions.description "Facendo clic sul link 'Condividi le sottoscrizioni di modelli' è possibile condividere facilmente le proprie sottoscrizioni di modelli e ottenere informazioni su come utilizzare quelle pubblicate da altri utenti">
 <!ENTITY foxyproxy.pattern.subscriptions.tooltip "Gestione delle sottoscrizioni di modelli">

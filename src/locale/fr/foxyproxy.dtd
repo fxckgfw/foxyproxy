@@ -80,6 +80,7 @@
 <!ENTITY foxyproxy.auto.url.tooltip "Entrer l&apos;URL du fichier PAC">
 <!ENTITY foxyproxy.auto.url.note.label "http(s)://   ftp://   file://   relative://">
 <!ENTITY foxyproxy.auto.url.note.tooltip "Cliquez sur l&apos;icône d&apos;information pour des informations concernant relative://">
+<!ENTITY foxyproxy.ip.address.label "Adresse IP">
 <!ENTITY foxyproxy.port.label "Port">
 <!ENTITY foxyproxy.port.accesskey "P">
 <!ENTITY foxyproxy.port.tooltip "Port">
@@ -147,6 +148,20 @@
 <!ENTITY foxyproxy.proxydns.accesskey "U">
 <!ENTITY foxyproxy.proxydns.tooltip3 "Si cochée, les noms d'hôte des URL chargée via ce proxy seront également résolues par ce proxy">
 <!ENTITY foxyproxy.proxydns.label4 "DNS du proxy">
+<!ENTITY foxyproxy.cache.label "Cache">
+<!ENTITY foxyproxy.clearcache.label "Vider le cache de l'application avant d'utiliser ce proxy">
+<!ENTITY foxyproxy.clearcache.accesskey "H">
+<!ENTITY foxyproxy.clearcache.tooltip "Si cochée, vide le cache avant d'utiliser ce proxy">
+<!ENTITY foxyproxy.disablecache.label "Ne pas placer dans le cache en utilisant ce proxy">
+<!ENTITY foxyproxy.disablecache.accesskey "N">
+<!ENTITY foxyproxy.disablecache.tooltip "Si cochée, l'application ne placera plus rien dans le cache à l'avenir">
+<!ENTITY foxyproxy.cookies.label "Cookies">
+<!ENTITY foxyproxy.clearcookies.label "Supprimer tous les cookies avant d'utiliser ce proxy">
+<!ENTITY foxyproxy.clearcookies.accesskey "c">
+<!ENTITY foxyproxy.clearcookies.tooltip "Si cochée, supprime tous les cookies avant d'utiliser ce proxy">
+<!ENTITY foxyproxy.rejectcookies.label "Bloquer tous les cookies lors de l'utilisation de ce proxy">
+<!ENTITY foxyproxy.rejectcookies.accesskey "B">
+<!ENTITY foxyproxy.rejectcookies.tooltip "Si cochée, le navigateur refusera tous les cookies lors de l'utilisation de ce proxy">
 <!ENTITY foxyproxy.showstatusbaricon.label "Afficher l'icône dans la barre d'état">
 <!ENTITY foxyproxy.showstatusbaricon.accesskey "f">
 <!ENTITY foxyproxy.showstatusbaricon.tooltip "Si cette case est cochée, l'icône de Foxyproxy sera affichée dans la barre d'état">
@@ -457,10 +472,22 @@
 <!ENTITY foxyproxy.invalidcolor.label "Couleur invalide">
 <!ENTITY foxyproxy.validcolor.label "Couleur valide">
 <!ENTITY foxyproxy.color.label "Couleur">
+<!ENTITY foxyproxy.color.description "Couleur de l'icône lors de l'utilisation de ce proxy">
 <!ENTITY foxyproxy.server.subscriptions.label "Abonnements serveur">
 <!ENTITY foxyproxy.server.subscriptions.tooltip "Gérer les abonnements serveur">
 <!ENTITY foxyproxy.server.subscriptions.accesskey "S">
 <!ENTITY foxyproxy.selectproxy.label "Choisir un proxy">
+<!ENTITY foxyproxy.proxy.subscriptions.label "Abonnements de proxy">
+<!ENTITY foxyproxy.proxy.subscriptions.accesskey "X">
+<!ENTITY foxyproxy.proxy.subscriptions.tooltip "Gérer les abonnements de proxy">
+<!ENTITY foxyproxy.proxy.subscriptions.description "S'abonner à des proxies publiés par d'autres. Partager vos proxies avec d'autres utilisateurs en quelques clics.">
+<!ENTITY foxyproxy.proxy.subscriptions.sharing.label "Partager vos proxies">
+<!ENTITY foxyproxy.proxy.subscriptions.menulist.tooltip "Choisir ce qui est ç faire avec les abonnements de proxy.">
+<!ENTITY foxyproxy.proxy.subscriptions.addSubscription "Ajouter un nouvel abonnement de proxy">
+<!ENTITY foxyproxy.proxy.subscriptions.viewSubscription "Afficher l'abonnement de proxy">
+<!ENTITY foxyproxy.proxy.subscriptions.addedit.title "Ajouter/éditer l'abonnement de proxy">
+<!ENTITY foxyproxy.proxy.subscriptions.refreshHelp "supprime tous les proxies existant auxquels vous êtes abonné">
+<!ENTITY foxyproxy.proxy.subscriptions.proxy.window.title "Abonnement de proxies">
 <!ENTITY foxyproxy.pattern.subscriptions.label "Abonnements à des motifs">
 <!ENTITY foxyproxy.pattern.subscriptions.description "S'abonner aux motifs publiés par d'autres. Partagez vos motifs juste en quelques clics.">
 <!ENTITY foxyproxy.pattern.subscriptions.tooltip "Gérer les abonnements à des motifs">

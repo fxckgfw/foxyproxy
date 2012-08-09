@@ -365,6 +365,7 @@ function setButtons(observerId, tree) {
 
 function getTextForCell(pat, col) {
   switch (col) {
+    case "enabled":return pat.enabled;
     case "name":return pat.name;
     case "pattern":return pat.pattern;
     case "isRegEx":return foxyproxy.getMessage(pat.isRegEx ? "foxyproxy.regex.label" : "foxyproxy.wildcard.label");

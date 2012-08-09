@@ -487,6 +487,7 @@
 <!ENTITY foxyproxy.proxy.subscriptions.viewSubscription "Proxy-abonnement bekijken">
 <!ENTITY foxyproxy.proxy.subscriptions.addedit.title "Proxy-abonnement toevoegen/bewerken">
 <!ENTITY foxyproxy.proxy.subscriptions.refreshHelp "verwijdert alle bestaande proxy-abonnementen">
+<!ENTITY foxyproxy.proxy.subscriptions.proxy.window.title "Abonnementsproxy’s">
 <!ENTITY foxyproxy.pattern.subscriptions.label "Patroonabonnementen">
 <!ENTITY foxyproxy.pattern.subscriptions.description "Abonneren op door anderen gepubliceerde patronen. Deel u patronen met anderen in een paar muisklikken.">
 <!ENTITY foxyproxy.pattern.subscriptions.tooltip "Patroonabonnementen beheren">

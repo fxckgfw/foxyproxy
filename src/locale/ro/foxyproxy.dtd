@@ -12,6 +12,13 @@
 <!ENTITY foxyproxy.proxy.notes.label "Explicații">
 <!ENTITY foxyproxy.proxy.notes.accesskey "E">
 <!ENTITY foxyproxy.proxy.notes.tooltip "Explicații pentru configurația proxy">
+<!ENTITY foxyproxy.proxy.wizard.label "Asistent proxy">
+<!ENTITY foxyproxy.proxy.wizard.accesskey "A">
+<!ENTITY foxyproxy.proxy.wizard.tooltip "Creează un proxy pe baza unui abonament">
+<!ENTITY foxyproxy.proxy.wizard.description1 "Acest asistent configurează proxy-ul dvs. plătit în mod automat. Vă rugăm să furnizați mai jos ID-ul abonamentului. Dacă nu aveţi un ID de abonament,">
+<!ENTITY foxyproxy.proxy.wizard.description2 "puteți achiziționa unul">
+<!ENTITY foxyproxy.proxy.wizard.subscriptionID.label "ID de abonament">
+<!ENTITY foxyproxy.proxy.wizard.subscriptionID.tooltip "Furnizați ID-ul abonamentului dvs. proxy">
 <!ENTITY foxyproxy.pattern.label "Șablon">
 <!ENTITY foxyproxy.urlpatterns.label "Șabloane adresă">
 <!ENTITY foxyproxy.delete.selection.label "Șterge">

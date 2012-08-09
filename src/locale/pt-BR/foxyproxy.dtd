@@ -167,7 +167,6 @@
 <!ENTITY foxyproxy.showstatusbarmode.label "Mostrar modo (texto) na barra de status">
 <!ENTITY foxyproxy.showstatusbarmode.accesskey "S">
 <!ENTITY foxyproxy.showstatusbarmode.tooltip "Se selecionado, o modo do FoxyProxy é mostrado na barra de status">
-<!ENTITY foxyproxy.storagelocation.label.2 "Settings Location">
 <!ENTITY foxyproxy.storagelocation.accesskey "S">
 <!ENTITY foxyproxy.storagelocation.tooltip "Caminho para gravar as configurações do FoxyProxy">
 <!ENTITY foxyproxy.tab.logging.timestamp.label "Data/Hora">
@@ -486,6 +485,7 @@
 <!ENTITY foxyproxy.proxy.subscriptions.viewSubscription "Ver assinatura de proxy">
 <!ENTITY foxyproxy.proxy.subscriptions.addedit.title "Adicionar/editar assinatura de proxy">
 <!ENTITY foxyproxy.proxy.subscriptions.refreshHelp "remover todas as assinaturas de proxy existentes">
+<!ENTITY foxyproxy.proxy.subscriptions.proxy.window.title "Assinatura de proxies">
 <!ENTITY foxyproxy.pattern.subscriptions.label "Assinaturas padrão">
 <!ENTITY foxyproxy.pattern.subscriptions.description "Inscrever-se para padrões publicados por outros. Compartilhe seus padrões com outras pessoas em apenas alguns cliques.">
 <!ENTITY foxyproxy.pattern.subscriptions.tooltip "Gerenciar assinaturas padrão">

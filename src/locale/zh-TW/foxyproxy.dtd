@@ -80,6 +80,7 @@
 <!ENTITY foxyproxy.auto.url.tooltip "輸入自動組態指令碼（PAC）的檔案網址">
 <!ENTITY foxyproxy.auto.url.note.label "http(s)://   ftp://   file://   relative://">
 <!ENTITY foxyproxy.auto.url.note.tooltip "點擊資訊圖示獲得更多有關 relative:// 的資訊">
+<!ENTITY foxyproxy.ip.address.label "IP 位址">
 <!ENTITY foxyproxy.port.label "連接埠">
 <!ENTITY foxyproxy.port.accesskey "P">
 <!ENTITY foxyproxy.port.tooltip "連接埠">
@@ -476,6 +477,17 @@
 <!ENTITY foxyproxy.server.subscriptions.tooltip "伺服器訂閱">
 <!ENTITY foxyproxy.server.subscriptions.accesskey "S">
 <!ENTITY foxyproxy.selectproxy.label "選擇代理伺服器">
+<!ENTITY foxyproxy.proxy.subscriptions.label "代理伺服器訂閱">
+<!ENTITY foxyproxy.proxy.subscriptions.accesskey "X">
+<!ENTITY foxyproxy.proxy.subscriptions.tooltip "管理代理伺服器訂閱">
+<!ENTITY foxyproxy.proxy.subscriptions.description "訂閱其它人發表的代理伺服器，透過簡單的點選就可以和別人分享你的代理伺服器。">
+<!ENTITY foxyproxy.proxy.subscriptions.sharing.label "分享你的代理伺服器">
+<!ENTITY foxyproxy.proxy.subscriptions.menulist.tooltip "選擇要執行的代理伺服器訂閱動作。">
+<!ENTITY foxyproxy.proxy.subscriptions.addSubscription "新增訂閱的代理伺服器">
+<!ENTITY foxyproxy.proxy.subscriptions.viewSubscription "檢視訂閱的代理伺服器">
+<!ENTITY foxyproxy.proxy.subscriptions.addedit.title "新增/編輯訂閱的代理伺服器">
+<!ENTITY foxyproxy.proxy.subscriptions.refreshHelp "移除所有已訂閱的代理伺服器">
+<!ENTITY foxyproxy.proxy.subscriptions.proxy.window.title "訂閱代理伺服器">
 <!ENTITY foxyproxy.pattern.subscriptions.label "樣式訂閱">
 <!ENTITY foxyproxy.pattern.subscriptions.description "訂閱其它人發表的樣式，透過簡單的點選就可以和別人分享你的樣式。">
 <!ENTITY foxyproxy.pattern.subscriptions.tooltip "樣式訂閱">
@@ -507,7 +519,7 @@
 <!ENTITY foxyproxy.pattern.subscriptions.refreshNow.label "立刻更新">
 <!ENTITY foxyproxy.pattern.subscriptions.refreshNow.tooltip "立刻更新此訂閱的樣式">
 <!ENTITY foxyproxy.pattern.subscriptions.refreshHelp1 "指定多少分鐘後要更新此訂閱的樣式，更新訂閱會">
-<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp2 "移除目前所有的樣式">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp2 "移除所有的樣式">
 <!ENTITY foxyproxy.pattern.subscriptions.refreshHelp4 "然後插入訂閱網址上找到的樣式。若要獲得更多資訊，請點擊">
 <!ENTITY foxyproxy.pattern.subscriptions.zeroRefresh "（0 表示不更新）">
 <!ENTITY foxyproxy.pattern.subscriptions.format.tooltip "此訂閱的樣式清單的格式">

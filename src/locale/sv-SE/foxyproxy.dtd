@@ -487,6 +487,7 @@
 <!ENTITY foxyproxy.proxy.subscriptions.viewSubscription "Granska proxyprenumeration">
 <!ENTITY foxyproxy.proxy.subscriptions.addedit.title "Lägg till/redigera proxyprenumeration">
 <!ENTITY foxyproxy.proxy.subscriptions.refreshHelp "tar bort alla befintliga proxyprenumerationer">
+<!ENTITY foxyproxy.proxy.subscriptions.proxy.window.title "Prenumererade proxyservrar">
 <!ENTITY foxyproxy.pattern.subscriptions.label "Mönsterprenumerationer">
 <!ENTITY foxyproxy.pattern.subscriptions.description "Prenumerera på mönster publicerade av andra. Dela dina mönster med andra med bara ett par klick.">
 <!ENTITY foxyproxy.pattern.subscriptions.tooltip "Hantera mönsterprenumerationer">

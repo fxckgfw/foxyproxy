@@ -487,6 +487,7 @@
 <!ENTITY foxyproxy.proxy.subscriptions.viewSubscription "查看代理服务器订阅">
 <!ENTITY foxyproxy.proxy.subscriptions.addedit.title "添加/编辑代理服务器订阅">
 <!ENTITY foxyproxy.proxy.subscriptions.refreshHelp "移除全部现有的代理服务器订阅">
+<!ENTITY foxyproxy.proxy.subscriptions.proxy.window.title "订阅代理服务器">
 <!ENTITY foxyproxy.pattern.subscriptions.label "模式订阅">
 <!ENTITY foxyproxy.pattern.subscriptions.description "订阅其他人发布的模式。几次鼠标点击即可同他人分享你的模式。">
 <!ENTITY foxyproxy.pattern.subscriptions.tooltip "管理模式订阅">

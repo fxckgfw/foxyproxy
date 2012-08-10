@@ -309,6 +309,10 @@ function refreshSubscription(type, e) {
     } else {
       proxySubscriptions.refreshSubscription(window.arguments[0].inn.
         subscription, true);
+      // We need to refresh the proxy tree of the option dialog as well as the
+      // colors of the refreshed proxies would not show up otherwise (if the
+      // options dialog is not closed).
+      fpc.makeProxyTreeView(opener.proxyTree, fp.proxies, opener.document);
     }
   }
 }

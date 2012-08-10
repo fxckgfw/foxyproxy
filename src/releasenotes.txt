@@ -1,6 +1,2 @@
-* proxy color is shown in FoxyProxy's mode menu
-* added support for selecting multiple proxies in the proxies tree
-* added support for selecting multiple patterns in the URL patterns tree
-* deleting patterns does not scroll back the patterns tree anymore (see:
-  http://forums.getfoxyproxy.org/viewtopic.php?f=4&t=616&p=1441) 
-* replaced deprecated octal file permissions
+* proxy subscription feature
+* updated locales

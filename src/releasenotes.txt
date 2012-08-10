@@ -1,3 +1,4 @@
 * proxy subscription feature
+* optimized loading of PAC files during start-up
 * code clean-up
 * updated locales

@@ -268,7 +268,7 @@ Common.prototype = {
           var i = proxies.item(row);
           var atom = CC["@mozilla.org/atom-service;1"].getService(CI.nsIAtomService).getAtom(i.colorString);
           props.AppendElement(atom);
-        } 
+        }
       },
       getLevel: function(row){ return 0; }
     };

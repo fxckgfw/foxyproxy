@@ -660,6 +660,14 @@ function refreshSubscriptions(type) {
       subscriptionsList[proxySubscriptionsTree.currentIndex], true);
     proxySubscriptionsTree.view = proxySubscriptions.
       makeSubscriptionsTreeView();
+    // We need to refresh the proxy tree as well as the colors of the
+    // refreshed proxies would not show up otherwise (if the options dialog is
+    // not closed).
+    // TODO: The color string of refreshed proxies is "nmbado" (= the default
+    // value) but restarting e.g. Firefox gives "ggmmem" as default value while
+    // the color value (#0055E5) is the same in both case. Not sure about the
+    // reason and whether it is an issue...
+    fpc.makeProxyTreeView(proxyTree, foxyproxy.proxies, document);
   }
 }
 

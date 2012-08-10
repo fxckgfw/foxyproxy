@@ -267,10 +267,18 @@ foxyproxy.prototype = {
       var proxy = this.proxies.item(i);
       if (mode == proxy.id) {
         this._selectedProxy = proxy;
+        // If we are in mode "Use proxy XYZ for all URLs" AND have the selected
+        // proxy check for PAC loading. It is done via the enabled-setter in
+        // proxy.js!
         proxy.enabled = true; // ensure it's enabled
-      }
-      if (proxy.shouldLoadPAC()) {
-        proxy.preparePACLoading();
+      } else {
+        // Check PAC loading in pattern mode for every proxy.
+        // TODO: Add |random| and |roundrobin| as well if we have these modes.
+        if (mode === "patterns") {
+          if (proxy.shouldLoadPAC()) {
+            proxy.preparePACLoading();
+          }
+        }
       }
     }
     // Ensure the new mode is valid. If it's invalid, set mode to disabled for

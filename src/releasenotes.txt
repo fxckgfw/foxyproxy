@@ -1,2 +1,3 @@
 * proxy subscription feature
+* code clean-up
 * updated locales

@@ -932,7 +932,12 @@ foxyproxy.prototype = {
 
     getProxyById : function(id) {
       var a = this.list.filter(function(e) {return e.id == this;}, id);
-      return a?a[0]:null;
+      // We are getting an array back at any rate. Thus checking |a| alone is
+      // not enough to be sure that we may return an |a[0]|.
+      if (a && a[0]) {
+        return a[0];
+      }
+      return null;
     },
 
     requiresRemoteDNSLookups : function() {

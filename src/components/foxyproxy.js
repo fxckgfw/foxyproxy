@@ -274,7 +274,7 @@ foxyproxy.prototype = {
       } else {
         // Check PAC loading in pattern mode for every proxy.
         // TODO: Add |random| and |roundrobin| as well if we have these modes.
-        if (mode === "patterns") {
+        if (mode == "patterns") {
           if (proxy.shouldLoadPAC()) {
             proxy.preparePACLoading();
           }

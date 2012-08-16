@@ -1,12 +1,12 @@
 /**
   FoxyProxy
-  Copyright (C) 2006-#%#% Eric H. Jung and LeahScape, Inc.
+  Copyright (C) 2006-#%#% Eric H. Jung and FoxyProxy, Inc.
   http://getfoxyproxy.org/
   eric.jung@yahoo.com
 
   This source code is released under the GPL license,
   available in the LICENSE file at the root of this installation
-  and also online at http://www.gnu.org/licenses/gpl.txt
+  and also online at http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 **/
 // common fcns used throughout foxyproxy, exposed a an xpcom service
 
@@ -19,6 +19,8 @@ var fp;
 function Common() {
   this.wrappedJSObject = this;
   this.appInfo = CC["@mozilla.org/xre/app-info;1"].getService(CI.nsIXULAppInfo);
+  this.vc = CC["@mozilla.org/xpcom/version-comparator;1"].getService(CI.
+    nsIVersionComparator); 
   fp = CC["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;   
   let uuid = fp.isFoxyProxySimple() ? "foxyproxy-basic@eric.h.jung" : "foxyproxy@eric.h.jung";
   // Get installed version
@@ -102,7 +104,7 @@ Common.prototype = {
     }
     if (isRegEx) {
       try {
-        new RegExp((p[0]=="^"?"":"^") + p + (p[p.length-1]=="$"?"":"$"));
+        new RegExp(p);
       }
       catch(e) {
         fp.alert(win, fp.getMessage("pattern.invalid.regex", [origPat]));
@@ -114,7 +116,8 @@ Common.prototype = {
       return false;
     // Check for parenthesis without backslash
     if (new RegExp("[^\\\\]\\(|[^\\\\]\\)", "g").test(p) &&
-        !fp.warnings.showWarningIfDesired(win, ["no.parentheses"], "parentheses")) {
+        !fp.warnings.showWarningIfDesired(win, ["no.parentheses2"],
+          "parentheses")) {
       return false;
     }
     return p;
@@ -131,8 +134,14 @@ Common.prototype = {
     e.setAttribute("id", args["idVal"]);
     e.setAttribute("label", args["labelId"]?fp.getMessage(args["labelId"], args["labelArgs"]) : args["labelVal"]);
     e.setAttribute("value", args["idVal"]);
-    args["type"] && e.setAttribute("type", args["type"]);
-    args["name"] && e.setAttribute("name", args["name"]);
+    if (args["type"])
+      e.setAttribute("type", args["type"]);
+    if (args["name"])
+      e.setAttribute("name", args["name"]);
+    if (args["class"])
+      e.setAttribute("class", args["class"]);
+    if (args["style"])
+      e.setAttribute("style", args["style"]);
     return e;
   },
   
@@ -200,13 +209,16 @@ Common.prototype = {
       superadd.prompt = p.prompt;
       superadd.notifyWhenCanceled = p.notifyWhenCanceled;
       superadd.proxy = fp.proxies.getProxyById(p.proxyId);
-      fp.writeSettings();
+      fp.writeSettingsAsync();
       return p.match;
     }
   },
 
-  makeProxyTreeView : function(proxies, document) {    
-    var ret = {
+  makeProxyTreeView : function(tree, proxies, document) {
+    // Save scroll position so we can restore it after making the new view
+    let visibleRow = tree.treeBoxObject.getFirstVisibleRow();
+
+    tree.view = {
       rowCount : proxies.length,
       getCellText : function(row, column) {
         var i = proxies.item(row);    
@@ -214,9 +226,20 @@ Common.prototype = {
           case "nameCol":return i.name;
           case "descriptionCol":return i.notes;
           case "hostCol":return i.manualconf.host;           
+          case "portCol":return i.manualconf.port; 
           case "isSocksCol":return i.manualconf.isSocks?fp.getMessage("yes"):fp.getMessage("no");        
-          case "portCol":return i.manualconf.port;                   
-          case "socksverCol":return i.manualconf.socksversion == "5" ? "5" : "4/4a";                           
+          case "socksverCol":
+            if (i.manualconf.isSocks)
+              return i.manualconf.socksversion == "5" ? "5" : "4/4a";
+            else
+              // We only want to show the SOCKS version in the tree if it is
+              // really a SOCKS proxy.
+              return "";
+          case "wpadCol":
+            if (i.autoconfMode === "wpad")
+              return fp.getMessage("yes");
+            else 
+              return fp.getMessage("no"); 
           case "autopacCol":return i.autoconf.url;   
           case "animatedIconsCol":return i.animatedIcons?fp.getMessage("yes"):fp.getMessage("no");
           case "cycleCol":return i.includeInCycle?fp.getMessage("yes"):fp.getMessage("no");
@@ -224,6 +247,8 @@ Common.prototype = {
             if (i.mode == "direct") return fp.getMessage("not.applicable");
             else
               return i.proxyDNS ? fp.getMessage("yes"):fp.getMessage("no");
+          case "fromSubscriptionCol":
+            return fp.getMessage(i.fromSubscription ? "yes" : "no");
         }
       },
       setCellValue: function(row, col, val) {proxies.item(row).enabled = val;},
@@ -243,10 +268,14 @@ Common.prototype = {
           var i = proxies.item(row);
           var atom = CC["@mozilla.org/atom-service;1"].getService(CI.nsIAtomService).getAtom(i.colorString);
           props.AppendElement(atom);
-        } 
+        }
       },
       getLevel: function(row){ return 0; }
     };
+
+    // Restore scroll position - peng likes to complain that this feature was
+    // missing
+    tree.treeBoxObject.scrollToRow(visibleRow);    
     
     /* Set the color column dynamically. Note that "x" in the CSS class
        treechildren::-moz-tree-cell(x) must contain only letters. No numbers or symbols,
@@ -258,14 +287,13 @@ Common.prototype = {
       var p = proxies.item(i);
       styleSheet.insertRule("treechildren::-moz-tree-cell(" + p.colorString + "){border: 1px solid black;background-color:" + p.color + "}", styleSheet.cssRules.length);
     }
-    return ret;
   }, 
   
   isThunderbird : function() {
     return this.appInfo.ID == "{3550f703-e582-4d05-9a08-453d09bdfdc6}";
   },
   
-  notify : function(msg, ar, buttons, priority, callback, getNotWithVal) {
+  notify : function(msg, ar, buttons, priority, callback, getNotWithVal, callbackArgs) {
     let wm = this.getMostRecentWindow(), message = fp.getMessage(msg, ar), nb;
     // First we check, whether we use Firefox or Seamonkey...
     if (wm.gBrowser) {
@@ -292,7 +320,8 @@ Common.prototype = {
           label: fp.getMessage("allow"),
           accessKey: fp.getMessage("allow.accesskey"),
           popup: null, 
-          callback: callback
+          callback: callback,
+          callbackArgs: callbackArgs
         }                 
       ];  
     }
@@ -306,6 +335,129 @@ Common.prototype = {
       nb.appendNotification(message, "foxyproxy-notification",
           "chrome://foxyproxy/content/images/16x16.gif", priority, buttons);
     }
+  },
+
+  processProxyURI : function(aURI) {
+    // aURI is a nsIUri, so get a string from it using .spec
+    var uri = aURI.spec;
+    // strip away the proxy: part
+    uri = uri.substring(uri.indexOf(":") + 1, uri.length);
+    // and, optionally, leading // as in proxy://
+    if (uri.indexOf("//") == 0)
+      uri = uri.substring(2);
+    uri = decodeURI(uri);
+    // decodeURI doesn't convert &amp; entity to &
+    uri = uri.replace(new RegExp("&amp;", "g"), "&");
+    // e.g. proxy:ip=xx.xx.xx.xx&port=yyyyy
+    // Parse query params into nameValuePairs array
+    var count = 0, nameValuePairs = [], queryParams = uri.split('&'),
+      foundSomeInput;
+    for (var i in queryParams) {
+      var pair = queryParams[i].split('=');
+      if (pair.length == 2) {
+        nameValuePairs[pair[0]] = pair[1];
+        foundSomeInput = true;
+      }
+    }
+    if (!foundSomeInput) return false;
+    var proxy = CC["@leahscape.org/foxyproxy/proxy;1"].createInstance().
+      wrappedJSObject;
+    proxy.fromAssociateArray(nameValuePairs);
+    // We accept URIs like this:
+    //   proxy:foxyProxyMode=disabled
+    // with no other parameters. In cases like that, we must skip the
+    // create/update/delete proxy code otherwise we'll create an empty/useless
+    // proxy. Note: |uri| has been stripped of its scheme at this point.
+    if (!(/^foxyProxyMode=[^&]*$/.test(uri))) {
+      // Are we adding a new proxy, or deleting or updating an existing one?
+      // Default is to updateOrAdd.
+      if (!nameValuePairs["action"]) { /* no action was specified */
+          nameValuePairs["action"] = "updateOrAdd";
+      }
+      switch (nameValuePairs["action"]) {
+        case "update":
+          var p = fp.proxies.mergeByName(proxy, nameValuePairs);
+          if (p) {
+            proxy = p;
+            fp.broadcast(null, "foxyproxy-proxy-change");
+          }
+          break;
+        case "add":
+          let position = null;
+          if (nameValuePairs["position"]) {
+            position = nameValuePairs["position"];
+          }
+          fp.proxies.insertAt(position, proxy); 
+          fp.broadcast(null, "foxyproxy-proxy-change");
+          break;
+        case "delete": /* deliberate fall-through */
+        case "deleteOne":
+          fp.proxies.deleteByName(proxy.name, false);
+          fp.broadcast(null, "foxyproxy-proxy-change");
+          break;
+        case "deleteMultiple":
+          fp.proxies.deleteByName(proxy.name, true);
+          fp.broadcast(null, "foxyproxy-proxy-change");
+          break;
+        case "updateOrAdd":
+          var p = fp.proxies.mergeByName(proxy, nameValuePairs);
+          if (p)
+            proxy = p;
+          else {
+            let position = null;
+            if (nameValuePairs["position"]) {
+              position = nameValuePairs["position"];
+            }
+            fp.proxies.insertAt(position, proxy);
+          }
+          fp.broadcast(null, "foxyproxy-proxy-change");
+          break;
+      }
+      fp.writeSettingsAsync(); // Save to disk
+    }
+    
+    // If foxyProxyMode was specified as "this", translate that to something
+    // that fp.setMode() understands. Can't set mode to "this" if you're
+    // deleting.
+    if (nameValuePairs["foxyProxyMode"] == "this") {
+      nameValuePairs["foxyProxyMode"] = nameValuePairs["action"] == "delete" ||
+        nameValuePairs["action"] == "deleteOne" ||
+        nameValuePairs["action"] == "deleteMultiple" ? null : proxy.id;
+    }
+    // If a proxy name was specifed, get its ID and use that for new foxyproxy
+    // mode.
+    else if (nameValuePairs["foxyProxyMode"] != "patterns" &&
+             nameValuePairs["foxyProxyMode"] != "disabled" &&
+             nameValuePairs["foxyProxyMode"] != "random" &&
+             nameValuePairs["foxyProxyMode"] != "previous" &&
+             nameValuePairs["foxyProxyMode"] != "roundrobin" &&
+             !fp.proxies.getProxyById(nameValuePairs["foxyProxyMode"])) {
+      var proxy2 = fp.proxies.getProxyByName(nameValuePairs["foxyProxyMode"]);
+      if (proxy2)
+        nameValuePairs["foxyProxyMode"] = proxy.id;
+    }
+
+    // Set mode last in case user is setting mode to the proxy we just
+    // configured. (In that case, setting mode earlier will result in the proxy
+    // not being found)
+    if (nameValuePairs["foxyProxyMode"])
+      fp.setMode(nameValuePairs["foxyProxyMode"], true);
+    
+    // User-feedback?
+    if (nameValuePairs["confirmation"] == "popup") {
+      fp.notifier.alert(fp.getMessage("foxyproxy"),
+        fp.getMessage("proxy.configured", [nameValuePairs["name"]]));
+      return nameValuePairs;
+    }
+    else if (nameValuePairs["confirmation"]) {
+      // Is it a valid URL?
+      try {
+        this._ios.newURI(nameValuePairs["confirmation"], "UTF-8", null);
+      }
+      catch(e) {/* not a valid URL */ return true; }
+      this.openTab(nameValuePairs["confirmation"]);
+    }
+    return nameValuePairs;
   },
   
   classDescription: "FoxyProxy Common Utils",

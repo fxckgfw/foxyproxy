@@ -1,16 +1,17 @@
 /**
   FoxyProxy
-  Copyright (C) 2006-#%#% Eric H. Jung and LeahScape, Inc.
+  Copyright (C) 2006-#%#% Eric H. Jung and FoxyProxy, Inc.
   http://getfoxyproxy.org/
   eric.jung@yahoo.com
 
   This source code is released under the GPL license,
   available in the LICENSE file at the root of this installation
-  and also online at http://www.gnu.org/licenses/gpl.txt
+  and also online at http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 **/
 if (!CI) {
   // we're not being included by foxyproxy.js
-  var CI = Components.interfaces, CC = Components.classes, CR = Components.results, fp;
+  var CI = Components.interfaces, CC = Components.classes,
+    CR = Components.results, fp;
 
   // Get attribute from node if it exists, otherwise return |def|.
   // No exceptions, no errors, no null returns.
@@ -21,7 +22,8 @@ if (!CI) {
   // Boolean version of GetSafe
   var gGetSafeAttrB = function(n, name, def) {
     n.QueryInterface(CI.nsIDOMElement);
-    return n ? (n.hasAttribute(name) ? n.getAttribute(name)=="true" : def) : def;
+    return n ? (n.hasAttribute(name) ? n.getAttribute(name) == "true" : def) :
+      def;
   };
 }
 
@@ -30,7 +32,8 @@ Components.utils.import("resource://gre/modules/XPCOMUtils.jsm");
 ///////////////////////////// AutoConf class ///////////////////////
 function AutoConf(owner, fpp) {
   this.wrappedJSObject = this;
-  fp = fpp || CC["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;    
+  fp = fpp || CC["@leahscape.org/foxyproxy/service;1"].
+    getService().wrappedJSObject;    
   this.timer = CC["@mozilla.org/timer;1"].createInstance(CI.nsITimer);
   this.owner = owner;
   this._resolver = new fpProxyAutoConfig(this);
@@ -77,6 +80,15 @@ AutoConf.prototype = {
     this.disableOnBadPAC = gGetSafeAttrB(n, "disableOnBadPAC", true);
   },
 
+  fromProxyConfig : function(a) {
+    this.url = a.url;
+    this.loadNotification = a.loadNotification;
+    this.errorNotification = a.errorNotification;
+    this.autoReload = a.autoReload;
+    this.reloadFreqMins = a.reloadFreqMins;
+    this.disableOnBadPAC = a.disableOnBadPAC;
+  },
+
   toDOM : function(doc) {
     var e = doc.createElement("autoconf");
     e.setAttribute("url", this.url);
@@ -101,13 +113,16 @@ AutoConf.prototype = {
     req.channel.loadFlags |= CI.nsIRequest.LOAD_BYPASS_CACHE;
     req.send(null);
     if (req.status == 200 ||
-        (req.status == 0 && (url.indexOf("file://") == 0 || url.indexOf("ftp://") == 0 || url.indexOf("relative://") == 0))) {
+        (req.status == 0 && (url.indexOf("file://") == 0 ||
+        url.indexOf("ftp://") == 0 || url.indexOf("relative://") == 0))) {
       new fpProxyAutoConfig(this).init(url, req.responseText);
     }
     else throw new Error(fp.getMessage("http.error", [req.status]));
   },
 
   loadPAC : function() {
+    let autoconfMode = this.owner.autoconfMode;
+    let autoconfMessage = "";
     try {
       var req = CC["@mozilla.org/xmlextras/xmlhttprequest;1"]
         .createInstance(CI.nsIXMLHttpRequest);
@@ -117,37 +132,71 @@ AutoConf.prototype = {
       req.send(null);
     }
     catch(e) {
-      this.badPAC("pac.status.loadfailure", e);
+      if (autoconfMode === "pac") {
+        autoconfMessage = "pac.status.loadfailure2"; 
+      } else {
+        autoconfMessage = "wpad.status.loadfailure";
+      }
+      this.badPAC(autoconfMessage, e);
       return;
     }
-    if (req.status == 200 ||
-      (req.status == 0 && (this.url.indexOf("file://") == 0 || this.url.indexOf("ftp://") == 0 || this.url.indexOf("relative://") == 0))) {
-        try {
-          this._resolver.init(this.url, req.responseText);
+    if (req.status == 200 || (req.status == 0 &&
+         (this.url.indexOf("file://") == 0 || this.url.indexOf("ftp://") == 0 ||
+          this.url.indexOf("relative://") == 0))) {
+      try {
+        this._resolver.init(this.url, req.responseText);
+      }
+      catch(e) {
+        if (autoconfMode === "pac") {
+          autoconfMessage = "pac.status.error2"; 
+        } else {
+          autoconfMessage = "wpad.status.error";
         }
-        catch(e) {
-          this.badPAC("pac.status.error", e);
-          return;
-        }
-        this.loadNotification && fp.notifier.alert(fp.getMessage("pac.status"), fp.getMessage("pac.status.success", [this.owner.name]));
-        this.owner._enabled = true; // Use _enabled so we don't loop infinitely
-        //if (this.disabledDueToBadPAC) {
-          //this.disabledDueToBadPAC = false; /* reset */
-          //this.owner.fp.writeSettings();
-        //}
-    }
-    else {
-      this.badPAC("pac.status.loadfailure", new Error(fp.getMessage("http.error", [req.status])));
+        this.badPAC(autoconfMessage, e); 
+        return;
+      }
+      let autoconfMessageHelper = "";
+      if (autoconfMode === "pac") {
+        autoconfMessage = "pac.status"; 
+        autoconfMessageHelper = "pac.status.success2";
+      } else {
+        autoconfMessage = "wpad.status";
+        autoconfMessageHelper = "wpad.status.success";
+      } 
+      this.loadNotification && fp.notifier.alert(fp.getMessage(autoconfMessage),
+        fp.getMessage(autoconfMessageHelper, [this.owner.name]));
+      // Use _enabled so we don't loop infinitely 
+      this.owner._enabled = true;
+      //if (this.disabledDueToBadPAC) {
+        //this.disabledDueToBadPAC = false; /* reset */
+        //this.owner.fp.writeSettings();
+      //}
+    } else {
+      if (autoconfMode === "pac") {
+        autoconfMessage = "pac.status.loadfailure2";
+      } else {
+        autoconfMessage = "wpad.status.loadfailure";
+      }
+      this.badPAC(autoconfMessage,
+        new Error(fp.getMessage("http.error", [req.status])));
     }
   },
 
   badPAC : function(r, e) {
-    //if (!this.disabledDueToBadPAC) { /* marker to try loading the PAC next time */
+    //if (!this.disabledDueToBadPAC) {
+      /* marker to try loading the PAC next time */
       //this.disabledDueToBadPAC = true;
       //this.owner.fp.writeSettings();
     //}
+    let autoconfMessage = "";
+    if (this.owner.autoconfMode === "pac") {
+      autoconfMessage = "pac.status"; 
+    } else {
+      autoconfMessage = "wpad.status";
+    } 
     var msg = fp.getMessage(r, [this.owner.name]) + "\n\n" + e.message;
-    this.errorNotification && fp.notifier.alert(fp.getMessage("pac.status"), msg);
+    this.errorNotification && fp.notifier.alert(fp.getMessage(autoconfMessage),
+      msg);
     if (this.owner.lastresort)
       this.owner.mode = "direct"; // don't disable!
     else if (this.disableOnBadPAC)
@@ -193,9 +242,15 @@ fpProxyAutoConfig.prototype = {
 
     /** throws a localized Error object on error */
     init: function(pacURI, pacText) {
+      let autoconfMessage = "";
       if (pacURI == "" || pacText == "") {
         dump("FoxyProxy: init(), pacURI or pacText empty\n");    
-        throw new Error(fp.getMessage("pac.empty"));
+        if (this.owner.owner.autoconfMode  === "pac") {
+          autoconfMessage = "pac.empty";
+        } else {
+          autoconfMessage = "wpad.empty";
+        } 
+        throw new Error(fp.getMessage(autoconfMessage));
       }
       this.sandbox = new Components.utils.Sandbox(pacURI);
       Components.utils.evalInSandbox(pacUtils, this.sandbox);
@@ -218,7 +273,12 @@ fpProxyAutoConfig.prototype = {
       // everytime in getProxyxForURI().
       if (!("FindProxyForURL" in this.sandbox)) {
         dump("FoxyProxy: init(), FindProxyForURL not found\n");
-        throw new Error(fp.getMessage("pac.fcn.notfound"));
+        if (this.owner.owner.autoconfMode === "pac") {
+          autoconfMessage = "pac.fcn.notfound2";
+        } else {
+          autoconfMessage = "wpad.fcn.notfound";
+        } 
+        throw new Error(fp.getMessage(autoconfMessage));
       }
       return true;
     },
@@ -297,7 +357,7 @@ var pacUtils =
 "}\n"+
 
 "function isInNet(ipaddr, pattern, maskstr) {\n"+
-"    var test = /^(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})$/(ipaddr);\n"+
+"    var test = /^(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})$/.exec(ipaddr);\n"+
 "    if (test == null) {\n"+
 "        ipaddr = dnsResolve(ipaddr);\n"+
 "        if (ipaddr == null)\n"+

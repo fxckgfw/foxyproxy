@@ -1,22 +1,22 @@
 /**
   FoxyProxy
-  Copyright (C) 2006-#%#% Eric H. Jung and LeahScape, Inc.
+  Copyright (C) 2006-#%#% Eric H. Jung and FoxyProxy, Inc.
   http://getfoxyproxy.org/
   eric.jung@yahoo.com
 
   This source code is released under the GPL license,
   available in the LICENSE file at the root of this installation
-  and also online at http://www.gnu.org/licenses/gpl.txt
+  and also online at http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 **/
 var fpc, intervalId, angle = 4, iconRotater;
 
 function onLoad() {
-  document.documentElement.getButton("accept").focus()
+  document.documentElement.getButton("accept").focus();
   fpc = Components.classes["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject;
   document.getElementById("ver").value += " " + fpc.getVersion();
 	sizeToContent();  
 	iconRotater = document.getElementById("fp-statusbar-icon-rotater");
-	intervalId = window.setInterval(animate, 10);
+	intervalId = window.setInterval(function() {animate()}, 10);
 }
 
 function animate() {

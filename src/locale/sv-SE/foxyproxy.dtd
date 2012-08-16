@@ -12,6 +12,16 @@
 <!ENTITY foxyproxy.proxy.notes.label "Proxyanteckningar">
 <!ENTITY foxyproxy.proxy.notes.accesskey "n">
 <!ENTITY foxyproxy.proxy.notes.tooltip "Proxyanteckningar">
+<!ENTITY foxyproxy.proxy.wizard.label "Proxyguiden">
+<!ENTITY foxyproxy.proxy.wizard.accesskey "P">
+<!ENTITY foxyproxy.proxy.wizard.tooltip "Skapa en proxy utifrån en proxyprenumeration">
+<!ENTITY foxyproxy.proxy.wizard.description1 "Denna guide konfigurerar din betalproxytjänst automatiskt. Ange ditt prenumerations-ID nedan. Om du inte har något prenumerations-ID,">
+<!ENTITY foxyproxy.proxy.wizard.description2 "så kan du köpa ett">
+<!ENTITY foxyproxy.proxy.wizard.subscriptionID.label "Prenumerations-ID">
+<!ENTITY foxyproxy.proxy.wizard.subscriptionID.tooltip "Ange ditt proxyprenumerations-ID">
+<!ENTITY foxyproxy.proxy.wizard.loading.label "Hämtar proxyinformation…">
+<!ENTITY foxyproxy.proxy.wizard.congratulation "Gratulerar! FoxyProxy har konfigurerats.">
+<!ENTITY foxyproxy.proxy.wizard.whatsmyip.label "Kontrollera mitt IP-nummer">
 <!ENTITY foxyproxy.pattern.label "Mönster">
 <!ENTITY foxyproxy.urlpatterns.label "URL-mönster">
 <!ENTITY foxyproxy.urlpatterns.accesskey "ö">
@@ -36,9 +46,12 @@
 <!ENTITY foxyproxy.help.label "Hjälpinnehåll">
 <!ENTITY foxyproxy.help.accesskey "H">
 <!ENTITY foxyproxy.help.tooltip "Visa hjälp">
+<!ENTITY foxyproxy.import.pattern.label "Importera">
+<!ENTITY foxyproxy.import.pattern.accesskey "I">
+<!ENTITY foxyproxy.import.pattern.tooltip "Importera mönster">
 <!ENTITY foxyproxy.export.pattern.label "Exportera">
 <!ENTITY foxyproxy.export.pattern.accesskey "x">
-<!ENTITY foxyproxy.export.pattern.tooltip "Exportera mönster som en mönsterprenumeration">
+<!ENTITY foxyproxy.export.pattern.tooltip2 "Exportera alla mönster">
 <!ENTITY foxyproxy.close.label "Stäng">
 <!ENTITY foxyproxy.close.accesskey "S">
 <!ENTITY foxyproxy.close.tooltip "Stäng fönster">
@@ -55,11 +68,19 @@
 <!ENTITY foxyproxy.copy.selection.accesskey "o">
 <!ENTITY foxyproxy.copy.selection.tooltip "Kopierar markerade">
 <!ENTITY foxyproxy.mode.label "Välj läge">
+<!ENTITY foxyproxy.wpad.label1 "via WPAD">
+<!-- begin foxyproxyplus -->
+<!ENTITY foxyproxy.wpad.accesskey "W">
+<!ENTITY foxyproxy.wpad.tooltip "Identifiera proxyinställningarna automatiskt m.h.a. WPAD">
+<!ENTITY foxyproxy.wpad.reload.label "Identifiera proxyinställningar automatiskt var">
+<!ENTITY foxyproxy.wpad.reload.accesskey "d">
+<!ENTITY foxyproxy.wpad.reload.tooltip "Identifiera proxyinställningar automatiskt med intervallet">
+<!ENTITY foxyproxy.wpad.tree.label "Identifiera proxy automatiskt">
 <!ENTITY foxyproxy.auto.url.label "URL för automatisk proxykonfiguration">
-<!ENTITY foxyproxy.auto.url.accesskey "u">
 <!ENTITY foxyproxy.auto.url.tooltip "Ange URL för PAC-filen">
 <!ENTITY foxyproxy.auto.url.note.label "http(s)://   ftp://   file://   relative://">
 <!ENTITY foxyproxy.auto.url.note.tooltip "Klicka på info-ikonen för information om  relative://">
+<!ENTITY foxyproxy.ip.address.label "IP-adress">
 <!ENTITY foxyproxy.port.label "Port">
 <!ENTITY foxyproxy.port.accesskey "P">
 <!ENTITY foxyproxy.port.tooltip "Port">
@@ -73,7 +94,7 @@
 <!ENTITY foxyproxy.regex.label "Reguljärt uttryck">
 <!ENTITY foxyproxy.regex.accesskey "R">
 <!ENTITY foxyproxy.regex.tooltip "Anger att URL-mönstret är ett reguljärt uttryck">
-<!ENTITY foxyproxy.regex.example.label "Exempel: https?://.*\.mail\.yahoo\.com/.*">
+<!ENTITY foxyproxy.regex.example.label2 "Exempel: ^https?://.*\.mail\.yahoo\.com/.*$">
 <!ENTITY foxyproxy.version "Version">
 <!ENTITY foxyproxy.createdBy "Skapat av">
 <!ENTITY foxyproxy.contributionsBy "Bidrag av">
@@ -91,6 +112,9 @@
 <!ENTITY foxyproxy.tab.patterns.tooltip "Hantera URL-mönster">
 <!ENTITY foxyproxy.add.title "Proxyinställningar">
 <!ENTITY foxyproxy.pattern.description "Här kan du ange om och när en proxy skall användas eller inte.">
+<!ENTITY foxyproxy.pattern.nointernal.label "Använd inte denna proxy för interna IP-adresser">
+<!ENTITY foxyproxy.pattern.nointernal.tooltip "Denna kryssruta låter dig begränsa proxyn till externa IP-adresser">
+<!ENTITY foxyproxy.pattern.nointernal.accesskey "n">
 <!ENTITY foxyproxy.pattern.matchtype.label "Mönster innehåller">
 <!ENTITY foxyproxy.pattern.whiteblack.label "Inkludera/undanta URL">
 <!ENTITY foxyproxy.add.option.direct.label "Direkt Internetanslutning (ingen proxy)">
@@ -124,6 +148,20 @@
 <!ENTITY foxyproxy.proxydns.accesskey "U">
 <!ENTITY foxyproxy.proxydns.tooltip3 "Om markerat kommer värdnamn för URL:er som läses in via denna proxy också att matchas av denna proxy">
 <!ENTITY foxyproxy.proxydns.label4 "Proxy-DNS">
+<!ENTITY foxyproxy.cache.label "Cache">
+<!ENTITY foxyproxy.clearcache.label "Rensa programmets cache innan denna proxy används">
+<!ENTITY foxyproxy.clearcache.accesskey "h">
+<!ENTITY foxyproxy.clearcache.tooltip "Om alternativet är markerat rensas cachen innan denna proxy används">
+<!ENTITY foxyproxy.disablecache.label "Använd inte cachelagring när denna proxy används">
+<!ENTITY foxyproxy.disablecache.accesskey "d">
+<!ENTITY foxyproxy.disablecache.tooltip "Om alternativet är markerat kommer inre programmet att använda cachelagring i framtiden">
+<!ENTITY foxyproxy.cookies.label "Kakor">
+<!ENTITY foxyproxy.clearcookies.label "Ta bort alla kakor innan denna proxy används">
+<!ENTITY foxyproxy.clearcookies.accesskey "k">
+<!ENTITY foxyproxy.clearcookies.tooltip "Om alternativet är markerat tas alla kakor bort innan denna proxy används">
+<!ENTITY foxyproxy.rejectcookies.label "Blockera alla kakor när denna proxy används">
+<!ENTITY foxyproxy.rejectcookies.accesskey "B">
+<!ENTITY foxyproxy.rejectcookies.tooltip "Om alternativet är markerat kommer webbläsaren att avvisa alla kakor när denna proxy används">
 <!ENTITY foxyproxy.showstatusbaricon.label "Visa ikon i statusfältet">
 <!ENTITY foxyproxy.showstatusbaricon.accesskey "k">
 <!ENTITY foxyproxy.showstatusbaricon.tooltip "Om markerat kommer en ikon att visas i statusfältet">
@@ -178,6 +216,15 @@
 <!ENTITY foxyproxy.movedown.label "Flytta ned">
 <!ENTITY foxyproxy.movedown.tooltip "Minska prioriteten för markerat objekt">
 <!ENTITY foxyproxy.movedown.accesskey "n">
+<!ENTITY foxyproxy.system.label "Använd datorns proxyinställningar">
+<!ENTITY foxyproxy.system.accesskey "Y">
+<!ENTITY foxyproxy.system.tooltip2 "Använd proxykonfigurationen i din dators systeminställningar">
+<!ENTITY foxyproxy.automatic.label "Automatisk proxykonfiguration">
+<!ENTITY foxyproxy.automatic.accesskey "A">
+<!ENTITY foxyproxy.automatic.tooltip "Hämta en proxykonfiguration automatiskt">
+<!ENTITY foxyproxy.pac.label "via PAC">
+<!ENTITY foxyproxy.pac.accesskey "P">
+<!ENTITY foxyproxy.pac.tooltip "Hämta proxyinställningarna m.h.a. en PAC-fil">
 <!ENTITY foxyproxy.autoconfurl.view.label "Visa">
 <!ENTITY foxyproxy.autoconfurl.view.accesskey "V">
 <!ENTITY foxyproxy.autoconfurl.view.tooltip "Granska autokonfigurationsfilen">
@@ -243,9 +290,12 @@
 <!ENTITY foxyproxy.pacerrornotification.label "Meddela mig om fel vid inläsning av proxyns autokonfigurationsfil">
 <!ENTITY foxyproxy.pacerrornotification.accesskey "f">
 <!ENTITY foxyproxy.pacerrornotification.tooltip "Visa en popup-ruta när ett fel uppstår vid inläsning av en PAC-fil">
-<!ENTITY foxyproxy.toolsmenu.label "Visa ikon i Firefox Verktyg-meny">
+<!ENTITY foxyproxy.toolbaricon.label "Visa ikon i verktygsfältet">
+<!ENTITY foxyproxy.toolbaricon.accesskey "O">
+<!ENTITY foxyproxy.toolbaricon.tooltip "Visa en ikon i verktygsfältet">
+<!ENTITY foxyproxy.toolsmenu.label2 "Visa ikon i Verktyg-menyn">
 <!ENTITY foxyproxy.toolsmenu.accesskey "x">
-<!ENTITY foxyproxy.toolsmenu.tooltip "Visa en ikon i Firefox Verktyg-meny">
+<!ENTITY foxyproxy.toolsmenu.tooltip2 "Visa en ikon i Verktyg-menyn">
 <!ENTITY foxyproxy.tip.label "Tips">
 <!ENTITY foxyproxy.pactip1.label "Använd file:// för PAC-filer lagrade på en lokal enhet. Exempel: &quot;file://c:/path/proxy.pac&quot; i Windows eller &quot;file:///home/users/joe/proxy.pac&quot; på Unix/Linux/Mac.">
 <!ENTITY foxyproxy.pactip2.label "Använd ftp:// för PAC-filer lagrade på en FTP-server. Exempel: &quot;ftp://leahscape.com/path/proxy.pac&quot;.">
@@ -422,15 +472,27 @@
 <!ENTITY foxyproxy.invalidcolor.label "Ogiltig färg">
 <!ENTITY foxyproxy.validcolor.label "Giltig färg">
 <!ENTITY foxyproxy.color.label "Färg">
+<!ENTITY foxyproxy.color.description "Ikonfärg när proxy används">
 <!ENTITY foxyproxy.server.subscriptions.label "Serverprenumerationer">
 <!ENTITY foxyproxy.server.subscriptions.tooltip "Hantera serverprenumerationer">
 <!ENTITY foxyproxy.server.subscriptions.accesskey "H">
 <!ENTITY foxyproxy.selectproxy.label "Välj proxy">
+<!ENTITY foxyproxy.proxy.subscriptions.label "Proxyprenumerationer">
+<!ENTITY foxyproxy.proxy.subscriptions.accesskey "x">
+<!ENTITY foxyproxy.proxy.subscriptions.tooltip "Hantera proxyprenumerationer">
+<!ENTITY foxyproxy.proxy.subscriptions.description "Prenumerera på proxyservrar som publiceras av andra. Dela dina proxyservrar med andra med bara ett par klick.">
+<!ENTITY foxyproxy.proxy.subscriptions.sharing.label "Dela dina proxyservrar">
+<!ENTITY foxyproxy.proxy.subscriptions.menulist.tooltip "Välj vad som skall göras med proxyprenumerationer">
+<!ENTITY foxyproxy.proxy.subscriptions.addSubscription "Lägg till ny proxyprenumeration">
+<!ENTITY foxyproxy.proxy.subscriptions.viewSubscription "Granska proxyprenumeration">
+<!ENTITY foxyproxy.proxy.subscriptions.addedit.title "Lägg till/redigera proxyprenumeration">
+<!ENTITY foxyproxy.proxy.subscriptions.refreshHelp "tar bort alla befintliga proxyprenumerationer">
+<!ENTITY foxyproxy.proxy.subscriptions.proxy.window.title "Prenumererade proxyservrar">
 <!ENTITY foxyproxy.pattern.subscriptions.label "Mönsterprenumerationer">
+<!ENTITY foxyproxy.pattern.subscriptions.description "Prenumerera på mönster publicerade av andra. Dela dina mönster med andra med bara ett par klick.">
 <!ENTITY foxyproxy.pattern.subscriptions.tooltip "Hantera mönsterprenumerationer">
 <!ENTITY foxyproxy.pattern.subscriptions.accesskey "H">
-<!ENTITY foxyproxy.pattern.subscriptions.wizard.label "Guide">
-<!ENTITY foxyproxy.pattern.subscriptions.wizard.tooltip "Klicka här för att starta Mönsterprenumerationsguiden.">
+<!ENTITY foxyproxy.pattern.subscriptions.sharing.label "Dela dina mönster">
 <!ENTITY foxyproxy.pattern.subscriptions.menulist.tooltip "Välj hur mönsterprenumerationer skall hanteras.">
 <!ENTITY foxyproxy.pattern.subscriptions.addSubscription "Lägg till ny mönsterprenumeration">
 <!ENTITY foxyproxy.pattern.subscriptions.editSelection "Redigera markerade">
@@ -456,12 +518,12 @@
 <!ENTITY foxyproxy.pattern.subscriptions.refresh.tooltip "Uppdateringsintervall för denna mönsterprenumeration (minuter)">
 <!ENTITY foxyproxy.pattern.subscriptions.refreshNow.label "Uppdatera nu">
 <!ENTITY foxyproxy.pattern.subscriptions.refreshNow.tooltip "Uppdatera denna mönsterprenumeration nu">
-<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp1 "Ange det antal minuter efter vilket prenumerationen uppdateras. Uppdatering av prenumerationen ">
-<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp2 "tar bort alla befintliga mönster ">
-<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp3 "och infogar sedan de som hittats på prenumerations-URL:en. Läs mer här ">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp1 "Ange det antal minuter efter vilket prenumerationen uppdateras. Uppdatering av prenumerationen">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp2 "tar bort alla befintliga mönster">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp4 "infogar därefter de mönster som återfinns på prenumerationsadressen. Läs mer">
 <!ENTITY foxyproxy.pattern.subscriptions.zeroRefresh "(0: Uppdatera aldrig)">
 <!ENTITY foxyproxy.pattern.subscriptions.format.tooltip "Format för denna mönsterprenumerationslista">
-<!ENTITY foxyproxy.pattern.subscriptions.formatHelp "Ange formatet i vilket prenumerationen skrivs. Normalt sett identifieras detta automatiskt av FoxyProxy. Läs mer ">
+<!ENTITY foxyproxy.pattern.subscriptions.formatHelp "Ange formatet i vilket prenumerationen skrivs. Normalt sett identifieras detta automatiskt av FoxyProxy. Läs mer">
 <!ENTITY foxyproxy.pattern.subscriptions.obfuscation.tooltip "Obfuskationsformat för denna mönsterprenumeration">
 <!ENTITY foxyproxy.pattern.subscriptions.obfuscationHelp "Prenumerationer kan, om du så önskar, obfuskeras (fördunklas) för att förhindra att innehållet filtreras av datorer mellan dig och prenumerations-URL:en. Normalt sett identifieras detta automatiskt av FoxyProxy. Läs mer ">
 <!ENTITY foxyproxy.pattern.subscriptions.copyLastStatus.label "Kopiera senaste status till Urklipp">
@@ -476,10 +538,7 @@
 <!ENTITY foxyproxy.status.label "Status">
 <!ENTITY foxyproxy.format.label "Format">
 <!ENTITY foxyproxy.obfuscation.label "Obfuskation">
-<!ENTITY foxyproxy.hosting.label1 "Tack till ">
-<!ENTITY foxyproxy.ocs.label "OCS">
-<!ENTITY foxyproxy.hosting.label2 " för värdskapet av FoxyProxys webbplats. Om du behöver en webbvärdtjänst, ta gärna en titt på OCS.">
-<!-- begin foxyproxyplus -->
+<!-- end foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Lägg till/Redigera lokala IP-adressmönster">
 <!ENTITY foxyproxy.tempip.popup.label "Temporära mönster gör att du kan skapa mönster för lokala IP-adresser som du inte använder så ofta. Temporära mönster sparas inte till disk utan behålls bara i minnet så länge Firefox är igång.">
 <!ENTITY foxyproxy.ip.pattern.label "Lokalt IP-adressmönster">

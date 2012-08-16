@@ -1,44 +1,48 @@
 /**
   FoxyProxy
-  Copyright (C) 2006-#%#% Eric H. Jung and LeahScape, Inc.
+  Copyright (C) 2006-#%#% Eric H. Jung and FoxyProxy, Inc.
   http://getfoxyproxy.org/
   eric.jung@yahoo.com
 
   This source code is released under the GPL license,
   available in the LICENSE file at the root of this installation
-  and also online at http://www.gnu.org/licenses/gpl.txt
+  and also online at http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 **/
 
-var foxyproxy, proxyTree, subscriptionsTree, logTree, overlay, saveLogCmd, 
-  clearLogCmd, noURLsCmd, fpc, patternsIcon, patternsIconTimerId;
+var foxyproxy, proxyTree, patternSubscriptionsTree, proxySubscriptionsTree,
+  logTree, overlay, saveLogCmd, clearLogCmd, noURLsCmd, fpc, patternsIcon;
 const CI = Components.interfaces, CC = Components.classes, CU = Components.utils;
 
-CU.import("resource://foxyproxy/patternSubscriptions.jsm");
+CU.import("resource://foxyproxy/subscriptions.jsm");
+CU.import("resource://foxyproxy/utils.jsm");
 
 function onLoad() {
-  foxyproxy = CC["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;  
+  foxyproxy = CC["@leahscape.org/foxyproxy/service;1"].getService().
+    wrappedJSObject;
   fpc = CC["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject;
   document.getElementById("maxSize").value = foxyproxy.logg.maxSize;
   overlay = fpc.getMostRecentWindow().foxyproxy;
   proxyTree = document.getElementById("proxyTree");
-  subscriptionsTree = document.getElementById("subscriptionsTree");
+  patternSubscriptionsTree = document.
+    getElementById("patternSubscriptionsTree");
+  proxySubscriptionsTree = document.getElementById("proxySubscriptionsTree");
   logTree = document.getElementById("logTree");
   saveLogCmd = document.getElementById("saveLogCmd");
   clearLogCmd = document.getElementById("clearLogCmd");  
   noURLsCmd = document.getElementById("noURLsCmd");
   _initSettings();
-  var obs = CC["@mozilla.org/observer-service;1"].getService(CI.nsIObserverService);
+  var obs = CC["@mozilla.org/observer-service;1"].
+    getService(CI.nsIObserverService);
   obs.addObserver(observer,"foxyproxy-mode-change", false);
   obs.addObserver(observer,"foxyproxy-proxy-change", false);
   obs.addObserver(observer,"foxyproxy-tree-update", false);
   sizeToContent();
   let svgDoc = document.getElementById("patterns-svg");
   patternsIcon = svgDoc.getElementsByTagName("rect");
-  startPatternsIconAnimation();
+  createPatternsIcon();
 }
 
 function onOK() {
-  clearInterval(patternsIconTimerId);
   var obs = CC["@mozilla.org/observer-service;1"].getService(CI.nsIObserverService);
   obs.removeObserver(observer, "foxyproxy-mode-change");
   obs.removeObserver(observer, "foxyproxy-proxy-change");
@@ -58,8 +62,14 @@ var observer = {
         _updateView(e);
         break;
       case "foxyproxy-tree-update":
-        subscriptionsTree.view = patternSubscriptions.
+        patternSubscriptionsTree.view = patternSubscriptions.
           makeSubscriptionsTreeView();
+        // We need to call that function in order to be sure we get the actual
+        // selection state after the tree got redrawn.
+        onSubTreeSelected('pattern');
+        proxySubscriptionsTree.view = proxySubscriptions.
+          makeSubscriptionsTreeView();
+        onSubTreeSelected('proxy');
         break;
      }
    }
@@ -132,8 +142,11 @@ function _updateLogView(keepSelection) {
   noURLsCmd.setAttribute("checked", foxyproxy.logg.noURLs); 
   var selectedIndices;
   
-  if (keepSelection) selectedIndices =_getSelectedIndices(logTree);
-  
+  if (keepSelection) selectedIndices = utils.getSelectedIndices(logTree);
+
+  // Save scroll position so we can restore it after making the new view
+  let visibleRow = logTree.boxObject.getFirstVisibleRow();
+
   logTree.view = {
     rowCount : foxyproxy.logg.length,
     getCellText : function(row, column) {
@@ -174,31 +187,61 @@ function _updateLogView(keepSelection) {
     for (var i = 0, sz=selectedIndices.length; i<sz; i++)
       logTree.view.selection.rangedSelect(selectedIndices[i], selectedIndices[i], true);
   }
+
+  // Restore scroll position - peng likes to complain that this feature was
+  // missing.
+  logTree.boxObject.scrollToRow(visibleRow);    
   updateLogButtons();
 }
 
 function _updateModeMenu() {
-	var menu = document.getElementById("modeMenu");	
-	var popup=menu.firstChild;
-	fpc.removeChildren(popup);
+  var menu = document.getElementById("modeMenu");	
+  var popup=menu.firstChild;
+  fpc.removeChildren(popup);
 	
-	if (!foxyproxy.isFoxyProxySimple())
-	  popup.appendChild(fpc.createMenuItem({idVal:"patterns", labelId:"mode.patterns.label", document:document}));
+  if (!foxyproxy.isFoxyProxySimple())
+    popup.appendChild(fpc.createMenuItem({idVal:"patterns",
+     labelId:"mode.patterns.label", labelArgs:"", name:"", document:document,
+     class:"orange"}));
   
-  for (var i=0,p; i<foxyproxy.proxies.length && ((p=foxyproxy.proxies.item(i)) || 1); i++)
-    popup.appendChild(fpc.createMenuItem({idVal:p.id, labelId:"mode.custom.label", labelArgs:[p.name], name:"foxyproxy-enabled-type", document:document}));
-    //popup.appendChild(fpc.createMenuItem({idVal["random", labelId:"mode.random.label", document:document}));
-  popup.appendChild(fpc.createMenuItem({idVal:"disabled", labelId:"mode.disabled.label", document:document}));
+  for (var i=0,p; i<foxyproxy.proxies.length &&
+       ((p=foxyproxy.proxies.item(i)) || 1); i++)
+    popup.appendChild(fpc.createMenuItem({idVal:p.id, labelId:
+      "mode.custom.label", labelArgs:[p.name], name:"foxyproxy-enabled-type",
+      document:document, style:"color: " + p.color}));
+    //popup.appendChild(fpc.createMenuItem({idVal["random",
+    //labelId:"mode.random.label", document:document}));
+  popup.appendChild(fpc.createMenuItem({idVal:"disabled", labelId:
+    "mode.disabled.label", labelArgs:"", name:"", document:document,
+    class:"red"}));
   menu.value = foxyproxy.mode;
-  if (foxyproxy.mode != "patterns" && foxyproxy.mode != "disabled" &&	foxyproxy.mode != "random") {
-    // subtract 1 because first element, patterns, is not in the proxies array for FoxyProxy Simple.
-    // FP Simple has no "patterns" mode
-    var selIdx = foxyproxy.isFoxyProxySimple() ? menu.selectedIndex : menu.selectedIndex-1; 
-	  if (!foxyproxy.proxies.item(selIdx).enabled) {
-  	  // User disabled or deleted the proxy; select default setting.
-    	foxyproxy.setMode("disabled", true);
-	    menu.value = "disabled";
-  	}
+  if (foxyproxy.mode != "patterns" && foxyproxy.mode != "disabled" &&
+      foxyproxy.mode != "random") {
+    // subtract 1 because first element, patterns, is not in the proxies array
+    // for FoxyProxy Simple. FP Simple has no "patterns" mode.
+    var selIdx = foxyproxy.isFoxyProxySimple() ? menu.selectedIndex :
+      menu.selectedIndex-1; 
+    if (!foxyproxy.proxies.item(selIdx).enabled) {
+      // User disabled or deleted the proxy; select default setting.
+      foxyproxy.setMode("disabled", true);
+      menu.value = "disabled";
+    }
+  }
+  // Set color of selected menu item.
+  switch (foxyproxy.mode) {
+    case "patterns":
+      menu.setAttribute("style", "color:orange");
+      break;
+    case "disabled":
+      menu.setAttribute("style", "color:red");
+      break;
+    case "random":
+      break; // not yet supported
+    case "roundrobin":
+      break; // not yet supported
+    default:
+      menu.setAttribute("style", "color:" + foxyproxy._selectedProxy.color);
+      break;
   }
 }
 
@@ -270,6 +313,7 @@ function _updateView(writeSettings, updateLogView) {
   _updateSuperAdd(foxyproxy.quickadd, "quickAdd");
   document.getElementById("quickAddNotifyWhenCanceled").checked = foxyproxy.quickadd.notifyWhenCanceled; // only exists for QuickAdd
   
+  document.getElementById("toolbarEnabled").checked = foxyproxy.toolbarIcon;
   document.getElementById("toolsMenuEnabled").checked = foxyproxy.toolsMenu;
   document.getElementById("contextMenuEnabled").checked = foxyproxy.contextMenu;
   document.getElementById("statusbarIconEnabled").checked = foxyproxy.statusbar.iconEnabled;
@@ -300,11 +344,14 @@ function _updateView(writeSettings, updateLogView) {
     onQuickAddEnabled(false);
   }
   
-  proxyTree.view = fpc.makeProxyTreeView(foxyproxy.proxies, document);
-  subscriptionsTree.view = patternSubscriptions.makeSubscriptionsTreeView();
+  fpc.makeProxyTreeView(proxyTree, foxyproxy.proxies, document);
+  patternSubscriptionsTree.view = patternSubscriptions.
+    makeSubscriptionsTreeView();
+  proxySubscriptionsTree.view = proxySubscriptions.
+    makeSubscriptionsTreeView();
   
   if (writeSettings)
-    foxyproxy.writeSettings();
+    foxyproxy.writeSettingsAsync();
   setButtons();
   if (updateLogView)
     _updateLogView(true);
@@ -319,22 +366,28 @@ function onDeleteSelection() {
   if (_isDefaultProxySelected())
     overlay.alert(this, foxyproxy.getMessage("delete.proxy.default"));
   else if (foxyproxy.warnings.showWarningIfDesired(window, ["delete.proxy.confirm"], "confirmDeleteProxy")) {
-    // Store cur selection
-    var sel = proxyTree.currentIndex;  
+    // Store cur selections
+    let sel = utils.getSelectedIndices(proxyTree);
     // We have to delete the proxy from the subscription as well. Otherwise
     // there occur errors later on while loading/removing the subscription as
     // the proxy is still saved in the subscription but not found anymore. We
     // do this before we delete the proxy itself in order to get the necessary
     // information (i.e. its id).
-    if (patternSubscriptions.subscriptionsList.length > 0) {
-      let proxyId = foxyproxy.proxies.list[sel].id;
-      patternSubscriptions.removeDeletedProxies(proxyId);
-    } 
-    foxyproxy.proxies.remove(proxyTree.currentIndex);
-    foxyproxy.broadcast(true /*write settings*/, "foxyproxy-proxy-change");
-    // Reselect what was previously selected
-    proxyTree.view.selection.select(sel+1>proxyTree.view.rowCount ? 0:sel); 
-  }  
+    // Delete in reverse order so we don't mess up the index as we delete
+    // multiple items.
+    for (let i=sel.length-1; i>=0; i--) {
+      if (patternSubscriptions.subscriptionsList.length > 0) {
+        let proxyId = foxyproxy.proxies.item(sel[i]).id;
+        patternSubscriptions.removeDeletedProxies(proxyId);
+      }
+      foxyproxy.proxies.remove(sel[i]);
+    }
+    utils.broadcast(true /*write settings*/, "foxyproxy-proxy-change");
+    // If only one item was deleted, select its neighbor as convenience.
+    // We don't bother with this when multiple items were selected.
+    if (sel.length == 1)
+      proxyTree.view.selection.select(sel[0]);
+  }
 }
 
 function onCopySelection() {
@@ -349,7 +402,7 @@ function onCopySelection() {
 	  p.fromDOM(dom, true);
 	  p.id = foxyproxy.proxies.uniqueRandom(); // give it its own id 
 	  foxyproxy.proxies.push(p);
-	  foxyproxy.broadcast(true /*write settings*/, "foxyproxy-proxy-change");
+	  utils.broadcast(true /*write settings*/, "foxyproxy-proxy-change");
 	  // Reselect what was previously selected
 		proxyTree.view.selection.select(sel);    	  
 	}
@@ -363,15 +416,29 @@ function useSelectedForAllURLs() {
 }
 
 function onMove(direction) {
-  // Store cur selection
-  var sel = proxyTree.currentIndex;
-  foxyproxy.proxies.move(proxyTree.currentIndex, direction) && _updateView(true);  
-  // Reselect what was previously selected
-	proxyTree.view.selection.select(sel + (direction=="up"?-1:1));
+  // Store current selections
+  let sel = utils.getSelectedIndices(proxyTree);
+
+  if (direction=="up") {
+    for (let i=0; i<sel.length; i++)
+      foxyproxy.proxies.move(sel[i], direction);
+  } else {
+    for (let i=sel.length-1; i>=0; i--)
+      foxyproxy.proxies.move(sel[i], direction);
+  }
+
+  _updateView(true);
+  // Clear selections then reselect the moved items
+  proxyTree.view.selection.clearSelection();
+  for (let i=0; i<sel.length; i++) {
+    let tmp = sel[i] + (direction=="up"?-1:1);
+    proxyTree.view.selection.rangedSelect(tmp, tmp, true);
+  }
 }
 
 function onSettings(isNew) {
-  let sel = proxyTree.currentIndex, selSub = subscriptionsTree.currentIndex,
+  let sel = proxyTree.currentIndex,
+    selSub = patternSubscriptionsTree.currentIndex,
     params = {inn:{proxy:isNew ? CC["@leahscape.org/foxyproxy/proxy;1"].
       createInstance().wrappedJSObject :
       foxyproxy.proxies.item(proxyTree.currentIndex)}, out:null};
@@ -380,102 +447,198 @@ function onSettings(isNew) {
     "chrome, dialog, modal, resizable=yes", params).focus();
   if (params.out) {
     if (isNew) foxyproxy.proxies.push(params.out.proxy);
-    foxyproxy.broadcast(true /*write settings*/, "foxyproxy-proxy-change");
+    utils.displayPatternCookieWarning(foxyproxy.mode, foxyproxy);
+    utils.broadcast(true /*write settings*/, "foxyproxy-proxy-change");
     // Reselect what was previously selected or the new item
     proxyTree.view.selection.select(isNew?proxyTree.view.rowCount-2:sel); 
     // We need to include this call here as well as the selection is not
     // clearly visible anymore in the pattern subscription tree without it.
-    subscriptionsTree.view.selection.select(selSub);
+    // But only redraw the tree if we have one item selected. Otherwise enabling
+    // just "Add New Pattern Subscription" if we have not selected a
+    // subscription does not work properly.
+    if (selSub > -1) {
+      patternSubscriptionsTree.view.selection.select(selSub);
+    }
   }
 }
 
 function setButtons() {
-  document.getElementById("tree-row-selected").setAttribute("disabled", proxyTree.currentIndex == -1);
+  let selItems = utils.getSelectedIndices(proxyTree),
+    numSelected = selItems.length,
+    isDefaultSelected = _isDefaultProxySelected();
+
+  // If none selected, default proxy selected, or top-most proxy selected
+  // (idx 0), disable moveUpCmd
   document.getElementById("moveUpCmd").setAttribute("disabled", 
-  	proxyTree.currentIndex == -1 || proxyTree.currentIndex == 0 || _isDefaultProxySelected());
-  document.getElementById("moveDownCmd").setAttribute("disabled", 
-  	proxyTree.currentIndex == -1 || proxyTree.currentIndex == foxyproxy.proxies.length-1 ||
-  	(proxyTree.currentIndex+1 < foxyproxy.proxies.length && foxyproxy.proxies.item(proxyTree.currentIndex+1).lastresort));
+    numSelected == 0 || isDefaultSelected || selItems.indexOf(0) > -1);
+
+  // If none selected, default proxy selected, bottom-most, or 2nd-bottom-most
+  // proxy selected (it can't take priority over Default Proxy), disable
+  // moveDownCmd
+  document.getElementById("moveDownCmd").setAttribute("disabled",
+    numSelected == 0 || isDefaultSelected ||
+    selItems.indexOf(foxyproxy.proxies.length-1) > -1 ||
+    selItems.indexOf(foxyproxy.proxies.length-2) > -1);
+
+  // If none selected or default selected, disable delete
+  document.getElementById("deleteSelectionCmd").setAttribute("disabled",
+    numSelected == 0 || isDefaultSelected);
+
+  // If multiple selected or non selected, disable edit
+  document.getElementById("settingsCmd").setAttribute("disabled",
+    numSelected > 1 || numSelected == 0);
+
+  // If multiple selected or non selected or default selected, disable copy
+  document.getElementById("copySelectionCmd").setAttribute("disabled",
+    numSelected > 1 || numSelected == 0 || isDefaultSelected);
 }
 
-function addPatternSubscription() {
+function getSelectedSubscription(type) {
+  let selectedSubscription;
+  if (type === "pattern") {
+    selectedSubscription = patternSubscriptions.
+      subscriptionsList[patternSubscriptionsTree.currentIndex];
+  } else {
+    selectedSubscription = proxySubscriptions.
+      subscriptionsList[proxySubscriptionsTree.currentIndex];
+  }
+  return selectedSubscription;
+}
+
+function addSubscription(type) {
   let params = {
         inn : null,
         out : null
       };	
-  window.openDialog('chrome://foxyproxy/content/pattern-subscriptions/addeditsubscription.xul', 
-    '', 'modal, resizable=yes', params).focus(); 
+  if (type === "pattern") {
+  window.openDialog('chrome://foxyproxy/content/subscriptions/addEditPatternSubscription.xul', 
+    '', 'modal, resizable=yes', params).focus();
+  } else {
+    window.openDialog('chrome://foxyproxy/content/subscriptions/addEditProxySubscription.xul',
+    '', 'modal, resizable=yes', params).focus();
+  }
   if (params.out) {
-    patternSubscriptions.addSubscription(params.out.subscription, 
-      params.out.userValues); 
-    // Now adding the patterns to the proxies provided the user has added
-    // at least one proxy in the addeditsubscription dialog.
-    let proxyList = params.out.proxies; 
-    if (proxyList.length !== 0) {
-      patternSubscriptions.addPatterns(null, proxyList);
+    if (type === "pattern") {
+      patternSubscriptions.addSubscription(params.out.subscription, params.out.
+        userValues); 
+      // Now adding the patterns to the proxies provided the user has added
+      // at least one proxy in the addeditsubscription dialog.
+      let proxyList = params.out.proxies; 
+      if (proxyList.length !== 0) {
+        patternSubscriptions.addPatterns(null, proxyList, null);
+      }
+      patternSubscriptionsTree.view = patternSubscriptions.
+        makeSubscriptionsTreeView();
+    } else {
+      proxySubscriptions.addSubscription(params.out.subscription, params.out.
+        userValues);
+      proxySubscriptionsTree.view = proxySubscriptions.
+        makeSubscriptionsTreeView();
+      // Redrawing the proxy tree as well as we probably added new proxies.
+      utils.broadcast(true /*write settings*/, "foxyproxy-proxy-change");
     }
-    subscriptionsTree.view = patternSubscriptions.makeSubscriptionsTreeView();
-  } 
-}
-
-function editPatternSubscription() {
-  let selectedSubscription = patternSubscriptions.
-    subscriptionsList[subscriptionsTree.currentIndex];
-  let params = {
-        inn : {
-          subscription : selectedSubscription,
-          index : subscriptionsTree.currentIndex
-        }
-      };
-  window.openDialog('chrome://foxyproxy/content/pattern-subscriptions/addeditsubscription.xul', 
-    '', 'modal, resizable=yes', params).focus(); 
-  if (params.out) {
-    patternSubscriptions.editSubscription(selectedSubscription, params.
-      out.userValues, subscriptionsTree.currentIndex);
-    // If new proxies were added we should add the patterns to them as
-    // well but only to them!
-    let proxyList = params.out.proxies; 
-    if (proxyList.length !== 0) {
-      patternSubscriptions.addPatterns(subscriptionsTree.currentIndex,
-        proxyList);
-    } 
-    subscriptionsTree.view = patternSubscriptions.makeSubscriptionsTreeView(); 
   }
 }
 
-function deletePatternSubscriptions() {
+// We need this extra step here. Otherwise the user may click on the empty tree
+// and the "edit-version" of the subscription dialog (Last Status and Refresh
+// not being disabled) would be opened.
+function onDblClickSubscriptionsTree(type) {
+  if (type === "pattern" && patternSubscriptionsTree.currentIndex > -1) {
+    editSubscription("pattern");
+  } else if (type === "proxy" && proxySubscriptionsTree.currentIndex > -1 ) {
+    editSubscription("proxy");
+  }
+}
+
+function editSubscription(type) {
+  let selectedSubscription = getSelectedSubscription(type);
+  let params = {
+        inn : {
+          subscription : selectedSubscription,
+          index : type === "pattern" ? patternSubscriptionsTree.currentIndex :
+            proxySubscriptionsTree.currentIndex
+        }
+      };
+  if (type === "pattern") {
+    window.openDialog('chrome://foxyproxy/content/subscriptions/addEditPatternSubscription.xul', 
+    '', 'modal, resizable=yes', params).focus(); 
+  } else {
+     window.openDialog('chrome://foxyproxy/content/subscriptions/addEditProxySubscription.xul',
+    '', 'modal, resizable=yes', params).focus();
+  }
+  if (params.out) {
+    if (type === "pattern") {
+      patternSubscriptions.editSubscription(selectedSubscription, params.
+        out.userValues, patternSubscriptionsTree.currentIndex);
+      // If new proxies were added we should add the patterns to them as
+      // well but only to them!
+      let proxyList = params.out.proxies; 
+      if (proxyList.length !== 0) {
+        patternSubscriptions.addPatterns(selectedSubscription, proxyList, null);
+      }
+      patternSubscriptionsTree.view = patternSubscriptions.
+        makeSubscriptionsTreeView();
+    } else {
+      proxySubscriptions.editSubscription(selectedSubscription, params.
+        out.userValues, proxySubscriptionsTree.currentIndex);
+      proxySubscriptionsTree.view = proxySubscriptions.
+        makeSubscriptionsTreeView();
+    }
+  }
+}
+
+function deleteSubscriptions(type) {
+  let subscriptions;
+  let subscriptionsTree;
+  if (type === "pattern") {
+    subscriptions = patternSubscriptions;
+    subscriptionsTree = patternSubscriptionsTree;
+  } else {
+    subscriptions = proxySubscriptions;
+    subscriptionsTree = proxySubscriptionsTree;
+  }
   // We save the current index to select the proper row after the
   // subscription got deleted.
   let selIndex = subscriptionsTree.currentIndex; 
-  // Currently, we have seltype=single that's why "selectecSubscription" is
+  // Currently, we have seltype=single that's why "selectedSubscription" is
   // in singular but it is planned to allow the user to delete more than one
   // subscription at once. That's why "deletePatternSubscriptions" is in 
   // plural. The same reasoning holds for the two following functions.
-  let selectedSubscription = patternSubscriptions.subscriptionsList[selIndex];
+  let selectedSubscription = getSelectedSubscription(type);
   if (foxyproxy.warnings.showWarningIfDesired(window, 
-      ["patternsubscription.del.subscription"], "patSubDelete")) {
+      [type + "subscription.del.subscription"], type +"SubDelete")) {
     if (selectedSubscription.timer) {
       selectedSubscription.timer.cancel();
     }
-    // Deleting the patterns as well if we have proxies following them...
-    let selSubProxies = selectedSubscription.metadata.proxies;
-    if (selSubProxies.length > 0) {
-      selSubProxies = foxyproxy.proxies.getProxiesFromId(selSubProxies);
-      patternSubscriptions.deletePatterns(selSubProxies, 
-        selectedSubscription.metadata.enabled);
+    if (type === "pattern") {
+      // Deleting the patterns as well if we have proxies following them...
+      let selSubProxies = selectedSubscription.metadata.proxies;
+      if (selSubProxies.length > 0) {
+        selSubProxies = foxyproxy.proxies.getProxiesFromId(selSubProxies);
+        subscriptions.deletePatterns(selSubProxies, selectedSubscription.
+          metadata.enabled);
+      }
+    } else {
+      // TODO: What about pattern subscriptions attached to it?
+      subscriptions.deleteProxies(foxyproxy.proxies);
+      utils.broadcast(true /*write settings*/, "foxyproxy-proxy-change"); 
     }
-    patternSubscriptions.subscriptionsList.splice(selIndex, 1);
-    patternSubscriptions.writeSubscriptions();
-    subscriptionsTree.view = patternSubscriptions.makeSubscriptionsTreeView(); 
-    // Deleting the subscription file if it is empty in order avoid errors
+    subscriptions.subscriptionsList.splice(selIndex, 1);
+    subscriptions.writeSubscriptions();
+    subscriptionsTree.view = subscriptions.makeSubscriptionsTreeView(); 
+    // Deleting the subscription file if it is empty in order to avoid errors
     // during startup.
-    if (patternSubscriptions.subscriptionsList.length === 0) {
-      dump("Deleting the subscriptions file...\n");
-      patternSubscriptions.getSubscriptionsFile().remove(false);
-      // We need that here otherwise are all options in the context menu still
+    if (subscriptions.subscriptionsList.length === 0) {
+      dump("Deleting the " + type + " subscriptions file...\n");
+      subscriptions.getSubscriptionsFile().remove(false);
+      // We need that here otherwise all options in the context menu are still
       // selected even if no subscription exists anymore.
-      document.getElementById("patsubtree-row-selected").
+      document.getElementById(type + "subtree-row-selected").
         setAttribute("disabled", true);
+      // The item on our action list is not automatically reset to "Add New
+      // Subscription". Thus, we do it "manually".
+      document.getElementById(type + "ActionList").selectedIndex = 0;
     } else {
       // Easy as we currently have seltype=single
       if (selIndex === subscriptionsTree.view.rowCount) {
@@ -486,47 +649,78 @@ function deletePatternSubscriptions() {
   }
 }
 
-function refreshPatternSubscriptions() {
-  patternSubscriptions.refreshSubscription(patternSubscriptions.
-    subscriptionsList[subscriptionsTree.currentIndex], true);
-  subscriptionsTree.view = patternSubscriptions.makeSubscriptionsTreeView();
+function refreshSubscriptions(type) {
+  if (type === "pattern") {
+    patternSubscriptions.refreshSubscription(patternSubscriptions.
+      subscriptionsList[patternSubscriptionsTree.currentIndex], true);
+    patternSubscriptionsTree.view = patternSubscriptions.
+      makeSubscriptionsTreeView();
+  } else {
+    proxySubscriptions.refreshSubscription(proxySubscriptions.
+      subscriptionsList[proxySubscriptionsTree.currentIndex], true);
+    proxySubscriptionsTree.view = proxySubscriptions.
+      makeSubscriptionsTreeView();
+    // We need to refresh the proxy tree as well as the colors of the
+    // refreshed proxies would not show up otherwise (if the options dialog is
+    // not closed).
+    // TODO: The color string of refreshed proxies is "nmbado" (= the default
+    // value) but restarting e.g. Firefox gives "ggmmem" as default value while
+    // the color value (#0055E5) is the same in both case. Not sure about the
+    // reason and whether it is an issue...
+    fpc.makeProxyTreeView(proxyTree, foxyproxy.proxies, document);
+  }
 }
 
-function viewPatternSubscriptions() {
-  let selectedSubscription = patternSubscriptions.
-    subscriptionsList[subscriptionsTree.currentIndex];
-  let params = {
-        inn : {
-          patterns : selectedSubscription.patterns
-        }
-      };
-  window.openDialog('chrome://foxyproxy/content/pattern-subscriptions/patternsView.xul', 
+function viewSubscriptions(type) {
+  let selectedSubscription = getSelectedSubscription(type);
+  let params;
+  if (type === "pattern") {
+    params = {
+      inn : {
+        patterns : selectedSubscription.patterns
+      }
+    };
+    window.openDialog('chrome://foxyproxy/content/subscriptions/patternsView.xul',
     '', 'modal, resizable=yes', params).focus();
+  } else {
+    params = {
+      inn : {
+        proxies : selectedSubscription.proxies
+      }
+    };
+    window.openDialog('chrome://foxyproxy/content/subscriptions/proxiesView.xul',
+    '', 'modal, resizable=yes', params).focus();
+  }
 }
 
-function onSubscriptionsAction() {
+function onSubscriptionsAction(type) {
   try {
-    switch (document.getElementById("actionList").selectedIndex) {
+    switch (document.getElementById(type + "ActionList").selectedIndex) {
       case 0:  
-        addPatternSubscription();
+        addSubscription(type);
         break;
       case 1: 
-        editPatternSubscription();
+        editSubscription(type);
         break;
       case 2:
-        deletePatternSubscriptions();
+        deleteSubscriptions(type);
         break;
       case 3:
-        refreshPatternSubscriptions();
+        refreshSubscriptions(type);
         break;  
       case 4:
-        viewPatternSubscriptions();
+        viewSubscriptions(type);
         break;
     } 
   } catch (e) {
-    dump("There went something wrong in the Treeselection: " + e);
+    dump("There went something wrong in the " + type + " tree selection: " + e);
 
   }
+}
+
+function openSubscriptionsURL(type) {
+  fpc.openAndReuseOneTabPerURL("http://getfoxyproxy.org/" + type + 
+    "subscriptions/share.html");
 }
 
 function onMaxSize() {
@@ -574,7 +768,8 @@ function saveLog() {
 	
 	var os = CC["@mozilla.org/intl/converter-output-stream;1"].createInstance(CI.nsIConverterOutputStream);	
 	var fos = CC["@mozilla.org/network/file-output-stream;1"].createInstance(CI.nsIFileOutputStream); // create the output stream
-	fos.init(fp.file, 0x02 | 0x08 | 0x20 /*write | create | truncate*/, 0664, 0);
+        // -1 leads to 0664 (the latter is deprecated, though)
+	fos.init(fp.file, 0x02 | 0x08 | 0x20 /*write | create | truncate*/, -1, 0);
 	os.init(fos, "UTF-8", 0, 0x0000);
 	os.writeString(foxyproxy.logg.toHTML());
 	os.close();
@@ -615,16 +810,17 @@ function importSettings() {
       getMessage("import.success", [picker.file.path]))) {
       // We have to handle the import and export of pattern subscriptions a bit 
       // differently here as they are in JSON and not in XML. See as well the 
-      // comment in exportSettings(). "True" and "false" as arguments mean that
+      // comment in exportSettings(). "True" and "false" as arguments means that
       // we have an import (probably of pattern subscriptions as well) and they 
       // should be removed from the normal FoxyProxy settings file afterwards.
-      patternSubscriptions.handleImportExport(true, false);
+      patternSubscriptions.handleImportExport("pattern", true, false);
+      proxySubscriptions.handleImportExport("proxy", true, false);
       foxyproxy.restart();
     }
   }
   catch (e) {
     dump(e + "\n");
-    overlay.alert(this, foxyproxy.getMessage("copy.error", [f1.path, picker.file.path]));
+    overlay.alert(this, foxyproxy.getMessage("copy.error", [picker.file.path, f1.path]));
     return;
   }  
 }
@@ -642,16 +838,19 @@ function importExportPrompt(isExport) {
 function exportSettings() {
   var picker = importExportPrompt(true);
   if (!picker) return;
-  // We have the pattern subscriptions and the other FoxyProxy settings in
-  // differernt files in order to reduce the necessary disk I/O while running
-  // FoxyProxy. But we need the pattern subscriptions as well if a user wants
-  // to export her settings. Therefore, handleImportExport() prepares the 
-  // settings file before exporting (i.e. the pattern subscriptions are added) 
-  // if "false" and "true" are passed as parameters. We use "false" and "false" 
-  // as parameters in order to remove the subscriptions from the settings file 
-  // again after it got exported in order not to clutter it unnecessarily.
+  // We have the subscriptions and the other FoxyProxy settings in differernt
+  // files in order to reduce the necessary disk I/O while running FoxyProxy.
+  // But we need the subscriptions as well if a user wants to export her
+  // settings. Therefore, handleImportExport() prepares the settings file before
+  // exporting (i.e. the pattern subscriptions are added) if "false" and "true"
+  // are passed as parameters. We use "false" and "false" as parameters in
+  // order to remove the subscriptions from the settings file again after it got
+  // exported in order not to clutter it unnecessarily.
   if (patternSubscriptions.subscriptionsList.length > 0) {
-    patternSubscriptions.handleImportExport(false, true);
+    patternSubscriptions.handleImportExport("pattern", false, true);
+  }
+  if (proxySubscriptions.subscriptionsList.length > 0) {
+    proxySubscriptions.handleImportExport("proxy", false, true);
   }
   var f2 = CC["@mozilla.org/file/local;1"].createInstance(CI.nsILocalFile),
     settingsFile = foxyproxy.getSettingsURI(CI.nsIFile);
@@ -671,26 +870,35 @@ function exportSettings() {
   }
   finally {
     if (patternSubscriptions.subscriptionsList.length > 0) {
-      patternSubscriptions.handleImportExport(false, false);
-    } 
+      patternSubscriptions.handleImportExport("pattern", false, false);
+    }
+    if (proxySubscriptions.subscriptionsList.length > 0) {
+      proxySubscriptions.handleImportExport("proxy", false, false);
+    }
   }
 }
 
-function importProxyList() {
-}
+// function importProxyList() {
+// }
 
 function onProxyTreeSelected() {	
 	setButtons();
 }
 
-function onPatSubTreeSelected() {
-  let selLength = _getSelectedIndices(subscriptionsTree).length; 
-  document.getElementById("patsubtree-row-selected").setAttribute("disabled", 
-    selLength === 0);
+function onSubTreeSelected(type) {
+  let selLength;
+  if (type === "pattern") {
+    selLength = utils.getSelectedIndices(patternSubscriptionsTree).length; 
+  } else {
+    selLength = utils.getSelectedIndices(proxySubscriptionsTree).length;
+  }
+  document.getElementById(type + "subtree-row-selected").
+    setAttribute("disabled", selLength === 0);
 }
 
 function updateLogButtons() {
-  document.getElementById("logtree-row-selected").setAttribute("disabled", _getSelectedIndices(logTree).length == 0);
+  document.getElementById("logtree-row-selected").setAttribute("disabled",
+    utils.getSelectedIndices(logTree).length == 0);
 }
 
 function onProxyTreeMenuPopupShowing() {
@@ -702,11 +910,15 @@ function onProxyTreeMenuPopupShowing() {
 function toggleEnabled() {
 	var p = foxyproxy.proxies.item(proxyTree.currentIndex);
 	p.enabled = !p.enabled;
-	foxyproxy.broadcast(true /*write settings*/, "foxyproxy-proxy-change");
+	utils.broadcast(true /*write settings*/, "foxyproxy-proxy-change");
 }
 
 function _isDefaultProxySelected() {
-	return foxyproxy.proxies.item(proxyTree.currentIndex).lastresort;
+  for each (let i in utils.getSelectedIndices(proxyTree)) {
+    if (foxyproxy.proxies.item(i).lastresort)
+      return true;
+  }
+  return false;
 }
 
 function onToggleStatusBarText(checked) {
@@ -788,29 +1000,12 @@ function onBlockedPagePattern() {
     m.pattern = params.pattern;
     m.isRegEx = params.isRegEx;
     m.caseSensitive = params.caseSensitive;
-    foxyproxy.writeSettings();
+    foxyproxy.writeSettingsAsync();
   }    
 }
 
-/**
- * Get the selected indices of a multiselect tree as an integer array
- */
-function _getSelectedIndices(tree) {
-  if (!tree.view) return []; /* handle empty tree views for FoxyProxy Basic */
-  
-  var start = {}, end = {}, numRanges = tree.view.selection.getRangeCount(),
-    selectedIndices = [];
-
-  for (var t = 0; t < numRanges; t++){
-    tree.view.selection.getRangeAt(t, start, end);
-    for (var v = start.value; v <= end.value; v++)
-      selectedIndices.push(v)
-  }
-  return selectedIndices;
-}
-
 function openLogURLInNewTab() {
-  var selectedIndices = _getSelectedIndices(logTree);
+  let selectedIndices = utils.getSelectedIndices(logTree);
   
   // If more than 3 selected, ask user if he's sure he wants to open that many tabs
   if (selectedIndices.length > 4 &&
@@ -827,13 +1022,13 @@ function openLogURLInNewTab() {
 }
 
 function deleteLogEntry() {
-  foxyproxy.logg.del(_getSelectedIndices(logTree));
+  foxyproxy.logg.del(utils.getSelectedIndices(logTree));
   // Refresh the log view for the user
   _updateLogView(false);  
 }
 
 function copyLogURLToClipboard() {
-  var selectedIndices = _getSelectedIndices(logTree);
+  let selectedIndices = utils.getSelectedIndices(logTree);
   
   // Copy the URLs to the cliboard, separated by spaces if there's more than one selection
   var txt = "";
@@ -844,17 +1039,33 @@ function copyLogURLToClipboard() {
   CC["@mozilla.org/widget/clipboardhelper;1"].getService(CI.nsIClipboardHelper).copyString(txt);
 }
 
-function startPatternsIconAnimation() {
-  patternsIconTimerId = setInterval(function() {
-    for (let i = 0; i < patternsIcon.length; i++) {
-      let color = Math.round(0xffffff * Math.random()).toString(16); 
-      if (color.length < 6) {
-        do {
-          color = "0" + color;
-        } while (color.length < 6)
-      }
-      patternsIcon[i].setAttribute("style", "fill: " + ("#" + color)
-        + ";fill-opacity:1;fill-rule:nonzero;stroke:none");
+// We are not animating the icon anmyore due to user complaints but are
+// creating a new icon on every dialog load. Seems to be a good trade-off.
+function createPatternsIcon() {
+  for (let i = 0; i < patternsIcon.length; i++) {
+    let color = Math.round(0xffffff * Math.random()).toString(16); 
+    if (color.length < 6) {
+      do {
+        color = "0" + color;
+      } while (color.length < 6)
     }
-  }, 200);
+    patternsIcon[i].setAttribute("style", "fill: " + ("#" + color)
+      + ";fill-opacity:1;fill-rule:nonzero;stroke:none");
+  }
+}
+
+function proxyWizard() {
+  let params = {};
+  window.openDialog('chrome://foxyproxy/content/proxywizard.xul', '',
+    'modal, centerscreen', params).focus();
+  if (params.proxy) {
+    let params2 = {};
+    params2.inn = {
+      country: params.proxy["name"],
+      username: params.proxy["username"],
+      password: params.proxy["password"]
+    };
+    window.openDialog('chrome://foxyproxy/content/proxywizardcongrat.xul', '',
+      'resizable=yes', params2).focus();
+  }
 }

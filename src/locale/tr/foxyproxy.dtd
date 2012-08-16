@@ -1,0 +1,104 @@
+<!ENTITY foxyproxy.basic.label "FoxyProxy Basic">
+<!ENTITY foxyproxy.standard.label "FoxyProxy Standard">
+<!ENTITY foxyproxy.plus.label "FoxyProxy Plus">
+<!ENTITY foxyproxy.accesskey "F">
+<!ENTITY foxyproxy.options.label "Seçenekler">
+<!ENTITY foxyproxy.options.accesskey "S">
+<!ENTITY foxyproxy.options.tooltip "Seçenekler Penceresini Aç">
+<!ENTITY foxyproxy.tree.pickertooltiptext.label "Gösterilecek sütunları seçmek için tıklayınız">
+<!ENTITY foxyproxy.pattern.label "Eşleşen Şablon">
+<!ENTITY foxyproxy.url.pattern.label "URL ya da URL şablonu">
+<!ENTITY foxyproxy.url.pattern.accesskey "U">
+<!ENTITY foxyproxy.url.pattern.tooltip "URL ya da URL şablonu">
+<!ENTITY foxyproxy.enabled.label "Etkin">
+<!ENTITY foxyproxy.enabled.accesskey "E">
+<!ENTITY foxyproxy.enabled.tooltip "Etkinleştir/İptal Et">
+<!ENTITY foxyproxy.delete.selection.label "Seçimi Sil">
+<!ENTITY foxyproxy.delete.selection.accesskey "D">
+<!ENTITY foxyproxy.delete.selection.tooltip "Seçili Olanı Sil">
+<!ENTITY foxyproxy.edit.selection.label "Seçimi Düzenle">
+<!ENTITY foxyproxy.edit.selection.accesskey "E">
+<!ENTITY foxyproxy.edit.selection.tooltip "Seçili Olanı Düzenle">
+<!ENTITY foxyproxy.help.label "Yardım İçeriği">
+<!ENTITY foxyproxy.help.accesskey "H">
+<!ENTITY foxyproxy.help.tooltip "Yardımı Göster">
+<!ENTITY foxyproxy.close.label "Kapat">
+<!ENTITY foxyproxy.close.accesskey "C">
+<!ENTITY foxyproxy.close.tooltip "Pencereyi Kapat">
+<!ENTITY foxyproxy.about.label "Hakkında">
+<!ENTITY foxyproxy.about.accesskey "A">
+<!ENTITY foxyproxy.about.tooltip "Hakkında penceresini açar">
+<!ENTITY foxyproxy.online.label "FoxyProxy Çevrimiçi">
+<!ENTITY foxyproxy.online.accesskey "O">
+<!ENTITY foxyproxy.online.tooltip "FoxyProxy Web sayfasını ziyaret et">
+<!ENTITY foxyproxy.tor.label "Tor Sihirbazı">
+<!ENTITY foxyproxy.tor.accesskey "W">
+<!ENTITY foxyproxy.tor.tooltip "Tor Sihirbazı">
+<!ENTITY foxyproxy.copy.selection.label "Seçimi Kopyala">
+<!ENTITY foxyproxy.copy.selection.accesskey "C">
+<!ENTITY foxyproxy.copy.selection.tooltip "Seçimi kopyalar">
+<!ENTITY foxyproxy.mode.label "Seçim Modu">
+<!-- begin foxyproxyplus -->
+<!ENTITY foxyproxy.auto.url.label "Otomatik vekil ayarlama URL&apos;si">
+<!ENTITY foxyproxy.auto.url.tooltip "PAC(Otomatik vekil ayarlama) dosyasının URL&apos;sini giriniz">
+<!ENTITY foxyproxy.auto.url.note.label "http(s)://   ftp://   file://   relative://">
+<!ENTITY foxyproxy.port.label "Port">
+<!ENTITY foxyproxy.port.accesskey "P">
+<!ENTITY foxyproxy.port.tooltip "Port">
+<!ENTITY foxyproxy.socks.v4 "SOCKS v4/4a">
+<!ENTITY foxyproxy.socks.v5 "SOCKS v5">
+<!ENTITY foxyproxy.addeditpattern.title "Şablon Ekle/Düzenle">
+<!ENTITY foxyproxy.wildcard.label "Joker Semboller">
+<!ENTITY foxyproxy.wildcard.accesskey "W">
+<!ENTITY foxyproxy.wildcard.tooltip "URL ya da URL şablonunun joker sembolleri kullanacağını ve normal bir ifade olmayacağını belirtir.">
+<!ENTITY foxyproxy.regex.label "Normal İfade">
+<!ENTITY foxyproxy.regex.accesskey "R">
+<!ENTITY foxyproxy.regex.tooltip "URL ya da URL şablonunun normal ifade olduğunu belirtir.">
+<!ENTITY foxyproxy.version "Sürüm">
+<!ENTITY foxyproxy.createdBy "Oluşturan:">
+<!ENTITY foxyproxy.copyright "Telif Hakkı">
+<!ENTITY foxyproxy.rights "Tüm Hakları Mahfuzdur.">
+<!ENTITY foxyproxy.released "Bu ürün">
+<!ENTITY foxyproxy.tab.general.label "Genel">
+<!ENTITY foxyproxy.tab.general.accesskey "G">
+<!ENTITY foxyproxy.tab.proxy.label "Vekil Ayrıntıları">
+<!ENTITY foxyproxy.tab.proxy.accesskey "R">
+<!ENTITY foxyproxy.tab.patterns.label "Şablonlar">
+<!ENTITY foxyproxy.tab.patterns.accesskey "Ş">
+<!ENTITY foxyproxy.add.title "Vekil Ayarları">
+<!ENTITY foxyproxy.pattern.description "Bu vekilin kullanacağı URL&apos;leri buradan ekleyip, silebilirsiniz">
+<!ENTITY foxyproxy.add.option.manual.label "El İle Vekil Ayarlama">
+<!ENTITY foxyproxy.add.option.manual.accesskey "E">
+<!ENTITY foxyproxy.add.new.pattern.label "Yeni Şablon Ekle">
+<!ENTITY foxyproxy.add.new.pattern.accesskey "E">
+<!ENTITY foxyproxy.add.new.pattern.tooltip "Yeni Şablon Ekle">
+<!ENTITY foxyproxy.menubar.file.label "Dosya">
+<!ENTITY foxyproxy.menubar.file.accesskey "D">
+<!ENTITY foxyproxy.menubar.file.tooltip "Dosya Menüsünü Açar">
+<!ENTITY foxyproxy.menubar.help.label "Yardım">
+<!ENTITY foxyproxy.menubar.help.accesskey "Y">
+<!ENTITY foxyproxy.menubar.help.tooltip "Yardım Menüsünü Açar">
+<!ENTITY foxyproxy.mode.accesskey "M">
+<!ENTITY foxyproxy.mode.tooltip "FoxyProxy&apos;yi nasıl etkinleştireceğinizi seçiniz">
+<!ENTITY foxyproxy.proxy.label "Proxy">
+<!ENTITY foxyproxy.tab.proxies.label "Vekiller">
+<!ENTITY foxyproxy.tab.proxies.accesskey "V">
+<!ENTITY foxyproxy.tab.proxies.tooltip "Vekilleri Yönet">
+<!ENTITY foxyproxy.tab.global.label "Genel Ayarlar">
+<!ENTITY foxyproxy.tab.global.accesskey "G">
+<!ENTITY foxyproxy.tab.global.tooltip "Genel Ayarları Yönet">
+<!ENTITY foxyproxy.tab.logging.label "Kayıt Kütüğü">
+<!ENTITY foxyproxy.tab.logging.accesskey "K">
+<!ENTITY foxyproxy.tab.logging.tooltip "Kayıt Kütüğü Ayarların Yönet">
+<!ENTITY foxyproxy.storagelocation.tooltip "FoxyProxy&apos;nin ayarlarının saklanacağı yer">
+<!ENTITY foxyproxy.tab.logging.timestamp.label "Tarih Bilgisi">
+<!ENTITY foxyproxy.tab.logging.url.label "URL">
+<!ENTITY foxyproxy.clear.label "Temizle">
+<!ENTITY foxyproxy.clear.accesskey "T">
+<!ENTITY foxyproxy.clear.tooltip "Temizle">
+<!ENTITY foxyproxy.refresh.label "Yenile">
+<!ENTITY foxyproxy.refresh.accesskey "Y">
+<!ENTITY foxyproxy.refresh.tooltip "Yenile">
+<!ENTITY foxyproxy.addnewproxy.label "Yeni Vekil Ekle">
+<!ENTITY foxyproxy.addnewproxy.accesskey "E">
+<!ENTITY foxyproxy.addnewproxy.tooltip "Yeni Vekil Ekle">

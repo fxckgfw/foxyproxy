@@ -1,12 +1,12 @@
 /**
   FoxyProxy
-  Copyright (C) 2006-#%#% Eric H. Jung and LeahScape, Inc.
+  Copyright (C) 2006-#%#% Eric H. Jung and FoxyProxy, Inc.
   http://getfoxyproxy.org/
   eric.jung@yahoo.com
 
   This source code is released under the GPL license,
   available in the LICENSE file at the root of this installation
-  and also online at http://www.gnu.org/licenses/gpl.txt
+  and also online at http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 **/
 
 // Don't const the next line anymore because of the generic reg code
@@ -103,13 +103,17 @@ function foxyproxy() {
   // That CU call has to be here, otherwise it would not work. See:
   // https://developer.mozilla.org/en/JavaScript/Code_modules/Using section
   // "Custom modules and XPCOM components" 
-  CU.import("resource://foxyproxy/patternSubscriptions.jsm", this);
+  CU.import("resource://foxyproxy/subscriptions.jsm", this);
+  CU.import("resource://foxyproxy/defaultprefs.jsm", this);
+  CU.import("resource://foxyproxy/cookiesAndCache.jsm", this);
+  CU.import("resource://foxyproxy/utils.jsm", this);
 };
 foxyproxy.prototype = {
   PFF : " ",
   _mode : "disabled",
   _selectedProxy : null, /* remains null unless all URLs are set to load through a proxy */
   _selectedTabIndex : 0,
+  _toolbarIcon : true,
   _toolsMenu : true,
   _contextMenu : true,
   _advancedMenus : false,
@@ -121,6 +125,10 @@ foxyproxy.prototype = {
   excludePatternsFromCycling : false,
   excludeDisabledFromCycling : false,
   ignoreProxyScheme : false,
+  writeSettingsTimer : null,
+  apiDisabled : false,
+  cacheOrCookiesChanged : false,
+  cacheAndCookiesChecked : false,
   
   broadcast : function(subj, topic, data) {
     gBroadcast(subj, topic, data);
@@ -128,15 +136,17 @@ foxyproxy.prototype = {
 
   init : function() {
     try {
+      this.writeSettingsTimer = CC["@mozilla.org/timer;1"].
+        createInstance(CI.nsITimer);
       this.autoadd = new AutoAdd(this.getMessage("autoadd.pattern.label"));
       this.quickadd = new QuickAdd(this.getMessage("quickadd.pattern.label"));
       LoggEntry.prototype.init();
     }
     catch (e) {
       dumpp(e);
-    }     
+    }
   },
-  
+
   observe: function(subj, topic, data) {
       switch(topic) {
         case "profile-after-change":
@@ -146,9 +156,11 @@ foxyproxy.prototype = {
           try {
             this.init();
             this.patternSubscriptions.init();
+            this.proxySubscriptions.init();
             // Initialize defaultPrefs before initial call to this.setMode().
-            // setMode() is called from this.loadSettings()->this.fromDOM(), but also from commandlinehandler.js.
-            this.defaultPrefs.init();        
+            // setMode() is called from this.loadSettings()->this.fromDOM(), but
+            // also from commandlinehandler.js.
+            this.defaultPrefs.init(gFP);        
             this.loadSettings();
           }
           catch (e) {
@@ -199,12 +211,20 @@ foxyproxy.prototype = {
       this.fromDOM(doc, doc.documentElement);
     }
     // Now we load the pattern subscriptions as well if there are any.
-    var subFile = f.parent.clone();
-    subFile.append("patternSubscriptions.json");
+    var patternSubFile = f.parent.clone();
+    patternSubFile.append("patternSubscriptions.json");
     // If we do not have a file yet we do not do anything here concerning the
     // pattern subscriptions. Maybe the user does not need that feature at all.
-    if (subFile.exists() && subFile.isFile()) {
-      this.patternSubscriptions.loadSavedSubscriptions(subFile);
+    if (patternSubFile.exists() && patternSubFile.isFile()) {
+      this.patternSubscriptions.loadSavedSubscriptions(patternSubFile);
+    }
+    // Now the proxy subscriptions if there are any.
+    var proxySubFile =  f.parent.clone();
+    proxySubFile.append("proxySubscriptions.json");
+    // If we do not have a file yet we do not do anything here concerning the
+    // proxy subscriptions. Maybe the user does not need that feature at all.
+    if (proxySubFile.exists() && proxySubFile.isFile()) {
+      this.proxySubscriptions.loadSavedSubscriptions(proxySubFile);
     }
   },
 
@@ -225,8 +245,13 @@ foxyproxy.prototype = {
   
   get mode() { return this._mode; },
   setMode : function(mode, writeSettings, init) {
-    // Possible modes are: patterns, _proxy_id_ (for "Use proxy xyz for all URLs), random, roundrobin, disabled, previous.
-    // Note that "previous" isn't used anywhere but this method: it is translated into the previous mode then broadcasted.
+    // If the user is about to enter pattern mode AND has different cookie
+    // related settings in her proxies we show a warning.
+    this.utils.displayPatternCookieWarning(mode, this);
+    // Possible modes are: patterns, _proxy_id_ (for "Use proxy xyz for all
+    // URLs), random, roundrobin, disabled, previous.
+    // Note that "previous" isn't used anywhere but this method: it is
+    // translated into the previous mode then broadcasted.
     if (mode == "previous") {
       if (this.mode == "disabled")
         mode = this.previousMode;
@@ -235,34 +260,135 @@ foxyproxy.prototype = {
     }
     this._previousMode = this._mode;
     this._mode = mode;
-    this._selectedProxy = null; // todo: really shouldn't do this in case something tries to load right after this instruction
+    this._selectedProxy = null; // todo: really shouldn't do this in case
+                                // something tries to load right after this
+                                // instruction
     for (var i=0,len=this.proxies.length; i<len; i++) {
       var proxy = this.proxies.item(i);
       if (mode == proxy.id) {
         this._selectedProxy = proxy;
+        // If we are in mode "Use proxy XYZ for all URLs" AND have the selected
+        // proxy check for PAC loading. It is done via the enabled-setter in
+        // proxy.js!
         proxy.enabled = true; // ensure it's enabled
+      } else {
+        // Check PAC loading in pattern mode for every proxy.
+        // TODO: Add |random| and |roundrobin| as well if we have these modes.
+        if (mode == "patterns") {
+          if (proxy.shouldLoadPAC()) {
+            proxy.preparePACLoading();
+          }
+        }
       }
-      proxy.handleTimer();  // Leave this after "proxy.enabled = true" !
-      proxy.shouldLoadPAC() && proxy.autoconf.loadPAC();
     }
-    // Ensure the new mode is valid. If it's invalid, set mode to disabled for safety (what else should we do?) and spit out
-    // a message. The only time an invalid mode could be specified is if (a) there's a coding error or (b) the user specified
-    // an invalid mode on the command-line arguments
-    if (!this._selectedProxy && mode != "disabled" && mode != "patterns" && mode != "random" && mode != "roundrobin") {
+    // Ensure the new mode is valid. If it's invalid, set mode to disabled for
+    // safety (what else should we do?) and spit out a message. The only time
+    // an invalid mode could be specified is if (a) there's a coding error,
+    // (b) the user specified an invalid mode on the command-line arguments or
+    // (c) the content-facing API specified an invalid mode.
+    if (!this._selectedProxy && mode != "disabled" && mode != "patterns" &&
+        mode != "random" && mode != "roundrobin") {
       dump("FoxyProxy: unrecognized mode specified. Defaulting to \"disabled\".\n");
       this._mode = "disabled";
-      this.notifier.alert(this.getMessage("foxyproxy"), "Unrecognized mode specified: " + mode);
+      this.notifier.alert(this.getMessage("foxyproxy"),
+        "Unrecognized mode specified: " + mode);
     }
     
     this.toggleFilter(this._mode != "disabled");
-    // This line must come before the next one -- gBroadcast(...) Otherwise, AutoAdd and QuickAdd write their settings before
-    // they've been deserialized, resulting in them always getting written to disk as disabled (althogh the file itself is already
-    // in-memory, so they will be enabled until restart. Unless, of course, the user first does something to FoxyProxy which forces
-    // it to flush it's in-memory state to disk (e.g., switch FoxyProxy tabs, edit a proxy/pattern, etc)
+    // This line must come before the next one -- gBroadcast(...) Otherwise,
+    // AutoAdd and QuickAdd write their settings before they've been
+    // deserialized, resulting in them always getting written to disk as
+    // disabled (althogh the file itself is already in-memory, so they will be
+    // enabled until restart. Unless, of course, the user first does something
+    // to FoxyProxy which forces it to flush it's in-memory state to disk
+    // (e.g., switch FoxyProxy tabs, edit a proxy/pattern, etc).
     if (init) return;
     gBroadcast(this.autoadd._enabled, "foxyproxy-mode-change", this._mode);
     if (writeSettings)
-      this.writeSettings();
+      this.writeSettingsAsync();
+  },
+
+  handleCacheAndCookies : function(proxy, previousProxy) {
+    if (proxy) {
+      if (previousProxy && previousProxy.id !== proxy.id &&
+          this.cacheAndCookiesChecked) {
+        this.cacheAndCookiesChecked = false;
+      }
+      if (this.cacheAndCookiesChecked && !this.cacheOrCookiesChanged) {
+        return;
+      } else if (this.cacheAndCookiesChecked && this.cacheOrCookiesChanged) {
+        // The user just changed values in the addeditproxy dialog.
+        if (proxy.clearCacheBeforeUse !== proxy.clearCacheBeforeUseOld) {
+          if (proxy.clearCacheBeforeUse) {
+            this.cacheMgr.clearCache();
+          }
+        }
+        if (proxy.disableCache !== proxy.disableCacheOld) {
+          if (proxy.disableCache) {
+            // Disabling and enabling the pref observer in order to not save
+            // new default cache values.
+            this.defaultPrefs.removeCacheObserver();
+            this.cacheMgr.disableCache();
+            this.defaultPrefs.addCacheObserver();
+          } else {
+            this.defaultPrefs.restoreOriginals("cache");
+          }
+        }
+        if (proxy.clearCookiesBeforeUse !== proxy.clearCookiesBeforeUseOld) {
+          if (proxy.clearCookiesBeforeUse) {
+            this.cookieMgr.clearCookies();
+          }
+        }
+        if (proxy.rejectCookies !== proxy.rejectCookiesOld) {
+          if (proxy.rejectCookies) {
+            // Disabling and enabling the pref observer in order to not save
+            // new default cookie values.
+            this.defaultPrefs.removeCookieObserver();
+            this.cookieMgr.rejectCookies();
+            this.defaultPrefs.addCookieObserver();
+          } else {
+            this.defaultPrefs.restoreOriginals("cookies");
+          }
+        }
+        // We are just changing the cacheOrCookiesChanged flag and not the
+        // *Old flags as the latter are only important if the former is set to
+        // true. And when that flag is set to true the *Old flags are getting
+        // their proper values as well. Thus, we do not need to adjust them
+        // here.
+        this.cacheOrCookiesChanged = false;
+      } else {
+        // This is called even if the user changed settings in the addeditproxy
+        // dialog before handleCacheAndCookies() is called for the first time
+        // with the current proxy. It is called on start-up as well as
+        // cacheAndCookiesChecked is false then.
+        if (proxy.clearCacheBeforeUse) {
+          this.cacheMgr.clearCache();
+        }
+        if (proxy.disableCache) {
+          // Disabling and enabling the pref observer in order to not save
+          // new default cache values.
+          this.defaultPrefs.removeCacheObserver();
+          this.cacheMgr.disableCache();
+          this.defaultPrefs.addCacheObserver();
+        } else {
+          this.defaultPrefs.restoreOriginals("cache");
+        }
+        if (proxy.clearCookiesBeforeUse) {
+          this.cookieMgr.clearCookies();
+        }
+        if (proxy.rejectCookies) {
+          // Disabling and enabling the pref observer in order to not save
+          // new default cookie values.
+          this.defaultPrefs.removeCookieObserver();
+          this.cookieMgr.rejectCookies();
+          this.defaultPrefs.addCookieObserver();
+        } else {
+          this.defaultPrefs.restoreOriginals("cookies");
+        }
+        // We obviously checked the cache and cookie settings...
+        this.cacheAndCookiesChecked = true;
+      }
+    }
   },
 
   /**
@@ -313,6 +439,7 @@ foxyproxy.prototype = {
     enabled && ps.registerFilter(this, 0);
   },
 
+  mp : null,
   applyFilter : function(ps, uri, proxy) {
     function _err(fp, info, extInfo) {
       var def = fp.proxies.item(fp.proxies.length-1);
@@ -324,18 +451,22 @@ foxyproxy.prototype = {
     try {
       var s = uri.scheme;
       if (s == "feed" || s == "sacore" || s == "dssrequest") return; /* feed schemes handled internally by browser. ignore Mcafee site advisor (http://foxyproxy.mozdev.org/drupal/content/foxyproxy-latest-mcafee-site-advisor) */
-      var spec = uri.spec;
-      var mp = this.applyMode(spec);
-      var ret = mp.proxy.getProxy(spec, uri.host, mp);
-      return ret ? ret : _err(this, this.getMessage("route.error"));
+      var spec = uri.spec, previousProxy = this.mp ? this.mp.proxy : null;
+      this.mp = this.applyMode(spec);
+      var ret = this.mp.proxy.getProxy(spec, uri.host, this.mp);
+      if (ret) {
+        this.handleCacheAndCookies(this.mp.proxy, previousProxy);
+        return ret;
+      }
+      return _err(this, this.getMessage("route.error"));
     }
     catch (e) {
       dump("applyFilter: " + e + "\n" + e.stack + "\nwith url " + uri.spec + "\n");
       return _err(this, this.getMessage("route.exception", [""]), this.getMessage("route.exception", [": " + e]));
     }
     finally {
-      gObsSvc.notifyObservers(mp.proxy, "foxyproxy-throb", null);
-      this.logg.add(mp);
+      gObsSvc.notifyObservers(this.mp.proxy, "foxyproxy-throb", null);
+      this.logg.add(this.mp);
     }
   },
 
@@ -394,6 +525,8 @@ foxyproxy.prototype = {
     var file = this.transformer(o, CI.nsIFile);
     // Does it exist?
     if (!file.exists())
+      // We are calling this method directly as we do not want to write the
+      // settings in a separate thread due to race conditions.
       this.writeSettings(file);
     return (typeof(type) == "object" && "equals" in type && type.equals(CI.nsIFile)) ? file : this.transformer(o, type);
   },
@@ -406,6 +539,8 @@ foxyproxy.prototype = {
     }
     var o2 = this.transformer(o, "uri-string");
     try {
+      // We want to have a synchronous writing of the settings here as we want
+      // to update the settings pref only if it succeeded.
       this.writeSettings(o2);
       // Only update the preference if writeSettings() succeeded
       this.getPrefsService("extensions.foxyproxy.").setCharPref("settings", o2);
@@ -421,13 +556,11 @@ foxyproxy.prototype = {
   },
 
   getDefaultPath : function() {
-    var file = CC["@mozilla.org/file/local;1"].createInstance(CI.nsILocalFile);
     /* Always use ProfD by default in order to support application-wide installations.
        http://foxyproxy.mozdev.org/drupal/content/tries-use-usrlibfirefox-304foxyproxyxml-linux#comment-974 */
-    var dir = CC["@mozilla.org/file/directory_service;1"].getService(CI.nsIProperties).get("ProfD", CI.nsILocalFile);
-    file.initWithPath(dir.path);
-    file.appendRelativePath("foxyproxy.xml");
-    return file;
+    let dir = CC["@mozilla.org/file/directory_service;1"].getService(CI.nsIProperties).get("ProfD", CI.nsILocalFile);
+    dir.appendRelativePath("foxyproxy.xml");
+    return dir;
   },
 
   // Convert |o| from:
@@ -498,77 +631,115 @@ foxyproxy.prototype = {
     return f;
   },
 
-  writeSettings : function(o) {
+  writeSettingsAsync : function(o) {
+    // As we often call writeSettings (for instance it can happen several times
+    // if we change the proxy mode in the options dialog) it is important to
+    // have just a single timer responsible for writing the settings and cancel
+    // an already scheduled one. 20 ms delay should be enough to get all timer
+    // intialization cancelled before the actual writing happens.
+    // Obviously, that does not hold for the last call to writeSettingsAsync()
+    // in a series of such calls. Thus, the settings get written only once
+    // instead of several times as intended.
+    this.writeSettingsTimer.cancel();
+    let writeSettingsThread = {
+      notify: function() {
+        that.writeSettings(o);
+      }
+    };
     // try {
       // dump("*** writeSettings\n");
       // throw new Error("e");
     // }
-    // catch (e) {catch (e) {dump("*** " + e + " \n\n\n");dump ("\n" + e.stack + "\n");} }
+    // catch (e) {catch (e) {dump("*** " + e + " \n\n\n");
+    // dump ("\n" + e.stack + "\n");} }
+    let that = this;
+    this.writeSettingsTimer.initWithCallback(writeSettingsThread, 20,
+      CI.nsITimer.TYPE_ONE_SHOT);
+  },
+
+  writeSettings : function(o) {
     try {
-      var o2 = o ? gFP.transformer(o, CI.nsIFile) : gFP.getSettingsURI(CI.nsIFile);
-      var foStream = CC["@mozilla.org/network/file-output-stream;1"].
+      let o2 = o ? gFP.transformer(o, CI.nsIFile) :
+        gFP.getSettingsURI(CI.nsIFile);
+      let foStream = CC["@mozilla.org/network/file-output-stream;1"].
         createInstance(CI.nsIFileOutputStream);
-      foStream.init(o2, 0x02 | 0x08 | 0x20, 0664, 0); // write, create, truncate
+      // write, create, truncate
+      // Octal values (as 0664) are deprecated; "-1" does the job here as well.
+      foStream.init(o2, 0x02 | 0x08 | 0x20, -1, 0);
       foStream.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n", 39);
-      CC["@mozilla.org/xmlextras/xmlserializer;1"].createInstance(CI.nsIDOMSerializer)
-        .serializeToStream(gFP.toDOM(), foStream, "UTF-8");
-      // foStream.write(str, str.length);
+      CC["@mozilla.org/xmlextras/xmlserializer;1"].createInstance(CI.
+        nsIDOMSerializer).serializeToStream(gFP.toDOM(), foStream, "UTF-8");
       foStream.close();
-    }
-    catch(ex) {
+    } catch(ex) {
       dumpp(ex);
-      this.alert(null, this.getMessage("settings.error.3", o instanceof CI.nsIFile ? [o.path] : [o]));
+      this.alert(null, this.getMessage("settings.error.3",
+        o instanceof CI.nsIFile ? [o.path] : [o]));
     }
   },
 
   get resetIconColors() { return this._resetIconColors; },
   set resetIconColors(p) {
     this._resetIconColors = p;
-    this.writeSettings();
+    this.writeSettingsAsync();
   },
 
   get useStatusBarPrefix() { return this._useStatusBarPrefix; },
   set useStatusBarPrefix(p) {
     this._useStatusBarPrefix = p;
-    this.writeSettings();
+    this.writeSettingsAsync();
   },
   
   get selectedTabIndex() { return this._selectedTabIndex; },
   set selectedTabIndex(i) {
     this._selectedTabIndex = i;
-    this.writeSettings();
+    this.writeSettingsAsync();
   },
 
   get logging() { return this.logg.enabled; },
   set logging(e) {
     this.logg.enabled = e;
-    this.writeSettings();
+    this.writeSettingsAsync();
   },
+
+  get toolbarIcon() { return this._toolbarIcon; },
+  set toolbarIcon(e) {
+    this._toolbarIcon = e;
+    gBroadcast(e, "foxyproxy-toolbarIcon");
+    this.writeSettingsAsync();
+  }, 
 
   get toolsMenu() { return this._toolsMenu; },
   set toolsMenu(e) {
     this._toolsMenu = e;
     gBroadcast(e, "foxyproxy-toolsmenu");
-    this.writeSettings();
+    this.writeSettingsAsync();
   },
 
   get contextMenu() { return this._contextMenu; },
   set contextMenu(e) {
     this._contextMenu = e;
     gBroadcast(e, "foxyproxy-contextmenu");
-    this.writeSettings();
+    this.writeSettingsAsync();
   },
 
   get advancedMenus() { return this._advancedMenus; },
   set advancedMenus(i) {
     this._advancedMenus = i;
-    this.writeSettings();
+    this.writeSettingsAsync();
   },
 
   get previousMode() { return this._previousMode; },
   set previousMode(p) {
     this._previousMode = p;
-    this.writeSettings();
+    this.writeSettingsAsync();
+  },
+
+  isSelected : function(p) {
+    if (this._selectedProxy) {
+      return p.id === this._selectedProxy.id;
+    } else {
+      return false;
+    }
   },
 
   /**
@@ -601,6 +772,7 @@ foxyproxy.prototype = {
     this.statusbar.fromDOM(doc);
     this.toolbar.fromDOM(doc);
     this.logg.fromDOM(doc);
+    this._toolbarIcon = gGetSafeAttrB(node, "toolbaricon", true); // new for 3.2
     this._toolsMenu = gGetSafeAttrB(node, "toolsMenu", true); // new for 2.0
     this._contextMenu = gGetSafeAttrB(node, "contextMenu", true); // new for 2.0
     this._advancedMenus = gGetSafeAttrB(node, "advancedMenus", false); // new for 2.3--default to false if it doesn't exist
@@ -618,11 +790,19 @@ foxyproxy.prototype = {
     this.excludePatternsFromCycling = gGetSafeAttrB(node, "excludePatternsFromCycling", false);
     this.excludeDisabledFromCycling = gGetSafeAttrB(node, "excludeDisabledFromCycling", false);
     this.ignoreProxyScheme = gGetSafeAttrB(node, "ignoreProxyScheme", false);
+    // We'd like to delegate the reading of apiDisabled to api.js, but that
+    // requires the api to expose a fromDOM() method, or similar, to the
+    // general public (the wrappedJSObject trick does not work for api.js
+    // because it exposes a real interface). Exposing fromDOM() to webpages is
+    // not something we should do since it is really an internal function.
+    // Therefore, foxyproxy.js reads it. If we start reading a lot of state for
+    // the API, we should create an API object within foxyproxy.js to handle it.
+    this.apiDisabled = gGetSafeAttrB(node, "apiDisabled", false);
     this.proxies.fromDOM(mode, doc);
-    this.setMode(mode, false, true);    
-    this.random.fromDOM(doc); 
+    this.setMode(mode, false, true);
+    this.random.fromDOM(doc);
     this.quickadd.fromDOM(doc); // KEEP THIS BEFORE this.autoadd.fromDOM() else fromDOM() is overwritten!?
-    this.autoadd.fromDOM(doc);    
+    this.autoadd.fromDOM(doc);
     this.warnings.fromDOM(doc);
     this.defaultPrefs.fromDOM(doc);
   },
@@ -632,6 +812,7 @@ foxyproxy.prototype = {
     var e = doc.createElement("foxyproxy");
     e.setAttribute("mode", this._mode);
     e.setAttribute("selectedTabIndex", this._selectedTabIndex);
+    e.setAttribute("toolbaricon", this._toolbarIcon);
     e.setAttribute("toolsMenu", this._toolsMenu);
     e.setAttribute("contextMenu", this._contextMenu);
     e.setAttribute("advancedMenus", this._advancedMenus);
@@ -641,6 +822,20 @@ foxyproxy.prototype = {
     e.setAttribute("excludePatternsFromCycling", this.excludePatternsFromCycling);
     e.setAttribute("excludeDisabledFromCycling", this.excludeDisabledFromCycling);
     e.setAttribute("ignoreProxyScheme", this.ignoreProxyScheme);
+    // We'd like to delegate the writing of apiDisabled to api.js, but that
+    // requires the api to expose a toDOM() method, or similar, to the general
+    // public (the wrappedJSObject trick does not work for api.js because it
+    // exposes a real interface). Exposing fromDOM() to webpages is not
+    // something we should do since it is really an internal function.
+    // Therefore, foxyproxy.js writes it. If we start writing a lot of state for
+    // the API, we should create an API object within foxyproxy.js to handle it.
+    try {
+    e.setAttribute("apiDisabled", CC["@leahscape.org/foxyproxy/api;1"].
+      getService().apiDisabled);
+    }
+    catch(e) {
+      dumpp(e);
+    }
     e.appendChild(this.random.toDOM(doc));
     e.appendChild(this.statusbar.toDOM(doc));
     e.appendChild(this.toolbar.toDOM(doc));
@@ -653,188 +848,6 @@ foxyproxy.prototype = {
     return e;
   },
 
-  // Manages the saving of original pref values on installation
-  // and their restoration when FoxyProxy is disabled/uninstalled through the EM.
-  // Also forces our values to remain in effect even if the user or
-  // another extension changes them. Restores values to original
-  // when FoxyProxy is in disabled mode.
-  defaultPrefs : {
-    FALSE : 0x10,
-    TRUE : 0x11,    
-    CLEARED : 0x12,
-    origPrefetch : null,
-    //network.dns.disablePrefetchFromHTTPS
-    networkPrefsObserver : null, /* We save this instance because we must call removeObserver method on the same nsIPrefBranch2 instance on which we called addObserver method in order to remove an observer */
-    beingUninstalled : false, /* flag per https://developer.mozilla.org/en/Code_snippets/Miscellaneous#Receiving_notification_before_an_extension_is_disabled_and.2for_uninstalled */
-    QueryInterface: XPCOMUtils.generateQI([CI.nsISupports, CI.nsIObserver]),
-    
-    // Install observers
-    init : function() {
-      this.addPrefsObserver();
-      for each (let i in ["foxyproxy-mode-change", "foxyproxy-proxy-change", "em-action-requested",
-          "quit-application"])
-        gObsSvc.addObserver(this, i, false);
-    },
-    
-    addPrefsObserver : function() {
-      if (!this.networkPrefsObserver) {
-        this.networkPrefsObserver = gFP.getPrefsService("network.dns.");
-        this.networkPrefsObserver.QueryInterface(CI.nsIPrefBranch2).addObserver("", this, false);        
-      }
-    },
-    
-    removePrefsObserver : function() {
-      if (!this.networkPrefsObserver) // we're not initialized and calling gObsSvc.removeObserver() will throw
-        return;
-      this.networkPrefsObserver.removeObserver("", this);
-      this.networkPrefsObserver = null;
-    },
-    
-    // Uninstall observers
-    uninit : function() {
-      this.removePrefsObserver();
-      for each (let i in ["foxyproxy-mode-change", "foxyproxy-proxy-change", "em-action-requested",
-          "quit-application"])
-        gObsSvc.removeObserver(this, i);
-    },
-  
-    observe : function(subj, topic, data) {
-      try {
-        if (topic == "nsPref:changed" && data == "disablePrefetch") {
-          if (this.shouldDisableDNSPrefetch())
-            this.disablePrefetch();
-          // Don't restore originals if shouldDisableDNSPrefetch == false -- let the user do what he wants with the setting
-        }
-        else if (topic == "em-action-requested")
-          this.restoreOnExit(data, subj.QueryInterface(CI.nsIUpdateItem));
-        else if (topic == "quit-application" && this.beingUninstalled)
-          this.restoreOriginals(false);
-        else if (topic == "foxyproxy-mode-change") {
-        	if (gFP._mode=="disabled") {
-        	  this.restoreOriginals(true);
-        	  // Stop listening for pref changes
-        	  this.removePrefsObserver();
-        	  return;
-        	}
-        	if (gFP._previousMode=="disabled") // We're coming out of disabled mode
-        	  this.saveOriginals();
-        	setOrUnsetPrefetch(this);
-        	this.addPrefsObserver(); // Start listening for pref changes if we aren't already
-        }
-        else if (topic == "foxyproxy-proxy-change") {
-          if (gFP._mode=="disabled") return;
-          setOrUnsetPrefetch(this);
-        }
-      }
-      catch (e) { dumpp(e); }
-      function setOrUnsetPrefetch(self) {
-        if (self.shouldDisableDNSPrefetch())
-          self.disablePrefetch();
-        else
-          self.restoreOriginals(true);
-      }
-    },
-    
-    shouldDisableDNSPrefetch : function() {
-      if (gFP._mode=="disabled") return false;
-      // Is mode "Use proxy xyz for all URLs". Does the selected proxy require dns prefetch disabling?
-      if (gFP._selectedProxy)
-        return gFP._selectedProxy.shouldDisableDNSPrefetch()
-      // Mode is patterns, random, or roundrobin
-      return gFP.proxies.requiresRemoteDNSLookups();
-    },
-    
-    // FoxyProxy being disabled/uninstalled. Should we restore the original pre-FoxyProxy values?
-    restoreOnExit : function(d, updateItem) {
-      var guid = updateItem.id;
-      if (guid == "foxyproxy-basic@eric.h.jung" || guid == "foxyproxy@eric.h.jung" || guid == "foxyproxyplus@leahscape.com") {
-        if (d == "item-cancel-action")
-          this.beingUninstalled = false;
-        else if (d == "item-uninstalled" || d == "item-disabled")
-          this.beingUninstalled = true;
-        else if (d == "item-enabled")
-          this.beingUninstalled = false;
-      }
-    },
-    
-    // Restore the original pre-FoxyProxy values and stop observing changes
-    restoreOriginals : function(contObserving) {
-      var p = gFP.getPrefsService("network.dns.");
-      this.uninit(); // stop observing the prefs while we change them
-      if (this.origPrefetch == this.TRUE)
-        p.setBoolPref("disablePrefetch", true);
-      else if (this.origPrefetch == this.FALSE)
-        p.setBoolPref("disablePrefetch", false);
-      else if (this.origPrefetch == this.CLEARED) {
-        try {
-          if (p.prefHasUserValue("disablePrefetch"))
-            p.clearUserPref("disablePrefetch");
-        }
-        catch (e) { /* i don't think this is necessary since p.prefHasUserValue() is called before clearing */
-          dumpp(e);
-        }
-      }
-
-      // If Firefox is configured to use a PAC file, we need to force that PAC file to load.
-      // Firefox won't load it automatically except on startup and after
-      // network.proxy.autoconfig_retry_* seconds. Rather than make the user wait for that,
-      // we load the PAC file now by flipping network.proxy.type (Firefox is observing that pref)
-      var networkPrefs = gFP.getPrefsService("network.proxy."), type;
-      try {
-        type = networkPrefs.getIntPref("type");
-      }
-      catch(e) {
-        dump("FoxyProxy: network.proxy.type doesn't exist or can't be read\n");
-        dumpp(e);
-      }
-      if (type == 2) { /* isn't there a const for this? */ 
-        // network.proxy.type is set to use a PAC file.    
-        // Don't use nsPIProtocolProxyService to load the PAC. From its comments: "[nsPIProtocolProxyService] exists purely as a
-        // hack to support the configureFromPAC method used by the preference panels in the various apps. Those
-        // apps need to be taught to just use the preferences API to "reload" the PAC file. Then, at that point,
-        // we can eliminate this interface completely."
-
-        // var pacURL = networkPrefs.getCharPref("autoconfig_url");
-        // var pps = CC["@mozilla.org/network/protocol-proxy-service;1"]
-          // .getService(Components.interfaces.nsPIProtocolProxyService);
-        // pps.configureFromPAC(pacURL);
-
-        // Instead, change the prefs--the proxy service is observing and will reload the PAC
-        networkPrefs.setIntPref("type", 1);
-        networkPrefs.setIntPref("type", 2);
-      }
-      if (contObserving)
-        this.init(); // Add our observers again
-    },
-    
-    // Save the original prefs for restoring when FoxyProxy is disabled/uninstalled
-    saveOriginals : function() {
-      var p = gFP.getPrefsService("network.dns.");
-      this.origPrefetch = p.prefHasUserValue("disablePrefetch") ?
-          (p.getBoolPref("disablePrefetch") ? this.TRUE : this.FALSE) : this.CLEARED;
-      gFP.writeSettings();
-    },
-    
-    // Set our desired values for the prefs; may or may not be the same as the originals
-    disablePrefetch : function() {
-      this.uninit(); // stop observing the prefs while we change them
-      gFP.getPrefsService("network.dns.").setBoolPref("disablePrefetch", true);
-      this.init(); // start observing the prefs again
-    },
-    
-    fromDOM : function(doc) {
-      var n = doc.getElementsByTagName("defaultPrefs").item(0);
-      if (!n) return; // for pre-2.17 foxyproxy.xml files that don't have this node
-      this.origPrefetch = gGetSafeAttr(n, "origPrefetch", null);      
-    },
-    
-    toDOM : function(doc) {
-      var e = doc.createElement("defaultPrefs");
-      e.setAttribute("origPrefetch", this.origPrefetch);
-      return e;
-    }
-  },
-
   ///////////////// random \\\\\\\\\\\\\\\\\\\\\\
 
   random : {
@@ -844,13 +857,13 @@ foxyproxy.prototype = {
     get includeeDirect() { return this._includeDirect; },
     set includeeDirect(e) {
       this._includeDirect = e;
-      gFP.writeSettings();
+      gFP.writeSettingsAsync();
     },
 
     get includeDisabled() { return this._includeDisabled; },
     set includeDisabled(e) {
       this._includeDisabled = e;
-      gFP.writeSettings();
+      gFP.writeSettingsAsync();
     },
 
     toDOM : function(doc) {
@@ -886,7 +899,7 @@ foxyproxy.prototype = {
     },
     
     /**
-     *  Prevent inserts beyond the last item since
+     * Prevent inserts beyond the last item since
      * the last item must always remain our |lastResort|.
      * 
      * idx: "last", "first" (same as 0), "random", or an integer between 0 (inclusive) and this.length()-1 (inclusive)
@@ -898,7 +911,7 @@ foxyproxy.prototype = {
       if (!isNaN(parseInt(idx))) {
         // Number - a specific position was specified
         idx = parseInt(idx);
-        if (idx < 0 || idx > this.list.length-1) return; /* Prevent inserts at or after lastResort */
+        if (idx < 0 || idx > this.list.length-1) return false; /* Prevent inserts at or after lastResort */
         if (this.list.length == 0) // Shouldn't really ever happen since we'll always have a lastResort
           this.list[0] = p; 
         else {
@@ -918,6 +931,7 @@ foxyproxy.prototype = {
           default: this.insertAt(this.list.length-1, p); break;               
         }
       }
+      return true;
     },
 
     get length() {
@@ -926,14 +940,19 @@ foxyproxy.prototype = {
 
     getProxyById : function(id) {
       var a = this.list.filter(function(e) {return e.id == this;}, id);
-      return a?a[0]:null;
+      // We are getting an array back at any rate. Thus checking |a| alone is
+      // not enough to be sure that we may return an |a[0]|.
+      if (a && a[0]) {
+        return a[0];
+      }
+      return null;
     },
 
     requiresRemoteDNSLookups : function() {
       return this.list.some(function(e) {return e.shouldDisableDNSPrefetch();});
     },
 
-    getProxiesFromId: function(aIdArray) {
+    getProxiesFromId : function(aIdArray) {
       let proxyArray = [];
       for (let i = 0; i < aIdArray.length; i++) {
         let proxy = this.getProxyById(aIdArray[i]);
@@ -1011,6 +1030,11 @@ foxyproxy.prototype = {
       }
     },
 
+    deleteAll : function() {
+      this.list.length = 0;
+      this.lastresort = null;
+    },
+
     fromDOM : function(mode, doc) {
       var last = null;
       for (var i=0,proxyElems=doc.getElementsByTagName("proxy"); i<proxyElems.length; i++) {
@@ -1019,9 +1043,9 @@ foxyproxy.prototype = {
         var p = new Proxy(gFP);
         p.fromDOM(n, mode);  
         if (!last && n.getAttribute("lastresort") == "true")
-          last = p;
+          last = p; // Save for later so we can enforce it's last in the list
         else
-          this.list.push(p);
+          this.list.push(p); // Note: Using native push, not this.push()
       }
       if (last) {
         this.list.push(last); // ensures it really IS last
@@ -1040,7 +1064,7 @@ foxyproxy.prototype = {
         last.selectedTabIndex = 0;
         last.animatedIcons = false;
         this.list.push(last); // ensures it really IS last
-        gFP.writeSettings();
+        gFP.writeSettingsAsync();
       }
       this.lastresort = last;    
     },
@@ -1061,8 +1085,14 @@ foxyproxy.prototype = {
       this.maintainIntegrity(this.list[idx], true, false, false);
       for (var i=0, temp=[]; i<this.list.length; i++) {
         if (i == idx) {
-          if (this.list[i].mode == "auto") // cancel any refresh timers
-            this.list[i].autoconf.cancelTimer();
+          // cancel any refresh timers 
+          if (this.list[i].mode === "auto") {
+            if (this.list[i].autoconfMode === "pac") {
+              this.list[i].autoconf.cancelTimer();
+            } else if (this.list[i].autoconfMode === "wpad") {
+              this.list[i].wpad.cancelTimer(); 
+            }
+          }
         }
         else
           temp[temp.length] = this.list[i];
@@ -1073,6 +1103,7 @@ foxyproxy.prototype = {
       }
     },
 
+    /** better name: swap() */
     move : function(idx, direction) {
       var newIdx = idx + (direction=="up"?-1:1);
       if (newIdx < 0 || newIdx > this.list.length-1) return false;
@@ -1313,7 +1344,7 @@ foxyproxy.prototype = {
     set maxSize(m) {
       this._maxSize = m;
       this.clear();
-      gFP.writeSettings();
+      gFP.writeSettingsAsync();
     },
 
     get noURLs() {
@@ -1322,7 +1353,7 @@ foxyproxy.prototype = {
 
     set noURLs(m) {
       this._noURLs = m;
-      gFP.writeSettings();
+      gFP.writeSettingsAsync();
     },
 
     get templateHeader() {
@@ -1331,7 +1362,7 @@ foxyproxy.prototype = {
 
     set templateHeader(t) {
       this._templateHeader = t;
-      gFP.writeSettings();
+      gFP.writeSettingsAsync();
     },
 
     get templateFooter() {
@@ -1340,7 +1371,7 @@ foxyproxy.prototype = {
 
     set templateFooter(t) {
       this._templateFooter = t;
-      gFP.writeSettings();
+      gFP.writeSettingsAsync();
     },
 
     get templateRow() {
@@ -1349,7 +1380,7 @@ foxyproxy.prototype = {
 
     set templateRow(t) {
       this._templateRow = t;
-      gFP.writeSettings();
+      gFP.writeSettingsAsync();
     },
 
     clear : function() {
@@ -1538,7 +1569,7 @@ foxyproxy.prototype = {
     get iconEnabled() { return this._iconEnabled; },
     set iconEnabled(e) {
       this._iconEnabled = e;
-      gFP.writeSettings();
+      gFP.writeSettingsAsync();
       gBroadcast(e, "foxyproxy-statusbar-icon");
       e && gFP.setMode(gFP.mode, false, false); // todo: why is this here? can it be removed? it forces PAC to reload
     },
@@ -1546,7 +1577,7 @@ foxyproxy.prototype = {
     get textEnabled() { return this._textEnabled; },
     set textEnabled(e) {
       this._textEnabled = e;
-      gFP.writeSettings();
+      gFP.writeSettingsAsync();
       gBroadcast(e, "foxyproxy-statusbar-text");
       e && gFP.setMode(gFP.mode, false, false);  // todo: why is this here? can it be removed? it forces PAC to reload
     },
@@ -1554,19 +1585,19 @@ foxyproxy.prototype = {
     get leftClick() { return this._leftClick; },
     set leftClick(e) {
       this._leftClick = e;
-      gFP.writeSettings();
+      gFP.writeSettingsAsync();
     },
 
     get middleClick() { return this._middleClick; },
     set middleClick(e) {
       this._middleClick = e;
-      gFP.writeSettings();
+      gFP.writeSettingsAsync();
     },
 
     get rightClick() { return this._rightClick; },
     set rightClick(e) {
       this._rightClick = e;
-      gFP.writeSettings();
+      gFP.writeSettingsAsync();
     },
     
     get width() { return this._width; },
@@ -1574,7 +1605,7 @@ foxyproxy.prototype = {
       e = parseInt(e);
       if (isNaN(e)) e = 0;
       this._width = e;
-      gFP.writeSettings();
+      gFP.writeSettingsAsync();
       gBroadcast(e, "foxyproxy-statusbar-width");
     }
   },
@@ -1603,19 +1634,19 @@ foxyproxy.prototype = {
     get leftClick() { return this._leftClick; },
     set leftClick(e) {
       this._leftClick = e;
-      gFP.writeSettings();
+      gFP.writeSettingsAsync();
     },
 
     get middleClick() { return this._middleClick; },
     set middleClick(e) {
       this._middleClick = e;
-      gFP.writeSettings();
+      gFP.writeSettingsAsync();
     },
 
     get rightClick() { return this._rightClick; },
     set rightClick(e) {
       this._rightClick = e;
-      gFP.writeSettings();
+      gFP.writeSettingsAsync();
     }
   },
 
@@ -1658,7 +1689,7 @@ foxyproxy.prototype = {
         req.send(null);
         for (var i=0,e=req.responseXML.getElementsByTagName("i18n"); i<e.length; i++)  {
           var attrs = e.item(i).attributes;
-          this._entities[attrs.getNamedItem("id").nodeValue] = attrs.getNamedItem("value").nodeValue;
+          this._entities[attrs.getNamedItem("id").value] = attrs.getNamedItem("value").value;
         }
       }
     }
@@ -1690,7 +1721,7 @@ foxyproxy.prototype = {
             .confirmCheck(win, gFP.getMessage("foxyproxy"), l10nMessage,
                 gFP.getMessage("message.stop"), cb);
         this._warnings[name] = !cb.value; /* note we save the inverse of user's selection because the way the question is phrased */
-        gFP.writeSettings();
+        gFP.writeSettingsAsync();
         return ret;
       }
       return true;
@@ -1706,7 +1737,7 @@ foxyproxy.prototype = {
     /* sets the |name|d warning to never show again */
     setWarning : function(name, bool) {
       this._warnings[name] = bool;
-      gFP.writeSettings();
+      gFP.writeSettingsAsync();
     },
     
     toDOM : function(doc) {
@@ -1718,8 +1749,15 @@ foxyproxy.prototype = {
 
     fromDOM : function(doc) {
       var n = doc.getElementsByTagName("warnings").item(0);
-      for (var i=0,sz=n.attributes.length; i<sz; i++)
-        this._warnings[n.attributes[i].nodeName] = n.attributes[i].nodeValue == "true";
+      let name;
+      for (var i=0,sz=n.attributes.length; i<sz; i++) {
+        name = n.attributes[i].name;
+        // The name of the warning changed in FP Standard 3.7
+        if (name === "noneEncodingWarning") {
+          name = "patternEncodingWarning";
+        }
+        this._warnings[name] = n.attributes[i].value == "true";
+      }
     }
   },
 

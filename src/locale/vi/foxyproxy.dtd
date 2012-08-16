@@ -38,7 +38,6 @@
 <!ENTITY foxyproxy.help.tooltip "Hiện trợ giúp">
 <!ENTITY foxyproxy.export.pattern.label "Export">
 <!ENTITY foxyproxy.export.pattern.accesskey "X">
-<!ENTITY foxyproxy.export.pattern.tooltip "Export patterns as a pattern subscription">
 <!ENTITY foxyproxy.close.label "Đóng">
 <!ENTITY foxyproxy.close.accesskey "g">
 <!ENTITY foxyproxy.close.tooltip "Đóng cửa sổ">
@@ -55,8 +54,8 @@
 <!ENTITY foxyproxy.copy.selection.accesskey "S">
 <!ENTITY foxyproxy.copy.selection.tooltip "Sao chép mục được chọn">
 <!ENTITY foxyproxy.mode.label "Chọn chế độ">
+<!-- begin foxyproxyplus -->
 <!ENTITY foxyproxy.auto.url.label "URL cấu hình proxy tự động">
-<!ENTITY foxyproxy.auto.url.accesskey "U">
 <!ENTITY foxyproxy.auto.url.tooltip "Nhập URL của tập tin PAC">
 <!ENTITY foxyproxy.auto.url.note.label "http(s)://   ftp://   file://   relative://">
 <!ENTITY foxyproxy.auto.url.note.tooltip "Nhấn lên nút thông tin để biết thêm thông tin về relative://">
@@ -73,7 +72,6 @@
 <!ENTITY foxyproxy.regex.label "Biểu thức Chính quy">
 <!ENTITY foxyproxy.regex.accesskey "B">
 <!ENTITY foxyproxy.regex.tooltip "Chỉ định rằng mẫu URL là một biểu thức chính quy">
-<!ENTITY foxyproxy.regex.example.label "Ví dụ: https?://.*\.mail\.yahoo\.com/.*">
 <!ENTITY foxyproxy.version "Phiên bản">
 <!ENTITY foxyproxy.createdBy "Tạo bởi">
 <!ENTITY foxyproxy.contributionsBy "Đóng góp bởi">
@@ -243,9 +241,7 @@
 <!ENTITY foxyproxy.pacerrornotification.label "Báo tôi khi tập tin cấu hình tự động bị lỗi">
 <!ENTITY foxyproxy.pacerrornotification.accesskey "t">
 <!ENTITY foxyproxy.pacerrornotification.tooltip "Hiển thị một popup khi một tập tin PAC bị lỗi">
-<!ENTITY foxyproxy.toolsmenu.label "Hiện biểu tượng trong trình đơn công cụ Firefox">
 <!ENTITY foxyproxy.toolsmenu.accesskey "F">
-<!ENTITY foxyproxy.toolsmenu.tooltip "Hiện biểu tượng trong trình đơn công cụ Firefox">
 <!ENTITY foxyproxy.tip.label "Mẹo">
 <!ENTITY foxyproxy.pactip1.label "Đối với tập tin PAC lưu trữ trên ổ đĩa cứng, dùng dạng file://. Ví dụ, file://c:/path/proxy.pac trên Windows hoặc file:///home/users/joe/proxy.pac trên Unix/Linux/Mac.">
 <!ENTITY foxyproxy.pactip2.label "Đối với tập tin PAC trên máy chủ ftp, dùng dạng ftp://. Ví dụ, ftp://leahscape.com/path/proxy.pac">
@@ -422,64 +418,7 @@
 <!ENTITY foxyproxy.invalidcolor.label "Màu không hợp lệ">
 <!ENTITY foxyproxy.validcolor.label "Màu hợp lệ">
 <!ENTITY foxyproxy.color.label "Màu">
-<!ENTITY foxyproxy.server.subscriptions.label "Server Subscriptions">
-<!ENTITY foxyproxy.server.subscriptions.tooltip "Manage Server Subscriptions">
-<!ENTITY foxyproxy.server.subscriptions.accesskey "S">
-<!ENTITY foxyproxy.selectproxy.label "Select Proxy">
-<!ENTITY foxyproxy.pattern.subscriptions.label "Pattern Subscriptions">
-<!ENTITY foxyproxy.pattern.subscriptions.tooltip "Manage Pattern Subscriptions">
-<!ENTITY foxyproxy.pattern.subscriptions.accesskey "S">
-<!ENTITY foxyproxy.pattern.subscriptions.wizard.label "Wizard">
-<!ENTITY foxyproxy.pattern.subscriptions.wizard.tooltip "Click here to start the pattern subscription wizard.">
-<!ENTITY foxyproxy.pattern.subscriptions.menulist.tooltip "Select what to do with pattern subscriptions.">
-<!ENTITY foxyproxy.pattern.subscriptions.addSubscription "Add New Pattern Subscription">
-<!ENTITY foxyproxy.pattern.subscriptions.editSelection "Edit Selection">
-<!ENTITY foxyproxy.pattern.subscriptions.deleteSelections "Delete Selections">
-<!ENTITY foxyproxy.pattern.subscriptions.refreshSelections "Refresh Selections">
-<!ENTITY foxyproxy.pattern.subscriptions.viewSubscription "View Pattern Subscription">
-<!ENTITY foxyproxy.pattern.subscriptions.go.label "Go">
-<!ENTITY foxyproxy.pattern.subscriptions.go.tooltip "Click here to execute your selection.">
-<!ENTITY foxyproxy.pattern.subscriptions.lastStatus.label "Last Status">
-<!ENTITY foxyproxy.pattern.subscriptions.addedit.title "Add/Edit Pattern Subscription">
-<!ENTITY foxyproxy.pattern.subscriptions.name.label "Subscription Name">
-<!ENTITY foxyproxy.pattern.subscriptions.name.tooltip "Subscription Name">
-<!ENTITY foxyproxy.pattern.subscriptions.notes.label "Subscription Description">
-<!ENTITY foxyproxy.pattern.subscriptions.notes.tooltip "Subscription Description">
-<!ENTITY foxyproxy.pattern.subscriptions.url.label "Subscription URL">
-<!ENTITY foxyproxy.pattern.subscriptions.url.tooltip "Subscription URL">
-<!ENTITY foxyproxy.pattern.subscriptions.proxies.tooltip "Proxies that have subscribed to this pattern list">
-<!ENTITY foxyproxy.pattern.subscriptions.addProxies.label "Add Proxies">
-<!ENTITY foxyproxy.pattern.subscriptions.addProxies.tooltip "Add proxies that will subscribe to this pattern list">
-<!ENTITY foxyproxy.pattern.subscriptions.removeProxies.label "Remove Selected">
-<!ENTITY foxyproxy.pattern.subscriptions.removeProxies.tooltip "Cancel the subscription of this pattern list for selected proxies">
-<!ENTITY foxyproxy.pattern.subscriptions.refresh.label "Refresh Rate">
-<!ENTITY foxyproxy.pattern.subscriptions.refresh.tooltip "Refresh rate of this pattern subscription in minutes">
-<!ENTITY foxyproxy.pattern.subscriptions.refreshNow.label "Refresh Now">
-<!ENTITY foxyproxy.pattern.subscriptions.refreshNow.tooltip "Refresh this pattern subscription now">
-<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp1 "Specify the number of minutes after which the subscription is updated. Updating the subscription ">
-<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp2 "removes all existing patterns ">
-<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp3 "then inserts the ones found at the subscription URL. Read more here ">
-<!ENTITY foxyproxy.pattern.subscriptions.zeroRefresh "(0 to never refresh)">
-<!ENTITY foxyproxy.pattern.subscriptions.format.tooltip "Format of this pattern subscription list">
-<!ENTITY foxyproxy.pattern.subscriptions.formatHelp "Specify the format in which the subscription is written. Normally, this is automatically detected by FoxyProxy. Read more ">
-<!ENTITY foxyproxy.pattern.subscriptions.obfuscation.tooltip "Obfuscation format of this pattern subscription">
-<!ENTITY foxyproxy.pattern.subscriptions.obfuscationHelp "Subscriptions are optionally obfuscated in order to prevent content-filtering by computers between you and the subscription URL. Normally, this is automatically detected by FoxyProxy. Read more ">
-<!ENTITY foxyproxy.pattern.subscriptions.copyLastStatus.label "Copy last status to Clipboard">
-<!ENTITY foxyproxy.pattern.subscriptions.copyLastStatus.tooltip "Copy last status to Clipboard">
-<!ENTITY foxyproxy.pattern.subscriptions.pattern.window.title "Subscription Patterns">
-<!ENTITY foxyproxy.none.label "None">
-<!ENTITY foxyproxy.name.label "Name">
-<!ENTITY foxyproxy.notes.label "Notes">
-<!ENTITY foxyproxy.url.label "url">
-<!ENTITY foxyproxy.lastupdate.label "Last Update">
-<!ENTITY foxyproxy.updatefrequency.label "Update Frequency">
-<!ENTITY foxyproxy.status.label "Status">
-<!ENTITY foxyproxy.format.label "Format">
-<!ENTITY foxyproxy.obfuscation.label "Obfuscation">
-<!ENTITY foxyproxy.hosting.label1 "Thanks to ">
-<!ENTITY foxyproxy.ocs.label "OCS">
-<!ENTITY foxyproxy.hosting.label2 " for hosting FoxyProxy's website. If you need hosting, please consider OCS.">
-<!-- begin foxyproxyplus -->
+<!-- end foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Thêm/Chỉnh sửa mẫu Địa chỉ IP Nội bộ">
 <!ENTITY foxyproxy.tempip.popup.label "Các mẫu tạm thời cho phép bạn tạo ra các mẫu cho những địa chỉ IP nội bộ mà bạn không dùng thường xuyên mà không làm bới tung danh sách mẫu địa chỉ IP của một proxy. Mẫu tạm thời không được lưu vào đĩa. Chúng chỉ được giữ trong bộ nhớ cho phiên duyệt web này mà thôi.">
 <!ENTITY foxyproxy.ip.pattern.label "Mẫu địa chỉ IP nội bộ">
@@ -508,15 +447,10 @@
 <!ENTITY foxyproxy.enteremail.label "Nhập địa chỉ email">
 <!ENTITY foxyproxy.licenseinfo.label "Thông tin Giấy phép">
 <!ENTITY foxyproxy.licensevalid.label "Giấy phép hợp lệ. Cảm ơn bạn đã mua FoxyProxy Cộng.">
-<!ENTITY foxyproxy.subexpired.label "License valid, but your update subscription expired. You are not receiving FoxyProxy Plus updates.">
 <!ENTITY foxyproxy.licenseinvalid.label "Giấy phép không hợp lệ. Bạn sẽ không nhận được cập nhật cho FoxyProxy Cộng. Vui lòng mua FoxyProxy Cộng.">
 <!ENTITY foxyproxy.buynow.label "Mua ngay">
 <!ENTITY foxyproxy.checklicense.label "Kiểm tra Giấy phép">
 <!ENTITY foxyproxy.checkinglicense.label "Đang kiểm tra... vui lòng đợi">
-<!ENTITY foxyproxy.yourversion.label "Your Version ">
-<!ENTITY foxyproxy.latestversion.label "Newest Version ">
-<!ENTITY foxyproxy.routetoleahscape.label.1 "Please make sure Firefox can reach">
-<!ENTITY foxyproxy.routetoleahscape.label.2 "either with or without a proxy. You can configure patterns for this URL in FoxyProxy Plus if necessary.">
 <!ENTITY foxyproxy.everything.label "Mọi thứ">
 <!ENTITY foxyproxy.nothing.label "Không">
 <!ENTITY foxyproxy.ippatterndeletefinal.label "Đây là mẫu địa chỉ IP nội bộ cuối cùng. Nếu bạn xóa nó, proxy này không còn có thể được dùng nữa. Vẫn tiếp tục?">
@@ -528,16 +462,3 @@
 <!ENTITY foxyproxy.proxydomain.label "Tên miền (phụ - chỉ NTLM)">
 <!ENTITY foxyproxy.proxydomain.tooltip "Chỉ xác thực NTLM">
 <!ENTITY foxyproxy.proxy.passwords.nomatch.label "Mật khẩu proxy không khớp; vui lòng nhập lại.">
-<!ENTITY foxyproxy.traininglogging.label "Training &amp; Logging">
-<!ENTITY foxyproxy.traininglogging.tooltip "Manage Training &amp; Logging Settings">
-<!ENTITY foxyproxy.traininglogging.accesskey "L">
-<!ENTITY foxyproxy.training.start "Start Training">
-<!ENTITY foxyproxy.training.stop "Stop Training">
-<!ENTITY foxyproxy.patternsforall.label "Create Patterns for All">
-<!ENTITY foxyproxy.patternsforall.accesskey "A">
-<!ENTITY foxyproxy.patternsforall.tooltip "Create Patterns for All URLs">
-<!ENTITY foxyproxy.patternsforselected.label "Create Patterns for Selected">
-<!ENTITY foxyproxy.patternsforselected.accesskey "S">
-<!ENTITY foxyproxy.patternsforselected.tooltip "Create Patterns for Selected URLs">
-<!ENTITY foxyproxy.patterntoadd.label "Pattern to Add">
-<!-- end foxyproxyplus -->

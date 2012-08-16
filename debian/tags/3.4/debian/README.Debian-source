@@ -1,0 +1,8 @@
+README on source packaging of foxyproxy:
+----------------------------------------
+
+Versions up to 2.8 were wrapped for Debian using dh_wraporig
+script. Versions 2.13 up to 3.2 used Debian packaging directly in a git
+repository. Since version 3.2 there is no Debian packaging repository
+available. Debian packaging is currently getting rebuilt in the upstream SVN
+repository.

@@ -1,13 +1,13 @@
-<!ENTITY help.title.foxyproxy.help "FoxyProxy Help">
-<!ENTITY help.patterns "URL Patterns">
-<!ENTITY help.ff.asks "Before Firefox loads a URL, Firefox asks FoxyProxy if a proxy should be used. ">
-<!ENTITY help.fp.answers "FoxyProxy answers this question by attempting to match the current URL with all of the URL patterns you define below. The simplest way to specify patterns is with wildcards.">
-<!ENTITY help.a.wildcards "Wildcards">
-<!ENTITY help.p.wildcards.are "Wildcards are pervasive throughout computing; you&apos;ve most likely seen them before. The asterisk (*) substitutes as a wildcard character for zero or more characters, and the question mark (?) substitutes as a wildcard character for any one character. ">
-<!ENTITY help.p.regexp "More advanced matching rules are possible using regular expressions. For details, click the &apos;Help Contents&apos; button.">
-<!ENTITY help.h4.wildcard.examples "Wildcard Examples">
-<!ENTITY help.th.url.pattern "URL Pattern">
-<!ENTITY help.th.some.matches "Some Matches">
-<!ENTITY help.th.some.non.matches "Some Non-Matches">
-<!ENTITY help.td.everything.in.y "Everything in Yahoo&apos;s domain">
-<!ENTITY help.i.matches.everything "Matches everything">
+<!ENTITY help.title.foxyproxy.help "Ajuda do FoxyProxy">
+<!ENTITY help.patterns "Padrões de URL">
+<!ENTITY help.ff.asks "Antes que o Firefox carrega uma URL, o mesmo perguntará ao FoxyProxy se um proxy deve ser usado.">
+<!ENTITY help.fp.answers "FoxyProxy responde a esta pergunta, tentando corresponder à URL atual com todos os padrões de URL que você define abaixo. A maneira mais simples para especificar padrões é com caracteres curinga.">
+<!ENTITY help.a.wildcards "Caracteres curinga">
+<!ENTITY help.p.wildcards.are "Caracteres curinga é difundida em toda a computação; Você provavelmente já viu-los antes. Substitui o asterisco (*) como caractere curinga para zero ou mais caracteres, e substitui o ponto de interrogação (?) como um caractere curinga para qualquer caractere.">
+<!ENTITY help.p.regexp "Mais avançados regras de correspondência são possíveis usando expressões regulares. Para obter mais detalhes, clique no botão 'Conteúdo da ajuda'.">
+<!ENTITY help.h4.wildcard.examples "Exemplos de curinga">
+<!ENTITY help.th.url.pattern "Padrão de URL">
+<!ENTITY help.th.some.matches "Algumas que correspondem">
+<!ENTITY help.th.some.non.matches "Algumas que não corespondem">
+<!ENTITY help.td.everything.in.y "Tudo no domínio do Yahoo!">
+<!ENTITY help.i.matches.everything "Corresponde a tudo">

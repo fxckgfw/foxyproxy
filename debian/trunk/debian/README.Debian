@@ -1,0 +1,10 @@
+Some notes:
+
+Package was named as foxyproxy (as opposed to mozilla-foxyproxy, which
+used to be a common naming practice) since mozilla is a trademark we
+are not really allowed to use. So, to avoid future renaming of the
+package, and since debtags can be very helpful in filtering out
+similar packages of interest (i.e. extensions for iceweasel), I
+decided to stay with foxyproxy.
+
+ -- Yaroslav Halchenko <debian@onerussian.com>  Mon, 11 Dec 2006 21:48:12 -0500

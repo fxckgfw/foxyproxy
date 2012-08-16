@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 <!--
   FoxyProxy
-  Copyright (C) 2006-#%#% Eric H. Jung and LeahScape, Inc.
+  Copyright (C) 2006-#%#% Eric H. Jung and FoxyProxy, Inc.
   http://getfoxyproxy.org/
   eric.jung@yahoo.com
   
   This source code is released under the GPL license,
   available in the LICENSE file at the root of this installation
-  and also online at http://www.gnu.org/licenses/gpl.txt
+  and also online at http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 -->
 <RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
     xmlns:em="http://www.mozilla.org/2004/em-rdf#"
@@ -18,14 +18,14 @@
 <!-- begin-foxyproxy-standard -->
         <em:id>foxyproxy@eric.h.jung</em:id>
         <em:name>FoxyProxy Standard</em:name>
-        <em:version>3.0b4</em:version>
+        <em:version>4.0b2</em:version>
 <!-- end-foxyproxy-standard -->
 <!-- begin-foxyproxy-simple
         <em:id>foxyproxy-basic@eric.h.jung</em:id>
         <em:name>FoxyProxy Basic</em:name>
-        <em:version>2.0b2</em:version>
+        <em:version>3.0</em:version>
 end-foxyproxy-simple -->
-        <em:creator>LeahScape, Inc.</em:creator>
+        <em:creator>FoxyProxy, Inc.</em:creator>
         <em:description>Premier proxy management for Firefox</em:description>
         <em:homepageURL>http://getfoxyproxy.org</em:homepageURL>
         <em:aboutURL>chrome://foxyproxy/content/about.xul</em:aboutURL>
@@ -35,7 +35,7 @@ end-foxyproxy-simple -->
             <Description>
                 <em:id>songbird@songbirdnest.com</em:id>
                 <em:minVersion>0.4</em:minVersion>
-                <em:maxVersion>1.7</em:maxVersion>
+                <em:maxVersion>1.11.0a</em:maxVersion>
             </Description>
         </em:targetApplication>
         <em:targetApplication>
@@ -43,23 +43,15 @@ end-foxyproxy-simple -->
             <Description>
                 <em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
                 <em:minVersion>3.1b3</em:minVersion>
-                <em:maxVersion>4.0.*</em:maxVersion>
+                <em:maxVersion>17.0a1</em:maxVersion>
             </Description>
-        </em:targetApplication>
-        <!-- Flock -->
-        <em:targetApplication>
-         <Description>
-            <em:id>{a463f10c-3994-11da-9945-000d60ca027b}</em:id>
-            <em:minVersion>0.7</em:minVersion>
-            <em:maxVersion>2.0.*</em:maxVersion>
-          </Description>
         </em:targetApplication>
         <!-- SeaMonkey -->
         <em:targetApplication>
          <Description>
             <em:id>{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}</em:id>
             <em:minVersion>2.0a</em:minVersion>
-            <em:maxVersion>2.1b2</em:maxVersion>
+            <em:maxVersion>2.12a1</em:maxVersion>
           </Description>
         </em:targetApplication>  
         <!-- Thunderbird -->
@@ -67,7 +59,7 @@ end-foxyproxy-simple -->
             <Description>
                 <em:id>{3550f703-e582-4d05-9a08-453d09bdfdc6}</em:id>
                 <em:minVersion>3.0a1pre</em:minVersion>
-                <em:maxVersion>3.3a2pre</em:maxVersion>
+                <em:maxVersion>15.0a1</em:maxVersion>
             </Description>
         </em:targetApplication>
     </Description>

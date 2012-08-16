@@ -473,6 +473,8 @@
 <!ENTITY foxyproxy.validcolor.label "Správná barva">
 <!ENTITY foxyproxy.color.label "Color">
 <!ENTITY foxyproxy.color.description "Barva ikonky při použití této proxy">
+<!ENTITY foxyproxy.server.subscriptions.label "Předplacené servery">
+<!ENTITY foxyproxy.server.subscriptions.tooltip "Spravovat předplacené servery">
 <!ENTITY foxyproxy.server.subscriptions.accesskey "S">
 <!ENTITY foxyproxy.selectproxy.label "Zvolte Proxy">
 <!ENTITY foxyproxy.proxy.subscriptions.label "Předplacené proxy">
@@ -486,6 +488,7 @@
 <!ENTITY foxyproxy.proxy.subscriptions.addedit.title "Přidat/upravit předplatné proxy">
 <!ENTITY foxyproxy.proxy.subscriptions.refreshHelp "odebrat všechny předplacené proxy">
 <!ENTITY foxyproxy.proxy.subscriptions.proxy.window.title "Předplacené proxy">
+<!ENTITY foxyproxy.pattern.subscriptions.label "Předplacené vzory">
 <!ENTITY foxyproxy.pattern.subscriptions.description "Přihlásit se k vzorům, které zveřejňují ostatní uživatelé. Sdílejte vaše vzory s ostatními na pár kliknutí.">
 <!ENTITY foxyproxy.pattern.subscriptions.tooltip "Upravit předplatné vzorů">
 <!ENTITY foxyproxy.pattern.subscriptions.accesskey "S">

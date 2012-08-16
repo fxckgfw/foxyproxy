@@ -1,20 +1,4 @@
-* pattern subscription feature
-
-* Fixed problem of getting wrong enumerator in common.js for Thunderbird
-* Fixed http://foxyproxy.mozdev.org/drupal/content/no-foxy-proxy-button-browser (a toolbar button is now shown in FF4 by default on first startup)
-* made the button behavior in the pattern Tree more coherent
-
-* Fixed http://foxyproxy.mozdev.org/drupal/content/logging-view-milliseconds-field-wrong
-* Fixed radio button overlayed with text in the mode menu
-* Fixed Torwizard issue (button text did not fit into the buttons)
-* Added Georg Koppen to about.xul (as a contributor)
-* Fixed small issue concerning setting the TRANPARENT_PROXY_RESOLVES_HOST-flag
-* Fixed pattern coding error. Unlikely to have caused problems except for Firefox 4.0b9 compatibility due to https://bugzilla.mozilla.org/show_bug.cgi?id=622321 
-* Fixed minor typos in german language files
-* added new locale (ro)
-* Fixed radio button overlayed with text in the mode menu (Quick- and
-  AutoAdd)
-* Fixed Torwizard issues (custom ports were not saved; added port check)
-* Fixed crammed list-style-icons bug in URL patterns tab (addeditproxy.xul)
-* Fixed nsIFilePicker bug in options.js (rev754, rev758) and enhanced triquestions.xul and .js (rev755)
-* Fixed FoxyProxy's context menu bug (see: http://foxyproxy.mozdev.org/drupal/content/foxyproxys-context-menu-bug)
+* proxy subscription feature
+* optimized loading of PAC files during start-up
+* code clean-up
+* updated locales

@@ -38,7 +38,6 @@
 <!ENTITY foxyproxy.help.tooltip "Rādīt palīdzību">
 <!ENTITY foxyproxy.export.pattern.label "Export">
 <!ENTITY foxyproxy.export.pattern.accesskey "X">
-<!ENTITY foxyproxy.export.pattern.tooltip "Export patterns as a pattern subscription">
 <!ENTITY foxyproxy.close.label "Aizvērt">
 <!ENTITY foxyproxy.close.accesskey "a">
 <!ENTITY foxyproxy.close.tooltip "Aizvērt logu">
@@ -55,8 +54,8 @@
 <!ENTITY foxyproxy.copy.selection.accesskey "K">
 <!ENTITY foxyproxy.copy.selection.tooltip "Kopē iezīmēto">
 <!ENTITY foxyproxy.mode.label "Iezīmēšanas režīms">
+<!-- begin foxyproxyplus -->
 <!ENTITY foxyproxy.auto.url.label "Automātiskās starpniekservera konfigurēšanas adrese">
-<!ENTITY foxyproxy.auto.url.accesskey "A">
 <!ENTITY foxyproxy.auto.url.tooltip "Ievadiet PAC faila adresi">
 <!ENTITY foxyproxy.auto.url.note.label "http(s)://   ftp://   file://   relative://">
 <!ENTITY foxyproxy.auto.url.note.tooltip "Klikšķiniet uz informācijas ikonas ,lai iegūtu papildus informāciju par relative://">
@@ -73,7 +72,6 @@
 <!ENTITY foxyproxy.regex.label "Regulārā izteiksme">
 <!ENTITY foxyproxy.regex.accesskey "R">
 <!ENTITY foxyproxy.regex.tooltip "Norāda, ka adreses šablons izmanto regulāro izteiksmi">
-<!ENTITY foxyproxy.regex.example.label "Piemērs: https?://.*\.mail\.yahoo\.com/.*">
 <!ENTITY foxyproxy.version "Versija">
 <!ENTITY foxyproxy.createdBy "Autors">
 <!ENTITY foxyproxy.contributionsBy "Izstrādē piedalījušies">
@@ -243,9 +241,7 @@
 <!ENTITY foxyproxy.pacerrornotification.label "Informēt par kļūdām automātiskās konfigurācijas failā">
 <!ENTITY foxyproxy.pacerrornotification.accesskey "F">
 <!ENTITY foxyproxy.pacerrornotification.tooltip "Rādīt uznirstošo paziņojumu, ja atrastas kļūdas PAC failā">
-<!ENTITY foxyproxy.toolsmenu.label "Rādīt ikonu Firefox rīku izvēlnē">
 <!ENTITY foxyproxy.toolsmenu.accesskey "T">
-<!ENTITY foxyproxy.toolsmenu.tooltip "Rādīt ikonu Firefox rīku izvēlnē">
 <!ENTITY foxyproxy.tip.label "Padoms">
 <!ENTITY foxyproxy.pactip1.label "Lokālajā datorā saglabātiem PAC failiem jūs varat izmanto file:// adreses. Piemēram, file://c:/cels/proxy.pac Windows datoros vai file:///home/users/joe/proxy.pac Unix/Linux/Mac datoros.">
 <!ENTITY foxyproxy.pactip2.label "Priekš PAC failiem, kas glabājas uz FTP servera izmantojiet ftp:// adreses. Piemēram, ftp://leahscape.com/path/proxy.pac">
@@ -429,8 +425,6 @@
 <!ENTITY foxyproxy.pattern.subscriptions.label "Šablonu abonementi">
 <!ENTITY foxyproxy.pattern.subscriptions.tooltip "Pārvaldīt šablonu abonementus">
 <!ENTITY foxyproxy.pattern.subscriptions.accesskey "S">
-<!ENTITY foxyproxy.pattern.subscriptions.wizard.label "Wizard">
-<!ENTITY foxyproxy.pattern.subscriptions.wizard.tooltip "Click here to start the pattern subscription wizard.">
 <!ENTITY foxyproxy.pattern.subscriptions.menulist.tooltip "Select what to do with pattern subscriptions.">
 <!ENTITY foxyproxy.pattern.subscriptions.addSubscription "Add New Pattern Subscription">
 <!ENTITY foxyproxy.pattern.subscriptions.editSelection "Edit Selection">
@@ -458,7 +452,6 @@
 <!ENTITY foxyproxy.pattern.subscriptions.refreshNow.tooltip "Refresh this pattern subscription now">
 <!ENTITY foxyproxy.pattern.subscriptions.refreshHelp1 "Specify the number of minutes after which the subscription is updated. Updating the subscription ">
 <!ENTITY foxyproxy.pattern.subscriptions.refreshHelp2 "removes all existing patterns ">
-<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp3 "then inserts the ones found at the subscription URL. Read more here ">
 <!ENTITY foxyproxy.pattern.subscriptions.zeroRefresh "(0 to never refresh)">
 <!ENTITY foxyproxy.pattern.subscriptions.format.tooltip "Format of this pattern subscription list">
 <!ENTITY foxyproxy.pattern.subscriptions.formatHelp "Specify the format in which the subscription is written. Normally, this is automatically detected by FoxyProxy. Read more ">
@@ -476,10 +469,7 @@
 <!ENTITY foxyproxy.status.label "Status">
 <!ENTITY foxyproxy.format.label "Format">
 <!ENTITY foxyproxy.obfuscation.label "Obfuscation">
-<!ENTITY foxyproxy.hosting.label1 "Liels paldies ">
-<!ENTITY foxyproxy.ocs.label "OCS">
-<!ENTITY foxyproxy.hosting.label2 " par FoxyProxy mājas lapas izvietošanu. Ja jums nepieciešama mājas lapas izvietošana, sazinieties ar OCS.">
-<!-- begin foxyproxyplus -->
+<!-- end foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Pievienot/Rediģēt lokālās IP šablonu">
 <!ENTITY foxyproxy.tempip.popup.label "Pagaidu šabloni ļauj jums veidot lokālo IP šablonus, ko jūs izmantojat reti, lai nepieblīvētu IP adrešu sarakstu starpniekserverī. Pagaidu šablonus neglabā cietajā diskā. Tie tiek glabāti atmiņā un tiek izmantoti tikai tekošās sesijas ietveros.">
 <!ENTITY foxyproxy.ip.pattern.label "Lokālās IP adreses šablons">
@@ -540,4 +530,3 @@
 <!ENTITY foxyproxy.patternsforselected.accesskey "S">
 <!ENTITY foxyproxy.patternsforselected.tooltip "Create Patterns for Selected URLs">
 <!ENTITY foxyproxy.patterntoadd.label "Pattern to Add">
-<!-- end foxyproxyplus -->

@@ -1,12 +1,12 @@
 /**
   FoxyProxy
-  Copyright (C) 2006-#%#% Eric H. Jung and LeahScape, Inc.
+  Copyright (C) 2006-#%#% Eric H. Jung and FoxyProxy, Inc.
   http://getfoxyproxy.org/
   eric.jung@yahoo.com
 
   This source code is released under the GPL license,
   available in the LICENSE file at the root of this installation
-  and also online at http://www.gnu.org/licenses/gpl.txt
+  and also online at http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 **/
 
 /**
@@ -52,16 +52,16 @@ foxyproxy.selection = {
                 modeAsText = fp.getMessage("foxyproxy.add.option.direct.label");
                 break;
               case "auto" :
-                modeAsText = fp.getMessage("foxyproxy.auto.url.label");
+                modeAsText = fp.getMessage("foxyproxy.automatic.label");
                 break;
             }
-            var q = foxyproxy.ask(window, fp.getMessage("switch.proxy.mode", [p.proxy.name, modeAsText, sel.hostPort]));
+            var q = foxyproxy.ask(window, fp.getMessage("switch.proxy.mode2", [p.proxy.name, modeAsText, sel.hostPort]));
             if (q)
               p.proxy.mode = "manual";
           }      
           gBrowser.reloadTab(gBrowser.mCurrentTab);
         }
-        fp.writeSettings();        
+        fp.writeSettingsAsync();        
       }
     }
     else if (sel.reason == 1)

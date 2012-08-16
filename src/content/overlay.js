@@ -1,20 +1,22 @@
 /**
   FoxyProxy
-  Copyright (C) 2006-#%#% Eric H. Jung and LeahScape, Inc.
+  Copyright (C) 2006-#%#% Eric H. Jung and FoxyProxy, Inc.
   http://getfoxyproxy.org/
   eric.jung@yahoo.com
 
   This source code is released under the GPL license,
   available in the LICENSE file at the root of this installation
-  and also online at http://www.gnu.org/licenses/gpl.txt
+  and also online at http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 **/
 
 var foxyproxy = {
   fp : Components.classes["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject,
   fpc : Components.classes["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject,
   statusText : null,
-  notes: ["foxyproxy-statusbar-icon","foxyproxy-statusbar-text","foxyproxy-statusbar-width","foxyproxy-toolsmenu",
-    "foxyproxy-contextmenu","foxyproxy-mode-change","foxyproxy-throb","foxyproxy-updateviews","foxyproxy-autoadd-toggle"],
+  notes: ["foxyproxy-toolbarIcon","foxyproxy-statusbar-icon",
+    "foxyproxy-statusbar-text","foxyproxy-statusbar-width",
+    "foxyproxy-toolsmenu","foxyproxy-contextmenu","foxyproxy-mode-change",
+    "foxyproxy-throb","foxyproxy-updateviews","foxyproxy-autoadd-toggle"],
 
   alert : function(wnd, str) {
     Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
@@ -29,11 +31,10 @@ var foxyproxy = {
     usingObserver : true,
     check : function() {
       const CC = Components.classes, CI = Components.interfaces;
-      var vc = CC["@mozilla.org/xpcom/version-comparator;1"].getService(CI.nsIVersionComparator),
-        lastVer, curVer = CC["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject.getVersion();
+      var lastVer, curVer = CC["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject.getVersion();
       try {
         lastVer = foxyproxy.fp.getPrefsService("extensions.foxyproxy.").getCharPref("last-version");
-        if (vc.compare(curVer, lastVer) > 0)
+        if (foxyproxy.fpc.vc.compare(curVer, lastVer) > 0)
           p(this);
       }
       catch(e) {
@@ -41,8 +42,10 @@ var foxyproxy = {
         p(this);
       }
       function p(o) {
-        var appInfo = CC["@mozilla.org/xre/app-info;1"].getService(CI.nsIXULAppInfo);
-        if(vc.compare(appInfo.version, "3.0") < 0) {
+        // TODO: FF specific? If so, we do not need it as we do not support
+        // these versions anymore. And Seamonkey should support that
+        // notification meanwhile.
+        if (foxyproxy.fpc.vc.compare(foxyproxy.fpc.appInfo.version, "3.0") < 0) {
           // sessionstore-windows-restored notification not supported; just do it now
           o.usingObserver = false;
           o.installTimer();
@@ -104,7 +107,7 @@ var foxyproxy = {
         this.toggleStatusBarText(e);
         break;
       case "foxyproxy-statusbar-width":
-        this.toggleStatusBarWidth(e);
+        this.toggleStatusBarWidth();
         break;
       case "foxyproxy-autoadd-toggle":
         this.checkPageLoad();
@@ -112,6 +115,9 @@ var foxyproxy = {
       case "foxyproxy-mode-change":
         this.setMode(str);
         this.checkPageLoad();
+        break;
+      case "foxyproxy-toolbarIcon":
+        this.toggleToolbarIcon(e);
         break;
       case "foxyproxy-toolsmenu":
         this.toggleToolsMenu(e);
@@ -145,20 +151,22 @@ var foxyproxy = {
   },
 
   onLoad : function() {
+    Components.utils.import("resource://foxyproxy/utils.jsm", this);
     this.svgIcons.init();
     this.statusText = document.getElementById("foxyproxy-status-text");
-    setTimeout(this.defaultToolbarIconFF4, 100);
+    setTimeout(function() {foxyproxy.defaultToolbarIconFF4()}, 100);
     var obSvc = Components.classes["@mozilla.org/observer-service;1"].
       getService(Components.interfaces.nsIObserverService);
     for (var i in this.notes) {
       obSvc.addObserver(this, this.notes[i], false);
     }
+    this.toggleToolbarIcon(this.fp.toolbarIcon);
     this.toggleToolsMenu(this.fp.toolsMenu);
     this.toggleContextMenu(this.fp.contextMenu);
     this.checkPageLoad();
     this.toggleStatusBarIcon(this.fp.statusbar.iconEnabled);
     this.toggleStatusBarText(this.fp.statusbar.textEnabled);    
-    this.toggleStatusBarWidth(this.fp.statusbar.width);
+    this.toggleStatusBarWidth();
     this.setMode(this.fp.mode);
     this.updateCheck.check();
     // if os/x add label to FoxyProxy Tools menu.
@@ -171,24 +179,62 @@ end-foxyproxy-simple !*/
       document.getElementById("foxyproxyMenu").setAttribute("label", this.fp.getMessage("foxyproxy.standard.label"));
 /*! end-foxyproxy-standard !*/
     }
-    this.patternErrorNotification();
+    this.subscriptionErrorNotification();
+    // TODO: Make that compatible with Thunderbird
+    try { 
+      if (gBrowser) {
+        gBrowser.addEventListener("DOMContentLoaded", foxyproxy.errorPageCheck,
+          false);
+      }
+    } catch(e) {}
   },
 
-  patternErrorNotification : function() {
+  parseHTML : function(doc, html) {
+    return Components.classes["@mozilla.org/feed-unescapehtml;1"].
+      getService(Components.interfaces.nsIScriptableUnescapeHTML).
+      parseFragment(html, false, null, doc.documentElement); 
+  },
+
+  errorPageCheck : function() {
+    var contDoc = window.content.document;
+    if (contDoc.documentURI.indexOf("about:neterror?e=proxyConnectFailure") ===
+      0) {
+      // As we do not have a separate listener for each tab we check manually
+      // whether the list element got already injected. If so we do not need to
+      // add another one.
+      if (contDoc.getElementById("proxyService")) {
+        return;
+      }
+      // Creating our additional list entry. We have to take this road here as
+      // creating the <li> element and assigning the content via innerHTML is
+      // not recommended. Furthermore, we cannot construct and append the <li>
+      // element ourselves properly due to i18n issues. Thus, we resort to
+      // parseFragment().
+      let liText = "<li>" + foxyproxy.fp.getMessage("foxyproxy.proxyservice2",
+        ["<a id=proxyService " + 
+        'title="https://getfoxyproxy.org/proxyservice/index.html" ' +
+        'href="https://getfoxyproxy.org/proxyservice/index.html">FoxyProxy</a>',
+        "<b>", "</b>"]) + "</li>"; 
+      contDoc.getElementById("errorLongDesc").firstChild.nextSibling.
+        appendChild(foxyproxy.parseHTML(contDoc, liText));
+    }
+  },
+
+  subscriptionErrorNotification : function() {
     let that = this;
     let showFailuresOnStartup = {
       notify: function(timer) {
-        // We show pattern subscription load failures her but only during
-        // startup and not every time a user opens a new top-level window.
+        // We show subscription load failures here but only during startup
+        // and not every time a user opens a new top-level window.
         let winEnum = that.fpc.getEnumerator();
         for (var winCount = 0; winEnum.hasMoreElements() && winEnum.getNext();
-          winCount++);     
+          winCount++);
         if (winCount === 1) {
           Components.utils.
-            import("resource://foxyproxy/patternSubscriptions.jsm", that); 
-          // Checking whether we had some pattern subscription load failures
-          // during startup (in the first case the whole subscription could not
-          // be loaded and in the second tne just the metadata was available).
+            import("resource://foxyproxy/subscriptions.jsm", that); 
+          // Checking whether we had some subscription load failures during
+          // startup (in the first case the whole subscription could not
+          // be loaded and in the second one just the metadata was available).
           // If so, we show the proper notification boxes without blocking the
           // UI using nsITimer.
           // TODO: Do we really want to have another nsITimer here getting (in
@@ -203,22 +249,37 @@ end-foxyproxy-simple !*/
               }], 
               null, null, false);   
           }
-          let failedPatternLoad = {
+          // TODO: Find a way to merge that efficiently with the notify() call
+          // above.
+          if (that.proxySubscriptions.failureOnStartup) {
+            that.fpc.notify("proxysubscription.error.saved", 
+              [that.proxySubscriptions.failureOnStartup],
+              [{
+                 accessKey: that.fp.getMessage("okay.accesskey"),
+                 callback: function(){},
+                 label: that.fp.getMessage("okay")
+              }],
+              null, null, false);
+          }
+          let failedContentLoad = {
             notify: function() {
-              for (let i = 0; i < failedSubs.length; i++) {
-                // We got susbcriptions where just the metadata could be loaded.
-                // Asking the user if she wants to refresh the subscription now
-                // in order to have a useable pattern subscription.
-                // We have to do this in a separate method as the current |i|
-                // would otherwise not be preserved and we would always only
-                // refresh the last broken pattern subscription.
-                that.createNotification(that, failedSubs, i);
+              // We got subscriptions where just the metadata could be loaded.
+              // Asking the user if she wants to refresh the subscription now
+              // in order to have a useable pattern/proxy subscription.
+              for (let i = 0; i < failedSubs.patSubs.length; i++) {
+                that.createNotification(that, failedSubs.patSubs[i], "pattern");
+              }
+              for (let i = 0; i < failedSubs.proxySubs.length; i++) {
+                that.createNotification(that, failedSubs.proxySubs[i], "proxy");
               }
             }
-          }; 
-          let failedSubs = that.patternSubscriptions.partialLoadFailure;
-          if (failedSubs.length > 0) {
-            timer.initWithCallback(failedPatternLoad, 500, 
+          };
+          let failedSubs = {};
+          failedSubs.patSubs = that.patternSubscriptions.partialLoadFailure;
+          failedSubs.proxySubs = that.proxySubscriptions.partialLoadFailure;
+          if (failedSubs.patSubs.length > 0 ||
+              failedSubs.proxySubs.length > 0) {
+            timer.initWithCallback(failedContentLoad, 500, 
 	      Components.interfaces.nsITimer.TYPE_ONE_SHOT); 
           }
         }  
@@ -230,18 +291,31 @@ end-foxyproxy-simple !*/
       Components.interfaces.nsITimer.TYPE_ONE_SHOT); 
   },
 
-  createNotification : function(that, failedSubs, position) {
-    this.fpc.notify("patternsubscription.error.patterns.refresh",
-	          [failedSubs[position].metadata.name], 
-                  [{
-                     accessKey: null,
-                     callback: function() {
-                       that.patternSubscriptions.
-                         refreshSubscription(failedSubs[position], true);
-                     },
-                     label: this.fp.getMessage("yes")
-                  }], 
-                  null, null, false); 
+  createNotification : function(that, failedSub, type) {
+    this.fpc.notify(type + "subscription.error.content.refresh",
+	            [failedSub.metadata.name],
+                    [{
+                      accessKey: null,
+                      callback: function() {
+                        if (type === "pattern") {
+                          that.patternSubscriptions.
+                            refreshSubscription(failedSub, true);
+                        } else {
+                          that.proxySubscriptions.
+                            refreshSubscription(failedSub, true);
+                        }
+                      },
+                      label: this.fp.getMessage("yes")
+                    }],
+                    null, null, false);
+  },
+
+  toggleToolbarIcon : function(e) {
+    // The code below throws if the icon is not on the toolbar at all. We
+    // therefore catch exceptions.
+    try {
+      document.getElementById("foxyproxy-toolbar-icon").hidden= !e; 
+    } catch(e) {}
   },
 
   toggleToolsMenu : function(e) {
@@ -315,10 +389,12 @@ end-foxyproxy-simple !*/
         var params = {inn:{isNew:true, proxy:p, torwiz:true}, out:null}, win = owner?owner:window;
         win.openDialog("chrome://foxyproxy/content/addeditproxy.xul", "",
           "chrome,dialog,modal,resizable=yes,center", params).focus();
-        if (params.out)
+        if (params.out) {
           _congrats(params.out.proxy);
-        else
+          this.utils.displayPatternCookieWarning(this.fp.mode, this.fp);
+        } else {
           ok = false;
+        }
       }
     }
     !ok && foxyproxy.alert(owner, this.fp.getMessage("torwiz.cancelled"));
@@ -334,19 +410,19 @@ end-foxyproxy-simple !*/
     let firstRun = foxyproxy.fp.getPrefsService("extensions.foxyproxy.").
       getBoolPref("firstrun");
     if (firstRun) {
-      // The Add-on Bar got intruced in FF 4.07b. As it is disabled by default
+      // The Add-on Bar got introduced in FF 4.07b. As it is disabled by default
       // we show the FoxyProxy toolbar icon on first start in the toolbar to
       // give the user a hint about FoxyProxy's existence.
-      let vc = Components.classes["@mozilla.org/xpcom/version-comparator;1"].
-        getService(Components.interfaces.nsIVersionComparator); 
-      if (vc.compare(foxyproxy.fpc.appInfo.version, "4.0b7") < 0) {
+      // TODO: This is FF specific atm.
+      if (foxyproxy.fpc.vc.compare(foxyproxy.fpc.appInfo.version, "4.0b7") < 0) {
         return;
       }
       let navBar = document.getElementById("nav-bar"); 
       if (navBar) {
         let curSet = navBar.currentSet.split(",");
         if (curSet.indexOf("foxyproxy-toolbar-icon") === -1) {
-          let pos = curSet.indexOf("urlbar-container") + 1 || curSet.length;
+          // TODO: Works only for FF atm.
+          let pos = curSet.indexOf("search-container") || curSet.length;
           let set = curSet.slice(0, pos).concat("foxyproxy-toolbar-icon").
             concat(curSet.slice(pos));
           navBar.setAttribute("currentset", set.join(","));
@@ -425,7 +501,7 @@ end-foxyproxy-simple !*/
     // Update view if it's open
     var optionsDlg = foxyproxy._getOptionsDlg();
     optionsDlg && optionsDlg._updateView(false, updateLogView); // don't write settings here because optionsDlg mayn't be open
-    writeSettings && this.fp.writeSettings();
+    writeSettings && this.fp.writeSettingsAsync();
   },
 
   _getOptionsDlg : function() {
@@ -495,16 +571,17 @@ end-foxyproxy-simple !*/
     var listen = this.fp.mode != "disabled" && this.fp.autoadd.enabled;
     var appcontent = document.getElementById("appcontent");
     if (appcontent) {
-      appcontent.removeEventListener("load", this.onPageLoad, true); // safety
+      // Safety. We use here and in the following |foxyproxy| and not |this| as
+      // this makes it easier to remove the event listener on unload again.
+      appcontent.removeEventListener("load", foxyproxy.onPageLoad, true); 
       if (listen) {
-        appcontent.addEventListener("load", this.onPageLoad, true);
+        appcontent.addEventListener("load", foxyproxy.onPageLoad, true);
       }
       else {
-        appcontent.removeEventListener("load", this.onPageLoad, true);
+        appcontent.removeEventListener("load", foxyproxy.onPageLoad, true);
       }
     }
   },
-    
 
   ///////////////// icons \\\\\\\\\\\\\\\\\\\\\
   svgIcons : {
@@ -558,7 +635,7 @@ end-foxyproxy-simple !*/
         }
         return;
       }
-      window.setTimeout("foxyproxy.svgIcons.animate_runner()", 10);
+      window.setTimeout(function() {foxyproxy.svgIcons.animate_runner()}, 10);
     },
 
     throb : function(mp) {
@@ -568,7 +645,7 @@ end-foxyproxy-simple !*/
       if (mp.wrappedJSObject.animatedIcons)
         this.animate();
       foxyproxy.setStatusText(mp.wrappedJSObject.name);
-      setTimeout(this.unthrob, 800, mp);
+      setTimeout(function() {foxyproxy.svgIcons.unthrob(mp)}, 800);
     },
     
     resetIconColors : function(modeAsText) {
@@ -626,7 +703,7 @@ end-foxyproxy-simple !*/
     s && (s.hidden = !e);
   },
   
-  toggleStatusBarWidth : function(w) {
+  toggleStatusBarWidth : function() {
     var s=document.getElementById("foxyproxy-status-text");
     // Statusbars don't exist on all windows (e.g,. View Source) so check for existence first,
     // otherwise we get a JS error.
@@ -690,7 +767,6 @@ end-foxyproxy-simple !*/
   _popupShowing : 0,
 
   onSBTBClick : function(e, o) {
-    e.preventDefault(); // required in Firefox 4 to prevent default context-menu from appearing
     if (e.button==0) {
       _act(o.leftClick, e);
     }
@@ -710,7 +786,8 @@ end-foxyproxy-simple !*/
           fp.cycleMode();
           break;
         case "contextmenu":
-          this._popupShowing = 0;
+          foxyproxy._popupShowing = 0;
+          let popupElement;
 	  if (e.target.id === "foxyproxy-toolbar-icon") {
             popupElement = document.
               getElementById("foxyproxy-toolbarbutton-popup");
@@ -718,7 +795,8 @@ end-foxyproxy-simple !*/
             popupElement = document.
               getElementById("foxyproxy-statusbar-popup"); 
           } 
-          popupElement.showPopup(e.target, -1, -1, "popup", "bottomleft", "topleft");
+          popupElement.showPopup(e.target, -1, -1, "popup", "bottomleft",
+            "topleft");
           break;
         case "reloadcurtab":
           gBrowser.reloadTab(gBrowser.mCurrentTab);
@@ -727,14 +805,14 @@ end-foxyproxy-simple !*/
           gBrowser.reloadAllTabs();
           break;
         case "reloadtabsinallbrowsers":
-          for (var b, e = this.fpc.getEnumerator();
-                  e.hasMoreElements();
-                  (b = e.getNext().getBrowser()) && b.reloadAllTabs());
+          for (var b, el = foxyproxy.fpc.getEnumerator();
+            el.hasMoreElements();
+            (b = el.getNext().getBrowser()) && b.reloadAllTabs());
           break;
         case "removeallcookies":
-          Components.classes["@mozilla.org/cookiemanager;1"].
-            getService(Components.interfaces.nsICookieManager).removeAll();
-          fp.notifier.alert(fp.getMessage("foxyproxy"), fp.getMessage("cookies.allremoved"));
+          foxyproxy.cookieMgr.clearCookies();
+          fp.notifier.alert(fp.getMessage("foxyproxy"),
+            fp.getMessage("cookies.allremoved"));
           break;
         case "toggle":
           // Toggle between current mode and disabled
@@ -770,29 +848,31 @@ end-foxyproxy-simple !*/
           this._cmd,
           this.fp.getMessage("mode.patterns.accesskey"),
           this.fp.getMessage("mode.patterns.label"),
-          this.fp.getMessage("mode.patterns.tooltip"));
-        itm.setAttribute("class", "orange");
+          this.fp.getMessage("mode.patterns.tooltip"),
+          null, "orange");
         checkOne.push(itm);
       }
       for (var i=0; i<this.fp.proxies.length; i++) {
         var p = this.fp.proxies.item(i);
         var pName = p.name;
         // Set the submenu based on advancedMenus enabled/disabled
-        var sbm = this.fp.advancedMenus ? _createMenu(menupopup, pName, pName.substring(0, 1), p.notes) : menupopup;
+        var sbm = this.fp.advancedMenus ? _createMenu(menupopup, pName, pName.substring(0, 1), p.notes, "color:" + p.color) : menupopup;
         var curProxy = "foxyproxy.fp.proxies.item(" + i + ").";
 
         if (this.fp.advancedMenus) {
           // Enable/disable checkbox for each proxy.
           // Don't provide enable/disable to lastresort proxy.
           !p.lastresort && _createCheckMenuItem(sbm,
-            curProxy + "enabled=!" + curProxy + "enabled;",
+            curProxy + "enabled=!" + curProxy +
+            "enabled;foxyproxy.fp.writeSettingsAsync();",
             p.enabled,
             this.fp.getMessage("foxyproxy.enabled.accesskey"),
             this.fp.getMessage("foxyproxy.enabled.label"),
             this.fp.getMessage("foxyproxy.enabled.tooltip"));
 
           _createCheckMenuItem(sbm,
-            curProxy + "animatedIcons=!" + curProxy + "animatedIcons;",
+            curProxy + "animatedIcons=!" + curProxy +
+            "animatedIcons;foxyproxy.fp.writeSettingsAsync();",
             p.animatedIcons,
             this.fp.getMessage("foxyproxy.animatedicons.accesskey"),
             this.fp.getMessage("foxyproxy.animatedicons.label"),
@@ -803,8 +883,7 @@ end-foxyproxy-simple !*/
           p.id,
           this._cmd,
           pName.substring(0, 1),
-          this.fp.getMessage("mode.custom.label", [pName]), p.notes);
-        itm.setAttribute("style", "color: " + p.color);
+          this.fp.getMessage("mode.custom.label", [pName]), p.notes, "color:" + p.color);
         checkOne.push(itm);
 
         if (this.fp.advancedMenus) {
@@ -821,7 +900,7 @@ end-foxyproxy-simple !*/
               var m = this.fp.proxies.item(i).matches[j];
               var curMatch = curProxy + "matches[" + j + "].";
               _createCheckMenuItem(pmp,
-                curMatch + "enabled=!" + curMatch + "enabled;foxyproxy.fp.writeSettings();",
+                curMatch + "enabled=!" + curMatch + "enabled;foxyproxy.fp.writeSettingsAsync();",
                 m.enabled,
                 m.pattern.substring(0, 1),
                 m.pattern,
@@ -845,8 +924,7 @@ end-foxyproxy-simple !*/
         this._cmd,
         this.fp.getMessage("mode.disabled.accesskey"),
         this.fp.getMessage("mode.disabled.label"),
-        this.fp.getMessage("mode.disabled.tooltip"));
-      itm.setAttribute("style", "color: red;");
+        this.fp.getMessage("mode.disabled.tooltip"), null, "red");
       checkOne.push(itm);
 
       // Check the appropriate one
@@ -886,6 +964,13 @@ end-foxyproxy-simple !*/
             this.fp.getMessage("foxyproxy.tab.global.tooltip"));
 
         _createCheckMenuItem(gssubmenupopup,
+          "foxyproxy.fp.toolbarIcon=!foxyproxy.fp.toolbarIcon;foxyproxy.updateViews(false);",
+          this.fp.toolbarIcon,
+          this.fp.getMessage("foxyproxy.toolbaricon.accesskey"),
+          this.fp.getMessage("foxyproxy.toolbaricon.label"),
+          this.fp.getMessage("foxyproxy.toolbaricon.tooltip")); 
+
+        _createCheckMenuItem(gssubmenupopup,
           "foxyproxy.fp.statusbar.iconEnabled=!foxyproxy.fp.statusbar.iconEnabled;foxyproxy.updateViews(false);",
           this.fp.statusbar.iconEnabled,
           this.fp.getMessage("foxyproxy.showstatusbaricon.accesskey"),
@@ -903,8 +988,8 @@ end-foxyproxy-simple !*/
           "foxyproxy.fp.toolsMenu=!foxyproxy.fp.toolsMenu;foxyproxy.updateViews(false);",
           this.fp.toolsMenu,
           this.fp.getMessage("foxyproxy.toolsmenu.accesskey"),
-          this.fp.getMessage("foxyproxy.toolsmenu.label"),
-          this.fp.getMessage("foxyproxy.toolsmenu.tooltip"));
+          this.fp.getMessage("foxyproxy.toolsmenu.label2"),
+          this.fp.getMessage("foxyproxy.toolsmenu.tooltip2"));
 
         _createCheckMenuItem(gssubmenupopup,
           "foxyproxy.fp.contextMenu=!foxyproxy.fp.contextMenu;foxyproxy.updateViews(false);",
@@ -951,13 +1036,13 @@ end-foxyproxy-simple !*/
              this.fp.getMessage("foxyproxy.refresh.tooltip"));
   
           itm =_createMenuItem(submenupopup,
-              this.fp.getMessage("foxyproxy.quickadd.label"),
-              "foxyproxy.onQuickAddDialog(event)",
-              this.fp.getMessage("foxyproxy.quickadd.accesskey"),
-              this.fp.getMessage("foxyproxy.quickadd.tooltip"));
-            itm.setAttribute("key", "key_foxyproxyquickadd");
-            itm.setAttribute("disabled", disableQuickAdd(this.fp));          
-  
+            this.fp.getMessage("foxyproxy.quickadd.label"),
+            "foxyproxy.onQuickAddDialog(event)",
+            this.fp.getMessage("foxyproxy.quickadd.accesskey"),
+            this.fp.getMessage("foxyproxy.quickadd.tooltip"));
+          itm.setAttribute("key", "key_foxyproxyquickadd");
+          itm.setAttribute("disabled", disableQuickAdd(this.fp));
+
           _createCheckMenuItem(logsubmenupopup,
             // no need to write settings because changing the attribute makes the fp service re-writes the settings
             "foxyproxy.onToggleNoURLs();",
@@ -975,17 +1060,6 @@ end-foxyproxy-simple !*/
           this.fp.getMessage("foxyproxy.options.tooltip"));
         itm.setAttribute("key", "key_foxyproxyfocus");
 
-        if (!isFoxyProxySimple) {
-          // No quickadd for FoxyProxy Simple
-          itm =_createMenuItem(submenupopup,
-            this.fp.getMessage("foxyproxy.quickadd.label"),
-            "foxyproxy.onQuickAddDialog(event)",
-            this.fp.getMessage("foxyproxy.quickadd.accesskey"),
-            this.fp.getMessage("foxyproxy.quickadd.tooltip"));
-          itm.setAttribute("key", "key_foxyproxyquickadd");
-          itm.setAttribute("disabled", disableQuickAdd(this.fp));
-        }
-                  
         _createMenuItem(submenupopup,
           this.fp.getMessage("foxyproxy.help.label"),
           "foxyproxy.fpc.openAndReuseOneTabPerURL('http://getfoxyproxy.org/" + (isFoxyProxySimple ? "basic/" : "") + "help.html');",
@@ -1046,11 +1120,13 @@ end-foxyproxy-simple !*/
       return fp.mode == "disabled" || !fp.quickadd.enabled;
     }
 
-    function _createMenu(menupopup, label, accesskey, tooltip) {
+    function _createMenu(menupopup, label, accesskey, tooltip, style) {
       var submenu = document.createElement("menu");
       submenu.setAttribute("label", label);
       submenu.setAttribute("accesskey", accesskey);
       submenu.setAttribute("tooltiptext", tooltip);
+      if (style)
+        submenu.setAttribute("style", style);
       var submenupopup = document.createElement("menupopup");
       submenu.appendChild(submenupopup);
       menupopup.appendChild(submenu);
@@ -1067,7 +1143,7 @@ end-foxyproxy-simple !*/
       return e;
     }
 
-    function _createRadioMenuItem(menupopup, id, cmd, accesskey, label, tooltip) {
+    function _createRadioMenuItem(menupopup, id, cmd, accesskey, label, tooltip, style, clazz) {
       var e = document.createElement("menuitem");
       e.setAttribute("label", label);
       e.setAttribute("id", id);
@@ -1077,6 +1153,10 @@ end-foxyproxy-simple !*/
       e.setAttribute("tooltiptext", tooltip);
       e.setAttribute("oncommand", cmd);
       e.setAttribute("accesskey", accesskey);
+      if (style)
+        e.setAttribute("style", style);
+      if (clazz)
+        e.setAttribute("class", clazz);
       menupopup.appendChild(e);
       return e;
     }
@@ -1107,11 +1187,21 @@ end-foxyproxy-simple !*/
 };
 
 ///////////////////////////////////////////////////////
+Components.utils.import("resource://foxyproxy/cookiesAndCache.jsm", foxyproxy);
 
 window.addEventListener("load", function(e) { foxyproxy.onLoad(e); }, false);
 window.addEventListener("unload", function(e) {
-  document.getElementById("appcontent") && document.getElementById("appcontent").removeEventListener("load", this.onPageLoad, true);
-  var obSvc = Components.classes["@mozilla.org/observer-service;1"].getService(Components.interfaces.nsIObserverService);
+  document.getElementById("appcontent") &&
+    document.getElementById("appcontent").removeEventListener("load", foxyproxy.
+    onPageLoad, true);
+  try {
+    if (gBrowser) {
+      gBrowser.removeEventListener("DOMContentLoaded", foxyproxy.errorPageCheck,
+        false);
+    }
+  } catch(e) {}
+  var obSvc = Components.classes["@mozilla.org/observer-service;1"].
+    getService(Components.interfaces.nsIObserverService);
   for (var i in foxyproxy.notes) {
     obSvc.removeObserver(foxyproxy, foxyproxy.notes[i]);
   }

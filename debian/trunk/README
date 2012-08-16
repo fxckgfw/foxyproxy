@@ -1,0 +1,6 @@
+The debian and the src directory contain the additional files needed to build
+a foxyproxy debian package. In the src directory you'll find the official
+releasenotes.html and in the debian directory the necessary packaging files are
+available. The source tarball may be obtained by executing
+
+  debian/rules get-orig-source

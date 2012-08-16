@@ -1,12 +1,12 @@
 /**
   FoxyProxy
-  Copyright (C) 2006-#%#% Eric H. Jung and LeahScape, Inc.
+  Copyright (C) 2006-#%#% Eric H. Jung and FoxyProxy, Inc.
   http://getfoxyproxy.org/
   eric.jung@yahoo.com
 
   This source code is released under the GPL license,
   available in the LICENSE file at the root of this installation
-  and also online at http://www.gnu.org/licenses/gpl.txt
+  and also online at http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 **/
 
 /**
@@ -36,7 +36,8 @@ blockedPageMatch - a Match object specific to AutoAdd only. Only four of the pro
 //dump("superadd.js\n");
 const DEF_PATTERN = "*://${3}${6}/*";
 function SuperAdd(mName) {
-  this._match = new Match(true, mName, DEF_PATTERN);
+  this._match = new Match();
+  this._match.init({enabled: true, name: mName, pattern: DEF_PATTERN});
   this._match.clone = function() {
     // does a clone of this._match and copies this.temp into the cloned object
     var ret = Match.prototype.clone.apply(this, arguments); // call super
@@ -56,9 +57,12 @@ function QuickAdd(mName) {
   this.elemNameCamelCase = "QuickAdd";
   this.setFPC();
 }
+
 function AutoAdd(mName) {
   SuperAdd.apply(this, arguments);
-  this._blockedPageMatch = new Match(true, "", this.fp.getMessage("not.authorized"), false, false, false, false, true);
+  this._blockedPageMatch = new Match()
+  this._blockedPageMatch.init({enabled: true, name: "", pattern:
+    this.fp.getMessage("not.authorized"), isMultiLine: true});
   this.notificationTitle = "foxyproxy.tab.autoadd.label";
   this.elemName = "autoadd";
   this.elemNameCamelCase = "AutoAdd";
@@ -100,26 +104,26 @@ SuperAdd.prototype = {
   get enabled() { return this._enabled; },
   set enabled(e) {
     this._enabled = e;
-    this.fp.writeSettings();
+    this.fp.writeSettingsAsync();
     this.elemName == "autoadd" && gBroadcast(e, "foxyproxy-autoadd-toggle");
   },
 
   get temp() { return this._temp; },
   set temp(t) {
     this._temp = t;
-    this.fp.writeSettings();
+    this.fp.writeSettingsAsync();
   },
 
   get reload() { return this._reload; },
   set reload(e) {
     this._reload = e;
-    this.fp.writeSettings();
+    this.fp.writeSettingsAsync();
   },
 
   get proxy() { return this._proxy; },
   set proxy(p) {
     this._proxy = p;
-    this.fp.writeSettings();
+    this.fp.writeSettingsAsync();
   },
 
   set proxyById(id) {
@@ -130,19 +134,19 @@ SuperAdd.prototype = {
   get notify() { return this._notify; },
   set notify(n) {
     this._notify = n;
-    this.fp.writeSettings();
+    this.fp.writeSettingsAsync();
   },
 
   get notifyWhenCanceled() { return this._notifyWhenCanceled; },
   set notifyWhenCanceled(n) {
     this._notifyWhenCanceled = n;
-    this.fp.writeSettings();
+    this.fp.writeSettingsAsync();
   },
 
   get prompt() { return this._prompt; },
   set prompt(n) {
     this._prompt = n;
-    this.fp.writeSettings();
+    this.fp.writeSettingsAsync();
   },
 
   get match() {
@@ -156,14 +160,16 @@ SuperAdd.prototype = {
     this._match.caseSensitive = m.caseSensitive;
     this._match.isBlackList = m.isBlackList;
     this._match.isMultiLine = m.isMultiLine;
-    // Note: we're not copying m.temp and m.enabled.
-    // SuperAdd.match acts as a template for creating Match objects through QuickAdd/AutoAdd.
-    // SuperAdd match objects are never temporary; temp value is stored in SuperAdd.temp instead because
-    // Superadd._match.temp must be false else it isn't written to disk.
-    // Also, SuperAdd.match objects are always enabled (doesn't make sense to add a disabled Match).
+    // Note: we're not copying m.temp, m.enabled and m.fromSubscription.
+    // SuperAdd.match acts as a template for creating Match objects through
+    // QuickAdd/AutoAdd. SuperAdd match objects are never temporary or from a
+    // subscription; temp value is stored in SuperAdd.temp instead because
+    // Superadd._match.temp must be false else it isn't written to disk. Also,
+    // SuperAdd.match objects are always enabled (doesn't make sense to add a
+    // disabled Match).
     this._temp = m.temp; /* save to this.temp instead; see notes above as to why */
     this._match.buildRegEx();
-    this.fp.writeSettings();
+    this.fp.writeSettingsAsync();
   },
 
   /**
@@ -180,16 +186,29 @@ SuperAdd.prototype = {
         //popup.appendChild(this.fpc.createMenuItem({idVal:"disabled", labelId:"mode.disabled.label"}));
       }
     }
-    // Select the appropriate one or, if none was previously selected, select the first
-    if (this._proxy) {
+    // Select the appropriate one or, if none was previously selected, select
+    // the first or show a disabled note if there is not valid proxy left.
+    let dialogType = "";
+    if (menu.id.indexOf("autoAdd") === 0) {
+      dialogType = this.fp.getMessage("foxyproxy.autoadd.label");
+    } else if (menu.id.indexOf("quickAdd") === 0) {
+      dialogType = this.fp.getMessage("foxyproxy.quickadd.label"); 
+    }
+    if (this._proxy ) {
       menu.value = this.proxy.id;
-      // Selected proxy no longer exists; select the first one
-      if (menu.selectedIndex == -1)
-        this.proxyById = menu.value = popup.firstChild.id;
+      if (menu.selectedIndex == -1) {
+        if (popup.firstChild) {
+          this.proxyById = menu.value = popup.firstChild.id;
+        } else {
+            this.fp.alert(null, this.fp.getMessage("superadd.disabled",
+              [dialogType])); 
+        }
+      }
     }
     else {
-      // Select the first one
-      this.proxyById = menu.value = popup.firstChild.id;
+      if (popup.firstChild) {
+        this.proxyById = menu.value = popup.firstChild.id;
+      } 
     }
   },
 
@@ -275,7 +294,7 @@ SuperAdd.prototype = {
    */
   addPattern : function(m, loc) {
     this._proxy.matches.push(m);
-    this.fp.writeSettings();
+    this.fp.writeSettingsAsync();
     this._notify && this.fp.notifier.alert(this.fp.getMessage(this.notificationTitle),
       fp.getMessage("superadd.url.added", [m.pattern, this._proxy.name]));
     this._reload && loc.reload(); // reload page. TODO: don't call onAutoAdd() on the reloaded page!
@@ -288,19 +307,19 @@ SuperAdd.prototype = {
     return false;
   },
 
-	// Disable superadd if our proxy is being deleted/disabled
-	maintainIntegrity : function(proxyId, isBeingDeleted) {
-		if (this._proxy && this._proxy.id == proxyId) {
-		  // Turn it off
-		  this.enabled && (this.enabled = false);
-		  if (isBeingDeleted) {
-		  	// Clear it
-		    this.proxy = null;
-		  }
-		  return true;
-		}
-		return false;
-	},
+  // Disable superadd if our proxy is being deleted/disabled
+  maintainIntegrity : function(proxyId, isBeingDeleted) {
+    if (this._proxy && this._proxy.id == proxyId) {
+      // Turn it off
+      this.enabled && (this.enabled = false);
+      if (isBeingDeleted) {
+        // Clear it
+        this.proxy = null;
+      }
+      return true;
+    }
+    return false;
+  },
 
   toDOM : function(doc) {
     var e = doc.createElement(this.elemName);
@@ -352,7 +371,7 @@ AutoAdd.prototype = new SuperAdd();
 AutoAdd.prototype.__defineGetter__("blockedPageMatch", function() { return this._blockedPageMatch; });
 AutoAdd.prototype.__defineSetter__("blockedPageMatch", function(m) {
   this._blockedPageMatch = m;
-  this.fp.writeSettings();
+  this.fp.writeSettingsAsync();
 });
 AutoAdd.prototype.toDOM = function(doc) {
   var e = SuperAdd.prototype.toDOM.apply(this, arguments);
@@ -362,8 +381,22 @@ AutoAdd.prototype.toDOM = function(doc) {
 AutoAdd.prototype.fromDOM = function(doc) {
   SuperAdd.prototype.fromDOM.apply(this, arguments);
 
+  var n = doc.getElementsByTagName("autoadd")[0];
+  if (n) {
+    n = n.getElementsByTagName("match")[1] // 0-indexed, so this is the 2nd node
+  }
+  if (n) {
+    try {
+      this._blockedPageMatch.fromDOM(n);
+    }
+    catch (e) {dump(e+"\n");}
+  }
+  else {
+    dump("Cannot find autoadd/match[1] node.\n");
+  }
+   
   // Note XPath expression array index is 1-based
-  var n = getBlockedPageMatch("/foxyproxy/autoadd/match[2]");
+  /*var n = getBlockedPageMatch("foxyproxy/autoadd/match[2]");
   if (n) {
     try {
       this._blockedPageMatch.fromDOM(n);
@@ -371,7 +404,7 @@ AutoAdd.prototype.fromDOM = function(doc) {
     catch (e) {dump(e+"\n");}
   }
   else
-    this._blockedPageMatch.fromDOM(getBlockedPageMatch("/foxyproxy/autoadd/match[1]"));
+    this._blockedPageMatch.fromDOM(getBlockedPageMatch("foxyproxy/autoadd/match[1]"));
 
   function getBlockedPageMatch(exp) {
     // doc.createNSResolver(doc) fails on FF2 (not FF3), so we use an instance of nsIDOMXPathEvaluator instead
@@ -384,5 +417,5 @@ AutoAdd.prototype.fromDOM = function(doc) {
     var n = xpe.evaluate(exp, doc, xpe.createNSResolver(doc), xpe.FIRST_ORDERED_NODE_TYPE, null);
     n.QueryInterface(CI.nsIDOMXPathResult); // not necessary in FF3, only 2.x and possibly earlier
     return n.iterateNext();
-  }
+  }*/
 };

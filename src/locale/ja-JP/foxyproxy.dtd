@@ -38,7 +38,6 @@
 <!ENTITY foxyproxy.help.tooltip "ヘルプを表示">
 <!ENTITY foxyproxy.export.pattern.label "Export">
 <!ENTITY foxyproxy.export.pattern.accesskey "X">
-<!ENTITY foxyproxy.export.pattern.tooltip "Export patterns as a pattern subscription">
 <!ENTITY foxyproxy.close.label "閉じる">
 <!ENTITY foxyproxy.close.accesskey "C">
 <!ENTITY foxyproxy.close.tooltip "ウィンドウを閉じる">
@@ -55,8 +54,8 @@
 <!ENTITY foxyproxy.copy.selection.accesskey "C">
 <!ENTITY foxyproxy.copy.selection.tooltip "選択を複製します">
 <!ENTITY foxyproxy.mode.label "モード選択">
+<!-- begin foxyproxyplus -->
 <!ENTITY foxyproxy.auto.url.label "自動プロキシ設定 URL">
-<!ENTITY foxyproxy.auto.url.accesskey "A">
 <!ENTITY foxyproxy.auto.url.tooltip "PAC ファイルの URL を入力">
 <!ENTITY foxyproxy.auto.url.note.label "http(s)://   ftp://   file://   relative://">
 <!ENTITY foxyproxy.auto.url.note.tooltip "relative:// の情報は info アイコンをクリックしてください">
@@ -73,7 +72,6 @@
 <!ENTITY foxyproxy.regex.label "正規表現">
 <!ENTITY foxyproxy.regex.accesskey "R">
 <!ENTITY foxyproxy.regex.tooltip "正規表現の URL パターンを指定します">
-<!ENTITY foxyproxy.regex.example.label "例: https?://[^/]+\.mail\.yahoo\.com/.*">
 <!ENTITY foxyproxy.version "バージョン">
 <!ENTITY foxyproxy.createdBy "作成者">
 <!ENTITY foxyproxy.contributionsBy "Contributions By">
@@ -243,9 +241,7 @@
 <!ENTITY foxyproxy.pacerrornotification.label "プロキシ自動設定ファイルのエラーについて通知する">
 <!ENTITY foxyproxy.pacerrornotification.accesskey "E">
 <!ENTITY foxyproxy.pacerrornotification.tooltip "PAC ファイルのエラーに直面したらポップアップ表示します">
-<!ENTITY foxyproxy.toolsmenu.label "Firefox のツールメニューにアイコンを表示する">
 <!ENTITY foxyproxy.toolsmenu.accesskey "T">
-<!ENTITY foxyproxy.toolsmenu.tooltip "Firefox のツールメニューにアイコンを表示します">
 <!ENTITY foxyproxy.tip.label "ヒント">
 <!ENTITY foxyproxy.pactip1.label "ローカルハードドライブの PAC ファイルには file// スキームを使います。例えば Windows では file://C:/path/proxy.pac または Unix/Linux/Mac では file:///home/users/joe/proxy.pac">
 <!ENTITY foxyproxy.pactip2.label "FTP サーバ上の PAC ファイルには ftp:// スキームを使います。例えば ftp://leahscape.com/path/proxy.pac">
@@ -429,8 +425,6 @@
 <!ENTITY foxyproxy.pattern.subscriptions.label "Pattern Subscriptions">
 <!ENTITY foxyproxy.pattern.subscriptions.tooltip "Manage Pattern Subscriptions">
 <!ENTITY foxyproxy.pattern.subscriptions.accesskey "S">
-<!ENTITY foxyproxy.pattern.subscriptions.wizard.label "Wizard">
-<!ENTITY foxyproxy.pattern.subscriptions.wizard.tooltip "Click here to start the pattern subscription wizard.">
 <!ENTITY foxyproxy.pattern.subscriptions.menulist.tooltip "Select what to do with pattern subscriptions.">
 <!ENTITY foxyproxy.pattern.subscriptions.addSubscription "Add New Pattern Subscription">
 <!ENTITY foxyproxy.pattern.subscriptions.editSelection "Edit Selection">
@@ -458,7 +452,6 @@
 <!ENTITY foxyproxy.pattern.subscriptions.refreshNow.tooltip "Refresh this pattern subscription now">
 <!ENTITY foxyproxy.pattern.subscriptions.refreshHelp1 "Specify the number of minutes after which the subscription is updated. Updating the subscription ">
 <!ENTITY foxyproxy.pattern.subscriptions.refreshHelp2 "removes all existing patterns ">
-<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp3 "then inserts the ones found at the subscription URL. Read more here ">
 <!ENTITY foxyproxy.pattern.subscriptions.zeroRefresh "(0 to never refresh)">
 <!ENTITY foxyproxy.pattern.subscriptions.format.tooltip "Format of this pattern subscription list">
 <!ENTITY foxyproxy.pattern.subscriptions.formatHelp "Specify the format in which the subscription is written. Normally, this is automatically detected by FoxyProxy. Read more ">
@@ -476,10 +469,7 @@
 <!ENTITY foxyproxy.status.label "Status">
 <!ENTITY foxyproxy.format.label "Format">
 <!ENTITY foxyproxy.obfuscation.label "Obfuscation">
-<!ENTITY foxyproxy.hosting.label1 "Thanks to ">
-<!ENTITY foxyproxy.ocs.label "OCS">
-<!ENTITY foxyproxy.hosting.label2 " for hosting FoxyProxy's website. If you need hosting, please consider OCS.">
-<!-- begin foxyproxyplus -->
+<!-- end foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Add/Edit Local IP Address Pattern">
 <!ENTITY foxyproxy.tempip.popup.label "Temporary patterns allow you to create patterns for local IP addresses that you don&apos;t use often without cluttering the IP address pattern list for a proxy. Temporary patterns are not saved to disk. They are kept in-memory and used for this Firefox session only.">
 <!ENTITY foxyproxy.ip.pattern.label "Local IP address pattern">
@@ -540,4 +530,3 @@
 <!ENTITY foxyproxy.patternsforselected.accesskey "S">
 <!ENTITY foxyproxy.patternsforselected.tooltip "Create Patterns for Selected URLs">
 <!ENTITY foxyproxy.patterntoadd.label "Pattern to Add">
-<!-- end foxyproxyplus -->

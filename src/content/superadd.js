@@ -1,12 +1,12 @@
 /**
   FoxyProxy
-  Copyright (C) 2006-#%#% Eric H. Jung and LeahScape, Inc.
+  Copyright (C) 2006-#%#% Eric H. Jung and FoxyProxy, Inc.
   http://getfoxyproxy.org/
   eric.jung@yahoo.com
 
   This source code is released under the GPL license,
   available in the LICENSE file at the root of this installation
-  and also online at http://www.gnu.org/licenses/gpl.txt
+  and also online at http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 **/
 var fp, fpc, superadd, inn;
 function onLoad() {
@@ -38,7 +38,7 @@ function onOK() {
   var pat = document.getElementById("generatedPattern").value;
   var p = fpc.validatePattern(window, superadd.match.isRegEx, pat);
   if (p) {
-    // Use supadd.match as a template for a new Match object
+    // Use superadd.match as a template for a new Match object
     var m = superadd.match.clone();
     m.pattern = p; // Overwrite the templated pattern with the generated pattern (user may have modified it)
     m.temp = superadd.temp; // the cloned match object doesn't clone Match.temp because it's not deserialized from disk while SuperAdd.temp is. See notes in SuperAdd for more info.

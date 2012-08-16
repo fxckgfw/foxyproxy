@@ -1752,7 +1752,7 @@ foxyproxy.prototype = {
       let name;
       for (var i=0,sz=n.attributes.length; i<sz; i++) {
         name = n.attributes[i].name;
-        // The name of the warning changed in FP Standard 3.7
+        // The name of the warning changed in FP Standard 4.0
         if (name === "noneEncodingWarning") {
           name = "patternEncodingWarning";
         }

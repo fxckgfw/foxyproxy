@@ -1,4 +1,5 @@
 * proxy subscription feature
 * optimized loading of PAC files during start-up
+* replaced global ids and variables with local ones in our overlay
 * code clean-up
 * updated locales

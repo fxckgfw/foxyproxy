@@ -60,7 +60,7 @@ function QuickAdd(mName) {
 
 function AutoAdd(mName) {
   SuperAdd.apply(this, arguments);
-  this._blockedPageMatch = new Match()
+  this._blockedPageMatch = new Match();
   this._blockedPageMatch.init({enabled: true, name: "", pattern:
     this.fp.getMessage("not.authorized"), isMultiLine: true});
   this.notificationTitle = "foxyproxy.tab.autoadd.label";

@@ -268,7 +268,7 @@ foxyproxy.prototype = {
       if (mode == proxy.id) {
         this._selectedProxy = proxy;
         // If we are in mode "Use proxy XYZ for all URLs" AND have the selected
-        // proxy check for PAC loading. It is done via the enabled-setter in
+        // proxy, check for PAC loading. It is done via the enabled-setter in
         // proxy.js!
         proxy.enabled = true; // ensure it's enabled
       } else {

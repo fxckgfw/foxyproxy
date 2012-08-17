@@ -231,7 +231,7 @@ end-foxyproxy-simple !*/
           winCount++);
         if (winCount === 1) {
           Components.utils.
-            import("resource://foxyproxy/subscriptions.jsm", that); 
+            import("resource://foxyproxy/subscriptions.jsm", that);
           // Checking whether we had some subscription load failures during
           // startup (in the first case the whole subscription could not
           // be loaded and in the second one just the metadata was available).
@@ -240,19 +240,19 @@ end-foxyproxy-simple !*/
           // TODO: Do we really want to have another nsITimer here getting (in
           // the worst case) multiple warning types?
           if (that.patternSubscriptions.failureOnStartup) {
-            that.fpc.notify("patternsubscription.error.saved", 
+            that.fpc.notify("patternsubscription.error.saved",
               [that.patternSubscriptions.failureOnStartup],
               [{
                  accessKey: that.fp.getMessage("okay.accesskey"),
                  callback: function(){},
                  label: that.fp.getMessage("okay")
-              }], 
-              null, null, false);   
+              }],
+              null, null, false);
           }
           // TODO: Find a way to merge that efficiently with the notify() call
           // above.
           if (that.proxySubscriptions.failureOnStartup) {
-            that.fpc.notify("proxysubscription.error.saved", 
+            that.fpc.notify("proxysubscription.error.saved",
               [that.proxySubscriptions.failureOnStartup],
               [{
                  accessKey: that.fp.getMessage("okay.accesskey"),
@@ -279,16 +279,16 @@ end-foxyproxy-simple !*/
           failedSubs.proxySubs = that.proxySubscriptions.partialLoadFailure;
           if (failedSubs.patSubs.length > 0 ||
               failedSubs.proxySubs.length > 0) {
-            timer.initWithCallback(failedContentLoad, 500, 
-	      Components.interfaces.nsITimer.TYPE_ONE_SHOT); 
+            timer.initWithCallback(failedContentLoad, 500,
+	      Components.interfaces.nsITimer.TYPE_ONE_SHOT);
           }
-        }  
+        }
       }
     };
     Components.classes["@mozilla.org/timer;1"].
-      createInstance(Components.interfaces.nsITimer). 
-      initWithCallback(showFailuresOnStartup, 50, 
-      Components.interfaces.nsITimer.TYPE_ONE_SHOT); 
+      createInstance(Components.interfaces.nsITimer).
+      initWithCallback(showFailuresOnStartup, 50,
+      Components.interfaces.nsITimer.TYPE_ONE_SHOT);
   },
 
   createNotification : function(that, failedSub, type) {

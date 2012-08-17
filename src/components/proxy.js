@@ -144,11 +144,11 @@ Proxy.prototype = {
     this.name = node.getAttribute("name");
     this.id = node.getAttribute("id") || this.fp.proxies.uniqueRandom();
     this.notes = node.getAttribute("notes");
-    this._fromSubscription = gGetSafeAttrB(node, "fromSubscription", false); 
+    this._fromSubscription = gGetSafeAttrB(node, "fromSubscription", false);
     this._enabled = node.getAttribute("enabled") == "true";
     this.autoconf.fromDOM(node.getElementsByTagName("autoconf").item(0));
     let wpadNode = node.getElementsByTagName("autoconf").item(1);
-    if (wpadNode) { 
+    if (wpadNode) {
       this.wpad.fromDOM(wpadNode); 
     } else {
       this.wpad = new AutoConf(this, this.fp);
@@ -446,7 +446,7 @@ Proxy.prototype = {
     temp["d"] = "d";
     temp["e"] = "e";
     temp["f"] = "f";
-    temp["#"] = ""; 
+    temp["#"] = "";
     this.colorString = "";
     for (var i=0, len = str.length; i<len; i++)
       this.colorString += temp[str[i]];

@@ -189,6 +189,14 @@ ProxyConfig.prototype = {
   },
 
   manualConfig: {
+    // Due to https://bugzilla.mozilla.org/show_bug.cgi?id=553102
+    __exposedProps__ : {
+      host : "rw",
+      port : "rw",
+      socks : "rw",
+      socksversion : "rw"
+    },
+
     owner: null,
 
     get host() {
@@ -233,6 +241,17 @@ ProxyConfig.prototype = {
   },
 
   autoConfig: {
+    // Due to https://bugzilla.mozilla.org/show_bug.cgi?id=553102
+    __exposedProps__ : {
+      loadNotification : "rw",
+      errorNotification : "rw",
+      url : "rw",
+      autoReload : "rw",
+      reloadFrequencyMins : "rw",
+      disableOnBadPAC : "rw",
+      mode : "rw"
+    },
+
     owner: null,
     autoConfObj: null,
 

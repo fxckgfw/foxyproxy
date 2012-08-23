@@ -43,6 +43,23 @@ function ProxyConfig(wrappedProxy) {
 ProxyConfig.prototype = {
   fp: null,
   _wrappedProxy: null,
+  // Due to https://bugzilla.mozilla.org/show_bug.cgi?id=553102
+  __exposedProps__ : {
+    id : "r",
+    name : "rw",
+    notes : "rw",
+    color : "rw",
+    mode : "rw",
+    enabled : "rw",
+    selectedTabIndex : "rw",
+    animatedIcons : "rw",
+    includeInCycle : "rw",
+    clearCacheBeforeUse : "rw",
+    disableCache : "rw",
+    clearCookiesBeforeUse : "rw",
+    rejectCookies : "rw",
+    proxyDNS : "rw"
+  },
 
   // getter only for |id| -- no setter
   get id() {

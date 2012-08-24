@@ -520,10 +520,10 @@ function addSubscription(type) {
   if (params.out) {
     if (type === "pattern") {
       patternSubscriptions.addSubscription(params.out.subscription, params.out.
-        userValues); 
+        userValues);
       // Now adding the patterns to the proxies provided the user has added
       // at least one proxy in the addeditsubscription dialog.
-      let proxyList = params.out.proxies; 
+      let proxyList = params.out.proxies;
       if (proxyList.length !== 0) {
         patternSubscriptions.addPatterns(null, proxyList, null);
       }
@@ -561,8 +561,8 @@ function editSubscription(type) {
         }
       };
   if (type === "pattern") {
-    window.openDialog('chrome://foxyproxy/content/subscriptions/addEditPatternSubscription.xul', 
-    '', 'modal, resizable=yes', params).focus(); 
+    window.openDialog('chrome://foxyproxy/content/subscriptions/addEditPatternSubscription.xul',
+    '', 'modal, resizable=yes', params).focus();
   } else {
      window.openDialog('chrome://foxyproxy/content/subscriptions/addEditProxySubscription.xul',
     '', 'modal, resizable=yes', params).focus();
@@ -573,7 +573,7 @@ function editSubscription(type) {
         out.userValues, patternSubscriptionsTree.currentIndex);
       // If new proxies were added we should add the patterns to them as
       // well but only to them!
-      let proxyList = params.out.proxies; 
+      let proxyList = params.out.proxies;
       if (proxyList.length !== 0) {
         patternSubscriptions.addPatterns(selectedSubscription, proxyList, null);
       }
@@ -600,13 +600,13 @@ function deleteSubscriptions(type) {
   }
   // We save the current index to select the proper row after the
   // subscription got deleted.
-  let selIndex = subscriptionsTree.currentIndex; 
+  let selIndex = subscriptionsTree.currentIndex;
   // Currently, we have seltype=single that's why "selectedSubscription" is
   // in singular but it is planned to allow the user to delete more than one
-  // subscription at once. That's why "deletePatternSubscriptions" is in 
+  // subscription at once. That's why "deletePatternSubscriptions" is in
   // plural. The same reasoning holds for the two following functions.
   let selectedSubscription = getSelectedSubscription(type);
-  if (foxyproxy.warnings.showWarningIfDesired(window, 
+  if (foxyproxy.warnings.showWarningIfDesired(window,
       [type + "subscription.del.subscription"], type +"SubDelete")) {
     if (selectedSubscription.timer) {
       selectedSubscription.timer.cancel();
@@ -622,11 +622,11 @@ function deleteSubscriptions(type) {
     } else {
       // TODO: What about pattern subscriptions attached to it?
       subscriptions.deleteProxies(foxyproxy.proxies);
-      utils.broadcast(true /*write settings*/, "foxyproxy-proxy-change"); 
+      utils.broadcast(true /*write settings*/, "foxyproxy-proxy-change");
     }
     subscriptions.subscriptionsList.splice(selIndex, 1);
     subscriptions.writeSubscriptions();
-    subscriptionsTree.view = subscriptions.makeSubscriptionsTreeView(); 
+    subscriptionsTree.view = subscriptions.makeSubscriptionsTreeView();
     // Deleting the subscription file if it is empty in order to avoid errors
     // during startup.
     if (subscriptions.subscriptionsList.length === 0) {
@@ -644,7 +644,7 @@ function deleteSubscriptions(type) {
       if (selIndex === subscriptionsTree.view.rowCount) {
         selIndex = selIndex - 1;
       }
-      subscriptionsTree.view.selection.select(selIndex);  
+      subscriptionsTree.view.selection.select(selIndex);
     }
   }
 }
@@ -696,10 +696,10 @@ function viewSubscriptions(type) {
 function onSubscriptionsAction(type) {
   try {
     switch (document.getElementById(type + "ActionList").selectedIndex) {
-      case 0:  
+      case 0:
         addSubscription(type);
         break;
-      case 1: 
+      case 1:
         editSubscription(type);
         break;
       case 2:
@@ -707,19 +707,18 @@ function onSubscriptionsAction(type) {
         break;
       case 3:
         refreshSubscriptions(type);
-        break;  
+        break;
       case 4:
         viewSubscriptions(type);
         break;
-    } 
+    }
   } catch (e) {
     dump("There went something wrong in the " + type + " tree selection: " + e);
-
   }
 }
 
 function openSubscriptionsURL(type) {
-  fpc.openAndReuseOneTabPerURL("http://getfoxyproxy.org/" + type + 
+  fpc.openAndReuseOneTabPerURL("http://getfoxyproxy.org/" + type +
     "subscriptions/share.html");
 }
 
@@ -843,8 +842,8 @@ function exportSettings() {
   // But we need the subscriptions as well if a user wants to export her
   // settings. Therefore, handleImportExport() prepares the settings file before
   // exporting (i.e. the pattern subscriptions are added) if "false" and "true"
-  // are passed as parameters. We use "false" and "false" as parameters in
-  // order to remove the subscriptions from the settings file again after it got
+  // are passed as parameters. We use "false" and "false" as parameters in order
+  // to remove the subscriptions from the settings file again after it got
   // exported in order not to clutter it unnecessarily.
   if (patternSubscriptions.subscriptionsList.length > 0) {
     patternSubscriptions.handleImportExport("pattern", false, true);
@@ -888,7 +887,7 @@ function onProxyTreeSelected() {
 function onSubTreeSelected(type) {
   let selLength;
   if (type === "pattern") {
-    selLength = utils.getSelectedIndices(patternSubscriptionsTree).length; 
+    selLength = utils.getSelectedIndices(patternSubscriptionsTree).length;
   } else {
     selLength = utils.getSelectedIndices(proxySubscriptionsTree).length;
   }

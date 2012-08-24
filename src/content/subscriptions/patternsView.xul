@@ -28,8 +28,8 @@
   <script src="patternsView.js"/>
 
   <hbox flex="1">
-    <tree id="patternsViewTree" flex="1" align="stretch"
-          enableColumnDrag="true" seltype="single">
+    <tree id="patternsViewTree" flex="1" align="stretch" enableColumnDrag="true"
+          seltype="single">
       <treecols pickertooltiptext="&foxyproxy.tree.pickertooltiptext.label;">
         <treecol id="name" label="&foxyproxy.pattern.name.label;" flex="1"
                  persist="width ordinal hidden"/>

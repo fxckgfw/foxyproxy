@@ -101,10 +101,6 @@
       <tab id="foxyproxy-global-tab" label="&foxyproxy.tab.global.label;"
         accesskey="&foxyproxy.tab.global.accesskey;"
         tooltiptext="&foxyproxy.tab.global.tooltip;" class="uncram-tab"/>
-      <!--<tab id="foxyproxy-server-subscriptions-tab" class="uncram-tab"
-            label="&foxyproxy.server.subscriptions.label;"
-            accesskey="&foxyproxy.server.subscriptions.accesskey;"
-            tooltiptext="&foxyproxy.server.subscriptions.tooltip;"/>-->
       <tab id="foxyproxy-quickadd-tab" label="&foxyproxy.quickadd.label;"
         accesskey="&foxyproxy.quickadd.accesskey;"
         tooltiptext="&foxyproxy.quickadd.tooltip;"
@@ -123,7 +119,7 @@
 
       <!-- proxy tree -->
       <tabpanel flex="1" orient="vertical">
-        <separator class="thin" />
+        <separator class="thin"/>
 
         <hbox flex="1">
           <tree id="proxyTree" align="stretch" enableColumnDrag="true"
@@ -133,57 +129,57 @@
             <treecols
               pickertooltiptext="&foxyproxy.tree.pickertooltiptext.label;">
               <treecol id="enabledCol" label="&foxyproxy.enabled.label;"
-                flex="1" persist="width ordinal hidden" type="checkbox" />
+                flex="1" persist="width ordinal hidden" type="checkbox"/>
               <splitter class="tree-splitter"/>
               <treecol id="colorCol" label="&foxyproxy.color.label;"
-                flex="1" persist="width ordinal hidden" />
-              <splitter class="tree-splitter" />
+                flex="1" persist="width ordinal hidden"/>
+              <splitter class="tree-splitter"/>
               <treecol id="nameCol" label="&foxyproxy.proxy.name.label;"
-                primary="true" flex="1" persist="width ordinal hidden" />
-              <splitter class="tree-splitter" />
+                primary="true" flex="1" persist="width ordinal hidden"/>
+              <splitter class="tree-splitter"/>
               <treecol id="descriptionCol"
                 label="&foxyproxy.proxy.notes.label;" flex="1"
-                persist="width ordinal hidden" />
-              <splitter class="tree-splitter" />
+                persist="width ordinal hidden"/>
+              <splitter class="tree-splitter"/>
               <treecol id="hostCol" label="&foxyproxy.host.label.2;"
-                hidden="true" flex="1" persist="width ordinal hidden" />
-              <splitter class="tree-splitter" />
+                hidden="true" flex="1" persist="width ordinal hidden"/>
+              <splitter class="tree-splitter"/>
               <treecol id="portCol" label="&foxyproxy.port.label;"
-                hidden="true" flex="1" persist="width ordinal hidden" />
-              <splitter class="tree-splitter" />
+                hidden="true" flex="1" persist="width ordinal hidden"/>
+              <splitter class="tree-splitter"/>
               <treecol id="isSocksCol" label="&foxyproxy.issocks.label;"
-                hidden="true" flex="1" persist="width ordinal hidden" />
-              <splitter class="tree-splitter" />
+                hidden="true" flex="1" persist="width ordinal hidden"/>
+              <splitter class="tree-splitter"/>
               <treecol id="socksverCol"
                 label="&foxyproxy.socks.version.label;" hidden="true"
-                flex="1" persist="width ordinal hidden" />
-              <splitter class="tree-splitter" />
+                flex="1" persist="width ordinal hidden"/>
+              <splitter class="tree-splitter"/>
               <treecol id="wpadCol"
                 label="&foxyproxy.wpad.tree.label;" hidden="true"
-                flex="1" persist="width ordinal hidden" />
-              <splitter class="tree-splitter" /> 
+                flex="1" persist="width ordinal hidden"/>
+              <splitter class="tree-splitter"/> 
               <treecol id="autopacCol"
                 label="&foxyproxy.autopacurl.label;" hidden="true"
-                flex="1" persist="width ordinal hidden" />
-              <splitter class="tree-splitter" />
+                flex="1" persist="width ordinal hidden"/>
+              <splitter class="tree-splitter"/>
               <treecol id="animatedIconsCol"
                 label="&foxyproxy.animatedicons.label;" hidden="true"
-                flex="1" persist="width ordinal hidden" />
-              <splitter class="tree-splitter" />
+                flex="1" persist="width ordinal hidden"/>
+              <splitter class="tree-splitter"/>
               <treecol id="cycleCol"
                 label="&foxyproxy.includeincycle.label;" hidden="true"
-                flex="1" persist="width ordinal hidden" />
-              <splitter class="tree-splitter" />
+                flex="1" persist="width ordinal hidden"/>
+              <splitter class="tree-splitter"/>
               <treecol id="remoteDNSCol"
                 label="&foxyproxy.proxydns.label4;" hidden="true"
-                flex="1" persist="width ordinal hidden" />
-              <splitter class="tree-splitter" />
+                flex="1" persist="width ordinal hidden"/>
+              <splitter class="tree-splitter"/>
               <treecol id="fromSubscriptionCol" hidden="true"
                 label="&foxyproxy.fromSubscription.label;"
                 flex="1" persist="width ordinal hidden"/>
             </treecols>
             <treechildren id="proxyTreeChildren" flex="1"
-              ondblclick="onSettings(false);" context="proxyTreeMenu" />
+              ondblclick="onSettings(false);" context="proxyTreeMenu"/>
           </tree>
           <vbox>
             <button id="foxyproxy-up-button" pack="start" command="moveUpCmd"
@@ -208,7 +204,7 @@
         <description style="width: 1em;">
           &foxyproxy.proxy.subscriptions.description;
         </description>
-        <separator class="thin" />
+        <separator class="thin"/>
         <hbox flex="1">
            <tree id="proxySubscriptionsTree" class="treeStyling" align="stretch"
              enableColumnDrag="true" flex="1" seltype="single"
@@ -302,101 +298,101 @@
         <description style="width: 1em;">
           &foxyproxy.pattern.subscriptions.description;
         </description>
-        <separator class="thin" />
+        <separator class="thin"/>
         <hbox flex="1">
           <!-- Do not specify row="" here (at least if you do not have enough
                pattern subscriptions to fill it); your computer would almost
                freeze in this case -->
-           <tree id="patternSubscriptionsTree" class="treeStyling"
-             align="stretch" enableColumnDrag="true" flex="1" seltype="single"
-             onselect="onSubTreeSelected('pattern');">
-             <treecols
-               pickertooltiptext="&foxyproxy.tree.pickertooltiptext.label;">
-               <treecol id="patternSubscriptionsEnabled"
-                 label="&foxyproxy.enabled.label;" flex="1"
-                 persist="width ordinal hidden" type="checkbox"/>
-               <splitter class="tree-splitter"/>
-               <treecol id="patternSubscriptionsName" primary="true"
-                 label="&foxyproxy.name.label;" flex="1"
-                 persist="width ordinal hidden"/>
-               <splitter class="tree-splitter"/>
-               <treecol id="patternSubscriptionsNotes"
-                 label="&foxyproxy.notes.label;" flex="1"
-                 persist="width ordinal hidden"/>
-               <splitter class="tree-splitter"/>
-               <treecol id="patternSubscriptionsUri" flex="1"
-                 persist="width ordinal hidden"
-                 label="&foxyproxy.tab.logging.url.label;"/>
-               <splitter class="tree-splitter"/>
-               <treecol id="patternSubscriptionsProxy" hidden="true"
-                 label="&foxyproxy.proxy.label;"
-                 flex="1" persist="width ordinal hidden"/>
-               <splitter class="tree-splitter"/>
-               <treecol id="patternSubscriptionsRefresh" pack="center"
-                 label="&foxyproxy.updatefrequency.label;" flex="1"
-                 persist="width ordinal hidden"/>
-               <splitter class="tree-splitter"/>
-               <treecol id="patternSubscriptionsStatus" flex="1"
-                 persist="width ordinal hidden"
-                 label="&foxyproxy.status.label;"/>
-               <splitter class="tree-splitter"/>
-               <treecol id="patternSubscriptionsLastUpdate" hidden="true"
-                 label="&foxyproxy.lastupdate.label;" flex="1"
-                 persist="width ordinal hidden"/>
-               <splitter class="tree-splitter"/>
-               <treecol id="patternSubscriptionsFormat" hidden="true"
-                 persist="width ordinal hidden" flex="1"
-                 label="&foxyproxy.format.label;"/>
-               <splitter class="tree-splitter"/>
-               <treecol id="patternSubscriptionsObfuscation" hidden="true"
-                 label="&foxyproxy.obfuscation.label;" flex="1"
-                 persist="width ordinal hidden"/>
-               <splitter class="tree-splitter"/>
-             </treecols>
-             <treechildren id="patternSubscriptionsTreeChildren" flex="1"
-               ondblclick="onDblClickSubscriptionsTree('pattern');"
-               context="patternSubTreeMenu"/>
-           </tree>
-         </hbox>
-         <hbox>
-           <!-- No hbox here as there will be a warning in the error console
-                about it due to the fact that hboxes won't work well with
-                inlined html tags -->
-           <description style="padding-top: 5px;">
-             <html:a class="link" onclick="openSubscriptionsURL('pattern');">
-               &foxyproxy.pattern.subscriptions.sharing.label;
-             </html:a>
-           </description>
-           <spacer flex="1"/>
-           <vbox>
-             <menulist id="patternActionList" pack="start"
-               tooltiptext="&foxyproxy.pattern.subscriptions.menulist.tooltip;">
-               <menupopup>
-                 <menuitem
-                   label="&foxyproxy.pattern.subscriptions.addSubscription;"/>
-                 <menuitem
-                   label="&foxyproxy.pattern.subscriptions.editSelection;"
-                   disabled="true" observes="patternsubtree-row-selected"/>
-                 <menuitem
-                   label="&foxyproxy.pattern.subscriptions.deleteSelections;"
-                   disabled="true" observes="patternsubtree-row-selected"/>
-                 <menuitem
-                   label="&foxyproxy.pattern.subscriptions.refreshSelections;"
-                   disabled="true" observes="patternsubtree-row-selected"/>
-                 <menuitem
-                   label="&foxyproxy.pattern.subscriptions.viewSubscription;"
-                   disabled="true" observes="patternsubtree-row-selected"/>
-               </menupopup>
-             </menulist>
-           </vbox>
-           <vbox pack="start">
-             <button id="patternSubscriptionsAction"
-               onclick="onSubscriptionsAction('pattern');"
-               label="&foxyproxy.pattern.subscriptions.go.label;"
-               tooltiptext="&foxyproxy.pattern.subscriptions.go.tooltip;"/>
-           </vbox>
-         </hbox>
-      </tabpanel>
+          <tree id="patternSubscriptionsTree" class="treeStyling"
+            align="stretch" enableColumnDrag="true" flex="1" seltype="single"
+            onselect="onSubTreeSelected('pattern');">
+            <treecols
+              pickertooltiptext="&foxyproxy.tree.pickertooltiptext.label;">
+              <treecol id="patternSubscriptionsEnabled"
+                label="&foxyproxy.enabled.label;" flex="1"
+                persist="width ordinal hidden" type="checkbox"/>
+              <splitter class="tree-splitter"/>
+              <treecol id="patternSubscriptionsName" primary="true"
+                label="&foxyproxy.name.label;" flex="1"
+                persist="width ordinal hidden"/>
+              <splitter class="tree-splitter"/>
+              <treecol id="patternSubscriptionsNotes"
+                label="&foxyproxy.notes.label;" flex="1"
+                persist="width ordinal hidden"/>
+              <splitter class="tree-splitter"/>
+              <treecol id="patternSubscriptionsUri" flex="1"
+                persist="width ordinal hidden"
+                label="&foxyproxy.tab.logging.url.label;"/>
+              <splitter class="tree-splitter"/>
+              <treecol id="patternSubscriptionsProxy" hidden="true"
+                label="&foxyproxy.proxy.label;"
+                flex="1" persist="width ordinal hidden"/>
+              <splitter class="tree-splitter"/>
+              <treecol id="patternSubscriptionsRefresh" pack="center"
+                label="&foxyproxy.updatefrequency.label;" flex="1"
+                persist="width ordinal hidden"/>
+              <splitter class="tree-splitter"/>
+              <treecol id="patternSubscriptionsStatus" flex="1"
+                persist="width ordinal hidden"
+                label="&foxyproxy.status.label;"/>
+              <splitter class="tree-splitter"/>
+              <treecol id="patternSubscriptionsLastUpdate" hidden="true"
+                label="&foxyproxy.lastupdate.label;" flex="1"
+                persist="width ordinal hidden"/>
+              <splitter class="tree-splitter"/>
+              <treecol id="patternSubscriptionsFormat" hidden="true"
+                persist="width ordinal hidden" flex="1"
+                label="&foxyproxy.format.label;"/>
+              <splitter class="tree-splitter"/>
+              <treecol id="patternSubscriptionsObfuscation" hidden="true"
+                label="&foxyproxy.obfuscation.label;" flex="1"
+                persist="width ordinal hidden"/>
+              <splitter class="tree-splitter"/>
+            </treecols>
+            <treechildren id="patternSubscriptionsTreeChildren" flex="1"
+              ondblclick="onDblClickSubscriptionsTree('pattern');"
+              context="patternSubTreeMenu"/>
+          </tree>
+        </hbox>
+        <hbox>
+          <!-- No hbox here as there will be a warning in the error console
+               about it due to the fact that hboxes won't work well with
+               inlined html tags -->
+          <description style="padding-top: 5px;">
+            <html:a class="link" onclick="openSubscriptionsURL('pattern');">
+              &foxyproxy.pattern.subscriptions.sharing.label;
+            </html:a>
+          </description>
+          <spacer flex="1"/>
+          <vbox>
+            <menulist id="patternActionList" pack="start"
+              tooltiptext="&foxyproxy.pattern.subscriptions.menulist.tooltip;">
+              <menupopup>
+                <menuitem
+                  label="&foxyproxy.pattern.subscriptions.addSubscription;"/>
+                <menuitem
+                  label="&foxyproxy.pattern.subscriptions.editSelection;"
+                  disabled="true" observes="patternsubtree-row-selected"/>
+                <menuitem
+                  label="&foxyproxy.pattern.subscriptions.deleteSelections;"
+                  disabled="true" observes="patternsubtree-row-selected"/>
+                <menuitem
+                  label="&foxyproxy.pattern.subscriptions.refreshSelections;"
+                  disabled="true" observes="patternsubtree-row-selected"/>
+                <menuitem
+                  label="&foxyproxy.pattern.subscriptions.viewSubscription;"
+                  disabled="true" observes="patternsubtree-row-selected"/>
+              </menupopup>
+            </menulist>
+          </vbox>
+          <vbox pack="start">
+            <button id="patternSubscriptionsAction"
+              onclick="onSubscriptionsAction('pattern');"
+              label="&foxyproxy.pattern.subscriptions.go.label;"
+              tooltiptext="&foxyproxy.pattern.subscriptions.go.tooltip;"/>
+          </vbox>
+        </hbox>
+     </tabpanel>
 
       <!-- global settings -->
       <tabpanel flex="1" orient="vertical">
@@ -1141,10 +1137,7 @@
       <menuitem command="refreshProxSubCmd"/>
       <menuitem command="viewProxSubCmd"/>
     </menupopup>
-
-     
   </popupset>
-
   
   <command id="addProxSubCmd"
     label="&foxyproxy.proxy.subscriptions.addSubscription;"
@@ -1369,8 +1362,8 @@
     <broadcaster id="patternsubtree-row-selected" disabled="true"/>
     <broadcaster id="statusBarWidthBroadcaster" disabled="true"/>
     <broadcaster id="autoAddBroadcaster" hidden="true"/>
-    <broadcaster id="quickAddBroadcaster" hidden="true"/>    
-    <broadcaster id="notDefaultSettingsBroadcaster" hidden="true"/>    
+    <broadcaster id="quickAddBroadcaster" hidden="true"/>
+    <broadcaster id="notDefaultSettingsBroadcaster" hidden="true"/>
   </broadcasterset>
 
   <popupset>

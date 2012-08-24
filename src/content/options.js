@@ -296,7 +296,7 @@ function onResetSettingsURL() {
     proxySubscriptions.writeSubscriptions();
   }
   updateSettingsInfo();
-  overlay.alert(this, foxyproxy.getMessage("settings.default2"));  
+  overlay.alert(this, foxyproxy.getMessage("settings.default2"));
 }
 
 /* Contains items which can be updated via toolbar/statusbar/menubar/context-menu as well as the options dialog,

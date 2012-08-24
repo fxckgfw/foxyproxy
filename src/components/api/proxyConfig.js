@@ -206,6 +206,7 @@ ProxyConfig.prototype = {
   },
 
   manualConfig: {
+    owner: null,
     // Due to https://bugzilla.mozilla.org/show_bug.cgi?id=553102
     __exposedProps__ : {
       host : "rw",
@@ -213,8 +214,6 @@ ProxyConfig.prototype = {
       socks : "rw",
       socksversion : "rw"
     },
-
-    owner: null,
 
     get host() {
       return this.owner._wrappedProxy.manualconf.host;
@@ -258,6 +257,8 @@ ProxyConfig.prototype = {
   },
 
   autoConfig: {
+    owner: null,
+    autoConfObj: null,
     // Due to https://bugzilla.mozilla.org/show_bug.cgi?id=553102
     __exposedProps__ : {
       loadNotification : "rw",
@@ -268,9 +269,6 @@ ProxyConfig.prototype = {
       disableOnBadPAC : "rw",
       mode : "rw"
     },
-
-    owner: null,
-    autoConfObj: null,
 
     get loadNotification() {
       return this.autoConfObj.loadNotification;

@@ -14,7 +14,6 @@
                  type="text/css"?>
 <!DOCTYPE overlay SYSTEM "chrome://foxyproxy/locale/foxyproxy.dtd">
 
-
 <dialog id="foxyproxyLastStatus" windowtype="foxyproxy"
         title="&foxyproxy.standard.label; - 
 	       &foxyproxy.pattern.subscriptions.lastStatus.label;" 

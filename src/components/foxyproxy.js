@@ -799,11 +799,13 @@ foxyproxy.prototype = {
     // the API, we should create an API object within foxyproxy.js to handle it.
     this.apiDisabled = gGetSafeAttrB(node, "apiDisabled", false);
     this.proxies.fromDOM(mode, doc);
+    // We need to populate the warnings before calling setMode() as we check
+    // for the patternModeCookieWarning if we are in pattern mode.
+    this.warnings.fromDOM(doc);
     this.setMode(mode, false, true);
     this.random.fromDOM(doc);
     this.quickadd.fromDOM(doc); // KEEP THIS BEFORE this.autoadd.fromDOM() else fromDOM() is overwritten!?
     this.autoadd.fromDOM(doc);
-    this.warnings.fromDOM(doc);
     this.defaultPrefs.fromDOM(doc);
   },
 
@@ -1696,6 +1698,7 @@ foxyproxy.prototype = {
   },
 
   warnings : {
+    // XXX Why is this not just an object?
     _warnings : [],
     
     /**
@@ -1756,6 +1759,7 @@ foxyproxy.prototype = {
         if (name === "noneEncodingWarning") {
           name = "patternEncodingWarning";
         }
+        dump("Adding warning: " + name + "\n");
         this._warnings[name] = n.attributes[i].value == "true";
       }
     }
@@ -1770,6 +1774,7 @@ foxyproxy.prototype = {
     return false;
     /*! end-foxyproxy-standard !*/     
   },
+
   classID: Components.ID("{46466e13-16ab-4565-9924-20aac4d98c82}"),
   contractID: "@leahscape.org/foxyproxy/service;1",
   classDescription: "FoxyProxy Core",

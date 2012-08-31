@@ -673,7 +673,10 @@ function refreshSubscriptions(type) {
     // value) but restarting e.g. Firefox gives "ggmmem" as default value while
     // the color value (#0055E5) is the same in both case. Not sure about the
     // reason and whether it is an issue...
-    fpc.makeProxyTreeView(proxyTree, foxyproxy.proxies, document);
+    // And the mode menu needs to get updated, too. Otherwise we could get some
+    // strange unkown-proxy-mode-errors while trying to switch the proxy used
+    // as the mode menu is still populated with the old proxy ids.
+    utils.broadcast(true /*write settings*/, "foxyproxy-proxy-change");
   }
 }
 

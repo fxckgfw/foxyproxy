@@ -39,6 +39,7 @@ var oldProxies = [];
 var helperProxies = [];
 
 Cu.import("resource://foxyproxy/subscriptions.jsm");
+Cu.import("resource://foxyproxy/utils.jsm");
 
 function onLoad(type) {
   try {
@@ -311,8 +312,10 @@ function refreshSubscription(type, e) {
         subscription, true);
       // We need to refresh the proxy tree of the option dialog as well as the
       // colors of the refreshed proxies would not show up otherwise (if the
-      // options dialog is not closed).
-      fpc.makeProxyTreeView(opener.proxyTree, fp.proxies, opener.document);
+      // options dialog is not closed). The same holds for the mode menu in the
+      // options dialog as otherwise old proxy ids could cause
+      // unkown-proxy-mode-errors.
+      utils.broadcast(true /*write settings*/, "foxyproxy-proxy-change");
     }
   }
 }

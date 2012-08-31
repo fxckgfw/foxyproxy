@@ -184,10 +184,12 @@ var subscriptions = {
     } catch(e) {
       if (e.name === "NS_ERROR_FILE_NOT_FOUND") {
         errorMessages.push(this.fp.
-          getMessage("patternsubscription.error.network")); 
+          getMessage(this.type + "subscription.error.network")); 
         return errorMessages;
       } else {
-        dump("Error while loading the subscription: " + e + "\n");
+        errorMessages.push(this.fp.
+          getMessage(this.type + "subscription.error.network.unspecified"));
+        return errorMessages;
       }
     }
   },
@@ -304,99 +306,105 @@ var subscriptions = {
     var refreshedSubscription = this.loadSubscription(aSubscription.
       metadata.url, base64Encoded);
     // Our "array test" we deployed in addeditsubscription.js as well.
-    if (refreshedSubscription && !(refreshedSubscription.length ===
-          undefined)) {
-      for (var i = 0; i < refreshedSubscription.length; i++) {
-        errorText = errorText + "\n" + refreshedSubscription[i];
-      }
-      this.fp.alert(null, this.fp.getMessage(this.type +
-        "subscription.update.failure") + "\n" + errorText);
-      aSubscription.metadata.lastStatus = this.fp.getMessage("error");
-      // So, we really did not get a proper subscription but error messages.
-      // Making sure that they are shown in the lastStatus dialog.
-      aSubscription.metadata.errorMessages = refreshedSubscription;
-    } else {
-      // We do not want to lose our metadata here as the user just
-      // refreshed the subscription to get up-to-date patterns/proxies.
-      if (this.type === "pattern") {
-        aSubscription.patterns = refreshedSubscription.patterns;
-        // And it means above all refreshing the patterns... But first we
-        // generate the proxy list.
-        if (aSubscription.metadata.proxies.length > 0) {
-          proxyList = this.fp.proxies.getProxiesFromId(aSubscription.metadata.
-            proxies);
-          // TODO: We are not distinguishing between different pattern
-          // subsciptions yet. Thus, if we refresh one all patterns get deleted
-          // and only the new ones get added afterwards.
-          // First, deleting the old subscription patterns.
-          this.deletePatterns(proxyList);
-          // Now, we add the refreshed ones...
-          this.addPatterns(null, proxyList, aIndex);
+    if (refreshedSubscription) {
+      // We got errors in an array back...
+      if (!refreshedSubscription.length === undefined) {
+        for (var i = 0; i < refreshedSubscription.length; i++) {
+          errorText = errorText + "\n" + refreshedSubscription[i];
         }
+        this.fp.alert(null, this.fp.getMessage(this.type +
+          "subscription.update.failure") + "\n" + errorText);
+        aSubscription.metadata.lastStatus = this.fp.getMessage("error");
+        // So, we really did not get a proper subscription but error messages.
+        // Making sure that they are shown in the lastStatus dialog.
+        aSubscription.metadata.errorMessages = refreshedSubscription;
       } else {
-        aSubscription.proxies = refreshedSubscription.proxies;
-        // Adding the proxy/proxies back to the pattern subscription if it/they
-        // was/were. How do we know we have the same proxies after a refresh?
-        // -> IP:Port! But we need to cycle through all subscriptions, right?
-        // And safe not only the IP:Port but the pattern subscriptions that had
-        // the proxy/proxies attached to it as well in order to add both the
-        // proxy/proxies to them AND add the patterns of the subscription to the
-        // former as well. Duh.
-        let length = patternSubscriptions.subscriptionsList.length;
-        let savedProxies = [];
-        let patSub, patProxyList, patProxy, proxySub;
-        for (let i = 0; i < length; ++i) {
-          patSub = patternSubscriptions.subscriptionsList[i];
-          if (patSub.metadata.proxies.length > 0) {
-            // Okay that particular pattern subscription is indeed used by at
-            // least one proxy. Let's check whether it is one from a proxy
-            // subscription.
-            patProxyList = this.fp.proxies.getProxiesFromId(patSub.metadata.
+        // We do not want to lose our metadata here as the user just
+        // refreshed the subscription to get up-to-date patterns/proxies.
+        if (this.type === "pattern") {
+           aSubscription.patterns = refreshedSubscription.patterns;
+          // And it means above all refreshing the patterns... But first we
+          // generate the proxy list.
+          if (aSubscription.metadata.proxies.length > 0) {
+            proxyList = this.fp.proxies.getProxiesFromId(aSubscription.metadata.
               proxies);
-            for (let j = 0, pLength = patProxyList.length; j < pLength; ++j) {
-              patProxy = patProxyList[j];
-              if (patProxy.fromSubscription) {
-                // We know that this proxy is from a proxy list, save it
-                // together with its subscription.
-                proxySub = [];
-                proxySub.push(patProxy.manualconf.host + ":" + patProxy.
-                  manualconf.port);
-                proxySub.push(patSub);
-                savedProxies.push(proxySub);
+            // TODO: We are not distinguishing between different pattern
+            // subsciptions yet. Thus, if we refresh one all patterns get
+            // deleted and only the new ones get added afterwards.
+            // First, deleting the old subscription patterns.
+            this.deletePatterns(proxyList);
+            // Now, we add the refreshed ones...
+            this.addPatterns(null, proxyList, aIndex);
+          }
+        } else {
+          aSubscription.proxies = refreshedSubscription.proxies;
+          // Adding the proxy/proxies back to the pattern subscription if
+          // it/they was/were. How do we know we have the same proxies after a
+          // refresh? -> IP:Port! But we need to cycle through all
+          // subscriptions, right? And safe not only the IP:Port but the pattern
+          // subscriptions that had the proxy/proxies attached to it as well in
+          // order to add both the proxy/proxies to them AND add the patterns of
+          // the subscription to the former as well. Duh.
+          let length = patternSubscriptions.subscriptionsList.length;
+          let savedProxies = [];
+          let patSub, patProxyList, patProxy, proxySub;
+          for (let i = 0; i < length; ++i) {
+            patSub = patternSubscriptions.subscriptionsList[i];
+            if (patSub.metadata.proxies.length > 0) {
+              // Okay that particular pattern subscription is indeed used by at
+              // least one proxy. Let's check whether it is one from a proxy
+              // subscription.
+              patProxyList = this.fp.proxies.getProxiesFromId(patSub.metadata.
+                proxies);
+              for (let j = 0, pLength = patProxyList.length; j < pLength; ++j) {
+                patProxy = patProxyList[j];
+                if (patProxy.fromSubscription) {
+                  // We know that this proxy is from a proxy list, save it
+                  // together with its subscription.
+                  proxySub = [];
+                  proxySub.push(patProxy.manualconf.host + ":" + patProxy.
+                    manualconf.port);
+                  proxySub.push(patSub);
+                  savedProxies.push(proxySub);
+                }
               }
             }
           }
+          this.deleteProxies(this.fp.proxies);
+          let addedProxies = this.addProxies(refreshedSubscription.proxies);
+          // Let's add the proxies back to the respective pattern subscriptions
+          // and then the patterns of the latter back to them. But only if the
+          // old proxies are among the refreshed ones.
+          this.addProxiesBack(savedProxies, addedProxies);
         }
-        this.deleteProxies(this.fp.proxies);
-        let addedProxies = this.addProxies(refreshedSubscription.proxies);
-        // Let's add the proxies back to the respective pattern subscriptions
-        // and then the patterns of the latter back to them. But only if the old
-        // proxies are among the refreshed ones.
-        this.addProxiesBack(savedProxies, addedProxies);
+        // Maybe the obfuscation changed. We should update this...
+        aSubscription.metadata.obfuscation = refreshedSubscription.
+          metadata.obfuscation;
+        aSubscription.metadata.lastStatus = this.fp.getMessage("okay");
+        // We did not get any errors. Therefore, resetting the errorMessages
+        // array to null.
+        aSubscription.metadata.errorMessages = null;
+        // If we have a timer-based update of subscriptions we deactive the
+        // success popup as it can be quite annoying to get such kinds of popups
+        // while surfing. TODO: Think about doing the same for failed updates.
+        if (showResponse) {
+          this.fp.alert(null, this.fp.getMessage(this.type +
+            "subscription.update.success"));
+        }
       }
-      // Maybe the obfuscation changed. We should update this...
-      aSubscription.metadata.obfuscation = refreshedSubscription.
-        metadata.obfuscation;
-      aSubscription.metadata.lastStatus = this.fp.getMessage("okay");
-      // We did not get any errors. Therefore, resetting the errorMessages
-      // array to null.
-      aSubscription.metadata.errorMessages = null;
-      // If we have a timer-based update of subscriptions we deactive the
-      // success popup as it can be quite annoying to get such kinds of popups
-      // while surfing. TODO: Think about doing the same for failed updates.
-      if (showResponse) {
-        this.fp.alert(null, this.fp.getMessage(this.type +
-          "subscription.update.success"));
+      aSubscription.metadata.lastUpdate = this.fp.logg.format(Date.now());
+      // Refreshing a subscription means refreshing the timer as well if there
+      // is any...
+      if (aSubscription.metadata.refresh > 0) {
+        this.setSubscriptionTimer(aSubscription, true, false);
       }
+      this.subscriptionsList[aIndex] = aSubscription;
+      this.writeSubscriptions();
+    } else {
+      // We show an error at least...
+      this.fp.alert(null, this.fp.getMessage(this.type +
+        "subscription.update.failure"));
     }
-    aSubscription.metadata.lastUpdate = this.fp.logg.format(Date.now());
-    // Refreshing a subscription means refreshing the timer as well if there
-    // is any...
-    if (aSubscription.metadata.refresh > 0) {
-      this.setSubscriptionTimer(aSubscription, true, false);
-    }
-    this.subscriptionsList[aIndex] = aSubscription;
-    this.writeSubscriptions();
   },
 
   setSubscriptionTimer: function(aSubscription, bRefresh, bStartup) {
@@ -778,7 +786,7 @@ patternSubscriptions.parseSubscription = function(subscriptionText,
       parsedSubscription = this.parseSubscriptionDetails(subscriptionContent,
         errorMessages);
       // Did we get the errorMessages back? If so return them immediately.
-      if (parsedSubscription.length !== undefined) {
+      if (parsedSubscription && parsedSubscription.length !== undefined) {
         return parsedSubscription;
       }
       if (!parsedSubscription.metadata) {
@@ -1056,8 +1064,10 @@ proxySubscriptions.addProxies = function(proxies) {
     proxy.mode = "manual";
     proxy.manualconf.host = proxies[i].ip;
     proxy.manualconf.port = proxies[i].port;
-    // If we do not have port 80 or 443 assume a SOCKS proxy.
-    if (proxies[i].port !== "80" && proxies[i].port !== "443") {
+    // TODO: How can we do a better job in identifying HTTP/SOCKS proxies
+    // If we do not have port 80, 443 or 3128 assume a SOCKS proxy.
+    if (proxies[i].port !== "80" && proxies[i].port !== "443" && proxies[i].
+        port !== "3128") {
       proxy.manualconf.isSocks = true;
       proxy.socksversion = "5";
     }
@@ -1065,6 +1075,7 @@ proxySubscriptions.addProxies = function(proxies) {
     this.fp.proxies.push(proxy);
     addedProxies.push(proxy);
   }
+  dump("\n");
   return addedProxies;
 };
 

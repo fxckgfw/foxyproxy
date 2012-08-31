@@ -1075,7 +1075,6 @@ proxySubscriptions.addProxies = function(proxies) {
     this.fp.proxies.push(proxy);
     addedProxies.push(proxy);
   }
-  dump("\n");
   return addedProxies;
 };
 

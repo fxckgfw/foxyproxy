@@ -1759,7 +1759,6 @@ foxyproxy.prototype = {
         if (name === "noneEncodingWarning") {
           name = "patternEncodingWarning";
         }
-        dump("Adding warning: " + name + "\n");
         this._warnings[name] = n.attributes[i].value == "true";
       }
     }

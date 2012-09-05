@@ -680,6 +680,10 @@ Proxy.prototype = {
     }
   },
 
+  // TODO: Bug 769764: aProxyString _can_ be something like
+  // "PROXY http://www.foo.com.8080" now. Think about the ":" as splitter and/or
+  // whether we really want to have the first and second element of the
+  // proxyInfo array in newProxyInfo() then.
   createProxyInfo: function(aProxyString) {
     let proxyInfo = aProxyString.slice(6).split(":");
     if (aProxyString.indexOf("PROXY") === 0) {
@@ -732,6 +736,7 @@ Proxy.prototype = {
         return this.direct;
       } else {
         let uri = this.iOService.newURI(spec, null, null);
+        // TODO: Bug 769764: getProxyForURI() has now 4 parameters.
         let proxyString = this.sysProxyService.getProxyForURI(uri);
         if (proxyString == "DIRECT") {
           return this.direct;

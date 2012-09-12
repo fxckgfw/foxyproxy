@@ -65,7 +65,7 @@ function onLoad(type) {
       // is constructed using those saved id's. That accomplish the following
       // five lines of code.
       if (metadata.proxies.length > 0) {
-        proxyArray = fp.proxies.getProxiesFromId(metadata.proxies);	
+        proxyArray = fp.proxies.getProxiesFromId(metadata.proxies);
 	for (var i = 0; i < proxyArray.length; i++) {
           proxies.push(proxyArray[i]);
           // We are pushing the proxies here as well and do not copy them
@@ -82,7 +82,7 @@ function onLoad(type) {
         formatList.selectedIndex = 0;
       } else {
         formatList.selectedIndex = 1;
-      } 
+      }
       // And assuming that we only have 'None' and 'Base64' so far as 
       // obfuscation methods...
       if (metadata.obfuscation === "Base64") {
@@ -113,7 +113,7 @@ function onOK(type) {
     var url = document.getElementById("subscriptionUrl").value;
     // ToDo: Do we want to check whether it is really a URL here?
     if (url === null || url === "") {
-      fp.alert(this, fp.getMessage(type + "subscription.invalid.url")); 
+      fp.alert(this, fp.getMessage(type + "subscription.invalid.url"));
       return false;
     }
     userValues.enabled = document.getElementById("subscriptionEnabled").checked;
@@ -134,7 +134,7 @@ function onOK(type) {
         // Creating the array of proxy id's for saving to disk and rebuilding
         // the proxy list on startup.
         userValues.proxies.push(proxies.item(i).id);
-      } 
+      }
     }
     userValues.refresh = document.getElementById("refresh").value;
     userValues.format = document.getElementById("subscriptionFormat").
@@ -144,33 +144,39 @@ function onOK(type) {
     if (window.arguments[0].inn === null) {
       base64Encoded = userValues.obfuscation === "Base64";
       foxyproxyFormat = userValues.format === "FoxyProxy";
+      let error;
       if (type === "pattern") {
-        parsedSubscription = patternSubscriptions.
-	  loadSubscription(userValues.url, base64Encoded);
+        error = patternSubscriptions.loadSubscription(userValues, base64Encoded,
+          function(sub, values) {
+            if (sub && sub.length === undefined) {
+              patternSubscriptions.addSubscription(sub, values);
+              // Now adding the patterns to the proxies provided the user has
+              // added at least one proxy in the addeditsubscription dialog.
+              if (proxies.list.length !== 0) {
+                patternSubscriptions.addPatterns(null, proxies.list, null);
+              }
+              utils.broadcast(false, "foxyproxy-tree-update");
+            } else {
+              for (let i = 0; i < sub.length; i++) {
+	        errorText = errorText + "\n" + parsedSubscription[i];
+              }
+              fp.alert(null, fp.getMessage(type +
+                "subscription.initial.import.failure") + "\n" + errorText);
+            }
+          }
+        );
       } else {
         parsedSubscription = proxySubscriptions.
 	  loadSubscription(userValues.url, base64Encoded);
       }
-      // The following is kind of a trivial array test. We need that to check
-      // whether we got an array of error messages back or a subscription
-      // object. Iff the latter is the case we add a new subscription. As we
-      // do not have any subscription yet if we got an array back, we show
-      // an import error message and just return false.
-      if (parsedSubscription && parsedSubscription.length === undefined) {
-        window.arguments[0].out = {
-          subscription : parsedSubscription,
-          userValues : userValues,
-	  // Returning the proxies as well makes it easier to add the patterns.
-          proxies : proxies.list
-        };
-	return true;
-      } else {
-        for (i = 0; i < parsedSubscription.length; i++) {
-	  errorText = errorText + "\n" + parsedSubscription[i];
+      if (error) {
+        for (i = 0; i < error.length; i++) {
+          errorText = errorText + "\n" + error[i];
         }
         fp.alert(null, fp.getMessage(type +
           "subscription.initial.import.failure") + "\n" + errorText);
       }
+      return true;
     } else {
       // The user has edited the pattern subscription. Maybe she removed a proxy
       // and we have to delete the respective patterns and to restore the old
@@ -178,8 +184,8 @@ function onOK(type) {
       // edits a subscription, as there can be no patterns to remove/enable if 
       // the user adds a new subscription.
       if (helperProxies.length > 0) {
-        patternSubscriptions.deletePatterns(helperProxies); 
-      }	
+        patternSubscriptions.deletePatterns(helperProxies);
+      }
       // If a user edits a subscription it can happen that she already had
       // added proxies to it. But we want to give only those back that were
       // not yet tied to the subscription in order to avoid doubling the

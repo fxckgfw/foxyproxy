@@ -149,15 +149,32 @@ var subscriptions = {
     }
   },
 
-  loadSubscription: function(aURLString, bBase64) {
+  loadSubscription: function(values, bBase64, callback) {
     try {
+      var that = this;
       var errorMessages = [];
       var subscriptionText;
       var parsedSubscription;
       var subscriptionContent = null;
       var req = Cc["@mozilla.org/xmlextras/xmlhttprequest;1"].
         createInstance(Ci.nsIXMLHttpRequest);
-      req.open("GET", aURLString, false);
+      req.onload = function(aEvent) {
+        subscriptionText = req.responseText;
+        // Stripping of all unnecessary whitespaces and newlines etc. before
+        // testing.
+        let base64TestString = subscriptionText.replace(/\s*/g, '');
+        let isBase64 = that.base64RegExp.test(base64TestString);
+        if (isBase64) {
+          // Decoding the Base64.
+          subscriptionText = atob(base64TestString);
+        } 
+        callback(that.parseSubscription(subscriptionText, errorMessages,
+          isBase64, bBase64), values);
+      };
+      req.onerror = function(aEvent) {
+        // TODO: What should we do here?
+      }
+      req.open("GET", values.url, true);
       if (this.type === "pattern") {
         // We do need the following line of code. Otherwise we would get
         // an error that our JSON is not well formed if we load it from a local
@@ -170,18 +187,10 @@ var subscriptions = {
         req.overrideMimeType("text/plain");
       }
       req.send(null);
-      subscriptionText = req.responseText;
-      // Stripping of all unnecessary whitespaces and newlines etc. before
-      // testing.
-      let base64TestString = subscriptionText.replace(/\s*/g, '');
-      let isBase64 = this.base64RegExp.test(base64TestString);
-      if (isBase64) {
-        // Decoding the Base64.
-        subscriptionText = atob(base64TestString);
-      } 
-      return this.parseSubscription(subscriptionText, errorMessages, isBase64,
-        bBase64);
+      // No exceptions, returning false indicating there were no errors.
+      return false;
     } catch(e) {
+      // We are reporting these errors back immediately
       if (e.name === "NS_ERROR_FILE_NOT_FOUND") {
         errorMessages.push(this.fp.
           getMessage(this.type + "subscription.error.network")); 

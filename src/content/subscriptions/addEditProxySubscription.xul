@@ -25,7 +25,8 @@
         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
 	persist="screenX screenY width height">
 
-        <script src="addEditSubscription.js" />
+  <script type="application/x-javascript;version=1.7"
+          src="addEditSubscription.js" />
 
   <vbox>
     <separator class="thin"/>

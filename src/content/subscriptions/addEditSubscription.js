@@ -48,7 +48,7 @@ function onLoad(type) {
     var formatList = document.getElementById("subscriptionFormat");
     var obfuscationList = document.getElementById("subscriptionObfuscation");
     if (type === "pattern") {
-      proxyTree = document.getElementById("subscriptionProxyTree"); 
+      proxyTree = document.getElementById("subscriptionProxyTree");
     }
     if (window.arguments[0].inn !== null) {
       metadata = window.arguments[0].inn.subscription.metadata;
@@ -171,8 +171,24 @@ function onOK(type) {
           }
         );
       } else {
-        parsedSubscription = proxySubscriptions.
-	  loadSubscription(userValues.url, base64Encoded);
+        error = proxySubscriptions.loadSubscription(userValues, base64Encoded,
+          function(subscription, values) {
+            if (subscription && subscription.length === undefined) {
+              proxySubscriptions.addSubscription(subscription, values);
+              // Redrawing the proxy tree as well as we probably added new
+              // proxies. We do not have to broadcast "foxyproxy-tree-update" as
+              // well as this is handled by |_updateView()|, too. The latter is
+              // called by broadcasting "foxyproxy-proxy-change".
+              utils.broadcast(true, "foxyproxy-proxy-change");
+            } else {
+              for (let i = 0; i < subscription.length; i++) {
+	        errorText = errorText + "\n" + subscription[i];
+              }
+              fp.alert(null, fp.getMessage(type +
+                "subscription.initial.import.failure") + "\n" + errorText);
+            }
+          }
+        );
       }
       if (error) {
         for (i = 0; i < error.length; i++) {
@@ -208,9 +224,9 @@ function onOK(type) {
             // Now, the second use case of our herlperProxies array (the first
             // was storing the proxies that need to get removed from the 
             // subscription).
-            helperProxies.push(oldProxies[j]); 
+            helperProxies.push(oldProxies[j]);
 	  }
-	} 
+	}
 	if (!proxyFound) {
 	  newProxies.push(proxies.item(i));
         };
@@ -224,7 +240,7 @@ function onOK(type) {
         // we had when we loaded the addeditsubscriptions.xul AND are still to
         // be used for the subscription. AND the status changed. Let's adapt 
 	// it for the patterns tied to these old proxies.
-	patternSubscriptions.changeSubStatus(helperProxies, 
+	patternSubscriptions.changeSubStatus(helperProxies,
           userValues.enabled);
       }
       window.arguments[0].out = {
@@ -250,47 +266,46 @@ function onLastStatus(type) {
   }
   if (!metadata.errorMessages) {
     statusString = statusString + "   " + contentLength + " " + fp.
-      getMessage(type + "subscription.successful.retrieved"); 
-  } 
+      getMessage(type + "subscription.successful.retrieved");
+  }
   var p = {
     inn: {
       status: statusString,
-      errorMessages: metadata.errorMessages 
+      errorMessages: metadata.errorMessages
     }
   };
   window.openDialog('chrome://foxyproxy/content/subscriptions/lastStatus.xul', '', 'modal, centerscreen, resizable', p).focus();
 }
 
 function addProxy(e) {
-  if (e.type === "click" && e.button === 0) { 
+  if (e.type === "click" && e.button === 0) {
     var p = {
       inn: {
-        title: fp.getMessage("choose.proxy.patterns"), 
-        
+        title: fp.getMessage("choose.proxy.patterns"),
         pattern: true
-      }, 
+      },
       out: null
-    };          
+    };
     window.openDialog("chrome://foxyproxy/content/chooseproxy.xul", "",
-        "modal, centerscreen, resizable", p).focus(); 
+        "modal, centerscreen, resizable", p).focus();
     if (p.out) {
       proxies.push(p.out.proxy);
-      fpc.makeProxyTreeView(proxyTree, proxies, document); 
+      fpc.makeProxyTreeView(proxyTree, proxies, document);
     }
   }
 }
 
 function removeProxy(e) {
-  if (e.type === "click" && e.button === 0) { 
+  if (e.type === "click" && e.button === 0) {
     if (proxyTree.currentIndex < 0) {
-      fp.alert(this, fp.getMessage("patternsubscription.noproxy.selected")); 
+      fp.alert(this, fp.getMessage("patternsubscription.noproxy.selected"));
       return;
-    }   
+    }
     // Why does helperProxies.push(proxies.list.
     // splice(proxyTree.currentIndex,1)) not work?
     helperProxies.push(proxies.list[proxyTree.currentIndex]);
     proxies.list.splice(proxyTree.currentIndex, 1);
-    fpc.makeProxyTreeView(proxyTree, proxies, document); 
+    fpc.makeProxyTreeView(proxyTree, proxies, document);
   }
 }
 

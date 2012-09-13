@@ -520,18 +520,6 @@ function addSubscription(type) {
     window.openDialog('chrome://foxyproxy/content/subscriptions/addEditProxySubscription.xul',
     '', 'modal, resizable=yes', params).focus();
   }
-  /*if (params.out) {
-    if (type === "pattern") {
-      
-    } else {
-      proxySubscriptions.addSubscription(params.out.subscription, params.out.
-        userValues);
-      proxySubscriptionsTree.view = proxySubscriptions.
-        makeSubscriptionsTreeView();
-      // Redrawing the proxy tree as well as we probably added new proxies.
-      utils.broadcast(true /*write settings, "foxyproxy-proxy-change");
-    }
-  }*/
 }
 
 // We need this extra step here. Otherwise the user may click on the empty tree

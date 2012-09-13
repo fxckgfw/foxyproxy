@@ -172,7 +172,15 @@ var subscriptions = {
           isBase64, bBase64), values);
       };
       req.onerror = function(aEvent) {
-        // TODO: What should we do here?
+        // TODO: We use currently the error handling routine in our callback
+        // which only show the errors parseSubscription() returns. We should
+        // think about including/reporting more specific error messages as we
+        // get e.g. the status code back.
+        // TODO: We may want to have a special test for |isBase64| and |bBase64|
+        // being |null| as we would probably generate an error if we landed in
+        // this error handler with valid JSON as response text.
+        callback(that.parseSubscription(req.responseText, errorMessages,
+          null, null), values);
       }
       req.open("GET", values.url, true);
       if (this.type === "pattern") {

@@ -147,9 +147,14 @@ function onOK(type) {
       let error;
       if (type === "pattern") {
         error = patternSubscriptions.loadSubscription(userValues, base64Encoded,
-          function(sub, values) {
-            if (sub && sub.length === undefined) {
-              patternSubscriptions.addSubscription(sub, values);
+          function(subscription, values) {
+            // The following is kind of a trivial array test. We need that to
+            // check whether we got an array of error messages back or a
+            // subscription object. Iff the latter is the case we add a new
+            // subscription. As we do not have any subscription yet if we got an
+            // array back, we just show an import error message.
+            if (subscription && subscription.length === undefined) {
+              patternSubscriptions.addSubscription(subscription, values);
               // Now adding the patterns to the proxies provided the user has
               // added at least one proxy in the addeditsubscription dialog.
               if (proxies.list.length !== 0) {
@@ -157,8 +162,8 @@ function onOK(type) {
               }
               utils.broadcast(false, "foxyproxy-tree-update");
             } else {
-              for (let i = 0; i < sub.length; i++) {
-	        errorText = errorText + "\n" + parsedSubscription[i];
+              for (let i = 0; i < subscription.length; i++) {
+	        errorText = errorText + "\n" + subscription[i];
               }
               fp.alert(null, fp.getMessage(type +
                 "subscription.initial.import.failure") + "\n" + errorText);

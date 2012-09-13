@@ -604,7 +604,7 @@ function deleteSubscriptions(type) {
     } else {
       // TODO: What about pattern subscriptions attached to it?
       subscriptions.deleteProxies(foxyproxy.proxies);
-      utils.broadcast(true /*write settings*/, "foxyproxy-proxy-change");
+      utils.broadcast(true, "foxyproxy-proxy-change");
     }
     subscriptions.subscriptionsList.splice(selIndex, 1);
     subscriptions.writeSubscriptions();
@@ -635,24 +635,9 @@ function refreshSubscriptions(type) {
   if (type === "pattern") {
     patternSubscriptions.refreshSubscription(patternSubscriptions.
       subscriptionsList[patternSubscriptionsTree.currentIndex], true);
-    patternSubscriptionsTree.view = patternSubscriptions.
-      makeSubscriptionsTreeView();
   } else {
     proxySubscriptions.refreshSubscription(proxySubscriptions.
       subscriptionsList[proxySubscriptionsTree.currentIndex], true);
-    proxySubscriptionsTree.view = proxySubscriptions.
-      makeSubscriptionsTreeView();
-    // We need to refresh the proxy tree as well as the colors of the
-    // refreshed proxies would not show up otherwise (if the options dialog is
-    // not closed).
-    // TODO: The color string of refreshed proxies is "nmbado" (= the default
-    // value) but restarting e.g. Firefox gives "ggmmem" as default value while
-    // the color value (#0055E5) is the same in both case. Not sure about the
-    // reason and whether it is an issue...
-    // And the mode menu needs to get updated, too. Otherwise we could get some
-    // strange unkown-proxy-mode-errors while trying to switch the proxy used
-    // as the mode menu is still populated with the old proxy ids.
-    utils.broadcast(true /*write settings*/, "foxyproxy-proxy-change");
   }
 }
 

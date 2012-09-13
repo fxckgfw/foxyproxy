@@ -195,13 +195,16 @@ var subscriptions = {
         req.overrideMimeType("text/plain");
       }
       req.send(null);
-      // No exceptions, returning false indicating there were no errors.
+      // No exceptions, returning false indicating there were no such errors.
       return false;
     } catch(e) {
-      // We are reporting these errors back immediately
+      // We are reporting these errors back immediately.
       if (e.name === "NS_ERROR_FILE_NOT_FOUND") {
+        // We do not discriminate between "patternsubscription.error.network"
+        // and "proxysubscription.error.network" as the message is not dependent
+        // on the subscription type.
         errorMessages.push(this.fp.
-          getMessage(this.type + "subscription.error.network")); 
+          getMessage("patternsubscription.error.network")); 
         return errorMessages;
       } else {
         errorMessages.push(this.fp.

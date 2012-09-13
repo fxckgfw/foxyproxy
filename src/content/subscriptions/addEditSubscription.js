@@ -102,6 +102,15 @@ function onLoad(type) {
   }
 }
 
+function generateError(type, error) {
+  let errorText = "";
+  for (let i = 0; i < error.length; i++) {
+    errorText = errorText + "\n" + error[i];
+  }
+  fp.alert(null, fp.getMessage(type +
+    "subscription.initial.import.failure") + "\n" + errorText);
+}
+
 function onOK(type) {
   try {
     var userValues = {};
@@ -160,13 +169,9 @@ function onOK(type) {
               if (proxies.list.length !== 0) {
                 patternSubscriptions.addPatterns(null, proxies.list, null);
               }
-              utils.broadcast(false, "foxyproxy-tree-update");
+              utils.broadcast(true, "foxyproxy-tree-update");
             } else {
-              for (let i = 0; i < subscription.length; i++) {
-	        errorText = errorText + "\n" + subscription[i];
-              }
-              fp.alert(null, fp.getMessage(type +
-                "subscription.initial.import.failure") + "\n" + errorText);
+              generateError(type, subscription);
             }
           }
         );
@@ -181,21 +186,13 @@ function onOK(type) {
               // called by broadcasting "foxyproxy-proxy-change".
               utils.broadcast(true, "foxyproxy-proxy-change");
             } else {
-              for (let i = 0; i < subscription.length; i++) {
-	        errorText = errorText + "\n" + subscription[i];
-              }
-              fp.alert(null, fp.getMessage(type +
-                "subscription.initial.import.failure") + "\n" + errorText);
+              generateError(type, subscription);
             }
           }
         );
       }
       if (error) {
-        for (i = 0; i < error.length; i++) {
-          errorText = errorText + "\n" + error[i];
-        }
-        fp.alert(null, fp.getMessage(type +
-          "subscription.initial.import.failure") + "\n" + errorText);
+        generateError(type, error);
       }
       return true;
     } else {
@@ -252,6 +249,9 @@ function onOK(type) {
     return false;
   } catch(e) {
     dump("There went something wrong in the onOK function: " + e + "\n");
+    // TODO: Maybe just closing the window after this exception is not the
+    // right way to cope with the situation!?
+    return true;
   }
 }
 
@@ -336,12 +336,6 @@ function refreshSubscription(type, e) {
     } else {
       proxySubscriptions.refreshSubscription(window.arguments[0].inn.
         subscription, true);
-      // We need to refresh the proxy tree of the option dialog as well as the
-      // colors of the refreshed proxies would not show up otherwise (if the
-      // options dialog is not closed). The same holds for the mode menu in the
-      // options dialog as otherwise old proxy ids could cause
-      // unkown-proxy-mode-errors.
-      utils.broadcast(true /*write settings*/, "foxyproxy-proxy-change");
     }
   }
 }

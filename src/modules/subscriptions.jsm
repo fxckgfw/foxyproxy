@@ -168,7 +168,6 @@ var subscriptions = {
           // Decoding the Base64.
           subscriptionText = atob(base64TestString);
         }
-        dump(subscriptionText + "\n");
         callback(that.parseSubscription(subscriptionText, errorMessages,
           isBase64, bBase64), values);
       };

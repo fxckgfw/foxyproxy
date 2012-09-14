@@ -168,19 +168,24 @@ var subscriptions = {
           // Decoding the Base64.
           subscriptionText = atob(base64TestString);
         }
+        // TODO: A more fine grained error handling. I.e. 200 is okay but
+        // (everything?) else errorMessages.push().
         callback(that.parseSubscription(subscriptionText, errorMessages,
           isBase64, bBase64), values);
       };
       req.onerror = function(aEvent) {
-        // TODO: We use currently the error handling routine in our callback
-        // which only show the errors parseSubscription() returns. We should
-        // think about including/reporting more specific error messages as we
-        // get e.g. the status code back.
-        // TODO: We may want to have a special test for |isBase64| and |bBase64|
-        // being |null| as we would probably generate an error if we landed in
-        // this error handler with valid JSON as response text.
-        callback(that.parseSubscription(req.responseText, errorMessages,
-          null, null), values);
+        if (req.status === 0) {
+          // We did get nothing at all, not even response headers.
+          errorMessages.push(that.fp.
+            getMessage("patternsubscription.error.network.noresponse"));
+        } else {
+          // Showing the status to the user.
+          errorMessages.push(that.fp.
+            getMessage("patternsubscription.error.network.response", [req.
+              statusText]));
+        }
+        callback(that.parseSubscription(req.responseText, errorMessages, null,
+          null), values);
       }
       req.open("GET", values.url, true);
       if (this.type === "pattern") {
@@ -819,6 +824,10 @@ patternSubscriptions.defaultMetaValues = {
 
 patternSubscriptions.parseSubscription = function(subscriptionText,
   errorMessages, isBase64, userBase64) {
+  if (errorMessages.length !== 0) {
+    // We've already got error messages. Let's return them immediately.
+    return errorMessages;
+  }
   try {
     // No Base64 (anymore), thus we guess we have a plain FoxyProxy
     // subscription first. If that is not true we check the AutoProxy format.
@@ -1051,6 +1060,10 @@ proxySubscriptions.subscriptionsFile = "proxySubscriptions.json";
 
 proxySubscriptions.parseSubscription = function(subscriptionText,
   errorMessages, isBase64, userBase64) {
+  if (errorMessages.length !== 0) {
+    // We've already got errorMessages. Let's return them immediately.
+    return errorMessages;
+  }
   try {
     let parsedSubscription = this.getObjectFromText(subscriptionText,
       errorMessages);

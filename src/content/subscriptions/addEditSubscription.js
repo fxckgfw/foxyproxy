@@ -234,9 +234,9 @@ function onOK(type) {
       if (userValues.enabled !== window.arguments[0].inn.subscription.
 	  metadata.enabled && helperProxies.length > 0) {
         // Okay, we had proxies and we know that these are really only proxies
-        // we had when we loaded the addeditsubscriptions.xul AND are still to
-        // be used for the subscription. AND the status changed. Let's adapt 
-	// it for the patterns tied to these old proxies.
+        // we had when we loaded the addEditPatternsubscriptions.xul AND are 
+        // still to be used for the subscription. AND the status changed. Let's
+        // adapt it for the patterns tied to these old proxies.
 	patternSubscriptions.changeSubStatus(helperProxies,
           userValues.enabled);
       }

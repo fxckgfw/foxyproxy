@@ -1,13 +1,14 @@
 * proxy subscription feature
 * optimized loading of PAC files during start-up
-* replaced global ids and variables with local ones in our overlay
+* replaced global ids and variables with local ones in the overlay
 * added support for selecting multiple proxies in the proxies tree
 * added support for selecting multiple patterns in the URL patterns tree
 * deleting patterns does not scroll back the patterns tree anymore (see:
-  http://forums.getfoxyproxy.org/viewtopic.php?f=4&t=616&p=1441) 
+  http://forums.getfoxyproxy.org/viewtopic.php?f=4&t=616&p=1441)
 * proxy color is shown in FoxyProxy's mode menu and in the menus in the
   context menu, the toolbar and the add-on bar
 * patternModeCookieWarning can now be hidden on start-up
+* made loading of subscriptions asynchronous
 * replaced deprecated octal file permissions
 * code clean-up
 * updated locales

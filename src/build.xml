@@ -38,7 +38,7 @@
        current dir -->
   <target name="build">
     <copy file="chrome.manifest.packaging" tofile="${temp-path}/chrome.manifest" />
-    <!-- set the copyright date in license header blocks --> 
+    <!-- set the copyright date in license header blocks -->
     <replaceregexp flags="gs">
       <regexp pattern="#%#%"/>
       <substitution expression="2012"/>
@@ -50,7 +50,7 @@
       <zipfileset dir="${temp-path}" prefix="chrome" includes="skin/**"/>
       <zipfileset dir="${temp-path}" prefix="chrome" includes="locale/**"/>
       <zipfileset dir="${temp-path}/components" prefix="components" includes="**/**" />
-      <zipfileset dir="${temp-path}/modules" prefix="modules" includes="**/**" />     
+      <zipfileset dir="${temp-path}/modules" prefix="modules" includes="**/**" />
       <zipfileset dir="${temp-path}/defaults" prefix="defaults" includes="**/**" />
     </zip>
   </target>
@@ -61,7 +61,7 @@
 
   <target name="init">
     <mkdir dir="${temp-path}" />
-    <mkdir dir="${target-path}" />    
+    <mkdir dir="${target-path}" />
     <delete>
       <fileset dir="${target-path}" includes="**/*.*/**"/>
     </delete>
@@ -69,7 +69,7 @@
 
   <target name="build-foxyproxy-standard" depends="init">
     <property name="edition" value="standard" />
-    <property name="version" value="4.0" />
+    <property name="version" value="4.0b3" />
     <property name="src-path" value="${temp-path}"/>
     <antcall>
       <target name="copy"/>
@@ -83,7 +83,7 @@
       <target name="clean"/>
     </antcall>
   </target>
-  
+
   <target name="build-foxyproxy-basic" depends="init">
     <property name="edition" value="basic" />
     <property name="version" value="3.0" />
@@ -95,10 +95,10 @@
     <ant antfile="development.xml" target="convert-to-foxyproxy-basic" inheritAll="true">
       <property name="standard" value="true"/>
     </ant>
-    <antcall>      
+    <antcall>
       <target name="build"/>
       <target name="clean"/>
     </antcall>
   </target>
-  
+
 </project>

@@ -139,7 +139,7 @@ Proxy.prototype = {
   rejectCookiesOld: false,
   readOnlyProperties : ["lastresort", "fp", "wrappedJSObject", "matches", /* from ManualConf */ "owner",
                         /* from AutoConf */ "timer", /* from AutoConf */  "_resolver"],
- 
+
   fromDOM : function(node, includeTempPatterns) {
     this.name = node.getAttribute("name");
     this.id = node.getAttribute("id") || this.fp.proxies.uniqueRandom();
@@ -149,7 +149,7 @@ Proxy.prototype = {
     this.autoconf.fromDOM(node.getElementsByTagName("autoconf").item(0));
     let wpadNode = node.getElementsByTagName("autoconf").item(1);
     if (wpadNode) {
-      this.wpad.fromDOM(wpadNode); 
+      this.wpad.fromDOM(wpadNode);
     } else {
       this.wpad = new AutoConf(this, this.fp);
       this.wpad.url = "http://wpad/wpad.dat";
@@ -170,7 +170,7 @@ Proxy.prototype = {
       // There is only "auto" as proxy mode (we choose it) and two autoconf
       // modes, "wpad" and "pac", now (we choose former). 
       this._mode = "auto";
-      this._autoconfMode = gGetSafeAttr(node, "autoconfMode", "wpad"); 
+      this._autoconfMode = gGetSafeAttr(node, "autoconfMode", "wpad");
     }
     this.selectedTabIndex = node.getAttribute("selectedTabIndex") || "0";
     if (this.fp.isFoxyProxySimple() && this.selectedTabIndex > 1)
@@ -263,7 +263,7 @@ Proxy.prototype = {
     this.selectedTabIndex = pc.selectedTabIndex;
     this.lastresort = false;
   },
-  
+
   /**
    * |includeTempPatterns| is only true when the user is copying a proxy and all its data
    */
@@ -294,7 +294,7 @@ Proxy.prototype = {
       if (!m.temp || (includeTempPatterns && m.temp)) matchesElem.appendChild(m.toDOM(doc, includeTempPatterns));
 
     e.appendChild(this.autoconf.toDOM(doc));
-    e.appendChild(this.wpad.toDOM(doc)); 
+    e.appendChild(this.wpad.toDOM(doc));
     e.appendChild(this.manualconf.toDOM(doc));
     return e;
   },
@@ -308,7 +308,7 @@ Proxy.prototype = {
   shouldDisableDNSPrefetch : function() {
     return this._mode != "direct" && this._enabled && this._proxyDNS;
   },
-  
+
   /**
    * Merge |src| into this, using the keys of the |nameValuePairs|
    * associative array as the properties to overwrite in |this|.
@@ -322,12 +322,12 @@ Proxy.prototype = {
         obj[propertyName] = nameValuePairs[propertyName];
     }
   },
-  
+
   getPropertyValue : function(propertyName) {
     var obj = this.propertyBelongsTo(propertyName, this, this.manualconf, this.autoconf);
     return obj ? obj[propertyName] : "";
   },
-  
+
   /**
    * Checks if |propertyName| is a known writable property of the classes Proxy,
    * ManualConf, or AutoConf (excepting readOnly properties). |x|, |y|, or |z|
@@ -337,18 +337,17 @@ Proxy.prototype = {
   propertyBelongsTo : function(propertyName, x, y, z) {
     function validType(str) {
       return str == "string" || str == "boolean" || str == "number";
-    }    
+    }
     if (this.readOnlyProperties.indexOf(propertyName) > -1) return null;
-    
     if (validType(typeof(this[propertyName])))
       return x;
     else if (validType(typeof(this.manualconf[propertyName])))
       return y;
     else if (validType(typeof(this.autoconf[propertyName])))
       return z;
-    return null;    
+    return null;
   },
-  
+
   /**
    * Use as a static-style method on this class.
    * Returns a |Proxy| instance based on the |nameValuePairs|
@@ -361,7 +360,6 @@ Proxy.prototype = {
       proxyElem = doc.createElement("proxy"),
       manualConfElem = doc.createElement("manualconf"),
       autoConfElem = doc.createElement("autoconf");
-    
     proxyElem.appendChild(manualConfElem);
     proxyElem.appendChild(autoConfElem);
     for (var i in nameValuePairs) {
@@ -373,19 +371,19 @@ Proxy.prototype = {
          building an arbitrarily large DOM element.
       */
       if (elem)
-        elem.setAttribute(i, nameValuePairs[i] == null ? "" : nameValuePairs[i]);         
+        elem.setAttribute(i, nameValuePairs[i] == null ? "" : nameValuePairs[i]);
     }
     // Turn it on by default
     if (!nameValuePairs["enabled"])
       proxyElem.setAttribute("enabled", "true");
-    
+
     // If a socks version was specified and either isSocks is true or no isSocks parameter was specified,
     // then enable socks
     if (nameValuePairs["socksversion"] && (nameValuePairs["isSocks"] == "true" || !nameValuePairs["isSocks"])) {
       nameValuePairs["isSocks"] = true;
       manualConfElem.setAttribute("isSocks", "true");
       manualConfElem.setAttribute("socksversion", parseInt(nameValuePairs["socksversion"]));
-    }    
+    }
     // If a URL was specified and either mode was specified as auto or no mode was specified,
     // then set mode to auto
     if (nameValuePairs["url"] && (nameValuePairs["mode"] == "auto" || !nameValuePairs["mode"])) {
@@ -396,7 +394,7 @@ Proxy.prototype = {
     var noManual = (nameValuePairs["host"] && !nameValuePairs["port"]) ||
       (!nameValuePairs["host"] && nameValuePairs["port"]);
     if (!nameValuePairs["url"] && noManual) {
-      nameValuePairs["mode"] = "direct";      
+      nameValuePairs["mode"] = "direct";
       proxyElem.setAttribute("mode", "direct");
       dump("No host and port specified, and no PAC URL specified; setting proxy mode to direct.\n");
     }
@@ -413,7 +411,7 @@ Proxy.prototype = {
       proxyElem.setAttribute("name", nameValuePairs["name"]);
     }
     this.fromDOM(proxyElem, true);
-  },  
+  },
 
   set autoconfMode(e) {
     this._autoconfMode = e;
@@ -428,8 +426,8 @@ Proxy.prototype = {
     this.manualconf._makeProxy();
   },
 
-  get proxyDNS() {return this._proxyDNS;},  
-  
+  get proxyDNS() {return this._proxyDNS;},
+
   /**
    * Create a variable that represents the color but as all letters.
    * This is because the CSS style treechildren::-moz-tree-cell(x) requires
@@ -451,7 +449,7 @@ Proxy.prototype = {
     for (var i=0, len = str.length; i<len; i++)
       this.colorString += temp[str[i]];
   },
-  
+
   get color() {
     return this._color;
   },
@@ -469,13 +467,13 @@ Proxy.prototype = {
     this._enabled = e;
     if (this.shouldLoadPAC()) {
       this.preparePACLoading();
-    } 
+    }
   },
 
   get enabled() {return this._enabled;},
 
   shouldLoadPAC : function() {
-    let pacURI; 
+    let pacURI;
     if (this._mode === "system") {
       // We need the try-catch block here as on Mac OS X an exception is thrown
       // if no PACURI is available. On Unix an empty string is given back.
@@ -485,7 +483,7 @@ Proxy.prototype = {
         pacURI = null;
       }
     }
-         
+
     if ((this._mode == "auto" || (this._mode == "system" &&
          this.sysProxyService && pacURI)) && this._enabled) {
       var m = this.fp.mode;
@@ -525,7 +523,7 @@ Proxy.prototype = {
     // from foxyproxy.xml. Nevertheless, we must get sure that systemProxyPAC
     // is not null after startup. Otherwise there would exist corner cases in
     // which the system proxy feature would not work properly.
-    this.systemProxyPAC = new AutoConf(this, this.fp); 
+    this.systemProxyPAC = new AutoConf(this, this.fp);
     // Some integrity maintenance: if this is a manual proxy and
     // this.manualconf.proxy wasn't created during deserialization, disable us.
     if (this._enabled && this._mode == "manual" && !this.manualconf.proxy) {
@@ -538,7 +536,7 @@ Proxy.prototype = {
       }
       !this._enabled &&
         // (proxy, isBeingDeleted, isBeingDisabled, isBecomingDIRECT)  
-        this.fp.proxies.maintainIntegrity(this, false, true, false); 
+        this.fp.proxies.maintainIntegrity(this, false, true, false);
     }
   },
 
@@ -548,7 +546,7 @@ Proxy.prototype = {
       ac = this.autoconf;
     } else if (this._autoconfMode === "wpad") {
       ac = this.wpad;
-    } 
+    }
     // always always always cancel first before doing anything 
     if (ac) {
       ac.timer.cancel();
@@ -599,11 +597,11 @@ Proxy.prototype = {
         return m;
     }
   },
-  
+
   removeURLPattern : function(removeMe) {
     this.matches = this.matches.filter(function(e) {return e != removeMe;});
   },
-  
+
   resolve : function(spec, host, mp, mode) {
     function _notifyUserOfError(spec) {
       /*this.autoconf.errorNotification &&*/
@@ -620,7 +618,7 @@ Proxy.prototype = {
     } else {
       // we have the system proxy settings here
       var str = mp.pacResult = this.systemProxyPAC._resolver.
-        getProxyForURI(spec, host); 
+        getProxyForURI(spec, host);
     }
     if (str && str != "") {
       str = str.toLowerCase();
@@ -633,7 +631,7 @@ Proxy.prototype = {
         if (mode === "wpad") {
           var components = this.wpad.parser.exec(tokens[i]);
         } else if (mode === "pac") {
-          var components = this.autoconf.parser.exec(tokens[i]); 
+          var components = this.autoconf.parser.exec(tokens[i]);
         } else {
           var components = this.systemProxyPAC.parser.exec(tokens[i]);
         }
@@ -697,10 +695,10 @@ Proxy.prototype = {
         remoteResolve = 0;
       }
       return proxyService.newProxyInfo("socks", proxyInfo[0], proxyInfo[1],
-        remoteResolve, 0, null); 
+        remoteResolve, 0, null);
     } else {
       dump("Unknown proxy type!\n");
-      return this.direct; 
+      return this.direct;
     }
   },
 
@@ -731,7 +729,7 @@ Proxy.prototype = {
           return this.resolve(spec, host, mp, "system");
         } else if (this.systemProxyPAC.url == pacURI) {
           // The easiest case: We just take the already loaded PAC
-          return this.resolve(spec, host, mp, "system"); 
+          return this.resolve(spec, host, mp, "system");
         }
         return this.direct;
       } else {
@@ -768,11 +766,11 @@ Proxy.prototype = {
       case "direct": return this.direct;
     }
   },
-  
+
   QueryInterface: XPCOMUtils.generateQI([CI.nsISupports]),
   classDescription: "FoxyProxy Proxy Component",
   classID: Components.ID("{51b469a0-edc1-11da-8ad9-0800200c9a66}"),
-  contractID: "@leahscape.org/foxyproxy/proxy;1"    
+  contractID: "@leahscape.org/foxyproxy/proxy;1"
 };
 
 /**
@@ -832,7 +830,7 @@ ManualConf.prototype = {
     e.setAttribute("host", this._host);
     e.setAttribute("port", this._port);
     e.setAttribute("socksversion", this._socksversion);
-    e.setAttribute("isSocks", this._isSocks); 
+    e.setAttribute("isSocks", this._isSocks);
     return e;
   },
 

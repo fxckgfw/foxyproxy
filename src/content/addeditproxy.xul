@@ -103,7 +103,7 @@
               value="&foxyproxy.validcolor.label;"/>
           </hbox>
         </vbox>
-        <separator/>        
+        <separator/>
         <hbox>
           <groupbox>
             <caption label="&foxyproxy.cache.label;"/>
@@ -157,7 +157,7 @@
             <hbox align="center" class="indent">
               <label value="&foxyproxy.changes.msg1;" class="text-link"
                 popup="newGUIPopup" tooltiptext="&foxyproxy.changes.msg1;"/>
-            </hbox>         
+            </hbox>
             <separator class="thin"/>
             <hbox align="center" class="indent">
               <label value="&foxyproxy.host.label.2;"
@@ -212,10 +212,10 @@
                   observes="autoconf-broadcaster1"
                   accesskey="&foxyproxy.pac.accesskey;"
                   tooltiptext="&foxyproxy.pac.tooltip;"
-                  control="autoconfUrl" /> 
+                  control="autoconfUrl"/>
               </radiogroup>
-            </hbox> 
-            <separator class="thin"/> 
+            </hbox>
+            <separator class="thin"/>
             <hbox class="indent" align="center">
               <label value="&foxyproxy.auto.url.label;"
                 tooltiptext="&foxyproxy.auto.url.tooltip;"/>
@@ -279,7 +279,7 @@
                   </row>
                 </groupbox>
               </rows>
-            </grid> 
+            </grid>
           </groupbox>
         </radiogroup>
       </tabpanel>
@@ -290,7 +290,7 @@
       <separator class="thin"/>
       <hbox>
         <checkbox id="noInternalIPs" 
-                  command="noInternalIPsCmd"/> 
+                  command="noInternalIPsCmd"/>
       </hbox>
       <separator class="thin"/>
       <hbox>
@@ -303,7 +303,7 @@
       </hbox>
       <hbox>
         <button id="foxyproxy-import-url-pattern-button" 
-                command="importURLPatternCmd" class="uncram-btn"/> 
+                command="importURLPatternCmd" class="uncram-btn"/>
         <button id="foxyproxy-export-url-pattern-button" 
                 command="exportURLPatternCmd" class="uncram-btn"/>
       </hbox>
@@ -319,15 +319,14 @@
             <treecol id="pattern" onclick="sort(this.id)" label="&foxyproxy.url.pattern.label;" flex="1" persist="width ordinal hidden"/><splitter class="tree-splitter"/>
             <treecol id="isRegEx" onclick="sort(this.id)" label="&foxyproxy.pattern.type.label;" flex="1" persist="width ordinal hidden" hidden="true"/><splitter class="tree-splitter"/>
             <treecol id="isBlackList" onclick="sort(this.id)" label="&foxyproxy.whitelist.blacklist.label;" flex="1" persist="width ordinal hidden"/><splitter class="tree-splitter"/>
-            <treecol id="caseSensitive" onclick="sort(this.id)" label="&foxyproxy.casesensitive.label;" flex="1" persist="width ordinal hidden" hidden="true"/><splitter class="tree-splitter"/>            
-            <treecol id="temp" onclick="sort(this.id)" label="&foxyproxy.temp.label;" flex="1" persist="width ordinal hidden" hidden="true"/><splitter class="tree-splitter"/>            
-	    <treecol id="fromSubscription" onclick="sort(this.id)" label="&foxyproxy.fromSubscription.label;" flex="1" persist="width ordinal hidden" hidden="true"/><splitter class="tree-splitter"/> 
+            <treecol id="caseSensitive" onclick="sort(this.id)" label="&foxyproxy.casesensitive.label;" flex="1" persist="width ordinal hidden" hidden="true"/><splitter class="tree-splitter"/>
+            <treecol id="temp" onclick="sort(this.id)" label="&foxyproxy.temp.label;" flex="1" persist="width ordinal hidden" hidden="true"/><splitter class="tree-splitter"/>
+	    <treecol id="fromSubscription" onclick="sort(this.id)" label="&foxyproxy.fromSubscription.label;" flex="1" persist="width ordinal hidden" hidden="true"/><splitter class="tree-splitter"/>
           </treecols>
           <treechildren context="urlsTreeContext" ondblclick="onAddEditURLPattern(false);"/>
          </tree>
       </hbox>
-      
-    </tabpanel>   
+    </tabpanel>
   </tabpanels>
   </tabbox>
 </vbox>
@@ -339,8 +338,8 @@
   <separator class="thin"/>
   <hbox>
     <checkbox id="fpniip" 
-              command="noInternalIPsCmd"/> 
-  </hbox> 
+              command="noInternalIPsCmd"/>
+  </hbox>
   <separator class="thin"/>
   <hbox>
     <button id="fpaupb" command="addURLPatternCmd" flex="1" class="uncram-btn"/>
@@ -351,8 +350,8 @@
     <button id="fpwupb" command="wildcardURLPatternReferenceCmd" flex="1" class="uncram-btn"/>
   </hbox>
   <hbox>
-    <button id="fpimupb" command="importURLPatternCmd" class="uncram-btn"/> 
-    <button id="fpexupb" command="exportURLPatternCmd" class="uncram-btn"/> 
+    <button id="fpimupb" command="importURLPatternCmd" class="uncram-btn"/>
+    <button id="fpexupb" command="exportURLPatternCmd" class="uncram-btn"/>
     <spacer flex="1" />
   </hbox>
   <separator/>
@@ -365,8 +364,8 @@
         <treecol id="pattern" onclick="sort(this.id)" label="&foxyproxy.url.pattern.label;" flex="1" persist="width ordinal hidden"/><splitter class="tree-splitter"/>
         <treecol id="isRegEx" onclick="sort(this.id)" label="&foxyproxy.pattern.type.label;" flex="1" persist="width ordinal hidden"/><splitter class="tree-splitter"/>
         <treecol id="isBlackList" onclick="sort(this.id)" label="&foxyproxy.whitelist.blacklist.label;" flex="1" persist="width ordinal hidden"/><splitter class="tree-splitter"/>
-        <treecol id="caseSensitive" onclick="sort(this.id)" label="&foxyproxy.casesensitive.label;" flex="1" persist="width ordinal hidden"/><splitter class="tree-splitter"/>            
-        <treecol id="temp" onclick="sort(this.id)" label="&foxyproxy.temp.label;" flex="1" persist="width ordinal hidden"/><splitter class="tree-splitter"/>            
+        <treecol id="caseSensitive" onclick="sort(this.id)" label="&foxyproxy.casesensitive.label;" flex="1" persist="width ordinal hidden"/><splitter class="tree-splitter"/>
+        <treecol id="temp" onclick="sort(this.id)" label="&foxyproxy.temp.label;" flex="1" persist="width ordinal hidden"/><splitter class="tree-splitter"/>
       </treecols>
       <treechildren context="urlsTreeContext" ondblclick="onAddEditURLPattern(false);"/>
      </tree>
@@ -378,10 +377,10 @@
 	<menupopup id="newGUIPopup">
 		<vbox class="foxyproxy-border" style="height: &foxyproxy.newGUI.popup.height;; width: &foxyproxy.newGUI.popup.width;; padding: .5em;">
 			<description class="foxyproxy-tooltip">
-				&foxyproxy.newGUI1.label;</description>        
+				&foxyproxy.newGUI1.label;</description>
       <separator class="thin"/>
 			<description class="foxyproxy-tooltip">&foxyproxy.newGUI2.label;</description>
-      <separator class="thin"/>      
+      <separator class="thin"/>
 			<description class="text-link" onclick="fpc.openAndReuseOneTabPerURL('http://getfoxyproxy.org/settings-gui.html');">
 				&foxyproxy.newGUI4.label;</description>
 		</vbox>

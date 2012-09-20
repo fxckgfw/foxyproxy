@@ -27,6 +27,7 @@
 <!ENTITY foxyproxy.urlpatterns.accesskey "P">
 <!ENTITY foxyproxy.urlpatterns.tooltip "Padrões de URL">
 <!ENTITY foxyproxy.pattern.type.label "Tipo do padrão">
+<!ENTITY foxyproxy.whitelist.blacklist.label "Lista Branca (Inclusivo) ou Lista Negra (Exclusivo)">
 <!ENTITY foxyproxy.pattern.name.label "Nome do Padrão">
 <!ENTITY foxyproxy.pattern.name.accesskey "P">
 <!ENTITY foxyproxy.pattern.name.tooltip "Nome para o padrão">
@@ -194,6 +195,8 @@
 <!ENTITY foxyproxy.useselectedforallurls.label "Usar proxy selecionado para todas as URL's">
 <!ENTITY foxyproxy.useselectedforallurls.accesskey "U">
 <!ENTITY foxyproxy.useselectedforallurls.tooltip "Usar proxy selecionado para todas as URL's">
+<!ENTITY foxyproxy.whitelist.label "Lista Branca">
+<!ENTITY foxyproxy.whitelist.accesskey "B">
 <!ENTITY foxyproxy.whitelist.tooltip "URLs que combinem com esse padrão serão abertos através deste Proxy">
 <!ENTITY foxyproxy.whitelist.description.label "URLs que combinem com esse padrão serão abertos através deste Proxy">
 <!ENTITY foxyproxy.blacklist.label "Lista negra">
@@ -464,6 +467,7 @@
 <!ENTITY foxyproxy.getfoxyproxyplus.label "Obter FpxyProxy Plus">
 <!ENTITY foxyproxy.aboutdonate.label "Botão doar traz para o PayPal, onde você pode doar para o projeto FoxyProxy para incentivar e apoiar o desenvolvimento. Se você usar FoxyProxy regularmente, por favor, considere doar.">
 <!ENTITY foxyproxy.aboutfpplus.label "O botão FoxyProxy Plus traz para você a um site onde você pode ler sobre os recursos adicionais fornecidos pela edição Plus e, opcionalmente, comprá-lo.">
+<!ENTITY foxyproxy.aboutproxyservice.label "Finalmente, o botão de serviço proxy traz para o nosso site de serviço de proxy, onde você pode comprar o serviço de proxy confiável, de alta largura de banda em muitos países diferentes, a preços razoáveis.">
 <!ENTITY foxyproxy.invalidcolor.label "Cor inválida">
 <!ENTITY foxyproxy.validcolor.label "Cor válida">
 <!ENTITY foxyproxy.color.label "Cor">

@@ -93,7 +93,7 @@
 <!ENTITY foxyproxy.wildcard.example.label "Voorbeeld: *mail.yahoo.com/*">
 <!ENTITY foxyproxy.regex.label "Reguliere uitdrukking">
 <!ENTITY foxyproxy.regex.accesskey "R">
-<!ENTITY foxyproxy.regex.tooltip "Specificeert dat de het URL-patroon een reguliere uitdrukking is">
+<!ENTITY foxyproxy.regex.tooltip "Specificeert dat het URL-patroon een reguliere uitdrukking is">
 <!ENTITY foxyproxy.regex.example.label2 "Voorbeeld: ^https?://.*\.mail\.yahoo\.com/.*$">
 <!ENTITY foxyproxy.version "Versie">
 <!ENTITY foxyproxy.createdBy "Gemaakt door:">
@@ -304,7 +304,7 @@
 <!ENTITY foxyproxy.pactip5.label "hier">
 <!ENTITY foxyproxy.pactip6.label "beschreven. Speciale woorden in de relative:// URL die u opgeeft worden vervangen door de ermee overeenkomende waarden. Zo verwijst bijvoorbeeld relative://ProfD/pacs/proxy3.pac naar het bestand proxy3.pac in the submap van de">
 <!ENTITY foxyproxy.pactip7.label "Firefox profielmap">
-<!ENTITY foxyproxy.pactip8.label "genaamd pacs/. Met Portable Firefox onder Windows is de Firefox profielmap altijd een relatief pad omdat de driveletter kan wijzigen tussen verschillende computers. Merk a.u.b. op dat speciale woorden (ProfD, Home, TempD, enz.) hoofdlettergevoelig zijn!">
+<!ENTITY foxyproxy.pactip8.label "genaamd pacs/. Met Portable Firefox onder Windows is de Firefox profielmap altijd een relatief pad omdat de driveletter kan wijzigen tussen verschillende computers. Merk op dat speciale woorden (ProfD, Home, TempD, enz.) hoofdlettergevoelig zijn!">
 <!ENTITY foxyproxy.contextmenu.label "Pictogram weergeven in het contextmenu">
 <!ENTITY foxyproxy.contextmenu.accesskey "C">
 <!ENTITY foxyproxy.contextmenu.tooltip "Pictogram weergeven in het contextmenu">
@@ -453,7 +453,7 @@
 <!ENTITY foxyproxy.home "Startpagina">
 <!ENTITY foxyproxy.support "Ondersteuning">
 <!ENTITY foxyproxy.credits "Dankzegging">
-<!ENTITY foxyproxy.please.donate.label "Doneer a.u.b.">
+<!ENTITY foxyproxy.please.donate.label "Doneren">
 <!ENTITY foxyproxy.please.donate.accesskey "D">
 <!ENTITY foxyproxy.importantnote.label "Belangrijke opmerking lezen">
 <!ENTITY foxyproxy.resetlocation.label "Locatie verversen">
@@ -465,8 +465,8 @@
 <!ENTITY foxyproxy.proxyservice.accesskey "P">
 <!ENTITY foxyproxy.proxyservice.tooltip "Aanmelden voor proxydiensten">
 <!ENTITY foxyproxy.proxyservice2.label "Behoefte aan snelle, betrouwbare proxy’s in de VS, het VK of andere landen?">
-<!ENTITY foxyproxy.getfoxyproxyplus.label "Installeer FoxyProxy Plus">
-<!ENTITY foxyproxy.aboutdonate.label "De knop Doneren leidt u naar PayPal, waar u kunt doneren aan het FoxyProxy-project om zo de ontwikkeling aan te moedigen en te ondersteunen. Overweeg a.u.b. een donatie als u FoxyProxy regelmatig gebruikt.">
+<!ENTITY foxyproxy.getfoxyproxyplus.label "FoxyProxy Plus installeren">
+<!ENTITY foxyproxy.aboutdonate.label "De knop Doneren leidt u naar PayPal, waar u kunt doneren aan het FoxyProxy-project om zo de ontwikkeling aan te moedigen en te ondersteunen. Overweeg een donatie als u FoxyProxy regelmatig gebruikt.">
 <!ENTITY foxyproxy.aboutfpplus.label "De knop FoxyProxy Plus leidt u naar een website waar u kunt lezen over de extra functionaliteit die de Plus-versie u biedt en waar u deze eventueel kunt aanschaffen.">
 <!ENTITY foxyproxy.aboutproxyservice.label "Tenslotte leidt de knop Proxydienst u naar een website met proxydiensten, waar u betrouwbare en snelle proxydienst in verschillende landen kunt aanschaffen voor een schappelijke prijs.">
 <!ENTITY foxyproxy.invalidcolor.label "Ongeldige kleur">
@@ -489,7 +489,7 @@
 <!ENTITY foxyproxy.proxy.subscriptions.refreshHelp "verwijdert alle bestaande proxy-abonnementen">
 <!ENTITY foxyproxy.proxy.subscriptions.proxy.window.title "Abonnementsproxy’s">
 <!ENTITY foxyproxy.pattern.subscriptions.label "Patroonabonnementen">
-<!ENTITY foxyproxy.pattern.subscriptions.description "Abonneren op door anderen gepubliceerde patronen. Deel u patronen met anderen in een paar muisklikken.">
+<!ENTITY foxyproxy.pattern.subscriptions.description "Abonneer u op door anderen gepubliceerde patronen. Deel uw patronen met anderen in een paar muisklikken.">
 <!ENTITY foxyproxy.pattern.subscriptions.tooltip "Patroonabonnementen beheren">
 <!ENTITY foxyproxy.pattern.subscriptions.accesskey "P">
 <!ENTITY foxyproxy.pattern.subscriptions.sharing.label "Uw patronen delen">
@@ -509,11 +509,11 @@
 <!ENTITY foxyproxy.pattern.subscriptions.notes.tooltip "Abonnementsbeschrijving">
 <!ENTITY foxyproxy.pattern.subscriptions.url.label "Abonnements-URL">
 <!ENTITY foxyproxy.pattern.subscriptions.url.tooltip "Abonnements-URL">
-<!ENTITY foxyproxy.pattern.subscriptions.proxies.tooltip "Proxies die zich hebben geabonneerd op deze patroonlijst">
-<!ENTITY foxyproxy.pattern.subscriptions.addProxies.label "Proxies toevoegen">
-<!ENTITY foxyproxy.pattern.subscriptions.addProxies.tooltip "Proxies toevoegen die zich zullen abonneren op deze patroonlijst">
+<!ENTITY foxyproxy.pattern.subscriptions.proxies.tooltip "Proxy’s die zich hebben geabonneerd op deze patroonlijst">
+<!ENTITY foxyproxy.pattern.subscriptions.addProxies.label "Proxy’s toevoegen">
+<!ENTITY foxyproxy.pattern.subscriptions.addProxies.tooltip "Proxy’s toevoegen die zich zullen abonneren op deze patroonlijst">
 <!ENTITY foxyproxy.pattern.subscriptions.removeProxies.label "Selectie verwijderen">
-<!ENTITY foxyproxy.pattern.subscriptions.removeProxies.tooltip "Abonnement op deze patroonlijst voor geselecteerde proxies beëindigen">
+<!ENTITY foxyproxy.pattern.subscriptions.removeProxies.tooltip "Abonnement op deze patroonlijst voor geselecteerde proxy’s beëindigen">
 <!ENTITY foxyproxy.pattern.subscriptions.refresh.label "Verversingsfrequentie">
 <!ENTITY foxyproxy.pattern.subscriptions.refresh.tooltip "Verversingsfrequentie van dit patroonabonnement in minuten">
 <!ENTITY foxyproxy.pattern.subscriptions.refreshNow.label "Nu verversen">
@@ -567,14 +567,14 @@
 <!ENTITY foxyproxy.enteremail.label "Voer e-mailadres in">
 <!ENTITY foxyproxy.licenseinfo.label "Licentieinformatie">
 <!ENTITY foxyproxy.licensevalid.label "Licentie geldig. Bedankt voor het kopen van FoxyProxy Plus.">
-<!ENTITY foxyproxy.subexpired.label "Licentie geldig, maar uw update-abonnement is verlopen. U intvangt geen updates meer voor FoxyProxy Plus.">
-<!ENTITY foxyproxy.licenseinvalid.label "Licentie ongeldig. U ontvangt geen updates voor FoxyProxy Plus. Koop a.u.b. FoxyProxy Plus.">
+<!ENTITY foxyproxy.subexpired.label "Licentie geldig, maar uw update-abonnement is verlopen. U ontvangt geen updates meer voor FoxyProxy Plus.">
+<!ENTITY foxyproxy.licenseinvalid.label "Licentie ongeldig. U ontvangt geen updates voor FoxyProxy Plus. Koop FoxyProxy Plus.">
 <!ENTITY foxyproxy.buynow.label "Nu kopen">
 <!ENTITY foxyproxy.checklicense.label "Licentie controleren">
-<!ENTITY foxyproxy.checkinglicense.label "Controleren… wachten a.u.b.">
+<!ENTITY foxyproxy.checkinglicense.label "Controleren… een ogenblik">
 <!ENTITY foxyproxy.yourversion.label "Uw versie">
 <!ENTITY foxyproxy.latestversion.label "Nieuwste versie">
-<!ENTITY foxyproxy.routetoleahscape.label.1 "Zorg er a.u.b. voor dat Firefox">
+<!ENTITY foxyproxy.routetoleahscape.label.1 "Zorg er voor dat Firefox">
 <!ENTITY foxyproxy.routetoleahscape.label.2 "met of zonder proxy kan bereiken. U kunt indien nodig in FoxyProxy Plus patronen voor deze URL instellen.">
 <!ENTITY foxyproxy.everything.label "Alles">
 <!ENTITY foxyproxy.nothing.label "Niets">
@@ -586,7 +586,7 @@
 <!ENTITY foxyproxy.proxypassword2.label "Wachtwoord - opnieuw">
 <!ENTITY foxyproxy.proxydomain.label "Domein (optioneel - uitsluitend NTLM)">
 <!ENTITY foxyproxy.proxydomain.tooltip "Alleen NTLM-authenticatie">
-<!ENTITY foxyproxy.proxy.passwords.nomatch.label "Proxywachtwoorden komen niet overeen; voer het a.u.b. opnieuw in">
+<!ENTITY foxyproxy.proxy.passwords.nomatch.label "Proxywachtwoorden komen niet overeen; voer het opnieuw in">
 <!ENTITY foxyproxy.traininglogging.label "Training &amp; loggen">
 <!ENTITY foxyproxy.traininglogging.tooltip "Instellingen Training &amp; loggen beheren">
 <!ENTITY foxyproxy.traininglogging.accesskey "L">

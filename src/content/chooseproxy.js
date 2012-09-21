@@ -32,7 +32,7 @@ function onLoad() {
   // Append title as a textnode to the description so text wrapping works
   let title = document.getElementById("title");
   title.appendChild(document.createTextNode(inn.title));
-  
+
   // select the first entry
   fpc.makeProxyTreeView(proxyTree, fp.proxies, document);
   proxyTree.view.selection.select(0);

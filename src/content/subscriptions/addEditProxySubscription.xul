@@ -15,7 +15,8 @@
 <!DOCTYPE overlay SYSTEM "chrome://foxyproxy/locale/foxyproxy.dtd">
 
 <dialog id="foxyproxyProxySubscriptions" windowtype="foxyproxy"
-        title="&foxyproxy.standard.label; - &foxyproxy.proxy.subscriptions.addedit.title;" 
+        title="&foxyproxy.standard.label; -
+          &foxyproxy.proxy.subscriptions.addedit.title;" 
         buttons="accept,cancel,extra2"
         buttonlabelextra2="&foxyproxy.pattern.subscriptions.lastStatus.label;" 
         onload="onLoad('proxy');" ondialogaccept="return onOK('proxy');" 
@@ -115,7 +116,8 @@
         </row>
         <row>
           <label value="&foxyproxy.obfuscation.label;"
-            tooltiptext="&foxyproxy.pattern.subscriptions.obfuscation.tooltip;"/>
+            tooltiptext=
+              "&foxyproxy.pattern.subscriptions.obfuscation.tooltip;"/>
           <hbox>
             <menulist id="subscriptionObfuscation">
               <menupopup>

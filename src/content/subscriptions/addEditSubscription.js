@@ -77,6 +77,16 @@ function onLoad(type) {
       }
 
       document.getElementById("refresh").value = metadata.refresh;
+      // Do we have a proxyType value > 0 in the metadata? If not, do nothing as
+      // we either have a pattern subscription or a proxy subscription wherethe
+      // first option (i.e. the one with index "0") is selected per default
+      // anyway (be it due to an upgrade from an earlier FoxyProxy version.
+      if (metadata.proxyType) {
+        // We have a proxy susbcription AND the user had either "HTTP" or
+        // "SOCKS" selected earlier. Let's show her her selection.
+        document.getElementById("subscriptionType").selectedIndex = metadata.
+          proxyType;
+      }
       // Assuming we have only 'FoxyProxy' and 'AutoProxy' as format values...
       if (metadata.format === "FoxyProxy") {
         formatList.selectedIndex = 0;
@@ -144,6 +154,13 @@ function onOK(type) {
         // the proxy list on startup.
         userValues.proxies.push(proxies.item(i).id);
       }
+      // We don't have a proxy type for patterns on a pattern list. Thus,
+      // setting it to |null|.
+      userValues.proxyType = null;
+    } else {
+      // Proxy type is only for proxy lists.
+      userValues.proxyType = document.getElementById("subscriptionType").
+        selectedIndex;
     }
     userValues.refresh = document.getElementById("refresh").value;
     userValues.format = document.getElementById("subscriptionFormat").

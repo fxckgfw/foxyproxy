@@ -274,7 +274,7 @@ var subscriptions = {
     // Importing patterns does not mean someone wants to get added them to a
     // proxy automatically. That does not hold for importing a proxy list.
     if (this.type === "proxy") {
-      this.addProxies(aSubscription.proxies);
+      this.addProxies(aSubscription.proxies, userValues);
     }
   },
 
@@ -404,7 +404,8 @@ var subscriptions = {
                 }
               }
               that.deleteProxies(that.fp.proxies);
-              let addedProxies = that.addProxies(refreshedSubscription.proxies);
+              let addedProxies = that.addProxies(refreshedSubscription.proxies,
+                userValues);
               // Let's add the proxies back to the respective pattern
               // subscriptions and then the patterns of the latter back to them.
               // But only if the old proxies are among the refreshed ones.
@@ -1131,9 +1132,13 @@ proxySubscriptions.getObjectFromText = function(subscriptionText,
   }
 };
 
-proxySubscriptions.addProxies = function(proxies) {
+proxySubscriptions.addProxies = function(proxies, userValues) {
   let proxy;
   let addedProxies = [];
+  let socksProxies = false;
+  if (userValues.proxyType === 2) {
+    socksProxies = true;
+  } 
   for (let i = 0, length = proxies.length; i < length; ++i) {
     proxy = Cc["@leahscape.org/foxyproxy/proxy;1"].createInstance().
       wrappedJSObject;
@@ -1141,7 +1146,10 @@ proxySubscriptions.addProxies = function(proxies) {
     proxy.mode = "manual";
     proxy.manualconf.host = proxies[i].ip;
     proxy.manualconf.port = proxies[i].port;
-    // Not setting SOCKS means creating an HTTP proxy.
+    if (socksProxies) {
+      proxy.manualconf.isSocks = true;
+      proxy.manualconf.socksVersion = 5;
+    }
     proxy.fromSubscription = true;
     this.fp.proxies.push(proxy);
     addedProxies.push(proxy);

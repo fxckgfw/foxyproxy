@@ -1118,7 +1118,7 @@ proxySubscriptions.getObjectFromText = function(subscriptionText,
         // as well.
         let isIP = this.ipRegExpSimple.test(proxyArray[i].ip);
         let isPort = /^\d+$/.test(proxyArray[i].port);
-        if (!(isIP || isPort)) {
+        if (!(isIP && isPort)) {
           errorMessages.push(this.fp.getMessage("proxysubscription.error.txt"));
           return errorMessages;
         }

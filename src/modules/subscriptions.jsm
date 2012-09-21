@@ -1057,6 +1057,9 @@ proxySubscriptions.type = "proxy";
 proxySubscriptions.partialLoadFailure = [];
 proxySubscriptions.subscriptionsList = [];
 proxySubscriptions.subscriptionsFile = "proxySubscriptions.json";
+// See: http://answers.oreilly.com/topic/318-how-to-match-ipv4-addresses-with-
+// regular-expressions/
+proxySubscriptions.ipRegExpSimple = /^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$/;
 
 proxySubscriptions.parseSubscription = function(subscriptionText,
   errorMessages, isBase64, userBase64) {
@@ -1111,6 +1114,14 @@ proxySubscriptions.getObjectFromText = function(subscriptionText,
         // like "123.123.123.123 : 456" as well.
         proxyArray[i].ip = ipPort[0].replace(/^\s*|\s*$/g, "");
         proxyArray[i].port = ipPort[1].replace(/^\s*|\s*$/g, "");
+        // TODO: Addapt this simple error checking to work with IPv6 addresses
+        // as well.
+        let isIP = this.ipRegExpSimple.test(proxyArray[i].ip);
+        let isPort = /^\d+$/.test(proxyArray[i].port);
+        if (!(isIP || isPort)) {
+          errorMessages.push(this.fp.getMessage("proxysubscription.error.txt"));
+          return errorMessages;
+        }
       }
     }
     return proxySubscription;
@@ -1130,7 +1141,7 @@ proxySubscriptions.addProxies = function(proxies) {
     proxy.mode = "manual";
     proxy.manualconf.host = proxies[i].ip;
     proxy.manualconf.port = proxies[i].port;
-    // Not settings SOCKS means creating an HTTP proxy.
+    // Not setting SOCKS means creating an HTTP proxy.
     proxy.fromSubscription = true;
     this.fp.proxies.push(proxy);
     addedProxies.push(proxy);

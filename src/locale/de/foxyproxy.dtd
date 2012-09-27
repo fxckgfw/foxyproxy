@@ -487,6 +487,12 @@
 <!ENTITY foxyproxy.proxy.subscriptions.viewSubscription "Proxy-Abonnement ansehen">
 <!ENTITY foxyproxy.proxy.subscriptions.addedit.title "Proxy-Abonnement hinzufügen/bearbeiten">
 <!ENTITY foxyproxy.proxy.subscriptions.refreshHelp "entfernt alle vorhandenen, abonnierten Proxies">
+<!ENTITY foxyproxy.proxy.subscriptions.proxy.type.label "Proxy-Typ">
+<!ENTITY foxyproxy.proxy.subscriptions.proxy.type.tooltip "Wählen Sie die Art der Proxies auf der Liste, die Sie importieren möchten. Wenn Sie &quot;Ich weiß nicht&quot; auswählen, wird angenommen, es handelt sich um HTTP-Proxies.">
+<!ENTITY foxyproxy.proxy.subscriptions.unknown.label "Ich weiß nicht">
+<!ENTITY foxyproxy.proxy.subscriptions.http.label "HTTP">
+<!ENTITY foxyproxy.proxy.subscriptions.socks.label "SOCKS">
+<!ENTITY foxyproxy.proxy.subscriptions.subscriptionTypeHelp "Diese Option erlaubt Ihnen, die Art der Proxies in Ihrem Abonnement festzulegen. Wenn Sie &quot;Ich weiß nicht&quot; auswählen, dann werden HTTP-Proxies angenommen. Das Gleiche gilt für den Fall, dass Sie &quot;HTTP&quot; auswählen. Wenn Sie dagegen &quot;SOCKS&quot; wählen, wird FoxyProxy sie als SOCKS5-Proxies behandeln.">
 <!ENTITY foxyproxy.proxy.subscriptions.proxy.window.title "Abonnement-Proxies">
 <!ENTITY foxyproxy.pattern.subscriptions.label "Muster-Abonnements">
 <!ENTITY foxyproxy.pattern.subscriptions.description "Abonnieren Sie die Muster, die andere veröffentlicht haben. Teilen Sie Ihre Muster mit anderen mit nur wenigen Klicks.">

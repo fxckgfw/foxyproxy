@@ -1,0 +1,2 @@
+* allow selection of proxy type during proxy subscription import
+* updated locales

@@ -112,6 +112,9 @@
                   label="&foxyproxy.proxy.subscriptions.socks.label;"/>
               </menupopup>
             </menulist>
+            <toolbarbutton class="foxyproxy-ref" popup="subscriptionTypeHelp"
+                           tooltiptext="&foxyproxy.whatsthis;"/>
+            <spacer flex="1"/>
           </hbox>
         </row>
         <row>
@@ -143,7 +146,7 @@
           <html:span style="font-weight: bold;">
             &foxyproxy.proxy.subscriptions.refreshHelp;</html:span>
           &foxyproxy.pattern.subscriptions.refreshHelp4;
-          <html:a class="link"        
+          <html:a class="link"
                   onclick="contextHelp('refresh', 'proxy');">
                   &foxyproxy.pactip5.label;</html:a>.
         </description>
@@ -159,11 +162,18 @@
         </description>
       </vbox>
     </menupopup>
+    <menupopup id="subscriptionTypeHelp">
+      <vbox class="foxyproxy-border foxyproxy-tooltip foxyproxy-help">
+        <description>
+          &foxyproxy.proxy.subscriptions.subscriptionTypeHelp;
+        </description>
+      </vbox>
+    </menupopup>
     <menupopup id="obfuscationproxyHelp">
       <vbox class="foxyproxy-border foxyproxy-tooltip foxyproxy-help">
         <description>
           &foxyproxy.pattern.subscriptions.obfuscationHelp;
-          <html:a class="link"        
+          <html:a class="link"
                   onclick="contextHelp('obfuscation', 'proxy');">
                   &foxyproxy.pactip5.label;</html:a>.
         </description>

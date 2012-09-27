@@ -23,7 +23,7 @@
 <!-- begin-foxyproxy-simple
         <em:id>foxyproxy-basic@eric.h.jung</em:id>
         <em:name>FoxyProxy Basic</em:name>
-        <em:version>3.0</em:version>
+        <em:version>3.1</em:version>
 end-foxyproxy-simple -->
         <em:creator>FoxyProxy, Inc.</em:creator>
         <em:description>Premier proxy management for Firefox</em:description>

@@ -12,9 +12,10 @@
 <!ENTITY foxyproxy.proxy.notes.label "Забелешке о проксију">
 <!ENTITY foxyproxy.proxy.notes.accesskey "З">
 <!ENTITY foxyproxy.proxy.notes.tooltip "Забелешке о проксију">
+<!ENTITY foxyproxy.proxy.wizard.whatsmyip.label "Провери моју локацију">
 <!ENTITY foxyproxy.pattern.label "Шаблон">
 <!ENTITY foxyproxy.urlpatterns.label "URL шаблони">
-<!ENTITY foxyproxy.urlpatterns.accesskey "P">
+<!ENTITY foxyproxy.urlpatterns.accesskey "ш">
 <!ENTITY foxyproxy.urlpatterns.tooltip "URL шаблони">
 <!ENTITY foxyproxy.pattern.type.label "Тип шаблона">
 <!ENTITY foxyproxy.whitelist.blacklist.label "Црна или бела листа">

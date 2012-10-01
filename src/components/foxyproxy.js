@@ -45,7 +45,7 @@ var loadComponentScript = function(filename) {
   catch (e) {
     dump("Error loading component " + filename + ": " + e + "\n" + e.stack + "\n");
     throw(e);
-  }  
+  }
 };
 var loadModuleScript = function(filename) {
   try {
@@ -58,7 +58,7 @@ var loadModuleScript = function(filename) {
   catch (e) {
     dump("Error loading module " + filename + ": " + e + "\n" + e.stack + "\n");
     throw(e);
-  }  
+  }
 };
 var gLoggEntryFactory = function(proxy, aMatch, uri, type, errMsg) {
     return new LoggEntry(proxy, aMatch, foxyproxy.prototype.logg._noURLs ? foxyproxy.prototype.logg.noURLsMessage : uri, type, errMsg);
@@ -129,7 +129,7 @@ foxyproxy.prototype = {
   apiDisabled : false,
   cacheOrCookiesChanged : false,
   cacheAndCookiesChecked : false,
-  
+
   broadcast : function(subj, topic, data) {
     gBroadcast(subj, topic, data);
   },
@@ -160,7 +160,7 @@ foxyproxy.prototype = {
             // Initialize defaultPrefs before initial call to this.setMode().
             // setMode() is called from this.loadSettings()->this.fromDOM(), but
             // also from commandlinehandler.js.
-            this.defaultPrefs.init(gFP);        
+            this.defaultPrefs.init(gFP);
             this.loadSettings();
           }
           catch (e) {
@@ -198,7 +198,7 @@ foxyproxy.prototype = {
       e.getNext().close();
   },
 
-  loadSettings : function() {    
+  loadSettings : function() {
     this.migrateSettingsURI();
     var f = this.getSettingsURI(CI.nsIFile);
     dump("FoxyProxy settingsDir: " + f.path + "\n");
@@ -242,7 +242,7 @@ foxyproxy.prototype = {
       dump("FoxyProxy parsing/validation error: " + e + "\n");
     }
   },
-  
+
   get mode() { return this._mode; },
   setMode : function(mode, writeSettings, init) {
     // If the user is about to enter pattern mode AND has different cookie
@@ -293,7 +293,7 @@ foxyproxy.prototype = {
       this.notifier.alert(this.getMessage("foxyproxy"),
         "Unrecognized mode specified: " + mode);
     }
-    
+
     this.toggleFilter(this._mode != "disabled");
     // This line must come before the next one -- gBroadcast(...) Otherwise,
     // AutoAdd and QuickAdd write their settings before they've been
@@ -405,11 +405,11 @@ foxyproxy.prototype = {
       // user doesn't want "patterns" in the cycle, then wrap
       // around to the next proxy after "patterns"
       if (gFP.excludeDisabledFromCycling)
-        this.setMode(gFP.excludePatternsFromCycling ? _getNextAfterPatterns() : "patterns", true);          
+        this.setMode(gFP.excludePatternsFromCycling ? _getNextAfterPatterns() : "patterns", true);
       else
-        this.setMode("disabled", true);      
+        this.setMode("disabled", true);
     }
-    else if (this._mode == "disabled") {      
+    else if (this._mode == "disabled") {
       this.setMode(this.isFoxyProxySimple() || gFP.excludePatternsFromCycling ?
           /* FP Simple has no "patterns" mode, so skip to next one */_getNextAfterPatterns() : "patterns", true);
     }
@@ -428,7 +428,7 @@ foxyproxy.prototype = {
     function _getNextAfterPatterns() {
       var p = gFP.proxies.item(0);
       (!p || !p.enabled || !p.includeInCycle) && (p = _getNextInCycle(gFP.proxies.item(0).id));
-      return p?p.id:"disabled";      
+      return p?p.id:"disabled";
     }
   },
 
@@ -441,6 +441,7 @@ foxyproxy.prototype = {
 
   mp : null,
   applyFilter : function(ps, uri, proxy) {
+    dump("applyFilter called for " + uri.spec + "...\n");
     function _err(fp, info, extInfo) {
       var def = fp.proxies.item(fp.proxies.length-1);
       mp = gLoggEntryFactory(def, null, spec, "err", extInfo?extInfo:info);
@@ -498,11 +499,11 @@ foxyproxy.prototype = {
     }
     catch(e) {}
   },
-  
+
   isDefaultSettingsURI : function(o) {
     return o == this.PFF || this.transformer(o, CI.nsIFile).equals(this.getDefaultPath());
   },
-  
+
   usingDefaultSettingsURI : function(p) {
     try {
       p = p || this.getPrefsService("extensions.foxyproxy.");
@@ -688,7 +689,7 @@ foxyproxy.prototype = {
     this._useStatusBarPrefix = p;
     this.writeSettingsAsync();
   },
-  
+
   get selectedTabIndex() { return this._selectedTabIndex; },
   set selectedTabIndex(i) {
     this._selectedTabIndex = i;
@@ -706,7 +707,7 @@ foxyproxy.prototype = {
     this._toolbarIcon = e;
     gBroadcast(e, "foxyproxy-toolbarIcon");
     this.writeSettingsAsync();
-  }, 
+  },
 
   get toolsMenu() { return this._toolsMenu; },
   set toolsMenu(e) {
@@ -899,7 +900,7 @@ foxyproxy.prototype = {
       }
       return true;
     },
-    
+
     /**
      * Prevent inserts beyond the last item since
      * the last item must always remain our |lastResort|.
@@ -915,7 +916,7 @@ foxyproxy.prototype = {
         idx = parseInt(idx);
         if (idx < 0 || idx > this.list.length-1) return false; /* Prevent inserts at or after lastResort */
         if (this.list.length == 0) // Shouldn't really ever happen since we'll always have a lastResort
-          this.list[0] = p; 
+          this.list[0] = p;
         else {
           // Shift everyone to the right by one (up to, but not including, the proxy at idx)
           for (var i=this.list.length; i>idx; i--) {
@@ -927,10 +928,10 @@ foxyproxy.prototype = {
       else {
         // idx is a word
         switch (idx) {
-          case "random": this.insertAt(Math.floor(Math.random()*this.list.length) /* does not include this.list.length in possible outcome */, p); break; /* thanks Andrew @ http://www.shawnolson.net/a/789/ */           
+          case "random": this.insertAt(Math.floor(Math.random()*this.list.length) /* does not include this.list.length in possible outcome */, p); break; /* thanks Andrew @ http://www.shawnolson.net/a/789/ */
           case "last": this.push(p); break;
           case "first": /* Deliberate fall-through */
-          default: this.insertAt(this.list.length-1, p); break;               
+          default: this.insertAt(this.list.length-1, p); break;
         }
       }
       return true;
@@ -963,8 +964,8 @@ foxyproxy.prototype = {
         }
       }
       return proxyArray;
-    }, 
-    
+    },
+
     /**
      * Returns the first existing proxy with the given name or null
      * if none found.
@@ -973,7 +974,7 @@ foxyproxy.prototype = {
       var a = this.list.filter(function(e) {return e.name == this;}, name);
       return a?a[0]:null;
     },
-    
+
     getIndexById : function(id) {
       var len=this.length;
       for (var i=0; i<len; i++) {
@@ -981,7 +982,7 @@ foxyproxy.prototype = {
       }
       return -1;
     },
-    
+
     /**
      *  Returns the index of the first proxy with |name| or -1 if none exists with that name
      */
@@ -989,9 +990,9 @@ foxyproxy.prototype = {
       for (var i=0, len=this.length; i<len; i++) {
         if (this.list[i].name == name) return i;
       }
-      return -1;    
+      return -1;
     },
-    
+
     /**
      * Merges the first existing proxy with |proxy|. Searches by name.
      * |nameValuePairs| is an associative array of the properties to
@@ -1006,7 +1007,7 @@ foxyproxy.prototype = {
       }
       return null;
     },
-    
+
     /**
      * Deletes the first proxy with the specified |name|, or none if there are
      * no proxies with the specified |name|. Returns the affected index or -1.
@@ -1043,7 +1044,7 @@ foxyproxy.prototype = {
         var n = proxyElems.item(i);
         n.QueryInterface(CI.nsIDOMElement);
         var p = new Proxy(gFP);
-        p.fromDOM(n, mode);  
+        p.fromDOM(n, mode);
         if (!last && n.getAttribute("lastresort") == "true")
           last = p; // Save for later so we can enforce it's last in the list
         else
@@ -1068,7 +1069,7 @@ foxyproxy.prototype = {
         this.list.push(last); // ensures it really IS last
         gFP.writeSettingsAsync();
       }
-      this.lastresort = last;    
+      this.lastresort = last;
     },
 
     toDOM : function(doc) {
@@ -1092,7 +1093,7 @@ foxyproxy.prototype = {
             if (this.list[i].autoconfMode === "pac") {
               this.list[i].autoconf.cancelTimer();
             } else if (this.list[i].autoconfMode === "wpad") {
-              this.list[i].wpad.cancelTimer(); 
+              this.list[i].wpad.cancelTimer();
             }
           }
         }
@@ -1184,7 +1185,7 @@ foxyproxy.prototype = {
       if (gFP.quickadd.maintainIntegrity(proxy.id, isBeingDeleted) && !updateViews) {
         updateViews = true;
       }
-      
+
       // updateViews() with false, false (do not write settings and do not update log view--settings were just written when the properties themselves were updated
       updateViews && gBroadcast(null, "foxyproxy-updateviews");
     }
@@ -1224,7 +1225,7 @@ foxyproxy.prototype = {
       // Now deserialize
       var n = doc.getElementsByTagName("logg").item(0);
       this.enabled = gGetSafeAttrB(n, "enabled", false);
-      this._maxSize = gGetSafeAttr(n, "maxSize", 500); 
+      this._maxSize = gGetSafeAttr(n, "maxSize", 500);
       this._templateHeader = gGetSafeAttr(n, "header-v2", this._templateHeader);
       this._templateFooter = gGetSafeAttr(n, "footer-v2", this._templateFooter);
       this._templateRow = gGetSafeAttr(n, "row-v2", this._templateRow);
@@ -1424,7 +1425,7 @@ foxyproxy.prototype = {
         this._full = false;
       }
     },
-    
+
     /** |delete| is a JS keyword so we use |del|
      * |indices| should be an array of 0-indexed indices to remove
      */
@@ -1443,7 +1444,7 @@ foxyproxy.prototype = {
   // /////////////// notifier \\\\\\\\\\\\\\\\\\\\\\\\\\\
   // Thanks for the inspiration: InfoRSS extension (Didier Ernotte, 2005)
   notifier : {
-    _queue : [], 
+    _queue : [],
     alerts : function() {
       try {
         return CC["@mozilla.org/alerts-service;1"].getService(CI.nsIAlertsService);
@@ -1500,15 +1501,15 @@ foxyproxy.prototype = {
             dump("Queuing message\n");
             self._queue.push({text:text, title:title});
           }
-        }        
+        }
       }
     },
-    
+
     emptyQueue : function() {
       for (var i=0,sz=this._queue.length; i<sz; i++) {
         var msg = this._queue.pop();
         this.alert(msg.title, msg.text, true);
-      } 
+      }
     },
 
     notify : function() {
@@ -1565,7 +1566,7 @@ foxyproxy.prototype = {
       this._leftClick = gGetSafeAttr(n, "left", "options");
       this._middleClick = gGetSafeAttr(n, "middle", "cycle");
       this._rightClick = gGetSafeAttr(n, "right", "contextmenu");
-      this._width = gGetSafeAttr(n, "width", 0);      
+      this._width = gGetSafeAttr(n, "width", 0);
     },
 
     get iconEnabled() { return this._iconEnabled; },
@@ -1601,7 +1602,7 @@ foxyproxy.prototype = {
       this._rightClick = e;
       gFP.writeSettingsAsync();
     },
-    
+
     get width() { return this._width; },
     set width(e) {
       e = parseInt(e);
@@ -1700,7 +1701,7 @@ foxyproxy.prototype = {
   warnings : {
     // XXX Why is this not just an object?
     _warnings : [],
-    
+
     /**
      * Displays a message to the user with "Cancel" and "OK" buttons
      * and a "Do not display the message again" checkbox. The latter is maintained
@@ -1736,13 +1737,13 @@ foxyproxy.prototype = {
         return true;
       return false;
     },
-    
+
     /* sets the |name|d warning to never show again */
     setWarning : function(name, bool) {
       this._warnings[name] = bool;
       gFP.writeSettingsAsync();
     },
-    
+
     toDOM : function(doc) {
       var e = doc.createElement("warnings");
       for (var i in this._warnings)
@@ -1769,16 +1770,16 @@ foxyproxy.prototype = {
     return true;
     end-foxyproxy-simple !*/
 
-    /*! begin-foxyproxy-standard !*/       
-    return false;
-    /*! end-foxyproxy-standard !*/     
+    /*! begin-foxyproxy-standard !*/
+    return false
+    /*! end-foxyproxy-standard !*/
   },
 
   classID: Components.ID("{46466e13-16ab-4565-9924-20aac4d98c82}"),
   contractID: "@leahscape.org/foxyproxy/service;1",
   classDescription: "FoxyProxy Core",
   QueryInterface: XPCOMUtils.generateQI([CI.nsISupports, CI.nsIObserver]),
-  _xpcom_categories: /* this var for for pre gecko-2.0 */ [{category:"profile-after-change", entry:"foxyproxy_catobserver"}],  
+  _xpcom_categories: /* this var for for pre gecko-2.0 */ [{category:"profile-after-change", entry:"foxyproxy_catobserver"}],
   _xpcom_factory: {
     singleton: null,
     createInstance: function (aOuter, aIID) {
@@ -1799,13 +1800,13 @@ function LoggEntry(proxy, aMatch, uriStr, type, errMsg) {
     if (type == "pat") {
       this.matchName = aMatch.name;  // Make local copy so logg history doesn't change if user changes proxy
       this.matchPattern = aMatch.pattern; // ""
-      this.matchType = aMatch.isRegEx ? this.regExMsg : this.wcMsg;  
+      this.matchType = aMatch.isRegEx ? this.regExMsg : this.wcMsg;
       this.whiteBlack = aMatch.isBlackList ? this.blackMsg : this.whiteMsg; // ""
       this.caseSensitive = aMatch.caseSensitive ? this.yes : this.no; // ""
     }
     else if (type == "ded") {
       this.caseSensitive = this.whiteBlack = this.matchName = this.matchPattern = this.matchType = this.allMsg;
-    }   
+    }
     else if (type == "rand") {
       this.matchName = this.matchPattern = this.matchType = this.whiteBlack = this.randomMsg;
     }
@@ -1827,8 +1828,8 @@ LoggEntry.prototype = {
     this.wcMsg = gFP.getMessage("wildcards");
     this.blackMsg = gFP.getMessage("blacklist");
     this.whiteMsg = gFP.getMessage("whitelist");
-    this.yes = gFP.getMessage("yes");  
-    this.no = gFP.getMessage("no");    
+    this.yes = gFP.getMessage("yes");
+    this.no = gFP.getMessage("no");
   }
 };
 

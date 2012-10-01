@@ -33,7 +33,7 @@ Components.utils.import("resource://gre/modules/XPCOMUtils.jsm");
 function AutoConf(owner, fpp) {
   this.wrappedJSObject = this;
   fp = fpp || CC["@leahscape.org/foxyproxy/service;1"].
-    getService().wrappedJSObject;    
+    getService().wrappedJSObject;
   this.timer = CC["@mozilla.org/timer;1"].createInstance(CI.nsITimer);
   this.owner = owner;
   this._resolver = new fpProxyAutoConfig(this);
@@ -107,7 +107,7 @@ AutoConf.prototype = {
    */
   testPAC : function(url) {
     var req = CC["@mozilla.org/xmlextras/xmlhttprequest;1"]
-      .createInstance(CI.nsIXMLHttpRequest);   
+      .createInstance(CI.nsIXMLHttpRequest);
     req.overrideMimeType("application/javascript");
     req.open("GET", url, false); // false means synchronous    
     req.channel.loadFlags |= CI.nsIRequest.LOAD_BYPASS_CACHE;
@@ -128,12 +128,12 @@ AutoConf.prototype = {
         .createInstance(CI.nsIXMLHttpRequest);
       req.overrideMimeType("application/javascript");
       req.open("GET", this.url, false); // false means synchronous
-      req.channel.loadFlags |= CI.nsIRequest.LOAD_BYPASS_CACHE;      
+      req.channel.loadFlags |= CI.nsIRequest.LOAD_BYPASS_CACHE;
       req.send(null);
     }
     catch(e) {
       if (autoconfMode === "pac") {
-        autoconfMessage = "pac.status.loadfailure2"; 
+        autoconfMessage = "pac.status.loadfailure2";
       } else {
         autoconfMessage = "wpad.status.loadfailure";
       }
@@ -148,21 +148,21 @@ AutoConf.prototype = {
       }
       catch(e) {
         if (autoconfMode === "pac") {
-          autoconfMessage = "pac.status.error2"; 
+          autoconfMessage = "pac.status.error2";
         } else {
           autoconfMessage = "wpad.status.error";
         }
-        this.badPAC(autoconfMessage, e); 
+        this.badPAC(autoconfMessage, e);
         return;
       }
       let autoconfMessageHelper = "";
       if (autoconfMode === "pac") {
-        autoconfMessage = "pac.status"; 
+        autoconfMessage = "pac.status";
         autoconfMessageHelper = "pac.status.success2";
       } else {
         autoconfMessage = "wpad.status";
         autoconfMessageHelper = "wpad.status.success";
-      } 
+      }
       this.loadNotification && fp.notifier.alert(fp.getMessage(autoconfMessage),
         fp.getMessage(autoconfMessageHelper, [this.owner.name]));
       // Use _enabled so we don't loop infinitely 
@@ -190,10 +190,10 @@ AutoConf.prototype = {
     //}
     let autoconfMessage = "";
     if (this.owner.autoconfMode === "pac") {
-      autoconfMessage = "pac.status"; 
+      autoconfMessage = "pac.status";
     } else {
       autoconfMessage = "wpad.status";
-    } 
+    }
     var msg = fp.getMessage(r, [this.owner.name]) + "\n\n" + e.message;
     this.errorNotification && fp.notifier.alert(fp.getMessage(autoconfMessage),
       msg);
@@ -201,20 +201,20 @@ AutoConf.prototype = {
       this.owner.mode = "direct"; // don't disable!
     else if (this.disableOnBadPAC)
       this.owner._enabled = false; // Use _enabled so we don't loop infinitely
-  }, 
-  
+  },
+
   notify : function(timer) {
     // nsITimer callback
     this.loadPAC();
   },
-  
+
   cancelTimer : function() {
     this.timer.cancel();
   },
-  
+
   classDescription: "FoxyProxy AutoConfiguration Component",
   classID: Components.ID("{54382370-f194-11da-8ad9-0800200c9a66}"),
-  contractID: "@leahscape.org/foxyproxy/autoconf;1",  
+  contractID: "@leahscape.org/foxyproxy/autoconf;1",
 };
 
 /**
@@ -244,30 +244,30 @@ fpProxyAutoConfig.prototype = {
     init: function(pacURI, pacText) {
       let autoconfMessage = "";
       if (pacURI == "" || pacText == "") {
-        dump("FoxyProxy: init(), pacURI or pacText empty\n");    
+        dump("FoxyProxy: init(), pacURI or pacText empty\n");
         if (this.owner.owner.autoconfMode  === "pac") {
           autoconfMessage = "pac.empty";
         } else {
           autoconfMessage = "wpad.empty";
-        } 
+        }
         throw new Error(fp.getMessage(autoconfMessage));
       }
       this.sandbox = new Components.utils.Sandbox(pacURI);
       Components.utils.evalInSandbox(pacUtils, this.sandbox);
-  
+
       // add predefined functions to pac
       this.sandbox.importFunction(myIpAddress);
       this.sandbox.importFunction(dnsResolve);
       this.sandbox.importFunction(proxyAlert, "alert");
-  
+
       // evaluate loaded js file
       Components.utils.evalInSandbox(pacText, this.sandbox);
-  
+
       // We can no longer trust this.sandbox. Touching it directly can
       // cause all sorts of pain, so wrap it in an XPCSafeJSObjectWrapper
       // and do all of our work through there.
       this.sandbox = XPCSJSOWWrapper(this.sandbox, true);
-      
+
       // Performance improvement in FoxyProxy over Firefox
       // by doing this next check ONCE in init() except
       // everytime in getProxyxForURI().
@@ -277,7 +277,7 @@ fpProxyAutoConfig.prototype = {
           autoconfMessage = "pac.fcn.notfound2";
         } else {
           autoconfMessage = "wpad.fcn.notfound";
-        } 
+        }
         throw new Error(fp.getMessage(autoconfMessage));
       }
       return true;
@@ -337,7 +337,7 @@ function dnsResolve(host) {
 
 var dns = CC["@mozilla.org/network/dns-service;1"].getService(CI.nsIDNSService);
 
-var pacUtils = 
+var pacUtils =
 "function dnsDomainIs(host, domain) {\n" +
 "    return (host.length >= domain.length &&\n" +
 "            host.substring(host.length - domain.length) == domain);\n" +

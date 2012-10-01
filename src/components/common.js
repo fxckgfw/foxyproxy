@@ -14,14 +14,16 @@ const CI = Components.interfaces;
 const CC = Components.classes;
 Components.utils.import("resource://gre/modules/XPCOMUtils.jsm");
 
-var fp; 
+var fp;
 
 function Common() {
   this.wrappedJSObject = this;
   this.appInfo = CC["@mozilla.org/xre/app-info;1"].getService(CI.nsIXULAppInfo);
   this.vc = CC["@mozilla.org/xpcom/version-comparator;1"].getService(CI.
-    nsIVersionComparator); 
-  fp = CC["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;   
+    nsIVersionComparator);
+  // We need that to handle bug 769764 properly.
+  this.isGecko17 = this.vc.compare(this.appInfo.platformVersion, "18.0a1") < 0;
+  fp = CC["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;
   let uuid = fp.isFoxyProxySimple() ? "foxyproxy-basic@eric.h.jung" : "foxyproxy@eric.h.jung";
   // Get installed version
   if ("@mozilla.org/extensions/manager;1" in CC) {
@@ -42,14 +44,16 @@ function Common() {
 Common.prototype = {
   QueryInterface: XPCOMUtils.generateQI([CI.nsISupports]),
   _ios : CC["@mozilla.org/network/io-service;1"].getService(CI.nsIIOService),
-  version: null,
-  
+  version : null,
+
+  isGecko17 : false,
+
   // Application-independent version of getMostRecentWindow()
   getMostRecentWindow : function(wm) {
     var tmp = wm || CC["@mozilla.org/appshell/window-mediator;1"].getService(CI.nsIWindowMediator);
     return tmp.getMostRecentWindow("navigator:browser") || tmp.getMostRecentWindow("Songbird:Main") || tmp.getMostRecentWindow("mail:3pane");
   },
-  
+
   // Application-independent version of getEnumerator()
   getEnumerator : function() {
     var wm = CC["@mozilla.org/appshell/window-mediator;1"].getService(CI.nsIWindowMediator);
@@ -74,7 +78,7 @@ Common.prototype = {
     // Our URL isn't open. Open it now.
     this.openTab(aURL);
   },
-  
+
   openTab : function(aURL) {
     var w = this.getMostRecentWindow();
     var event = { notify: function(timer) {w.gBrowser.selectedTab = w.gBrowser.addTab(aURL, null, null, null);} }
@@ -94,9 +98,9 @@ Common.prototype = {
       w.focus();
     }
   },
-  
+
   validatePattern : function(win, isRegEx, p) {
-    var origPat = p; 
+    var origPat = p;
     p = p.replace(/^\s*|\s*$/g,"");
     if (p == "") {
       fp.alert(win, fp.getMessage("pattern.required"));
@@ -144,7 +148,7 @@ Common.prototype = {
       e.setAttribute("style", args["style"]);
     return e;
   },
-  
+
   getVersion : function() {
     return this.version;
   },
@@ -153,21 +157,21 @@ Common.prototype = {
     var flags = caseSensitive ? "gi" : "g";
     try {
       var parsedUrl = this._ios.newURI(url, "UTF-8", null).QueryInterface(CI.nsIURL);
-      var ret = strTemplate.replace("${0}", parsedUrl.scheme?parsedUrl.scheme:"", flags);    
-      ret = ret.replace("${1}", parsedUrl.username?parsedUrl.username:"", flags);    
-      ret = ret.replace("${2}", parsedUrl.password?parsedUrl.password:"", flags); 
-      ret = ret.replace("${3}", parsedUrl.userPass?(parsedUrl.userPass+"@"):"", flags); 
-      ret = ret.replace("${4}", parsedUrl.host?parsedUrl.host:"", flags); 
-      ret = ret.replace("${5}", parsedUrl.port == -1?"":parsedUrl.port, flags); 
-      ret = ret.replace("${6}", parsedUrl.hostPort?parsedUrl.hostPort:"", flags); 
-      ret = ret.replace("${7}", parsedUrl.prePath?parsedUrl.prePath:"", flags);                 
-      ret = ret.replace("${8}", parsedUrl.directory?parsedUrl.directory:"", flags); 
-      ret = ret.replace("${9}", parsedUrl.fileBaseName?parsedUrl.fileBaseName:"", flags); 
-      ret = ret.replace("${10}", parsedUrl.fileExtension?parsedUrl.fileExtension:"", flags); 
-      ret = ret.replace("${11}", parsedUrl.fileName?parsedUrl.fileName:"", flags); 
-      ret = ret.replace("${12}", parsedUrl.path?parsedUrl.path:"", flags); 
-      ret = ret.replace("${13}", parsedUrl.ref?parsedUrl.ref:"", flags);      
-      ret = ret.replace("${14}", parsedUrl.query?parsedUrl.query:"", flags);       
+      var ret = strTemplate.replace("${0}", parsedUrl.scheme?parsedUrl.scheme:"", flags);
+      ret = ret.replace("${1}", parsedUrl.username?parsedUrl.username:"", flags);
+      ret = ret.replace("${2}", parsedUrl.password?parsedUrl.password:"", flags);
+      ret = ret.replace("${3}", parsedUrl.userPass?(parsedUrl.userPass+"@"):"", flags);
+      ret = ret.replace("${4}", parsedUrl.host?parsedUrl.host:"", flags);
+      ret = ret.replace("${5}", parsedUrl.port == -1?"":parsedUrl.port, flags);
+      ret = ret.replace("${6}", parsedUrl.hostPort?parsedUrl.hostPort:"", flags);
+      ret = ret.replace("${7}", parsedUrl.prePath?parsedUrl.prePath:"", flags);
+      ret = ret.replace("${8}", parsedUrl.directory?parsedUrl.directory:"", flags);
+      ret = ret.replace("${9}", parsedUrl.fileBaseName?parsedUrl.fileBaseName:"", flags);
+      ret = ret.replace("${10}", parsedUrl.fileExtension?parsedUrl.fileExtension:"", flags);
+      ret = ret.replace("${11}", parsedUrl.fileName?parsedUrl.fileName:"", flags);
+      ret = ret.replace("${12}", parsedUrl.path?parsedUrl.path:"", flags);
+      ret = ret.replace("${13}", parsedUrl.ref?parsedUrl.ref:"", flags);
+      ret = ret.replace("${14}", parsedUrl.query?parsedUrl.query:"", flags);
       ret = ret.replace("${15}", parsedUrl.spec?parsedUrl.spec:"", flags);
       /*ret = ret.replace(/\^|\$|\+|\\|\||\*|\{|\}|\(|\)|\[|\]/g,
         function(s) {
@@ -192,8 +196,8 @@ Common.prototype = {
     }
     catch(e) {/*happens for about:blank, about:config, etc.*/}
     return url;
-  },    
-  
+  },
+
   onSuperAdd : function(wnd, url, superadd) {
     var p = {inn:{url:url || this.getMostRecentWindow().content.location.href, superadd:superadd}, out:null};
     // superadd.proxy is null when user hasn't yet used QuickAdd
@@ -221,13 +225,13 @@ Common.prototype = {
     tree.view = {
       rowCount : proxies.length,
       getCellText : function(row, column) {
-        var i = proxies.item(row);    
+        var i = proxies.item(row);
         switch(column.id) {
           case "nameCol":return i.name;
           case "descriptionCol":return i.notes;
-          case "hostCol":return i.manualconf.host;           
-          case "portCol":return i.manualconf.port; 
-          case "isSocksCol":return i.manualconf.isSocks?fp.getMessage("yes"):fp.getMessage("no");        
+          case "hostCol":return i.manualconf.host;
+          case "portCol":return i.manualconf.port;
+          case "isSocksCol":return i.manualconf.isSocks?fp.getMessage("yes"):fp.getMessage("no");
           case "socksverCol":
             if (i.manualconf.isSocks)
               return i.manualconf.socksversion == "5" ? "5" : "4/4a";
@@ -238,9 +242,9 @@ Common.prototype = {
           case "wpadCol":
             if (i.autoconfMode === "wpad")
               return fp.getMessage("yes");
-            else 
-              return fp.getMessage("no"); 
-          case "autopacCol":return i.autoconf.url;   
+            else
+              return fp.getMessage("no");
+          case "autopacCol":return i.autoconf.url;
           case "animatedIconsCol":return i.animatedIcons?fp.getMessage("yes"):fp.getMessage("no");
           case "cycleCol":return i.includeInCycle?fp.getMessage("yes"):fp.getMessage("no");
           case "remoteDNSCol":
@@ -252,7 +256,7 @@ Common.prototype = {
         }
       },
       setCellValue: function(row, col, val) {proxies.item(row).enabled = val;},
-      getCellValue: function(row, col) {return proxies.item(row).enabled;},    
+      getCellValue: function(row, col) {return proxies.item(row).enabled;},
       isSeparator: function(aIndex) { return false; },
       isSorted: function() { return false; },
       isEditable: function(row, col) { return false; },
@@ -275,8 +279,8 @@ Common.prototype = {
 
     // Restore scroll position - peng likes to complain that this feature was
     // missing
-    tree.treeBoxObject.scrollToRow(visibleRow);    
-    
+    tree.treeBoxObject.scrollToRow(visibleRow);
+
     /* Set the color column dynamically. Note that "x" in the CSS class
        treechildren::-moz-tree-cell(x) must contain only letters. No numbers or symbols,
        so we can't use proxy.id or proxy.name or even proxy.color. Hence, the special
@@ -287,12 +291,12 @@ Common.prototype = {
       var p = proxies.item(i);
       styleSheet.insertRule("treechildren::-moz-tree-cell(" + p.colorString + "){border: 1px solid black;background-color:" + p.color + "}", styleSheet.cssRules.length);
     }
-  }, 
-  
+  },
+
   isThunderbird : function() {
     return this.appInfo.ID == "{3550f703-e582-4d05-9a08-453d09bdfdc6}";
   },
-  
+
   notify : function(msg, ar, buttons, priority, callback, getNotWithVal, callbackArgs) {
     let wm = this.getMostRecentWindow(), message = fp.getMessage(msg, ar), nb;
     // First we check, whether we use Firefox or Seamonkey...
@@ -309,25 +313,25 @@ Common.prototype = {
       if (!nb) {
         fp.notifier.alert(null, message);
         return;
-      } 
+      }
     }
     if (getNotWithVal) {
       getNotWithVal = nb.getNotificationWithValue("foxyproxy-notification");
     }
     if (!buttons) {
       buttons = [
-        { 
+        {
           label: fp.getMessage("allow"),
           accessKey: fp.getMessage("allow.accesskey"),
-          popup: null, 
+          popup: null,
           callback: callback,
           callbackArgs: callbackArgs
-        }                 
-      ];  
+        }
+      ];
     }
     if (!priority) {
       priority = nb.PRIORITY_WARNING_MEDIUM;
-    } 
+    }
     if (getNotWithVal) {
       getNotWithVal.label = message;
     }
@@ -387,7 +391,7 @@ Common.prototype = {
           if (nameValuePairs["position"]) {
             position = nameValuePairs["position"];
           }
-          fp.proxies.insertAt(position, proxy); 
+          fp.proxies.insertAt(position, proxy);
           fp.broadcast(null, "foxyproxy-proxy-change");
           break;
         case "delete": /* deliberate fall-through */
@@ -415,7 +419,7 @@ Common.prototype = {
       }
       fp.writeSettingsAsync(); // Save to disk
     }
-    
+
     // If foxyProxyMode was specified as "this", translate that to something
     // that fp.setMode() understands. Can't set mode to "this" if you're
     // deleting.
@@ -442,7 +446,7 @@ Common.prototype = {
     // not being found)
     if (nameValuePairs["foxyProxyMode"])
       fp.setMode(nameValuePairs["foxyProxyMode"], true);
-    
+
     // User-feedback?
     if (nameValuePairs["confirmation"] == "popup") {
       fp.notifier.alert(fp.getMessage("foxyproxy"),
@@ -459,10 +463,10 @@ Common.prototype = {
     }
     return nameValuePairs;
   },
-  
+
   classDescription: "FoxyProxy Common Utils",
   classID: Components.ID("{ecbe324b-9ad7-401a-a272-5cc1efba9be6}"),
-  contractID: "@leahscape.org/foxyproxy/common;1",  
+  contractID: "@leahscape.org/foxyproxy/common;1",
   _xpcom_factory: {
     singleton: null,
     createInstance: function (aOuter, aIID) {

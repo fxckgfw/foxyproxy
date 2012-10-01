@@ -71,6 +71,8 @@ function Proxy(fp) {
   this.wrappedJSObject = this;
   this.fp = fp || CC["@leahscape.org/foxyproxy/service;1"].getService().
     wrappedJSObject;
+  this.fpc = CC["@leahscape.org/foxyproxy/common;1"].getService().
+    wrappedJSObject;
   // Maybe the user deploys an OS without Mozilla's system proxy feature
   // being available (e.g. eComStation - OS/2 [sic!]) or uses an older Gecko
   // version (< 1.9.1).
@@ -678,23 +680,49 @@ Proxy.prototype = {
     }
   },
 
-  // TODO: Bug 769764: aProxyString _can_ be something like
-  // "PROXY http://www.foo.com.8080" now. Think about the ":" as splitter and/or
-  // whether we really want to have the first and second element of the
-  // proxyInfo array in newProxyInfo() then.
+  // Since bug 769764 landed we have to take care of two possible patterns in
+  // |aProxyString|: "PROXY http://www.foo.com:8080" and "PROXY www.foo.com:8080
   createProxyInfo: function(aProxyString) {
-    let proxyInfo = aProxyString.slice(6).split(":");
-    if (aProxyString.indexOf("PROXY") === 0) {
-      return proxyService.newProxyInfo("http", proxyInfo[0], proxyInfo[1], 0,
-        0, null);
-    } else if (aProxyString.indexOf("SOCKS") === 0) {
+    let proxyInfo = aProxyString.split(" ");
+    let proxyType = proxyInfo[0].toUpperCase();
+    let proxyHost, proxyPort;
+    let uri;
+    // Not sure if it throws if we can't create an URI object out of
+    // proxyInfo[1]... 
+    try {
+      uri = this.iOService.newURI(proxyInfo[1], null, null);
+    } catch (e) {}
+
+    if (uri && uri.host && uri.port) {
+      proxyHost = uri.host;
+      proxyPort = uri.port;
+    } else {
+      // We could not get the host and port of the proxy assuming we had an URI
+      // object. Let's take the assumption |aProxyString| is something like
+      // www.example.com:80 now. If that assumption is wrong we'll fail but that
+      // may be better than choosing DIRECT or some default port guess instead.
+      let proxyDetails = proxyInfo[1].split(":");
+      proxyHost = proxyDetails[0];
+      proxyPort = proxyDetails[1];
+    }
+    if (proxyType === "PROXY") {
+      return proxyService.newProxyInfo("http", proxyHost, proxyPort, 0, 0,
+        null);
+    } else if (proxyType === "SOCKS" || proxyType === "SOCKS4" ||
+               proxyType === "SOCKS5") {
       let remoteResolve;
       if (this._proxyDNS) {
         remoteResolve = CI.nsIProxyInfo.TRANSPARENT_PROXY_RESOLVES_HOST;
       } else {
         remoteResolve = 0;
       }
-      return proxyService.newProxyInfo("socks", proxyInfo[0], proxyInfo[1],
+      let socksVersion;
+      if (proxyType === "SOCKS4") {
+        socksVersion = "socks4";
+      } else {
+        socksVersion = "socks";
+      }
+      return proxyService.newProxyInfo(socksVersion, proxyHost, proxyPort,
         remoteResolve, 0, null);
     } else {
       dump("Unknown proxy type!\n");
@@ -734,8 +762,14 @@ Proxy.prototype = {
         return this.direct;
       } else {
         let uri = this.iOService.newURI(spec, null, null);
-        // TODO: Bug 769764: getProxyForURI() has now 4 parameters.
-        let proxyString = this.sysProxyService.getProxyForURI(uri);
+        // Since bug 769764 landed |getProxyForURI()| has 4 parameters.
+        let proxyString;
+        if (this.fpc.isGecko17) {
+          proxyString = this.sysProxyService.getProxyForURI(uri);
+        } else {
+          proxyString = this.sysProxyService.getProxyForURI(uri.asciiSpec,
+            uri.scheme, uri.asciiHost, uri.port);
+        }
         if (proxyString == "DIRECT") {
           return this.direct;
         } else {

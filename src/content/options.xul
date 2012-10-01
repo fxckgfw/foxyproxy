@@ -1058,9 +1058,6 @@
     <button id="foxyproxy-donate-button" command="donateCmd" class="uncram-btn"/>
     <button id="foxyproxy-plus-button" command="fppCmd" class="uncram-btn"/>
     <button id="foxyproxy-proxyservice-button" command="proxyServiceCmd" class="uncram-btn"/>
-    <toolbarbutton class="foxyproxy-ref"
-      popup="commercialInfo"
-      tooltiptext="&foxyproxy.whatsthis;"/>
     <spacer flex="1" />
     <button command="closeCmd" class="button-icon" icon="accept"/>
   </hbox>
@@ -1372,15 +1369,6 @@
 
   <popupset>
     <menupopup id="notifyWhenCanceledPopup"/>
-    <menupopup id="commercialInfo">
-      <vbox class="foxyproxy-border foxyproxy-tooltip" style="width: 50em; height: 15em;">
-        <description>&foxyproxy.aboutdonate.label;</description>
-        <separator class="thin"/>
-        <description>&foxyproxy.aboutfpplus.label;</description>
-        <separator class="thin"/>
-        <description>&foxyproxy.aboutproxyservice.label;</description>
-      </vbox>
-    </menupopup>
   </popupset>
 
   <keyset>

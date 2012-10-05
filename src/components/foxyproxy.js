@@ -441,7 +441,6 @@ foxyproxy.prototype = {
 
   mp : null,
   applyFilter : function(ps, uri, proxy) {
-    dump("applyFilter called for " + uri.spec + "...\n");
     function _err(fp, info, extInfo) {
       var def = fp.proxies.item(fp.proxies.length-1);
       mp = gLoggEntryFactory(def, null, spec, "err", extInfo?extInfo:info);

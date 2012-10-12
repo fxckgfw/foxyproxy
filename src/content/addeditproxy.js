@@ -488,11 +488,11 @@ function onImportURLPattern() {
         let pattern;
         for (let i = 0, patLength = patterns.length; i < patLength; i++) {
           pattern = CC["@leahscape.org/foxyproxy/match;1"].createInstance().
-                    wrappedJSObject; 
-          pattern.init(patterns[i].enabled, patterns[i].name, 
-                    patterns[i].pattern, false, patterns[i].isRegEx, 
-                    patterns[i].caseSensitive, patterns[i].blackList, 
-                    patterns[i].multiLine, false);
+                    wrappedJSObject;
+          pattern.init({enabled: patterns[i].enabled, name: patterns[i].name,
+            pattern: patterns[i].pattern, isRegEx: patterns[i].isRegEx,
+            caseSensitive: patterns[i].caseSensitive, isBlackList:
+            patterns[i].blackList, isMultiLine: patterns[i].multiLine});
           proxy.matches.push(pattern);
         }
       }

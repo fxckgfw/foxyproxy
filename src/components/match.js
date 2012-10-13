@@ -56,7 +56,7 @@ Match.prototype = {
   },
 
   init : function(options) {
-    this.enabled = options.enabled || true;
+    this.enabled = options.enabled && true;
     this.name = options.name || "";
     this._pattern = options.pattern || "";
     this.temp = options.temp || false; // doesn't calculate the regex

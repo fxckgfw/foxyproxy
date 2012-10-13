@@ -1,4 +1,6 @@
 * allow selection of proxy type during proxy subscription import
 * removed unnecessary help button on main dialog explaining the donation,
   FoxyProxy Plus and our proxy services
+* fixed bug in pattern import (an imported rule was never disabled), see:
+  http://forums.getfoxyproxy.org/viewtopic.php?f=4&t=767
 * updated locales

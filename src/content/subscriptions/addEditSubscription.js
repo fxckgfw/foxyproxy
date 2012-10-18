@@ -80,7 +80,7 @@ function onLoad(type) {
       // Do we have a proxyType value > 0 in the metadata? If not, do nothing as
       // we either have a pattern subscription or a proxy subscription wherethe
       // first option (i.e. the one with index "0") is selected per default
-      // anyway (be it due to an upgrade from an earlier FoxyProxy version.
+      // anyway.
       if (metadata.proxyType) {
         // We have a proxy susbcription AND the user had either "HTTP" or
         // "SOCKS" selected earlier. Let's show her her selection.

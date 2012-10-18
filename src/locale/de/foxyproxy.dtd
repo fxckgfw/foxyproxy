@@ -466,6 +466,9 @@
 <!ENTITY foxyproxy.proxyservice.tooltip "Für Proxy-Dienste registrieren">
 <!ENTITY foxyproxy.proxyservice2.label "Brauchen Sie schnelle, zuverlässige Proxies in den USA, Großbritannien oder anderen Ländern?">
 <!ENTITY foxyproxy.getfoxyproxyplus.label "Holen Sie sich FoxyProxy Plus">
+<!ENTITY foxyproxy.foxyproxychrome.label "FoxyProxy für Chrome">
+<!ENTITY foxyproxy.foxyproxychrome.accesskey "F">
+<!ENTITY foxyproxy.foxyproxychrome.tooltip "Testen Sie FoxyProxy für Chrome">
 <!ENTITY foxyproxy.aboutdonate.label "Die &quot;Spenden&quot; Schaltfläche leitet Sie zu PayPal weiter, wo Sie für die Weiterentwicklung des FoxyProxy Projekts spenden können. Bitte denken Sie über eine Spende nach, falls Sie FoxyProxy regelmäßig benutzen.">
 <!ENTITY foxyproxy.aboutfpplus.label "Die &quot;FoxyProxy Plus&quot; Schaltfläche leitet Sie auf eine Website weiter, auf der Sie etwas über die zusätzlichen Fähigkeiten der Plus-Edition erfahren und sie ggf. erwerben können.">
 <!ENTITY foxyproxy.aboutproxyservice.label "Die &quot;Proxy Service&quot; Schaltfläche schließlich leitet Sie auf die Proxy Service Website weiter, auf der Sie einen zuverlässigen Proxy-Dienst mit hoher Bandbreite in vielen verschiedenen Ländern zu einem günstigen Preis erwerben können.">

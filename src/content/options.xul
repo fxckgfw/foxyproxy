@@ -1058,6 +1058,7 @@
     <button id="foxyproxy-donate-button" command="donateCmd" class="uncram-btn"/>
     <button id="foxyproxy-plus-button" command="fppCmd" class="uncram-btn"/>
     <button id="foxyproxy-proxyservice-button" command="proxyServiceCmd" class="uncram-btn"/>
+    <button id="foxyproxy-chrome-button" command="fpChromeCmd" class="uncram-btn"/>
     <spacer flex="1" />
     <button command="closeCmd" class="button-icon" icon="accept"/>
   </hbox>
@@ -1291,10 +1292,22 @@
 
   <command id="donateCmd" label="&foxyproxy.please.donate.label;"
     accesskey="&foxyproxy.please.donate.accesskey;"
-    tooltiptext="&foxyproxy.please.donate.label;" oncommand="fpc.openAndReuseOneTabPerURL('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=7145571');" />
+    tooltiptext="&foxyproxy.please.donate.label;"
+    oncommand="fpc.openAndReuseOneTabPerURL('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=7145571');"/>
 
   <command id="fppCmd" label="&foxyproxy.getfoxyproxyplus.label;"
-    tooltiptext="&foxyproxy.getfoxyproxyplus.label;" oncommand="fpc.openAndReuseOneTabPerURL('http://getfoxyproxy.org/fpplus');" />
+    tooltiptext="&foxyproxy.getfoxyproxyplus.label;"
+    oncommand="fpc.openAndReuseOneTabPerURL('http://getfoxyproxy.org/fpplus');"/>
+
+  <command id="proxyServiceCmd" label="&foxyproxy.proxyservice.label;"
+    accesskey="&foxyproxy.proxyservice.accesskey;"
+    tooltiptext="&foxyproxy.proxyservice.tooltip;"
+    oncommand="fpc.openAndReuseOneTabPerURL('http://getfoxyproxy.org/proxyservice/');"/>
+
+  <command id="fpChromeCmd" label="&foxyproxy.foxyproxychrome.label;"
+    accesskey="&foxyproxy.foxyproxychrome.accesskey;"
+    tooltiptext="&foxyproxy.foxyproxychrome.tooltip;"
+    oncommand="fpc.openAndReuseOneTabPerURL('https://chrome.google.com/webstore/detail/gcknhkkoolaabfmlnjonogaaifnjlfnp');"/>
 
   <command id="importSettingsCmd"
     label="&foxyproxy.importsettings.label2;"
@@ -1318,7 +1331,6 @@
   <command id="onlineCmd" label="&foxyproxy.online.label;"
     accesskey="&foxyproxy.online.accesskey;"
     oncommand="fpc.openAndReuseOneTabPerURL('http://getfoxyproxy.org/');" />
-
   <command id="helpCmd" label="&foxyproxy.help.label;"
     accesskey="&foxyproxy.help.accesskey;"
     oncommand="fpc.openAndReuseOneTabPerURL('http://getfoxyproxy.org/' + (foxyproxy.isFoxyProxySimple() ? 'basic/' : '') + 'help.html');" />
@@ -1350,11 +1362,6 @@
     accesskey="&foxyproxy.resetlocation.accesskey;"
     tooltiptext="&foxyproxy.resetlocation.tooltip;"
     oncommand="onResetSettingsURL()"/>
-
-  <command id="proxyServiceCmd" label="&foxyproxy.proxyservice.label;"
-    accesskey="&foxyproxy.proxyservice.accesskey;"
-    tooltiptext="&foxyproxy.proxyservice.tooltip;"
-    oncommand="fpc.openAndReuseOneTabPerURL('http://getfoxyproxy.org/proxyservice/');"/>
 
   <broadcasterset>
     <broadcaster id="tree-row-selected" disabled="true"/>

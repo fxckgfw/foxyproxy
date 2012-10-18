@@ -118,8 +118,7 @@ treechildren::-moz-tree-checkbox(checked) {
   list-style-image: url("chrome://foxyproxy/content/images/internet-web-browser.png");
   font-weight: bold;
 }
-#foxyproxy-getdntp-button {
-  list-style-image: url("chrome://foxyproxy/content/images/getdntp.gif");
+#foxyproxy-chrome-button {
   font-weight: bold;
 }
 /* end options.xul buttons */

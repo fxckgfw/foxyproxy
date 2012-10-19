@@ -143,7 +143,7 @@ function _updateLogView(keepSelection) {
   if (keepSelection) selectedIndices = utils.getSelectedIndices(logTree);
 
   // Save scroll position so we can restore it after making the new view
-  let visibleRow = logTree.boxObject.getFirstVisibleRow();
+  let visibleRow = logTree.treeBoxObject.getFirstVisibleRow();
 
   logTree.view = {
     rowCount : foxyproxy.logg.length,
@@ -188,7 +188,7 @@ function _updateLogView(keepSelection) {
 
   // Restore scroll position - peng likes to complain that this feature was
   // missing.
-  logTree.boxObject.scrollToRow(visibleRow);
+  logTree.treeBoxObject.scrollToRow(visibleRow);
   updateLogButtons();
 }
 

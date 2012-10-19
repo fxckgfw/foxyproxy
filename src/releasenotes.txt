@@ -4,4 +4,5 @@
 * added button to promote FoxyProxy for Chrome
 * fixed bug in pattern import (an imported rule was never disabled), see:
   http://forums.getfoxyproxy.org/viewtopic.php?f=4&t=767
+* fixed rendering issue in the logging tree after deleting all entries
 * updated locales

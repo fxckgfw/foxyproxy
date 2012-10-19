@@ -5,4 +5,5 @@
 * fixed bug in pattern import (an imported rule was never disabled), see:
   http://forums.getfoxyproxy.org/viewtopic.php?f=4&t=767
 * fixed rendering issue in the logging tree after deleting all entries
+* code clean-up
 * updated locales

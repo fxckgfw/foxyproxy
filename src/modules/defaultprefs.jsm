@@ -221,11 +221,6 @@ let defaultPrefs = {
               this.ps.clearUserPref("cache.memory.enable");
             }
           }
-        } else if (this.beingEnabled) {
-          // We do not know how long we have been disabled and whether the user
-          // changed her default cookie/cache settings meanwhile. Therefore, we
-          // save them again.
-          this.saveOriginals();
         } else {
           this.uninit();
         }

@@ -40,6 +40,7 @@ let defaultPrefs = {
   beingDisabled : false,
   fp : null,
   ps : null,
+  networkPrefs : null,
   prefs : null,
 
   // Install observers
@@ -51,12 +52,14 @@ let defaultPrefs = {
     } catch (e) {}
     this.fp = fp;
     this.ps = this.utils.getPrefsService("extensions.foxyproxy.");
+    this.networkPrefs = this.utils.getPrefsService("network.proxy.");
     this.prefs = this.utils.getPrefsService("");
     if (!this.ps.prefHasUserValue("cache.memory.enable")) {
       // We are new in a profile, save the currently used cache and cookie
       // preferences. 
       this.saveOriginals();
     }
+    this.restoreOriginalProxyPrefs();
     this.addPrefsObservers();
     this.addGeneralObservers();
   },
@@ -222,7 +225,15 @@ let defaultPrefs = {
             }
           }
         } else {
+          // This case means being or getting enabled and shutting down...
           this.uninit();
+          // Now the safeguards against IP and DNS leaks due to a compatibility
+          // check on restart if the application got upgraded. That workaroung
+          // is necessary as FoxyProxy is _not_ available at that moment yet but
+          // rather initialized after it. Nevertheless, the user is expecting to
+          // get all requests handled by FoxyProxy as it is perceived to be
+          // enabled (although that is wrong strictly speaking).
+          this.saveFoxyProxyProxyMode();
         }
       }
       else if (topic == "foxyproxy-mode-change") {
@@ -346,14 +357,14 @@ let defaultPrefs = {
   restoreOriginalPreFetch : function(contObserving) {
     let that = this;
     function forcePACReload() {
+      let type;
       // If Firefox is configured to use a PAC file, we need to force that PAC
       // file to load. Firefox won't load it automatically except on startup
       // and after network.proxy.autoconfig_retry_* seconds. Rather than make
       // the user wait for that, we load the PAC file now by flipping
       // network.proxy.type (Firefox is observing that pref)
-      let networkPrefs = that.utils.getPrefsService("network.proxy."), type;
       try {
-        type = networkPrefs.getIntPref("type");
+        type = that.networkPrefs.getIntPref("type");
       }
       catch(e) {
         dump("FoxyProxy: network.proxy.type doesn't exist or can't be read\n");
@@ -369,15 +380,15 @@ let defaultPrefs = {
         // to "reload" the PAC file. Then, at that point, we can eliminate this
         // interface completely."
 
-        // var pacURL = networkPrefs.getCharPref("autoconfig_url");
+        // var pacURL = that.networkPrefs.getCharPref("autoconfig_url");
         // var pps = CC["@mozilla.org/network/protocol-proxy-service;1"]
         // .getService(Components.interfaces.nsPIProtocolProxyService);
         // pps.configureFromPAC(pacURL);
 
         // Instead, change the prefs--the proxy service is observing and will
         // reload the PAC.
-        networkPrefs.setIntPref("type", 1);
-        networkPrefs.setIntPref("type", 2);
+        that.networkPrefs.setIntPref("type", 1);
+        that.networkPrefs.setIntPref("type", 2);
       }
     }
 
@@ -409,6 +420,80 @@ let defaultPrefs = {
     this.ps.setIntPref("cookieBehavior", this.prefs.
       getIntPref("network.cookie.cookieBehavior"));
     this.fp.writeSettingsAsync();
+  },
+
+  saveFoxyProxyProxyMode : function() {
+    // First, we save the original prefs...
+    // TODO: Do we really need all prefs? We should only save those we possibly
+    // overwrite... What about a Gopher test for FF < 4.0?
+    this.ps.setCharPref("autoconfig_url",
+      this.networkPrefs.getCharPref("autoconfig_url"));
+    this.ps.setCharPref("ftp", this.networkPrefs.getCharPref("ftp"));
+    this.ps.setIntPref("ftp_port", this.networkPrefs.getIntPref("ftp_port"));
+    this.ps.setCharPref("http", this.networkPrefs.getCharPref("http"));
+    this.ps.setIntPref("http_port", this.networkPrefs.getIntPref("http_port"));
+    this.ps.setCharPref("no_proxies_on",
+      this.networkPrefs.getCharPref("no_proxies_on"));
+    this.ps.setBoolPref("share_proxy_settings",
+      this.networkPrefs.getBoolPref("share_proxy_settings"));
+    this.ps.setCharPref("socks", this.networkPrefs.getCharPref("socks"));
+    this.ps.setIntPref("socks_port",
+      this.networkPrefs.getIntPref("socks_port"));
+    this.ps.setBoolPref("socks_remote_dns",
+      this.networkPrefs.getBoolPref("socks_remote_dns"));
+    this.ps.setIntPref("socks_version",
+      this.networkPrefs.getIntPref("socks_version"));
+    this.ps.setCharPref("ssl", this.networkPrefs.getCharPref("ssl"));
+    this.ps.setIntPref("ssl_port", this.networkPrefs.getIntPref("ssl_port"));
+    this.ps.setIntPref("type", this.networkPrefs.getIntPref("type"));
+    
+    // Now, writing FoxyProxy's current proxy settings to the prefs.
+    // Taking the easiest case first, "Use proxy XYZ for all URLs".
+    if (this.fp._selectedProxy) {
+      let proxy = this.fp._selectedProxy;
+      if (proxy.mode == "manual") {
+        this.networkPrefs.setIntPref("type", 1);
+        // TODO: Extract the real values and write them to prefs...
+      } else if (proxy.mode == "auto") {
+        if (proxy.autoconfMode == "wpad") {
+          this.networkPrefs.setIntPref("type", 4);
+        } else {
+          // PAC mode
+          this.networkPrefs.setIntPref("type", 2);
+          this.networkPrefs.setCharPref("autoconfig_url", proxy.autoconf.url);
+        }
+      } else if (proxy.mode == "system") {
+        this.networkPrefs.setIntPref("type", 5);
+      } else if (proxy.mode == "direct") {
+        this.networkPrefs.setIntPref("type", 0);
+      }
+    }
+  },
+
+  restoreOriginalProxyPrefs : function() {
+    // Now that FoxyProxy has taken the control over the proxy handling again we
+    // restore the user's proxy settings in the network panel to have them back
+    // if FoxyProxy gets e.g. disabled or uninstalled.
+    this.networkPrefs.setCharPref("autoconfig_url",
+      this.ps.getCharPref("autoconfig_url"));
+    this.networkPrefs.setCharPref("ftp", this.ps.getCharPref("ftp"));
+    this.networkPrefs.setIntPref("ftp_port", this.ps.getIntPref("ftp_port"));
+    this.networkPrefs.setCharPref("http", this.ps.getCharPref("http"));
+    this.networkPrefs.setIntPref("http_port", this.ps.getIntPref("http_port"));
+    this.networkPrefs.setCharPref("no_proxies_on",
+      this.ps.getCharPref("no_proxies_on"));
+    this.networkPrefs.setBoolPref("share_proxy_settings",
+      this.ps.getBoolPref("share_proxy_settings"));
+    this.networkPrefs.setCharPref("socks", this.ps.getCharPref("socks"));
+    this.networkPrefs.setIntPref("socks_port",
+      this.ps.getIntPref("socks_port"));
+    this.networkPrefs.setBoolPref("socks_remote_dns",
+      this.ps.getBoolPref("socks_remote_dns"));
+    this.networkPrefs.setIntPref("socks_version",
+      this.ps.getIntPref("socks_version"));
+    this.networkPrefs.setCharPref("ssl", this.ps.getCharPref("ssl"));
+    this.networkPrefs.setIntPref("ssl_port", this.ps.getIntPref("ssl_port"));
+    this.networkPrefs.setIntPref("type", this.ps.getIntPref("type"));
   },
   
   fromDOM : function(doc) {

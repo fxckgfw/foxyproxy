@@ -302,8 +302,8 @@ Proxy.prototype = {
   },
 
   /**
-   * If this proxy requires network.dns.disablePrefetch to be false,
-   * return true. network.dns.disablePrefetch must be false when the
+   * If this proxy requires "network.dns.disablePrefetch" to be |true|,
+   * return true. "network.dns.disablePrefetch must" be |true| when the
    * user wants to proxy DNS requests through this proxy. Otherwise,
    * Firefox won't always use this proxy for DNS lookups.
    */

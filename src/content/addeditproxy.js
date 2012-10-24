@@ -290,19 +290,19 @@ function noInternalIPs() {
       wrappedJSObject;
     m.init({enabled: true, name: foxyproxy.getMessage("localhost2") +
       foxyproxy.getMessage("localhost.patterns.message"), pattern:
-      localhostRegEx, isRegEx: true, isMultiLine: true});
+      localhostRegEx, isRegEx: true, isBlackList: true, isMultiLine: true});
     helper.push(m);
     m = CC["@leahscape.org/foxyproxy/match;1"].createInstance().
       wrappedJSObject;
     m.init({enabled: true, name: foxyproxy.getMessage("localsubnets2") +
       foxyproxy.getMessage("localhost.patterns.message"), pattern:
-      localhostRegEx, isRegEx: true, isMultiLine: true}); 
+      localhostRegEx, isRegEx: true, isBlackList: true, isMultiLine: true});
     helper.push(m);
     m = CC["@leahscape.org/foxyproxy/match;1"].createInstance().
       wrappedJSObject;
     m.init({enabled: true, name: foxyproxy.getMessage("localhostnames2") +
       foxyproxy.getMessage("localhost.patterns.message"), pattern:
-      localhostRegEx, isRegEx: true, isMultiLine: true});
+      localhostRegEx, isRegEx: true, isBlackList: true, isMultiLine: true});
     helper.push(m);
     proxy.matches = helper.concat(proxy.matches);
   } else {

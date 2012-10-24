@@ -4,6 +4,8 @@
 * added button to promote FoxyProxy for Chrome
 * fixed bug in pattern import (an imported rule was never disabled), see:
   http://forums.getfoxyproxy.org/viewtopic.php?f=4&t=767
+* fixed wrong pattern type of patterns excluding internal IP addresses, see:
+  (http://forums.getfoxyproxy.org/viewtopic.php?f=4&t=777&p=1941)
 * fixed rendering issue in the logging tree after deleting all entries
 * code clean-up
 * updated locales

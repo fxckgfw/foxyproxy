@@ -228,11 +228,12 @@ let defaultPrefs = {
           // This case means being or getting enabled and shutting down...
           this.uninit();
           // Now the safeguards against IP and DNS leaks due to a compatibility
-          // check on restart if the application got upgraded. That workaroung
-          // is necessary as FoxyProxy is _not_ available at that moment yet but
-          // rather initialized after it. Nevertheless, the user is expecting to
-          // get all requests handled by FoxyProxy as it is perceived to be
-          // enabled (although that is wrong strictly speaking).
+          // check on restart if the application got upgraded. This affects 
+          // Gecko 2 and later Gecko versions. That workaround is necessary as
+          // FoxyProxy is _not_ available at that moment yet but rather
+          // initialized after it. Nevertheless, the user is expecting to get
+          // all requests handled by FoxyProxy as it is perceived to be enabled
+          // (although that is wrong strictly speaking).
           this.saveFoxyProxyProxyMode();
         }
       }
@@ -423,37 +424,52 @@ let defaultPrefs = {
   },
 
   saveFoxyProxyProxyMode : function() {
-    // First, we save the original prefs...
-    // TODO: Do we really need all prefs? We should only save those we possibly
-    // overwrite... What about a Gopher test for FF < 4.0?
+    // First, we save the original prefs... As the problem at hand is only an
+    // issue for Gecko 2+ versions and there is no Gopher supported anymore in
+    // these versions we let the Gopher settings alone if they exist. We
+    // nevertheless have to save the FoxyProxy proxy settings to the prefs file
+    // even on systems using a Gecko version < 2 as they might (and should)
+    // upgrade to a version > 2.
+    // TODO: Do we really need all prefs? We should only save those we gonna 
+    // overwrite.
     this.ps.setCharPref("autoconfig_url",
       this.networkPrefs.getCharPref("autoconfig_url"));
     this.ps.setCharPref("ftp", this.networkPrefs.getCharPref("ftp"));
     this.ps.setIntPref("ftp_port", this.networkPrefs.getIntPref("ftp_port"));
     this.ps.setCharPref("http", this.networkPrefs.getCharPref("http"));
     this.ps.setIntPref("http_port", this.networkPrefs.getIntPref("http_port"));
-    this.ps.setCharPref("no_proxies_on",
-      this.networkPrefs.getCharPref("no_proxies_on"));
-    this.ps.setBoolPref("share_proxy_settings",
-      this.networkPrefs.getBoolPref("share_proxy_settings"));
     this.ps.setCharPref("socks", this.networkPrefs.getCharPref("socks"));
     this.ps.setIntPref("socks_port",
       this.networkPrefs.getIntPref("socks_port"));
-    this.ps.setBoolPref("socks_remote_dns",
-      this.networkPrefs.getBoolPref("socks_remote_dns"));
     this.ps.setIntPref("socks_version",
       this.networkPrefs.getIntPref("socks_version"));
     this.ps.setCharPref("ssl", this.networkPrefs.getCharPref("ssl"));
     this.ps.setIntPref("ssl_port", this.networkPrefs.getIntPref("ssl_port"));
     this.ps.setIntPref("type", this.networkPrefs.getIntPref("type"));
-    
+    this.ps.setBoolPref("socks_remote_dns",
+      this.networkPrefs.getBoolPref("socks_remote_dns"))
+
     // Now, writing FoxyProxy's current proxy settings to the prefs.
     // Taking the easiest case first, "Use proxy XYZ for all URLs".
     if (this.fp._selectedProxy) {
       let proxy = this.fp._selectedProxy;
+      // Every proxy has this attribute. Thus, let's save it before deciding
+      // which proxy settings to save in particular.
+      this.networkPrefs.setBoolPref("socks_remote_dns", proxy.proxyDNS);
       if (proxy.mode == "manual") {
         this.networkPrefs.setIntPref("type", 1);
-        // TODO: Extract the real values and write them to prefs...
+        if (!proxy.manualconf.isSocks) {
+          this.networkPrefs.setCharPref("http", proxy.manualconf.host);
+          this.networkPrefs.setIntPref("http_port", proxy.manualconf.port);
+          this.networkPrefs.setCharPref("ssl", proxy.manualconf.host);
+          this.networkPrefs.setIntPref("ssl_port", proxy.manualconf.port);
+          this.networkPrefs.setCharPref("ftp", proxy.manualconf.host);
+          this.networkPrefs.setIntPref("ftp_port", proxy.manualconf.port);
+        } else {
+          this.networkPrefs.setCharPref("socks", proxy.manualconf.host);
+          this.networkPrefs.setIntPref("socks_port", proxy.manualconf.port);
+          this.networkPrefs.setIntPref("socks_version", proxy.manualconf.port);
+        }
       } else if (proxy.mode == "auto") {
         if (proxy.autoconfMode == "wpad") {
           this.networkPrefs.setIntPref("type", 4);
@@ -480,20 +496,16 @@ let defaultPrefs = {
     this.networkPrefs.setIntPref("ftp_port", this.ps.getIntPref("ftp_port"));
     this.networkPrefs.setCharPref("http", this.ps.getCharPref("http"));
     this.networkPrefs.setIntPref("http_port", this.ps.getIntPref("http_port"));
-    this.networkPrefs.setCharPref("no_proxies_on",
-      this.ps.getCharPref("no_proxies_on"));
-    this.networkPrefs.setBoolPref("share_proxy_settings",
-      this.ps.getBoolPref("share_proxy_settings"));
     this.networkPrefs.setCharPref("socks", this.ps.getCharPref("socks"));
     this.networkPrefs.setIntPref("socks_port",
       this.ps.getIntPref("socks_port"));
-    this.networkPrefs.setBoolPref("socks_remote_dns",
-      this.ps.getBoolPref("socks_remote_dns"));
     this.networkPrefs.setIntPref("socks_version",
       this.ps.getIntPref("socks_version"));
     this.networkPrefs.setCharPref("ssl", this.ps.getCharPref("ssl"));
     this.networkPrefs.setIntPref("ssl_port", this.ps.getIntPref("ssl_port"));
     this.networkPrefs.setIntPref("type", this.ps.getIntPref("type"));
+    this.networkPrefs.setBoolPref("socks_remote_dns",
+      this.ps.getBoolPref("socks_remote_dns"));
   },
   
   fromDOM : function(doc) {

@@ -101,6 +101,8 @@
 <!ENTITY foxyproxy.copyright "Copyright">
 <!ENTITY foxyproxy.rights "All Rights Reserved.">
 <!ENTITY foxyproxy.released "Released under the GPL license.">
+<!ENTITY foxyproxyplus.released "Released under the">
+<!ENTITY foxyproxyplus.license "FoxyProxy Plus license">
 <!ENTITY foxyproxy.tab.general.label "General">
 <!ENTITY foxyproxy.tab.general.accesskey "G">
 <!ENTITY foxyproxy.tab.general.tooltip "Manage General Proxy Settings">
@@ -141,6 +143,10 @@
 <!ENTITY foxyproxy.tab.global.label "Global Settings">
 <!ENTITY foxyproxy.tab.global.accesskey "G">
 <!ENTITY foxyproxy.tab.global.tooltip "Manage Global Settings">
+<!ENTITY foxyproxy.settings.general.label "General Settings">
+<!ENTITY foxyproxy.settings.general.tooltip "These are the most common settings of FoxyProxy">
+<!ENTITY foxyproxy.settings.advanced.label "Advanced Settings">
+<!ENTITY foxyproxy.settings.advanced.tooltip "These are the advanced settings of FoxyProxy">
 <!ENTITY foxyproxy.tab.logging.label "Logging">
 <!ENTITY foxyproxy.tab.logging.accesskey "L">
 <!ENTITY foxyproxy.tab.logging.tooltip "Manage Logging Settings">

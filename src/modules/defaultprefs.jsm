@@ -59,7 +59,11 @@ let defaultPrefs = {
       // preferences. 
       this.saveOriginals();
     }
-    this.restoreOriginalProxyPrefs();
+    if (this.ps.prefHasUserValue("autoconfig_url")) {
+      // FoxyProxy has been close before and the user's proxy settings got saved
+      // and overwritten. Restore them now.
+      this.restoreOriginalProxyPrefs();
+    }
     this.addPrefsObservers();
     this.addGeneralObservers();
   },

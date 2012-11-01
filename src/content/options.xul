@@ -398,345 +398,372 @@
       <!-- global settings -->
       <tabpanel flex="1" orient="vertical">
         <separator class="thin"/>
-        <grid>
-          <columns>
-            <column flex="1"/>
-            <column flex="1"/>
-          </columns>
-          <rows>
-            <row>
-              <groupbox>
-                <caption label="&foxyproxy.indicators.label;"
-                  tooltiptext="&foxyproxy.indicators.tooltip;"/>
-                <hbox align="center">
-                  <checkbox id="toolbarEnabled"
-                    label="&foxyproxy.toolbaricon.label;"
-                    accesskey="&foxyproxy.toolbaricon.accesskey;"
-                    tooltiptext="&foxyproxy.toolbaricon.tooltip;"
-                    oncommand="foxyproxy.toolbarIcon = this.checked;"/>
-                </hbox>
-                <hbox align="center">
-                  <checkbox id="statusbarIconEnabled"
-                    label="&foxyproxy.showstatusbaricon.label;"
-                    accesskey="&foxyproxy.showstatusbaricon.accesskey;"
-                    tooltiptext="&foxyproxy.showstatusbaricon.tooltip;"
-                    oncommand="foxyproxy.statusbar.iconEnabled = this.checked;"/>
-                </hbox>
-                <hbox align="center">
-                  <checkbox id="statusbarTextEnabled"
-                    label="&foxyproxy.showstatusbarmode.label;"
-                    accesskey="&foxyproxy.showstatusbarmode.accesskey;"
-                    tooltiptext="&foxyproxy.showstatusbarmode.tooltip;"
-                    oncommand="onToggleStatusBarText(this.checked);"/>
-                </hbox>
-                <hbox align="center" class="indent">
-                  <label value="&foxyproxy.statusbarwidth.label;"
-                    observes="statusBarWidthBroadcaster"/>
-                  <textbox id="statusbarWidth" size="1" type="timed"
-                    timeout="500"
-                    oncommand="foxyproxy.statusbar.width = this.value"
-                    tooltiptext="&foxyproxy.statusbarwidth.tooltip;"
-                    accesskey="&foxyproxy.statusbarwidth.accesskey;"
-                    observes="statusBarWidthBroadcaster"/>
-                  <label value="&foxyproxy.pixels;"
-                    observes="statusBarWidthBroadcaster"/>
-                  <label value="&foxyproxy.unlimited.label;"
-                    observes="statusBarWidthBroadcaster"/>
-                </hbox>
-                <hbox align="center">
-                  <checkbox id="toolsMenuEnabled"
-                    label="&foxyproxy.toolsmenu.label2;"
-                    accesskey="&foxyproxy.toolsmenu.accesskey;"
-                    tooltiptext="&foxyproxy.toolsmenu.tooltip2;"
-                    oncommand="foxyproxy.toolsMenu = this.checked;"/>
-                </hbox>
-                <hbox align="center">
-                  <checkbox id="contextMenuEnabled"
-                    label="&foxyproxy.contextmenu.label;"
-                    accesskey="&foxyproxy.contextmenu.accesskey;"
-                    tooltiptext="&foxyproxy.contextmenu.tooltip;"
-                    oncommand="foxyproxy.contextMenu = this.checked;"/>
-                </hbox>
-              </groupbox>
-              <groupbox>
-                <caption label="&foxyproxy.toolbaractivation.label;"
-                  tooltiptext="&foxyproxy.toolbaractivation.tooltip;"/>
-                <grid>
-                  <columns>
-                    <column flex="1"/>
-                    <column/>
-                  </columns>
-                  <rows>
-                    <row align="center">
-                      <label value="&foxyproxy.leftclicktb.label;"
-                        accesskey="&foxyproxy.leftclicktb.accesskey;"
-                        tooltiptext="&foxyproxy.leftclicktb.tooltip;"
-                        control="tbLeftClickMenu"/>
-                      <menulist id="tbLeftClickMenu"
-                        oncommand="foxyproxy.toolbar.leftClick=this.value;"
-                        tooltiptext="&foxyproxy.leftclicktb.tooltip;"
-                        style="width: 15em;" sizetopopup="none">
-                        <menupopup>
-                          <menuitem label="&foxyproxy.click.options;"
-                            value="options"/>
-                          <menuitem label="&foxyproxy.click.cycle;"
-                            value="cycle"/>
-                          <menuitem
-                            label="&foxyproxy.click.contextmenu;"
-                            value="contextmenu"/>
-                          <menuitem
-                            label="&foxyproxy.click.removeallcookies;"
-                            value="removeallcookies"/>
-                          <menuitem
-                            label="&foxyproxy.click.reloadcurtab;"
-                            value="reloadcurtab"/>
-                          <menuitem
-                            label="&foxyproxy.click.reloadtabsinbrowser;"
-                            value="reloadtabsinbrowser"/>
-                          <menuitem
-                            label="&foxyproxy.click.reloadtabsinallbrowsers;"
-                            value="reloadtabsinallbrowsers"/>
-                          <menuitem label="&foxyproxy.click.toggle;"
-                            value="toggle"/>
-                          <menuitem label="&foxyproxy.quickadd.label;"
-                            value="quickadd" class="hide-if-foxyproxy-simple"/>
-                        </menupopup>
-                      </menulist>
-                    </row>
-                    <row align="center">
-                      <label value="&foxyproxy.middleclicktb.label;"
-                        accesskey="&foxyproxy.middleclicktb.accesskey;"
-                        tooltiptext="&foxyproxy.middleclicktb.tooltip;"
-                        control="tbMiddleClickMenu"/>
-                      <menulist id="tbMiddleClickMenu"
-                        oncommand="foxyproxy.toolbar.middleClick=this.value;"
-                        tooltiptext="&foxyproxy.middleclicktb.tooltip;"
-                        style="width: 15em;" sizetopopup="none">
-                        <menupopup>
-                          <menuitem label="&foxyproxy.click.options;"
-                            value="options"/>
-                          <menuitem label="&foxyproxy.click.cycle;"
-                            value="cycle"/>
-                          <menuitem
-                            label="&foxyproxy.click.contextmenu;"
-                            value="contextmenu"/>
-                          <menuitem
-                            label="&foxyproxy.click.removeallcookies;"
-                            value="removeallcookies"/>
-                          <menuitem
-                            label="&foxyproxy.click.reloadcurtab;"
-                            value="reloadcurtab"/>
-                          <menuitem
-                            label="&foxyproxy.click.reloadtabsinbrowser;"
-                            value="reloadtabsinbrowser"/>
-                          <menuitem
-                            label="&foxyproxy.click.reloadtabsinallbrowsers;"
-                            value="reloadtabsinallbrowsers"/>
-                          <menuitem label="&foxyproxy.click.toggle;"
-                            value="toggle"/>
-                          <menuitem label="&foxyproxy.quickadd.label;"
-                            value="quickadd" class="hide-if-foxyproxy-simple"/>
-                        </menupopup>
-                      </menulist>
-                    </row>
-                    <row align="center">
-                      <label value="&foxyproxy.rightclicktb.label;"
-                        accesskey="&foxyproxy.rightclicktb.accesskey;"
-                        tooltiptext="&foxyproxy.rightclicktb.tooltip;"
-                        control="tbRightClickMenu"/>
-                      <menulist id="tbRightClickMenu"
-                        oncommand="foxyproxy.toolbar.rightClick=this.value;"
-                        tooltiptext="&foxyproxy.rightclicktb.tooltip;"
-                        style="width: 15em;" sizetopopup="none">
-                        <menupopup>
-                          <menuitem label="&foxyproxy.click.options;"
-                            value="options"/>
-                          <menuitem label="&foxyproxy.click.cycle;"
-                            value="cycle"/>
-                          <menuitem
-                            label="&foxyproxy.click.contextmenu;"
-                            value="contextmenu"/>
-                          <menuitem
-                            label="&foxyproxy.click.removeallcookies;"
-                            value="removeallcookies"/>
-                          <menuitem
-                            label="&foxyproxy.click.reloadcurtab;"
-                            value="reloadcurtab"/>
-                          <menuitem
-                            label="&foxyproxy.click.reloadtabsinbrowser;"
-                            value="reloadtabsinbrowser"/>
-                          <menuitem
-                            label="&foxyproxy.click.reloadtabsinallbrowsers;"
-                            value="reloadtabsinallbrowsers"/>
-                          <menuitem label="&foxyproxy.click.toggle;"
-                            value="toggle"/>
-                          <menuitem label="&foxyproxy.quickadd.label;"
-                            value="quickadd" class="hide-if-foxyproxy-simple"/>
-                        </menupopup>
-                      </menulist>
-                    </row>
-                  </rows>
-                </grid>
-              </groupbox>
-            </row>
-            <row>
-              <groupbox>
-                <caption label="&foxyproxy.misc.label;"
-                  tooltiptext="&foxyproxy.misc.tooltip;"/>
-                <row align="center">
-                  <label value="&foxyproxy.storagelocation.label.2;"
-                    accesskey="&foxyproxy.storagelocation.accesskey;"
-                    tooltiptext="&foxyproxy.storagelocation.tooltip;"/>
-                  <!-- style to simulate disabled="true" look-and-feel. We don't
-                       want to actually use disabled="true" because then the
-                       user can't scroll the textbox content, copy it into the
-                       clipboard, etc. -->
-                  <textbox id="settingsURL" flex="1" readonly="true"
-                    style="border: gray; color: gray"
-                    tooltiptext="&foxyproxy.storagelocation.tooltip;"/>
-                  <button id="settingsURLBtn" style="min-width: 0.5em;"
-                    oncommand="onSettingsURLBtn();" label="..."
-                    tooltiptext="&foxyproxy.storagelocation.tooltip;"/>
-                </row>
-                <row align="center" observes="notDefaultSettingsBroadcaster">
-                  <description>&foxyproxy.settings.not.default;
-                  <html:a class="link" style="margin: 0 .5em 0 .5em"  
-                    onclick="fpc.openAndReuseOneTabPerURL('http://getfoxyproxy.org/settings.html');">&foxyproxy.importantnote.label;</html:a>
-                   </description>
-                   <button command="resetSettingsCmd"
-                     label="&foxyproxy.resetlocation.label;"/>
-                </row>
-                <row align="center">
-                  <checkbox id="advancedMenusEnabled"
-                    label="&foxyproxy.advancedmenus.label;"
-                    accesskey="&foxyproxy.advancedmenus.accesskey;"
-                    tooltiptext="&foxyproxy.advancedmenus.tooltip;"
-                    oncommand="foxyproxy.advancedMenus = this.checked;"/>
-                </row>
-              </groupbox>
-              <groupbox>
-                <caption label="&foxyproxy.statusbaractivation.label;"
-                  tooltiptext="&foxyproxy.statusbaractivation.tooltip;"/>
-                <grid>
-                  <columns>
-                    <column flex="1"/>
-                    <column/>
-                  </columns>
-                  <rows>
-                    <row align="center">
-                      <label value="&foxyproxy.leftclicksb.label;"
-                        accesskey="&foxyproxy.leftclicksb.accesskey;"
-                        tooltiptext="&foxyproxy.leftclicksb.tooltip;"
-                        control="sbLeftClickMenu"/>
-                      <menulist id="sbLeftClickMenu"
-                        oncommand="foxyproxy.statusbar.leftClick=this.value;"
-                        tooltiptext="&foxyproxy.leftclicksb.tooltip;"
-                        style="width: 15em;" sizetopopup="none">
-                        <menupopup>
-                          <menuitem label="&foxyproxy.click.options;"
-                            value="options"/>
-                          <menuitem label="&foxyproxy.click.cycle;"
-                            value="cycle"/>
-                          <menuitem
-                            label="&foxyproxy.click.contextmenu;"
-                            value="contextmenu"/>
-                          <menuitem
-                            label="&foxyproxy.click.removeallcookies;"
-                            value="removeallcookies"/>
-                          <menuitem
-                            label="&foxyproxy.click.reloadcurtab;"
-                            value="reloadcurtab"/>
-                          <menuitem
-                            label="&foxyproxy.click.reloadtabsinbrowser;"
-                            value="reloadtabsinbrowser"/>
-                          <menuitem
-                            label="&foxyproxy.click.reloadtabsinallbrowsers;"
-                            value="reloadtabsinallbrowsers"/>
-                          <menuitem label="&foxyproxy.click.toggle;"
-                            value="toggle"/>
-                          <menuitem label="&foxyproxy.quickadd.label;"
-                            value="quickadd" class="hide-if-foxyproxy-simple"/>
-                        </menupopup>
-                      </menulist>
-                    </row>
-                    <row align="center">
-                      <label value="&foxyproxy.middleclicksb.label;"
-                        accesskey="&foxyproxy.middleclicksb.accesskey;"
-                        tooltiptext="&foxyproxy.middleclicksb.tooltip;"
-                        control="sbMiddleClickMenu"/>
-                      <menulist id="sbMiddleClickMenu"
-                        oncommand="foxyproxy.statusbar.middleClick=this.value;"
-                        tooltiptext="&foxyproxy.middleclicksb.tooltip;"
-                        style="width: 15em;" sizetopopup="none">
-                        <menupopup>
-                          <menuitem label="&foxyproxy.click.options;"
-                            value="options"/>
-                          <menuitem label="&foxyproxy.click.cycle;"
-                            value="cycle"/>
-                          <menuitem
-                            label="&foxyproxy.click.contextmenu;"
-                            value="contextmenu"/>
-                          <menuitem
-                            label="&foxyproxy.click.removeallcookies;"
-                            value="removeallcookies"/>
-                          <menuitem
-                            label="&foxyproxy.click.reloadcurtab;"
-                            value="reloadcurtab"/>
-                          <menuitem
-                            label="&foxyproxy.click.reloadtabsinbrowser;"
-                            value="reloadtabsinbrowser"/>
-                          <menuitem
-                            label="&foxyproxy.click.reloadtabsinallbrowsers;"
-                            value="reloadtabsinallbrowsers"/>
-                          <menuitem label="&foxyproxy.click.toggle;"
-                            value="toggle"/>
-                          <menuitem label="&foxyproxy.quickadd.label;"
-                            value="quickadd" class="hide-if-foxyproxy-simple"/>
-                        </menupopup>
-                      </menulist>
-                    </row>
-                    <row align="center">
-                      <label value="&foxyproxy.rightclicksb.label;"
-                        accesskey="&foxyproxy.rightclicksb.accesskey;"
-                        tooltiptext="&foxyproxy.rightclicksb.tooltip;"
-                        control="sbRightClickMenu"/>
-                      <menulist id="sbRightClickMenu"
-                        oncommand="foxyproxy.statusbar.rightClick=this.value;"
-                        tooltiptext="&foxyproxy.rightclicksb.tooltip;"
-                        style="width: 15em;" sizetopopup="none">
-                        <menupopup>
-                          <menuitem label="&foxyproxy.click.options;"
-                            value="options"/>
-                          <menuitem label="&foxyproxy.click.cycle;"
-                            value="cycle"/>
-                          <menuitem
-                            label="&foxyproxy.click.contextmenu;"
-                            value="contextmenu"/>
-                          <menuitem
-                            label="&foxyproxy.click.removeallcookies;"
-                            value="removeallcookies"/>
-                          <menuitem
-                            label="&foxyproxy.click.reloadcurtab;"
-                            value="reloadcurtab"/>
-                          <menuitem
-                            label="&foxyproxy.click.reloadtabsinbrowser;"
-                            value="reloadtabsinbrowser"/>
-                          <menuitem
-                            label="&foxyproxy.click.reloadtabsinallbrowsers;"
-                            value="reloadtabsinallbrowsers"/>
-                          <menuitem label="&foxyproxy.click.toggle;"
-                            value="toggle"/>
-                          <menuitem label="&foxyproxy.quickadd.label;"
-                            value="quickadd" class="hide-if-foxyproxy-simple"/>
-                        </menupopup>
-                      </menulist>
-                    </row>
-                  </rows>
-                </grid>
-              </groupbox>
-            </row>
-          </rows>
-        </grid>
+        <tabbox>
+          <tabs>
+            <tab id="foxyproxy-general-settings-tab" class="uncram-tab"
+              label="&foxyproxy.settings.general.label;" selected="true"
+              tooltiptext="&foxyproxy.settings.general.tooltip;"/>
+            <tab id="foxyproxy-advanced-settings-tab"
+              class="hide-if-foxyproxy-simple uncram-tab"
+              label="&foxyproxy.settings.advanced.label;"
+              tooltiptext="&foxyproxy.settings.advanced.tooltip;"/>
+          </tabs>
+          <tabpanels style="moz-appearance: none;" flex="1">
+            <tabpanel>
+              <grid>
+                <columns>
+                  <column flex="1"/>
+                  <column flex="1"/>
+                </columns>
+                <rows>
+                  <row>
+                    <groupbox>
+                      <caption label="&foxyproxy.indicators.label;"
+                        tooltiptext="&foxyproxy.indicators.tooltip;"/>
+                      <hbox align="center">
+                        <checkbox id="toolbarEnabled"
+                          label="&foxyproxy.toolbaricon.label;"
+                          accesskey="&foxyproxy.toolbaricon.accesskey;"
+                          tooltiptext="&foxyproxy.toolbaricon.tooltip;"
+                          oncommand="foxyproxy.toolbarIcon = this.checked;"/>
+                      </hbox>
+                      <hbox align="center">
+                        <checkbox id="statusbarIconEnabled"
+                          label="&foxyproxy.showstatusbaricon.label;"
+                          accesskey="&foxyproxy.showstatusbaricon.accesskey;"
+                          tooltiptext="&foxyproxy.showstatusbaricon.tooltip;"
+                          oncommand="foxyproxy.statusbar.iconEnabled = this.checked;"/>
+                      </hbox>
+                      <hbox align="center">
+                        <checkbox id="statusbarTextEnabled"
+                          label="&foxyproxy.showstatusbarmode.label;"
+                          accesskey="&foxyproxy.showstatusbarmode.accesskey;"
+                          tooltiptext="&foxyproxy.showstatusbarmode.tooltip;"
+                          oncommand="onToggleStatusBarText(this.checked);"/>
+                      </hbox>
+                      <hbox align="center" class="indent">
+                        <label value="&foxyproxy.statusbarwidth.label;"
+                          observes="statusBarWidthBroadcaster"/>
+                        <textbox id="statusbarWidth" size="1" type="timed"
+                          timeout="500"
+                          oncommand="foxyproxy.statusbar.width = this.value"
+                          tooltiptext="&foxyproxy.statusbarwidth.tooltip;"
+                          accesskey="&foxyproxy.statusbarwidth.accesskey;"
+                          observes="statusBarWidthBroadcaster"/>
+                        <label value="&foxyproxy.pixels;"
+                          observes="statusBarWidthBroadcaster"/>
+                        <label value="&foxyproxy.unlimited.label;"
+                          observes="statusBarWidthBroadcaster"/>
+                      </hbox>
+                      <hbox align="center">
+                        <checkbox id="toolsMenuEnabled"
+                          label="&foxyproxy.toolsmenu.label2;"
+                          accesskey="&foxyproxy.toolsmenu.accesskey;"
+                          tooltiptext="&foxyproxy.toolsmenu.tooltip2;"
+                          oncommand="foxyproxy.toolsMenu = this.checked;"/>
+                      </hbox>
+                      <hbox align="center">
+                        <checkbox id="contextMenuEnabled"
+                          label="&foxyproxy.contextmenu.label;"
+                          accesskey="&foxyproxy.contextmenu.accesskey;"
+                          tooltiptext="&foxyproxy.contextmenu.tooltip;"
+                          oncommand="foxyproxy.contextMenu = this.checked;"/>
+                      </hbox>
+                    </groupbox>
+                    <groupbox>
+                      <caption label="&foxyproxy.toolbaractivation.label;"
+                        tooltiptext="&foxyproxy.toolbaractivation.tooltip;"/>
+                      <grid>
+                        <columns>
+                          <column flex="1"/>
+                          <column/>
+                        </columns>
+                        <rows>
+                          <row align="center">
+                            <label value="&foxyproxy.leftclicktb.label;"
+                              accesskey="&foxyproxy.leftclicktb.accesskey;"
+                              tooltiptext="&foxyproxy.leftclicktb.tooltip;"
+                              control="tbLeftClickMenu"/>
+                            <menulist id="tbLeftClickMenu"
+                              oncommand="foxyproxy.toolbar.leftClick=this.value;"
+                              tooltiptext="&foxyproxy.leftclicktb.tooltip;"
+                              style="width: 15em;" sizetopopup="none">
+                              <menupopup>
+                                <menuitem label="&foxyproxy.click.options;"
+                                  value="options"/>
+                                <menuitem label="&foxyproxy.click.cycle;"
+                                  value="cycle"/>
+                                <menuitem
+                                  label="&foxyproxy.click.contextmenu;"
+                                  value="contextmenu"/>
+                                <menuitem
+                                  label="&foxyproxy.click.removeallcookies;"
+                                  value="removeallcookies"/>
+                                <menuitem
+                                  label="&foxyproxy.click.reloadcurtab;"
+                                  value="reloadcurtab"/>
+                                <menuitem
+                                  label="&foxyproxy.click.reloadtabsinbrowser;"
+                                  value="reloadtabsinbrowser"/>
+                                <menuitem
+                                  label="&foxyproxy.click.reloadtabsinallbrowsers;"
+                                  value="reloadtabsinallbrowsers"/>
+                                <menuitem label="&foxyproxy.click.toggle;"
+                                  value="toggle"/>
+                                <menuitem label="&foxyproxy.quickadd.label;"
+                                  value="quickadd"
+                                  class="hide-if-foxyproxy-simple"/>
+                              </menupopup>
+                            </menulist>
+                          </row>
+                          <row align="center">
+                            <label value="&foxyproxy.middleclicktb.label;"
+                              accesskey="&foxyproxy.middleclicktb.accesskey;"
+                              tooltiptext="&foxyproxy.middleclicktb.tooltip;"
+                              control="tbMiddleClickMenu"/>
+                            <menulist id="tbMiddleClickMenu"
+                              oncommand="foxyproxy.toolbar.middleClick=this.value;"
+                              tooltiptext="&foxyproxy.middleclicktb.tooltip;"
+                              style="width: 15em;" sizetopopup="none">
+                              <menupopup>
+                                <menuitem label="&foxyproxy.click.options;"
+                                  value="options"/>
+                                <menuitem label="&foxyproxy.click.cycle;"
+                                  value="cycle"/>
+                                <menuitem
+                                  label="&foxyproxy.click.contextmenu;"
+                                  value="contextmenu"/>
+                                <menuitem
+                                  label="&foxyproxy.click.removeallcookies;"
+                                  value="removeallcookies"/>
+                                <menuitem
+                                  label="&foxyproxy.click.reloadcurtab;"
+                                  value="reloadcurtab"/>
+                                <menuitem
+                                  label="&foxyproxy.click.reloadtabsinbrowser;"
+                                  value="reloadtabsinbrowser"/>
+                                <menuitem
+                                  label="&foxyproxy.click.reloadtabsinallbrowsers;"
+                                  value="reloadtabsinallbrowsers"/>
+                                <menuitem label="&foxyproxy.click.toggle;"
+                                  value="toggle"/>
+                                <menuitem label="&foxyproxy.quickadd.label;"
+                                  value="quickadd"
+                                  class="hide-if-foxyproxy-simple"/>
+                              </menupopup>
+                            </menulist>
+                          </row>
+                          <row align="center">
+                            <label value="&foxyproxy.rightclicktb.label;" 
+                              accesskey="&foxyproxy.rightclicktb.accesskey;"
+                              tooltiptext="&foxyproxy.rightclicktb.tooltip;"
+                              control="tbRightClickMenu"/>
+                            <menulist id="tbRightClickMenu"
+                              oncommand="foxyproxy.toolbar.rightClick=this.value;"
+                              tooltiptext="&foxyproxy.rightclicktb.tooltip;"
+                              style="width: 15em;" sizetopopup="none">
+                              <menupopup>
+                                <menuitem label="&foxyproxy.click.options;"
+                                  value="options"/>
+                                <menuitem label="&foxyproxy.click.cycle;"
+                                  value="cycle"/>
+                                <menuitem
+                                  label="&foxyproxy.click.contextmenu;"
+                                  value="contextmenu"/>
+                                <menuitem
+                                  label="&foxyproxy.click.removeallcookies;"
+                                  value="removeallcookies"/>
+                                <menuitem
+                                  label="&foxyproxy.click.reloadcurtab;"
+                                  value="reloadcurtab"/>
+                                <menuitem
+                                  label="&foxyproxy.click.reloadtabsinbrowser;"
+                                  value="reloadtabsinbrowser"/>
+                                <menuitem
+                                  label="&foxyproxy.click.reloadtabsinallbrowsers;"
+                                  value="reloadtabsinallbrowsers"/>
+                                <menuitem label="&foxyproxy.click.toggle;"
+                                  value="toggle"/>
+                                <menuitem label="&foxyproxy.quickadd.label;"
+                                  value="quickadd"
+                                  class="hide-if-foxyproxy-simple"/>
+                              </menupopup>
+                            </menulist>
+                          </row>
+                        </rows>
+                      </grid>
+                    </groupbox>
+                  </row>
+                  <row>
+                    <groupbox>
+                      <caption label="&foxyproxy.misc.label;"
+                        tooltiptext="&foxyproxy.misc.tooltip;"/>
+                      <row align="center">
+                        <label value="&foxyproxy.storagelocation.label.2;"
+                          accesskey="&foxyproxy.storagelocation.accesskey;"
+                          tooltiptext="&foxyproxy.storagelocation.tooltip;"/>
+                        <!-- style to simulate disabled="true" look-and-feel. We don't
+                             want to actually use disabled="true" because then the
+                             user can't scroll the textbox content, copy it into the
+                             clipboard, etc. -->
+                        <textbox id="settingsURL" flex="1" readonly="true"
+                          style="border: gray; color: gray"
+                          tooltiptext="&foxyproxy.storagelocation.tooltip;"/>
+                        <button id="settingsURLBtn" style="min-width: 0.5em;"
+                          oncommand="onSettingsURLBtn();" label="..."
+                          tooltiptext="&foxyproxy.storagelocation.tooltip;"/>
+                      </row>
+                      <row align="center"
+                        observes="notDefaultSettingsBroadcaster">
+                        <description>&foxyproxy.settings.not.default;
+                          <html:a class="link" style="margin: 0 .5em 0 .5em"  
+                            onclick="fpc.openAndReuseOneTabPerURL('http://getfoxyproxy.org/settings.html');">&foxyproxy.importantnote.label;</html:a>
+                        </description>
+                        <button command="resetSettingsCmd"
+                          label="&foxyproxy.resetlocation.label;"/>
+                      </row>
+                      <row align="center">
+                        <checkbox id="advancedMenusEnabled"
+                          label="&foxyproxy.advancedmenus.label;"
+                          accesskey="&foxyproxy.advancedmenus.accesskey;"
+                          tooltiptext="&foxyproxy.advancedmenus.tooltip;"
+                          oncommand="foxyproxy.advancedMenus = this.checked;"/>
+                      </row>
+                    </groupbox>
+                    <groupbox>
+                      <caption label="&foxyproxy.statusbaractivation.label;"
+                        tooltiptext="&foxyproxy.statusbaractivation.tooltip;"/>
+                      <grid>
+                        <columns>
+                          <column flex="1"/>
+                          <column/>
+                        </columns>
+                        <rows>
+                          <row align="center">
+                            <label value="&foxyproxy.leftclicksb.label;"
+                              accesskey="&foxyproxy.leftclicksb.accesskey;"
+                              tooltiptext="&foxyproxy.leftclicksb.tooltip;"
+                              control="sbLeftClickMenu"/>
+                            <menulist id="sbLeftClickMenu"
+                              oncommand="foxyproxy.statusbar.leftClick=this.value;"
+                              tooltiptext="&foxyproxy.leftclicksb.tooltip;"
+                              style="width: 15em;" sizetopopup="none">
+                              <menupopup>
+                                <menuitem label="&foxyproxy.click.options;"
+                                  value="options"/>
+                                <menuitem label="&foxyproxy.click.cycle;"
+                                  value="cycle"/>
+                                <menuitem
+                                  label="&foxyproxy.click.contextmenu;"
+                                  value="contextmenu"/>
+                                <menuitem
+                                  label="&foxyproxy.click.removeallcookies;"
+                                  value="removeallcookies"/>
+                                <menuitem
+                                  label="&foxyproxy.click.reloadcurtab;"
+                                  value="reloadcurtab"/>
+                                <menuitem
+                                  label="&foxyproxy.click.reloadtabsinbrowser;"
+                                  value="reloadtabsinbrowser"/>
+                                <menuitem
+                                  label="&foxyproxy.click.reloadtabsinallbrowsers;"
+                                  value="reloadtabsinallbrowsers"/>
+                                <menuitem label="&foxyproxy.click.toggle;"
+                                  value="toggle"/>
+                                <menuitem label="&foxyproxy.quickadd.label;"
+                                  value="quickadd"
+                                  class="hide-if-foxyproxy-simple"/>
+                              </menupopup>
+                            </menulist>
+                          </row>
+                          <row align="center">
+                            <label value="&foxyproxy.middleclicksb.label;"
+                              accesskey="&foxyproxy.middleclicksb.accesskey;"
+                              tooltiptext="&foxyproxy.middleclicksb.tooltip;"
+                              control="sbMiddleClickMenu"/>
+                            <menulist id="sbMiddleClickMenu"
+                              oncommand="foxyproxy.statusbar.middleClick=this.value;"
+                              tooltiptext="&foxyproxy.middleclicksb.tooltip;"
+                              style="width: 15em;" sizetopopup="none">
+                              <menupopup>
+                                <menuitem label="&foxyproxy.click.options;"
+                                  value="options"/>
+                                <menuitem label="&foxyproxy.click.cycle;"
+                                  value="cycle"/>
+                                <menuitem
+                                  label="&foxyproxy.click.contextmenu;"
+                                  value="contextmenu"/>
+                                <menuitem
+                                  label="&foxyproxy.click.removeallcookies;"
+                                  value="removeallcookies"/>
+                                <menuitem
+                                  label="&foxyproxy.click.reloadcurtab;"
+                                  value="reloadcurtab"/>
+                                <menuitem
+                                  label="&foxyproxy.click.reloadtabsinbrowser;"
+                                  value="reloadtabsinbrowser"/>
+                                <menuitem
+                                  label="&foxyproxy.click.reloadtabsinallbrowsers;"
+                                  value="reloadtabsinallbrowsers"/>
+                                <menuitem label="&foxyproxy.click.toggle;"
+                                  value="toggle"/>
+                                <menuitem label="&foxyproxy.quickadd.label;"
+                                  value="quickadd"
+                                  class="hide-if-foxyproxy-simple"/>
+                              </menupopup>
+                            </menulist>
+                          </row>
+                          <row align="center">
+                            <label value="&foxyproxy.rightclicksb.label;"
+                              accesskey="&foxyproxy.rightclicksb.accesskey;"
+                              tooltiptext="&foxyproxy.rightclicksb.tooltip;"
+                              control="sbRightClickMenu"/>
+                            <menulist id="sbRightClickMenu"
+                              oncommand="foxyproxy.statusbar.rightClick=this.value;"
+                              tooltiptext="&foxyproxy.rightclicksb.tooltip;"
+                              style="width: 15em;" sizetopopup="none">
+                              <menupopup>
+                                <menuitem label="&foxyproxy.click.options;"
+                                  value="options"/>
+                                <menuitem label="&foxyproxy.click.cycle;"
+                                  value="cycle"/>
+                                <menuitem
+                                  label="&foxyproxy.click.contextmenu;"
+                                  value="contextmenu"/>
+                                <menuitem
+                                  label="&foxyproxy.click.removeallcookies;"
+                                  value="removeallcookies"/>
+                                <menuitem
+                                  label="&foxyproxy.click.reloadcurtab;"
+                                  value="reloadcurtab"/>
+                                <menuitem
+                                  label="&foxyproxy.click.reloadtabsinbrowser;"
+                                  value="reloadtabsinbrowser"/>
+                                <menuitem
+                                  label="&foxyproxy.click.reloadtabsinallbrowsers;"
+                                  value="reloadtabsinallbrowsers"/>
+                                <menuitem label="&foxyproxy.click.toggle;"
+                                  value="toggle"/>
+                                <menuitem label="&foxyproxy.quickadd.label;"
+                                  value="quickadd"
+                                  class="hide-if-foxyproxy-simple"/>
+                              </menupopup>
+                            </menulist>
+                          </row>
+                        </rows>
+                      </grid>
+                    </groupbox>
+                  </row>
+                </rows>
+              </grid>
+            </tabpanel>
+            <tabpanel>
+              <box>
+                <description id="versionCheckString"/>
+              </box>
+            </tabpanel>
+          </tabpanels>
+        </tabbox>
       </tabpanel>
 
       <!--<groupbox>

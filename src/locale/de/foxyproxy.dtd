@@ -101,8 +101,6 @@
 <!ENTITY foxyproxy.copyright "Copyright">
 <!ENTITY foxyproxy.rights "Alle Rechte vorbehalten.">
 <!ENTITY foxyproxy.released "Herausgegeben unter der GPL-Lizenz.">
-<!ENTITY foxyproxyplus.released "Herausgegeben unter der">
-<!ENTITY foxyproxyplus.license "FoxyProxy Plus-Lizenz">
 <!ENTITY foxyproxy.tab.general.label "Allgemein">
 <!ENTITY foxyproxy.tab.general.accesskey "G">
 <!ENTITY foxyproxy.tab.general.tooltip "Allgemeine Proxy-Einstellungen verwalten">
@@ -610,3 +608,5 @@
 <!ENTITY foxyproxy.patternsforselected.accesskey "S">
 <!ENTITY foxyproxy.patternsforselected.tooltip "Erstelle Muster für ausgewählte URLs">
 <!ENTITY foxyproxy.patterntoadd.label "Hinzuzufügendes Muster">
+<!ENTITY foxyproxyplus.released "Herausgegeben unter der">
+<!ENTITY foxyproxyplus.license "FoxyProxy Plus-Lizenz">

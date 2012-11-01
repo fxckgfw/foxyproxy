@@ -101,8 +101,6 @@
 <!ENTITY foxyproxy.copyright "Copyright">
 <!ENTITY foxyproxy.rights "All Rights Reserved.">
 <!ENTITY foxyproxy.released "Released under the GPL license.">
-<!ENTITY foxyproxyplus.released "Released under the">
-<!ENTITY foxyproxyplus.license "FoxyProxy Plus license">
 <!ENTITY foxyproxy.tab.general.label "General">
 <!ENTITY foxyproxy.tab.general.accesskey "G">
 <!ENTITY foxyproxy.tab.general.tooltip "Manage General Proxy Settings">
@@ -611,4 +609,6 @@
 <!ENTITY foxyproxy.patternsforselected.accesskey "S">
 <!ENTITY foxyproxy.patternsforselected.tooltip "Create Patterns for Selected URLs">
 <!ENTITY foxyproxy.patterntoadd.label "Pattern to Add">
+<!ENTITY foxyproxyplus.released "Released under the">
+<!ENTITY foxyproxyplus.license "FoxyProxy Plus license">
 <!-- end foxyproxyplus -->

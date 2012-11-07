@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  FoxyProxy
+  Copyright (C) 2006-#%#% Eric H. Jung and FoxyProxy, Inc.
+  http://getfoxyproxy.org/
+  eric.jung@yahoo.com
+  
+  This source code is released under the GPL license,
+  available in the LICENSE file at the root of this installation
+  and also online at http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+-->
+
+<?xml-stylesheet href="foxyproxy.css" type="text/css"?>
+<!DOCTYPE overlay SYSTEM "chrome://foxyproxy/locale/foxyproxy.dtd">
+
+<dialog id="advancedSettings" onload="onLoad();" ondialogaccept="return onOK();"
+  title="&foxyproxy.standard.label; - &foxyproxy.settings.advanced.label;"
+  ondialogcancel="onCancel();" buttons="accept, cancel"
+  xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+  persist="screenX screenY width height">
+
+  <script type="application/x-javascript;version=1.7"
+    src="advancedSettings.js"/>
+
+  <box>
+    <description id="versionCheckString"/>
+  </box>
+  <box>
+    <menulist id="proxyForVersionCheckMenu"
+      tooltiptext="&foxyproxy.versioncheck.proxy.tooltip;">
+      <menupopup/>
+    </menulist>
+  </box>
+</dialog>

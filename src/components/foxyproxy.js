@@ -129,6 +129,7 @@ foxyproxy.prototype = {
   apiDisabled : false,
   cacheOrCookiesChanged : false,
   cacheAndCookiesChecked : false,
+  _proxyForVersionCheck : "",
 
   broadcast : function(subj, topic, data) {
     gBroadcast(subj, topic, data);
@@ -734,6 +735,12 @@ foxyproxy.prototype = {
     this.writeSettingsAsync();
   },
 
+  get proxyForVersionCheck() { return this._proxyForVersionCheck; },
+  set proxyForVersionCheck(p) {
+    this._proxyForVersionCheck = p;
+    this.writeSettingsAsync();
+  },
+
   isSelected : function(p) {
     if (this._selectedProxy) {
       return p.id === this._selectedProxy.id;
@@ -799,6 +806,8 @@ foxyproxy.prototype = {
     // the API, we should create an API object within foxyproxy.js to handle it.
     this.apiDisabled = gGetSafeAttrB(node, "apiDisabled", false);
     this.proxies.fromDOM(mode, doc);
+    this._proxyForVersionCheck = gGetSafeAttr(node, "proxyForVersionCheck",
+      this.proxies.lastresort.id);
     // We need to populate the warnings before calling setMode() as we check
     // for the patternModeCookieWarning if we are in pattern mode.
     this.warnings.fromDOM(doc);
@@ -838,6 +847,7 @@ foxyproxy.prototype = {
     catch(e) {
       dumpp(e);
     }
+    e.setAttribute("proxyForVersionCheck", this._proxyForVersionCheck);
     e.appendChild(this.random.toDOM(doc));
     e.appendChild(this.statusbar.toDOM(doc));
     e.appendChild(this.toolbar.toDOM(doc));

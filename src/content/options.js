@@ -40,12 +40,6 @@ function onLoad() {
   let svgDoc = document.getElementById("patterns-svg");
   patternsIcon = svgDoc.getElementsByTagName("rect");
   createPatternsIcon();
-  // Creating the vesion check string dynamically to include the application
-  // name. We use |textContent| here in order to line-wrap that string easily
-  // when we add further settings (e.g. hidden preferences) to the advanced
-  // settings panel.
-  document.getElementById("versionCheckString").textContent = foxyproxy.
-    getMessage("versioncheck.patternmode", [fpc.appInfo.name]);
 }
 
 function onOK() {

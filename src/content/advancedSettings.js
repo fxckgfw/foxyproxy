@@ -33,7 +33,14 @@ function onLoad() {
   menu.setAttribute("style", "color:" + fp.proxies.getProxyById(proxy).color);
 }
 
+function onModeChanged(menu) {
+  menu.setAttribute("style", "color:" + fp.proxies.getProxyById(menu.value).
+    color);
+}
+
 function onOK() {
+  fp.proxyForVersionCheck = document.
+    getElementById("proxyForVersionCheckMenu").value;
   return true;
 }
 

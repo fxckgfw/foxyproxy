@@ -453,7 +453,23 @@ end-foxyproxy-simple !*/
    * Open or focus the main window/dialog
    */
   onOptionsDialog : function() {
-    this.onDialog("foxyproxy-options", "chrome://foxyproxy/content/options.xul", null, null, "foxyproxy-superadd");
+    // The advanced settings dialog may block the options window. If the user
+    // has the former open the latter won't get focus even if it is open as
+    // well. We try to avoid the situation that neither the options dialog gets
+    // opened (as it is already open) nor gets focus due to the advanced
+    // settings dialog being open: We focus the advanced settings dialog if it
+    // is open. If not we focus the options dialog or open it.
+    // TODO: We should do that for other cases as well (e.g. an open
+    // QuickAdd/AutoAdd pattern dialog)
+    let win = foxyproxy.findWindow("foxyproxy-advancedSettings");
+    let id;
+    if (win) {
+      id = "foxyproxy-advancedSettings";
+    } else {
+      id = "foxyproxy-options";
+    }
+    this.onDialog(id, "chrome://foxyproxy/content/options.xul", null, null,
+      "foxyproxy-superadd");
   },
 
   onDialog : function(id, xulFile, args, parms, idToClose) {

@@ -613,8 +613,8 @@
                     tooltiptext="&foxyproxy.advancedmenus.tooltip;"
                     oncommand="foxyproxy.advancedMenus = this.checked;"/>
                 </row>
-                <spacer flex="1"/>
-                <row align="center">
+                <spacer class="hide-if-foxyproxy-simple" flex="1"/>
+                <row class="hide-if-foxyproxy-simple" align="center">
                   <button label="&foxyproxy.settings.advanced.label;"
                     tooltiptext="&foxyproxy.settings.advanced.tooltip;"
                     oncommand="window.openDialog('chrome://foxyproxy/content/advancedSettings.xul', '', 'chrome, dialog, modal, centerscreen').focus();"/>

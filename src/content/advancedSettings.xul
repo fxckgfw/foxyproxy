@@ -24,12 +24,25 @@
     src="advancedSettings.js"/>
 
   <box>
-    <description id="versionCheckString" style="width: 600px;"/>
+    <description id="compatibilityCheckString" style="width: 600px;"/>
+    <toolbarbutton class="foxyproxy-ref" popup="compatibilityCheckHelp"
+      tooltiptext="&foxyproxy.whatsthis;"/>
   </box>
   <box>
-    <menulist id="proxyForVersionCheckMenu" oncommand="onModeChanged(this);"
+    <menulist id="proxyForCompatibilityCheckMenu"
+      oncommand="onModeChanged(this);"
       tooltiptext="&foxyproxy.compatibilitycheck.proxy.tooltip;">
       <menupopup/>
     </menulist>
   </box>
+
+  <popupset>
+    <menupopup id="compatibilityCheckHelp">
+      <vbox class="foxyproxy-border foxyproxy-tooltip foxyproxy-help">
+        <description>
+          &foxyproxy.compatibilitycheck.proxy.help;
+        </description>
+      </vbox>
+    </menupopup>
+  </popupset>
 </dialog>

@@ -453,40 +453,46 @@ let defaultPrefs = {
     this.ps.setBoolPref("socks_remote_dns",
       this.networkPrefs.getBoolPref("socks_remote_dns"))
 
-    // Now, writing FoxyProxy's current proxy settings to the prefs.
-    // Taking the easiest case first, "Use proxy XYZ for all URLs".
+    // Now, writing FoxyProxy's current proxy settings to the prefs but only if
+    // the user has one proxy for all URLs or is in pattern mode.
+    let proxy;
     if (this.fp._selectedProxy) {
-      let proxy = this.fp._selectedProxy;
-      // Every proxy has this attribute. Thus, let's save it before deciding
-      // which proxy settings to save in particular.
-      this.networkPrefs.setBoolPref("socks_remote_dns", proxy.proxyDNS);
-      if (proxy.mode == "manual") {
-        this.networkPrefs.setIntPref("type", 1);
-        if (!proxy.manualconf.isSocks) {
-          this.networkPrefs.setCharPref("http", proxy.manualconf.host);
-          this.networkPrefs.setIntPref("http_port", proxy.manualconf.port);
-          this.networkPrefs.setCharPref("ssl", proxy.manualconf.host);
-          this.networkPrefs.setIntPref("ssl_port", proxy.manualconf.port);
-          this.networkPrefs.setCharPref("ftp", proxy.manualconf.host);
-          this.networkPrefs.setIntPref("ftp_port", proxy.manualconf.port);
-        } else {
-          this.networkPrefs.setCharPref("socks", proxy.manualconf.host);
-          this.networkPrefs.setIntPref("socks_port", proxy.manualconf.port);
-          this.networkPrefs.setIntPref("socks_version", proxy.manualconf.port);
-        }
-      } else if (proxy.mode == "auto") {
-        if (proxy.autoconfMode == "wpad") {
-          this.networkPrefs.setIntPref("type", 4);
-        } else {
-          // PAC mode
-          this.networkPrefs.setIntPref("type", 2);
-          this.networkPrefs.setCharPref("autoconfig_url", proxy.autoconf.url);
-        }
-      } else if (proxy.mode == "system") {
-        this.networkPrefs.setIntPref("type", 5);
-      } else if (proxy.mode == "direct") {
-        this.networkPrefs.setIntPref("type", 0);
+      proxy = this.fp._selectedProxy;
+    } else {
+      // This does currently only include pattern mode (there is no random nor a
+      // round-robin mode yet and that function is not called if FoxyProxy is
+      // disabled.
+      proxy = this.fp.proxies.getProxyById(this.fp.proxyForVersionCheck);
+    }
+    // Every proxy has this attribute. Thus, let's save it before deciding
+    // which proxy settings to save in particular.
+    this.networkPrefs.setBoolPref("socks_remote_dns", proxy.proxyDNS);
+    if (proxy.mode == "manual") {
+      this.networkPrefs.setIntPref("type", 1);
+      if (!proxy.manualconf.isSocks) {
+        this.networkPrefs.setCharPref("http", proxy.manualconf.host);
+        this.networkPrefs.setIntPref("http_port", proxy.manualconf.port);
+        this.networkPrefs.setCharPref("ssl", proxy.manualconf.host);
+        this.networkPrefs.setIntPref("ssl_port", proxy.manualconf.port);
+        this.networkPrefs.setCharPref("ftp", proxy.manualconf.host);
+        this.networkPrefs.setIntPref("ftp_port", proxy.manualconf.port);
+      } else {
+        this.networkPrefs.setCharPref("socks", proxy.manualconf.host);
+        this.networkPrefs.setIntPref("socks_port", proxy.manualconf.port);
+        this.networkPrefs.setIntPref("socks_version", proxy.manualconf.port);
       }
+    } else if (proxy.mode == "auto") {
+      if (proxy.autoconfMode == "wpad") {
+        this.networkPrefs.setIntPref("type", 4);
+      } else {
+        // PAC mode
+        this.networkPrefs.setIntPref("type", 2);
+        this.networkPrefs.setCharPref("autoconfig_url", proxy.autoconf.url);
+      }
+    } else if (proxy.mode == "system") {
+      this.networkPrefs.setIntPref("type", 5);
+    } else if (proxy.mode == "direct") {
+      this.networkPrefs.setIntPref("type", 0);
     }
   },
 

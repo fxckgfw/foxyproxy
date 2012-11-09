@@ -16,9 +16,8 @@ function onLoad() {
     wrappedJSObject;
   fpc = Components.classes["@leahscape.org/foxyproxy/common;1"].getService().
     wrappedJSObject;
-  //TODO: dynamically generate version check string
   document.getElementById("versionCheckString").textContent =
-    fp.getMessage("versioncheck.patternmode", [fpc.appInfo.name]);
+    fp.getMessage("addon.compatibilitycheck.patternmode", [fpc.appInfo.name]);
   let menu = document.getElementById("proxyForVersionCheckMenu");
   let popup = menu.firstChild;
   fpc.removeChildren(popup);
@@ -41,7 +40,6 @@ function onModeChanged(menu) {
 function onOK() {
   fp.proxyForVersionCheck = document.
     getElementById("proxyForVersionCheckMenu").value;
-  return true;
 }
 
 function onCancel() {

@@ -547,6 +547,7 @@
 <!ENTITY foxyproxy.format.label "Format">
 <!ENTITY foxyproxy.obfuscation.label "Obfuscation">
 <!ENTITY foxyproxy.compatibilitycheck.proxy.tooltip "Select the proxy you want to use for the add-on compatibility check after an application update">
+<!ENTITY foxyproxy.compatibilitycheck.proxy.help "Since Firefox 4/Thunderbird 3.3/SeaMonkey 2.1 it is possible that there are network connections even before extensions are available. If you are using FoxyProxy in the &quot;Use proxy XYZ for all URLs&quot; mode FoxyProxy is handling this use case writing its current proxy settings into the preferences file. But that is not feasible if you are in pattern mode. FoxyProxy therefore needs a user decision which proxy to use in this case for networks requests if it itself is not available yet.">
 <!-- begin foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Add/Edit Local IP Address Pattern">
 <!ENTITY foxyproxy.tempip.popup.label "Temporary patterns allow you to create patterns for local IP addresses that you don't use often without cluttering the IP address pattern list for a proxy. Temporary patterns are not saved to disk. They are kept in-memory and used for this Firefox session only.">

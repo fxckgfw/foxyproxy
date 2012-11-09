@@ -16,9 +16,9 @@ function onLoad() {
     wrappedJSObject;
   fpc = Components.classes["@leahscape.org/foxyproxy/common;1"].getService().
     wrappedJSObject;
-  document.getElementById("versionCheckString").textContent =
+  document.getElementById("compatibilityCheckString").textContent =
     fp.getMessage("addon.compatibilitycheck.patternmode", [fpc.appInfo.name]);
-  let menu = document.getElementById("proxyForVersionCheckMenu");
+  let menu = document.getElementById("proxyForCompatibilityCheckMenu");
   let popup = menu.firstChild;
   fpc.removeChildren(popup);
   for (let i = 0, p; i < fp.proxies.length && ((p=fp.proxies.item(i)) || 1);
@@ -39,7 +39,7 @@ function onModeChanged(menu) {
 
 function onOK() {
   fp.proxyForVersionCheck = document.
-    getElementById("proxyForVersionCheckMenu").value;
+    getElementById("proxyForCompatibilityCheckMenu").value;
 }
 
 function onCancel() {

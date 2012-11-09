@@ -325,7 +325,7 @@ end-foxyproxy-simple !*/
   toggleContextMenu : function(e) {
     document.getElementById("foxyproxy-contextmenu-icon").hidden = !e;
   },
-  
+
   torWizard : function() {
     var owner = foxyproxy._getOptionsDlg(),
       withoutPrivoxy = this.ask(owner,
@@ -345,7 +345,7 @@ end-foxyproxy-simple !*/
           ok = false;
         }
 	if (input.value > 65535 || input.value < 0) {
-          foxyproxy.alert(owner, this.fp.getMessage("torwiz.wrongPort")); 
+          foxyproxy.alert(owner, this.fp.getMessage("torwiz.wrongPort"));
 	  ok = false;
 	}
       }
@@ -364,7 +364,7 @@ end-foxyproxy-simple !*/
         .createInstance(Components.interfaces.nsISupports).wrappedJSObject;
       match.name = this.fp.getMessage("torwiz.google.mail");
       match.pattern = this.fp.getMessage("torwiz.pattern");
-      p.matches.push(match);        
+      p.matches.push(match);
       p.mode = "manual";
       if (withoutPrivoxy) {
         p.manualconf.host="127.0.0.1";
@@ -378,7 +378,7 @@ end-foxyproxy-simple !*/
       }
       p.manualconf.socksversion=5;
       p.autoconf.url = "";
-      
+
       // Open the patterns dialog only if FP Standard
       if (this.fp.isFoxyProxySimple()) {
         p.selectedTabIndex = 1;
@@ -406,10 +406,17 @@ end-foxyproxy-simple !*/
   },
 
   defaultToolbarIconFF4: function() {
-    foxyproxy.findToolbarIcon(); 
+    foxyproxy.findToolbarIcon();
     let firstRun = foxyproxy.fp.getPrefsService("extensions.foxyproxy.").
       getBoolPref("firstrun");
     if (firstRun) {
+      // There is no proxy for the add-on compatibility check specified if the
+      // user is in pattern mode. Do that now. As we only have the default proxy
+      // yet use this one.
+      // TODO: That code does not really belong into this method and should move
+      // when we make as much code as possible loading asynchronously on
+      // start-up.
+      foxyproxy.fp.proxyForVersionCheck = foxyproxy.fp.proxies.lastresort.id;
       // The Add-on Bar got introduced in FF 4.07b. As it is disabled by default
       // we show the FoxyProxy toolbar icon on first start in the toolbar to
       // give the user a hint about FoxyProxy's existence.
@@ -417,7 +424,7 @@ end-foxyproxy-simple !*/
       if (foxyproxy.fpc.vc.compare(foxyproxy.fpc.appInfo.version, "4.0b7") < 0) {
         return;
       }
-      let navBar = document.getElementById("nav-bar"); 
+      let navBar = document.getElementById("nav-bar");
       if (navBar) {
         let curSet = navBar.currentSet.split(",");
         if (curSet.indexOf("foxyproxy-toolbar-icon") === -1) {
@@ -428,7 +435,7 @@ end-foxyproxy-simple !*/
           navBar.setAttribute("currentset", set.join(","));
           navBar.currentSet = set.join(",");
           document.persist(navBar.id, "currentset");
-           
+
           try {
             BrowserToolboxCustomizeDone(true);
           } catch (e) {}
@@ -442,10 +449,10 @@ end-foxyproxy-simple !*/
             // to the toolbar icon by setting the mode again.
             foxyproxy.setMode(foxyproxy.fp.mode);
           }
-        } 
+        }
       }
       foxyproxy.fp.getPrefsService("extensions.foxyproxy.").
-        setBoolPref("firstrun", false); 
+        setBoolPref("firstrun", false);
     }
   },
 

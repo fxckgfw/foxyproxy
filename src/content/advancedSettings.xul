@@ -14,7 +14,7 @@
 <!DOCTYPE overlay SYSTEM "chrome://foxyproxy/locale/foxyproxy.dtd">
 
 <dialog id="advancedSettings" windowtype="foxyproxy-advancedSettings"
-  onload="onLoad();" ondialogaccept="return onOK();"
+  onload="onLoad();" ondialogaccept="onOK();"
   title="&foxyproxy.standard.label; - &foxyproxy.settings.advanced.label;"
   ondialogcancel="onCancel();" buttons="accept, cancel"
   xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
@@ -24,11 +24,11 @@
     src="advancedSettings.js"/>
 
   <box>
-    <description id="versionCheckString"/>
+    <description id="versionCheckString" style="width: 600px;"/>
   </box>
   <box>
     <menulist id="proxyForVersionCheckMenu" oncommand="onModeChanged(this);"
-      tooltiptext="&foxyproxy.versioncheck.proxy.tooltip;">
+      tooltiptext="&foxyproxy.compatibilitycheck.proxy.tooltip;">
       <menupopup/>
     </menulist>
   </box>

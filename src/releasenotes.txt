@@ -1,3 +1,5 @@
+* added advanced settings dialog that lets the user choose the proxy used for
+  add-on compatibility checks on start-up if FoxyProxy is in pattern mode
 * allow selection of proxy type during proxy subscription import
 * removed unnecessary help button on main dialog explaining the donation,
   FoxyProxy Plus and our proxy services

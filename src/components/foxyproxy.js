@@ -806,6 +806,13 @@ foxyproxy.prototype = {
     // the API, we should create an API object within foxyproxy.js to handle it.
     this.apiDisabled = gGetSafeAttrB(node, "apiDisabled", false);
     this.proxies.fromDOM(mode, doc);
+    // Note: This sets the default proxy only if a user upgraded from a former
+    // FoxyProxy version, not if she is just installed it and started it for the
+    // first time. The reason: |toDOM| writes the |proxyForVersionCheck|
+    // property with its default value to disc before this |fromDOM| is called
+    // if started for the fist time resultung in a node with |""| as value. We
+    // cope with that later during start-up to avoid an additional performance
+    // hit (see: |defaultToolbarIconFF4()| in overlay.js).
     this._proxyForVersionCheck = gGetSafeAttr(node, "proxyForVersionCheck",
       this.proxies.lastresort.id);
     // We need to populate the warnings before calling setMode() as we check

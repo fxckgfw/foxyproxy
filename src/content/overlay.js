@@ -130,7 +130,7 @@ var foxyproxy = {
         break;
     }
   },
-  
+
   findToolbarIcon : function() {
     if (typeof(gNavToolbox) == "undefined")
       return; /* We're on Tbird or another platform which doesn't have this */
@@ -147,7 +147,7 @@ var foxyproxy = {
       }
       /* Call the original function. note that |this| is getNavToolbox(), not foxyproxy */
       this.foxyproxyCustomizeChange();
-    }    
+    }
   },
 
   onLoad : function() {

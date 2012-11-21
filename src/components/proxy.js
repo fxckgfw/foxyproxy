@@ -470,6 +470,17 @@ Proxy.prototype = {
     if (this.shouldLoadPAC()) {
       this.preparePACLoading();
     }
+    // We don't have pattern mode in FoxyProxy Basic. Thus, the skip the the
+    // following code in this case.
+    if (!this._enabled && !this.fp.isFoxyProxySimple()) {
+      // We got disabled. Check whether this proxy was selected for being used
+      // if we start in pattern mode after an application upgrade. If so, we
+      // fallback to the default proxy in order to have at least one that is
+      // supposed to work.
+      if (this.id === this.fp.proxyForVersionCheck) {
+        this.fp.proxyForVersionCheck = this.fp.proxies.lastresort.id;
+      }
+    }
   },
 
   get enabled() {return this._enabled;},

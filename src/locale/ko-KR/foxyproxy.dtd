@@ -356,9 +356,71 @@
 <!ENTITY foxyproxy.toolbaractivation.tooltip "도구막대 활성화 설정">
 <!ENTITY foxyproxy.leftclicksb.label "왼쪽 클릭">
 <!ENTITY foxyproxy.leftclicksb.accesskey "L">
+<!ENTITY foxyproxy.leftclicksb.tooltip "상태 막대 내 FoxyProxy를 왼쪽 클릭시 동작">
 <!ENTITY foxyproxy.middleclicksb.label "가운데 클릭">
 <!ENTITY foxyproxy.middleclicksb.accesskey "M">
+<!ENTITY foxyproxy.middleclicksb.tooltip "상태 막대 내 FoxyProxy를 가운데 클릭시 동작">
 <!ENTITY foxyproxy.rightclicksb.label "오른쪽 클릭">
+<!ENTITY foxyproxy.rightclicksb.accesskey "R">
+<!ENTITY foxyproxy.rightclicksb.tooltip "상태 막대 내 FoxyProxy를 오른쪽 클릭시 동작">
+<!ENTITY foxyproxy.leftclicktb.label "왼쪽 클릭">
+<!ENTITY foxyproxy.leftclicktb.accesskey "L">
+<!ENTITY foxyproxy.leftclicktb.tooltip "상태 막대 내 FoxyProxy를 왼쪽 클릭시 동작">
+<!ENTITY foxyproxy.middleclicktb.label "가운데 클릭">
+<!ENTITY foxyproxy.middleclicktb.accesskey "M">
+<!ENTITY foxyproxy.middleclicktb.tooltip "상태 막대 내 FoxyProxy를 가운데 클릭시 동작">
+<!ENTITY foxyproxy.rightclicktb.label "오른쪽 클릭">
+<!ENTITY foxyproxy.includeincycle.accesskey "I">
+<!ENTITY foxyproxy.includeincycle.tooltip "상태막대/도구막대를 클릭시 이 프록시를 포함">
+<!ENTITY foxyproxy.changes.msg1 "도와주세요! HTTP, SSL, FTP, Gopher, 및 SOCKS를 위한 설정이 어디있나요?">
+<!ENTITY foxyproxy.newGUI.popup.height "280px">
+<!ENTITY foxyproxy.newGUI.popup.width "400px">
+<!ENTITY foxyproxy.newGUI4.label "더 많은 정보를 보려면 여기를 클릭하세요.">
+<!ENTITY foxyproxy.error.msg.label "오류 메시지">
+<!ENTITY foxyproxy.pac.result.label "PAC 결과">
+<!ENTITY foxyproxy.torwiz.height "375">
+<!ENTITY foxyproxy.casesensitive.label "대소문자 구분">
+<!ENTITY foxyproxy.casesensitive.accesskey "C">
+<!ENTITY foxyproxy.casesensitive.tooltip "URL 일치에 대소문자 구분 사용/안함.">
+<!ENTITY foxyproxy.statusbarwidth.label "고정폭">
+<!ENTITY foxyproxy.statusbarwidth.accesskey "W">
+<!ENTITY foxyproxy.statusbarwidth.tooltip "상태막대 크기조절 방지">
+<!ENTITY foxyproxy.pixels "픽셀">
+<!ENTITY foxyproxy.unlimited.label "[0: 크기에 맞게 조절]">
+<!ENTITY foxyproxy.temp.label "임시">
+<!ENTITY foxyproxy.temp.accesskey "T">
+<!ENTITY foxyproxy.temp.tooltip "패턴을 이 Firefox 세션에서만 사용">
+<!ENTITY foxyproxy.define.label "정의">
+<!ENTITY foxyproxy.define.accesskey "D">
+<!ENTITY foxyproxy.define.tooltip "정의">
+<!ENTITY foxyproxy.pattern.to.quickadd.label "빠르게 프록시에 추가할 패턴">
+<!ENTITY foxyproxy.pattern.to.autoadd.label "자동으로 프록시에 추가할 패턴">
+<!ENTITY foxyproxy.support "지원">
+<!ENTITY foxyproxy.please.donate.label "기부 부탁드립니다">
+<!ENTITY foxyproxy.please.donate.accesskey "D">
+<!ENTITY foxyproxy.importantnote.label "중요 사항 읽기">
+<!ENTITY foxyproxy.resetlocation.label "위치 재설정">
+<!ENTITY foxyproxy.resetlocation.accesskey "R">
+<!ENTITY foxyproxy.resetlocation.tooltip "Firefox 프로파일 내 설정 저장">
+<!ENTITY foxyproxy.settings.not.default "설정이 기본 위치 안에 없습니다.">
+<!ENTITY foxyproxy.change.host.reload "새 호스트:포트 설정 후 현재 페이지 새로고침">
+<!ENTITY foxyproxy.proxyservice.label "프록시 서비스 구입">
+<!ENTITY foxyproxy.proxyservice.accesskey "P">
+<!ENTITY foxyproxy.proxyservice.tooltip "프록시 서비스에 가입">
+<!ENTITY foxyproxy.proxyservice2.label "US, UK 및 기타 국가에서 빠르고 신뢰할 수 있는 프록시가 필요한가요?">
+<!ENTITY foxyproxy.getfoxyproxyplus.label "FoxyProxy Plus 갖기">
+<!ENTITY foxyproxy.color.label "색상">
+<!ENTITY foxyproxy.server.subscriptions.label "서버 신청">
+<!ENTITY foxyproxy.server.subscriptions.tooltip "서버 관리 신청">
+<!ENTITY foxyproxy.server.subscriptions.accesskey "S">
+<!ENTITY foxyproxy.selectproxy.label "프록시 선택">
+<!ENTITY foxyproxy.proxy.subscriptions.label "프록시 신청">
+<!ENTITY foxyproxy.proxy.subscriptions.accesskey "X">
+<!ENTITY foxyproxy.proxy.subscriptions.tooltip "프록시 관리 신청">
+<!ENTITY foxyproxy.proxy.subscriptions.sharing.label "당신의 프록시 공유">
+<!ENTITY foxyproxy.proxy.subscriptions.addSubscription "새 프록시 신청">
+<!ENTITY foxyproxy.proxy.subscriptions.viewSubscription "프록시 신청 보기">
+<!ENTITY foxyproxy.proxy.subscriptions.addedit.title "프록시 신청 추가/편집">
 <!ENTITY foxyproxy.pattern.subscriptions.addProxies.label "프록시 추가">
 <!ENTITY foxyproxy.pattern.subscriptions.removeProxies.label "선택항목 삭제">
 <!ENTITY foxyproxy.pattern.subscriptions.refresh.label "재갱신 주기">

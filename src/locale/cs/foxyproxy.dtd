@@ -141,6 +141,8 @@
 <!ENTITY foxyproxy.tab.global.label "Všeobecné nastavení">
 <!ENTITY foxyproxy.tab.global.accesskey "V">
 <!ENTITY foxyproxy.tab.global.tooltip "úprava všeobecného nastavení">
+<!ENTITY foxyproxy.settings.advanced.label "Pokročilá nastavení">
+<!ENTITY foxyproxy.settings.advanced.tooltip "Klikněte na tlačítko pro zobrazení pokročilých nastavení FoxyProxy.">
 <!ENTITY foxyproxy.tab.logging.label "Žurnál">
 <!ENTITY foxyproxy.tab.logging.accesskey "Ž">
 <!ENTITY foxyproxy.tab.logging.tooltip "Úprava nastavení žurnálu">
@@ -466,9 +468,9 @@
 <!ENTITY foxyproxy.proxyservice.tooltip "Objednat přístup k proxy">
 <!ENTITY foxyproxy.proxyservice2.label "Potřebujete rychlý a spolehlivý proxy server v USA, GB nebo dalších zemích?">
 <!ENTITY foxyproxy.getfoxyproxyplus.label "Získat FoxyProxy Plus">
-<!ENTITY foxyproxy.aboutdonate.label "Knoflík &quot;Podpořte FoxyProxy&quot; Vám zobrazí stránku služby PayPal, kde můžete finančně podpořit autora. Pokud používáte FoxyProxy pravidelně, zvažte prosím finanční podporu.">
-<!ENTITY foxyproxy.aboutfpplus.label "Knoflík &quot;Získat FoxyProxy Plus&quot; Vám zobrazí stránku kde si můžete přečíst o výhodách poskytovaných FoxyProxy Plus. A případně tento doplněk koupit.">
-<!ENTITY foxyproxy.aboutproxyservice.label "A konečně, knoflík &quot;Koupit přístup k proxy&quot; Vám zobrazí stránku s možností placeného přístupu na spolehlivé a rychlé proxy servery v mnoha zemích za přijatelné ceny.">
+<!ENTITY foxyproxy.foxyproxychrome.label "FoxyProxy pro Chrome">
+<!ENTITY foxyproxy.foxyproxychrome.accesskey "F">
+<!ENTITY foxyproxy.foxyproxychrome.tooltip "Vyzkoušejte FoxyProxy pro Chrome">
 <!ENTITY foxyproxy.invalidcolor.label "Špatná barva">
 <!ENTITY foxyproxy.validcolor.label "Správná barva">
 <!ENTITY foxyproxy.color.label "Color">
@@ -487,6 +489,12 @@
 <!ENTITY foxyproxy.proxy.subscriptions.viewSubscription "Zobrazit předplacené proxy">
 <!ENTITY foxyproxy.proxy.subscriptions.addedit.title "Přidat/upravit předplatné proxy">
 <!ENTITY foxyproxy.proxy.subscriptions.refreshHelp "odebrat všechny předplacené proxy">
+<!ENTITY foxyproxy.proxy.subscriptions.proxy.type.label "Typ proxy serveru">
+<!ENTITY foxyproxy.proxy.subscriptions.proxy.type.tooltip "Vyberte typ proxy serverů v seznamu který chcete importovat. Při výběru &quot;Nevím&quot; zkusím HTTP proxy.">
+<!ENTITY foxyproxy.proxy.subscriptions.unknown.label "Nevím">
+<!ENTITY foxyproxy.proxy.subscriptions.http.label "HTTP">
+<!ENTITY foxyproxy.proxy.subscriptions.socks.label "SOCKS">
+<!ENTITY foxyproxy.proxy.subscriptions.subscriptionTypeHelp "Tato volba vám dovolí vybrat typ předplacených proxy. Pokud vyberete &quot;Nevím&quot; zkusím HTTP proxy.">
 <!ENTITY foxyproxy.proxy.subscriptions.proxy.window.title "Předplacené proxy">
 <!ENTITY foxyproxy.pattern.subscriptions.label "Předplacené vzory">
 <!ENTITY foxyproxy.pattern.subscriptions.description "Přihlásit se k vzorům, které zveřejňují ostatní uživatelé. Sdílejte vaše vzory s ostatními na pár kliknutí.">
@@ -538,6 +546,8 @@
 <!ENTITY foxyproxy.status.label "Stav">
 <!ENTITY foxyproxy.format.label "Formát">
 <!ENTITY foxyproxy.obfuscation.label "Maskování">
+<!ENTITY foxyproxy.compatibilitycheck.proxy.tooltip "Vyberte proxy kterou chcete použít ke kontrole kompatibility doplňků po aktualizaci aplikace">
+<!ENTITY foxyproxy.compatibilitycheck.proxy.help "Když Firefox/Thunderbid/SeaMonkey  vyhledává při startu aktualizace na http://addons.mozilla.org je možné, že toto hledání nepoužije vaše vzory. Zde můžete zadat kterou proxy použít v této výjimečné situaci.">
 <!-- end foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Přidat/upravit vzor pro místní IP adresu">
 <!ENTITY foxyproxy.tempip.popup.label "Dočasné vzory Vám umožní vytvářet pravidla pro místní IP adresy které používáte pouze příležitostně. Dočasné vzory se neukládají na disk. Jsou uloženy v paměti jen po dobu spuštění Firefoxu.">
@@ -599,4 +609,6 @@
 <!ENTITY foxyproxy.patternsforselected.accesskey "S">
 <!ENTITY foxyproxy.patternsforselected.tooltip "Vytvořit vzory pro vybrané URL">
 <!ENTITY foxyproxy.patterntoadd.label "Vzory pro přidání">
+<!ENTITY foxyproxyplus.released "Šířeno podle">
+<!ENTITY foxyproxyplus.license "Licence FoxyProxy Plus">
 <!-- end foxyproxyplus -->

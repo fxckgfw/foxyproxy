@@ -141,6 +141,8 @@
 <!ENTITY foxyproxy.tab.global.label "全局设置">
 <!ENTITY foxyproxy.tab.global.accesskey "G">
 <!ENTITY foxyproxy.tab.global.tooltip "管理全局设置">
+<!ENTITY foxyproxy.settings.advanced.label "高级设置">
+<!ENTITY foxyproxy.settings.advanced.tooltip "点击按钮打开 FoxyProxy 高级设置对话框">
 <!ENTITY foxyproxy.tab.logging.label "日志">
 <!ENTITY foxyproxy.tab.logging.accesskey "L">
 <!ENTITY foxyproxy.tab.logging.tooltip "管理日志设置">
@@ -466,9 +468,9 @@
 <!ENTITY foxyproxy.proxyservice.tooltip "登录代理服务">
 <!ENTITY foxyproxy.proxyservice2.label "需要美国，英国或者其他国家的快速、可靠的代理服务？">
 <!ENTITY foxyproxy.getfoxyproxyplus.label "获取 FoxyProxy Plus">
-<!ENTITY foxyproxy.aboutdonate.label "捐助按钮使你可以通过 PayPal 想 FoxyProxy 项目提供捐助以支持开发活动。">
-<!ENTITY foxyproxy.aboutfpplus.label "FoxyProxy Plus 按钮将把你带到 Plus 版订购页面。">
-<!ENTITY foxyproxy.aboutproxyservice.label "最后，代理服务按钮带你去订购代理服务。">
+<!ENTITY foxyproxy.foxyproxychrome.label "FoxyProxy Chrome 版">
+<!ENTITY foxyproxy.foxyproxychrome.accesskey "F">
+<!ENTITY foxyproxy.foxyproxychrome.tooltip "尝试 FoxyProxy Chrome 版">
 <!ENTITY foxyproxy.invalidcolor.label "无效颜色">
 <!ENTITY foxyproxy.validcolor.label "有效颜色">
 <!ENTITY foxyproxy.color.label "Color">
@@ -487,6 +489,12 @@
 <!ENTITY foxyproxy.proxy.subscriptions.viewSubscription "查看代理服务器订阅">
 <!ENTITY foxyproxy.proxy.subscriptions.addedit.title "添加/编辑代理服务器订阅">
 <!ENTITY foxyproxy.proxy.subscriptions.refreshHelp "移除全部现有的代理服务器订阅">
+<!ENTITY foxyproxy.proxy.subscriptions.proxy.type.label "代理类型">
+<!ENTITY foxyproxy.proxy.subscriptions.proxy.type.tooltip "从列表中选择你要导入的代理服务器类型。如果选择 &quot;不知道&quot;，将视为 HTTP 代理。">
+<!ENTITY foxyproxy.proxy.subscriptions.unknown.label "我不知道">
+<!ENTITY foxyproxy.proxy.subscriptions.http.label "HTTP">
+<!ENTITY foxyproxy.proxy.subscriptions.socks.label "SOCKS">
+<!ENTITY foxyproxy.proxy.subscriptions.subscriptionTypeHelp "该选项让你选择订阅中代理服务器的类型。如果你选择 &quot;不知道&quot;，代理会被视作 HTTP 类型，选择 &quot;HTTP&quot; 也是一样的。当然如果你选择 &quot;SOCKS&quot; ，Foxy Proxy 将会视他们为 SOCKS5 代理。">
 <!ENTITY foxyproxy.proxy.subscriptions.proxy.window.title "订阅代理服务器">
 <!ENTITY foxyproxy.pattern.subscriptions.label "模式订阅">
 <!ENTITY foxyproxy.pattern.subscriptions.description "订阅其他人发布的模式。几次鼠标点击即可同他人分享你的模式。">
@@ -538,6 +546,8 @@
 <!ENTITY foxyproxy.status.label "Status">
 <!ENTITY foxyproxy.format.label "Format">
 <!ENTITY foxyproxy.obfuscation.label "Obfuscation">
+<!ENTITY foxyproxy.compatibilitycheck.proxy.tooltip "为应用程序升级后的附加组件检查功能选择代理服务器">
+<!ENTITY foxyproxy.compatibilitycheck.proxy.help "当 Firefox/Thunderbird/SeaMonkey 启动时，会在  http://addons.mozilla.org 搜索附加组件更新。这可能会绕开你的代理服务器模式匹配。在这里你可以指定此时要用的代理服务器。">
 <!-- end foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "添加/编辑本地IP地址模式">
 <!ENTITY foxyproxy.tempip.popup.label "临时模式让你可以为不常用的本地IP地址建立模式，以免扰乱代理服务器的IP地址模式列表。临时模式不会保存到磁盘。他们只是保存在内存中供当前 Firefox 会话使用。">
@@ -599,4 +609,6 @@
 <!ENTITY foxyproxy.patternsforselected.accesskey "S">
 <!ENTITY foxyproxy.patternsforselected.tooltip "创建适用于选定网址的模式">
 <!ENTITY foxyproxy.patterntoadd.label "要添加的模式">
+<!ENTITY foxyproxyplus.released "发布于">
+<!ENTITY foxyproxyplus.license "FoxyProxy Plus 许可证">
 <!-- end foxyproxyplus -->

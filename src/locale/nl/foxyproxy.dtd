@@ -466,9 +466,6 @@
 <!ENTITY foxyproxy.proxyservice.tooltip "Aanmelden voor proxydiensten">
 <!ENTITY foxyproxy.proxyservice2.label "Behoefte aan snelle, betrouwbare proxy’s in de VS, het VK of andere landen?">
 <!ENTITY foxyproxy.getfoxyproxyplus.label "FoxyProxy Plus installeren">
-<!ENTITY foxyproxy.aboutdonate.label "De knop Doneren leidt u naar PayPal, waar u kunt doneren aan het FoxyProxy-project om zo de ontwikkeling aan te moedigen en te ondersteunen. Overweeg een donatie als u FoxyProxy regelmatig gebruikt.">
-<!ENTITY foxyproxy.aboutfpplus.label "De knop FoxyProxy Plus leidt u naar een website waar u kunt lezen over de extra functionaliteit die de Plus-versie u biedt en waar u deze eventueel kunt aanschaffen.">
-<!ENTITY foxyproxy.aboutproxyservice.label "Tenslotte leidt de knop Proxydienst u naar een website met proxydiensten, waar u betrouwbare en snelle proxydienst in verschillende landen kunt aanschaffen voor een schappelijke prijs.">
 <!ENTITY foxyproxy.invalidcolor.label "Ongeldige kleur">
 <!ENTITY foxyproxy.validcolor.label "Geldige kleur">
 <!ENTITY foxyproxy.color.label "Kleur">

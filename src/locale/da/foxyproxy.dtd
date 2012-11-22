@@ -412,9 +412,6 @@
 <!ENTITY foxyproxy.proxyservice.tooltip "Skriv dig op til proxy service">
 <!ENTITY foxyproxy.proxyservice2.label "Brug for hurtig, pålidelig proxier i USA, UK eller andre lande?">
 <!ENTITY foxyproxy.getfoxyproxyplus.label "Få FoxyProxy Plus">
-<!ENTITY foxyproxy.aboutdonate.label "Donationsknappen vil føre dig til PayPal hvor du kan donere til FoxyProxy projektet til at fremme og støtte udviklingen. Hvis du bruger FoxyProxy ofte, overvej venligst at doner.">
-<!ENTITY foxyproxy.aboutfpplus.label "FoxyProxy Plus knappen bringer dig til et hjemmeside hvor du kan læse om de yderligere funktioner der er i Plus udgaven og eventuelt køb af FoxyProxy Plus">
-<!ENTITY foxyproxy.aboutproxyservice.label "Slutteligt, proxy service knappen bringer dig til vores proxy service hjemmeside, hvor du kan købe pålidelig, højhastighed proxy service i mange forskellige lande til fornuftige priser.">
 <!ENTITY foxyproxy.invalidcolor.label "Ugyldig farve">
 <!ENTITY foxyproxy.validcolor.label "Gyldig farve">
 <!ENTITY foxyproxy.color.label "Color">

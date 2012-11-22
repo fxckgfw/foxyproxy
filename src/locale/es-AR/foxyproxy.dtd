@@ -141,6 +141,8 @@
 <!ENTITY foxyproxy.tab.global.label "Configuración Global">
 <!ENTITY foxyproxy.tab.global.accesskey "G">
 <!ENTITY foxyproxy.tab.global.tooltip "Administrar la Configuración Global">
+<!ENTITY foxyproxy.settings.advanced.label "Configuración Avanzada">
+<!ENTITY foxyproxy.settings.advanced.tooltip "Un clic en el botón abre el cuadro de diálogo de configuración avanzada de FoxyProxy">
 <!ENTITY foxyproxy.tab.logging.label "Registro">
 <!ENTITY foxyproxy.tab.logging.accesskey "L">
 <!ENTITY foxyproxy.tab.logging.tooltip "Administrar la Configuración de Registro">
@@ -466,9 +468,9 @@
 <!ENTITY foxyproxy.proxyservice.tooltip "Regístrese para obtener los servicios de proxy">
 <!ENTITY foxyproxy.proxyservice2.label "Necesita proxies rápidos, confiables en US, UK u otros países?">
 <!ENTITY foxyproxy.getfoxyproxyplus.label "Obtenga FoxyProxy Plus">
-<!ENTITY foxyproxy.aboutdonate.label "El botón de donar te lleva a PayPal, donde usted puede donar al proyecto FoxyProxy para fomentar y apoyar su desarrollo. Si usted usa regularmente FoxyProxy, por favor, considere donar.">
-<!ENTITY foxyproxy.aboutfpplus.label "El botón FoxyProxy Plus lo lleva a un sitio web donde se puede leer acerca de las características adicionales de la edición Plus y, opcionalmente, comprarlo.">
-<!ENTITY foxyproxy.aboutproxyservice.label "Por último, el botón servicio proxy te lleva a nuestro servicio de proxy web, donde puedes comprar servicios proxy fiables, de alto ancho de banda en diferentes países a precios razonables.">
+<!ENTITY foxyproxy.foxyproxychrome.label "FoxyProxy para Chrome">
+<!ENTITY foxyproxy.foxyproxychrome.accesskey "F">
+<!ENTITY foxyproxy.foxyproxychrome.tooltip "Pruebe FoxyProxy para Chrome">
 <!ENTITY foxyproxy.invalidcolor.label "Color inválido">
 <!ENTITY foxyproxy.validcolor.label "Color válido">
 <!ENTITY foxyproxy.color.label "Color">
@@ -487,6 +489,12 @@
 <!ENTITY foxyproxy.proxy.subscriptions.viewSubscription "Ver Suscripción Proxy">
 <!ENTITY foxyproxy.proxy.subscriptions.addedit.title "Agregar / Editar Suscripción Proxy">
 <!ENTITY foxyproxy.proxy.subscriptions.refreshHelp "elimina todos los proxies existentes suscritos">
+<!ENTITY foxyproxy.proxy.subscriptions.proxy.type.label "Tipo de Proxy">
+<!ENTITY foxyproxy.proxy.subscriptions.proxy.type.tooltip "Elija el tipo de proxy de la lista que desee importar. Si elige &quot;Yo no sé&quot; se asumirá que es un proxy HTTP.">
+<!ENTITY foxyproxy.proxy.subscriptions.unknown.label "Yo no sé">
+<!ENTITY foxyproxy.proxy.subscriptions.http.label "HTTP">
+<!ENTITY foxyproxy.proxy.subscriptions.socks.label "SOCKS">
+<!ENTITY foxyproxy.proxy.subscriptions.subscriptionTypeHelp "Esta opción le permite elegir el tipo de proxy de su suscripción. Si elige &quot;Yo no sé&quot; se asumirá que es un proxy HTTP. Lo mismo ocurre si se selecciona  &quot;HTTP&quot;. Si elige &quot;SOCKS&quot; FoxyProxy tratará al proxy como SOCKS5 en su lugar.">
 <!ENTITY foxyproxy.proxy.subscriptions.proxy.window.title "Suscripción de Proxies">
 <!ENTITY foxyproxy.pattern.subscriptions.label "Suscripciones de Patrones">
 <!ENTITY foxyproxy.pattern.subscriptions.description "Suscríbete a los patrones publicados por otros. Comparta sus patrones con los demás en tan sólo unos pocos clics.">
@@ -538,6 +546,8 @@
 <!ENTITY foxyproxy.status.label "Estado">
 <!ENTITY foxyproxy.format.label "Formato">
 <!ENTITY foxyproxy.obfuscation.label "Ofuscación">
+<!ENTITY foxyproxy.compatibilitycheck.proxy.tooltip "Seleccione el proxy que desea utilizar para la comprobación de compatibilidad del complemento después de una actualización de la aplicación">
+<!ENTITY foxyproxy.compatibilitycheck.proxy.help "Cuando Firefox/Thunderbird/SeaMonkey buscan actualizaciones de complementos en http://addons.mozilla.org durante el arranque, es posible pasar por alto sus patrones de proxy para esta búsqueda. Aquí puede especificar qué proxy usar para estas situaciones raras.">
 <!-- end foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Agregar/Editar los Patrones de Direcciones IP Locales">
 <!ENTITY foxyproxy.tempip.popup.label "Los patrones temporales le permiten crear patrones para las direcciones IP locales que no utilice a menudo sin engrosar la lista de patrones de direcciones IP locales del proxy . Los patrones temporales no se guardan en el disco. Ellos se mantienen en memoria y en uso para la sesión Firefox en curso solamente.">
@@ -599,4 +609,6 @@
 <!ENTITY foxyproxy.patternsforselected.accesskey "S">
 <!ENTITY foxyproxy.patternsforselected.tooltip "Crear Patrones para las URLs Seleccionadas">
 <!ENTITY foxyproxy.patterntoadd.label "Patrón a Agregar">
+<!ENTITY foxyproxyplus.released "Publicado bajo la">
+<!ENTITY foxyproxyplus.license "licencia FoxyProxy Plus">
 <!-- end foxyproxyplus -->

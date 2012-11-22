@@ -466,9 +466,6 @@
 <!ENTITY foxyproxy.proxyservice.tooltip "註冊代理伺服器服務">
 <!ENTITY foxyproxy.proxyservice2.label "需要在美國、英國或其它國家使用高速且可靠的代理伺服器嗎？">
 <!ENTITY foxyproxy.getfoxyproxyplus.label "取得 FoxyProxy 進階版">
-<!ENTITY foxyproxy.aboutdonate.label "按下「捐助」鈕會連線到 PayPal 網頁，你可以對 FoxyProxy 專案捐助來鼓勵並支持軟體開發，如果你定期的使用 FoxyProxy，請你考慮捐助。">
-<!ENTITY foxyproxy.aboutfpplus.label "按下「FoxyProxy 進階版」鈕會連線到另一個網頁，該網頁上說明了進階版的特別功能，也提供了購買的方法。">
-<!ENTITY foxyproxy.aboutproxyservice.label "最後，按下「代理伺服器服務」鈕會連線到我們的代理伺服器服務網站，你可以在那裏以合理的價格購買許多不同國家裏可靠且擁有高頻寬的代理伺服器服務。">
 <!ENTITY foxyproxy.invalidcolor.label "無效的顏色">
 <!ENTITY foxyproxy.validcolor.label "有效的顏色">
 <!ENTITY foxyproxy.color.label "顏色">

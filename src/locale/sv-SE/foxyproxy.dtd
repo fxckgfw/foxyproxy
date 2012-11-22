@@ -141,6 +141,8 @@
 <!ENTITY foxyproxy.tab.global.label "Globalt">
 <!ENTITY foxyproxy.tab.global.accesskey "G">
 <!ENTITY foxyproxy.tab.global.tooltip "Hantera globala inställningar">
+<!ENTITY foxyproxy.settings.advanced.label "Avancerade inställningar">
+<!ENTITY foxyproxy.settings.advanced.tooltip "Ett klick på knappen öppnar dialogfönstret för FoxyProxys avancerade inställningar">
 <!ENTITY foxyproxy.tab.logging.label "Loggning">
 <!ENTITY foxyproxy.tab.logging.accesskey "L">
 <!ENTITY foxyproxy.tab.logging.tooltip "Hantera loggningsinställningar">
@@ -466,9 +468,9 @@
 <!ENTITY foxyproxy.proxyservice.tooltip "Anmäl dig till proxy-tjänster">
 <!ENTITY foxyproxy.proxyservice2.label "Behöver du snabba, pålitliga proxyservrar i USA, England eller andra länder?">
 <!ENTITY foxyproxy.getfoxyproxyplus.label "Skaffa FoxyProxy Plus">
-<!ENTITY foxyproxy.aboutdonate.label "Donera-knappen tar dig till PayPal, där du kan donera till FoxyProxy-projektet stödja fortsatt utveckling av programmet. Om du använder FoxyProxy regelbundet, överväg då gärna att göra en donation.">
-<!ENTITY foxyproxy.aboutfpplus.label "FoxyProxy Plus-knappen tar dig till en webbplats där du kan läsa om de ytterligare fuktioner som finns i Plus-utgåvan och, om du så önskar, köpa den.">
-<!ENTITY foxyproxy.aboutproxyservice.label "Proxytjänster-knappen tar dig till vår proxytjänstwebbplats, där du kan köpa pålitliga bredbandsproxytjänster i flera olika länder till rimliga priser.">
+<!ENTITY foxyproxy.foxyproxychrome.label "FoxyProxy för Chrome">
+<!ENTITY foxyproxy.foxyproxychrome.accesskey "F">
+<!ENTITY foxyproxy.foxyproxychrome.tooltip "Testa FoxyProxy för Chrome">
 <!ENTITY foxyproxy.invalidcolor.label "Ogiltig färg">
 <!ENTITY foxyproxy.validcolor.label "Giltig färg">
 <!ENTITY foxyproxy.color.label "Färg">
@@ -487,6 +489,12 @@
 <!ENTITY foxyproxy.proxy.subscriptions.viewSubscription "Granska proxyprenumeration">
 <!ENTITY foxyproxy.proxy.subscriptions.addedit.title "Lägg till/redigera proxyprenumeration">
 <!ENTITY foxyproxy.proxy.subscriptions.refreshHelp "tar bort alla befintliga proxyprenumerationer">
+<!ENTITY foxyproxy.proxy.subscriptions.proxy.type.label "Proxytyp">
+<!ENTITY foxyproxy.proxy.subscriptions.proxy.type.tooltip "Välj typen av proxyservrar som finns på listan du vill importera. Om du väljer &quot;Jag vet inte&quot;, så antas de vara HTTP-proxyservrar.">
+<!ENTITY foxyproxy.proxy.subscriptions.unknown.label "Jag vet inte">
+<!ENTITY foxyproxy.proxy.subscriptions.http.label "HTTP">
+<!ENTITY foxyproxy.proxy.subscriptions.socks.label "SOCKS">
+<!ENTITY foxyproxy.proxy.subscriptions.subscriptionTypeHelp "Detta alternativ låter dig välja typen av proxyservrar i din prenumeration. Om du väljer &quot;Jag vet inte&quot;, så antas de vara HTTP-proxyservrar. Detsamma gäller om du väljer &quot;HTTP&quot;. Om du väljer &quot;SOCKS&quot; kommer FoxyProxy istället att behandla dem som SOCKS5-proxyservrar.">
 <!ENTITY foxyproxy.proxy.subscriptions.proxy.window.title "Prenumererade proxyservrar">
 <!ENTITY foxyproxy.pattern.subscriptions.label "Mönsterprenumerationer">
 <!ENTITY foxyproxy.pattern.subscriptions.description "Prenumerera på mönster publicerade av andra. Dela dina mönster med andra med bara ett par klick.">
@@ -538,6 +546,8 @@
 <!ENTITY foxyproxy.status.label "Status">
 <!ENTITY foxyproxy.format.label "Format">
 <!ENTITY foxyproxy.obfuscation.label "Obfuskation">
+<!ENTITY foxyproxy.compatibilitycheck.proxy.tooltip "Välj den proxy som du vill använda för kompatibilitetskontroll av tillägg när programmet har uppdaterats">
+<!ENTITY foxyproxy.compatibilitycheck.proxy.help "När Firefox/Thunderbird/Seamonkey söker efter tilläggsuppdateringar på http://addons.mozilla.org under programstart, så kan sökningen förbigå dina proxyinställningar. Här kan du ange vilken proxy som skall användas vid dessa sällsynta tillfällen.">
 <!-- end foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Lägg till/Redigera lokala IP-adressmönster">
 <!ENTITY foxyproxy.tempip.popup.label "Temporära mönster gör att du kan skapa mönster för lokala IP-adresser som du inte använder så ofta. Temporära mönster sparas inte till disk utan behålls bara i minnet så länge Firefox är igång.">
@@ -599,4 +609,6 @@
 <!ENTITY foxyproxy.patternsforselected.accesskey "S">
 <!ENTITY foxyproxy.patternsforselected.tooltip "Skapa mönster för markerade URL:er">
 <!ENTITY foxyproxy.patterntoadd.label "Mönster att lägga till">
+<!ENTITY foxyproxyplus.released "Utgivet i enlighet med">
+<!ENTITY foxyproxyplus.license "licensen för FoxyProxy Plus">
 <!-- end foxyproxyplus -->

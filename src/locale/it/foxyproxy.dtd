@@ -466,9 +466,6 @@
 <!ENTITY foxyproxy.proxyservice.tooltip "Fare clic qui per iscriversi ad un servizio di proxy a pagamento">
 <!ENTITY foxyproxy.proxyservice2.label "Iscrizione ad un servizio di proxy sicuri americani, inglesi o di altre nazioni a pagamento">
 <!ENTITY foxyproxy.getfoxyproxyplus.label "Ottieni FoxyProxy Plus">
-<!ENTITY foxyproxy.aboutdonate.label "Facendo clic sul pulsante 'Effettua una donazione' è possibile incoraggiare e sostenere lo sviluppo di FoxyProxy effettuando una donazione tramite PayPal">
-<!ENTITY foxyproxy.aboutfpplus.label "Facendo clic sul pulsante 'Ottieni FoxyProxy Plus' è possibile consultare la pagina web relativa alle funzioni aggiuntive di FoxyProxy Plus ed eventualmente procedere all'acquisto">
-<!ENTITY foxyproxy.aboutproxyservice.label "Infine, facendo clic sul pulsante 'Proxy a pagamento' è possibile accedere a prezzi ragionevoli ad un servizio privato di proxy affidabili, con ampia larghezza di banda e disponibili per diversi paesi">
 <!ENTITY foxyproxy.invalidcolor.label "Il codice del colore non è valido">
 <!ENTITY foxyproxy.validcolor.label "Il codice del colore è valido">
 <!ENTITY foxyproxy.color.label "Colore">

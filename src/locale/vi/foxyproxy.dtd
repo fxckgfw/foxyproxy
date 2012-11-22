@@ -412,9 +412,6 @@
 <!ENTITY foxyproxy.proxyservice.tooltip "Đăng kí dịch vụ proxy">
 <!ENTITY foxyproxy.proxyservice2.label "Cần proxy nhanh, an toàn tại Mỹ, Anh, hoặc nước khác?">
 <!ENTITY foxyproxy.getfoxyproxyplus.label "Tải FoxyProxy Cộng">
-<!ENTITY foxyproxy.aboutdonate.label "Nút quyên góp đưa bạn đến PayPal, nơi bạn có thể quyên góp tài chính cho dự án FoxyProxy để động viên và hỗ trợ việc phát triển. Nếu bạn dùng FoxyProxy thường xuyên, xin hãy vui lòng cân nhắc đến việc quyên góp.">
-<!ENTITY foxyproxy.aboutfpplus.label "Nút FoxyProxy Cộng đưa bạn đến một trang web cung cấp thông tin về các tính năng của phiên bản Cộng và bạn có thể chọn mua nó nếu thích.">
-<!ENTITY foxyproxy.aboutproxyservice.label "Cuối cùng, nút dịch vụ proxy đưa bạn đến trang web dịch vụ proxy của chúng tôi, nơi bạn có thể mua dịch vụ proxy băng thông cao, đáng tin cậy tại nhiều quốc gia với giá phải chăng.">
 <!ENTITY foxyproxy.invalidcolor.label "Màu không hợp lệ">
 <!ENTITY foxyproxy.validcolor.label "Màu hợp lệ">
 <!ENTITY foxyproxy.color.label "Màu">

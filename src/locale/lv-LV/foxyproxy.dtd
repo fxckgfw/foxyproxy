@@ -412,9 +412,6 @@
 <!ENTITY foxyproxy.proxyservice.tooltip "Pierakstīties uz starpniekserveru pakalpojumiem">
 <!ENTITY foxyproxy.proxyservice2.label "Jums nepieciešami ātri un droši starpniekserveri ASV, Lielbritānijā vai citās valstīs?">
 <!ENTITY foxyproxy.getfoxyproxyplus.label "Izvēlieties FoxyProxy Plus">
-<!ENTITY foxyproxy.aboutdonate.label "Ziedojumu poga aizvedīs jūs uz PayPal, kur jūs varēsiet ziedot, lai atbalstītu un veicinātu FoxyProxy projektu. Ja regulāri izmantojat FoxyProxy, lūdzu apsveriet savas iespējas atbalstīt mūs.">
-<!ENTITY foxyproxy.aboutfpplus.label "FoxyProxy Plus poga aizvedīs jūs uz mājas lapu, kurā jūs varat izlasīt par Plus versijas papildus iespējām un vajadzības gadījumā arī iegādāties šo versiju.">
-<!ENTITY foxyproxy.aboutproxyservice.label "Un visbeidzot starpniekserveru pakalpojumu poga aizvedīs jūs uz mājas lapu, kurā jūs varat iegādāties ātrus un uzticamus starpniekseru pakalpojumus daudzās pasaules valstīs par pieņemamām cenām.">
 <!ENTITY foxyproxy.invalidcolor.label "Nederīga krāsa">
 <!ENTITY foxyproxy.validcolor.label "Derīga krāsa">
 <!ENTITY foxyproxy.color.label "Krāsa">

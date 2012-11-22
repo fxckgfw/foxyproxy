@@ -412,9 +412,6 @@
 <!ENTITY foxyproxy.proxyservice.tooltip "Sign up for proxy services">
 <!ENTITY foxyproxy.proxyservice2.label "Need fast, reliable proxies in the US, UK, or other countries?">
 <!ENTITY foxyproxy.getfoxyproxyplus.label "Get FoxyProxy Plus">
-<!ENTITY foxyproxy.aboutdonate.label "للتبرع إضغط الزر للذهاب إلى بايبال للتستطيع التبرع لمشروع فوكسيبروكسي وتشجع وتدعم الفريق, إذا كنت تستخدم فوكسي بروكسي دائما, أرجو أن تهتم في التبرع.">
-<!ENTITY foxyproxy.aboutfpplus.label "زر الإضافة يقودك إلى صفحة ويب تستطيع منها قراءة حول مميزات فوكسي بروكسي بلس وتخيريك لشراءه">
-<!ENTITY foxyproxy.aboutproxyservice.label "أخيرا, زر خدمة البروكسي يقودك إلى صفحة البروكسي,حيث تستطيع أن تشتري شيء يعتمد عليه, عالي الإتصال لدول كثيرة بأسعار معقولة.">
 <!ENTITY foxyproxy.invalidcolor.label "لون غير متاح">
 <!ENTITY foxyproxy.validcolor.label "لون متاح">
 <!ENTITY foxyproxy.color.label "Color">

@@ -466,9 +466,6 @@
 <!ENTITY foxyproxy.proxyservice.tooltip "Εγγραφείτε για υπηρεσίες διαμεσολάβησης">
 <!ENTITY foxyproxy.proxyservice2.label "Χρειάζεστε γρήγορους, αξιόπιστους διαμεσολαβητές στις ΗΠΑ, την Αγγλία ή άλλη χώρα;">
 <!ENTITY foxyproxy.getfoxyproxyplus.label "Πάρτε το FoxyProxy Plus">
-<!ENTITY foxyproxy.aboutdonate.label "Το κουμπί δωρεάς σας μεταφέρει στο PayPal απ&apos; όπου μπορείτε να κάνετε μια δωρεά στο έργο FoxyProxy για να ενθαρύνετε και να υποστηρίξετε την ανάπτυξη του. Αν χρησιμοποιείτε συχνά το FoxyProxy, κάντε μια δωρεά!">
-<!ENTITY foxyproxy.aboutfpplus.label "το κουμπί FoxyProxy Plus σας μεταφέρει σε ένα ιστότοπο όπου μπορείτε να διαβάσετε για τα πρόσθετα χαρακτηριστικά της έκδοσης Plus και να την αγοράσετε αν θέλετε.">
-<!ENTITY foxyproxy.aboutproxyservice.label "Τέλος, το κουμπί υπηρεσίας διαμεσολάβησης σας μεταφέρει στον ιστότοπο υπηρεσιών διαμεσολάβησης μας όπου μπορείτε να αγοράσετε αξιόπιστες, υψηλής ταχύτητας υπηρεσίες διαμεσολάβησης για πολλές χώρες σε λογικές τιμές.">
 <!ENTITY foxyproxy.invalidcolor.label "Μη έγκυρο χρώμα">
 <!ENTITY foxyproxy.validcolor.label "Έγκυρο χρώμα">
 <!ENTITY foxyproxy.color.label "Color">

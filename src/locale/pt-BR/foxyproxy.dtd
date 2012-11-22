@@ -465,9 +465,6 @@
 <!ENTITY foxyproxy.proxyservice.tooltip "Cadastre-se para os serviços de proxy">
 <!ENTITY foxyproxy.proxyservice2.label "Precisa de proxies rápidos e confiáveis nos E.U.A., Reino Unido ou outros países?">
 <!ENTITY foxyproxy.getfoxyproxyplus.label "Obter FpxyProxy Plus">
-<!ENTITY foxyproxy.aboutdonate.label "Botão doar traz para o PayPal, onde você pode doar para o projeto FoxyProxy para incentivar e apoiar o desenvolvimento. Se você usar FoxyProxy regularmente, por favor, considere doar.">
-<!ENTITY foxyproxy.aboutfpplus.label "O botão FoxyProxy Plus traz para você a um site onde você pode ler sobre os recursos adicionais fornecidos pela edição Plus e, opcionalmente, comprá-lo.">
-<!ENTITY foxyproxy.aboutproxyservice.label "Finalmente, o botão de serviço proxy traz para o nosso site de serviço de proxy, onde você pode comprar o serviço de proxy confiável, de alta largura de banda em muitos países diferentes, a preços razoáveis.">
 <!ENTITY foxyproxy.invalidcolor.label "Cor inválida">
 <!ENTITY foxyproxy.validcolor.label "Cor válida">
 <!ENTITY foxyproxy.color.label "Cor">

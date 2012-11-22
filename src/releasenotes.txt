@@ -1,13 +1,3 @@
-* added advanced settings dialog that lets the user choose the proxy used for
-  add-on compatibility checks on start-up if FoxyProxy is in pattern mode
-* allow selection of proxy type during proxy subscription import
-* removed unnecessary help button on main dialog explaining the donation,
-  FoxyProxy Plus and our proxy services
-* added button to promote FoxyProxy for Chrome
-* fixed bug in pattern import (an imported rule was never disabled), see:
-  http://forums.getfoxyproxy.org/viewtopic.php?f=4&t=767
-* fixed wrong pattern type of patterns excluding internal IP addresses, see:
-  (http://forums.getfoxyproxy.org/viewtopic.php?f=4&t=777&p=1941)
-* fixed rendering issue in the logging tree after deleting all entries
-* code clean-up
+* fixed possible breakage of PAC file handling due to
+  https://bugzilla.mozilla.org/show_bug.cgi?id=769764
 * updated locales

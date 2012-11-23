@@ -477,7 +477,13 @@ Proxy.prototype = {
       // if we start in pattern mode after an application upgrade. If so, we
       // fallback to the default proxy in order to have at least one that is
       // supposed to work.
-      if (this.id === this.fp.proxyForVersionCheck) {
+      // No '===' here! |value| of a menulist element gives a string back but
+      // the |id| of a proxy is a number until loaded from the foxyproxy.xml.
+      // Thus, if I create a new proxy after FoxyProxy started and change the
+      // proxy on the advanced settings panel to this newly created one, disable
+      // that very proxy then the proxy would still be used on the advanced
+      // panel if we had a strict comparison below!
+      if (this.id == this.fp.proxyForVersionCheck) {
         this.fp.proxyForVersionCheck = this.fp.proxies.lastresort.id;
       }
     }

@@ -141,6 +141,8 @@
 <!ENTITY foxyproxy.tab.global.label "Algemene instellingen">
 <!ENTITY foxyproxy.tab.global.accesskey "G">
 <!ENTITY foxyproxy.tab.global.tooltip "Algemene instellingen beheren">
+<!ENTITY foxyproxy.settings.advanced.label "Geavanceerde instellingen">
+<!ENTITY foxyproxy.settings.advanced.tooltip "Een klik op de knop opent het dialoogvenster voor geavanceerde instellingen van FoxyProxy">
 <!ENTITY foxyproxy.tab.logging.label "Loggen">
 <!ENTITY foxyproxy.tab.logging.accesskey "L">
 <!ENTITY foxyproxy.tab.logging.tooltip "Loginstellingen beheren">
@@ -466,6 +468,9 @@
 <!ENTITY foxyproxy.proxyservice.tooltip "Aanmelden voor proxydiensten">
 <!ENTITY foxyproxy.proxyservice2.label "Behoefte aan snelle, betrouwbare proxy’s in de VS, het VK of andere landen?">
 <!ENTITY foxyproxy.getfoxyproxyplus.label "FoxyProxy Plus installeren">
+<!ENTITY foxyproxy.foxyproxychrome.label "FoxyProxy voor Chrome">
+<!ENTITY foxyproxy.foxyproxychrome.accesskey "F">
+<!ENTITY foxyproxy.foxyproxychrome.tooltip "Probeer FoxyProxy voro Chrome">
 <!ENTITY foxyproxy.invalidcolor.label "Ongeldige kleur">
 <!ENTITY foxyproxy.validcolor.label "Geldige kleur">
 <!ENTITY foxyproxy.color.label "Kleur">
@@ -484,6 +489,12 @@
 <!ENTITY foxyproxy.proxy.subscriptions.viewSubscription "Proxy-abonnement bekijken">
 <!ENTITY foxyproxy.proxy.subscriptions.addedit.title "Proxy-abonnement toevoegen/bewerken">
 <!ENTITY foxyproxy.proxy.subscriptions.refreshHelp "verwijdert alle bestaande proxy-abonnementen">
+<!ENTITY foxyproxy.proxy.subscriptions.proxy.type.label "Proxy-type">
+<!ENTITY foxyproxy.proxy.subscriptions.proxy.type.tooltip "Kis het type proxy’s op de lijst die u wilt importeren. Indien u ‘Onbekend’ selecteert wordt aangenomen dat het HTTP-proxy’s zijn.">
+<!ENTITY foxyproxy.proxy.subscriptions.unknown.label "Onbekend">
+<!ENTITY foxyproxy.proxy.subscriptions.http.label "HTTP">
+<!ENTITY foxyproxy.proxy.subscriptions.socks.label "SOCKS">
+<!ENTITY foxyproxy.proxy.subscriptions.subscriptionTypeHelp "Middels deze optie kunt u het type proxy’s in uw abonnement kiezen. Indien u ‘Onbekend’ selecteert wordt aangenomen dat het HTTP-proxy’s zijn. Hetzelfde geldt als u ‘HTTP’ selecteert. Als u ‘SOCKS’ selecteert zal FoxyProxy ze behandelen als SOCKS5-proxy’s.">
 <!ENTITY foxyproxy.proxy.subscriptions.proxy.window.title "Abonnementsproxy’s">
 <!ENTITY foxyproxy.pattern.subscriptions.label "Patroonabonnementen">
 <!ENTITY foxyproxy.pattern.subscriptions.description "Abonneer u op door anderen gepubliceerde patronen. Deel uw patronen met anderen in een paar muisklikken.">
@@ -535,6 +546,8 @@
 <!ENTITY foxyproxy.status.label "Status">
 <!ENTITY foxyproxy.format.label "Opmaak">
 <!ENTITY foxyproxy.obfuscation.label "Versluiering">
+<!ENTITY foxyproxy.compatibilitycheck.proxy.tooltip "Selecteer de proxy die u voor de add-on-compatibiliteitscontrole wilt gebruiken na een update van een toepassing.">
+<!ENTITY foxyproxy.compatibilitycheck.proxy.help "Wanneer Firefox/Thunderbird/SeaMonkey zoekt naar add-on-updates op http://addons.mozilla.org tijdens opstarten, is een bypass van uw proxypatronen door deze zoekopdracht mogelijk. Hier kunt u opgeven welke proxy in deze zeldzame situaties moet worden gebruikt.">
 <!-- end foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Lokaal IP-adrespatroon toevoegen/bewerken">
 <!ENTITY foxyproxy.tempip.popup.label "Met tijdelijke patronen kunt u patronen voor lokale IP-adressen  die u niet vaak gebruikt creëren zonder dat de IP-adressenpatroonlijst voor een proxy wordt vervuild. Tijdelijke patronen wordne niet opgeslagen. Ze worden alleen tijdens deze Firefoxsessie in het geheugen bewaard.">
@@ -596,4 +609,6 @@
 <!ENTITY foxyproxy.patternsforselected.accesskey "S">
 <!ENTITY foxyproxy.patternsforselected.tooltip "Patronen voor geselecteerde URL’s maken">
 <!ENTITY foxyproxy.patterntoadd.label "Toe te voegen patroon">
+<!ENTITY foxyproxyplus.released "Uitgegeven onder de">
+<!ENTITY foxyproxyplus.license "FoxyProxy Plus-licentie">
 <!-- end foxyproxyplus -->

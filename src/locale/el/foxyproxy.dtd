@@ -141,6 +141,8 @@
 <!ENTITY foxyproxy.tab.global.label "Γενικές ρυθμίσεις">
 <!ENTITY foxyproxy.tab.global.accesskey "Γ">
 <!ENTITY foxyproxy.tab.global.tooltip "Διαχείριση γενικών ρυθμίσεων">
+<!ENTITY foxyproxy.settings.advanced.label "Ρυθμίσεις για προχωρημένους">
+<!ENTITY foxyproxy.settings.advanced.tooltip "Κάνοντας κλικ ανοίγουν οι ρυθμίσεις του FoxyProxy για προχωρημένους.">
 <!ENTITY foxyproxy.tab.logging.label "Συνδέσεις">
 <!ENTITY foxyproxy.tab.logging.accesskey "Σ">
 <!ENTITY foxyproxy.tab.logging.tooltip "Διαχείριση ρυθμίσεων συνδέσεων">
@@ -466,6 +468,9 @@
 <!ENTITY foxyproxy.proxyservice.tooltip "Εγγραφείτε για υπηρεσίες διαμεσολάβησης">
 <!ENTITY foxyproxy.proxyservice2.label "Χρειάζεστε γρήγορους, αξιόπιστους διαμεσολαβητές στις ΗΠΑ, την Αγγλία ή άλλη χώρα;">
 <!ENTITY foxyproxy.getfoxyproxyplus.label "Πάρτε το FoxyProxy Plus">
+<!ENTITY foxyproxy.foxyproxychrome.label "FοxyProxy για τον Chrome">
+<!ENTITY foxyproxy.foxyproxychrome.accesskey "ο">
+<!ENTITY foxyproxy.foxyproxychrome.tooltip "Δοκιμάστε το FoxyProxy στον Chrome">
 <!ENTITY foxyproxy.invalidcolor.label "Μη έγκυρο χρώμα">
 <!ENTITY foxyproxy.validcolor.label "Έγκυρο χρώμα">
 <!ENTITY foxyproxy.color.label "Color">
@@ -484,6 +489,12 @@
 <!ENTITY foxyproxy.proxy.subscriptions.viewSubscription "Προβολή συνδρομής διαμεσολαβητή">
 <!ENTITY foxyproxy.proxy.subscriptions.addedit.title "Προσθήκη/επεξεργασία συνδρομής διαμεσολαβητή">
 <!ENTITY foxyproxy.proxy.subscriptions.refreshHelp "αφαιρεί όλες τις υπάρχουσες συνδρομές σε διαμεσολαβητές">
+<!ENTITY foxyproxy.proxy.subscriptions.proxy.type.label "Τύπος διαμεσολαβητή">
+<!ENTITY foxyproxy.proxy.subscriptions.proxy.type.tooltip "Επιλέξτε τον τύπο των διαμεσολαβητών της λίστας που θέλετε να εισάγετε. Αν επιλέξετε «Δεν γνωρίζω» θα θεωρηθούν ως διαμεσολαβητές HTTP.">
+<!ENTITY foxyproxy.proxy.subscriptions.unknown.label "Δεν γνωρίζω">
+<!ENTITY foxyproxy.proxy.subscriptions.http.label "HTTP">
+<!ENTITY foxyproxy.proxy.subscriptions.socks.label "SOCKS">
+<!ENTITY foxyproxy.proxy.subscriptions.subscriptionTypeHelp "Αυτή η επιλογή σας επιτρέπει να επιλέξετε τον τύπο διαμεσολαβητών της συνδρομής σας. Αν επιλέξετε «Δεν γνωρίζω» ή «HTTP», οι διαμεσολαβητές θα θεωρηθούν ως HTTP. Αν επιλέξετε «SOCKS», το  FoxyProxy θα τους θεωρήσει διαμεσολαβητές SOCKS5.">
 <!ENTITY foxyproxy.proxy.subscriptions.proxy.window.title "Συνδρομές διαμεσολαβητών">
 <!ENTITY foxyproxy.pattern.subscriptions.label "Συνδρομές πρότυπων">
 <!ENTITY foxyproxy.pattern.subscriptions.description "Γραφτείτε συνδρομητές σε λίστες προτύπων που δημοσιεύουν άλλοι. Μοιραστείτε τα πρότυπα σας με άλλους με μερικά μόνο κλικ.">
@@ -535,6 +546,8 @@
 <!ENTITY foxyproxy.status.label "Κατάσταση">
 <!ENTITY foxyproxy.format.label "Μορφή">
 <!ENTITY foxyproxy.obfuscation.label "Απόκρυψη">
+<!ENTITY foxyproxy.compatibilitycheck.proxy.tooltip "Επιλέξτε τον διαμεσολαβητή που θέλετε να χρησιμοποιηθεί για τον έλεγχο συμβατότητας πρόσθετων μετά από αναβάθμιση της εφαρμογής.">
+<!ENTITY foxyproxy.compatibilitycheck.proxy.help "Όταν ο Firefox/Thunderbird/SeaMonkey αναζητά ενημερώσεις πρόσθετων στο http://addons.mozilla.org κατά την εκκίνηση, είναι πιθανό να παρακάμψει τα πρότυπα διαμεσολαβητή που έχετε ορίσει. Εδώ μπορείτε να επιλέξετε ποιος διαμεσολαβητής θα χρησιμοποιείται σ' αυτή τη σπάνια περίπτωση.">
 <!-- end foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Προσθήκη/επεξεργασία τοπικού πρότυπου διεύθυνσης IP">
 <!ENTITY foxyproxy.tempip.popup.label "Τα προσωρινά πρότυπα σας επιτρέπουν να δημιουργήσετε τοπικά πρότυπα για διευθύνσεις IP που δεν χρησιμοποιείτε συχνά, χωρίς να αυξάνετε την πολυπλοκότητα της λίστας πρότυπων κάποιου διαμεσολαβητή. Τα προσωρινά πρότυπα δεν αποθηκεύονται στο δίσκο, διατηρούνται μόνο στη μνήμη και χρησιμοποιούνται για την τρέχουσα συνεδρία του Firefox.">
@@ -596,4 +609,6 @@
 <!ENTITY foxyproxy.patternsforselected.accesskey "π">
 <!ENTITY foxyproxy.patternsforselected.tooltip "Δημιουργία προτύπων για τα επιλεγμένα URL μόνο">
 <!ENTITY foxyproxy.patterntoadd.label "Πρότυπο για προσθήκη">
+<!ENTITY foxyproxyplus.released "Διατίθεται σύμφωνα με την">
+<!ENTITY foxyproxyplus.license "άδεια FoxyProxy Plus">
 <!-- end foxyproxyplus -->

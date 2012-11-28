@@ -8,195 +8,246 @@
 <!ENTITY foxyproxy.tree.pickertooltiptext.label "表示する列をクリックして選択">
 <!ENTITY foxyproxy.proxy.name.label "プロキシ名">
 <!ENTITY foxyproxy.proxy.name.accesskey "N">
-<!ENTITY foxyproxy.proxy.name.tooltip "プロキシの名前">
+<!ENTITY foxyproxy.proxy.name.tooltip "プロキシの名称">
 <!ENTITY foxyproxy.proxy.notes.label "プロキシノート">
 <!ENTITY foxyproxy.proxy.notes.accesskey "N">
 <!ENTITY foxyproxy.proxy.notes.tooltip "プロキシのノート">
+<!ENTITY foxyproxy.proxy.wizard.label "プロキシウィザード">
+<!ENTITY foxyproxy.proxy.wizard.accesskey "P">
+<!ENTITY foxyproxy.proxy.wizard.tooltip "プロキシ購読からプロキシを作成">
+<!ENTITY foxyproxy.proxy.wizard.description1 "このウィザードでは有償プロキシを自動的に設定します。購読 ID を下に入力してください。もし購読 ID を持っていない場合、">
+<!ENTITY foxyproxy.proxy.wizard.description2 "購入することができます">
+<!ENTITY foxyproxy.proxy.wizard.subscriptionID.label "購読 ID">
+<!ENTITY foxyproxy.proxy.wizard.subscriptionID.tooltip "プロキシ購読 ID を入力">
+<!ENTITY foxyproxy.proxy.wizard.loading.label "プロキシの詳細を取得中...">
+<!ENTITY foxyproxy.proxy.wizard.congratulation "おめでとう。FoxyProxy の設定完了">
+<!ENTITY foxyproxy.proxy.wizard.whatsmyip.label "自分の IP を確認">
 <!ENTITY foxyproxy.pattern.label "パターン">
-<!ENTITY foxyproxy.urlpatterns.label "URL Patterns">
+<!ENTITY foxyproxy.urlpatterns.label "URL パターン">
 <!ENTITY foxyproxy.urlpatterns.accesskey "P">
-<!ENTITY foxyproxy.urlpatterns.tooltip "URL patterns">
+<!ENTITY foxyproxy.urlpatterns.tooltip "URL パターン">
 <!ENTITY foxyproxy.pattern.type.label "パターン種別">
-<!ENTITY foxyproxy.whitelist.blacklist.label "ホワイトリスト (包含的) かブラックリスト (排他的)">
+<!ENTITY foxyproxy.whitelist.blacklist.label "ホワイトリスト／ブラックリスト">
 <!ENTITY foxyproxy.pattern.name.label "パターン名">
 <!ENTITY foxyproxy.pattern.name.accesskey "P">
-<!ENTITY foxyproxy.pattern.name.tooltip "パターンの名前">
+<!ENTITY foxyproxy.pattern.name.tooltip "パターンの名称">
 <!ENTITY foxyproxy.url.pattern.label "URL パターン">
 <!ENTITY foxyproxy.url.pattern.accesskey "U">
 <!ENTITY foxyproxy.url.pattern.tooltip "URL のパターン">
 <!ENTITY foxyproxy.enabled.label "有効">
 <!ENTITY foxyproxy.enabled.accesskey "E">
-<!ENTITY foxyproxy.enabled.tooltip "有効・無効の切り替え">
-<!ENTITY foxyproxy.delete.selection.label "選択を削除">
+<!ENTITY foxyproxy.enabled.tooltip "有効／無効の切り替え">
+<!ENTITY foxyproxy.delete.selection.label "選択項目を削除">
 <!ENTITY foxyproxy.delete.selection.accesskey "D">
-<!ENTITY foxyproxy.delete.selection.tooltip "現在選択済みのアイテムを削除します">
-<!ENTITY foxyproxy.edit.selection.label "選択を編集">
+<!ENTITY foxyproxy.delete.selection.tooltip "現在選択している項目を削除">
+<!ENTITY foxyproxy.edit.selection.label "選択項目を編集">
 <!ENTITY foxyproxy.edit.selection.accesskey "E">
-<!ENTITY foxyproxy.edit.selection.tooltip "現在選択済みのアイテムを編集します">
+<!ENTITY foxyproxy.edit.selection.tooltip "現在選択している項目を編集">
 <!ENTITY foxyproxy.help.label "ヘルプコンテンツ">
 <!ENTITY foxyproxy.help.accesskey "H">
 <!ENTITY foxyproxy.help.tooltip "ヘルプを表示">
-<!ENTITY foxyproxy.export.pattern.label "Export">
+<!ENTITY foxyproxy.import.pattern.label "インポート">
+<!ENTITY foxyproxy.import.pattern.accesskey "I">
+<!ENTITY foxyproxy.import.pattern.tooltip "パターンをインポート">
+<!ENTITY foxyproxy.export.pattern.label "エクスポート">
 <!ENTITY foxyproxy.export.pattern.accesskey "X">
+<!ENTITY foxyproxy.export.pattern.tooltip2 "すべてのパターンをエクスポート">
 <!ENTITY foxyproxy.close.label "閉じる">
 <!ENTITY foxyproxy.close.accesskey "C">
 <!ENTITY foxyproxy.close.tooltip "ウィンドウを閉じる">
 <!ENTITY foxyproxy.about.label "About">
 <!ENTITY foxyproxy.about.accesskey "A">
-<!ENTITY foxyproxy.about.tooltip "About を開きます">
+<!ENTITY foxyproxy.about.tooltip "About を開く">
 <!ENTITY foxyproxy.online.label "FoxyProxy オンライン">
 <!ENTITY foxyproxy.online.accesskey "O">
-<!ENTITY foxyproxy.online.tooltip "FoxyProxy のウェブサイトを訪れます">
+<!ENTITY foxyproxy.online.tooltip "FoxyProxy のウェブサイトを開く">
 <!ENTITY foxyproxy.tor.label "Tor ウィザード">
 <!ENTITY foxyproxy.tor.accesskey "W">
-<!ENTITY foxyproxy.tor.tooltip "対話形式で Tor を設定します">
-<!ENTITY foxyproxy.copy.selection.label "選択を複製">
+<!ENTITY foxyproxy.tor.tooltip "Tor ウィザード">
+<!ENTITY foxyproxy.copy.selection.label "選択項目をコピー">
 <!ENTITY foxyproxy.copy.selection.accesskey "C">
-<!ENTITY foxyproxy.copy.selection.tooltip "選択を複製します">
-<!ENTITY foxyproxy.mode.label "モード選択">
+<!ENTITY foxyproxy.copy.selection.tooltip "選択項目をコピーする">
+<!ENTITY foxyproxy.mode.label "モードを選択">
+<!ENTITY foxyproxy.wpad.label1 "WPAD を使用">
 <!-- begin foxyproxyplus -->
+<!ENTITY foxyproxy.wpad.accesskey "W">
+<!ENTITY foxyproxy.wpad.tooltip "WPAD を使ってプロキシ設定を自動検出">
+<!ENTITY foxyproxy.wpad.reload.label "プロキシ設定を">
+<!ENTITY foxyproxy.wpad.reload.accesskey "D">
+<!ENTITY foxyproxy.wpad.reload.tooltip "指定間隔でプロキシを自動検出">
+<!ENTITY foxyproxy.wpad.tree.label "プロキシを自動検出">
 <!ENTITY foxyproxy.auto.url.label "自動プロキシ設定 URL">
 <!ENTITY foxyproxy.auto.url.tooltip "PAC ファイルの URL を入力">
 <!ENTITY foxyproxy.auto.url.note.label "http(s)://   ftp://   file://   relative://">
-<!ENTITY foxyproxy.auto.url.note.tooltip "relative:// の情報は info アイコンをクリックしてください">
+<!ENTITY foxyproxy.auto.url.note.tooltip "relative:// の詳細は info アイコンをクリック">
+<!ENTITY foxyproxy.ip.address.label "IP アドレス">
 <!ENTITY foxyproxy.port.label "ポート">
 <!ENTITY foxyproxy.port.accesskey "P">
 <!ENTITY foxyproxy.port.tooltip "ポート番号">
 <!ENTITY foxyproxy.socks.v4 "SOCKS v4/4a">
 <!ENTITY foxyproxy.socks.v5 "SOCKS v5">
-<!ENTITY foxyproxy.addeditpattern.title "パターンの追加・編集">
+<!ENTITY foxyproxy.addeditpattern.title "パターンの追加／編集">
 <!ENTITY foxyproxy.wildcard.label "ワイルドカード">
 <!ENTITY foxyproxy.wildcard.accesskey "W">
-<!ENTITY foxyproxy.wildcard.tooltip "正規表現ではないワイルドカードを使った URL パターンを指定します">
+<!ENTITY foxyproxy.wildcard.tooltip "URL パターンを正規表現ではなくワイルドカードで指定">
 <!ENTITY foxyproxy.wildcard.example.label "例: *mail.yahoo.com/*">
 <!ENTITY foxyproxy.regex.label "正規表現">
 <!ENTITY foxyproxy.regex.accesskey "R">
-<!ENTITY foxyproxy.regex.tooltip "正規表現の URL パターンを指定します">
+<!ENTITY foxyproxy.regex.tooltip "URL パターンを正規表現で指定">
+<!ENTITY foxyproxy.regex.example.label2 "Example: ^https?://.*\.mail\.yahoo\.com/.*$">
 <!ENTITY foxyproxy.version "バージョン">
-<!ENTITY foxyproxy.createdBy "作成者">
-<!ENTITY foxyproxy.contributionsBy "Contributions By">
+<!ENTITY foxyproxy.createdBy "作成者:">
+<!ENTITY foxyproxy.contributionsBy "貢献者:">
 <!ENTITY foxyproxy.copyright "Copyright">
 <!ENTITY foxyproxy.rights "All Rights Reserved.">
-<!ENTITY foxyproxy.released "GPL の下で公開されています。">
+<!ENTITY foxyproxy.released "GPL ライセンスの下でリリースされています。">
 <!ENTITY foxyproxy.tab.general.label "全般">
 <!ENTITY foxyproxy.tab.general.accesskey "G">
-<!ENTITY foxyproxy.tab.general.tooltip "全般的なプロキシの設定を管理します">
+<!ENTITY foxyproxy.tab.general.tooltip "全般的なプロキシ設定を管理">
 <!ENTITY foxyproxy.tab.proxy.label "プロキシ詳細">
 <!ENTITY foxyproxy.tab.proxy.accesskey "R">
-<!ENTITY foxyproxy.tab.proxy.tooltip "プロキシの詳細を管理します">
+<!ENTITY foxyproxy.tab.proxy.tooltip "プロキシ詳細を管理">
 <!ENTITY foxyproxy.tab.patterns.label "パターン">
 <!ENTITY foxyproxy.tab.patterns.accesskey "P">
-<!ENTITY foxyproxy.tab.patterns.tooltip "URL パターンを管理します">
+<!ENTITY foxyproxy.tab.patterns.tooltip "URL パターンを管理">
 <!ENTITY foxyproxy.add.title "プロキシ設定">
-<!ENTITY foxyproxy.pattern.description "ここではこのプロキシが使われるか使われないかを指定できます。">
+<!ENTITY foxyproxy.pattern.description "ここではプロキシがいつ使われ、いつ使われないかを指定することができます。">
+<!ENTITY foxyproxy.pattern.nointernal.label "ローカル IP アドレスでこのプロキシを使用しない">
+<!ENTITY foxyproxy.pattern.nointernal.tooltip "このチェックボックスでプロキシ利用をローカル IP アドレス以外に制限することができます">
+<!ENTITY foxyproxy.pattern.nointernal.accesskey "N">
 <!ENTITY foxyproxy.pattern.matchtype.label "パターン内容">
-<!ENTITY foxyproxy.pattern.whiteblack.label "URL の包含と排除">
+<!ENTITY foxyproxy.pattern.whiteblack.label "URL ホワイトリスト／ブラックリスト">
 <!ENTITY foxyproxy.add.option.direct.label "直接接続 (プロキシなし)">
 <!ENTITY foxyproxy.add.option.direct.accesskey "D">
-<!ENTITY foxyproxy.add.option.direct.tooltip "プロキシを使わない - 内在する直接接続を用います">
+<!ENTITY foxyproxy.add.option.direct.tooltip "プロキシを使わない - 直接接続を使用">
 <!ENTITY foxyproxy.add.option.manual.label "手動プロキシ設定">
 <!ENTITY foxyproxy.add.option.manual.accesskey "M">
-<!ENTITY foxyproxy.add.option.manual.tooltip "プロキシ設定を手動で定義します">
-<!ENTITY foxyproxy.add.new.pattern.label "新規パターンを追加">
+<!ENTITY foxyproxy.add.option.manual.tooltip "手動でプロキシ設定を定義">
+<!ENTITY foxyproxy.add.new.pattern.label "パターンを新規追加">
 <!ENTITY foxyproxy.add.new.pattern.accesskey "A">
-<!ENTITY foxyproxy.add.new.pattern.tooltip "新しいパターンを追加します">
+<!ENTITY foxyproxy.add.new.pattern.tooltip "新しいパターンを追加">
 <!ENTITY foxyproxy.menubar.file.label "ファイル">
 <!ENTITY foxyproxy.menubar.file.accesskey "F">
-<!ENTITY foxyproxy.menubar.file.tooltip "ファイルメニューを開きます">
+<!ENTITY foxyproxy.menubar.file.tooltip "ファイルメニューを開く">
 <!ENTITY foxyproxy.menubar.help.label "ヘルプ">
 <!ENTITY foxyproxy.menubar.help.accesskey "H">
-<!ENTITY foxyproxy.menubar.help.tooltip "ヘルプメニューを開きます">
+<!ENTITY foxyproxy.menubar.help.tooltip "ヘルプメニューを開く">
 <!ENTITY foxyproxy.mode.accesskey "M">
-<!ENTITY foxyproxy.mode.tooltip "どのようにして FoxyProxy を機能させるか選択します">
-<!ENTITY foxyproxy.proxy.label "Proxy">
+<!ENTITY foxyproxy.mode.tooltip "FoxyProxy が機能する方法を選択">
+<!ENTITY foxyproxy.proxy.label "プロキシ">
 <!ENTITY foxyproxy.tab.proxies.label "プロキシ">
 <!ENTITY foxyproxy.tab.proxies.accesskey "P">
-<!ENTITY foxyproxy.tab.proxies.tooltip "プロキシの管理">
+<!ENTITY foxyproxy.tab.proxies.tooltip "プロキシを管理">
 <!ENTITY foxyproxy.tab.global.label "全体設定">
 <!ENTITY foxyproxy.tab.global.accesskey "G">
-<!ENTITY foxyproxy.tab.global.tooltip "全体設定の管理">
+<!ENTITY foxyproxy.tab.global.tooltip "全体設定を管理">
+<!ENTITY foxyproxy.settings.advanced.label "詳細設定">
+<!ENTITY foxyproxy.settings.advanced.tooltip "ボタンをクリックすると FoxyProxy 詳細設定画面が開く">
 <!ENTITY foxyproxy.tab.logging.label "ログ">
 <!ENTITY foxyproxy.tab.logging.accesskey "L">
-<!ENTITY foxyproxy.tab.logging.tooltip "ログ設定の管理">
-<!ENTITY foxyproxy.proxydns.label3 "Perform remote DNS lookups on hostnames loading through this proxy">
+<!ENTITY foxyproxy.tab.logging.tooltip "ログ設定を管理">
+<!ENTITY foxyproxy.proxydns.label3 "このプロキシを通した読み込みには、ホスト名のリモート DNS 問い合わせを実行する">
 <!ENTITY foxyproxy.proxydns.accesskey "U">
-<!ENTITY foxyproxy.proxydns.tooltip3 "If checked, hostnames of URLs loading through this proxy are also resolved by this proxy">
+<!ENTITY foxyproxy.proxydns.tooltip3 "チェックすると、このプロキシを通して読み込まれる URL に含まれるホスト名の名前解決にもこのプロキシが使用されます">
 <!ENTITY foxyproxy.proxydns.label4 "Proxy DNS">
-<!ENTITY foxyproxy.showstatusbaricon.label "ステータスバーにアイコンを表示する">
+<!ENTITY foxyproxy.cache.label "キャッシュ">
+<!ENTITY foxyproxy.clearcache.label "このプロキシを使用する前にキャッシュをクリア">
+<!ENTITY foxyproxy.clearcache.accesskey "H">
+<!ENTITY foxyproxy.clearcache.tooltip "チェックすると、このプロキシを使用する前にキャッシュをクリアします">
+<!ENTITY foxyproxy.disablecache.label "このプロキシを使用中はキャッシュしない">
+<!ENTITY foxyproxy.disablecache.accesskey "D">
+<!ENTITY foxyproxy.disablecache.tooltip "チェックすると、今後キャッシュしません">
+<!ENTITY foxyproxy.cookies.label "クッキー">
+<!ENTITY foxyproxy.clearcookies.label "このプロキシを使用する前にすべてのクッキーを削除">
+<!ENTITY foxyproxy.clearcookies.accesskey "C">
+<!ENTITY foxyproxy.clearcookies.tooltip "チェックすると、このプロキシを使用する前にすべてのクッキーを削除する">
+<!ENTITY foxyproxy.rejectcookies.label "このプロキシを使用中はすべてのクッキーをブロック">
+<!ENTITY foxyproxy.rejectcookies.accesskey "B">
+<!ENTITY foxyproxy.rejectcookies.tooltip "チェックすると、このプロキシを使用中のブラウザはすべてのクッキーを拒絶する">
+<!ENTITY foxyproxy.showstatusbaricon.label "ステータスバーにアイコンを表示">
 <!ENTITY foxyproxy.showstatusbaricon.accesskey "S">
-<!ENTITY foxyproxy.showstatusbaricon.tooltip "チェックするとステータスバーに FoxyProxy のアイコンが表示されます">
-<!ENTITY foxyproxy.showstatusbarmode.label "ステータスバーにモードをテキスト表示する">
+<!ENTITY foxyproxy.showstatusbaricon.tooltip "チェックすると、ステータスバーに FoxyProxy アイコンが表示されます">
+<!ENTITY foxyproxy.showstatusbarmode.label "ステータスバーにモードをテキスト表示">
 <!ENTITY foxyproxy.showstatusbarmode.accesskey "S">
-<!ENTITY foxyproxy.showstatusbarmode.tooltip "チェックするとステータスバーに FoxyProxy のモードが表示されます">
-<!ENTITY foxyproxy.storagelocation.label.2 "Settings Location">
+<!ENTITY foxyproxy.showstatusbarmode.tooltip "チェックすると、ステータスバーに FoxyProxy のモードが表示されます">
+<!ENTITY foxyproxy.storagelocation.label.2 "設定の保存場所">
 <!ENTITY foxyproxy.storagelocation.accesskey "S">
-<!ENTITY foxyproxy.storagelocation.tooltip "FoxyProxy の設定を保存する場所">
+<!ENTITY foxyproxy.storagelocation.tooltip "FoxyProxy 設定を保存する場所">
 <!ENTITY foxyproxy.tab.logging.timestamp.label "タイムスタンプ">
 <!ENTITY foxyproxy.tab.logging.url.label "URL">
-<!ENTITY foxyproxy.host.label.2 "Host or IP Address">
+<!ENTITY foxyproxy.host.label.2 "ホストまたは IP アドレス">
 <!ENTITY foxyproxy.host.accesskey "H">
-<!ENTITY foxyproxy.clear.label "一掃">
+<!ENTITY foxyproxy.clear.label "クリア">
 <!ENTITY foxyproxy.clear.accesskey "C">
 <!ENTITY foxyproxy.clear.tooltip "クリアします">
-<!ENTITY foxyproxy.refresh.label "更新">
+<!ENTITY foxyproxy.refresh.label "リフレッシュ">
 <!ENTITY foxyproxy.refresh.accesskey "R">
-<!ENTITY foxyproxy.refresh.tooltip "更新します">
+<!ENTITY foxyproxy.refresh.tooltip "リフレッシュします">
 <!ENTITY foxyproxy.save.label "保存">
 <!ENTITY foxyproxy.save.accesskey "S">
 <!ENTITY foxyproxy.save.tooltip "保存します">
-<!ENTITY foxyproxy.openurlinnewtab.label "Open URL in New Tab">
+<!ENTITY foxyproxy.openurlinnewtab.label "新しいタブで URL を開く">
 <!ENTITY foxyproxy.openurlinnewtab.accesskey "O">
-<!ENTITY foxyproxy.openurlinnewtab.tooltip "Open URL in New Tab">
-<!ENTITY foxyproxy.copyurltoclipboard.label "Copy URL to Clipboard">
+<!ENTITY foxyproxy.openurlinnewtab.tooltip "新しいタブで URL を開く">
+<!ENTITY foxyproxy.copyurltoclipboard.label "クリップボードに URL をコピー">
 <!ENTITY foxyproxy.copyurltoclipboard.accesskey "C">
-<!ENTITY foxyproxy.copyurltoclipboard.tooltip "Copy URL to Clipboard">
-<!ENTITY foxyproxy.addnewproxy.label "新しくプロキシを追加">
+<!ENTITY foxyproxy.copyurltoclipboard.tooltip "クリップボードに URL をコピー">
+<!ENTITY foxyproxy.addnewproxy.label "プロキシを新規追加">
 <!ENTITY foxyproxy.addnewproxy.accesskey "A">
-<!ENTITY foxyproxy.addnewproxy.tooltip "Add New Proxy">
-<!ENTITY foxyproxy.useselectedforallurls.label "Use selected proxy for all URLs">
+<!ENTITY foxyproxy.addnewproxy.tooltip "プロキシを新規追加する">
+<!ENTITY foxyproxy.useselectedforallurls.label "選択したプロキシをすべての URL で使用">
 <!ENTITY foxyproxy.useselectedforallurls.accesskey "U">
-<!ENTITY foxyproxy.useselectedforallurls.tooltip "Use selected proxy for all URLs">
+<!ENTITY foxyproxy.useselectedforallurls.tooltip "選択したプロキシをすべての URL で使用する">
 <!ENTITY foxyproxy.whitelist.label "ホワイトリスト">
 <!ENTITY foxyproxy.whitelist.accesskey "W">
 <!ENTITY foxyproxy.whitelist.tooltip "このパターンに一致する URL は、このプロキシを通して読み込まれます">
 <!ENTITY foxyproxy.whitelist.description.label "このパターンに一致する URL は、このプロキシを通して読み込まれます">
 <!ENTITY foxyproxy.blacklist.label "ブラックリスト">
 <!ENTITY foxyproxy.blacklist.accesskey "B">
-<!ENTITY foxyproxy.blacklist.tooltip "このパターンに一致する URL は、このプロキシを通して読み込みません">
-<!ENTITY foxyproxy.blacklist.description.label "このパターンに一致する URL は、このプロキシを通して読み込みません">
-<!ENTITY foxyproxy.whiteblack.description.label "ブラックリスト (排他的) パターンはホワイトリスト (包含的) パターンよりも優先されます: もし URL が同じプロキシのホワイトリストとブラックリストそれぞれに一致した場合、URL はそのプロキシから読み込みを除外されます。">
+<!ENTITY foxyproxy.blacklist.tooltip "このパターンに一致する URL は、このプロキシを通して読み込まれません">
+<!ENTITY foxyproxy.blacklist.description.label "このパターンに一致する URL は、このプロキシを通して読み込まれません">
+<!ENTITY foxyproxy.whiteblack.description.label "ブラックリストパターンはホワイトリストパターンより優先されます: もし URL が同じプロキシのホワイトリストパターンとブラックリストパターン両方に一致した場合、URL はそのプロキシから読み込まれません。">
 <!ENTITY foxyproxy.socks.version.label "SOCKS バージョン">
 <!ENTITY foxyproxy.autopacurl.label "自動 PAC URL">
-<!ENTITY foxyproxy.issocks.label "SOCKS プロキシ？">
+<!ENTITY foxyproxy.issocks.label "SOCKS プロキシ?">
 <!ENTITY foxyproxy.issocks.accesskey "S">
-<!ENTITY foxyproxy.issocks.tooltip "これはウェブプロキシまたは SOCKS プロキシですか？">
+<!ENTITY foxyproxy.issocks.tooltip "これはウェブプロキシ? それとも SOCKS プロキシ?">
 <!ENTITY foxyproxy.moveup.label "上へ移動">
-<!ENTITY foxyproxy.moveup.tooltip "現在の選択の優先度を上げます">
+<!ENTITY foxyproxy.moveup.tooltip "現在選択している項目の優先度を上げる">
 <!ENTITY foxyproxy.moveup.accesskey "U">
 <!ENTITY foxyproxy.movedown.label "下へ移動">
-<!ENTITY foxyproxy.movedown.tooltip "現在の選択の優先度を下げます">
+<!ENTITY foxyproxy.movedown.tooltip "現在選択している項目の優先度を下げる">
 <!ENTITY foxyproxy.movedown.accesskey "D">
+<!ENTITY foxyproxy.system.label "システムのプロキシ設定を使用">
+<!ENTITY foxyproxy.system.accesskey "Y">
+<!ENTITY foxyproxy.system.tooltip2 "システムに設定されたプロキシ設定を使用する">
+<!ENTITY foxyproxy.automatic.label "自動プロキシ設定">
+<!ENTITY foxyproxy.automatic.accesskey "A">
+<!ENTITY foxyproxy.automatic.tooltip "自動でプロキシ設定を取得">
+<!ENTITY foxyproxy.pac.label "PAC を使用">
+<!ENTITY foxyproxy.pac.accesskey "P">
+<!ENTITY foxyproxy.pac.tooltip "PAC ファイルを使ってプロキシ設定を取得する">
 <!ENTITY foxyproxy.autoconfurl.view.label "表示">
 <!ENTITY foxyproxy.autoconfurl.view.accesskey "V">
 <!ENTITY foxyproxy.autoconfurl.view.tooltip "自動設定ファイルを表示します">
 <!ENTITY foxyproxy.autoconfurl.test.label "テスト">
 <!ENTITY foxyproxy.autoconfurl.test.accesskey "T">
-<!ENTITY foxyproxy.autoconfurl.test.tooltip "自動設定ファイルを試します">
+<!ENTITY foxyproxy.autoconfurl.test.tooltip "自動設定ファイルをテストします">
 <!ENTITY foxyproxy.autoconfurl.reload.label "PAC を">
 <!ENTITY foxyproxy.autoconfurl.reload.accesskey "R">
-<!ENTITY foxyproxy.autoconfurl.reload.tooltip "指定間隔毎に PAC ファイルを自動的に再読み込みします">
-<!ENTITY foxyproxy.minutes.label "分毎に再読み込み">
+<!ENTITY foxyproxy.autoconfurl.reload.tooltip "指定間隔で PAC ファイルを自動再読み込みします">
+<!ENTITY foxyproxy.minutes.label "分毎に自動再読み込みする">
 <!ENTITY foxyproxy.minutes.tooltip "分">
-<!ENTITY foxyproxy.logging.maxsize.label "ログの丸め込みまでの最大サイズ">
+<!ENTITY foxyproxy.logging.maxsize.label "ログを丸める前の最大サイズ">
 <!ENTITY foxyproxy.logging.maxsize.accesskey "M">
-<!ENTITY foxyproxy.logging.maxsize.tooltip "ログを丸め込むまでのログ項目の最大数">
+<!ENTITY foxyproxy.logging.maxsize.tooltip "ログを丸めるまでのログ項目の最大数">
 <!ENTITY foxyproxy.logging.maxsize.button.label "設定">
 <!ENTITY foxyproxy.logging.maxsize.button.accesskey "S">
-<!ENTITY foxyproxy.logging.maxsize.button.tooltip "ログを丸め込むまでのログ項目の最大数を設定します">
-<!ENTITY foxyproxy.random.label "任意のプロキシから URL を読み込む (すべてのパターンと優先度を無視)">
+<!ENTITY foxyproxy.logging.maxsize.button.tooltip "ログを丸めるまでのログ項目の最大数を設定します">
+<!ENTITY foxyproxy.random.label "ランダムプロキシから URL を読み込む (すべてのパターンと優先度を無視)">
 <!ENTITY foxyproxy.random.accesskey "R">
-<!ENTITY foxyproxy.random.tooltip "任意のプロキシから URL を読み込みます (すべてのパターンと優先度は無視されます)">
-<!ENTITY foxyproxy.random.includedirect.label "直接接続として設定されたプロキシを含める">
+<!ENTITY foxyproxy.random.tooltip "ランダムプロキシから URL を読み込みます (すべてのパターンと優先度は無視されます)">
+<!ENTITY foxyproxy.random.includedirect.label "直接接続と設定されたプロキシを含める">
 <!ENTITY foxyproxy.random.includedirect.accesskey "I">
 <!ENTITY foxyproxy.random.includedirect.tooltip "プロキシは無作為なプロキシ選択に含まれる直接接続として設定されました">
 <!ENTITY foxyproxy.random.includedisabled.label "無効にされたプロキシを含める">
@@ -208,7 +259,7 @@
 <!ENTITY foxyproxy.tab.autoadd.label "AutoAdd">
 <!ENTITY foxyproxy.tab.autoadd.accesskey "A">
 <!ENTITY foxyproxy.tab.autoadd.tooltip "AutoAdd 設定を管理します">
-<!ENTITY foxyproxy.autoadd.description "Specify a pattern that identifies blocked websites. When the pattern is found on a page, a pattern matching that website&apos;s URL is automatically added to a proxy and optionally reloaded. This prevents you from having to proactively identify all blocked websites.">
+<!ENTITY foxyproxy.autoadd.description "Specify a pattern that identifies blocked websites. When the pattern is found on a page, a pattern matching that website's URL is automatically added to a proxy and optionally reloaded. This prevents you from having to proactively identify all blocked websites.">
 <!ENTITY foxyproxy.autoadd.pattern.label "遮断されたウェブサイトの識別パターン">
 <!ENTITY foxyproxy.autoadd.pattern.accesskey "P">
 <!ENTITY foxyproxy.autoadd.pattern.tooltip "遮断されたウェブサイトを識別するパターン">
@@ -241,7 +292,12 @@
 <!ENTITY foxyproxy.pacerrornotification.label "プロキシ自動設定ファイルのエラーについて通知する">
 <!ENTITY foxyproxy.pacerrornotification.accesskey "E">
 <!ENTITY foxyproxy.pacerrornotification.tooltip "PAC ファイルのエラーに直面したらポップアップ表示します">
+<!ENTITY foxyproxy.toolbaricon.label "Show icon on toolbar">
+<!ENTITY foxyproxy.toolbaricon.accesskey "O">
+<!ENTITY foxyproxy.toolbaricon.tooltip "Show icon on toolbar">
+<!ENTITY foxyproxy.toolsmenu.label2 "Show icon in the tools menu">
 <!ENTITY foxyproxy.toolsmenu.accesskey "T">
+<!ENTITY foxyproxy.toolsmenu.tooltip2 "Show icon in the tools menu">
 <!ENTITY foxyproxy.tip.label "ヒント">
 <!ENTITY foxyproxy.pactip1.label "ローカルハードドライブの PAC ファイルには file// スキームを使います。例えば Windows では file://C:/path/proxy.pac または Unix/Linux/Mac では file:///home/users/joe/proxy.pac">
 <!ENTITY foxyproxy.pactip2.label "FTP サーバ上の PAC ファイルには ftp:// スキームを使います。例えば ftp://leahscape.com/path/proxy.pac">

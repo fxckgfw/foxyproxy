@@ -212,8 +212,10 @@ api.prototype = {
           // "Allow" wasn't clicked. If it had been, callbackHook() would have
           // already been called. User rejected the request; notify content.
           calledBack = true;
-          if (callbackObj.rejected)
-            callbackObj.rejected();
+          if (callbackObj.rejected) {
+            // Workaround for bug 749966. See its second comment.
+            wm.setTimeout(function() {callbackObj.rejected();}, 0);
+          }
         }
       }
     }

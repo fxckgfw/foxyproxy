@@ -68,7 +68,7 @@ var foxyproxy = {
         x(foxyproxy.fp.isFoxyProxySimple() ? "http://getfoxyproxy.org/basic/help.html" : "http://getfoxyproxy.org/help.html");
       else
         x(foxyproxy.fp.isFoxyProxySimple() ? "http://getfoxyproxy.org/basic/releasenotes.html" :
-          "http://getfoxyproxy.org/releasenotes.html");      
+          "http://getfoxyproxy.org/releasenotes.html");
       function x(url) {
         fpc.openAndReuseOneTabPerURL(url);
         // Do this last so we try again next time if we failed to display now
@@ -89,7 +89,7 @@ var foxyproxy = {
       this.timer.initWithCallback(this, 1000, Components.interfaces.nsITimer.TYPE_ONE_SHOT);
     }
   },
-  
+
   observe: function(subj, topic, str) {
     var e;
     try {
@@ -134,7 +134,6 @@ var foxyproxy = {
   findToolbarIcon : function() {
     if (typeof(gNavToolbox) == "undefined")
       return; /* We're on Tbird or another platform which doesn't have this */
-    var toolbox = gNavToolbox ? gNavToolbox.customizeChange /* 3.5+ */ : getNavToolbox().customizeChange /* 3.0.x */;
     /* Save the original function, prefixed with our name in case other addons are doing the same thing */
     getNavToolbox().foxyproxyCustomizeChange = getNavToolbox().customizeChange;
     /* Overwrite the property with our function */
@@ -154,7 +153,10 @@ var foxyproxy = {
     Components.utils.import("resource://foxyproxy/utils.jsm", this);
     this.svgIcons.init();
     this.statusText = document.getElementById("foxyproxy-status-text");
-    setTimeout(function() {foxyproxy.defaultToolbarIconFF4()}, 100);
+    // TODO: This is racy due to |_delayedStartup/()|/|delayedStartup()| being
+    // used in browser.js (affects only Gecko versions >= 2). For the time being
+    // setting a larger delay (now 500ms) 'fixes' this issue.
+    setTimeout(function() {foxyproxy.defaultToolbarIconFF4()}, 500);
     var obSvc = Components.classes["@mozilla.org/observer-service;1"].
       getService(Components.interfaces.nsIObserverService);
     for (var i in this.notes) {
@@ -165,7 +167,7 @@ var foxyproxy = {
     this.toggleContextMenu(this.fp.contextMenu);
     this.checkPageLoad();
     this.toggleStatusBarIcon(this.fp.statusbar.iconEnabled);
-    this.toggleStatusBarText(this.fp.statusbar.textEnabled);    
+    this.toggleStatusBarText(this.fp.statusbar.textEnabled);
     this.toggleStatusBarWidth();
     this.setMode(this.fp.mode);
     this.updateCheck.check();
@@ -181,7 +183,7 @@ end-foxyproxy-simple !*/
     }
     this.subscriptionErrorNotification();
     // TODO: Make that compatible with Thunderbird
-    try { 
+    try {
       if (gBrowser) {
         gBrowser.addEventListener("DOMContentLoaded", foxyproxy.errorPageCheck,
           false);
@@ -192,7 +194,7 @@ end-foxyproxy-simple !*/
   parseHTML : function(doc, html) {
     return Components.classes["@mozilla.org/feed-unescapehtml;1"].
       getService(Components.interfaces.nsIScriptableUnescapeHTML).
-      parseFragment(html, false, null, doc.documentElement); 
+      parseFragment(html, false, null, doc.documentElement);
   },
 
   errorPageCheck : function() {
@@ -211,10 +213,10 @@ end-foxyproxy-simple !*/
       // element ourselves properly due to i18n issues. Thus, we resort to
       // parseFragment().
       let liText = "<li>" + foxyproxy.fp.getMessage("foxyproxy.proxyservice2",
-        ["<a id=proxyService " + 
+        ["<a id=proxyService " +
         'title="https://getfoxyproxy.org/proxyservice/index.html" ' +
         'href="https://getfoxyproxy.org/proxyservice/index.html">FoxyProxy</a>',
-        "<b>", "</b>"]) + "</li>"; 
+        "<b>", "</b>"]) + "</li>";
       contDoc.getElementById("errorLongDesc").firstChild.nextSibling.
         appendChild(foxyproxy.parseHTML(contDoc, liText));
     }
@@ -314,7 +316,7 @@ end-foxyproxy-simple !*/
     // The code below throws if the icon is not on the toolbar at all. We
     // therefore catch exceptions.
     try {
-      document.getElementById("foxyproxy-toolbar-icon").hidden= !e; 
+      document.getElementById("foxyproxy-toolbar-icon").hidden= !e;
     } catch(e) {}
   },
 

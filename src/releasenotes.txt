@@ -5,4 +5,5 @@
   for details)
 * fixed small bug in proxy handling related to the add-on version check after an
   application upgrade
+* code clean-up
 * updated locales

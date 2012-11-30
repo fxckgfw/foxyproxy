@@ -1,3 +1,12 @@
+foxyproxy (4.1-1) unstable; urgency=low
+
+  * New upstream release
+  * debian/control -- updated path to upstream SVN repository
+  * debian/rules -- updated path to upstream SVN repository
+  * added debian/watch file again
+
+ -- Georg Koppen <georg@getfoxyproxy.org>  Fri, 30 Nov 2012 10:01:01 +0100
+
 foxyproxy (3.4-1) unstable; urgency=low
 
   * New upstream release

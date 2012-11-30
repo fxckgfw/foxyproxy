@@ -7,7 +7,7 @@ Build-Depends: debhelper (>= 7.0.50~), mozilla-devscripts, ant, ant-optional
 Vcs-Browser: https://svn.getfoxyproxy.org/basic_and_standard/trunk/debian/trunk
 Vcs-Svn: https://svn.getfoxyproxy.org/basic_and_standard/trunk/debian/trunk
 Homepage: http://getfoxyproxy.org/
-Standards-Version: 3.9.2
+Standards-Version: 3.9.3
 
 Package: xul-ext-foxyproxy-standard
 Architecture: all

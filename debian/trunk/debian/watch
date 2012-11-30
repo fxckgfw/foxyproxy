@@ -1,0 +1,3 @@
+version=3
+
+http://svn.getfoxyproxy.org/basic_and_standard/tags/ (\d[\d.*]+)/ debian

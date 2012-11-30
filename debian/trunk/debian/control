@@ -4,8 +4,8 @@ Priority: optional
 Maintainer: Georg Koppen <georg@getfoxyproxy.org>
 Uploaders: Yaroslav Halchenko <debian@onerussian.com>
 Build-Depends: debhelper (>= 7.0.50~), mozilla-devscripts, ant, ant-optional
-Vcs-Browser: https://svn.getfoxyproxy.org/basic_and_standard/gecko/trunk/debian/trunk
-Vcs-Svn: https://svn.getfoxyproxy.org/basic_and_standard/gecko/trunk/debian/trunk
+Vcs-Browser: https://svn.getfoxyproxy.org/basic_and_standard/trunk/debian/trunk
+Vcs-Svn: https://svn.getfoxyproxy.org/basic_and_standard/trunk/debian/trunk
 Homepage: http://getfoxyproxy.org/
 Standards-Version: 3.9.2
 
@@ -16,8 +16,8 @@ Recommends: ${xpi:Recommends}
 Breaks: ${xpi:Breaks}
 Provides: ${xpi:Provides}
 Enhances: ${xpi:Enhances}
-Replaces: foxyproxy (<< 3.3-1)
-Conflicts: foxyproxy (<< 3.3-1)
+Replaces: foxyproxy (<< 4.1-1)
+Conflicts: foxyproxy (<< 4.1-1)
 Description: advanced proxy management tool for Iceweasel, Icedove and Iceape
  FoxyProxy is a proxy management tool that completely replaces the proxy
  configuration options in Iceweasel, Icedove and Iceape and compliments it
@@ -26,14 +26,15 @@ Description: advanced proxy management tool for Iceweasel, Icedove and Iceape
   - temporarily or permanently disable a proxy with the click of a
     button
   - define which proxy to use (or none!) for arbitrary URLs using
-    wild cards, regular expression and other conveniences
+    wildcards, regular expression and other conveniences
   - log of all URLs loaded, including which proxy was used (if any),
-    and which pattern was matched, time stamps, etc.
+    and which pattern was matched, timestamps, etc.
   - enable optional status bar information about which proxy is
     currently in use
   - support Tor
   - support full Proxy Auto-Config (PAC) and WPAD
   - support pattern subscriptions
+  - import proxy lists
 
 Package: foxyproxy
 Architecture: all

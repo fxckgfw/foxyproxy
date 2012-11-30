@@ -16,8 +16,8 @@ Recommends: ${xpi:Recommends}
 Breaks: ${xpi:Breaks}
 Provides: ${xpi:Provides}
 Enhances: ${xpi:Enhances}
-Replaces: foxyproxy (<< 4.1-1)
-Conflicts: foxyproxy (<< 4.1-1)
+Replaces: foxyproxy (<< 3.3-1)
+Conflicts: foxyproxy (<< 3.3-1)
 Description: advanced proxy management tool for Iceweasel, Icedove and Iceape
  FoxyProxy is a proxy management tool that completely replaces the proxy
  configuration options in Iceweasel, Icedove and Iceape and compliments it

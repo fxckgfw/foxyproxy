@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="keywords" content="foxyproxy,SwitchProxy,proxy,firefox,extension,Eric Jung,proxy tutorial"/>
+	<meta name="description" content="FoxyProxy"/>
+	<link rel="icon" href="/favicon.ico" type="image/x-icon" />
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+	<title>FoxyProxy</title>
+	<link rel="stylesheet" type="text/css" href="/styles/style-min.css"/>
+<!--[if IE 6]>
+	<link rel="stylesheet" type="text/css" href="/styles/ie.css" />
+<![endif]-->
+	<script type="text/javascript" src="/scripts/anylinkmenu-min.js"></script>
+	<script type="text/javascript">
+		anylinkcssmenu.init("anchorclass");
+	</script>
+</head>
+<body onload="if (typeof(load) != 'undefined') load();">
+<a name="top"></a>
+<div id="menu">
+	<div id="menutop"><a title="home" href="/index.html"><img alt="home" src="/images/menu-top.gif" width="200" height="200" /></a></div>
+	    <div class="navcontainer">
+		<ul class="navlist">
+		<li><a class="anchorclass" rel="submenu1" rev="lr" href="/proxyservice/index.html">proxy services and VPN</a></li>
+		<li><a title="downloads" href="/downloads.html">downloads</a></li>		
+<!--		<li><a title="screenshots" href="/screenshots.html">screenshots</a></li>-->
+		<li><a title="FoxyProxy Plus" href="/fpplus">foxyproxy plus</a></li>
+		<li><a class="anchorclass" rel="submenu3" rev="lr" href="/help.html">help</a></li>
+    <li><a title="api" href="/developers/">api</a></li>
+		<li><a class="anchorclass" rel="submenu2" rev="lr" href="#">miscellaneous</a></li>
+		<li><div id="cse-search-form"></div></li> </ul>
+	    </div>
+		<br/>
+			<center>
+<iframe src="http://www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fpages%2FFoxyProxy%2F218799558130486&amp;width=185&amp;colorscheme=light&amp;show_faces=false&amp;border_color=white&amp;stream=false&amp;header=false&amp;height=62" scrolling="no" frameborder="0" style="background-color:#EDEDED; border:none; overflow:hidden; width:185px; height:82px;" allowTransparency="true"></iframe><a title="FoxyProxy BBB Review" href="http://www.bbb.org/boston/business-reviews/internet-services/foxyproxy-in-arlington-ma-126066/#bbbonlineclick"><img alt="FoxyProxy BBB Review" style="border: 0;" src="/images/bbb/bbb.png"/></a>			</center>
+	    <div id="submenu1" class="anylinkcss">
+		<ul>
+		<li><a href="/proxyservice/index.html">buy</a></li>
+		<li><a href="/proxyservice/configuring.html">configure</a></li>
+		<li><a href="/proxyservice/panel.php">customer panel</a></li>	
+		<li><a href="/vpn/proxy-vs-vpn.html">proxy vs. VPN</a></li>
+<!--		<li><a href="/proxyservice/video-and-audio.html">video &amp; audio websites</a></li> -->
+		<li><a href="/proxyservice/country_request.php">more countries</a></li>
+		<li><a href="/proxyservice/faq.html">faq</a></li>
+		<li><a href="/proxyservice/howtocancel.html">cancel</a></li>
+		</ul>
+	    </div>	
+	    <div id="submenu2" class="anylinkcss">
+		<ul>
+		<li><a href="/proxyservice/video-and-audio.html">video &amp; audio websites</a></li>
+		<li><a title="url patterns" href="/patterns.html">url patterns</a></li>
+		<li><a title="logging" href="http://foxyproxy.mozdev.org/drupal/content/log-improvements">writing effective patterns</a></li>
+  		<li><a title="ip patterns" href="/fpplus/ippatterns.html">IP patterns</a></li>
+		<li><a title="proxy how-to" href="/howto.html">run your own proxy server</a></li>
+		<li><a title="proxy lists" href="/proxylists.html">free proxy lists and services</a></li>
+		<li><a title="proxy protocol" href="/proxyprotocol.html"><code>proxy://</code> protocol</a></li>
+		<li><a title="foxyproxy.xml" href="/fileformat.html"><code>foxyproxy.xml</code> file format</a></li> 
+		<li><a title="t-shirts, mugs, stickers, magnets, etc" href="http://www.cafepress.com/FoxyProxy">foxyproxy gear</a></li>
+		</ul>
+	    </div>	
+	    <div id="submenu3" class="anylinkcss">
+		<ul>
+		<li><a title="support ticket" href="https://leahscape.com/foxyproxy/support/">open a support ticket</a></li>
+		<li><a title="support forums" href="http://forums.getfoxyproxy.org/">support forums</a></li>
+		<li><a title="support email" href="mailto:support@getfoxyproxy.org">email us</a></li>
+		<li><a title="faq" href="/faq.html">faq</a></li>
+		<li><a title="quick start" href="/quickstart.html">quick start guide</a></li>
+		<li><a title="configuring" href="/configuring.html">configuring foxyproxy</a></li>
+		</ul>
+	  </div>			
+	</div>
+
+<div id="main">
+<div id="flags">
+</div>
+<h2>Release Notes</h2>
+<p><a href="http://www.uniblue.com/cm/getfoxyproxy/speedupmypc/banner1/download/?aff=16782"/><img style="border: 1px solid black" src="/images/ub/0512-en.jpg?version=3"/></a></p><div class="important">Fast, reliable proxy servers are also <a href="/proxyservice">available.</a></div><br/>
+
+<table width="550">
+  <tr><th>4.1</th><th>Approved by Mozilla on November 22</th><th>Submitted to Mozilla on November 22 2012</th></tr><tr><td colspan="3">
+  <ul>
+    <li>added advanced settings dialog that lets the user choose the proxy used
+      for add-on compatibility checks on start-up if FoxyProxy is in pattern
+      mode</li>
+    <li>allow selection of proxy type during proxy subscription import</li>
+    <li>removed unnecessary help button on main dialog explaining the donation,
+      FoxyProxy Plus and our proxy services</li>
+    <li>added button to promote FoxyProxy for Chrome</li>
+    <li>fixed bug in pattern import (an imported rule was never disabled), see:
+      <a href="http://forums.getfoxyproxy.org/viewtopic.php?f=4&t=767">
+      http://forums.getfoxyproxy.org/viewtopic.php?f=4&t=767"</a></li>
+    <li>fixed wrong pattern type of patterns excluding internal IP addresses,
+      see: <a href="http://forums.getfoxyproxy.org/viewtopic.php?f=4&t=777&p=1941">
+      http://forums.getfoxyproxy.org/viewtopic.php?f=4&t=777&p=1941</a></li>
+    <li>fixed rendering issue in the logging tree after deleting all
+      entries</li>
+    <li>code clean-up</li>
+    <li>updated locales</li>
+  </ul>
+</td></tr></table>
+<table width="550">
+  <tr><th>4.0.2</th><th>Approved by Mozilla on October 14</th><th>Submitted to Mozilla on October 12 2012</th></tr><tr><td colspan="3">
+  <ul>
+    <li>fixed pattern import bug (see: <a
+      href="http://forums.getfoxyproxy.org/viewtopic.php?f=4&t=764">
+      http://forums.getfoxyproxy.org/viewtopic.php?f=4&t=764</a>)</li>
+    <li>updated cs, el and nl locale</li>
+</ul></td></tr></table>
+<table width="550">
+  <tr><th>4.0.1</th><th>Approved by Mozilla on October 01</th><th>Submitted to Mozilla on September 30 2012</th></tr><tr><td colspan="3">
+  <ul>
+    <li>fixed proxy selecting bug (see: <a
+      href="http://forums.getfoxyproxy.org/viewtopic.php?f=3&t=750">
+      http://forums.getfoxyproxy.org/viewtopic.php?f=3&t=750</a>)</li>
+</ul></td></tr></table>
+<table width="550">
+  <tr><th>4.0</th><th>Approved by Mozilla on September 27</th><th>Submitted to Mozilla on September 21 2012</th></tr><tr><td colspan="3">
+  <ul>
+    <li>proxy subscription feature</li>
+    <li>optimized loading of PAC files during start-up</li>
+    <li>replaced global ids and variables with local ones in the overlay</li>
+    <li>added support for selecting multiple proxies in the proxies tree</li>
+    <li>added support for selecting multiple patterns in the URL patterns tree</li>
+    <li>deleting patterns does not scroll back the patterns tree anymore (see: <a href="http://forums.getfoxyproxy.org/viewtopic.php?f=4&t=616&p=1441">http://forums.getfoxyproxy.org/viewtopic.php?f=4&t=616&p=1441</a>)</li>
+    <li>proxy color is shown in FoxyProxy's mode menu and in the menus in the context menu, the toolbar and the add-on bar</li>
+    <li>patternModeCookieWarning can now be hidden on start-up</li>
+    <li>loading and refreshing of subscriptions is done asynchronously now</li>
+  <li>replaced deprecated octal file permissions</li>
+  <li>code clean-up</li>
+  <li>updated locales</li>
+</ul></td></tr></table>
+<p>Release notes for <a href="/older-releasenotes.html">older releases</a>.</p>
+</div>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-103103-6']);
+  _gaq.push(['_setDomainName', '.getfoxyproxy.org']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+  window.google_analytics_uacct = "UA-103103-6";
+</script>
+<!-- <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script> -->
+
+<!-- Google custom search -->
+<script src="https://www.google.com/jsapi" type="text/javascript"></script>
+<script type="text/javascript"> 
+  google.load('search', '1', {language : 'en'});
+  google.setOnLoadCallback(function() {
+    var customSearchOptions = {};  var customSearchControl = new google.search.CustomSearchControl(
+      '007839837827265078428:ipokoqpjhps', customSearchOptions);
+    customSearchControl.setResultSetSize(google.search.Search.FILTERED_CSE_RESULTSET);
+    var options = new google.search.DrawOptions();
+    options.enableSearchboxOnly("https://www.google.com/cse?cx=007839837827265078428:ipokoqpjhps");
+    customSearchControl.draw('cse-search-form', options);
+  }, true);
+function switch_lang(lang) {
+	document.cookie = "lang="+lang+"; expires=Mon, 07 May 2112 04:15:26 GMT; path=/";
+  location = "/index.html?rnd=" + Math.random();
+}
+</script>
+<link rel="stylesheet" href="https://www.google.com/cse/style/look/default.css" type="text/css" />
+<style type="text/css">
+  table.gsc-search-box td {
+    background-color: #555555;
+  }
+</style>
+
+
+<!-- begin olark code --><script data-cfasync="false" type='text/javascript'>/*{literal}<![CDATA[*/
+window.olark||(function(c){var f=window,d=document,l=f.location.protocol=="https:"?"https:":"http:",z=c.name,r="load";var nt=function(){f[z]=function(){(a.s=a.s||[]).push(arguments)};var a=f[z]._={},q=c.methods.length;while(q--){(function(n){f[z][n]=function(){f[z]("call",n,arguments)}})(c.methods[q])}a.l=c.loader;a.i=nt;a.p={0:+new Date};a.P=function(u){a.p[u]=new Date-a.p[0]};function s(){a.P(r);f[z](r)}f.addEventListener?f.addEventListener(r,s,false):f.attachEvent("on"+r,s);var ld=function(){function p(hd){hd="head";return["<",hd,"></",hd,"><",i,' onl' + 'oad="var d=',g,";d.getElementsByTagName('head')[0].",j,"(d.",h,"('script')).",k,"='",l,"//",a.l,"'",'"',"></",i,">"].join("")}var i="body",m=d[i];if(!m){return setTimeout(ld,100)}a.P(1);var j="appendChild",h="createElement",k="src",n=d[h]("div"),v=n[j](d[h](z)),b=d[h]("iframe"),g="document",e="domain",o;n.style.display="none";m.insertBefore(n,m.firstChild).id=z;b.frameBorder="0";b.id=z+"-loader";if(/MSIE[ ]+6/.test(navigator.userAgent)){b.src="javascript:false"}b.allowTransparency="true";v[j](b);try{b.contentWindow[g].open()}catch(w){c[e]=d[e];o="javascript:var d="+g+".open();d.domain='"+d.domain+"';";b[k]=o+"void(0);"}try{var t=b.contentWindow[g];t.write(p());t.close()}catch(x){b[k]=o+'d.write("'+p().replace(/"/g,String.fromCharCode(92)+'"')+'");d.close();'}a.P(2)};ld()};nt()})({loader: "static.olark.com/jsclient/loader0.js",name:"olark",methods:["configure","extend","declare","identify"]});
+/* custom configuration goes here (www.olark.com/documentation) */
+olark.identify('1744-931-10-4529');/*]]>{/literal}*/</script><noscript><a href="https://www.olark.com/site/1744-931-10-4529/contact" title="Contact us" target="_blank">Questions? Feedback?</a> powered by <a href="http://www.olark.com?welcome" title="Olark live chat software">Olark live chat software</a></noscript><!-- end olark code -->
+
+</body></html>

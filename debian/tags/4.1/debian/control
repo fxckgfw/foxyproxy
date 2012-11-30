@@ -1,0 +1,46 @@
+Source: foxyproxy
+Section: web
+Priority: optional
+Maintainer: Georg Koppen <georg@getfoxyproxy.org>
+Uploaders: Yaroslav Halchenko <debian@onerussian.com>
+Build-Depends: debhelper (>= 7.0.50~), mozilla-devscripts, ant, ant-optional
+Vcs-Browser: https://svn.getfoxyproxy.org/basic_and_standard/trunk/debian/trunk
+Vcs-Svn: https://svn.getfoxyproxy.org/basic_and_standard/trunk/debian/trunk
+Homepage: http://getfoxyproxy.org/
+Standards-Version: 3.9.3
+
+Package: xul-ext-foxyproxy-standard
+Architecture: all
+Depends: ${misc:Depends}, ${xpi:Depends}
+Recommends: ${xpi:Recommends}
+Breaks: ${xpi:Breaks}
+Provides: ${xpi:Provides}
+Enhances: ${xpi:Enhances}
+Replaces: foxyproxy (<< 4.1-1)
+Conflicts: foxyproxy (<< 4.1-1)
+Description: advanced proxy management tool for Iceweasel, Icedove and Iceape
+ FoxyProxy is a proxy management tool that completely replaces the proxy
+ configuration options in Iceweasel, Icedove and Iceape and compliments it
+ with the ability to
+  - define multiple proxies and order their use with priorities
+  - temporarily or permanently disable a proxy with the click of a
+    button
+  - define which proxy to use (or none!) for arbitrary URLs using
+    wildcards, regular expression and other conveniences
+  - log of all URLs loaded, including which proxy was used (if any),
+    and which pattern was matched, timestamps, etc.
+  - enable optional status bar information about which proxy is
+    currently in use
+  - support Tor
+  - support full Proxy Auto-Config (PAC) and WPAD
+  - support pattern subscriptions
+  - import proxy lists
+
+Package: foxyproxy
+Architecture: all
+Depends: xul-ext-foxyproxy-standard, ${misc:Depends}
+Description: advanced proxy management tool for Iceweasel - transitional dummy package
+ This is a transitional dummy package to ease the migration from the old
+ foxyproxy to the new xul-ext-foxyproxy-standard package. You can safely
+ remove it.
+

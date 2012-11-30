@@ -7,7 +7,7 @@
 PACKAGE = foxyproxy
 SRC_VERSION := $(shell dpkg-parsechangelog | sed -ne 's/^Version: \(\([0-9]\+\):\)\?\(.*\)-.*/\3/p')
 TARBALL = $(PACKAGE)_$(SRC_VERSION).orig.tar.gz
-REPO_URL = https://svn.getfoxyproxy.org/basic_and_standard/gecko/tags
+REPO_URL = https://svn.getfoxyproxy.org/basic_and_standard/tags
 
 get-orig-source:
 	rm -rf get-orig-source $(TARBALL)

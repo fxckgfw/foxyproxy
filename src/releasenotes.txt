@@ -1,9 +1,1 @@
-* fixed possible breakage of PAC file handling due to
-  https://bugzilla.mozilla.org/show_bug.cgi?id=769764
-* implemented workaround for possible Firefox freeze related to the API
-  FoxyProxy offers (see: https://bugzilla.mozilla.org/show_bug.cgi?id=749966
-  for details)
-* fixed small bug in proxy handling related to the add-on version check after an
-  application upgrade
-* code clean-up
 * updated locales

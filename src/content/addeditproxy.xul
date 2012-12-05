@@ -185,6 +185,35 @@
                   accesskey="5" observes="socks-broadcaster"/>
               </radiogroup>
             </hbox>
+            <hbox align="center" class="indent">
+              <groupbox>
+                <caption label="&foxyproxy.authentication.label;"
+                  tooltiptext="&foxyproxy.authentication.label;"/>
+                <hbox align="center">
+                  <label value="&foxyproxy.proxyusername.label;"
+                    control="username"/>
+                  <textbox id="username" flex="1"
+                    observes="authentication-broadcaster"
+                    tooltiptext="&foxyproxy.proxyusername.label;"/>
+                  <label value="&foxyproxy.proxypassword.label;"
+                    control="password"/>
+                  <textbox id="password" flex="1" type="password"
+                    observes="authentication-broadcaster"
+                    tooltiptext="&foxyproxy.proxypassword.label;"/>
+                  <label value="&foxyproxy.proxypassword2.label;"
+                    control="password2"/>
+                  <textbox id="password2" flex="1" type="password"
+                    observes="authentication-broadcaster"
+                    tooltiptext="&foxyproxy.proxypassword2.label;"/>
+                </hbox>
+                <hbox align="center">
+                  <label value="&foxyproxy.proxydomain.label;"
+                    control="domain"/>
+                  <textbox id="domain" observes="authentication-broadcaster"
+                    tooltiptext="&foxyproxy.proxydomain.tooltip;"/>
+                </hbox>
+              </groupbox>
+            </hbox>
           </groupbox>
           <separator class="thin"/>
           <groupbox>
@@ -525,6 +554,7 @@
   <broadcaster id="not-torwiz-broadcaster" hidden="true"/>
   <broadcaster id="disabled-broadcaster" disabled="false"/>
   <broadcaster id="socks-broadcaster" disabled="false"/>
+  <broadcaster id="authentication-broadcaster" disabled="false"/>
   <broadcaster id="default-proxy-broadcaster" disabled="false"/>
   <broadcaster id="issocks-broadcaster" disabled="false"/>
   <broadcaster id="direct-broadcaster" disabled="false"/>

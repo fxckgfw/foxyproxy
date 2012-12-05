@@ -529,7 +529,7 @@ function onExportURLPattern() {
     // Maybe we have non-Ascii text in our JSON string. Therefore, we use the
     // ConverterOutputStream and UTF-8.
     let os = CC["@mozilla.org/intl/converter-output-stream;1"].
-      createInstance(CI.nsIConverterOutputStream);	
+      createInstance(CI.nsIConverterOutputStream);
     os.init(fos, "UTF-8", 0, 0);
     os.writeString(JSONString);
     os.close();
@@ -538,10 +538,17 @@ function onExportURLPattern() {
 
 function toggleSocks() {
   let socksBC = document.getElementById("socks-broadcaster");
+  let authBC = document.getElementById("authentication-broadcaster");
   if (document.getElementById("isSocks").checked) {
-    socksBC.removeAttribute("disabled"); 
+    socksBC.removeAttribute("disabled");
+    // We don't support SOCKS proxies with authentication, see:
+    // https://bugzilla.mozilla.org/show_bug.cgi?id=122752
+    authBC.setAttribute("disabled", "true");
   } else {
     socksBC.setAttribute("disabled", "true");
+    // We don't support SOCKS proxies with authentication, see:
+    // https://bugzilla.mozilla.org/show_bug.cgi?id=122752
+    authBC.removeAttribute("disabled");
   }
 }
 
@@ -557,6 +564,8 @@ function toggleMode(mode) {
       "true");
     document.getElementById("disabled-broadcaster").setAttribute("disabled",
       "true");
+    document.getElementById("authentication-broadcaster").
+      setAttribute("disabled", "true");
     document.getElementById("direct-broadcaster").removeAttribute("disabled");
     document.getElementById("proxyDNS").hidden = false;
     // We need that here to trigger the broadcaster related code in the wpad
@@ -564,7 +573,7 @@ function toggleMode(mode) {
     if (document.getElementById("autoconfMode").value === "wpad") {
       toggleMode("wpad");
     } else {
-      toggleMode("pac"); 
+      toggleMode("pac");
     }
     onAutoConfUrlInput();
   } else if (mode == "direct" || mode == "system") {
@@ -575,13 +584,15 @@ function toggleMode(mode) {
     document.getElementById("autoconf-broadcaster2").setAttribute("disabled",
       "true");
     document.getElementById("autoconf-broadcaster3").setAttribute("disabled",
-      "true"); 
+      "true");
     document.getElementById("socks-broadcaster").setAttribute("disabled",
-      "true"); 
+      "true");
+    document.getElementById("authentication-broadcaster").
+      setAttribute("disabled", "true");
     if (mode == "direct") {
       document.getElementById("proxyDNS").hidden = true;
       document.getElementById("direct-broadcaster").setAttribute("disabled",
-      "true"); 
+      "true");
     } else {
       document.getElementById("direct-broadcaster").removeAttribute("disabled");
     }
@@ -590,30 +601,34 @@ function toggleMode(mode) {
     autoconfUrl.setAttribute("readonly", true);
     // We always have a URL here, thus we can remove the attribute directly.
     document.getElementById("autoconf-broadcaster2").
-      removeAttribute("disabled"); 
+      removeAttribute("disabled");
     // We do not need the file picker either.
     document.getElementById("autoconf-broadcaster3").setAttribute("disabled",
-      "true"); 
+      "true");
   } else if (mode == "pac") {
     autoconfUrl.value = proxy.autoconf.url;
     autoconfUrl.removeAttribute("readonly");
     // If we clicked on WPAD first we have to enable the file picker again.
     document.getElementById("autoconf-broadcaster3").
-      removeAttribute("disabled"); 
+      removeAttribute("disabled");
     onAutoConfUrlInput();
   } else {
     document.getElementById("disabled-broadcaster").removeAttribute("disabled");
     document.getElementById("autoconf-broadcaster1").setAttribute("disabled",
       "true");
     document.getElementById("autoconf-broadcaster2").setAttribute("disabled",
-      "true"); 
+      "true");
     document.getElementById("autoconf-broadcaster3").setAttribute("disabled",
-      "true"); 
+      "true");
     if (document.getElementById("isSocks").checked) {
       document.getElementById("socks-broadcaster").removeAttribute("disabled");
+      document.getElementById("authentication-broadcaster").
+        setAttribute("disabled", "true");
     } else {
       document.getElementById("socks-broadcaster").setAttribute("disabled",
-        "true"); 
+        "true");
+      document.getElementById("authentication-broadcaster").
+        removeAttribute("disabled");
     }
     document.getElementById("direct-broadcaster").removeAttribute("disabled");
     document.getElementById("proxyDNS").hidden = false;

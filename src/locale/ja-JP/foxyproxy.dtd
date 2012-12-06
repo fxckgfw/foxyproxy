@@ -249,28 +249,28 @@
 <!ENTITY foxyproxy.random.tooltip "ランダムプロキシから URL を読み込みます (すべてのパターンと優先度は無視されます)">
 <!ENTITY foxyproxy.random.includedirect.label "直接接続と設定されたプロキシを含める">
 <!ENTITY foxyproxy.random.includedirect.accesskey "I">
-<!ENTITY foxyproxy.random.includedirect.tooltip "プロキシは無作為なプロキシ選択に含まれる直接接続として設定されました">
-<!ENTITY foxyproxy.random.includedisabled.label "無効にされたプロキシを含める">
+<!ENTITY foxyproxy.random.includedirect.tooltip "直接接続と設定されたプロキシをランダムなプロキシ選択に含める">
+<!ENTITY foxyproxy.random.includedisabled.label "無効なプロキシを含める">
 <!ENTITY foxyproxy.random.includedisabled.accesskey "D">
-<!ENTITY foxyproxy.random.includedisabled.tooltip "プロキシは無作為なプロキシ選択に含まれないものとして設定されました">
-<!ENTITY foxyproxy.random.settings.label "無作為なプロキシ選択">
+<!ENTITY foxyproxy.random.includedisabled.tooltip "無効と設定されたプロキシをランダムなプロキシ選択に含める">
+<!ENTITY foxyproxy.random.settings.label "ランダムにプロキシを選択">
 <!ENTITY foxyproxy.random.settings.accesskey "R">
-<!ENTITY foxyproxy.random.settings.tooltip "無作為なプロキシ選択に影響する設定">
+<!ENTITY foxyproxy.random.settings.tooltip "ランダムなプロキシ選択に関する設定">
 <!ENTITY foxyproxy.tab.autoadd.label "AutoAdd">
 <!ENTITY foxyproxy.tab.autoadd.accesskey "A">
-<!ENTITY foxyproxy.tab.autoadd.tooltip "AutoAdd 設定を管理します">
-<!ENTITY foxyproxy.autoadd.description "Specify a pattern that identifies blocked websites. When the pattern is found on a page, a pattern matching that website's URL is automatically added to a proxy and optionally reloaded. This prevents you from having to proactively identify all blocked websites.">
-<!ENTITY foxyproxy.autoadd.pattern.label "遮断されたウェブサイトの識別パターン">
+<!ENTITY foxyproxy.tab.autoadd.tooltip "AutoAdd 設定を管理">
+<!ENTITY foxyproxy.autoadd.description "AutoAdd する／しないパターンを指定してください。一致するパターンはプロキシに自動追加され、オプション設定によっては再読み込みされます。">
+<!ENTITY foxyproxy.autoadd.pattern.label "AutoAdd しないパターン">
 <!ENTITY foxyproxy.autoadd.pattern.accesskey "P">
-<!ENTITY foxyproxy.autoadd.pattern.tooltip "遮断されたウェブサイトを識別するパターン">
+<!ENTITY foxyproxy.autoadd.pattern.tooltip "AutoAdd しないパターン">
 <!ENTITY foxyproxy.autoadd.wildcard.example.label "例: *You are not authorized to view this page*">
 <!ENTITY foxyproxy.autoadd.regex.example.label "例: .*Site.*has been blocked.*">
-<!ENTITY foxyproxy.autoadd.proxy.label "URL が自動的に追加されるプロキシ">
+<!ENTITY foxyproxy.autoadd.proxy.label "パターン自動追加先のプロキシ">
 <!ENTITY foxyproxy.autoadd.proxy.accesskey "P">
-<!ENTITY foxyproxy.autoadd.proxy.tooltip "URL が自動的に追加されるプロキシを指定します">
-<!ENTITY foxyproxy.pattern.template.label "URL パターンテンプレート">
+<!ENTITY foxyproxy.autoadd.proxy.tooltip "パターンが自動的に追加される先のプロキシを指定します">
+<!ENTITY foxyproxy.pattern.template.label "URL パターン">
 <!ENTITY foxyproxy.pattern.template.accesskey "U">
-<!ENTITY foxyproxy.pattern.template.tooltip "URL パターンテンプレート">
+<!ENTITY foxyproxy.pattern.template.tooltip "URL パターン">
 <!ENTITY foxyproxy.pattern.template.example.label1 "例">
 <!ENTITY foxyproxy.pattern.template.example.label2 "http://fred:secret@mail.foo.com:8080/inbox/msg102.htm#subject?style=elegant">
 <!ENTITY foxyproxy.pattern.template.currenturl.label "現在の URL">

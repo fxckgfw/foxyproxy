@@ -141,6 +141,8 @@
 <!ENTITY foxyproxy.tab.global.label "Paramètres généraux">
 <!ENTITY foxyproxy.tab.global.accesskey "g">
 <!ENTITY foxyproxy.tab.global.tooltip "Gère les paramètres généraux">
+<!ENTITY foxyproxy.settings.advanced.label "Paramètres avancés">
+<!ENTITY foxyproxy.settings.advanced.tooltip "Un clic sur le bouton ouvre la boîte de dialogue des paramètres avancés de FoxyProxy">
 <!ENTITY foxyproxy.tab.logging.label "Identification">
 <!ENTITY foxyproxy.tab.logging.accesskey "f">
 <!ENTITY foxyproxy.tab.logging.tooltip "Gère les paramètres d'identification">
@@ -466,6 +468,9 @@
 <!ENTITY foxyproxy.proxyservice.tooltip "Se connecter pour des services proxy">
 <!ENTITY foxyproxy.proxyservice2.label "Nécessite des proxies rapides et fiables aux États-Unis, en Angleterre ou dans d&apos;autres pays ?">
 <!ENTITY foxyproxy.getfoxyproxyplus.label "Obtenir FoxyProxy Plus">
+<!ENTITY foxyproxy.foxyproxychrome.label "FoxyProxy pour Chrome">
+<!ENTITY foxyproxy.foxyproxychrome.accesskey "F">
+<!ENTITY foxyproxy.foxyproxychrome.tooltip "Essayer FoxyProxy pour Chrome">
 <!ENTITY foxyproxy.invalidcolor.label "Couleur invalide">
 <!ENTITY foxyproxy.validcolor.label "Couleur valide">
 <!ENTITY foxyproxy.color.label "Couleur">
@@ -484,6 +489,12 @@
 <!ENTITY foxyproxy.proxy.subscriptions.viewSubscription "Afficher l'abonnement de proxy">
 <!ENTITY foxyproxy.proxy.subscriptions.addedit.title "Ajouter/éditer l'abonnement de proxy">
 <!ENTITY foxyproxy.proxy.subscriptions.refreshHelp "supprime tous les proxies existant auxquels vous êtes abonné">
+<!ENTITY foxyproxy.proxy.subscriptions.proxy.type.label "Type de proxy">
+<!ENTITY foxyproxy.proxy.subscriptions.proxy.type.tooltip "Choisissez le type de proxies que vous souhaitez importer dans la liste. Si vous choisissez « Je ne sais pas » les proxies seront considérés comme étant des proxies HTTP.">
+<!ENTITY foxyproxy.proxy.subscriptions.unknown.label "Je ne sais pas">
+<!ENTITY foxyproxy.proxy.subscriptions.http.label "HTTP">
+<!ENTITY foxyproxy.proxy.subscriptions.socks.label "SOCKS">
+<!ENTITY foxyproxy.proxy.subscriptions.subscriptionTypeHelp "Cette option vous permet de choisir le type de proxies dans votre abonnement. Si vous optez pour « Je ne sais pas » les proxies seront considérés comme étant des proxies HTTP. Cela est également vrai si vous choisissez « HTTP ». Si vous choisissez l'option « SOCKS », FoxyProy les traitera comme des proxies SOCKS5.">
 <!ENTITY foxyproxy.proxy.subscriptions.proxy.window.title "Abonnement de proxies">
 <!ENTITY foxyproxy.pattern.subscriptions.label "Abonnements à des motifs">
 <!ENTITY foxyproxy.pattern.subscriptions.description "S'abonner aux motifs publiés par d'autres. Partagez vos motifs juste en quelques clics.">
@@ -535,6 +546,8 @@
 <!ENTITY foxyproxy.status.label "État">
 <!ENTITY foxyproxy.format.label "Format">
 <!ENTITY foxyproxy.obfuscation.label "Obfuscation">
+<!ENTITY foxyproxy.compatibilitycheck.proxy.tooltip "Choisissez le proxy à utiliser pour la vérification de la compatibilité de l'extension après une mise à jour d'application">
+<!ENTITY foxyproxy.compatibilitycheck.proxy.help "Lorsque Firefox/Thunderbird/SeaMonkey recherche des mises à jour d'extension sur http://addons.mozilla.org lors du démarrage, il est possible d'ignorer les motifs de votre proxy. Ici vous pouvez déterminer quel proxy à utiliser pour cette situation exceptionnelle.">
 <!-- end foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Ajouter / éditer un motif d&apos;adresse IP Locale">
 <!ENTITY foxyproxy.tempip.popup.label "Les motifs temporaires vous permettent de créer des motifs  que vous n&apos;utilisez pas souvent afin d&apos;éviter de surcharger la liste des motifs d&apos;adresse IP pour un proxy. Les motifs temporaires ne sont pas enregistrés sur le disque. Ils sont conservés en mémoire et ne sont utilisés que dans cette session Firefox.">
@@ -596,4 +609,6 @@
 <!ENTITY foxyproxy.patternsforselected.accesskey "S">
 <!ENTITY foxyproxy.patternsforselected.tooltip "Créer des motifs pour l'URL sélectionnée">
 <!ENTITY foxyproxy.patterntoadd.label "Motif à ajouter">
+<!ENTITY foxyproxyplus.released "Mis à disposition sous licence">
+<!ENTITY foxyproxyplus.license "FoxyProxy Plus">
 <!-- end foxyproxyplus -->

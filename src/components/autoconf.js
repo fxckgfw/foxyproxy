@@ -339,6 +339,10 @@ function proxyAlert(msg) {
 }
 
 // wrapper for getting local IP address called by PAC file
+// TODO: Add a 192.168.0.1 and a 10.0.0.1 test like in:
+// http://mxr.mozilla.org/mozilla-central/source/netwerk/base/src/
+// ProxyAutoConfig.cpp#775ff. That got introduced in FF18 and we probably
+// should do the same to avoid bugs due to subtle implementation differences.
 function myIpAddress() {
   try {
     var helper = new DNSListener();
@@ -359,9 +363,12 @@ function myIpAddress() {
       dump("DNS resolution failed: " + helper.status + "\n");
       // Doing the same as Mozilla. If we are failing we are returning
       // '127.0.0.1'.
+      // See: http://mxr.mozilla.org/mozilla-central/source/netwerk/base/src/
+      // ProxyAutoConfig.cpp#784ff. 
       return '127.0.0.1';
     }
   } catch (e) {
+    dump("An error occurred while calling myIpAddress(): " + e + "\n");
     return '127.0.0.1';
   }
 }

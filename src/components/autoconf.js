@@ -199,10 +199,8 @@ AutoConf.prototype = {
       msg);
     if (this.owner.lastresort)
       this.owner.mode = "direct"; // don't disable!
-    else if (this.disableOnBadPAC) {
-      dump("Setting proxy mode to disabled!\n");
+    else if (this.disableOnBadPAC)
       this.owner._enabled = false; // Use _enabled so we don't loop infinitely
-    }
   },
 
   notify : function(timer) {
@@ -300,26 +298,6 @@ fpProxyAutoConfig.prototype = {
     }
 }
 
-var currentThread = CC["@mozilla.org/thread-manager;1"].
-  getService(CI.nsIThreadManager).currentThread;
-var dns = CC["@mozilla.org/network/dns-service;1"].
-  getService(CI.nsIDNSService);
-
-function DNSListener() {};
-
-DNSListener.prototype = {
-
-  request : true,
-  record : null,
-  status : null,
-
-  onLookupComplete : function(aRequest, aRecord, aStatus) {
-    this.record = aRecord;
-    this.status = aStatus;
-    this.request = false;
-  }
-};
-
 /** XPCSafeJSObjectWrapper is not available before FF 3.0. Only use it if it's available. **/
 function XPCSJSOWWrapper(x, useNew) {
   return typeof(XPCSafeJSObjectWrapper) == "undefined" ?
@@ -327,82 +305,37 @@ function XPCSJSOWWrapper(x, useNew) {
 }
 
 function proxyAlert(msg) {
-  msg = XPCSJSOWWrapper(msg);
-  try {
-    // It would appear that the console service is threadsafe.
-    var cns = CC["@mozilla.org/consoleservice;1"].
-      getService(CI.nsIConsoleService);
-    cns.logStringMessage("PAC-alert: "+msg);
-  } catch (e) {
-    dump("PAC: proxyAlert ERROR: "+e+"\n");
-  }
+    msg = XPCSJSOWWrapper(msg);
+    try {
+        // It would appear that the console service is threadsafe.
+        var cns = Components.classes["@mozilla.org/consoleservice;1"]
+                            .getService(Components.interfaces.nsIConsoleService);
+        cns.logStringMessage("PAC-alert: "+msg);
+    } catch (e) {
+        dump("PAC: proxyAlert ERROR: "+e+"\n");
+    }
 }
 
 // wrapper for getting local IP address called by PAC file
-// TODO: Add a 192.168.0.1 and a 10.0.0.1 test like in:
-// http://mxr.mozilla.org/mozilla-central/source/netwerk/base/src/
-// ProxyAutoConfig.cpp#775ff. That got introduced in FF18 and we probably
-// should do the same to avoid bugs due to subtle implementation differences.
 function myIpAddress() {
-  try {
-    var helper = new DNSListener();
-    var host;
-    if (dns.myHostName) {
-      host = dns.myHostName;
-    } else {
-      host = '127.0.0.1';
+    try {
+        return dns.resolve(dns.myHostName, 0).getNextAddrAsString();
+    } catch (e) {
+        return '127.0.0.1';
     }
-    dns.asyncResolve(host, 0, helper, currentThread);
-    while (helper.request) {
-      // Spinning the event loop until the hostname got resolved.
-      currentThread.processNextEvent(true);
-    }
-    if (helper.record) {
-      return helper.record.getNextAddrAsString();
-    } else {
-      dump("DNS resolution failed: " + helper.status + "\n");
-      // Doing the same as Mozilla. If we are failing we are returning
-      // '127.0.0.1'.
-      // See: http://mxr.mozilla.org/mozilla-central/source/netwerk/base/src/
-      // ProxyAutoConfig.cpp#784ff. 
-      return '127.0.0.1';
-    }
-  } catch (e) {
-    dump("An error occurred while calling myIpAddress(): " + e + "\n");
-    return '127.0.0.1';
-  }
 }
 
 // wrapper for resolving hostnames called by PAC file
 function dnsResolve(host) {
-  host = XPCSJSOWWrapper(host);
-  try {
-    var helper = new DNSListener();
-    // TODO: We could implement some nice, convenient functionality for the user
-    // here as |dns.asyncResolve()| gives an object back which lets us cancel
-    // the request if it takes too long. We might ask the user what she wants to
-    // do if that happens instead of blocking on the proxy decision. See:
-    // myIpAddress() as well.
-    dns.asyncResolve(host, 0, helper, currentThread);
-    while (helper.request) {
-      // Spinning the event loop until the hostname got resolved.
-      currentThread.processNextEvent(true);
+    host = XPCSJSOWWrapper(host);
+    try {
+        return dns.resolve(host, 0).getNextAddrAsString();
+    } catch (e) {
+        return null;
     }
-    if (helper.record) {
-      return helper.record.getNextAddrAsString();
-    } else {
-      // TODO: not sure if we can do here something better that fits to the
-      // convenient functionality above (in using the same UI (e.g. a (modal)
-      // dialog which explains the situation to the user and let her decide
-      // which course of action to take)). See: myIpAddress() as well.
-      dump("DNS resolution failed: " + helper.status + "\n");
-      return null;
-    }
-  } catch (e) {
-    dump("Error while resolving host " + host + " : " + e + "\n");
-    return null;
-  }
 }
+
+var dns = CC["@mozilla.org/network/dns-service;1"].getService(CI.nsIDNSService);
 
 var pacUtils =
 "function dnsDomainIs(host, domain) {\n" +
@@ -617,3 +550,4 @@ var pacUtils =
 "    }\n" +
 "    return ((date1 <= date) && (date <= date2));\n" +
 "}\n"
+

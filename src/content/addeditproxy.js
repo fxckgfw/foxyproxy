@@ -66,6 +66,10 @@ function onLoad() {
   document.getElementById("tabs").selectedIndex = proxy.selectedTabIndex;
   document.getElementById("proxyenabled").checked = proxy.enabled;
   document.getElementById("mode").value = proxy.mode;
+  document.getElementById("username").value = proxy.manualconf.username;
+  document.getElementById("password").value = proxy.manualconf.password;
+  document.getElementById("password2").value = proxy.manualconf.password;
+  document.getElementById("domain").value = proxy.manualconf.domain;
   document.getElementById("host").value = proxy.manualconf.host;
   document.getElementById("port").value = proxy.manualconf.port;
   document.getElementById("isSocks").checked = proxy.manualconf.isSocks;
@@ -119,7 +123,7 @@ function onCancel() {
   proxy.matches = [];
   for (let i = 0, length = oldMatches.length; i < length; i++) {
     proxy.matches.push(oldMatches[i]);
-  } 
+  }
   return true;
 }
 
@@ -128,12 +132,19 @@ function trim(s) {
 }
 
 function onOK() {
+  var password1 = trim(document.getElementById("password").value),
+    password2 = trim(document.getElementById("password2").value);
+  if (password1 != password2) {
+    alert(document.getElementById("proxy.passwords.nomatch.label").value);
+    return false;
+  }
+
   var host = trim(document.getElementById("host").value),
     port = document.getElementById("port").value,
     name = trim(document.getElementById("proxyname").value);
   if (!name)
     name = host ? (host + ":" + port) : foxyproxy.getMessage("new.proxy");
-  var enabled = document.getElementById("proxyenabled").checked,    
+  var enabled = document.getElementById("proxyenabled").checked,
     url = trim(autoconfUrl.value);
   var mode = document.getElementById("mode").value;
   if (enabled) {
@@ -164,7 +175,7 @@ function onOK() {
         "no.white.patterns.3", name], "white-patterns"))
       return false;
   }
-  
+
   var isSocks = document.getElementById("isSocks").checked;
 
   if (fpc.isThunderbird() && !isSocks && mode == "manual" &&
@@ -190,13 +201,13 @@ function onOK() {
     proxy.autoconf.loadNotification = loadNotification.checked;
     proxy.autoconf.errorNotification = errorNotification.checked;
     proxy.autoconf.autoReload = autoReload.checked;
-    proxy.autoconf.reloadFreqMins = reloadFreq.value; 
+    proxy.autoconf.reloadFreqMins = reloadFreq.value;
   } else {
     proxy.autoconfMode = "wpad";
     proxy.wpad.loadNotification = loadNotification.checked;
     proxy.wpad.errorNotification = errorNotification.checked;
     proxy.wpad.autoReload = autoReload.checked;
-    proxy.wpad.reloadFreqMins = reloadFreq.value; 
+    proxy.wpad.reloadFreqMins = reloadFreq.value;
   }
   proxy.mode = mode; // set this first to control PAC loading
   proxy.enabled = enabled;
@@ -204,6 +215,9 @@ function onOK() {
   proxy.manualconf.port = port;
   proxy.manualconf.isSocks = isSocks;
   proxy.manualconf.socksversion = document.getElementById("socksversion").value;
+  proxy.manualconf.username = trim(document.getElementById("username").value);
+  proxy.manualconf.password = document.getElementById("password").value;
+  proxy.manualconf.domain = document.getElementById("domain").value;
   proxy.animatedIcons = document.getElementById("animatedIcons").checked;
   proxy.includeInCycle = document.getElementById("cycleEnabled").checked;
   var color = new RGBColor(document.getElementById("color").value); // NEW SVG

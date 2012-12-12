@@ -560,4 +560,6 @@
   <broadcaster id="direct-broadcaster" disabled="false"/>
 </broadcasterset>
 
+<label id="proxy.passwords.nomatch.label" hidden="true"
+  value="&foxyproxy.proxy.passwords.nomatch.label;"/>
 </dialog>

@@ -107,6 +107,7 @@ function foxyproxy() {
   CU.import("resource://foxyproxy/defaultprefs.jsm", this);
   CU.import("resource://foxyproxy/cookiesAndCache.jsm", this);
   CU.import("resource://foxyproxy/utils.jsm", this);
+  CU.import("resource://foxyproxy/authPromptProvider.jsm", this);
 };
 foxyproxy.prototype = {
   PFF : " ",
@@ -126,10 +127,13 @@ foxyproxy.prototype = {
   excludeDisabledFromCycling : false,
   ignoreProxyScheme : false,
   writeSettingsTimer : null,
+  authCounter : 0,
   apiDisabled : false,
   cacheOrCookiesChanged : false,
   cacheAndCookiesChecked : false,
   _proxyForVersionCheck : "",
+  // That gets set in the Common() constructor.
+  isGecko17 : false,
 
   broadcast : function(subj, topic, data) {
     gBroadcast(subj, topic, data);
@@ -154,6 +158,11 @@ foxyproxy.prototype = {
           gObsSvc.addObserver(this, "quit-application", false);
           gObsSvc.addObserver(this, "domwindowclosed", false);
           gObsSvc.addObserver(this, "domwindowopened", false);
+          //this.auth.install();
+          // Making this service available to our protocol proxy service
+          // wrapper.
+          CC["@mozilla.org/network/protocol-proxy-service;1"].getService().
+            wrappedJSObject.fp = this;
           try {
             this.init();
             this.patternSubscriptions.init();
@@ -183,6 +192,7 @@ foxyproxy.prototype = {
         gObsSvc.removeObserver(this, "quit-application");
         gObsSvc.removeObserver(this, "domwindowclosed");
         gObsSvc.removeObserver(this, "domwindowopened");
+        //this.auth.uninstall(true);
         this.defaultPrefs.uninit();
         break;
       case "domwindowopened":
@@ -295,7 +305,9 @@ foxyproxy.prototype = {
         "Unrecognized mode specified: " + mode);
     }
 
-    this.toggleFilter(this._mode != "disabled");
+    if (this.isGecko17) {
+      this.toggleFilter(this._mode != "disabled");
+    }
     // This line must come before the next one -- gBroadcast(...) Otherwise,
     // AutoAdd and QuickAdd write their settings before they've been
     // deserialized, resulting in them always getting written to disk as
@@ -1054,6 +1066,15 @@ foxyproxy.prototype = {
       this.lastresort = null;
     },
 
+    clearAuth : function() {
+      let authMgr = CC['@mozilla.org/network/http-auth-manager;1'].
+        getService(CI.nsIHttpAuthManager);
+      for (let i=0, len=this.length; i<len; i++) {
+        authMgr.setAuthIdentity("http", this.list[i].manualconf.host,
+        this.list[i].manualconf.port, null, null, null, null, null, null);
+      }
+    },
+
     fromDOM : function(mode, doc) {
       var last = null;
       for (var i=0,proxyElems=doc.getElementsByTagName("proxy"); i<proxyElems.length; i++) {
@@ -1789,6 +1810,51 @@ foxyproxy.prototype = {
     /*! begin-foxyproxy-standard !*/
     return false
     /*! end-foxyproxy-standard !*/
+  },
+
+  auth : {
+    installed : false,
+    install : function() {
+      if (this.installed) return;
+      for each (let i in ["foxyproxy-mode-change", "http-on-modify-request"])
+        gObsSvc.addObserver(this, i, false);
+      this.installed = true;
+    },
+
+    uninstall : function(quitting) {
+      if (!this.installed) return;
+      try {
+        gFP.proxies.clearAuth();
+        gObsSvc.removeObserver(this,"http-on-modify-request");
+        if (quitting) gObsSvc.removeObserver(this, "foxyproxy-mode-change");
+      }
+      catch (e) { dumpp(e); }
+      this.installed = false;
+    },
+
+    observe : function(subj, topic, data) {
+      if (topic == "foxyproxy-mode-change") {
+        if (gFP._mode=="disabled")
+          this.uninstall(false);
+        else
+          this.install();
+      }
+      else if (topic == "http-on-modify-request") {
+        if (subj) {
+          var httpChannel = subj.QueryInterface(CI.nsIHttpChannel);
+          // There may be circumstances where we get an exception which we
+          // should catch. One such case is e.g. the load of getfoxyproxy
+          // favicons on the help page after restarting Firefox immediately
+          // after installing FP. This happened at least with FF 18.0a1
+          // although it was not reproducible with FF 15.0.1, FF 16.0 and
+          // FF 17.0a2.
+          try {
+            httpChannel.notificationCallbacks = new AuthPromptProvider(gFP,
+              httpChannel.notificationCallbacks);
+          } catch (e) {}
+        }
+      }
+    }
   },
 
   classID: Components.ID("{46466e13-16ab-4565-9924-20aac4d98c82}"),

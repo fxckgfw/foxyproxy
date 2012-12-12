@@ -18,12 +18,13 @@ var fp;
 
 function Common() {
   this.wrappedJSObject = this;
+  fp = CC["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;
   this.appInfo = CC["@mozilla.org/xre/app-info;1"].getService(CI.nsIXULAppInfo);
   this.vc = CC["@mozilla.org/xpcom/version-comparator;1"].getService(CI.
     nsIVersionComparator);
   // We need that to handle bug 769764 properly.
   this.isGecko17 = this.vc.compare(this.appInfo.platformVersion, "18.0a1") < 0;
-  fp = CC["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;
+  fp.isGecko17 = this.isGecko17;
   let uuid = fp.isFoxyProxySimple() ? "foxyproxy-basic@eric.h.jung" : "foxyproxy@eric.h.jung";
   // Get installed version
   if ("@mozilla.org/extensions/manager;1" in CC) {

@@ -844,6 +844,11 @@ ManualConf.prototype = {
   _port: "",
   _socksversion: "5",
   _isSocks: false,
+  // No "null" assignment for username and password. Otherwise the auto import
+  // via proxy:// URL won't work.
+  username : "",
+  password : "",
+  domain : null,
   fp : null,
   owner: null,
 
@@ -865,6 +870,10 @@ ManualConf.prototype = {
       n.getAttribute("gopher") ? false:
       n.getAttribute("socks") ? true : false; // new for 2.5
 
+    this.username = gGetSafeAttr(n, "username", null);
+    // TODO: Decrypt password
+    this.password = gGetSafeAttr(n, "password", null);
+    this.domain = gGetSafeAttr(n, "domain", null);
     this._makeProxy();
   },
 
@@ -882,6 +891,10 @@ ManualConf.prototype = {
     e.setAttribute("port", this._port);
     e.setAttribute("socksversion", this._socksversion);
     e.setAttribute("isSocks", this._isSocks);
+    this.username != null && e.setAttribute("username", this.username);
+    // TODO: Encrypt password
+    this.password != null && e.setAttribute("password", this.password);
+    this.domain != null &&  e.setAttribute("domain", this.domain);
     return e;
   },
 

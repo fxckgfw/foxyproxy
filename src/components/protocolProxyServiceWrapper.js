@@ -23,9 +23,26 @@ ProtocolProxyServiceWrapper.prototype = {
     // about this or should we test that here as well every time?
     //this.oldPPS.asyncResolve(aURI, aFlags, aCallback);
     dump("URL is: " + aURI.spec + "\n");
-    var pi = this.fp.applyFilter(null, aURI, null);
-    dump("Proxy for URL: " + aURI.spec + " got resolved! Continuing...\n");
-    aCallback.onProxyAvailable(null, aURI, pi, 0);
+    let pi = this.fp.applyFilter(null, aURI, null);
+    if (pi === "3,14") {
+      // We are not ready yet, queuing the callback...
+      dump("Queuing request: " + aURI.spec + "\n");
+      this.queuedRequests.push([aCallback, aURI]);
+    } else {
+      // TODO: Loop through the queue and call all callbacks...
+      let uri = "";
+      if (this.queuedRequests.length !== 0) {
+        for (let pos = this.queuedRequests.length - 1; pos > -1; --pos) {
+          uri = this.queuedRequests[pos][1];
+          dump("Now the queued request: " + uri.spec + "\n");
+          pi = this.fp.applyFilter(null, uri, null);
+          this.queuedRequests[pos][0].onProxyAvailable(null, uri, pi, 0);
+        }
+        this.queuedRequests = [];
+      }
+      dump("Proxy for URL: " + aURI.spec + " got resolved! Continuing...\n");
+      aCallback.onProxyAvailable(null, aURI, pi, 0);
+    }
   },
 
   getFailoverForProxy : function(aProxyInfo, aURI, aReason) {

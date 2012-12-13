@@ -15,6 +15,7 @@ ProtocolProxyServiceWrapper.prototype = {
   oldPPS : null,
   //isGecko17 : false,
   fp : null,
+  queuedRequests : [],
 
   // nsIProtocolProxyService
   asyncResolve : function(aURI, aFlags, aCallback) {
@@ -22,7 +23,9 @@ ProtocolProxyServiceWrapper.prototype = {
     // about this or should we test that here as well every time?
     //this.oldPPS.asyncResolve(aURI, aFlags, aCallback);
     dump("URL is: " + aURI.spec + "\n");
-    aCallback.onProxyAvailable(null, aURI, this.fp.applyFilter(null, aURI, null), 0);
+    var pi = this.fp.applyFilter(null, aURI, null);
+    dump("Proxy for URL: " + aURI.spec + " got resolved! Continuing...\n");
+    aCallback.onProxyAvailable(null, aURI, pi, 0);
   },
 
   getFailoverForProxy : function(aProxyInfo, aURI, aReason) {

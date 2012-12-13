@@ -49,6 +49,7 @@ AutoConf.prototype = {
   owner: null,
   //disabledDueToBadPAC: false,
   disableOnBadPAC: true,
+  initPAC: false,
   QueryInterface: XPCOMUtils.generateQI([CI.nsISupports]),
 
   set autoReload(e) {
@@ -109,7 +110,7 @@ AutoConf.prototype = {
     var req = CC["@mozilla.org/xmlextras/xmlhttprequest;1"]
       .createInstance(CI.nsIXMLHttpRequest);
     req.overrideMimeType("application/javascript");
-    req.open("GET", url, false); // false means synchronous    
+    req.open("GET", url, false); // false means synchronous
     req.channel.loadFlags |= CI.nsIRequest.LOAD_BYPASS_CACHE;
     req.send(null);
     if (req.status == 200 ||
@@ -121,15 +122,31 @@ AutoConf.prototype = {
   },
 
   loadPAC : function() {
+    dump("Loading the PAC file\n");
     let autoconfMode = this.owner.autoconfMode;
     let autoconfMessage = "";
+    let that = this;
     try {
       var req = CC["@mozilla.org/xmlextras/xmlhttprequest;1"]
         .createInstance(CI.nsIXMLHttpRequest);
       req.overrideMimeType("application/javascript");
-      req.open("GET", this.url, false); // false means synchronous
-      req.channel.loadFlags |= CI.nsIRequest.LOAD_BYPASS_CACHE;
-      req.send(null);
+      // We leave the sync version for Gecko < 18 as we are going to rewrite the
+      // whole PAC part anyway using the single FP generated PAC file approach.
+      if (fp.isGecko17) {
+        req.open("GET", this.url, false); // false means synchronous
+        req.channel.loadFlags |= CI.nsIRequest.LOAD_BYPASS_CACHE;
+        req.send(null);
+        that.processPACResponse(req, that, autoconfMode, autoconfMessage);
+      } else {
+        req.open("GET", this.url, true);
+        req.channel.loadFlags |= CI.nsIRequest.LOAD_BYPASS_CACHE;
+        req.onreadystatechange = function() {
+          if (req.readyState === 4) {
+            that.processPACResponse(req, that, autoconfMode, autoconfMessage);
+          }
+        };
+        req.send(null);
+      }
     }
     catch(e) {
       if (autoconfMode === "pac") {
@@ -140,11 +157,15 @@ AutoConf.prototype = {
       this.badPAC(autoconfMessage, e);
       return;
     }
+  },
+
+  processPACResponse: function(req, that, autoconfMode, autoconfMessage) {
     if (req.status == 200 || (req.status == 0 &&
-         (this.url.indexOf("file://") == 0 || this.url.indexOf("ftp://") == 0 ||
-          this.url.indexOf("relative://") == 0))) {
+         (that.url.indexOf("file://") == 0 || that.url.indexOf("ftp://") == 0 ||
+          that.url.indexOf("relative://") == 0))) {
       try {
-        this._resolver.init(this.url, req.responseText);
+        dump("Got it loaded, resolving now...\n");
+        that._resolver.init(that.url, req.responseText);
       }
       catch(e) {
         if (autoconfMode === "pac") {
@@ -152,7 +173,7 @@ AutoConf.prototype = {
         } else {
           autoconfMessage = "wpad.status.error";
         }
-        this.badPAC(autoconfMessage, e);
+        that.badPAC(autoconfMessage, e);
         return;
       }
       let autoconfMessageHelper = "";
@@ -163,13 +184,13 @@ AutoConf.prototype = {
         autoconfMessage = "wpad.status";
         autoconfMessageHelper = "wpad.status.success";
       }
-      this.loadNotification && fp.notifier.alert(fp.getMessage(autoconfMessage),
-        fp.getMessage(autoconfMessageHelper, [this.owner.name]));
+      that.loadNotification && fp.notifier.alert(fp.getMessage(autoconfMessage),
+        fp.getMessage(autoconfMessageHelper, [that.owner.name]));
       // Use _enabled so we don't loop infinitely 
-      this.owner._enabled = true;
-      //if (this.disabledDueToBadPAC) {
-        //this.disabledDueToBadPAC = false; /* reset */
-        //this.owner.fp.writeSettings();
+      that.owner._enabled = true;
+      //if (that.disabledDueToBadPAC) {
+        //that.disabledDueToBadPAC = false; /* reset */
+        //that.owner.fp.writeSettings();
       //}
     } else {
       if (autoconfMode === "pac") {
@@ -177,7 +198,7 @@ AutoConf.prototype = {
       } else {
         autoconfMessage = "wpad.status.loadfailure";
       }
-      this.badPAC(autoconfMessage,
+      that.badPAC(autoconfMessage,
         new Error(fp.getMessage("http.error", [req.status])));
     }
   },
@@ -242,6 +263,7 @@ fpProxyAutoConfig.prototype = {
 
     /** throws a localized Error object on error */
     init: function(pacURI, pacText) {
+      dump("Initializing the PAC file...\n");
       let autoconfMessage = "";
       if (pacURI == "" || pacText == "") {
         dump("FoxyProxy: init(), pacURI or pacText empty\n");
@@ -280,6 +302,8 @@ fpProxyAutoConfig.prototype = {
         }
         throw new Error(fp.getMessage(autoconfMessage));
       }
+      // PAC file is ready
+      this.owner.owner.initPAC = false;
       return true;
     },
 

@@ -131,6 +131,7 @@ Proxy.prototype = {
   // Eventually, we need one object to store the PAC settings of the proxy
   // specified in the system settings.
   systemProxyPAC: null,
+  initPAC: true,
   clearCacheBeforeUse: false,
   disableCache: false,
   clearCookiesBeforeUse: false,
@@ -674,6 +675,10 @@ Proxy.prototype = {
           case "direct":
             proxies.push(this.direct);
            break;
+          case "3,14":
+            // Our special value for indicating that the PAC is not ready yet.
+            return "3,14";
+            break;
           default:
             return _notifyUserOfError(spec);
         }

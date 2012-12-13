@@ -49,7 +49,6 @@ AutoConf.prototype = {
   owner: null,
   //disabledDueToBadPAC: false,
   disableOnBadPAC: true,
-  initPAC: false,
   QueryInterface: XPCOMUtils.generateQI([CI.nsISupports]),
 
   set autoReload(e) {
@@ -314,6 +313,9 @@ fpProxyAutoConfig.prototype = {
             dump("FoxyProxy: Preventing cyclical PAC error; using no proxy to load PAC file.\n");
             return "direct";
           }
+          dump("initPAC is: " + this.owner.owner.initPAC + "\n");
+          if (!fp.isGecko17 && this.owner.owner.initPAC)
+            return "3,14";
           return this.sandbox.FindProxyForURL(testURI, testHost);
         } catch (e) {
             dump("FoxyProxy: getProxyForURI(), " + e + " \n\n" + e.stack + "\n");

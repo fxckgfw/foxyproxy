@@ -8,6 +8,7 @@
   available in the LICENSE file at the root of this installation
   and also online at http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 **/
+
 if (!CI) {
   // we're not being included by foxyproxy.js
   var CI = Components.interfaces, CC = Components.classes,
@@ -35,6 +36,8 @@ function AutoConf(owner, fpp) {
   fp = fpp || CC["@leahscape.org/foxyproxy/service;1"].
     getService().wrappedJSObject;
   this.timer = CC["@mozilla.org/timer;1"].createInstance(CI.nsITimer);
+  this.ppp = CC["@mozilla.org/network/protocol-proxy-service;1"].
+    getService().wrappedJSObject;
   this.owner = owner;
   this._resolver = new fpProxyAutoConfig(this);
 }
@@ -49,6 +52,7 @@ AutoConf.prototype = {
   owner: null,
   //disabledDueToBadPAC: false,
   disableOnBadPAC: true,
+  ppp: null,
   QueryInterface: XPCOMUtils.generateQI([CI.nsISupports]),
 
   set autoReload(e) {
@@ -173,6 +177,9 @@ AutoConf.prototype = {
           autoconfMessage = "wpad.status.error";
         }
         that.badPAC(autoconfMessage, e);
+        if (!fp.isGecko17) {
+          that.emptyRequestQueue(that.owner);
+        }
         return;
       }
       let autoconfMessageHelper = "";
@@ -191,6 +198,12 @@ AutoConf.prototype = {
         //that.disabledDueToBadPAC = false; /* reset */
         //that.owner.fp.writeSettings();
       //}
+      if (!fp.isGecko17) {
+        // While the PAC loading was under way we queued all requests which hit
+        // asyncOpen() meawhile. Let's dispatch them now that we have the PAC
+        // loaded.
+        that.emptyRequestQueue(that.owner);
+      }
     } else {
       if (autoconfMode === "pac") {
         autoconfMessage = "pac.status.loadfailure2";
@@ -199,6 +212,9 @@ AutoConf.prototype = {
       }
       that.badPAC(autoconfMessage,
         new Error(fp.getMessage("http.error", [req.status])));
+      if (!fp.isGecko17) {
+        that.emptyRequestQueue(that.owner);
+      }
     }
   },
 
@@ -230,6 +246,24 @@ AutoConf.prototype = {
 
   cancelTimer : function() {
     this.timer.cancel();
+  },
+
+  emptyRequestQueue : function(proxy) {
+    let uri = "";
+    let queuedRequests = this.ppp.queuedRequests;
+    if (queuedRequests.length !== 0) {
+      for (let pos = queuedRequests.length - 1; pos > -1; --pos) {
+        if (queuedRequests[pos][2] != this.owner.id) {
+          // Now our business
+          continue;
+        }
+        uri = queuedRequests[pos][1];
+        dump("Now the queued request: " + uri.spec + "\n");
+        pi = fp.applyFilter(null, uri, null);
+        queuedRequests[pos][0].onProxyAvailable(null, uri, pi, 0);
+        queuedRequests.splice(pos,1);
+      }
+    }
   },
 
   classDescription: "FoxyProxy AutoConfiguration Component",
@@ -307,20 +341,29 @@ fpProxyAutoConfig.prototype = {
     },
 
     getProxyForURI: function(testURI, testHost) {
-        // Call the original function
-        try {
-          if (testURI == this.owner.url) {
-            dump("FoxyProxy: Preventing cyclical PAC error; using no proxy to load PAC file.\n");
-            return "direct";
-          }
-          dump("initPAC is: " + this.owner.owner.initPAC + "\n");
-          if (!fp.isGecko17 && this.owner.owner.initPAC)
-            return "3,14";
-          return this.sandbox.FindProxyForURL(testURI, testHost);
-        } catch (e) {
-            dump("FoxyProxy: getProxyForURI(), " + e + " \n\n" + e.stack + "\n");
-            throw XPCSJSOWWrapper(e);
+      // Call the original function
+      try {
+        // Letting the PAC request through but only if we have not loaded the
+        // PAC yet. Otherwise there is no reason why the request should not use
+        // the proxy given back by the PAC.
+        if (testURI == this.owner.url && this.owner.owner.initPAC) {
+          dump("FoxyProxy: Preventing cyclical PAC error; using no proxy to " +
+            "load PAC file.\n");
+          return "direct";
         }
+        dump("initPAC is: " + this.owner.owner.initPAC + "\n");
+        // This is only relevant for Gecko > 17 as the PAC logic is async now.
+        // If the PAC file is not loaded yet we return our custom error code
+        // (which is "queue" + the proxy id) to indicate that the request need
+        // to get queued in the hooked asyncOpen().
+        if (!fp.isGecko17 && this.owner.owner.initPAC) {
+          return "queue" + this.owner.owner.id;
+        }
+        return this.sandbox.FindProxyForURL(testURI, testHost);
+      } catch (e) {
+        dump("FoxyProxy: getProxyForURI(), " + e + " \n\n" + e.stack + "\n");
+        throw XPCSJSOWWrapper(e);
+      }
     }
 }
 

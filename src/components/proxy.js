@@ -790,7 +790,7 @@ Proxy.prototype = {
         let uri = this.iOService.newURI(spec, null, null);
         // Since bug 769764 landed |getProxyForURI()| has 4 parameters.
         let proxyString;
-        if (this.fpc.isGecko17) {
+        if (this.fp.isGecko17) {
           proxyString = this.sysProxyService.getProxyForURI(uri);
         } else {
           proxyString = this.sysProxyService.getProxyForURI(uri.asciiSpec,

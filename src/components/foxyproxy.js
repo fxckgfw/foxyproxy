@@ -480,8 +480,8 @@ foxyproxy.prototype = {
     finally {
       // Our custom return value is a string in Gecko > 17 indicating that we
       // queue the request. Thus, we only add it to the log tab if it is really
-      // issued now (i.e. no string). 
-      if (typeof ret !== "string") {
+      // issued now (i.e. we got no string in return). 
+      if (typeof ret != "string") {
         gObsSvc.notifyObservers(this.mp.proxy, "foxyproxy-throb", null);
         this.logg.add(this.mp);
       }

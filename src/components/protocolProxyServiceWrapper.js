@@ -35,7 +35,7 @@ ProtocolProxyServiceWrapper.prototype = {
     if (this.fp.mode != "disabled") {
       dump("URL is: " + aURI.spec + "\n");
       let pi = this.fp.applyFilter(null, aURI, null);
-      if (typeof pi !== "string") {
+      if (typeof pi != "string") {
         // TODO: Can we be sure we got a nsIProxyInfo object here?
         dump("Proxy for URL: " + aURI.spec + " got resolved! Continuing...\n");
         aCallback.onProxyAvailable(null, aURI, pi, 0);

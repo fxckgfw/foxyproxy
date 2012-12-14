@@ -23,8 +23,7 @@ function Common() {
   this.vc = CC["@mozilla.org/xpcom/version-comparator;1"].getService(CI.
     nsIVersionComparator);
   // We need that to handle bug 769764 properly.
-  this.isGecko17 = this.vc.compare(this.appInfo.platformVersion, "18.0a1") < 0;
-  fp.isGecko17 = this.isGecko17;
+  fp.isGecko17 = this.vc.compare(this.appInfo.platformVersion, "18.0a1") < 0;
   let uuid = fp.isFoxyProxySimple() ? "foxyproxy-basic@eric.h.jung" : "foxyproxy@eric.h.jung";
   // Get installed version
   if ("@mozilla.org/extensions/manager;1" in CC) {
@@ -46,8 +45,6 @@ Common.prototype = {
   QueryInterface: XPCOMUtils.generateQI([CI.nsISupports]),
   _ios : CC["@mozilla.org/network/io-service;1"].getService(CI.nsIIOService),
   version : null,
-
-  isGecko17 : false,
 
   // Application-independent version of getMostRecentWindow()
   getMostRecentWindow : function(wm) {

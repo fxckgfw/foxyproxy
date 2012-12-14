@@ -131,6 +131,7 @@ Proxy.prototype = {
   // Eventually, we need one object to store the PAC settings of the proxy
   // specified in the system settings.
   systemProxyPAC: null,
+  // PAC initialization needs still to be done.
   initPAC: true,
   clearCacheBeforeUse: false,
   disableCache: false,
@@ -481,9 +482,9 @@ Proxy.prototype = {
       // No '===' here! |value| of a menulist element gives a string back but
       // the |id| of a proxy is a number until loaded from the foxyproxy.xml.
       // Thus, if I create a new proxy after FoxyProxy started and change the
-      // proxy on the advanced settings panel to this newly created one, disable
-      // that very proxy then the proxy would still be used on the advanced
-      // panel if we had a strict comparison below!
+      // proxy on the advanced settings panel to this newly created one and
+      // disable that very proxy, then the proxy would still be used on the
+      // advanced panel if we had a strict comparison below!
       if (this.id == this.fp.proxyForVersionCheck) {
         this.fp.proxyForVersionCheck = this.fp.proxies.lastresort.id;
       }
@@ -520,6 +521,9 @@ Proxy.prototype = {
   },
 
   preparePACLoading: function() {
+    // The PAC we are going to load is not available yet, thus...
+    dump("We are initializing the PAC file now!\n");
+    this.initPAC = true;
     if (this._mode === "auto") {
       if (this._autoconfMode === "pac") {
         this.autoconf.loadPAC();
@@ -674,13 +678,13 @@ Proxy.prototype = {
             break;
           case "direct":
             proxies.push(this.direct);
-           break;
-          case "3,14":
-            // Our special value for indicating that the PAC is not ready yet.
-            return "3,14";
             break;
           default:
-            return _notifyUserOfError(spec);
+            if (components[1].indexOf("queue") === 0) {
+              return components[1];
+            } else {
+              return _notifyUserOfError(spec);
+            }
         }
       }
       // Build a proxy list for proxy for failover support

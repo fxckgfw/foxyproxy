@@ -456,7 +456,7 @@ foxyproxy.prototype = {
   applyFilter : function(ps, uri, proxy) {
     function _err(fp, info, extInfo) {
       var def = fp.proxies.item(fp.proxies.length-1);
-      mp = gLoggEntryFactory(def, null, spec, "err", extInfo?extInfo:info);
+      this.mp = gLoggEntryFactory(def, null, spec, "err", extInfo?extInfo:info);
       fp.notifier.alert(info, fp.getMessage("see.log"));
       return def; // Failsafe: use lastresort proxy if nothing else was chosen
     }
@@ -478,8 +478,13 @@ foxyproxy.prototype = {
       return _err(this, this.getMessage("route.exception", [""]), this.getMessage("route.exception", [": " + e]));
     }
     finally {
-      gObsSvc.notifyObservers(this.mp.proxy, "foxyproxy-throb", null);
-      this.logg.add(this.mp);
+      // Our custom return value is a string in Gecko > 17 indicating that we
+      // queue the request. Thus, we only add it to the log tab if it is really
+      // issued now (i.e. no string). 
+      if (typeof ret !== "string") {
+        gObsSvc.notifyObservers(this.mp.proxy, "foxyproxy-throb", null);
+        this.logg.add(this.mp);
+      }
     }
   },
 

@@ -261,7 +261,10 @@ AutoConf.prototype = {
         dump("Now the queued request: " + uri.spec + "\n");
         pi = fp.applyFilter(null, uri, null);
         queuedRequests[pos][0].onProxyAvailable(null, uri, pi, 0);
-        queuedRequests.splice(pos,1);
+        // TODO: Can we be sure that there are no race conditions here? Can't it
+        // be that two proxies are trying to dispatch requests in our queue
+        // almost simulateneously!?
+        queuedRequests.splice(pos, 1);
       }
     }
   },

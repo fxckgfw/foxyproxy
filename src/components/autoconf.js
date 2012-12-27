@@ -36,6 +36,7 @@ function AutoConf(owner, fpp) {
   fp = fpp || CC["@leahscape.org/foxyproxy/service;1"].
     getService().wrappedJSObject;
   this.timer = CC["@mozilla.org/timer;1"].createInstance(CI.nsITimer);
+  // That's our wrapper.
   this.ppp = CC["@mozilla.org/network/protocol-proxy-service;1"].
     getService().wrappedJSObject;
   this.owner = owner;
@@ -125,7 +126,6 @@ AutoConf.prototype = {
   },
 
   loadPAC : function() {
-    dump("Loading the PAC file\n");
     let autoconfMode = this.owner.autoconfMode;
     let autoconfMessage = "";
     let that = this;
@@ -167,7 +167,6 @@ AutoConf.prototype = {
          (that.url.indexOf("file://") == 0 || that.url.indexOf("ftp://") == 0 ||
           that.url.indexOf("relative://") == 0))) {
       try {
-        dump("Got it loaded, resolving now...\n");
         that._resolver.init(that.url, req.responseText);
       }
       catch(e) {
@@ -177,6 +176,8 @@ AutoConf.prototype = {
           autoconfMessage = "wpad.status.error";
         }
         that.badPAC(autoconfMessage, e);
+        // Either FoxyProxy got disabled or "direct" is used. Either way, emtpy
+        // our request queue as the proxy got "resolved".
         if (!fp.isGecko17) {
           that.emptyRequestQueue(that.owner);
         }
@@ -251,19 +252,21 @@ AutoConf.prototype = {
   emptyRequestQueue : function(proxy) {
     let uri = "";
     let queuedRequests = this.ppp.queuedRequests;
-    if (queuedRequests.length !== 0) {
+    if (queuedRequests.length != 0) {
+      // We are looping backwards in order to avoid issues with the index if
+      // other proxies add new entries to the queue while a proxy is dispatching
+      // all the requests belonging to it.
       for (let pos = queuedRequests.length - 1; pos > -1; --pos) {
         if (queuedRequests[pos][2] != this.owner.id) {
-          // Now our business
+          // Not our business
           continue;
         }
         uri = queuedRequests[pos][1];
-        dump("Now the queued request: " + uri.spec + "\n");
         pi = fp.applyFilter(null, uri, null);
         queuedRequests[pos][0].onProxyAvailable(null, uri, pi, 0);
         // TODO: Can we be sure that there are no race conditions here? Can't it
         // be that two proxies are trying to dispatch requests in our queue
-        // almost simulateneously!?
+        // almost simultaneously!?
         queuedRequests.splice(pos, 1);
       }
     }
@@ -299,7 +302,6 @@ fpProxyAutoConfig.prototype = {
 
     /** throws a localized Error object on error */
     init: function(pacURI, pacText) {
-      dump("Initializing the PAC file...\n");
       let autoconfMessage = "";
       if (pacURI == "" || pacText == "") {
         dump("FoxyProxy: init(), pacURI or pacText empty\n");
@@ -354,10 +356,9 @@ fpProxyAutoConfig.prototype = {
             "load PAC file.\n");
           return "direct";
         }
-        dump("initPAC is: " + this.owner.owner.initPAC + "\n");
         // This is only relevant for Gecko > 17 as the PAC logic is async now.
         // If the PAC file is not loaded yet we return our custom error code
-        // (which is "queue" + the proxy id) to indicate that the request need
+        // (which is "queue" + the proxy id) to indicate that the request needs
         // to get queued in the hooked asyncOpen().
         if (!fp.isGecko17 && this.owner.owner.initPAC) {
           return "queue" + this.owner.owner.id;

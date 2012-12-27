@@ -15,7 +15,7 @@ var Cc = Components.classes, Ci = Components.interfaces;
 
 function ProtocolProxyServiceWrapper() {
   this.wrappedJSObject = this;
-  // Getting the old protocolProxyService in order to execute its methods we are
+  // Getting the old protocolProxyService in order to execute the methods we are
   // not interested in adapting.
   this.oldPPS = Components.
     classesByID["{E9B301C0-E0E4-11d3-A1A8-0050041CAF44}"].
@@ -24,34 +24,36 @@ function ProtocolProxyServiceWrapper() {
 
 ProtocolProxyServiceWrapper.prototype = {
   oldPPS : null,
-  //isGecko17 : false,
   fp : null,
   queuedRequests : [],
 
   // nsIProtocolProxyService
   asyncResolve : function(aURI, aFlags, aCallback) {
-    // TODO: It seems we are only called if we are Gecko > 17. Can we be sure
-    // about this or should we test that here as well every time?
+    // We can be pretty sure that we only get called if Gecko > 17. Thus, no
+    // special check here. There is one call to asyncResolve() in Gecko <= 17
+    // (http://mxr.mozilla.org/mozilla-esr17/source/netwerk/protocol/http/
+    //  nsHttpChannel.cpp#1791) but that may happen only after the proxy got
+    // resolved via applyFilter(). FoxyProxy ensures via the latter that this
+    // asyncResolve() is never called, though, as mConnectionInfo->ProxyType()
+    // can never be "unknown" in nsHttpChannel::Connect() with FoxyProxy
+    // enabled: We are returning the last resort proxy if we got an error while
+    // determining the proxy to use.
     if (this.fp.mode != "disabled") {
-      dump("URL is: " + aURI.spec + "\n");
       let pi = this.fp.applyFilter(null, aURI, null);
       if (typeof pi != "string") {
-        // TODO: Can we be sure we got a nsIProxyInfo object here?
-        dump("Proxy for URL: " + aURI.spec + " got resolved! Continuing...\n");
+        // TODO: Can we be sure we got a nsIProxyInfo object here? I don't think
+        // so: _err() seems to give back a proxy!?
         aCallback.onProxyAvailable(null, aURI, pi, 0);
       } else {
-        // We are not ready yet, queue the callback...
-        dump("Queuing request: " + aURI.spec + " for proxy " + pi.slice(5) + "\n");
-        // We save the proxy ID as well to be able to only call the
-        // onProxyAvailable() method of those requests whose proxy just loaded
-        // the PAC file. Otherwise it could happen in pattern mode that one
-        // proxy has already loaded a PAC file and thus emtpying the request
-        // queue which contains requests that should be done via an other proxy
-        // which is still loading its PAC.
+        // We are not ready yet, queue the callback... We save the proxy ID as
+        // well to be able to only call the onProxyAvailable() method of those
+        // requests whose proxy just loaded the PAC file. Otherwise it could
+        // happen in pattern mode that one proxy has already loaded a PAC file
+        // and thus emptying the request queue which contains requests that
+        // should be done via an other proxy which is still loading its PAC.
         this.queuedRequests.push([aCallback, aURI, pi.slice(5)]);
       }
     } else {
-      dump("We are disabled!\n");
       this.oldPPS.asyncResolve(aURI, aFlags, aCallback);
     }
   },

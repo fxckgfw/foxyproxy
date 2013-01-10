@@ -1,1 +1,2 @@
+* bumped copyright date in license header to "2013"
 * updated locales

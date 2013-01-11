@@ -1887,7 +1887,6 @@ foxyproxy.prototype = {
 // /////////////////////////// LoggEntry class ///////////////////////
 function LoggEntry(proxy, aMatch, uriStr, type, errMsg) {
     this.timestamp = Date.now();
-    dump("URL is: " + uriStr + "\n");
     this.uri = uriStr;
     this.proxy = proxy;
     // Make local copy so logg history doesn't change if user changes proxy

@@ -453,29 +453,29 @@ foxyproxy.prototype = {
   },
 
   mp : null,
-  applyFilter : function(ps, uri, proxy) {
-    function _err(fp, info, extInfo) {
-      var def = fp.proxies.item(fp.proxies.length-1);
-      this.mp = gLoggEntryFactory(def, null, spec, "err", extInfo?extInfo:info);
-      fp.notifier.alert(info, fp.getMessage("see.log"));
-      return def; // Failsafe: use lastresort proxy if nothing else was chosen
-    }
 
+  applyFilter : function(ps, uri, proxy) {
+    var spec = "";
     try {
       var s = uri.scheme;
-      if (s == "feed" || s == "sacore" || s == "dssrequest") return; /* feed schemes handled internally by browser. ignore Mcafee site advisor (http://foxyproxy.mozdev.org/drupal/content/foxyproxy-latest-mcafee-site-advisor) */
-      var spec = uri.spec, previousProxy = this.mp ? this.mp.proxy : null;
+      // feed schemes handled internally by browser. ignore Mcafee site advisor
+      // http://web.archive.org/web/20110625145438/http://foxyproxy.mozdev.org/
+      // drupal/content/foxyproxy-latest-mcafee-site-advisor
+      if (s == "feed" || s == "sacore" || s == "dssrequest") return;
+      spec = uri.spec;
+      var previousProxy = this.mp ? this.mp.proxy : null;
       this.mp = this.applyMode(spec);
       var ret = this.mp.proxy.getProxy(spec, uri.host, this.mp);
       if (ret) {
         this.handleCacheAndCookies(this.mp.proxy, previousProxy);
         return ret;
       }
-      return _err(this, this.getMessage("route.error"));
+      return this._err(spec, this.getMessage("route.error"));
     }
     catch (e) {
       dump("applyFilter: " + e + "\n" + e.stack + "\nwith url " + uri.spec + "\n");
-      return _err(this, this.getMessage("route.exception", [""]), this.getMessage("route.exception", [": " + e]));
+      return this._err(spec, this.getMessage("route.exception", [""]),
+        this.getMessage("route.exception", [": " + e]));
     }
     finally {
       // Our custom return value is a string in Gecko > 17 indicating that we
@@ -486,6 +486,13 @@ foxyproxy.prototype = {
         this.logg.add(this.mp);
       }
     }
+  },
+
+  _err : function(spec, info, extInfo) {
+    var def = this.proxies.item(this.proxies.length-1);
+    this.mp = gLoggEntryFactory(def, null, spec, "err", extInfo?extInfo:info);
+    this.notifier.alert(info, this.getMessage("see.log"));
+    return def; // Failsafe: use lastresort proxy if nothing else was chosen
   },
 
   getPrefsService : function(str) {
@@ -1880,27 +1887,38 @@ foxyproxy.prototype = {
 // /////////////////////////// LoggEntry class ///////////////////////
 function LoggEntry(proxy, aMatch, uriStr, type, errMsg) {
     this.timestamp = Date.now();
+    dump("URL is: " + uriStr + "\n");
     this.uri = uriStr;
     this.proxy = proxy;
-    this.proxyName = proxy.name; // Make local copy so logg history doesn't change if user changes proxy
-    this.proxyNotes = proxy.notes;  // ""
+    // Make local copy so logg history doesn't change if user changes proxy
+    this.proxyName = proxy.name;
+    // See last comment
+    this.proxyNotes = proxy.notes;
     if (type == "pat") {
-      this.matchName = aMatch.name;  // Make local copy so logg history doesn't change if user changes proxy
-      this.matchPattern = aMatch.pattern; // ""
+      // See last comment
+      this.matchName = aMatch.name;
+      // See last comment
+      this.matchPattern = aMatch.pattern;
       this.matchType = aMatch.isRegEx ? this.regExMsg : this.wcMsg;
-      this.whiteBlack = aMatch.isBlackList ? this.blackMsg : this.whiteMsg; // ""
-      this.caseSensitive = aMatch.caseSensitive ? this.yes : this.no; // ""
+      // See last comment
+      this.whiteBlack = aMatch.isBlackList ? this.blackMsg : this.whiteMsg;
+      // See last comment
+      this.caseSensitive = aMatch.caseSensitive ? this.yes : this.no;
     }
     else if (type == "ded") {
-      this.caseSensitive = this.whiteBlack = this.matchName = this.matchPattern = this.matchType = this.allMsg;
+      this.caseSensitive = this.whiteBlack = this.matchName =
+        this.matchPattern = this.matchType = this.allMsg;
     }
     else if (type == "rand") {
-      this.matchName = this.matchPattern = this.matchType = this.whiteBlack = this.randomMsg;
+      this.matchName = this.matchPattern = this.matchType =
+        this.whiteBlack = this.randomMsg;
     }
     else if (type == "round") {
     }
     else if (type == "err") {
       this.errMsg = errMsg;
+      this.caseSensitive = this.whiteBlack = this.matchName =
+        this.matchPattern = this.matchType = "";
     }
     this.colorString = proxy.colorString;
 };

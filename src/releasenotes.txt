@@ -1,2 +1,3 @@
+* error messages are showing up in FoxyProxy's log tree now
 * bumped copyright date in license header to "2013"
 * updated locales

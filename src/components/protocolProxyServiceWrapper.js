@@ -54,30 +54,29 @@ ProtocolProxyServiceWrapper.prototype = {
         this.queuedRequests.push([aCallback, aURI, pi.slice(5)]);
       }
     } else {
-      this.oldPPS.asyncResolve(aURI, aFlags, aCallback);
+      this.oldPPS.asyncResolve.apply(this.oldPPS, arguments);
     }
   },
 
   getFailoverForProxy : function(aProxyInfo, aURI, aReason) {
-    return this.oldPPS.getFailoverForProxy(aProxyInfo, aURI, aReason);
+    return this.oldPPS.getFailoverForProxy.apply(this.oldPPS, arguments);
   },
 
   newProxyInfo : function(aType, aHost, aPort, aFlags, aFailoverTimeout,
                           aFailoverProxy) {
-    return this.oldPPS.newProxyInfo(aType, aHost, aPort, aFlags,
-        aFailoverTimeout, aFailoverProxy);
+    return this.oldPPS.newProxyInfo.apply(this.oldPPS, arguments);
   },
 
   resolve : function(aURI, aFlags) {
-    return this.oldPPS.resolve(aURI, aFlags);
+    return this.oldPPS.resolve.apply(this.oldPPS, arguments);
   },
 
   registerFilter : function(aFilter, aPosition) {
-    this.oldPPS.registerFilter(aFilter, aPosition);
+    this.oldPPS.registerFilter.apply(this.oldPPS, arguments);
   },
 
   unregisterFilter : function(aFilter) {
-    this.oldPPS.unregisterFilter(aFilter);
+    this.oldPPS.unregisterFilter.apply(this.oldPPS, arguments);
   },
 
   // nsIProtocolProxyService2

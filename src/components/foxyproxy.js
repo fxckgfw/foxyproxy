@@ -491,8 +491,12 @@ foxyproxy.prototype = {
   _err : function(spec, info, extInfo) {
     var def = this.proxies.item(this.proxies.length-1);
     this.mp = gLoggEntryFactory(def, null, spec, "err", extInfo?extInfo:info);
-    this.notifier.alert(info, this.getMessage("see.log"));
-    return def; // Failsafe: use lastresort proxy if nothing else was chosen
+    // We don't have a logging tab in FoxyProxy Basic. Thus we don't show the
+    // advice to look there for further information in that case.
+    let message = this.isFoxyProxySimple() ? "" : this.getMessage("see.log");
+    this.notifier.alert(info, message);
+    // Failsafe: use lastresort proxy if nothing else was chosen
+    return def;
   },
 
   getPrefsService : function(str) {

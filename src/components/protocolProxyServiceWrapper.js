@@ -85,6 +85,12 @@ ProtocolProxyServiceWrapper.prototype = {
     this.oldPPS.QueryInterface(nsIProtocolProxyService2).reloadPAC();
   },
 
+  // It is deprecated but Java(tm) at least is using it. Thus we need to handle
+  // it as well...
+  deprecatedBlockingResolve : function(aURI, aFlags) {
+    return this.fp.applyFilter(null, aURI, null);
+  },
+
   classDescription: "FoxyProxy's protocol proxy service wrapper",
   contractID: "@mozilla.org/network/protocol-proxy-service;1",
   classID: Components.ID("{e52f4b1f-3338-4be6-b9b3-ac0861749627}"),

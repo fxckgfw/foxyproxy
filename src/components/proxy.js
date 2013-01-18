@@ -775,9 +775,9 @@ Proxy.prototype = {
         if (!this.systemProxyPAC.url || this.systemProxyPAC.url != pacURI) {
           // This case means the user either changed the system proxy settings
           // from direct or manual proxy to PAC mode for the first time in the
-          // session. Or the PAC URI changes meanwhile in the system proxy
-          // settings while still having the proxy in use. In both cases we
-          // have to reload the PAC.
+          // session. Or the PAC URI changed in the system proxy settings while
+          // still having the proxy in use. In both cases we have to reload the
+          // PAC.
           this.systemProxyPAC.url = pacURI;
           this.systemProxyPAC.loadPAC();
           return this.resolve(spec, host, mp, "system");

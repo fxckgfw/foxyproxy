@@ -305,10 +305,16 @@ fpProxyAutoConfig.prototype = {
       let autoconfMessage = "";
       if (pacURI == "" || pacText == "") {
         dump("FoxyProxy: init(), pacURI or pacText empty\n");
-        if (this.owner.owner.autoconfMode  === "pac") {
-          autoconfMessage = "pac.empty";
+        if (this.owner && this.owner.owner) {
+          if (this.owner.owner.autoconfMode  === "pac") {
+            autoconfMessage = "pac.empty";
+          } else {
+            autoconfMessage = "wpad.empty";
+          }
         } else {
-          autoconfMessage = "wpad.empty";
+          // No PAC file content found while executing |testPAC()|. Let's assume
+          // the user tested a PAC file. 
+          autoconfMessage = "pac.empty";
         }
         throw new Error(fp.getMessage(autoconfMessage));
       }
@@ -333,15 +339,25 @@ fpProxyAutoConfig.prototype = {
       // everytime in getProxyxForURI().
       if (!("FindProxyForURL" in this.sandbox)) {
         dump("FoxyProxy: init(), FindProxyForURL not found\n");
-        if (this.owner.owner.autoconfMode === "pac") {
-          autoconfMessage = "pac.fcn.notfound2";
+        if (this.owner && this.owner.owner) {
+          if (this.owner.owner.autoconfMode === "pac") {
+            autoconfMessage = "pac.fcn.notfound2";
+          } else {
+            autoconfMessage = "wpad.fcn.notfound";
+          }
         } else {
-          autoconfMessage = "wpad.fcn.notfound";
+          // No FindProxyForURL in a PAC file called via |testPAC()|. Let's
+          // assume it is a PAC file.
+          autoconfMessage = "pac.fcn.notfound2";
         }
         throw new Error(fp.getMessage(autoconfMessage));
       }
-      // PAC file is ready
-      this.owner.owner.initPAC = false;
+      // We need the if-clause here as |this.owner| can be |null|. That happens
+      // if it |testPAC()| is called in addeditproxy.js.
+      if (this.owner && this.owner.owner) {
+        // PAC file is ready.
+        this.owner.owner.initPAC = false;
+      }
       return true;
     },
 

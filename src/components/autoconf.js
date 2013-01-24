@@ -353,7 +353,7 @@ fpProxyAutoConfig.prototype = {
         throw new Error(fp.getMessage(autoconfMessage));
       }
       // We need the if-clause here as |this.owner| can be |null|. That happens
-      // if it |testPAC()| is called in addeditproxy.js.
+      // if |testPAC()| is called in addeditproxy.js.
       if (this.owner && this.owner.owner) {
         // PAC file is ready.
         this.owner.owner.initPAC = false;

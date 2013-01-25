@@ -522,7 +522,6 @@ Proxy.prototype = {
 
   preparePACLoading: function() {
     // The PAC we are going to load is not available yet, thus...
-    dump("We are initializing the PAC file now!\n");
     this.initPAC = true;
     if (this._mode === "auto") {
       if (this._autoconfMode === "pac") {

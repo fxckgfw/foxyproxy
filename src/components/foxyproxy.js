@@ -158,7 +158,7 @@ foxyproxy.prototype = {
           gObsSvc.addObserver(this, "quit-application", false);
           gObsSvc.addObserver(this, "domwindowclosed", false);
           gObsSvc.addObserver(this, "domwindowopened", false);
-          //this.auth.install();
+          this.auth.install();
           // Making this service available to our protocol proxy service
           // wrapper.
           CC["@mozilla.org/network/protocol-proxy-service;1"].getService().
@@ -192,7 +192,7 @@ foxyproxy.prototype = {
         gObsSvc.removeObserver(this, "quit-application");
         gObsSvc.removeObserver(this, "domwindowclosed");
         gObsSvc.removeObserver(this, "domwindowopened");
-        //this.auth.uninstall(true);
+        this.auth.uninstall(true);
         this.defaultPrefs.uninit();
         break;
       case "domwindowopened":
@@ -1865,7 +1865,7 @@ foxyproxy.prototype = {
           // although it was not reproducible with FF 15.0.1, FF 16.0 and
           // FF 17.0a2.
           try {
-            httpChannel.notificationCallbacks = new AuthPromptProvider(gFP,
+            httpChannel.notificationCallbacks = new gFP.AuthPromptProvider(gFP,
               httpChannel.notificationCallbacks);
           } catch (e) {}
         }

@@ -66,6 +66,7 @@ api.prototype = {
         that.fp.proxies.deleteAll();
         that.fp.fromDOM(node, node);
       },
+      successArgs: ""
     };
     this.notify(metaCallback);
   },

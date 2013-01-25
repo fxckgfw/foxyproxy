@@ -9,7 +9,10 @@
   http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 **/
 
-var EXPORTED_SYMBOLS = ["AuthPromptProvider"];
+let EXPORTED_SYMBOLS = ["AuthPromptProvider"];
+
+let CC = Components.classes, CI = Components.interfaces, CR = Components.
+  results;
 
 function AuthPromptProvider(fp, originalNotificationCallbacks) {
   this.fp = fp;
@@ -122,8 +125,8 @@ AuthPromptProvider.prototype = {
     var proxy = this.fp.applyMode(channel.URI.spec).proxy;
     if (!proxy || !proxy.manualconf.username || !proxy.manualconf.password) {
       if (!this.fpc)
-        this.fpc = CC["@leahscape.com/foxyproxyplus/common;1"].
-          getService().wrappedJSObject;
+        this.fpc = CC["@leahscape.org/foxyproxy/common;1"].getService().
+          wrappedJSObject;
       var ps = CC["@mozilla.org/embedcomp/prompt-service;1"].
         getService(CI.nsIPromptService2);
 

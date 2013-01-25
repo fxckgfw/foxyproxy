@@ -1,3 +1,4 @@
 * error messages are showing up in FoxyProxy's log tree now
+* fixed possible null pointer in API code
 * advice to consult the log tree on proxy errors is not shown anymore [FP Basic]
 * updated locales

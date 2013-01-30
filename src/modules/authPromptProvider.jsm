@@ -169,8 +169,6 @@ AuthPromptProvider.prototype = {
     // (06:56:39 PM) bz: ericjung: how about just returning the original
     //              notificationCallbacks?
     // (06:56:51 PM) bz: ericjung: if asked for an nsIBadCertListener/2? 
-    // TODO: Fix bug 276 (we should handle _both_ getInterface() calls as the
-    // problem occurs for the first one probably as well).
     if (aIID.equals(CI.nsIBadCertListener2) && this.
         originalNotificationCallbacks) {
       try {

@@ -24,6 +24,14 @@ function Common() {
     nsIVersionComparator);
   // We need that to handle bug 769764 properly.
   fp.isGecko17 = this.vc.compare(this.appInfo.platformVersion, "18.0a1") < 0;
+  // We only need to add the foxyproxy service to our wrapper if we are about
+  // to is it. But that only happens on Gecko >= 18. Adding it in older versions
+  // may result in serious bugs (reproducible on Win7 with Firefox 3.6.28).
+  if (!fp.isGecko17) {
+    // Making this service available to our protocol proxy service wrapper.
+    CC["@mozilla.org/network/protocol-proxy-service;1"].getService().
+      wrappedJSObject.fp = fp;
+  }
   let uuid = fp.isFoxyProxySimple() ? "foxyproxy-basic@eric.h.jung" : "foxyproxy@eric.h.jung";
   // Get installed version
   if ("@mozilla.org/extensions/manager;1" in CC) {

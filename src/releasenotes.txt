@@ -1,5 +1,7 @@
 * support of proxy authentication credentials
 * error messages are showing up in FoxyProxy's log tree now
+* fixed broken plugin handling if FoxyProxy is disabled (see:
+  http://forums.getfoxyproxy.org/viewtopic.php?f=4&t=820)
 * fixed broken FoxyProxy on older Windows/Firefox 3.6.* systems which was caused
   by our new PAC handling code (thanks to Joe Greenman for his debugging help)
 * fixed possible null pointer in API code

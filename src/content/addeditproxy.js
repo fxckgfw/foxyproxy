@@ -22,7 +22,7 @@ function onLoad() {
   fpc = CC["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject;
   overlay = fpc.getMostRecentWindow().foxyproxy;
   foxyproxy = CC["@leahscape.org/foxyproxy/service;1"].
-    getService().wrappedJSObject; 
+    getService().wrappedJSObject;
   autoconfUrl = document.getElementById("autoconfUrl");
   autoconfMode = document.getElementById("autoconfMode");
   reloadFreq = document.getElementById("autoConfReloadFreq");
@@ -614,12 +614,18 @@ function toggleMode(mode) {
     // We do not need the file picker either.
     document.getElementById("autoconf-broadcaster3").setAttribute("disabled",
       "true");
+    // And no help icon.
+    document.getElementById("autoconf-broadcaster4").setAttribute("style",
+      "visibility: hidden");
   } else if (mode == "pac") {
     autoconfUrl.value = proxy.autoconf.url;
     autoconfUrl.removeAttribute("readonly");
     // If we clicked on WPAD first we have to enable the file picker again.
     document.getElementById("autoconf-broadcaster3").
       removeAttribute("disabled");
+    // And the help icon.
+    document.getElementById("autoconf-broadcaster4").setAttribute("style",
+      "visibility: visible");
     onAutoConfUrlInput();
   } else {
     document.getElementById("disabled-broadcaster").removeAttribute("disabled");

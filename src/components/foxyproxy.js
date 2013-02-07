@@ -159,10 +159,6 @@ foxyproxy.prototype = {
           gObsSvc.addObserver(this, "domwindowclosed", false);
           gObsSvc.addObserver(this, "domwindowopened", false);
           this.auth.install();
-          // Making this service available to our protocol proxy service
-          // wrapper.
-          CC["@mozilla.org/network/protocol-proxy-service;1"].getService().
-            wrappedJSObject.fp = this;
           try {
             this.init();
             this.patternSubscriptions.init();

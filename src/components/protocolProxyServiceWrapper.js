@@ -84,10 +84,15 @@ ProtocolProxyServiceWrapper.prototype = {
     this.oldPPS.QueryInterface(nsIProtocolProxyService2).reloadPAC();
   },
 
-  // It is deprecated but Java(tm) at least is using it. Thus we need to handle
-  // it as well...
+  // It is deprecated but Java(tm) at least and other plugins are still using
+  // it. Thus we need to handle it as well, but only if FoxyProxy is enabled.
   deprecatedBlockingResolve : function(aURI, aFlags) {
-    return this.fp.applyFilter(null, aURI, null);
+    if (this.fp.mode != "disabled") {
+      return this.fp.applyFilter(null, aURI, null);
+    } else {
+      return this.oldPPS.deprecatedBlockingResolve.apply(this.oldPPS,
+        arguments);
+    }
   },
 
   classDescription: "FoxyProxy's protocol proxy service wrapper",

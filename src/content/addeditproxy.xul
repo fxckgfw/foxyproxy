@@ -271,7 +271,7 @@
                    <button command="testAutoConfCmd"/>
                   <toolbarbutton class="foxyproxy-ref"
                     popup="pacTipsPopup" tooltiptext="&foxyproxy.tip.label;"
-                    observes="autoconf-broadcaster1"/>
+                    observes="autoconf-broadcaster4"/>
                 </row>
                 <row align="center">
                   <hbox align="center">
@@ -424,8 +424,7 @@
       <separator class="thin"/>
 			<description width="1"><!-- weirdness on ff3 if no width specified -->&foxyproxy.pactip4.label;
       <html:a class="link"        
-        onclick="fpc.openAndReuseOneTabPerURL('http://getfoxyproxy.org/relativescheme.html');">&foxyproxy.pactip5.label;</html:a>
-      &foxyproxy.pactip6.label;
+        onclick="fpc.openAndReuseOneTabPerURL('http://getfoxyproxy.org/relativescheme.html');">&foxyproxy.pactip5.label;</html:a>&foxyproxy.pactip6.label;
       <html:a class="link"
         onclick="fpc.openAndReuseOneTabPerURL('http://www.mozilla.org/support/firefox/profile#locate');">&foxyproxy.pactip7.label;</html:a>
       &foxyproxy.pactip8.label;</description>
@@ -549,6 +548,7 @@
   <broadcaster id="autoconf-broadcaster1" disabled="true"/>
   <broadcaster id="autoconf-broadcaster2" disabled="true"/>
   <broadcaster id="autoconf-broadcaster3" disabled="true"/>
+  <broadcaster id="autoconf-broadcaster4" style="visibilty: visible"/>
   <broadcaster id="urls-tree-row-selected" disabled="true"/>
   <broadcaster id="torwiz-broadcaster" hidden="false"/>
   <broadcaster id="not-torwiz-broadcaster" hidden="true"/>

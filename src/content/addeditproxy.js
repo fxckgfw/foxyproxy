@@ -17,12 +17,11 @@ var urlsTree, proxy, foxyproxy, autoconfUrl, overlay, isWindows, fpc,
 Components.utils.import("resource://foxyproxy/utils.jsm");
 
 function onLoad() {
-  isWindows = CC["@mozilla.org/xre/app-info;1"].
-    getService(CI.nsIXULRuntime).OS == "WINNT";
   fpc = CC["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject;
-  overlay = fpc.getMostRecentWindow().foxyproxy;
   foxyproxy = CC["@leahscape.org/foxyproxy/service;1"].
     getService().wrappedJSObject;
+  overlay = fpc.getMostRecentWindow().foxyproxy;
+  isWindows = fpc.xulRuntime.OS == "WINNT";
   autoconfUrl = document.getElementById("autoconfUrl");
   autoconfMode = document.getElementById("autoconfMode");
   reloadFreq = document.getElementById("autoConfReloadFreq");

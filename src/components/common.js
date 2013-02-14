@@ -20,6 +20,8 @@ function Common() {
   this.wrappedJSObject = this;
   fp = CC["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;
   this.appInfo = CC["@mozilla.org/xre/app-info;1"].getService(CI.nsIXULAppInfo);
+  this.xulRuntime = CC["@mozilla.org/xre/app-info;1"].getService(CI.
+    nsIXULRuntime);
   this.vc = CC["@mozilla.org/xpcom/version-comparator;1"].getService(CI.
     nsIVersionComparator);
   // We need that to handle bug 769764 properly.

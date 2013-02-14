@@ -22,7 +22,7 @@
   <stringbundleset id="foxyproxy-strings">
     <stringbundle src="chrome://foxyproxy/locale/foxyproxy.properties"/>
   </stringbundleset>
-  
+
   <!-- firefox tools menu -->
   <menupopup id="menu_ToolsPopup">
     <menu id="foxyproxyMenu"
@@ -45,9 +45,9 @@
                  onpopuphiding="foxyproxy.onPopupHiding();"/>
     </menu>
   </menupopup>
-  
+
   <keyset id="mainKeyset">
-    <!-- accel is ctrl on windows, cmd on mac -->  
+    <!-- accel is ctrl on windows, cmd on mac -->
     <key id="key_foxyproxyfocus"
          keycode="VK_F2"
          modifiers="accel"
@@ -63,7 +63,7 @@
          modifiers="alt"
          oncommand="foxyproxy.selection.onChangeHost();"/>
   </keyset>
-  
+
   <menupopup id="contentAreaContextMenu">
     <menu id="foxyproxy-contextmenu-icon"
           accesskey="&foxyproxy.accesskey;">
@@ -72,7 +72,7 @@
                  onpopuphiding="foxyproxy.onPopupHiding();"/>
     </menu>
   </menupopup>
-  
+
   <statusbar id="status-bar">
     <hbox>
       <popupset style="overflow: auto;">
@@ -93,7 +93,7 @@
       context="" mousethrough="never"/>
     <!-- mousethrough is for SB. See http://www.songbirdnest.com/node/2547 -->
     <!-- We declare the context attribute but have no id as argument in order
-         to avoid the mess with getting the default context menu shown. --> 
+         to avoid the mess with getting the default context menu shown. -->
     <statusbarpanel id="foxyproxy-statusbar-icon"
       onclick="foxyproxy.onSBTBClick(event, foxyproxy.fp.statusbar);"
       hidden="true" context="" mousethrough="never"/>
@@ -101,7 +101,7 @@
 
   <!-- Toolbar -->
   <!-- We declare the context attribute but have no id as argument in order
-       to avoid the mess with getting the default context menu shown. --> 
+       to avoid the mess with getting the default context menu shown. -->
   <toolbarpalette id="BrowserToolbarPalette">
     <toolbarbutton id="foxyproxy-toolbar-icon" class="toolbarbutton-1"
       type="menu" orient="horizontal" label="&foxyproxy.standard.label;"
@@ -114,6 +114,5 @@
     <menupopup id="foxyproxy-toolbarbutton-popup"
                onpopuphiding="foxyproxy.onPopupHiding();"
                onpopupshowing="foxyproxy.onPopupShowing(this, event);"/>
-  </popupset> 
-   
+  </popupset>
 </overlay>

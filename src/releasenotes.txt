@@ -8,4 +8,5 @@
   by our new PAC handling code (thanks to Joe Greenman for his debugging help)
 * fixed possible null pointer in API code
 * advice to consult the log tree on proxy errors is not shown anymore [FP Basic]
+* code clean-up
 * updated locales

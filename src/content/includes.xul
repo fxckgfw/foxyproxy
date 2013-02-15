@@ -15,11 +15,6 @@
   xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
   xmlns:html="http://www.w3.org/1999/xhtml">
 
-<script>
-  // ensure fpc is defined for use within this file
-  var fpclocal = Components.classes["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject;
-</script>
-
 <!-- begin: thanks to DownThemAll -->
 <menupopup id="wildcardURLPatternReferencePopup" position="before_end">
   <label id="wildcardref" value="&foxyproxy.wildcard.reference.label;" style="font-weight: bold; text-align: center; margin: 1em 0 0 0;" />
@@ -288,7 +283,7 @@
           style="color: blue; cursor: pointer; margin-left: -0.5em;"
           tooltiptext="&foxyproxy.whitelist.tooltip;"
           class="text-link"
-          onclick="fpclocal.openAndReuseOneTabPerURL('http://en.wikipedia.org/wiki/Whitelist');"/>
+          onclick="fpc.openAndReuseOneTabPerURL('http://en.wikipedia.org/wiki/Whitelist');"/>
         <label value="&foxyproxy.whitelist.description.label;"/>
         <toolbarbutton class="foxyproxy-ref" popup="wbdesc" tooltiptext="&foxyproxy.wildcard.reference.tooltip;"/>       
       </row>
@@ -300,7 +295,7 @@
         style="margin-left: -0.5em;"
         tooltiptext="&foxyproxy.blacklist.tooltip;"
         class="text-link"
-        onclick="fpclocal.openAndReuseOneTabPerURL('http://en.wikipedia.org/wiki/Blacklist');"/>
+        onclick="fpc.openAndReuseOneTabPerURL('http://en.wikipedia.org/wiki/Blacklist');"/>
       <label value="&foxyproxy.blacklist.description.label;"/>        
       <spacer/>
     </row>
@@ -320,7 +315,7 @@
         <label value="&foxyproxy.wildcard.label;"
           style="margin-left: -0.5em;"
           class="text-link"
-          onclick="fpclocal.openAndReuseOneTabPerURL('http://getfoxyproxy.org/patterns.html#wildcards');"
+          onclick="fpc.openAndReuseOneTabPerURL('http://getfoxyproxy.org/patterns.html#wildcards');"
           tooltiptext="&foxyproxy.wildcard.tooltip;"/>
         <label id="wildcardExample" value="&foxyproxy.wildcard.example.label;"/>                                            
       </row>
@@ -331,7 +326,7 @@
         <label value="&foxyproxy.regex.label;"
           style="margin-left: -0.5em;"
           class="text-link"
-          onclick="fpclocal.openAndReuseOneTabPerURL('http://getfoxyproxy.org/patterns.html#regex');"
+          onclick="fpc.openAndReuseOneTabPerURL('http://getfoxyproxy.org/patterns.html#regex');"
           tooltiptext="&foxyproxy.regex.tooltip;"/> 
         <label id="regexExample" value="&foxyproxy.regex.example.label2;"/>       
         <spacer/>      

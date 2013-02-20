@@ -548,7 +548,7 @@
   <broadcaster id="autoconf-broadcaster1" disabled="true"/>
   <broadcaster id="autoconf-broadcaster2" disabled="true"/>
   <broadcaster id="autoconf-broadcaster3" disabled="true"/>
-  <broadcaster id="autoconf-broadcaster4" style="visibilty: visible"/>
+  <broadcaster id="autoconf-broadcaster4" style="visibility: visible"/>
   <broadcaster id="urls-tree-row-selected" disabled="true"/>
   <broadcaster id="torwiz-broadcaster" hidden="false"/>
   <broadcaster id="not-torwiz-broadcaster" hidden="true"/>

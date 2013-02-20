@@ -1,12 +1,1 @@
-* support of proxy authentication credentials
-* error messages are showing up in FoxyProxy's log tree
-* added FoxyProxy icons and functionality to SeaMonkey's messenger window
-* PAC help icon is hidden if WPAD mode is selected
-* fixed broken plugin handling if FoxyProxy is disabled (see:
-  http://forums.getfoxyproxy.org/viewtopic.php?f=4&t=820)
-* fixed broken FoxyProxy on older Windows/Firefox 3.6.* systems which was caused
-  by our new PAC handling code (thanks to Joe Greenman for his debugging help)
-* fixed possible null pointer in API code
-* advice to consult the log tree on proxy errors is not shown anymore [FP Basic]
-* code clean-up
-* updated locales
+* fixed small typo in CSS property

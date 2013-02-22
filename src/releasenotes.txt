@@ -1,1 +1,0 @@
-* fixed small typo in CSS property

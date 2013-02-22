@@ -150,7 +150,6 @@ let CI = Components.interfaces, CC = Components.classes, gObsSvc =
       }
     },
 
-    // TODO: Merge showWarningIfDesired().
     showCookieWarningIfDesired : function(win, msg, name, fp) {
       if (fp.warnings._warnings[name] === undefined ||
           fp.warnings._warnings[name]) {
@@ -160,7 +159,7 @@ let CI = Components.interfaces, CC = Components.classes, gObsSvc =
           getService(CI.nsIPromptService).alertCheck(win,
             fp.getMessage("foxyproxy"), l10nMessage,
             fp.getMessage("message.stop"), cb);
-        // Note we save the inverse of user's selection because the way the
+        // Note: We save the inverse of user's selection because the way the
         // question is phrased.
         fp.warnings._warnings[name] = !cb.value;
         fp.writeSettingsAsync();

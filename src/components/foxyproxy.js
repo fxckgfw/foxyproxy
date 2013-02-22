@@ -1752,9 +1752,9 @@ foxyproxy.prototype = {
     _warnings : [],
 
     /**
-     * Displays a message to the user with "Cancel" and "OK" buttons
+     * Displays a message to the user with "No" and "Yes" buttons
      * and a "Do not display the message again" checkbox. The latter is maintained
-     * internally. Function returns false if user clicks "Cancel", true if "OK".
+     * internally. Function returns false if user clicks "No", true if "Yes".
      * 
      * If no message is to be displayed because the user previously disabled them,
      * true is returned.
@@ -1768,12 +1768,18 @@ foxyproxy.prototype = {
      */
     showWarningIfDesired : function(win, msg, name) {
       if (this._warnings[name] == undefined || this._warnings[name]) {
-        var l10nMessage = gFP.getMessage(msg[0], msg.slice(1)),
-          cb = {}, ret =
-          CC["@mozilla.org/embedcomp/prompt-service;1"].getService(CI.nsIPromptService)
-            .confirmCheck(win, gFP.getMessage("foxyproxy"), l10nMessage,
-                gFP.getMessage("message.stop"), cb);
-        this._warnings[name] = !cb.value; /* note we save the inverse of user's selection because the way the question is phrased */
+        let l10nMessage = gFP.getMessage(msg[0], msg.slice(1)),
+          cb = {}, prompts = CC["@mozilla.org/embedcomp/prompt-service;1"].
+          getService(CI.nsIPromptService);
+        // 0 means the "Yes" button got clicked
+        let ret = prompts.confirmEx(win, gFP.getMessage("foxyproxy"), l10nMessage,
+          prompts.BUTTON_TITLE_IS_STRING * prompts.BUTTON_POS_0 +
+          prompts.BUTTON_TITLE_IS_STRING * prompts.BUTTON_POS_1,
+          gFP.getMessage("yes"), gFP.getMessage("no"), null,
+          gFP.getMessage("message.stop"), cb) === 0;
+        // Note: We save the inverse of user's selection because the way the
+        // question is phrased.
+        this._warnings[name] = !cb.value;
         gFP.writeSettingsAsync();
         return ret;
       }

@@ -145,7 +145,7 @@ AuthPromptProvider.prototype = {
       // If we had no luck with prepopulating the auth dialog try finding some
       // credentials from the login manager. We only consult it if we neither
       // found a username nor a password as we do not know what the user wants
-      // if only one is available.
+      // if only one of them is available.
       if (!(authInfo.username || authInfo.password)) {
         let proxyLogins;
         let loginManager = CC["@mozilla.org/login-manager;1"].getService(CI.
@@ -174,7 +174,7 @@ AuthPromptProvider.prototype = {
               authInfo.username = login[0].username;
               authInfo.password = login[0].password;
               authInfo.domain = login[0].domain;
-              // Save our settings so the user doesn't have to enter again
+              // Save our settings so the user doesn't have to enter them again
               if (proxy) {
                 proxy.manualconf.username = authInfo.username;
                 proxy.manualconf.password = authInfo.password;
@@ -188,7 +188,7 @@ AuthPromptProvider.prototype = {
       }
       if (ps.promptAuth(this.fpc.getMostRecentWindow(), channel, level,
           authInfo, null, {value:null})) {
-        // Save our settings so the user doesn't have to enter again
+        // Save our settings so the user doesn't have to enter them again
         if (proxy) {
           proxy.manualconf.username = authInfo.username;
           proxy.manualconf.password = authInfo.password;

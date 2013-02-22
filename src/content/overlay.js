@@ -580,7 +580,7 @@ end-foxyproxy-simple !*/
         prompts.BUTTON_TITLE_IS_STRING * prompts.BUTTON_POS_0 +
         prompts.BUTTON_TITLE_IS_STRING * prompts.BUTTON_POS_1,
       btn1Text, btn2Text, null, null, {}) == 0; // 0 means first button ("yes") was pressed
-    else { 
+    else {
       // No longer displays in proper order and no longer returns proper values on FF 3.0.x. (and maybe above?)
       // Insists that 2nd displayed button (1-index) is BUTTON_POS_2 (0-indexed)
       /*var ret = prompts.confirmEx(parent, this.fp.getMessage("foxyproxy"), text,

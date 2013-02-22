@@ -16,6 +16,8 @@ let CC = Components.classes, CI = Components.interfaces, CR = Components.
 
 function AuthPromptProvider(fp, originalNotificationCallbacks) {
   this.fp = fp;
+  this.fpc = CC["@leahscape.org/foxyproxy/common;1"].getService().
+    wrappedJSObject;
   this.originalNotificationCallbacks = originalNotificationCallbacks;
 }
 
@@ -113,12 +115,26 @@ AuthPromptProvider.prototype = {
     // nsHttpChannelAuthProvider.cpp (PromptForIdentiy() and
     // GetCredentialsForChallenge()) for details.
     this.fp.authCounter++;
-    if (this.fp.authCounter < 3) {
+    if (this.fp.authCounter <= 3) {
       // TODO: When we recognize that the credentials are wrong (i.e. the
       // counter is > 1) we should contact the user and ask her whether she
       // wants to change them now ([Now] [Not now] buttons). If so, we could
       // open the proper proxy and after the dialog got closed retry the
       // authentication. Note: We need to raise the max value of the counter.
+      if (this.fp.authCounter > 1) {
+        try {
+          let win = this.fpc.getMostRecentWindow(null); 
+          let cb = {};
+          if (this.fp.warnings.showWarningIfDesired(win,
+              ["authentication.credentials.retry"], "retryAuthCredentials")) {
+            dump("'Yes' pressed!\n");
+          } else {
+            return null;
+          }
+        } catch (e) {
+          dump("Error while trying to get |ask()| " + e + "\n");
+        }
+      }
       return this._getCredentials(channel, level, authInfo);
     } else {
       this.fp.authCounter = 0;
@@ -129,9 +145,6 @@ AuthPromptProvider.prototype = {
   _getCredentials : function(channel, level, authInfo) {
     let proxy = this.fp.applyMode(channel.URI.spec).proxy;
     if (!proxy || !proxy.manualconf.username || !proxy.manualconf.password) {
-      if (!this.fpc)
-        this.fpc = CC["@leahscape.org/foxyproxy/common;1"].getService().
-          wrappedJSObject;
       let ps = CC["@mozilla.org/embedcomp/prompt-service;1"].
         getService(CI.nsIPromptService2);
 

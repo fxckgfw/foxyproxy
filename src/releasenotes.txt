@@ -1,1 +1,2 @@
 * changed URLs to websites where proxy and pattern subscription can be shared
+* bumped maxVersion of Songbird support

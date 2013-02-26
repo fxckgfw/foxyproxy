@@ -106,6 +106,7 @@ AuthPromptProvider.prototype = {
   },
 
   promptAuth : function(channel, level, authInfo) {
+    let proxyInUse = this.fp.applyMode(channel.URI.spec).proxy;
     // We need this hack here as we have to avoid an infinite loop if wrong
     // credentials got entered. The loop occurs as Mozilla is trying to show
     // a dialog after wrong credentials are sent in order to allow the user
@@ -115,19 +116,21 @@ AuthPromptProvider.prototype = {
     // nsHttpChannelAuthProvider.cpp (PromptForIdentiy() and
     // GetCredentialsForChallenge()) for details.
     this.fp.authCounter++;
-    if (this.fp.authCounter <= 3) {
-      // TODO: When we recognize that the credentials are wrong (i.e. the
-      // counter is > 1) we should contact the user and ask her whether she
-      // wants to change them now ([Now] [Not now] buttons). If so, we could
-      // open the proper proxy and after the dialog got closed retry the
-      // authentication. Note: We need to raise the max value of the counter.
+    if (this.fp.authCounter < 3) {
+      // If we recognize that the credentials are wrong (i.e. the counter is
+      // > 1) we contact the user and ask her whether she wants to change them
+      // now.
+      // TODO Note: We need to raise the max value of the counter. <= Do we?
       if (this.fp.authCounter > 1) {
         try {
           let win = this.fpc.getMostRecentWindow(null); 
-          let cb = {};
-          if (this.fp.warnings.showWarningIfDesired(win,
+          if (proxyInUse && this.fp.warnings.showWarningIfDesired(win,
               ["authentication.credentials.retry"], "retryAuthCredentials")) {
-            dump("'Yes' pressed!\n");
+            let params = {inn: {proxy: proxyInUse}, out: null};
+            win.
+              openDialog("chrome://foxyproxy/content/addeditproxy.xul", "",
+                "chrome, dialog, modal, resizable=yes", params).focus();
+            this.fp.writeSettingsAsync();
           } else {
             return null;
           }
@@ -135,15 +138,14 @@ AuthPromptProvider.prototype = {
           dump("Error while trying to get |ask()| " + e + "\n");
         }
       }
-      return this._getCredentials(channel, level, authInfo);
+      return this._getCredentials(channel, level, authInfo, proxyInUse);
     } else {
       this.fp.authCounter = 0;
       return null;
     }
   },
 
-  _getCredentials : function(channel, level, authInfo) {
-    let proxy = this.fp.applyMode(channel.URI.spec).proxy;
+  _getCredentials : function(channel, level, authInfo, proxy) {
     if (!proxy || !proxy.manualconf.username || !proxy.manualconf.password) {
       let ps = CC["@mozilla.org/embedcomp/prompt-service;1"].
         getService(CI.nsIPromptService2);

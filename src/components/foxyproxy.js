@@ -1858,7 +1858,9 @@ foxyproxy.prototype = {
           this.install();
       }
       else if (topic == "http-on-modify-request") {
-        if (subj) {
+        // If we are disabled there is no need to hook the notification
+        // callbacks.
+        if (subj && gFP._mode != "disabled") {
           var httpChannel = subj.QueryInterface(CI.nsIHttpChannel);
           // There may be circumstances where we get an exception which we
           // should catch. One such case is e.g. the load of getfoxyproxy

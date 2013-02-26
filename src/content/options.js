@@ -688,8 +688,14 @@ function onSubscriptionsAction(type) {
 }
 
 function openSubscriptionsURL(type) {
-  fpc.openAndReuseOneTabPerURL("http://getfoxyproxy.org/" + type +
-    "subscriptions/share.html");
+  let path = "subscriptions/";
+  if (type === "proxy") {
+    path = path + "proxies/";
+  } else if (type === "pattern") {
+    path = path + "patterns/"
+  }
+  fpc.openAndReuseOneTabPerURL("http://getfoxyproxy.org/" + path +
+    "share.html");
 }
 
 function onMaxSize() {

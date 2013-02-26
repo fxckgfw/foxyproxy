@@ -1581,7 +1581,8 @@ foxyproxy.prototype = {
     _makeHeaderRow : function(doc, col, gridRows) {
       var label = doc.createElement("label");
       label.setAttribute("value", col);
-      label.setAttribute("style", "font-weight: bold; text-decoration: underline; color: blue;");
+      label.setAttribute("style",
+        "font-weight: bold; text-decoration: underline; color: blue;");
       gridRows.appendChild(label);
     },
 

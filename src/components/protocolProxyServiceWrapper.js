@@ -29,16 +29,11 @@ ProtocolProxyServiceWrapper.prototype = {
 
   // nsIProtocolProxyService
   asyncResolve : function(aURI, aFlags, aCallback) {
-    // We can be pretty sure that we only get called if Gecko > 17. Thus, no
-    // special check here. There is one call to asyncResolve() in Gecko <= 17
-    // (http://mxr.mozilla.org/mozilla-esr17/source/netwerk/protocol/http/
-    //  nsHttpChannel.cpp#1791) but that may happen only after the proxy got
-    // resolved via applyFilter(). FoxyProxy ensures via the latter that this
-    // asyncResolve() is never called, though, as mConnectionInfo->ProxyType()
-    // can never be "unknown" in nsHttpChannel::Connect() with FoxyProxy
-    // enabled: We are returning the last resort proxy if we got an error while
-    // determining the proxy to use.
-    if (this.fp.mode != "disabled") {
+    // |this.fp| is only available if we are using Gecko > 17. Thus we need to
+    // be sure that |this.fp| exists before we check whether the current mode is
+    // disabled. This is especially important as we land here even if we are
+    // using Gecko <= 17 + FoxyProxy disabled.
+    if (this.fp && this.fp.mode != "disabled") {
       let pi = this.fp.applyFilter(null, aURI, null);
       if (typeof pi != "string") {
         // TODO: Can we be sure we got a nsIProxyInfo object here? I don't think
@@ -87,7 +82,7 @@ ProtocolProxyServiceWrapper.prototype = {
   // It is deprecated but Java(tm) at least and other plugins are still using
   // it. Thus we need to handle it as well, but only if FoxyProxy is enabled.
   deprecatedBlockingResolve : function(aURI, aFlags) {
-    if (this.fp.mode != "disabled") {
+    if (this.fp && this.fp.mode != "disabled") {
       return this.fp.applyFilter(null, aURI, null);
     } else {
       return this.oldPPS.deprecatedBlockingResolve.apply(this.oldPPS,

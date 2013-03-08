@@ -12,7 +12,7 @@
 "use strict";
 
 function onLoad() {
-  var errorMessages = [], status, i, treeChildren = []; 
+  var errorMessages = [], status, i, treeChildren = [];
   status = window.arguments[0].inn.status;
   if (window.arguments[0].inn.errorMessages) {
     errorMessages = window.arguments[0].inn.errorMessages;
@@ -24,7 +24,7 @@ function onLoad() {
     treeChildren.push("");
     for (i = 0; i < errorMessages.length; i++) {
       treeChildren.push(errorMessages[i].replace(/\n/g, " "));
-    } 
+    }
   }
   var statusTree = document.getElementById("lastStatusTree");
   statusTree.view = {
@@ -48,13 +48,13 @@ function onLoad() {
     getRowProperties: function(index, prop){},
     getCellProperties: function(row, col, prop){},
     getImageSrc: function(row, col){},
-    cycleHeader: function(col){}  
+    cycleHeader: function(col){}
   };
 }
 
 function copyLastStatus() {
   var clipboardString = "";
-  var statusTree = document.getElementById("lastStatusTree"); 
+  var statusTree = document.getElementById("lastStatusTree");
   var treeRows = statusTree.view.rowCount;
   for (var i = 0; i < treeRows; i++) {
     // We have just one column, thus getting the first is sufficient here.
@@ -68,7 +68,7 @@ function copyLastStatus() {
   }
   Components.classes["@mozilla.org/widget/clipboardhelper;1"].
     getService(Components.interfaces.nsIClipboardHelper).
-    copyString(clipboardString); 
+    copyString(clipboardString);
 }
 
 function onOK() {

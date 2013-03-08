@@ -123,13 +123,13 @@ Common.prototype = {
         return false;
       }
     }
-    else if (p.indexOf("*") == -1 && p.indexOf("?") == -1 &&
-        !fp.warnings.showWarningIfDesired(win, ["no.wildcard.characters", p], "wildcards"))
+    else if (p.indexOf("*") == -1 && p.indexOf("?") == -1 && !fp.warnings.
+             showWarningIfDesired(win, ["no.wildcard.characters", p],
+             "wildcards", true))
       return false;
     // Check for parenthesis without backslash
-    if (new RegExp("[^\\\\]\\(|[^\\\\]\\)", "g").test(p) &&
-        !fp.warnings.showWarningIfDesired(win, ["no.parentheses3"],
-          "parentheses")) {
+    if (new RegExp("[^\\\\]\\(|[^\\\\]\\)", "g").test(p) && !fp.warnings.
+        showWarningIfDesired(win, ["no.parentheses3"], "parentheses", true)) {
       return false;
     }
     return p;

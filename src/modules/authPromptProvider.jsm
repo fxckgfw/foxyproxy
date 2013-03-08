@@ -120,12 +120,12 @@ AuthPromptProvider.prototype = {
       // If we recognize that the credentials are wrong (i.e. the counter is
       // > 1) we contact the user and ask her whether she wants to change them
       // now.
-      // TODO Note: We need to raise the max value of the counter. <= Do we?
-      if (this.fp.authCounter > 1) {
+      if (this.fp.authCounter === 2) {
         try {
           let win = this.fpc.getMostRecentWindow(null); 
-          if (proxyInUse && this.fp.warnings.showWarningIfDesired(win,
-              ["authentication.credentials.retry"], "retryAuthCredentials")) {
+          if (proxyInUse && !this.fp.warnings.showWarningIfDesired(win,
+              ["authentication.credentials.retry"], "retryAuthCredentials",
+              true)) {
             let params = {inn: {proxy: proxyInUse}, out: null};
             win.
               openDialog("chrome://foxyproxy/content/addeditproxy.xul", "",
@@ -135,7 +135,7 @@ AuthPromptProvider.prototype = {
             return null;
           }
         } catch (e) {
-          dump("Error while trying to get |ask()| " + e + "\n");
+          dump("Error while trying to get the proxy window: " + e + "\n");
         }
       }
       return this._getCredentials(channel, level, authInfo, proxyInUse);

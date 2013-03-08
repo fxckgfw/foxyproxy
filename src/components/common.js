@@ -278,7 +278,16 @@ Common.prototype = {
       getCellProperties: function(row, col, props) {
         if (col.id == "colorCol") {
           var i = proxies.item(row);
-          var atom = CC["@mozilla.org/atom-service;1"].getService(CI.nsIAtomService).getAtom(i.colorString);
+          // Starting with 22.0a1 there is no |props| available anymore. See:
+          // https://bugzilla.mozilla.org/show_bug.cgi?id=407956. Looking at the
+          // patch the following seems to work, though.
+          if (!props) {
+            var props = "";
+            props += i.colorString;
+            return props;
+          }
+          var atom = CC["@mozilla.org/atom-service;1"].getService(CI.
+            nsIAtomService).getAtom(i.colorString);
           props.AppendElement(atom);
         }
       },

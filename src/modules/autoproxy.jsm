@@ -48,7 +48,7 @@ var autoproxy = {
         let checksum = this.generateAutoProxyChecksum(lines);
         if (checksum && checksum != checksumExpected) {
           if (!this.fp.warnings.showWarningIfDesired(null,
-            ["patternsubscription.warning.md5"], "md5Warning")) {
+            ["patternsubscription.warning.md5"], "md5Warning", true)) {
 	    errorMessages.push(this.fp.
             getMessage("patternsubscription.error.cancel5"));
             return errorMessages;

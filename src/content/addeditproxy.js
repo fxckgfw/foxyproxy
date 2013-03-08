@@ -171,7 +171,7 @@ function onOK() {
     // Don't do this for FoxyProxy Basic
     if (!hasWhite() && !foxyproxy.warnings.showWarningIfDesired(window,
         [window.arguments[0].inn.torwiz ? "torwiz.nopatterns.3" :
-        "no.white.patterns.3", name], "white-patterns"))
+        "no.white.patterns.3", name], "white-patterns", false))
       return false;
   }
 
@@ -179,7 +179,7 @@ function onOK() {
 
   if (fpc.isThunderbird() && !isSocks && mode == "manual" &&
       !foxyproxy.warnings.showWarningIfDesired(window, ["socksWarning"],
-      "socks"))
+      "socks", true))
     return false;
 
   let clearCache = document.getElementById("clearCacheBeforeUse").

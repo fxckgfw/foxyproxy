@@ -1,6 +1,9 @@
+* allow users to correct wrong authentication credentials easily while they are
+  requesting a website
 * adapted FoxyProxy to changes due to
   https://bugzilla.mozilla.org/show_bug.cgi?id=407956 (no proxy color was shown
   in the trees anymore)
+* changed pre-selected buttons on dialogs to safe defaults
 * changed URLs to websites where proxy and pattern subscription can be shared
 * bumped maxVersion of Songbird support
 * code clean-up

@@ -222,13 +222,14 @@ var subscriptions = {
   base64Match: function(type, isBase64, userBase64, errorMessages,
     parsedSubscription) {
     if (isBase64 && !userBase64 && !this.fp.warnings.showWarningIfDesired(null,
-        [type + "subscription.warning.base64"], type + "EncodingWarning")) {
+        [type + "subscription.warning.base64"], type + "EncodingWarning",
+        false)) {
       errorMessages.push(this.fp.
         getMessage(type + "subscription.error.cancel64"));
       return errorMessages;
     } else if (!isBase64 && userBase64 && !this.fp.warnings.
         showWarningIfDesired(null, [type + "subscription.warning.not.base64"],
-        type + "EncodingWarning")) {
+        type + "EncodingWarning", false)) {
       errorMessages.push(this.fp.getMessage(type +
         "subscription.error.cancel64"));
       return errorMessages;
@@ -913,7 +914,7 @@ patternSubscriptions.parseSubscriptionDetails = function(aSubscription,
         aSubscription);
       if (!ok) {
         if (!this.fp.warnings.showWarningIfDesired(null,
-            ["patternsubscription.warning.md5"], "md5Warning")) {
+            ["patternsubscription.warning.md5"], "md5Warning", true)) {
           errorMessages.push(this.fp.
             getMessage("patternsubscription.error.cancel5"));
           return errorMessages;

@@ -1767,20 +1767,22 @@ foxyproxy.prototype = {
 
     /**
      * Displays a message to the user with "No" and "Yes" buttons
-     * and a "Do not display the message again" checkbox. The latter is maintained
-     * internally. Function returns false if user clicks "No", true if "Yes".
+     * and a "Do not display the message again" checkbox. The latter is
+     * maintained internally. Function returns false if user clicks "No", true
+     * if "Yes".
      * 
-     * If no message is to be displayed because the user previously disabled them,
-     * true is returned.
+     * If no message is to be displayed because the user previously disabled
+     * them,true is returned.
      *
-     * First arg is the owning/parent window. Second arg is an array whose first
-     * element is the key of the message to display. Subsequent array args are
-     * substitution parameters for the message key, if any.
+     * First arg is the owning/parent window. Second arg is an array whose
+     * first element is the key of the message to display. Subsequent array
+     * args are substitution parameters for the message key, if any.
      *
-     * Third arg is the name under which to store whether or not this |msg| should be
-     * displayed in the future.
+     * Third arg is the name under which to store whether or not this |msg|
+     * should be displayed in the future.
      *
-     * The fourth argument indicates whether "No" should be selected by default.
+     * The fourth argument indicates whether "No" should be selected by
+     * default.
      */
     showWarningIfDesired : function(win, msg, name, noDefault) {
       if (this._warnings[name] == undefined || this._warnings[name]) {
@@ -1793,9 +1795,10 @@ foxyproxy.prototype = {
           flags = flags + prompts.BUTTON_POS_1_DEFAULT;
         }
         // 0 means the "Yes" button got clicked
-        let ret = prompts.confirmEx(win, gFP.getMessage("foxyproxy"), l10nMessage,
-          flags, gFP.getMessage("yes"), gFP.getMessage("no"), null,
-          gFP.getMessage("message.stop"), cb) === 0;
+        let ret = prompts.confirmEx(win, gFP.getMessage("foxyproxy"),
+                                    l10nMessage, flags, gFP.getMessage("yes"),
+                                    gFP.getMessage("no"), null,
+                                    gFP.getMessage("message.stop"), cb) === 0;
         // Note: We save the inverse of user's selection because the way the
         // question is phrased.
         this._warnings[name] = !cb.value;

@@ -112,8 +112,8 @@ AuthPromptProvider.prototype = {
     // a dialog after wrong credentials are sent in order to allow the user
     // to enter the correct ones. But we suppress this dialog and (if entered
     // once) rather send the wrong credentials again (and again, and again...).
-    // See: http://mxr.mozilla.org/mozilla-central/source/netwerk/protocol/http/
-    // nsHttpChannelAuthProvider.cpp (PromptForIdentiy() and
+    // See: https://mxr.mozilla.org/mozilla-central/source/netwerk/protocol/
+    // http/nsHttpChannelAuthProvider.cpp (PromptForIdentiy() and
     // GetCredentialsForChallenge()) for details.
     this.fp.authCounter++;
     if (this.fp.authCounter < 3) {
@@ -230,7 +230,7 @@ AuthPromptProvider.prototype = {
 
   getInterface : function(aIID) {
     // (06:56:39 PM) bz: ericjung: how about just returning the original
-    //              notificationCallbacks?
+    //               notificationCallbacks?
     // (06:56:51 PM) bz: ericjung: if asked for an nsIBadCertListener/2? 
     if (aIID.equals(CI.nsIBadCertListener2) && this.
         originalNotificationCallbacks) {

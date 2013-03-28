@@ -115,6 +115,8 @@ AuthPromptProvider.prototype = {
     // See: https://mxr.mozilla.org/mozilla-central/source/netwerk/protocol/
     // http/nsHttpChannelAuthProvider.cpp (PromptForIdentiy() and
     // GetCredentialsForChallenge()) for details.
+    // TODO: We have per channel notification callbacks but just one general
+    // authCounter?? Hrmm...
     this.fp.authCounter++;
     if (this.fp.authCounter < 3) {
       // If we recognize that the credentials are wrong (i.e. the counter is
@@ -132,6 +134,7 @@ AuthPromptProvider.prototype = {
                 "chrome, dialog, modal, resizable=yes", params).focus();
             this.fp.writeSettingsAsync();
           } else {
+            this.fp.authCounter = 0;
             return null;
           }
         } catch (e) {

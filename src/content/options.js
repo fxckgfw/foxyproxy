@@ -177,9 +177,9 @@ function _updateLogView(keepSelection) {
         // https://bugzilla.mozilla.org/show_bug.cgi?id=407956. Looking at the
         // patch the following seems to work, though.
         if (!props) {
-          var props = "";
-          props += i.colorString;
-          return props;
+          let newProps = "";
+          newProps += i.colorString;
+          return newProps;
         }
         var atom = CC["@mozilla.org/atom-service;1"].getService(CI.
           nsIAtomService).getAtom(i.colorString);

@@ -1,4 +1,3 @@
-* changed pre-selected buttons on dialogs to safe defaults
 * changed URLs to websites where proxy and pattern subscription can be shared
 * bumped maxVersion of Songbird support
 * code clean-up

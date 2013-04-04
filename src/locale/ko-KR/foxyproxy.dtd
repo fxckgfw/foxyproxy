@@ -140,6 +140,8 @@
 <!ENTITY foxyproxy.tab.global.label "전역 설정">
 <!ENTITY foxyproxy.tab.global.accesskey "G">
 <!ENTITY foxyproxy.tab.global.tooltip "전역 설정 관리">
+<!ENTITY foxyproxy.settings.advanced.label "고급 설정">
+<!ENTITY foxyproxy.settings.advanced.tooltip "FoxyProxy의 고급 설정 대화상자를 열려면 버튼을 클릭">
 <!ENTITY foxyproxy.tab.logging.label "로그">
 <!ENTITY foxyproxy.tab.logging.accesskey "L">
 <!ENTITY foxyproxy.tab.logging.tooltip "로그 설정 관리">
@@ -170,6 +172,7 @@
 <!ENTITY foxyproxy.storagelocation.label.2 "설정 위치">
 <!ENTITY foxyproxy.storagelocation.accesskey "S">
 <!ENTITY foxyproxy.storagelocation.tooltip "FoxyProxy 설정을 저장할 위치">
+<!ENTITY foxyproxy.tab.logging.timestamp.label "타임 스탬프">
 <!ENTITY foxyproxy.tab.logging.url.label "URL">
 <!ENTITY foxyproxy.host.label.2 "호스트 또는 IP주소">
 <!ENTITY foxyproxy.host.accesskey "H">
@@ -260,7 +263,9 @@
 <!ENTITY foxyproxy.autoadd.pattern.tooltip "차단된 웹사이트를 확인하기 위한 패턴">
 <!ENTITY foxyproxy.autoadd.wildcard.example.label "예: *당신은 이 페이지를 볼 수 있는 권한이 없습니다*">
 <!ENTITY foxyproxy.autoadd.regex.example.label "예: .*사이트.*가 차단되었습니다.*">
+<!ENTITY foxyproxy.autoadd.proxy.label "프록시할 패턴을 자동으로 추가">
 <!ENTITY foxyproxy.autoadd.proxy.accesskey "P">
+<!ENTITY foxyproxy.autoadd.proxy.tooltip "프록시를 지정할 URL들을 자동으로 추가">
 <!ENTITY foxyproxy.pattern.template.label "URL 패턴 템플릿">
 <!ENTITY foxyproxy.pattern.template.accesskey "U">
 <!ENTITY foxyproxy.pattern.template.tooltip "URL 패턴 템플릿">
@@ -272,6 +277,7 @@
 <!ENTITY foxyproxy.pattern.template.generatedpattern.label "생성된 패턴">
 <!ENTITY foxyproxy.pattern.template.generatedpattern.accesskey "G">
 <!ENTITY foxyproxy.pattern.template.generatedpattern.tooltip "동적으로 생성된 패턴">
+<!ENTITY foxyproxy.autoadd.reload.label "패턴을 프록시에 추가한 이후 페이지를 새로 고침">
 <!ENTITY foxyproxy.autoadd.reload.accesskey "R">
 <!ENTITY foxyproxy.autoadd.reload.tooltip "림">
 <!ENTITY foxyproxy.autoadd.notify.label "자동추가 기능 동작시 알림">
@@ -291,12 +297,15 @@
 <!ENTITY foxyproxy.toolsmenu.accesskey "T">
 <!ENTITY foxyproxy.toolsmenu.tooltip2 "도구 메뉴 안에 아이콘을 표시합니다">
 <!ENTITY foxyproxy.tip.label "팁">
+<!ENTITY foxyproxy.pactip2.label "ftp서버 상의 PAC 파일을 위해, ftp:// 계획안을 사용합니다. 예를 들어, ftp://leahscape.com/path/proxy.pac">
 <!ENTITY foxyproxy.pactip3.label "당신은 http://, https://, 및 다른 지원 계획 역시 사용 할 수 있습니다.">
 <!ENTITY foxyproxy.pactip7.label "Firefox 프로파일 디렉토리">
 <!ENTITY foxyproxy.contextmenu.label "문맥메뉴 내 아이콘 표시">
 <!ENTITY foxyproxy.contextmenu.accesskey "C">
 <!ENTITY foxyproxy.contextmenu.tooltip "문맥메뉴 안에 아이콘을 표시합니다">
-<!ENTITY foxyproxy.quickadd.desc2 "확장기능">
+<!ENTITY foxyproxy.quickadd.desc1 "Alt-F2를 누를 경우 빠른추가는 프록시에 동적 URL 패턴을 추가합니다. 이것은 자동추가의 실용적 대안입니다. 확장기능">
+<!ENTITY foxyproxy.keyconfig.label "KeyConfig">
+<!ENTITY foxyproxy.quickadd.desc2 "으로 단축키 Alt-F2를 사용자에 맞게 변경하세요.">
 <!ENTITY foxyproxy.quickadd.label "빠른추가">
 <!ENTITY foxyproxy.quickadd.accesskey "Q">
 <!ENTITY foxyproxy.quickadd.tooltip "빠른추가 설정 관리">
@@ -321,7 +330,9 @@
 <!ENTITY foxyproxy.importlist.label "프록시 목록 들여오기">
 <!ENTITY foxyproxy.importlist.accesskey "I">
 <!ENTITY foxyproxy.importlist.tooltip "프록시 목록 문서 파일을 가져옵니다">
+<!ENTITY foxyproxy.wildcard.reference.label "와일드카드 참조">
 <!ENTITY foxyproxy.wildcard.reference.accesskey "W">
+<!ENTITY foxyproxy.wildcard.reference.tooltip "와일드카드 참조">
 <!ENTITY foxyproxy.wildcard.reference.goal1.label "MySpace의 www 서브도메인 내 모든 페이지와 일치">
 <!ENTITY foxyproxy.wildcard.reference.goal2.label "지역 PC와 일치">
 <!ENTITY foxyproxy.wildcard.reference.goal3.label "abc.com의 모든 서브 도메인과 페이지와 일치">
@@ -395,6 +406,7 @@
 <!ENTITY foxyproxy.define.tooltip "정의">
 <!ENTITY foxyproxy.pattern.to.quickadd.label "빠르게 프록시에 추가할 패턴">
 <!ENTITY foxyproxy.pattern.to.autoadd.label "자동으로 프록시에 추가할 패턴">
+<!ENTITY foxyproxy.home "홈페이지">
 <!ENTITY foxyproxy.support "지원">
 <!ENTITY foxyproxy.please.donate.label "기부 부탁드립니다">
 <!ENTITY foxyproxy.please.donate.accesskey "D">
@@ -409,7 +421,13 @@
 <!ENTITY foxyproxy.proxyservice.tooltip "프록시 서비스에 가입">
 <!ENTITY foxyproxy.proxyservice2.label "US, UK 및 기타 국가에서 빠르고 신뢰할 수 있는 프록시가 필요한가요?">
 <!ENTITY foxyproxy.getfoxyproxyplus.label "FoxyProxy Plus 갖기">
+<!ENTITY foxyproxy.foxyproxychrome.label "Chrome을 위한 FoxyProxy">
+<!ENTITY foxyproxy.foxyproxychrome.accesskey "F">
+<!ENTITY foxyproxy.foxyproxychrome.tooltip "Chrome을 위한 FoxyProxy를 사용해보세요">
+<!ENTITY foxyproxy.invalidcolor.label "잘못된 색상">
+<!ENTITY foxyproxy.validcolor.label "올바른 색상">
 <!ENTITY foxyproxy.color.label "색상">
+<!ENTITY foxyproxy.color.description "프록시 사용시 아이콘 색상">
 <!ENTITY foxyproxy.server.subscriptions.label "서버 신청">
 <!ENTITY foxyproxy.server.subscriptions.tooltip "서버 관리 신청">
 <!ENTITY foxyproxy.server.subscriptions.accesskey "S">
@@ -417,16 +435,63 @@
 <!ENTITY foxyproxy.proxy.subscriptions.label "프록시 신청">
 <!ENTITY foxyproxy.proxy.subscriptions.accesskey "X">
 <!ENTITY foxyproxy.proxy.subscriptions.tooltip "프록시 관리 신청">
+<!ENTITY foxyproxy.proxy.subscriptions.description "다른 사용자에 의해 게시된 프록시를 구독하세오. 몇번의 클릭만으로 당신의 프록시를 다른이와 공유하세요.">
 <!ENTITY foxyproxy.proxy.subscriptions.sharing.label "당신의 프록시 공유">
+<!ENTITY foxyproxy.proxy.subscriptions.menulist.tooltip "프록시 가입을 통해 수행 할 것을를 선택합니다.">
 <!ENTITY foxyproxy.proxy.subscriptions.addSubscription "새 프록시 신청">
 <!ENTITY foxyproxy.proxy.subscriptions.viewSubscription "프록시 신청 보기">
 <!ENTITY foxyproxy.proxy.subscriptions.addedit.title "프록시 신청 추가/편집">
+<!ENTITY foxyproxy.proxy.subscriptions.refreshHelp "기존의 모든 가입된 프록시를 제거">
+<!ENTITY foxyproxy.proxy.subscriptions.proxy.type.label "프록시 형식">
+<!ENTITY foxyproxy.proxy.subscriptions.unknown.label "모르겠음">
+<!ENTITY foxyproxy.proxy.subscriptions.http.label "HTTP">
+<!ENTITY foxyproxy.proxy.subscriptions.socks.label "SOCKS">
+<!ENTITY foxyproxy.proxy.subscriptions.proxy.window.title "신청 프록시">
+<!ENTITY foxyproxy.pattern.subscriptions.label "패턴 신청">
+<!ENTITY foxyproxy.pattern.subscriptions.description "다른이에 의해 게시된 패턴을 구독합니다. 단지 약간의 클릭으로 다른이와 당신의 패턴을 공유합니다.">
+<!ENTITY foxyproxy.pattern.subscriptions.tooltip "패턴 구독 관리">
+<!ENTITY foxyproxy.pattern.subscriptions.accesskey "S">
+<!ENTITY foxyproxy.pattern.subscriptions.sharing.label "당신의 패턴을 공유">
+<!ENTITY foxyproxy.pattern.subscriptions.menulist.tooltip "패턴 구독할 것을 선택합니다.">
+<!ENTITY foxyproxy.pattern.subscriptions.addSubscription "새 패턴 구독 추가">
+<!ENTITY foxyproxy.pattern.subscriptions.editSelection "선택 항목 편집">
+<!ENTITY foxyproxy.pattern.subscriptions.deleteSelections "선택 항목 삭제">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshSelections "선택 항목 갱신">
+<!ENTITY foxyproxy.pattern.subscriptions.viewSubscription "패턴 구독 보기">
+<!ENTITY foxyproxy.pattern.subscriptions.go.label "가기">
+<!ENTITY foxyproxy.pattern.subscriptions.go.tooltip "당신의 선택 항목을 실행하려면 클릭하세요.">
+<!ENTITY foxyproxy.pattern.subscriptions.lastStatus.label "최종 상태">
+<!ENTITY foxyproxy.pattern.subscriptions.addedit.title "패턴 구독 추가/편집">
+<!ENTITY foxyproxy.pattern.subscriptions.name.label "구독 명">
+<!ENTITY foxyproxy.pattern.subscriptions.name.tooltip "구독 명">
+<!ENTITY foxyproxy.pattern.subscriptions.notes.label "구독 설명">
+<!ENTITY foxyproxy.pattern.subscriptions.notes.tooltip "구독 설명">
+<!ENTITY foxyproxy.pattern.subscriptions.url.label "구독 URL">
+<!ENTITY foxyproxy.pattern.subscriptions.url.tooltip "구독 URL">
+<!ENTITY foxyproxy.pattern.subscriptions.proxies.tooltip "이 패턴 목록에 가입된 프록시들">
 <!ENTITY foxyproxy.pattern.subscriptions.addProxies.label "프록시 추가">
+<!ENTITY foxyproxy.pattern.subscriptions.addProxies.tooltip "이 패턴 목록에 기입할 프록시를 추가합니다.">
 <!ENTITY foxyproxy.pattern.subscriptions.removeProxies.label "선택항목 삭제">
+<!ENTITY foxyproxy.pattern.subscriptions.removeProxies.tooltip "선택한 프록시에 대한 이 패턴 목록의 신청을 취소">
 <!ENTITY foxyproxy.pattern.subscriptions.refresh.label "재갱신 주기">
+<!ENTITY foxyproxy.pattern.subscriptions.refresh.tooltip "몇분마다 이 패턴 신청을 갱신하는 주기">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshNow.label "바로 갱신">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshNow.tooltip "이 패턴 신청을 즉시 재갱신">
 <!ENTITY foxyproxy.pattern.subscriptions.refreshHelp2 "모든 존재하는 패턴 삭제">
+<!ENTITY foxyproxy.pattern.subscriptions.zeroRefresh "(0은 절대 갱신하지 않음)">
 <!ENTITY foxyproxy.pattern.subscriptions.format.tooltip "이 패턴 구독 목록의 형식">
 <!ENTITY foxyproxy.pattern.subscriptions.obfuscation.tooltip "이 패턴 구독의">
+<!ENTITY foxyproxy.pattern.subscriptions.copyLastStatus.label "클립보드에 최종 상태 복사">
+<!ENTITY foxyproxy.pattern.subscriptions.copyLastStatus.tooltip "클립보드에 최종 상태 복사">
+<!ENTITY foxyproxy.pattern.subscriptions.pattern.window.title "신청 패턴">
+<!ENTITY foxyproxy.none.label "없음">
+<!ENTITY foxyproxy.name.label "이름">
+<!ENTITY foxyproxy.url.label "url">
+<!ENTITY foxyproxy.lastupdate.label "최종 갱신">
+<!ENTITY foxyproxy.updatefrequency.label "갱신 주기">
+<!ENTITY foxyproxy.status.label "상태">
+<!ENTITY foxyproxy.format.label "형식">
+<!ENTITY foxyproxy.compatibilitycheck.proxy.tooltip "응응 프로그램을 업데이트 한 후 부가기능 호환성 검사에 사용할 프록시 선택">
 <!ENTITY foxyproxy.ip.pattern.addedit.title "지역 IP 주소 패턴 추가/편집">
 <!ENTITY foxyproxy.ip.pattern.label "지역 IP 주소 패턴">
 <!ENTITY foxyproxy.ip.pattern.accesskey "I">
@@ -434,13 +499,19 @@
 <!ENTITY foxyproxy.ip.patterns.label "지역 IP 주소 패턴">
 <!ENTITY foxyproxy.ip.patterns.accesskey "I">
 <!ENTITY foxyproxy.ip.patterns.tooltip "지역 IP 주소 패턴">
+<!ENTITY foxyproxy.ip.wildcard.reference.matches.label "일치">
+<!ENTITY foxyproxy.ip.wildcard.reference.nomatch.label "일치하지 않음">
 <!ENTITY foxyproxy.ip.whiteblack.label "포함/제외">
+<!ENTITY foxyproxy.ip.whitelist.description.label "당신의 IP 중 하나가 이 패턴과 일치할 때 이 프록시를 통해 URL을 불러옵니다">
+<!ENTITY foxyproxy.ip.blacklist.description.label "당신의 IP 중 하나가 이 패턴과 일치할 때 이 프록시를 통해 URL을 불러오지 않습니다">
+<!ENTITY foxyproxy.ip.wildcard.reference.subtitle.label "별표(*)는 모든 문자와 일치합니다.">
 <!ENTITY foxyproxy.ip.current.local.label "현재 지역 IP 주소">
 <!ENTITY foxyproxy.copyip.label "패턴에 복사">
 <!ENTITY foxyproxy.copyip.tooltip "패턴에 주소를 복사합니다">
 <!ENTITY foxyproxy.copyip.accesskey "C">
 <!ENTITY foxyproxy.ip.wildcard.example.label "예: 192.168.1.*">
 <!ENTITY foxyproxy.ip.regex.example.label "예: 172\.\d+\.1\.10">
+<!ENTITY foxyproxy.ip.pattern.match "하나 이상 또는 현재 지역 IP주소와 패턴 일치">
 <!ENTITY foxyproxy.ip.pattern.no.match "패턴이 현재 어떠한 지역 IP주소와도 일치하지 않습니다">
 <!ENTITY foxyproxy.refreshlocalips "지역 IP주소 새로고침">
 <!ENTITY foxyproxy.refreshlocalips.accesskey "R">
@@ -455,6 +526,8 @@
 <!ENTITY foxyproxy.checkinglicense.label "확인중… 잠시 기다려주세요">
 <!ENTITY foxyproxy.yourversion.label "귀하의 버전">
 <!ENTITY foxyproxy.latestversion.label "최신 버전">
+<!ENTITY foxyproxy.ippatterndeletefinal.label "이것이 최종 지역 IP 주소 패턴입니다. 만약 삭제할 경우, 이 프록시는 사용할 가능성이 없습니다. 계속하시겠습니까?">
+<!ENTITY foxyproxy.licenseplea.label "FoxyProxy Plus는 최소한의 불법 복제 방지 수단을 가지고 있습니다. 만약 귀하가 FoxyProxy Plus를 사용한다면, 라이센스를 구입하시기 바랍니다. 개발 및 유지하는데 수 년간 작업이 소요됐고, 당신의 구매가 날 계속할 수 있게 힘을 줍니다.">
 <!ENTITY foxyproxy.authentication.label "인증">
 <!ENTITY foxyproxy.proxyusername.label "사용자명">
 <!ENTITY foxyproxy.proxypassword.label "암호">

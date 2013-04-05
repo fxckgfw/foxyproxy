@@ -1890,9 +1890,11 @@ foxyproxy.prototype = {
           // after installing FP. This happened at least with FF 18.0a1
           // although it was not reproducible with FF 15.0.1, FF 16.0 and
           // FF 17.0a2.
+          // We need the prePath for compatibility with Lightning if necessary
+          // as it gets otherwise broken by FoxyProxy.
           try {
             httpChannel.notificationCallbacks = new gFP.AuthPromptProvider(gFP,
-              httpChannel.notificationCallbacks);
+              httpChannel.notificationCallbacks, httpChannel.URI.prePath);
           } catch (e) {}
         }
       }

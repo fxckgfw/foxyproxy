@@ -14,11 +14,12 @@ let EXPORTED_SYMBOLS = ["AuthPromptProvider"];
 let CC = Components.classes, CI = Components.interfaces, CR = Components.
   results;
 
-function AuthPromptProvider(fp, originalNotificationCallbacks) {
+function AuthPromptProvider(fp, originalNotificationCallbacks, prePath) {
   this.fp = fp;
   this.fpc = CC["@leahscape.org/foxyproxy/common;1"].getService().
     wrappedJSObject;
   this.originalNotificationCallbacks = originalNotificationCallbacks;
+  this.prePath = prePath;
 }
 
 AuthPromptProvider.prototype = {
@@ -227,6 +228,24 @@ AuthPromptProvider.prototype = {
     if (reason == CI.nsIAuthPromptProvider.PROMPT_PROXY)
       return this;
     else {
+      // We have a normal auth prompt. Check if we are using Thunderbird and
+      // Lightning. If so check whether we have a CalDAV request and if so let
+      // the Lightning code take over...
+      if (this.fp.fpc.isThunderbird()) {
+        // Lets take the direct path to check whether Lightning is enabled...
+        try {
+          Components.utils.
+            import("resource://calendar/modules/calAuthUtils.jsm", this);
+          // We are still here, thus it is enabled. Check whether we have a
+          // CalDAV request. Thanks to Fallen for the kind help.
+          let that = this;
+          let calDAVRequest = this.cal.getCalendarManager().getCalendars({}).
+            some(function(x) x.uri.prePath === that.prePath);
+          if (calDAVRequest) {
+            return new this.cal.auth.Prompt();
+          }
+        } catch (e) {}
+      }
       throw CR.NS_ERROR_NOT_AVAILABLE;
     }
   },

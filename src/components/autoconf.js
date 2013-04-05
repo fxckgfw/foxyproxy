@@ -367,10 +367,18 @@ fpProxyAutoConfig.prototype = {
         // Letting the PAC request through but only if we have not loaded the
         // PAC yet. Otherwise there is no reason why the request should not use
         // the proxy given back by the PAC.
-        if (testURI == this.owner.url && this.owner.owner.initPAC) {
-          dump("FoxyProxy: Preventing cyclical PAC error; using no proxy to " +
-            "load PAC file.\n");
-          return "direct";
+        if (this.owner.owner.initPAC) {
+          // Make sure we don't have a trailing slash on one of our URIs.
+          // Otherwise the comparison may fail and we risk loading the PAC file
+          // itself through the proxy if it is not initialized yet which fails
+          // for obvious reasons.
+          // See: http://forums.getfoxyproxy.org/viewtopic.php?f=4&t=816.
+          if (testURI.replace(/\/$/, '') === this.owner.url.
+              replace(/\/$/, '')) {
+            dump("FoxyProxy: Preventing cyclical PAC error; using no proxy " +
+            "to load PAC file.\n");
+            return "direct";
+          }
         }
         // This is only relevant for Gecko > 17 as the PAC logic is async now.
         // If the PAC file is not loaded yet we return our custom error code

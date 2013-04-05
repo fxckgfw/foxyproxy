@@ -1517,7 +1517,7 @@ foxyproxy.prototype = {
         // case.
         try {
           this.alerts.showAlertNotification("chrome://foxyproxy/content/" +
-            "images/foxyproxy-nocopy.gif", title, text, true, "", { observe:
+            "images/foxyproxy-nocopy.gif", title, text, true, "", {observe:
             function() {/*no-op; just permits the window to close sooner*/}},
             "FoxyProxy");
         } catch(e) {
@@ -1772,7 +1772,7 @@ foxyproxy.prototype = {
      * if "Yes".
      * 
      * If no message is to be displayed because the user previously disabled
-     * them,true is returned.
+     * them, true is returned.
      *
      * First arg is the owning/parent window. Second arg is an array whose
      * first element is the key of the message to display. Subsequent array
@@ -1890,7 +1890,7 @@ foxyproxy.prototype = {
           // after installing FP. This happened at least with FF 18.0a1
           // although it was not reproducible with FF 15.0.1, FF 16.0 and
           // FF 17.0a2.
-          // We need the prePath for compatibility with Lightning if necessary
+          // We need the |prePath| to guarantee compatibility with Lightning
           // as it gets otherwise broken by FoxyProxy.
           try {
             httpChannel.notificationCallbacks = new gFP.AuthPromptProvider(gFP,

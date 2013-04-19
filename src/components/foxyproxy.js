@@ -1770,7 +1770,7 @@ foxyproxy.prototype = {
      * and a "Do not display the message again" checkbox. The latter is
      * maintained internally. Function returns false if user clicks "No", true
      * if "Yes".
-     * 
+     *
      * If no message is to be displayed because the user previously disabled
      * them, true is returned.
      *

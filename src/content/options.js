@@ -599,7 +599,7 @@ function deleteSubscriptions(type) {
   // plural. The same reasoning holds for the two following functions.
   let selectedSubscription = getSelectedSubscription(type);
   if (foxyproxy.warnings.showWarningIfDesired(window,
-      [type + "subscription.del.subscription"], type +"SubDelete", true)) {
+      [type + "subscription.del.subscription"], type + "SubDelete", true)) {
     if (selectedSubscription.timer) {
       selectedSubscription.timer.cancel();
     }

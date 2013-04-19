@@ -280,7 +280,7 @@
           accesskey="&foxyproxy.whitelist.accesskey;"
           tooltiptext="&foxyproxy.whitelist.tooltip;"/>
         <label value="&foxyproxy.whitelist.label;"
-          style="color: blue; cursor: pointer; margin-left: -0.5em;"
+          style="margin-left: -0.5em;"
           tooltiptext="&foxyproxy.whitelist.tooltip;"
           class="text-link"
           onclick="fpc.openAndReuseOneTabPerURL('http://en.wikipedia.org/wiki/Whitelist');"/>

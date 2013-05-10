@@ -4,7 +4,7 @@
   Copyright (C) 2006-2013 Eric H. Jung and FoxyProxy, Inc.
   http://getfoxyproxy.org/
   eric.jung@yahoo.com
-  
+
   This source code is released under the GPL license,
   available in the LICENSE file at the root of this installation
   and also online at http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
@@ -76,7 +76,7 @@
       <target name="copy"/>
       <param name="src-path" value="${temp-path}"/>
     </antcall>
-    <!-- The default codebase already builds FoxyProxy Standard. We don't want to run the 
+    <!-- The default codebase already builds FoxyProxy Standard. We don't want to run the
 	    any regular expression substitions when building Standard, so we skip the call to
 	    development.xml:convert-to-foxyproxy-standard -->
     <antcall>

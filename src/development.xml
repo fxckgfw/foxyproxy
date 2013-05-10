@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="foxyproxy-development">
 
-  <property name="src-base" value="."/> <!-- this property can be overridenn by build.xml -->
+  <!-- this property can be overriden by build.xml -->
+  <property name="src-base" value="."/>
   <property file="edition.properties"/>
 
   <patternset id="xml.conditional.sources">
@@ -13,62 +14,62 @@
     <include name="**/*.css/**"/>
     <include name="**/*.js/**"/>
   </patternset>
-    
+
   <target name="convert-to-foxyproxy-basic" if="standard">
-  
-    <!-- uncomment FoxyProxy Simple blocks in JS and CSS files --> 
+
+    <!-- uncomment FoxyProxy Simple blocks in JS and CSS files -->
     <replaceregexp flags="gs">
       <regexp pattern="(\/\*!\s*begin-foxyproxy-simple)(.*?)(end-foxyproxy-simple\s*!\*\/)"/>
       <substitution expression="\1 !*\/\2\/\*! \3"/>
       <fileset dir="${src-path}">
         <patternset refid="conditional.sources"/>
       </fileset>
-    </replaceregexp>    
+    </replaceregexp>
 
-    <!-- uncomment FoxyProxy Simple blocks in XUL / XML / HTMTL files -->   
+    <!-- uncomment FoxyProxy Simple blocks in XUL / XML / HTMTL files -->
     <replaceregexp flags="gs">
       <regexp pattern="(&lt;!--\s*begin-foxyproxy-simple)(.*?)(end-foxyproxy-simple\s*--&gt;)"/>
       <substitution expression="\1 --&gt;\2&lt;!-- \3"/>
       <fileset dir="${src-path}">
         <patternset refid="xml.conditional.sources"/>
       </fileset>
-    </replaceregexp>  
+    </replaceregexp>
 
-    <!-- comment out FoxyProxy Standard blocks in XUL / XML / HTMTL files -->  
+    <!-- comment out FoxyProxy Standard blocks in XUL / XML / HTMTL files -->
     <replaceregexp flags="gs">
       <regexp pattern="(&lt;!--\s*begin-foxyproxy-standard\s*)(--&gt;)(.*?)(&lt;!--\s*)(end-foxyproxy-standard\s*--&gt;)"/>
       <substitution expression="\1\3\5"/>
       <fileset dir="${src-path}">
         <patternset refid="xml.conditional.sources"/>
       </fileset>
-    </replaceregexp> 
+    </replaceregexp>
 
-    <!-- replace &foxyproxy.standard.label; with &foxyproxy.basic.label; -->  
+    <!-- replace &foxyproxy.standard.label; with &foxyproxy.basic.label; -->
     <replaceregexp flags="gs">
       <regexp pattern="&amp;foxyproxy\.standard\.label;"/>
       <substitution expression="&amp;foxyproxy\.basic\.label;"/>
       <fileset dir="${src-path}">
         <patternset refid="xml.conditional.sources"/>
       </fileset>
-    </replaceregexp> 
-    
-    <!-- comment out FoxyProxy Standard blocks in JS & CSS files -->    
+    </replaceregexp>
+
+    <!-- comment out FoxyProxy Standard blocks in JS & CSS files -->
     <replaceregexp flags="gs">
       <regexp pattern="(\/\*!\s*begin-foxyproxy-standard\s*)(!\*\/)(.*?)(\/\*!\s*)(end-foxyproxy-standard\s*!\*\/)"/>
       <substitution expression="\1\3\5"/>
       <fileset dir="${src-path}">
         <patternset refid="conditional.sources"/>
       </fileset>
-    </replaceregexp> 
-    
+    </replaceregexp>
+
     <!-- The <propertyfile/> task appends to the property file, but we want to overwrite -->
-    <echo file="edition.properties" message="basic=true"/>  
-    <echo message="Converted to basic"/>      
-  </target>    
+    <echo file="edition.properties" message="basic=true"/>
+    <echo message="Converted to basic"/>
+  </target>
 
   <target name="convert-to-foxyproxy-standard" if="basic">
-  
-    <!-- comment out FoxyProxy Simple blocks in JS and CSS files --> 
+
+    <!-- comment out FoxyProxy Simple blocks in JS and CSS files -->
     <replaceregexp flags="gs">
       <regexp pattern="(\/\*!\s*begin-foxyproxy-simple)(\s*!\*\/)(.*?)(\/\*!\s*)(end-foxyproxy-simple\s*!\*\/)"/>
       <substitution expression="\1\3\5"/>
@@ -77,25 +78,25 @@
       </fileset>
     </replaceregexp>
 
-    <!-- comment out FoxyProxy Simple blocks in XUL / XML / HTMTL files -->  
+    <!-- comment out FoxyProxy Simple blocks in XUL / XML / HTMTL files -->
     <replaceregexp flags="gs">
       <regexp pattern="(&lt;!--\s*begin-foxyproxy-simple\s*)(--&gt;)(.*?)(&lt;!--\s*)(end-foxyproxy-simple\s*--&gt;)"/>
       <substitution expression="\1\3\5"/>
       <fileset dir="${src-path}">
         <patternset refid="xml.conditional.sources"/>
       </fileset>
-    </replaceregexp> 
-            
-    <!-- uncomment FoxyProxy Standard blocks in JS and CSS files -->    
+    </replaceregexp>
+
+    <!-- uncomment FoxyProxy Standard blocks in JS and CSS files -->
     <replaceregexp flags="gs">
       <regexp pattern="(\/\*!\s*begin-foxyproxy-standard)(.*?)(end-foxyproxy-standard\s*!\*\/)"/>
       <substitution expression="\1 !\*\/\2\/\*! \3"/>
       <fileset dir="${src-path}">
         <patternset refid="conditional.sources"/>
       </fileset>
-    </replaceregexp>   
+    </replaceregexp>
 
-    <!-- uncomment FoxyProxy Standard blocks in XUL / XML / HTMTL files -->  
+    <!-- uncomment FoxyProxy Standard blocks in XUL / XML / HTMTL files -->
     <replaceregexp flags="gs">
       <regexp pattern="(&lt;!--\s*begin-foxyproxy-standard)(.*?)(end-foxyproxy-standard\s*--&gt;)"/>
       <substitution expression="\1 --&gt;\2&lt;!-- \3"/>
@@ -105,24 +106,24 @@
     </replaceregexp>
 
     <!-- The <propertyfile/> task appends to the property file, but we want to overwrite -->
-    <echo file="edition.properties" message="standard=true"/>   
-    <echo message="Converted to standard"/>  
+    <echo file="edition.properties" message="standard=true"/>
+    <echo message="Converted to standard"/>
   </target>
-    
-  <target name="convert-to-foxyproxy-basic-for-development">    
+
+  <target name="convert-to-foxyproxy-basic-for-development">
     <antcall>
       <param name="src-path" value="${src-base}"/>
       <target name="convert-to-foxyproxy-basic"/>
     </antcall>
   </target>
-  
+
   <target name="convert-to-foxyproxy-standard-for-development">
     <antcall>
       <param name="src-path" value="${src-base}"/>
       <target name="convert-to-foxyproxy-standard"/>
     </antcall>
-  </target>  
-  
+  </target>
+
   <target name="echo-standard" if="standard">
     <echo message="Currently set to FoxyProxy Standard"/>
   </target>
@@ -130,10 +131,10 @@
   <target name="echo-basic" if="basic">
     <echo message="Currently set to FoxyProxy Basic"/>
   </target>
-    
+
   <target name="echo-current-state">
     <antcall target="echo-standard"/>
     <antcall target="echo-basic"/>
   </target>
-  
+
 </project>

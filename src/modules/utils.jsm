@@ -18,7 +18,7 @@ let CI = Components.interfaces, CC = Components.classes, gObsSvc =
   CC["@mozilla.org/observer-service;1"].getService(CI.nsIObserverService),
 
   EXPORTED_SYMBOLS = ["utils"],
- 
+
   utils = {
 
     dumpp: function(e) {
@@ -125,7 +125,7 @@ let CI = Components.interfaces, CC = Components.classes, gObsSvc =
     },
 
     /**
-     * Displays a warning if the user is about to enter/in pattern mode and 
+     * Displays a warning if the user is about to enter/in pattern mode and
      * the cookie related settings of her proxies differ.
      */
     displayPatternCookieWarning : function(mode, fp) {

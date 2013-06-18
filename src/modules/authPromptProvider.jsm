@@ -254,10 +254,16 @@ AuthPromptProvider.prototype = {
     // (06:56:39 PM) bz: ericjung: how about just returning the original
     //               notificationCallbacks?
     // (06:56:51 PM) bz: ericjung: if asked for an nsIBadCertListener/2?
+
+    // We need to throw NS_ERROR_NO_INTERFACE to avoid freezing the application
+    // to due bad redirects. For steps to reproduce this, see:
+    // https://bugzilla.mozilla.org/show_bug.cgi?id=878998
     if (aIID.equals(CI.nsIBadCertListener2) && this.
         originalNotificationCallbacks) {
       try {
         return this.originalNotificationCallbacks.getInterface(aIID);
+      } catch (e if e.name === "NS_NOINTERFACE") {
+        throw CR.NS_ERROR_NO_INTERFACE;
       } catch (e) {}
     }
     try {

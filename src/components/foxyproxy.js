@@ -102,7 +102,7 @@ function foxyproxy() {
   SuperAdd.prototype.fp = gFP = this.wrappedJSObject = this;
   // That CU call has to be here, otherwise it would not work. See:
   // https://developer.mozilla.org/en/JavaScript/Code_modules/Using section
-  // "Custom modules and XPCOM components" 
+  // "Custom modules and XPCOM components"
   CU.import("resource://foxyproxy/subscriptions.jsm", this);
   CU.import("resource://foxyproxy/defaultprefs.jsm", this);
   CU.import("resource://foxyproxy/cookiesAndCache.jsm", this);

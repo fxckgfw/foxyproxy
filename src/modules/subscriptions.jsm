@@ -1116,7 +1116,7 @@ proxySubscriptions.getObjectFromText = function(subscriptionText,
         // like "123.123.123.123 : 456" as well.
         proxyArray[i].ip = ipPort[0].replace(/^\s*|\s*$/g, "");
         proxyArray[i].port = ipPort[1].replace(/^\s*|\s*$/g, "");
-        // TODO: Addapt this simple error checking to work with IPv6 addresses
+        // TODO: Adapt this simple error checking to work with IPv6 addresses
         // as well.
         let isIP = this.ipRegExpSimple.test(proxyArray[i].ip);
         let isPort = /^\d+$/.test(proxyArray[i].port);

@@ -314,10 +314,6 @@ Common.prototype = {
     return this.appInfo.ID == "{3550f703-e582-4d05-9a08-453d09bdfdc6}";
   },
 
-  isFennec : function() {
-    return this.appInfo.ID == "{aa3c5121-dab2-40e2-81ca-7ea25febc110}";
-  },
-
   notify : function(msg, ar, buttons, priority, callback, getNotWithVal, callbackArgs) {
     let wm = this.getMostRecentWindow(), message = fp.getMessage(msg, ar), nb;
     // First we check, whether we use Firefox or Seamonkey...

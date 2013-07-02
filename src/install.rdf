@@ -3,7 +3,7 @@
   FoxyProxy
   Copyright (C) 2006-#%#% Eric H. Jung and FoxyProxy, Inc.
   http://getfoxyproxy.org/
-  eric.jung@yahoo.com
+  eric.jung@getfoxyproxy.org
 
   This source code is released under the GPL license,
   available in the LICENSE file at the root of this installation
@@ -30,18 +30,17 @@ end-foxyproxy-simple -->
         <em:description>Premier proxy management for Firefox</em:description>
         <em:homepageURL>http://getfoxyproxy.org</em:homepageURL>
         <em:aboutURL>chrome://foxyproxy/content/about.xul</em:aboutURL>
-        <em:optionsURL>chrome://foxyproxy/content/options.xul</em:optionsURL>
+        <em:optionsURL>chrome://foxyproxy/content/fennecOptions.xul</em:optionsURL>
+        <em:optionsType>2</em:optionsType>
         <em:iconURL>chrome://foxyproxy/content/images/foxyproxy-nocopy.gif</em:iconURL>
         <!-- Android -->
-<!-- begin-foxyproxy-simple
         <em:targetApplication>
             <Description>
                 <em:id>{aa3c5121-dab2-40e2-81ca-7ea25febc110}</em:id>
                 <em:minVersion>11.0a1</em:minVersion>
-                <em:maxVersion>23.0a1</em:maxVersion>
+                <em:maxVersion>24.0a1</em:maxVersion>
             </Description>
         </em:targetApplication>
-end-foxyproxy-simple -->
         <!-- Songbird -->
         <em:targetApplication>
             <Description>

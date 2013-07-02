@@ -1,2 +1,3 @@
 * fixed broken import of proxy lists containing blank lines (see the related
   forum thread: http://forums.getfoxyproxy.org/viewtopic.php?f=3&t=884)
+* replacing eric's yahoo email address with his getfoxyproxy email address

@@ -3,7 +3,7 @@
   FoxyProxy
   Copyright (C) 2006-#%#% Eric H. Jung and FoxyProxy, Inc.
   http://getfoxyproxy.org/
-  eric.jung@yahoo.com
+  eric.jung@getfoxyproxy.org
 
   This source code is released under the GPL license,
   available in the LICENSE file at the root of this installation
@@ -71,7 +71,7 @@
           </hbox>
           <hbox style="margin-left: 1em;">
             <label value="&foxyproxy.createdBy;" />
-            <label value="Eric H. Jung" class="text-link" onclick="fpc.openAndReuseOneTabPerURL('mailto:eric.jung@yahoo.com');" tooltiptext="mailto:eric.jung@yahoo.com" />
+            <label value="Eric H. Jung" class="text-link" onclick="fpc.openAndReuseOneTabPerURL('mailto:eric.jung@getfoxyproxy.org');" tooltiptext="mailto:eric.jung@getfoxyproxy.org" />
           </hbox>
           <hbox style="margin-left: 1em;">
             <label value="&foxyproxy.contributionsBy;" />

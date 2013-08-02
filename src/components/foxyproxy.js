@@ -259,6 +259,11 @@ foxyproxy.prototype = {
     // If the user is about to enter pattern mode AND has different cookie
     // related settings in her proxies we show a warning.
     this.utils.displayPatternCookieWarning(mode, this);
+    // Make sure the authCounter is 0 if we change the mode. Otherwise users
+    // might get strange "Access Denied" errors.
+    if (this.authCounter !== 0) {
+      this.authCounter = 0;
+    }
     // Possible modes are: patterns, _proxy_id_ (for "Use proxy xyz for all
     // URLs), random, roundrobin, disabled, previous.
     // Note that "previous" isn't used anywhere but this method: it is

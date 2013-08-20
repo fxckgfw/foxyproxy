@@ -2,7 +2,7 @@ This file describes and comprises the changes to AutoProxy code we use for
 supporting the AutoProxy format as format for FoxyProxy's pattern
 subscriptions. It contains three parts. Each part first lists the relevant
 AutoProxy code and thereafter the modifications we did. The AutoProxy code is
-taken from version 0.4b2.2011041023. 
+taken from version 0.4b2.2011041023.
 
 
 PART 1:

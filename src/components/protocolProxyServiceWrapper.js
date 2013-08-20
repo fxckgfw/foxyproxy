@@ -90,6 +90,12 @@ ProtocolProxyServiceWrapper.prototype = {
     }
   },
 
+  // This method got introduced in
+  // https://bugzilla.mozilla.org/show_bug.cgi?id=887995
+  asyncResolve2 : function(aURI, aFlags, aCallback) {
+    this.asyncResolve(aURI, aFlags, aCallback);
+  },
+
   classDescription: "FoxyProxy's protocol proxy service wrapper",
   contractID: "@mozilla.org/network/protocol-proxy-service;1",
   classID: Components.ID("{e52f4b1f-3338-4be6-b9b3-ac0861749627}"),

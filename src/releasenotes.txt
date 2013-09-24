@@ -1,8 +1,1 @@
-* fixed broken FoxyProxy due to updated nsIProtocolProxyService2 interface
-  (See: https://bugzilla.mozilla.org/show_bug.cgi?id=889232 for details)
-* fixed broken import of proxy lists containing blank lines (see the related
-  forum thread: http://forums.getfoxyproxy.org/viewtopic.php?f=3&t=884)
-* fixed possible error with system proxy settings on Linux due to
-  https://bugzilla.mozilla.org/show_bug.cgi?id=824341
-* reset the auth counter if FoxyProxy mode changes
-* replacing eric's yahoo email address with his getfoxyproxy email address
+* fixed possible corner case bugs in the authentication code

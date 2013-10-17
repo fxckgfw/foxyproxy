@@ -1,1 +1,3 @@
 * fixed possible corner case bugs in the authentication code
+* fixed broken system proxy handling if proxy is specified by hostname and not
+  by IP address

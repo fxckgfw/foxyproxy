@@ -24,30 +24,28 @@ let cookiePrefs = utils.getPrefsService("network.cookie."),
   securityPrefs = utils.getPrefsService("security."),
 
   EXPORTED_SYMBOLS = ["cacheMgr", "cookieMgr"],
-  
+
   cacheMgr = {
     clearCache : function() {
       try {
         cachService.evictEntries(CI.nsICache.STORE_ON_DISK);
         cachService.evictEntries(CI.nsICache.STORE_IN_MEMORY);
-        // Thanks, Torbutton
+        // Thanks for this idea, Torbutton.
         try {
-          // This exists in FF 3.6.x. Perhaps we can drop the catch block and
-          // the "old method".
+          // This exists in FF 3.6.x up to Gecko 21. Bug 683262 removes
+          // logout().
           CC["@mozilla.org/security/crypto;1"].getService(CI.nsIDOMCrypto).
             logout();
-        }
-        catch(e) {
+        } catch(e) {
           // Failed to use nsIDOMCrypto to clear SSL Session ids.
-          // Falling back to old method.
-          // This clears the SSL Identifier Cache.
-          // See https://bugzilla.mozilla.org/show_bug.cgi?id=448747 and
-          // http://mxr.mozilla.org/security/source/security/manager/ssl/src/nsNSSComponent.cpp#2134
-          // This results in clearSessionCache being set to true temporarily.
-          securityPrefs.setBoolPref("enable_ssl3",
-            !securityPrefs.getBoolPref("enable_ssl3"));
-          securityPrefs.setBoolPref("enable_ssl3",
-            !securityPrefs.getBoolPref("enable_ssl3"));     
+          // See https://bugzilla.mozilla.org/show_bug.cgi?id=448747. The old
+          // approach (using "security.enable_ssl3" worked up to Gecko 23; bug
+          // 733642 removes it) is not reliable anymore either, thus trying a
+          // new one:
+          securityPrefs.setBoolPref("enable_md5_signatures",
+            !securityPrefs.getBoolPref("enable_md5_signatures"));
+          securityPrefs.setBoolPref("enable_md5_signatures",
+            !securityPrefs.getBoolPref("enable_md5_signatures"));
         }
       }
       catch(e) {
@@ -65,7 +63,7 @@ let cookiePrefs = utils.getPrefsService("network.cookie."),
       cachePrefs.setBoolPref("disk_cache_ssl", false);
     }
   },
-  
+
   cookieMgr = {
     clearCookies : function() {
       cookieService.removeAll();

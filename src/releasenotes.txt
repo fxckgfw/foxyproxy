@@ -1,3 +1,2 @@
-* fixed possible corner case bugs in the authentication code
-* fixed broken system proxy handling if proxy is specified by hostname and not
-  by IP address
+* fixed exception when clearing the cache due to missing "security.enable_ssl3"
+  and removed logout() (in nsIDOMCrypto)

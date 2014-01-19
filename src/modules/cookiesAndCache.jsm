@@ -42,10 +42,12 @@ let cookiePrefs = utils.getPrefsService("network.cookie."),
           // approach (using "security.enable_ssl3" worked up to Gecko 23; bug
           // 733642 removes it) is not reliable anymore either, thus trying a
           // new one:
-          securityPrefs.setBoolPref("enable_md5_signatures",
-            !securityPrefs.getBoolPref("enable_md5_signatures"));
-          securityPrefs.setBoolPref("enable_md5_signatures",
-            !securityPrefs.getBoolPref("enable_md5_signatures"));
+          // Clear all crypto auth tokens. This includes calls to
+          // PK11_LogoutAll(), nsNSSComponent::LogoutAuthenticatedPK11()
+          // and clearing the SSL session cache.
+          let sdr = CC["@mozilla.org/security/sdr;1"].
+            getService(CI.nsISecretDecoderRing);
+          sdr.logoutAndTeardown();
         }
       }
       catch(e) {

@@ -54,8 +54,17 @@ function onOK() {
 }
 
 function updateGeneratedPattern() {
-	document.getElementById("generatedPattern").value =
-    fpc.applyTemplate(document.getElementById("url").value, superadd.match.pattern, superadd.match.caseSensitive);
+  let patValue = fpc.applyTemplate(document.getElementById("url").value,
+    superadd.match.pattern, superadd.match.caseSensitive);
+  // applyTemplate() is giving us basically a string back. To make sure we treat
+  // it as a RegEx if the user wishes so we need to apply our conversion rules
+  // we already use in buildRegEx() in match.js.
+  if (superadd.match.isRegEx) {
+    patValue = patValue.replace(/[$.+()^]/g, "\\$&");
+    patValue = patValue.replace(/\*/g, ".*");
+    patValue = patValue.replace(/\?/g, ".");
+  }
+  document.getElementById("generatedPattern").value = patValue;
 }
 
 function onPattern() {

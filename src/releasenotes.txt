@@ -1,2 +1,4 @@
 * fixed exception when clearing the cache due to missing "security.enable_ssl3"
   and removed logout() (in nsIDOMCrypto)
+* QuickAdd and AutoAdd patterns are properly converted to Regular Expressions
+  if the user selected that format

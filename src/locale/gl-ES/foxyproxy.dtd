@@ -432,6 +432,10 @@
 <!ENTITY foxyproxy.newGUI2.label "Dende que o FoxyProxy xa permite o enrutamento do tráfico por protocolo con patróns con comodíns e expresións regulares, a listaxe de protocolos para esta pantalla é innecesaria. A partires da versión 2.5, o FoxyProxy eliminou esta lista de protocolos do GUI das Configuracións do Proxy. No entanto, iso non reduce a funcionalidade. Fai unha interface máis simple. Se precisas enrutar o tráfico por protocolo, tes que definir os patróns na lista branca e na lista negra con especial atención 
 
 
+
+
+
+
 á porción esquema/protocolo do patrón (por exemplo, ftp://*.yahoo.com/*, *://leahscape.com/*, etc.)">
 <!ENTITY foxyproxy.newGUI4.label "Preme aquí se queres máis información.">
 <!ENTITY foxyproxy.error.msg.label "Mensaxe de erro">

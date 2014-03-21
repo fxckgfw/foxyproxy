@@ -1,3 +1,10 @@
+foxyproxy (3.4-1.1) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * Declare compatibility with more recent Mozilla software (Closes: #711739)
+
+ -- David Prévot <taffit@debian.org>  Sat, 13 Jul 2013 22:35:55 -0400
+
 foxyproxy (4.1-1) experimental; urgency=low
 
   * New upstream release

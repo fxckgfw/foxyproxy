@@ -58,7 +58,10 @@ ProxyConfig.prototype = {
     disableCache : "rw",
     clearCookiesBeforeUse : "rw",
     rejectCookies : "rw",
-    proxyDNS : "rw"
+    proxyDNS : "rw",
+    username : "rw",
+    password : "w",
+    ntlmDomain : "rw"
   },
 
   // getter only for |id| -- no setter

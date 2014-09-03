@@ -910,6 +910,13 @@ ManualConf.prototype = {
     this._port = mc.port;
     this._socksversion = mc.socksVersion;
     this._isSocks = mc.socks;
+
+    // No "null" assignment for username and password. Otherwise the auto import
+    // via proxy:// URL won't work.
+    this.username = pc.username ? pc.username : "";
+    this.password = pc.password ? pc.password : "";
+    this.ntlmDomain = pc.ntlmDomain;
+
     this._makeProxy();
   },
 

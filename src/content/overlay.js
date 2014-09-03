@@ -64,20 +64,7 @@ var foxyproxy = {
       // Probably not necessary, but does not hurt
       this.timer = null;
       var fpc = Components.classes["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject;
-      if (this.first) {
-        x(foxyproxy.fp.isFoxyProxySimple() ?
-            "http://getfoxyproxy.org/mozilla/basic/install.html" :
-            "http://getfoxyproxy.org/mozilla/standard/install.html");
-      } else {
-        x(foxyproxy.fp.isFoxyProxySimple() ?
-            "http://getfoxyproxy.org/mozilla/basic/update.html" :
-            "http://getfoxyproxy.org/mozilla/standard/update.html");
-      }
-      function x(url) {
-        fpc.openAndReuseOneTabPerURL(url);
-        // Do this last so we try again next time if we failed to display now
-        foxyproxy.fp.getPrefsService("extensions.foxyproxy.").setCharPref("last-version", fpc.getVersion());
-      }
+      foxyproxy.fp.getPrefsService("extensions.foxyproxy.").setCharPref("last-version", fpc.getVersion());
     },
 
     observe : function(s, topic) {
@@ -218,8 +205,8 @@ end-foxyproxy-simple !*/
       // parseFragment().
       let liText = "<li>" + foxyproxy.fp.getMessage("foxyproxy.proxyservice2",
         ["<a id=proxyService " +
-        'title="https://getfoxyproxy.org/proxyservice/index.html" ' +
-        'href="https://getfoxyproxy.org/proxyservice/index.html">FoxyProxy</a>',
+        'title="https://getfoxyproxy.org/proxyservice/2.0/" ' +
+        'href="https://getfoxyproxy.org/proxyservice/2.0/">FoxyProxy</a>',
         "<b>", "</b>"]) + "</li>";
       contDoc.getElementById("errorLongDesc").firstChild.nextSibling.
         appendChild(foxyproxy.parseHTML(contDoc, liText));
@@ -480,6 +467,13 @@ end-foxyproxy-simple !*/
       id = "foxyproxy-advancedSettings";
     } else {
       id = "foxyproxy-options";
+    }
+    let firstOpen = foxyproxy.fp.getPrefsService("extensions.foxyproxy.").
+      getBoolPref("firsttimeopeningoptionsdialog");
+    if (firstOpen) {
+      this.fpc.openAndReuseOneTabPerURL("https://getfoxyproxy.org/proxyservice/2.0/?src=FoxyProxyForFirefox");
+      foxyproxy.fp.getPrefsService("extensions.foxyproxy.").
+        setBoolPref("firsttimeopeningoptionsdialog", false);
     }
     this.onDialog(id, "chrome://foxyproxy/content/options.xul", null, null,
       "foxyproxy-superadd");
@@ -1090,7 +1084,7 @@ end-foxyproxy-simple !*/
 
         _createMenuItem(submenupopup,
           this.fp.getMessage("foxyproxy.help.label"),
-          "foxyproxy.fpc.openAndReuseOneTabPerURL('http://getfoxyproxy.org/" + (isFoxyProxySimple ? "basic/" : "") + "help.html');",
+          "foxyproxy.fpc.openAndReuseOneTabPerURL('https://getfoxyproxy.org/" + (isFoxyProxySimple ? "basic/" : "") + "help.html');",
           this.fp.getMessage("foxyproxy.help.accesskey"),
           this.fp.getMessage("foxyproxy.help.tooltip"));
 

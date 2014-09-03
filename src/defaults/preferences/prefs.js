@@ -2,3 +2,4 @@
 pref("extensions.foxyproxy@eric.h.jung.description", "chrome://foxyproxy/locale/foxyproxy.properties");
 pref("extensions.foxyproxy-basic@eric.h.jung.description", "chrome://foxyproxy/locale/foxyproxy.properties");
 pref("extensions.foxyproxy.firstrun", true);
+pref("extensions.foxyproxy.firsttimeopeningoptionsdialog", true);

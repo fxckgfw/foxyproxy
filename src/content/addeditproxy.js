@@ -167,13 +167,10 @@ function onOK() {
     }
   }
 
-  if (!foxyproxy.isFoxyProxySimple()) {
-    // Don't do this for FoxyProxy Basic
-    if (!hasWhite() && !foxyproxy.warnings.showWarningIfDesired(window,
-        [window.arguments[0].inn.torwiz ? "torwiz.nopatterns.3" :
-        "no.white.patterns.3", name], "white-patterns", false))
-      return false;
-  }
+  // Don't do this at all except for the tor wizard
+  if (!hasWhite() && window.arguments[0].inn.torwiz && !foxyproxy.warnings.showWarningIfDesired(window,
+      ["torwiz.nopatterns.3", name], "white-patterns", false))
+    return false;
 
   var isSocks = document.getElementById("isSocks").checked;
 

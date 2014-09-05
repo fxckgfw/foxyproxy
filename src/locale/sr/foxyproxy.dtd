@@ -12,6 +12,15 @@
 <!ENTITY foxyproxy.proxy.notes.label "Забелешке о проксију">
 <!ENTITY foxyproxy.proxy.notes.accesskey "З">
 <!ENTITY foxyproxy.proxy.notes.tooltip "Забелешке о проксију">
+<!ENTITY foxyproxy.proxy.wizard.label "Proxy Wizard">
+<!ENTITY foxyproxy.proxy.wizard.accesskey "P">
+<!ENTITY foxyproxy.proxy.wizard.tooltip "Create a proxy from a proxy subscription">
+<!ENTITY foxyproxy.proxy.wizard.description1 "This wizard configures your paid proxy automatically. Please enter your subscription ID below. If you do not have a subscription ID, ">
+<!ENTITY foxyproxy.proxy.wizard.description2 "you can purchase one">
+<!ENTITY foxyproxy.proxy.wizard.subscriptionID.label "Subscription ID">
+<!ENTITY foxyproxy.proxy.wizard.subscriptionID.tooltip "Enter your proxy subscription ID">
+<!ENTITY foxyproxy.proxy.wizard.loading.label "Retrieving proxy details...">
+<!ENTITY foxyproxy.proxy.wizard.congratulation "Congratulations. FoxyProxy is configured.">
 <!ENTITY foxyproxy.proxy.wizard.whatsmyip.label "Провери моју локацију">
 <!ENTITY foxyproxy.pattern.label "Шаблон">
 <!ENTITY foxyproxy.urlpatterns.label "URL шаблони">
@@ -39,8 +48,10 @@
 <!ENTITY foxyproxy.help.tooltip "Прикажи помоћ">
 <!ENTITY foxyproxy.import.pattern.label "Увези">
 <!ENTITY foxyproxy.import.pattern.accesskey "У">
+<!ENTITY foxyproxy.import.pattern.tooltip "Import patterns">
 <!ENTITY foxyproxy.export.pattern.label "Export">
 <!ENTITY foxyproxy.export.pattern.accesskey "X">
+<!ENTITY foxyproxy.export.pattern.tooltip2 "Export all patterns">
 <!ENTITY foxyproxy.close.label "Затвори">
 <!ENTITY foxyproxy.close.accesskey "З">
 <!ENTITY foxyproxy.close.tooltip "Затвори прозор">
@@ -57,11 +68,19 @@
 <!ENTITY foxyproxy.copy.selection.accesskey "К">
 <!ENTITY foxyproxy.copy.selection.tooltip "Копирање изабраног">
 <!ENTITY foxyproxy.mode.label "Изаберите начин">
+<!ENTITY foxyproxy.wpad.label1 "by WPAD">
 <!-- begin foxyproxyplus -->
+<!ENTITY foxyproxy.wpad.accesskey "W">
+<!ENTITY foxyproxy.wpad.tooltip "Detect the proxy settings automatically using WPAD">
+<!ENTITY foxyproxy.wpad.reload.label "Detect proxy settings automatically every">
+<!ENTITY foxyproxy.wpad.reload.accesskey "D">
+<!ENTITY foxyproxy.wpad.reload.tooltip "Auto-detect the proxy every specified period">
+<!ENTITY foxyproxy.wpad.tree.label "Auto-detect proxy">
 <!ENTITY foxyproxy.auto.url.label "URL аутоматског подешавања проксија">
 <!ENTITY foxyproxy.auto.url.tooltip "Унесите URL датотеке PAC">
 <!ENTITY foxyproxy.auto.url.note.label "http(s)://   ftp://   file://   relative://">
 <!ENTITY foxyproxy.auto.url.note.tooltip "Кликните на икону да бисте добили више информација за relative://">
+<!ENTITY foxyproxy.ip.address.label "IP address">
 <!ENTITY foxyproxy.port.label "Порт">
 <!ENTITY foxyproxy.port.accesskey "П">
 <!ENTITY foxyproxy.port.tooltip "Порт">
@@ -75,6 +94,7 @@
 <!ENTITY foxyproxy.regex.label "Регуларни изрази">
 <!ENTITY foxyproxy.regex.accesskey "Р">
 <!ENTITY foxyproxy.regex.tooltip "Одређивање да URL шаблон користи регуларни израз">
+<!ENTITY foxyproxy.regex.example.label2 "Example: ^https?://.*\.mail\.yahoo\.com/.*$">
 <!ENTITY foxyproxy.version "верзија">
 <!ENTITY foxyproxy.createdBy "Аутор">
 <!ENTITY foxyproxy.contributionsBy "Помоћници">
@@ -92,6 +112,9 @@
 <!ENTITY foxyproxy.tab.patterns.tooltip "Управљање URL шаблонима">
 <!ENTITY foxyproxy.add.title "Подешавања проксија">
 <!ENTITY foxyproxy.pattern.description "Овде можете да одредите када ће овај прокси бити коришћен, а када не.">
+<!ENTITY foxyproxy.pattern.nointernal.label "Do not use this proxy for internal IP addresses">
+<!ENTITY foxyproxy.pattern.nointernal.tooltip "This checkbox allows you to restrict the proxy to non-internal IP addresses">
+<!ENTITY foxyproxy.pattern.nointernal.accesskey "N">
 <!ENTITY foxyproxy.pattern.matchtype.label "Шаблон садржи">
 <!ENTITY foxyproxy.pattern.whiteblack.label "прихваћени/одбијени URL">
 <!ENTITY foxyproxy.add.option.direct.label "Директна веза са Интернетом (без проксија)">
@@ -118,6 +141,8 @@
 <!ENTITY foxyproxy.tab.global.label "Општа подешавања">
 <!ENTITY foxyproxy.tab.global.accesskey "О">
 <!ENTITY foxyproxy.tab.global.tooltip "Управљање општим подешавањима">
+<!ENTITY foxyproxy.settings.advanced.label "Advanced Settings">
+<!ENTITY foxyproxy.settings.advanced.tooltip "A click on the button opens the advanced settings dialog of FoxyProxy">
 <!ENTITY foxyproxy.tab.logging.label "Записивање">
 <!ENTITY foxyproxy.tab.logging.accesskey "З">
 <!ENTITY foxyproxy.tab.logging.tooltip "Управљање подешавањима записивања">
@@ -193,6 +218,15 @@
 <!ENTITY foxyproxy.movedown.label "Помери надоле">
 <!ENTITY foxyproxy.movedown.tooltip "Смањи приоритет тренутно изабраног">
 <!ENTITY foxyproxy.movedown.accesskey "Д">
+<!ENTITY foxyproxy.system.label "Use System Proxy Settings">
+<!ENTITY foxyproxy.system.accesskey "Y">
+<!ENTITY foxyproxy.system.tooltip2 "Use the proxy configuration in your system settings">
+<!ENTITY foxyproxy.automatic.label "Automatic Proxy Configuration">
+<!ENTITY foxyproxy.automatic.accesskey "A">
+<!ENTITY foxyproxy.automatic.tooltip "Get a proxy configuration automatically">
+<!ENTITY foxyproxy.pac.label "by PAC">
+<!ENTITY foxyproxy.pac.accesskey "P">
+<!ENTITY foxyproxy.pac.tooltip "Get the proxy settings using a PAC file">
 <!ENTITY foxyproxy.autoconfurl.view.label "Приказ">
 <!ENTITY foxyproxy.autoconfurl.view.accesskey "П">
 <!ENTITY foxyproxy.autoconfurl.view.tooltip "Приказ датотеке аутоматских подешавања">
@@ -258,7 +292,12 @@
 <!ENTITY foxyproxy.pacerrornotification.label "Notify me about proxy auto-configuration file errors">
 <!ENTITY foxyproxy.pacerrornotification.accesskey "E">
 <!ENTITY foxyproxy.pacerrornotification.tooltip "Display a popup when encountering PAC file errors">
+<!ENTITY foxyproxy.toolbaricon.label "Show icon on toolbar">
+<!ENTITY foxyproxy.toolbaricon.accesskey "O">
+<!ENTITY foxyproxy.toolbaricon.tooltip "Show icon on toolbar">
+<!ENTITY foxyproxy.toolsmenu.label2 "Show icon in the tools menu">
 <!ENTITY foxyproxy.toolsmenu.accesskey "T">
+<!ENTITY foxyproxy.toolsmenu.tooltip2 "Show icon in the tools menu">
 <!ENTITY foxyproxy.tip.label "Tip">
 <!ENTITY foxyproxy.pactip1.label "For PAC files stored on a local hard drive, use the file:// scheme. For example, file://c:/path/proxy.pac on Windows or file:///home/users/joe/proxy.pac on Unix/Linux/Mac.">
 <!ENTITY foxyproxy.pactip2.label "For PAC files on an ftp server, use the ftp:// scheme. For example, ftp://leahscape.com/path/proxy.pac">
@@ -429,6 +468,9 @@
 <!ENTITY foxyproxy.proxyservice.tooltip "Sign up for proxy services">
 <!ENTITY foxyproxy.proxyservice2.label "Need fast, reliable proxies in the US, UK, or other countries?">
 <!ENTITY foxyproxy.getfoxyproxyplus.label "Get FoxyProxy Plus">
+<!ENTITY foxyproxy.foxyproxychrome.label "FoxyProxy for Chrome">
+<!ENTITY foxyproxy.foxyproxychrome.accesskey "F">
+<!ENTITY foxyproxy.foxyproxychrome.tooltip "Try FoxyProxy for Chrome">
 <!ENTITY foxyproxy.invalidcolor.label "Invalid color">
 <!ENTITY foxyproxy.validcolor.label "Valid color">
 <!ENTITY foxyproxy.color.label "Color">
@@ -437,9 +479,28 @@
 <!ENTITY foxyproxy.server.subscriptions.tooltip "Manage Server Subscriptions">
 <!ENTITY foxyproxy.server.subscriptions.accesskey "S">
 <!ENTITY foxyproxy.selectproxy.label "Изаберите прокси">
+<!ENTITY foxyproxy.proxy.subscriptions.label "Proxy Subscriptions">
+<!ENTITY foxyproxy.proxy.subscriptions.accesskey "X">
+<!ENTITY foxyproxy.proxy.subscriptions.tooltip "Manage Proxy Subscriptions">
+<!ENTITY foxyproxy.proxy.subscriptions.description "Subscribe to proxies published by others. Share your proxies with others in just a few clicks.">
+<!ENTITY foxyproxy.proxy.subscriptions.sharing.label "Share Your Proxies">
+<!ENTITY foxyproxy.proxy.subscriptions.menulist.tooltip "Select what to do with proxy subscriptions.">
+<!ENTITY foxyproxy.proxy.subscriptions.addSubscription "Add New Proxy Subscription">
+<!ENTITY foxyproxy.proxy.subscriptions.viewSubscription "View Proxy Subscription">
+<!ENTITY foxyproxy.proxy.subscriptions.addedit.title "Add/Edit Proxy Subscription">
+<!ENTITY foxyproxy.proxy.subscriptions.refreshHelp "removes all existing subscribed proxies">
+<!ENTITY foxyproxy.proxy.subscriptions.proxy.type.label "Proxy Type">
+<!ENTITY foxyproxy.proxy.subscriptions.proxy.type.tooltip "Choose the type of the proxies on the list you want to import. If you select &quot;I don't know&quot; it is assumed they are HTTP proxies.">
+<!ENTITY foxyproxy.proxy.subscriptions.unknown.label "I don't know">
+<!ENTITY foxyproxy.proxy.subscriptions.http.label "HTTP">
+<!ENTITY foxyproxy.proxy.subscriptions.socks.label "SOCKS">
+<!ENTITY foxyproxy.proxy.subscriptions.subscriptionTypeHelp "This option lets you choose the type of the proxies on your subscription. If you select &quot;I don't know&quot; the proxies are assumed to be HTTP proxies. The same holds if you select &quot;HTTP&quot;. If you choose &quot;SOCKS&quot; FoxyProxy will treat them as SOCKS5 proxies instead.">
+<!ENTITY foxyproxy.proxy.subscriptions.proxy.window.title "Subscription Proxies">
 <!ENTITY foxyproxy.pattern.subscriptions.label "Pattern Subscriptions">
+<!ENTITY foxyproxy.pattern.subscriptions.description "Subscribe to patterns published by others. Share your patterns with others in just a few clicks.">
 <!ENTITY foxyproxy.pattern.subscriptions.tooltip "Manage Pattern Subscriptions">
 <!ENTITY foxyproxy.pattern.subscriptions.accesskey "S">
+<!ENTITY foxyproxy.pattern.subscriptions.sharing.label "Share Your Patterns">
 <!ENTITY foxyproxy.pattern.subscriptions.menulist.tooltip "Изаберите шта желите да урадите са претплатама на шаблоне.">
 <!ENTITY foxyproxy.pattern.subscriptions.addSubscription "Додај нову претплату на шаблон">
 <!ENTITY foxyproxy.pattern.subscriptions.editSelection "Уреди изабрано">
@@ -467,6 +528,7 @@
 <!ENTITY foxyproxy.pattern.subscriptions.refreshNow.tooltip "Refresh this pattern subscription now">
 <!ENTITY foxyproxy.pattern.subscriptions.refreshHelp1 "Specify the number of minutes after which the subscription is updated. Updating the subscription ">
 <!ENTITY foxyproxy.pattern.subscriptions.refreshHelp2 "removes all existing patterns ">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp4 "then inserts the ones found at the subscription URL. Read more">
 <!ENTITY foxyproxy.pattern.subscriptions.zeroRefresh "(0 да се никада не освежава)">
 <!ENTITY foxyproxy.pattern.subscriptions.format.tooltip "Format of this pattern subscription list">
 <!ENTITY foxyproxy.pattern.subscriptions.formatHelp "Specify the format in which the subscription is written. Normally, this is automatically detected by FoxyProxy. Read more ">
@@ -484,6 +546,8 @@
 <!ENTITY foxyproxy.status.label "Стање">
 <!ENTITY foxyproxy.format.label "Облик">
 <!ENTITY foxyproxy.obfuscation.label "Обмањивање">
+<!ENTITY foxyproxy.compatibilitycheck.proxy.tooltip "Select the proxy you want to use for the add-on compatibility check after an application update">
+<!ENTITY foxyproxy.compatibilitycheck.proxy.help "When Firefox/Thunderbird/SeaMonkey searches for add-on updates at http://addons.mozilla.org during start-up, it is possible for this search to bypass your proxy patterns. Here you can specify which proxy to use for these rare situations.">
 <!-- end foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Add/Edit Local IP Address Pattern">
 <!ENTITY foxyproxy.tempip.popup.label "Temporary patterns allow you to create patterns for local IP addresses that you don&apos;t use often without cluttering the IP address pattern list for a proxy. Temporary patterns are not saved to disk. They are kept in-memory and used for this Firefox session only.">
@@ -545,3 +609,6 @@
 <!ENTITY foxyproxy.patternsforselected.accesskey "И">
 <!ENTITY foxyproxy.patternsforselected.tooltip "Направи шаблоне за изабране адресе">
 <!ENTITY foxyproxy.patterntoadd.label "Шаблон за додавање">
+<!ENTITY foxyproxyplus.released "Released under the">
+<!ENTITY foxyproxyplus.license "FoxyProxy Plus license">
+<!-- end foxyproxyplus -->

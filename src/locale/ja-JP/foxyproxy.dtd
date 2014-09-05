@@ -468,16 +468,39 @@
 <!ENTITY foxyproxy.proxyservice.tooltip "Sign up for proxy services">
 <!ENTITY foxyproxy.proxyservice2.label "Need fast, reliable proxies in the US, UK, or other countries?">
 <!ENTITY foxyproxy.getfoxyproxyplus.label "Get FoxyProxy Plus">
+<!ENTITY foxyproxy.foxyproxychrome.label "FoxyProxy for Chrome">
+<!ENTITY foxyproxy.foxyproxychrome.accesskey "F">
+<!ENTITY foxyproxy.foxyproxychrome.tooltip "Try FoxyProxy for Chrome">
 <!ENTITY foxyproxy.invalidcolor.label "Invalid color">
 <!ENTITY foxyproxy.validcolor.label "Valid color">
 <!ENTITY foxyproxy.color.label "Color">
+<!ENTITY foxyproxy.color.description "Icon color when proxy is in use">
 <!ENTITY foxyproxy.server.subscriptions.label "Server Subscriptions">
 <!ENTITY foxyproxy.server.subscriptions.tooltip "Manage Server Subscriptions">
 <!ENTITY foxyproxy.server.subscriptions.accesskey "S">
 <!ENTITY foxyproxy.selectproxy.label "Select Proxy">
+<!ENTITY foxyproxy.proxy.subscriptions.label "Proxy Subscriptions">
+<!ENTITY foxyproxy.proxy.subscriptions.accesskey "X">
+<!ENTITY foxyproxy.proxy.subscriptions.tooltip "Manage Proxy Subscriptions">
+<!ENTITY foxyproxy.proxy.subscriptions.description "Subscribe to proxies published by others. Share your proxies with others in just a few clicks.">
+<!ENTITY foxyproxy.proxy.subscriptions.sharing.label "Share Your Proxies">
+<!ENTITY foxyproxy.proxy.subscriptions.menulist.tooltip "Select what to do with proxy subscriptions.">
+<!ENTITY foxyproxy.proxy.subscriptions.addSubscription "Add New Proxy Subscription">
+<!ENTITY foxyproxy.proxy.subscriptions.viewSubscription "View Proxy Subscription">
+<!ENTITY foxyproxy.proxy.subscriptions.addedit.title "Add/Edit Proxy Subscription">
+<!ENTITY foxyproxy.proxy.subscriptions.refreshHelp "removes all existing subscribed proxies">
+<!ENTITY foxyproxy.proxy.subscriptions.proxy.type.label "Proxy Type">
+<!ENTITY foxyproxy.proxy.subscriptions.proxy.type.tooltip "Choose the type of the proxies on the list you want to import. If you select &quot;I don't know&quot; it is assumed they are HTTP proxies.">
+<!ENTITY foxyproxy.proxy.subscriptions.unknown.label "I don't know">
+<!ENTITY foxyproxy.proxy.subscriptions.http.label "HTTP">
+<!ENTITY foxyproxy.proxy.subscriptions.socks.label "SOCKS">
+<!ENTITY foxyproxy.proxy.subscriptions.subscriptionTypeHelp "This option lets you choose the type of the proxies on your subscription. If you select &quot;I don't know&quot; the proxies are assumed to be HTTP proxies. The same holds if you select &quot;HTTP&quot;. If you choose &quot;SOCKS&quot; FoxyProxy will treat them as SOCKS5 proxies instead.">
+<!ENTITY foxyproxy.proxy.subscriptions.proxy.window.title "Subscription Proxies">
 <!ENTITY foxyproxy.pattern.subscriptions.label "Pattern Subscriptions">
+<!ENTITY foxyproxy.pattern.subscriptions.description "Subscribe to patterns published by others. Share your patterns with others in just a few clicks.">
 <!ENTITY foxyproxy.pattern.subscriptions.tooltip "Manage Pattern Subscriptions">
 <!ENTITY foxyproxy.pattern.subscriptions.accesskey "S">
+<!ENTITY foxyproxy.pattern.subscriptions.sharing.label "Share Your Patterns">
 <!ENTITY foxyproxy.pattern.subscriptions.menulist.tooltip "Select what to do with pattern subscriptions.">
 <!ENTITY foxyproxy.pattern.subscriptions.addSubscription "Add New Pattern Subscription">
 <!ENTITY foxyproxy.pattern.subscriptions.editSelection "Edit Selection">
@@ -505,6 +528,7 @@
 <!ENTITY foxyproxy.pattern.subscriptions.refreshNow.tooltip "Refresh this pattern subscription now">
 <!ENTITY foxyproxy.pattern.subscriptions.refreshHelp1 "Specify the number of minutes after which the subscription is updated. Updating the subscription ">
 <!ENTITY foxyproxy.pattern.subscriptions.refreshHelp2 "removes all existing patterns ">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp4 "then inserts the ones found at the subscription URL. Read more">
 <!ENTITY foxyproxy.pattern.subscriptions.zeroRefresh "(0 to never refresh)">
 <!ENTITY foxyproxy.pattern.subscriptions.format.tooltip "Format of this pattern subscription list">
 <!ENTITY foxyproxy.pattern.subscriptions.formatHelp "Specify the format in which the subscription is written. Normally, this is automatically detected by FoxyProxy. Read more ">
@@ -522,6 +546,8 @@
 <!ENTITY foxyproxy.status.label "Status">
 <!ENTITY foxyproxy.format.label "Format">
 <!ENTITY foxyproxy.obfuscation.label "Obfuscation">
+<!ENTITY foxyproxy.compatibilitycheck.proxy.tooltip "Select the proxy you want to use for the add-on compatibility check after an application update">
+<!ENTITY foxyproxy.compatibilitycheck.proxy.help "When Firefox/Thunderbird/SeaMonkey searches for add-on updates at http://addons.mozilla.org during start-up, it is possible for this search to bypass your proxy patterns. Here you can specify which proxy to use for these rare situations.">
 <!-- end foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Add/Edit Local IP Address Pattern">
 <!ENTITY foxyproxy.tempip.popup.label "Temporary patterns allow you to create patterns for local IP addresses that you don&apos;t use often without cluttering the IP address pattern list for a proxy. Temporary patterns are not saved to disk. They are kept in-memory and used for this Firefox session only.">
@@ -583,3 +609,6 @@
 <!ENTITY foxyproxy.patternsforselected.accesskey "S">
 <!ENTITY foxyproxy.patternsforselected.tooltip "Create Patterns for Selected URLs">
 <!ENTITY foxyproxy.patterntoadd.label "Pattern to Add">
+<!ENTITY foxyproxyplus.released "Released under the">
+<!ENTITY foxyproxyplus.license "FoxyProxy Plus license">
+<!-- end foxyproxyplus -->

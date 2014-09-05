@@ -69,6 +69,7 @@
 <!ENTITY foxyproxy.copy.selection.tooltip "Copia a seleção">
 <!ENTITY foxyproxy.mode.label "Seleciona Modo">
 <!ENTITY foxyproxy.wpad.label1 "por WPAD">
+<!--For translators: The following two strings are already included into Firefox and may be found in the Preferences panel -> Advanced -> Network Settings-->
 <!ENTITY foxyproxy.wpad.accesskey "W">
 <!ENTITY foxyproxy.wpad.tooltip "Detectar as configurações de proxy automaticamente usando WPAD">
 <!ENTITY foxyproxy.wpad.reload.label "Detectar todas as configurações de proxy automaticamente">
@@ -547,6 +548,7 @@
 <!ENTITY foxyproxy.obfuscation.label "Ofuscação">
 <!ENTITY foxyproxy.compatibilitycheck.proxy.tooltip "Selecione o proxy que você deseja usar para a verificação de compatibilidade do complemento após uma atualização do aplicativo">
 <!ENTITY foxyproxy.compatibilitycheck.proxy.help "Quando o Firefox/Thunderbird/SeaMonkey procura atualizações de complemento em http://addons.mozilla.org durante o arranque, é possível que essa busca ultrapasse seus padrões de proxy. Aqui você pode especificar qual proxy a ser usado para estas situações raras.">
+<!-- begin foxyproxyplus -->
 <!ENTITY foxyproxy.ip.pattern.addedit.title "Adicionar/Editar local do endereço IP padrão">
 <!ENTITY foxyproxy.tempip.popup.label "Padrões temporários permitem criar padrões para endereços IP locais que você não usa com freqüência sem encher a lista de endereços IPpadrão para um proxy. Padrões temporários não são salvas em disco. Eles são mantidos na memória e utilizada somente nesta sessão de Firefox.">
 <!ENTITY foxyproxy.ip.pattern.label "Padrão de endereço IP local">
@@ -609,3 +611,4 @@
 <!ENTITY foxyproxy.patterntoadd.label "Padrão para adicionar">
 <!ENTITY foxyproxyplus.released "Lançado sob a">
 <!ENTITY foxyproxyplus.license "Licença do FoxyProxy Plus">
+<!-- end foxyproxyplus -->

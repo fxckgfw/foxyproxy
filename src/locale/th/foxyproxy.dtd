@@ -12,6 +12,16 @@
 <!ENTITY foxyproxy.proxy.notes.label "โน้ตพร็อกซี">
 <!ENTITY foxyproxy.proxy.notes.accesskey "น">
 <!ENTITY foxyproxy.proxy.notes.tooltip "โน้ตพร็อกซี">
+<!ENTITY foxyproxy.proxy.wizard.label "Proxy Wizard">
+<!ENTITY foxyproxy.proxy.wizard.accesskey "P">
+<!ENTITY foxyproxy.proxy.wizard.tooltip "Create a proxy from a proxy subscription">
+<!ENTITY foxyproxy.proxy.wizard.description1 "This wizard configures your paid proxy automatically. Please enter your subscription ID below. If you do not have a subscription ID, ">
+<!ENTITY foxyproxy.proxy.wizard.description2 "you can purchase one">
+<!ENTITY foxyproxy.proxy.wizard.subscriptionID.label "Subscription ID">
+<!ENTITY foxyproxy.proxy.wizard.subscriptionID.tooltip "Enter your proxy subscription ID">
+<!ENTITY foxyproxy.proxy.wizard.loading.label "Retrieving proxy details...">
+<!ENTITY foxyproxy.proxy.wizard.congratulation "Congratulations. FoxyProxy is configured.">
+<!ENTITY foxyproxy.proxy.wizard.whatsmyip.label "Check my location">
 <!ENTITY foxyproxy.pattern.label "แบบรูปที่เข้ากัน">
 <!ENTITY foxyproxy.urlpatterns.label "แบบรูปยูอาร์แอล">
 <!ENTITY foxyproxy.urlpatterns.accesskey "บ">
@@ -70,6 +80,7 @@
 <!ENTITY foxyproxy.auto.url.tooltip "กรอกยูอาร์แอลหรือแฟ้ม PAC">
 <!ENTITY foxyproxy.auto.url.note.label "http(s)://   ftp://   file://   relative://">
 <!ENTITY foxyproxy.auto.url.note.tooltip "คลิกไอคอนข้อมูลสำหรับข้อมูลที่สัมพันธ์://">
+<!ENTITY foxyproxy.ip.address.label "IP address">
 <!ENTITY foxyproxy.port.label "พอร์ต">
 <!ENTITY foxyproxy.port.accesskey "พ">
 <!ENTITY foxyproxy.port.tooltip "พอร์ต">
@@ -83,6 +94,7 @@
 <!ENTITY foxyproxy.regex.label "การแสดงออกทั่วไป">
 <!ENTITY foxyproxy.regex.accesskey "ป">
 <!ENTITY foxyproxy.regex.tooltip "กำหนดว่าแบบรูปยูอาร์แอลเป็นการแสดงออกทั่วไป">
+<!ENTITY foxyproxy.regex.example.label2 "Example: ^https?://.*\.mail\.yahoo\.com/.*$">
 <!ENTITY foxyproxy.version "รุ่น">
 <!ENTITY foxyproxy.createdBy "สร้างโดย:">
 <!ENTITY foxyproxy.contributionsBy "คุโณปการโดย">
@@ -129,6 +141,8 @@
 <!ENTITY foxyproxy.tab.global.label "การตั้งค่าโดยรวม">
 <!ENTITY foxyproxy.tab.global.accesskey "ด">
 <!ENTITY foxyproxy.tab.global.tooltip "จัดการการตั้งค่าโดยรวม">
+<!ENTITY foxyproxy.settings.advanced.label "Advanced Settings">
+<!ENTITY foxyproxy.settings.advanced.tooltip "A click on the button opens the advanced settings dialog of FoxyProxy">
 <!ENTITY foxyproxy.tab.logging.label "การบันทึกงาน">
 <!ENTITY foxyproxy.tab.logging.accesskey "บ">
 <!ENTITY foxyproxy.tab.logging.tooltip "จัดการการตั้งค่าการบันทึกงาน">
@@ -136,6 +150,20 @@
 <!ENTITY foxyproxy.proxydns.accesskey "D">
 <!ENTITY foxyproxy.proxydns.tooltip3 "ทำเครื่องหมายเพื่อให้ใช้พรอกซีนี้กับโฮสต์เนมของการโหลด URL">
 <!ENTITY foxyproxy.proxydns.label4 "พรอกซี DNS">
+<!ENTITY foxyproxy.cache.label "Cache">
+<!ENTITY foxyproxy.clearcache.label "Clear application cache before using this proxy">
+<!ENTITY foxyproxy.clearcache.accesskey "H">
+<!ENTITY foxyproxy.clearcache.tooltip "If checked, clear cache before using this proxy">
+<!ENTITY foxyproxy.disablecache.label "Do not cache while using this proxy">
+<!ENTITY foxyproxy.disablecache.accesskey "D">
+<!ENTITY foxyproxy.disablecache.tooltip "If checked, application won't cache in the future">
+<!ENTITY foxyproxy.cookies.label "Cookies">
+<!ENTITY foxyproxy.clearcookies.label "Remove all cookies before using this proxy">
+<!ENTITY foxyproxy.clearcookies.accesskey "C">
+<!ENTITY foxyproxy.clearcookies.tooltip "If checked, remove all cookies before using this proxy">
+<!ENTITY foxyproxy.rejectcookies.label "Block all cookies when using this proxy">
+<!ENTITY foxyproxy.rejectcookies.accesskey "B">
+<!ENTITY foxyproxy.rejectcookies.tooltip "If checked, browser will reject all cookies when using this proxy">
 <!ENTITY foxyproxy.showstatusbaricon.label "แสดงไอคอนบนแถบสถานะ">
 <!ENTITY foxyproxy.showstatusbaricon.accesskey "ค">
 <!ENTITY foxyproxy.showstatusbaricon.tooltip "เลือกเพื่อแสดงไอคอนบนแถบสถานะ">
@@ -190,6 +218,9 @@
 <!ENTITY foxyproxy.movedown.label "เลื่อนลง">
 <!ENTITY foxyproxy.movedown.tooltip "ลดความสำคัญให้สิ่งที่เลือก">
 <!ENTITY foxyproxy.movedown.accesskey "ล">
+<!ENTITY foxyproxy.system.label "Use System Proxy Settings">
+<!ENTITY foxyproxy.system.accesskey "Y">
+<!ENTITY foxyproxy.system.tooltip2 "Use the proxy configuration in your system settings">
 <!ENTITY foxyproxy.automatic.label "การปรับแต่งพร็อกซีอัตโนมัติ">
 <!ENTITY foxyproxy.automatic.accesskey "ก">
 <!ENTITY foxyproxy.automatic.tooltip "รับการปรับแต่งพร็อกซีโดยอัตโนมัติ">
@@ -228,6 +259,22 @@
 <!ENTITY foxyproxy.tab.autoadd.label "AutoAdd">
 <!ENTITY foxyproxy.tab.autoadd.accesskey "A">
 <!ENTITY foxyproxy.tab.autoadd.tooltip "จัดการการตั้งค่า AutoAdd">
+<!ENTITY foxyproxy.autoadd.description "Specify a pattern that identifies blocked websites. When the pattern is found on a page, a pattern matching that website's URL is automatically added to a proxy and optionally reloaded. This prevents you from having to proactively identify all blocked websites.">
+<!ENTITY foxyproxy.autoadd.pattern.label "Pattern to identify blocked websites">
+<!ENTITY foxyproxy.autoadd.pattern.accesskey "P">
+<!ENTITY foxyproxy.autoadd.pattern.tooltip "Pattern that identifies blocked websites">
+<!ENTITY foxyproxy.autoadd.wildcard.example.label "Example: *You are not authorized to view this page*">
+<!ENTITY foxyproxy.autoadd.regex.example.label "Example: .*Site.*has been blocked.*">
+<!ENTITY foxyproxy.autoadd.proxy.label "Proxy to which patterns are automatically added">
+<!ENTITY foxyproxy.autoadd.proxy.accesskey "P">
+<!ENTITY foxyproxy.autoadd.proxy.tooltip "Specify the proxy to which URLs are automatically added">
+<!ENTITY foxyproxy.pattern.template.label "URL Pattern Template">
+<!ENTITY foxyproxy.pattern.template.accesskey "U">
+<!ENTITY foxyproxy.pattern.template.tooltip "URL Pattern Template">
+<!ENTITY foxyproxy.pattern.template.example.label1 "Example for ">
+<!ENTITY foxyproxy.pattern.template.example.label2 "http://fred:secret@mail.foo.com:8080/inbox/msg102.htm#subject?style=elegant">
+<!ENTITY foxyproxy.pattern.template.currenturl.label "Current URL">
+<!ENTITY foxyproxy.pattern.template.currenturl.accesskey "C">
 <!ENTITY foxyproxy.pattern.template.currenturl.tooltip "ยูอาร์แอลในแถบที่อยู่">
 <!ENTITY foxyproxy.pattern.template.generatedpattern.label "แบบรูปที่สร้างขึ้น">
 <!ENTITY foxyproxy.pattern.template.generatedpattern.accesskey "ง">
@@ -238,6 +285,7 @@
 <!ENTITY foxyproxy.autoadd.notify.label "เตือนเมื่อเริ่มใช้งาน AutoAdd">
 <!ENTITY foxyproxy.autoadd.notify.accesskey "ต">
 <!ENTITY foxyproxy.autoadd.notify.tooltip "แจ้งให้ทราบเมื่อเพจถูกบล็อก &amp; แบบรูปยูอาร์แอลเพิ่มเข้าพร็อกซี">
+<!ENTITY foxyproxy.autoadd.notify.tooltip2 "Display a popup when AutoAdd is activated">
 <!ENTITY foxyproxy.pacloadnotification.label "เตือนเมื่อโหลดแฟ้มการปรับแต่งพร็อกซีอัตโนมัติ">
 <!ENTITY foxyproxy.pacloadnotification.accesskey "ด">
 <!ENTITY foxyproxy.pacloadnotification.tooltip "แสดงพ็อปอัปเมื่อโหลดแฟ้ม PAC">
@@ -344,12 +392,22 @@
 <!ENTITY foxyproxy.animatedicons.label "ขยับไอคอนเมื่อใช้พร็อกซี">
 <!ENTITY foxyproxy.animatedicons.accesskey "ข">
 <!ENTITY foxyproxy.animatedicons.tooltip "ขยับไอคอนเมื่อใช้พร็อกซี (ต้องเลือกการตั้งค่าโดยรวม-&gt;การขยับ)">
+<!ENTITY foxyproxy.statusbaractivation.label "Statusbar Activation">
+<!ENTITY foxyproxy.statusbaractivation.tooltip "Statusbar Activation Settings">
+<!ENTITY foxyproxy.toolbaractivation.label "Toolbar Activation">
+<!ENTITY foxyproxy.toolbaractivation.tooltip "Toolbar Activation Settings">
 <!ENTITY foxyproxy.leftclicksb.label "คลิกซ้าย">
 <!ENTITY foxyproxy.leftclicksb.accesskey "ซ">
+<!ENTITY foxyproxy.leftclicksb.tooltip "Action to take when left-clicking FoxyProxy in status bar">
+<!ENTITY foxyproxy.middleclicksb.label "Middle-click">
+<!ENTITY foxyproxy.middleclicksb.accesskey "M">
+<!ENTITY foxyproxy.middleclicksb.tooltip "Action to take when middle-clicking FoxyProxy in status bar">
 <!ENTITY foxyproxy.rightclicksb.label "คลิกขวา">
 <!ENTITY foxyproxy.rightclicksb.accesskey "ข">
+<!ENTITY foxyproxy.rightclicksb.tooltip "Action to take when right-clicking FoxyProxy in status bar">
 <!ENTITY foxyproxy.leftclicktb.label "คลิกซ้าย">
 <!ENTITY foxyproxy.leftclicktb.accesskey "ซ">
+<!ENTITY foxyproxy.leftclicktb.tooltip "Action to take when left-clicking FoxyProxy in toolbar">
 <!ENTITY foxyproxy.middleclicktb.label "คลิกกลาง">
 <!ENTITY foxyproxy.middleclicktb.accesskey "ก">
 <!ENTITY foxyproxy.middleclicktb.tooltip "สิ่งที่จะเกิดขึ้นเมื่อกดเมาส์ปุ่มกลางกับ FoxyProxy ในแถบเครื่องมือ">
@@ -370,6 +428,8 @@
 <!ENTITY foxyproxy.changes.msg1 "ช่วยด้วย! การตั้งค่าของ HTTP, SSL, FTP, Gopher, และ SOCKS อยู่ที่ไหน?">
 <!ENTITY foxyproxy.newGUI.popup.height "270px">
 <!ENTITY foxyproxy.newGUI.popup.width "400px">
+<!ENTITY foxyproxy.newGUI1.label "The old FoxyProxy Proxy Settings screen was based on and nearly identical to Firefox's Connection Settings dialog, which in turn was nearly identical to the Proxy Settings in the ancient Mosaic 2.1.1 browser from 1996. The problem with all of these screens is their limited ability to route traffic by protocol. 21st century browsers like Firefox handle many more protocols than HTTP, SSL, FTP, and GOPHER. Clearly, these old screens would be unwieldy if they attempted to include every possible protocol.">
+<!ENTITY foxyproxy.newGUI2.label "Since FoxyProxy already enables traffic routing by protocol with wildcard and regular expression patterns, the listing of protocols on this screen is unnecessary. As of version 2.5, FoxyProxy has removed this protocol list from the Proxy Settings GUI. However, this does not reduce functionality. It makes for a simpler interface. If you need to route traffic by protocol, you should define whitelist and blacklist patterns with careful attention to the scheme/protocol portion of the pattern (e.g., ftp://*.yahoo.com/*, *://leahscape.com/*, etc.)">
 <!ENTITY foxyproxy.newGUI4.label "ดูข้อมูลเพิ่มเติม">
 <!ENTITY foxyproxy.error.msg.label "ข้อความเออเรอร์">
 <!ENTITY foxyproxy.pac.result.label "ผลลัพท์ PAC">
@@ -381,6 +441,8 @@
 <!ENTITY foxyproxy.statusbarwidth.accesskey "พ">
 <!ENTITY foxyproxy.statusbarwidth.tooltip "ป้องกันการเปลี่ยนขนาดแถบสถานะ">
 <!ENTITY foxyproxy.pixels "พิกเซล">
+<!ENTITY foxyproxy.unlimited.label "[0: shrink to fit] ">
+<!ENTITY foxyproxy.temp.popup.label "Temporary patterns allow you to create patterns for URLs that you don't visit often without cluttering the pattern list for a proxy. Temporary patterns are not saved to disk. They are kept in-memory and used for this Firefox session only.">
 <!ENTITY foxyproxy.temp.label "ชั่วคราว">
 <!ENTITY foxyproxy.temp.accesskey "ช">
 <!ENTITY foxyproxy.temp.tooltip "แบบรูปใช้เฉพาะการเปิดไฟร์ฟอกซ์ครั้งนี้">
@@ -395,11 +457,58 @@
 <!ENTITY foxyproxy.credits "เครดิต">
 <!ENTITY foxyproxy.please.donate.label "กรุณาบริจาค">
 <!ENTITY foxyproxy.please.donate.accesskey "บ">
+<!ENTITY foxyproxy.importantnote.label "Read Important Note">
+<!ENTITY foxyproxy.resetlocation.label "Reset Location">
+<!ENTITY foxyproxy.resetlocation.accesskey "R">
+<!ENTITY foxyproxy.resetlocation.tooltip "Store settings in Firefox profile">
+<!ENTITY foxyproxy.settings.not.default "Settings aren't in the default location.">
+<!ENTITY foxyproxy.change.host.reload "Set new host:port and then reload current page">
+<!ENTITY foxyproxy.proxyservice.label "Buy Proxy Service">
+<!ENTITY foxyproxy.proxyservice.accesskey "P">
+<!ENTITY foxyproxy.proxyservice.tooltip "Sign up for proxy services">
+<!ENTITY foxyproxy.proxyservice2.label "Need fast, reliable proxies in the US, UK, or other countries?">
+<!ENTITY foxyproxy.getfoxyproxyplus.label "Get FoxyProxy Plus">
+<!ENTITY foxyproxy.foxyproxychrome.label "FoxyProxy for Chrome">
+<!ENTITY foxyproxy.foxyproxychrome.accesskey "F">
+<!ENTITY foxyproxy.foxyproxychrome.tooltip "Try FoxyProxy for Chrome">
 <!ENTITY foxyproxy.invalidcolor.label "สีผิด">
 <!ENTITY foxyproxy.validcolor.label "สีถูกต้อง">
+<!ENTITY foxyproxy.color.label "Color">
+<!ENTITY foxyproxy.color.description "Icon color when proxy is in use">
+<!ENTITY foxyproxy.server.subscriptions.label "Server Subscriptions">
+<!ENTITY foxyproxy.server.subscriptions.tooltip "Manage Server Subscriptions">
+<!ENTITY foxyproxy.server.subscriptions.accesskey "S">
 <!ENTITY foxyproxy.selectproxy.label "เลือกพรอกซี">
+<!ENTITY foxyproxy.proxy.subscriptions.label "Proxy Subscriptions">
+<!ENTITY foxyproxy.proxy.subscriptions.accesskey "X">
+<!ENTITY foxyproxy.proxy.subscriptions.tooltip "Manage Proxy Subscriptions">
+<!ENTITY foxyproxy.proxy.subscriptions.description "Subscribe to proxies published by others. Share your proxies with others in just a few clicks.">
+<!ENTITY foxyproxy.proxy.subscriptions.sharing.label "Share Your Proxies">
+<!ENTITY foxyproxy.proxy.subscriptions.menulist.tooltip "Select what to do with proxy subscriptions.">
+<!ENTITY foxyproxy.proxy.subscriptions.addSubscription "Add New Proxy Subscription">
+<!ENTITY foxyproxy.proxy.subscriptions.viewSubscription "View Proxy Subscription">
+<!ENTITY foxyproxy.proxy.subscriptions.addedit.title "Add/Edit Proxy Subscription">
+<!ENTITY foxyproxy.proxy.subscriptions.refreshHelp "removes all existing subscribed proxies">
+<!ENTITY foxyproxy.proxy.subscriptions.proxy.type.label "Proxy Type">
+<!ENTITY foxyproxy.proxy.subscriptions.proxy.type.tooltip "Choose the type of the proxies on the list you want to import. If you select &quot;I don't know&quot; it is assumed they are HTTP proxies.">
+<!ENTITY foxyproxy.proxy.subscriptions.unknown.label "I don't know">
+<!ENTITY foxyproxy.proxy.subscriptions.http.label "HTTP">
+<!ENTITY foxyproxy.proxy.subscriptions.socks.label "SOCKS">
+<!ENTITY foxyproxy.proxy.subscriptions.subscriptionTypeHelp "This option lets you choose the type of the proxies on your subscription. If you select &quot;I don't know&quot; the proxies are assumed to be HTTP proxies. The same holds if you select &quot;HTTP&quot;. If you choose &quot;SOCKS&quot; FoxyProxy will treat them as SOCKS5 proxies instead.">
+<!ENTITY foxyproxy.proxy.subscriptions.proxy.window.title "Subscription Proxies">
+<!ENTITY foxyproxy.pattern.subscriptions.label "Pattern Subscriptions">
 <!ENTITY foxyproxy.pattern.subscriptions.description "ลงชื่อติดตามรูปแบบของผู้ใช้คนอื่น แบ่งปันรูปแบบของคุณให้คนอื่นได้ง่ายๆ">
+<!ENTITY foxyproxy.pattern.subscriptions.tooltip "Manage Pattern Subscriptions">
+<!ENTITY foxyproxy.pattern.subscriptions.accesskey "S">
 <!ENTITY foxyproxy.pattern.subscriptions.sharing.label "แบ่งปันรูปแบบ">
+<!ENTITY foxyproxy.pattern.subscriptions.menulist.tooltip "Select what to do with pattern subscriptions.">
+<!ENTITY foxyproxy.pattern.subscriptions.addSubscription "Add New Pattern Subscription">
+<!ENTITY foxyproxy.pattern.subscriptions.editSelection "Edit Selection">
+<!ENTITY foxyproxy.pattern.subscriptions.deleteSelections "Delete Selections">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshSelections "Refresh Selections">
+<!ENTITY foxyproxy.pattern.subscriptions.viewSubscription "View Pattern Subscription">
+<!ENTITY foxyproxy.pattern.subscriptions.go.label "Go">
+<!ENTITY foxyproxy.pattern.subscriptions.go.tooltip "Click here to execute your selection.">
 <!ENTITY foxyproxy.pattern.subscriptions.lastStatus.label "สถานะล่าสุด">
 <!ENTITY foxyproxy.pattern.subscriptions.addedit.title "เพิ่ม/ลดรูปแบบการรับข้อมูล">
 <!ENTITY foxyproxy.pattern.subscriptions.name.label "ชื่อการรับข้อมูล">
@@ -419,6 +528,7 @@
 <!ENTITY foxyproxy.pattern.subscriptions.refreshNow.tooltip "รีเฟรชการรับข้อมูลรูปแบบนี้ทันที">
 <!ENTITY foxyproxy.pattern.subscriptions.refreshHelp1 "ระบุจำนวนนาทีหลังจากการรับข้อมูลอัปเดต อัปเดตการรับข้อมูล">
 <!ENTITY foxyproxy.pattern.subscriptions.refreshHelp2 "ลบรูปแบบที่มีทั้งหมด">
+<!ENTITY foxyproxy.pattern.subscriptions.refreshHelp4 "then inserts the ones found at the subscription URL. Read more">
 <!ENTITY foxyproxy.pattern.subscriptions.zeroRefresh "(0 ถึงไม่รีเฟรชเลย)">
 <!ENTITY foxyproxy.pattern.subscriptions.format.tooltip "รูปแบบของรายชื่อรูปแบบการรับข้อมูล">
 <!ENTITY foxyproxy.pattern.subscriptions.formatHelp "ระบุรูปแบบของการรับข้อมูบที่จะเขียน โดยปกติแล้ว FoxyProxy จะหาเอง อ่านเพิ่มเติม">
@@ -428,7 +538,77 @@
 <!ENTITY foxyproxy.pattern.subscriptions.copyLastStatus.tooltip "คัดลอกสถานะล่าสุดไปยังคลิปบอร์ด">
 <!ENTITY foxyproxy.pattern.subscriptions.pattern.window.title "รูปแบบการรับข้อมูล">
 <!ENTITY foxyproxy.none.label "ไม่มี">
+<!ENTITY foxyproxy.name.label "Name">
+<!ENTITY foxyproxy.notes.label "Notes">
+<!ENTITY foxyproxy.url.label "url">
+<!ENTITY foxyproxy.lastupdate.label "Last Update">
+<!ENTITY foxyproxy.updatefrequency.label "Update Frequency">
+<!ENTITY foxyproxy.status.label "Status">
+<!ENTITY foxyproxy.format.label "Format">
+<!ENTITY foxyproxy.obfuscation.label "Obfuscation">
+<!ENTITY foxyproxy.compatibilitycheck.proxy.tooltip "Select the proxy you want to use for the add-on compatibility check after an application update">
+<!ENTITY foxyproxy.compatibilitycheck.proxy.help "When Firefox/Thunderbird/SeaMonkey searches for add-on updates at http://addons.mozilla.org during start-up, it is possible for this search to bypass your proxy patterns. Here you can specify which proxy to use for these rare situations.">
+<!-- begin foxyproxyplus -->
+<!ENTITY foxyproxy.ip.pattern.addedit.title "Add/Edit Local IP Address Pattern">
+<!ENTITY foxyproxy.tempip.popup.label "Temporary patterns allow you to create patterns for local IP addresses that you don't use often without cluttering the IP address pattern list for a proxy. Temporary patterns are not saved to disk. They are kept in-memory and used for this Firefox session only.">
+<!ENTITY foxyproxy.ip.pattern.label "Local IP address pattern">
+<!ENTITY foxyproxy.ip.pattern.accesskey "I">
+<!ENTITY foxyproxy.ip.pattern.tooltip "Local IP address pattern">
+<!ENTITY foxyproxy.ip.patterns.label "Local IP Address Patterns">
+<!ENTITY foxyproxy.ip.patterns.accesskey "I">
+<!ENTITY foxyproxy.ip.patterns.tooltip "Local IP address patterns">
+<!ENTITY foxyproxy.ip.wildcard.reference.matches.label "Matches">
+<!ENTITY foxyproxy.ip.wildcard.reference.nomatch.label "Doesn't Match">
+<!ENTITY foxyproxy.ip.whiteblack.label "Inclusion/Exclusion">
+<!ENTITY foxyproxy.ip.whitelist.description.label "URLs load through this proxy when one of your IP addresses matches this pattern">
+<!ENTITY foxyproxy.ip.blacklist.description.label "URLs do NOT load through this proxy when one of your IP addresses matches this pattern">
+<!ENTITY foxyproxy.ip.wildcard.reference.subtitle.label "The asterisk (*) matches zero or more characters.">
+<!ENTITY foxyproxy.ip.current.local.label "Current Local IP addresses">
+<!ENTITY foxyproxy.copyip.label "Copy to Pattern">
+<!ENTITY foxyproxy.copyip.tooltip "Copy address to pattern">
+<!ENTITY foxyproxy.copyip.accesskey "C">
+<!ENTITY foxyproxy.ip.wildcard.example.label "Example: 192.168.1.*">
+<!ENTITY foxyproxy.ip.regex.example.label "Example: 172\.\d+\.1\.10">
+<!ENTITY foxyproxy.ip.pattern.match "Pattern matches one or more or current local IP addresses">
+<!ENTITY foxyproxy.ip.pattern.no.match "Pattern doesn't match any current local IP address">
+<!ENTITY foxyproxy.refreshlocalips "Refresh local IP addresses">
+<!ENTITY foxyproxy.refreshlocalips.accesskey "R">
+<!ENTITY foxyproxy.enterlicense.label "Enter license key">
+<!ENTITY foxyproxy.enteremail.label "Enter email address">
+<!ENTITY foxyproxy.licenseinfo.label "License Info">
+<!ENTITY foxyproxy.licensevalid.label "License valid. Thank you for purchasing FoxyProxy Plus.">
+<!ENTITY foxyproxy.subexpired.label "License valid, but your update subscription expired. You are not receiving FoxyProxy Plus updates.">
+<!ENTITY foxyproxy.licenseinvalid.label "License invalid. You won't receive FoxyProxy Plus updates. Please purchase FoxyProxy Plus.">
+<!ENTITY foxyproxy.buynow.label "Buy Now">
+<!ENTITY foxyproxy.checklicense.label "Check License">
+<!ENTITY foxyproxy.checkinglicense.label "Checking...please wait">
+<!ENTITY foxyproxy.yourversion.label "Your Version ">
+<!ENTITY foxyproxy.latestversion.label "Newest Version ">
+<!ENTITY foxyproxy.routetoleahscape.label.1 "Please make sure Firefox can reach">
+<!ENTITY foxyproxy.routetoleahscape.label.2 "either with or without a proxy. You can configure patterns for this URL in FoxyProxy Plus if necessary.">
+<!ENTITY foxyproxy.everything.label "Everything">
+<!ENTITY foxyproxy.nothing.label "Nothing">
+<!ENTITY foxyproxy.ippatterndeletefinal.label "This is the last local IP address pattern. If you delete it, this proxy has no possibility of being used. Continue anyway?">
+<!ENTITY foxyproxy.licenseplea.label "FoxyProxy Plus has minimal anti-piracy measures. If you use FoxyProxy Plus, please purchase a license. It's taken many years of work to develop and maintain, and your purchase encourages me to continue.">
 <!ENTITY foxyproxy.authentication.label "การตรวจสอบ">
 <!ENTITY foxyproxy.proxyusername.label "ชื่อผู้ใช้">
 <!ENTITY foxyproxy.proxypassword.label "รหัสผ่าน">
 <!ENTITY foxyproxy.proxypassword2.label "รหัสผ่านอีกครั้ง">
+<!ENTITY foxyproxy.proxydomain.label "Domain (optional - NTLM only)">
+<!ENTITY foxyproxy.proxydomain.tooltip "NTLM authentication only">
+<!ENTITY foxyproxy.proxy.passwords.nomatch.label "Proxy passwords do not match; please re-enter.">
+<!ENTITY foxyproxy.traininglogging.label "Training &amp; Logging">
+<!ENTITY foxyproxy.traininglogging.tooltip "Manage Training &amp; Logging Settings">
+<!ENTITY foxyproxy.traininglogging.accesskey "L">
+<!ENTITY foxyproxy.training.start "Start Training">
+<!ENTITY foxyproxy.training.stop "Stop Training">
+<!ENTITY foxyproxy.patternsforall.label "Create Patterns for All">
+<!ENTITY foxyproxy.patternsforall.accesskey "A">
+<!ENTITY foxyproxy.patternsforall.tooltip "Create Patterns for All URLs">
+<!ENTITY foxyproxy.patternsforselected.label "Create Patterns for Selected">
+<!ENTITY foxyproxy.patternsforselected.accesskey "S">
+<!ENTITY foxyproxy.patternsforselected.tooltip "Create Patterns for Selected URLs">
+<!ENTITY foxyproxy.patterntoadd.label "Pattern to Add">
+<!ENTITY foxyproxyplus.released "Released under the">
+<!ENTITY foxyproxyplus.license "FoxyProxy Plus license">
+<!-- end foxyproxyplus -->

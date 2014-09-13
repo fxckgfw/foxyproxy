@@ -58,10 +58,7 @@ ProxyConfig.prototype = {
     disableCache : "rw",
     clearCookiesBeforeUse : "rw",
     rejectCookies : "rw",
-    proxyDNS : "rw",
-    username : "rw",
-    password : "w",
-    ntlmDomain : "rw"
+    proxyDNS : "rw"
   },
 
   // getter only for |id| -- no setter
@@ -215,7 +212,10 @@ ProxyConfig.prototype = {
       host : "rw",
       port : "rw",
       socks : "rw",
-      socksversion : "rw"
+      socksversion : "rw",
+      username : "rw",
+      password : "w",
+      ntlmDomain : "rw"
     },
 
     get host() {
@@ -256,7 +256,34 @@ ProxyConfig.prototype = {
       this.owner._wrappedProxy.manualconf.socksversion = e;
       this.owner.utils.broadcast(null, "foxyproxy-proxy-change");
       this.owner.fp.writeSettingsAsync();
-    }
+    },
+
+    get username() {
+      return this.owner._wrappedProxy.manualconf.username;
+    },
+
+    set username(e) {
+      this.owner._wrappedProxy.manualconf.username = e;
+      this.owner.utils.broadcast(null, "foxyproxy-proxy-change");
+      this.owner.fp.writeSettingsAsync();
+    },
+
+    // Just a setter. Don't allow to read the current password.
+    set password(e) {
+      this.owner._wrappedProxy.manualconf.password = e;
+      this.owner.utils.broadcast(null, "foxyproxy-proxy-change");
+      this.owner.fp.writeSettingsAsync();
+    },
+
+    get ntlmDomain() {
+      return this.owner._wrappedProxy.manualconf.domain;
+    },
+
+    set ntlmDomain(e) {
+      this.owner._wrappedProxy.manualconf.domain = e;
+      this.owner.utils.broadcast(null, "foxyproxy-proxy-change");
+      this.owner.fp.writeSettingsAsync();
+    },
   },
 
   autoConfig: {

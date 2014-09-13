@@ -913,9 +913,9 @@ ManualConf.prototype = {
 
     // No "null" assignment for username and password. Otherwise the auto import
     // via proxy:// URL won't work.
-    this.username = pc.username ? pc.username : "";
-    this.password = pc.password ? pc.password : "";
-    this.ntlmDomain = pc.ntlmDomain;
+    this.username = mc.username ? mc.username : "";
+    this.password = mc.password ? mc.password : "";
+    this.ntlmDomain = mc.ntlmDomain;
 
     this._makeProxy();
   },

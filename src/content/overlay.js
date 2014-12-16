@@ -124,7 +124,41 @@ var foxyproxy = {
 
   findToolbarIcon : function() {
     if (typeof(gNavToolbox) == "undefined")
-      return; /* We're on Tbird or another platform which doesn't have this */
+      return; // We're on Tbird or another platform which doesn't have this
+
+    // in Firefox 29 and above we should use the CustomizableUI module to track our icon */
+    if (foxyproxy.fpc.vc.compare(foxyproxy.fpc.appInfo.version, "29.0a1") >= 0) {
+      var foxyproxyCUIListener = {
+         handler: function() {
+           // Our toolbar icon was added or removed to/from a toolbar. Recalc the svgicon arrays
+          foxyproxy.svgIcons.init();
+          if (document.getElementById("fp-toolbar-icon-3")) {
+            // Our toolbar icon was added. Apply the proper icon coloring to the toolbar icon by setting the mode againd
+            foxyproxy.setMode(foxyproxy.fp.mode);
+          }
+        },
+        onWidgetAdded: function(aWidgetId) {
+          if (aWidgetId == 'foxyproxy-toolbar-icon') {
+            this.handler();
+          }
+        },
+        onWidgetRemoved: function(aWidgetId) {
+          if (aWidgetId == 'foxyproxy-toolbar-icon') {
+            this.handler();
+          }
+        },
+        onAreaNodeRegistered: function() {
+          this.handler();
+        },
+        onAreaNodeUnregstered: function() {
+          this.handler();
+        }
+      };
+      var CustomizableUI = Components.utils.import("resource:///modules/CustomizableUI.jsm", {}).CustomizableUI;
+      CustomizableUI.addListener(foxyproxyCUIListener);
+      return; // The changes to .customizeChange() below are no longer necessary.
+    }
+       
     /* Save the original function, prefixed with our name in case other addons are doing the same thing */
     getNavToolbox().foxyproxyCustomizeChange = getNavToolbox().customizeChange;
     /* Overwrite the property with our function */
@@ -139,7 +173,6 @@ var foxyproxy = {
       this.foxyproxyCustomizeChange();
     }
   },
-
   onLoad : function() {
     Components.utils.import("resource://foxyproxy/utils.jsm", this);
     this.svgIcons.init();

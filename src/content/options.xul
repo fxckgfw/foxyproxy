@@ -106,10 +106,14 @@
         accesskey="&foxyproxy.quickadd.accesskey;"
         tooltiptext="&foxyproxy.quickadd.tooltip;"
         class="hide-if-foxyproxy-simple uncram-tab"/>
+
+      <!-- As of FP Standard 4.5, AutoAdd is no longer supported. We're leaving all the XUL and code intact for now so that:
+          1. we minimize possibility of introducing new bugs
+          2. Anyone using AutoAdd isn't completely broken -->
       <tab id="foxyproxy-autoadd-tab" label="&foxyproxy.tab.autoadd.label;"
         accesskey="&foxyproxy.tab.autoadd.accesskey;"
         tooltiptext="&foxyproxy.tab.autoadd.tooltip;"
-        class="hide-if-foxyproxy-simple uncram-tab" />
+        class="hide-if-foxyproxy-simple uncram-tab" hidden="true"/>
       <tab id="foxyproxy-logging-tab" label="&foxyproxy.tab.logging.label;"
         accesskey="&foxyproxy.tab.logging.accesskey;"
         tooltiptext="&foxyproxy.tab.logging.tooltip;"

@@ -5,13 +5,13 @@ how-to-setup-development-env.txt
 
 This project uses ant (http://ant.apache.org) to build its targets.
 Ant is a free, open-source, cross-platform java tool. No IDE is
-necessary, but if you want to use Eclipse (http://www.eclipse.org),
+necessary but if you want to use Eclipse (http://www.eclipse.org),
 an Eclipse .project file is included.
 
-You can either download ant
-from http://ant.apache.org/bindownload.cgi or download and install
-Eclipse. If you choose ant instead of Eclipse, ensure you also download
-a Java Development Environment (JDK) and set appropriate ant environment
+You can either download ant from
+http://ant.apache.org/bindownload.cgi or download and install Eclipse.
+If you choose ant instead of Eclipse, ensure you also download a Java
+Development Environment (JDK) and set appropriate ant environment
 variables. Specifically, you might consider adding the ant script to your
 PATH variable and exporting the ANT_HOME environment variable. If you use
 Eclipse IDE, you neither have to download the JDK nor setup ant environment

@@ -32,7 +32,6 @@ end-foxyproxy-simple -->
         <em:aboutURL>chrome://foxyproxy/content/about.xul</em:aboutURL>
         <em:optionsURL>chrome://foxyproxy/content/options.xul</em:optionsURL>
         <em:iconURL>chrome://foxyproxy/content/images/foxyproxy-nocopy.gif</em:iconURL>
-        <em:multiprocessCompatible>true</em:multiprocessCompatible>
         <!-- Android
         <em:targetApplication>
             <Description>

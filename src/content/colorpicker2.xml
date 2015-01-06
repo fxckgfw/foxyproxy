@@ -44,7 +44,7 @@ Think before you start messing with this file -->
     <implementation implements="nsIDOMEventListener">
        <property name="color">
         <getter><![CDATA[
-          return '#'+this.color2.HSV_HEX(this.HSV);
+          return '#'+this.HSV_HEX(this.HSV);
         ]]></getter>
         <setter><![CDATA[
           if (!val)
@@ -122,7 +122,7 @@ Think before you start messing with this file -->
           ds.top=Math.round(162-this.HSV.V*(162/100)-4)+"px";
           var dv=this.$S('Hslide');
           dv.top=Math.round(162-this.HSV.H*(162/360)-7)+"px";
-          this.$S('SV').backgroundColor='#'+this.color2.HSV_HEX({H:this.HSV.H, S:100, V:100});
+          this.$S('SV').backgroundColor='#'+this.HSV_HEX({H:this.HSV.H, S:100, V:100});
           this.$S('plugCUR').background='#'+aColor;
         ]]></body>
       </method>
@@ -196,7 +196,7 @@ this.ge = e;
                 z[i]=(i=='H')?self.maxValue[i]-mkHSV(self.maxValue[i],163,ck):self.HSV[i];
               }
               self.HSVupdate(z);
-              self.$S('SV').backgroundColor='#'+self.color2.HSV_HEX({H:self.HSV.H, S:100, V:100});
+              self.$S('SV').backgroundColor='#'+self.HSV_HEX({H:self.HSV.H, S:100, V:100});
             } else if(d=='drag') {
               var nX=e.layerX;
               var nY=e.layerY;
@@ -220,7 +220,7 @@ this.ge = e;
       <method name="HSVupdate">
         <parameter name="v"/>
         <body><![CDATA[
-          v=this.color2.HSV_HEX(this.HSV=v?v:this.HSV);
+          v=this.HSV_HEX(this.HSV=v?v:this.HSV);
 
           this.setAttribute('color', '#'+v);
           this.$('plugHEX').value=v;
@@ -236,25 +236,32 @@ this.ge = e;
         <body><![CDATA[
           for(var i=165; i>=0; i--) {
             var tdiv = document.createElementNS("http://www.w3.org/1999/xhtml","html:div");
-            tdiv.setAttribute('style', 'BACKGROUND: #'+this.color2.HSV_HEX({H:Math.round((360/165)*i), S:100, V:100})+';');
+            tdiv.setAttribute('style', 'BACKGROUND: #'+this.HSV_HEX({H:Math.round((360/165)*i), S:100, V:100})+';');
             var tbr = document.createElementNS("http://www.w3.org/1999/xhtml","html:br");
             tdiv.appendChild(tbr);
             this.$('Hmodel').appendChild(tdiv);
           }
         ]]></body>
       </method>
-
-      <field name="color2"><![CDATA[
-        var self = this;
-        var color2={};
-
-        color2.HEX=function(o) { o=Math.round(Math.min(Math.max(0,o),255));
+	  
+	  <method name="HEX">
+        <parameter name="o"/>
+        <body><![CDATA[
+			o=Math.round(Math.min(Math.max(0,o),255));
             return("0123456789ABCDEF".charAt((o-o%16)/16)+"0123456789ABCDEF".charAt(o%16));
-        };
-
-        color2.RGB_HEX=function(o) { var fu=color2.HEX; return(fu(o.R)+fu(o.G)+fu(o.B)); };
-
-        color2.HSV_RGB=function(o) {
+		]]></body>
+	  </method>
+	  
+	  <method name="RGB_HEX">
+        <parameter name="o"/>
+        <body><![CDATA[
+			return(this.HEX(o.R)+this.HEX(o.G)+this.HEX(o.B));
+		]]></body>
+	  </method>
+	  
+	  <method name="HSV_RGB">
+        <parameter name="o"/>
+        <body><![CDATA[
             var R, G, A, B, C, F, S=o.S/100, V=o.V/100, H=o.H/360;
             if(S>0) { if(H>=1) H=0;
                 H=6*H; F=H-Math.floor(H);
@@ -275,11 +282,15 @@ this.ge = e;
                 return({'R':R?R:0, 'G':G?G:0, 'B':B?B:0, 'A':1});
             } else
               return({'R':(V=Math.round(V*255)), 'G':V, 'B':V, 'A':1});
-        };
-
-        color2.HSV_HEX=function(o) { return(color2.RGB_HEX(color2.HSV_RGB(o))); }
-        color2;
-      ]]></field>
+		]]></body>
+	  </method>
+	  
+	  <method name="HSV_HEX">
+        <parameter name="o"/>
+        <body><![CDATA[
+			return(this.RGB_HEX(this.HSV_RGB(o)));
+		]]></body>
+	  </method>
 
       <method name="_fireEvent">
         <parameter name="aTarget"/>

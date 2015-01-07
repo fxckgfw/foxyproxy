@@ -43,7 +43,10 @@ AuthPromptProvider.prototype = {
                             pwd) {
   },
 
-  asyncPromptAuth : function(channel, callback, context, level, authInfo) {
+  /**
+   * Removed to avoid a JavaScript error Uncaught Exception. promptAuth will be called straight away.
+   */
+//  asyncPromptAuth : function(channel, callback, context, level, authInfo) {
     /* 04:03:16 AM) dolske: ericjung: I assume you've looked at
        http://mxr.mozilla.org/mozilla-central/source/toolkit/components/passwordmgr/src/nsLoginManagerPrompter.js#592 ?
     (04:09:19 AM) bz: That would be a bug
@@ -103,8 +106,8 @@ AuthPromptProvider.prototype = {
     (04:15:45 AM) ericjung: ok then :)
     (04:15:51 AM) bz is now known as bz_sleep
     (04:15:55 AM) bz_sleep: and now, sleep for real */
-    throw CR.NS_ERROR_NOT_AVAILABLE;
-  },
+//    throw CR.NS_ERROR_NOT_AVAILABLE;
+//  },
 
   promptAuth : function(channel, level, authInfo) {
     let proxyInUse = this.fp.applyMode(channel.URI.spec).proxy;

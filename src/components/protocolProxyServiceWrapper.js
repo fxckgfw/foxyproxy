@@ -31,9 +31,8 @@ ProtocolProxyServiceWrapper.prototype = {
   asyncResolve : function(aURI, aFlags, aCallback) {
     // Bug 1125372 and Bug 436344
     var aChannelOrURI = aURI;
-    try {
+    if (aURI instanceof Ci.nsIChannel)
       aURI = aURI.URI;
-    } catch (e) {}
     
     // |this.fp| is only available if we are using Gecko > 17. Thus we need to
     // be sure that |this.fp| exists before we check whether the current mode is

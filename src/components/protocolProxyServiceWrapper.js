@@ -29,6 +29,12 @@ ProtocolProxyServiceWrapper.prototype = {
 
   // nsIProtocolProxyService
   asyncResolve : function(aURI, aFlags, aCallback) {
+    // Bug 1125372 and Bug 436344
+    var aChannelOrURI = aURI;
+    try {
+      aURI = aURI.URI;
+    } catch (e) {}
+    
     // |this.fp| is only available if we are using Gecko > 17. Thus we need to
     // be sure that |this.fp| exists before we check whether the current mode is
     // disabled. This is especially important as we land here even if we are
@@ -38,7 +44,7 @@ ProtocolProxyServiceWrapper.prototype = {
       if (typeof pi != "string") {
         // TODO: Can we be sure we got a nsIProxyInfo object here? I don't think
         // so: _err() seems to give back a proxy!?
-        aCallback.onProxyAvailable(null, aURI, pi, 0);
+        aCallback.onProxyAvailable(null, aChannelOrURI, pi, 0);
       } else {
         // We are not ready yet, queue the callback... We save the proxy ID as
         // well to be able to only call the onProxyAvailable() method of those

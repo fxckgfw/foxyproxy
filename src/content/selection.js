@@ -30,12 +30,12 @@ foxyproxy.selection = {
           var r;
           function askAboutSwitching(str, arg) {
             if (fp.isFoxyProxySimple) {
-              r = foxyproxy.ask(window, arg ? fp.getMessage(str, [arg]) : fp.getMessage(str));
+              let r = foxyproxy.ask(window, arg ? fp.getMessage(str, [arg]) : fp.getMessage(str));
               if (r == 1) fp.setMode(p.proxy.id, false);
               return r;
             }
             else {
-              r = foxyproxy.ask(window, arg ? fp.getMessage(str, [arg]) : fp.getMessage(str), fp.getMessage("yes.use.patterns"), fp.getMessage("yes.use.proxy.for.all", [p.proxy.name]), fp.getMessage("no.dont.change.anything"));
+              let r = foxyproxy.ask(window, arg ? fp.getMessage(str, [arg]) : fp.getMessage(str), fp.getMessage("yes.use.patterns"), fp.getMessage("yes.use.proxy.for.all", [p.proxy.name]), fp.getMessage("no.dont.change.anything"));
               if (r === 0) fp.setMode("patterns", false);
               else if (r == 1) fp.setMode(p.proxy.id, false);
               return r;
@@ -52,7 +52,7 @@ foxyproxy.selection = {
                 modeAsText = fp.getMessage("foxyproxy.add.option.direct.label");
                 break;
               case "auto" :
-                modeAsText = fp.getMessage("foxyproxy.automatic.label");
+                modeAsText = fp.getMessage("foxyproxy.auto.url.label");
                 break;
               default :
                 dump("Unknown proxy mode in selection.js: " + p.proxy.mode + "\n");
@@ -143,5 +143,4 @@ foxyproxy.selection = {
     }
     return selection;
   }
-
 };

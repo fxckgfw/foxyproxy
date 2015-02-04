@@ -119,13 +119,13 @@ Match.prototype = {
       // Wildcards
       // $& replaces with the string found, but with that string escaped (like
       // the .lastMatch property)
-      pat = pat.replace(/[$.+()^]/g, "\\$&"); 
+      pat = pat.replace(/[$.+()^]/g, "\\$&");
       pat = pat.replace(/\*/g, ".*");
       pat = pat.replace(/\?/g, ".");
       if (!this._isMultiLine) {
         pat[0] != "^" && (pat = "^" + pat);
         pat[pat.length-1] != "$" && (pat = pat + "$");
-      } 
+      }
     }
     try {
       this.regex = this._caseSensitive ? new RegExp(pat) : new RegExp(pat, "i");
@@ -184,11 +184,11 @@ Match.prototype = {
     pattern.multiLine = this._isMultiLine;
     return this.patternSubscriptions.getJSONFromObject(pattern);
   },
-  
+
   QueryInterface: XPCOMUtils.generateQI([CI.nsISupports]),
   classDescription: "FoxyProxy Match Component",
   classID: Components.ID("{2b49ed90-f194-11da-8ad9-0800200c9a66}"),
-  contractID: "@leahscape.org/foxyproxy/match;1",  
+  contractID: "@leahscape.org/foxyproxy/match;1",
 };
 
 /**

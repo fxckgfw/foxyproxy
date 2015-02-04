@@ -119,6 +119,9 @@ var foxyproxy = {
       case "foxyproxy-updateviews":
         this.updateViews(false, false);
         break;
+      default:
+        dump("Unknown observe case in overlay.js: " + topic + "\n");
+        break;
     }
   },
 
@@ -126,7 +129,7 @@ var foxyproxy = {
     if (typeof(gNavToolbox) == "undefined")
       return; // We're on Tbird or another platform which doesn't have this
 
-    // in Firefox 29 and above we should use the CustomizableUI module to track our icon */
+    // in Firefox 29 and above we should use the CustomizableUI module to track our icon
     if (foxyproxy.fpc.vc.compare(foxyproxy.fpc.appInfo.version, "29.0a1") >= 0) {
       var foxyproxyCUIListener = {
          handler: function() {
@@ -158,7 +161,7 @@ var foxyproxy = {
       CustomizableUI.addListener(foxyproxyCUIListener);
       return; // The changes to .customizeChange() below are no longer necessary.
     }
-       
+
     /* Save the original function, prefixed with our name in case other addons are doing the same thing */
     getNavToolbox().foxyproxyCustomizeChange = getNavToolbox().customizeChange;
     /* Overwrite the property with our function */
@@ -306,7 +309,7 @@ end-foxyproxy-simple !*/
           if (failedSubs.patSubs.length > 0 ||
               failedSubs.proxySubs.length > 0) {
             timer.initWithCallback(failedContentLoad, 500,
-	      Components.interfaces.nsITimer.TYPE_ONE_SHOT);
+              Components.interfaces.nsITimer.TYPE_ONE_SHOT);
           }
         }
       }
@@ -319,21 +322,21 @@ end-foxyproxy-simple !*/
 
   createNotification : function(that, failedSub, type) {
     this.fpc.notify(type + "subscription.error.content.refresh",
-	            [failedSub.metadata.name],
-                    [{
-                      accessKey: null,
-                      callback: function() {
-                        if (type === "pattern") {
-                          that.patternSubscriptions.
-                            refreshSubscription(failedSub, true);
-                        } else {
-                          that.proxySubscriptions.
-                            refreshSubscription(failedSub, true);
-                        }
-                      },
-                      label: this.fp.getMessage("yes")
-                    }],
-                    null, null, false);
+      [failedSub.metadata.name],
+      [{
+        accessKey: null,
+        callback: function() {
+          if (type === "pattern") {
+            that.patternSubscriptions.
+              refreshSubscription(failedSub, true);
+          } else {
+            that.proxySubscriptions.
+              refreshSubscription(failedSub, true);
+          }
+        },
+        label: this.fp.getMessage("yes")
+      }],
+      null, null, false);
   },
 
   toggleToolbarIcon : function(e) {
@@ -370,10 +373,10 @@ end-foxyproxy-simple !*/
           foxyproxy.alert(owner, this.fp.getMessage("torwiz.nan"));
           ok = false;
         }
-	if (input.value > 65535 || input.value < 0) {
+  if (input.value > 65535 || input.value < 0) {
           foxyproxy.alert(owner, this.fp.getMessage("torwiz.wrongPort"));
-	  ok = false;
-	}
+    ok = false;
+  }
       }
       else
         break;
@@ -552,7 +555,7 @@ end-foxyproxy-simple !*/
     if (doc && doc.location)
       foxyproxy.fp.autoadd.onAutoAdd(window, doc); // can't use |this.fp| because this isn't |foxyproxy|
   },
-  
+
   updateViews : function(writeSettings, updateLogView) {
     // Update view if it's open
     var optionsDlg = foxyproxy._getOptionsDlg();
@@ -629,7 +632,7 @@ end-foxyproxy-simple !*/
     if (appcontent) {
       // Safety. We use here and in the following |foxyproxy| and not |this| as
       // this makes it easier to remove the event listener on unload again.
-      appcontent.removeEventListener("load", foxyproxy.onPageLoad, true); 
+      appcontent.removeEventListener("load", foxyproxy.onPageLoad, true);
       if (listen) {
         appcontent.addEventListener("load", foxyproxy.onPageLoad, true);
       }
@@ -641,34 +644,34 @@ end-foxyproxy-simple !*/
 
   ///////////////// icons \\\\\\\\\\\\\\\\\\\\\
   svgIcons : {
-    
+
     angle : 4,
     runners : 0,
     icons : null,
     iconColorNodes : null,
     iconDisabledMask : null,
-    
+
     init : function() {
       this.icons = [document.getElementById("fp-statusbar-icon-wrapper"),
         document.getElementById("fp-contextmenu-icon-wrapper"), document.getElementById("fp-toolsmenu-icon-wrapper")];
-      
+
       if (document.getElementById("fp-toolbar-icon-wrapper")) { /* null if user isn't using our toolbar icon */
         this.icons.push(document.getElementById("fp-toolbar-icon-wrapper"));
       }
-      
-      this.iconColorNodes = [document.getElementById("fp-statusbar-icon-3"),        
+
+      this.iconColorNodes = [document.getElementById("fp-statusbar-icon-3"),
         document.getElementById("fp-contextmenu-icon-3"), document.getElementById("fp-toolsmenu-icon-3")];
-      
+
       if (document.getElementById("fp-toolbar-icon-3")) /* null if user isn't using our toolbar icon */
         this.iconColorNodes.push(document.getElementById("fp-toolbar-icon-3"));
 
-      this.iconDisabledMask = [document.getElementById("fp-statusbar-disabled-wrapper"),        
+      this.iconDisabledMask = [document.getElementById("fp-statusbar-disabled-wrapper"),
         document.getElementById("fp-contextmenu-disabled-wrapper"), document.getElementById("fp-toolsmenu-disabled-wrapper")];
-      
+
       if (document.getElementById("fp-toolbar-disabled-wrapper")) /* null if user isn't using our toolbar icon */
         this.iconDisabledMask.push(document.getElementById("fp-toolbar-disabled-wrapper"));
     },
-    
+
     animate : function() {
       if (this.runners > 8) return; // reached the max spin rate
       this.runners++;
@@ -686,7 +689,7 @@ end-foxyproxy-simple !*/
         this.runners--;
         if (this.runners == 0) {
           var modeAsText = foxyproxy.getModeAsText(foxyproxy.fp.mode);
-          foxyproxy.setStatusText(modeAsText);          
+          foxyproxy.setStatusText(modeAsText);
           foxyproxy.fp.resetIconColors && this.resetIconColors(modeAsText);
         }
         return;
@@ -697,13 +700,13 @@ end-foxyproxy-simple !*/
     throb : function(mp) {
       for (var i in this.iconColorNodes)
         this.iconColorNodes[i].setAttribute("style", "fill: "+mp.wrappedJSObject.color+";");
-      foxyproxy.statusText.setAttribute("style", "color: "+mp.wrappedJSObject.color+";");    
+      foxyproxy.statusText.setAttribute("style", "color: "+mp.wrappedJSObject.color+";");
       if (mp.wrappedJSObject.animatedIcons)
         this.animate();
       foxyproxy.setStatusText(mp.wrappedJSObject.name);
       setTimeout(function() {foxyproxy.svgIcons.unthrob(mp)}, 800);
     },
-    
+
     resetIconColors : function(modeAsText) {
       // Reset the icon color back to what it should be
       if (modeAsText != "static") {
@@ -712,7 +715,7 @@ end-foxyproxy-simple !*/
           this.iconColorNodes[i].setAttribute("mode", modeAsText);
         }
         foxyproxy.statusText.removeAttribute("style");
-        foxyproxy.statusText.setAttribute("mode", modeAsText);            
+        foxyproxy.statusText.setAttribute("mode", modeAsText);
       }
     },
 
@@ -723,31 +726,31 @@ end-foxyproxy-simple !*/
         foxyproxy.fp.resetIconColors && foxyproxy.svgIcons.resetIconColors(modeAsText);
       }
     },
-    
+
     set color(c) {
       if (c)
         for (var i in this.icons) this.icons[i].setAttribute("style", "fill: " + c);
       else
         for (var i in this.icons) this.icons[i].removeAttribute("style");
     },
-    
+
     set mode(m) {
       if (m == "static") {
         var color = foxyproxy.fp._selectedProxy.color;
         foxyproxy.statusText.setAttribute("style", "color: " + color);
         for (var i in this.iconColorNodes)
-          this.iconColorNodes[i].setAttribute("style", "fill: "+color+";");        
+          this.iconColorNodes[i].setAttribute("style", "fill: "+color+";");
       }
       else
         this.resetIconColors(m);
-      
+
       for (var i in this.iconDisabledMask) {
         this.iconDisabledMask[i].removeAttribute("style");
         this.iconDisabledMask[i].setAttribute("mode", m);
       }
     }
   },
-  
+
   toggleStatusBarIcon : function(e) {
     document.getElementById("foxyproxy-statusbar-icon").hidden = !e;
   },
@@ -758,13 +761,13 @@ end-foxyproxy-simple !*/
     // otherwise we get a JS error.
     s && (s.hidden = !e);
   },
-  
+
   toggleStatusBarWidth : function() {
     var s=document.getElementById("foxyproxy-status-text");
     // Statusbars don't exist on all windows (e.g,. View Source) so check for existence first,
     // otherwise we get a JS error.
     if (!s) return;
-    var w = this.fp.statusbar.width; 
+    var w = this.fp.statusbar.width;
     if (w > 0)
       s.width = w;
     else {
@@ -774,14 +777,14 @@ end-foxyproxy-simple !*/
       if (!s.hidden) {
         s.hidden = true;
         s.hidden = false;
-      }     
-    }    
+      }
+    }
   },
 
   // Set toolbar, statusbar, and context menu text and icon colors
   setMode : function(mode) {
     var m = this.getModeAsText(mode);
-    this.svgIcons.mode = m;  
+    this.svgIcons.mode = m;
     this.setStatusText(m);
   },
 
@@ -810,7 +813,7 @@ end-foxyproxy-simple !*/
         this.fp.getMessage("foxyproxy") + ": " + m :
           m);
   },
-  
+
   ///////////////// utilities \\\\\\\\\\\\\\\
   onTreeClick : function(e, tree) {
     var row = {}, col = {};
@@ -844,13 +847,13 @@ end-foxyproxy-simple !*/
         case "contextmenu":
           foxyproxy._popupShowing = 0;
           let popupElement;
-	  if (e.target.id === "foxyproxy-toolbar-icon") {
+    if (e.target.id === "foxyproxy-toolbar-icon") {
             popupElement = document.
               getElementById("foxyproxy-toolbarbutton-popup");
           } else {
             popupElement = document.
-              getElementById("foxyproxy-statusbar-popup"); 
-          } 
+              getElementById("foxyproxy-statusbar-popup");
+          }
           popupElement.showPopup(e.target, -1, -1, "popup", "bottomleft",
             "topleft");
           break;
@@ -896,7 +899,7 @@ end-foxyproxy-simple !*/
       asb.setAttribute("style", "max-height: 400px;");
       asb.setAttribute("flex", "1");
       asb.setAttribute("orient", "vertical");*/
-      
+
       var checkOne = [];
       if (!isFoxyProxySimple) {
         var itm = _createRadioMenuItem(menupopup,

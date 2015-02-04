@@ -78,20 +78,20 @@ var subscriptions = {
       do {
         // Every subscription should just get its related error messages,
         // therefore resetting errorMessages here.
-	errorMessages = [];
+        errorMessages = [];
         hasmore = conStream.readLine(line);
         // Proxy subscriptions are already saved into JSON even though they
         // are in a IP:Port format originally. Thus, we need no special method
         // if we load an already saved one.
         loadedSubscription = this.getObjectFromJSON(line.value, errorMessages);
-	if (loadedSubscription && loadedSubscription.length === undefined) {
-	  this.subscriptionsList.push(loadedSubscription);
-	} else {
+        if (loadedSubscription && loadedSubscription.length === undefined) {
+          this.subscriptionsList.push(loadedSubscription);
+        } else {
           // Parsing the whole subscription failed but maybe we can parse at
           // least the metadata to show the user the problematic subscription
           // in the subscriptionsTree. Thus, looking for "metadata" first.
           // If we do not find it (because the problem occurred there) then
-	  // obviously we are not able to display anything in the tree.
+          // obviously we are not able to display anything in the tree.
           metaIdx = line.value.indexOf('"metadata"');
           if (metaIdx > -1) {
             // As we cannot be sure that the JSON starts with "{"metadata""
@@ -99,31 +99,31 @@ var subscriptions = {
             // "{" to our string to parse. We append one as well in order to be
             // sure that our metadata string is valid JSON regardless where
             // its position in the saved subscription is.
-	    parseString = "{" + line.value.slice(metaIdx, line.value.
+            parseString = "{" + line.value.slice(metaIdx, line.value.
               indexOf("}", metaIdx) + 1) + "}";
             loadedSubscription = this.getObjectFromJSON(parseString,
               errorMessages);
-	    if (loadedSubscription && loadedSubscription.length === undefined) {
+            if (loadedSubscription && loadedSubscription.length === undefined) {
               // At least we could parse the metadata. Now, we can show the
               // subscription in the tree after setting the last status
               // properly. Afterwards we ask the user if she wants to refresh
               // her subscription immediately in order to solve the issue
-	      // with the corrupt subscription part.
-	      errorMessages.push(this.fp.
+              // with the corrupt subscription part.
+              errorMessages.push(this.fp.
                 getMessage(this.type + "subscription.error.content",
                 [loadedSubscription.metadata.name]));
-	      loadedSubscription.metadata.lastStatus = this.fp.
+              loadedSubscription.metadata.lastStatus = this.fp.
                 getMessage("error");
-	      loadedSubscription.metadata.errorMessages = errorMessages;
-	      this.subscriptionsList.push(loadedSubscription);
-	      this.partialLoadFailure.push(loadedSubscription);
+              loadedSubscription.metadata.errorMessages = errorMessages;
+              this.subscriptionsList.push(loadedSubscription);
+              this.partialLoadFailure.push(loadedSubscription);
             } else {
-	      this.failureOnStartup++;
+              this.failureOnStartup++;
             }
-	  } else {
-	    this.failureOnStartup++;
-	  }
-	}
+          } else {
+            this.failureOnStartup++;
+          }
+        }
       } while(hasmore);
       try {
         // We could not do this in the while loop above as every time the timer
@@ -136,7 +136,7 @@ var subscriptions = {
               this.subscriptionsList[i].metadata.refresh != 0) {
             delete this.subscriptionsList[i].metadata.timer;
             this.setSubscriptionTimer(this.subscriptionsList[i], false, true);
-	  }
+          }
         }
       } catch (ex) {
         dump("Error while resetting the " + this.type + "subscription timer: " +
@@ -335,7 +335,7 @@ var subscriptions = {
     var aIndex = null, proxyList = [];
     for (i = 0; i < this.subscriptionsList.length; i++) {
       if (this.subscriptionsList[i] === aSubscription) {
-	aIndex = i;
+        aIndex = i;
       }
     }
     if (aIndex === null) return;
@@ -495,8 +495,8 @@ var subscriptions = {
     var event = {
       notify : function(timer) {
         that.refreshSubscription(aSubscription, false);
-	// We just need the notification to redraw the tree...
-	that.fp.broadcast(null, "foxyproxy-tree-update", null);
+        // We just need the notification to redraw the tree...
+        that.fp.broadcast(null, "foxyproxy-tree-update", null);
       }
     };
     if (bRefresh) {
@@ -536,7 +536,7 @@ var subscriptions = {
       var subFile = this.getSubscriptionsFile();
       for (var i = 0; i < this.subscriptionsList.length; i++) {
         subscriptionsData = subscriptionsData + this.getJSONFromObject(this.
-	  subscriptionsList[i]) + "\n";
+          subscriptionsList[i]) + "\n";
       }
       foStream = Cc["@mozilla.org/network/file-output-stream;1"].
         createInstance(Ci.nsIFileOutputStream);
@@ -659,7 +659,7 @@ var subscriptions = {
         attrib = metaNode.attributes;
         for (var j = 0; j < attrib.length; j++) {
           name = attrib.item(j).name;
-	  value = attrib.item(j).value;
+          value = attrib.item(j).value;
           subscription.metadata[name] = value;
         }
       }
@@ -676,13 +676,13 @@ var subscriptions = {
       }
       if (subNode) {
         let helper = [];
-	let content = subNode.getElementsByTagName(aType);
-	for (var k = 0; k < content.length; k++) {
+        let content = subNode.getElementsByTagName(aType);
+        for (var k = 0; k < content.length; k++) {
           helper[k] = {};
-	  attrib = content[k].attributes;
-	  for (var l = 0; l < attrib.length; l++) {
-	    name = attrib.item(l).name;
-	    value = attrib.item(l).value;
+          attrib = content[k].attributes;
+          for (var l = 0; l < attrib.length; l++) {
+            name = attrib.item(l).name;
+            value = attrib.item(l).value;
             helper[k][name] = value;
           }
         }
@@ -734,7 +734,7 @@ var subscriptions = {
         // We know already that the status has changed. Thus, we only need to
         // apply the new one to the subscription patterns.
         if (aProxyList[i].matches[j].fromSubscription) {
-	  aProxyList[i].matches[j].enabled = bNewStatus;
+          aProxyList[i].matches[j].enabled = bNewStatus;
         }
       }
     }
@@ -749,39 +749,38 @@ var subscriptions = {
         var type = that.type;
         switch(column.id) {
           case type + "SubscriptionsEnabled" : return i.metadata.enabled;
-	  case type + "SubscriptionsName" : return i.metadata.name;
+          case type + "SubscriptionsName" : return i.metadata.name;
           case type + "SubscriptionsNotes" : return i.metadata.notes;
           case type + "SubscriptionsUri" : return i.metadata.url;
-	  // We are doing here a similar thing as in addeditsubscription.js
-	  // in the onLoad() function described: As we only saved the id's
-	  // and the id's are not really helpful for users, we just use them to
-	  // get the respective name of a proxy out of the proxies object
-	  // belonging to the foxyproxy service. These names are then displayed
-	  // in the subscriptions tree comma separated in the proxy column.
+          // We are doing here a similar thing as in addeditsubscription.js
+          // in the onLoad() function described: As we only saved the id's
+          // and the id's are not really helpful for users, we just use them to
+          // get the respective name of a proxy out of the proxies object
+          // belonging to the foxyproxy service. These names are then displayed
+          // in the subscriptions tree comma separated in the proxy column.
           case type + "SubscriptionsProxy":
-	    let proxyString = "";
+            let proxyString = "";
             let proxies = that.fp.proxies.getProxiesFromId(i.metadata.proxies);
-	    for (let j = 0; j < proxies.length; j++) {
+            for (let j = 0; j < proxies.length; j++) {
               proxyString = proxyString + proxies[j].name;
-	      if (j < proxies.length - 1) {
+              if (j < proxies.length - 1) {
                 proxyString = proxyString + ", ";
               }
             }
-	    return proxyString;
+            return proxyString;
           case type + "SubscriptionsRefresh" : return i.metadata.refresh;
           case type + "SubscriptionsStatus" : return i.metadata.lastStatus;
           case type + "SubscriptionsLastUpdate" : return i.metadata.lastUpdate;
           case type + "SubscriptionsFormat" : return i.metadata.format;
-          case type + "SubscriptionsObfuscation" : return i.metadata.
-            obfuscation;
+          case type + "SubscriptionsObfuscation" : return i.metadata.obfuscation;
         }
       },
       setCellValue: function(row, col, val) {
-		      that.subscriptionsList[row].metadata.enabled = val;
-		    },
+        that.subscriptionsList[row].metadata.enabled = val;
+      },
       getCellValue: function(row, col) {
-		      return that.subscriptionsList[row].metadata.enabled;
-		    },
+        return that.subscriptionsList[row].metadata.enabled;
+      },
       isSeparator: function(aIndex) { return false; },
       isSorted: function() { return false; },
       isEditable: function(row, col) { return false; },

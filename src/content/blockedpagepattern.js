@@ -15,7 +15,7 @@ function onLoad() {
   document.getElementById("pattern").value = inn.pattern;
   document.getElementById("matchtype").selectedIndex = inn.regex ? 1 : 0;
   document.getElementById("caseSensitive").checked = inn.caseSensitive;
-  var foxyproxy = Components.classes["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject; 
+  var foxyproxy = Components.classes["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;
   document.getElementById("wildcardExample").value = foxyproxy.getMessage("foxyproxy.autoadd.wildcard.example.label");
   document.getElementById("regexExample").value = foxyproxy.getMessage("foxyproxy.autoadd.regex.example.label");
   sizeToContent();

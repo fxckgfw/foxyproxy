@@ -23,7 +23,7 @@
   ondialogcancel="onCancel();"
   title="&foxyproxy.standard.label; - &foxyproxy.add.title;"
   windowtype="foxyproxy"
- 	xmlns:html="http://www.w3.org/1999/xhtml"
+   xmlns:html="http://www.w3.org/1999/xhtml"
   xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
   persist="screenX screenY">
 
@@ -330,9 +330,9 @@
         <button id="foxyproxy-wildcard-url-pattern-ref-button" command="wildcardURLPatternReferenceCmd" flex="1" class="uncram-btn"/>
       </hbox>
       <hbox>
-        <button id="foxyproxy-import-url-pattern-button" 
+        <button id="foxyproxy-import-url-pattern-button"
                 command="importURLPatternCmd" class="uncram-btn"/>
-        <button id="foxyproxy-export-url-pattern-button" 
+        <button id="foxyproxy-export-url-pattern-button"
                 command="exportURLPatternCmd" class="uncram-btn"/>
       </hbox>
       <separator class="thin"/>
@@ -349,7 +349,7 @@
             <treecol id="isBlackList" onclick="sort(this.id)" label="&foxyproxy.whitelist.blacklist.label;" flex="1" persist="width ordinal hidden"/><splitter class="tree-splitter"/>
             <treecol id="caseSensitive" onclick="sort(this.id)" label="&foxyproxy.casesensitive.label;" flex="1" persist="width ordinal hidden" hidden="true"/><splitter class="tree-splitter"/>
             <treecol id="temp" onclick="sort(this.id)" label="&foxyproxy.temp.label;" flex="1" persist="width ordinal hidden" hidden="true"/><splitter class="tree-splitter"/>
-	    <treecol id="fromSubscription" onclick="sort(this.id)" label="&foxyproxy.fromSubscription.label;" flex="1" persist="width ordinal hidden" hidden="true"/><splitter class="tree-splitter"/>
+            <treecol id="fromSubscription" onclick="sort(this.id)" label="&foxyproxy.fromSubscription.label;" flex="1" persist="width ordinal hidden" hidden="true"/><splitter class="tree-splitter"/>
           </treecols>
           <treechildren context="urlsTreeContext" ondblclick="onAddEditURLPattern(false);"/>
          </tree>
@@ -365,7 +365,7 @@
   <description>&foxyproxy.pattern.description;</description>
   <separator class="thin"/>
   <hbox>
-    <checkbox id="fpniip" 
+    <checkbox id="fpniip"
               command="noInternalIPsCmd"/>
   </hbox>
   <separator class="thin"/>
@@ -402,35 +402,35 @@
 
 <popupset>
   <menupopup id="wildcardURLPatternReferencePopup"/>
-	<menupopup id="newGUIPopup">
-		<vbox class="foxyproxy-border" style="height: &foxyproxy.newGUI.popup.height;; width: &foxyproxy.newGUI.popup.width;; padding: .5em;">
-			<description class="foxyproxy-tooltip">
-				&foxyproxy.newGUI1.label;</description>
+  <menupopup id="newGUIPopup">
+    <vbox class="foxyproxy-border" style="height: &foxyproxy.newGUI.popup.height;; width: &foxyproxy.newGUI.popup.width;; padding: .5em;">
+      <description class="foxyproxy-tooltip">
+        &foxyproxy.newGUI1.label;</description>
       <separator class="thin"/>
-			<description class="foxyproxy-tooltip">&foxyproxy.newGUI2.label;</description>
+      <description class="foxyproxy-tooltip">&foxyproxy.newGUI2.label;</description>
       <separator class="thin"/>
-			<description class="text-link" onclick="fpc.openAndReuseOneTabPerURL('http://getfoxyproxy.org/settings-gui.html');">
-				&foxyproxy.newGUI4.label;</description>
-		</vbox>
-	</menupopup>
-	<menupopup id="pacTipsPopup">
-		<vbox class="foxyproxy-border foxyproxy-tooltip" height="175">
-			<label value="&foxyproxy.pactip1.label;"/>
+      <description class="text-link" onclick="fpc.openAndReuseOneTabPerURL('http://getfoxyproxy.org/settings-gui.html');">
+        &foxyproxy.newGUI4.label;</description>
+    </vbox>
+  </menupopup>
+  <menupopup id="pacTipsPopup">
+    <vbox class="foxyproxy-border foxyproxy-tooltip" height="175">
+      <label value="&foxyproxy.pactip1.label;"/>
       <separator class="thin"/>
       <label value="&foxyproxy.pactip2.label;"/>
       <separator class="thin"/>
       <label value="&foxyproxy.pactip3.label;"/>
       <separator class="thin"/>
-			<description width="1"><!-- weirdness on ff3 if no width specified -->&foxyproxy.pactip4.label;
-      <html:a class="link"        
+      <description width="1"><!-- weirdness on ff3 if no width specified -->&foxyproxy.pactip4.label;
+      <html:a class="link"
         onclick="fpc.openAndReuseOneTabPerURL('http://getfoxyproxy.org/relativescheme.html');">&foxyproxy.pactip5.label;</html:a>&foxyproxy.pactip6.label;
       <html:a class="link"
         onclick="fpc.openAndReuseOneTabPerURL('http://www.mozilla.org/support/firefox/profile#locate');">&foxyproxy.pactip7.label;</html:a>
       &foxyproxy.pactip8.label;</description>
-		</vbox>
-	</menupopup>
+    </vbox>
+  </menupopup>
   <menupopup id="urlsTreeContext" onpopupshowing="onTreeMenuPopupShowing(this.firstChild, proxy.matches, urlsTree);">
-		<menuitem id="enabledPopUpMenuItem" command="toggleURLPatternEnabledCmd" type="checkbox"/>
+    <menuitem id="enabledPopUpMenuItem" command="toggleURLPatternEnabledCmd" type="checkbox"/>
     <menuseparator/>
     <menuitem id="addURLTree" class="menuitem-iconic"
       command="addURLPatternCmd"/>

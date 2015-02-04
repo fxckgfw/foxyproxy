@@ -31,7 +31,7 @@ CU.import("resource://gre/modules/XPCOMUtils.jsm");
  */
 function ProxyConfig(wrappedProxy) {
   this.fp = CC["@leahscape.org/foxyproxy/service;1"].getService().
-    wrappedJSObject; 
+    wrappedJSObject;
   this._wrappedProxy = wrappedProxy || Proxy.fromProxyConfig(this);
   this.manualConfig.owner = this.autoConfig.owner = this;
   // We need this here to get a good default value for autoConfObj (i.e. the
@@ -283,7 +283,7 @@ ProxyConfig.prototype = {
       this.owner._wrappedProxy.manualconf.domain = e;
       this.owner.utils.broadcast(null, "foxyproxy-proxy-change");
       this.owner.fp.writeSettingsAsync();
-    },
+    }
   },
 
   autoConfig: {

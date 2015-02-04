@@ -4,7 +4,7 @@
   Copyright (C) 2006-#%#% Eric H. Jung and FoxyProxy, Inc.
   http://getfoxyproxy.org/
   eric.jung@getfoxyproxy.org
-  
+
   This source code is released under the GPL license,
   available in the LICENSE file at the root of this installation
   and also online at http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
@@ -16,14 +16,14 @@
 
 <dialog id="foxyproxyPatternSubscriptions" windowtype="foxyproxy"
         title="&foxyproxy.standard.label; -
-	       &foxyproxy.pattern.subscriptions.addedit.title;"
-	buttons="accept,cancel,extra2"
-	buttonlabelextra2="&foxyproxy.pattern.subscriptions.lastStatus.label;"
+         &foxyproxy.pattern.subscriptions.addedit.title;"
+  buttons="accept,cancel,extra2"
+  buttonlabelextra2="&foxyproxy.pattern.subscriptions.lastStatus.label;"
         onload="onLoad('pattern');" ondialogaccept="return onOK('pattern');"
-	ondialogextra2="onLastStatus('pattern');"
-	xmlns:html="http://www.w3.org/1999/xhtml"
+  ondialogextra2="onLastStatus('pattern');"
+  xmlns:html="http://www.w3.org/1999/xhtml"
         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-	persist="screenX screenY width height">
+  persist="screenX screenY width height">
 
   <script type="application/x-javascript;version=1.7"
           src="addEditSubscription.js" />
@@ -31,9 +31,9 @@
   <vbox>
     <separator class="thin"/>
     <hbox>
-      <checkbox id="subscriptionEnabled" checked="true" 
-	        label="&foxyproxy.enabled.label;" 
-	        accesskey="&foxyproxy.enabled.accesskey;"/> 
+      <checkbox id="subscriptionEnabled" checked="true"
+          label="&foxyproxy.enabled.label;"
+          accesskey="&foxyproxy.enabled.accesskey;"/>
     </hbox>
     <!--  thanks Teo! -->
     <grid class="indent">
@@ -43,33 +43,33 @@
       </columns>
       <rows>
         <row align="center">
-	  <label value="&foxyproxy.pattern.subscriptions.name.label;" 
-	         control="subscriptionName" 
+    <label value="&foxyproxy.pattern.subscriptions.name.label;"
+           control="subscriptionName"
                  tooltiptext="&foxyproxy.pattern.subscriptions.name.tooltip;"/>
-	  <menulist id="subscriptionName" editable="true">
+    <menulist id="subscriptionName" editable="true">
             <menupopup>
               <menuitem />
             </menupopup>
           </menulist>
-	</row>
+  </row>
         <row align="center">
-	  <label value="&foxyproxy.pattern.subscriptions.notes.label;" 
-	         control="subscriptionNotes" 
-		 tooltiptext="&foxyproxy.pattern.subscriptions.notes.tooltip;"/>
+    <label value="&foxyproxy.pattern.subscriptions.notes.label;"
+           control="subscriptionNotes"
+     tooltiptext="&foxyproxy.pattern.subscriptions.notes.tooltip;"/>
           <textbox id="subscriptionNotes" multiline="true"/>
-	</row>
+  </row>
         <row align="center">
-	  <label value="&foxyproxy.pattern.subscriptions.url.label;" 
-	         control="subscriptionUrl" 
+    <label value="&foxyproxy.pattern.subscriptions.url.label;"
+           control="subscriptionUrl"
                  tooltiptext="&foxyproxy.pattern.subscriptions.url.tooltip;"/>
-	  <textbox id="subscriptionUrl" /> 
+    <textbox id="subscriptionUrl" />
         </row>
-	<row align="center">
-	  <label value="&foxyproxy.tab.proxies.label;" 
-            control="subscriptionUrl" 
+  <row align="center">
+    <label value="&foxyproxy.tab.proxies.label;"
+            control="subscriptionUrl"
             tooltiptext="&foxyproxy.pattern.subscriptions.proxies.tooltip;"/>
-	  <tree id="subscriptionProxyTree" align="stretch" class="treeStyling" 
-	        enableColumnDrag="true" rows="4">
+    <tree id="subscriptionProxyTree" align="stretch" class="treeStyling"
+          enableColumnDrag="true" rows="4">
             <treecols
               pickertooltiptext="&foxyproxy.tree.pickertooltiptext.label;">
               <treecol id="enabledCol" label="&foxyproxy.enabled.label;"
@@ -115,70 +115,70 @@
                 flex="1" persist="width ordinal hidden" />
               <splitter class="tree-splitter" />
             </treecols>
-	    <treechildren id="subProxyTreeChildren" flex="1" />
-          </tree> 
+      <treechildren id="subProxyTreeChildren" flex="1" />
+          </tree>
         </row>
-	<row>
+  <row>
           <spacer flex="1" />
-	  <hbox>
-	    <spacer flex="1" />
-	    <button id="subAddProxies"
-	      label="&foxyproxy.pattern.subscriptions.addProxies.label;" 
-	      tooltiptext="&foxyproxy.pattern.subscriptions.addProxies.tooltip;"
-	      onclick="addProxy(event);"/> 
-	    <button id="subRemoveProxies" 
-	      label="&foxyproxy.pattern.subscriptions.removeProxies.label;"
-	      tooltiptext="&foxyproxy.pattern.subscriptions.removeProxies.tooltip;"
-	      onclick="removeProxy(event);"/>
-	  </hbox>
-	</row>
-	<row id="refreshRow" align="center">
-	  <label value="&foxyproxy.pattern.subscriptions.refresh.label;" 
+    <hbox>
+      <spacer flex="1" />
+      <button id="subAddProxies"
+        label="&foxyproxy.pattern.subscriptions.addProxies.label;"
+        tooltiptext="&foxyproxy.pattern.subscriptions.addProxies.tooltip;"
+        onclick="addProxy(event);"/>
+      <button id="subRemoveProxies"
+        label="&foxyproxy.pattern.subscriptions.removeProxies.label;"
+        tooltiptext="&foxyproxy.pattern.subscriptions.removeProxies.tooltip;"
+        onclick="removeProxy(event);"/>
+    </hbox>
+  </row>
+  <row id="refreshRow" align="center">
+    <label value="&foxyproxy.pattern.subscriptions.refresh.label;"
             control="refresh"
             tooltiptext="&foxyproxy.pattern.subscriptions.refresh.tooltip;"/>
-	  <hbox align="center">
-	    <textbox id="refresh" type="number" size="4"/>
-	    <label value="&foxyproxy.minutes.label;" control="refresh"/>
+    <hbox align="center">
+      <textbox id="refresh" type="number" size="4"/>
+      <label value="&foxyproxy.minutes.label;" control="refresh"/>
             <toolbarbutton class="foxyproxy-ref" popup="refreshpatternHelp"
-                           tooltiptext="&foxyproxy.whatsthis;"/>  
+                           tooltiptext="&foxyproxy.whatsthis;"/>
             <button id="refreshButton"
               onclick="refreshSubscription('pattern', event);"
               label="&foxyproxy.pattern.subscriptions.refreshNow.label;"
-	      tooltiptext="&foxyproxy.pattern.subscriptions.refreshNow.tooltip;"/>
-	  </hbox>
-	</row>
-	<row id="zeroRefresh">
-	  <label value="&foxyproxy.pattern.subscriptions.zeroRefresh;"/>
-	  <spacer flex="1" />
-	</row>
-	<row align="center">
-	  <label value="&foxyproxy.format.label;"
-	    tooltiptext="&foxyproxy.pattern.subscriptions.format.tooltip;"/>
-	  <hbox align="center">
+        tooltiptext="&foxyproxy.pattern.subscriptions.refreshNow.tooltip;"/>
+    </hbox>
+  </row>
+  <row id="zeroRefresh">
+    <label value="&foxyproxy.pattern.subscriptions.zeroRefresh;"/>
+    <spacer flex="1" />
+  </row>
+  <row align="center">
+    <label value="&foxyproxy.format.label;"
+      tooltiptext="&foxyproxy.pattern.subscriptions.format.tooltip;"/>
+    <hbox align="center">
             <menulist id="subscriptionFormat">
-	      <menupopup>
+        <menupopup>
                 <menuitem label="FoxyProxy"/>
-		<menuitem label="AutoProxy"/>
+    <menuitem label="AutoProxy"/>
               </menupopup>
-	    </menulist>
-	    <toolbarbutton class="foxyproxy-ref" popup="formatpatternHelp"
-                           tooltiptext="&foxyproxy.whatsthis;"/> 
+      </menulist>
+      <toolbarbutton class="foxyproxy-ref" popup="formatpatternHelp"
+                           tooltiptext="&foxyproxy.whatsthis;"/>
             <spacer flex="1"/>
             <label value="&foxyproxy.obfuscation.label;"
               tooltiptext="&foxyproxy.pattern.subscriptions.obfuscation.tooltip;"/>
-	    <menulist id="subscriptionObfuscation">
-	      <menupopup>
+      <menulist id="subscriptionObfuscation">
+        <menupopup>
                 <menuitem label="&foxyproxy.none.label;"/>
-		<menuitem label="Base64"/>
+    <menuitem label="Base64"/>
               </menupopup>
-	    </menulist>
+      </menulist>
             <toolbarbutton class="foxyproxy-ref" popup="obfuscationpatternHelp"
-                           tooltiptext="&foxyproxy.whatsthis;"/> 
+                           tooltiptext="&foxyproxy.whatsthis;"/>
             <spacer flex="1"/>
-	  </hbox>
-	</row>
+    </hbox>
+  </row>
       </rows>
-    </grid> 
+    </grid>
   </vbox>
 
   <popupset>
@@ -198,23 +198,23 @@
     </menupopup>
     <menupopup id="formatpatternHelp">
       <vbox class="foxyproxy-border foxyproxy-tooltip foxyproxy-help">
-	<description>
-	  &foxyproxy.pattern.subscriptions.formatHelp;
-	  <html:a class="link"        
-	          onclick="contextHelp('format', 'pattern');">
-		  &foxyproxy.pactip5.label;</html:a>.
-	</description>
+  <description>
+    &foxyproxy.pattern.subscriptions.formatHelp;
+    <html:a class="link"
+            onclick="contextHelp('format', 'pattern');">
+      &foxyproxy.pactip5.label;</html:a>.
+  </description>
       </vbox>
     </menupopup>
     <menupopup id="obfuscationpatternHelp">
       <vbox class="foxyproxy-border foxyproxy-tooltip foxyproxy-help">
-	<description>
-	  &foxyproxy.pattern.subscriptions.obfuscationHelp;
-	  <html:a class="link"        
-	          onclick="contextHelp('obfuscation', 'pattern');">
-		  &foxyproxy.pactip5.label;</html:a>.
-	</description>
-      </vbox> 
+  <description>
+    &foxyproxy.pattern.subscriptions.obfuscationHelp;
+    <html:a class="link"
+            onclick="contextHelp('obfuscation', 'pattern');">
+      &foxyproxy.pactip5.label;</html:a>.
+  </description>
+      </vbox>
     </menupopup>
   </popupset>
 </dialog>

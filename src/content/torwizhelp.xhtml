@@ -35,9 +35,9 @@
     	border-color: green;
     	background-color: rgb(250, 240, 230);
       vertical-align: top;    	
-		  font-size: x-small; 
+		  font-size: x-small;
 		  font-family: verdana, sans-serif;
-    }    
+    }
     p {background-color: white; font-size: x-small; font-family: verdana, sans-serif;}
     body {font-family: verdana, sans-serif;}
     h3 {font-size: small;}
@@ -47,21 +47,21 @@
 <body>
   <h3>&help.patterns;</h3>
   <p>&help.ff.asks;
-    &help.fp.answers;</p>        
+    &help.fp.answers;</p>
    <h4><a name="wildcards">&help.a.wildcards;</a></h4>
    <p>&help.p.wildcards.are;
    &help.p.regexp;</p>
-   
+
    <h4>&help.h4.wildcard.examples;</h4>
    <table>
      <thead><tr><th>&help.th.url.pattern;</th><th>&help.th.some.matches;</th><th>&help.th.some.non.matches;</th></tr></thead>
-     <tr><td>*://*.yahoo.com/*</td><td>&help.td.everything.in.y;</td><td>http://mail.google.com/</td></tr>      
+     <tr><td>*://*.yahoo.com/*</td><td>&help.td.everything.in.y;</td><td>http://mail.google.com/</td></tr>
      <tr><td>*://mail.yahoo.com/*</td><td>http://mail.yahoo.com/<br />http://mail.yahoo.com/clownshoes/<br />http://mail.yahoo.com/inbox/123.html<br />ftp://mail.yahoo.com</td><td>http://maps.yahoo.com</td></tr>
      <tr><td>http://??.wikipedia.org/wiki/Clown</td><td>http://en.wikipedia.org/wiki/Clown<br />http://de.wikipedia.org/wiki/Clown<br />http://cs.wikipedia.org/wiki/Clown</td><td>https://en.wikipedia.org/wiki/Clown<br />http://de.wikipedia.org/wiki/Clown/<br />ftp://en.wikipedia.org/wiki/Clown</td></tr>
-     <tr><td>http://digg.com/</td><td>http://digg.com/</td><td>http://digg.com<br />http://www.digg.com/</td></tr>      
+     <tr><td>http://digg.com/</td><td>http://digg.com/</td><td>http://digg.com<br />http://www.digg.com/</td></tr>
      <tr><td>*://*.asimov.???/*</td><td>ftp://ftp.asimov.net/<br />ftp://ftp.asimov.com/theory.html<br />http://bear.asimov.net/mom/<br />https://isaac.asimov.org/hercules<br />gopher://asimov.net/</td>
-       <td>ftp://ftp.asimov.co.uk<br />http://isaac.home.com/tin.php</td></tr>     
-     <tr><td>*</td><td><i>&help.i.matches.everything;</i></td><td> </td></tr>            
+       <td>ftp://ftp.asimov.co.uk<br />http://isaac.home.com/tin.php</td></tr>
+     <tr><td>*</td><td><i>&help.i.matches.everything;</i></td><td> </td></tr>
    </table>
 </body>
 </html>

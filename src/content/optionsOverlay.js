@@ -13,26 +13,26 @@ window.onload=function(){
   var e = document.getElementById("catProxiesButton") || document.getElementById("connectionSettings");
   if (e) e.setAttribute("oncommand", "onConnectionSettings();");
   else {
-	  try {
-	    gAdvancedPane && (gAdvancedPane.showConnections = onConnectionSettings);
-	  }
-	  catch (e) {dump("optionsOverlay: " + e + "\n");/*wtf*/}
-	}
-}
+    try {
+      gAdvancedPane && (gAdvancedPane.showConnections = onConnectionSettings);
+    }
+    catch (e) {dump("optionsOverlay: " + e + "\n");/*wtf*/}
+  }
+};
 function onConnectionSettings() {
   var fp = Components.classes["@leahscape.org/foxyproxy/service;1"]
     .getService().wrappedJSObject;
-  
+
   if (fp.mode == "disabled")
-	  document.documentElement.openSubDialog("chrome://browser/content/preferences/connection.xul", "", null);
-	else {
+    document.documentElement.openSubDialog("chrome://browser/content/preferences/connection.xul", "", null);
+  else {
     var fpc = Components.classes["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject;
-		var win = fpc.getMostRecentWindow();
-		if (win && win.foxyproxy)
-		  win.foxyproxy.onOptionsDialog();
-		else {
-		  alert("FoxyProxy Error");
-		  document.documentElement.openSubDialog("chrome://browser/content/preferences/connection.xul", "", null);		  
-		}
-	}
+    var win = fpc.getMostRecentWindow();
+    if (win && win.foxyproxy)
+      win.foxyproxy.onOptionsDialog();
+    else {
+      alert("FoxyProxy Error");
+      document.documentElement.openSubDialog("chrome://browser/content/preferences/connection.xul", "", null);
+    }
+  }
 }

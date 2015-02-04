@@ -14,11 +14,11 @@ Components.utils.import("resource://gre/modules/XPCOMUtils.jsm");
 
 function CmdLineHandler() {}
 CmdLineHandler.prototype = {
-  QueryInterface: XPCOMUtils.generateQI([CI.nsISupports, CI.nsICommandLineHandler]),    
+  QueryInterface: XPCOMUtils.generateQI([CI.nsISupports, CI.nsICommandLineHandler]),
   classDescription: "FoxyProxy CommandLine Handler",
   classID: Components.ID("{ea321380-6b35-4e15-8d1e-fe6dc9c2ccae}"),
   contractID: "@mozilla.org/commandlinehandler/general-startup;1?type=foxyproxy",
-  _xpcom_categories: /* this var for for pre gecko-2.0 */ [{category:"command-line-handler", entry:"m-foxyproxy"}],  
+  _xpcom_categories: /* this var for for pre gecko-2.0 */ [{category:"command-line-handler", entry:"m-foxyproxy"}],
   _xpcom_factory: {
     singleton: null,
     createInstance: function (aOuter, aIID) {

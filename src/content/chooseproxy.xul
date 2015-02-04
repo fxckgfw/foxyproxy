@@ -4,7 +4,7 @@
   Copyright (C) 2006-#%#% Eric H. Jung and FoxyProxy, Inc.
   http://getfoxyproxy.org/
   eric.jung@getfoxyproxy.org
-  
+
   This source code is released under the GPL license,
   available in the LICENSE file at the root of this installation
   and also online at http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
@@ -13,16 +13,16 @@
 <?xml-stylesheet href="foxyproxy.css" type="text/css"?>
 <!DOCTYPE overlay SYSTEM "chrome://foxyproxy/locale/foxyproxy.dtd">
 <dialog id="foxyproxyoptions2" windowtype="foxyproxy"
-  title="&foxyproxy.standard.label; - &foxyproxy.selectproxy.label;" 
+  title="&foxyproxy.standard.label; - &foxyproxy.selectproxy.label;"
   buttons="accept,cancel,extra2"
-  ondialogextra2="onSettings()" buttonlabelextra2="&foxyproxy.addnewproxy.label;" 
+  ondialogextra2="onSettings()" buttonlabelextra2="&foxyproxy.addnewproxy.label;"
   buttonaccesskeyextra2="&foxyproxy.addnewproxy.accesskey;"
   xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
   xmlns:html="http://www.w3.org/1999/xhtml" persist="screenX screenY"
   onload="onLoad();" ondialogaccept="return onOK();">
 
   <script type="application/x-javascript;version=1.7" src="chooseproxy.js"/>
-  
+
   <separator class="thin"/>
   <description id="title" style="width: 1em;font-weight:bold;"/>
   <separator/>

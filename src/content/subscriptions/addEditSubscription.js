@@ -31,7 +31,7 @@ var proxies = {
 };
 
 // These are the ones we load in the onLoad() function. We need them separated
-// from the proxy object above in order to add patterns (and show a warning 
+// from the proxy object above in order to add patterns (and show a warning
 // dialog) only to newly added proxies.
 var oldProxies = [];
 
@@ -66,7 +66,7 @@ function onLoad(type) {
       // five lines of code.
       if (metadata.proxies.length > 0) {
         proxyArray = fp.proxies.getProxiesFromId(metadata.proxies);
-	for (var i = 0; i < proxyArray.length; i++) {
+        for (var i = 0; i < proxyArray.length; i++) {
           proxies.push(proxyArray[i]);
           // We are pushing the proxies here as well and do not copy them
           // once we added all of them to the proxy.list array because
@@ -93,7 +93,7 @@ function onLoad(type) {
       } else {
         formatList.selectedIndex = 1;
       }
-      // And assuming that we only have 'None' and 'Base64' so far as 
+      // And assuming that we only have 'None' and 'Base64' so far as
       // obfuscation methods...
       if (metadata.obfuscation === "Base64") {
         obfuscationList.selectedIndex = 1;
@@ -148,7 +148,7 @@ function onOK(type) {
             fp.alert(null, fp.getMessage("patternsubscription.warning.dupProxy",
               [proxies.list[i].name]));
             return false;
-	  }
+          }
         }
         // Creating the array of proxy id's for saving to disk and rebuilding
         // the proxy list on startup.
@@ -216,7 +216,7 @@ function onOK(type) {
       // The user has edited the pattern subscription. Maybe she removed a proxy
       // and we have to delete the respective patterns and to restore the old
       // ones now. Note: We just need to include the code here, i.e. if the user
-      // edits a subscription, as there can be no patterns to remove/enable if 
+      // edits a subscription, as there can be no patterns to remove/enable if
       // the user adds a new subscription.
       if (helperProxies.length > 0) {
         patternSubscriptions.deletePatterns(helperProxies);
@@ -225,36 +225,36 @@ function onOK(type) {
       // added proxies to it. But we want to give only those back that were
       // not yet tied to the subscription in order to avoid doubling the
       // patterns. Therefore extracting the new ones.
-      // We cannot just slice the oldProxies and proxies.list array as the 
-      // user may have deleted some of the oldProxies, added some new, 
+      // We cannot just slice the oldProxies and proxies.list array as the
+      // user may have deleted some of the oldProxies, added some new,
       // deleted some of them again etc. We have to compare the id's or some
       // other distinguishing attribute.
       // TODO: Is there really no easier way?
       for (i = 0; i < proxies.length; i++) {
-	proxyFound = false;
+        proxyFound = false;
         for (j = 0; j < oldProxies.length; j++) {
           if (oldProxies[j].id === proxies.item(i).id) {
-	    proxyFound = true;
+            proxyFound = true;
             // Now, the second use case of our herlperProxies array (the first
-            // was storing the proxies that need to get removed from the 
+            // was storing the proxies that need to get removed from the
             // subscription).
             helperProxies.push(oldProxies[j]);
-	  }
-	}
-	if (!proxyFound) {
-	  newProxies.push(proxies.item(i));
+          }
+        }
+        if (!proxyFound) {
+          newProxies.push(proxies.item(i));
         };
       }
       // Now we check whether the status of the subscription will be changed.
       // If so, we call the necessary method to do this for the old proxies as
       // the new ones will automatically be up-to-date due to addPatterns().
       if (userValues.enabled !== window.arguments[0].inn.subscription.
-	  metadata.enabled && helperProxies.length > 0) {
+        metadata.enabled && helperProxies.length > 0) {
         // Okay, we had proxies and we know that these are really only proxies
-        // we had when we loaded the addEditPatternSubscriptions.xul AND are 
+        // we had when we loaded the addEditPatternSubscriptions.xul AND are
         // still to be used for the subscription. AND the status changed. Let's
         // adapt it for the patterns tied to these old proxies.
-	patternSubscriptions.changeSubStatus(helperProxies,
+        patternSubscriptions.changeSubStatus(helperProxies,
           userValues.enabled);
       }
       window.arguments[0].out = {

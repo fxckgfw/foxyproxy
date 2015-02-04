@@ -102,7 +102,7 @@ let regexp;
                  .replace(/^\\\|/, "^")       // process anchor at expression start
                  .replace(/\\\|$/, "$")       // process anchor at expression end
                  .replace(/^(\.\*)/,"")       // remove leading wildcards
-                 .replace(/(\.\*)$/,"");      // remove trailing wildcards 
+                 .replace(/(\.\*)$/,"");      // remove trailing wildcards
   }
   if (regexp == "")
     regexp = ".*";

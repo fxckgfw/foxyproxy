@@ -54,7 +54,7 @@ function onOK() {
 }
 
 function updateGeneratedPattern() {
-  let patValue = fpc.applyTemplate(document.getElementById("url").value,
+  var patValue = fpc.applyTemplate(document.getElementById("url").value,
     superadd.match.pattern, superadd.match.caseSensitive);
   // applyTemplate() is giving us basically a string back. To make sure we treat
   // it as a RegEx if the user wishes so we need to apply our conversion rules

@@ -12,13 +12,13 @@
 function onLoad() {
   var inn = window.arguments[0].inn;
   document.getElementById("title").appendChild(document.createTextNode(inn.title));
-  
+
   document.getElementById("1").label = inn.btn1Text;
-  var btn2 = document.getElementById("2"); 
-  btn2.label = inn.btn2Text; 
+  var btn2 = document.getElementById("2");
+  btn2.label = inn.btn2Text;
   document.getElementById("3").label = inn.btn3Text;
   btn2.focus();
-	sizeToContent();
+  sizeToContent();
 }
 
 function onOK(v) {

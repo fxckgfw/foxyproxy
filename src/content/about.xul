@@ -75,11 +75,11 @@
           </hbox>
           <hbox style="margin-left: 1em;">
             <label value="&foxyproxy.contributionsBy;" />
-	    <vbox>
+            <vbox>
               <label value="Jesper Staun Hansen"/>
-	      <label value="Georg Koppen"/>
+              <label value="Georg Koppen"/>
               <label value="Wladimir Palant"/>
-	    </vbox>
+            </vbox>
           </hbox>
           <hbox style="margin-left: 1em;">
             <label value="&foxyproxy.copyright; 2006-2015 FoxyProxy, Inc." />
@@ -98,9 +98,7 @@
             <label value="&foxyproxy.credits;" class="text-link" onclick="fpc.openAndReuseOneTabPerURL('http://getfoxyproxy.org/credits.html');" tooltiptext="http://getfoxyproxy.org/credits.html" />
           </hbox>
         </vbox>
-
       </hbox>
     </vbox>
-
   </groupbox>
 </dialog>

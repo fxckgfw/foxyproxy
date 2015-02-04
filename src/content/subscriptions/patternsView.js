@@ -52,5 +52,9 @@ function getTextForCell(pat, col) {
     case "isBlackList" : return foxyproxy.getMessage(pat.blackList ?
                                 "foxyproxy.blacklist.label" :
                                 "foxyproxy.whitelist.label");
-  };
+    default :
+      dump("Unknown col value in patternsView.js: " + col + "\n");
+      break;
+  }
+  return "---";
 }

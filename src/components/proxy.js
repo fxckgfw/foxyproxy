@@ -11,7 +11,7 @@
 //dump("proxy.js\n");
 if (!CI) {
   // XPCOM module initialization
-  var NSGetModule = function() { return ProxyModule; }
+  var NSGetModule = function() { return ProxyModule; };
 
   var CI = Components.interfaces, CC = Components.classes, CR = Components.results, self,
     fileProtocolHandler = CC["@mozilla.org/network/protocol;1?name=file"].getService(CI["nsIFileProtocolHandler"]);
@@ -29,12 +29,12 @@ if (!CI) {
   var gGetSafeAttr = function(n, name, def) {
     n.QueryInterface(CI.nsIDOMElement);
     return n ? (n.hasAttribute(name) ? n.getAttribute(name) : def) : def;
-  }
+  };
   // Boolean version of GetSafe
   var gGetSafeAttrB = function(n, name, def) {
     n.QueryInterface(CI.nsIDOMElement);
     return n ? (n.hasAttribute(name) ? n.getAttribute(name)=="true" : def) : def;
-  }
+  };
 
   var loadComponentScript = function(filename) {
     try {
@@ -46,9 +46,8 @@ if (!CI) {
       dump("Error loading component " + filename + ": " + e + "\n" + e.stack + "\n");
       throw(e);
     }
-  }
-  var self,
-    fileProtocolHandler = CC["@mozilla.org/network/protocol;1?name=file"].getService(CI["nsIFileProtocolHandler"]);
+  };
+  fileProtocolHandler = CC["@mozilla.org/network/protocol;1?name=file"].getService(CI["nsIFileProtocolHandler"]);
   if ("undefined" != typeof(__LOCATION__)) {
     // preferred way
     self = __LOCATION__;
@@ -95,9 +94,9 @@ function Proxy(fp) {
   // is dangerous in the face of an incomplete list of TLDs, and TLDs
   // get added over time.  We could consider doing only a single
   // substitution of the first component, if that proves to help
-  // compatibility." 
+  // compatibility."
   // See: http://mxr.mozilla.org/mozilla2.0/source/netwerk/base/src/
-  // nsProtocolProxyService.cpp#488 
+  // nsProtocolProxyService.cpp#488
   this.wpad.url = "http://wpad/wpad.dat";
   // If we would not create an AutoConf object for the system proxy during proxy
   // creation it could happen that the system proxy feature is not working
@@ -172,14 +171,14 @@ Proxy.prototype = {
     } else {
       // The mode was WPAD but that is not available anymore starting with 3.3.
       // There is only "auto" as proxy mode (we choose it) and two autoconf
-      // modes, "wpad" and "pac", now (we choose former). 
+      // modes, "wpad" and "pac", now (we choose former).
       this._mode = "auto";
       this._autoconfMode = gGetSafeAttr(node, "autoconfMode", "wpad");
     }
     this.selectedTabIndex = node.getAttribute("selectedTabIndex") || "0";
     if (this.fp.isFoxyProxySimple() && this.selectedTabIndex > 1)
       this.selectedTabIndex = 1; /* FoxyProxy Simple only has 2 tabs */
-	  this.lastresort = node.hasAttribute("lastresort") ? node.getAttribute("lastresort") == "true" : false; // new for 2.0
+    this.lastresort = node.hasAttribute("lastresort") ? node.getAttribute("lastresort") == "true" : false; // new for 2.0
     this.animatedIcons = node.hasAttribute("animatedIcons") ? node.getAttribute("animatedIcons") == "true" : !this.lastresort; // new for 2.4
     this.includeInCycle = node.hasAttribute("includeInCycle") ? node.getAttribute("includeInCycle") == "true" : !this.lastresort; // new for 2.5
     this.color = gGetSafeAttr(node, "color", DEFAULT_COLOR);
@@ -250,9 +249,9 @@ Proxy.prototype = {
     // is dangerous in the face of an incomplete list of TLDs, and TLDs
     // get added over time.  We could consider doing only a single
     // substitution of the first component, if that proves to help
-    // compatibility." 
+    // compatibility."
     // See: http://mxr.mozilla.org/mozilla2.0/source/netwerk/base/src/
-    // nsProtocolProxyService.cpp#488 
+    // nsProtocolProxyService.cpp#488
     this.wpad.url = "http://wpad/wpad.dat";
     // If we would not create an AutoConf object for the system proxy during proxy
     // creation it could happen that the system proxy feature is not working
@@ -558,7 +557,7 @@ Proxy.prototype = {
         this._enabled = false;
       }
       !this._enabled &&
-        // (proxy, isBeingDeleted, isBeingDisabled, isBecomingDIRECT)  
+        // (proxy, isBeingDeleted, isBeingDisabled, isBecomingDIRECT)
         this.fp.proxies.maintainIntegrity(this, false, true, false);
     }
   },
@@ -570,7 +569,7 @@ Proxy.prototype = {
     } else if (this._autoconfMode === "wpad") {
       ac = this.wpad;
     }
-    // always always always cancel first before doing anything 
+    // always always always cancel first before doing anything
     if (ac) {
       ac.timer.cancel();
     } else {
@@ -591,7 +590,7 @@ Proxy.prototype = {
    * before performing regular expression matches.
    *
    * Black pattern matches take precendence over white pattern matches.
-   * 
+   *
    * Note patStr is sometimes null when this method is called.
    */
   isWhiteMatch : function(patStr, uriStr) {
@@ -647,7 +646,7 @@ Proxy.prototype = {
       str = str.toLowerCase();
       var tokens = str.split(/\s*;\s*/), // Trim and split
       proxies = [];
-      // In case final token ends with semi-colon 
+      // In case final token ends with semi-colon
       if (tokens[tokens.length-1] == "")
         tokens.length--;
       for (var i=0; i<tokens.length; i++) {

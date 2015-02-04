@@ -25,7 +25,7 @@ try {
   var {LoadContextInfo} = Components.utils.import("resource://gre/modules/LoadContextInfo.jsm", {});
   var c = CC["@mozilla.org/netwerk/cache-storage-service;1"].getService(CI.nsICacheStorageService);
   var storage = c.diskCacheStorage(LoadContextInfo.default, false);
-  dump("*** Found new cache API\n");
+  //dump("*** Found new cache API\n");
 }
 catch(e) {
   // Catch exception just in case future versions completely remove cache-service or nsICacheService
@@ -35,7 +35,7 @@ finally {
   // Also look for older cache API. On Firefox 32, at least, this service still exists. Only when we call .evictEntries() will
   // we get an exception.
   var cacheService = CC["@mozilla.org/network/cache-service;1"].getService(CI.nsICacheService);
-  dump("*** Found old cache API\n");
+  //dump("*** Found old cache API\n");
 }
 
 CU.import("resource://foxyproxy/utils.jsm");
@@ -80,8 +80,7 @@ let cookiePrefs = utils.getPrefsService("network.cookie."),
             getService(CI.nsISecretDecoderRing);
           sdr.logoutAndTeardown();
         }
-      }
-      catch(e) {
+      } catch(e) {
         let fp = CC["@leahscape.org/foxyproxy/service;1"].getService().
           wrappedJSObject;
         fp.notifier.alert(fp.getMessage("foxyproxy"),

@@ -10,29 +10,29 @@
 **/
 
 /**
-
-This is the super class for AutoAdd and QuickAdd classes.
-
-AutoAdd and QuickAdd both have their own instance of a Match object in their ._match property. It is used for storing a template
+ *
+ * This is the super class for AutoAdd and QuickAdd classes.
+ *
+ * AutoAdd and QuickAdd both have their own instance of a Match object in their ._match property. It is used for storing a template
 of the Match object to be added to a proxy dynamically:
-  .name - User-supplied name of the pattern. "Dynamic QuickAdd/AutoAdd Pattern" by default
-  .pattern - A string template, applied to the URL at the time of addition of a dynamic Match object to the SuperAdd object.
-    It is *://${3}${6}/* by default.
-  .caseSensitive - whether or not the expanded (post-applyTemplate()) .pattern should be compared to URLs case-sensitively
-  .temp - not used; SuperAdd.temp is used instead since match.temp isn't serialized/deserialized to/from DOM
-  .type - whether or not the expanded (post-applyTemplate()) .pattern is black or white list
-  .isRegExp - whether or not the expanded (post-applyTemplate()) .pattern is a regexp or a wildcard pattern
-  .enabled - always true. doesn't make sense to dynamically add a disabled pattern.
-  .isMultiLine - whether or not .pattern should be searched single or multiline.
-
-blockedPageMatch - a Match object specific to AutoAdd only. Only four of the properties are relavent:
-  .pattern - A string wildcard or regexp expression of the pattern that marks a page as blocked.
-    *Corporate policy prevents access* by default.
-  .caseSensitive - whether or not .pattern should be tested against input pages case-sensitively.
-  .isRegExp - whether or not .pattern is a regexp or a wildcard pattern
-  .isMultiLine - whether or not .pattern should be tested against single or multi-line. Always true in this context.
-  .name, .enabled, .temp, .isBlackList - not used in this context
-*/
+ *  .name - User-supplied name of the pattern. "Dynamic QuickAdd/AutoAdd Pattern" by default
+ *  .pattern - A string template, applied to the URL at the time of addition of a dynamic Match object to the SuperAdd object.
+ *    It is *://${3}${6}/* by default.
+ *  .caseSensitive - whether or not the expanded (post-applyTemplate()) .pattern should be compared to URLs case-sensitively
+ *  .temp - not used; SuperAdd.temp is used instead since match.temp isn't serialized/deserialized to/from DOM
+ *  .type - whether or not the expanded (post-applyTemplate()) .pattern is black or white list
+ *  .isRegExp - whether or not the expanded (post-applyTemplate()) .pattern is a regexp or a wildcard pattern
+ *  .enabled - always true. doesn't make sense to dynamically add a disabled pattern.
+ *  .isMultiLine - whether or not .pattern should be searched single or multiline.
+ *
+ * blockedPageMatch - a Match object specific to AutoAdd only. Only four of the properties are relavent:
+ *  .pattern - A string wildcard or regexp expression of the pattern that marks a page as blocked.
+ *    *Corporate policy prevents access* by default.
+ *  .caseSensitive - whether or not .pattern should be tested against input pages case-sensitively.
+ *  .isRegExp - whether or not .pattern is a regexp or a wildcard pattern
+ *  .isMultiLine - whether or not .pattern should be tested against single or multi-line. Always true in this context.
+ *  .name, .enabled, .temp, .isBlackList - not used in this context
+ */
 //dump("superadd.js\n");
 const DEF_PATTERN = "*://${3}${6}/*";
 function SuperAdd(mName) {
@@ -71,7 +71,7 @@ function AutoAdd(mName) {
   this._blockedPageMatch.__defineSetter__("pattern", function(p) {
     if (!p) p = ""; // prevent null patterns
     this._pattern = p.replace(/^\s*|\s*$/g,""); // trim
-    if (this._pattern == "")
+    if (this._pattern === "")
       this._pattern = this.fp.getMessage("not.authorized");
     this.buildRegEx();
   });
@@ -192,7 +192,7 @@ SuperAdd.prototype = {
     if (menu.id.indexOf("autoAdd") === 0) {
       dialogType = this.fp.getMessage("foxyproxy.autoadd.label");
     } else if (menu.id.indexOf("quickAdd") === 0) {
-      dialogType = this.fp.getMessage("foxyproxy.quickadd.label"); 
+      dialogType = this.fp.getMessage("foxyproxy.quickadd.label");
     }
     if (this._proxy ) {
       menu.value = this.proxy.id;
@@ -201,14 +201,14 @@ SuperAdd.prototype = {
           this.proxyById = menu.value = popup.firstChild.id;
         } else {
             this.fp.alert(null, this.fp.getMessage("superadd.disabled",
-              [dialogType])); 
+              [dialogType]));
         }
       }
     }
     else {
       if (popup.firstChild) {
         this.proxyById = menu.value = popup.firstChild.id;
-      } 
+      }
     }
   },
 
@@ -394,7 +394,7 @@ AutoAdd.prototype.fromDOM = function(doc) {
   else {
     dump("Cannot find autoadd/match[1] node.\n");
   }
-   
+
   // Note XPath expression array index is 1-based
   /*var n = getBlockedPageMatch("foxyproxy/autoadd/match[2]");
   if (n) {

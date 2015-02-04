@@ -17,7 +17,7 @@ function onLoad() {
   if (window.arguments[0].inn.errorMessages) {
     errorMessages = window.arguments[0].inn.errorMessages;
   }
-  // Preparing the treeChildren to simplify the logic needed in the view 
+  // Preparing the treeChildren to simplify the logic needed in the view
   // itself.
   treeChildren.push(status);
   if (errorMessages) {
@@ -43,8 +43,8 @@ function onLoad() {
     setTree: function(treebox){},
     getColumnProperties: function(col, elem, prop){},
     isSorted: function(){},
-    isContainer: function(index){return false},
-    isSeparator: function(index){return false},
+    isContainer: function(index){return false;},
+    isSeparator: function(index){return false;},
     getRowProperties: function(index, prop){},
     getCellProperties: function(row, col, prop){},
     getImageSrc: function(row, col){},

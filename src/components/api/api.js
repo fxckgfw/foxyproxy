@@ -25,7 +25,7 @@ function api() {
     wrappedJSObject;
   this.fpc = CC["@leahscape.org/foxyproxy/common;1"].getService().
     wrappedJSObject;
- 
+
   // We let |fp| manage |apiDisabled| serialization. Note we do not want to
   // expose a setter for this variable, just a getter. If we exposed a setter,
   // websites could enable the API when it is disabled.
@@ -250,8 +250,8 @@ api.prototype = {
       }
     ];
     nb.appendNotification(message, "foxyproxy-notification",
-      "chrome://foxyproxy/content/images/16x16.gif", nb.PRIORITY_WARNING_MEDIUM,
-      buttons, nbEventCallback);
+      "chrome://foxyproxy/content/images/16x16.gif",
+      nb.PRIORITY_WARNING_MEDIUM, buttons, nbEventCallback);
   },
 
   // nsIClassInfo

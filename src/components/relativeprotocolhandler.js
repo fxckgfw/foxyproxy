@@ -10,7 +10,7 @@
 **/
 const kSCHEME = "relative";
 const CI = Components.interfaces;
-const CC = Components.classes
+const CC = Components.classes;
 const CR = Components.results;
 
 const kIOSERVICE_CONTRACTID = "@mozilla.org/network/io-service;1";

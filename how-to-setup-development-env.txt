@@ -28,7 +28,7 @@ For build instructions, see how-to-build.txt
      <drive>:\dev\foxyproxy\trunk\src
      or
      ~/foxyproxy/trunk/src
-   
+
 6. Start FF. You should be able to access FoxyProxy. Any change you
    make to non-overlay code in the src/ directory takes effect immediately.
    However, you must close and re-open dialogs for dialog-included JS and XUL

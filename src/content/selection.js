@@ -16,27 +16,27 @@ foxyproxy.selection = {
   reloadcurtab: true,
   onChangeHost : function() {
     var fp = foxyproxy.fp, sel = this.parseSelection();
-    if (sel.reason == 0) {
-      var p = {inn:{title:fp.getMessage("choose.proxy", [sel.hostPort]), reloadcurtab:this.reloadcurtab, host:sel.host, port:sel.port, pattern:false}, out:null};          
+    if (sel.reason === 0) {
+      var p = {inn:{title:fp.getMessage("choose.proxy", [sel.hostPort]), reloadcurtab:this.reloadcurtab, host:sel.host, port:sel.port, pattern:false}, out:null};
       window.openDialog("chrome://foxyproxy/content/chooseproxy.xul", "",
         "chrome, dialog, modal, centerscreen=yes, resizable=yes", p).focus();
       if (p.out) {
         p = p.out;
         this.reloadcurtab = p.reloadcurtab;
         p.proxy.manualconf.host = sel.host;
-        p.proxy.manualconf.port = sel.port;        
+        p.proxy.manualconf.port = sel.port;
         fp.notifier.alert(null, fp.getMessage("changed.host", [p.proxy.name, sel.hostPort]));
         if (p.reloadcurtab) {
           var r;
           function askAboutSwitching(str, arg) {
             if (fp.isFoxyProxySimple) {
-              var r = foxyproxy.ask(window, arg ? fp.getMessage(str, [arg]) : fp.getMessage(str));
+              r = foxyproxy.ask(window, arg ? fp.getMessage(str, [arg]) : fp.getMessage(str));
               if (r == 1) fp.setMode(p.proxy.id, false);
               return r;
             }
             else {
-              var r = foxyproxy.ask(window, arg ? fp.getMessage(str, [arg]) : fp.getMessage(str), fp.getMessage("yes.use.patterns"), fp.getMessage("yes.use.proxy.for.all", [p.proxy.name]), fp.getMessage("no.dont.change.anything"));
-              if (r == 0) fp.setMode("patterns", false);
+              r = foxyproxy.ask(window, arg ? fp.getMessage(str, [arg]) : fp.getMessage(str), fp.getMessage("yes.use.patterns"), fp.getMessage("yes.use.proxy.for.all", [p.proxy.name]), fp.getMessage("no.dont.change.anything"));
+              if (r === 0) fp.setMode("patterns", false);
               else if (r == 1) fp.setMode(p.proxy.id, false);
               return r;
             }
@@ -54,27 +54,30 @@ foxyproxy.selection = {
               case "auto" :
                 modeAsText = fp.getMessage("foxyproxy.automatic.label");
                 break;
+              default :
+                dump("Unknown proxy mode in selection.js: " + p.proxy.mode + "\n");
+                break;
             }
             var q = foxyproxy.ask(window, fp.getMessage("switch.proxy.mode2", [p.proxy.name, modeAsText, sel.hostPort]));
             if (q)
               p.proxy.mode = "manual";
-          }      
+          }
           gBrowser.reloadTab(gBrowser.mCurrentTab);
         }
-        fp.writeSettingsAsync();        
+        fp.writeSettingsAsync();
       }
     }
     else if (sel.reason == 1)
       fp.notifier.alert(null, fp.getMessage("noHostPortSelected"));
   },
-  
+
   /**
    * Returns object with 3 properties.
    * reason contains 0 if success, 1 if current selection can't be parsed properly (or nothing
    * selected), and 2 if the |proxy| optional argument is disabled. if no |proxy| specified,
    * |reason| is never 2.
    */
-  parseSelection : function(proxy) { 
+  parseSelection : function(proxy) {
     /* Any selected text that looks like it might be a host:port?
      Found a possible host:port combination if parsed.length == 2.
      http://mxr.mozilla.org/mozilla-central/source/browser/base/content/browser.js#4620
@@ -84,11 +87,11 @@ foxyproxy.selection = {
     ret.selection = this.getBrowserSelection();
     // Only show these menu items if there is selected text, otherwise they their phrasing
     // appears funny: "Set <blank> as this proxy's new host and port", even if disabled.
-    if (ret.selection != null && ret.selection != "") {
-      var parsed = ret.selection.split(/:|\s/);        
+    if (ret.selection !== null && ret.selection !== "") {
+      var parsed = ret.selection.split(/:|\s/);
       if (proxy && !proxy.enabled  /* || fp.mode == "disabled" */)
         ret.reason = 2;
-      else if (parsed.length != 2 || parsed[1].match(/\D/) != null)
+      else if (parsed.length != 2 || parsed[1].match(/\D/) !== null)
         ret.reason = 1;
       else {
         ret.reason = 0;
@@ -106,7 +109,7 @@ foxyproxy.selection = {
   /**
    * Copied from Firefox's browser.xul because some platforms (e.g., Tbird)
    * don't have this method
-   * 
+   *
    * Gets the selected text in the active browser. Leading and trailing
    * whitespace is removed, and consecutive whitespace is replaced by a single
    * space. A maximum of 150 characters will be returned, regardless of the value

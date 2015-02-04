@@ -39,11 +39,11 @@ Protocol.prototype = {
   newChannel: function(aURI) {
     var fp = CC["@leahscape.org/foxyproxy/service;1"].getService().wrappedJSObject;
     if (fp.ignoreProxyScheme) return new nsDummyChannel();
-    
+
     // user notification first
     var fpc = CC["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject,
       self = this;
-    fpc.notify("proxy.scheme.warning.2", null, null, null, 
+    fpc.notify("proxy.scheme.warning.2", null, null, null,
       function() {fpc.processProxyURI(aURI)}, true);
     return new nsDummyChannel();
   },

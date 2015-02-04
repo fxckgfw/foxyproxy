@@ -20,7 +20,6 @@
 let CI = Components.interfaces, CC = Components.classes, CU = Components.utils,
   gObsSvc = CC["@mozilla.org/observer-service;1"].
     getService(CI.nsIObserverService),
-
   EXPORTED_SYMBOLS = ["defaultPrefs"];
 
 let defaultPrefs = {

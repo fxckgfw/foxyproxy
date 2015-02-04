@@ -33,7 +33,7 @@ ProtocolProxyServiceWrapper.prototype = {
     var aChannelOrURI = aURI;
     if (aURI instanceof Ci.nsIChannel)
       aURI = aURI.URI;
-    
+
     // |this.fp| is only available if we are using Gecko > 17. Thus we need to
     // be sure that |this.fp| exists before we check whether the current mode is
     // disabled. This is especially important as we land here even if we are

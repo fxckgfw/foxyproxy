@@ -176,7 +176,7 @@ let CI = Components.interfaces, CC = Components.classes, gObsSvc =
       let start = {}, end = {}, numRanges = tree.view.selection.getRangeCount(),
         selectedIndices = [];
 
-      for (let t = 0; t < numRanges; t++){
+      for (let t = 0; t < numRanges; t++) {
         tree.view.selection.getRangeAt(t, start, end);
         for (let v = start.value; v <= end.value; v++)
           selectedIndices.push(v);

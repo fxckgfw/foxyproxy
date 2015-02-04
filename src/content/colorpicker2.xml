@@ -4,7 +4,7 @@
   Copyright (C) 2006-#%#% Eric H. Jung and FoxyProxy, Inc.
   http://getfoxyproxy.org/
   eric.jung@getfoxyproxy.org
-  
+
   This source code is released under the GPL license,
   available in the LICENSE file at the root of this installation
   and also online at http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
@@ -80,7 +80,7 @@ Think before you start messing with this file -->
       <method name="initColor"><!-- popup init color -->
         <parameter name="aColor"/>
         <body><![CDATA[
-        if (aColor.charAt(0) == '#')
+          if (aColor.charAt(0) == '#')
             aColor = aColor.substr(1,6);
           aColor = aColor.replace(/ /g,'');
           aColor = aColor.toUpperCase();
@@ -157,13 +157,14 @@ Think before you start messing with this file -->
             return(o.style);
         ]]></body>
       </method>
-<field name="ge"></field>
+
+      <field name="ge"></field>
       <method name="HSVslide">
         <parameter name="d"/>
         <parameter name="o"/>
         <parameter name="e"/>
         <body><![CDATA[
-this.ge = e;
+          this.ge = e;
           var self = this;
           function mkHSV(a,b,c) {
             return(Math.min(a,Math.max(0,Math.ceil((parseInt(c)/b)*a))));
@@ -243,60 +244,59 @@ this.ge = e;
           }
         ]]></body>
       </method>
-	  
-	  <method name="HEX">
+
+      <method name="HEX">
         <parameter name="o"/>
         <body><![CDATA[
-			o=Math.round(Math.min(Math.max(0,o),255));
+          o=Math.round(Math.min(Math.max(0,o),255));
             return("0123456789ABCDEF".charAt((o-o%16)/16)+"0123456789ABCDEF".charAt(o%16));
-		]]></body>
-	  </method>
-	  
-	  <method name="RGB_HEX">
-        <parameter name="o"/>
-        <body><![CDATA[
-			return(this.HEX(o.R)+this.HEX(o.G)+this.HEX(o.B));
-		]]></body>
-	  </method>
-	  
-	  <method name="HSV_RGB">
-        <parameter name="o"/>
-        <body><![CDATA[
-            var R, G, A, B, C, F, S=o.S/100, V=o.V/100, H=o.H/360;
-            if(S>0) { if(H>=1) H=0;
-                H=6*H; F=H-Math.floor(H);
-                A=Math.round(255*V*(1-S));
-                B=Math.round(255*V*(1-(S*F)));
-                C=Math.round(255*V*(1-(S*(1-F))));
-                V=Math.round(255*V);
+        ]]></body>
+      </method>
 
-                switch(Math.floor(H)) {
-                    case 0: R=V; G=C; B=A; break;
-                    case 1: R=B; G=V; B=A; break;
-                    case 2: R=A; G=V; B=C; break;
-                    case 3: R=A; G=B; B=V; break;
-                    case 4: R=C; G=A; B=V; break;
-                    case 5: R=V; G=A; B=B; break;
-                }
+      <method name="RGB_HEX">
+          <parameter name="o"/>
+          <body><![CDATA[
+        return(this.HEX(o.R)+this.HEX(o.G)+this.HEX(o.B));
+      ]]></body>
+      </method>
 
-                return({'R':R?R:0, 'G':G?G:0, 'B':B?B:0, 'A':1});
-            } else
-              return({'R':(V=Math.round(V*255)), 'G':V, 'B':V, 'A':1});
-		]]></body>
-	  </method>
-	  
-	  <method name="HSV_HEX">
+      <method name="HSV_RGB">
+          <parameter name="o"/>
+          <body><![CDATA[
+              var R, G, A, B, C, F, S=o.S/100, V=o.V/100, H=o.H/360;
+              if(S>0) { if(H>=1) H=0;
+                  H=6*H; F=H-Math.floor(H);
+                  A=Math.round(255*V*(1-S));
+                  B=Math.round(255*V*(1-(S*F)));
+                  C=Math.round(255*V*(1-(S*(1-F))));
+                  V=Math.round(255*V);
+
+                  switch(Math.floor(H)) {
+                      case 0: R=V; G=C; B=A; break;
+                      case 1: R=B; G=V; B=A; break;
+                      case 2: R=A; G=V; B=C; break;
+                      case 3: R=A; G=B; B=V; break;
+                      case 4: R=C; G=A; B=V; break;
+                      case 5: R=V; G=A; B=B; break;
+                  }
+
+                  return({'R':R?R:0, 'G':G?G:0, 'B':B?B:0, 'A':1});
+              } else
+                return({'R':(V=Math.round(V*255)), 'G':V, 'B':V, 'A':1});
+      ]]></body>
+      </method>
+
+      <method name="HSV_HEX">
         <parameter name="o"/>
         <body><![CDATA[
-			return(this.RGB_HEX(this.HSV_RGB(o)));
-		]]></body>
-	  </method>
+          return(this.RGB_HEX(this.HSV_RGB(o)));
+        ]]></body>
+      </method>
 
       <method name="_fireEvent">
         <parameter name="aTarget"/>
         <parameter name="aEventName"/>
-        <body>
-        <![CDATA[
+        <body><![CDATA[
           try {
             var event = document.createEvent("Events");
             event.initEvent(aEventName, true, true);
@@ -308,13 +308,11 @@ this.ge = e;
                 cancel = true;
             }
             return !cancel;
-          }
-          catch (e) {
+          } catch (e) {
 //            Components.utils.reportError(e);
           }
           return false;
-        ]]>
-        </body>
+        ]]></body>
       </method>
 
       <method name="inputPosition">
@@ -342,14 +340,14 @@ this.ge = e;
         ]]></body>
       </method>
 
-    <constructor><![CDATA[
+      <constructor><![CDATA[
         this.initialize();
       ]]></constructor>
 
     </implementation>
   </binding>
 
-    <binding id="colorpicker2-button" display="xul:menu"
+  <binding id="colorpicker2-button" display="xul:menu"
            extends="chrome://global/content/bindings/general.xml#basecontrol">
     <resources>
       <stylesheet src="chrome://global/skin/colorpicker.css"/>
@@ -370,11 +368,9 @@ this.ge = e;
 
     <implementation implements="nsIAccessibleProvider">
       <property name="accessibleType" readonly="true">
-        <getter>
-          <![CDATA[
+        <getter><![CDATA[
             return Components.interfaces.nsIAccessibleProvider.XULColorPicker2;
-          ]]>
-        </getter>
+          ]]></getter>
       </property>
 
       <property name="open"
@@ -451,8 +447,7 @@ this.ge = e;
       <method name="_fireEvent">
         <parameter name="aTarget"/>
         <parameter name="aEventName"/>
-        <body>
-        <![CDATA[
+        <body><![CDATA[
           try {
             var event = document.createEvent("Events");
             event.initEvent(aEventName, true, true);
@@ -469,8 +464,7 @@ this.ge = e;
 //            dump(e);
           }
           return false;
-        ]]>
-        </body>
+        ]]></body>
       </method>
 
       <constructor><![CDATA[
@@ -480,4 +474,3 @@ this.ge = e;
     </implementation>
   </binding>
 </bindings>
-

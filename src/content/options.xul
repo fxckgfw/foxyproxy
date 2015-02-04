@@ -604,7 +604,7 @@
                 </row>
                 <row align="center" observes="notDefaultSettingsBroadcaster">
                   <description>&foxyproxy.settings.not.default;
-                  <html:a class="link" style="margin: 0 .5em 0 .5em"  
+                  <html:a class="link" style="margin: 0 .5em 0 .5em"
                     onclick="fpc.openAndReuseOneTabPerURL('http://getfoxyproxy.org/settings.html');">&foxyproxy.importantnote.label;</html:a>
                    </description>
                    <button command="resetSettingsCmd"
@@ -823,7 +823,7 @@
             onclick="fpc.openAndReuseOneTabPerURL('http://forums.mozillazine.org/viewtopic.php?t=72994');" />
           &foxyproxy.quickadd.desc2;
         </description>
-        <checkbox id="quickAddEnabled" 
+        <checkbox id="quickAddEnabled"
           label="&foxyproxy.enabled.label;"
           accesskey="&foxyproxy.enabled.accesskey;"
           tooltiptext="&foxyproxy.enabled.tooltip;"
@@ -840,7 +840,7 @@
                 <checkbox id="quickAddReload"
                   label="&foxyproxy.autoadd.reload.label;"
                   accesskey="&foxyproxy.autoadd.reload.accesskey;"
-                  tooltiptext="&foxyproxy.autoadd.reload.tooltip;"                  
+                  tooltiptext="&foxyproxy.autoadd.reload.tooltip;"
                   oncommand="foxyproxy.quickadd.reload = this.checked;"/>
                 <checkbox id="quickAddNotify"
                   label="&foxyproxy.quickadd.notify.label;"
@@ -896,7 +896,7 @@
         <description style="width: 1em;">
           &foxyproxy.autoadd.description;
         </description>
-        <checkbox id="autoAddEnabled" 
+        <checkbox id="autoAddEnabled"
           label="&foxyproxy.enabled.label;"
           accesskey="&foxyproxy.enabled.accesskey;"
           tooltiptext="&foxyproxy.enabled.tooltip;"
@@ -999,12 +999,12 @@
          <hbox flex="1">
            <tree id="logTree" align="stretch" enableColumnDrag="true"
              persist="sortDirection sortResource" sortDirection="ascending"
-             sortResource="timestamp" flex="1" class="treeStyling" 
+             sortResource="timestamp" flex="1" class="treeStyling"
              onselect="updateLogButtons();">
              <treecols
                pickertooltiptext="&foxyproxy.tree.pickertooltiptext.label;">
                <treecol id="timestamp"
-   							onclick="sortlog(this.id)" class="sortDirectionIndicator" sortDirection="ascending"
+                 onclick="sortlog(this.id)" class="sortDirectionIndicator" sortDirection="ascending"
                  label="&foxyproxy.tab.logging.timestamp.label;" flex="1"
                  persist="width ordinal hidden" />
                <splitter class="tree-splitter" />
@@ -1012,11 +1012,11 @@
                  persist="width ordinal hidden" />
                <splitter class="tree-splitter" />
                <treecol id="proxyName" label="&foxyproxy.proxy.name.label;"
-   							onclick="sortlog(this.id)" class="sortDirectionIndicator"
+                 onclick="sortlog(this.id)" class="sortDirectionIndicator"
                  flex="1" persist="width ordinal hidden" />
                <splitter class="tree-splitter" />
                <treecol id="proxyNotes" label="&foxyproxy.proxy.notes.label;"
-   							onclick="sortlog(this.id)" class="sortDirectionIndicator"
+                 onclick="sortlog(this.id)" class="sortDirectionIndicator"
                  flex="1" persist="width ordinal hidden" hidden="true"/>
                <splitter class="tree-splitter" />
                <treecol id="uri"
@@ -1025,35 +1025,35 @@
                  flex="1" persist="width ordinal hidden" />
                <splitter class="tree-splitter" />
                <treecol id="matchName"
-   							onclick="sortlog(this.id)" class="sortDirectionIndicator"
+                 onclick="sortlog(this.id)" class="sortDirectionIndicator"
                  label="&foxyproxy.pattern.name.label;" flex="1"
                  persist="width ordinal hidden"/>
                <splitter class="tree-splitter" />
                <treecol id="matchPattern" label="&foxyproxy.pattern.label;"
-   							onclick="sortlog(this.id)" class="sortDirectionIndicator"
+                 onclick="sortlog(this.id)" class="sortDirectionIndicator"
                  flex="1" persist="width ordinal hidden" hidden="true"/>
                <splitter class="tree-splitter" />
                <treecol id="caseSensitive"
-   							onclick="sortlog(this.id)" class="sortDirectionIndicator"
+                 onclick="sortlog(this.id)" class="sortDirectionIndicator"
                  label="&foxyproxy.casesensitive.label;" flex="1"
                  persist="width ordinal hidden" hidden="true"/>
                <splitter class="tree-splitter" />
                <treecol id="matchType"
-   							onclick="sortlog(this.id)" class="sortDirectionIndicator"
+                 onclick="sortlog(this.id)" class="sortDirectionIndicator"
                  label="&foxyproxy.pattern.type.label;" flex="1"
                  persist="width ordinal hidden" hidden="true"/>
                <splitter class="tree-splitter" />
                <treecol id="whiteBlack"
-   							onclick="sortlog(this.id)" class="sortDirectionIndicator"
+                 onclick="sortlog(this.id)" class="sortDirectionIndicator"
                  label="&foxyproxy.whitelist.blacklist.label;" flex="1"
                  persist="width ordinal hidden" hidden="true"/>
                <splitter class="tree-splitter" />
                <treecol id="pacResult" label="&foxyproxy.pac.result.label;"
-   							onclick="sortlog(this.id)" class="sortDirectionIndicator"
+                 onclick="sortlog(this.id)" class="sortDirectionIndicator"
                  flex="1" persist="width ordinal hidden" hidden="true"/>
                <splitter class="tree-splitter" />
                <treecol id="errMsg" label="&foxyproxy.error.msg.label;"
-   							onclick="sortlog(this.id)" class="sortDirectionIndicator"
+                 onclick="sortlog(this.id)" class="sortDirectionIndicator"
                  flex="1" persist="width ordinal hidden" hidden="true"/>
                <splitter class="tree-splitter" />
              </treecols>

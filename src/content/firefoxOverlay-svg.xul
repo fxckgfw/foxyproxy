@@ -63,7 +63,7 @@
    </g>
   </svg>
  </hbox>
- 
+
   <hbox id="foxyproxy-contextmenu-icon" svg="true">
   <svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="16" height="16">
    <defs />
@@ -90,7 +90,7 @@
   </svg>
   <label value="&foxyproxy.standard.label;"/>
  </hbox>
- 
+
   <menu id="foxyproxyMenu" svg="true">
     <svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="16" height="16">
      <defs />
@@ -115,7 +115,7 @@
        child="5" />
      </g>
     </svg>
-    <label value="&foxyproxy.standard.label;"/> 
-  </menu>  
+    <label value="&foxyproxy.standard.label;"/>
+  </menu>
 </overlay>
 

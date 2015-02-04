@@ -179,9 +179,9 @@ function RGBColor(color_string)
             example: ['rgb(123, 234, 45)', 'rgb(255,234,245)'],
             process: function (bits){
                 return [
-                    parseInt(bits[1]),
-                    parseInt(bits[2]),
-                    parseInt(bits[3])
+                    parseInt(bits[1], 10),
+                    parseInt(bits[2], 10),
+                    parseInt(bits[3], 10)
                 ];
             }
         },

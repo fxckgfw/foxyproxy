@@ -485,7 +485,7 @@ foxyproxy.prototype = {
     finally {
       // Our custom return value is a string in Gecko > 17 indicating that we
       // queue the request. Thus, we only add it to the log tab if it is really
-      // issued now (i.e. we got no string in return). 
+      // issued now (i.e. we got no string in return).
       if (typeof ret != "string") {
         gObsSvc.notifyObservers(this.mp.proxy, "foxyproxy-throb", null);
         this.logg.add(this.mp);
@@ -953,7 +953,7 @@ foxyproxy.prototype = {
     /**
      * Prevent inserts beyond the last item since
      * the last item must always remain our |lastResort|.
-     * 
+     *
      * idx: "last", "first" (same as 0), "random", or an integer between 0 (inclusive) and this.length()-1 (inclusive)
      *      if null, "first" is assumed.
      * p: the proxy to insert at position |idx|
@@ -1060,7 +1060,7 @@ foxyproxy.prototype = {
     /**
      * Deletes the first proxy with the specified |name|, or none if there are
      * no proxies with the specified |name|. Returns the affected index or -1.
-     * 
+     *
      * If |all| is true, all proxies with the specified |name| are deleted, and
      * an array of the deleted indices is returned.
      */
@@ -1146,7 +1146,7 @@ foxyproxy.prototype = {
       this.maintainIntegrity(this.list[idx], true, false, false);
       for (var i=0, temp=[]; i<this.list.length; i++) {
         if (i == idx) {
-          // cancel any refresh timers 
+          // cancel any refresh timers
           if (this.list[i].mode === "auto") {
             if (this.list[i].autoconfMode === "pac") {
               this.list[i].autoconf.cancelTimer();

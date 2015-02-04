@@ -21,7 +21,7 @@ var EXPORTED_SYMBOLS = ["autoproxy"];
 var autoproxy = {
 
   fp: null,
-  checksum: /!\s*checksum[\s\-:]+([\w\+\/]+)/i,  
+  checksum: /!\s*checksum[\s\-:]+([\w\+\/]+)/i,
 
   init: function() {
     this.fp = Components.classes["@leahscape.org/foxyproxy/service;1"].
@@ -49,7 +49,7 @@ var autoproxy = {
         if (checksum && checksum != checksumExpected) {
           if (!this.fp.warnings.showWarningIfDesired(null,
             ["patternsubscription.warning.md5"], "md5Warning", true)) {
-	    errorMessages.push(this.fp.
+            errorMessages.push(this.fp.
             getMessage("patternsubscription.error.cancel5"));
             return errorMessages;
           }

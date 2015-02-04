@@ -193,7 +193,7 @@ AutoConf.prototype = {
       }
       that.loadNotification && fp.notifier.alert(fp.getMessage(autoconfMessage),
         fp.getMessage(autoconfMessageHelper, [that.owner.name]));
-      // Use _enabled so we don't loop infinitely 
+      // Use _enabled so we don't loop infinitely
       that.owner._enabled = true;
       //if (that.disabledDueToBadPAC) {
         //that.disabledDueToBadPAC = false; /* reset */
@@ -313,7 +313,7 @@ fpProxyAutoConfig.prototype = {
           }
         } else {
           // No PAC file content found while executing |testPAC()|. Let's assume
-          // the user tested a PAC file. 
+          // the user tested a PAC file.
           autoconfMessage = "pac.empty";
         }
         throw new Error(fp.getMessage(autoconfMessage));

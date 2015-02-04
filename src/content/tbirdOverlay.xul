@@ -51,7 +51,7 @@
          modifiers="alt"
          oncommand="foxyproxy.selection.onChangeHost();"/>
   </keyset>
-  
+
   <!-- FF: contentAreaContextMenu TB2: messagePaneContext TB3b2+: mailContext -->
   <menupopup id="mailContext">
     <menu id="foxyproxy-contextmenu-icon"
@@ -61,7 +61,7 @@
                  onpopuphiding="foxyproxy.onPopupHiding();"/>
     </menu>
   </menupopup>
-  
+
   <statusbar id="status-bar">
     <hbox>
       <popupset style="overflow: auto;">
@@ -80,7 +80,7 @@
       onclick="foxyproxy.onSBTBClick(event, foxyproxy.fp.statusbar);"
       hidden="true" mousethrough="never"/>
   </statusbar>
-  
+
   <toolbarpalette id="MailToolbarPalette">
     <toolbarbutton id="foxyproxy-toolbar-icon" label="&foxyproxy.standard.label;"
       type="menu" orient="horizontal" mode="patterns" persist="mode"
@@ -92,6 +92,6 @@
   <popupset>
     <menupopup id="foxyproxy-toolbarbutton-popup"
                onpopuphiding="foxyproxy.onPopupHiding();"
-	       onpopupshowing="foxyproxy.onPopupShowing(this, event);"/> 
-  </popupset> 
+               onpopupshowing="foxyproxy.onPopupShowing(this, event);"/>
+  </popupset>
 </overlay>

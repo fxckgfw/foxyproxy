@@ -118,7 +118,7 @@ function onLoad() {
 function onCancel() {
   // We just overwrite the new array with the old one. Checking whether any
   // pattern really changed before overwriting the new array seems not worth
-  // the effort. 
+  // the effort.
   proxy.matches = [];
   for (let i = 0, length = oldMatches.length; i < length; i++) {
     proxy.matches.push(oldMatches[i]);
@@ -263,7 +263,7 @@ function _checkUri() {
     // Replaces backslashes with forward slashes; probably not strictly
     // necessary.
     url = url.replace(/\\/g,"/");
-    // prepend a leading slash if necessary 
+    // prepend a leading slash if necessary
     if (url[0] != "\\" && url[0] != "/") url="/"+url;
     url="file:///" + (isWindows?"C:":"") + url;
     autoconfUrl.value = url; // copy back to the UI
@@ -347,7 +347,7 @@ function onAddEditURLPattern(isNew) {
     proxy.matches[idx] = params.out.pattern;
     _updateView();
     // Select item
-	  urlsTree.view.selection.select(isNew?urlsTree.view.rowCount-1 : urlsTree.currentIndex);
+    urlsTree.view.selection.select(isNew?urlsTree.view.rowCount-1 : urlsTree.currentIndex);
   }
 }
 
@@ -385,8 +385,8 @@ function getTextForCell(pat, col) {
 function _updateView() {
   // We disable and enable the JSON export button depending on available
   // patterns.
-  document.getElementById("exportURLPatternCmd").setAttribute("disabled", 
-    proxy.matches.length === 0); 
+  document.getElementById("exportURLPatternCmd").setAttribute("disabled",
+    proxy.matches.length === 0);
   //document.getElementById("noInternalIPs").checked = proxy.noInteralIPs;
 
   // Save scroll position so we can restore it after making the new view
@@ -440,7 +440,7 @@ function onRemoveURLPattern() {
   // We don't bother with this when multiple items were selected.
   if (sel.length == 1 && sel[0] < urlsTree.view.rowCount-1)
     urlsTree.view.selection.select(sel[0]);
-}  
+}
 
 
 function onCopyURLPattern() {
@@ -448,10 +448,10 @@ function onCopyURLPattern() {
   var currentMatch = proxy.matches[urlsTree.currentIndex];
   // Make new match
   var m = CC["@leahscape.org/foxyproxy/match;1"].createInstance().wrappedJSObject,
-    idx = proxy.matches.length,  
+    idx = proxy.matches.length,
     dom = currentMatch.toDOM(document, true);
   m.fromDOM(dom, true);
-  
+
   proxy.matches[idx] = m;
   _updateView();
 
@@ -461,12 +461,12 @@ function onCopyURLPattern() {
 
 function onImportURLPattern() {
   //Getting the file first.
-  let fp = CC["@mozilla.org/filepicker;1"].createInstance(CI.nsIFilePicker);  
-  fp.init(window, foxyproxy.getMessage("file.select.patterns.import"), 
+  let fp = CC["@mozilla.org/filepicker;1"].createInstance(CI.nsIFilePicker);
+  fp.init(window, foxyproxy.getMessage("file.select.patterns.import"),
     CI.nsIFilePicker.modeOpen);
-  fp.appendFilters(CI.nsIFilePicker.filterAll); 
-  fp.displayDirectory = foxyproxy.getSettingsURI(CI.nsIFile).parent; 
-  if (fp.show() !== CI.nsIFilePicker.returnCancel) { 
+  fp.appendFilters(CI.nsIFilePicker.filterAll);
+  fp.displayDirectory = foxyproxy.getSettingsURI(CI.nsIFile).parent;
+  if (fp.show() !== CI.nsIFilePicker.returnCancel) {
     let patterns = [];
     let fis = CC["@mozilla.org/network/file-input-stream;1"].
       createInstance(CI.nsIFileInputStream);
@@ -474,7 +474,7 @@ function onImportURLPattern() {
     let conStream = CC["@mozilla.org/intl/converter-input-stream;1"].
       createInstance(CI.nsIConverterInputStream);
       conStream.init(fis, "UTF-8", 0, 0);
-      conStream.QueryInterface(CI.nsIUnicharLineInputStream); 
+      conStream.QueryInterface(CI.nsIUnicharLineInputStream);
     // read lines into one single string
     let line = {}, lines = "", hasmore;
     try {
@@ -487,7 +487,7 @@ function onImportURLPattern() {
         patterns;
     } catch (e) {
       dump("Error while reading the patterns!" + e + "\n");
-    } 
+    }
     try {
       if (patterns) {
         let pattern;
@@ -521,16 +521,16 @@ function onExportURLPattern() {
     }
   }
   // Now, we export the JSON to a file somewhere on the (local) disk...
-  let fp = CC["@mozilla.org/filepicker;1"].createInstance(CI.nsIFilePicker);  
-  fp.init(window, foxyproxy.getMessage("file.select.patterns.export"), 
+  let fp = CC["@mozilla.org/filepicker;1"].createInstance(CI.nsIFilePicker);
+  fp.init(window, foxyproxy.getMessage("file.select.patterns.export"),
     CI.nsIFilePicker.modeSave);
   fp.defaultString = "patterns.json";
-  fp.appendFilters(CI.nsIFilePicker.filterAll); 
-  fp.displayDirectory = foxyproxy.getSettingsURI(CI.nsIFile).parent; 
-  if (fp.show() !== CI.nsIFilePicker.returnCancel) { 
+  fp.appendFilters(CI.nsIFilePicker.filterAll);
+  fp.displayDirectory = foxyproxy.getSettingsURI(CI.nsIFile).parent;
+  if (fp.show() !== CI.nsIFilePicker.returnCancel) {
     let fos = CC["@mozilla.org/network/file-output-stream;1"].
-      createInstance(CI.nsIFileOutputStream); 
-    fos.init(fp.file, 0x02 | 0x08 | 0x20, -1, 0); 
+      createInstance(CI.nsIFileOutputStream);
+    fos.init(fp.file, 0x02 | 0x08 | 0x20, -1, 0);
     // Maybe we have non-Ascii text in our JSON string. Therefore, we use the
     // ConverterOutputStream and UTF-8.
     let os = CC["@mozilla.org/intl/converter-output-stream;1"].
@@ -656,7 +656,7 @@ function onViewAutoConf() {
     // This goes through currently configured proxies, unlike actually loading the PAC.
     // In that case, DIRECT (no proxy) is used.
     var url = p.spec + (p.spec.match(/\?/) == null ? "?" : "&") + (new Date()).getTime(); // bypass cache
-		w = open("view-source:" + url, "", "scrollbars,resizable,modal,chrome,dialog=no,width=450,height=425").focus();
+    w = open("view-source:" + url, "", "scrollbars,resizable,modal,chrome,dialog=no,width=450,height=425").focus();
     if (w) w.windowtype="foxyproxy-options"; // set windowtype so it's forced to close when last browser closes
   }
 }
@@ -713,32 +713,32 @@ function onSelectAutoConf() {
 
 function onTreeMenuPopupShowing(enabledMenuItem, pats, tree) {
   if (tree.currentIndex == -1) return;
-	enabledMenuItem.setAttribute("checked", pats[tree.currentIndex].enabled);
+  enabledMenuItem.setAttribute("checked", pats[tree.currentIndex].enabled);
 }
 
 function toggleEnabled(pats, tree) {
-	pats[tree.currentIndex].enabled = !pats[tree.currentIndex].enabled;
+  pats[tree.currentIndex].enabled = !pats[tree.currentIndex].enabled;
   _updateView();
 }
 
 function onWildcardReference(popupId, btnId) {
-	document.getElementById(popupId).showPopup(document.getElementById(btnId), -1, -1, 'popup', 'bottomleft', 'topleft');
+  document.getElementById(popupId).showPopup(document.getElementById(btnId), -1, -1, 'popup', 'bottomleft', 'topleft');
 }
 
 function pickcolor(scolor) {
-	document.getElementById("color").value=scolor;
+  document.getElementById("color").value=scolor;
 }
 
 function customcolor(scolor) {
-	var color = new RGBColor(scolor);
-	if(color.ok) {
-		document.getElementById("colorpicker").color=scolor;
-		document.getElementById("colorfalse").setAttribute("hidden", "true");
-		document.getElementById("colortrue").setAttribute("hidden", "false");
-	} else {
-		document.getElementById("colorfalse").setAttribute("hidden", "false");
-		document.getElementById("colortrue").setAttribute("hidden", "true");
-	}
+  var color = new RGBColor(scolor);
+  if(color.ok) {
+    document.getElementById("colorpicker").color=scolor;
+    document.getElementById("colorfalse").setAttribute("hidden", "true");
+    document.getElementById("colortrue").setAttribute("hidden", "false");
+  } else {
+    document.getElementById("colorfalse").setAttribute("hidden", "false");
+    document.getElementById("colortrue").setAttribute("hidden", "true");
+  }
 }
 
 function getTextForBoolean(b) {
@@ -747,7 +747,7 @@ function getTextForBoolean(b) {
 
 /**
  * TODO: See if there's any way to generalize this function with sortlog() in options.xul to prevent code duplication
- */ 
+ */
 function sort(columnId) {
   // determine how the urlsTree is currently sorted (ascending/decending) and by which column (sortResource)
   var order = urlsTree.getAttribute("sortDirection") == "ascending" ? 1 : -1;
@@ -759,7 +759,7 @@ function sort(columnId) {
   } else {
     columnId = urlsTree.getAttribute("sortResource");
   }
-  
+
   //prepares an object for easy comparison against another. for strings, lowercases them
   function prepareForComparison(o) {
     if (typeof o == "string") {
@@ -767,12 +767,12 @@ function sort(columnId) {
     }
     return o;
   }
-  
+
   function columnSort(a, b) {
     // Sort on the displayed text, not the underlying data. The underlying data can be true/false
     // for some columns while the displayed text can be, for example, "Whitelist/Blacklist" or "yes/no"
-    // or "Wildcards/Regular Expression" 
-    
+    // or "Wildcards/Regular Expression"
+
     var c, d;
     if (columnId == "enabled") {
       if (a.enabled) return -1 * order;
@@ -782,7 +782,7 @@ function sort(columnId) {
       c = getTextForCell(a, columnId);
       d = getTextForCell(b, columnId);
     }
-    
+
     if (prepareForComparison(c) > prepareForComparison(d)) return order;
     if (prepareForComparison(c) < prepareForComparison(d)) return -1 * order;
     // tie breaker: enabled ascending is the second level sort
@@ -793,21 +793,21 @@ function sort(columnId) {
     return 0;
   }
   proxy.matches.sort(columnSort);
-  
+
   // setting these will make the sort option persist
   urlsTree.setAttribute("sortDirection", order == 1 ? "ascending" : "descending");
   urlsTree.setAttribute("sortResource", columnId);
-  
+
   // set the appropriate attributes to show to indicator
   var cols = urlsTree.getElementsByTagName("treecol");
   for (var i = 0; i < cols.length; i++) {
     cols[i].removeAttribute("sortDirection");
   }
   document.getElementById(columnId).setAttribute("sortDirection", order == 1 ? "ascending" : "descending");
-  
+
   _updateView();
 }
- 
+
 /**
  * If the user enters the port as part of the hostname, parse it and put it into the port field automatically.
  * Thanks, Sebastian Lisken <Sebastian dot Lisken at gmx dot net>

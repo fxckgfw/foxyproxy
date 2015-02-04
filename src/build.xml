@@ -77,8 +77,8 @@
       <param name="src-path" value="${temp-path}"/>
     </antcall>
     <!-- The default codebase already builds FoxyProxy Standard. We don't want to run the
-	    any regular expression substitions when building Standard, so we skip the call to
-	    development.xml:convert-to-foxyproxy-standard -->
+      any regular expression substitions when building Standard, so we skip the call to
+      development.xml:convert-to-foxyproxy-standard -->
     <antcall>
       <target name="build"/>
       <target name="clean"/>

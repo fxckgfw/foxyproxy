@@ -14,7 +14,7 @@
 
  <tab id="foxyproxy-pattern-subscriptions-tab"
   accesskey="&foxyproxy.pattern.subscriptions.accesskey;"
-  tooltiptext="&foxyproxy.pattern.subscriptions.tooltip;" 
+  tooltiptext="&foxyproxy.pattern.subscriptions.tooltip;"
   class="hide-if-foxyproxy-simple uncram-tab">
  <svg
    xmlns:svg="http://www.w3.org/2000/svg"

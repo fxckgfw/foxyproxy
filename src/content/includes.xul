@@ -62,7 +62,7 @@
         </row>
       </rows>
     </grid>
-</menupopup>  
+</menupopup>
 <!-- end: thanks to DownThemAll -->
 <menupopup id="patternTemplatePopup" position="before_end">
   <description
@@ -272,7 +272,7 @@
 
 <radiogroup id="whiteblacktype" orient="vertical">
   <groupbox>
-  <caption label="&foxyproxy.pattern.whiteblack.label;"/>     
+  <caption label="&foxyproxy.pattern.whiteblack.label;"/>
     <grid><columns><column/><column/><column/><column/></columns>
     <rows>
       <row align="center">
@@ -285,7 +285,7 @@
           class="text-link"
           onclick="fpc.openAndReuseOneTabPerURL('http://en.wikipedia.org/wiki/Whitelist');"/>
         <label value="&foxyproxy.whitelist.description.label;"/>
-        <toolbarbutton class="foxyproxy-ref" popup="wbdesc" tooltiptext="&foxyproxy.wildcard.reference.tooltip;"/>       
+        <toolbarbutton class="foxyproxy-ref" popup="wbdesc" tooltiptext="&foxyproxy.wildcard.reference.tooltip;"/>
       </row>
     <row align="center">
       <radio value="b"
@@ -296,13 +296,13 @@
         tooltiptext="&foxyproxy.blacklist.tooltip;"
         class="text-link"
         onclick="fpc.openAndReuseOneTabPerURL('http://en.wikipedia.org/wiki/Blacklist');"/>
-      <label value="&foxyproxy.blacklist.description.label;"/>        
+      <label value="&foxyproxy.blacklist.description.label;"/>
       <spacer/>
     </row>
   </rows>
   </grid>
   </groupbox>
-</radiogroup>    
+</radiogroup>
 <radiogroup id="matchtype" orient="horizontal">
 <groupbox flex="1">
     <caption label="&foxyproxy.pattern.matchtype.label;"/>
@@ -317,7 +317,7 @@
           class="text-link"
           onclick="fpc.openAndReuseOneTabPerURL('http://getfoxyproxy.org/patterns.html#wildcards');"
           tooltiptext="&foxyproxy.wildcard.tooltip;"/>
-        <label id="wildcardExample" value="&foxyproxy.wildcard.example.label;"/>                                            
+        <label id="wildcardExample" value="&foxyproxy.wildcard.example.label;"/>
       </row>
       <row align="center">
         <radio value="r"
@@ -327,21 +327,21 @@
           style="margin-left: -0.5em;"
           class="text-link"
           onclick="fpc.openAndReuseOneTabPerURL('http://getfoxyproxy.org/patterns.html#regex');"
-          tooltiptext="&foxyproxy.regex.tooltip;"/> 
-        <label id="regexExample" value="&foxyproxy.regex.example.label2;"/>       
-        <spacer/>      
+          tooltiptext="&foxyproxy.regex.tooltip;"/>
+        <label id="regexExample" value="&foxyproxy.regex.example.label2;"/>
+        <spacer/>
       </row>
     </rows>
     </grid>
  </groupbox>
  <menupopup id="wbdesc">
    <description class="foxyproxy-tooltip foxyproxy-border" width="400" height="80">&foxyproxy.whiteblack.description.label;</description>
- </menupopup>      
+ </menupopup>
 </radiogroup>
 <menupopup id="notifyWhenCanceledPopup">
   <description class="foxyproxy-tooltip foxyproxy-border" width="400" height="80">
     &foxyproxy.quickadd.notify.whencanceled.label2;</description>
-</menupopup>  
+</menupopup>
 <menupopup id="tempPopup">
   <description class="foxyproxy-tooltip foxyproxy-border" width="400" height="80">
     &foxyproxy.temp.popup.label;</description>

@@ -71,43 +71,43 @@ treechildren::-moz-tree-checkbox(checked) {
 }
 #foxyproxy-quickadd-pattern-button, #foxyproxy-autoadd-pattern-button,
 #foxyproxy-autoadd-block-pattern-button {
-  list-style-image: url("chrome://foxyproxy/content/images/page_edit.png"); 
+  list-style-image: url("chrome://foxyproxy/content/images/page_edit.png");
 }
 #foxyproxy-clear-button[disabled="true"], #clearLogTree[disabled="true"] {
-  list-style-image: url("chrome://foxyproxy/content/images/edit-clear-disabled.png"); 
+  list-style-image: url("chrome://foxyproxy/content/images/edit-clear-disabled.png");
 }
 #foxyproxy-clear-button, #clearLogTree {
-  list-style-image: url("chrome://foxyproxy/content/images/edit-clear.png"); 
+  list-style-image: url("chrome://foxyproxy/content/images/edit-clear.png");
 }
 #foxyproxy-refresh-button, #refreshLogTree {
-  list-style-image: url("chrome://foxyproxy/content/images/arrow_refresh.png"); 
+  list-style-image: url("chrome://foxyproxy/content/images/arrow_refresh.png");
 }
 #foxyproxy-save-button[disabled="true"], #saveLogTree[disabled="true"] {
-  list-style-image: url("chrome://foxyproxy/content/images/disk-disabled.png"); 
+  list-style-image: url("chrome://foxyproxy/content/images/disk-disabled.png");
 }
 #foxyproxy-save-button, #saveLogTree {
-  list-style-image: url("chrome://foxyproxy/content/images/disk.png"); 
+  list-style-image: url("chrome://foxyproxy/content/images/disk.png");
 }
 #foxyproxy-set-button {
-  list-style-image: url("chrome://foxyproxy/content/images/tick.png"); 
+  list-style-image: url("chrome://foxyproxy/content/images/tick.png");
 }
 #foxyproxy-open-tab-button, #openURLLogTree {
-  list-style-image: url("chrome://foxyproxy/content/images/tab_go.png"); 
+  list-style-image: url("chrome://foxyproxy/content/images/tab_go.png");
 }
 #foxyproxy-open-tab-button[disabled="true"], #openURLLogTree[disabled="true"] {
-  list-style-image: url("chrome://foxyproxy/content/images/tab_go-disabled.png"); 
+  list-style-image: url("chrome://foxyproxy/content/images/tab_go-disabled.png");
 }
 #foxyproxy-copy-clipboard-button, #copyURLLogTree {
-  list-style-image: url("chrome://foxyproxy/content/images/page_white_copy.png"); 
+  list-style-image: url("chrome://foxyproxy/content/images/page_white_copy.png");
 }
 #foxyproxy-delete-button, #deleteLogTree {
-  list-style-image: url("chrome://foxyproxy/content/images/delete.png"); 
+  list-style-image: url("chrome://foxyproxy/content/images/delete.png");
 }
 #foxyproxy-delete-button[disabled="true"], #deleteLogTree[disabled="true"] {
-  list-style-image: url("chrome://foxyproxy/content/images/delete-disabled.png"); 
+  list-style-image: url("chrome://foxyproxy/content/images/delete-disabled.png");
 }
 #foxyproxy-donate-button {
-  list-style-image: url("chrome://foxyproxy/content/images/emblem-favorite.png"); 
+  list-style-image: url("chrome://foxyproxy/content/images/emblem-favorite.png");
   font-weight: bold;
 }
 #foxyproxy-plus-button {
@@ -126,7 +126,7 @@ treechildren::-moz-tree-checkbox(checked) {
 /* begin tab icons */
 
 /* Add spacing between tab icon and tab text */
-tab[id^="foxyproxy-"] /* selectall tabs whose id have the prefix "foxyproxy-" */ .tab-icon { 
+tab[id^="foxyproxy-"] /* selectall tabs whose id have the prefix "foxyproxy-" */ .tab-icon {
   margin-right: .5em;
 }
 #foxyproxy-proxy-tab {
@@ -233,7 +233,7 @@ tab[id^="foxyproxy-"] /* selectall tabs whose id have the prefix "foxyproxy-" */
 .heading {text-decoration: underline; font-weight:bold;}
 
 .foxyproxy-ref {
-	list-style-image: url("chrome://foxyproxy/content/images/help-browser.png");
+  list-style-image: url("chrome://foxyproxy/content/images/help-browser.png");
 }
 .foxyproxy-ref-border {
   border: thin black solid;
@@ -250,11 +250,11 @@ tab[id^="foxyproxy-"] /* selectall tabs whose id have the prefix "foxyproxy-" */
 .green, .validcolor, #foxyproxy-status-text[mode="random"] { color: green; /* or #69B832 */ }
 
 .foxyproxy-tooltip {
-	text-align: justify;
-	padding: .4em;
+  text-align: justify;
+  padding: .4em;
 }
 .foxyproxy-border {
-	border: thin black solid;
+  border: thin black solid;
 }
 
 .popcolumn {
@@ -282,14 +282,14 @@ treechildren::-moz-tree-checkbox(checked) {
 
 /* Begin SVG stuffs */
 *[svg="true"] path[child="1"] {
-	fill:#404141;
-	fill-opacity:1;
-	fill-rule:evenodd;
+  fill:#404141;
+  fill-opacity:1;
+  fill-rule:evenodd;
 }
 *[svg="true"] path[child="2"] {
-	fill:#ffffff;
-	fill-opacity:1;
-	fill-rule:evenodd;
+  fill:#ffffff;
+  fill-opacity:1;
+  fill-rule:evenodd;
 }
 *[svg="true"] path[child="3"][mode="disabled"] {
   fill:#e78500;
@@ -314,14 +314,14 @@ treechildren::-moz-tree-checkbox(checked) {
 }
 
 *[svg="true"] path[child="3"]{
-	fill:#e78500;
-	fill-opacity:1;
-	fill-rule:evenodd;
+  fill:#e78500;
+  fill-opacity:1;
+  fill-rule:evenodd;
 }
 *[svg="true"] path[child="4"] {
-	fill:#ffffff;
-	fill-opacity:0.20392157;
-	fill-rule:evenodd;
+  fill:#ffffff;
+  fill-opacity:0.20392157;
+  fill-rule:evenodd;
 }
 
 g[wrapper="true"][mode="disabled"] {
@@ -367,10 +367,10 @@ colorpicker2[type="button"] {
 .hide-if-foxyproxy-simple {
   display: none;
 }
-end-foxyproxy-simple !*/     
+end-foxyproxy-simple !*/
 
 /*! begin-foxyproxy-standard !*/
 .hide-if-foxyproxy-simple {
 }
-/*! end-foxyproxy-standard !*/ 
+/*! end-foxyproxy-standard !*/
 

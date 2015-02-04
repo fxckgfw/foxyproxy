@@ -61,7 +61,7 @@ ProxyConfigs.prototype = {
     // TODO: move this into insertAt()
     this.fp.broadcast(null, "foxyproxy-proxy-change");
     this.fp.writeSettingsAsync();
-    return ret;    
+    return ret;
   },
 
   get length() {

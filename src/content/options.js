@@ -90,16 +90,16 @@ function updateSettingsInfo() {
 }
 
 function sortlog(columnId) {
-	// determine how the log is currently sorted (ascending/decending) and by which column (sortResource)
-	var order = logTree.getAttribute("sortDirection") == "ascending" ? 1 : -1;
-	// if the column is passed and it's already sorted by that column, reverse sort
-	if (columnId) {
-		if (logTree.getAttribute("sortResource") == columnId) {
-			order *= -1;
-		}
-	} else {
-		columnId = logTree.getAttribute("sortResource");
-	}
+  // determine how the log is currently sorted (ascending/decending) and by which column (sortResource)
+  var order = logTree.getAttribute("sortDirection") == "ascending" ? 1 : -1;
+  // if the column is passed and it's already sorted by that column, reverse sort
+  if (columnId) {
+    if (logTree.getAttribute("sortResource") == columnId) {
+      order *= -1;
+    }
+  } else {
+    columnId = logTree.getAttribute("sortResource");
+  }
   // prepares an object for easy comparison against another. for strings, lowercases them
   function prepareForComparison(o) {
     if (typeof o == "string") {
@@ -108,35 +108,35 @@ function sortlog(columnId) {
     return o;
   }
 
-	function columnSort(a, b) {
-		if (prepareForComparison(a[columnId]) > prepareForComparison(b[columnId])) return 1 * order;
-		if (prepareForComparison(a[columnId]) < prepareForComparison(b[columnId])) return -1 * order;
-		//tie breaker: timestamp ascending is the second level sort
-		if (columnId != "timestamp") {
-			if (prepareForComparison(a["timestamp"]) > prepareForComparison(b["timestamp"])) return 1;
-			if (prepareForComparison(a["timestamp"]) < prepareForComparison(b["timestamp"])) return -1;
-		}
-		return 0;
-	}
-	foxyproxy.logg._elements.sort(columnSort);
+  function columnSort(a, b) {
+    if (prepareForComparison(a[columnId]) > prepareForComparison(b[columnId])) return 1 * order;
+    if (prepareForComparison(a[columnId]) < prepareForComparison(b[columnId])) return -1 * order;
+    //tie breaker: timestamp ascending is the second level sort
+    if (columnId != "timestamp") {
+      if (prepareForComparison(a["timestamp"]) > prepareForComparison(b["timestamp"])) return 1;
+      if (prepareForComparison(a["timestamp"]) < prepareForComparison(b["timestamp"])) return -1;
+    }
+    return 0;
+  }
+  foxyproxy.logg._elements.sort(columnSort);
 
-	// setting these will make the sort option persist
-	logTree.setAttribute("sortDirection", order == 1 ? "ascending" : "descending");
-	logTree.setAttribute("sortResource", columnId);
+  // setting these will make the sort option persist
+  logTree.setAttribute("sortDirection", order == 1 ? "ascending" : "descending");
+  logTree.setAttribute("sortResource", columnId);
 
-	// set the appropriate attributes to show to indicator
-	var cols = logTree.getElementsByTagName("treecol");
-	for (var i = 0; i < cols.length; i++) {
-		cols[i].removeAttribute("sortDirection");
-	}
-	document.getElementById(columnId).setAttribute("sortDirection", order == 1 ? "ascending" : "descending");
+  // set the appropriate attributes to show to indicator
+  var cols = logTree.getElementsByTagName("treecol");
+  for (var i = 0; i < cols.length; i++) {
+    cols[i].removeAttribute("sortDirection");
+  }
+  document.getElementById(columnId).setAttribute("sortDirection", order == 1 ? "ascending" : "descending");
 
-	_updateLogView(false);
+  _updateLogView(false);
 }
 
 function _updateLogView(keepSelection) {
-	saveLogCmd.setAttribute("disabled", foxyproxy.logg.length == 0);
-	clearLogCmd.setAttribute("disabled", foxyproxy.logg.length == 0);
+  saveLogCmd.setAttribute("disabled", foxyproxy.logg.length == 0);
+  clearLogCmd.setAttribute("disabled", foxyproxy.logg.length == 0);
   noURLsCmd.setAttribute("checked", foxyproxy.logg.noURLs);
   var selectedIndices;
 
@@ -164,10 +164,10 @@ function _updateLogView(keepSelection) {
     cycleHeader: function(aColId, aElt) {},
     getRowProperties: function(row, col, props) {
       /*if (foxyproxy.logg.item(row) && foxyproxy.logg.item(row).matchPattern == NA) {
-	  	  var a = Components.classes["@mozilla.org/atom-service;1"].
-		      getService(Components.interfaces.nsIAtomService);
-		    col.AppendElement(a.getAtom("grey"));
-	    }*/
+        var a = Components.classes["@mozilla.org/atom-service;1"].
+          getService(Components.interfaces.nsIAtomService);
+        col.AppendElement(a.getAtom("grey"));
+      }*/
     },
     getColumnProperties: function(aColumn, aColumnElement, props) {},
     getCellProperties: function(row, col, props) {
@@ -340,7 +340,7 @@ function _updateView(writeSettings, updateLogView) {
   document.getElementById("tbMiddleClickMenu").value = foxyproxy.toolbar.middleClick;
   document.getElementById("tbRightClickMenu").value = foxyproxy.toolbar.rightClick;
 
-	_updateModeMenu();
+  _updateModeMenu();
 
   var menu = document.getElementById("autoAddProxyMenu");
   foxyproxy.autoadd.updateProxyMenu(menu, document);
@@ -407,18 +407,18 @@ function onCopySelection() {
   if (_isDefaultProxySelected())
     overlay.alert(this, foxyproxy.getMessage("copy.proxy.default"));
   else {
-	  // Store cur selection so we can restore it
+    // Store cur selection so we can restore it
     var sel = proxyTree.currentIndex,
       orig = foxyproxy.proxies.item(proxyTree.currentIndex),
       dom = orig.toDOM(document, true),
       p = CC["@leahscape.org/foxyproxy/proxy;1"].createInstance().wrappedJSObject;
-	  p.fromDOM(dom, true);
-	  p.id = foxyproxy.proxies.uniqueRandom(); // give it its own id
-	  foxyproxy.proxies.push(p);
-	  utils.broadcast(true /*write settings*/, "foxyproxy-proxy-change");
-	  // Reselect what was previously selected
-		proxyTree.view.selection.select(sel);
-	}
+    p.fromDOM(dom, true);
+    p.id = foxyproxy.proxies.uniqueRandom(); // give it its own id
+    foxyproxy.proxies.push(p);
+    utils.broadcast(true /*write settings*/, "foxyproxy-proxy-change");
+    // Reselect what was previously selected
+    proxyTree.view.selection.select(sel);
+  }
 }
 
 /** Similar to onMode() */
@@ -709,58 +709,58 @@ function openSubscriptionsURL(type) {
 }
 
 function onMaxSize() {
-	var v = document.getElementById("maxSize").value;
-	var passed = true;
-	if (/\D/.test(v)) {
-		foxyproxy.alert(this, foxyproxy.getMessage("torwiz.nan"));
-		passed = false;
-	}
-	v > 9999 &&
-		!overlay.ask(this, foxyproxy.getMessage("logg.maxsize.maximum")) &&
-		(passed = false);
-	if (!passed) {
-		document.getElementById("maxSize").value = foxyproxy.logg.maxSize;
-		return;
-	}
-	if (overlay.ask(this, foxyproxy.getMessage("logg.maxsize.change"))) {
-		foxyproxy.logg.maxSize = v;
-		_updateView(false, true);
-	}
-	else
-		document.getElementById("maxSize").value = foxyproxy.logg.maxSize;
+  var v = document.getElementById("maxSize").value;
+  var passed = true;
+  if (/\D/.test(v)) {
+    foxyproxy.alert(this, foxyproxy.getMessage("torwiz.nan"));
+    passed = false;
+  }
+  v > 9999 &&
+    !overlay.ask(this, foxyproxy.getMessage("logg.maxsize.maximum")) &&
+    (passed = false);
+  if (!passed) {
+    document.getElementById("maxSize").value = foxyproxy.logg.maxSize;
+    return;
+  }
+  if (overlay.ask(this, foxyproxy.getMessage("logg.maxsize.change"))) {
+    foxyproxy.logg.maxSize = v;
+    _updateView(false, true);
+  }
+  else
+    document.getElementById("maxSize").value = foxyproxy.logg.maxSize;
 }
 /*
 function onIncludeDirectInRandom() {
   // TODO: ERROR CHECKING
-	overlay.alert(this, foxyproxy.getMessage('random.applicable'));
-	foxyproxy.random.includeDirect = this.checked;
+  overlay.alert(this, foxyproxy.getMessage('random.applicable'));
+  foxyproxy.random.includeDirect = this.checked;
 }
 
 function onIncludeDisabledInRandom() {
   // TODO: ERROR CHECKING
-	overlay.alert(this, foxyproxy.getMessage('random.applicable'));
-	foxyproxy.random.includeDisabled = this.checked;
+  overlay.alert(this, foxyproxy.getMessage('random.applicable'));
+  foxyproxy.random.includeDisabled = this.checked;
 }*/
 
 function saveLog() {
-	const nsIFilePicker = CI.nsIFilePicker;
-	var fp = CC["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
-	fp.init(this, foxyproxy.getMessage("log.save"), nsIFilePicker.modeSave);
-	fp.defaultExtension = "html";
-	fp.appendFilters(nsIFilePicker.filterHTML | nsIFilePicker.filterAll);
-	if (fp.show() == nsIFilePicker.returnCancel)
-	  return;
+  const nsIFilePicker = CI.nsIFilePicker;
+  var fp = CC["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
+  fp.init(this, foxyproxy.getMessage("log.save"), nsIFilePicker.modeSave);
+  fp.defaultExtension = "html";
+  fp.appendFilters(nsIFilePicker.filterHTML | nsIFilePicker.filterAll);
+  if (fp.show() == nsIFilePicker.returnCancel)
+    return;
 
-	var os = CC["@mozilla.org/intl/converter-output-stream;1"].createInstance(CI.nsIConverterOutputStream);
-	var fos = CC["@mozilla.org/network/file-output-stream;1"].createInstance(CI.nsIFileOutputStream); // create the output stream
+  var os = CC["@mozilla.org/intl/converter-output-stream;1"].createInstance(CI.nsIConverterOutputStream);
+  var fos = CC["@mozilla.org/network/file-output-stream;1"].createInstance(CI.nsIFileOutputStream); // create the output stream
         // -1 leads to 0664 (the latter is deprecated, though)
-	fos.init(fp.file, 0x02 | 0x08 | 0x20 /*write | create | truncate*/, -1, 0);
-	os.init(fos, "UTF-8", 0, 0x0000);
-	os.writeString(foxyproxy.logg.toHTML());
-	os.close();
-	if (overlay.ask(this, foxyproxy.getMessage("log.saved2", [fp.file.path]))) {
-		var win = fpc.getMostRecentWindow();
-		win.gBrowser.selectedTab = win.gBrowser.addTab(fp.file.path);
+  fos.init(fp.file, 0x02 | 0x08 | 0x20 /*write | create | truncate*/, -1, 0);
+  os.init(fos, "UTF-8", 0, 0x0000);
+  os.writeString(foxyproxy.logg.toHTML());
+  os.close();
+  if (overlay.ask(this, foxyproxy.getMessage("log.saved2", [fp.file.path]))) {
+    var win = fpc.getMostRecentWindow();
+    win.gBrowser.selectedTab = win.gBrowser.addTab(fp.file.path);
   }
 }
 
@@ -867,7 +867,7 @@ function exportSettings() {
 // }
 
 function onProxyTreeSelected() {
-	setButtons();
+  setButtons();
 }
 
 function onSubTreeSelected(type) {
@@ -887,15 +887,15 @@ function updateLogButtons() {
 }
 
 function onProxyTreeMenuPopupShowing() {
-	var e = document.getElementById("enabledPopUpMenuItem"), f = document.getElementById("menuSeperator");
+  var e = document.getElementById("enabledPopUpMenuItem"), f = document.getElementById("menuSeperator");
   e.hidden = f.hidden = _isDefaultProxySelected();
-	e.setAttribute("checked", foxyproxy.proxies.item(proxyTree.currentIndex).enabled);
+  e.setAttribute("checked", foxyproxy.proxies.item(proxyTree.currentIndex).enabled);
 }
 
 function toggleEnabled() {
-	var p = foxyproxy.proxies.item(proxyTree.currentIndex);
-	p.enabled = !p.enabled;
-	utils.broadcast(true /*write settings*/, "foxyproxy-proxy-change");
+  var p = foxyproxy.proxies.item(proxyTree.currentIndex);
+  p.enabled = !p.enabled;
+  utils.broadcast(true /*write settings*/, "foxyproxy-proxy-change");
 }
 
 function _isDefaultProxySelected() {

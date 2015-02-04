@@ -44,5 +44,9 @@ function getTextForCell(proxy, col) {
   switch (col) {
     case "ip" : return proxy.ip;
     case "port" : return proxy.port;
-  };
+    default :
+      dump("Unknown col value in patternsView.js: " + col + "\n");
+      break;
+  }
+  return "---";
 }

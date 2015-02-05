@@ -52,7 +52,7 @@ foxyproxy.selection = {
                 modeAsText = fp.getMessage("foxyproxy.add.option.direct.label");
                 break;
               case "auto" :
-                modeAsText = fp.getMessage("foxyproxy.auto.url.label");
+                modeAsText = fp.getMessage("foxyproxy.automatic.label");
                 break;
               default :
                 dump("Unknown proxy mode in selection.js: " + p.proxy.mode + "\n");

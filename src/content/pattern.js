@@ -8,10 +8,11 @@
   available in the LICENSE file at the root of this installation
   and also online at http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 **/
-var exampleURL, pattern, generatedPattern, caseSensitive, fpc, isSuperAdd,
-  isNew;
+
+let exampleURL, pattern, generatedPattern, caseSensitive, fpc, isSuperAdd,
+  isNew, Cc = Components.classes;
 function onLoad() {
-  var m = window.arguments[0].inn.pattern;
+  let m = window.arguments[0].inn.pattern;
   if (m.pattern !== "") {
     isNew = false;
   } else {
@@ -38,17 +39,19 @@ function onLoad() {
   pattern = document.getElementById("pattern");
   generatedPattern = document.getElementById("generatedPattern");
   caseSensitive = document.getElementById("caseSensitive");
-  fpc = Components.classes["@leahscape.org/foxyproxy/common;1"].getService().wrappedJSObject;
+  fpc = Components.classes["@leahscape.org/foxyproxy/common;1"].getService().
+    wrappedJSObject;
   updateGeneratedPattern();
   sizeToContent();
 }
 
 function onOK() {
-  var r = document.getElementById("matchtype").value == "r";
-  var p = Components.classes["@leahscape.org/foxyproxy/common;1"].getService()
-      .wrappedJSObject.validatePattern(window, r, generatedPattern.value);
+  let r = document.getElementById("matchtype").value == "r";
+  let p = Components.classes["@leahscape.org/foxyproxy/common;1"].getService()
+    .wrappedJSObject.validatePattern(window, r, generatedPattern.value);
   if (p) {
-    var ret = Components.classes["@leahscape.org/foxyproxy/match;1"].createInstance().wrappedJSObject;
+    let ret = Components.classes["@leahscape.org/foxyproxy/match;1"].createInstance()
+      .wrappedJSObject;
     // We want to add tha pattern itself as its name iff the user created a new
     // pattern but did not specify a name herself.
     // TODO: Assigning the return value of a getElementId()-call to a variable
@@ -68,5 +71,6 @@ function onOK() {
 }
 
 function updateGeneratedPattern() {
-  generatedPattern.value = fpc.applyTemplate(exampleURL.value, pattern.value, caseSensitive.checked);
+  generatedPattern.value = fpc.applyTemplate(exampleURL.value, pattern.value,
+    caseSensitive.checked);
 }

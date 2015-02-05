@@ -176,6 +176,7 @@ var foxyproxy = {
       this.foxyproxyCustomizeChange();
     }
   },
+
   onLoad : function() {
     Components.utils.import("resource://foxyproxy/utils.jsm", this);
     this.svgIcons.init();
@@ -592,14 +593,14 @@ end-foxyproxy-simple !*/
   },
 
   /**
-   * Function for displaying dialog box with yes/no buttons (not OK/Cancel buttons),
-   * or any arbitrary button labels. If btn1Text or btn2Text is null, yes/no values are assumed for them.
-   * btn3Text can be null, in which case no 3rd button is displayed.
-   * Return values: if btn3Text isn't specified, then true/false is returned
-   * corresponding to whether yes (or btn1Text), 1 == no (or btn2Text) was clicked.
-   * if btn3Text is specified, return value is 0, 1, or 2 of the clicked button. Specifically:
-   * 0 == yes (or btn1Text), 1 == no (or btn2Text), 2 == btn3Text.
-   */
+    * Function for displaying dialog box with yes/no buttons (not OK/Cancel buttons),
+    * or any arbitrary button labels. If btn1Text or btn2Text is null, yes/no values are assumed for them.
+    * btn3Text can be null, in which case no 3rd button is displayed.
+    * Return values: if btn3Text isn't specified, then true/false is returned
+    * corresponding to whether yes (or btn1Text), 1 == no (or btn2Text) was clicked.
+    * if btn3Text is specified, return value is 0, 1, or 2 of the clicked button. Specifically:
+    * 0 == yes (or btn1Text), 1 == no (or btn2Text), 2 == btn3Text.
+    */
   ask : function(parent, text, btn1Text, btn2Text, btn3Text) {
     var prompts = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
       .getService(Components.interfaces.nsIPromptService);
@@ -609,7 +610,7 @@ end-foxyproxy-simple !*/
       return prompts.confirmEx(parent, this.fp.getMessage("foxyproxy"), text,
         prompts.BUTTON_TITLE_IS_STRING * prompts.BUTTON_POS_0 +
         prompts.BUTTON_TITLE_IS_STRING * prompts.BUTTON_POS_1,
-      btn1Text, btn2Text, null, null, {}) == 0; // 0 means first button ("yes") was pressed
+        btn1Text, btn2Text, null, null, {}) == 0; // 0 means first button ("yes") was pressed
     else {
       // No longer displays in proper order and no longer returns proper values on FF 3.0.x. (and maybe above?)
       // Insists that 2nd displayed button (1-index) is BUTTON_POS_2 (0-indexed)
@@ -644,30 +645,23 @@ end-foxyproxy-simple !*/
 
   ///////////////// icons \\\\\\\\\\\\\\\\\\\\\
   svgIcons : {
-
     angle : 4,
     runners : 0,
     icons : null,
     iconColorNodes : null,
     iconDisabledMask : null,
-
     init : function() {
       this.icons = [document.getElementById("fp-statusbar-icon-wrapper"),
         document.getElementById("fp-contextmenu-icon-wrapper"), document.getElementById("fp-toolsmenu-icon-wrapper")];
-
       if (document.getElementById("fp-toolbar-icon-wrapper")) { /* null if user isn't using our toolbar icon */
         this.icons.push(document.getElementById("fp-toolbar-icon-wrapper"));
       }
-
       this.iconColorNodes = [document.getElementById("fp-statusbar-icon-3"),
         document.getElementById("fp-contextmenu-icon-3"), document.getElementById("fp-toolsmenu-icon-3")];
-
       if (document.getElementById("fp-toolbar-icon-3")) /* null if user isn't using our toolbar icon */
         this.iconColorNodes.push(document.getElementById("fp-toolbar-icon-3"));
-
       this.iconDisabledMask = [document.getElementById("fp-statusbar-disabled-wrapper"),
         document.getElementById("fp-contextmenu-disabled-wrapper"), document.getElementById("fp-toolsmenu-disabled-wrapper")];
-
       if (document.getElementById("fp-toolbar-disabled-wrapper")) /* null if user isn't using our toolbar icon */
         this.iconDisabledMask.push(document.getElementById("fp-toolbar-disabled-wrapper"));
     },
@@ -740,8 +734,7 @@ end-foxyproxy-simple !*/
         foxyproxy.statusText.setAttribute("style", "color: " + color);
         for (var i in this.iconColorNodes)
           this.iconColorNodes[i].setAttribute("style", "fill: "+color+";");
-      }
-      else
+      } else
         this.resetIconColors(m);
 
       for (var i in this.iconDisabledMask) {
@@ -751,6 +744,7 @@ end-foxyproxy-simple !*/
     }
   },
 
+  ///////////////// statusbar \\\\\\\\\\\\\\\\\\\\\
   toggleStatusBarIcon : function(e) {
     document.getElementById("foxyproxy-statusbar-icon").hidden = !e;
   },
@@ -847,7 +841,7 @@ end-foxyproxy-simple !*/
         case "contextmenu":
           foxyproxy._popupShowing = 0;
           let popupElement;
-    if (e.target.id === "foxyproxy-toolbar-icon") {
+          if (e.target.id === "foxyproxy-toolbar-icon") {
             popupElement = document.
               getElementById("foxyproxy-toolbarbutton-popup");
           } else {
@@ -942,7 +936,7 @@ end-foxyproxy-simple !*/
           "foxyproxy-" + p.id,
           this._cmd,
           pName.substring(0, 1),
-          this.fp.getMessage("mode.custom.label", [pName]), p.notes, "color:" + p.color);
+          this.fp.getMessage("mode.custom.label", [pName]), p.notes, "color: " + p.color);
         checkOne.push(itm);
 
         if (this.fp.advancedMenus) {
@@ -995,6 +989,7 @@ end-foxyproxy-simple !*/
         }
       }
       menupopup.appendChild(document.createElement("menuseparator"));
+
       /* add the option to "Set xx.xx.xx.xx:yyyy" as new host and port" if applicable selection is made */
       var sel = this.selection.parseSelection();
       if (sel.reason == 0) {

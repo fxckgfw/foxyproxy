@@ -34,6 +34,10 @@ ProtocolProxyServiceWrapper.prototype = {
     if (aURI instanceof Ci.nsIChannel)
       aURI = aURI.URI;
 
+    // At this point in the newest nightly we got:
+    // aURI: [xpconnect wrapped nsIURI]
+    // aChannelOrURI: [xpconnect wrapped nsIChannel]
+
     // |this.fp| is only available if we are using Gecko > 17. Thus we need to
     // be sure that |this.fp| exists before we check whether the current mode is
     // disabled. This is especially important as we land here even if we are
@@ -43,7 +47,23 @@ ProtocolProxyServiceWrapper.prototype = {
       if (typeof pi != "string") {
         // TODO: Can we be sure we got a nsIProxyInfo object here? I don't think
         // so: _err() seems to give back a proxy!?
-        aCallback.onProxyAvailable(null, aChannelOrURI, pi, 0);
+        // Chatzilla: aURI: [xpconnect wrapped nsISupports] aChannelOrURI: [xpconnect wrapped nsISupports]
+        // JavaScript error: file:///D:/foxyproxy-dev/basic-standard/src/components/protocolProxyServiceWrapper.js, line 48: NS_ERROR_XPC_BAD_CONVERT_JS: Could not convert
+        // JavaScript argument arg 1 [nsIProtocolProxyCallback.onProxyAvailable]
+        // Try to convert the nsIURI to a nsIChannel and pass it to onProxyAvailable
+        if (aChannelOrURI instanceof Ci.nsIURI) {
+          try {
+            let ios = Cc["@mozilla.org/network/io-service;1"].getService(Ci.nsIIOService);
+            let aChannel = ios.newChannel(aChannelOrURI.spec, null, null);
+            aCallback.onProxyAvailable(null, aChannel, pi, 0);
+          } catch(e) {
+            // onProxyAvailable doesn't take a nsIChannel
+            aCallback.onProxyAvailable(null, aChannelOrURI, pi, 0);
+          }
+        } else {
+          // nsIChannel
+          aCallback.onProxyAvailable(null, aChannelOrURI, pi, 0);
+        }
       } else {
         // We are not ready yet, queue the callback... We save the proxy ID as
         // well to be able to only call the onProxyAvailable() method of those

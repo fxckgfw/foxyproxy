@@ -11,7 +11,8 @@
 window.onload=function(){
   // works with ff 1.5, 2.x, and 3.x
   var e = document.getElementById("catProxiesButton") || document.getElementById("connectionSettings");
-  if (e) e.setAttribute("oncommand", "onConnectionSettings();");
+  if (e)
+    e.setAttribute("oncommand", "onConnectionSettings();");
   else {
     try {
       gAdvancedPane && (gAdvancedPane.showConnections = onConnectionSettings);

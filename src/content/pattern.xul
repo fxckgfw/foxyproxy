@@ -14,15 +14,14 @@
 <!DOCTYPE overlay SYSTEM "chrome://foxyproxy/locale/foxyproxy.dtd">
 
 
-<dialog
-  xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-  id="foxyproxypatterndlg2"
-  title="&foxyproxy.standard.label; - &foxyproxy.addeditpattern.title;"
-  ondialogaccept="return onOK();"
-  defaultButton="accept"
-  onload="onLoad();"
-  persist="screenX screenY"
-  windowtype="foxyproxy">
+<dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+        id="foxyproxypatterndlg2"
+        title="&foxyproxy.standard.label; - &foxyproxy.addeditpattern.title;"
+        ondialogaccept="return onOK();"
+        defaultButton="accept"
+        onload="onLoad();"
+        persist="screenX screenY"
+        windowtype="foxyproxy">
 
   <script src="pattern.js"/>
 

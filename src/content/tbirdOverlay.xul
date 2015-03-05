@@ -74,18 +74,26 @@
                onpopupshowing="foxyproxy.onPopupShowing(this, event);"
                onpopuphiding="foxyproxy.onPopupHiding();"/>
     <statusbarpanel id="foxyproxy-status-text"
-      onclick="foxyproxy.onSBTBClick(event, foxyproxy.fp.statusbar);"
-      mode="patterns" persist="mode hidden" hidden="true" mousethrough="never"/>
+                    onclick="foxyproxy.onSBTBClick(event, foxyproxy.fp.statusbar);"
+                    mode="patterns"
+                    persist="mode hidden"
+                    hidden="true"
+                    mousethrough="never"/>
     <statusbarpanel id="foxyproxy-statusbar-icon"
-      onclick="foxyproxy.onSBTBClick(event, foxyproxy.fp.statusbar);"
-      hidden="true" mousethrough="never"/>
+                    onclick="foxyproxy.onSBTBClick(event, foxyproxy.fp.statusbar);"
+                    hidden="true"
+                    mousethrough="never"/>
   </statusbar>
 
   <toolbarpalette id="MailToolbarPalette">
-    <toolbarbutton id="foxyproxy-toolbar-icon" label="&foxyproxy.standard.label;"
-      type="menu" orient="horizontal" mode="patterns" persist="mode"
-      context="foxyproxy-toolbarbutton-popup"
-      onclick="foxyproxy.onSBTBClick(event, foxyproxy.fp.toolbar);">
+    <toolbarbutton id="foxyproxy-toolbar-icon"
+                   label="&foxyproxy.standard.label;"
+                   type="menu"
+                   orient="horizontal"
+                   mode="patterns"
+                   persist="mode"
+                   context="foxyproxy-toolbarbutton-popup"
+                   onclick="foxyproxy.onSBTBClick(event, foxyproxy.fp.toolbar);">
     </toolbarbutton>
   </toolbarpalette>
 

@@ -64,8 +64,8 @@
       <separator class="thin"/>
         <description style="width: 1em;">
           <html:a class="link" onclick="openLocationURL();">
-             &foxyproxy.proxy.wizard.whatsmyip.label;</html:a>.
+            &foxyproxy.proxy.wizard.whatsmyip.label;</html:a>.
         </description>
     </vbox>
-</hbox>
+  </hbox>
 </dialog>

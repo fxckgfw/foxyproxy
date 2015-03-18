@@ -13,6 +13,7 @@
 const CI = Components.interfaces;
 const CC = Components.classes;
 Components.utils.import("resource://gre/modules/XPCOMUtils.jsm");
+Components.utils.import("resource://gre/modules/devtools/Console.jsm");
 
 var fp;
 
@@ -161,26 +162,39 @@ Common.prototype = {
     return this.version;
   },
 
-  applyTemplate : function(url, strTemplate, caseSensitive) {
+  /// FFF-139
+  // QuickAdd RegEx bug - only apply to replacement strings, not entire ret string
+  applyRegex : function(str, r) {
+    if (!r)
+      return str;
+
+    str = str.replace(/[$.+()^]/g, "\\$&");
+    str = str.replace(/\*/g, ".*");
+    str = str.replace(/\?/g, "."); console.log(str);
+
+    return str;
+  },
+
+  applyTemplate : function(url, strTemplate, caseSensitive, r) {
     var flags = caseSensitive ? "gi" : "g";
     try {
       var parsedUrl = this._ios.newURI(url, "UTF-8", null).QueryInterface(CI.nsIURL);
       var ret = strTemplate.replace("${0}", parsedUrl.scheme?parsedUrl.scheme:"", flags);
-      ret = ret.replace("${1}", parsedUrl.username?parsedUrl.username:"", flags);
-      ret = ret.replace("${2}", parsedUrl.password?parsedUrl.password:"", flags);
-      ret = ret.replace("${3}", parsedUrl.userPass?(parsedUrl.userPass+"@"):"", flags);
-      ret = ret.replace("${4}", parsedUrl.host?parsedUrl.host:"", flags);
+      ret = ret.replace("${1}", parsedUrl.username?this.applyRegex(parsedUrl.username,r):"", flags);
+      ret = ret.replace("${2}", parsedUrl.password?this.applyRegex(parsedUrl.password,r):"", flags);
+      ret = ret.replace("${3}", parsedUrl.userPass?this.applyRegex((parsedUrl.userPass+"@"),r):"", flags);
+      ret = ret.replace("${4}", parsedUrl.host?this.applyRegex(parsedUrl.host,r):"", flags);
       ret = ret.replace("${5}", parsedUrl.port == -1?"":parsedUrl.port, flags);
-      ret = ret.replace("${6}", parsedUrl.hostPort?parsedUrl.hostPort:"", flags);
-      ret = ret.replace("${7}", parsedUrl.prePath?parsedUrl.prePath:"", flags);
-      ret = ret.replace("${8}", parsedUrl.directory?parsedUrl.directory:"", flags);
-      ret = ret.replace("${9}", parsedUrl.fileBaseName?parsedUrl.fileBaseName:"", flags);
-      ret = ret.replace("${10}", parsedUrl.fileExtension?parsedUrl.fileExtension:"", flags);
-      ret = ret.replace("${11}", parsedUrl.fileName?parsedUrl.fileName:"", flags);
-      ret = ret.replace("${12}", parsedUrl.path?parsedUrl.path:"", flags);
-      ret = ret.replace("${13}", parsedUrl.ref?parsedUrl.ref:"", flags);
-      ret = ret.replace("${14}", parsedUrl.query?parsedUrl.query:"", flags);
-      ret = ret.replace("${15}", parsedUrl.spec?parsedUrl.spec:"", flags);
+      ret = ret.replace("${6}", parsedUrl.hostPort?this.applyRegex(parsedUrl.hostPort,r):"", flags);
+      ret = ret.replace("${7}", parsedUrl.prePath?this.applyRegex(parsedUrl.prePath,r):"", flags);
+      ret = ret.replace("${8}", parsedUrl.directory?this.applyRegex(parsedUrl.directory,r):"", flags);
+      ret = ret.replace("${9}", parsedUrl.fileBaseName?this.applyRegex(parsedUrl.fileBaseName,r):"", flags);
+      ret = ret.replace("${10}", parsedUrl.fileExtension?this.applyRegex(parsedUrl.fileExtension,r):"", flags);
+      ret = ret.replace("${11}", parsedUrl.fileName?this.applyRegex(parsedUrl.fileName,r):"", flags);
+      ret = ret.replace("${12}", parsedUrl.path?this.applyRegex(parsedUrl.path,r):"", flags);
+      ret = ret.replace("${13}", parsedUrl.ref?this.applyRegex(parsedUrl.ref,r):"", flags);
+      ret = ret.replace("${14}", parsedUrl.query?this.applyRegex(parsedUrl.query,r):"", flags);
+      ret = ret.replace("${15}", parsedUrl.spec?this.applyRegex(parsedUrl.spec,r):"", flags);
       /*ret = ret.replace(/\^|\$|\+|\\|\||\*|\{|\}|\(|\)|\[|\]/g,
         function(s) {
           switch(s) {

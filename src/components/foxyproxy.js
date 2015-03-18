@@ -169,7 +169,7 @@ foxyproxy.prototype = {
             // Initialize defaultPrefs before initial call to this.setMode().
             // setMode() is called from this.loadSettings()->this.fromDOM(), but
             // also from commandlinehandler.js.
-            this.defaultPrefs.init(gFP);
+            this.defaultPrefs.init(gFP, this.preloadedSettingsMode());
             this.loadSettings();
           }
           catch (e) {
@@ -209,6 +209,28 @@ foxyproxy.prototype = {
       e.getNext().close();
   },
 
+  /**
+   * FFF-144
+   * For figuring out if defaultprefs needs to restore proxy related prefs or
+   * not, we need to look up the mode we are loading with before we call
+   * loadSettings()
+   */
+  preloadedSettingsMode: function() {
+    this.migrateSettingsURI();
+    var f = this.getSettingsURI(CI.nsIFile);
+    dump("FoxyProxy settingsDir: " + f.path + "\n");
+    var doc = this.parseValidateSettings(f);
+    if (!doc) {
+      return "disabled";
+    } else {
+      var node = doc.documentElement;
+      var mode = node.hasAttribute("enabledState") ?
+      (node.getAttribute("enabledState") == "" ? "disabled" : node.getAttribute("enabledState")) :
+      node.getAttribute("mode");
+      return mode;
+    }
+  },
+
   loadSettings : function() {
     this.migrateSettingsURI();
     var f = this.getSettingsURI(CI.nsIFile);
@@ -217,8 +239,7 @@ foxyproxy.prototype = {
     if (!doc) {
       this.alert(null, this.getMessage("settings.error.2", [f.path, f.path]));
       this.writeSettings(f);
-    }
-    else {
+    } else {
       this.fromDOM(doc, doc.documentElement);
     }
     // Now we load the pattern subscriptions as well if there are any.
@@ -248,8 +269,7 @@ foxyproxy.prototype = {
         doc = p.parseFromStream(s, null, f.fileSize, "text/xml");
       return doc && doc.documentElement.nodeName == "foxyproxy" /* checks for parsererror nodeName; i.e. malformed XML */ ?
         doc : null;
-    }
-    catch (e) {
+    } catch (e) {
       dump("FoxyProxy parsing/validation error: " + e + "\n");
     }
   },

@@ -43,7 +43,7 @@ let defaultPrefs = {
   prefs : null,
 
   // Install observers
-  init : function(fp) {
+  init : function(fp, mode) {
     CU.import("resource://foxyproxy/utils.jsm", this);
     try {
       CU.import("resource://gre/modules/AddonManager.jsm", this);
@@ -61,7 +61,7 @@ let defaultPrefs = {
     if (this.ps.prefHasUserValue("autoconfig_url")) {
       // FoxyProxy has been closed before and the user's proxy settings got
       // saved and overwritten. Restore them now.
-      this.restoreOriginalProxyPrefs();
+      this.restoreOriginalProxyPrefs(mode);
     }
     this.addPrefsObservers();
     this.addGeneralObservers();
@@ -470,6 +470,13 @@ let defaultPrefs = {
   },
 
   saveFoxyProxyProxyMode : function() {
+    /// FFF-144
+    // If FoxyProxy was set into "Completely disable Foxyproxy" mode when
+    // shutting down, then Firefox could startup in safemode with proxy settings
+    // So we don't want to safe proxy settings if we are set to this mode
+    if (this.fp._mode === "disabled")
+      return;
+
     // First, we save the original prefs... As the problem at hand is only an
     // issue for Gecko 2+ versions and there is no Gopher supported anymore in
     // these versions we let the Gopher settings alone if they exist. We
@@ -538,7 +545,14 @@ let defaultPrefs = {
     }
   },
 
-  restoreOriginalProxyPrefs : function() {
+  restoreOriginalProxyPrefs : function(mode) {
+    /// FFF-144
+    // If FoxyProxy was set into "Completely disable Foxyproxy" mode when 
+    // shutting down, then Firefox could startup in safemode with proxy settings
+    // So we don't want to safe proxy settings if we are set to this mode
+    if (mode === "disabled")
+      return;
+
     // Now that FoxyProxy has taken the control over the proxy handling again we
     // restore the user's proxy settings in the network panel to have them back
     // if FoxyProxy gets e.g. disabled or uninstalled.

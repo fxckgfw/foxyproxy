@@ -335,8 +335,7 @@ function onAddEditURLPattern(isNew) {
   if (isNew) {
     m = CC["@leahscape.org/foxyproxy/match;1"].createInstance().wrappedJSObject;
     idx = proxy.matches.length;
-  }
-  else if (idx == -1) return; // safety; may not be necessary anymore
+  } else if (idx == -1) return; // safety; may not be necessary anymore
 
   var params = {inn:{pattern: (isNew ? m : proxy.matches[idx]), superadd:false}, out:null};
 
@@ -777,8 +776,7 @@ function sort(columnId) {
     if (columnId == "enabled") {
       if (a.enabled) return -1 * order;
       if (b.enabled) return order;
-    }
-    else {
+    } else {
       c = getTextForCell(a, columnId);
       d = getTextForCell(b, columnId);
     }

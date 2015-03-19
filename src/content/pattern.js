@@ -29,8 +29,7 @@ function onLoad() {
   if (isSuperAdd) {
     document.getElementById("superadd").setAttribute("hidden", false);
     document.getElementById("not-superadd").setAttribute("hidden", true);
-  }
-  else {
+  } else {
     var enabled = m.enabled;
     document.getElementById("superadd").setAttribute("hidden", true);
     document.getElementById("not-superadd").setAttribute("hidden", false);

@@ -49,8 +49,7 @@ var foxyproxy = {
           // sessionstore-windows-restored notification not supported; just do it now
           o.usingObserver = false;
           o.installTimer();
-        }
-        else
+        } else
           CC["@mozilla.org/observer-service;1"].getService(CI.nsIObserverService)
              .addObserver(o, "sessionstore-windows-restored", false);
       }
@@ -378,8 +377,7 @@ end-foxyproxy-simple !*/
           foxyproxy.alert(owner, this.fp.getMessage("torwiz.wrongPort"));
     ok = false;
   }
-      }
-      else
+      } else
         break;
     } while (!ok);
     if (ok) {
@@ -400,8 +398,7 @@ end-foxyproxy-simple !*/
         p.manualconf.host="127.0.0.1";
         p.manualconf.port=input.value;
         p.manualconf.isSocks=true;
-      }
-      else {
+      } else {
         p.manualconf.host="127.0.0.1";
         p.manualconf.port=input.value;
         p.manualconf.isSocks=false;
@@ -413,8 +410,7 @@ end-foxyproxy-simple !*/
       if (this.fp.isFoxyProxySimple()) {
         p.selectedTabIndex = 1;
         _congrats(p);
-      }
-      else {
+      } else {
         p.selectedTabIndex = 2;
         var params = {inn:{isNew:true, proxy:p, torwiz:true}, out:null}, win = owner?owner:window;
         win.openDialog("chrome://foxyproxy/content/addeditproxy.xul", "",
@@ -527,8 +523,7 @@ end-foxyproxy-simple !*/
         // nsIFilePicker dialog is open. Best we can do is flash the window.
         wnd.getAttentionWithCycleCount(4);
       }
-    }
-    else {
+    } else {
       if (idToClose) {
         var wnd = foxyproxy.findWindow(idToClose); // close competing dialog to minimize synchronization issues between the two
         wnd && wnd.close();
@@ -636,8 +631,7 @@ end-foxyproxy-simple !*/
       appcontent.removeEventListener("load", foxyproxy.onPageLoad, true);
       if (listen) {
         appcontent.addEventListener("load", foxyproxy.onPageLoad, true);
-      }
-      else {
+      } else {
         appcontent.removeEventListener("load", foxyproxy.onPageLoad, true);
       }
     }
@@ -822,11 +816,9 @@ end-foxyproxy-simple !*/
   onSBTBClick : function(e, o) {
     if (e.button==0) {
       _act(o.leftClick, e);
-    }
-    else if (e.button==1) {
+    } else if (e.button==1) {
       _act(o.middleClick, e);
-    }
-    else if (e.button==2) {
+    } else if (e.button==2) {
       _act(o.rightClick, e);
     }
     function _act(x, e) {
@@ -1126,8 +1118,7 @@ end-foxyproxy-simple !*/
         catch (e) {
           // dunno why it throws
         }
-      }
-      else {
+      } else {
         // advanced menus are disabled
         itm = _createMenuItem(menupopup,
           this.fp.getMessage("foxyproxy.options.label"),

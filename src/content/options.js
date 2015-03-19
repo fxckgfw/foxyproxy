@@ -725,8 +725,7 @@ function onMaxSize() {
   if (overlay.ask(this, foxyproxy.getMessage("logg.maxsize.change"))) {
     foxyproxy.logg.maxSize = v;
     _updateView(false, true);
-  }
-  else
+  } else
     document.getElementById("maxSize").value = foxyproxy.logg.maxSize;
 }
 /*
@@ -927,13 +926,11 @@ function onQuickAddEnabled(cb) {
         foxyproxy.quickadd.enabled = true;
         foxyproxy.quickadd.updateProxyMenu(document.getElementById("quickAddProxyMenu"), document);
         document.getElementById("quickAddBroadcaster").hidden = false;
-    }
-    else {
+    } else {
       overlay.alert(this, foxyproxy.getMessage("superadd.verboten2", [foxyproxy.getMessage("foxyproxy.quickadd.label")]));
       cb.checked = false;
     }
-  }
-  else {
+  } else {
     document.getElementById("quickAddBroadcaster").hidden = true;
     foxyproxy.quickadd.enabled = false;
   }
@@ -948,13 +945,11 @@ function onAutoAddEnabled(cb) {
       foxyproxy.autoadd.updateProxyMenu(document.getElementById("autoAddProxyMenu"), document);
       sizeToContent(); // call this before the alert() otherwise user can see unsized dialog in background
       overlay.alert(this, foxyproxy.getMessage("autoadd.notice"));
-    }
-    else {
+    } else {
       overlay.alert(this, foxyproxy.getMessage("superadd.verboten2", [foxyproxy.getMessage("foxyproxy.tab.autoadd.label")]));
       cb.checked = false;
     }
-  }
-  else {
+  } else {
     document.getElementById("autoAddBroadcaster").hidden = true;
     foxyproxy.autoadd.enabled = false;
     sizeToContent();

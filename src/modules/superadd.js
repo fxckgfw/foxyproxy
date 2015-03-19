@@ -204,8 +204,7 @@ SuperAdd.prototype = {
               [dialogType]));
         }
       }
-    }
-    else {
+    } else {
       if (popup.firstChild) {
         this.proxyById = menu.value = popup.firstChild.id;
       }
@@ -217,8 +216,7 @@ SuperAdd.prototype = {
     if (this._prompt) {
       ret = this.fpc.onSuperAdd(window, url, this); // prompt user for edits first
       // if !ret then the user canceled the SuperAdd dlg
-    }
-    else {
+    } else {
       ret = this.match.clone();
       ret.pattern = this.fpc.applyTemplate(url, ret.pattern, ret.caseSensitive);
       ret.temp = this.temp; /* the cloned match object doesn't clone temp because it's not deserialized from disk while this.temp is */
@@ -245,8 +243,7 @@ SuperAdd.prototype = {
               var m = match.isBlackList ? this.proxy.isBlackMatch(match.pattern, url) : this.proxy.isWhiteMatch(match.pattern, url);
               if (m) {
                 // Resist the temptation to inform the user. Does he really care if autoadd was canceled? Interferes with surfing UX.
-              }
-              else
+              } else
                 this.addPattern(match, doc.location);
             }
             break;
@@ -282,8 +279,7 @@ SuperAdd.prototype = {
         this._notifyWhenCanceled &&
           this.fp.notifier.alert(this.fp.getMessage("foxyproxy.quickadd.label"),
             this.fp.getMessage("quickadd.quickadd.canceled", [m.name, this._proxy.name]));
-      }
-      else
+      } else
         this.addPattern(match, doc.location);
     }
   },
@@ -355,8 +351,7 @@ SuperAdd.prototype = {
       // Ensure the proxy still  exists
       this._proxy = this.fp.proxies.getProxyById(proxyId);
       this._enabled && (!this._proxy || !this._proxy.enabled) && (error = true);
-    }
-    else if (this._enabled)
+    } else if (this._enabled)
       error = true;
     if (error) {
       this._enabled = false;
@@ -390,8 +385,7 @@ AutoAdd.prototype.fromDOM = function(doc) {
       this._blockedPageMatch.fromDOM(n);
     }
     catch (e) {dump(e+"\n");}
-  }
-  else {
+  } else {
     dump("Cannot find autoadd/match[1] node.\n");
   }
 
@@ -402,8 +396,7 @@ AutoAdd.prototype.fromDOM = function(doc) {
       this._blockedPageMatch.fromDOM(n);
     }
     catch (e) {dump(e+"\n");}
-  }
-  else
+  } else
     this._blockedPageMatch.fromDOM(getBlockedPageMatch("foxyproxy/autoadd/match[1]"));
 
   function getBlockedPageMatch(exp) {

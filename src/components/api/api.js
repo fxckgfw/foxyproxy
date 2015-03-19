@@ -190,14 +190,12 @@ api.prototype = {
             // It did -- inform content
             if (callbackObj.success)
               callbackObj.success(metaCallback.successArgs);
-          }
-          else {
+          } else {
             // It did not -- call error() to inform content
             if (callbackObj.error)
               callbackObj.error(metaCallback.errorArgs);
           }
-        }
-        else {
+        } else {
           // There is no success test -- just inform content
           if (callbackObj.success)
             callbackObj.success(metaCallback.successArgs);

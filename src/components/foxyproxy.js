@@ -74,8 +74,7 @@ var gLoggEntryFactory = function(proxy, aMatch, uri, type, errMsg) {
        */
       var d = CC["@mozilla.org/supports-string;1"].createInstance(CI.nsISupportsString);
       d.data = "" + data; // force to a string
-    }
-    else {
+    } else {
       data && (d = data.QueryInterface(CI.nsISupports));
     }
     gObsSvc.notifyObservers(bool, topic, d);
@@ -446,15 +445,12 @@ foxyproxy.prototype = {
         this.setMode(gFP.excludePatternsFromCycling ? _getNextAfterPatterns() : "patterns", true);
       else
         this.setMode("disabled", true);
-    }
-    else if (this._mode == "disabled") {
+    } else if (this._mode == "disabled") {
       this.setMode(this.isFoxyProxySimple() || gFP.excludePatternsFromCycling ?
           /* FP Simple has no "patterns" mode, so skip to next one */_getNextAfterPatterns() : "patterns", true);
-    }
-    else if (this._mode == "patterns") {
+    } else if (this._mode == "patterns") {
       this.setMode(_getNextAfterPatterns(), true);
-    }
-    else {
+    } else {
       // Mode is set to a specific proxy for all URLs
       var p = _getNextInCycle(this._mode);
       this.setMode(p?p.id:"disabled", true);
@@ -993,8 +989,7 @@ foxyproxy.prototype = {
           }
           this.list[i] = p; // now i == idx, so insert our newbie there
         }
-      }
-      else {
+      } else {
         // idx is a word
         switch (idx) {
           case "random": this.insertAt(Math.floor(Math.random()*this.list.length) /* does not include this.list.length in possible outcome */, p); break; /* thanks Andrew @ http://www.shawnolson.net/a/789/ */
@@ -1092,8 +1087,7 @@ foxyproxy.prototype = {
           this.remove(idx);
         }
         return ret;
-      }
-      else {
+      } else {
         var idx = this.getIndexByName(name);
         if (idx > -1) {
           this.remove(idx);
@@ -1131,8 +1125,7 @@ foxyproxy.prototype = {
       if (last) {
         this.list.push(last); // ensures it really IS last
         !last.enabled && (last.enabled = true);    // ensure it is enabled
-      }
-      else {
+      } else {
         last = new Proxy(gFP);
         last.name = gFP.getMessage("proxy.default");
         last.notes = gFP.isFoxyProxySimple() ? "" : gFP.getMessage("proxy.default.notes");
@@ -1174,8 +1167,7 @@ foxyproxy.prototype = {
               this.list[i].wpad.cancelTimer();
             }
           }
-        }
-        else
+        } else
           temp[temp.length] = this.list[i];
       }
       this.list = []; // this.list.splice(0, this.length);
@@ -1903,8 +1895,7 @@ foxyproxy.prototype = {
           this.uninstall(false);
         else
           this.install();
-      }
-      else if (topic == "http-on-modify-request") {
+      } else if (topic == "http-on-modify-request") {
         // If we are disabled there is no need to hook the notification
         // callbacks.
         if (subj && gFP._mode != "disabled") {
@@ -1960,18 +1951,14 @@ function LoggEntry(proxy, aMatch, uriStr, type, errMsg) {
       this.whiteBlack = aMatch.isBlackList ? this.blackMsg : this.whiteMsg;
       // See last comment
       this.caseSensitive = aMatch.caseSensitive ? this.yes : this.no;
-    }
-    else if (type == "ded") {
+    } else if (type == "ded") {
       this.caseSensitive = this.whiteBlack = this.matchName =
         this.matchPattern = this.matchType = this.allMsg;
-    }
-    else if (type == "rand") {
+    } else if (type == "rand") {
       this.matchName = this.matchPattern = this.matchType =
         this.whiteBlack = this.randomMsg;
-    }
-    else if (type == "round") {
-    }
-    else if (type == "err") {
+    } else if (type == "round") {
+    } else if (type == "err") {
       this.errMsg = errMsg;
       this.caseSensitive = this.whiteBlack = this.matchName =
         this.matchPattern = this.matchType = "";

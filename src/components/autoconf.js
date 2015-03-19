@@ -68,8 +68,7 @@ AutoConf.prototype = {
   set reloadFreqMins(e) {
     if (isNaN(e) || e < 1) {
       e = 60;
-    }
-    else {
+    } else {
       this._reloadFreqMins = e;
     }
    },
@@ -121,8 +120,7 @@ AutoConf.prototype = {
         (req.status == 0 && (url.indexOf("file://") == 0 ||
         url.indexOf("ftp://") == 0 || url.indexOf("relative://") == 0))) {
       new fpProxyAutoConfig(this).init(url, req.responseText);
-    }
-    else throw new Error(fp.getMessage("http.error", [req.status]));
+    } else throw new Error(fp.getMessage("http.error", [req.status]));
   },
 
   loadPAC : function() {

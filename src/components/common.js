@@ -13,7 +13,6 @@
 const CI = Components.interfaces;
 const CC = Components.classes;
 Components.utils.import("resource://gre/modules/XPCOMUtils.jsm");
-Components.utils.import("resource://gre/modules/devtools/Console.jsm");
 
 var fp;
 
@@ -43,8 +42,7 @@ function Common() {
       .getService(CI.nsIExtensionManager)
       .getItemForID(uuid)
       .version || "0.0";
-  }
-  else {
+  } else {
     // Post-Gecko 2.0
     Components.utils.import("resource://gre/modules/AddonManager.jsm");
     var self = this;
@@ -101,8 +99,7 @@ Common.prototype = {
         //setTimeout(function(aTabElt) { w.gBrowser.selectedTab = aTabElt; }, 0, w.gBrowser.addTab(aURL, null, null, null));
         var t = CC["@mozilla.org/timer;1"].createInstance(CI.nsITimer);
         t.initWithCallback(event, 10, CI.nsITimer.TYPE_ONE_SHOT);
-      }
-      else // FF, SM, Flock, etc.
+      } else // FF, SM, Flock, etc.
         w.delayedOpenTab(aURL, null, null, null, null);
       w.focus();
     }
@@ -123,8 +120,7 @@ Common.prototype = {
         fp.alert(win, fp.getMessage("pattern.invalid.regex", [origPat]));
         return false;
       }
-    }
-    else if (p.indexOf("*") == -1 && p.indexOf("?") == -1 && !fp.warnings.
+    } else if (p.indexOf("*") == -1 && p.indexOf("?") == -1 && !fp.warnings.
              showWarningIfDesired(win, ["no.wildcard.characters", p],
              "wildcards", true))
       return false;
@@ -369,8 +365,7 @@ Common.prototype = {
     }
     if (getNotWithVal) {
       getNotWithVal.label = message;
-    }
-    else {
+    } else {
       nb.appendNotification(message, "foxyproxy-notification",
           "chrome://foxyproxy/content/images/16x16.gif", priority, buttons);
     }
@@ -487,8 +482,7 @@ Common.prototype = {
       fp.notifier.alert(fp.getMessage("foxyproxy"),
         fp.getMessage("proxy.configured", [nameValuePairs["name"]]));
       return nameValuePairs;
-    }
-    else if (nameValuePairs["confirmation"]) {
+    } else if (nameValuePairs["confirmation"]) {
       // Is it a valid URL?
       try {
         this._ios.newURI(nameValuePairs["confirmation"], "UTF-8", null);

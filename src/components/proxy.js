@@ -18,8 +18,7 @@ if (!CI) {
   if ("undefined" != typeof(__LOCATION__)) {
     // preferred way
     self = __LOCATION__;
-  }
-  else {
+  } else {
     self = fileProtocolHandler.getFileFromURLSpec(Components.Exception().filename);
   }
   var componentDir = self.parent; // the directory this file is in
@@ -51,8 +50,7 @@ if (!CI) {
   if ("undefined" != typeof(__LOCATION__)) {
     // preferred way
     self = __LOCATION__;
-  }
-  else {
+  } else {
     self = fileProtocolHandler.getFileFromURLSpec(Components.Exception().filename);
   }
   var dir = self.parent, // the directory this file is in
@@ -602,8 +600,7 @@ Proxy.prototype = {
           if (m.isBlackList) {
             // Black takes priority over white
             return false;
-          }
-          else if (white == -1) {
+          } else if (white == -1) {
             white = i; // continue checking for blacklist matches!
           }
         }
@@ -692,8 +689,7 @@ Proxy.prototype = {
       }
       if (proxies[0] == null) {
         return _notifyUserOfError(spec);
-      }
-      else if (proxies[1]) {
+      } else if (proxies[1]) {
         proxies[0].failoverTimeout = 1800;
         proxies[0].failoverProxy = proxies[1];
       }

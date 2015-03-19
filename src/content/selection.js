@@ -33,8 +33,7 @@ foxyproxy.selection = {
               let r = foxyproxy.ask(window, arg ? fp.getMessage(str, [arg]) : fp.getMessage(str));
               if (r == 1) fp.setMode(p.proxy.id, false);
               return r;
-            }
-            else {
+            } else {
               let r = foxyproxy.ask(window, arg ? fp.getMessage(str, [arg]) : fp.getMessage(str), fp.getMessage("yes.use.patterns"), fp.getMessage("yes.use.proxy.for.all", [p.proxy.name]), fp.getMessage("no.dont.change.anything"));
               if (r === 0) fp.setMode("patterns", false);
               else if (r == 1) fp.setMode(p.proxy.id, false);
@@ -66,8 +65,7 @@ foxyproxy.selection = {
         }
         fp.writeSettingsAsync();
       }
-    }
-    else if (sel.reason == 1)
+    } else if (sel.reason == 1)
       fp.notifier.alert(null, fp.getMessage("noHostPortSelected"));
   },
 
@@ -100,8 +98,7 @@ foxyproxy.selection = {
         ret.host = parsed[0];
         ret.port = parsed[1];
       }
-    }
-    else
+    } else
       ret.reason = 1;
     return ret;
   },

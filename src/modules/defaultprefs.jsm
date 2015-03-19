@@ -350,8 +350,7 @@ let defaultPrefs = {
       if (d === "item-cancel-action") {
         this.beingUninstalled = false;
         this.beingDisabled = false;
-      }
-      else if (d === "item-uninstalled")
+      } else if (d === "item-uninstalled")
         this.beingUninstalled = true;
       else if (d === "item-disabled")
         this.beingDisabled = true;

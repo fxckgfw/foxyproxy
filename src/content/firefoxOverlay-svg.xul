@@ -39,7 +39,8 @@
  </hbox>
 
  <hbox id="foxyproxy-toolbar-icon" svg="true">
-  <svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="16" height="16">
+  <hbox class="toolbarbutton-icon">
+  <svg xmlns="http://www.w3.org/2000/svg" class="toolbarbutton-svg" viewBox="0 0 16 16" version="1.0">
    <defs />
    <g id="fp-toolbar-icon-wrapper">
     <path
@@ -62,6 +63,8 @@
      child="5" />
    </g>
   </svg>
+  </hbox>
+  <label class="toolbarbutton-multiline-text" flex="1" wrap="true" text="&foxyproxy.standard.label;">&foxyproxy.standard.label;</label>
  </hbox>
 
   <hbox id="foxyproxy-contextmenu-icon" svg="true">

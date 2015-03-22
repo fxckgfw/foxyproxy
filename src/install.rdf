@@ -15,6 +15,7 @@
 
     <Description rdf:about="urn:mozilla:install-manifest">
         <em:unpack>true</em:unpack>
+        <em:type>2</em:type>
 <!-- begin-foxyproxy-standard -->
         <em:id>foxyproxy@eric.h.jung</em:id>
         <em:name>FoxyProxy Standard</em:name>

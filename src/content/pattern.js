@@ -71,5 +71,5 @@ function onOK() {
 
 function updateGeneratedPattern() {
   generatedPattern.value = fpc.applyTemplate(exampleURL.value, pattern.value,
-    caseSensitive.checked);
+    caseSensitive.checked, (document.getElementById("matchtype").value == "r"));
 }

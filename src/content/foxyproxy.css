@@ -34,6 +34,10 @@ toolbarpaletteitem[place="palette"] > #foxyproxy-toolbar-icon .toolbarbutton-svg
   padding-right: 2px !important;
 }
 
+#nav-bar toolbarbutton#foxyproxy-toolbar-icon label.toolbarbutton-multiline-text {
+  display: none;
+}
+
 
 /* High-resolution displays */
 /*@media (min-resolution: 2dppx) {

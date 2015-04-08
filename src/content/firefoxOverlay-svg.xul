@@ -64,6 +64,7 @@
    </g>
   </svg>
   </hbox>
+  <label class="toolbarbutton-text" crop="right" flex="1" wrap="true" text="&foxyproxy.standard.label;">&foxyproxy.standard.label;</label>
   <label class="toolbarbutton-multiline-text" flex="1" wrap="true" text="&foxyproxy.standard.label;">&foxyproxy.standard.label;</label>
  </hbox>
 

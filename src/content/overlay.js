@@ -868,6 +868,8 @@ end-foxyproxy-simple !*/
           break;
       }
     }
+    e.preventDefault();
+    return false;
   },
 
   onPopupHiding : function() {

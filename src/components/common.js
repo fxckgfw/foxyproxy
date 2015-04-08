@@ -74,11 +74,13 @@ Common.prototype = {
     while (winEnum.hasMoreElements()) {
       var win = winEnum.getNext();
       var browser = win.getBrowser();
-      for (var i = 0; i < browser.mTabs.length; i++) {
-        if (aURL == browser.getBrowserForTab(browser.mTabs[i]).currentURI.spec) {
-          win.focus(); // bring wnd to the foreground
-          browser.selectedTab = browser.mTabs[i];
-          return;
+      if (browser.mTabs) { // Could be thunderbird
+        for (var i = 0; i < browser.mTabs.length; i++) {
+          if (aURL == browser.getBrowserForTab(browser.mTabs[i]).currentURI.spec) {
+            win.focus(); // bring wnd to the foreground
+            browser.selectedTab = browser.mTabs[i];
+            return;
+          }
         }
       }
     }

@@ -70,7 +70,7 @@
 
   <target name="build-foxyproxy-standard" depends="init">
     <property name="edition" value="standard" />
-    <property name="version" value="4.5.3" />
+    <property name="version" value="4.5.4" />
     <property name="src-path" value="${temp-path}"/>
     <antcall>
       <target name="copy"/>
@@ -87,7 +87,7 @@
 
   <target name="build-foxyproxy-basic" depends="init">
     <property name="edition" value="basic" />
-    <property name="version" value="3.5.3" />
+    <property name="version" value="3.5.4" />
     <property name="src-path" value="${temp-path}"/>
     <antcall>
       <target name="copy"/>

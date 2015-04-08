@@ -29,6 +29,21 @@ ProtocolProxyServiceWrapper.prototype = {
 
   // nsIProtocolProxyService
   asyncResolve : function(aURI, aFlags, aCallback) {
+    // The old method here wasn't actually async.
+    // What happens behind the scene is that calls to
+    // let proxyService = Cc["@mozilla.org/network/protocol-proxy-service;1"]
+    //                          .getService(Ci.nsIProtocolProxyService);
+    // this._proxyCancel = proxyService.asyncResolve(uri, this.proxyFlags, this);
+    // Are expecting asyncResolve is return instantly, but nothing in Gecko itself
+    // makes this a async call. So this._proxyCancel wouldn't get set before this
+    // function returned.
+    var timer = Components.classes["@mozilla.org/timer;1"].createInstance(Components.interfaces.nsITimer);
+    var self = this;
+    timer.initWithCallback(function() {self.aasyncResolve(aURI, aFlags, aCallback)},0, Components.interfaces.nsITimer.TYPE_ONE_SHOT);
+  },
+
+  // Attempting to make it truely async
+  aasyncResolve : function(aURI, aFlags, aCallback) {
     // Bug 1125372 and Bug 436344
     var aChannelOrURI = aURI;
     if (aURI instanceof Ci.nsIChannel)
@@ -37,6 +52,7 @@ ProtocolProxyServiceWrapper.prototype = {
     // At this point in the newest nightly we got:
     // aURI: [xpconnect wrapped nsIURI]
     // aChannelOrURI: [xpconnect wrapped nsIChannel]
+    // XXMP on thunderbird provides [xpconnect wrapped nsIURI]
 
     // |this.fp| is only available if we are using Gecko > 17. Thus we need to
     // be sure that |this.fp| exists before we check whether the current mode is

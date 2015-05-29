@@ -198,6 +198,13 @@ Proxy.prototype = {
       this.matches[j] = new Match();
       this.matches[j].fromDOM(temp.item(i), includeTempPatterns);
     }
+    // FFF-158 It is possibly that the default proxy has no matches, which will break blacklist fallbacks
+    if (this.id == "default" && this.matches.length === 0) {
+      var match = new Match();
+      match.name = this.fp.getMessage("proxy.default.match.name");
+      match.pattern = "*";
+      this.matches.push(match);
+    }
     // Were we disabled due to a bad/missing PAC file? If so, try enabling ourselves again.
     //if (this.autoconf.disabledDueToBadPAC) {
       //this._enabled = true;

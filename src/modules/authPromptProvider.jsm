@@ -264,7 +264,7 @@ AuthPromptProvider.prototype = {
                       getService(Components.interfaces.nsIPromptFactory);
         var prompt = factory.getPrompt(win, Components.interfaces.nsIAuthPrompt2);
         if(prompt instanceof Components.interfaces.nsILoginManagerPrompter) {
-          prompt.setE10sData(gBrowser.selectedBrowser, null);
+          prompt.setE10sData(win.gBrowser.selectedBrowser, null);
         }
         return prompt;
       }

@@ -1900,6 +1900,7 @@ foxyproxy.prototype = {
         // callbacks.
         if (subj && gFP._mode != "disabled") {
           var httpChannel = subj.QueryInterface(CI.nsIHttpChannel);
+          var e10s = (httpChannel.loadGroup) ? false : true;
           // There may be circumstances where we get an exception which we
           // should catch. One such case is e.g. the load of getfoxyproxy
           // favicons on the help page after restarting Firefox immediately
@@ -1910,7 +1911,7 @@ foxyproxy.prototype = {
           // as it gets otherwise broken by FoxyProxy.
           try {
             httpChannel.notificationCallbacks = new gFP.AuthPromptProvider(gFP,
-              httpChannel.notificationCallbacks, httpChannel.URI.prePath);
+              httpChannel.notificationCallbacks, httpChannel.URI.prePath, e10s);
           } catch (e) {}
         }
       }

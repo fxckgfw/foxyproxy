@@ -14,12 +14,13 @@ let EXPORTED_SYMBOLS = ["AuthPromptProvider"];
 let CC = Components.classes, CI = Components.interfaces, CR = Components.
   results;
 
-function AuthPromptProvider(fp, originalNotificationCallbacks, prePath) {
+function AuthPromptProvider(fp, originalNotificationCallbacks, prePath, e10s) {
   this.fp = fp;
   this.fpc = CC["@leahscape.org/foxyproxy/common;1"].getService().
     wrappedJSObject;
   this.originalNotificationCallbacks = originalNotificationCallbacks;
   this.prePath = prePath;
+  this.e10s = e10s;
 }
 
 AuthPromptProvider.prototype = {
@@ -255,6 +256,17 @@ AuthPromptProvider.prototype = {
             return new this.cal.auth.Prompt();
           }
         } catch (e) {}
+      }
+      // FFF-159 http basic/digest auth with e10s fails with exception
+      if (this.e10s) {
+        var win = this.fpc.getMostRecentWindow();
+        var factory = Components.classes["@mozilla.org/prompter;1"].
+                      getService(Components.interfaces.nsIPromptFactory);
+        var prompt = factory.getPrompt(win, Components.interfaces.nsIAuthPrompt2);
+        if(prompt instanceof Components.interfaces.nsILoginManagerPrompter) {
+          prompt.setE10sData(gBrowser.selectedBrowser, null);
+        }
+        return prompt;
       }
       throw CR.NS_ERROR_NOT_AVAILABLE;
     }
